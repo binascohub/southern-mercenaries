@@ -2,7 +2,7 @@
 
 > Versão 11 · 2026-10-30 · Complementa `01-escopo.md`, `02-0-elementos.md`, `03-1-bestiario.md`, `03-2-areas.md`, `05-itens-e-loot.md` e `06-mundo-e-historia.md`
 > Este arquivo traz a **mecânica** dos monstros. As **lendas** e as **pistas de fraqueza** estão em `03-1-bestiario.md`. A divisão de cada mapa em áreas está em `03-2-areas.md`.
-> Números são propostas iniciais para balancear depois. Vida e dano são para nível 1 e escalam com o nível da área.
+> Números são propostas iniciais para balancear depois. Vida e dano são para nível 1 e escalam com o nível da área; a vida dos chefes ainda recebe o **fator de chefe** de `13-balanceamento.md`, seção 2.4.
 
 ## Tom
 
@@ -51,7 +51,7 @@
 
 ### Escala
 - **Por nível da área:** vida e dano crescem ~12% por nível. Cada mapa começa num nível maior que o anterior.
-- **Por número de jogadores:** vida +60% por jogador extra; loot +30% por jogador extra; dano não muda.
+- **Por número de jogadores:** vida +60% e dano +10% por jogador extra; **o loot não escala** (decisão do autor, `07-rede.md`). Tabela completa em `13-balanceamento.md`, seção 2.5.
 - **Elite:** vida x3, dano x1,5, sempre deixa ao menos 1 item mágico. Uma elite tem o mesmo elemento do monstro base.
 - **Mini-chefe:** vida x6, dano x1,8, deixa 1 item raro garantido.
 
