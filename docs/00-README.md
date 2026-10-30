@@ -25,6 +25,7 @@ Documentação de design do jogo **Southern Mercenaries**, RPG de ação co-op e
 | `07-rede.md` | Servidor autoritativo, descoberta na LAN, sincronização, loot individual, entrada e saída no meio da partida |
 | `08-controles.md` | Teclado/mouse e controle USB, mapeamento padrão, remapeamento, opções |
 | `09-interface.md` | Direção visual (estilo 0 A.D., câmera próxima como Dark Alliance), HUD, menus, telas e opções |
+| `12-audio.md` | Trilha por mapa e chefe, efeitos, ambiente, sons de interface, vozes dos heróis e licenças de áudio |
 | `10-distribuicao.md` | Licenças open source, repositório, builds Windows/Linux, instaladores, GitHub Actions, website |
 | `11-saves.md` | Saves de personagem e de campanha, autosave, checkpoints, continuar no solo e no co-op |
 
@@ -46,4 +47,4 @@ Documentação de design do jogo **Southern Mercenaries**, RPG de ação co-op e
 
 ## Próximos documentos previstos
 
-- `12-audio.md` (trilha, efeitos e licenças) — proposta
+- `13-balanceamento.md` (tabelas de vida, dano, XP e economia) — proposta
