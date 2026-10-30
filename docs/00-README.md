@@ -23,6 +23,7 @@ Documentação de design do jogo **Southern Mercenaries**, RPG de ação co-op e
 | `05-1-refino.md` | Refino com pergaminhos estilo Lineage 2 (+1 a +5, seguro até +3, falha e cristais) e a aura em volta do herói |
 | `06-mundo-e-historia.md` | Premissa, a guerra, estrutura da campanha em atos, abertura, tesouros e motivos dos heróis |
 | `08-controles.md` | Teclado/mouse e controle USB, mapeamento padrão, remapeamento, opções |
+| `09-interface.md` | Direção visual (estilo 0 A.D., câmera próxima como Dark Alliance), HUD, menus, telas e opções |
 | `10-distribuicao.md` | Licenças open source, repositório, builds Windows/Linux, instaladores, GitHub Actions, website |
 | `11-saves.md` | Saves de personagem e de campanha, autosave, checkpoints, continuar no solo e no co-op |
 
@@ -45,4 +46,3 @@ Documentação de design do jogo **Southern Mercenaries**, RPG de ação co-op e
 ## Próximos documentos previstos
 
 - `07-rede.md` (detalhes técnicos de sincronização)
-- `09-interface.md` (HUD, menus, tela de criação)
