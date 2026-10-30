@@ -246,10 +246,11 @@ Conteúdo detalhado dos tesouros em `05-itens-e-loot.md`, seção 3.
   - Preço (proposta): 40 + 15 × nível da área, **por jogador** (ouro individual). Se um jogador não tiver ouro suficiente, o aviso mostra quem falta.
   - No co-op, o host escolhe e os outros confirmam (como no portal comum).
 - **Vender o Patuá de Retorno** (`return_charm`): ver abaixo.
+- **O portal dele abre no chão** (decisão do autor): um círculo de símbolos e velas que se risca no solo e vira um redemoinho de sombra e brasas; os jogadores **pisam nele** para atravessar. Some depois de alguns segundos. Vale também para o portal aberto pelo Patuá de Retorno, no meio do mapa.
 - Mais caro que o portal comum, porque economiza a caminhada do início do mapa (a ideia é o jogador pagar pela comodidade).
 
 **Patuá de Retorno** (`return_charm`, consumível):
-- Usado no mapa (fora de combate, 5 s de canalização), abre um **portal de volta à cidade** de onde o grupo saiu, que fica aberto por 15 s para qualquer jogador do grupo atravessar.
+- Usado no mapa (fora de combate, 5 s de canalização), abre, **no chão**, um **portal de volta à cidade** de onde o grupo saiu, que fica aberto por 15 s para qualquer jogador do grupo atravessar.
 - Usar o patuá **salva o checkpoint** atual como ponto de volta (o jogador volta a ele com o Macumbeiro).
 - Preço (proposta): 150 de ouro; empilha até 5; cai também como loot raro.
 - No interior de uma arena de chefe com a luta em andamento o patuá **não funciona**.
@@ -260,7 +261,7 @@ Conteúdo detalhado dos tesouros em `05-itens-e-loot.md`, seção 3.
 - O Esgoto é um mapa separado, carregado ao descer pelo bueiro.
 - Lojas da Rua Principal e o Mercado Pirata abrem como janelas de interface ao interagir com a banca (sem carregamento).
 - Iluminação de lampiões feita com poucas luzes (desempenho em vídeo integrado).
-- O portal é um modelo simples com partículas poucas e uma luz fraca (sem luz dinâmica extra); a viagem é uma tela de carregamento curta com efeito de runas.
+- O portal da cidade é um modelo simples com partículas poucas; o portal do Macumbeiro e do Patuá é só um **decalque no chão** com poucas partículas, sem luz dinâmica extra; a viagem é uma tela de carregamento curta com efeito de runas.
 - O mar do porto é um plano simples com animação de textura (sem simulação de água pesada); navios piratas são cenário estático com animação leve de balanço.
 - NPCs de ambientação com rotinas simples (encostado, bebendo, carregando caixas, andando entre dois pontos) e poucos modelos base com variações de cor e acessórios.
 - NPCs da taverna têm animações simples: sentado bebendo, em pé no balcão, falando, rindo.
