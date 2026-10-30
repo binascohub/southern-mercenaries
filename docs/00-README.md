@@ -42,7 +42,7 @@ Documentação de design do jogo **Southern Mercenaries**, RPG de ação co-op e
 - **Equipamento visível:** tudo que é equipado aparece no personagem, peça por peça, com o material; o refino gera uma aura em volta do herói (`05-itens-e-loot.md`, `05-1-refino.md`).
 - **Saves:** escrita segura com backups e número de versão desde o primeiro save (`11-saves.md`).
 - **Áreas:** cada área de mapa é uma cena separada, com checkpoint na entrada (`03-2-areas.md`).
-- **Open source:** só assets próprios ou com licença livre; registrar tudo em `CREDITS.md` (`10-distribuicao.md`).
+- **Open source:** só assets próprios (criados pelo Claude a partir das referências do autor, sem copiar nenhum jogo) ou com licença livre; registrar tudo em `CREDITS.md` (`10-distribuicao.md`).
 - **Dados separados do código:** classes, elementos, habilidades, itens, materiais, pergaminhos, refino, monstros, bestiário, NPCs, lojas, áreas e modelos de missão ficam em arquivos de dados, usando os IDs definidos nos documentos (ex.: `knight`, `fire`, `fireball`, `headless_mule`, `tavern_keeper`, `court_jester`, `sewers_01_drains`, `steel`).
 - **Fontes oficiais:** o arquivo detalhado de cada classe vale mais que o resumo em `02-personagens.md`; `02-0-elementos.md` vale para todas as classes e monstros; `03-1-bestiario.md` é a fonte das falas de história e pistas; `06-mundo-e-historia.md` define a ordem da campanha (10 mapas); `05-itens-e-loot.md` define os materiais.
 - **Implementar por fases**, na ordem de `01-escopo.md` seção 9. Cada fase deve ficar jogável antes da próxima.

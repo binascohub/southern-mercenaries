@@ -26,6 +26,13 @@
 - Cabeçalho curto em cada script (proposta): `# Southern Mercenaries — GPL-3.0-or-later` (**decidido**: "or later", como recomenda a FSF; permite que o código acompanhe versões futuras da GPL).
 - Colaboradores: ao enviar PR, concordam que a contribuição fica sob a mesma licença (explicado em `CONTRIBUTING.md`).
 
+### Quem cria a arte e o som (decidido)
+- **Claude cria os assets** (modelos low-poly, texturas, ícones, interface, efeitos sonoros e música), **a partir dos jogos de referência do autor**: estilo visual medieval do **0 A.D.** e câmera/ação do **Dark Alliance 2**.
+- Os assets são **originais**: inspirados no estilo e na atmosfera, **sem copiar** modelos, texturas, músicas ou personagens de nenhum jogo existente.
+- Preferência por criação **por código e dados** (scripts que geram malhas, texturas e sons), para ficarem leves, reproduzíveis e fáceis de ajustar; o repositório guarda os scripts e o resultado.
+- O que o Claude não consegue entregar com qualidade (por exemplo, música orquestrada ou vozes) usa **assets livres** (CC0, CC BY, CC BY-SA) ou colaboradores, sempre registrados em `CREDITS.md`.
+- Os assets criados por Claude seguem a licença do projeto (CC BY-SA 4.0).
+
 ## 3. Estrutura do repositório (proposta)
 
 ```
