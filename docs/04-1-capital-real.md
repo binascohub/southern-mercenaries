@@ -10,7 +10,7 @@ A **Capital Real** é a cidade do reino que **venceu a guerra** — o reino de D
 - É a **segunda cidade-base** do jogo, liberada **no meio da campanha** (depois do mapa 5, ver seção 7).
 - Tem **comércio mais elevado**: itens melhores e mais caros que os de Tortuga.
 - As **novas missões principais** passam a ser entregues pelo **Bobo da Corte**, que vive no castelo e quer descobrir **onde a família real esconde seus tesouros**.
-- Depois de liberada, o grupo pode viajar entre **Tortuga e a Capital** pelo porto.
+- Depois de liberada, o grupo pode viajar entre **Tortuga e a Capital** pelos portais.
 
 ### Como o grupo chega à Capital
 - Depois do mapa 5 (Aves), as pistas da taverna acabam. É o **Cavaleiro** (Dorian ou Dália) quem conta que **sabe de um Bobo da Corte, no castelo da Capital, que sabe de coisas** — segredos da família real, ouro escondido, rumores que ninguém mais ouve.
@@ -46,7 +46,7 @@ Seguindo o padrão de Tortuga: **área externa** com o comércio ao ar livre e *
     Banco (baú)    Estábulo Real
   ════════════════════╪═══════════════════════════
                       │
-                [Porto Real] → barcos para Tortuga e para os mapas
+                [Portal Real] → portal para Tortuga e para os mapas
 ```
 
 ### Locais
@@ -61,7 +61,7 @@ Seguindo o padrão de Tortuga: **área externa** com o comércio ao ar livre e *
 | `royal_stables` | Estábulo Real | Bardas finas para o cavalo do Cavaleiro; trocar a pelagem do cavalo |
 | `bank` | Banco | Acesso ao mesmo baú de Tortuga (baú compartilhado entre as cidades) |
 | `castle_courtyard` | **Pátio do Castelo** | Onde o **Bobo da Corte** entrega as missões |
-| `royal_port` | Porto Real | Viagem para Tortuga e para os mapas liberados |
+| `royal_portal` | **Portal Real** | Portal de pedra no cais do Porto Real; viagem para Tortuga e para os mapas liberados (mesma janela do Portal de Tortuga, `04-tortuga-e-missoes.md`, seção 5). Os mapas 6 a 10 saem daqui |
 
 ### Preços
 | Item | Tortuga | Capital Real |
@@ -153,7 +153,7 @@ Tortuga (abertura) → 1 Esgoto → 2 Ruínas do Reino do Arqueiro → 3 Florest
 
 - A Capital é liberada depois do mapa 5, quando o Cavaleiro conta do Bobo.
 - De Tortuga continuam saindo missões secundárias da taverna e o Mercado Pirata segue ativo.
-- Os mapas 6 a 10 saem do **Porto Real**; os mapas 1 a 5 continuam acessíveis por Tortuga.
+- Os mapas 6 a 10 saem do **Portal Real**; os mapas 1 a 5 continuam acessíveis por Tortuga.
 
 ## 8. Decisões em aberto
 

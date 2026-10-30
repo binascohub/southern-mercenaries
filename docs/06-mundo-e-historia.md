@@ -48,7 +48,7 @@ TORTUGA ─ abertura na taverna (os heróis se conhecem)
    │
    ├─ 1. Esgoto de Tortuga ─ Rainha dos Ratos (tesouro do reino derrotado, parte 1)
    │
-   ├─ viagem "mapa afora"
+   ├─ portal de Tortuga (viagem entre mapas por portais)
    ├─ 2. Ruínas do Reino do Arqueiro ─ Cérbero (Cofre Real, parte 2)
    ├─ 3. Floresta Escura ─ Leshy (ouro dos viajantes perdidos)
    ├─ 4. Cavalos Míticos ─ Pégaso
@@ -77,7 +77,7 @@ CAPITAL REAL ─ cidade do Cavaleiro; comércio mais elevado; Bobo da Corte
 
 ### Ato 2 — O tesouro do reino derrotado e as terras selvagens
 - **Esgoto de Tortuga** (Rainha dos Ratos): no baú, um **mapa antigo** mostra onde ficou o resto do tesouro.
-- O grupo parte **mapa afora** até as **Ruínas do Reino do Arqueiro** (Cérbero, Cofre Real).
+- O grupo atravessa o **Portal de Tortuga** até as **Ruínas do Reino do Arqueiro** (Cérbero, Cofre Real).
 - Com a fama dos mercenários crescendo, a taberneira passa novas missões: **Floresta Escura** (Leshy — viajantes que nunca voltam e ouro nas raízes da árvore anciã; era o terreno de caça do Arqueiro), **Cavalos Míticos** (Pégaso) e **Aves** (Fênix).
 
 ### Ato 3 — A Capital Real e o ouro do rei
@@ -160,7 +160,6 @@ Cada herói tem um motivo pessoal para virar mercenário, além do ouro:
 ## 10. Decisões em aberto
 
 - Nomes dos reinos (incluindo o do primo), da Capital e do mundo.
-- "Mapa afora" entre o Esgoto e as Ruínas: é só a viagem (tela de barco/estrada) ou uma área extra de estrada (`03-2-areas.md`)?
 - O segredo do Bobo da Corte (proposta: sobrevivente do reino do Arqueiro) — manter?
 - O que os mercenários fazem com o ouro de Lúcifer no final (ficam com tudo, devolvem ao reino, dividem com Tortuga)? Pode ser uma escolha final.
 - No solo, os outros heróis ficam em Tortuga e dão missões pessoais (proposta)?

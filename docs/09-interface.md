@@ -1,7 +1,7 @@
 # Interface, Câmera e Visual
 
 > Versão 1 · 2026-10-30 · Complementa `01-escopo.md` (câmera e tecnologia), `08-controles.md`, `02-personagens.md`, `05-itens-e-loot.md`, `05-1-refino.md`, `11-saves.md`
-> Direção do autor: **visual e interface no estilo do 0 A.D., com a câmera mais próxima, como em Dark Alliance.**
+> Direção do autor: **visual e interface no estilo do 0 A.D. (menus medievais), com a câmera mais próxima, como em Dark Alliance.** Viagem entre mapas por **portais**.
 > Números são propostas para ajustar em teste. Pontos marcados como **proposta** ou **em aberto** não devem ser decididos sem consultar o autor.
 
 ## 1. Direção visual
@@ -31,7 +31,7 @@
 
 ## 3. HUD em jogo
 
-Estilo 0 A.D.: painéis de pedra e madeira escura com detalhes de metal, bordas simples, pouca transparência, ícones grandes. Fica nas bordas para não cobrir a ação.
+Estilo medieval do 0 A.D. (seção 7): painéis de madeira escura e pedra com detalhes de metal, bordas simples, pouca transparência, ícones grandes. Fica nas bordas para não cobrir a ação.
 
 ```
 ┌────────────────────────────────────────────────────────────┐
@@ -71,7 +71,7 @@ Estilo 0 A.D.: painéis de pedra e madeira escura com detalhes de metal, bordas 
 
 ## 4. Menus e janelas
 
-Abrem sobre o jogo no estilo de pergaminho/pedra do 0 A.D. No solo o jogo pausa; no co-op, **não pausa** (a janela fica semitransparente e o herói fica vulnerável).
+Abrem sobre o jogo no estilo medieval de pergaminho, madeira e ferro do 0 A.D. (seção 7). No solo o jogo pausa; no co-op, **não pausa** (a janela fica semitransparente e o herói fica vulnerável).
 
 | Janela | Conteúdo |
 |---|---|
@@ -84,6 +84,7 @@ Abrem sobre o jogo no estilo de pergaminho/pedra do 0 A.D. No solo o jogo pausa;
 | **Mapa** | Mapa da área atual, checkpoints, aliados, objetivo |
 | **Troca entre jogadores** | Janela de troca confirmada pelos dois lados (`05-itens-e-loot.md`, seção 8) |
 | **Opções** | Vídeo, áudio, controles (`08-controles.md`), idioma, jogabilidade (seção 8) |
+| **Portal** | Lista de destinos liberados com nível recomendado, elemento do mapa e do chefe, estado (nova / em andamento / concluída) e escolha entre primeira área ou último checkpoint; no co-op, o host escolhe e os outros confirmam |
 | **Pausa (Esc)** | Continuar, opções, voltar à cidade (se permitido), sair para o menu |
 
 - Tudo navegável **só com o controle**; ícones de botão trocam conforme o último dispositivo usado (`08-controles.md`).
@@ -106,7 +107,7 @@ Abrem sobre o jogo no estilo de pergaminho/pedra do 0 A.D. No solo o jogo pausa;
 | **Criação de personagem** | Escolher classe, elemento, sexo, nome, aparência (rosto, cabelo, barba, pele, extras da classe); prévia 3D com o herói padrão e o objeto pessoal; mostra a história resumida |
 | **Escolha de campanha** | Campanhas salvas (no solo ou como host): mapa liberado, tempo de jogo, data; nova campanha, continuar, apagar (`11-saves.md`) |
 | **Lobby LAN** | Lista de partidas encontradas (broadcast) e entrada manual por IP; sala com os jogadores, classes, elementos, versão; o host inicia. Recusa versão diferente |
-| **Carregamento** | Arte da área, dica do jogo (por chave), e a cena do barco nas viagens |
+| **Carregamento** | Arte da área, dica do jogo (por chave) e, nas viagens, efeito de runas do portal |
 | **Idioma** | Escolha na primeira execução e em Opções (`01-escopo.md`, seção 6) |
 | **Créditos** | Equipe, assets de terceiros (`CREDITS.md`), aviso de licença do Godot |
 | **Fim de jogo / checkpoint** | Se todos caírem, tela curta e volta ao último checkpoint |
@@ -121,13 +122,29 @@ Abrem sobre o jogo no estilo de pergaminho/pedra do 0 A.D. No solo o jogo pausa;
 - **Daltonismo (proposta):** além da cor, cada elemento tem um **símbolo** próprio nos ícones.
 - Limite de entidades e partículas na tela (`01-escopo.md`, seção 5).
 
-## 7. Estilo gráfico da interface
+## 7. Estilo gráfico da interface (menus medievais, como no 0 A.D.)
 
-- Molduras de pedra e madeira escura com metal gasto, textura de pergaminho nas janelas, ícones pintados (não vetoriais limpos), fonte legível com acentos do espanhol.
-- Cores de raridade: comum branco, mágico azul, raro amarelo, único dourado/laranja, lendário vermelho (`05-itens-e-loot.md`, seção 3).
-- Tudo feito com assets próprios ou livres (CC0, CC BY, CC BY-SA), registrados em `CREDITS.md`.
-- Tema da interface em **um único arquivo de tema do Godot** (`Theme`), para trocar o visual sem mexer nas telas.
+Decisão do autor: **menus no estilo medieval do 0 A.D.** — a interface parece feita de materiais do mundo do jogo, não de um painel moderno.
+
+| Elemento | Estilo |
+|---|---|
+| **Painéis e janelas** | Moldura de **madeira escura** com cantoneiras e rebites de **ferro gasto**; fundo de **pergaminho** ou couro; cantos reforçados; sombra suave |
+| **Botões** | Placas de **pedra ou madeira entalhada**, com realce metálico ao passar o cursor/foco e leve afundar ao apertar; abas como tiras de couro |
+| **Títulos e divisores** | Faixas de pano ou fitas com **brasão heráldico**; divisores de corda ou ferro forjado; letra capitular nos diálogos longos |
+| **Fonte** | Serifada de estilo medieval **legível** (acentos do espanhol e português), em tinta escura sobre pergaminho; títulos em letra maiúscula entalhada. Nada de fonte gótica difícil de ler |
+| **Ícones** | Pintados à mão, com contorno escuro (estilo 0 A.D.); elementos com cores próprias (`02-0-elementos.md`) e símbolos gravados em medalhão |
+| **Barras de vida e recurso** | Tubos de vidro/metal com líquido colorido; a vida em vermelho, cada recurso na sua cor |
+| **Menu principal** | Fundo com Tortuga à noite; título "Southern Mercenaries" em letras de ferro e madeira; botões numa **tábua** pendurada; estandartes dos cinco heróis nas laterais |
+| **Caixas de diálogo** | Pergaminho com **selo de cera** nas confirmações; balões de fala com retrato do NPC na moldura |
+| **Inventário** | Grade de **espaços de couro**, boneco do herói ao centro; raridade como borda colorida (comum branco, mágico azul, raro amarelo, único dourado/laranja, lendário vermelho — `05-itens-e-loot.md`, seção 3) |
+| **Mapa e diário** | Papel envelhecido, desenho de tinta, marcas de cera; checkpoints como pequenas bandeiras |
+| **Sons de interface** | Madeira, couro, metal e papel (cliques, abrir pergaminho, selo de cera); sem bipes sintéticos |
+
+- **Diferença de tom entre cidades:** em **Tortuga** a interface parece mais suja e remendada (madeira de barco, cordas, manchas); na **Capital Real** passa a ser **mais rica** (madeira polida, dourado, tecido nobre). A troca é só de tema (cores e texturas), automática ao entrar na cidade — mesmo `Theme` com duas variações (proposta).
+- Tudo feito com assets próprios ou livres (CC0, CC BY, CC BY-SA), registrados em `CREDITS.md`. As molduras são **9-patch** reaproveitadas em todas as janelas (poucas texturas, leve para vídeo integrado).
+- Tema em **um único arquivo de tema do Godot** (`Theme`), para trocar o visual sem mexer nas telas.
 - **Escala da interface** ajustável (80% a 150%) para telas pequenas e grandes.
+- No HUD em jogo (seção 3) o estilo é mais discreto: painéis pequenos nas bordas, com pouca moldura, para não cobrir a ação.
 
 ## 8. Opções
 

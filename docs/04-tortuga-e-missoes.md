@@ -34,7 +34,7 @@ Tortuga é uma **cidade portuária suja, barulhenta e perigosa**, de ruas estrei
   ~~~~~~~~~~~~~~~~~~~~ MAR ~~~~~~~~~~~~~~~~~~~~
   [Navios piratas]   [PORTO / CAIS]
                      Mercado Pirata (itens roubados pelo mundo)
-                     Embarque para os mapas
+                     Portal para os mapas
                             │
   ══════════════════════════╪══════ RUA PRINCIPAL ═════════════
      Boticário   Armas   Armaduras   Ferreiro
@@ -58,7 +58,7 @@ Tortuga é uma **cidade portuária suja, barulhenta e perigosa**, de ruas estrei
 | `stash` | Baú | Na Rua Principal (baú acorrentado, guardado por um capanga de aluguel) | Baú compartilhado entre os personagens do jogador (guardar valiosos para vender quando o preço subir) |
 | `respec` | Altar / Mestre | Canto da Rua Principal | Redistribuir pontos, pagando ouro |
 | `sewer_entrance` | **Bueiro** | Rua Principal | Entrada do **Esgoto** (mapa 1); trancado até a missão do velho bêbado |
-| `port` | **Porto** | Fim da Rua Principal, no cais | Embarque para os demais mapas (seção 5) + Mercado Pirata |
+| `port` | **Porto** e Portal de Tortuga | Fim da Rua Principal, no cais | **Portal** para os demais mapas (seção 5) + Mercado Pirata |
 | — | Becos, prostíbulos, casas de apostas | Laterais | Só ambientação (fachadas fechadas) |
 
 - Tortuga é pequena e compacta: tudo perto, para não perder tempo andando.
@@ -70,13 +70,13 @@ Tortuga é uma **cidade portuária suja, barulhenta e perigosa**, de ruas estrei
 - **Estoque rotativo:** a cada volta para Tortuga, "chega um navio" e o estoque muda (3 a 6 itens por vez, de raridades variadas, com preço alto).
 - **Compram os valiosos** que os mercenários trazem dos tesouros (para revender em outros portos), com preços que variam conforme o navio do dia.
 - Vendem as **Poções Elementais**, trazidas de terras distantes.
-- Cada navio tem um capitão pirata com nome e frase própria (ambientação); eles também podem contar rumores de tesouros na taverna (**proposta**).
+- Cada navio que chega tem um capitão pirata com nome e frase própria (ambientação); eles também podem contar rumores de tesouros na taverna (**proposta**).
 - Regras de preço e estoque em `05-itens-e-loot.md`, seção 5.
 
 ### O ciclo do mercenário em Tortuga
 1. Entrar na **Taverna**, ouvir histórias, aceitar missões e **descobrir o elemento e a fraqueza** dos monstros e do chefe.
 2. Ir ao **Porto**: comprar as **Poções Elementais** certas no Mercado Pirata e conferir os itens roubados que chegaram no navio do dia (poções de vida no Boticário da Rua Principal).
-3. Descer pelo **Bueiro** (Esgoto) ou embarcar no **Porto** (demais mapas), enfrentar as criaturas e o chefe, pegar os tesouros.
+3. Descer pelo **Bueiro** (Esgoto) ou atravessar o **Portal** do porto (demais mapas), enfrentar as criaturas e o chefe, pegar os tesouros.
 4. Voltar (o elemento volta ao de origem) e **vender os valiosos aos piratas**.
 5. Gastar o ouro em equipamentos, itens piratas, poções, crafting e bebidas.
 6. Voltar à taverna para a próxima história.
@@ -132,7 +132,7 @@ A campanha começa com os mercenários chegando à taverna sem nada. O **velho b
 ### A virada para a Capital Real
 - Ao voltar a Tortuga depois da Fênix, a taberneira não tem mais histórias de tesouro.
 - O **Cavaleiro** (Dorian ou Dália) conta que **conhece um Bobo da Corte, no castelo da Capital, que sabe de coisas**. No solo, ou se ninguém joga com o Cavaleiro, ele aparece como NPC na taverna e conta a mesma coisa (`04-1-capital-real.md`, seção 1).
-- Isso libera o **Porto Real** (viagem Tortuga ⇄ Capital). Missões secundárias e o Mercado Pirata continuam em Tortuga.
+- Isso libera o **Portal Real** (viagem Tortuga ⇄ Capital pelo portal do porto). Missões secundárias e o Mercado Pirata continuam em Tortuga.
 
 ### Exemplo de história (missão principal do Pégaso, mapa 4)
 > **Taberneira:** "Você já ouviu falar do Pégaso? O cavalo de asas que nasceu do sangue da Medusa e carregava os raios de Zeus. Dizem que ele cansou dos deuses e aceitou o fogo do inferno. Agora as asas dele queimam, e ele manda em todos os cavalos das planícies… Lá em cima, nas ruínas, ele guarda as Rédeas de Ouro do Céu e mais ouro do que esta taverna viu em cem anos. Mas escuta: fogo assim só se apaga com **água**. Não suba sem ela."
@@ -222,11 +222,15 @@ Conteúdo detalhado dos tesouros em `05-itens-e-loot.md`, seção 3.
 - O **Esgoto** (mapa 1) é acessado pelo **bueiro da Rua Principal**, sem barco: desce uma escada e já está no mapa.
 - Depois de derrotar a Rainha dos Ratos, o bueiro continua aberto para missões secundárias no Esgoto.
 
-### Porto — demais mapas
-- No **porto**, o grupo embarca num barco de contrabandistas (ou num navio pirata contratado) e viaja até o mapa escolhido (uma tela de carregamento com o barco). Do porto de Tortuga saem os mapas **2 a 5** e a viagem para a **Capital Real**; os mapas **6 a 10** saem do **Porto Real** (`04-1-capital-real.md`). As Ruínas do Reino do Arqueiro ficam a uma viagem curta, rio acima (proposta). Se há ou não uma área extra de estrada ("mapa afora") antes das Ruínas está **em aberto** (`03-2-areas.md`).
-- Antes de embarcar, o porto mostra o **elemento predominante do mapa e do chefe** (se a história já foi ouvida), para lembrar de comprar as poções — no Mercado Pirata que fica ali mesmo, no cais.
-- Só aparecem os mapas já liberados pelas missões principais.
-- Dentro do mapa, um ponto de retorno (o barco, ou um portal após o chefe) leva de volta para Tortuga.
+### Portal de Tortuga — demais mapas
+- No fim do cais, no **porto**, fica o **Portal de Tortuga**: um círculo de pedra com runas antigas, de antes da guerra, que os piratas descobriram e usam para sumir com a carga (proposta de lenda). **A viagem entre mapas é feita por portais** (decisão do autor), sem barco jogável nem rota a pé.
+- Ao interagir, abre a **janela do portal** com os destinos já liberados: cada um mostra nome do mapa, nível recomendado, **elemento predominante do mapa e do chefe** (se a história já foi ouvida) e o estado (nova, em andamento, concluída). Serve de lembrete para comprar as Poções Elementais no Mercado Pirata, ali no cais.
+- Do Portal de Tortuga saem os mapas **2 a 5**, o **Portal Real** na Capital e a volta aos mapas já visitados. Os mapas **6 a 10** saem do Portal Real (`04-1-capital-real.md`). O Esgoto continua pelo **bueiro**.
+- O destino de cada mapa é sempre a **primeira área** do mapa, ou o **último checkpoint** alcançado nele (o jogador escolhe na janela). Ver `03-2-areas.md`.
+- O "mapa afora" entre o Esgoto e as Ruínas deixa de existir: o portal leva direto às Ruínas.
+- **Co-op:** o host escolhe o destino; os outros jogadores recebem um aviso de confirmação e vão juntos (quem estiver longe do portal é puxado ao confirmar). Jogador que entra no meio surge ao lado do host.
+- **Volta:** dentro de cada mapa há um **portal de retorno** na entrada da primeira área e **depois de cada chefe**; leva ao portal da cidade de onde o grupo saiu (o elemento volta ao de origem). Ao voltar, a campanha é salva (`11-saves.md`).
+- Entre as áreas de um mapa, a passagem continua sendo uma porta, escada ou caminho normal (não é portal).
 
 ## 6. Notas técnicas
 
@@ -234,6 +238,7 @@ Conteúdo detalhado dos tesouros em `05-itens-e-loot.md`, seção 3.
 - O Esgoto é um mapa separado, carregado ao descer pelo bueiro.
 - Lojas da Rua Principal e o Mercado Pirata abrem como janelas de interface ao interagir com a banca (sem carregamento).
 - Iluminação de lampiões feita com poucas luzes (desempenho em vídeo integrado).
+- O portal é um modelo simples com partículas poucas e uma luz fraca (sem luz dinâmica extra); a viagem é uma tela de carregamento curta com efeito de runas.
 - O mar do porto é um plano simples com animação de textura (sem simulação de água pesada); navios piratas são cenário estático com animação leve de balanço.
 - NPCs de ambientação com rotinas simples (encostado, bebendo, carregando caixas, andando entre dois pontos) e poucos modelos base com variações de cor e acessórios.
 - NPCs da taverna têm animações simples: sentado bebendo, em pé no balcão, falando, rindo.
@@ -243,6 +248,5 @@ Conteúdo detalhado dos tesouros em `05-itens-e-loot.md`, seção 3.
 
 - Nome da taverna (proposta: Taverna do Corvo Afogado)?
 - Os capitães piratas podem contar rumores na taverna (proposta)?
-- Tortuga tem ar pirata (porto, navios) — isso vale para o mundo inteiro (mapas como ilhas acessadas por barco)?
 - Bebidas com bônus temporário: manter?
 - Mini-jogos na taverna (dados, cartas, queda de braço)?

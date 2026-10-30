@@ -130,7 +130,7 @@
 ## 13. Decisões em aberto
 
 - Divisão de 41 áreas: manter?
-- "Mapa afora" entre o Esgoto e as Ruínas: vira uma área extra de estrada (ex.: `road_01_coast_road`) ou é só tela de viagem?
+- "Mapa afora": **resolvido** — a viagem entre mapas é por portais (`04-tortuga-e-missoes.md`, seção 5); não há área extra de estrada.
 - Pedra de Retorno nos checkpoints: manter?
 - No co-op, todos precisam estar na saída para passar de área, ou basta o host?
 - A vila queimada das Ruínas é a vila do Arqueiro?
