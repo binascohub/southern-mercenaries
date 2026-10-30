@@ -1,0 +1,80 @@
+keys,en,es,pt_BR
+GAME_TITLE,Southern Mercenaries,Southern Mercenaries,Southern Mercenaries
+MENU_PLAY_SOLO,Play solo,Jugar solo,Jogar sozinho
+MENU_OPTIONS,Options,Opciones,Opções
+MENU_QUIT,Quit,Salir,Sair
+MENU_RESUME,Resume,Continuar,Continuar
+MENU_MAIN_MENU,Main menu,Menú principal,Menu principal
+MENU_BACK,Back,Volver,Voltar
+MENU_PAUSED,Paused,En pausa,Pausado
+MENU_VERSION,Version {version},Versión {version},Versão {version}
+MENU_PROTOTYPE_NOTE,Combat prototype — phase 1,Prototipo de combate — fase 1,Protótipo de combate — fase 1
+LANGUAGE_CHOOSE_TITLE,Choose your language,Elige tu idioma,Escolha o idioma
+LANGUAGE_NAME_EN,English,English,English
+LANGUAGE_NAME_ES,Español,Español,Español
+LANGUAGE_NAME_PT_BR,Português (Brasil),Português (Brasil),Português (Brasil)
+OPTIONS_TITLE,Options,Opciones,Opções
+OPTIONS_LANGUAGE,Language,Idioma,Idioma
+OPTIONS_VIBRATION,Vibration,Vibración,Vibração
+OPTIONS_AIM_ASSIST,Aim assist,Asistencia de puntería,Mira assistida
+OPTIONS_INVERT_AIM_Y,Invert aim Y axis,Invertir eje Y de la mira,Inverter eixo Y da mira
+OPTIONS_DEADZONE,Stick dead zone,Zona muerta del stick,Zona morta do analógico
+OPTIONS_CONTROLS,Controls,Controles,Controles
+CONTROLS_TITLE,Controls,Controles,Controles
+CONTROLS_ACTION,Action,Acción,Ação
+CONTROLS_KEYBOARD,Keyboard / mouse,Teclado / ratón,Teclado / mouse
+CONTROLS_GAMEPAD,Gamepad,Mando,Controle
+CONTROLS_RESTORE,Restore defaults,Restaurar valores predeterminados,Restaurar padrão
+CONTROLS_WAITING_KEY,Press a key… (Esc cancels),Pulsa una tecla… (Esc cancela),Aperte uma tecla… (Esc cancela)
+CONTROLS_WAITING_PAD,Press a gamepad button…,Pulsa un botón del mando…,Aperte um botão do controle…
+CONTROLS_SWAPPED,"Button was in use by ""{action}"": the two were swapped.","El botón lo usaba «{action}»: se intercambiaron.","O botão já era usado por ""{action}"": os dois foram trocados."
+CONTROLS_TEST,Gamepad test: {input},Prueba del mando: {input},Teste do controle: {input}
+CONTROLS_TEST_IDLE,Gamepad test: press any button,Prueba del mando: pulsa cualquier botón,Teste do controle: aperte qualquer botão
+ACTION_MOVE_UP,Move up,Mover arriba,Mover para cima
+ACTION_MOVE_DOWN,Move down,Mover abajo,Mover para baixo
+ACTION_MOVE_LEFT,Move left,Mover a la izquierda,Mover para a esquerda
+ACTION_MOVE_RIGHT,Move right,Mover a la derecha,Mover para a direita
+ACTION_AIM_UP,Aim up,Apuntar arriba,Mirar para cima
+ACTION_AIM_DOWN,Aim down,Apuntar abajo,Mirar para baixo
+ACTION_AIM_LEFT,Aim left,Apuntar a la izquierda,Mirar para a esquerda
+ACTION_AIM_RIGHT,Aim right,Apuntar a la derecha,Mirar para a direita
+ACTION_ATTACK,Attack (hold: strong attack),Atacar (mantener: ataque fuerte),Atacar (segurar: ataque forte)
+ACTION_SKILL_1,Skill 1,Habilidad 1,Habilidade 1
+ACTION_SKILL_2,Skill 2,Habilidad 2,Habilidade 2
+ACTION_SKILL_3,Skill 3,Habilidad 3,Habilidade 3
+ACTION_SKILL_4,Final skill,Habilidad final,Habilidade final
+ACTION_EVADE,Dodge,Esquivar,Esquivar
+ACTION_MOUNT,Mount / dismount,Montar / desmontar,Montar / desmontar
+ACTION_POTION_HEALTH,Health potion,Poción de vida,Poção de vida
+ACTION_POTION_MANA,Resource potion,Poción de recurso,Poção de recurso
+ACTION_POTION_ELEMENTAL,Elemental potion,Poción elemental,Poção elemental
+ACTION_INTERACT,Interact,Interactuar,Interagir
+ACTION_PICKUP_ALL,Pick up all,Recoger todo,Pegar tudo
+ACTION_INVENTORY,Inventory,Inventario,Inventário
+ACTION_MENU,Menu,Menú,Menu
+ACTION_MAP,Map,Mapa,Mapa
+ACTION_CHAT_QUICK,Quick chat,Chat rápido,Chat rápido
+INPUT_MOUSE_LEFT,Left click,Clic izquierdo,Botão esquerdo
+INPUT_MOUSE_RIGHT,Right click,Clic derecho,Botão direito
+INPUT_MOUSE_MIDDLE,Middle click,Clic central,Botão do meio
+INPUT_MOUSE_WHEEL_UP,Wheel up,Rueda arriba,Roda para cima
+INPUT_MOUSE_WHEEL_DOWN,Wheel down,Rueda abajo,Roda para baixo
+INPUT_MOUSE_BUTTON,Mouse button {n},Botón del ratón {n},Botão do mouse {n}
+CLASS_MAGE_NAME,Mage,Mago,Mago
+HERO_MAGE_MALE,Oren Valdris,Oren Valdris,Oren Valdris
+HERO_MAGE_FEMALE,Orana Valdris,Orana Valdris,Orana Valdris
+RESOURCE_MANA,Mana,Maná,Mana
+POWER_MAGIC,Magic Power,Poder Mágico,Poder Mágico
+MONSTER_SEWER_RAT_NAME,Sewer rat,Rata de cloaca,Rato de esgoto
+MONSTER_SEWER_RAT_BIG_NAME,Bloated sewer rat,Rata de cloaca hinchada,Ratazana inchada
+ARENA_PROTOTYPE_NAME,Training cellar,Sótano de entrenamiento,Porão de treino
+HUD_HEALTH,Health,Vida,Vida
+HUD_WAVE,Wave {current}/{total},Oleada {current}/{total},Onda {current}/{total}
+HUD_ENEMIES_LEFT,Enemies: {count},Enemigos: {count},Inimigos: {count}
+HUD_HINTS,"{attack}: attack (hold: strong)   {evade}: dodge   {menu}: menu","{attack}: atacar (mantener: fuerte)   {evade}: esquivar   {menu}: menú","{attack}: atacar (segurar: forte)   {evade}: esquivar   {menu}: menu"
+HUD_EVADE_READY,Dodge ready,Esquiva lista,Esquiva pronta
+HUD_EVADE_COOLDOWN,Dodge {seconds}s,Esquiva {seconds}s,Esquiva {seconds}s
+HUD_VICTORY,The cellar is clear.,El sótano está despejado.,O porão está limpo.
+HUD_DEFEAT,You have fallen.,Has caído.,Você caiu.
+HUD_PRESS_TO_RESTART,Press {action} to try again,Pulsa {action} para intentarlo de nuevo,Aperte {action} para tentar de novo
+HUD_GAMEPAD_LOST,Gamepad disconnected. Reconnect it to continue.,Mando desconectado. Vuelve a conectarlo para continuar.,Controle desconectado. Conecte de novo para continuar.

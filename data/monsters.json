@@ -1,0 +1,26 @@
+{
+  "sewer_rat": {
+    "_comment": "Monstro de teste da Fase 1. ID, elemento e números provisórios até a família do Esgoto (03-inimigos.md) entrar.",
+    "name_key": "MONSTER_SEWER_RAT_NAME",
+    "max_health": 30,
+    "move_speed": 3.6,
+    "damage": 6,
+    "attack_range": 1.3,
+    "attack_windup": 0.35,
+    "attack_cooldown": 1.1,
+    "aggro_range": 40.0,
+    "size": 0.75
+  },
+  "sewer_rat_big": {
+    "_comment": "Variante maior e mais lenta, para testar padrões legíveis.",
+    "name_key": "MONSTER_SEWER_RAT_BIG_NAME",
+    "max_health": 90,
+    "move_speed": 2.6,
+    "damage": 14,
+    "attack_range": 1.8,
+    "attack_windup": 0.7,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 1.2
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "mage": {
+    "name_key": "CLASS_MAGE_NAME",
+    "hero_name_keys": {"male": "HERO_MAGE_MALE", "female": "HERO_MAGE_FEMALE"},
+    "resource": "mana",
+    "resource_key": "RESOURCE_MANA",
+    "power_key": "POWER_MAGIC",
+    "power_attribute": "int",
+    "weapon_damage": 10,
+    "attributes": {"str": 10, "dex": 15, "int": 30, "vit": 20},
+    "max_health": 75,
+    "max_resource": 120,
+    "resource_regen": 2.0,
+    "move_speed_pct": 100,
+    "basic_attack": {"power_pct": 0.7, "range": 10.0, "projectile_speed": 20.0, "radius": 0.25, "cooldown": 0.35, "pierce": 0},
+    "strong_attack": {"power_pct": 1.6, "range": 12.0, "projectile_speed": 16.0, "radius": 0.45, "charge_time": 1.0, "pierce": 1},
+    "evade": {"distance": 4.0, "duration": 0.3, "cooldown": 4.0}
+  }
+}

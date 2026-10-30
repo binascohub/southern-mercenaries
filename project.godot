@@ -1,0 +1,47 @@
+; Southern Mercenaries — GPL-3.0-or-later
+; Projeto Godot 4.7.2 (versão fixa). Renderizador Compatibility (OpenGL 3.3).
+
+config_version=5
+
+[application]
+
+config/name="Southern Mercenaries"
+config/version="0.0.1"
+config/description="Co-op LAN action RPG"
+run/main_scene="res://game/main/main.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="southern-mercenaries"
+config/custom_user_dir_name.windows="Southern Mercenaries"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+
+[autoload]
+
+Settings="*res://game/autoload/settings.gd"
+Controls="*res://game/autoload/controls.gd"
+InputDevice="*res://game/autoload/input_device.gd"
+GameData="*res://game/autoload/game_data.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://locale/texts.en.translation", "res://locale/texts.es.translation", "res://locale/texts.pt_BR.translation")
+locale/fallback="en"
+
+[layer_names]
+
+3d_physics/layer_1="world"
+3d_physics/layer_2="players"
+3d_physics/layer_3="enemies"
+3d_physics/layer_4="player_projectiles"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+anti_aliasing/quality/msaa_3d=0

@@ -1,0 +1,6 @@
+{
+  "_comment": "Constantes globais de balanceamento. Números provisórios para revisar (02-personagens.md).",
+  "base_move_speed": 5.0,
+  "power_attribute_factor": 0.5,
+  "heavy_hit_fraction": 0.15
+}

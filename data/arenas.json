@@ -1,0 +1,11 @@
+{
+  "prototype_arena": {
+    "name_key": "ARENA_PROTOTYPE_NAME",
+    "player_class": "mage",
+    "waves": [
+      [{"monster": "sewer_rat", "count": 4}],
+      [{"monster": "sewer_rat", "count": 6}, {"monster": "sewer_rat_big", "count": 1}],
+      [{"monster": "sewer_rat", "count": 8}, {"monster": "sewer_rat_big", "count": 2}]
+    ]
+  }
+}

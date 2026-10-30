@@ -1,0 +1,81 @@
+# Southern Mercenaries — GPL-3.0-or-later
+# A cada push/PR: testa e exporta builds de teste (Windows + Linux).
+# A cada tag de versão (v0.1.0, v1.0.0…): exporta e cria o GitHub Release.
+# Instalador Inno Setup e AppImage entram em uma etapa seguinte (10-distribuicao.md, seção 4).
+name: build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+
+env:
+  GODOT_VERSION: 4.7.2
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar Godot
+        run: |
+          curl -sSL -o godot.zip "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+          unzip -q godot.zip
+          sudo mv "Godot_v${GODOT_VERSION}-stable_linux.x86_64" /usr/local/bin/godot
+      - name: Importar o projeto
+        run: godot --headless --path . --import
+      - name: Testes de dados e traduções
+        run: godot --headless --path . --script res://tests/run_tests.gd
+      - name: Teste de fumaça da arena
+        run: godot --headless --path . --fixed-fps 60 res://tests/smoke_arena.tscn
+
+  export:
+    needs: test
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Versão
+        id: version
+        run: |
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+            echo "name=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+          else
+            echo "name=dev-${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Instalar Godot e export templates
+        run: |
+          curl -sSL -o godot.zip "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+          unzip -q godot.zip
+          sudo mv "Godot_v${GODOT_VERSION}-stable_linux.x86_64" /usr/local/bin/godot
+          curl -sSL -o templates.tpz "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_export_templates.tpz"
+          dir="$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
+          mkdir -p "$dir"
+          unzip -q -j templates.tpz 'templates/linux_*' 'templates/windows_*' 'templates/version.txt' -d "$dir"
+          rm templates.tpz
+      - name: Exportar
+        run: |
+          godot --headless --path . --import
+          mkdir -p build/windows build/linux
+          godot --headless --path . --export-release "Windows" build/windows/southern-mercenaries.exe
+          godot --headless --path . --export-release "Linux" build/linux/southern-mercenaries.x86_64
+          test -s build/windows/southern-mercenaries.exe
+          test -s build/linux/southern-mercenaries.x86_64
+      - name: Empacotar
+        run: |
+          v="${{ steps.version.outputs.name }}"
+          mkdir -p dist
+          for os in windows linux; do cp LICENSE LICENSE-ASSETS CREDITS.md "build/$os/"; done
+          (cd build/windows && zip -q -r "../../dist/southern-mercenaries-$v-windows.zip" .)
+          tar -czf "dist/southern-mercenaries-$v-linux-x86_64.tar.gz" -C build/linux .
+          ls -la dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: southern-mercenaries-${{ steps.version.outputs.name }}
+          path: dist/*
+      - name: Criar GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          body_path: CHANGELOG.md
