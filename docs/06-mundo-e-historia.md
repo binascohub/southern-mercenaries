@@ -146,7 +146,7 @@ Cada herói tem um motivo pessoal para virar mercenário, além do ouro:
 
 | Classe | Motivo | Arquivo |
 |---|---|---|
-| Mago | Desde menino tinha um dom com os elementos que não entendia; aprendeu a controlar um deles. Sempre em busca de conhecimento, caça os tesouros dos demônios porque neles estão os maiores segredos da magia | `02-1-mago.md` |
+| Mago | Desde menino tinha um dom com os elementos que não entendia; aprendeu a controlar um deles (o dom foi dado por Deus, que sabia que seu destino era derrotar Lúcifer). Sempre em busca de conhecimento, caça os tesouros dos demônios porque neles estão os maiores segredos da magia | `02-1-mago.md` |
 | Arqueiro | Passou fome na infância e treinou para ser o maior caçador e alimentar a família (caçava na floresta que hoje é a Floresta Escura); a guerra destruiu sua vila (no reino derrotado) e o deixou sozinho; como só sabia caçar e precisava de dinheiro, virou mercenário. Os dois primeiros tesouros do jogo são riquezas do seu próprio reino, e o mapa 2 é a sua terra em ruínas | `02-2-arqueiro.md` |
 | Cavaleiro (masculino — Dorian) | Soldado exemplar da Academia Militar Real do reino vencedor; apaixonou-se pela princesa e foi expulso pelo rei, que não o considerou um bom partido. De coração partido, virou um bêbado de Tortuga até ouvir os mercenários e partir atrás de ouro para provar que é digno do seu amor. É ele quem leva o grupo até o Bobo da Corte na Capital | `02-3-cavaleiro.md` |
 | Cavaleiro (feminino — Dália) | Princesa do reino vencedor, treinava lutas e tinha talento natural para a montaria; na adolescência descobriram que não era filha legítima do rei, perdeu o direito ao trono e fugiu para Tortuga num cavalo dos estábulos reais. Orgulhosa demais para ser pobre, virou mercenária para voltar a viver no luxo que sempre teve. É ela quem leva o grupo até o Bobo da Corte na Capital | `02-3-cavaleiro.md` |
@@ -175,7 +175,6 @@ Cada herói tem um motivo pessoal para virar mercenário, além do ouro:
 ## 10. Decisões em aberto
 
 - No solo, os outros heróis ficam em Tortuga e dão missões pessoais (proposta)?
-- De onde vem o dom do Mago?
 - O final mostra a volta do Cavaleiro ao reino? Quem é o verdadeiro pai de Dália?
 - O clã do samurai, pai do Ninja, aparece no jogo?
 - Qual demônio fez o pacto com a Rainha dos Ratos?

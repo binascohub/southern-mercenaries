@@ -26,6 +26,8 @@ Desde pequeno, **coisas estranhas aconteciam perto de Oren**, e ele **não enten
 
 **Aos poucos, foi descobrindo que tinha um dom com os elementos.** Passou anos testando escondido, errando, se queimando, se molhando, caindo. Dos quatro elementos que respondiam a ele, **conseguiu aprender a controlar apenas um** — o elemento escolhido pelo jogador. Os outros ainda respondem, mas fracos e sem controle.
 
+> **Origem do dom (decidido):** **Deus deu o dom a Oren porque sabia que o destino dele era derrotar Lúcifer.** Oren só descobre isso no final da campanha (e o jogo nunca o diz de forma explícita antes).
+
 Cada resposta só trouxe mais perguntas: de onde vem esse dom? Existem outros como ele? Por que só um elemento obedece? Oren passou a **buscar conhecimento em qualquer lugar**: livros velhos, ruínas, histórias de viajantes. Descobriu que os maiores segredos da magia estão escondidos **nos tesouros guardados pelos demônios** — grimórios antigos, relíquias, objetos que nenhum sábio jamais estudou.
 
 Então foi para Tortuga e virou mercenário. **O ouro paga as viagens; o que ele quer de verdade é o conhecimento** que vem junto com cada tesouro.
@@ -225,5 +227,4 @@ Falas neutras, servindo para os dois sexos. Algumas mudam com o elemento.
 
 ## 11. Decisões em aberto
 
-- De onde vem o dom do Mago? (Ideias: herança de família, algo ligado às relíquias dos demônios, ou nunca explicado.)
 - Os tesouros dos demônios trazem "conhecimento" como item (ex.: grimórios que dão pontos de habilidade ou desbloqueiam lendas no bestiário)?
