@@ -80,7 +80,7 @@ Decisão do autor: **o jogo não é feito de ondas (waves)**. O jogador **explor
 - Cada grupo fica **dormindo** até um jogador chegar perto (raio de despertar, ~15 m) ou ser visto; ao acordar, **alerta os vizinhos** (`Aggro em grupo`). Quem não foi alertado continua dormindo.
 - **Emboscadas** (`ambush`) são parte do desenho da área: o monstro escondido salta quando o jogador chega no ponto marcado; acontece uma vez.
 - **Armadilhas de encontro** (alavanca, baú, altar) podem despertar um grupo extra **uma única vez**; nunca em loop.
-- **Sem respawn contínuo:** monstros mortos não reaparecem enquanto o grupo está na área. Isso mantém o ritmo de exploração e ajuda o desempenho.
+- **Sem respawn (decidido):** monstros mortos **ficam mortos**, inclusive ao sair da área e voltar pelo portal ou checkpoint; a área só é reiniciada numa nova campanha. Isso mantém o ritmo de exploração e ajuda o desempenho.
 - **Elites e mini-chefes** ficam em lugares fixos, com nome e pista (sala, ponte, cruzamento) e guardam loot.
 - **Chefes** têm arena própria, fechada ao começar a luta; podem **chamar poucos ajudantes** como parte de uma fase (ex.: filhotes da Rainha), nunca ondas contínuas ou cronometradas.
 - **Mapa que se revela:** o jogador começa a área sem ver o mapa; ele é **revelado conforme explora** (seção de interface, `09-interface.md`). Áreas escondidas e segredos recompensam quem vasculha os cantos.
@@ -360,5 +360,5 @@ Materiais raros por família: cauda da Rainha dos Ratos, glândula de Sapo Ácid
 - Enigmas da Esfinge: lista de ~10 enigmas clássicos (ex.: "o que anda com quatro pés de manhã, dois à tarde e três à noite?") — escrever na fase de produção?
 - Grendel e a Mãe: luta em dupla (proposta) ou só a Mãe como chefe e Grendel como mini-chefe?
 - Ordem dos 10 mapas: manter a proposta?
-- Ao sair de uma área e voltar pelo portal ou checkpoint, os monstros mortos ficam mortos (proposta) ou a área é reiniciada? Há opção de refazer áreas para farmar loot?
+- Há opção de refazer áreas para farmar loot (ex.: novo jogo+)?
 - Haverá um modo de dificuldade maior para jogar a campanha de novo?

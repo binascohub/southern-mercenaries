@@ -40,7 +40,7 @@
 
 ### Ao continuar
 - Na cidade: volta exatamente ao mesmo lugar.
-- No mapa: volta no **último checkpoint**. Monstros já mortos antes do checkpoint continuam mortos; os depois dele voltam (proposta). Itens e XP ganhos depois do checkpoint **não se perdem** (o personagem é salvo continuamente).
+- No mapa: volta no **último checkpoint**. Monstros já mortos **ficam mortos** (decidido): o estado de cada grupo de encontro (dormindo, desperto, morto) e dos baús abertos é salvo na campanha. Itens e XP ganhos depois do checkpoint **não se perdem** (o personagem é salvo continuamente).
 - **Mapa explorado:** a parte já revelada de cada área é salva por jogador (máscara compacta) na campanha, para o mapa continuar revelado ao voltar (`09-interface.md`). Grupos de encontro já despertados ou mortos antes do checkpoint não voltam.
 
 ## 5. Co-op
