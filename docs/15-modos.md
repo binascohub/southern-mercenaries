@@ -51,7 +51,10 @@ Escolha feita ao criar a campanha:
 - Aumentar a versão do formato de save (`save_version`) quando esses campos entrarem (`11-saves.md`).
 - Textos de modos e dificuldades usam chaves de tradução (`tr()`).
 
-## 6. Decisões em aberto
+## 6. Decisões
+
+- **Decidido:** o Pesadelo libera ao vencer Lúcifer com **qualquer personagem**.
+
+## 7. Decisões em aberto
 
 - Os valores da seção 3 saem de testes de balanceamento (`13-balanceamento.md`).
-- O Pesadelo libera ao vencer Lúcifer em qualquer personagem (proposta) ou só no personagem que venceu?

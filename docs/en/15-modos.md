@@ -51,7 +51,10 @@ Chosen when the campaign is created:
 - Increase the save format version (`save_version`) when these fields arrive (`11-saves.md`).
 - Mode and difficulty texts use translation keys (`tr()`).
 
-## 6. Open decisions
+## 6. Decisions
+
+- **Decided:** Nightmare unlocks when beating Lucifer with **any character**.
+
+## 7. Open decisions
 
 - The values in section 3 come from balance tests (`13-balanceamento.md`).
-- Does Nightmare unlock when beating Lucifer with any character (proposal) or only with the character who beat him?

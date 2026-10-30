@@ -51,7 +51,10 @@ Se elige al crear la campaña:
 - Aumentar la versión del formato de guardado (`save_version`) cuando entren estos campos (`11-saves.md`).
 - Los textos de modos y dificultades usan claves de traducción (`tr()`).
 
-## 6. Decisiones abiertas
+## 6. Decisiones
+
+- **Decidido:** Pesadilla se desbloquea al vencer a Lucifer con **cualquier personaje**.
+
+## 7. Decisiones abiertas
 
 - Los valores de la sección 3 salen de pruebas de equilibrio (`13-balanceamento.md`).
-- ¿Pesadilla se desbloquea al vencer a Lucifer con cualquier personaje (propuesta) o solo con el personaje que lo venció?
