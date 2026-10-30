@@ -83,7 +83,7 @@ README.md  LICENSE  LICENSE-ASSETS  CREDITS.md  CONTRIBUTING.md  CHANGELOG.md
 
 ## 8. Rede e firewall
 
-- Porta padrão do jogo: **UDP 7777** (jogo) e **UDP 7778** (descoberta na LAN) — proposta.
+- Porta padrão do jogo: **UDP 24567** (jogo) e **UDP 24568** (descoberta na LAN, `07-rede.md`) — proposta.
 - Windows: o instalador cria a regra de firewall para o jogo (com permissão do usuário) ou o Windows pergunta na primeira vez que hospedar.
 - Linux: o site explica como liberar a porta (ufw/firewalld), se necessário.
 
