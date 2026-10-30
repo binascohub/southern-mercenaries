@@ -95,7 +95,6 @@ README.md  LICENSE  LICENSE-ASSETS  CREDITS.md  CONTRIBUTING.md  CHANGELOG.md
 
 - Licença da arte: **decidida** como CC BY-SA 4.0 (o autor quer que qualquer pessoa possa contribuir e melhorar o projeto).
 - Nome "Southern Mercenaries" igual nos 3 idiomas?
-- Domínio próprio para o site?
-- Aceitar doações (GitHub Sponsors, itch.io)?
+- **Decidido:** domínio próprio e doações (GitHub Sponsors, itch.io) ficam para **depois da v1.0**; até lá, GitHub Pages.
 - Publicar no itch.io também?
 - Repositório público desde o início ou só a partir da v0.1?
