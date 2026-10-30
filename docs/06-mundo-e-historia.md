@@ -151,7 +151,7 @@ Cada herói tem um motivo pessoal para virar mercenário, além do ouro:
 | Cavaleiro (masculino — Dorian) | Soldado exemplar da Academia Militar Real do reino vencedor; apaixonou-se pela princesa e foi expulso pelo rei, que não o considerou um bom partido. De coração partido, virou um bêbado de Tortuga até ouvir os mercenários e partir atrás de ouro para provar que é digno do seu amor. É ele quem leva o grupo até o Bobo da Corte na Capital | `02-3-cavaleiro.md` |
 | Cavaleiro (feminino — Dália) | Princesa do reino vencedor, treinava lutas e tinha talento natural para a montaria; na adolescência descobriram que não era filha legítima do rei, perdeu o direito ao trono e fugiu para Tortuga num cavalo dos estábulos reais. Orgulhosa demais para ser pobre, virou mercenária para voltar a viver no luxo que sempre teve. É ela quem leva o grupo até o Bobo da Corte na Capital | `02-3-cavaleiro.md` |
 | Ninja (masculino — Ren) | Desertor, filho de um samurai renomado; aprendeu desde criança mais de mil formas de matar e tinha talento e velocidade fora do comum, mas a indisciplina o fez fugir daquele mundo. Virou ladrão em Tortuga e viu nos tesouros dos demônios o maior roubo da sua vida | `02-4-ninja.md` |
-| Ninja (feminino — Rin) | Mesma origem, mas no clã mulheres não podiam lutar; aprendeu escondida e se recusou a seguir a tradição das funções de uma mulher (servir e casar com quem o pai escolhesse). Desertou, virou ladra em Tortuga e foi atrás dos tesouros | `02-4-ninja.md` |
+| Ninja (feminino — Rin) | Clã Kurogane (só gancho). Mesma origem, mas no clã mulheres não podiam lutar; aprendeu escondida e se recusou a seguir a tradição das funções de uma mulher (servir e casar com quem o pai escolhesse). Desertou, virou ladra em Tortuga e foi atrás dos tesouros | `02-4-ninja.md` |
 | Invocador | Criança que adorava animais e fazia amizade até com os que todos temiam; seu dom lhe deu muitos amigos animais. Ao saber que muitos eram órfãos porque as criaturas corrompidas mataram suas famílias, decidiu lutar contra elas e se juntou aos mercenários | `02-5-invocador.md` |
 
 - Dorian e Dália vêm **do mesmo reino** (o vencedor) — proposta: a princesa que Dorian ama pode ser meia-irmã de Dália.
@@ -176,6 +176,5 @@ Cada herói tem um motivo pessoal para virar mercenário, além do ouro:
 
 - No solo, os outros heróis ficam em Tortuga e dão missões pessoais (proposta)?
 - O final mostra a volta do Cavaleiro ao reino? Quem é o verdadeiro pai de Dália?
-- O clã do samurai, pai do Ninja, aparece no jogo?
 - Qual demônio fez o pacto com a Rainha dos Ratos?
 - Nome do reino de Dorian e Dália no texto do jogo: manter "Aurenval" e "Aurenhold"? (Os nomes da seção 3 foram criados por Claude a pedido do autor, para revisão.)

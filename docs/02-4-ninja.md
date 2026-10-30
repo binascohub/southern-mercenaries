@@ -36,7 +36,7 @@ Roubar bolsas em Tortuga logo ficou pequeno. Ao ouvir falar dos **tesouros guard
 
 - **Motivação (ambos):** o maior roubo da sua vida, e a liberdade de nunca mais obedecer ninguém.
 - **Rin, além disso:** provar que uma mulher do clã luta melhor que qualquer samurai.
-- **Ligação com a campanha:** cada tesouro de demônio é um "golpe" maior que o anterior; o clã do pai pode estar à sua procura, como desertor(a) (**proposta**).
+- **Ligação com a campanha:** cada tesouro de demônio é um "golpe" maior que o anterior; o clã do pai, o **Clã Kurogane** ("aço negro", nome escolhido por Claude a pedido do autor), pode estar à sua procura, como desertor(a) (**proposta**). Aparece só como gancho: menções de NPCs e rumores na taverna, sem missões nem inimigos do clã na v1.0; fica aberto para a continuação.
 - **Gancho visual:** a **guarda (tsuba) da espada do pai**, presa num cordão no pescoço (sempre visível, por cima de qualquer roupa).
 
 ### Traço de classe: Ladrão (proposta)
@@ -227,4 +227,3 @@ A maioria das falas é igual; algumas mudam conforme a versão.
 ## 12. Decisões em aberto
 
 - Traço de classe "Ladrão" (+ouro, valioso extra, abrir baús trancados): manter?
-- O clã do pai aparece no jogo (caçadores de desertores, missões na taverna)?
