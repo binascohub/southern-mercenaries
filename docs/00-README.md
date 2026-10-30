@@ -38,13 +38,15 @@ Documentação de design do jogo **Southern Mercenaries**, RPG de ação co-op e
 - **Plataformas:** Windows e Linux com as mesmas funcionalidades; testar os dois e o co-op entre eles.
 - **Rede:** servidor autoritativo; o modo solo usa o mesmo servidor rodando localmente. Sorteios (loot, refino) sempre no servidor.
 - **Controles:** suporte completo a controle USB desde a primeira fase jogável; usar ações do Input Map, nunca teclas fixas (`08-controles.md`).
-- **Idiomas:** en, es e pt_BR. **Nenhum texto fixo no código, nas cenas ou nos dados** — sempre chaves de tradução com `tr()`; a rede e os saves usam IDs, nunca texto traduzido (`01-escopo.md`, seção 6). Os textos desta documentação estão em português e são a fonte para as traduções, feitas pelo Claude.
+- **Idiomas:** en, es e pt_BR. **Nenhum texto fixo no código, nas cenas ou nos dados** — sempre chaves de tradução com `tr()`; a rede e os saves usam IDs, nunca texto traduzido (`01-escopo.md`, seção 6). Os textos desta documentação estão em português (fonte) e também em inglês (`en/`) e espanhol (`es/`); as traduções do jogo são feitas pelo Claude.
 - **Equipamento visível:** tudo que é equipado aparece no personagem, peça por peça, com o material; o refino gera uma aura em volta do herói (`05-itens-e-loot.md`, `05-1-refino.md`).
 - **Saves:** escrita segura com backups e número de versão desde o primeiro save (`11-saves.md`).
 - **Áreas:** cada área de mapa é uma cena separada, com checkpoint na entrada (`03-2-areas.md`).
 - **Open source:** só assets próprios (criados pelo Claude a partir das referências do autor, sem copiar nenhum jogo) ou com licença livre; registrar tudo em `CREDITS.md` (`10-distribuicao.md`).
 - **Dados separados do código:** classes, elementos, habilidades, itens, materiais, pergaminhos, refino, monstros, bestiário, NPCs, lojas, áreas e modelos de missão ficam em arquivos de dados, usando os IDs definidos nos documentos (ex.: `knight`, `fire`, `fireball`, `headless_mule`, `tavern_keeper`, `court_jester`, `sewers_01_drains`, `steel`).
 - **Fontes oficiais:** o arquivo detalhado de cada classe vale mais que o resumo em `02-personagens.md`; `02-0-elementos.md` vale para todas as classes e monstros; `03-1-bestiario.md` é a fonte das falas de história e pistas; `06-mundo-e-historia.md` define a ordem da campanha (10 mapas); `05-itens-e-loot.md` define os materiais.
+- **Campanha 2 (regra de design):** a continuação deve **sempre** começar com os heróis **pobres de novo** (só roupa de baixo, arma de madeira, sem ouro, sem refino, nível 1). A Campanha 1 não transfere nada; a história justifica (`06-mundo-e-historia.md`, seção 9).
+- **Idiomas da documentação:** português (esta pasta), inglês (`en/`) e espanhol (`es/`), com os mesmos nomes de arquivo; em caso de dúvida, o português é a fonte.
 - **Implementar por fases**, na ordem de `01-escopo.md` seção 9. Cada fase deve ficar jogável antes da próxima.
 - Itens marcados como **em aberto** ou **proposta** não devem ser decididos sem consultar o autor.
 

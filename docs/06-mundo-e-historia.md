@@ -169,6 +169,7 @@ Cada herói tem um motivo pessoal para virar mercenário, além do ouro:
 
 - **Gancho:** o reino do **primo da família real**, ainda maior e mais rico.
 - Ideias para a continuação (proposta): novo reino como terceira cidade-base, novas famílias de criaturas mitológicas, novos chefes demoníacos, níveis acima de 20.
+- **Regra de design da Campanha 2:** os heróis **devem iniciar pobres novamente**, sem exceção; qualquer sistema que carregue itens, ouro ou nível da Campanha 1 vai contra esta regra.
 - **Campanha 2 (decidido):** tudo que está nestes documentos é a **Campanha 1**. A Campanha 2 será criada no futuro e **começa do zero**: os heróis **perdem tudo o que conquistaram** (equipamento, ouro, refino) e voltam a ficar **pobres e sem nada**, de volta à roupa de baixo e à arma de madeira. Nada é levado da Campanha 1; o nível e as habilidades também recomeçam.
 - **Reencontro (decidido):** na continuação, os mercenários **gastaram tudo** o que ganharam e **se reencontram para buscar mais** (em Tortuga, na Companhia da Moeda Negra), rumo ao reino de Drachenfeld.
 
