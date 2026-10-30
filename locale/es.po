@@ -1,0 +1,310 @@
+# Southern Mercenaries — Spanish translation.
+# Keys are the msgids; the source texts are written in Portuguese in docs/.
+msgid ""
+msgstr ""
+"Project-Id-Version: Southern Mercenaries\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+msgid "GAME_TITLE"
+msgstr "Southern Mercenaries"
+
+msgid "MENU_PLAY_SOLO"
+msgstr "Jugar solo"
+
+msgid "MENU_OPTIONS"
+msgstr "Opciones"
+
+msgid "MENU_QUIT"
+msgstr "Salir"
+
+msgid "MENU_RESUME"
+msgstr "Continuar"
+
+msgid "MENU_MAIN_MENU"
+msgstr "Menú principal"
+
+msgid "MENU_BACK"
+msgstr "Volver"
+
+msgid "MENU_PAUSED"
+msgstr "En pausa"
+
+msgid "MENU_VERSION"
+msgstr "Versión {version}"
+
+msgid "MENU_PROTOTYPE_NOTE"
+msgstr "Prototipo de combate — fase 1"
+
+msgid "LANGUAGE_CHOOSE_TITLE"
+msgstr "Elige tu idioma"
+
+msgid "LANGUAGE_NAME_EN"
+msgstr "English"
+
+msgid "LANGUAGE_NAME_ES"
+msgstr "Español"
+
+msgid "LANGUAGE_NAME_PT_BR"
+msgstr "Português (Brasil)"
+
+msgid "OPTIONS_TITLE"
+msgstr "Opciones"
+
+msgid "OPTIONS_LANGUAGE"
+msgstr "Idioma"
+
+msgid "OPTIONS_VIBRATION"
+msgstr "Vibración"
+
+msgid "OPTIONS_AIM_ASSIST"
+msgstr "Asistencia de puntería"
+
+msgid "OPTIONS_INVERT_AIM_Y"
+msgstr "Invertir eje Y de la mira"
+
+msgid "OPTIONS_DEADZONE"
+msgstr "Zona muerta del stick"
+
+msgid "OPTIONS_CONTROLS"
+msgstr "Controles"
+
+msgid "CONTROLS_TITLE"
+msgstr "Controles"
+
+msgid "CONTROLS_ACTION"
+msgstr "Acción"
+
+msgid "CONTROLS_KEYBOARD"
+msgstr "Teclado / ratón"
+
+msgid "CONTROLS_GAMEPAD"
+msgstr "Mando"
+
+msgid "CONTROLS_RESTORE"
+msgstr "Restaurar valores predeterminados"
+
+msgid "CONTROLS_WAITING_KEY"
+msgstr "Pulsa una tecla… (Esc cancela)"
+
+msgid "CONTROLS_WAITING_PAD"
+msgstr "Pulsa un botón del mando…"
+
+msgid "CONTROLS_SWAPPED"
+msgstr "El botón lo usaba «{action}»: se intercambiaron."
+
+msgid "CONTROLS_TEST"
+msgstr "Prueba del mando: {input}"
+
+msgid "CONTROLS_TEST_IDLE"
+msgstr "Prueba del mando: pulsa cualquier botón"
+
+msgid "ACTION_MOVE_UP"
+msgstr "Mover arriba"
+
+msgid "ACTION_MOVE_DOWN"
+msgstr "Mover abajo"
+
+msgid "ACTION_MOVE_LEFT"
+msgstr "Mover a la izquierda"
+
+msgid "ACTION_MOVE_RIGHT"
+msgstr "Mover a la derecha"
+
+msgid "ACTION_AIM_UP"
+msgstr "Apuntar arriba"
+
+msgid "ACTION_AIM_DOWN"
+msgstr "Apuntar abajo"
+
+msgid "ACTION_AIM_LEFT"
+msgstr "Apuntar a la izquierda"
+
+msgid "ACTION_AIM_RIGHT"
+msgstr "Apuntar a la derecha"
+
+msgid "ACTION_ATTACK"
+msgstr "Atacar (mantener: ataque fuerte)"
+
+msgid "ACTION_SKILL_1"
+msgstr "Habilidad 1"
+
+msgid "ACTION_SKILL_2"
+msgstr "Habilidad 2"
+
+msgid "ACTION_SKILL_3"
+msgstr "Habilidad 3"
+
+msgid "ACTION_SKILL_4"
+msgstr "Habilidad final"
+
+msgid "ACTION_EVADE"
+msgstr "Esquivar"
+
+msgid "ACTION_MOUNT"
+msgstr "Montar / desmontar"
+
+msgid "ACTION_POTION_HEALTH"
+msgstr "Poción de vida"
+
+msgid "ACTION_POTION_MANA"
+msgstr "Poción de recurso"
+
+msgid "ACTION_POTION_ELEMENTAL"
+msgstr "Poción elemental"
+
+msgid "ACTION_INTERACT"
+msgstr "Interactuar"
+
+msgid "ACTION_PICKUP_ALL"
+msgstr "Recoger todo"
+
+msgid "ACTION_INVENTORY"
+msgstr "Inventario"
+
+msgid "ACTION_MENU"
+msgstr "Menú"
+
+msgid "ACTION_MAP"
+msgstr "Mapa"
+
+msgid "ACTION_CHAT_QUICK"
+msgstr "Chat rápido"
+
+msgid "INPUT_MOUSE_LEFT"
+msgstr "Clic izquierdo"
+
+msgid "INPUT_MOUSE_RIGHT"
+msgstr "Clic derecho"
+
+msgid "INPUT_MOUSE_MIDDLE"
+msgstr "Clic central"
+
+msgid "INPUT_MOUSE_WHEEL_UP"
+msgstr "Rueda arriba"
+
+msgid "INPUT_MOUSE_WHEEL_DOWN"
+msgstr "Rueda abajo"
+
+msgid "INPUT_MOUSE_BUTTON"
+msgstr "Botón del ratón {n}"
+
+msgid "CLASS_MAGE_NAME"
+msgstr "Mago"
+
+msgid "HERO_MAGE_MALE"
+msgstr "Oren Valdris"
+
+msgid "HERO_MAGE_FEMALE"
+msgstr "Orana Valdris"
+
+msgid "RESOURCE_MANA"
+msgstr "Maná"
+
+msgid "POWER_MAGIC"
+msgstr "Poder Mágico"
+
+msgid "MONSTER_SEWER_RAT_NAME"
+msgstr "Rata de cloaca"
+
+msgid "MONSTER_SEWER_RAT_BIG_NAME"
+msgstr "Rata de cloaca hinchada"
+
+msgid "ARENA_PROTOTYPE_NAME"
+msgstr "Sótano de entrenamiento"
+
+msgid "HUD_HEALTH"
+msgstr "Vida"
+
+msgid "HUD_HINTS"
+msgstr "{attack}: atacar (mantener: fuerte)   {evade}: esquivar   {menu}: menú"
+
+msgid "HUD_EVADE_READY"
+msgstr "Esquiva lista"
+
+msgid "HUD_EVADE_COOLDOWN"
+msgstr "Esquiva {seconds}s"
+
+msgid "HUD_VICTORY"
+msgstr "El sótano está despejado."
+
+msgid "HUD_DEFEAT"
+msgstr "Todos han caído."
+
+msgid "HUD_PRESS_TO_RESTART"
+msgstr "Pulsa {action} para intentarlo de nuevo"
+
+msgid "HUD_GAMEPAD_LOST"
+msgstr "Mando desconectado. Vuelve a conectarlo para continuar."
+
+msgid "MENU_HOST_LAN"
+msgstr "Crear partida en LAN"
+
+msgid "MENU_JOIN_LAN"
+msgstr "Unirse a partida en LAN"
+
+msgid "JOIN_TITLE"
+msgstr "Unirse a una partida"
+
+msgid "JOIN_SEARCHING"
+msgstr "Buscando partidas en la red local…"
+
+msgid "JOIN_HOST_ENTRY"
+msgstr "{host} ({address}) — {players}/{max} jugadores"
+
+msgid "JOIN_HOST_OTHER_VERSION"
+msgstr "{address} — otra versión ({version})"
+
+msgid "JOIN_MANUAL_ADDRESS"
+msgstr "O escribe la IP del anfitrión (o IP:puerto):"
+
+msgid "JOIN_CONNECT"
+msgstr "Conectar"
+
+msgid "NET_CONNECTING"
+msgstr "Conectando…"
+
+msgid "NET_CONNECTION_FAILED"
+msgstr "No se pudo conectar con el anfitrión. Revisa la dirección y el cortafuegos."
+
+msgid "NET_HOST_FAILED"
+msgstr "No se pudo crear la partida: el puerto UDP {port} está en uso o bloqueado."
+
+msgid "NET_VERSION_MISMATCH"
+msgstr "Versión del juego diferente. Anfitrión: {host}. La tuya: {local}."
+
+msgid "NET_SERVER_FULL"
+msgstr "La partida está llena."
+
+msgid "NET_HOST_LEFT"
+msgstr "El anfitrión salió de la partida."
+
+msgid "HUD_HOSTING"
+msgstr "Anfitrión — IP: {address} (UDP {port})"
+
+msgid "HUD_PLAYER_N"
+msgstr "Jugador {n}"
+
+msgid "HUD_ALLY_DOWN"
+msgstr "¡caído!"
+
+msgid "HUD_HOLD_TO_REVIVE"
+msgstr "Mantén {action} para reanimar a tu aliado"
+
+msgid "HUD_DOWNED"
+msgstr "¡Has caído!"
+
+msgid "HUD_WAIT_FOR_REVIVE"
+msgstr "Un aliado puede reanimarte."
+
+msgid "HUD_RETURNING_TO_CHECKPOINT"
+msgstr "Volviendo al punto de control…"
+
+msgid "NET_CONTENT_MISMATCH"
+msgstr "Datos del juego diferentes. Anfitrión: {host}. Los tuyos: {local}."
+
+msgid "HUD_ENCOUNTERS"
+msgstr "Encuentros superados: {cleared}/{total}"
+

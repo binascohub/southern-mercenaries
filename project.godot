@@ -31,7 +31,7 @@ window/stretch/aspect="expand"
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://locale/texts.en.translation", "res://locale/texts.es.translation", "res://locale/texts.pt_BR.translation")
+locale/translations=PackedStringArray("res://locale/en.po", "res://locale/es.po", "res://locale/pt_BR.po")
 locale/fallback="en"
 
 [layer_names]

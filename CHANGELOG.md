@@ -10,6 +10,7 @@
 - Join mid-game next to the host; monster health +60% and damage +10% per extra player, applied when a group wakes.
 - Dropped client: hero waits 30 s still and invulnerable; rejoining in time takes it back. Normal leave removes the hero at once.
 - Downed state and revive (hold Interact 3 s, interrupted when the reviver is hit); everyone down returns to the checkpoint.
+- Translations moved from CSV to gettext (`locale/messages.pot`, `en.po`, `es.po`, `pt_BR.po`), as decided in `docs/01-escopo.md`.
 - Co-op HUD: allies' health, player color rings, hosting IP; no pause in co-op.
 - Network tests in CI (host + client in two processes, version refusal, drop and rejoin, revive).
 

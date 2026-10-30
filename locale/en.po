@@ -1,0 +1,310 @@
+# Southern Mercenaries — English translation.
+# Keys are the msgids; the source texts are written in Portuguese in docs/.
+msgid ""
+msgstr ""
+"Project-Id-Version: Southern Mercenaries\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+msgid "GAME_TITLE"
+msgstr "Southern Mercenaries"
+
+msgid "MENU_PLAY_SOLO"
+msgstr "Play solo"
+
+msgid "MENU_OPTIONS"
+msgstr "Options"
+
+msgid "MENU_QUIT"
+msgstr "Quit"
+
+msgid "MENU_RESUME"
+msgstr "Resume"
+
+msgid "MENU_MAIN_MENU"
+msgstr "Main menu"
+
+msgid "MENU_BACK"
+msgstr "Back"
+
+msgid "MENU_PAUSED"
+msgstr "Paused"
+
+msgid "MENU_VERSION"
+msgstr "Version {version}"
+
+msgid "MENU_PROTOTYPE_NOTE"
+msgstr "Combat prototype — phase 1"
+
+msgid "LANGUAGE_CHOOSE_TITLE"
+msgstr "Choose your language"
+
+msgid "LANGUAGE_NAME_EN"
+msgstr "English"
+
+msgid "LANGUAGE_NAME_ES"
+msgstr "Español"
+
+msgid "LANGUAGE_NAME_PT_BR"
+msgstr "Português (Brasil)"
+
+msgid "OPTIONS_TITLE"
+msgstr "Options"
+
+msgid "OPTIONS_LANGUAGE"
+msgstr "Language"
+
+msgid "OPTIONS_VIBRATION"
+msgstr "Vibration"
+
+msgid "OPTIONS_AIM_ASSIST"
+msgstr "Aim assist"
+
+msgid "OPTIONS_INVERT_AIM_Y"
+msgstr "Invert aim Y axis"
+
+msgid "OPTIONS_DEADZONE"
+msgstr "Stick dead zone"
+
+msgid "OPTIONS_CONTROLS"
+msgstr "Controls"
+
+msgid "CONTROLS_TITLE"
+msgstr "Controls"
+
+msgid "CONTROLS_ACTION"
+msgstr "Action"
+
+msgid "CONTROLS_KEYBOARD"
+msgstr "Keyboard / mouse"
+
+msgid "CONTROLS_GAMEPAD"
+msgstr "Gamepad"
+
+msgid "CONTROLS_RESTORE"
+msgstr "Restore defaults"
+
+msgid "CONTROLS_WAITING_KEY"
+msgstr "Press a key… (Esc cancels)"
+
+msgid "CONTROLS_WAITING_PAD"
+msgstr "Press a gamepad button…"
+
+msgid "CONTROLS_SWAPPED"
+msgstr "Button was in use by \"{action}\": the two were swapped."
+
+msgid "CONTROLS_TEST"
+msgstr "Gamepad test: {input}"
+
+msgid "CONTROLS_TEST_IDLE"
+msgstr "Gamepad test: press any button"
+
+msgid "ACTION_MOVE_UP"
+msgstr "Move up"
+
+msgid "ACTION_MOVE_DOWN"
+msgstr "Move down"
+
+msgid "ACTION_MOVE_LEFT"
+msgstr "Move left"
+
+msgid "ACTION_MOVE_RIGHT"
+msgstr "Move right"
+
+msgid "ACTION_AIM_UP"
+msgstr "Aim up"
+
+msgid "ACTION_AIM_DOWN"
+msgstr "Aim down"
+
+msgid "ACTION_AIM_LEFT"
+msgstr "Aim left"
+
+msgid "ACTION_AIM_RIGHT"
+msgstr "Aim right"
+
+msgid "ACTION_ATTACK"
+msgstr "Attack (hold: strong attack)"
+
+msgid "ACTION_SKILL_1"
+msgstr "Skill 1"
+
+msgid "ACTION_SKILL_2"
+msgstr "Skill 2"
+
+msgid "ACTION_SKILL_3"
+msgstr "Skill 3"
+
+msgid "ACTION_SKILL_4"
+msgstr "Final skill"
+
+msgid "ACTION_EVADE"
+msgstr "Dodge"
+
+msgid "ACTION_MOUNT"
+msgstr "Mount / dismount"
+
+msgid "ACTION_POTION_HEALTH"
+msgstr "Health potion"
+
+msgid "ACTION_POTION_MANA"
+msgstr "Resource potion"
+
+msgid "ACTION_POTION_ELEMENTAL"
+msgstr "Elemental potion"
+
+msgid "ACTION_INTERACT"
+msgstr "Interact"
+
+msgid "ACTION_PICKUP_ALL"
+msgstr "Pick up all"
+
+msgid "ACTION_INVENTORY"
+msgstr "Inventory"
+
+msgid "ACTION_MENU"
+msgstr "Menu"
+
+msgid "ACTION_MAP"
+msgstr "Map"
+
+msgid "ACTION_CHAT_QUICK"
+msgstr "Quick chat"
+
+msgid "INPUT_MOUSE_LEFT"
+msgstr "Left click"
+
+msgid "INPUT_MOUSE_RIGHT"
+msgstr "Right click"
+
+msgid "INPUT_MOUSE_MIDDLE"
+msgstr "Middle click"
+
+msgid "INPUT_MOUSE_WHEEL_UP"
+msgstr "Wheel up"
+
+msgid "INPUT_MOUSE_WHEEL_DOWN"
+msgstr "Wheel down"
+
+msgid "INPUT_MOUSE_BUTTON"
+msgstr "Mouse button {n}"
+
+msgid "CLASS_MAGE_NAME"
+msgstr "Mage"
+
+msgid "HERO_MAGE_MALE"
+msgstr "Oren Valdris"
+
+msgid "HERO_MAGE_FEMALE"
+msgstr "Orana Valdris"
+
+msgid "RESOURCE_MANA"
+msgstr "Mana"
+
+msgid "POWER_MAGIC"
+msgstr "Magic Power"
+
+msgid "MONSTER_SEWER_RAT_NAME"
+msgstr "Sewer rat"
+
+msgid "MONSTER_SEWER_RAT_BIG_NAME"
+msgstr "Bloated sewer rat"
+
+msgid "ARENA_PROTOTYPE_NAME"
+msgstr "Training cellar"
+
+msgid "HUD_HEALTH"
+msgstr "Health"
+
+msgid "HUD_HINTS"
+msgstr "{attack}: attack (hold: strong)   {evade}: dodge   {menu}: menu"
+
+msgid "HUD_EVADE_READY"
+msgstr "Dodge ready"
+
+msgid "HUD_EVADE_COOLDOWN"
+msgstr "Dodge {seconds}s"
+
+msgid "HUD_VICTORY"
+msgstr "The cellar is clear."
+
+msgid "HUD_DEFEAT"
+msgstr "Everyone has fallen."
+
+msgid "HUD_PRESS_TO_RESTART"
+msgstr "Press {action} to try again"
+
+msgid "HUD_GAMEPAD_LOST"
+msgstr "Gamepad disconnected. Reconnect it to continue."
+
+msgid "MENU_HOST_LAN"
+msgstr "Host LAN game"
+
+msgid "MENU_JOIN_LAN"
+msgstr "Join LAN game"
+
+msgid "JOIN_TITLE"
+msgstr "Join a game"
+
+msgid "JOIN_SEARCHING"
+msgstr "Searching for games on the local network…"
+
+msgid "JOIN_HOST_ENTRY"
+msgstr "{host} ({address}) — {players}/{max} players"
+
+msgid "JOIN_HOST_OTHER_VERSION"
+msgstr "{address} — different version ({version})"
+
+msgid "JOIN_MANUAL_ADDRESS"
+msgstr "Or type the host's IP (or IP:port):"
+
+msgid "JOIN_CONNECT"
+msgstr "Connect"
+
+msgid "NET_CONNECTING"
+msgstr "Connecting…"
+
+msgid "NET_CONNECTION_FAILED"
+msgstr "Could not connect to the host. Check the address and the firewall."
+
+msgid "NET_HOST_FAILED"
+msgstr "Could not host the game: UDP port {port} is in use or blocked."
+
+msgid "NET_VERSION_MISMATCH"
+msgstr "Different game version. Host: {host}. Yours: {local}."
+
+msgid "NET_SERVER_FULL"
+msgstr "The game is full."
+
+msgid "NET_HOST_LEFT"
+msgstr "The host left the game."
+
+msgid "HUD_HOSTING"
+msgstr "Hosting — IP: {address} (UDP {port})"
+
+msgid "HUD_PLAYER_N"
+msgstr "Player {n}"
+
+msgid "HUD_ALLY_DOWN"
+msgstr "down!"
+
+msgid "HUD_HOLD_TO_REVIVE"
+msgstr "Hold {action} to revive your ally"
+
+msgid "HUD_DOWNED"
+msgstr "You are down!"
+
+msgid "HUD_WAIT_FOR_REVIVE"
+msgstr "An ally can revive you."
+
+msgid "HUD_RETURNING_TO_CHECKPOINT"
+msgstr "Returning to the checkpoint…"
+
+msgid "NET_CONTENT_MISMATCH"
+msgstr "Different game data. Host: {host}. Yours: {local}."
+
+msgid "HUD_ENCOUNTERS"
+msgstr "Encounters cleared: {cleared}/{total}"
+

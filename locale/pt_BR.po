@@ -1,0 +1,310 @@
+# Southern Mercenaries — Portuguese (Brazil) translation.
+# Keys are the msgids; the source texts are written in Portuguese in docs/.
+msgid ""
+msgstr ""
+"Project-Id-Version: Southern Mercenaries\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+msgid "GAME_TITLE"
+msgstr "Southern Mercenaries"
+
+msgid "MENU_PLAY_SOLO"
+msgstr "Jogar sozinho"
+
+msgid "MENU_OPTIONS"
+msgstr "Opções"
+
+msgid "MENU_QUIT"
+msgstr "Sair"
+
+msgid "MENU_RESUME"
+msgstr "Continuar"
+
+msgid "MENU_MAIN_MENU"
+msgstr "Menu principal"
+
+msgid "MENU_BACK"
+msgstr "Voltar"
+
+msgid "MENU_PAUSED"
+msgstr "Pausado"
+
+msgid "MENU_VERSION"
+msgstr "Versão {version}"
+
+msgid "MENU_PROTOTYPE_NOTE"
+msgstr "Protótipo de combate — fase 1"
+
+msgid "LANGUAGE_CHOOSE_TITLE"
+msgstr "Escolha o idioma"
+
+msgid "LANGUAGE_NAME_EN"
+msgstr "English"
+
+msgid "LANGUAGE_NAME_ES"
+msgstr "Español"
+
+msgid "LANGUAGE_NAME_PT_BR"
+msgstr "Português (Brasil)"
+
+msgid "OPTIONS_TITLE"
+msgstr "Opções"
+
+msgid "OPTIONS_LANGUAGE"
+msgstr "Idioma"
+
+msgid "OPTIONS_VIBRATION"
+msgstr "Vibração"
+
+msgid "OPTIONS_AIM_ASSIST"
+msgstr "Mira assistida"
+
+msgid "OPTIONS_INVERT_AIM_Y"
+msgstr "Inverter eixo Y da mira"
+
+msgid "OPTIONS_DEADZONE"
+msgstr "Zona morta do analógico"
+
+msgid "OPTIONS_CONTROLS"
+msgstr "Controles"
+
+msgid "CONTROLS_TITLE"
+msgstr "Controles"
+
+msgid "CONTROLS_ACTION"
+msgstr "Ação"
+
+msgid "CONTROLS_KEYBOARD"
+msgstr "Teclado / mouse"
+
+msgid "CONTROLS_GAMEPAD"
+msgstr "Controle"
+
+msgid "CONTROLS_RESTORE"
+msgstr "Restaurar padrão"
+
+msgid "CONTROLS_WAITING_KEY"
+msgstr "Aperte uma tecla… (Esc cancela)"
+
+msgid "CONTROLS_WAITING_PAD"
+msgstr "Aperte um botão do controle…"
+
+msgid "CONTROLS_SWAPPED"
+msgstr "O botão já era usado por \"{action}\": os dois foram trocados."
+
+msgid "CONTROLS_TEST"
+msgstr "Teste do controle: {input}"
+
+msgid "CONTROLS_TEST_IDLE"
+msgstr "Teste do controle: aperte qualquer botão"
+
+msgid "ACTION_MOVE_UP"
+msgstr "Mover para cima"
+
+msgid "ACTION_MOVE_DOWN"
+msgstr "Mover para baixo"
+
+msgid "ACTION_MOVE_LEFT"
+msgstr "Mover para a esquerda"
+
+msgid "ACTION_MOVE_RIGHT"
+msgstr "Mover para a direita"
+
+msgid "ACTION_AIM_UP"
+msgstr "Mirar para cima"
+
+msgid "ACTION_AIM_DOWN"
+msgstr "Mirar para baixo"
+
+msgid "ACTION_AIM_LEFT"
+msgstr "Mirar para a esquerda"
+
+msgid "ACTION_AIM_RIGHT"
+msgstr "Mirar para a direita"
+
+msgid "ACTION_ATTACK"
+msgstr "Atacar (segurar: ataque forte)"
+
+msgid "ACTION_SKILL_1"
+msgstr "Habilidade 1"
+
+msgid "ACTION_SKILL_2"
+msgstr "Habilidade 2"
+
+msgid "ACTION_SKILL_3"
+msgstr "Habilidade 3"
+
+msgid "ACTION_SKILL_4"
+msgstr "Habilidade final"
+
+msgid "ACTION_EVADE"
+msgstr "Esquivar"
+
+msgid "ACTION_MOUNT"
+msgstr "Montar / desmontar"
+
+msgid "ACTION_POTION_HEALTH"
+msgstr "Poção de vida"
+
+msgid "ACTION_POTION_MANA"
+msgstr "Poção de recurso"
+
+msgid "ACTION_POTION_ELEMENTAL"
+msgstr "Poção elemental"
+
+msgid "ACTION_INTERACT"
+msgstr "Interagir"
+
+msgid "ACTION_PICKUP_ALL"
+msgstr "Pegar tudo"
+
+msgid "ACTION_INVENTORY"
+msgstr "Inventário"
+
+msgid "ACTION_MENU"
+msgstr "Menu"
+
+msgid "ACTION_MAP"
+msgstr "Mapa"
+
+msgid "ACTION_CHAT_QUICK"
+msgstr "Chat rápido"
+
+msgid "INPUT_MOUSE_LEFT"
+msgstr "Botão esquerdo"
+
+msgid "INPUT_MOUSE_RIGHT"
+msgstr "Botão direito"
+
+msgid "INPUT_MOUSE_MIDDLE"
+msgstr "Botão do meio"
+
+msgid "INPUT_MOUSE_WHEEL_UP"
+msgstr "Roda para cima"
+
+msgid "INPUT_MOUSE_WHEEL_DOWN"
+msgstr "Roda para baixo"
+
+msgid "INPUT_MOUSE_BUTTON"
+msgstr "Botão do mouse {n}"
+
+msgid "CLASS_MAGE_NAME"
+msgstr "Mago"
+
+msgid "HERO_MAGE_MALE"
+msgstr "Oren Valdris"
+
+msgid "HERO_MAGE_FEMALE"
+msgstr "Orana Valdris"
+
+msgid "RESOURCE_MANA"
+msgstr "Mana"
+
+msgid "POWER_MAGIC"
+msgstr "Poder Mágico"
+
+msgid "MONSTER_SEWER_RAT_NAME"
+msgstr "Rato de esgoto"
+
+msgid "MONSTER_SEWER_RAT_BIG_NAME"
+msgstr "Ratazana inchada"
+
+msgid "ARENA_PROTOTYPE_NAME"
+msgstr "Porão de treino"
+
+msgid "HUD_HEALTH"
+msgstr "Vida"
+
+msgid "HUD_HINTS"
+msgstr "{attack}: atacar (segurar: forte)   {evade}: esquivar   {menu}: menu"
+
+msgid "HUD_EVADE_READY"
+msgstr "Esquiva pronta"
+
+msgid "HUD_EVADE_COOLDOWN"
+msgstr "Esquiva {seconds}s"
+
+msgid "HUD_VICTORY"
+msgstr "O porão está limpo."
+
+msgid "HUD_DEFEAT"
+msgstr "Todos caíram."
+
+msgid "HUD_PRESS_TO_RESTART"
+msgstr "Aperte {action} para tentar de novo"
+
+msgid "HUD_GAMEPAD_LOST"
+msgstr "Controle desconectado. Conecte de novo para continuar."
+
+msgid "MENU_HOST_LAN"
+msgstr "Hospedar partida na LAN"
+
+msgid "MENU_JOIN_LAN"
+msgstr "Entrar em partida na LAN"
+
+msgid "JOIN_TITLE"
+msgstr "Entrar em uma partida"
+
+msgid "JOIN_SEARCHING"
+msgstr "Procurando partidas na rede local…"
+
+msgid "JOIN_HOST_ENTRY"
+msgstr "{host} ({address}) — {players}/{max} jogadores"
+
+msgid "JOIN_HOST_OTHER_VERSION"
+msgstr "{address} — outra versão ({version})"
+
+msgid "JOIN_MANUAL_ADDRESS"
+msgstr "Ou digite o IP do host (ou IP:porta):"
+
+msgid "JOIN_CONNECT"
+msgstr "Conectar"
+
+msgid "NET_CONNECTING"
+msgstr "Conectando…"
+
+msgid "NET_CONNECTION_FAILED"
+msgstr "Não foi possível conectar ao host. Confira o endereço e o firewall."
+
+msgid "NET_HOST_FAILED"
+msgstr "Não foi possível hospedar: a porta UDP {port} está em uso ou bloqueada."
+
+msgid "NET_VERSION_MISMATCH"
+msgstr "Versão do jogo diferente. Host: {host}. A sua: {local}."
+
+msgid "NET_SERVER_FULL"
+msgstr "A partida está cheia."
+
+msgid "NET_HOST_LEFT"
+msgstr "O host saiu da partida."
+
+msgid "HUD_HOSTING"
+msgstr "Hospedando — IP: {address} (UDP {port})"
+
+msgid "HUD_PLAYER_N"
+msgstr "Jogador {n}"
+
+msgid "HUD_ALLY_DOWN"
+msgstr "caído!"
+
+msgid "HUD_HOLD_TO_REVIVE"
+msgstr "Segure {action} para reanimar o aliado"
+
+msgid "HUD_DOWNED"
+msgstr "Você caiu!"
+
+msgid "HUD_WAIT_FOR_REVIVE"
+msgstr "Um aliado pode te reanimar."
+
+msgid "HUD_RETURNING_TO_CHECKPOINT"
+msgstr "Voltando ao checkpoint…"
+
+msgid "NET_CONTENT_MISMATCH"
+msgstr "Dados do jogo diferentes. Host: {host}. Os seus: {local}."
+
+msgid "HUD_ENCOUNTERS"
+msgstr "Encontros vencidos: {cleared}/{total}"
+

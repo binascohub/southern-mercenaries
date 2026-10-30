@@ -2,10 +2,10 @@
 extends SceneTree
 ## Testes sem interface, rodados no CI:
 ##   godot --headless --path . --script res://tests/run_tests.gd
-## Verifica traduções (3 idiomas completos, chaves usadas existem) e dados.
+## Verifica traduções (.po dos 3 idiomas completos, chaves usadas existem) e dados.
 
 const LANGS := ["en", "es", "pt_BR"]
-const CSV := "res://locale/texts.csv"
+const TEMPLATE := "res://locale/messages.pot"
 const CODE_DIRS := ["res://game", "res://data"]
 ## Strings em MAIÚSCULAS no código/dados que não são chaves de tradução.
 const NOT_KEYS := ["ACTION_"]
@@ -14,7 +14,8 @@ var _failures := 0
 
 
 func _init() -> void:
-	var keys := _check_csv()
+	var keys := _check_translations()
+	_check_loaded_translations()
 	_check_keys_used(keys)
 	_check_data()
 	if _failures == 0:
@@ -29,32 +30,80 @@ func _fail(message: String) -> void:
 	printerr("  ✗ " + message)
 
 
-func _check_csv() -> Dictionary:
-	var keys := {}
-	var file := FileAccess.open(CSV, FileAccess.READ)
-	if file == null:
-		_fail("não abriu " + CSV)
-		return keys
-	var header := file.get_csv_line()
-	if Array(header) != ["keys"] + LANGS:
-		_fail("cabeçalho do CSV deve ser keys,%s" % ",".join(LANGS))
-	while not file.eof_reached():
-		var row := file.get_csv_line()
-		if row.size() == 1 and row[0] == "":
-			continue
-		if row.size() != header.size():
-			_fail("linha com colunas erradas: %s" % [row])
-			continue
-		if keys.has(row[0]):
-			_fail("chave duplicada: " + row[0])
-		keys[row[0]] = true
-		for i in range(1, row.size()):
-			if row[i].strip_edges() == "":
-				_fail("tradução vazia: %s (%s)" % [row[0], header[i]])
+## Traduções em gettext (decisão do autor, 01-escopo.md seção 6): o modelo
+## messages.pot e um .po por idioma, todos com as mesmas chaves e preenchidos.
+func _check_translations() -> Dictionary:
+	var keys := _read_po(TEMPLATE)
+	if keys.is_empty():
+		_fail("modelo vazio: " + TEMPLATE)
+	for lang in LANGS:
+		var path := "res://locale/%s.po" % lang
+		var texts := _read_po(path)
+		for key in keys:
+			if not texts.has(key):
+				_fail("%s sem a chave %s" % [path, key])
+			elif texts[key].strip_edges() == "":
+				_fail("tradução vazia: %s (%s)" % [key, lang])
+		for key in texts:
+			if not keys.has(key):
+				_fail("%s tem chave fora do modelo: %s" % [path, key])
 	return keys
 
 
-## Toda string "CHAVE_EM_MAIUSCULAS" no código e nos dados precisa existir no CSV.
+## O jogo carrega mesmo os .po (project.godot) e cada idioma traduz as chaves.
+func _check_loaded_translations() -> void:
+	var expected := {"en": "Play solo", "es": "Jugar solo", "pt_BR": "Jogar sozinho"}
+	for lang in LANGS:
+		TranslationServer.set_locale(lang)
+		var text := TranslationServer.translate("MENU_PLAY_SOLO")
+		if text != expected[lang]:
+			_fail("idioma %s não carregou: MENU_PLAY_SOLO = %s" % [lang, text])
+
+
+## Lê pares msgid/msgstr (com linhas de continuação). Ignora o cabeçalho.
+func _read_po(path: String) -> Dictionary:
+	var entries := {}
+	var file := FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		_fail("não abriu " + path)
+		return entries
+	var current := ""
+	var msgid := ""
+	var msgstr := ""
+	var lines := file.get_as_text().split("\n")
+	lines.append("")
+	for line in lines:
+		line = line.strip_edges()
+		if line.begins_with("msgid "):
+			_store(entries, msgid, msgstr, path)
+			msgid = _unquote(line.substr(6))
+			msgstr = ""
+			current = "id"
+		elif line.begins_with("msgstr "):
+			msgstr = _unquote(line.substr(7))
+			current = "str"
+		elif line.begins_with("\""):
+			if current == "id":
+				msgid += _unquote(line)
+			elif current == "str":
+				msgstr += _unquote(line)
+	_store(entries, msgid, msgstr, path)
+	return entries
+
+
+func _store(entries: Dictionary, msgid: String, msgstr: String, path: String) -> void:
+	if msgid == "":
+		return
+	if entries.has(msgid):
+		_fail("chave duplicada em %s: %s" % [path, msgid])
+	entries[msgid] = msgstr
+
+
+static func _unquote(text: String) -> String:
+	return text.trim_prefix("\"").trim_suffix("\"").c_unescape()
+
+
+## Toda string "CHAVE_EM_MAIUSCULAS" no código e nos dados precisa existir no modelo.
 func _check_keys_used(keys: Dictionary) -> void:
 	var regex := RegEx.create_from_string("\"([A-Z][A-Z0-9]*(?:_[A-Z0-9]+)+)\"")
 	for dir in CODE_DIRS:
