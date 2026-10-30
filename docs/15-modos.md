@@ -18,6 +18,7 @@
 - **Não há Novo Jogo+.** Todo novo jogo cria uma **campanha nova** e um **personagem novo** (nível 1, só roupa de baixo e arma de madeira, `02-personagens.md`), sem herdar nada.
 - O personagem que venceu Lúcifer continua existindo: pode seguir na **Expedição** (seção 4) e na continuação da história.
 - O que persiste entre jogos é só o que é do jogador, não do personagem: opções, `tutorial_seen` (o tutorial não repete, `14-tutorial.md`) e o desbloqueio do **Pesadelo** (seção 3).
+- A história segue o mesmo princípio: a **Campanha 2** (futura, `06-mundo-e-historia.md`, seção 9) também começa do zero, e os heróis perdem tudo.
 - Isso mantém o balanceamento de uma só curva (`13-balanceamento.md`) e o nível máximo em 20.
 
 ## 3. Dificuldades

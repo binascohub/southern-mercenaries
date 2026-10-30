@@ -165,11 +165,11 @@ Cada herói tem um motivo pessoal para virar mercenário, além do ouro:
 - Humor só em falas curtas e cínicas dos personagens, dos piratas, do velho bêbado e do Bobo da Corte, nunca nas criaturas.
 - Contrastes no grupo: o Invocador é o lado gentil; Dorian, o trágico; Dália, a orgulhosa; o Ninja, o debochado e rebelde; o Arqueiro, o sobrevivente do reino derrotado; o Mago, o curioso.
 
-## 9. Continuação (fora do escopo da v1.0)
+## 9. Continuação: Campanha 2 (fora do escopo da v1.0)
 
 - **Gancho:** o reino do **primo da família real**, ainda maior e mais rico.
 - Ideias para a continuação (proposta): novo reino como terceira cidade-base, novas famílias de criaturas mitológicas, novos chefes demoníacos, níveis acima de 20.
-- O personagem e o ouro do jogador poderiam ser levados para a continuação (proposta).
+- **Campanha 2 (decidido):** tudo que está nestes documentos é a **Campanha 1**. A Campanha 2 será criada no futuro e **começa do zero**: os heróis **perdem tudo o que conquistaram** (equipamento, ouro, refino) e voltam a ficar **pobres e sem nada**, de volta à roupa de baixo e à arma de madeira. Nada é levado da Campanha 1; o nível e as habilidades também recomeçam.
 - **Reencontro (decidido):** na continuação, os mercenários **gastaram tudo** o que ganharam e **se reencontram para buscar mais** (em Tortuga, na Companhia da Moeda Negra), rumo ao reino de Drachenfeld.
 
 ## 10. Decisões em aberto

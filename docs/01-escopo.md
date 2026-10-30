@@ -4,7 +4,9 @@
 
 ## 1. Visão geral
 
-**Southern Mercenaries** é um RPG de ação com **visão de cima**, como em *Baldur's Gate: Dark Alliance II*, para PC com **Windows e Linux**. Deve ser **leve o bastante para rodar sem placa de vídeo dedicada** (referência visual e de desempenho: [0 A.D.](https://play0ad.com/)). Jogável sozinho ou em co-op de 1 a 4 jogadores pela rede local (LAN). **Open source sob GPL-3.0**, publicado no GitHub, com download por um website próprio (`10-distribuicao.md`). **Três idiomas: inglês, espanhol e português** (seção 6).
+**Southern Mercenaries** é um RPG de ação com **visão de cima**, como em *Baldur's Gate: Dark Alliance II*, para PC com **Windows e Linux**. Deve ser **leve o bastante para rodar sem placa de vídeo dedicada** (referência visual e de desempenho: [0 A.D.](https://play0ad.com/)). Jogável sozinho ou em co-op de 1 a 4 jogadores pela rede local (LAN). **Open source sob GPL-3.0-or-later**, publicado no GitHub, com download por um website próprio (`10-distribuicao.md`). **Três idiomas: inglês, espanhol e português** (seção 6).
+
+> A v1.0 é a **Campanha 1** (10 mapas, de Tortuga a Lúcifer). Uma **Campanha 2** virá no futuro, começando do zero (`06-mundo-e-historia.md`, seção 9).
 
 - **Premissa:** os heróis são **mercenários** que se conhecem na taverna de **Tortuga** — cidade portuária sem rei e sem regras, nascida do pós-guerra — e vão atrás dos **tesouros guardados por chefes demoníacos**. **Lúcifer**, ganancioso, quer todo o ouro do mundo e está dominando terras e tesouros em segredo. Ver `06-mundo-e-historia.md`.
 - **Campanha em 4 atos e 10 mapas:** abertura em Tortuga → tesouro do reino derrotado (Esgoto e Ruínas) e mapas 3–5 → **Capital Real** (cidade do Cavaleiro, aonde ele leva o grupo para conhecer o **Bobo da Corte**) e mapas 6–9 → **resgate do Bobo** no Inferno e Lúcifer. Final com gancho para uma continuação.
