@@ -167,7 +167,7 @@ Decisão do autor: **menus no estilo medieval do 0 A.D.** — a interface parece
 - Marcas de perigo e anéis dos aliados como decalques ou malhas simples no chão (sem luzes dinâmicas).
 - Câmera: `Camera3D` com suporte (`SpringArm3D` ou equivalente) e interpolação; transparência de paredes por shader de corte ou desvanecimento por distância.
 - Minimapa: `SubViewport` com câmera ortográfica de baixa resolução, atualizada poucas vezes por segundo.
-- **Mapa que se revela:** uma textura de máscara (uma por área) pintada conforme os jogadores andam (raio ~12 m ao redor de cada um); o servidor guarda a máscara de cada jogador e ela vai no save da campanha (`11-saves.md`). No co-op, cada jogador revela o seu mapa; opção de compartilhar a exploração com o grupo (proposta).
+- **Mapa que se revela:** uma textura de máscara (uma por área) pintada conforme os jogadores andam (raio ~12 m ao redor de cada um); o servidor guarda **uma máscara única do grupo** e ela vai no save da campanha (`11-saves.md`). **Mapa compartilhado (decidido):** no co-op, a exploração de qualquer jogador revela o mapa para todos.
 - Números de dano e barras de vida dos monstros como `Label3D`/`Sprite3D` reaproveitados em pool (sem criar nós a cada golpe).
 - HUD só recebe dados via sinais (vida, recurso, recargas); a rede envia IDs e valores, nunca texto traduzido.
 

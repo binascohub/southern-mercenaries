@@ -24,7 +24,7 @@
 | Experiência, nível, pontos de atributo e de habilidade | **Servidor** | O cliente pede; o servidor valida e confirma |
 | Missões, bestiário, estado do mundo | **Servidor** | Salvos no PC do host (`11-saves.md`) |
 | Câmera, interface, efeitos visuais, sons, aura | **Cliente** | Só local; a rede envia IDs e valores, nunca texto traduzido |
-| Mapa revelado | **Cliente** (por jogador) | O servidor guarda uma cópia para o save da campanha (`09-interface.md`) |
+| Mapa revelado | **Servidor** (do grupo) | Um só mapa explorado, compartilhado por todos; vai no save da campanha (`09-interface.md`) |
 
 Regra geral: **o cliente nunca decide resultado de jogo**; só pede e mostra.
 
@@ -79,7 +79,7 @@ Regra geral: **o cliente nunca decide resultado de jogo**; só pede e mostra.
 - **Esquiva, teleporte do Ninja e Teleporte do Mago:** o servidor valida distância e obstáculos.
 
 ### Escala por jogador
-- Vida dos monstros e quantidade de loot escalam com o número de jogadores (`01-escopo.md`). O servidor recalcula quando alguém entra ou sai (monstros já acordados mantêm o valor; grupos ainda dormindo usam o novo).
+- **A única coisa que muda com o número de jogadores é a força dos monstros** (vida e dano), para equilibrar (`01-escopo.md`). O loot **não** escala. O servidor recalcula quando alguém entra ou sai (monstros já acordados mantêm o valor; grupos ainda dormindo usam o novo).
 - Cooldowns, recursos e custos são os mesmos para qualquer número de jogadores.
 
 ## 6. Interface e rede
@@ -95,7 +95,7 @@ Regra geral: **o cliente nunca decide resultado de jogo**; só pede e mostra.
 
 - **Cada jogador vê só o seu loot** (`01-escopo.md`). O servidor sorteia **uma lista de drops por jogador** e envia cada uma só ao dono. O item aparece no chão **apenas para ele** (os outros não veem nem pegam).
 - **Ouro individual:** pago a cada jogador; pagamento de missão dado inteiro a cada um (`04-tortuga-e-missoes.md`, seção 4).
-- **Experiência:** cada jogador recebe XP de monstros mortos pelo grupo (proposta: XP cheio para quem estiver a até ~40 m do monstro).
+- **Experiência dividida (decidido):** o XP de cada monstro é **dividido igualmente** entre os jogadores presentes na área (quem está desconectado ou caído por tempo longo não conta). Como a vida dos monstros sobe com o número de jogadores, o XP total do monstro sobe junto, para o ritmo de nível ficar parecido solo ou em grupo (proposta de ajuste fino em teste).
 - **Lojas, Mercado Pirata/Real, ferreiro, Macumbeiro, altar:** o cliente pede a transação; o servidor valida (ouro, espaço na bolsa, estoque do jogador) e responde. O estoque do Mercado é **por jogador** (`04-tortuga-e-missoes.md`).
 - **Troca entre jogadores:** janela confirmada pelos dois lados; o servidor valida e troca os itens de forma **atômica** (ou os dois recebem, ou ninguém) (`05-itens-e-loot.md`, seção 8).
 - **Refino:** o sorteio é no servidor, e o resultado é gravado no item **antes** de responder ao cliente (para não dar para fechar o jogo e tentar de novo) (`05-1-refino.md`).
@@ -116,11 +116,11 @@ O servidor envia ao novo jogador o **estado do mundo** da cena atual:
 - estado das missões e do bestiário (pistas já descobertas pelo grupo);
 - checkpoints alcançados;
 - jogadores presentes (classe, elemento, equipamento, nível);
-- o mapa revelado é do próprio jogador (começa vazio nessa campanha ou vem do save do personagem na campanha — **em aberto**).
+- o **mapa revelado do grupo** (único e compartilhado; o novato vê tudo o que o grupo já explorou).
 
 ### Sair
 - Saída normal: o personagem já está salvo; o herói some do mundo e a escala de dificuldade se ajusta.
-- **Cliente caiu:** o herói fica um tempo (proposta: 30 s) parado e invulnerável ou some, e o jogador pode **reentrar na mesma partida** com o mesmo personagem (`11-saves.md`, seção 5).
+- **Cliente caiu (decidido):** o herói **fica parado por 30 s** no lugar (invulnerável durante esse tempo, para não ser morto sem poder reagir); o jogador pode **reentrar na mesma partida** nesse prazo e assume o mesmo herói. Depois dos 30 s o herói sai do mundo e, para voltar, o jogador reentra como novo jogador ao lado do host (`11-saves.md`, seção 5).
 - **Host caiu:** a partida acaba; os clientes voltam ao menu com o personagem salvo no último ponto; o host recarrega a campanha do último autosave.
 - **Todos caídos:** voltam ao último checkpoint, como em `01-escopo.md`.
 
@@ -159,9 +159,5 @@ Aliado caído é reanimado segurando o botão por 3 s perto dele. O servidor con
 - Predição do próprio herói: necessária? (decidir em teste)
 - Portas padrão (`24567` jogo, `24568` descoberta): manter?
 - Entrar no meio durante luta de chefe: esperar na borda da arena (proposta)?
-- Mapa revelado de um jogador que entra numa campanha em andamento: vazio, do grupo ou do próprio personagem?
-- XP: cheio para todos os jogadores próximos (proposta) ou dividido?
 - Hash do personagem contra arquivo editado: só aviso (proposta) ou bloqueio?
-- Cliente que caiu: herói some ou fica parado e invulnerável por 30 s?
-- Compartilhar a exploração do mapa entre os jogadores (`09-interface.md`)?
 - Criptografia: continuar sem na v1.0?

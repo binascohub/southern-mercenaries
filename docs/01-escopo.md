@@ -68,7 +68,7 @@
 - **Descoberta:** busca automática na LAN (broadcast UDP) + conexão manual por IP.
 - **Windows e Linux jogam juntos** na mesma partida (mesma versão do jogo obrigatória; o host recusa versão diferente).
 - **Idiomas diferentes na mesma partida:** cada jogador vê o jogo no seu idioma. A rede só envia **IDs** (de itens, falas, missões), nunca texto traduzido; o chat livre vai como digitado, e as frases rápidas são traduzidas no PC de quem recebe.
-- **Jogadores:** 1 a 4. Dificuldade escala com o número de jogadores (vida dos inimigos e loot).
+- **Jogadores:** 1 a 4. A **única coisa que muda com o número de jogadores é a força dos monstros** (vida e dano), para equilibrar; o loot não escala. A experiência de cada monstro é **dividida** entre os jogadores.
 - **Entrar no meio:** permitido; o jogador surge ao lado do host.
 - **Personagens:** salvos no PC de cada jogador e levados para qualquer partida (estilo Diablo 2 "open").
 - **Campanha:** progresso salvo no PC do host (missões, bestiário, relíquias, preços e estoque do Mercado Pirata).

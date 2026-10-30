@@ -42,16 +42,16 @@
 - Na cidade: volta exatamente ao mesmo lugar.
 - No mapa: volta no **último checkpoint**. Monstros já mortos **ficam mortos** (decidido): o estado de cada grupo de encontro (dormindo, desperto, morto) e dos baús abertos é salvo na campanha. Itens e XP ganhos depois do checkpoint **não se perdem** (o personagem é salvo continuamente).
 - **Checkpoints alcançados:** lista de todos os checkpoints já atingidos na campanha (para o portal do Macumbeiro, `04-tortuga-e-missoes.md`, seção 5.1).
-- **Mapa explorado:** a parte já revelada de cada área é salva por jogador (máscara compacta) na campanha, para o mapa continuar revelado ao voltar (`09-interface.md`). Grupos de encontro mortos não voltam.
+- **Mapa explorado:** a parte já revelada de cada área é salva **para o grupo** (máscara compacta única) na campanha, para o mapa continuar revelado ao voltar (`09-interface.md`). Grupos de encontro mortos não voltam.
 
 ## 5. Co-op
 
-- A campanha é **do host**. Para continuar, o host abre **Carregar campanha** e hospeda; os amigos entram com os seus personagens.
+- A campanha é **do host**. Para continuar, o host abre **Carregar campanha** e hospeda; os amigos entram com os seus personagens. **Só o host pode continuar a campanha** — sozinho ou com menos jogadores; os clientes não têm a campanha no PC deles e só jogam quando o host hospeda.
 - O host pode continuar a campanha com **qualquer número de jogadores** (até sozinho); a dificuldade se ajusta.
 - Um jogador que entra pela primeira vez numa campanha em andamento começa onde o grupo está (proposta: recebe as pistas do bestiário já descobertas pelo grupo).
 - Os **personagens dos clientes são salvos no PC de cada cliente** (o servidor envia as mudanças: XP, loot, ouro, e o cliente grava). Proposta anti-trapaça leve: o servidor guarda um resumo (hash) do personagem para detectar arquivo editado — opcional, já que é jogo entre amigos.
 - Se o host cair: os clientes voltam ao menu com o personagem já salvo; o host recarrega a campanha do último autosave.
-- Se um cliente cair: o personagem dele já está salvo; ele pode reentrar na mesma partida.
+- Se um cliente cair: o personagem dele já está salvo; ele pode reentrar na mesma partida (o herói fica parado e invulnerável por 30 s esperando, `07-rede.md`, seção 9).
 
 ## 6. Implementação (Godot)
 
