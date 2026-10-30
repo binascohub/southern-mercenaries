@@ -57,6 +57,7 @@ Tortuga é uma **cidade portuária suja, barulhenta e perigosa**, de ruas estrei
 | `blacksmith` | Ferreiro | Forja ao ar livre na Rua Principal | Crafting: encaixar gemas/runas, desmontar itens; **refino** com pergaminhos de **Ferro e Aço** (vende os pergaminhos desses tiers) — `05-1-refino.md` |
 | `stash` | Baú | Na Rua Principal (baú acorrentado, guardado por um capanga de aluguel) | Baú compartilhado entre os personagens do jogador (guardar valiosos para vender quando o preço subir) |
 | `respec` | Altar / Mestre | Canto da Rua Principal | Redistribuir pontos, pagando ouro |
+| `training_yard` | **Área de treinamento** | Pátio nos fundos da Rua Principal | Bonecos para testar habilidades, elementos e equipamentos, sem risco (seção 5.2) |
 | `voodoo_priest` | **Macumbeiro** | Tenda de velas, ervas e ossos num beco da Rua Principal | **Abre portais para os pontos salvos** (checkpoints) mediante ouro e **vende o Patuá de Retorno** (seção 5.1) |
 | `sewer_entrance` | **Bueiro** | Rua Principal | Entrada do **Esgoto** (mapa 1); trancado até a missão do velho bêbado |
 | `port` | **Porto** e Portal de Tortuga | Fim da Rua Principal, no cais | **Portal** para os demais mapas (seção 5) + Mercado Pirata |
@@ -254,6 +255,38 @@ Conteúdo detalhado dos tesouros em `05-itens-e-loot.md`, seção 3.
 - Usar o patuá **salva o checkpoint** atual como ponto de volta (o jogador volta a ele com o Macumbeiro).
 - Preço (proposta): 150 de ouro; empilha até 5; cai também como loot raro.
 - No interior de uma arena de chefe com a luta em andamento o patuá **não funciona**.
+
+### 5.2 Área de treinamento
+Decisão do autor: **cada cidade tem uma área de treinamento com bonecos**, para o jogador testar habilidades, builds e equipamentos sem risco.
+
+| Campo | Valor |
+|---|---|
+| ID | `training_yard` |
+| Onde | Tortuga: pátio de terra batida nos fundos da Rua Principal, com cercas de madeira e armas velhas (um velho mercenário aposentado cuida do lugar). Capital Real: campo de treino do quartel da Academia Militar (Dorian e Dália reconhecem o lugar — falas curtas, proposta) |
+| Cena | Parte da cena externa da cidade (sem carregamento) |
+| Quem entra | Qualquer jogador; no co-op todos veem os golpes uns dos outros. **Sem PvP** |
+
+**Bonecos (`training_dummy_*`):**
+| Boneco | Para quê |
+|---|---|
+| **Boneco de palha** (um por elemento: Água, Fogo, Terra, Ar) | Testar a **fraqueza e a resistência** de cada elemento (+50% / −50%, `02-0-elementos.md`); mostra o ícone do elemento e os números de dano coloridos ou cinza |
+| **Boneco blindado** | Alta defesa, para comparar equipamentos e refino |
+| **Boneco gigante** | Tamanho de chefe, para testar habilidades de área e de alvo único |
+| **Grupo de bonecos pequenos** | Testar habilidades de área, correntes e combos de elementos (`02-0-elementos.md`, seção 7) |
+| **Boneco que ataca** (opcional, liga e desliga) | Golpes com aviso no chão, para treinar esquiva, aparar (Ninja) e bloqueio |
+
+**Painel de treino:**
+- Mostra o **dano total, dano por segundo (DPS)**, maior golpe, número de críticos e tempo, com botão de zerar.
+- **Recursos e recargas livres** (liga e desliga): vida, recurso e recarga das habilidades voltam ao máximo na hora, para testar à vontade.
+- **Reiniciar bonecos** a qualquer momento.
+- **Testar habilidades ainda não liberadas:** o jogador pode experimentar **qualquer habilidade da sua classe e do seu elemento no rank 5**, mesmo as que ainda não desbloqueou, para planejar a árvore de habilidades (proposta).
+- **Testar outro elemento:** um **altar de elementos** no pátio troca o elemento do herói só dentro do pátio, de graça, para testar as habilidades dos outros elementos (proposta). Ao sair, volta ao normal.
+- **Equipamento:** o que o herói veste vale normalmente; dá para trocar de arma e armadura ali mesmo (inventário aberto).
+
+**Regras:**
+- **Não dá experiência, ouro, loot nem missão** e não gasta consumíveis (poções e pergaminhos não são usados).
+- Nada do pátio entra no save, exceto a lembrança das opções do painel.
+- Os bonecos não têm IA complexa (poucos nós, sem pathfinding): custo baixo de desempenho.
 
 ## 6. Notas técnicas
 

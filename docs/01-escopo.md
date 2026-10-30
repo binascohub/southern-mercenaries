@@ -55,8 +55,8 @@
 - Detalhes em `05-itens-e-loot.md`.
 
 ### Cidades-base
-- **Tortuga** (Atos 1–2, mapas 1–5): só a **Taverna** tem interior (abertura, histórias que geram missões e revelam fraquezas); as lojas ficam na **Rua Principal**; o **Mercado Pirata** fica no **porto**; o **bueiro** leva ao Esgoto e o **Portal** do porto leva aos demais mapas. Ver `04-tortuga-e-missoes.md`.
-- **Capital Real** (Atos 3–4, mapas 6–10): liberada depois do mapa 5, quando o Cavaleiro leva o grupo ao Bobo da Corte; comércio mais elevado (itens melhores e mais caros); missões entregues pelo Bobo. Ver `04-1-capital-real.md`.
+- **Tortuga** (Atos 1–2, mapas 1–5): só a **Taverna** tem interior (abertura, histórias que geram missões e revelam fraquezas); as lojas ficam na **Rua Principal**; o **Mercado Pirata** fica no **porto**; uma **área de treinamento com bonecos** permite testar habilidades; o **bueiro** leva ao Esgoto e o **Portal** do porto leva aos demais mapas. Ver `04-tortuga-e-missoes.md`.
+- **Capital Real** (Atos 3–4, mapas 6–10): liberada depois do mapa 5, quando o Cavaleiro leva o grupo ao Bobo da Corte; comércio mais elevado (itens melhores e mais caros), campo de treino; missões entregues pelo Bobo. Ver `04-1-capital-real.md`.
 
 ### Saves
 - Personagem salvo no PC de cada jogador; campanha salva no PC do host; autosave nos checkpoints; continuar depois no solo ou no co-op (`11-saves.md`).
