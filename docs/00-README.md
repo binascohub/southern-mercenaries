@@ -29,6 +29,7 @@ Documentação de design do jogo **Southern Mercenaries**, RPG de ação co-op e
 | `13-balanceamento.md` | Fórmulas e tabelas de dano, vida, armadura, XP, ouro, preços e metas de equilíbrio |
 | `12-audio.md` | Trilha por mapa e chefe, efeitos, ambiente, sons de interface, vozes dos heróis e licenças de áudio |
 | `10-distribuicao.md` | Licenças open source, repositório, builds Windows/Linux, instaladores, GitHub Actions, website |
+| `15-modos.md` | Novo Jogo+, dificuldades (História, Normal, Pesadelo) e expedições, depois da v1.0 |
 | `11-saves.md` | Saves de personagem e de campanha, autosave, checkpoints, continuar no solo e no co-op |
 
 ## Regras para quem for implementar
@@ -49,4 +50,4 @@ Documentação de design do jogo **Southern Mercenaries**, RPG de ação co-op e
 
 ## Próximos documentos previstos
 
-- Nenhum por enquanto; ideia: `15-modos.md` (novo jogo+, dificuldades)
+- Nenhum por enquanto.

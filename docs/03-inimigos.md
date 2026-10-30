@@ -359,5 +359,4 @@ Materiais raros por família: cauda da Rainha dos Ratos, glândula de Sapo Ácid
 - Enigmas da Esfinge: lista de ~10 enigmas clássicos (ex.: "o que anda com quatro pés de manhã, dois à tarde e três à noite?") — escrever na fase de produção?
 - Grendel e a Mãe: luta em dupla (proposta) ou só a Mãe como chefe e Grendel como mini-chefe?
 - Ordem dos 10 mapas: manter a proposta?
-- Há opção de refazer áreas para farmar loot (ex.: novo jogo+)?
-- Haverá um modo de dificuldade maior para jogar a campanha de novo?
+- Rejogar áreas e Novo Jogo+: propostos em `15-modos.md`.
