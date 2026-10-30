@@ -68,7 +68,7 @@
 - **Descoberta:** busca automática na LAN (broadcast UDP) + conexão manual por IP.
 - **Windows e Linux jogam juntos** na mesma partida (mesma versão do jogo obrigatória; o host recusa versão diferente).
 - **Idiomas diferentes na mesma partida:** cada jogador vê o jogo no seu idioma. A rede só envia **IDs** (de itens, falas, missões), nunca texto traduzido; o chat livre vai como digitado, e as frases rápidas são traduzidas no PC de quem recebe.
-- **Jogadores:** 1 a 4. A **única coisa que muda com o número de jogadores é a força dos monstros** (vida e dano), para equilibrar; o loot não escala. A experiência de cada monstro é **dividida** entre os jogadores.
+- **Jogadores:** 1 a 4 (**máximo de 4, decidido**). A **única coisa que muda com o número de jogadores é a força dos monstros** (vida e dano), para equilibrar; o loot não escala. A experiência de cada monstro é **dividida** entre os jogadores.
 - **Entrar no meio:** permitido; o jogador surge ao lado do host.
 - **Personagens:** salvos no PC de cada jogador e levados para qualquer partida (estilo Diablo 2 "open").
 - **Campanha:** progresso salvo no PC do host (missões, bestiário, relíquias, preços e estoque do Mercado Pirata).
@@ -105,7 +105,7 @@
 - **Tradução:** feita pelo Claude ao implementar cada texto (as 3 colunas preenchidas juntas), **sem revisão externa** (decisão do autor). Manter o tom sombrio e cínico das falas em todos os idiomas, não traduzir ao pé da letra.
 - **Escolha do idioma:** na primeira vez que o jogo abre, ele usa o idioma do sistema (se for um dos 3; senão, inglês) e mostra a tela de escolha. Pode trocar a qualquer momento em **Opções → Idioma**, sem reiniciar.
 - **Implementação (Godot):**
-  - sistema de tradução do Godot (`TranslationServer`, função `tr()`) com arquivos **CSV** (`locale/textos.csv`, colunas `keys,en,es,pt_BR`) ou **gettext `.po`** (melhor para colaboradores open source — **em aberto**);
+  - sistema de tradução do Godot (`TranslationServer`, função `tr()`) com arquivos **gettext `.po`** (decidido pelo autor): `locale/messages.pot` (modelo) e `locale/en.po`, `locale/es.po`, `locale/pt_BR.po`; melhor para colaboradores open source e compatível com Weblate;
   - **nenhum texto fixo no código ou nas cenas**: tudo por chave (ex.: `ITEM_FIREBALL_NAME`, `NPC_OLD_DRUNK_QUEST1_LINE1`);
   - os arquivos de dados (`/data`) referenciam as chaves;
   - interface com espaço para textos mais longos (espanhol e português costumam ser ~30% maiores que inglês) — usar contêineres que se ajustam;
@@ -167,7 +167,4 @@
 ## 10. Decisões em aberto
 
 - Qual PC mais fraco será a referência para testes de desempenho?
-- Nome do mundo e dos reinos?
-- Número máximo de jogadores: 2 ou 4?
-- Formato das traduções: CSV ou gettext `.po`?
 - Quanto tempo por semana será dedicado (para estimar prazos)?

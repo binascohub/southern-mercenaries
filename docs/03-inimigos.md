@@ -178,7 +178,7 @@ Decisão do autor: **o jogo não é feito de ondas (waves)**. O jogador **explor
 | `bakotsu` | Bakotsu | Japão | Terra | Fogo | `swarm` | 40 | 7 | Rápida | Esqueleto que se remonta uma vez se não for destruído com golpe forte |
 | `arion` | Arion | Grécia | Água | Ar | `charger` | 160 | 18 | Muito rápida | O mais veloz; investidas seguidas; costuma ser elite |
 | `cheollima` | Cheollima | Coreia | Ar | Terra | `flyer` + `charger` | 110 | 14 | Muito rápida | Investidas aéreas em mergulho com sombra no chão como aviso |
-| `buraq` | Buraque | Tradição islâmica | Ar | Terra | `flyer` | 100 | 12 | Rápida | **Rever** (ver decisões em aberto) |
+| `nuckelavee` | Nuckelavee | Escócia (Órcades) | Água | Ar | `charger` | 130 | 16 | Rápida | Cavalo-demônio sem pele nascido do mar; investida com aviso; seu hálito deixa uma nuvem de peste (dano ao longo do tempo) |
 
 ### Chefe: Pégaso demoníaco (`demon_pegasus`)
 - **Elemento:** Fogo. **Fraco a:** Água.
@@ -353,7 +353,6 @@ Materiais raros por família: cauda da Rainha dos Ratos, glândula de Sapo Ácid
 
 ## 14. Decisões em aberto
 
-- **Buraque:** é uma figura sagrada no Islã (a montaria do profeta Maomé). Colocá-lo como monstro corrompido a ser morto pode ofender jogadores muçulmanos. Manter, ou trocar por **Nuckelavee** (cavalo-demônio das Órcades sem pele)?
 - **Bakotsu:** confirmar a lenda (proposta: esqueleto de cavalo reanimado).
 - Qual demônio fez o pacto com a Rainha dos Ratos? Ele aparece? (ideia: **Mamon**, demônio da ganância, servo de Lúcifer, atraído pelo ouro da guerra; pode voltar como eco no Inferno)
 - "Fúria da Rainha" (cada rato morto deixa a chefe mais forte): manter?

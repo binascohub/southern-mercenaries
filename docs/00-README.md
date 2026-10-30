@@ -1,6 +1,6 @@
 # Southern Mercenaries — Documentação
 
-Documentação de design do jogo **Southern Mercenaries**, RPG de ação co-op em LAN, escrita para servir de base à implementação (inclusive por um assistente de IA como o Claude). Jogo open source (GPL-3.0) para Windows e Linux, em inglês, espanhol e português.
+Documentação de design do jogo **Southern Mercenaries**, RPG de ação co-op em LAN, escrita para servir de base à implementação (inclusive por um assistente de IA como o Claude). Jogo open source (GPL-3.0-or-later) para Windows e Linux, em inglês, espanhol e português.
 
 ## Ordem de leitura
 

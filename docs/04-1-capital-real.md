@@ -1,7 +1,7 @@
 # Capital Real — a cidade do Cavaleiro
 
 > Versão 4 · 2026-10-30 · Segunda cidade-base da campanha. Complementa `04-tortuga-e-missoes.md`, `06-mundo-e-historia.md` e `02-3-cavaleiro.md`
-> Nome da cidade e do reino a definir. Nomes e números são propostas para revisar.
+> A cidade se chama **Aurenhold**, capital do reino de **Aurenval** (`06-mundo-e-historia.md`, seção 3). Números são propostas para revisar.
 
 ## 1. Conceito
 
@@ -106,8 +106,8 @@ Seguindo o padrão de Tortuga: **área externa** com o comércio ao ar livre e *
 ### O gancho final
 - Libertado, o Bobo comenta que **ouviu falar de um reino ainda maior, do primo da família real** — o que abre a **continuação do jogo** (`06-mundo-e-historia.md`, seção 9).
 
-### O segredo do Bobo (proposta)
-- O Bobo é um **sobrevivente do reino derrotado** (o reino do Arqueiro), infiltrado no castelo há anos. Por isso conhece tão bem os tesouros dos dois reinos.
+### Origem do Bobo (decidido)
+- O Bobo é **natural da própria Capital** e **filho de um ferreiro** da cidade. Cresceu entre forjas e salões, aprendeu a ouvir sem ser notado e virou o bobo da corte.
 
 ## 4. Os heróis na Capital
 
@@ -159,6 +159,4 @@ Tortuga (abertura) → 1 Esgoto → 2 Ruínas do Reino do Arqueiro → 3 Florest
 
 ## 8. Decisões em aberto
 
-- Nome da cidade e do reino.
-- O segredo do Bobo (sobrevivente do reino do Arqueiro): manter?
 - O rei e a princesa aparecem como NPCs? Há alguma escolha/final ligado a eles (ex.: contar ou não ao rei sobre o ouro)?

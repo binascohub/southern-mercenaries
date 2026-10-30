@@ -6,7 +6,7 @@
 ## 1. Objetivo
 
 - Nome do jogo: **Southern Mercenaries**. Identificador técnico (repositório, arquivos, pasta de saves): `southern-mercenaries`.
-- Jogo **open source sob GPL-3.0**, com repositório público no **GitHub** (`github.com/<usuario>/southern-mercenaries`).
+- Jogo **open source sob GPL-3.0-or-later**, com repositório público no **GitHub** (`github.com/<usuario>/southern-mercenaries`).
 - Roda em **Windows** e **Linux** (mesmo projeto Godot).
 - Download pelo **website do jogo**, com um instalador por sistema.
 - Tudo grátis: GitHub, GitHub Actions, GitHub Releases e GitHub Pages.
@@ -15,7 +15,7 @@
 
 | O quê | Licença | Observação |
 |---|---|---|
-| Código (GDScript, cenas, dados) | **GPL-3.0** (decidido) | Qualquer um pode usar, estudar e modificar; quem distribuir uma versão modificada precisa publicar o código sob GPL-3.0 também |
+| Código (GDScript, cenas, dados) | **GPL-3.0-or-later** (decidido) | Qualquer um pode usar, estudar e modificar; quem distribuir uma versão modificada precisa publicar o código sob GPL-3.0-or-later também |
 | Arte, modelos, música, sons, textos da história | **CC BY-SA 4.0** (proposta) | Arte própria do projeto; compatível em espírito com a GPL (quem modificar compartilha igual) |
 | Assets de terceiros | A licença original de cada um | Só CC0, CC BY ou CC BY-SA. Registrar autor, link e licença em `CREDITS.md` |
 | Godot Engine | MIT | Compatível com GPL-3.0. Incluir o aviso de licença do Godot no jogo (tela de créditos) |
@@ -23,7 +23,7 @@
 - **Proibido no repositório:** assets cuja licença não permite redistribuição (ex.: Synty, a maioria dos packs pagos da Asset Store, Mixamo).
 - **Plugins/bibliotecas de terceiros** precisam ser compatíveis com GPL-3.0 (MIT, BSD, Apache-2.0, LGPL, GPL).
 - Arquivos `LICENSE` (texto da GPL-3.0) e `LICENSE-ASSETS` (arte) na raiz.
-- Cabeçalho curto em cada script (proposta): `# Southern Mercenaries — GPL-3.0-or-later` (ou `GPL-3.0-only` — **em aberto**).
+- Cabeçalho curto em cada script (proposta): `# Southern Mercenaries — GPL-3.0-or-later` (**decidido**: "or later", como recomenda a FSF; permite que o código acompanhe versões futuras da GPL).
 - Colaboradores: ao enviar PR, concordam que a contribuição fica sob a mesma licença (explicado em `CONTRIBUTING.md`).
 
 ## 3. Estrutura do repositório (proposta)
@@ -93,8 +93,7 @@ README.md  LICENSE  LICENSE-ASSETS  CREDITS.md  CONTRIBUTING.md  CHANGELOG.md
 
 ## 10. Decisões em aberto
 
-- GPL-3.0-only ou GPL-3.0-or-later (permite versões futuras da GPL)?
-- Licença da arte: CC BY-SA 4.0?
+- Licença da arte: **decidida** como CC BY-SA 4.0 (o autor quer que qualquer pessoa possa contribuir e melhorar o projeto).
 - Nome "Southern Mercenaries" igual nos 3 idiomas?
 - Domínio próprio para o site?
 - Aceitar doações (GitHub Sponsors, itch.io)?

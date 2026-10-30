@@ -30,7 +30,7 @@ Com o tempo, esse **dom** ficou mais forte. Ari aprendeu a **chamar os amigos** 
 Um dia, ouvindo seus amigos, Ari descobriu algo terrível: **muitos deles eram órfãos**. Suas famílias tinham sido mortas pelos **animais maus** — as criaturas corrompidas pelos demônios, que caçam tudo o que vive. Ari decidiu que não ia mais só cuidar dos órfãos: **ia lutar contra quem os deixou sozinhos**. Foi para Tortuga e se juntou aos mercenários, porque são os únicos que vão até os covis dos demônios.
 
 - **Motivação:** proteger os animais e acabar com as criaturas corrompidas que matam suas famílias. O ouro dos tesouros alimenta e cuida dos seus amigos órfãos.
-- **Ligação com a campanha:** cada mapa é o lar de uma família de criaturas; Ari sente a dor das criaturas que **mudaram de lado** (as "viradas" do bestiário) e acredita que algumas ainda podem ser salvas (**proposta**, ver decisões em aberto).
+- **Ligação com a campanha:** cada mapa é o lar de uma família de criaturas; Ari sente a dor das criaturas que **mudaram de lado** (as "viradas" do bestiário) e luta contra elas, mas **não consegue libertá-las**; o que ele pode é **conhecer animais amigos novos** pelo caminho (seção 6.6).
 - **Gancho visual:** um **pequeno pássaro amigo** vive no seu ombro (só visual, não luta) e o acompanha em todos os mapas.
 
 ## 2. Aparência
@@ -160,6 +160,17 @@ Todas são **imbuídas** do elemento atual.
 | 12 | `rhino_charge` | Investida do Rinoceronte | **Alvo único** | 30 | 8 s | 320% PI | +30% | Linha até o alvo, 15 m | Um rinoceronte de pedra atropela o alvo; aplica `stunned` 1,5 s |
 | 18 | `mammoth_stomp` | Pisada do Mamute | **Área final** | 60 | 30 s | 500% PI no total | +50% | Raio 9 m | Um mamute surge e pisa o chão três vezes; aplica `knocked_down` |
 
+### 6.6 Páginas do Livro: conhecer animais novos (decidido pelo autor)
+O Invocador **não liberta criaturas corrompidas**. O que abre mais habilidades é **conhecer animais amigos novos** durante a aventura.
+
+- Cada mapa esconde **1 animal amigo raro e não corrompido** (por exemplo, um animal ferido, escondido num canto da área, num segredo). O jogador o encontra, **cuida dele** (interação) e ele vira uma **nova página do Livro dos Amigos**.
+- Cada página desbloqueia um **companheiro alternativo** e **uma habilidade extra** ligada a ele, que o jogador pode trocar pelos companheiros do elemento fora de combate (as 4 ativas continuam sendo as equipadas, `02-personagens.md`).
+- Uma página por mapa (**10 páginas**), mais uma de bônus por segredo especial (**proposta**).
+- Os animais conhecidos aparecem no **bestiário** (aba "Amigos") e na janela de habilidades do Invocador.
+- Lista de animais (proposta, a detalhar: habilidade, elemento, papel): Esgoto — gato de rua; Ruínas — lobo cinzento; Floresta — coruja; Cavalos — potro; Aves — águia-pescadora; Deserto — raposa-do-deserto; Águas — golfinho; Pântano — garça; Serpentes — mangusto; Inferno — cervo de luz.
+- Valores (vida, dano, custo de Essência) sob a regra de `13-balanceamento.md`; cada habilidade segue a mesma estrutura das tabelas da seção 6.
+- Os outros heróis não têm esse sistema.
+
 ## 7. Estilo de jogo
 
 - **Solo:** a classe mais fácil para jogar sozinho: o Urso Guardião e os companheiros seguram os monstros enquanto o Invocador ataca de longe. Fuga em Bando quando cercado.
@@ -210,5 +221,5 @@ Falas neutras, servindo para os dois sexos.
 
 ## 11. Decisões em aberto
 
-- **Salvar criaturas "viradas":** ao derrotar uma criatura que era boa na lenda (ex.: Cadejo, Arion, Cheollima, Boitatá), o Invocador pode libertá-la da corrupção e ela vira um novo amigo no Livro (proposta)?
+- Detalhar as habilidades e o papel de cada um dos 10 animais novos (seção 6.6).
 - O pássaro do ombro tem algum efeito de jogo (ex.: avisa armadilhas e emboscadas) ou é só visual?

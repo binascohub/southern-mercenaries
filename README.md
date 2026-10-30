@@ -48,7 +48,7 @@ Godot 4.7.2 (Compatibility renderer), GDScript, ENet multiplayer.
 Start at [`docs/00-README.md`](docs/00-README.md).
 
 ## License
-- Code: [GPL-3.0](LICENSE)
+- Code: [GPL-3.0-or-later](LICENSE) — anyone can use, study, modify and contribute
 - Art, audio and story text: [CC BY-SA 4.0](LICENSE-ASSETS)
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) and [CREDITS.md](CREDITS.md).

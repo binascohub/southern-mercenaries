@@ -27,9 +27,22 @@ Antes do jogo, houve uma **grande guerra entre dois reinos**:
 
 | Reino | Lado | Hoje | Ligação com os heróis |
 |---|---|---|---|
-| **Reino de Dorian e Dália** (nome a definir) | **Venceu a guerra** | Reino **rico** e poderoso; capital: a **Capital Real** | Dorian era soldado da Academia Militar Real; Dália era a princesa |
-| **Reino do Arqueiro** (nome a definir) | **Perdeu a guerra** | Em ruínas, dominado por lobos e cães demoníacos | A vila do Arqueiro foi destruída nessa guerra, deixando-o sozinho |
-| **Reino do primo da família real** (nome a definir) | Não lutou nesta guerra | **Ainda maior e mais rico** — só se ouve falar dele | Gancho da continuação (seção 4, Ato 4) |
+| **Reino de Aurenval** (reino de Dorian e Dália) | **Venceu a guerra** | Reino **rico** e poderoso; capital: **Aurenhold**, a **Capital Real** | Dorian era soldado da Academia Militar Real; Dália era a princesa |
+| **Reino de Veldmark** (reino do Arqueiro) | **Perdeu a guerra** | Em ruínas, dominado por lobos e cães demoníacos | A vila do Arqueiro foi destruída nessa guerra, deixando-o sozinho |
+| **Reino de Drachenfeld** (reino do primo da família real) | Não lutou nesta guerra | **Ainda maior e mais rico** — só se ouve falar dele | Gancho da continuação (seção 4, Ato 4) |
+
+### Nomes (decidido: referência medieval)
+| Nome | O que é | Origem do nome |
+|---|---|---|
+| **Eldrath** | O mundo | Inglês antigo (*eald* + *rath*): "velho conselho" |
+| **Aurenval** | Reino vencedor (Dorian e Dália), rico e poderoso | *Aurum* (ouro) + *val* (vale) |
+| **Aurenhold** | Capital Real, cidade do Cavaleiro | *Aurum* + *hold* (fortaleza) |
+| **Veldmark** | Reino derrotado (Arqueiro): campos e vilas | *Veld* (campo) + *mark* (marca/fronteira) |
+| **Drachenfeld** | Reino do primo da família real, ainda maior (gancho da continuação) | Alemão medieval: "campo do dragão" |
+| **Tortuga** | Cidade portuária sem rei | (já definido) |
+| **Companhia da Moeda Negra** | Nome da companhia de mercenários no co-op (o jogador pode renomear) | Como as companhias de mercenários medievais |
+
+- Os documentos continuam usando as descrições "reino do Arqueiro" e "Capital Real" onde ajudam a leitura; os nomes acima valem para o texto do jogo e as traduções (nomes próprios não se traduzem).
 
 - Do caos do fim da guerra nasceu **Tortuga**, fundada por desertores, renegados e piratas dos dois lados.
 - **As riquezas do reino derrotado** se dividiram em duas partes:
@@ -93,6 +106,7 @@ CAPITAL REAL ─ cidade do Cavaleiro; comércio mais elevado; Bobo da Corte
 - De volta à Capital, **o Bobo sumiu**: Lúcifer o **sequestrou** por estar passando informações aos mercenários. Só ficaram a máscara, os guizos e as **anotações escondidas** dele (com as pistas sobre Lúcifer).
 - As **relíquias** dos chefes abrem o portal. Os mercenários vão ao **Inferno libertar o Bobo** — porque **ele é quem sabe onde há mais tesouros** — e enfrentam **Lúcifer**, que guarda todo o ouro do mundo.
 - **Final e gancho da continuação:** libertado, o Bobo comenta que **ouviu falar de um reino ainda maior, do primo da família real** — com riquezas que fazem o ouro de Lúcifer parecer troco. A frase fecha a campanha e **abre a continuação do jogo** (novo reino, novos mapas, novos tesouros).
+- **O ouro de Lúcifer (decidido):** os mercenários **dividem o tesouro entre eles**, e **cada um alcança o seu objetivo inicial** (o Mago compra os conhecimentos, o Arqueiro reconstrói um lar, Dorian prova ser digno ou Dália volta ao luxo, o Ninja faz o maior roubo da vida, o Invocador sustenta os animais órfãos). Cada um tem uma cena curta de epílogo.
 
 > **Bobo da Corte (fala final, proposta):** "Obrigado, obrigado, meus queridos mercenários… Sabem o que eu ouvi enquanto estava preso aqui? Os demônios só falavam de um lugar: o reino do primo do nosso rei. Dizem que é ainda maior. Ainda mais rico. E muito, muito mais bem guardado… Interessados?"
 
@@ -156,16 +170,13 @@ Cada herói tem um motivo pessoal para virar mercenário, além do ouro:
 - **Gancho:** o reino do **primo da família real**, ainda maior e mais rico.
 - Ideias para a continuação (proposta): novo reino como terceira cidade-base, novas famílias de criaturas mitológicas, novos chefes demoníacos, níveis acima de 20.
 - O personagem e o ouro do jogador poderiam ser levados para a continuação (proposta).
+- **Reencontro (decidido):** na continuação, os mercenários **gastaram tudo** o que ganharam e **se reencontram para buscar mais** (em Tortuga, na Companhia da Moeda Negra), rumo ao reino de Drachenfeld.
 
 ## 10. Decisões em aberto
 
-- Nomes dos reinos (incluindo o do primo), da Capital e do mundo.
-- O segredo do Bobo da Corte (proposta: sobrevivente do reino do Arqueiro) — manter?
-- O que os mercenários fazem com o ouro de Lúcifer no final (ficam com tudo, devolvem ao reino, dividem com Tortuga)? Pode ser uma escolha final.
 - No solo, os outros heróis ficam em Tortuga e dão missões pessoais (proposta)?
-- A companhia de mercenários tem nome? O jogador escolhe?
 - De onde vem o dom do Mago?
-- O Invocador pode libertar criaturas "viradas" e torná-las amigas?
 - O final mostra a volta do Cavaleiro ao reino? Quem é o verdadeiro pai de Dália?
 - O clã do samurai, pai do Ninja, aparece no jogo?
 - Qual demônio fez o pacto com a Rainha dos Ratos?
+- Nome do reino de Dorian e Dália no texto do jogo: manter "Aurenval" e "Aurenhold"? (Os nomes da seção 3 foram criados por Claude a pedido do autor, para revisão.)

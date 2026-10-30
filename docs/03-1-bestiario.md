@@ -186,8 +186,11 @@ Formato de cada entrada:
 - **Elemento:** Ar → **fraco a Terra**.
 - **Pista:** "Ninguém nunca montou um cheollima. Agora alguém montou. Traga terra para derrubá-lo do céu."
 
-### Buraque (`buraq`)
-- **Rever** (ver `03-inimigos.md`, decisões em aberto). Figura sagrada no Islã; a regra da "virada" não resolve a questão.
+### Nuckelavee (`nuckelavee`)
+- **Lenda real:** nas ilhas Órcades (Escócia), um demônio do mar com a forma de um cavalo e um torso humano montado nele, sem pele, de carne viva à mostra; seu hálito trazia peste e secava plantações. Só temia a **água doce** dos rios.
+- **No jogo:** o horror do mar que foi chamado para as planícies, a serviço do Pégaso demoníaco, deixando uma nuvem de peste por onde passa. (Não é "virado": já era maligno na lenda.)
+- **Elemento:** Água → **fraco a Ar**.
+- **Pista:** "Cavalo e homem num corpo só, sem pele, vindo do mar. Onde ele sopra, nada cresce. Água doce o assusta… mas é o raio que o derruba."
 
 ### Pégaso (`demon_pegasus`) — chefe
 - **Lenda real:** na mitologia grega, o cavalo alado nascido do sangue da Medusa quando Perseu a decapitou. Belerofonte o montou para vencer a Quimera; depois Pégaso subiu ao Olimpo e passou a carregar os raios de Zeus.

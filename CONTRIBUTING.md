@@ -14,11 +14,14 @@ Thanks for your interest in Southern Mercenaries!
 - Only add assets that are your own or CC0 / CC BY / CC BY-SA, and list them in `CREDITS.md`. No Mixamo, no assets that forbid redistribution.
 
 ## License
-By contributing, you agree that your code is licensed under GPL-3.0 and your art/text under CC BY-SA 4.0.
+By contributing, you agree that your code is licensed under GPL-3.0-or-later and your art/text under CC BY-SA 4.0.
 
 ## How
 1. Fork and create a branch.
 2. Make focused changes and test on your OS.
 3. Open a Pull Request describing what and why.
+
+## Translations
+Texts live in `locale/*.po` (gettext). Add or fix translations there; new languages are welcome.
 
 Bugs and ideas: use GitHub Issues.
