@@ -13,6 +13,7 @@
 - **Volta à cidade:** pela **Pedra de Retorno** (proposta) no checkpoint de cada área — leva à cidade e depois traz de volta ao mesmo checkpoint.
 - **Tipo de espaço** (para o Cavaleiro): **aberto** (luta montado), **estreito** (desmonta) ou **misto**.
 - **Segredos:** toda área tem ao menos 1 segredo (baú escondido, parede quebrável, passagem lateral) com loot extra.
+- **Exploração, sem ondas:** em cada área os monstros ficam em **grupos de encontro posicionados à mão**, dormindo até o jogador chegar perto; o mapa é **revelado conforme o jogador explora** (`03-inimigos.md`, "Encontros por exploração"; `09-interface.md`).
 - **Elites:** 1 a 3 por área; a **penúltima área** de cada mapa tem um **mini-chefe** (elite forte com nome).
 - **Nível das áreas** sobe aos poucos dentro do mapa (tabela de cada mapa). Nível máximo 20.
 

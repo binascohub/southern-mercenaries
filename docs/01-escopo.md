@@ -33,6 +33,7 @@
 - 4 habilidades ativas por personagem em atalhos, com custo de recurso e tempo de recarga.
 - Poções de vida e recurso em atalhos rápidos.
 - Inimigos com padrões simples e legíveis; mini-chefes; chefes com fases.
+- **Exploração em vez de ondas:** o jogador anda pela área, revela o mapa e enfrenta os grupos de monstros posicionados nela; **não há ondas (waves)** nem respawn contínuo (`03-inimigos.md`, "Encontros por exploração").
 
 ### Classes e elementos
 - 5 classes: Cavaleiro (cavalo + lança), Ninja (adagas), Arqueiro (arco e flecha), Mago (cajado + magia), Invocador (livro e animais amigos). Ver `02-personagens.md` e os arquivos de cada classe.

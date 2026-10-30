@@ -53,7 +53,7 @@ Estilo medieval do 0 A.D. (seção 7): painéis de madeira escura e pedra com de
 | **Estados e buffs** | Acima da barra de vida | Ícones pequenos com tempo (queimando, molhado, escudo, bônus de estandarte…) |
 | **Aliados** | Topo à esquerda | Retratos pequenos dos outros 1–3 jogadores com vida, nome e ícone do elemento; aliado caído pisca (pede reanimação) |
 | **Missão ativa** | Topo à direita, abaixo do minimapa | Objetivo atual em 1–2 linhas, com o **ícone do elemento do alvo e da fraqueza** (`02-0-elementos.md`) |
-| **Minimapa** | Topo à direita | Área atual, aliados, objetivo, checkpoint; pode ser ampliado com `map` |
+| **Minimapa** | Topo à direita | Área atual, **revelada aos poucos conforme o jogador explora** (névoa sobre o que ainda não foi visto), aliados, objetivo, checkpoint; pode ser ampliado com `map` |
 | **Elemento atual** | Junto ao retrato | Ícone do elemento de origem; muda para o temporário com Poção Elemental |
 | **Recurso do Cavaleiro** | Junto à barra | Indicador montado / a pé |
 
@@ -81,7 +81,7 @@ Abrem sobre o jogo no estilo medieval de pergaminho, madeira e ferro do 0 A.D. (
 | **Atributos** | FOR, DES, INT, VIT, pontos livres, vida, poder da classe, resistências |
 | **Diário de missões** | Principais e secundárias (até 5 ativas), com ícones do elemento e da fraqueza |
 | **Bestiário** | Lenda, elemento, fraqueza e dica de cada criatura já ouvida (`03-1-bestiario.md`); fala do Bardo |
-| **Mapa** | Mapa da área atual, checkpoints, aliados, objetivo |
+| **Mapa** | Mapa da área atual, **só a parte já explorada**, checkpoints, aliados, objetivo |
 | **Troca entre jogadores** | Janela de troca confirmada pelos dois lados (`05-itens-e-loot.md`, seção 8) |
 | **Opções** | Vídeo, áudio, controles (`08-controles.md`), idioma, jogabilidade (seção 8) |
 | **Portal** | Lista de destinos liberados com nível recomendado, elemento do mapa e do chefe, estado (nova / em andamento / concluída) e escolha entre primeira área ou último checkpoint; no co-op, o host escolhe e os outros confirmam |
@@ -165,6 +165,7 @@ Decisão do autor: **menus no estilo medieval do 0 A.D.** — a interface parece
 - Marcas de perigo e anéis dos aliados como decalques ou malhas simples no chão (sem luzes dinâmicas).
 - Câmera: `Camera3D` com suporte (`SpringArm3D` ou equivalente) e interpolação; transparência de paredes por shader de corte ou desvanecimento por distância.
 - Minimapa: `SubViewport` com câmera ortográfica de baixa resolução, atualizada poucas vezes por segundo.
+- **Mapa que se revela:** uma textura de máscara (uma por área) pintada conforme os jogadores andam (raio ~12 m ao redor de cada um); o servidor guarda a máscara de cada jogador e ela vai no save da campanha (`11-saves.md`). No co-op, cada jogador revela o seu mapa; opção de compartilhar a exploração com o grupo (proposta).
 - Números de dano e barras de vida dos monstros como `Label3D`/`Sprite3D` reaproveitados em pool (sem criar nós a cada golpe).
 - HUD só recebe dados via sinais (vida, recurso, recargas); a rede envia IDs e valores, nunca texto traduzido.
 
