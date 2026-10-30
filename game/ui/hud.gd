@@ -1,8 +1,13 @@
 # Southern Mercenaries — GPL-3.0-or-later
 class_name Hud
 extends CanvasLayer
-## HUD mínimo da Fase 1: vida, recurso, esquiva, onda e dicas de botões que
-## acompanham o dispositivo em uso. Todo texto vem de chaves de tradução.
+## HUD: vida, recurso, esquiva, encontros vencidos, aliados e dicas de botões que acompanham
+## o dispositivo em uso. Todo texto vem de chaves de tradução.
+
+## Valores de Result da arena (NONE, VICTORY, DEFEAT).
+const RESULT_NONE := 0
+const RESULT_VICTORY := 1
+const RESULT_DEFEAT := 2
 
 var _player: Player
 var _health_bar: ProgressBar
@@ -10,14 +15,17 @@ var _health_label: Label
 var _resource_bar: ProgressBar
 var _resource_label: Label
 var _evade_label: Label
-var _wave_label: Label
-var _enemies_label: Label
+var _progress_label: Label
 var _hints: Label
 var _banner: Label
 var _banner_sub: Label
 var _gamepad_lost: PanelContainer
-var _wave := [0, 0, 0]
-var _banner_kind := ""
+var _allies: Label
+var _hosting: Label
+var _progress := [0, 0]
+var _result := 0
+var _connecting := false
+var _local_alive := true
 
 
 func _ready() -> void:
@@ -37,18 +45,24 @@ func bind_player(player: Player) -> void:
 	_resource_bar.tooltip_text = player.data.resource_key
 
 
-func set_wave(current: int, total: int, enemies: int) -> void:
-	_wave = [current, total, enemies]
+func set_progress(cleared: int, total: int) -> void:
+	_progress = [cleared, total]
 	_refresh_texts()
 
 
-func show_victory() -> void:
-	_banner_kind = "victory"
+func show_result(result: int) -> void:
+	_result = result
 	_refresh_texts()
 
 
-func show_defeat() -> void:
-	_banner_kind = "defeat"
+## Mostra os IPs deste PC para quem quiser entrar pelo endereço.
+func show_hosting(addresses: Array[String]) -> void:
+	var address := ", ".join(addresses) if not addresses.is_empty() else "127.0.0.1"
+	_hosting.text = tr("HUD_HOSTING").format({"address": address, "port": NetworkManager.game_port})
+
+
+func show_connecting(value: bool) -> void:
+	_connecting = value
 	_refresh_texts()
 
 
@@ -61,11 +75,33 @@ func is_gamepad_lost_visible() -> bool:
 
 
 func _process(_delta: float) -> void:
-	if _player == null:
+	if _player == null or not is_instance_valid(_player):
 		return
 	var cd := _player.evade_cooldown_left()
 	_evade_label.text = tr("HUD_EVADE_READY") if cd <= 0.0 \
 		else tr("HUD_EVADE_COOLDOWN").format({"seconds": "%.1f" % cd})
+	var lines: Array[String] = []
+	var revive_nearby := false
+	for p: Player in get_tree().get_nodes_in_group(&"players"):
+		if p == _player:
+			continue
+		var status := "%d / %d" % [ceili(p.health), roundi(p.max_health)] if p.alive else tr("HUD_ALLY_DOWN")
+		lines.append("%s: %s" % [tr("HUD_PLAYER_N").format({"n": p.slot + 1}), status])
+		if not p.alive and _player.alive \
+				and p.global_position.distance_to(_player.global_position) <= GameData.balance.revive_range:
+			revive_nearby = true
+	_allies.text = "\n".join(lines)
+	var hints := tr("HUD_HINTS").format({
+		"attack": InputDevice.prompt(&"attack"),
+		"evade": InputDevice.prompt(&"evade"),
+		"menu": InputDevice.prompt(&"menu"),
+	})
+	if revive_nearby:
+		hints = tr("HUD_HOLD_TO_REVIVE").format({"action": InputDevice.prompt(&"interact")})
+	_hints.text = hints
+	if _player.alive != _local_alive:
+		_local_alive = _player.alive
+		_refresh_texts()
 
 
 func _on_health(current: float, maximum: float) -> void:
@@ -86,20 +122,24 @@ func _notification(what: int) -> void:
 
 
 func _refresh_texts() -> void:
-	_wave_label.text = tr("HUD_WAVE").format({"current": _wave[0], "total": _wave[1]})
-	_enemies_label.text = tr("HUD_ENEMIES_LEFT").format({"count": _wave[2]})
-	_hints.text = tr("HUD_HINTS").format({
-		"attack": InputDevice.prompt(&"attack"),
-		"evade": InputDevice.prompt(&"evade"),
-		"menu": InputDevice.prompt(&"menu"),
-	})
-	_banner.visible = _banner_kind != ""
-	_banner_sub.visible = _banner.visible
-	if _banner_kind == "victory":
-		_banner.text = tr("HUD_VICTORY")
-	elif _banner_kind == "defeat":
-		_banner.text = tr("HUD_DEFEAT")
-	_banner_sub.text = tr("HUD_PRESS_TO_RESTART").format({"action": InputDevice.prompt(&"attack")})
+	_progress_label.text = tr("HUD_ENCOUNTERS").format({"cleared": _progress[0], "total": _progress[1]})
+	var title := ""
+	var sub := ""
+	if _connecting:
+		title = tr("NET_CONNECTING")
+	elif _result == RESULT_VICTORY:
+		title = tr("HUD_VICTORY")
+		sub = tr("HUD_PRESS_TO_RESTART").format({"action": InputDevice.prompt(&"attack")})
+	elif _result == RESULT_DEFEAT:
+		title = tr("HUD_DEFEAT")
+		sub = tr("HUD_RETURNING_TO_CHECKPOINT")
+	elif _player and is_instance_valid(_player) and not _player.alive:
+		title = tr("HUD_DOWNED")
+		sub = tr("HUD_WAIT_FOR_REVIVE")
+	_banner.text = title
+	_banner_sub.text = sub
+	_banner.visible = title != ""
+	_banner_sub.visible = sub != ""
 
 
 func _build() -> void:
@@ -122,18 +162,21 @@ func _build() -> void:
 	bars.add_child(res[2])
 	_evade_label = _label(18)
 	bars.add_child(_evade_label)
+	_allies = _label(16)
+	bars.add_child(_allies)
 
-	var wave_box := VBoxContainer.new()
-	wave_box.set_anchors_preset(Control.PRESET_TOP_RIGHT)
-	wave_box.position = Vector2(-260, 20)
-	wave_box.custom_minimum_size = Vector2(236, 0)
-	root.add_child(wave_box)
-	_wave_label = _label(22)
-	_wave_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	wave_box.add_child(_wave_label)
-	_enemies_label = _label(18)
-	_enemies_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	wave_box.add_child(_enemies_label)
+	var info_box := VBoxContainer.new()
+	info_box.set_anchors_preset(Control.PRESET_TOP_RIGHT)
+	info_box.position = Vector2(-260, 20)
+	info_box.custom_minimum_size = Vector2(236, 0)
+	root.add_child(info_box)
+	_progress_label = _label(20)
+	_progress_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	info_box.add_child(_progress_label)
+	_hosting = _label(14)
+	_hosting.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_hosting.modulate = Color(1, 1, 1, 0.6)
+	info_box.add_child(_hosting)
 
 	_hints = _label(16)
 	_hints.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)

@@ -1,11 +1,145 @@
 {
   "prototype_arena": {
+    "_comment": "Área de teste: sala inicial (checkpoint), corredor e duas câmaras. Monstros posicionados em grupos de encontro que dormem até um jogador chegar perto (03-inimigos.md, 'Encontros por exploração').",
     "name_key": "ARENA_PROTOTYPE_NAME",
     "player_class": "mage",
-    "waves": [
-      [{"monster": "sewer_rat", "count": 4}],
-      [{"monster": "sewer_rat", "count": 6}, {"monster": "sewer_rat_big", "count": 1}],
-      [{"monster": "sewer_rat", "count": 8}, {"monster": "sewer_rat_big", "count": 2}]
+    "wake_radius": 15.0,
+    "alert_radius": 8.0,
+    "rooms": [
+      {
+        "id": "start",
+        "center": [
+          0,
+          0
+        ],
+        "size": [
+          20,
+          16
+        ],
+        "doors": [
+          "north"
+        ],
+        "torch": true
+      },
+      {
+        "id": "corridor_1",
+        "center": [
+          0,
+          -17
+        ],
+        "size": [
+          6,
+          18
+        ],
+        "doors": [
+          "north",
+          "south"
+        ]
+      },
+      {
+        "id": "middle",
+        "center": [
+          0,
+          -36
+        ],
+        "size": [
+          24,
+          20
+        ],
+        "doors": [
+          "north",
+          "south"
+        ],
+        "torch": true
+      },
+      {
+        "id": "corridor_2",
+        "center": [
+          0,
+          -50
+        ],
+        "size": [
+          6,
+          8
+        ],
+        "doors": [
+          "north",
+          "south"
+        ]
+      },
+      {
+        "id": "far",
+        "center": [
+          0,
+          -64
+        ],
+        "size": [
+          24,
+          20
+        ],
+        "doors": [
+          "south"
+        ],
+        "torch": true
+      }
+    ],
+    "encounters": [
+      {
+        "id": "corridor_patrol",
+        "position": [
+          0,
+          -20
+        ],
+        "monsters": [
+          {
+            "monster": "sewer_rat",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "middle_west",
+        "position": [
+          -6,
+          -33
+        ],
+        "monsters": [
+          {
+            "monster": "sewer_rat",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "middle_east",
+        "position": [
+          7,
+          -40
+        ],
+        "monsters": [
+          {
+            "monster": "sewer_rat",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "far_nest",
+        "position": [
+          0,
+          -67
+        ],
+        "monsters": [
+          {
+            "monster": "sewer_rat",
+            "count": 4
+          },
+          {
+            "monster": "sewer_rat_big",
+            "count": 1
+          }
+        ]
+      }
     ]
   }
 }

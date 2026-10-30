@@ -69,12 +69,33 @@ MONSTER_SEWER_RAT_NAME,Sewer rat,Rata de cloaca,Rato de esgoto
 MONSTER_SEWER_RAT_BIG_NAME,Bloated sewer rat,Rata de cloaca hinchada,Ratazana inchada
 ARENA_PROTOTYPE_NAME,Training cellar,Sótano de entrenamiento,Porão de treino
 HUD_HEALTH,Health,Vida,Vida
-HUD_WAVE,Wave {current}/{total},Oleada {current}/{total},Onda {current}/{total}
-HUD_ENEMIES_LEFT,Enemies: {count},Enemigos: {count},Inimigos: {count}
 HUD_HINTS,"{attack}: attack (hold: strong)   {evade}: dodge   {menu}: menu","{attack}: atacar (mantener: fuerte)   {evade}: esquivar   {menu}: menú","{attack}: atacar (segurar: forte)   {evade}: esquivar   {menu}: menu"
 HUD_EVADE_READY,Dodge ready,Esquiva lista,Esquiva pronta
 HUD_EVADE_COOLDOWN,Dodge {seconds}s,Esquiva {seconds}s,Esquiva {seconds}s
 HUD_VICTORY,The cellar is clear.,El sótano está despejado.,O porão está limpo.
-HUD_DEFEAT,You have fallen.,Has caído.,Você caiu.
+HUD_DEFEAT,Everyone has fallen.,Todos han caído.,Todos caíram.
 HUD_PRESS_TO_RESTART,Press {action} to try again,Pulsa {action} para intentarlo de nuevo,Aperte {action} para tentar de novo
 HUD_GAMEPAD_LOST,Gamepad disconnected. Reconnect it to continue.,Mando desconectado. Vuelve a conectarlo para continuar.,Controle desconectado. Conecte de novo para continuar.
+MENU_HOST_LAN,Host LAN game,Crear partida en LAN,Hospedar partida na LAN
+MENU_JOIN_LAN,Join LAN game,Unirse a partida en LAN,Entrar em partida na LAN
+JOIN_TITLE,Join a game,Unirse a una partida,Entrar em uma partida
+JOIN_SEARCHING,Searching for games on the local network…,Buscando partidas en la red local…,Procurando partidas na rede local…
+JOIN_HOST_ENTRY,{host} ({address}) — {players}/{max} players,{host} ({address}) — {players}/{max} jugadores,{host} ({address}) — {players}/{max} jogadores
+JOIN_HOST_OTHER_VERSION,{address} — different version ({version}),{address} — otra versión ({version}),{address} — outra versão ({version})
+JOIN_MANUAL_ADDRESS,Or type the host's IP (or IP:port):,O escribe la IP del anfitrión (o IP:puerto):,Ou digite o IP do host (ou IP:porta):
+JOIN_CONNECT,Connect,Conectar,Conectar
+NET_CONNECTING,Connecting…,Conectando…,Conectando…
+NET_CONNECTION_FAILED,Could not connect to the host. Check the address and the firewall.,No se pudo conectar con el anfitrión. Revisa la dirección y el cortafuegos.,Não foi possível conectar ao host. Confira o endereço e o firewall.
+NET_HOST_FAILED,Could not host the game: UDP port {port} is in use or blocked.,No se pudo crear la partida: el puerto UDP {port} está en uso o bloqueado.,Não foi possível hospedar: a porta UDP {port} está em uso ou bloqueada.
+NET_VERSION_MISMATCH,Different game version. Host: {host}. Yours: {local}.,Versión del juego diferente. Anfitrión: {host}. La tuya: {local}.,Versão do jogo diferente. Host: {host}. A sua: {local}.
+NET_SERVER_FULL,The game is full.,La partida está llena.,A partida está cheia.
+NET_HOST_LEFT,The host left the game.,El anfitrión salió de la partida.,O host saiu da partida.
+HUD_HOSTING,Hosting — IP: {address} (UDP {port}),Anfitrión — IP: {address} (UDP {port}),Hospedando — IP: {address} (UDP {port})
+HUD_PLAYER_N,Player {n},Jugador {n},Jogador {n}
+HUD_ALLY_DOWN,down!,¡caído!,caído!
+HUD_HOLD_TO_REVIVE,Hold {action} to revive your ally,Mantén {action} para reanimar a tu aliado,Segure {action} para reanimar o aliado
+HUD_DOWNED,You are down!,¡Has caído!,Você caiu!
+HUD_WAIT_FOR_REVIVE,An ally can revive you.,Un aliado puede reanimarte.,Um aliado pode te reanimar.
+HUD_RETURNING_TO_CHECKPOINT,Returning to the checkpoint…,Volviendo al punto de control…,Voltando ao checkpoint…
+NET_CONTENT_MISMATCH,"Different game data. Host: {host}. Yours: {local}.","Datos del juego diferentes. Anfitrión: {host}. Los tuyos: {local}.","Dados do jogo diferentes. Host: {host}. Os seus: {local}."
+HUD_ENCOUNTERS,Encounters cleared: {cleared}/{total},Encuentros superados: {cleared}/{total},Encontros vencidos: {cleared}/{total}

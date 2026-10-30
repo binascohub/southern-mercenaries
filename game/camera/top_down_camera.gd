@@ -34,9 +34,10 @@ func _process(delta: float) -> void:
 	global_position = global_position.lerp(desired, minf(FOLLOW_SPEED * delta, 1.0))
 
 
+## Sem alvo (ex.: conectando), olha para o centro da área.
 func snap() -> void:
-	if target:
-		global_position = target.global_position + _offset()
+	var center := target.global_position if target else Vector3.ZERO
+	global_position = center + _offset()
 
 
 func _offset() -> Vector3:

@@ -1,14 +1,18 @@
 # Southern Mercenaries — GPL-3.0-or-later
 extends Control
 ## Menu principal. Na primeira execução mostra a escolha de idioma
-## (já pré-selecionado pelo idioma do sistema).
+## (já pré-selecionado pelo idioma do sistema). Solo, hospedar ou entrar
+## numa partida na LAN (busca automática + IP manual).
 
 const ARENA_SCENE := "res://game/levels/prototype_arena.tscn"
 
 var _main: MenuPanel
 var _language: MenuPanel
+var _join: JoinMenu
 var _options: OptionsMenu
 var _options_button: Button
+var _join_button: Button
+var _message: Label
 
 
 func _ready() -> void:
@@ -26,7 +30,16 @@ func _ready() -> void:
 	note.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	note.modulate = Color(1, 1, 1, 0.6)
 	_main.content.add_child(note)
-	_main.add_button("MENU_PLAY_SOLO", func() -> void: get_tree().change_scene_to_file(ARENA_SCENE))
+	_message = Label.new()
+	_message.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+	_message.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_message.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_message.custom_minimum_size = Vector2(320, 0)
+	_message.add_theme_color_override("font_color", Color(1.0, 0.6, 0.45))
+	_main.content.add_child(_message)
+	_main.add_button("MENU_PLAY_SOLO", func() -> void: _start(NetworkManager.prepare_solo))
+	_main.add_button("MENU_HOST_LAN", func() -> void: _start(NetworkManager.prepare_host))
+	_join_button = _main.add_button("MENU_JOIN_LAN", _open_join)
 	_options_button = _main.add_button("MENU_OPTIONS", _open_options)
 	_main.add_button("MENU_QUIT", func() -> void: get_tree().quit())
 	var version := Label.new()
@@ -34,14 +47,19 @@ func _ready() -> void:
 	version.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	version.modulate = Color(1, 1, 1, 0.4)
 	_main.content.add_child(version)
-	_set_version_text(version)
-	Settings.changed.connect(_set_version_text.bind(version))
+	_refresh_texts.bind(version).call()
+	Settings.changed.connect(_refresh_texts.bind(version))
 	# O menu principal não fecha com "voltar".
 	_main.set_process_unhandled_input(false)
 
 	_options = OptionsMenu.new()
 	add_child(_options)
 	_options.closed.connect(func() -> void: _main.open(_options_button))
+
+	_join = JoinMenu.new()
+	add_child(_join)
+	_join.closed.connect(func() -> void: _main.open(_join_button))
+	_join.join_requested.connect(func(address: String) -> void: _start(NetworkManager.prepare_join.bind(address)))
 
 	_language = MenuPanel.new()
 	add_child(_language)
@@ -60,6 +78,12 @@ func _ready() -> void:
 		system_button.grab_focus.call_deferred()
 
 
+func _start(prepare: Callable) -> void:
+	prepare.call()
+	NetworkManager.last_error_key = ""
+	get_tree().change_scene_to_file(ARENA_SCENE)
+
+
 func _choose_language(code: String) -> void:
 	Settings.set_language(code)
 	_language.visible = false
@@ -71,5 +95,14 @@ func _open_options() -> void:
 	_options.open()
 
 
-func _set_version_text(label: Label) -> void:
-	label.text = tr("MENU_VERSION").format({"version": ProjectSettings.get_setting("application/config/version")})
+func _open_join() -> void:
+	_main.visible = false
+	_join.open(_join_button)
+
+
+func _refresh_texts(version: Label) -> void:
+	version.text = tr("MENU_VERSION").format({"version": NetworkManager.version()})
+	# Motivo de ter voltado ao menu (host saiu, versão diferente…).
+	_message.text = tr(NetworkManager.last_error_key).format(NetworkManager.last_error_args) if NetworkManager.last_error_key != "" else ""
+	_message.visible = _message.text != ""
+

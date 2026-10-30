@@ -1,11 +1,12 @@
 # Southern Mercenaries — GPL-3.0-or-later
 class_name PauseMenu
 extends CanvasLayer
-## Menu de pausa do modo solo.
+## Menu do jogo. No solo pausa; no co-op o jogo continua (01-escopo.md).
 
 const MAIN_SCENE := "res://game/main/main.tscn"
 
 var is_open := false
+var _paused := false
 var _panel: MenuPanel
 var _options: OptionsMenu
 var _options_button: Button
@@ -21,8 +22,11 @@ func _ready() -> void:
 	_options_button = _panel.add_button("MENU_OPTIONS", _open_options)
 	_panel.add_button("MENU_MAIN_MENU", func() -> void:
 		get_tree().paused = false
+		NetworkManager.leave()
 		get_tree().change_scene_to_file(MAIN_SCENE))
-	_panel.add_button("MENU_QUIT", func() -> void: get_tree().quit())
+	_panel.add_button("MENU_QUIT", func() -> void:
+		NetworkManager.leave()
+		get_tree().quit())
 	_panel.closed.connect(resume)
 
 	_options = OptionsMenu.new()
@@ -36,9 +40,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		resume()
 
 
-func open() -> void:
+func open(pause_game: bool) -> void:
 	is_open = true
-	get_tree().paused = true
+	_paused = pause_game
+	if pause_game:
+		get_tree().paused = true
 	_panel.open()
 
 
@@ -48,7 +54,8 @@ func resume() -> void:
 	is_open = false
 	_panel.visible = false
 	_options.visible = false
-	get_tree().paused = false
+	if _paused:
+		get_tree().paused = false
 
 
 func _open_options() -> void:

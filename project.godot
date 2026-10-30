@@ -20,6 +20,7 @@ Settings="*res://game/autoload/settings.gd"
 Controls="*res://game/autoload/controls.gd"
 InputDevice="*res://game/autoload/input_device.gd"
 GameData="*res://game/autoload/game_data.gd"
+NetworkManager="*res://game/autoload/network_manager.gd"
 
 [display]
 

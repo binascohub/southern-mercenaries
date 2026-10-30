@@ -91,8 +91,8 @@ func _check_data() -> void:
 	for id in arenas:
 		if not classes.has(arenas[id].get("player_class", "")):
 			_fail("arena %s usa classe inexistente" % id)
-		for wave in arenas[id].get("waves", []):
-			for group in wave:
+		for encounter in arenas[id].get("encounters", []):
+			for group in encounter.monsters:
 				if not monsters.has(group.monster):
 					_fail("arena %s usa monstro inexistente: %s" % [id, group.monster])
 

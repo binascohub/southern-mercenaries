@@ -3,6 +3,10 @@ class_name Projectile
 extends Area3D
 ## Projétil reto dos jogadores. Atravessa `pierce` inimigos; some ao bater
 ## em parede ou ao atingir o alcance.
+##
+## Rede: o movimento é determinístico, então todos os PCs só o simulam a partir
+## dos dados do spawn. Acerto e dano são decididos só no servidor, que remove
+## o projétil (e o spawner o remove dos outros PCs).
 
 var direction := Vector3.FORWARD
 var speed := 20.0
@@ -16,10 +20,24 @@ var _travelled := 0.0
 var _hit: Array[Node] = []
 
 
+static func create(spawn: Dictionary) -> Projectile:
+	var projectile := Projectile.new()
+	projectile.position = spawn.position
+	projectile.direction = spawn.direction
+	projectile.speed = spawn.speed
+	projectile.max_range = spawn.range
+	projectile.radius = spawn.radius
+	projectile.pierce = spawn.pierce
+	projectile.damage = spawn.damage
+	projectile.color = spawn.color
+	return projectile
+
+
 func _ready() -> void:
 	collision_layer = 8
 	collision_mask = 1 | 4
 	monitorable = false
+	monitoring = multiplayer.is_server()
 	var shape := CollisionShape3D.new()
 	var sphere := SphereShape3D.new()
 	sphere.radius = radius
@@ -48,7 +66,10 @@ func _physics_process(delta: float) -> void:
 	global_position += direction * step
 	_travelled += step
 	if _travelled >= max_range:
-		queue_free()
+		if multiplayer.is_server():
+			queue_free()
+		else:
+			visible = false
 
 
 func _on_body_entered(body: Node) -> void:
@@ -56,8 +77,7 @@ func _on_body_entered(body: Node) -> void:
 		return
 	if body.is_in_group(&"enemies"):
 		_hit.append(body)
-		if multiplayer.is_server():
-			body.take_damage(damage)
+		body.take_damage(damage)
 		pierce -= 1
 		if pierce < 0:
 			queue_free()
