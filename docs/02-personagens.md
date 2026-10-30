@@ -19,7 +19,7 @@
 - **A roupa muda conforme os equipamentos** que o jogador encontra no mapa e equipa: cada peça equipada aparece no corpo do personagem.
 - Slots visíveis: **cabeça, corpo, mãos, pés** e **arma** (+ mão secundária quando houver; + barda do cavalo no Cavaleiro).
 - Slot vazio = mostra a parte do corpo com a roupa de baixo.
-- A arma inicial é a **arma básica da classe** (cajado simples, arco simples, par de adagas simples, livro simples, lança simples), para conseguir lutar desde o começo.
+- A arma inicial é a **arma básica da classe, de madeira** (cajado simples, arco simples, par de adagas de treino, livro simples, lança simples), para conseguir lutar desde o começo.
 - Cada herói tem um **objeto pessoal** sempre visível:
 
 | Classe | Objeto pessoal |

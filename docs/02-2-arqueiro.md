@@ -169,7 +169,7 @@ Todos aparecem no corpo do personagem quando equipados.
 
 | Slot | Itens | Visual |
 |---|---|---|
-| Arma | Arcos curtos (mais rápidos) e longos (mais dano). Começa com **arco simples**. Tiers visuais: madeira tosca → arco longo de teixo → arco composto de osso e chifre → arco demoníaco | — |
+| Arma | Arcos curtos (mais rápidos) e longos (mais dano). Começa com **arco simples de madeira** | Madeira → ferro → aço → cobre → prata → ouro (reforços e ponteiras no material) |
 | Mão secundária | **Aljavas** (bônus às flechas: dano de elemento, chance de atravessar, crítico) | Vazio: aljava gasta inicial |
 | Cabeça | Capuzes, chapéus de caçador, máscaras de pele | Vazio: cabelo à mostra |
 | Corpo | Roupas de couro, peles, armaduras médias leves | Vazio: roupa de baixo de pano |

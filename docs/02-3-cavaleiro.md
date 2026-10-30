@@ -205,13 +205,13 @@ Todos aparecem no corpo do personagem (ou do cavalo) quando equipados.
 
 | Slot | Itens | Visual |
 |---|---|---|
-| Arma | **Lanças e alabardas**. Começa com **lança simples**. Tiers visuais: madeira e ferro → lança de aço → lança de osso de criatura → lança demoníaca | — |
+| Arma | **Lanças e alabardas**. Começa com **lança simples de madeira** | Madeira → ferro → aço → cobre → prata → ouro (ponta e reforços no material) |
 | Mão secundária | **Escudos** (bloqueio, armadura, resistência a elemento) | Vazio: sem escudo (bloqueio com a lança, -30% de eficiência) |
 | Cabeça | Elmos, elmos com viseira e pluma | Vazio: cabelo à mostra |
 | Corpo | Cotas de malha, armaduras de placas | Vazio: roupa de baixo de pano |
 | Mãos | Manoplas | Vazio: mãos nuas |
 | Pés | Botas de ferro, esporas | Vazio: descalço |
-| **Barda** (exclusivo) | Armaduras do cavalo: couro → malha → placas → barda demoníaca | Vazio: sela simples |
+| **Barda** (exclusivo) | Armaduras do cavalo: segue os tiers: couro/pano → ferro → aço → cobre → prata → ouro | Vazio: sela simples |
 | Acessórios | 2 anéis, 1 amuleto | O objeto pessoal (fita ou broche) fica sempre visível |
 
 ## 10. Animações necessárias

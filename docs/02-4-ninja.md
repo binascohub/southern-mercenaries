@@ -4,7 +4,7 @@
 > Modelo de personagem: **misto** — herói fixo (nome, história, visual de referência); o jogador pode mudar o nome, a aparência e **escolher o sexo (masculino ou feminino)**.
 > **A versão feminina tem a mesma base de história, com uma diferença no motivo da deserção** (seção 1). Atributos e habilidades são iguais.
 > **Elemento:** escolhido na criação (Água, Fogo, Ar ou Terra); troca temporária com Poção Elemental. Regras em `02-0-elementos.md`.
-> **Vestimenta:** começa só com roupa de baixo simples de pano e um par de adagas simples; a roupa muda conforme os equipamentos encontrados (`02-personagens.md`, seção 1).
+> **Vestimenta:** começa só com roupa de baixo simples de pano e um par de adagas de treino de madeira; a roupa muda conforme os equipamentos encontrados (`02-personagens.md`, seção 1).
 > Nome e números são propostas para revisar.
 
 ## 1. O herói
@@ -49,7 +49,7 @@ Roubar bolsas em Tortuga logo ficou pequeno. Ao ouvir falar dos **tesouros guard
 ### Início do jogo
 - **Roupa de baixo simples de pano** (cor crua), descalço.
 - **Guarda da espada do pai** no cordão do pescoço.
-- **Par de adagas simples** de ferro, presas nas costas com uma faixa.
+- **Par de adagas de treino** de madeira, presas nas costas com uma faixa.
 - Cicatrizes finas de treino nos braços (Rin: também nas mãos, dos treinos escondidos).
 
 ### Visual de referência (com o conjunto típico da classe)
@@ -191,7 +191,7 @@ Todos aparecem no corpo do personagem quando equipados.
 
 | Slot | Itens | Visual |
 |---|---|---|
-| Arma | **Pares de adagas** (sempre duas). Começa com **adagas simples**. Tiers visuais: ferro → aço oriental → osso de criatura → adagas demoníacas | — |
+| Arma | **Pares de adagas** (sempre duas). Começa com **adagas de treino de madeira** | Madeira → ferro → aço → cobre → prata → ouro (lâminas no material) |
 | Mão secundária | Nenhuma (a segunda adaga ocupa a mão) | — |
 | Cabeça | Máscaras, capuzes, faixas de testa | Vazio: cabelo à mostra |
 | Corpo | Roupas leves e armaduras médias (couro, malha fina) | Vazio: roupa de baixo de pano |

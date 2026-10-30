@@ -173,7 +173,7 @@ Todos aparecem no corpo do personagem quando equipados.
 
 | Slot | Itens | Visual |
 |---|---|---|
-| Arma | **Livros** (bônus aos animais: vida, dano, número de companheiros). Começa com **Livro dos Amigos simples**. Tiers visuais: couro gasto → capa de madeira entalhada → capa de osso e penas → capa de escamas de criatura mítica | — |
+| Arma | **Livros** (bônus aos animais: vida, dano, número de companheiros). Começa com **Livro dos Amigos simples** (capa de couro gasto) | Couro → capa com cantoneiras de ferro → aço → cobre → prata → ouro (cantoneiras, fecho e detalhes no material) |
 | Mão secundária | **Totens e amuletos de animal** (bônus a um tipo de animal ou a um elemento) | Vazio: mão livre |
 | Cabeça | Capuzes, tiaras de penas, máscaras de animal | Vazio: cabelo à mostra |
 | Corpo | Capas com penas e pelos, roupas leves | Vazio: roupa de baixo de pano |

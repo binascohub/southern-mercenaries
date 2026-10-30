@@ -189,7 +189,7 @@ Todos aparecem no corpo do personagem quando equipados.
 
 | Slot | Itens | Visual |
 |---|---|---|
-| Arma | Cajados (duas mãos). Começa com **cajado simples**. Cajados podem ter bônus de um elemento | Tiers: madeira → ferro e cristal → osso e obsidiana → cajado demoníaco |
+| Arma | Cajados (duas mãos). Começa com **cajado simples de madeira**. Cajados podem ter bônus de um elemento | Madeira → ponteira de ferro → aço → cobre → prata → ouro (cristal em todos) |
 | Mão secundária | Nenhuma (cajado é de duas mãos) | — |
 | Cabeça | Capuzes, chapéus, coroas arcanas | Vazio: cabelo à mostra |
 | Corpo | Túnicas, mantos e vestes de tecido | Vazio: roupa de baixo de pano |

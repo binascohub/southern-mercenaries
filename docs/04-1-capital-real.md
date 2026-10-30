@@ -1,19 +1,19 @@
 # Capital Real — a cidade do Cavaleiro
 
-> Versão 3 · 2026-10-30 · Segunda cidade-base da campanha. Complementa `04-tortuga-e-missoes.md`, `06-mundo-e-historia.md` e `02-3-cavaleiro.md`
+> Versão 4 · 2026-10-30 · Segunda cidade-base da campanha. Complementa `04-tortuga-e-missoes.md`, `06-mundo-e-historia.md` e `02-3-cavaleiro.md`
 > Nome da cidade e do reino a definir. Nomes e números são propostas para revisar.
 
 ## 1. Conceito
 
 A **Capital Real** é a cidade do reino que **venceu a guerra** — o reino de Dorian e Dália. É o oposto de Tortuga: **rica, limpa, cheia de leis, guardas e nobres**, com um rei no trono e um castelo no alto da cidade.
 
-- É a **segunda cidade-base** do jogo, liberada **no meio da campanha** (depois do mapa 4, ver seção 7).
+- É a **segunda cidade-base** do jogo, liberada **no meio da campanha** (depois do mapa 5, ver seção 7).
 - Tem **comércio mais elevado**: itens melhores e mais caros que os de Tortuga.
 - As **novas missões principais** passam a ser entregues pelo **Bobo da Corte**, que vive no castelo e quer descobrir **onde a família real esconde seus tesouros**.
 - Depois de liberada, o grupo pode viajar entre **Tortuga e a Capital** pelo porto.
 
 ### Como o grupo chega à Capital
-- Depois do mapa 4, as pistas da taverna acabam. É o **Cavaleiro** (Dorian ou Dália) quem conta que **sabe de um Bobo da Corte, no castelo da Capital, que sabe de coisas** — segredos da família real, ouro escondido, rumores que ninguém mais ouve.
+- Depois do mapa 5 (Aves), as pistas da taverna acabam. É o **Cavaleiro** (Dorian ou Dália) quem conta que **sabe de um Bobo da Corte, no castelo da Capital, que sabe de coisas** — segredos da família real, ouro escondido, rumores que ninguém mais ouve.
   - **Dorian:** conheceu o Bobo nos tempos da guarda do castelo; ele era o único que sabia do romance com a princesa e nunca contou ao rei.
   - **Dália:** cresceu com o Bobo fazendo graça para ela nos salões; ele era quem contava os segredos do castelo para a princesinha.
 - **No co-op**, se ninguém joga com o Cavaleiro, ou **no solo**, o Cavaleiro aparece como **NPC em Tortuga** (como na abertura) e conta a mesma coisa.
@@ -53,11 +53,11 @@ Seguindo o padrão de Tortuga: **área externa** com o comércio ao ar livre e *
 | ID | Local | Função |
 |---|---|---|
 | `royal_market` | **Mercado Real** | Itens **melhores e mais caros**: sempre de raridade mágica ou maior; estoque maior que o pirata (6 a 10 itens), muda a cada volta |
-| `royal_armory` | Armeiro Real | Armas raras garantidas do nível do jogador; às vezes únicas |
-| `royal_tailor` | Alfaiate de Armaduras | Armaduras e roupas finas (visual nobre); raras garantidas |
+| `royal_armory` | Armeiro Real | Armas raras garantidas do nível do jogador; às vezes únicas. Vende armas de **cobre e prata** (comuns e mágicas) |
+| `royal_tailor` | Alfaiate de Armaduras | Armaduras e roupas finas (visual nobre); raras garantidas; peças de **cobre e prata** |
 | `jeweler` | **Joalheiro** | Compra **valiosos** por um preço **fixo e mais alto** (110% do valor base, sem variação) e vende anéis e amuletos raros |
 | `alchemist` | Alquimista | Poções de vida/recurso maiores e **Poções Elementais Refinadas** (duram 2 expedições; mais caras) |
-| `royal_smith` | Ferreiro Real | Crafting avançado: **adicionar encaixes** a itens e **reforjar** um afixo |
+| `royal_smith` | Ferreiro Real | Crafting avançado: **adicionar encaixes** a itens e **reforjar** um afixo; **refino** com pergaminhos de **Cobre e Prata** (e Ouro sob encomenda, com materiais raros) — `05-1-refino.md` |
 | `royal_stables` | Estábulo Real | Bardas finas para o cavalo do Cavaleiro; trocar a pelagem do cavalo |
 | `bank` | Banco | Acesso ao mesmo baú de Tortuga (baú compartilhado entre as cidades) |
 | `castle_courtyard` | **Pátio do Castelo** | Onde o **Bobo da Corte** entrega as missões |
@@ -89,14 +89,14 @@ Seguindo o padrão de Tortuga: **área externa** com o comércio ao ar livre e *
 - É ele quem arranja o **salvo-conduto** para Dorian (expulso da cidade) entrar.
 
 ### Exemplo de fala
-> **Bobo da Corte:** "Ah, os famosos mercenários de Tortuga! Que honra, que honra… *(baixa a voz)* Escutem: o ouro do rei está sumindo dos cofres, e ninguém no castelo percebeu. Segui a trilha: uma parte foi parar no fundo do mar, lá onde o Kraken dorme. Alguém está juntando todo o ouro do mundo — e não é o rei. Tragam o que estiver lá, e eu conto o resto. Ah — e o bicho é feito de mar. Raio nele."
+> **Bobo da Corte (primeira missão, Deserto):** "Ah, os famosos mercenários de Tortuga! Que honra, que honra… *(baixa a voz)* Escutem: o ouro do rei está sumindo dos cofres, e ninguém no castelo percebeu. Segui a trilha: as caravanas descem para dentro da areia, perto de um templo de pedra. Alguém está juntando todo o ouro do mundo — e não é o rei. Tragam o que estiver lá, e eu conto o resto. Ah — a guardiã faz uma pergunta e é feita de vento do deserto. Só a pedra segura o vento."
 
 ### O que está por trás: Lúcifer
 - **Lúcifer é ganancioso e quer todo o ouro do mundo.** Por meio dos demônios, ele vem **dominando os tesouros e as terras em segredo**, sem que a família real saiba — cada chefe demoníaco guarda uma parte do que ele está acumulando.
 - O Bobo é o único no castelo que percebe. Ao passar as informações aos mercenários, ele **atrapalha os planos de Lúcifer**.
 
 ### O sequestro do Bobo (final do Ato 3)
-- Depois do mapa 6, quando o grupo volta à Capital, **o Bobo sumiu**. No pátio ficam só a **máscara dele**, os guizos e marcas de fogo no chão.
+- Depois do mapa 9, quando o grupo volta à Capital, **o Bobo sumiu**. No pátio ficam só a **máscara dele**, os guizos e marcas de fogo no chão.
 - Uma Súcubo (ou um bilhete escrito em brasa) deixa o recado: Lúcifer levou o Bobo para o Inferno por estar ajudando os mercenários.
 - **Missão final:** ir ao **Inferno libertar o Bobo**. Os mercenários não vão por bondade: **o Bobo é quem sabe onde há mais tesouros**. De quebra, há todo o ouro que Lúcifer acumulou.
 - A última pista de fraqueza vem das **anotações escondidas do Bobo**, encontradas no pátio junto da máscara (`03-1-bestiario.md`, Lúcifer).
@@ -128,24 +128,32 @@ Seguindo o padrão de Tortuga: **área externa** com o comércio ao ar livre e *
 
 ## 6. Missões do Bobo
 
-| Ordem | Missão | Mapa | O que o Bobo descobriu |
-|---|---|---|---|
-| 1 | O ouro do fundo do mar | 5 · Águas | Parte do ouro do rei foi levada para o naufrágio onde o Kraken dorme |
-| 2 | O templo da serpente | 6 · Serpentes | Outra parte está num templo afundado no pântano, guardado por Jörmungandr; ali o grupo descobre que tudo vai para o Inferno |
-| 3 | **O resgate** | 7 · Inferno | O Bobo é sequestrado por Lúcifer; os mercenários vão libertá-lo para saber onde há mais tesouros |
+| Ordem | Missão | Mapa | O que o Bobo descobriu | Fraqueza do chefe |
+|---|---|---|---|---|
+| 1 | O ouro das caravanas | 6 · Deserto | As caravanas do rei descem para dentro da areia, perto de um templo soterrado; a Esfinge guarda a porta | Terra |
+| 2 | O ouro do fundo do mar | 7 · Águas | Os navios do rei afundam todos na mesma costa, onde o Kraken dorme | Ar |
+| 3 | A barcaça do lago negro | 8 · Pântano | Uma barcaça do rei foi puxada para o lago por Grendel e a Mãe | Ar |
+| 4 | O templo da serpente | 9 · Serpentes | O último ouro do rei some num templo na costa da selva (Jörmungandr); ali o grupo descobre o **portal para o Inferno** e que tudo vai para Lúcifer | Ar |
+| 5 | **O resgate** | 10 · Inferno | O Bobo é sequestrado por Lúcifer; os mercenários vão libertá-lo para saber onde há mais tesouros | Muda por fase: Terra → Água → todos |
+
+- As histórias e pistas completas estão em `03-1-bestiario.md`.
+- Equipamentos de **cobre e prata** (e ouro sob encomenda) entram em jogo a partir daqui; o Ferreiro Real refina até **+5** com os pergaminhos desses tiers.
 
 ## 7. Onde a Capital entra na campanha
 
 ```
-Tortuga (abertura) → 1 Esgoto → 2 Ruínas do Reino do Arqueiro → 3 Cavalos Míticos → 4 Aves
+Tortuga (abertura) → 1 Esgoto → 2 Ruínas do Reino do Arqueiro → 3 Floresta Escura
+      → 4 Cavalos Míticos → 5 Aves
       → o Cavaleiro fala do Bobo da Corte
       → CAPITAL REAL (nova cidade-base, Bobo da Corte)
-      → 5 Águas → 6 Serpentes → Bobo sequestrado → 7 Inferno (resgate e Lúcifer)
+      → 6 Deserto → 7 Águas → 8 Pântano → 9 Serpentes
+      → Bobo sequestrado → 10 Inferno (resgate e Lúcifer)
       → gancho: o reino do primo da família real
 ```
 
-- A Capital é liberada depois do mapa 4, quando o Cavaleiro conta do Bobo.
+- A Capital é liberada depois do mapa 5, quando o Cavaleiro conta do Bobo.
 - De Tortuga continuam saindo missões secundárias da taverna e o Mercado Pirata segue ativo.
+- Os mapas 6 a 10 saem do **Porto Real**; os mapas 1 a 5 continuam acessíveis por Tortuga.
 
 ## 8. Decisões em aberto
 

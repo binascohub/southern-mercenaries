@@ -1,6 +1,6 @@
 # Tortuga e Missões
 
-> Versão 13 · 2026-10-30 · Complementa `01-escopo.md` (cidade-base), `02-0-elementos.md` (Poção Elemental), `03-inimigos.md` e `03-1-bestiario.md` (monstros e lendas), `05-itens-e-loot.md` (mercados e tesouros) e `06-mundo-e-historia.md` (premissa)
+> Versão 14 · 2026-10-30 · Complementa `01-escopo.md` (cidade-base), `05-1-refino.md` (refino), `02-0-elementos.md` (Poção Elemental), `03-inimigos.md` e `03-1-bestiario.md` (monstros e lendas), `05-itens-e-loot.md` (mercados e tesouros) e `06-mundo-e-historia.md` (premissa)
 > Nomes e números são propostas para revisar.
 
 ## 1. Tortuga — a cidade-base
@@ -52,9 +52,9 @@ Tortuga é uma **cidade portuária suja, barulhenta e perigosa**, de ruas estrei
 | `tavern` | **Taverna** | **Construção com interior** (a única) | NPCs bebem e contam histórias que **geram as missões** e **revelam as fraquezas** dos monstros (seção 3) |
 | `pirate_market` | **Mercado Pirata** | **Porto**: barracas, caixotes e conveses no cais | **Piratas vendem itens que roubaram pelo mundo afora** (estoque que muda a cada navio que chega), **compram os valiosos** dos tesouros sem perguntas e vendem **Poções Elementais** (`05-itens-e-loot.md`, seção 5) |
 | `shop_potions` | Boticário | Banca na Rua Principal | Poções de vida e de recurso |
-| `shop_weapons` | Loja de armas | Banca na Rua Principal | Compra e venda de armas comuns |
-| `shop_armor` | Loja de armaduras | Banca na Rua Principal | Compra e venda de equipamentos comuns |
-| `blacksmith` | Ferreiro | Forja ao ar livre na Rua Principal | Crafting: encaixar gemas/runas, desmontar itens |
+| `shop_weapons` | Loja de armas | Banca na Rua Principal | Compra e venda de armas comuns de **madeira, ferro e aço** (cobre e prata só na Capital) |
+| `shop_armor` | Loja de armaduras | Banca na Rua Principal | Compra e venda de equipamentos comuns de **pano, ferro e aço** (cobre e prata só na Capital) |
+| `blacksmith` | Ferreiro | Forja ao ar livre na Rua Principal | Crafting: encaixar gemas/runas, desmontar itens; **refino** com pergaminhos de **Ferro e Aço** (vende os pergaminhos desses tiers) — `05-1-refino.md` |
 | `stash` | Baú | Na Rua Principal (baú acorrentado, guardado por um capanga de aluguel) | Baú compartilhado entre os personagens do jogador (guardar valiosos para vender quando o preço subir) |
 | `respec` | Altar / Mestre | Canto da Rua Principal | Redistribuir pontos, pagando ouro |
 | `sewer_entrance` | **Bueiro** | Rua Principal | Entrada do **Esgoto** (mapa 1); trancado até a missão do velho bêbado |
@@ -115,13 +115,32 @@ A campanha começa com os mercenários chegando à taverna sem nada. O **velho b
 - No baú, um **mapa antigo** mostra onde ficou o resto do tesouro: nas **Ruínas do Reino do Arqueiro**, que viram a segunda missão principal (contada pela taberneira).
 - É a única missão principal contada pelo velho bêbado — e, desta vez, ele estava falando a verdade.
 
-### Exemplo de história (missão principal do Pégaso)
+### Missões principais em Tortuga (mapas 1 a 5)
+
+| Ordem | Mapa | Quem conta | Resumo da história | Pista de fraqueza |
+|---|---|---|---|---|
+| 1 | Esgoto de Tortuga | Velho bêbado | A Rainha dos Ratos guarda o tesouro perdido da guerra | Fogo |
+| 2 | Ruínas do Reino do Arqueiro | Taberneira (após achar o mapa antigo no baú do Esgoto) | O Cofre Real, tomado por lobos e cães demoníacos; Cérbero guarda a porta do inferno | Água, Ar e Fogo (uma por cabeça) |
+| 3 | Floresta Escura | Taberneira | Viajantes e caçadores nunca voltam; ouro nas raízes da árvore anciã, guardada pelo Leshy | Fogo |
+| 4 | Cavalos Míticos | Taberneira | Pégaso e as Rédeas de Ouro do Céu | Água |
+| 5 | Aves | Taberneira | Fênix e a Pena da Chama Eterna | Água |
+
+- Os textos completos das falas e das pistas estão em `03-1-bestiario.md`.
+- Equipamentos dos mapas 1 a 5 vão até o tier **Aço**; o Ferreiro de Tortuga refina até **+5** com pergaminhos de Ferro e Aço.
+- Depois do mapa 5, as pistas da taverna acabam: o **Cavaleiro** conta do **Bobo da Corte** (próxima seção).
+
+### A virada para a Capital Real
+- Ao voltar a Tortuga depois da Fênix, a taberneira não tem mais histórias de tesouro.
+- O **Cavaleiro** (Dorian ou Dália) conta que **conhece um Bobo da Corte, no castelo da Capital, que sabe de coisas**. No solo, ou se ninguém joga com o Cavaleiro, ele aparece como NPC na taverna e conta a mesma coisa (`04-1-capital-real.md`, seção 1).
+- Isso libera o **Porto Real** (viagem Tortuga ⇄ Capital). Missões secundárias e o Mercado Pirata continuam em Tortuga.
+
+### Exemplo de história (missão principal do Pégaso, mapa 4)
 > **Taberneira:** "Você já ouviu falar do Pégaso? O cavalo de asas que nasceu do sangue da Medusa e carregava os raios de Zeus. Dizem que ele cansou dos deuses e aceitou o fogo do inferno. Agora as asas dele queimam, e ele manda em todos os cavalos das planícies… Lá em cima, nas ruínas, ele guarda as Rédeas de Ouro do Céu e mais ouro do que esta taverna viu em cem anos. Mas escuta: fogo assim só se apaga com **água**. Não suba sem ela."
 
 ### NPCs fixos da taverna
 | ID | NPC | Papel |
 |---|---|---|
-| `tavern_keeper` | Taberneira(o) | Uma das fundadoras de Tortuga; conhece todo mundo e todos os segredos (inclusive o do tesouro roubado). Conta as **missões principais** a partir do segundo mapa |
+| `tavern_keeper` | Taberneira(o) | Uma das fundadoras de Tortuga; conhece todo mundo e todos os segredos (inclusive o do tesouro roubado). Conta as **missões principais** dos mapas 2 a 5 |
 | `bard` | Bardo | Canta as lendas das criaturas e dos demônios; abre o **bestiário** (lenda, elemento, fraqueza) e pode repetir qualquer pista já ouvida |
 | `old_drunk` | Velho bêbado | Ex-soldado da guerra; conta a **primeira missão** (a Rainha dos Ratos e o tesouro do esgoto) e depois histórias exageradas de tesouros, às vezes verdadeiras (recompensa extra), às vezes não. **A pista de fraqueza dele é sempre verdadeira**, mesmo quando o tesouro é mentira |
 
@@ -132,7 +151,7 @@ A campanha começa com os mercenários chegando à taverna sem nada. O **velho b
 | `sailor` | Marinheiro / contrabandista | Naufrágios com carga valiosa, portos estranhos |
 | `hunter` | Caçador de recompensas | Pagamento pela cabeça de uma criatura elite |
 | `survivor` | Sobrevivente | Paga para resgatar quem ficou para trás |
-| `merchant` | Mercador do mercado negro | Paga para recuperar cargas perdidas ou roubadas (ex.: pelas Harpias) |
+| `merchant` | Mercador do mercado negro | Paga para recuperar cargas perdidas ou roubadas (ex.: pelas Harpias, no mapa 5) |
 | `pilgrim` | Peregrino / sacerdote renegado | Paga para destruir locais amaldiçoados |
 | `deserter` | Desertor | Conta o que viu nos campos depois da guerra: ruínas, covis, tesouros esquecidos |
 | `stranger` | Estranho encapuzado | Contratos arriscados com boas recompensas; às vezes uma armadilha |
@@ -204,7 +223,7 @@ Conteúdo detalhado dos tesouros em `05-itens-e-loot.md`, seção 3.
 - Depois de derrotar a Rainha dos Ratos, o bueiro continua aberto para missões secundárias no Esgoto.
 
 ### Porto — demais mapas
-- No **porto**, o grupo embarca num barco de contrabandistas (ou num navio pirata contratado) e viaja até o mapa escolhido (uma tela de carregamento com o barco). As Ruínas do Reino do Arqueiro ficam a uma viagem curta, rio acima (proposta).
+- No **porto**, o grupo embarca num barco de contrabandistas (ou num navio pirata contratado) e viaja até o mapa escolhido (uma tela de carregamento com o barco). Do porto de Tortuga saem os mapas **2 a 5** e a viagem para a **Capital Real**; os mapas **6 a 10** saem do **Porto Real** (`04-1-capital-real.md`). As Ruínas do Reino do Arqueiro ficam a uma viagem curta, rio acima (proposta). Se há ou não uma área extra de estrada ("mapa afora") antes das Ruínas está **em aberto** (`03-2-areas.md`).
 - Antes de embarcar, o porto mostra o **elemento predominante do mapa e do chefe** (se a história já foi ouvida), para lembrar de comprar as poções — no Mercado Pirata que fica ali mesmo, no cais.
 - Só aparecem os mapas já liberados pelas missões principais.
 - Dentro do mapa, um ponto de retorno (o barco, ou um portal após o chefe) leva de volta para Tortuga.
