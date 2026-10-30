@@ -41,6 +41,7 @@
 ### Ao continuar
 - Na cidade: volta exatamente ao mesmo lugar.
 - No mapa: volta no **último checkpoint**. Monstros já mortos **ficam mortos** (decidido): o estado de cada grupo de encontro (dormindo, desperto, morto) e dos baús abertos é salvo na campanha. Itens e XP ganhos depois do checkpoint **não se perdem** (o personagem é salvo continuamente).
+- **Checkpoints alcançados:** lista de todos os checkpoints já atingidos na campanha (para o portal do Macumbeiro, `04-tortuga-e-missoes.md`, seção 5.1).
 - **Mapa explorado:** a parte já revelada de cada área é salva por jogador (máscara compacta) na campanha, para o mapa continuar revelado ao voltar (`09-interface.md`). Grupos de encontro mortos não voltam.
 
 ## 5. Co-op

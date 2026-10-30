@@ -59,6 +59,7 @@ Seguindo o padrão de Tortuga: **área externa** com o comércio ao ar livre e *
 | `alchemist` | Alquimista | Poções de vida/recurso maiores e **Poções Elementais Refinadas** (duram 2 expedições; mais caras) |
 | `royal_smith` | Ferreiro Real | Crafting avançado: **adicionar encaixes** a itens e **reforjar** um afixo; **refino** com pergaminhos de **Cobre e Prata** (e Ouro sob encomenda, com materiais raros) — `05-1-refino.md` |
 | `royal_stables` | Estábulo Real | Bardas finas para o cavalo do Cavaleiro; trocar a pelagem do cavalo |
+| `voodoo_priest` | **Macumbeiro** | Mesmo serviço de Tortuga: portal para checkpoints salvos mediante ouro e venda do Patuá de Retorno (`04-tortuga-e-missoes.md`, seção 5.1) |
 | `bank` | Banco | Acesso ao mesmo baú de Tortuga (baú compartilhado entre as cidades) |
 | `castle_courtyard` | **Pátio do Castelo** | Onde o **Bobo da Corte** entrega as missões |
 | `royal_portal` | **Portal Real** | Portal de pedra no cais do Porto Real; viagem para Tortuga e para os mapas liberados (mesma janela do Portal de Tortuga, `04-tortuga-e-missoes.md`, seção 5). Os mapas 6 a 10 saem daqui |

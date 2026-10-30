@@ -57,11 +57,12 @@ Tortuga é uma **cidade portuária suja, barulhenta e perigosa**, de ruas estrei
 | `blacksmith` | Ferreiro | Forja ao ar livre na Rua Principal | Crafting: encaixar gemas/runas, desmontar itens; **refino** com pergaminhos de **Ferro e Aço** (vende os pergaminhos desses tiers) — `05-1-refino.md` |
 | `stash` | Baú | Na Rua Principal (baú acorrentado, guardado por um capanga de aluguel) | Baú compartilhado entre os personagens do jogador (guardar valiosos para vender quando o preço subir) |
 | `respec` | Altar / Mestre | Canto da Rua Principal | Redistribuir pontos, pagando ouro |
+| `voodoo_priest` | **Macumbeiro** | Tenda de velas, ervas e ossos num beco da Rua Principal | **Abre portais para os pontos salvos** (checkpoints) mediante ouro e **vende o Patuá de Retorno** (seção 5.1) |
 | `sewer_entrance` | **Bueiro** | Rua Principal | Entrada do **Esgoto** (mapa 1); trancado até a missão do velho bêbado |
 | `port` | **Porto** e Portal de Tortuga | Fim da Rua Principal, no cais | **Portal** para os demais mapas (seção 5) + Mercado Pirata |
 | — | Becos, prostíbulos, casas de apostas | Laterais | Só ambientação (fachadas fechadas) |
 
-- Tortuga é pequena e compacta: tudo perto, para não perder tempo andando.
+- Tortuga é pequena e compacta: tudo perto, para não perder tempo andando. O Macumbeiro fica entre a Rua Principal e o porto.
 - Para usar uma loja, basta chegar perto da banca e interagir: abre a janela da loja sem trocar de cena.
 - No co-op, todos os jogadores ficam juntos na cidade do host.
 
@@ -226,11 +227,32 @@ Conteúdo detalhado dos tesouros em `05-itens-e-loot.md`, seção 3.
 - No fim do cais, no **porto**, fica o **Portal de Tortuga**: um círculo de pedra com runas antigas, de antes da guerra, que os piratas descobriram e usam para sumir com a carga (proposta de lenda). **A viagem entre mapas é feita por portais** (decisão do autor), sem barco jogável nem rota a pé.
 - Ao interagir, abre a **janela do portal** com os destinos já liberados: cada um mostra nome do mapa, nível recomendado, **elemento predominante do mapa e do chefe** (se a história já foi ouvida) e o estado (nova, em andamento, concluída). Serve de lembrete para comprar as Poções Elementais no Mercado Pirata, ali no cais.
 - Do Portal de Tortuga saem os mapas **2 a 5**, o **Portal Real** na Capital e a volta aos mapas já visitados. Os mapas **6 a 10** saem do Portal Real (`04-1-capital-real.md`). O Esgoto continua pelo **bueiro**.
-- O destino de cada mapa é sempre a **primeira área** do mapa, ou o **último checkpoint** alcançado nele (o jogador escolhe na janela). Ver `03-2-areas.md`.
+- O portal da cidade leva sempre à **primeira área** do mapa. Para ir direto a um **checkpoint mais adiante**, o grupo paga ao **Macumbeiro** (seção 5.1). Ver `03-2-areas.md`.
 - O "mapa afora" entre o Esgoto e as Ruínas deixa de existir: o portal leva direto às Ruínas.
 - **Co-op:** o host escolhe o destino; os outros jogadores recebem um aviso de confirmação e vão juntos (quem estiver longe do portal é puxado ao confirmar). Jogador que entra no meio surge ao lado do host.
 - **Volta:** dentro de cada mapa há um **portal de retorno** na entrada da primeira área e **depois de cada chefe**; leva ao portal da cidade de onde o grupo saiu (o elemento volta ao de origem). Ao voltar, a campanha é salva (`11-saves.md`).
 - Entre as áreas de um mapa, a passagem continua sendo uma porta, escada ou caminho normal (não é portal).
+
+### 5.1 O Macumbeiro
+| Campo | Valor |
+|---|---|
+| ID | `voodoo_priest` |
+| Onde fica | Tortuga: tenda num beco da Rua Principal. Capital Real: um canto discreto da Avenida Real, mais arrumado (mesmo NPC, outra aparência — proposta) |
+| Aparência | Roupas de pano colorido e colares de contas e dentes, cachimbo, velas acesas, galinhas e ossos pendurados; fala baixo e sorri demais |
+| Personalidade | Misterioso, cobra bem e nunca pergunta o motivo; "o outro lado também tem preço" |
+
+**Serviços:**
+- **Portal para ponto salvo:** lista todos os **checkpoints já alcançados** na campanha (agrupados por mapa, com nome da área, nível e elemento do mapa). O grupo escolhe um, **paga em ouro** e atravessa o portal que ele abre. Serve para voltar ao ponto onde parou depois de ir à cidade.
+  - Preço (proposta): 40 + 15 × nível da área, **por jogador** (ouro individual). Se um jogador não tiver ouro suficiente, o aviso mostra quem falta.
+  - No co-op, o host escolhe e os outros confirmam (como no portal comum).
+- **Vender o Patuá de Retorno** (`return_charm`): ver abaixo.
+- Mais caro que o portal comum, porque economiza a caminhada do início do mapa (a ideia é o jogador pagar pela comodidade).
+
+**Patuá de Retorno** (`return_charm`, consumível):
+- Usado no mapa (fora de combate, 5 s de canalização), abre um **portal de volta à cidade** de onde o grupo saiu, que fica aberto por 15 s para qualquer jogador do grupo atravessar.
+- Usar o patuá **salva o checkpoint** atual como ponto de volta (o jogador volta a ele com o Macumbeiro).
+- Preço (proposta): 150 de ouro; empilha até 5; cai também como loot raro.
+- No interior de uma arena de chefe com a luta em andamento o patuá **não funciona**.
 
 ## 6. Notas técnicas
 

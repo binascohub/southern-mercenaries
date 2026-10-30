@@ -8,7 +8,7 @@
 | ID | Categoria | Uso | Pode vender? |
 |---|---|---|---|
 | `equipment` | Equipamento | Equipar no personagem; **aparece no corpo** (arma, cabeça, corpo, mãos, pés, mão secundária, barda, anéis, amuleto) | Sim (preço baixo) |
-| `consumable` | Consumível | Poções de vida/recurso, **Poções Elementais**, bebidas da taverna, **pergaminhos de refino** (`05-1-refino.md`) | Sim |
+| `consumable` | Consumível | Poções de vida/recurso, **Poções Elementais**, bebidas da taverna, **Patuá de Retorno** (`return_charm`, vendido pelo Macumbeiro), **pergaminhos de refino** (`05-1-refino.md`) | Sim |
 | `material` | Material | Crafting no ferreiro (lista em `03-inimigos.md`, seção 13) e **cristais** de refino | Sim |
 | `valuable` | **Valioso** | Sem uso em combate; serve **só para vender** (piratas, joalheiro) | Sim (preço alto) |
 | `relic` | Relíquia | Item da história, guardado por cada chefe | Não |

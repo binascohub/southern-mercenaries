@@ -10,7 +10,7 @@
 - **Duração:** 10 a 20 min por área → **10 a 13 horas** de campanha.
 - **Checkpoint** na entrada de cada área (autosave, `11-saves.md`). A área do chefe sempre começa com checkpoint.
 - **Passagem entre áreas:** porta, escada, túnel ou trilha no fim da área. No co-op, a passagem só acontece quando **todos os jogadores** estão perto da saída (ou o host confirma, com contagem de 10 s).
-- **Volta à cidade:** pela **Pedra de Retorno** (proposta) no checkpoint de cada área — leva à cidade e depois traz de volta ao mesmo checkpoint.
+- **Volta à cidade:** pelo **Patuá de Retorno**, item vendido pelo **Macumbeiro** (`04-tortuga-e-missoes.md`, seção 5.1), ou pelos portais de retorno na entrada do mapa e depois de cada chefe. Para voltar ao mesmo checkpoint, o grupo paga ao Macumbeiro, que abre o portal para qualquer **ponto salvo**.
 - **Tipo de espaço** (para o Cavaleiro): **aberto** (luta montado), **estreito** (desmonta) ou **misto**.
 - **Segredos:** toda área tem ao menos 1 segredo (baú escondido, parede quebrável, passagem lateral) com loot extra.
 - **Exploração, sem ondas:** em cada área os monstros ficam em **grupos de encontro posicionados à mão**, dormindo até o jogador chegar perto; o mapa é **revelado conforme o jogador explora** (`03-inimigos.md`, "Encontros por exploração"; `09-interface.md`).
@@ -132,7 +132,7 @@
 
 - Divisão de 41 áreas: manter?
 - "Mapa afora": **resolvido** — a viagem entre mapas é por portais (`04-tortuga-e-missoes.md`, seção 5); não há área extra de estrada.
-- Pedra de Retorno nos checkpoints: manter?
+- Preço do portal do Macumbeiro e do Patuá de Retorno: manter as propostas?
 - No co-op, todos precisam estar na saída para passar de área, ou basta o host?
 - A vila queimada das Ruínas é a vila do Arqueiro?
 - Nomes dos mini-chefes.

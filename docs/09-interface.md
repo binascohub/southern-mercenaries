@@ -84,6 +84,7 @@ Abrem sobre o jogo no estilo medieval de pergaminho, madeira e ferro do 0 A.D. (
 | **Mapa** | Mapa da área atual, **só a parte já explorada**, checkpoints, aliados, objetivo |
 | **Troca entre jogadores** | Janela de troca confirmada pelos dois lados (`05-itens-e-loot.md`, seção 8) |
 | **Opções** | Vídeo, áudio, controles (`08-controles.md`), idioma, jogabilidade (seção 8) |
+| **Macumbeiro** | Lista dos checkpoints alcançados (por mapa e área, com nível e elemento), preço por jogador e botão de confirmar; aba para comprar o Patuá de Retorno |
 | **Portal** | Lista de destinos liberados com nível recomendado, elemento do mapa e do chefe, estado (nova / em andamento / concluída) e escolha entre primeira área ou último checkpoint; no co-op, o host escolhe e os outros confirmam |
 | **Pausa (Esc)** | Continuar, opções, voltar à cidade (se permitido), sair para o menu |
 
