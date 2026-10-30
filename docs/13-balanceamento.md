@@ -232,5 +232,5 @@ Exemplos (valor base → compra na loja certa): Espada de Aço comum nível 6 = 
 - Tempo de espera do caído no co-op: 45 s (proposta) e reaparecer com 50% de vida?
 - Valor dos valiosos: manter a tabela atual ou escalar por mapa?
 - Fator de chefe ao longo dos mapas: manter os valores da seção 2.4 ou usar uma curva mais suave?
-- Níveis acima de 20 e dificuldade maior em Novo Jogo+: propostos em `15-modos.md`.
+- Nível máximo continua 20 (novo jogo começa do zero); dificuldade maior: Pesadelo em `15-modos.md`.
 - A Poção de vida de 35% com recarga compartilhada de 15 s é suficiente ou deve haver tipos diferentes?
