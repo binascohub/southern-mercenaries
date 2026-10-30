@@ -106,7 +106,7 @@ Regra geral: **o cliente nunca decide resultado de jogo**; só pede e mostra.
 - **Personagem:** o arquivo fica no **PC do dono** (`11-saves.md`). Ao entrar, o cliente envia o personagem ao servidor; **durante a partida a cópia do servidor é a verdade** (XP, loot, ouro, refino, compras). O servidor envia as **mudanças** e o cliente grava no seu disco (escrita segura com backups).
 - **Campanha:** salva no PC do host (missões, bestiário, checkpoints alcançados, estado de grupos de encontro e baús, mapa explorado, estoque e preços dos mercados).
 - **Autosave:** nos checkpoints, ao voltar à cidade, depois do chefe e em missões; o servidor manda o comando "salvar agora" e cada cliente grava o seu personagem.
-- **Anti-trapaça leve (opcional):** o servidor guarda um **hash** do personagem e compara na entrada, para detectar arquivo editado. Como é jogo entre amigos, a política é **aviso**, não bloqueio (**em aberto**).
+- **Anti-trapaça leve (opcional):** o servidor guarda um **hash** do personagem e compara na entrada, para detectar arquivo editado. Como é jogo entre amigos, a política é **só aviso**, nunca bloqueio (**decidido**): o grupo vê uma mensagem e o jogador entra normalmente.
 
 ## 9. Entrar no meio, sair e cair
 
@@ -159,5 +159,4 @@ Aliado caído é reanimado segurando o botão por 3 s perto dele. O servidor con
 - Predição do próprio herói: necessária? (decidir em teste)
 - Portas padrão (`24567` jogo, `24568` descoberta): manter?
 - Entrar no meio durante luta de chefe: esperar na borda da arena (proposta)?
-- Hash do personagem contra arquivo editado: só aviso (proposta) ou bloqueio?
 - Criptografia: continuar sem na v1.0?

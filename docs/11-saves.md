@@ -49,7 +49,7 @@
 - A campanha é **do host**. Para continuar, o host abre **Carregar campanha** e hospeda; os amigos entram com os seus personagens. **Só o host pode continuar a campanha** — sozinho ou com menos jogadores; os clientes não têm a campanha no PC deles e só jogam quando o host hospeda.
 - O host pode continuar a campanha com **qualquer número de jogadores** (até sozinho); a dificuldade se ajusta.
 - Um jogador que entra pela primeira vez numa campanha em andamento começa onde o grupo está (proposta: recebe as pistas do bestiário já descobertas pelo grupo).
-- Os **personagens dos clientes são salvos no PC de cada cliente** (o servidor envia as mudanças: XP, loot, ouro, e o cliente grava). Proposta anti-trapaça leve: o servidor guarda um resumo (hash) do personagem para detectar arquivo editado — opcional, já que é jogo entre amigos.
+- Os **personagens dos clientes são salvos no PC de cada cliente** (o servidor envia as mudanças: XP, loot, ouro, e o cliente grava). Proposta anti-trapaça leve: o servidor guarda um resumo (hash) do personagem para detectar arquivo editado — opcional, já que é jogo entre amigos; **só avisa, nunca bloqueia** (decidido).
 - Se o host cair: os clientes voltam ao menu com o personagem já salvo; o host recarrega a campanha do último autosave.
 - Se um cliente cair: o personagem dele já está salvo; ele pode reentrar na mesma partida (o herói fica parado e invulnerável por 30 s esperando, `07-rede.md`, seção 9).
 
