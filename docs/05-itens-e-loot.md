@@ -228,7 +228,8 @@ item = item_base (tipo, slot, classe)
 
 ## 8. Inventário
 
-- Bolsa por personagem com espaços (proposta: 40). Valiosos, pergaminhos e cristais empilham.
+- Bolsa por personagem com **40 espaços** (decidido). Pode ser **expandida comprando bolsas maiores** nas lojas das cidades (Tortuga e Capital; as da Capital são maiores e mais caras). Valiosos, pergaminhos e cristais empilham.
+- **Troca entre jogadores (decidido):** no co-op, jogadores do grupo podem trocar itens entre si, com janela de troca confirmada pelos dois lados. Troca só entre jogadores presentes na mesma partida; o servidor valida.
 - Baú em Tortuga (e na Capital, o **banco**) compartilhado entre os personagens do mesmo jogador.
 - Loot e ouro individuais: cada jogador vê e pega só o seu.
 
@@ -236,7 +237,5 @@ item = item_base (tipo, slot, classe)
 
 - Raridade **Lendário** só nos tesouros dos chefes: manter?
 - Itens únicos exclusivos do Mercado Pirata: manter?
-- Jogadores podem trocar itens entre si no co-op?
-- Tamanho da bolsa (proposta: 40 espaços)?
 - Faixas de nível e multiplicadores de cada material: manter?
-- Equipamentos de Ouro só sob encomenda no Ferreiro Real e nos tesouros?
+- Preço e tamanho das bolsas expandidas (espaços extras por bolsa e custo)?

@@ -46,7 +46,7 @@ Existem pergaminhos **de arma** e **de armadura**, um para cada **material (tier
 
 - Antes de tentar +4 ou +5, o jogo mostra um aviso com a chance: "Este refino pode falhar e destruir o item. Continuar?"
 - Efeito visual e sonoro diferentes para sucesso (o brilho sobe) e falha (o item racha e explode em cristais).
-- **Proposta:** itens **únicos** e **lendários** nunca se quebram com pergaminho normal — na falha voltam a +0 (para ninguém perder o lendário de um chefe). Em aberto.
+- **Decidido:** itens **únicos** e **lendários** nunca se quebram com pergaminho normal — na falha voltam a +0 (para ninguém perder o lendário de um chefe).
 
 ## 4. Bônus do refino
 
@@ -60,7 +60,7 @@ Existem pergaminhos **de arma** e **de armadura**, um para cada **material (tier
 
 - O bônus vale só para os **valores base**; os afixos da raridade não mudam.
 - Um item +5 é forte, mas o próximo material ainda é melhor: um Aço +5 (x2,3 × 1,35 ≈ x3,1) empata com um Cobre +0 (x3,1) — então vale trocar e refinar o novo.
-- **Bônus de conjunto (proposta):** com **todas as peças de armadura em +4 ou mais**, o herói ganha +5% de vida.
+- **Bônus de conjunto (decidido):** com **todas as peças de armadura em +4 ou mais**, o herói ganha +5% de vida.
 
 ## 5. A aura em volta do herói
 
@@ -86,7 +86,7 @@ Existem pergaminhos **de arma** e **de armadura**, um para cada **material (tier
 | Ar | Amarelo-elétrico / branco | Faíscas e pequenos raios |
 
 - Usar as **mesmas cores dos elementos** da interface e das habilidades (`02-0-elementos.md`), para o jogador reconhecer de longe o elemento de cada aliado.
-- **Com Poção Elemental ativa**, a aura muda para a cor do elemento temporário enquanto a poção durar (proposta) — assim o grupo vê quem está com qual elemento.
+- **A aura não muda com a Poção Elemental** (decisão do autor): continua na cor do **elemento de origem** do herói. O elemento temporário aparece no brilho da arma e nos efeitos das habilidades.
 - Lendários podem acrescentar um detalhe próprio à aura (proposta), mas a cor base continua sendo a do elemento.
 - No **Cavaleiro montado**, a aura envolve herói e cavalo.
 - A aura não pode atrapalhar a leitura do combate: fica **atrás** dos efeitos de habilidade e dos avisos de ataque dos monstros, com transparência.
@@ -99,16 +99,13 @@ Existem pergaminhos **de arma** e **de armadura**, um para cada **material (tier
 
 ## 7. Implementação (Godot, leve para vídeo integrado)
 
-- **Aura:** um plano/cilindro simples em volta do herói com **shader aditivo** (emissão + transparência); cor pelo elemento atual e intensidade pelo refino da arma. **Sem luzes dinâmicas** extras.
+- **Aura:** um plano/cilindro simples em volta do herói com **shader aditivo** (emissão + transparência); cor pelo elemento de origem e intensidade pelo refino da arma. **Sem luzes dinâmicas** extras.
 - +4: pulsar com seno no shader. +4 e +5: poucas partículas (GPUParticles, 12–24 por herói, com a forma do elemento); somem quando a câmera está longe ou na qualidade "baixo".
 - Opção em **Vídeo → Aura dos heróis: completa / reduzida / desligada**.
 - **O sorteio do refino é feito no servidor (host)**, nunca no cliente; o resultado é salvo no item, dentro do save do personagem (`11-saves.md`), logo em seguida (para não dar para "fechar o jogo e tentar de novo").
-- Pela rede vão só o nível da aura e o elemento atual; o cliente mostra.
+- Pela rede vão só o nível da aura e o elemento de origem; o cliente mostra.
 - Dados: `items/refine.json` (chances, bônus) e `items/scrolls.json`; cores em `elements.json`.
 
 ## 8. Decisões em aberto
 
-- Chances de +4 (65%) e +5 (45%): manter?
-- Item normal que falha **quebra** (como no Lineage 2) — manter? Únicos e lendários protegidos?
-- Aura muda de cor com a Poção Elemental (proposta)?
-- Bônus de conjunto de armadura +4: manter?
+Sem pendências. Decididos pelo autor: chances de +4 (65%) e +5 (45%); item normal que falha quebra (únicos e lendários protegidos); aura **não** muda com a Poção Elemental; bônus de conjunto de armadura +4.
