@@ -14,6 +14,8 @@ var _name: LineEdit
 var _sex: OptionButton
 var _class: OptionButton
 var _class_ids: Array[String] = []
+## Elemento de origem (02-0-elementos.md, seção 1): escolhido na criação, não muda.
+var _element: OptionButton
 var _create_button: Button
 var _full: Label
 
@@ -34,6 +36,10 @@ func _ready() -> void:
 		_class_ids.append(id)
 		_class.add_item(GameData.classes[id].name_key)
 	_create.add_child(_class)
+	_element = OptionButton.new()
+	for id in Elements.ALL:
+		_element.add_item(Elements.data(id).name_key)
+	_create.add_child(_element)
 	_sex = OptionButton.new()
 	_sex.add_item("CHAR_SEX_MALE")
 	_sex.add_item("CHAR_SEX_FEMALE")
@@ -67,7 +73,8 @@ func _on_open() -> void:
 		button.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 		button.custom_minimum_size = Vector2(320, 44)
 		button.text = tr("CHAR_ENTRY").format({"name": summary.name,
-			"class": tr(GameData.get_class_data(summary.class_id).name_key), "level": summary.level})
+			"class": tr(GameData.get_class_data(summary.class_id).name_key), "level": summary.level,
+			"element": tr(Elements.data(summary.element).name_key)})
 		button.pressed.connect(_choose.bind(summary.id))
 		row.add_child(button)
 		row.add_child(delete_button(func() -> void:
@@ -97,7 +104,8 @@ func _choose(id: String) -> void:
 func _create_character() -> void:
 	if not SaveSystem.can_create_character():
 		return
-	var c := CharacterData.create(_class_ids[_class.selected], CharacterData.SEXES[_sex.selected], _name.text)
+	var c := CharacterData.create(_class_ids[_class.selected], CharacterData.SEXES[_sex.selected], _name.text,
+		Elements.ALL[_element.selected])
 	SaveSystem.save_character(c)
 	Session.select_character(c)
 	close()

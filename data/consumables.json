@@ -1,5 +1,5 @@
 {
-  "_comment": "Consumíveis (13-balanceamento.md, 5.3). As poções de vida e recurso dividem a mesma recarga.",
+  "_comment": "Consumíveis (13-balanceamento.md, 5.3). As poções de vida e recurso dividem a mesma recarga. Poção Elemental (02-0-elementos.md, seção 4): 100 + 25 × nível, sem recarga.",
   "potion_health": {
     "name_key": "ITEM_POTION_HEALTH",
     "stack": 20,
@@ -17,5 +17,41 @@
     "cooldown": 15.0,
     "price_base": 10,
     "price_per_level": 5
+  },
+  "elemental_potion_water": {
+    "name_key": "ITEM_POTION_ELEMENTAL_WATER",
+    "stack": 10,
+    "restore": "element",
+    "element": "water",
+    "cooldown": 0.0,
+    "price_base": 100,
+    "price_per_level": 25
+  },
+  "elemental_potion_fire": {
+    "name_key": "ITEM_POTION_ELEMENTAL_FIRE",
+    "stack": 10,
+    "restore": "element",
+    "element": "fire",
+    "cooldown": 0.0,
+    "price_base": 100,
+    "price_per_level": 25
+  },
+  "elemental_potion_air": {
+    "name_key": "ITEM_POTION_ELEMENTAL_AIR",
+    "stack": 10,
+    "restore": "element",
+    "element": "air",
+    "cooldown": 0.0,
+    "price_base": 100,
+    "price_per_level": 25
+  },
+  "elemental_potion_earth": {
+    "name_key": "ITEM_POTION_ELEMENTAL_EARTH",
+    "stack": 10,
+    "restore": "element",
+    "element": "earth",
+    "cooldown": 0.0,
+    "price_base": 100,
+    "price_per_level": 25
   }
 }

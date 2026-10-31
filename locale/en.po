@@ -552,7 +552,7 @@ msgid "CHAR_SEX_FEMALE"
 msgstr "Female"
 
 msgid "CHAR_ENTRY"
-msgstr "{name} — {class}, level {level}"
+msgstr "{name} — {element} {class}, level {level}"
 
 msgid "CHAR_NONE"
 msgstr "No character yet"
@@ -656,3 +656,81 @@ msgstr "All {max} character slots are in use. Delete a character to create a new
 
 msgid "CAMPAIGN_SLOTS_FULL"
 msgstr "All {max} campaign slots are in use. Delete one in Load campaign to start a new one."
+
+msgid "ELEMENT_FIRE"
+msgstr "Fire"
+
+msgid "ELEMENT_WATER"
+msgstr "Water"
+
+msgid "ELEMENT_AIR"
+msgstr "Air"
+
+msgid "ELEMENT_EARTH"
+msgstr "Earth"
+
+msgid "STATE_BURNING"
+msgstr "Burning"
+
+msgid "STATE_SOAKED"
+msgstr "Soaked"
+
+msgid "STATE_FROZEN"
+msgstr "Frozen"
+
+msgid "STATE_SHOCKED"
+msgstr "Shocked"
+
+msgid "STATE_KNOCKED_DOWN"
+msgstr "Knocked down"
+
+msgid "STATE_STUNNED"
+msgstr "Stunned"
+
+msgid "STATE_SLOWED"
+msgstr "Slowed"
+
+msgid "STATE_MUD"
+msgstr "Mud"
+
+msgid "STATE_STEAM"
+msgstr "Steam"
+
+msgid "COMBO_ELECTROCUTE"
+msgstr "Electrocute!"
+
+msgid "COMBO_WILDFIRE"
+msgstr "Wildfire!"
+
+msgid "COMBO_MUD"
+msgstr "Mud!"
+
+msgid "COMBO_STEAM"
+msgstr "Steam!"
+
+msgid "COMBO_MELT"
+msgstr "Melt!"
+
+msgid "ITEM_POTION_ELEMENTAL_FIRE"
+msgstr "Elemental Potion (Fire)"
+
+msgid "ITEM_POTION_ELEMENTAL_WATER"
+msgstr "Elemental Potion (Water)"
+
+msgid "ITEM_POTION_ELEMENTAL_AIR"
+msgstr "Elemental Potion (Air)"
+
+msgid "ITEM_POTION_ELEMENTAL_EARTH"
+msgstr "Elemental Potion (Earth)"
+
+msgid "ITEM_ELEMENTAL_EFFECT"
+msgstr "Use {element} until you return to Tortuga"
+
+msgid "HUD_ELEMENT"
+msgstr "Element: {element}"
+
+msgid "HUD_ELEMENT_POTION"
+msgstr "(potion)"
+
+msgid "HUD_POTION_ELEMENTAL"
+msgstr "{key} Elemental ×{count}"

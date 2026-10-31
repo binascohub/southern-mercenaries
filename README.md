@@ -5,7 +5,7 @@ Dark co-op action RPG with a top-down camera, inspired by *Baldur's Gate: Dark A
 **Languages:** English · Español · Português (BR)
 
 ## Status
-**Phase 3 — RPG systems (in progress)** (`docs/01-escopo.md`, section 9). Not the game yet: the technical base the next phases build on.
+**Phase 4 — Elements (in progress)** (`docs/01-escopo.md`, section 9; `docs/02-0-elementos.md`). Phases 1–3 are done. Not the game yet: the technical base the next phases build on.
 
 - **Combat (phase 1):** the Mage with the top-down camera: basic attack, charged strong attack and dodge (`docs/02-1-mago.md`).
 - **Test area:** a start room (checkpoint), a corridor and two chambers to explore. Sewer rats are placed in **encounter groups** that sleep until a player gets close (~15 m) and alert nearby groups; dead monsters stay dead (`docs/03-inimigos.md`, no waves). Bites have a visible wind-up.
@@ -16,6 +16,12 @@ Dark co-op action RPG with a top-down camera, inspired by *Baldur's Gate: Dark A
   - A client that drops leaves its hero standing still and invulnerable for 30 s; rejoining in time takes the same hero back (`docs/07-rede.md`, section 9).
   - A downed player is revived by an ally holding *Interact* for 3 s (interrupted if the reviver is hit); if everyone falls, back to the checkpoint (surviving groups go back to sleep).
   - No pause in co-op; gamepad disconnect only shows a warning.
+- **Elements (phase 4):**
+  - Every character picks an origin element at creation (Water, Fire, Air, Earth); every monster has one too, shown as a colored gem above it.
+  - Weakness cycle Water > Fire > Earth > Air > Water: +50% damage on the weakness, -50% on the same element. Damage numbers are bigger and in the element's color on a weakness, small and gray when resisted; criticals (5% base, x1.5) end with "!".
+  - The strong attack applies the element's basic state: burning (damage over time), soaked (slower), shocked (+15% Air damage) or a 30% chance to stun (Earth). Frozen, knocked down and stunned stop monsters; bosses get a slow instead.
+  - Combos between players: Electrocute (soaked + Air), Wildfire (burning + Air spreads the fire), Mud (soaked + Earth: slowing area), Steam (burning + Water: area where monsters miss 30% of attacks), Melt (stunned + Fire, +30%).
+  - **Elemental Potion** (3 / D-pad right): switches the element until returning to Tortuga; for now they drop as loot, until the Pirate Market (phase 6).
 - **RPG systems (phase 3):**
   - **Character sheet:** level up to 20, XP to the next level = 700 × level, +5 attribute points and +1 skill point per level; health, mana, power and armor from `docs/13-balanceamento.md`. The host validates the character a player brings (no edited attributes, items or levels).
   - **Items as data** (`data/*.json`): materials from cloth/wood to gold, rarities with affixes, Mage equipment, potions and valuables. Item names are built from translated parts.
@@ -40,7 +46,7 @@ godot --path .        # play
 godot -e --path .     # open in the editor
 ```
 
-Default controls — keyboard: WASD move, mouse aim, left click attack (hold for strong attack), Space dodge, right click / G interact, Z pick up all, 1/2 potions, I inventory, Esc pause. Gamepad: left stick move, right stick aim, RT attack, LT dodge, RB pick up all, D-pad down/up potions, Back inventory, Start pause.
+Default controls — keyboard: WASD move, mouse aim, left click attack (hold for strong attack), Space dodge, right click / G interact, Z pick up all, 1/2 potions, 3 Elemental Potion, I inventory, Esc pause. Gamepad: left stick move, right stick aim, RT attack, LT dodge, RB pick up all, D-pad down/up potions, D-pad right Elemental Potion, Back inventory, Start pause.
 
 ## Tests
 ```bash
@@ -49,6 +55,7 @@ godot --headless --path . --script res://tests/run_tests.gd            # transla
 godot --headless --path . res://tests/rpg_tests.tscn                    # RPG formulas, bag, validation, saves, edited character, trade
 godot --headless --path . --fixed-fps 60 res://tests/smoke_arena.tscn  # a bot clears every encounter, collects its loot, equips an item and checks the save
 godot --headless --path . res://tests/smoke_arena.tscn -- revive        # downed, revive, back to checkpoint
+godot --headless --path . res://tests/smoke_arena.tscn -- elements      # states, combos, burning, steam area, Elemental Potion on real monsters
 godot --headless --path . res://tests/smoke_arena.tscn -- trade         # invite, offers, confirmations, trade, cancel by distance
 tests/net_smoke.sh godot                                                # host + client together; version refusal; drop and rejoin
 ```

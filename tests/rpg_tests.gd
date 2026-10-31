@@ -26,6 +26,10 @@ func _ready() -> void:
 	_test_background_saves()
 	_test_edited_character()
 	_test_trade()
+	_test_elements()
+	_test_states()
+	_test_combos()
+	_test_character_element()
 	_test_names()
 	_clean(TEST_ROOT)
 	if _failures == 0:
@@ -287,6 +291,136 @@ func _test_trade() -> void:
 	var ia2: int = a.data.inventory.find(ring)
 	_check(Trade.swap(a, {"items": [ia2], "gold": 0}, b, {"items": [], "gold": 0}) == "TRADE_NO_ROOM", "bolsa cheia recusa a troca")
 	_check(b.data.inventory == bag_before and a.data.inventory.find(ring) >= 0, "bolsa cheia não perde nem duplica item")
+
+
+# --- Fase 4: elementos (02-0-elementos.md) ---------------------------------------
+
+func _test_elements() -> void:
+	# Ciclo: Água > Fogo > Terra > Ar > Água.
+	for pair in [["water", "fire"], ["fire", "earth"], ["earth", "air"], ["air", "water"]]:
+		_near(Elements.multiplier(pair[0], pair[1]), 1.5, "%s contra %s (fraqueza)" % pair)
+		_check(Elements.weakness_of(pair[1]) == pair[0], "fraqueza de %s é %s" % [pair[1], pair[0]])
+	for id in Elements.ALL:
+		_near(Elements.multiplier(id, id), 0.5, "%s contra %s (mesmo elemento)" % [id, id])
+	_near(Elements.multiplier("fire", "water"), 1.0, "fogo contra água: normal")
+	_near(Elements.multiplier("earth", "fire"), 1.0, "terra contra fogo: normal")
+	_near(Elements.multiplier("", "earth"), 1.0, "sem elemento: normal")
+
+
+func _test_states() -> void:
+	var s := StatusSet.new()
+	s.apply("soaked", 4.0)
+	s.tick(3.0)
+	s.apply("soaked", 4.0)
+	s.tick(3.0)
+	_check(s.has("soaked"), "reaplicar renova a duração")
+	s.tick(1.5)
+	_check(not s.has("soaked"), "estado acaba")
+	_near(StatusSet.new().move_mult(), 1.0, "sem estado: velocidade normal")
+	s.apply("soaked", 4.0)
+	_near(s.move_mult(), 0.8, "molhado: -20% de velocidade")
+	s.apply("mud", 1.0)
+	_near(s.move_mult(), 0.6, "lentidões não somam: vale a maior (lama 40%)")
+	_check(s.can_act(), "molhado ainda age")
+	s.apply("frozen", 2.0)
+	_check(not s.can_act(), "congelado não age")
+	# Queimando: um tique por segundo durante 3 s.
+	var burn := StatusSet.new()
+	burn.apply("burning", 3.0, 10.0)
+	var total := 0.0
+	for i in 12:
+		total += burn.tick(0.25)
+	_near(total, 30.0, "queimando 3 s × 10 por segundo")
+	_check(not burn.has("burning"), "queimando acaba")
+	# Imunidades e chefes.
+	var t := StatusSet.new()
+	_check(Elements.apply_state(t, "burning", "fire", false, 5.0) == "", "monstro de fogo não queima")
+	_check(Elements.apply_state(t, "soaked", "water", false) == "", "monstro de água não fica molhado")
+	_check(Elements.apply_state(t, "stunned", "earth", true) == "slowed" and not t.has("stunned"), "chefe: lentidão no lugar de atordoar")
+	var mask := StatusSet.new()
+	mask.apply("frozen", 1.0)
+	mask.apply("burning", 1.0)
+	var ids := StatusSet.ids_from_mask(mask.mask())
+	_check(ids.size() == 2 and "frozen" in ids and "burning" in ids, "estados viajam como bits")
+
+
+func _test_combos() -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 7
+	var s := StatusSet.new()
+	# Golpe forte de Água num monstro de Terra: dano normal, deixa molhado.
+	var r := Elements.resolve_hit({"damage": 100.0, "element": "water", "state": "soaked", "crit_chance": 0.0}, "earth", s, false, rng)
+	_near(r.damage, 100.0, "água contra terra: dano normal")
+	_check(r.effect == "normal" and s.has("soaked"), "ataque forte de água molha")
+	# Ar completa: Eletrocutar (+50%, atordoa 1 s, consome o molhado).
+	r = Elements.resolve_hit({"damage": 100.0, "element": "air", "state": "", "crit_chance": 0.0}, "earth", s, false, rng)
+	_check(r.combo == "electrocute", "molhado + ar = Eletrocutar")
+	_near(r.damage, 150.0, "Eletrocutar: +50% (ar contra terra é dano normal)")
+	_check(not s.has("soaked") and s.has("stunned"), "consome o molhado e atordoa")
+	# Fogo num atordoado: Fundir (+30%) somado à fraqueza (terra é fraca a fogo).
+	r = Elements.resolve_hit({"damage": 100.0, "element": "fire", "state": "", "crit_chance": 0.0}, "earth", s, false, rng)
+	_check(r.combo == "melt" and r.effect == "weak", "atordoado + fogo = Fundir, na fraqueza")
+	_near(r.damage, 100.0 * 1.5 * 1.3, "fraqueza e combo somam")
+	# Incêndio: queimando + ar espalha o fogo.
+	var b := StatusSet.new()
+	b.apply("burning", 3.0, 12.0)
+	r = Elements.resolve_hit({"damage": 10.0, "element": "air", "state": "", "crit_chance": 0.0}, "earth", b, false, rng)
+	_check(r.combo == "wildfire" and is_equal_approx(r.spread_dps, 12.0) and not b.has("burning"), "queimando + ar = Incêndio")
+	# Vapor e Lama viram áreas.
+	b.apply("burning", 3.0, 5.0)
+	r = Elements.resolve_hit({"damage": 10.0, "element": "water", "state": "", "crit_chance": 0.0}, "earth", b, false, rng)
+	_check(r.combo == "steam" and r.zone.get("state", "") == "steam", "queimando + água = Vapor (área)")
+	b.apply("soaked", 4.0)
+	r = Elements.resolve_hit({"damage": 10.0, "element": "earth", "state": "", "crit_chance": 0.0}, "air", b, false, rng)
+	_check(r.combo == "mud" and r.zone.get("state", "") == "mud" and is_equal_approx(r.zone.duration, 5.0), "molhado + terra = Lama (área de 5 s)")
+	# Eletrizado: +15% de dano de Ar; congelado: crítico garantido (x1,5).
+	var e := StatusSet.new()
+	e.apply("shocked", 4.0)
+	r = Elements.resolve_hit({"damage": 100.0, "element": "air", "state": "", "crit_chance": 0.0}, "fire", e, false, rng)
+	_near(r.damage, 115.0, "eletrizado: +15% de ar")
+	var f := StatusSet.new()
+	f.apply("frozen", 2.0)
+	r = Elements.resolve_hit({"damage": 100.0, "element": "fire", "state": "", "crit_chance": 0.0}, "air", f, false, rng)
+	_check(r.crit, "congelado: crítico garantido")
+	_near(r.damage, 150.0, "crítico x1,5")
+	# Mesmo elemento: metade, número cinza.
+	r = Elements.resolve_hit({"damage": 100.0, "element": "earth", "state": "", "crit_chance": 0.0}, "earth", StatusSet.new(), false, rng)
+	_check(r.effect == "resist", "mesmo elemento resiste")
+	_near(r.damage, 50.0, "resistência: -50%")
+	# Queimando do ataque forte: 30% do golpe por segundo.
+	var fb := StatusSet.new()
+	r = Elements.resolve_hit({"damage": 100.0, "element": "fire", "state": "burning", "crit_chance": 0.0}, "air", fb, false, rng)
+	_near(fb.dps("burning"), 30.0, "queimando = 30% do golpe por segundo")
+	# Terra: 30% de chance de atordoar.
+	var stuns := 0
+	for i in 2000:
+		var st := StatusSet.new()
+		Elements.resolve_hit({"damage": 1.0, "element": "earth", "state": "stunned", "crit_chance": 0.0}, "air", st, false, rng)
+		stuns += int(st.has("stunned"))
+	_check(stuns > 500 and stuns < 700, "terra atordoa ~30%% das vezes (%d de 2000)" % stuns)
+
+
+func _test_character_element() -> void:
+	var c := CharacterData.create("mage", "female", "Orana", "water")
+	_check(c.current_element() == "water" and c.validate().is_empty(), "criado com elemento de Água")
+	_check(c.drink_elemental("fire") and c.current_element() == "fire" and c.data.element == "water", "Poção de Fogo troca o elemento; o de origem não muda")
+	_check(not c.drink_elemental("fire"), "beber o mesmo elemento de novo não faz nada")
+	_check(c.drink_elemental("water") and c.data.element_potion == "", "poção do elemento de origem desfaz a troca")
+	c.drink_elemental("air")
+	c.end_expedition()
+	_check(c.current_element() == "water", "voltar a Tortuga encerra a poção")
+	var bad := c.to_dict()
+	bad.element = "lava"
+	_check(CharacterData.from_dict(bad) == null, "elemento inexistente é recusado")
+	# Ficha salva antes da Fase 4 (sem elemento): vira Fogo e não é acusada de editada.
+	var old := CharacterData.create("mage", "male", "Oren")
+	old.data.erase("element")
+	old.data.erase("element_potion")
+	old.seal()
+	var migrated := CharacterData.from_dict(JSON.parse_string(JSON.stringify(old.to_dict())))
+	_check(migrated != null and migrated.data.element == "fire" and not migrated.is_edited(), "ficha antiga ganha Fogo sem ser acusada")
+	_near(Items.value(Items.stack(Items.CONSUMABLE, "elemental_potion_fire")), 125.0, "Poção Elemental: 100 + 25 × nível")
+	_near(c.crit_chance(), 0.05, "crítico base 5%")
 
 
 func _test_names() -> void:

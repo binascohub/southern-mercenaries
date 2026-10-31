@@ -655,3 +655,81 @@ msgstr ""
 
 msgid "CAMPAIGN_SLOTS_FULL"
 msgstr ""
+
+msgid "ELEMENT_FIRE"
+msgstr ""
+
+msgid "ELEMENT_WATER"
+msgstr ""
+
+msgid "ELEMENT_AIR"
+msgstr ""
+
+msgid "ELEMENT_EARTH"
+msgstr ""
+
+msgid "STATE_BURNING"
+msgstr ""
+
+msgid "STATE_SOAKED"
+msgstr ""
+
+msgid "STATE_FROZEN"
+msgstr ""
+
+msgid "STATE_SHOCKED"
+msgstr ""
+
+msgid "STATE_KNOCKED_DOWN"
+msgstr ""
+
+msgid "STATE_STUNNED"
+msgstr ""
+
+msgid "STATE_SLOWED"
+msgstr ""
+
+msgid "STATE_MUD"
+msgstr ""
+
+msgid "STATE_STEAM"
+msgstr ""
+
+msgid "COMBO_ELECTROCUTE"
+msgstr ""
+
+msgid "COMBO_WILDFIRE"
+msgstr ""
+
+msgid "COMBO_MUD"
+msgstr ""
+
+msgid "COMBO_STEAM"
+msgstr ""
+
+msgid "COMBO_MELT"
+msgstr ""
+
+msgid "ITEM_POTION_ELEMENTAL_FIRE"
+msgstr ""
+
+msgid "ITEM_POTION_ELEMENTAL_WATER"
+msgstr ""
+
+msgid "ITEM_POTION_ELEMENTAL_AIR"
+msgstr ""
+
+msgid "ITEM_POTION_ELEMENTAL_EARTH"
+msgstr ""
+
+msgid "ITEM_ELEMENTAL_EFFECT"
+msgstr ""
+
+msgid "HUD_ELEMENT"
+msgstr ""
+
+msgid "HUD_ELEMENT_POTION"
+msgstr ""
+
+msgid "HUD_POTION_ELEMENTAL"
+msgstr ""

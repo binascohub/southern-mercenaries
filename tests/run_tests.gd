@@ -134,9 +134,26 @@ func _check_data() -> void:
 			if not classes[id].has(field):
 				_fail("classe %s sem %s" % [id, field])
 	for id in monsters:
-		for field in ["name_key", "max_health", "move_speed", "damage", "attack_range"]:
+		for field in ["name_key", "max_health", "move_speed", "damage", "attack_range", "element"]:
 			if not monsters[id].has(field):
 				_fail("monstro %s sem %s" % [id, field])
+	# Elementos: ciclo fechado (cada um vence exatamente um) e estados/combos que existem.
+	var elements := _json("res://data/elements.json")
+	var beaten := []
+	for id in elements.elements:
+		var e: Dictionary = elements.elements[id]
+		if not elements.elements.has(e.beats) or e.beats == id or e.beats in beaten:
+			_fail("ciclo de elementos quebrado em %s" % id)
+		beaten.append(e.beats)
+		if not elements.states.has(e.basic_state):
+			_fail("estado básico inexistente em %s" % id)
+	for id in elements.combos:
+		var combo: Dictionary = elements.combos[id]
+		if not elements.states.has(combo.needs) or not elements.elements.has(combo.element):
+			_fail("combo %s mal definido" % id)
+	for id in monsters:
+		if not elements.elements.has(monsters[id].get("element", "")):
+			_fail("monstro %s com elemento inexistente" % id)
 	for id in arenas:
 		if not classes.has(arenas[id].get("player_class", "")):
 			_fail("arena %s usa classe inexistente" % id)

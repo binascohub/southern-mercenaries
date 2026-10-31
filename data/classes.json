@@ -33,6 +33,7 @@
       "projectile_speed": 16.0,
       "radius": 0.45,
       "charge_time": 1.0,
+    "applies_state": true,
       "pierce": 1
     },
     "evade": {

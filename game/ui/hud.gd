@@ -30,6 +30,7 @@ var _local_alive := true
 var _xp_bar: ProgressBar
 var _xp_label: Label
 var _gold_label: Label
+var _element_label: Label
 var _potions: Label
 var _toasts: VBoxContainer
 var _saving: Label
@@ -91,6 +92,11 @@ func _refresh_character() -> void:
 	_xp_bar.value = int(c.data.xp)
 	_xp_label.text = tr("HUD_LEVEL_XP").format({"level": c.data.level, "xp": c.data.xp, "next": needed})
 	_gold_label.text = tr("HUD_GOLD").format({"gold": c.data.gold})
+	# Elemento em uso; com Poção Elemental ativa, avisa que é temporário.
+	var element := c.current_element()
+	_element_label.text = tr("HUD_ELEMENT").format({"element": tr(Elements.data(element).name_key)}) \
+		+ (" " + tr("HUD_ELEMENT_POTION") if c.data.get("element_potion", "") != "" else "")
+	_element_label.add_theme_color_override("font_color", Elements.color(element))
 
 
 func set_progress(cleared: int, total: int) -> void:
@@ -159,6 +165,12 @@ func _process(_delta: float) -> void:
 			"health_key": InputDevice.prompt(&"potion_health"), "health": c.count_of("potion_health"),
 			"resource_key": InputDevice.prompt(&"potion_mana"), "resource": c.count_of("potion_resource"),
 		}) + cooldown
+		var elemental := 0
+		for id in Elements.ALL:
+			elemental += c.count_of("elemental_potion_" + id)
+		if elemental > 0:
+			_potions.text += "   " + tr("HUD_POTION_ELEMENTAL").format({
+				"key": InputDevice.prompt(&"potion_elemental"), "count": elemental})
 
 
 func _on_health(current: float, maximum: float) -> void:
@@ -242,6 +254,8 @@ func _build() -> void:
 	_gold_label = _label(18)
 	_gold_label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.35))
 	bars.add_child(_gold_label)
+	_element_label = _label(18)
+	bars.add_child(_element_label)
 
 	# Faixa de XP na base da tela.
 	var xp_box := VBoxContainer.new()

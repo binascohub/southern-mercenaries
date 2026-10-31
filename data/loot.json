@@ -1,5 +1,5 @@
 {
-  "_comment": "Drops por jogador (loot individual, 07-rede.md seção 7). Ouro: comum 0,5 × nível do monstro (13-balanceamento.md 5.1), com variação. Chances são propostas para ajustar em teste.",
+  "_comment": "Drops por jogador (loot individual, 07-rede.md seção 7). Ouro: comum 0,5 × nível do monstro (13-balanceamento.md 5.1), com variação. Chances são propostas para ajustar em teste. elemental_potion_share: parte das poções que cai como Poção Elemental, provisório até o Mercado de Tortuga (Fase 6).",
   "common": {
     "gold": {
       "chance": 0.6,
@@ -14,6 +14,7 @@
       "rare": 5
     },
     "potion_chance": 0.1,
+    "elemental_potion_share": 0.25,
     "valuable_chance": 0.06
   },
   "tier_roll": {

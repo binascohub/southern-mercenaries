@@ -1,6 +1,6 @@
 {
   "sewer_rat": {
-    "_comment": "Monstro de teste da Fase 1. ID, elemento e números provisórios até a família do Esgoto (03-inimigos.md) entrar.",
+    "_comment": "Monstro de teste da Fase 1. ID e números provisórios até a família do Esgoto (03-inimigos.md) entrar. Terra, como os ratos do Esgoto (fracos a Fogo).",
     "name_key": "MONSTER_SEWER_RAT_NAME",
     "max_health": 30,
     "move_speed": 3.6,
@@ -10,7 +10,8 @@
     "attack_cooldown": 1.1,
     "aggro_range": 40.0,
     "size": 0.75,
-    "category": "common"
+    "category": "common",
+    "element": "earth"
   },
   "sewer_rat_big": {
     "_comment": "Variante maior e mais lenta, para testar padrões legíveis.",
@@ -23,6 +24,7 @@
     "attack_cooldown": 1.8,
     "aggro_range": 40.0,
     "size": 1.2,
-    "category": "common"
+    "category": "common",
+    "element": "earth"
   }
 }

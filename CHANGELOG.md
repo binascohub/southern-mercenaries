@@ -2,6 +2,15 @@
 
 ## [Unreleased]
 
+### Phase 4 — Elements (in progress)
+- `data/elements.json` and `Elements` / `StatusSet`: weakness cycle (x1.5 / x0.5), basic state per element, states (burning, soaked, frozen, shocked, knocked down, stunned) with refresh-not-stack, immunities (fire monsters don't burn, water monsters aren't soaked) and bosses getting a slow instead of control (`docs/02-0-elementos.md`).
+- Combos completed by any player: Electrocute, Wildfire, Mud and Steam (areas on the ground), Melt; a combo consumes the state that started it and stacks with the weakness bonus.
+- Critical hits: 5% base plus the `crit` affix, x1.5; frozen targets always take a critical.
+- Characters choose an origin element at creation (shown in the character list); characters saved before phase 4 become Fire without being flagged as edited.
+- Elemental Potions (`elemental_potion_<element>`, 100 + 25 × level): switch the element until returning to Tortuga; one active at a time; hotkey drinks the first one of another element. They drop as loot until the Pirate Market exists.
+- Monsters have an element (sewer rats: Earth) with a colored gem above them and a body tint per state; damage numbers show weakness, resistance, criticals and combo names. The staff crystal and the projectiles take the current element's color. HUD shows the current element.
+- Tests: element rules, states and combos unit tests; elements test on real monsters in the arena, run in CI.
+
 ### Phase 3 — RPG systems (in progress)
 - Character sheet (`CharacterData`): level up to 20, XP 700 × level, +5 attribute and +1 skill point per level; health, mana, power and armor from `docs/13-balanceamento.md`. Validated by the host when a player joins (`NET_CHARACTER_INVALID`).
 - Items as data: materials (cloth/wood to gold), rarities and affixes, Mage equipment bases, potions and valuables (`data/*.json`); names built with `tr()` in en, es and pt_BR.

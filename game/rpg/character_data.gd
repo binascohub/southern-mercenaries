@@ -15,7 +15,7 @@ const CHECK_SALT := "southern-mercenaries/character"
 var data: Dictionary
 
 
-static func create(class_id: String, sex: String, hero_name: String) -> CharacterData:
+static func create(class_id: String, sex: String, hero_name: String, element := "fire") -> CharacterData:
 	var c := CharacterData.new()
 	var cls := GameData.get_class_data(class_id)
 	var rng := RandomNumberGenerator.new()
@@ -31,6 +31,9 @@ static func create(class_id: String, sex: String, hero_name: String) -> Characte
 		"name": clean_name(hero_name),
 		"class_id": class_id,
 		"sex": sex if sex in SEXES else "male",
+		# Elemento de origem (não muda) e o da Poção Elemental ativa ("" = nenhuma).
+		"element": element if element in Elements.ALL else "fire",
+		"element_potion": "",
 		"level": 1,
 		"xp": 0,
 		"attributes": cls.attributes.duplicate(),
@@ -58,8 +61,15 @@ static func from_dict(source: Variant) -> CharacterData:
 	if not source is Dictionary:
 		return null
 	var c := CharacterData.new()
+	# Ficha legítima antes da migração continua legítima depois (os campos novos
+	# mudam o resumo, mas não foram editados à mão).
+	var before := CharacterData.new()
+	before.data = source.duplicate(true)
+	var was_sealed := before.data.has("check") and not before.is_edited()
 	# O JSON devolve todo número como float: inteiros voltam a ser int ("Nível 2", não "2.0").
 	c.data = _canonical(SaveSystem.migrate_character(source.duplicate(true)))
+	if was_sealed:
+		c.seal()
 	return c if c.validate().is_empty() else null
 
 
@@ -82,6 +92,10 @@ func validate() -> PackedStringArray:
 			errors.append("faltando " + key)
 	if not errors.is_empty():
 		return errors
+	if data.get("element", "") not in Elements.ALL:
+		errors.append("elemento")
+	if data.get("element_potion", "") != "" and data.element_potion not in Elements.ALL:
+		errors.append("poção elemental")
 	if int(data.level) < 1 or int(data.level) > GameData.balance.max_level:
 		errors.append("nível")
 	if int(data.gold) < 0 or int(data.xp) < 0 or int(data.free_points) < 0:
@@ -245,6 +259,33 @@ func damage_reduction(monster_level: int) -> float:
 	var b: Dictionary = GameData.balance
 	return minf(a / (a + b.armor_base_constant + b.armor_base_per_monster_level * monster_level),
 		b.max_damage_reduction)
+
+
+# --- Elemento (02-0-elementos.md) ---------------------------------------------------
+
+## Elemento em uso: o da Poção Elemental, se houver, senão o de origem.
+func current_element() -> String:
+	var potion: String = data.get("element_potion", "")
+	return potion if potion != "" else String(data.get("element", "fire"))
+
+
+## Bebeu uma Poção Elemental: passa a usar outro elemento até voltar a Tortuga.
+## Uma poção ativa por vez; a do próprio elemento de origem desfaz a troca.
+func drink_elemental(element: String) -> bool:
+	if element not in Elements.ALL or element == current_element():
+		return false
+	data.element_potion = "" if element == data.element else element
+	return true
+
+
+## Voltou a Tortuga: a expedição acabou e o efeito da poção também (seção 4).
+func end_expedition() -> void:
+	data.element_potion = ""
+
+
+## Crítico: 5% de base + afixos (13-balanceamento.md 2.1).
+func crit_chance() -> float:
+	return GameData.elements.crit_chance + affix_total("crit") / 100.0
 
 
 func move_speed_bonus() -> float:

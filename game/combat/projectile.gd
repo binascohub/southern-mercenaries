@@ -4,6 +4,9 @@ extends Area3D
 ## Projétil reto dos jogadores. Atravessa `pierce` inimigos; some ao bater
 ## em parede ou ao atingir o alcance.
 ##
+## Leva o elemento de quem atirou e, no ataque forte, o estado básico dele
+## (02-0-elementos.md, seção 5.3); o alvo resolve fraqueza, combos e crítico.
+##
 ## Rede: o movimento é determinístico, então todos os PCs só o simulam a partir
 ## dos dados do spawn. Acerto e dano são decididos só no servidor, que remove
 ## o projétil (e o spawner o remove dos outros PCs).
@@ -15,6 +18,10 @@ var radius := 0.25
 var damage := 10.0
 var pierce := 0
 var color := Color.WHITE
+var element := ""
+## Estado aplicado ao acertar ("" no ataque básico).
+var state := ""
+var crit_chance := 0.05
 
 var _travelled := 0.0
 var _hit: Array[Node] = []
@@ -30,6 +37,9 @@ static func create(spawn: Dictionary) -> Projectile:
 	projectile.pierce = spawn.pierce
 	projectile.damage = spawn.damage
 	projectile.color = spawn.color
+	projectile.element = spawn.get("element", "")
+	projectile.state = spawn.get("state", "")
+	projectile.crit_chance = spawn.get("crit_chance", 0.05)
 	return projectile
 
 
@@ -77,7 +87,7 @@ func _on_body_entered(body: Node) -> void:
 		return
 	if body.is_in_group(&"enemies"):
 		_hit.append(body)
-		body.take_damage(damage)
+		body.take_hit({"damage": damage, "element": element, "state": state, "crit_chance": crit_chance})
 		pierce -= 1
 		if pierce < 0:
 			queue_free()

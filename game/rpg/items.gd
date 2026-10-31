@@ -226,6 +226,10 @@ static func describe(item: Dictionary, class_factor := 1.0) -> PackedStringArray
 		lines.append("x%d" % item.count)
 	if item.kind == CONSUMABLE:
 		var c: Dictionary = GameData.consumables[item.id]
-		lines.append(t.translate("ITEM_RESTORES").format({"percent": roundi(c.fraction * 100)}))
+		if c.restore == "element":
+			lines.append(t.translate("ITEM_ELEMENTAL_EFFECT").format({
+				"element": t.translate(Elements.data(c.element).name_key)}))
+		else:
+			lines.append(t.translate("ITEM_RESTORES").format({"percent": roundi(c.fraction * 100)}))
 	lines.append(t.translate("ITEM_VALUE").format({"gold": value(item)}))
 	return lines

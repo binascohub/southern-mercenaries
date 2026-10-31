@@ -1,0 +1,32 @@
+{
+  "_comment": "Sistema de elementos (02-0-elementos.md): ciclo de fraquezas (seção 3), estado básico (5.3), estados (6) e combos (7). Crítico de 13-balanceamento.md 2.1. Cores de referência da seção 2.",
+  "weakness_mult": 1.5,
+  "resist_mult": 0.5,
+  "crit_chance": 0.05,
+  "crit_mult": 1.5,
+  "boss_control_slow": 0.5,
+  "elements": {
+    "fire": { "name_key": "ELEMENT_FIRE", "color": [1.0, 0.45, 0.12], "beats": "earth", "basic_state": "burning", "basic_state_chance": 1.0 },
+    "water": { "name_key": "ELEMENT_WATER", "color": [0.3, 0.62, 1.0], "beats": "fire", "basic_state": "soaked", "basic_state_chance": 1.0 },
+    "air": { "name_key": "ELEMENT_AIR", "color": [0.82, 0.68, 1.0], "beats": "water", "basic_state": "shocked", "basic_state_chance": 1.0 },
+    "earth": { "name_key": "ELEMENT_EARTH", "color": [0.55, 0.72, 0.3], "beats": "air", "basic_state": "stunned", "basic_state_chance": 0.3 }
+  },
+  "states": {
+    "burning": { "name_key": "STATE_BURNING", "duration": 3.0, "dot_fraction": 0.3, "immune": ["fire"], "color": [1.0, 0.5, 0.1] },
+    "soaked": { "name_key": "STATE_SOAKED", "duration": 4.0, "slow": 0.2, "immune": ["water"], "color": [0.35, 0.55, 1.0] },
+    "frozen": { "name_key": "STATE_FROZEN", "duration": 2.0, "disables": true, "control": true, "guaranteed_crit": true, "color": [0.75, 0.95, 1.0] },
+    "shocked": { "name_key": "STATE_SHOCKED", "duration": 4.0, "bonus_element": "air", "bonus": 0.15, "color": [0.8, 0.55, 1.0] },
+    "knocked_down": { "name_key": "STATE_KNOCKED_DOWN", "duration": 1.0, "disables": true, "control": true, "color": [0.6, 0.6, 0.6] },
+    "stunned": { "name_key": "STATE_STUNNED", "duration": 1.5, "disables": true, "control": true, "color": [1.0, 0.9, 0.3] },
+    "slowed": { "_comment": "Chefes recebem lentidão no lugar dos estados de controle (seção 6).", "name_key": "STATE_SLOWED", "duration": 2.0, "slow": 0.5, "color": [0.5, 0.5, 0.7] },
+    "mud": { "_comment": "Dentro da área de lama do combo (seção 7); renovado enquanto está na área.", "name_key": "STATE_MUD", "duration": 0.3, "slow": 0.4, "color": [0.45, 0.33, 0.18] },
+    "steam": { "_comment": "Dentro da nuvem de vapor do combo; erra ataques.", "name_key": "STATE_STEAM", "duration": 0.3, "miss_chance": 0.3, "color": [0.85, 0.85, 0.9] }
+  },
+  "combos": {
+    "electrocute": { "name_key": "COMBO_ELECTROCUTE", "needs": "soaked", "element": "air", "damage_bonus": 0.5, "stun": 1.0 },
+    "wildfire": { "name_key": "COMBO_WILDFIRE", "needs": "burning", "element": "air", "radius": 3.0 },
+    "mud": { "name_key": "COMBO_MUD", "needs": "soaked", "element": "earth", "radius": 3.0, "zone_duration": 5.0, "zone_state": "mud" },
+    "steam": { "name_key": "COMBO_STEAM", "needs": "burning", "element": "water", "radius": 3.0, "zone_duration": 4.0, "zone_state": "steam" },
+    "melt": { "name_key": "COMBO_MELT", "needs": "stunned", "element": "fire", "damage_bonus": 0.3 }
+  }
+}

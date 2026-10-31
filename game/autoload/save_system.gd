@@ -105,7 +105,7 @@ func list_characters() -> Array[Dictionary]:
 		var c := load_character(file.get_basename())
 		if c:
 			found.append({"id": c.data.id, "name": c.data.name, "class_id": c.data.class_id,
-				"level": c.data.level, "modified": FileAccess.get_modified_time(dir.path_join(file))})
+				"level": c.data.level, "element": c.data.element, "modified": FileAccess.get_modified_time(dir.path_join(file))})
 	found.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return a.modified > b.modified)
 	return found
 
@@ -207,6 +207,11 @@ static func format_played(seconds: float) -> String:
 
 func migrate_character(d: Dictionary) -> Dictionary:
 	# v1 é a primeira versão; as próximas entram aqui, uma função por versão.
+	# Campos que entraram depois na v1 (Fase 4): personagens antigos ficam com Fogo.
+	if not d.is_empty() and not d.has("element"):
+		d.element = "fire"
+	if not d.is_empty() and not d.has("element_potion"):
+		d.element_potion = ""
 	return d
 
 

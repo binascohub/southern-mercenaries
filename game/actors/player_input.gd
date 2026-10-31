@@ -19,6 +19,7 @@ var interact_presses := 0
 var pickup_all_presses := 0
 var potion_health_presses := 0
 var potion_resource_presses := 0
+var potion_elemental_presses := 0
 
 
 ## Lê o Input Map local, continuando os contadores de `previous`.
@@ -35,6 +36,7 @@ static func gather(previous: PlayerInput, origin: Vector3, camera: Camera3D, vie
 	input.pickup_all_presses = previous.pickup_all_presses + int(Input.is_action_just_pressed(&"pickup_all"))
 	input.potion_health_presses = previous.potion_health_presses + int(Input.is_action_just_pressed(&"potion_health"))
 	input.potion_resource_presses = previous.potion_resource_presses + int(Input.is_action_just_pressed(&"potion_mana"))
+	input.potion_elemental_presses = previous.potion_elemental_presses + int(Input.is_action_just_pressed(&"potion_elemental"))
 	# Com uma janela aberta (inventário), os botões não atacam nem esquivam.
 	if Session.ui_open:
 		input.attack_held = false
@@ -64,12 +66,12 @@ static func gather(previous: PlayerInput, origin: Vector3, camera: Camera3D, vie
 func to_array() -> Array:
 	return [move.x, move.y, aim.x, aim.y, attack_held, interact_held,
 		attack_presses, attack_releases, evade_presses, interact_presses,
-		pickup_all_presses, potion_health_presses, potion_resource_presses]
+		pickup_all_presses, potion_health_presses, potion_resource_presses, potion_elemental_presses]
 
 
 static func from_array(a: Array) -> PlayerInput:
 	var input := PlayerInput.new()
-	if a.size() != 13:
+	if a.size() != 14:
 		return input
 	input.move = Vector2(a[0], a[1]).limit_length(1.0)
 	input.aim = Vector2(a[2], a[3]).limit_length(1.0)
@@ -82,4 +84,5 @@ static func from_array(a: Array) -> PlayerInput:
 	input.pickup_all_presses = int(a[10])
 	input.potion_health_presses = int(a[11])
 	input.potion_resource_presses = int(a[12])
+	input.potion_elemental_presses = int(a[13])
 	return input

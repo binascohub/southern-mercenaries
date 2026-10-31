@@ -53,6 +53,8 @@ var level := 1
 var equip_visual := {}
 var potion_cooldown := 0.0
 var armor_value := 0.0
+## Elemento em uso (de origem ou da Poção Elemental): cor do cristal e dos projéteis.
+var element := "fire"
 
 var data: Dictionary
 var move_speed := 5.0
@@ -105,6 +107,7 @@ static func create(spawn: Dictionary) -> Player:
 	player.hero_name = spawn.get("name", "")
 	player.level = spawn.get("level", 1)
 	player.equip_visual = spawn.get("visual", {})
+	player.element = spawn.get("element", "fire")
 	player._add_synchronizer()
 	return player
 
@@ -160,6 +163,7 @@ func _apply_character(fill := false) -> void:
 	hero_name = character.data.name
 	level = int(character.data.level)
 	equip_visual = character.equipment_visual()
+	element = character.current_element()
 
 
 ## Servidor: manda a ficha atual para o dono gravar.
@@ -269,10 +273,18 @@ func _use(index: int) -> void:
 
 
 ## Poções de vida e de recurso dividem uma recarga (13-balanceamento.md 5.3).
+## A Poção Elemental troca o elemento (sem recarga; 02-0-elementos.md, seção 4).
 func _drink(id: String) -> void:
-	if not alive or potion_cooldown > 0.0 or character == null or not GameData.consumables.has(id):
+	if not alive or character == null or not GameData.consumables.has(id):
 		return
 	var def: Dictionary = GameData.consumables[id]
+	if def.restore == "element":
+		if character.count_of(id) > 0 and character.drink_elemental(def.element) and character.take_one(id):
+			_apply_character()
+			_push_character(0)
+		return
+	if potion_cooldown > 0.0:
+		return
 	if def.restore == "health" and health >= max_health:
 		return
 	if def.restore == "resource" and resource >= max_resource:
@@ -285,6 +297,19 @@ func _drink(id: String) -> void:
 		resource = minf(resource + max_resource * def.fraction, max_resource)
 	potion_cooldown = def.cooldown
 	_push_character(0)
+
+
+## Atalho da Poção Elemental: bebe a primeira da bolsa de outro elemento.
+func _drink_next_elemental() -> void:
+	if character == null:
+		return
+	for item: Variant in character.data.inventory:
+		if item == null or item.kind != Items.CONSUMABLE:
+			continue
+		var def: Dictionary = GameData.consumables.get(item.id, {})
+		if def.get("restore", "") == "element" and def.element != character.current_element():
+			_drink(item.id)
+			return
 
 
 func _physics_process(delta: float) -> void:
@@ -355,6 +380,8 @@ func _server_step(delta: float) -> void:
 		_drink("potion_health")
 	if input.potion_resource_presses != _seen_extra.potion_resource_presses:
 		_drink("potion_resource")
+	if input.potion_elemental_presses != _seen_extra.potion_elemental_presses:
+		_drink_next_elemental()
 	if input.interact_presses != _seen_extra.interact_presses:
 		get_tree().call_group(&"arena", &"request_pickup", self, false)
 	if input.pickup_all_presses != _seen_extra.pickup_all_presses:
@@ -485,7 +512,11 @@ func _fire(attack: Dictionary) -> void:
 		"radius": attack.radius,
 		"pierce": attack.pierce,
 		"damage": power * attack.power_pct,
-		"color": SLOT_COLORS[slot].lerp(Color(0.55, 0.75, 1.0), 0.6),
+		"color": Elements.color(element),
+		# O ataque forte aplica o estado básico do elemento (02-0-elementos.md 5.3).
+		"element": element,
+		"state": String(Elements.data(element).get("basic_state", "")) if attack.get("applies_state", false) else "",
+		"crit_chance": character.crit_chance() if character else GameData.elements.crit_chance,
 	})
 
 
@@ -511,7 +542,7 @@ func _add_synchronizer() -> void:
 	var config := SceneReplicationConfig.new()
 	var always := [":net_position", ":facing", ":charge_time", ":revive_progress", ":evade_cooldown"]
 	var on_change := [":health", ":max_health", ":resource", ":max_resource", ":alive", ":connected",
-		":hero_name", ":level", ":equip_visual", ":potion_cooldown", ":armor_value"]
+		":hero_name", ":level", ":equip_visual", ":potion_cooldown", ":armor_value", ":element"]
 	for prop in always + on_change:
 		var path := NodePath("." + prop)
 		config.add_property(path)
@@ -631,7 +662,12 @@ func _tick_visual(delta: float) -> void:
 		_update_gear()
 	_flash = maxf(_flash - delta, 0.0)
 	_body_material.albedo_color = Color(1, 0.35, 0.35) if _flash > 0.0 else BODY_COLOR
-	# O cristal brilha mais quando o ataque forte está carregado.
+	# Cristal na cor do elemento (muda na hora com a Poção Elemental); brilha
+	# mais quando o ataque forte está carregado.
+	var crystal_color := Elements.color(element)
+	if _crystal_material.albedo_color != crystal_color:
+		_crystal_material.albedo_color = crystal_color
+		_crystal_material.emission = crystal_color
 	_crystal_material.emission_energy_multiplier = 4.0 if is_charged() else 1.5
 	# Dono desconectado: anel cinza enquanto o herói espera.
 	_ring_material.albedo_color = SLOT_COLORS[slot] if connected else Color(0.4, 0.4, 0.4)

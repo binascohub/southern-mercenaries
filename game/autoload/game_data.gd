@@ -15,6 +15,7 @@ const FILES := {
 	"consumables": "res://data/consumables.json",
 	"valuables": "res://data/valuables.json",
 	"loot": "res://data/loot.json",
+	"elements": "res://data/elements.json",
 }
 
 var balance: Dictionary
@@ -28,6 +29,7 @@ var item_bases: Dictionary
 var consumables: Dictionary
 var valuables: Dictionary
 var loot: Dictionary
+var elements: Dictionary
 
 
 func _ready() -> void:

@@ -142,7 +142,8 @@ func _open_characters() -> void:
 func _refresh_hero() -> void:
 	var c := Session.character
 	_hero.text = tr("CHAR_ENTRY").format({"name": c.data.name,
-		"class": tr(c.class_data().name_key), "level": c.data.level}) if c else tr("CHAR_NONE")
+		"class": tr(c.class_data().name_key), "level": c.data.level,
+		"element": tr(Elements.data(c.data.element).name_key)}) if c else tr("CHAR_NONE")
 	_continue_button.visible = not SaveSystem.list_campaigns().is_empty()
 	_load_button.visible = _continue_button.visible
 

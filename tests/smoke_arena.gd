@@ -13,6 +13,9 @@ extends Node
 ##   busca:   ... res://tests/smoke_arena.tscn -- discover   (passa se achar um host na LAN)
 ##   revive:  ... res://tests/smoke_arena.tscn -- revive
 ##            (solo com um aliado fictício: cai, é reanimado; todos caem, volta ao checkpoint)
+##   elementos: ... res://tests/smoke_arena.tscn -- elements
+##            (golpes com elemento em ratos de verdade: estados, combos, queimando,
+##            área de vapor, congelado parado, Poção Elemental e projétil do herói)
 ##   troca:   ... res://tests/smoke_arena.tscn -- trade
 ##            (solo com um aliado fictício: convite, ofertas, confirmações, troca e
 ##            cancelamento ao se afastarem; o aliado responde direto no servidor)
@@ -79,7 +82,7 @@ func _ready() -> void:
 		get_tree().quit(0 if found else 1)
 		return
 	else:
-		_role = args[0] if args.size() > 0 and args[0] in ["revive", "trade"] else "solo"
+		_role = args[0] if args.size() > 0 and args[0] in ["revive", "trade", "elements"] else "solo"
 		NetworkManager.prepare_solo()
 	NetworkManager.session_ended.connect(func(reason: String) -> void:
 		if _expect_refusal != "":
@@ -111,6 +114,9 @@ func _physics_process(_delta: float) -> void:
 		return
 	if _role == "trade":
 		_trade_test()
+		return
+	if _role == "elements":
+		_elements_test()
 		return
 	var players := get_tree().get_nodes_in_group(&"players")
 	_max_players_seen = maxi(_max_players_seen, players.size())
@@ -256,6 +262,55 @@ func _revive_test() -> void:
 				_report(ok, "derrota voltou ao checkpoint (todos de pé no checkpoint: %s)" % ok)
 			elif _frame > MAX_FRAMES:
 				_report(false, "não voltou ao checkpoint")
+
+
+## Elementos nos monstros de verdade (o lado de regras puras está em rpg_tests).
+func _elements_test() -> void:
+	var player: Player = _arena.local_player
+	if player == null:
+		return
+	player.health = player.max_health  # o teste avalia elementos, não a esquiva
+	if _stage > 0 or _frame < 10:
+		return
+	_stage = 1
+	var checks: Array[String] = []
+	var check := func(ok: bool, what: String) -> void:
+		if not ok:
+			checks.append(what)
+	var rats: Array = get_tree().get_nodes_in_group(&"enemies")
+	var rat: Enemy = rats[0]
+	check.call(rat.element == "earth", "rato é de Terra")
+	# Molhar e completar com Ar: Eletrocutar atordoa; parado não anda.
+	rat.take_hit({"damage": 1.0, "element": "water", "state": "soaked", "crit_chance": 0.0})
+	await get_tree().physics_frame
+	check.call(rat.status.has("soaked") and rat.states_mask != 0, "molhado aplicado e sincronizado")
+	var result: Dictionary = rat.take_hit({"damage": 1.0, "element": "air", "state": "", "crit_chance": 0.0})
+	check.call(result.get("combo", "") == "electrocute" and rat.status.has("stunned"), "Eletrocutar no rato")
+	var before := rat.global_position
+	for i in 20:
+		await get_tree().physics_frame
+	check.call(rat.global_position.distance_to(before) < 0.05, "atordoado fica parado")
+	# Fogo na fraqueza; ataque forte deixa queimando e o fogo tira vida sozinho.
+	await get_tree().create_timer(1.2, false).timeout
+	result = rat.take_hit({"damage": 2.0, "element": "fire", "state": "burning", "crit_chance": 0.0})
+	check.call(result.get("effect", "") == "weak", "fogo na fraqueza da terra")
+	check.call(rat.status.has("burning"), "queimando")
+	var health := rat.health
+	await get_tree().create_timer(2.2, false).timeout
+	check.call(is_instance_valid(rat) and rat.health < health, "queimando tira vida com o tempo")
+	# Água no rato queimando: Vapor vira área e os vizinhos dentro dela erram ataques.
+	result = rat.take_hit({"damage": 1.0, "element": "water", "state": "", "crit_chance": 0.0})
+	check.call(result.get("combo", "") == "steam" and _arena._zones.size() == 1, "Vapor cria a área")
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	check.call(rat.status.has("steam") and rat.status.miss_chance() > 0.0, "quem está no vapor erra ataques")
+	# Poção Elemental: troca o elemento do herói e dos projéteis.
+	player.character.add_item(Items.stack(Items.CONSUMABLE, "elemental_potion_water"))
+	var origin := player.character.data.element
+	player._drink_next_elemental()
+	check.call(player.element == "water" and player.character.data.element == origin, "Poção Elemental troca o elemento em uso")
+	check.call(player.character.count_of("elemental_potion_water") == 0, "a poção é consumida")
+	_report(checks.is_empty(), "elementos: " + ("tudo certo" if checks.is_empty() else "; ".join(PackedStringArray(checks))))
 
 
 ## Troca com um aliado fictício (peer 99, sem rede): o lado dele é chamado

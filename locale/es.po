@@ -552,7 +552,7 @@ msgid "CHAR_SEX_FEMALE"
 msgstr "Femenino"
 
 msgid "CHAR_ENTRY"
-msgstr "{name} — {class}, nivel {level}"
+msgstr "{name} — {class} de {element}, nivel {level}"
 
 msgid "CHAR_NONE"
 msgstr "Aún no hay personaje"
@@ -656,3 +656,81 @@ msgstr "Los {max} espacios de personaje están ocupados. Borra un personaje para
 
 msgid "CAMPAIGN_SLOTS_FULL"
 msgstr "Los {max} espacios de campaña están ocupados. Borra una en Cargar campaña para empezar otra."
+
+msgid "ELEMENT_FIRE"
+msgstr "Fuego"
+
+msgid "ELEMENT_WATER"
+msgstr "Agua"
+
+msgid "ELEMENT_AIR"
+msgstr "Aire"
+
+msgid "ELEMENT_EARTH"
+msgstr "Tierra"
+
+msgid "STATE_BURNING"
+msgstr "Ardiendo"
+
+msgid "STATE_SOAKED"
+msgstr "Empapado"
+
+msgid "STATE_FROZEN"
+msgstr "Congelado"
+
+msgid "STATE_SHOCKED"
+msgstr "Electrizado"
+
+msgid "STATE_KNOCKED_DOWN"
+msgstr "Derribado"
+
+msgid "STATE_STUNNED"
+msgstr "Aturdido"
+
+msgid "STATE_SLOWED"
+msgstr "Ralentizado"
+
+msgid "STATE_MUD"
+msgstr "Barro"
+
+msgid "STATE_STEAM"
+msgstr "Vapor"
+
+msgid "COMBO_ELECTROCUTE"
+msgstr "¡Electrocutar!"
+
+msgid "COMBO_WILDFIRE"
+msgstr "¡Incendio!"
+
+msgid "COMBO_MUD"
+msgstr "¡Barro!"
+
+msgid "COMBO_STEAM"
+msgstr "¡Vapor!"
+
+msgid "COMBO_MELT"
+msgstr "¡Fundir!"
+
+msgid "ITEM_POTION_ELEMENTAL_FIRE"
+msgstr "Poción elemental (Fuego)"
+
+msgid "ITEM_POTION_ELEMENTAL_WATER"
+msgstr "Poción elemental (Agua)"
+
+msgid "ITEM_POTION_ELEMENTAL_AIR"
+msgstr "Poción elemental (Aire)"
+
+msgid "ITEM_POTION_ELEMENTAL_EARTH"
+msgstr "Poción elemental (Tierra)"
+
+msgid "ITEM_ELEMENTAL_EFFECT"
+msgstr "Usa {element} hasta volver a Tortuga"
+
+msgid "HUD_ELEMENT"
+msgstr "Elemento: {element}"
+
+msgid "HUD_ELEMENT_POTION"
+msgstr "(poción)"
+
+msgid "HUD_POTION_ELEMENTAL"
+msgstr "{key} Elemental ×{count}"

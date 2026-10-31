@@ -75,6 +75,8 @@ var _interrupted: Array[Player] = []
 ## Heróis esperando o dono que caiu: client_id -> Player (07-rede.md, seção 9).
 var _held := {}
 var _thumb_timer := THUMB_FIRST
+## Áreas dos combos Lama e Vapor (servidor): [{position, radius, time, state}].
+var _zones: Array[Dictionary] = []
 
 @onready var hud: Hud = $Hud
 @onready var pause_menu: PauseMenu = $PauseMenu
@@ -144,6 +146,7 @@ func _physics_process(delta: float) -> void:
 			_encounter_timer = ENCOUNTER_CHECK_INTERVAL
 			_update_encounters()
 			_auto_pickup_gold()
+		_update_zones(delta)
 	if not _campaign.is_empty():
 		_campaign.played_seconds = float(_campaign.get("played_seconds", 0)) + delta
 		_update_thumbnail(delta)
@@ -173,6 +176,57 @@ func _create_enemy(spawn: Dictionary) -> Enemy:
 		enemy.died.connect(_on_enemy_died)
 		enemy.disturbed.connect(func(e: Enemy) -> void: _wake_group(e.group))
 	return enemy
+
+
+## Combo que mexe com quem está em volta (só no servidor, 02-0-elementos.md 7):
+## Incêndio passa o fogo para os vizinhos; Lama e Vapor deixam uma área no chão.
+func element_combo(at: Vector3, result: Dictionary) -> void:
+	if not multiplayer.is_server():
+		return
+	var combo: Dictionary = GameData.elements.combos.get(result.combo, {})
+	if result.spread_dps > 0.0:
+		for e: Enemy in get_tree().get_nodes_in_group(&"enemies"):
+			var d := e.global_position.distance_to(at)
+			if d > 0.01 and d <= float(combo.get("radius", 3.0)):
+				Elements.apply_state(e.status, "burning", e.element, e.is_boss(), result.spread_dps)
+	if not result.zone.is_empty():
+		var zone := {"position": at, "radius": float(result.zone.radius),
+			"time": float(result.zone.duration), "state": String(result.zone.state)}
+		_zones.append(zone)
+		_show_zone.rpc(zone.state, at, zone.radius, zone.time)
+
+
+func _update_zones(delta: float) -> void:
+	for zone in _zones.duplicate():
+		zone.time -= delta
+		if zone.time <= 0.0:
+			_zones.erase(zone)
+			continue
+		for e: Enemy in get_tree().get_nodes_in_group(&"enemies"):
+			if Vector2(e.global_position.x - zone.position.x, e.global_position.z - zone.position.z).length() <= zone.radius:
+				Elements.apply_state(e.status, zone.state, e.element, e.is_boss())
+
+
+## Disco translúcido da área (todos os PCs), some sozinho.
+@rpc("authority", "call_local", "reliable")
+func _show_zone(state_id: String, at: Vector3, radius: float, duration: float) -> void:
+	var disc := MeshInstance3D.new()
+	var mesh := CylinderMesh.new()
+	mesh.top_radius = radius
+	mesh.bottom_radius = radius
+	mesh.height = 0.04
+	mesh.radial_segments = 24
+	disc.mesh = mesh
+	var material := StandardMaterial3D.new()
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	var c := Elements.state_color(state_id)
+	material.albedo_color = Color(c.r, c.g, c.b, 0.35)
+	disc.material_override = material
+	disc.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	add_child(disc)
+	disc.global_position = Vector3(at.x, 0.03, at.z)
+	get_tree().create_timer(duration, false).timeout.connect(disc.queue_free)
 
 
 ## Chamado pelo grupo "arena" quando um jogador atira (só no servidor).
@@ -205,6 +259,7 @@ func _spawn_player(peer_id: int, resume: Player = null) -> Player:
 		"peer_id": peer_id, "slot": slot, "class_id": character.data.class_id,
 		"position": position, "name": character.data.name, "level": character.data.level,
 		"visual": character.equipment_visual(),
+		"element": character.current_element(),
 	})
 	if resume == null and character.is_edited():
 		# Ficha mudada fora do jogo: só avisa, nunca bloqueia (11-saves.md, seção 5).
@@ -276,6 +331,7 @@ func _on_peer_left(peer_id: int, dropped: bool) -> void:
 ## Começa (ou continua) a área: os grupos vivos da campanha no lugar, dormindo.
 func _start_run() -> void:
 	_run += 1
+	_zones.clear()
 	for node in get_tree().get_nodes_in_group(&"enemies"):
 		node.queue_free()
 	for node in get_children():
@@ -435,6 +491,9 @@ func _drop_loot_for(player: Player, enemy: Enemy) -> void:
 		_add_loot(player, origin, Items.generate_equipment(level, player.character.data.class_id, rarity, _rng), 0)
 	if _rng.randf() < table.potion_chance:
 		var potion := "potion_health" if _rng.randf() < 0.6 else "potion_resource"
+		# Provisório até o Mercado de Tortuga (Fase 6): parte das poções é elemental.
+		if _rng.randf() < float(table.get("elemental_potion_share", 0.0)):
+			potion = "elemental_potion_" + Elements.ALL[_rng.randi_range(0, Elements.ALL.size() - 1)]
 		_add_loot(player, origin, Items.stack(Items.CONSUMABLE, potion), 0)
 	if _rng.randf() < table.valuable_chance:
 		var options: Array[String] = []
@@ -626,6 +685,7 @@ func _check_defeat() -> void:
 ## Todos caíram: voltam ao checkpoint. Mortos continuam mortos; os grupos que
 ## sobreviveram voltam ao lugar e dormem de novo.
 func _return_to_checkpoint() -> void:
+	_zones.clear()
 	for node in get_children():
 		if node is Projectile:
 			node.queue_free()
