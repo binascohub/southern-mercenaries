@@ -11,7 +11,7 @@
 - `SaveSystem` (`docs/11-saves.md`): JSON with `save_version`, temp-file write, 3 backups and recovery from a corrupted save; character saved on its owner's PC, campaign (defeated encounter groups) on the host.
 - Main menu: character select/create, *Continue* / *New campaign*.
 - Tests: RPG unit tests (formulas, bag, validation, saves), now run in CI; the bot levels up, collects loot, equips an item and checks the save on disk.
-- CI: in the network test the host waits for the clients to finish collecting loot before leaving; failures also appear as annotations; an inventory screenshot is uploaded as an artifact; `actions/checkout@v5` (Node 24).
+- CI: the smoke-test bot equips an item for an empty slot (swapping only the starting staff made the network test fail at random); the host waits for clients to leave before quitting; network-test failures also appear as annotations; an inventory screenshot is uploaded as an artifact; `actions/checkout@v5` (Node 24).
 
 ### Phase 2 — basic LAN network
 - `NetworkManager` autoload: ENet host/client with authoritative server; solo uses the same server offline.

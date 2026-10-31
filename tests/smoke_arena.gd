@@ -172,12 +172,23 @@ func _collect_loot(player: Player) -> void:
 		return
 	if not _equipped_item:
 		_equipped_item = true
+		# Prefere um slot vazio: trocar só a arma inicial não aumenta o equipamento.
+		var choice := -1
 		for i in c.data.inventory.size():
 			var item: Variant = c.data.inventory[i]
 			if item != null and c.can_equip(item):
-				player.request_use(i)
-				_stage_frame = _frame
-				return
+				var slot := Items.slot_of(item)
+				var free: bool = c.data.equipment.ring_1 == null or c.data.equipment.ring_2 == null \
+					if slot == "ring" else c.data.equipment.get(slot) == null
+				if free:
+					choice = i
+					break
+				if choice < 0:
+					choice = i
+		if choice >= 0:
+			player.request_use(choice)
+			_stage_frame = _frame
+			return
 	if _frame - _stage_frame < 60:
 		return  # espera o servidor confirmar o equipamento
 	SaveSystem.flush()
