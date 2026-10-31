@@ -569,7 +569,7 @@ func _build_visual(size: float) -> void:
 			wing.position = Vector3(0.45 * side * size, 0.35 * size, 0)
 			wing.rotation.z = 0.35 * side
 			_visual.add_child(wing)
-	elif look == "queen":
+	elif look == "queen" and _model == null:
 		# A coroa torta do rei caído e a cauda de filhotes entrelaçados.
 		var crown := MeshInstance3D.new()
 		var crown_mesh := CylinderMesh.new()
@@ -583,10 +583,6 @@ func _build_visual(size: float) -> void:
 		crown.material_override = gold
 		crown.position = Vector3(0, 0.62 * size, 0.35 * size)
 		crown.rotation.z = 0.25
-		if _model:
-			# Sobre a cabeça do rato (frente +Z, cabeça a ~40% do comprimento).
-			crown.position = Vector3(0, 0.3 * size, 0.52 * size)
-			crown.rotation = Vector3(-0.35, 0, 0.25)
 		_visual.add_child(crown)
 	if look == "queen" and _model == null:
 		var tail := MeshInstance3D.new()

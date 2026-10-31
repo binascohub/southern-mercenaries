@@ -39,6 +39,13 @@ var _wing_material: StandardMaterial3D
 var _time := 0.0
 ## 0 = asas recolhidas (escondidas); cresce até 1 quando elas brotam.
 var _wing_growth := 0.0
+## Coroa da Rainha: segue o osso da cabeça (posição), sempre de pé.
+var _crown: Node3D
+var _skeleton: Skeleton3D
+var _head_bone := -1
+var _head_rest := Vector3.ZERO
+## Topo da cabeça do rato em repouso (unidades do modelo; frente +Z).
+const CROWN_AT := Vector3(0, 0.215, 0.39)
 var _wings_out := false
 const WING_COLOR := Color(0.22, 0.14, 0.16)
 
@@ -80,7 +87,58 @@ func setup(look: String, size: float, tint: Color) -> bool:
 		play("idle", 0.0)
 	if look == "queen":
 		_add_wings()
+		_add_crown()
 	return true
+
+
+## Coroa de ouro com pontas (a coroa torta do rei caído), na cabeça.
+func _add_crown() -> void:
+	_crown = Node3D.new()
+	add_child(_crown)
+	_crown.position = CROWN_AT
+	_crown.rotation = Vector3(-0.25, 0, 0.18)  # torta, caindo para trás
+	var gold := StandardMaterial3D.new()
+	gold.albedo_color = Color(0.95, 0.72, 0.22)
+	gold.metallic = 0.85
+	gold.roughness = 0.3
+	gold.emission_enabled = true
+	gold.emission = Color(0.35, 0.22, 0.04)
+	var band := MeshInstance3D.new()
+	var ring := CylinderMesh.new()
+	ring.top_radius = 0.075
+	ring.bottom_radius = 0.07
+	ring.height = 0.035
+	ring.radial_segments = 16
+	band.mesh = ring
+	band.material_override = gold
+	_crown.add_child(band)
+	for i in 6:
+		var angle := TAU * i / 6.0
+		var spike := MeshInstance3D.new()
+		var prism := PrismMesh.new()
+		prism.size = Vector3(0.035, 0.07, 0.012)
+		spike.mesh = prism
+		spike.material_override = gold
+		spike.position = Vector3(sin(angle) * 0.07, 0.05, cos(angle) * 0.07)
+		spike.rotation.y = angle
+		_crown.add_child(spike)
+	var gem := MeshInstance3D.new()
+	var stone := SphereMesh.new()
+	stone.radius = 0.016
+	stone.height = 0.032
+	gem.mesh = stone
+	var red := StandardMaterial3D.new()
+	red.albedo_color = Color(0.8, 0.05, 0.08)
+	red.emission_enabled = true
+	red.emission = Color(0.5, 0.02, 0.04)
+	gem.material_override = red
+	gem.position = Vector3(0, 0.0, 0.075)
+	_crown.add_child(gem)
+	_skeleton = find_child("Skeleton3D", true, false) as Skeleton3D
+	if _skeleton:
+		_head_bone = _skeleton.find_bone("Head")
+		if _head_bone >= 0:
+			_head_rest = _skeleton.get_bone_global_rest(_head_bone).origin
 
 
 ## Duas asas de morcego nas costas (em unidades do modelo: o rato tem 1 m, a
@@ -132,6 +190,11 @@ func _add_wings() -> void:
 
 
 func _process(delta: float) -> void:
+	if _crown and _head_bone >= 0:
+		# A cabeça se mexe com a animação: a coroa vai junto (em unidades do modelo).
+		var moved := _skeleton.get_bone_global_pose(_head_bone).origin - _head_rest
+		var to_model := global_transform.affine_inverse() * _skeleton.global_transform
+		_crown.position = CROWN_AT + to_model.basis * moved
 	if _wings.is_empty():
 		return
 	# Bate devagar parada, mais rápido correndo ou no golpe.
