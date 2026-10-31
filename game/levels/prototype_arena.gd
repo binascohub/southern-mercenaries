@@ -126,6 +126,8 @@ var _area_root: Node3D
 var _style_tint := Color.WHITE
 var _tinted := {}
 var _sludge: StandardMaterial3D
+## Cristal de save do checkpoint (flutua; acende quando o jogo salva).
+var _crystal_material: StandardMaterial3D
 ## Sujeira do esgoto: materiais das poças, da faixa de umidade e dos escorridos.
 var _grime_materials := {}
 var _props: Array[Dictionary] = []
@@ -880,6 +882,8 @@ func _reach_checkpoint(id: String) -> void:
 	_campaign.area = area_id
 	_campaign.checkpoint = id
 	SaveSystem.save_campaign(_campaign, true)
+	if multiplayer.is_server():
+		_crystal_glow.rpc()
 
 
 ## Miniatura da campanha: uma captura da tela de jogo de vez em quando (sem
@@ -1882,6 +1886,8 @@ func _build_area() -> void:
 	_box(Vector3(center.x, -0.5, center.z), Vector3(bounds.size.x + 4, 1, bounds.size.z + 4),
 		Color(style.get("ground", [0.12, 0.11, 0.1])[0], style.get("ground", [0.12, 0.11, 0.1])[1],
 			style.get("ground", [0.12, 0.11, 0.1])[2]) if dressed else FLOOR_COLOR)
+	if not arena.get("town", false):
+		_build_save_crystal()
 	if dressed:
 		for decor: Dictionary in arena.get("decor", []):
 			_build_decor(decor)
@@ -1953,6 +1959,60 @@ func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3,
 		if lantern:
 			lantern.position = Vector3(c.x, 1.4, c.z - half.z + 0.5)
 			_area_root.add_child(lantern)
+
+
+## Cristal de save (Mese Crystal, rubberduck, CC0) ao lado do checkpoint da
+## área: gira devagar e flutua subindo e descendo, com uma luz amarela fraca.
+func _build_save_crystal() -> void:
+	_crystal_material = null
+	var crystal := Kit.piece("Save_Crystal")
+	if crystal == null:
+		return
+	var holder := Node3D.new()
+	holder.name = "save_crystal"
+	holder.position = entry_point("start") + Vector3(2.2, 0, -0.5)
+	_area_root.add_child(holder)
+	var bob := Node3D.new()
+	holder.add_child(bob)
+	bob.add_child(crystal)
+	for node in crystal.find_children("*", "MeshInstance3D", true, false):
+		var mesh := node as MeshInstance3D
+		var source := mesh.get_active_material(0) as StandardMaterial3D
+		_crystal_material = (source.duplicate() if source else StandardMaterial3D.new()) as StandardMaterial3D
+		_crystal_material.emission_enabled = true
+		_crystal_material.emission = Color(1.0, 0.85, 0.25)
+		_crystal_material.emission_energy_multiplier = 0.6
+		for i in mesh.get_surface_override_material_count():
+			mesh.set_surface_override_material(i, _crystal_material)
+	var light := OmniLight3D.new()
+	light.name = "glow"
+	light.light_color = Color(1.0, 0.85, 0.3)
+	light.omni_range = 4.0
+	light.light_energy = 0.6
+	light.position.y = 1.4
+	holder.add_child(light)
+	bob.position.y = 0.9
+	var float_tween := bob.create_tween().set_loops()
+	float_tween.tween_property(bob, "position:y", 1.25, 1.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	float_tween.tween_property(bob, "position:y", 0.9, 1.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	var spin := crystal.create_tween().set_loops()
+	spin.tween_property(crystal, "rotation:y", TAU, 6.0).as_relative()
+
+
+## O jogo salvou no checkpoint: o cristal acende forte e volta ao brilho fraco.
+@rpc("authority", "call_local", "reliable")
+func _crystal_glow() -> void:
+	var holder := _area_root.get_node_or_null("save_crystal") if _area_root else null
+	if holder == null or _crystal_material == null:
+		return
+	var light := holder.get_node("glow") as OmniLight3D
+	var tween := holder.create_tween().set_parallel()
+	_crystal_material.emission_energy_multiplier = 6.0
+	light.light_energy = 4.0
+	light.omni_range = 9.0
+	tween.tween_property(_crystal_material, "emission_energy_multiplier", 0.6, 1.6).set_ease(Tween.EASE_IN)
+	tween.tween_property(light, "light_energy", 0.6, 1.6).set_ease(Tween.EASE_IN)
+	tween.tween_property(light, "omni_range", 4.0, 1.6)
 
 
 ## Peça do kit na tinta do estilo; os materiais tingidos são compartilhados
