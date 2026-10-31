@@ -116,6 +116,8 @@ var _remount_timer := 0.0
 var _body_shape: CapsuleShape3D
 var _horse: Node3D
 var _horse_material: StandardMaterial3D
+## Galope do cavalo (Horse of Spring): toca andando, para no lugar parado.
+var _horse_anim: AnimationPlayer
 var _block_visual: MeshInstance3D
 var _aura: MeshInstance3D
 var _aura_material: StandardMaterial3D
@@ -1265,6 +1267,15 @@ func _tick_visual(delta: float) -> void:
 			and GameData.materials.has(barding) else Color(0.32, 0.22, 0.14)
 		# Montado: o herói sobe no cavalo e o corpo (hitbox) fica maior.
 		_horse.visible = mounted
+		if _horse_anim and _horse_anim.has_animation("gallop"):
+			if mounted and speed > 0.5:
+				if not _horse_anim.is_playing():
+					_horse_anim.play("gallop")
+				_horse_anim.speed_scale = clampf(speed / 6.0, 0.4, 1.6)
+			elif _horse_anim.is_playing() or _horse_anim.current_animation == "":
+				_horse_anim.play("gallop")
+				_horse_anim.seek(0.35, true)  # de pé, as quatro patas no chão
+				_horse_anim.pause()
 		_visual.position.y = 0.6 if mounted else 0.0
 		_body_shape.radius = 0.75 if mounted else 0.4
 	for key: String in skill_cd_view.keys():
@@ -1322,11 +1333,28 @@ func _build_horse() -> Node3D:
 	var horse := Node3D.new()
 	var coat := _material(Color(0.32, 0.22, 0.14))
 	_horse_material = coat
-	# Cavalo de verdade (jjmoser, CC BY 3.0; a cabeça vira para a frente, +Z) e,
-	# no lombo, a sela/barda na cor do material equipado.
-	var model := Kit.piece("Horse")
+	# Cavalo de verdade e, no lombo, a sela/barda na cor do material equipado.
+	# Com o galope animado (Horse of Spring, lancelotgao, CC BY 3.0) quando há;
+	# senão o cavalo parado (jjmoser, CC BY 3.0).
+	var model := Kit.piece("Horse_Gallop")
 	if model:
-		model.rotation.y = PI / 2.0
+		model.scale = Vector3.ONE * 0.2
+		model.position.y = -0.6
+		for node in model.find_children("*", "MeshInstance3D", true, false):
+			var mesh := node as MeshInstance3D
+			var hide := _material(Color(0.42, 0.27, 0.15))
+			for i in mesh.get_surface_override_material_count():
+				mesh.set_surface_override_material(i, hide)
+			if mesh.get_surface_override_material_count() == 0:
+				mesh.material_override = hide
+		_horse_anim = model.find_child("AnimationPlayer", true, false) as AnimationPlayer
+		if _horse_anim and _horse_anim.has_animation("gallop"):
+			_horse_anim.get_animation("gallop").loop_mode = Animation.LOOP_LINEAR
+	else:
+		model = Kit.piece("Horse")
+		if model:
+			model.rotation.y = PI / 2.0
+	if model:
 		model.position.y = -0.6  # o herói sobe 0,6 m quando montado
 		horse.add_child(model)
 		var saddle := MeshInstance3D.new()
