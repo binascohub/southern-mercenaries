@@ -2303,3 +2303,6 @@ msgstr ""
 
 msgid "TIP_BREAKABLE"
 msgstr ""
+
+msgid "TIP_MAP"
+msgstr ""

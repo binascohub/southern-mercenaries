@@ -2304,3 +2304,6 @@ msgstr "Tinha ratos lá dentro!"
 
 msgid "TIP_BREAKABLE"
 msgstr "Barris e caixotes quebram com {button}: podem ter poções, ouro… ou ratos."
+
+msgid "TIP_MAP"
+msgstr "O mapa se revela conforme você explora. {button} amplia o mapa."

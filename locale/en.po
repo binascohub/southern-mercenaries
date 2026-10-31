@@ -2304,3 +2304,6 @@ msgstr "There were rats inside!"
 
 msgid "TIP_BREAKABLE"
 msgstr "Barrels and crates break with {button}: they may hold potions, gold... or rats."
+
+msgid "TIP_MAP"
+msgstr "The map reveals itself as you explore. {button} enlarges it."

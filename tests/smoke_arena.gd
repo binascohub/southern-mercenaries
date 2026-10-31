@@ -533,8 +533,21 @@ func _sewers_test() -> void:
 		check.call(_arena.area_id == id and not get_tree().get_nodes_in_group(&"enemies").is_empty(), "%s carrega com monstros" % id)
 		check.call("%s:start" % id in _arena._campaign.checkpoints_reached, "%s: checkpoint na entrada" % id)
 		check.call(_arena.result == 0, "%s: sem vitória ao chegar" % id)
-	# Área 1: poça de lodo fere quem está dentro.
+	# Mapa que se revela: só em volta de quem andou; fica na campanha e volta igual.
 	_arena.travel("sewers_01_drains", "start")
+	await _wait_frames(20)
+	check.call(_arena.hud.minimap.is_seen(Vector2(0, 3)) and not _arena.hud.minimap.is_seen(Vector2(0, -63)), "minimapa: começo visto, fundo em névoa")
+	player.teleport_to(Vector3(0, 0, -63))
+	await _wait_frames(20)
+	check.call(_arena.hud.minimap.is_seen(Vector2(0, -63)), "andar revela o fundo da área")
+	_arena.travel("sewers_02_canals", "start")
+	_arena.travel("sewers_01_drains", "start")
+	await _wait_frames(2)
+	check.call(_arena.hud.minimap.is_seen(Vector2(0, -63)) and _arena._campaign.explored.has("sewers_01_drains"), "o que foi visto continua visto ao voltar")
+	_arena.hud.minimap.toggle_large()
+	check.call(_arena.hud.minimap.large, "mapa grande")
+	_arena.hud.minimap.toggle_large()
+	# Área 1: poça de lodo fere quem está dentro.
 	player.teleport_to(Vector3(0, 0, -43))
 	player.health = player.max_health
 	await _wait_frames(45)

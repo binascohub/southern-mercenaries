@@ -41,6 +41,7 @@ func _ready() -> void:
 	_test_refine()
 	_test_opening()
 	_test_sewers()
+	_test_explore_map()
 	_test_tips()
 	_test_names()
 	_clean(TEST_ROOT)
@@ -843,6 +844,27 @@ func _test_sewers() -> void:
 		var boxes: Array = GameData.arenas[area_id].get("breakables", [])
 		_check(boxes.size() >= 4 and boxes.all(func(b: Dictionary) -> bool: return GameData.monsters.get(b.monster, {}).get("breakable", false)),
 			"%s tem barris e caixotes" % area_id)
+
+
+func _test_explore_map() -> void:
+	var area: Dictionary = GameData.arenas.sewers_01_drains
+	var mask := ExploreMap.empty(area)
+	var size := ExploreMap.grid_size(area)
+	_check(mask.size() == size.x * size.y and mask.count(1) == 0, "mapa começa todo em névoa")
+	var found := ExploreMap.reveal(mask, area, Vector2(0, 3))
+	_check(found.size() > 0 and ExploreMap.is_seen(mask, area, Vector2(0, 3)) and ExploreMap.is_seen(mask, area, Vector2(0, -6)),
+		"revela em volta do herói (%d células)" % found.size())
+	_check(not ExploreMap.is_seen(mask, area, Vector2(0, -63)), "o fundo da área continua em névoa")
+	_check(ExploreMap.reveal(mask, area, Vector2(0, 3)).is_empty(), "o que já foi visto não conta de novo")
+	var fraction := ExploreMap.explored_fraction(mask, area)
+	_check(fraction > 0.05 and fraction < 0.6, "fração explorada no começo: %.2f" % fraction)
+	var copy := ExploreMap.decode(ExploreMap.encode(mask), area)
+	_check(copy == mask, "máscara volta igual do save")
+	_check(ExploreMap.decode("", area) == ExploreMap.empty(area) and ExploreMap.decode("lixo:3", area).count(1) == 0, "save sem máscara (ou de outra área) começa em névoa")
+	for spot in [Vector2(0, -14), Vector2(0, -30), Vector2(0, -46), Vector2(-6, -58), Vector2(6, -58), Vector2(-6, -68),
+			Vector2(6, -68), Vector2(16, -30), Vector2(27, -30)]:
+		ExploreMap.reveal(mask, area, spot)
+	_check(ExploreMap.explored_fraction(mask, area) > 0.95, "andando pela área toda, quase tudo aparece (%.2f)" % ExploreMap.explored_fraction(mask, area))
 
 
 func _test_tips() -> void:

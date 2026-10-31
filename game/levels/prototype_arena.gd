@@ -113,6 +113,9 @@ var _thumb_timer := THUMB_FIRST
 var _zones: Array[Dictionary] = []
 ## Poças tóxicas e avisos de golpe no chão (Fase 7).
 var hazards: Hazards
+## Mapa que se revela (servidor): máscara da área atual e o próximo passo.
+var _explored := PackedByteArray()
+var _explore_timer := 0.0
 ## Saída em grupo: contagem do host em andamento (id da saída) e em que partida.
 var _exit_countdown := ""
 ## Nós da área atual (paredes, chão, luzes, objetos), trocados a cada viagem.
@@ -235,6 +238,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			and not _forge_menu.visible and not _opening_menu.visible:
 		pause_menu.open(not NetworkManager.is_online())
 		get_viewport().set_input_as_handled()
+	elif event.is_action_pressed(&"map") and not Session.ui_open:
+		hud.minimap.toggle_large()
+		get_viewport().set_input_as_handled()
 	elif result == Result.VICTORY and arena.get("replayable", false) and event.is_action_pressed(&"attack"):
 		if multiplayer.is_server():
 			_restart_area()
@@ -256,6 +262,9 @@ func _physics_process(delta: float) -> void:
 		_update_zones(delta)
 		_update_training()
 	hud.set_boss(_awake_boss())
+	_update_minimap_marks()
+	if multiplayer.is_server():
+		_update_explored(delta)
 	if local_player and is_instance_valid(local_player):
 		hud.set_training(training if in_training(local_player.global_position) else {})
 		var near := prop_near(local_player)
@@ -551,6 +560,7 @@ func _on_node_spawned(node: Node) -> void:
 func _on_peer_joined(peer_id: int) -> void:
 	_load_area.rpc_id(peer_id, area_id, "")
 	town.sync(peer_id)
+	_set_explored.rpc_id(peer_id, area_id, ExploreMap.encode(_explored))
 	_add_dynamic_props(peer_id)
 	var held: Player = _held.get(NetworkManager.client_id_of(peer_id))
 	if is_instance_valid(held):
@@ -609,6 +619,7 @@ func _load_area(id: String, _entry: String) -> void:
 	_build_area()
 	_build_props()
 	hazards.build_static(arena)
+	hud.minimap.set_area(arena, ExploreMap.empty(arena))
 	hud.set_replayable(arena.get("replayable", false), String(arena.get("victory_key", "HUD_VICTORY")))
 	hud.set_progress(cleared, total_encounters)
 	hud.set_area(tr(arena.get("name_key", "")))
@@ -675,6 +686,51 @@ func spawn_adds(at: Vector3, monster_id: String, count: int, radius: float) -> v
 			"yaw": angle + PI})
 		enemy.wake(1.0 + GameData.balance.health_per_extra_player * extra,
 			1.0 + GameData.balance.damage_per_extra_player * extra)
+
+
+# --- Mapa que se revela (09-interface.md, seção 8) ----------------------------
+
+## Servidor: cada herói de pé revela em volta; o que é novo vai para todos e
+## para a campanha (máscara única do grupo).
+func _update_explored(delta: float) -> void:
+	_explore_timer -= delta
+	if _explore_timer > 0.0 or arena.get("town", false) or _explored.is_empty():
+		return
+	_explore_timer = 0.25
+	var found := PackedInt32Array()
+	for p: Player in get_tree().get_nodes_in_group(&"players"):
+		if p.alive and p.connected:
+			found.append_array(ExploreMap.reveal(_explored, arena, Vector2(p.global_position.x, p.global_position.z)))
+	if found.is_empty():
+		return
+	var explored: Dictionary = _campaign.get("explored", {})
+	explored[area_id] = ExploreMap.encode(_explored)
+	_campaign.explored = explored
+	_reveal_cells.rpc(area_id, found)
+
+
+@rpc("authority", "call_local", "reliable")
+func _set_explored(id: String, encoded: String) -> void:
+	if id == area_id:
+		hud.minimap.set_area(arena, ExploreMap.decode(encoded, arena))
+
+
+@rpc("authority", "call_local", "reliable")
+func _reveal_cells(id: String, cells: PackedInt32Array) -> void:
+	if id == area_id:
+		hud.minimap.reveal(cells)
+
+
+## Marcas do minimapa (todos os PCs): heróis, saídas e lugares de missão.
+func _update_minimap_marks() -> void:
+	var heroes: Array[Dictionary] = []
+	for p: Player in get_tree().get_nodes_in_group(&"players"):
+		heroes.append({"position": Vector2(p.global_position.x, p.global_position.z), "local": p == local_player})
+	var marks: Array[Dictionary] = []
+	for prop: Dictionary in _props:
+		if prop.kind in ["exit", "quest_spot"]:
+			marks.append({"position": Vector2(prop.position[0], prop.position[1]), "kind": "exit" if prop.kind == "exit" else "quest"})
+	hud.minimap.set_markers(heroes, marks)
 
 
 ## Chefe acordado na área (para a barra do chefe em todos os PCs).
@@ -793,6 +849,8 @@ func _start_run() -> void:
 			done += 1
 	_broadcast(done, Result.VICTORY if _is_won(done) else Result.NONE)
 	_reach_checkpoint(str(_campaign.get("checkpoint", "start")))
+	_explored = ExploreMap.decode(String(_campaign.get("explored", {}).get(area_id, "")), arena)
+	_set_explored.rpc(area_id, ExploreMap.encode(_explored))
 
 
 ## Passou por um checkpoint (autosave, 11-saves.md, seção 4): vira o último

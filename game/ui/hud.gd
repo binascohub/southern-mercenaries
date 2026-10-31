@@ -48,6 +48,8 @@ var _skill_slots: Array[Label] = []
 var _potions: Label
 var _toasts: VBoxContainer
 var _saving: Label
+## Minimapa com névoa (09-interface.md, seção 3); `map` amplia.
+var minimap: Minimap
 ## Barra do chefe (09-interface.md): nome, fase e vida, no alto, enquanto ele luta.
 var _boss_box: VBoxContainer
 var _boss_name: Label
@@ -371,10 +373,11 @@ func _build() -> void:
 	var info_box := VBoxContainer.new()
 	info_box.set_anchors_preset(Control.PRESET_TOP_RIGHT)
 	# Cresce para a esquerda: nomes longos (área, missão) não saem da tela.
+	# Fica embaixo do minimapa (09-interface.md, seção 3).
 	info_box.grow_horizontal = Control.GROW_DIRECTION_BEGIN
 	info_box.offset_left = -260
 	info_box.offset_right = -24
-	info_box.offset_top = 20
+	info_box.offset_top = 16 + Minimap.SMALL.y + 8
 	info_box.custom_minimum_size = Vector2(236, 0)
 	root.add_child(info_box)
 	_progress_label = _label(20)
@@ -470,6 +473,9 @@ func _build() -> void:
 	_toasts.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(_toasts)
 
+	minimap = Minimap.new()
+	root.add_child(minimap)
+
 	_boss_box = VBoxContainer.new()
 	_boss_box.set_anchors_preset(Control.PRESET_CENTER_TOP)
 	_boss_box.grow_horizontal = Control.GROW_DIRECTION_BOTH
@@ -498,8 +504,8 @@ func _build() -> void:
 	_tip.grow_horizontal = Control.GROW_DIRECTION_BEGIN
 	_tip.grow_vertical = Control.GROW_DIRECTION_BOTH
 	_tip.offset_right = -24
-	_tip.offset_top = -170
-	_tip.offset_bottom = -170
+	_tip.offset_top = 60
+	_tip.offset_bottom = 60
 	_tip.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var tip_style := StyleBoxFlat.new()
 	tip_style.bg_color = Color(0.09, 0.07, 0.06, 0.88)

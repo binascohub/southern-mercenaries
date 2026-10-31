@@ -165,6 +165,14 @@
       "actions": [
         "attack"
       ]
+    },
+    "tip_map": {
+      "key": "TIP_MAP",
+      "event": "map_area",
+      "priority": 42,
+      "actions": [
+        "map"
+      ]
     }
   }
 }
