@@ -460,6 +460,8 @@ func _skills_test() -> void:
 		before = player.health
 		player.take_damage(30.0, 1, rat)
 		check.call(before - player.health < open_loss - 1.0, "bloqueio de frente reduz o dano (%.1f contra %.1f)" % [before - player.health, open_loss])
+		# Barreiras gastam por dano bloqueado; o escudo do Cavaleiro, por segundo erguido.
+		await get_tree().physics_frame
 		check.call(player.resource < resource_before, "bloquear gasta o recurso")
 		Input.action_release(&"block")
 		await get_tree().physics_frame
