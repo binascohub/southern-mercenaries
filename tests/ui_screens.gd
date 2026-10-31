@@ -8,6 +8,8 @@ extends "res://tests/smoke_arena.gd"
 ## 0c. skills.png: janela de habilidades de um Mago nível 12 e a barra de atalhos;
 ## 0d. classes.png: as 5 classes lado a lado (Cavaleiro montado), cada uma de um elemento;
 ## 1. trade.png: janela de troca com um aliado fictício (peer 99) e ofertas dos dois lados;
+## 1b. tavern.png: conversa com o Velho Bêbado na Taverna (a primeira missão);
+## 1c. tortuga.png: Rua Principal com as bancas; shop.png: Mercado Pirata;
 ## 2. load_campaign.png: menu principal → Carregar campanha, com três campanhas
 ##    (uma com miniatura capturada da própria arena).
 
@@ -22,7 +24,13 @@ const CLASSES_SHOT := 236
 const THUMB_FRAME := 240
 const TRADE_FRAME := 260
 const TRADE_SHOT := 290
-const MENU_FRAME := 300
+const TAVERN_FRAME := 292
+const TAVERN_SHOT := 300
+const STREET_FRAME := 302
+const STREET_SHOT := 310
+const SHOP_FRAME := 312
+const SHOP_SHOT := 318
+const MENU_FRAME := 330
 
 var _dir := "user://"
 var _menu: Node
@@ -68,6 +76,19 @@ func _physics_process(delta: float) -> void:
 		_open_trade()
 	elif _frame == TRADE_SHOT:
 		await _shot("trade.png")
+	elif _frame == TAVERN_FRAME:
+		_open_tavern()
+	elif _frame == TAVERN_SHOT:
+		await _shot("tavern.png")
+	elif _frame == STREET_FRAME:
+		_open_street()
+	elif _frame == STREET_SHOT:
+		await _shot("tortuga.png")
+	elif _frame == SHOP_FRAME:
+		_open_pirate_market()
+	elif _frame == SHOP_SHOT:
+		await _shot("shop.png")
+		_arena._shop_menu.close()
 	elif _frame == MENU_FRAME:
 		_open_load_campaign()
 	elif _frame == MENU_FRAME + 20:
@@ -142,6 +163,39 @@ func _show_classes() -> void:
 		hero.teleport_to(player.global_position + Vector3(-4.0 + 2.0 * i + (2.0 if i >= 2 else 0.0), 0, 0))
 		hero.facing = Vector2(0, 1)
 	player.facing = Vector2(0, 1)
+
+
+## Taverna: fecha a troca, viaja e abre a conversa do Velho Bêbado na última fala.
+func _open_tavern() -> void:
+	_arena._trade_menu._hide_all()
+	var ally := _arena.get_node_or_null("99")
+	if ally:
+		ally.queue_free()
+	_arena.travel("tavern", "start")
+	var player: Player = _arena.local_player
+	player.teleport_to(Vector3(-4.2, 0, 0.2))
+	player.facing = Vector2(-0.7, -0.7)
+	_arena._camera.snap()
+	_arena.town.interact(player, _arena.prop_near(player, "npc", "old_drunk", 4.0))
+	var menu: DialogueMenu = _arena._dialogue_menu
+	menu._line = 4
+	menu._show_line()
+
+
+func _open_street() -> void:
+	_arena._dialogue_menu.close()
+	var player: Player = _arena.local_player
+	_arena.town._rpc_accept("sewer_treasure")
+	_arena.travel("tortuga", "start")
+	player.teleport_to(Vector3(-12, 0, -1.5))
+	_arena._camera.snap()
+
+
+func _open_pirate_market() -> void:
+	var player: Player = _arena.local_player
+	player.teleport_to(Vector3(-6, 0, -16.5))
+	_arena._camera.snap()
+	_arena.request_interact(player)
 
 
 func _stop_bot() -> void:
