@@ -26,15 +26,15 @@ jobs:
       - name: Importar o projeto
         run: godot --headless --path . --import
       - name: Testes de dados e traduções
-        run: godot --headless --path . --script res://tests/run_tests.gd
+        run: tests/godot_checked.sh godot --headless --path . --script res://tests/run_tests.gd
       - name: Testes de RPG (fórmulas, bolsa, validação, saves)
-        run: godot --headless --path . res://tests/rpg_tests.tscn
+        run: tests/godot_checked.sh godot --headless --path . res://tests/rpg_tests.tscn
       - name: Teste de fumaça da arena (solo)
-        run: godot --headless --path . --fixed-fps 60 res://tests/smoke_arena.tscn
+        run: tests/godot_checked.sh godot --headless --path . --fixed-fps 60 res://tests/smoke_arena.tscn
       - name: Queda, revive e volta ao checkpoint
-        run: godot --headless --path . res://tests/smoke_arena.tscn -- revive
+        run: tests/godot_checked.sh godot --headless --path . res://tests/smoke_arena.tscn -- revive
       - name: Troca entre jogadores
-        run: godot --headless --path . res://tests/smoke_arena.tscn -- trade
+        run: tests/godot_checked.sh godot --headless --path . res://tests/smoke_arena.tscn -- trade
       - name: Rede (host + cliente, versão diferente)
         run: tests/net_smoke.sh godot
       - name: Captura de tela do inventário
