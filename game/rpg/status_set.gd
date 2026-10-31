@@ -35,6 +35,12 @@ func dps(id: String) -> float:
 	return float(states.get(id, {}).get("dps", 0.0))
 
 
+## Valor guardado com o estado (o mesmo campo do dano por segundo): ex. o bônus
+## de dano do Marcar Alvo.
+func value(id: String) -> float:
+	return dps(id)
+
+
 ## Passa o tempo. Retorna o dano de "queimando" deste passo (um tique por segundo).
 func tick(delta: float) -> float:
 	var damage := 0.0
@@ -62,6 +68,8 @@ func can_act() -> bool:
 func move_mult() -> float:
 	var slow := 0.0
 	for id: String in states:
+		if Elements.state_data(id).get("root", false):
+			return 0.0  # preso (Armadilha de Espinhos): não anda, mas ataca
 		slow = maxf(slow, float(Elements.state_data(id).get("slow", 0.0)))
 	return 1.0 - slow
 

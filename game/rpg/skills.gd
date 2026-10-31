@@ -77,10 +77,15 @@ static func cooldown(skill: Dictionary, rank: int) -> float:
 	return maxf(scaled(skill, "cooldown", "cooldown_per_rank", rank), 0.0)
 
 
-## Saltos da Corrente de Raios: 5, +1 nos ranks 3 e 5.
-static func jumps(skill: Dictionary, rank: int) -> int:
-	var n := int(skill.get("jumps", 0))
-	for r in skill.get("jumps_at_ranks", []):
+## Quantidade que sobe em ranks marcados: saltos da Corrente de Raios (5, +1 nos
+## ranks 3 e 5), flechas do Leque de Flechas.
+static func count(skill: Dictionary, rank: int, field: String) -> int:
+	var n := int(skill.get(field, 0))
+	for r in skill.get(field + "_at_ranks", []):
 		if rank >= int(r):
 			n += 1
 	return n
+
+
+static func jumps(skill: Dictionary, rank: int) -> int:
+	return count(skill, rank, "jumps")

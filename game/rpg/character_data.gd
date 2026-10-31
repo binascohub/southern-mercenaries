@@ -34,9 +34,9 @@ static func create(class_id: String, sex: String, hero_name: String, element := 
 		# Elemento de origem (não muda) e o da Poção Elemental ativa ("" = nenhuma).
 		"element": element if element in Elements.ALL else "fire",
 		"element_potion": "",
-		# Habilidades por chave (Skills): a básica do elemento vem no rank 1 e no atalho 1.
-		"skills": {"element_1": 1},
-		"skill_slots": ["element_1", "", "", ""],
+		# Habilidades por chave (Skills): a de nível 1 vem no rank 1 e no atalho 1.
+		"skills": {Skills.keys(class_id)[0]: 1},
+		"skill_slots": [Skills.keys(class_id)[0], "", "", ""],
 		"level": 1,
 		"xp": 0,
 		"attributes": cls.attributes.duplicate(),
@@ -282,7 +282,7 @@ func _validate_skills() -> PackedStringArray:
 				or Skills.unlock_level(data.class_id, key) > int(data.level):
 			errors.append("habilidade " + key)
 		spent += rank
-	# O rank 1 da básica vem de graça; o resto sai dos pontos (+1 por nível).
+	# O rank 1 da habilidade de nível 1 vem de graça; o resto sai dos pontos (+1 por nível).
 	var earned := int(GameData.balance.skill_points_per_level) * (int(data.level) - 1) + 1
 	if spent + int(data.get("skill_points", 0)) > earned:
 		errors.append("pontos de habilidade demais")
@@ -364,9 +364,14 @@ func end_expedition() -> void:
 	data.element_potion = ""
 
 
-## Crítico: 5% de base + afixos (13-balanceamento.md 2.1).
+## Crítico: 5% de base + afixos (13-balanceamento.md 2.1) + Olho de Águia.
 func crit_chance() -> float:
-	return GameData.elements.crit_chance + affix_total("crit") / 100.0
+	return GameData.elements.crit_chance + affix_total("crit") / 100.0 + passive_value("eagle_eye")
+
+
+## Dano do crítico: x1,5 + Olho de Águia (+10% por rank).
+func crit_mult() -> float:
+	return GameData.elements.crit_mult + passive_value("eagle_eye", "crit_damage_value", "crit_damage_per_rank")
 
 
 func move_speed_bonus() -> float:

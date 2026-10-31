@@ -1,5 +1,5 @@
 {
-  "_comment": "Itens base (05-itens-e-loot.md, seção 7). Fase 3: só o Mago (cajado e roupas de tecido); classes novas entram na Fase 5. Armadura base por peça de 13-balanceamento.md 2.3.",
+  "_comment": "Itens base (05-itens-e-loot.md, seção 7). Mago: cajado e roupas de tecido; Arqueiro (Fase 5): arco, capuz de caçador e colete de couro. Armadura base por peça de 13-balanceamento.md 2.3.",
   "staff": {
     "slot": "weapon",
     "classes": [
@@ -50,5 +50,30 @@
     "classes": [],
     "name_key": "ITEM_TYPE_AMULET",
     "jewelry": true
+  },
+  "bow": {
+    "slot": "weapon",
+    "classes": [
+      "archer"
+    ],
+    "name_key": "ITEM_TYPE_BOW",
+    "damage": 10,
+    "weapon_material": true
+  },
+  "hunter_cap": {
+    "slot": "head",
+    "classes": [
+      "archer"
+    ],
+    "name_key": "ITEM_TYPE_HUNTER_CAP",
+    "armor": 5
+  },
+  "leather_vest": {
+    "slot": "body",
+    "classes": [
+      "archer"
+    ],
+    "name_key": "ITEM_TYPE_LEATHER_VEST",
+    "armor": 10
   }
 }

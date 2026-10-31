@@ -19,6 +19,9 @@
     "knocked_down": { "name_key": "STATE_KNOCKED_DOWN", "duration": 1.0, "disables": true, "control": true, "color": [0.6, 0.6, 0.6] },
     "stunned": { "name_key": "STATE_STUNNED", "duration": 1.5, "disables": true, "control": true, "color": [1.0, 0.9, 0.3] },
     "slowed": { "_comment": "Chefes recebem lentidão no lugar dos estados de controle (seção 6).", "name_key": "STATE_SLOWED", "duration": 2.0, "slow": 0.5, "color": [0.5, 0.5, 0.7] },
+    "crippled": { "_comment": "Salto para Trás do Arqueiro: inimigos perto ficam 40% mais lentos.", "name_key": "STATE_CRIPPLED", "duration": 2.0, "slow": 0.4, "color": [0.55, 0.6, 0.75] },
+    "rooted": { "_comment": "Armadilha de Espinhos: preso no lugar, ainda ataca quem chegar perto.", "name_key": "STATE_ROOTED", "duration": 2.0, "root": true, "color": [0.5, 0.35, 0.2] },
+    "marked": { "_comment": "Marcar Alvo: recebe mais dano de todo o grupo (o valor vem da habilidade).", "name_key": "STATE_MARKED", "duration": 8.0, "color": [1.0, 0.3, 0.3] },
     "mud": { "_comment": "Dentro da área de lama do combo (seção 7); renovado enquanto está na área.", "name_key": "STATE_MUD", "duration": 0.3, "slow": 0.4, "color": [0.45, 0.33, 0.18] },
     "steam": { "_comment": "Dentro da nuvem de vapor do combo; erra ataques.", "name_key": "STATE_STEAM", "duration": 0.3, "miss_chance": 0.3, "color": [0.85, 0.85, 0.9] }
   },

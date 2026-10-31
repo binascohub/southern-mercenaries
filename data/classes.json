@@ -33,7 +33,7 @@
       "projectile_speed": 16.0,
       "radius": 0.45,
       "charge_time": 1.0,
-    "applies_state": true,
+      "applies_state": true,
       "pierce": 1
     },
     "evade": {
@@ -65,5 +65,73 @@
       "gold": 0
     },
     "_comment": "Mago (02-1-mago.md). Vida por nível de 13-balanceamento.md 2.2; mana +2 e regeneração +0,05/s por ponto de INT (02-1-mago.md, seção 4). Kit inicial: cajado de madeira e roupa de baixo (02-personagens.md); as poções do kit são provisórias até a loja do Boticário (14-tutorial.md)."
+  },
+  "archer": {
+    "name_key": "CLASS_ARCHER_NAME",
+    "hero_name_keys": {
+      "male": "HERO_ARCHER_MALE",
+      "female": "HERO_ARCHER_FEMALE"
+    },
+    "resource": "focus",
+    "resource_key": "RESOURCE_FOCUS",
+    "power_key": "POWER_SHOT",
+    "power_attribute": "dex",
+    "attributes": {
+      "str": 15,
+      "dex": 25,
+      "int": 15,
+      "vit": 20
+    },
+    "max_health": 90,
+    "max_resource": 100,
+    "resource_regen": 15.0,
+    "resource_regen_moving": 5.0,
+    "move_speed_pct": 100,
+    "basic_attack": {
+      "power_pct": 0.8,
+      "range": 16.0,
+      "projectile_speed": 30.0,
+      "radius": 0.16,
+      "cooldown": 0.4,
+      "pierce": 0
+    },
+    "strong_attack": {
+      "power_pct": 2.0,
+      "range": 18.0,
+      "projectile_speed": 34.0,
+      "radius": 0.22,
+      "charge_time": 1.5,
+      "applies_state": true,
+      "pierce": 1
+    },
+    "evade": {
+      "distance": 4.0,
+      "duration": 0.3,
+      "cooldown": 3.0
+    },
+    "health_per_level": 35,
+    "resource_per_power_point": 1,
+    "regen_per_power_point": 0.0,
+    "armor_factor": 0.6,
+    "starting_kit": {
+      "equipment": {
+        "weapon": {
+          "base": "bow",
+          "material": "wood"
+        }
+      },
+      "items": [
+        {
+          "id": "potion_health",
+          "count": 3
+        },
+        {
+          "id": "potion_resource",
+          "count": 2
+        }
+      ],
+      "gold": 0
+    },
+    "_comment": "Arqueiro (02-2-arqueiro.md). Atributos e vida de 02-personagens.md; Foco +1 por DES, regenera 15/s parado e 5/s andando (seção 4); esquiva com recarga 3 s no lugar do bloqueio; armadura x0,6 (13-balanceamento.md). Kit inicial: arco de madeira e roupa de baixo."
   }
 }

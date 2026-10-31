@@ -22,6 +22,7 @@ var element := ""
 ## Estado aplicado ao acertar ("" no ataque básico).
 var state := ""
 var crit_chance := 0.05
+var crit_mult := 1.5
 ## Habilidades: o golpe completo (Elements.resolve_hit) e a explosão em área.
 var hit := {}
 var explode := 0.0
@@ -43,6 +44,7 @@ static func create(spawn: Dictionary) -> Projectile:
 	projectile.element = spawn.get("element", "")
 	projectile.state = spawn.get("state", "")
 	projectile.crit_chance = spawn.get("crit_chance", 0.05)
+	projectile.crit_mult = spawn.get("crit_mult", 1.5)
 	projectile.hit = spawn.get("hit", {})
 	projectile.explode = spawn.get("explode", 0.0)
 	return projectile
@@ -93,7 +95,7 @@ func _on_body_entered(body: Node) -> void:
 	if body.is_in_group(&"enemies"):
 		_hit.append(body)
 		var full := hit if not hit.is_empty() else \
-			{"damage": damage, "element": element, "state": state, "crit_chance": crit_chance}
+			{"damage": damage, "element": element, "state": state, "crit_chance": crit_chance, "crit_mult": crit_mult}
 		if explode > 0.0:
 			# Bola de Fogo: explode e acerta todos em volta (inclusive o alvo).
 			get_tree().call_group(&"arena", &"skill_burst", body.global_position, explode, full)

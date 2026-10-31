@@ -929,3 +929,150 @@ msgstr "Daño: {percent}% de {power} (rango {rank})"
 
 msgid "SKILLS_HINT"
 msgstr "+ gasta un punto de habilidad. 1–4 ponen una habilidad activa en un atajo. Una Poción elemental cambia las habilidades del elemento por las del nuevo, con los mismos rangos."
+
+msgid "SKILL_PRECISE_SHOT_NAME"
+msgstr "Disparo Preciso"
+
+msgid "SKILL_PRECISE_SHOT_DESC"
+msgstr "Flecha cargada que siempre es crítica; lleva el estado básico de tu elemento."
+
+msgid "SKILL_BACK_LEAP_NAME"
+msgstr "Salto Atrás"
+
+msgid "SKILL_BACK_LEAP_DESC"
+msgstr "Salta 6 m hacia atrás; los enemigos a 4 m quedan un 40% más lentos 2 s. Recarga -1 s por rango."
+
+msgid "SKILL_EAGLE_EYE_NAME"
+msgstr "Ojo de Águila"
+
+msgid "SKILL_EAGLE_EYE_DESC"
+msgstr "Pasiva: +5% de probabilidad de crítico y +10% de daño crítico por rango."
+
+msgid "SKILL_SPIKE_TRAP_NAME"
+msgstr "Trampa de Púas"
+
+msgid "SKILL_SPIKE_TRAP_DESC"
+msgstr "Trampa que inmoviliza a quien la pise 2 s (+0,25 s por rango) y hiere a todos a 3 m. Dura 20 s; hasta 3 en el suelo."
+
+msgid "SKILL_ARROW_FAN_NAME"
+msgstr "Abanico de Flechas"
+
+msgid "SKILL_ARROW_FAN_DESC"
+msgstr "Dispara 5 flechas en abanico (+1 en los rangos 3 y 5)."
+
+msgid "SKILL_PIERCING_ARROW_NAME"
+msgstr "Flecha Perforante"
+
+msgid "SKILL_PIERCING_ARROW_DESC"
+msgstr "Atraviesa a todos los enemigos en una línea de 25 m."
+
+msgid "SKILL_MARK_TARGET_NAME"
+msgstr "Marcar Objetivo"
+
+msgid "SKILL_MARK_TARGET_DESC"
+msgstr "El objetivo de la mira recibe +15% de daño (+3% por rango) de todo el grupo durante 8 s."
+
+msgid "SKILL_HUNTERS_CAMPFIRE_NAME"
+msgstr "Hoguera del Cazador"
+
+msgid "SKILL_HUNTERS_CAMPFIRE_DESC"
+msgstr "Una flecha enciende una hoguera durante 8 s; los aliados a 6 m causan +15% de daño (+3% por rango) y sus golpes queman."
+
+msgid "SKILL_FLAMING_ARROW_NAME"
+msgstr "Flecha Incendiaria"
+
+msgid "SKILL_FLAMING_ARROW_DESC"
+msgstr "Flecha en llamas; su quemadura hace el doble de daño."
+
+msgid "SKILL_FIRE_RAIN_NAME"
+msgstr "Lluvia de Fuego"
+
+msgid "SKILL_FIRE_RAIN_DESC"
+msgstr "Flechas en llamas caen en un área de 6 m durante 5 s e incendian el suelo."
+
+msgid "SKILL_SPRING_ARROW_NAME"
+msgstr "Flecha del Manantial"
+
+msgid "SKILL_SPRING_ARROW_DESC"
+msgstr "Una flecha abre un manantial de 5 m durante 6 s que cura a los aliados y empapa a los enemigos."
+
+msgid "SKILL_FROST_ARROW_NAME"
+msgstr "Flecha de Hielo"
+
+msgid "SKILL_FROST_ARROW_DESC"
+msgstr "Flecha de hielo; un objetivo empapado queda congelado 2 s."
+
+msgid "SKILL_HAIL_STORM_NAME"
+msgstr "Granizada"
+
+msgid "SKILL_HAIL_STORM_DESC"
+msgstr "Granizo en un área de 7 m durante 6 s; ralentiza y quien siga dentro 3 s se congela."
+
+msgid "SKILL_HUNTERS_WIND_NAME"
+msgstr "Viento del Cazador"
+
+msgid "SKILL_HUNTERS_WIND_DESC"
+msgstr "Los aliados a 8 m se mueven y atacan un 30% más rápido (+5% por rango) durante 8 s."
+
+msgid "SKILL_THUNDER_ARROW_NAME"
+msgstr "Flecha Trueno"
+
+msgid "SKILL_THUNDER_ARROW_DESC"
+msgstr "Golpea como un rayo y electriza; electrocuta a un objetivo empapado."
+
+msgid "SKILL_STORM_VOLLEY_NAME"
+msgstr "Andanada de la Tormenta"
+
+msgid "SKILL_STORM_VOLLEY_DESC"
+msgstr "12 flechas-rayo en 4 s en un área de 8 m; cada una salta a 2 enemigos más."
+
+msgid "SKILL_BULWARK_ARROW_NAME"
+msgstr "Flecha Baluarte"
+
+msgid "SKILL_BULWARK_ARROW_DESC"
+msgstr "Piedras se alzan a tu alrededor y protegen con un escudo a los aliados a 5 m durante 8 s."
+
+msgid "SKILL_BOULDER_ARROW_NAME"
+msgstr "Flecha RompeRocas"
+
+msgid "SKILL_BOULDER_ARROW_DESC"
+msgstr "Flecha pesada de piedra que aturde 1,5 s."
+
+msgid "SKILL_STONE_RAIN_NAME"
+msgstr "Lluvia de Piedras"
+
+msgid "SKILL_STONE_RAIN_DESC"
+msgstr "Caen piedras en un área de 7 m durante 5 s y derriban a los enemigos."
+
+msgid "CLASS_ARCHER_NAME"
+msgstr "Arquero"
+
+msgid "HERO_ARCHER_MALE"
+msgstr "Kael Thorne"
+
+msgid "HERO_ARCHER_FEMALE"
+msgstr "Kaela Thorne"
+
+msgid "RESOURCE_FOCUS"
+msgstr "Foco"
+
+msgid "POWER_SHOT"
+msgstr "Poder de Tiro"
+
+msgid "ITEM_TYPE_BOW"
+msgstr "Arco"
+
+msgid "ITEM_TYPE_HUNTER_CAP"
+msgstr "Gorro de cazador"
+
+msgid "ITEM_TYPE_LEATHER_VEST"
+msgstr "Chaleco de cuero"
+
+msgid "STATE_CRIPPLED"
+msgstr "Entorpecido"
+
+msgid "STATE_ROOTED"
+msgstr "Inmovilizado"
+
+msgid "STATE_MARKED"
+msgstr "Marcado"

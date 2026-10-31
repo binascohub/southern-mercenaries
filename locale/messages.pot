@@ -928,3 +928,150 @@ msgstr ""
 
 msgid "SKILLS_HINT"
 msgstr ""
+
+msgid "SKILL_PRECISE_SHOT_NAME"
+msgstr ""
+
+msgid "SKILL_PRECISE_SHOT_DESC"
+msgstr ""
+
+msgid "SKILL_BACK_LEAP_NAME"
+msgstr ""
+
+msgid "SKILL_BACK_LEAP_DESC"
+msgstr ""
+
+msgid "SKILL_EAGLE_EYE_NAME"
+msgstr ""
+
+msgid "SKILL_EAGLE_EYE_DESC"
+msgstr ""
+
+msgid "SKILL_SPIKE_TRAP_NAME"
+msgstr ""
+
+msgid "SKILL_SPIKE_TRAP_DESC"
+msgstr ""
+
+msgid "SKILL_ARROW_FAN_NAME"
+msgstr ""
+
+msgid "SKILL_ARROW_FAN_DESC"
+msgstr ""
+
+msgid "SKILL_PIERCING_ARROW_NAME"
+msgstr ""
+
+msgid "SKILL_PIERCING_ARROW_DESC"
+msgstr ""
+
+msgid "SKILL_MARK_TARGET_NAME"
+msgstr ""
+
+msgid "SKILL_MARK_TARGET_DESC"
+msgstr ""
+
+msgid "SKILL_HUNTERS_CAMPFIRE_NAME"
+msgstr ""
+
+msgid "SKILL_HUNTERS_CAMPFIRE_DESC"
+msgstr ""
+
+msgid "SKILL_FLAMING_ARROW_NAME"
+msgstr ""
+
+msgid "SKILL_FLAMING_ARROW_DESC"
+msgstr ""
+
+msgid "SKILL_FIRE_RAIN_NAME"
+msgstr ""
+
+msgid "SKILL_FIRE_RAIN_DESC"
+msgstr ""
+
+msgid "SKILL_SPRING_ARROW_NAME"
+msgstr ""
+
+msgid "SKILL_SPRING_ARROW_DESC"
+msgstr ""
+
+msgid "SKILL_FROST_ARROW_NAME"
+msgstr ""
+
+msgid "SKILL_FROST_ARROW_DESC"
+msgstr ""
+
+msgid "SKILL_HAIL_STORM_NAME"
+msgstr ""
+
+msgid "SKILL_HAIL_STORM_DESC"
+msgstr ""
+
+msgid "SKILL_HUNTERS_WIND_NAME"
+msgstr ""
+
+msgid "SKILL_HUNTERS_WIND_DESC"
+msgstr ""
+
+msgid "SKILL_THUNDER_ARROW_NAME"
+msgstr ""
+
+msgid "SKILL_THUNDER_ARROW_DESC"
+msgstr ""
+
+msgid "SKILL_STORM_VOLLEY_NAME"
+msgstr ""
+
+msgid "SKILL_STORM_VOLLEY_DESC"
+msgstr ""
+
+msgid "SKILL_BULWARK_ARROW_NAME"
+msgstr ""
+
+msgid "SKILL_BULWARK_ARROW_DESC"
+msgstr ""
+
+msgid "SKILL_BOULDER_ARROW_NAME"
+msgstr ""
+
+msgid "SKILL_BOULDER_ARROW_DESC"
+msgstr ""
+
+msgid "SKILL_STONE_RAIN_NAME"
+msgstr ""
+
+msgid "SKILL_STONE_RAIN_DESC"
+msgstr ""
+
+msgid "CLASS_ARCHER_NAME"
+msgstr ""
+
+msgid "HERO_ARCHER_MALE"
+msgstr ""
+
+msgid "HERO_ARCHER_FEMALE"
+msgstr ""
+
+msgid "RESOURCE_FOCUS"
+msgstr ""
+
+msgid "POWER_SHOT"
+msgstr ""
+
+msgid "ITEM_TYPE_BOW"
+msgstr ""
+
+msgid "ITEM_TYPE_HUNTER_CAP"
+msgstr ""
+
+msgid "ITEM_TYPE_LEATHER_VEST"
+msgstr ""
+
+msgid "STATE_CRIPPLED"
+msgstr ""
+
+msgid "STATE_ROOTED"
+msgstr ""
+
+msgid "STATE_MARKED"
+msgstr ""

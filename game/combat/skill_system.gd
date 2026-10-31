@@ -13,7 +13,13 @@ extends Node
 ##   shield      escudo no aliado mais ferido por perto (Pele de Pedra)
 ##   teleport    teleporte na direção da mira, sem atravessar paredes
 ##   delayed     marca no chão e cai depois (Meteoro, Terremoto)
-##   area        área que dura (Muralha de Fogo, Nevasca, Tornado, Tempestade, Chuva)
+##   area        área que dura (Muralha de Fogo, Nevasca, Tornado, Tempestade, Chuva,
+##               Fogueira do Caçador, chuvas do Arqueiro)
+##   leap        salto para trás que deixa lento quem está perto (Salto para Trás)
+##   trap        armadilha que prende quem pisar (até 3 por herói)
+##   fan         várias flechas em leque (Leque de Flechas)
+##   mark        marca o alvo na mira: recebe mais dano de todos (Marcar Alvo)
+## "imbued": habilidade de classe que aplica o estado básico do elemento atual.
 ## Habilidades com alvo usam a mira como direção; quando precisam de um ponto
 ## (Meteoro, Nevasca), escolhem o inimigo mais perto no cone da mira.
 ## Todo dano passa por Enemy.take_hit (fraqueza, combos, crítico). Os efeitos
@@ -26,6 +32,8 @@ const AIM_CONE := deg_to_rad(30.0)
 var _areas: Array[Dictionary] = []
 ## Golpes marcados que caem depois (servidor).
 var _delayed: Array[Dictionary] = []
+## Armadilhas no chão (servidor): {position, time, hit, caster, skill, rank}.
+var _traps: Array[Dictionary] = []
 var _rng := RandomNumberGenerator.new()
 
 
@@ -104,19 +112,56 @@ func cast(player: Player, skill_id: String, rank: int) -> bool:
 				p.add_buff(String(skill.buff), value, skill.duration)
 			_fx.rpc("disc", origin, Vector3.ZERO, skill.area, color, 0.6)
 		"shield":
-			var best: Player = player
-			for p in allies_in(origin, skill.range):
-				if p.health / p.max_health < best.health / best.max_health:
-					best = p
-			best.add_shield(player.power * Skills.scaled(skill, "value", "per_rank", rank), skill.duration)
-			_fx.rpc("disc", best.global_position, Vector3.ZERO, 1.2, color, 0.6)
+			var amount := player.power * Skills.scaled(skill, "value", "per_rank", rank)
+			if skill.has("area"):
+				# Flecha Baluarte: todos os aliados em volta.
+				for p in allies_in(origin, skill.area):
+					p.add_shield(amount, skill.duration)
+				_fx.rpc("disc", origin, Vector3.ZERO, skill.area, color, 0.6)
+			else:
+				var best: Player = player
+				for p in allies_in(origin, skill.range):
+					if p.health / p.max_health < best.health / best.max_health:
+						best = p
+				best.add_shield(amount, skill.duration)
+				_fx.rpc("disc", best.global_position, Vector3.ZERO, 1.2, color, 0.6)
+		"leap":
+			for e in enemies_in(origin, skill.area):
+				Elements.apply_state(e.status, String(skill.state), e.element, e.is_boss())
+			_fx.rpc("disc", origin, Vector3.ZERO, skill.area, color, 0.4)
+			player.teleport_to(_ray_limited(player, origin, origin - aim * float(skill.distance)))
+		"trap":
+			var spot := _ray_limited(player, origin, origin + aim * float(skill.distance))
+			var mine := _traps.filter(func(t: Dictionary) -> bool: return t.caster == player)
+			if mine.size() >= int(skill.max_traps):
+				_traps.erase(mine[0])
+			var trap_hit := hit_for(player, skill, rank)
+			trap_hit.root = Skills.scaled(skill, "root", "root_per_rank", rank)
+			_traps.append({"position": spot, "time": float(skill.duration), "hit": trap_hit,
+				"caster": player, "radius": float(skill.area), "trigger": float(skill.trigger)})
+			_fx.rpc("disc", spot, Vector3.ZERO, skill.trigger, color.darkened(0.4), skill.duration)
+		"fan":
+			var n := Skills.count(skill, rank, "count")
+			var spread := deg_to_rad(float(skill.angle))
+			var hit := hit_for(player, skill, rank)
+			for i in n:
+				var t := 0.0 if n == 1 else float(i) / (n - 1) - 0.5
+				var dir := aim.rotated(Vector3.UP, t * spread)
+				_arena().spawn_projectile({
+					"position": origin + Vector3.UP * Player.PROJECTILE_HEIGHT + dir * 0.6,
+					"direction": dir, "speed": skill.speed, "range": skill.range, "radius": skill.radius,
+					"pierce": 0, "damage": 0.0, "color": color, "hit": hit, "explode": 0.0,
+				})
+		"mark":
+			var target := target_in_aim(player, skill.range)
+			if target == null:
+				return false
+			Elements.apply_state(target.status, "marked", target.element, target.is_boss(),
+				Skills.scaled(skill, "value", "per_rank", rank), skill.duration)
+			_fx.rpc("beam", origin + Vector3.UP, target.global_position + Vector3.UP * 0.5, 0.08,
+				Elements.state_color("marked"), 0.4)
 		"teleport":
-			var dest := origin + aim * float(skill.distance)
-			var space := player.get_world_3d().direct_space_state
-			var query := PhysicsRayQueryParameters3D.create(origin + Vector3.UP, dest + Vector3.UP, 1)
-			var ray := space.intersect_ray(query)
-			if not ray.is_empty():
-				dest = Vector3(ray.position.x, 0, ray.position.z) - aim * 0.6
+			var dest := _ray_limited(player, origin, origin + aim * float(skill.distance))
 			_fx.rpc("disc", origin, Vector3.ZERO, 0.9, color, 0.3)
 			player.teleport_to(dest)
 			_fx.rpc("disc", dest, Vector3.ZERO, 0.9, color, 0.3)
@@ -135,13 +180,19 @@ func cast(player: Player, skill_id: String, rank: int) -> bool:
 ## Golpe da habilidade para Elements.resolve_hit: dano = poder × % do rank ×
 ## bônus do herói (Bênção das Chamas, Domínio Elemental).
 func hit_for(player: Player, skill: Dictionary, rank: int) -> Dictionary:
+	var state := String(skill.get("state", ""))
+	if skill.get("imbued", false):
+		state = String(Elements.data(player.element).get("basic_state", ""))
 	var hit := {
 		"damage": player.power * Skills.power(skill, rank) * player.damage_mult(),
 		"element": player.element,
-		"state": String(skill.get("state", "")),
-		"crit_chance": player.character.crit_chance() if player.character else GameData.elements.crit_chance,
+		"state": state,
+		"crit_chance": float(skill.get("crit_chance", player.character.crit_chance() if player.character else GameData.elements.crit_chance)),
+		"crit_mult": player.character.crit_mult() if player.character else GameData.elements.crit_mult,
 		"duration_mult": player.state_duration_mult(),
 	}
+	if skill.has("dot_mult"):
+		hit.dot_mult = float(skill.dot_mult)
 	if skill.has("state_chance"):
 		hit.state_chance = float(skill.state_chance)
 	if skill.has("state_duration"):
@@ -173,8 +224,16 @@ func _start_area(player: Player, skill: Dictionary, rank: int) -> void:
 		"inside": {}}
 	if at == "moving":
 		area.velocity = aim * float(skill.travel) / float(skill.duration)
-	# Dano por segundo: cada tique (0,5 s) leva metade.
-	if not skill.get("bolts", false):
+	if skill.has("bolts_per_second"):
+		# Raios: o dano é por raio; nas chuvas do Arqueiro, o total dividido pelos raios.
+		area.bolts = 0.0
+		if skill.get("power_total", false):
+			area.hit.damage = float(area.hit.damage) / (float(skill.bolts_per_second) * float(skill.duration))
+	elif skill.get("power_total", false):
+		# Dano total da habilidade, dividido pelos tiques.
+		area.hit.damage = float(area.hit.damage) * TICK / float(skill.duration)
+	else:
+		# Dano por segundo: cada tique (0,5 s) leva metade.
 		area.hit.damage = float(area.hit.damage) * TICK
 	_areas.append(area)
 	var color := Elements.color(player.element)
@@ -204,6 +263,19 @@ func _physics_process(delta: float) -> void:
 			ground.hit.damage = d.caster.power * float(d.skill.ground_power) * TICK * d.caster.damage_mult()
 			_areas.append(ground)
 			_fx.rpc("disc", d.position, Vector3.ZERO, d.radius, Elements.state_color("burning"), ground.time)
+	for trap in _traps.duplicate():
+		trap.time -= delta
+		if trap.time <= 0.0:
+			_traps.erase(trap)
+			continue
+		if enemies_in(trap.position, trap.trigger).is_empty():
+			continue
+		# Alguém pisou: dano em volta e preso no lugar.
+		_traps.erase(trap)
+		for e in enemies_in(trap.position, trap.radius):
+			e.take_hit(trap.hit)
+			Elements.apply_state(e.status, "rooted", e.element, e.is_boss(), 0.0, float(trap.hit.root))
+		_fx.rpc("disc", trap.position, Vector3.ZERO, trap.radius, Elements.color(trap.hit.element), 0.4)
 	for area in _areas.duplicate():
 		area.time -= delta
 		if area.has("velocity"):
@@ -221,13 +293,27 @@ func _physics_process(delta: float) -> void:
 func _area_tick(area: Dictionary) -> void:
 	var skill: Dictionary = area.skill
 	var inside := _area_enemies(area)
-	if skill.get("bolts", false):
-		# Tempestade: um raio num inimigo ao acaso a cada tique.
-		if not inside.is_empty():
+	# Fogueira do Caçador: aliados perto ganham o bônus enquanto ficam ali.
+	if skill.has("ally_buff") and is_instance_valid(area.caster):
+		var value := Skills.scaled(skill, "value", "per_rank", area.rank)
+		for p in allies_in(area.position, skill.area):
+			p.add_buff(String(skill.ally_buff), value, TICK * 2.0)
+	if skill.has("bolts_per_second"):
+		# Tempestade / Saraivada: raios em inimigos ao acaso; os da Saraivada saltam.
+		area.bolts += float(skill.bolts_per_second) * TICK
+		while area.bolts >= 1.0 and not inside.is_empty():
+			area.bolts -= 1.0
 			var target: Enemy = inside[_rng.randi_range(0, inside.size() - 1)]
-			target.take_hit(area.hit)
-			_fx.rpc("beam", target.global_position + Vector3.UP * 8.0, target.global_position, 0.2,
-				Elements.color(area.hit.element), 0.2)
+			var hits: Array[Enemy] = []
+			var from := target.global_position + Vector3.UP * 8.0
+			for jump in int(skill.get("bolt_jumps", 0)) + 1:
+				target.take_hit(area.hit)
+				hits.append(target)
+				_fx.rpc("beam", from, target.global_position, 0.2, Elements.color(area.hit.element), 0.2)
+				from = target.global_position + Vector3.UP * 0.5
+				target = _nearest(target.global_position, 6.0, hits)
+				if target == null:
+					break
 		return
 	for e in inside:
 		if float(area.hit.damage) > 0.0:
@@ -299,6 +385,16 @@ func target_in_aim(player: Player, max_range: float) -> Enemy:
 			best_score = score
 			best = e
 	return best
+
+
+## Destino na linha de `from` a `to`, parando antes de uma parede.
+func _ray_limited(player: Player, from: Vector3, to: Vector3) -> Vector3:
+	var query := PhysicsRayQueryParameters3D.create(from + Vector3.UP, to + Vector3.UP, 1)
+	var ray := player.get_world_3d().direct_space_state.intersect_ray(query)
+	if ray.is_empty():
+		return Vector3(to.x, 0, to.z)
+	var back: Vector3 = (to - from).normalized() * 0.6
+	return Vector3(ray.position.x, 0, ray.position.z) - Vector3(back.x, 0, back.z)
 
 
 func _aim_point(player: Player, max_range: float) -> Vector3:

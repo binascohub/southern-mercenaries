@@ -16,8 +16,8 @@ extends Node
 ##   elementos: ... res://tests/smoke_arena.tscn -- elements
 ##            (golpes com elemento em ratos de verdade: estados, combos, queimando,
 ##            área de vapor, congelado parado, Poção Elemental e projétil do herói)
-##   habilidades: ... res://tests/smoke_arena.tscn -- skills
-##            (as 28 habilidades do Mago, dos 4 elementos, em ratos de verdade;
+##   habilidades: ... res://tests/smoke_arena.tscn -- skills [classe]
+##            (todas as habilidades da classe (padrão: mage), dos 4 elementos, em ratos de verdade;
 ##            atalho com mana e recarga; passivas; escudo, cura, bônus e teleporte)
 ##   troca:   ... res://tests/smoke_arena.tscn -- trade
 ##            (solo com um aliado fictício: convite, ofertas, confirmações, troca e
@@ -57,7 +57,8 @@ func _ready() -> void:
 	var role_name: String = args[0] if args.size() > 0 else "solo"
 	SaveSystem.root = "user://test_saves".path_join(role_name)
 	_clean(SaveSystem.root)
-	var hero := CharacterData.create("mage", "male", "Bot")
+	var hero_class: String = args[1] if args.size() > 1 and args[0] == "skills" else "mage"
+	var hero := CharacterData.create(hero_class, "male", "Bot")
 	hero.data.xp = 680  # quase no nível 2, para o teste ver a subida
 	hero.seal()
 	Session.character = hero
@@ -332,6 +333,8 @@ func _skills_test() -> void:
 		if not ok:
 			checks.append(what)
 	var system: SkillSystem = _arena.skills
+	var class_id: String = player.character.data.class_id
+	var start := player.global_position
 	# Ratos em fila na frente do herói (olhando para +z).
 	player.facing = Vector2(0, 1)
 	var rats: Array = get_tree().get_nodes_in_group(&"enemies")
@@ -353,27 +356,26 @@ func _skills_test() -> void:
 	# Herói forte e com todas as habilidades no rank 3.
 	var c := player.character
 	c.add_xp(200000)
-	for key in Skills.keys("mage"):
+	for key in Skills.keys(class_id):
 		c.data.skills[key] = 3
 	player.refresh_character()
 	c = player.character  # o servidor troca a cópia ao propagar a ficha
 	player.resource = player.max_resource
 	for element in Elements.ALL:
 		player.element = element
-		for key in Skills.keys("mage"):
-			var id := Skills.skill_id("mage", key, element)
+		for key in Skills.keys(class_id):
+			var id := Skills.skill_id(class_id, key, element)
 			if not Skills.is_active(id):
 				continue
-			player.global_position = Vector3(player.global_position.x, 0, player.global_position.z)
+			player.teleport_to(start)
 			player.facing = Vector2(0, 1)
 			var ok := system.cast(player, id, 3)
 			check.call(ok, "habilidade %s funcionou" % id)
-			if id == "teleport":
-				player.teleport_to(_arena.CHECKPOINT)
+			player.teleport_to(start)
 			player.health = player.max_health * 0.5
 			await get_tree().physics_frame
-	check.call(player.shield > 0.0, "Pele de Pedra deu escudo")
-	check.call(player._buffs.has("damage") and player._buffs.has("speed"), "Bênção das Chamas e Vento a Favor")
+	check.call(player.shield > 0.0, "habilidade de escudo de Terra")
+	check.call(player._buffs.has("damage") and player._buffs.has("speed"), "bônus de dano (Fogo) e de velocidade (Ar)")
 	check.call(not system._areas.is_empty(), "áreas que duram ativas")
 	# Áreas, golpes com atraso e projéteis agem com o tempo.
 	await get_tree().create_timer(2.5, false).timeout
@@ -392,19 +394,21 @@ func _skills_test() -> void:
 	player.shield = 0.0
 	player.resource = player.max_resource
 	player.take_damage(20.0)
-	check.call(player.resource < player.max_resource, "Escudo de Mana gasta mana")
+	if c.passive_value("mana_shield") > 0.0:
+		check.call(player.resource < player.max_resource, "Escudo de Mana gasta mana")
 	# Atalho: mana e recarga conferidas no servidor.
 	player.element = "fire"
-	c.data.skill_slots[0] = "element_2"
+	var slot_key: String = Skills.keys(class_id)[1]
+	c.data.skill_slots[0] = slot_key
 	player.resource = player.max_resource
 	var mana := player.resource
 	player._cast_slot(0)
-	check.call(player.resource < mana and player._skill_cd.has("element_2"), "atalho gasta mana e entra em recarga")
+	check.call(player.resource < mana and player._skill_cd.has(slot_key), "atalho gasta recurso e entra em recarga")
 	mana = player.resource
 	player._cast_slot(0)
 	check.call(is_equal_approx(player.resource, mana), "em recarga não usa de novo")
-	check.call(player.skill_cooldown_left("element_2") > 0.0, "o dono vê a recarga")
-	_report(checks.is_empty(), "habilidades: " + ("tudo certo" if checks.is_empty() else "; ".join(PackedStringArray(checks))))
+	check.call(player.skill_cooldown_left(slot_key) > 0.0, "o dono vê a recarga")
+	_report(checks.is_empty(), "habilidades (%s): " % class_id + ("tudo certo" if checks.is_empty() else "; ".join(PackedStringArray(checks))))
 
 
 ## Troca com um aliado fictício (peer 99, sem rede): o lado dele é chamado

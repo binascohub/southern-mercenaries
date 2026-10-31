@@ -391,6 +391,9 @@ func _server_step(delta: float) -> void:
 	evade_cooldown = maxf(evade_cooldown - delta, 0.0)
 	potion_cooldown = maxf(potion_cooldown - delta, 0.0)
 	var regen: float = character.resource_regen() if character else data.resource_regen
+	# Foco do Arqueiro: regenera bem mais devagar andando (02-2-arqueiro.md, seção 4).
+	if data.has("resource_regen_moving") and input.move.length() > 0.2:
+		regen *= float(data.resource_regen_moving) / float(data.resource_regen)
 	resource = minf(resource + regen * delta, max_resource)
 	if input.potion_health_presses != _seen_extra.potion_health_presses:
 		_drink("potion_health")
@@ -553,6 +556,7 @@ func _fire(attack: Dictionary) -> void:
 		"state": String(Elements.data(element).get("basic_state", "")) if attack.get("applies_state", false) \
 			else ("burning" if _buffs.has("damage") else ""),  # Bênção das Chamas: golpes queimam
 		"crit_chance": character.crit_chance() if character else GameData.elements.crit_chance,
+		"crit_mult": character.crit_mult() if character else GameData.elements.crit_mult,
 	})
 
 
@@ -727,33 +731,40 @@ func _build_visual() -> void:
 	body.position.y = 0.85
 	_visual.add_child(body)
 
+	var archer := class_id == "archer"
+	# Arma: cajado (Mago) ou arco (Arqueiro), na cor do material equipado.
 	var staff := MeshInstance3D.new()
 	var staff_mesh := CylinderMesh.new()
-	staff_mesh.top_radius = 0.04
-	staff_mesh.bottom_radius = 0.05
-	staff_mesh.height = 1.7
+	staff_mesh.top_radius = 0.03 if archer else 0.04
+	staff_mesh.bottom_radius = 0.03 if archer else 0.05
+	staff_mesh.height = 1.3 if archer else 1.7
 	staff.mesh = staff_mesh
 	_staff_material = _material(Color(0.35, 0.22, 0.12))
 	staff.material_override = _staff_material
-	staff.position = Vector3(0.45, 0.9, 0.15)
+	staff.position = Vector3(0.45, 0.9, 0.35) if archer else Vector3(0.45, 0.9, 0.15)
+	if archer:
+		staff.rotation.z = 0.15
+		staff.rotation.x = -0.25
 	_visual.add_child(staff)
 
+	# Brilho na cor do elemento: cristal do cajado ou ponta da flecha (02-0-elementos.md, seção 8).
 	_crystal_material = _material(Color(0.55, 0.75, 1.0), 1.5)
 	var crystal := MeshInstance3D.new()
 	var crystal_mesh := SphereMesh.new()
-	crystal_mesh.radius = 0.1
-	crystal_mesh.height = 0.2
+	crystal_mesh.radius = 0.06 if archer else 0.1
+	crystal_mesh.height = 0.12 if archer else 0.2
 	crystal.mesh = crystal_mesh
 	crystal.material_override = _crystal_material
-	crystal.position = Vector3(0.45, 1.8, 0.15)
+	crystal.position = Vector3(0.45, 0.95, 0.6) if archer else Vector3(0.45, 1.8, 0.15)
 	_visual.add_child(crystal)
 
+	# Mago: caderno de anotações; Arqueiro: aljava nas costas.
 	var notebook := MeshInstance3D.new()
 	var notebook_mesh := BoxMesh.new()
-	notebook_mesh.size = Vector3(0.22, 0.28, 0.06)
+	notebook_mesh.size = Vector3(0.18, 0.6, 0.18) if archer else Vector3(0.22, 0.28, 0.06)
 	notebook.mesh = notebook_mesh
 	notebook.material_override = _material(Color(0.4, 0.28, 0.18))
-	notebook.position = Vector3(-0.32, 0.95, 0.12)
+	notebook.position = Vector3(-0.2, 1.2, -0.3) if archer else Vector3(-0.32, 0.95, 0.12)
 	_visual.add_child(notebook)
 
 	_build_gear()

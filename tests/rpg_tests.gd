@@ -31,6 +31,7 @@ func _ready() -> void:
 	_test_combos()
 	_test_character_element()
 	_test_skills()
+	_test_archer()
 	_test_names()
 	_clean(TEST_ROOT)
 	if _failures == 0:
@@ -483,6 +484,44 @@ func _test_skills() -> void:
 	old.seal()
 	var migrated := CharacterData.from_dict(JSON.parse_string(JSON.stringify(old.to_dict())))
 	_check(migrated != null and migrated.skill_rank("element_1") == 1 and not migrated.is_edited(), "ficha antiga ganha a básica")
+
+
+func _test_archer() -> void:
+	var a := CharacterData.create("archer", "female", "Kaela", "earth")
+	_check(a.validate().is_empty(), "Arqueiro criado válido: %s" % [a.validate()])
+	_near(a.max_health(), 90, "vida do Arqueiro no nível 1")
+	_near(a.max_resource(), 100, "Foco inicial 100")
+	_near(a.power(), 22.5, "Poder de Tiro: arco de madeira 10 + DES 25 × 0,5")
+	_check(a.data.equipment.weapon.base == "bow", "começa com arco de madeira")
+	_check(a.skill_rank("precise_shot") == 1 and a.data.skill_slots[0] == "precise_shot", "começa com Tiro Preciso no atalho 1")
+	var levels: Array[int] = []
+	for key in Skills.keys("archer"):
+		levels.append(Skills.unlock_level("archer", key))
+	var expected: Array[int] = [1, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+	_check(levels == expected, "Arqueiro: 7 de classe + 3 do elemento nos níveis certos: %s" % [levels])
+	for element in Elements.ALL:
+		for key in Skills.keys("archer"):
+			var id := Skills.skill_id("archer", key, element)
+			_check(not Skills.def(id).is_empty(), "habilidade do Arqueiro %s/%s existe" % [element, key])
+	_check(Skills.skill_id("archer", "element_12", "earth") == "boulder_arrow", "Terra nível 12 = Flecha Rompe-Rocha")
+	_check(Skills.count(Skills.def("arrow_fan"), 5, "count") == 7, "Leque de Flechas: 5, +1 nos ranks 3 e 5")
+	a.add_xp(30000)
+	_check(a.learn("eagle_eye") and a.learn("eagle_eye"), "Olho de Águia rank 2")
+	_near(a.crit_chance(), 0.15, "Olho de Águia: +5% de crítico por rank")
+	_near(a.crit_mult(), 1.7, "Olho de Águia: +10% de dano crítico por rank")
+	# Marcar Alvo soma dano de todos; preso não anda, mas age.
+	var s := StatusSet.new()
+	Elements.apply_state(s, "marked", "earth", false, 0.15, 8.0)
+	var rng := RandomNumberGenerator.new()
+	var r := Elements.resolve_hit({"damage": 100.0, "element": "water", "state": "", "crit_chance": 0.0}, "earth", s, false, rng)
+	_near(r.damage, 115.0, "alvo marcado recebe +15%")
+	var root := StatusSet.new()
+	root.apply("rooted", 2.0)
+	_check(root.move_mult() == 0.0 and root.can_act(), "preso: não anda, mas ataca")
+	# Flecha Incendiária: queimadura em dobro.
+	var b := StatusSet.new()
+	Elements.resolve_hit({"damage": 100.0, "element": "fire", "state": "burning", "crit_chance": 0.0, "dot_mult": 2.0}, "air", b, false, rng)
+	_near(b.dps("burning"), 60.0, "queimadura dobrada: 2 × 30% por segundo")
 
 
 func _test_names() -> void:

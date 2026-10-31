@@ -7,7 +7,10 @@
 - Mage (`docs/02-1-mago.md`, section 6): Sharp Mind, Teleport, Mana Shield, Elemental Mastery and the 6 skills of each element (24), with effects for projectiles (Fireball explodes), novas, cones that push, lines, instant bolts, chains, buffs, shields, teleport, delayed strikes (Meteor, Earthquake) and lasting areas (Fire Wall, Blizzard freezing after 3 s, Tornado pulling, Storm bolts, Healing Rain). All damage goes through the element rules (weakness, combos, crits).
 - Hotkeys `skill_1`–`skill_4` validated on the server (rank, mana, cooldown); HUD skill bar with cooldowns and gray when out of mana; Skills window (K, or from the inventory) to learn ranks and set hotkeys; shield shown on the health bar.
 - Characters saved before phase 5 get the basic element skill without being flagged as edited.
-- Not yet: Fire Wall does not block monsters; the other four classes.
+- Archer (`docs/02-2-arqueiro.md`): Focus resource (regenerates 15/s standing, 5/s moving), Shot Power from DEX, 16 m arrows, 1.5 s charged shot, dodge every 3 s; bow, hunter's cap and leather vest item bases; bow and quiver placeholder visuals.
+- Archer skills: 7 class skills imbued with the current element's basic state (Precise Shot with a guaranteed crit, Back Leap that slows, Eagle Eye crit chance/damage, Spike Trap that roots, Arrow Fan, Piercing Arrow, Mark Target that makes the target take more damage from everyone) and 3 per element (Campfire/Spring/Wind/Bulwark supports, Flaming/Frost/Thunder/Rockbreaker arrows, Fire/Hail/Stone rains and Storm Volley with jumping bolts).
+- New states: hampered (40% slow), rooted (can't move but still attacks), marked.
+- Not yet: Fire Wall does not block monsters; Ninja, Summoner and Knight.
 
 ### Phase 4 — Elements
 - `data/elements.json` and `Elements` / `StatusSet`: weakness cycle (x1.5 / x0.5), basic state per element, states (burning, soaked, frozen, shocked, knocked down, stunned) with refresh-not-stack, immunities (fire monsters don't burn, water monsters aren't soaked) and bosses getting a slow instead of control (`docs/02-0-elementos.md`).
