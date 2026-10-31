@@ -46,6 +46,9 @@ PROPS = [
     ("Horse", "horse/caballo_lowpoly/CABALLO_low_poly.blend", 1.7, "horse/caballo_lowpoly/caballo_txt.png", {}, [], False),
     # Cristal de save (rubberduck, CC0): flutua nos checkpoints.
     ("Save_Crystal", "mese/mese.blend", 0.9, "mese/mese.png", {}, [], False),
+    # Estilete (tigeruppercut, CC0): a adaga reta da mão esquerda do Ninja.
+    ("Weapon_Stiletto", "stiletto/stiletto.blend", 0.5, "", {"Steel": (0.72, 0.74, 0.78, 1), "Blade": (0.82, 0.84, 0.88, 1),
+        "Handle": (0.16, 0.1, 0.07, 1), "Symbol": (0.9, 0.7, 0.25, 1)}, [], False),
     ("Key_Gold", "key/key.blend", 0.32, "", {"Material": (0.95, 0.75, 0.25, 1), "Key_Gold_Mat": (0.95, 0.75, 0.25, 1)}, [], False),
 ]
 

@@ -1114,7 +1114,7 @@ func _build_visual() -> void:
 		second.material_override = _staff_material
 		second.rotation = Vector3.ZERO
 		second.position = Vector3(0, 0.15, 0)
-		_dress_weapon(second, "Weapon_Dagger")
+		_dress_weapon(second, "Weapon_Stiletto")  # estilete na mão esquerda (tigeruppercut, CC0)
 		var left_hand := Node3D.new()
 		left_hand.add_child(second)
 		_model.attach("hand_l", left_hand, POINT_GRIP, Vector3(-0.42, 0.9, 0.35))
