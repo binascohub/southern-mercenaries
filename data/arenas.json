@@ -1340,6 +1340,30 @@
           6.5
         ],
         "speed": 0.5
+      },
+      {
+        "role": "courtesan_red",
+        "position": [
+          -6,
+          5.2
+        ],
+        "path": [
+          -14,
+          5.2
+        ],
+        "speed": 0.85
+      },
+      {
+        "role": "courtesan_red",
+        "position": [
+          22,
+          4
+        ],
+        "path": [
+          14,
+          3.6
+        ],
+        "speed": 0.8
       }
     ]
   },

@@ -10,6 +10,12 @@ const MODELS := {
 	# Cortesã de Tortuga (Female NPC, umask007, CC BY 3.0): top decotado, short e botas.
 	"courtesan": {"scene": "res://assets/models/characters/courtesan.glb", "scale": 0.186,
 		"poses": {"walk": "walk", "run": "run"}},
+	# Segunda cortesã: o mesmo corpo nas cores da Tetine Elfe (escolha do autor):
+	# top, short e botas de couro vermelho e cabelo ruivo.
+	"courtesan_red": {"scene": "res://assets/models/characters/courtesan.glb", "scale": 0.186,
+		"poses": {"walk": "walk", "run": "run"},
+		"colors": {"bra": [0.62, 0.06, 0.05], "trouser": [0.5, 0.05, 0.04], "shoe": [0.55, 0.08, 0.06],
+			"hair": [0.5, 0.16, 0.06], "hair.001": [0.5, 0.16, 0.06]}},
 	# Galinha (cdmir, CC0): anda e cisca pelas cozinhas de Tortuga (12,6 unidades -> 0,4 m).
 	"chicken": {"scene": "res://assets/models/characters/chicken.glb", "scale": 0.032,
 		"poses": {"walk": "walk", "idle": "eat", "talk": "idle"}},
@@ -32,6 +38,18 @@ static func create(id: String) -> NpcModel:
 	npc.add_child(model)
 	npc.scale = Vector3.ONE * float(info.scale)
 	npc._poses = info.poses
+	# Cores por material (variantes do mesmo modelo).
+	var colors: Dictionary = info.get("colors", {})
+	if not colors.is_empty():
+		for node in model.find_children("*", "MeshInstance3D", true, false):
+			var mesh := node as MeshInstance3D
+			for i in mesh.get_surface_override_material_count():
+				var source := mesh.get_active_material(i) as StandardMaterial3D
+				if source and colors.has(String(source.resource_name)):
+					var c: Array = colors[String(source.resource_name)]
+					var copy := source.duplicate() as StandardMaterial3D
+					copy.albedo_color = Color(c[0], c[1], c[2])
+					mesh.set_surface_override_material(i, copy)
 	npc._anim = model.find_child("AnimationPlayer", true, false) as AnimationPlayer
 	if npc._anim:
 		for anim_name: String in npc._poses.values():
