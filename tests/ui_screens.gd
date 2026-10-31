@@ -104,6 +104,7 @@ func _physics_process(delta: float) -> void:
 		_open_street()
 	elif _frame == STREET_SHOT:
 		await _shot("tortuga.png")
+		_arena._camera.distance = 10.5
 	elif _frame == SHOP_FRAME:
 		_go_to_dock()
 	elif _frame == SHIP_SHOT:
@@ -237,6 +238,8 @@ func _open_street() -> void:
 	_arena.town._rpc_accept("sewer_treasure")
 	_arena.travel("tortuga", "start")
 	player.teleport_to(Vector3(-12, 0, -1.5))
+	# Vista aberta (o zoom máximo do jogador): a rua, as casas e os telhados.
+	_arena._camera.distance = TopDownCamera.ZOOM_MAX
 	_arena._camera.snap()
 
 
