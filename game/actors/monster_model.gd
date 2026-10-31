@@ -55,6 +55,8 @@ func setup(look: String, size: float, tint: Color) -> bool:
 				continue
 			var copy := source.duplicate() as StandardMaterial3D
 			copy.albedo_color = _tint
+			# Os modelos antigos têm faces viradas para dentro (o morcego visto de cima).
+			copy.cull_mode = BaseMaterial3D.CULL_DISABLED
 			mesh.set_surface_override_material(i, copy)
 			_materials.append(copy)
 	_anim = model.find_child("AnimationPlayer", true, false) as AnimationPlayer
