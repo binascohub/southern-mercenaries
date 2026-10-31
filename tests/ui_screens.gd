@@ -125,7 +125,8 @@ func _physics_process(delta: float) -> void:
 		# A Rainha no meio da tela, de asas abertas: o herói logo abaixo dela.
 		for e: Enemy in get_tree().get_nodes_in_group(&"enemies"):
 			if e.monster_id == "demon_rat_queen":
-				_arena.local_player.teleport_to(e.global_position + Vector3(0, 0, 6))
+				# Herói ao lado e um pouco acima: ela fica no meio da tela, abaixo das mensagens.
+				_arena.local_player.teleport_to(e.global_position + Vector3(3.5, 0, -1.5))
 		_arena._camera.snap()
 		await get_tree().process_frame
 		await get_tree().process_frame

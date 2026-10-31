@@ -1865,7 +1865,7 @@ func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3,
 	if style.get("puddles", false):
 		var rng := RandomNumberGenerator.new()
 		rng.seed = hash(str(room.get("id", ""), c, "puddles"))
-		for i in maxi(roundi(half.x * half.z * 4.0 / 45.0), 1):
+		for i in maxi(roundi(half.x * half.z * 4.0 / 70.0), 1):
 			var at := Vector3(c.x + rng.randf_range(-half.x + 1.0, half.x - 1.0), 0.025,
 				c.z + rng.randf_range(-half.z + 1.0, half.z - 1.0))
 			_puddle(at, rng.randf_range(0.6, 1.6), rng)
@@ -1969,10 +1969,10 @@ func _grime_material(kind: String) -> StandardMaterial3D:
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	match kind:
 		"puddle":
-			material.albedo_color = Color(0.11, 0.1, 0.06, 0.88)
-			material.roughness = 0.05
-			material.metallic = 0.25
-			material.metallic_specular = 0.9
+			# Água turva por cima dos tijolos: deixa ver o chão e brilha nas luzes.
+			material.albedo_color = Color(0.3, 0.29, 0.16, 0.45)
+			material.roughness = 0.12
+			material.metallic_specular = 1.0
 			material.cull_mode = BaseMaterial3D.CULL_DISABLED
 		"band":
 			material.albedo_texture = _grime_texture(false)
