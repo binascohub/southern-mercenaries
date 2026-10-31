@@ -1636,21 +1636,50 @@ func _npc_body(parent: Node3D, look: Dictionary) -> HeroModel:
 	return model
 
 
-## Gente da rua (data/crowd.json + "crowd" da área): o corpo vem do papel,
-## escolhido pela posição (igual em todos os PCs); com "path", vai e volta.
-func _build_crowd(entry: Dictionary) -> void:
-	var role: Dictionary = GameData.crowd.get("roles", {}).get(String(entry.role), {})
+## Corpo de uma pessoa da rua pelo papel (data/crowd.json), escolhido pela
+## posição: igual em todos os PCs. {} se o papel não existe.
+func _crowd_look(role_name: String, at: Vector3, entry: Dictionary) -> Dictionary:
+	var role: Dictionary = GameData.crowd.get("roles", {}).get(role_name, {})
 	if role.is_empty():
-		return
-	var at := Vector3(entry.position[0], 0, entry.position[1])
+		return {}
 	var h := absi(hash(Vector2(at.x, at.z)))
 	var sexes: Array = role.get("sex", ["male"])
 	var sex: String = entry.get("sex", sexes[h % sexes.size()])
 	var hairs: Array = role.get("hair", {}).get(sex, [[]])
 	var colors: Array = role.get("hair_color", [[0.2, 0.15, 0.1]])
 	var outfits: Array = role.get("outfit", [{}])
-	var look := {"sex": sex, "hair": hairs[(h / 7) % hairs.size()], "hair_color": colors[(h / 13) % colors.size()],
+	return {"sex": sex, "hair": hairs[(h / 7) % hairs.size()], "hair_color": colors[(h / 13) % colors.size()],
 		"outfit": outfits[(h / 29) % outfits.size()], "pose": entry.get("pose", "idle")}
+
+
+## Briga de rua: dois brigões (papéis em "fighters") frente a frente, trocando socos.
+func _build_brawl(entry: Dictionary, at: Vector3) -> void:
+	var brawl := Brawl.new()
+	brawl.position = at
+	brawl.rotation.y = deg_to_rad(float(entry.get("rotation", 0.0)))
+	_area_root.add_child(brawl)
+	var roles: Array = entry.get("fighters", ["drunk", "pirate"])
+	for i in 2:
+		var holder := Node3D.new()
+		holder.position.x = (i - 0.5) * Brawl.GAP
+		holder.rotation.y = PI / 2.0 if i == 0 else -PI / 2.0  # um de frente para o outro
+		brawl.add_child(holder)
+		var spot := at + Vector3((i - 0.5) * 3.0, 0, 0.7 * i)
+		var model := _npc_body(holder, _crowd_look(String(roles[i]), spot, {"pose": "idle"}))
+		if model:
+			brawl.fighters.append(model)
+
+
+## Gente da rua (data/crowd.json + "crowd" da área): o corpo vem do papel,
+## escolhido pela posição (igual em todos os PCs); com "path", vai e volta.
+func _build_crowd(entry: Dictionary) -> void:
+	var at := Vector3(entry.position[0], 0, entry.position[1])
+	if entry.role == "brawl":
+		_build_brawl(entry, at)
+		return
+	var look := _crowd_look(String(entry.role), at, entry)
+	if look.is_empty():
+		return
 	var path: Array = entry.get("path", [])
 	var node: Node3D = Wanderer.new() if not path.is_empty() else Node3D.new()
 	node.position = at

@@ -1131,6 +1131,83 @@
         ],
         "rotation": 300,
         "pose": "talk"
+      },
+      {
+        "role": "brawl",
+        "position": [
+          -4,
+          1.6
+        ],
+        "fighters": [
+          "drunk",
+          "pirate"
+        ]
+      },
+      {
+        "role": "sailor",
+        "position": [
+          -6.6,
+          0.6
+        ],
+        "rotation": 60,
+        "pose": "dance"
+      },
+      {
+        "role": "drunk",
+        "position": [
+          -1.6,
+          0.4
+        ],
+        "rotation": 300,
+        "pose": "talk"
+      },
+      {
+        "role": "pirate",
+        "position": [
+          -4.6,
+          3.6
+        ],
+        "rotation": 170,
+        "pose": "idle"
+      },
+      {
+        "role": "courtesan",
+        "position": [
+          -2.8,
+          3.4
+        ],
+        "rotation": 200,
+        "pose": "talk"
+      },
+      {
+        "role": "brawl",
+        "position": [
+          6,
+          -16
+        ],
+        "rotation": 30,
+        "fighters": [
+          "sailor",
+          "dockworker"
+        ]
+      },
+      {
+        "role": "dockworker",
+        "position": [
+          8.2,
+          -17.6
+        ],
+        "rotation": 320,
+        "pose": "dance"
+      },
+      {
+        "role": "pirate",
+        "position": [
+          4.2,
+          -14.2
+        ],
+        "rotation": 150,
+        "pose": "talk"
       }
     ]
   },

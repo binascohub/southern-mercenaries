@@ -29,6 +29,8 @@ const ANIMS := {
 	"sit": "Sitting_Idle_Loop", "talk": "Idle_Talking_Loop", "torch": "Idle_Torch_Loop",
 	"lie": "Death01", "dance": "Dance_Loop", "crouch": "Crouch_Idle_Loop", "push": "Push_Loop",
 	"sit_talk": "Sitting_Talking_Loop",
+	# Briga de rua: socos e o golpe na cabeça.
+	"punch_jab": "Punch_Jab", "punch_cross": "Punch_Cross", "hit_head": "Hit_Head",
 }
 ## Peças por slot de equipamento: sem item, as de Camponês; com item, as de Ranger.
 const OUTFIT := {
@@ -58,6 +60,8 @@ var _shown_equip := {}
 ## Nome real de cada animação no arquivo importado (o importador do Godot tira
 ## o sufixo "_Loop" e marca a animação como repetida).
 var _names := {}
+## Pose fixa de NPC: volta a ela quando uma ação (soco, golpe sofrido) acaba.
+var _pose := ""
 
 
 ## Monta o corpo do sexo dado, com o cabelo do visual da classe
@@ -90,7 +94,10 @@ func setup(sex: String, look: Dictionary) -> void:
 			_base_colors.append(copy.albedo_color)
 	set_outfit({})
 	if _anim:
-		_anim.animation_finished.connect(func(_name: StringName) -> void: _action = "")
+		_anim.animation_finished.connect(func(_name: StringName) -> void:
+			_action = ""
+			if _pose != "":
+				_play(_pose))
 		for key: String in ANIMS:
 			var wanted: String = ANIMS[key]
 			for candidate in [wanted, wanted.trim_suffix("_Loop")]:
@@ -207,8 +214,9 @@ func update_state(speed: float, alive: bool, mounted: bool, charging: bool, bloc
 
 ## Pose fixa de NPC (sit, talk, torch, idle), em repetição.
 func set_pose(key: String) -> void:
+	_pose = key if _names.has(key) else "idle"
 	if _anim:
-		_play(key if _names.has(key) else "idle", 0.0)
+		_play(_pose, 0.0)
 
 
 func current() -> String:
