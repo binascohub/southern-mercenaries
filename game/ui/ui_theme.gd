@@ -27,6 +27,19 @@ const TITLE_FONT := "res://assets/fonts/Cinzel.ttf"
 static var _theme: Theme
 
 
+## Vale para todos os controles, inclusive os que estão em CanvasLayers (que
+## não herdam o tema da janela): mescla no tema padrão do Godot.
+static func apply() -> void:
+	var theme := get_theme()
+	var default := ThemeDB.get_default_theme()
+	default.merge_with(theme)
+	if theme.default_font:
+		default.default_font = theme.default_font
+		ThemeDB.fallback_font = theme.default_font
+	default.default_font_size = theme.default_font_size
+	ThemeDB.fallback_font_size = theme.default_font_size
+
+
 ## O tema (criado uma vez).
 static func get_theme() -> Theme:
 	if _theme == null:
