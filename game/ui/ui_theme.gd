@@ -237,7 +237,8 @@ static func _frame_image(fill: Color, fill_alpha: float, frame := FRAME) -> Imag
 				if x < 1 or y < 1 or x >= frame - 1 or y >= frame - 1:
 					c = c.darkened(0.5)
 				image.set_pixel(corner.x + x, corner.y + y, c)
-		for rivet in [Vector2i(frame / 3, frame / 3), Vector2i(frame * 2 / 3, frame * 2 / 3)]:
+		# Rebites só cabem nas molduras largas (as do HUD são finas).
+		for rivet in ([Vector2i(frame / 3, frame / 3), Vector2i(frame * 2 / 3, frame * 2 / 3)] if frame >= 12 else []):
 			for dy in range(-2, 3):
 				for dx in range(-2, 3):
 					var d := Vector2(dx, dy).length()
