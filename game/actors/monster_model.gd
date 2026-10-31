@@ -56,7 +56,7 @@ var _follows: Array = []
 var _wing_size := 1.0
 ## Pescoço da cabeça de rato (rat_head.glb, unidades do rato) e o tamanho dela no corpo.
 const RAT_NECK := Vector3(0, 0.12, 0.33)
-const RAT_HEAD_SCALE := 1.6
+const RAT_HEAD_SCALE := 2.0
 const WING_COLOR := Color(0.22, 0.14, 0.16)
 ## A Rainha (referência do autor): couro marrom, pelagem clara e rosada nas
 ## orelhas, mãos e cauda; asas de couro marrom levantadas.
@@ -116,7 +116,7 @@ func _setup_humanoid(info: Dictionary, size: float, tint: Color) -> bool:
 	_hero = HeroModel.new()
 	add_child(_hero)
 	_hero.setup("female", {"hair": [], "hair_color": [0.2, 0.15, 0.1]})
-	_hero.set_outfit({"body": "wood", "hands": "wood", "feet": "wood"})  # couro marrom
+	_hero.set_outfit({"body": "copper", "hands": "copper", "feet": "wood"})  # couro marrom
 	_hero.hide_parts(["Head", "Eyes", "Eyebrows"])
 	_hero.tint_skin(QUEEN_PINK)  # mãos rosadas
 	for key: String in info.anims:
