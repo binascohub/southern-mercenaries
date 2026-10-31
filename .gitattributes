@@ -3,3 +3,4 @@
 *.ogg binary
 *.wav binary
 *.glb binary
+uploads/*.zip filter=lfs diff=lfs merge=lfs -text
