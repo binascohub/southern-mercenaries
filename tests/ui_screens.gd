@@ -127,6 +127,10 @@ func _physics_process(delta: float) -> void:
 			if e.monster_id == "demon_rat_queen":
 				# Herói ao lado e um pouco acima: ela fica no meio da tela, abaixo das mensagens.
 				_arena.local_player.teleport_to(e.global_position + Vector3(3.5, 0, -1.5))
+				# Entre golpes (sem o vermelho do aviso), virada para a câmera.
+				e.state = Enemy.State.RECOVER
+				e._timer = 10.0
+				e.yaw = 0.0
 		_arena._camera.snap()
 		await get_tree().process_frame
 		await get_tree().process_frame
