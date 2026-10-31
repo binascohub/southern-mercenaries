@@ -23,6 +23,11 @@ const MODELS := {
 	# Guarda (Brigand, anthonymyers, CC BY 3.0): parado na pose do modelo, de
 	# couraça, alabarda e machado (sem animação).
 	"guard": {"scene": "res://assets/models/characters/brigand_guard.glb", "scale": 1.0, "poses": {}},
+	# Aranhinha do esgoto (Spider animated, pantherone, CC BY 3.0): não ataca,
+	# só anda pelo chão. Arquivo de 1 m -> 25 cm.
+	"spider": {"scene": "res://assets/models/monsters/spider.glb", "scale": 0.25,
+		"poses": {"walk": "walk", "idle": "idle", "talk": "idle"},
+		"colors": {"Spider": [0.07, 0.06, 0.05]}},
 	# Galinha (cdmir, CC0): anda e cisca pelas cozinhas de Tortuga (12,6 unidades -> 0,4 m).
 	"chicken": {"scene": "res://assets/models/characters/chicken.glb", "scale": 0.032,
 		"poses": {"walk": "walk", "idle": "eat", "talk": "idle"}},

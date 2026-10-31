@@ -1979,6 +1979,8 @@ func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3,
 			doors.has("east"), doors.get("east", 0.0), rng)
 	if style.get("trash", false):
 		_scatter_trash(room, c, half)
+	if style.get("spiders", false):
+		_scatter_spiders(room, c, half)
 	if style.get("puddles", false):
 		var rng := RandomNumberGenerator.new()
 		rng.seed = hash(str(room.get("id", ""), c, "puddles"))
@@ -2121,6 +2123,28 @@ func _scatter_trash(room: Dictionary, c: Vector3, half: Vector3) -> void:
 			node.scale = Vector3(1.0, 0.25, 1.0)  # os cacos espalhados, rentes ao chão
 		_area_root.add_child(node)
 		_tint_piece(node, TRASH_GRIME)
+
+
+## Aranhinhas que andam pelo chão do esgoto (não atacam; só cenário, em cada PC).
+func _scatter_spiders(room: Dictionary, c: Vector3, half: Vector3) -> void:
+	if not NpcModel.has_model("spider"):
+		return
+	var rng := RandomNumberGenerator.new()
+	rng.seed = hash(str(room.get("id", ""), c, "spiders"))
+	var count := clampi(roundi(half.x * half.z / 25.0), 1, 6)
+	for i in count:
+		var walker := Wanderer.new()
+		var a := Vector3(c.x + rng.randf_range(-half.x + 0.8, half.x - 0.8), 0, c.z + rng.randf_range(-half.z + 0.8, half.z - 0.8))
+		var b := Vector3(c.x + rng.randf_range(-half.x + 0.8, half.x - 0.8), 0, c.z + rng.randf_range(-half.z + 0.8, half.z - 0.8))
+		walker.position = a
+		walker.from = a
+		walker.to = b
+		walker.speed = rng.randf_range(0.6, 1.4)
+		_area_root.add_child(walker)
+		var model := NpcModel.create("spider")
+		walker.add_child(model)
+		walker.model = model
+		model.call("set_pose", "walk")
 
 
 ## Trapo, papel ou tábua quebrada no chão (caixas finas na cor da sujeira).

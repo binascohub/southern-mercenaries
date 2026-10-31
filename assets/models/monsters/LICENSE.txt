@@ -34,3 +34,8 @@ golden_lizard.glb — "Lizardman" by skorpio
             https://opengameart.org/content/lizardman-0
             Creative Commons Attribution-ShareAlike 3.0: https://creativecommons.org/licenses/by-sa/3.0/
             Changes: idle, walk, attack and die animations kept, textures reduced; tinted gold in the game. Shared under CC BY-SA 3.0.
+
+spider.glb — "Spider (animated)" by pantherone
+            https://opengameart.org/content/spider-animated
+            Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/
+            Changes: exported with the walk and stand animations; colored dark in the game.
