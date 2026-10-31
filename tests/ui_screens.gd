@@ -13,6 +13,8 @@ extends "res://tests/smoke_arena.gd"
 ## 1c. tortuga.png: Rua Principal com as bancas; shop.png: Mercado Pirata;
 ## 1d. sewers.png: Canais de Lixo (Esgoto, área 2): canal, ponte, poças, morcegos
 ##     e o Sapo Ácido elite (aura dourada) acordados;
+## 1e. queen.png: Ninho da Rainha na fase 3 (O Pacto): arena alagada, avisos do
+##     gás no chão e a barra do chefe;
 ## 2. load_campaign.png: menu principal → Carregar campanha, com três campanhas
 ##    (uma com miniatura capturada da própria arena).
 
@@ -37,7 +39,9 @@ const SHOP_OPEN := 318
 const SHOP_SHOT := 322
 const SEWER_FRAME := 324
 const SEWER_SHOT := 329
-const MENU_FRAME := 332
+const QUEEN_FRAME := 331
+const QUEEN_SHOT := 420
+const MENU_FRAME := 424
 
 var _dir := "user://"
 var _menu: Node
@@ -108,6 +112,10 @@ func _physics_process(delta: float) -> void:
 		_open_sewers()
 	elif _frame == SEWER_SHOT:
 		await _shot("sewers.png")
+	elif _frame == QUEEN_FRAME:
+		_open_queen()
+	elif _frame == QUEEN_SHOT:
+		await _shot("queen.png")
 	elif _frame == MENU_FRAME:
 		_open_load_campaign()
 	elif _frame == MENU_FRAME + 20:
@@ -233,6 +241,19 @@ func _open_sewers() -> void:
 	player.facing = Vector2(0, -1)
 	_arena._wake_group("s2_sluice_toads")
 	_arena._wake_group("s2_sluice_bats")
+	_arena._camera.snap()
+
+
+func _open_queen() -> void:
+	_arena.travel("sewers_04_nest", "start")
+	var player: Player = _arena.local_player
+	player.teleport_to(Vector3(0, 0, -32))
+	player.max_health = 1e6
+	player.health = 1e6
+	for e: Enemy in get_tree().get_nodes_in_group(&"enemies"):
+		if e.monster_id == "demon_rat_queen":
+			_arena._wake_group(e.group)
+			e.health = e.max_health * 0.2
 	_arena._camera.snap()
 
 

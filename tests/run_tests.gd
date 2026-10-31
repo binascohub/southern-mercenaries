@@ -152,8 +152,9 @@ func _check_data() -> void:
 		if not elements.states.has(combo.needs) or not elements.elements.has(combo.element):
 			_fail("combo %s mal definido" % id)
 	for id in monsters:
-		# Bonecos neutros do pátio de treino não têm elemento.
-		var neutral_dummy: bool = monsters[id].get("dummy", false) and monsters[id].get("element", "") == ""
+		# Bonecos neutros do pátio de treino e barris/caixotes não têm elemento.
+		var neutral_dummy: bool = (monsters[id].get("dummy", false) or monsters[id].get("breakable", false)) \
+			and monsters[id].get("element", "") == ""
 		if not neutral_dummy and not elements.elements.has(monsters[id].get("element", "")):
 			_fail("monstro %s com elemento inexistente" % id)
 	# Fase 6: saídas levam a áreas que existem; NPCs, lojas e missões referenciados existem.
