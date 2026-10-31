@@ -14,3 +14,7 @@ bat.glb   — "Bat with fire,ice and blood versions" by danimal
             Changes: only the regular bat kept (mesh, skeleton, flight and death
             animations), textures re-linked and reduced to 512 px, exported to glTF.
             This converted file is shared under the same license (CC BY-SA 4.0).
+
+forest_monster.glb — "Forest Monster" by cdmir
+            https://opengameart.org/content/forest-monster
+            CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/

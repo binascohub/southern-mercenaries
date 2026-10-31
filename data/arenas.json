@@ -940,6 +940,18 @@
           6.8
         ],
         "rotation": 40
+      },
+      {
+        "piece": "Well_Covered",
+        "position": [
+          16,
+          4.5
+        ],
+        "rotation": 20,
+        "solid": [
+          1.6,
+          1.6
+        ]
       }
     ],
     "crowd": [
@@ -1280,6 +1292,54 @@
         ],
         "rotation": 150,
         "pose": "talk"
+      },
+      {
+        "role": "chicken",
+        "position": [
+          -14,
+          4.5
+        ],
+        "path": [
+          -10.5,
+          5.5
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "chicken",
+        "position": [
+          -12,
+          6.5
+        ],
+        "path": [
+          -15,
+          7
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "chicken",
+        "position": [
+          9,
+          -4.5
+        ],
+        "path": [
+          12,
+          -3.5
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "chicken",
+        "position": [
+          20,
+          5
+        ],
+        "path": [
+          17.5,
+          6.5
+        ],
+        "speed": 0.5
       }
     ]
   },
@@ -2311,6 +2371,46 @@
         "range": 8,
         "energy": 0.7,
         "y": 1.0
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -6.4,
+          -5.4
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          6.5,
+          -24.5
+        ],
+        "rotation": 67
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -7.3,
+          -37.2
+        ],
+        "rotation": 134
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -9.2,
+          -71.5
+        ],
+        "rotation": 201
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          9.3,
+          -61
+        ],
+        "rotation": 268
       }
     ]
   },
@@ -2860,6 +2960,38 @@
         "range": 9,
         "energy": 0.8,
         "y": 0.6
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -11.3,
+          -8.6
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          11.2,
+          -30.6
+        ],
+        "rotation": 67
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -9.3,
+          -62.4
+        ],
+        "rotation": 134
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          9.4,
+          -46
+        ],
+        "rotation": 201
       }
     ]
   },
@@ -3376,6 +3508,38 @@
         "range": 11,
         "energy": 0.9,
         "y": 0.6
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -8.4,
+          -26
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          8.4,
+          -40.6
+        ],
+        "rotation": 67
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -11.4,
+          -76.5
+        ],
+        "rotation": 134
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          11.4,
+          -56
+        ],
+        "rotation": 201
       }
     ]
   },
@@ -3729,6 +3893,38 @@
         "range": 14,
         "energy": 0.6,
         "y": 3.0
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -15.3,
+          -20
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          15.3,
+          -50.5
+        ],
+        "rotation": 67
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -15.2,
+          -32
+        ],
+        "rotation": 134
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          14.8,
+          -21
+        ],
+        "rotation": 201
       }
     ]
   }

@@ -10,6 +10,9 @@ const MODELS := {
 	# Cortesã de Tortuga (Female NPC, umask007, CC BY 3.0): top decotado, short e botas.
 	"courtesan": {"scene": "res://assets/models/characters/courtesan.glb", "scale": 0.186,
 		"poses": {"walk": "walk", "run": "run"}},
+	# Galinha (cdmir, CC0): anda e cisca pelas cozinhas de Tortuga (12,6 unidades -> 0,4 m).
+	"chicken": {"scene": "res://assets/models/characters/chicken.glb", "scale": 0.032,
+		"poses": {"walk": "walk", "idle": "eat", "talk": "idle"}},
 }
 
 var _anim: AnimationPlayer

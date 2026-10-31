@@ -1,0 +1,4 @@
+Mushroom_Cluster, Mushroom_Tall, Mushroom_Flat — "Low Poly Mushrooms" by Clint Bellanger
+https://opengameart.org/content/low-poly-mushrooms
+Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/
+Changes: grouped into three glTF clusters by tools/assets/build_props.py (resized, base at y = 0).

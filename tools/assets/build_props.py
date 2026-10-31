@@ -19,6 +19,12 @@ PROPS = [
     ("Crate_Long", "crates/Crate-03.obj", 0.53, "crates/diffuse.tga", {}, [], False),
     ("Crate_Big", "crates/Crate-04.obj", 1.17, "crates/diffuse.tga", {}, [], False),
     ("Bucket_Crate", "crates/Crate-05.obj", 0.44, "crates/diffuse.tga", {}, [], False),
+    # Poço coberto (iconoclast, CC0): textura embutida no .blend ("@").
+    ("Well_Covered", "well/well.coveredopen.blend", 2.3, "well/well_color.png", {}, [], False),
+    # Cogumelos (Clint Bellanger, CC BY 3.0) para o Esgoto: os vermelhos e os pálidos.
+    ("Mushroom_Cluster", "mush/shrooms.blend", 0.6, "mush/shroom_color.png", {}, ["Shroom%d" % i for i in range(1, 10)], False),
+    ("Mushroom_Tall", "mush/shrooms.blend", 0.65, "mush/shroom_color2.png", {}, ["Shroom4", "Shroom5", "Shroom6"], False),
+    ("Mushroom_Flat", "mush/shrooms.blend", 0.15, "mush/shroom_color.png", {}, ["Shroom7", "Shroom8", "Shroom9"], False),
     ("Key_Gold", "key/key.blend", 0.32, "", {"Material": (0.95, 0.75, 0.25, 1), "Key_Gold_Mat": (0.95, 0.75, 0.25, 1)}, [], False),
 ]
 
@@ -28,6 +34,7 @@ def load(path):
     if path.endswith(".blend"):
         with bpy.data.libraries.load(full) as (src, dst):
             dst.objects = src.objects
+            dst.images = src.images  # texturas embutidas que os materiais antigos não citam
         for o in dst.objects:
             if o is not None and o.type == "MESH":
                 bpy.context.scene.collection.objects.link(o)
@@ -71,6 +78,10 @@ def biggest_cluster(o):
 
 for name, path, height, tex, colors, keep, cluster in PROPS:
     meshes = load(path)
+    for o in meshes:  # o primeiro mapa UV é o das texturas
+        if o.data.uv_layers:
+            o.data.uv_layers[0].active = True
+            o.data.uv_layers[0].active_render = True
     if keep:
         meshes = [o for o in meshes if o.name in keep]
     # Malha avaliada (modificadores aplicados: array, curva, subdivisão…).
@@ -93,7 +104,10 @@ for name, path, height, tex, colors, keep, cluster in PROPS:
     mx = Vector([max(p[i] for p in pts) for i in range(3)])
     scale = height / (mx.z - mn.z)
     fix = Matrix.Scale(scale, 4) @ Matrix.Translation(-Vector(((mn.x + mx.x) / 2, (mn.y + mx.y) / 2, mn.z)))
-    image = bpy.data.images.load(os.path.join(dl, tex)) if tex else None
+    if tex.startswith("@"):
+        image = bpy.data.images.get(tex[1:])
+    else:
+        image = bpy.data.images.load(os.path.join(dl, tex)) if tex else None
     if image and image.size[0] > 512:
         image.scale(512, 512)
     for o in meshes:

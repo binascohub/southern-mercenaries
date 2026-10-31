@@ -22,6 +22,10 @@ const FAMILIES := {
 		"anims": {"idle": "zombie_idle", "walk": "zombie_walk", "run": "run", "attack": "zombie_scratch", "hit": "hit", "die": "death"}},
 	"gator": {"scene": "res://assets/models/monsters/gator.glb", "scale": 0.75,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
+	# Monstro da Floresta (cdmir, CC0): gigante de casca e pedra com uma árvore nas
+	# costas (34,5 unidades de altura: ~2,5 m por unidade de size). Para os mapas seguintes.
+	"forest": {"scene": "res://assets/models/monsters/forest_monster.glb", "scale": 0.072,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
 	# O morcego guarda o tamanho original do arquivo (envergadura ~10 unidades).
 	"bat": {"scene": "res://assets/models/monsters/bat.glb", "scale": 0.2,
 		"anims": {"idle": "fly", "walk": "fly", "run": "fly", "attack": "fly", "die": "die"}},

@@ -1763,7 +1763,7 @@ func _build_crowd(entry: Dictionary) -> void:
 		_build_brawl(entry, at)
 		return
 	var look := _crowd_look(String(entry.role), at, entry)
-	if look.is_empty():
+	if look.is_empty() and not NpcModel.has_model(String(entry.role)):
 		return
 	var path: Array = entry.get("path", [])
 	var node: Node3D = Wanderer.new() if not path.is_empty() else Node3D.new()

@@ -74,7 +74,10 @@ for arm in arms:
 # os nós antigos); sem imagem, mantém a cor difusa.
 for mat in bpy.data.materials:
     color = tuple(mat.diffuse_color)
-    image = bpy.data.images.get(textures.get(mat.name, ""))
+    # "!" antes da imagem: usa o alfa dela (folhas, cabelo em cartões).
+    wanted = textures.get(mat.name, "")
+    cutout = wanted.startswith("!")
+    image = bpy.data.images.get(wanted.lstrip("!"))
     mat.use_nodes = True
     nodes, links = mat.node_tree.nodes, mat.node_tree.links
     nodes.clear()
@@ -88,7 +91,7 @@ for mat in bpy.data.materials:
     tex = nodes.new("ShaderNodeTexImage")
     tex.image = image
     links.new(tex.outputs["Color"], bsdf.inputs["Base Color"])
-    if image.name.lower().startswith("hair"):
+    if cutout or image.name.lower().startswith("hair"):
         links.new(tex.outputs["Alpha"], bsdf.inputs["Alpha"])
     print("TEX", mat.name, "<-", image.name)
 
