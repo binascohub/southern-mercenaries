@@ -174,11 +174,18 @@ func _push_character(levels: int) -> void:
 func _receive_character(d: Dictionary, levels: int) -> void:
 	var c := CharacterData.new()
 	c.data = d.duplicate(true)
+	c.seal()  # mudança legítima, vinda do servidor
 	character = c
 	if is_local():
 		Session.character = c
 		SaveSystem.request_character_save(c)
 	character_changed.emit(levels)
+
+
+## Servidor: a ficha mudou por fora (troca entre jogadores): recalcula e propaga.
+func refresh_character() -> void:
+	_apply_character()
+	_push_character(0)
 
 
 ## Servidor: muda a ficha e propaga (XP, ouro, loot…). Retorna níveis ganhos.

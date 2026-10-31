@@ -42,6 +42,7 @@ func character_path(id: String) -> String:
 
 
 func save_character(character: CharacterData) -> bool:
+	character.seal()
 	return write_json(character_path(character.data.id), character.data)
 
 
@@ -107,12 +108,19 @@ func list_campaigns() -> Array[Dictionary]:
 	return found
 
 
+## Tempo de jogo como "h:mm" (lista de campanhas).
+static func format_played(seconds: float) -> String:
+	var minutes := int(seconds) / 60
+	return "%d:%02d" % [minutes / 60, minutes % 60]
+
+
 static func new_campaign() -> Dictionary:
 	var rng := RandomNumberGenerator.new()
 	rng.randomize()
 	return {"save_version": GameData.balance.save_version, "id": Items.new_uid(rng),
 		"created": Time.get_datetime_string_from_system(true), "area": "prototype_arena",
-		"dead_groups": [], "checkpoint": "start", "played_seconds": 0, "participants": []}
+		"dead_groups": [], "checkpoint": "start", "played_seconds": 0, "participants": [],
+		"hero_names": {}}
 
 
 # --- Migração (11-saves.md: migrate_vN_to_vN+1) -----------------------------------

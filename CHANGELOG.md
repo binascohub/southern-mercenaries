@@ -9,8 +9,11 @@
 - Inventory window, navigable with the gamepad: equipment slots, 40-slot bag, attribute points, tooltip compared with the equipped item; equipment visible on the hero for everyone.
 - Potions with a shared cooldown; HUD with XP bar, gold, potions, toasts and "saving…".
 - `SaveSystem` (`docs/11-saves.md`): JSON with `save_version`, temp-file write, 3 backups and recovery from a corrupted save; character saved on its owner's PC, campaign (defeated encounter groups) on the host.
-- Main menu: character select/create, *Continue* / *New campaign*.
-- Tests: RPG unit tests (formulas, bag, validation, saves), now run in CI; the bot levels up, collects loot, equips an item and checks the save on disk.
+- Main menu: character select/create, *Continue* / *New campaign* / *Load campaign* (list with area, date, play time and heroes; play solo or host on the LAN).
+- In-game menu: *Save and quit* saves the character (and the campaign on the host) and returns to the main menu (`docs/11-saves.md`, section 4).
+- Trading between players in co-op (`docs/05-itens-e-loot.md`, section 8): invite the nearest ally, offer bag items and gold, both confirm; any change undoes the confirmations; the server validates and swaps atomically; cancelled when the players move apart, fall or disconnect.
+- Character checksum: a character file edited outside the game is detected when it joins and only shows a warning to the group (`docs/11-saves.md`, section 5); old saves without a checksum are not flagged.
+- Tests: RPG unit tests (formulas, bag, validation, saves, campaign list, edited character, trade), now run in CI; trade test in the arena with a simulated ally; the bot levels up, collects loot, equips an item and checks the save on disk.
 - CI: the smoke-test bot equips an item for an empty slot (swapping only the starting staff made the network test fail at random); the host waits for clients to leave before quitting; network-test failures also appear as annotations; an inventory screenshot is uploaded as an artifact; `actions/checkout@v5` (Node 24).
 
 ### Phase 2 — basic LAN network

@@ -38,6 +38,11 @@ func continue_or_new_campaign() -> void:
 	campaign = campaigns[0] if not campaigns.is_empty() else SaveSystem.new_campaign()
 
 
+## Carregar campanha: continua uma campanha escolhida na lista.
+func use_campaign(c: Dictionary) -> void:
+	campaign = c
+
+
 func start_new_campaign() -> void:
 	campaign = SaveSystem.new_campaign()
 	SaveSystem.save_campaign(campaign)

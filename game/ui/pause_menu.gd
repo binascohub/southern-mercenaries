@@ -2,6 +2,8 @@
 class_name PauseMenu
 extends CanvasLayer
 ## Menu do jogo. No solo pausa; no co-op o jogo continua (01-escopo.md).
+## No mapa não há save livre: "Salvar e sair" grava o personagem (e, no host,
+## a campanha com o último checkpoint) e volta ao menu (11-saves.md, seção 4).
 
 const MAIN_SCENE := "res://game/main/main.tscn"
 
@@ -20,11 +22,13 @@ func _ready() -> void:
 	_panel.add_title("MENU_PAUSED")
 	_panel.add_button("MENU_RESUME", resume)
 	_options_button = _panel.add_button("MENU_OPTIONS", _open_options)
-	_panel.add_button("MENU_MAIN_MENU", func() -> void:
+	_panel.add_button("MENU_SAVE_AND_QUIT", func() -> void:
 		get_tree().paused = false
+		_save()
 		NetworkManager.leave()
 		get_tree().change_scene_to_file(MAIN_SCENE))
 	_panel.add_button("MENU_QUIT", func() -> void:
+		_save()
 		NetworkManager.leave()
 		get_tree().quit())
 	_panel.closed.connect(resume)
@@ -56,6 +60,11 @@ func resume() -> void:
 	_options.visible = false
 	if _paused:
 		get_tree().paused = false
+
+
+func _save() -> void:
+	get_tree().call_group(&"arena", &"save_now")
+	SaveSystem.flush()
 
 
 func _open_options() -> void:

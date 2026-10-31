@@ -557,3 +557,90 @@ msgstr "{name} — {class}, level {level}"
 msgid "CHAR_NONE"
 msgstr "No character yet"
 
+
+msgid "MENU_LOAD_CAMPAIGN"
+msgstr "Load campaign"
+
+msgid "MENU_SAVE_AND_QUIT"
+msgstr "Save and quit"
+
+msgid "CAMPAIGN_LOAD_TITLE"
+msgstr "Load campaign"
+
+msgid "CAMPAIGN_HOST_LAN"
+msgstr "Host on LAN (friends can join)"
+
+msgid "CAMPAIGN_NONE"
+msgstr "No saved campaigns yet"
+
+msgid "CAMPAIGN_ENTRY"
+msgstr "{area} — {date} — {time} played"
+
+msgid "TOAST_CHARACTER_EDITED"
+msgstr "{name}'s character was changed outside the game"
+
+msgid "INV_TRADE"
+msgstr "Trade with the nearest ally"
+
+msgid "TRADE_NOBODY_NEAR"
+msgstr "No ally close enough to trade"
+
+msgid "TRADE_INVITE_SENT"
+msgstr "Trade request sent to {name}"
+
+msgid "TRADE_INVITED"
+msgstr "{name} wants to trade"
+
+msgid "TRADE_ACCEPT"
+msgstr "Accept"
+
+msgid "TRADE_DECLINE"
+msgstr "Decline"
+
+msgid "TRADE_TITLE"
+msgstr "Trade with {name}"
+
+msgid "TRADE_GOLD"
+msgstr "Gold offered: {gold} of {total}"
+
+msgid "TRADE_YOUR_OFFER"
+msgstr "Your offer"
+
+msgid "TRADE_THEIR_OFFER"
+msgstr "{name}'s offer"
+
+msgid "TRADE_CONFIRM"
+msgstr "Confirm trade"
+
+msgid "TRADE_WAITING"
+msgstr "Waiting for the other player…"
+
+msgid "TRADE_CONFIRMED"
+msgstr "Confirmed"
+
+msgid "TRADE_NOT_CONFIRMED"
+msgstr "Not confirmed yet"
+
+msgid "TRADE_CANCEL"
+msgstr "Cancel"
+
+msgid "TRADE_HINT"
+msgstr "Press an item in your bag to add it to or remove it from the offer. Any change undoes both confirmations."
+
+msgid "TRADE_DONE"
+msgstr "Trade complete"
+
+msgid "TRADE_DECLINED"
+msgstr "Trade declined"
+
+msgid "TRADE_CANCELLED"
+msgstr "Trade cancelled"
+
+msgid "TRADE_CHANGED"
+msgstr "The offer changed; check it and confirm again"
+
+msgid "TRADE_NO_ROOM"
+msgstr "Not enough room in the bag for this trade"
+
+msgid "TRADE_EMPTY"
+msgstr "Nothing offered yet"

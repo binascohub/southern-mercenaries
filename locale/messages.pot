@@ -556,3 +556,90 @@ msgstr ""
 msgid "CHAR_NONE"
 msgstr ""
 
+
+msgid "MENU_LOAD_CAMPAIGN"
+msgstr ""
+
+msgid "MENU_SAVE_AND_QUIT"
+msgstr ""
+
+msgid "CAMPAIGN_LOAD_TITLE"
+msgstr ""
+
+msgid "CAMPAIGN_HOST_LAN"
+msgstr ""
+
+msgid "CAMPAIGN_NONE"
+msgstr ""
+
+msgid "CAMPAIGN_ENTRY"
+msgstr ""
+
+msgid "TOAST_CHARACTER_EDITED"
+msgstr ""
+
+msgid "INV_TRADE"
+msgstr ""
+
+msgid "TRADE_NOBODY_NEAR"
+msgstr ""
+
+msgid "TRADE_INVITE_SENT"
+msgstr ""
+
+msgid "TRADE_INVITED"
+msgstr ""
+
+msgid "TRADE_ACCEPT"
+msgstr ""
+
+msgid "TRADE_DECLINE"
+msgstr ""
+
+msgid "TRADE_TITLE"
+msgstr ""
+
+msgid "TRADE_GOLD"
+msgstr ""
+
+msgid "TRADE_YOUR_OFFER"
+msgstr ""
+
+msgid "TRADE_THEIR_OFFER"
+msgstr ""
+
+msgid "TRADE_CONFIRM"
+msgstr ""
+
+msgid "TRADE_WAITING"
+msgstr ""
+
+msgid "TRADE_CONFIRMED"
+msgstr ""
+
+msgid "TRADE_NOT_CONFIRMED"
+msgstr ""
+
+msgid "TRADE_CANCEL"
+msgstr ""
+
+msgid "TRADE_HINT"
+msgstr ""
+
+msgid "TRADE_DONE"
+msgstr ""
+
+msgid "TRADE_DECLINED"
+msgstr ""
+
+msgid "TRADE_CANCELLED"
+msgstr ""
+
+msgid "TRADE_CHANGED"
+msgstr ""
+
+msgid "TRADE_NO_ROOM"
+msgstr ""
+
+msgid "TRADE_EMPTY"
+msgstr ""

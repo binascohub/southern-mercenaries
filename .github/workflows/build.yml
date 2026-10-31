@@ -33,6 +33,8 @@ jobs:
         run: godot --headless --path . --fixed-fps 60 res://tests/smoke_arena.tscn
       - name: Queda, revive e volta ao checkpoint
         run: godot --headless --path . res://tests/smoke_arena.tscn -- revive
+      - name: Troca entre jogadores
+        run: godot --headless --path . res://tests/smoke_arena.tscn -- trade
       - name: Rede (host + cliente, versão diferente)
         run: tests/net_smoke.sh godot
       - name: Captura de tela do inventário

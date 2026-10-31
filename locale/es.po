@@ -557,3 +557,90 @@ msgstr "{name} — {class}, nivel {level}"
 msgid "CHAR_NONE"
 msgstr "Aún no hay personaje"
 
+
+msgid "MENU_LOAD_CAMPAIGN"
+msgstr "Cargar campaña"
+
+msgid "MENU_SAVE_AND_QUIT"
+msgstr "Guardar y salir"
+
+msgid "CAMPAIGN_LOAD_TITLE"
+msgstr "Cargar campaña"
+
+msgid "CAMPAIGN_HOST_LAN"
+msgstr "Hospedar en LAN (los amigos pueden entrar)"
+
+msgid "CAMPAIGN_NONE"
+msgstr "Todavía no hay campañas guardadas"
+
+msgid "CAMPAIGN_ENTRY"
+msgstr "{area} — {date} — {time} jugado"
+
+msgid "TOAST_CHARACTER_EDITED"
+msgstr "El personaje de {name} fue modificado fuera del juego"
+
+msgid "INV_TRADE"
+msgstr "Comerciar con el aliado más cercano"
+
+msgid "TRADE_NOBODY_NEAR"
+msgstr "Ningún aliado cerca para comerciar"
+
+msgid "TRADE_INVITE_SENT"
+msgstr "Solicitud de intercambio enviada a {name}"
+
+msgid "TRADE_INVITED"
+msgstr "{name} quiere comerciar"
+
+msgid "TRADE_ACCEPT"
+msgstr "Aceptar"
+
+msgid "TRADE_DECLINE"
+msgstr "Rechazar"
+
+msgid "TRADE_TITLE"
+msgstr "Intercambio con {name}"
+
+msgid "TRADE_GOLD"
+msgstr "Oro ofrecido: {gold} de {total}"
+
+msgid "TRADE_YOUR_OFFER"
+msgstr "Tu oferta"
+
+msgid "TRADE_THEIR_OFFER"
+msgstr "Oferta de {name}"
+
+msgid "TRADE_CONFIRM"
+msgstr "Confirmar intercambio"
+
+msgid "TRADE_WAITING"
+msgstr "Esperando al otro jugador…"
+
+msgid "TRADE_CONFIRMED"
+msgstr "Confirmado"
+
+msgid "TRADE_NOT_CONFIRMED"
+msgstr "Aún sin confirmar"
+
+msgid "TRADE_CANCEL"
+msgstr "Cancelar"
+
+msgid "TRADE_HINT"
+msgstr "Pulsa un objeto de tu bolsa para añadirlo o quitarlo de la oferta. Cualquier cambio deshace ambas confirmaciones."
+
+msgid "TRADE_DONE"
+msgstr "Intercambio completado"
+
+msgid "TRADE_DECLINED"
+msgstr "Intercambio rechazado"
+
+msgid "TRADE_CANCELLED"
+msgstr "Intercambio cancelado"
+
+msgid "TRADE_CHANGED"
+msgstr "La oferta cambió; revísala y confirma de nuevo"
+
+msgid "TRADE_NO_ROOM"
+msgstr "No hay espacio en la bolsa para este intercambio"
+
+msgid "TRADE_EMPTY"
+msgstr "Todavía no se ofrece nada"

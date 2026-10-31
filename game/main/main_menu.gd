@@ -2,8 +2,8 @@
 extends Control
 ## Menu principal. Na primeira execução mostra a escolha de idioma
 ## (já pré-selecionado pelo idioma do sistema). Personagem escolhido, campanha
-## (Continuar / Nova campanha, 11-saves.md), hospedar ou entrar numa partida
-## na LAN (busca automática + IP manual).
+## (Continuar / Nova campanha / Carregar campanha, 11-saves.md), hospedar ou
+## entrar numa partida na LAN (busca automática + IP manual).
 
 const ARENA_SCENE := "res://game/levels/prototype_arena.tscn"
 
@@ -11,6 +11,8 @@ var _main: MenuPanel
 var _language: MenuPanel
 var _join: JoinMenu
 var _characters: CharacterMenu
+var _campaigns: CampaignMenu
+var _load_button: Button
 var _hero: Label
 var _continue_button: Button
 var _characters_button: Button
@@ -52,6 +54,7 @@ func _ready() -> void:
 		_start(NetworkManager.prepare_solo, Session.continue_or_new_campaign))
 	_main.add_button("MENU_NEW_CAMPAIGN", func() -> void:
 		_start(NetworkManager.prepare_solo, Session.start_new_campaign))
+	_load_button = _main.add_button("MENU_LOAD_CAMPAIGN", _open_campaigns)
 	_main.add_button("MENU_HOST_LAN", func() -> void:
 		_start(NetworkManager.prepare_host, Session.continue_or_new_campaign))
 	_join_button = _main.add_button("MENU_JOIN_LAN", _open_join)
@@ -77,6 +80,13 @@ func _ready() -> void:
 	_join.closed.connect(func() -> void: _main.open(_join_button))
 	_join.join_requested.connect(func(address: String) -> void:
 		_start(NetworkManager.prepare_join.bind(address), func() -> void: Session.campaign = {}))
+
+	_campaigns = CampaignMenu.new()
+	add_child(_campaigns)
+	_campaigns.closed.connect(func() -> void: _main.open(_load_button))
+	_campaigns.chosen.connect(func(c: Dictionary, host: bool) -> void:
+		_start(NetworkManager.prepare_host if host else NetworkManager.prepare_solo,
+			Session.use_campaign.bind(c)))
 
 	_characters = CharacterMenu.new()
 	add_child(_characters)
@@ -128,12 +138,18 @@ func _refresh_hero() -> void:
 	_hero.text = tr("CHAR_ENTRY").format({"name": c.data.name,
 		"class": tr(c.class_data().name_key), "level": c.data.level}) if c else tr("CHAR_NONE")
 	_continue_button.visible = not SaveSystem.list_campaigns().is_empty()
+	_load_button.visible = _continue_button.visible
 
 
 func _choose_language(code: String) -> void:
 	Settings.set_language(code)
 	_language.visible = false
 	_main.open()
+
+
+func _open_campaigns() -> void:
+	_main.visible = false
+	_campaigns.open(_load_button)
 
 
 func _open_options() -> void:

@@ -48,6 +48,9 @@ var _enemy_spawner: MultiplayerSpawner
 var _projectile_spawner: MultiplayerSpawner
 var _camera: TopDownCamera
 var _inventory: InventoryMenu
+## Troca entre jogadores (lógica no servidor) e a janela deste PC.
+var trade: Trade
+var _trade_menu: TradeMenu
 ## Aumenta a cada reinício; timers da partida anterior são ignorados.
 var _run := 0
 ## Grupos de encontro (servidor): id -> {position, awake, members}.
@@ -85,6 +88,13 @@ func _ready() -> void:
 	_camera.snap()
 	_inventory = InventoryMenu.new()
 	add_child(_inventory)
+	trade = Trade.new()
+	trade.name = "Trade"
+	add_child(trade)
+	_trade_menu = TradeMenu.new()
+	add_child(_trade_menu)
+	_trade_menu.bind(trade, hud)
+	_inventory.trade_requested.connect(trade.request_trade)
 	hud.set_progress(0, total_encounters)
 	InputDevice.gamepad_lost.connect(_on_gamepad_lost)
 	InputDevice.gamepad_restored.connect(_on_gamepad_restored)
@@ -111,7 +121,8 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"menu") and not pause_menu.is_open and not _inventory.visible:
+	if event.is_action_pressed(&"menu") and not pause_menu.is_open and not _inventory.visible \
+			and not _trade_menu.is_open():
 		pause_menu.open(not NetworkManager.is_online())
 		get_viewport().set_input_as_handled()
 	elif result == Result.VICTORY and event.is_action_pressed(&"attack"):
@@ -190,9 +201,18 @@ func _spawn_player(peer_id: int, resume: Player = null) -> Player:
 		"position": position, "name": character.data.name, "level": character.data.level,
 		"visual": character.equipment_visual(),
 	})
+	if resume == null and character.is_edited():
+		# Ficha mudada fora do jogo: só avisa, nunca bloqueia (11-saves.md, seção 5).
+		push_warning("Ficha editada fora do jogo: %s" % character.data.name)
+		_toast_all.call_deferred("TOAST_CHARACTER_EDITED", {"name": character.data.name})
 	player.set_character(character)
-	if character.data.id not in _campaign.get("participants", []):
-		_campaign.participants = _campaign.get("participants", []) + [character.data.id]
+	if not _campaign.is_empty():
+		if character.data.id not in _campaign.get("participants", []):
+			_campaign.participants = _campaign.get("participants", []) + [character.data.id]
+		# Nomes para a lista de campanhas (os personagens dos clientes não estão neste PC).
+		var names: Dictionary = _campaign.get("hero_names", {})
+		names[character.data.id] = character.data.name
+		_campaign.hero_names = names
 	player.downed.connect(_on_player_downed)
 	player.hurt.connect(_on_player_hurt.bind(player))
 	_on_node_spawned(player)
@@ -206,6 +226,7 @@ func _on_node_spawned(node: Node) -> void:
 		_camera.snap()
 		hud.bind_player(node)
 		_inventory.bind_player(node)
+		_trade_menu.bind_player(node)
 		hud.show_connecting(false)
 
 
@@ -505,6 +526,11 @@ func _toast_to(player: Player, key: String, args: Dictionary) -> void:
 		_toast.rpc_id(player.peer_id, key, args)
 
 
+func _toast_all(key: String, args: Dictionary) -> void:
+	for p: Player in get_tree().get_nodes_in_group(&"players"):
+		_toast_to(p, key, args)
+
+
 @rpc("authority", "reliable")
 func _toast(key: String, args: Dictionary) -> void:
 	hud.toast(tr(key).format(args))
@@ -613,6 +639,11 @@ func _set_state(new_cleared: int, new_result: Result) -> void:
 
 ## O host guarda a campanha ao sair da área ("Salvar e sair", 11-saves.md).
 func _exit_tree() -> void:
+	save_now()
+
+
+## Grava agora a campanha (só no host) e o personagem deste PC.
+func save_now() -> void:
 	if not _campaign.is_empty():
 		SaveSystem.save_campaign(_campaign)
 	SaveSystem.flush()

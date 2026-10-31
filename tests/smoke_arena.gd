@@ -13,6 +13,9 @@ extends Node
 ##   busca:   ... res://tests/smoke_arena.tscn -- discover   (passa se achar um host na LAN)
 ##   revive:  ... res://tests/smoke_arena.tscn -- revive
 ##            (solo com um aliado fictício: cai, é reanimado; todos caem, volta ao checkpoint)
+##   troca:   ... res://tests/smoke_arena.tscn -- trade
+##            (solo com um aliado fictício: convite, ofertas, confirmações, troca e
+##            cancelamento ao se afastarem; o aliado responde direto no servidor)
 ##
 ## No co-op o host só começa a contar quando todos entraram, e o teste do
 ## cliente passa se ele viu o próprio jogador, os monstros e a vitória.
@@ -50,6 +53,7 @@ func _ready() -> void:
 	_clean(SaveSystem.root)
 	var hero := CharacterData.create("mage", "male", "Bot")
 	hero.data.xp = 680  # quase no nível 2, para o teste ver a subida
+	hero.seal()
 	Session.character = hero
 	Session.campaign = SaveSystem.new_campaign()
 	# Todo monstro deixa um item, para o teste sempre ter o que recolher.
@@ -75,7 +79,7 @@ func _ready() -> void:
 		get_tree().quit(0 if found else 1)
 		return
 	else:
-		_role = "revive" if args.size() > 0 and args[0] == "revive" else "solo"
+		_role = args[0] if args.size() > 0 and args[0] in ["revive", "trade"] else "solo"
 		NetworkManager.prepare_solo()
 	NetworkManager.session_ended.connect(func(reason: String) -> void:
 		if _expect_refusal != "":
@@ -104,6 +108,9 @@ func _physics_process(_delta: float) -> void:
 	InputDevice.using_gamepad = true
 	if _role == "revive":
 		_revive_test()
+		return
+	if _role == "trade":
+		_trade_test()
 		return
 	var players := get_tree().get_nodes_in_group(&"players")
 	_max_players_seen = maxi(_max_players_seen, players.size())
@@ -242,6 +249,67 @@ func _revive_test() -> void:
 				_report(ok, "derrota voltou ao checkpoint (todos de pé no checkpoint: %s)" % ok)
 			elif _frame > MAX_FRAMES:
 				_report(false, "não voltou ao checkpoint")
+
+
+## Troca com um aliado fictício (peer 99, sem rede): o lado dele é chamado
+## direto no servidor, como se as RPCs dele tivessem chegado.
+func _trade_test() -> void:
+	var player: Player = _arena.local_player
+	if player == null or _stage > 0 or _frame < 10:
+		return
+	_stage = 1
+	var trade: Trade = _arena.trade
+	var ended: Array[String] = []
+	var states: Array[Dictionary] = []
+	trade.ended.connect(func(reason: String) -> void: ended.append(reason))
+	trade.updated.connect(func(state: Dictionary) -> void: states.append(state))
+	_arena._spawn_player(99)
+	_ally = _arena.get_node("99")
+	var mine := player.character
+	var theirs := _ally.character
+	mine.data.gold = 50
+	theirs.data.gold = 20
+	var staff := Items.equipment("staff", "iron", "magic", 2)
+	mine.add_item(staff)
+	var ring := Items.equipment("ring", "iron", "rare", 2)
+	theirs.add_item(ring)
+	var checks: Array[String] = []
+	var check := func(ok: bool, what: String) -> void:
+		if not ok:
+			checks.append(what)
+
+	trade.request_trade()
+	var id := trade.trade_of(1)
+	check.call(id != 0 and trade.trade_of(99) == id, "convite criado para o aliado")
+	trade.server_answer(99, id, true)
+	check.call(not states.is_empty() and states[-1].them.name == _ally.hero_name, "janela aberta para o host")
+	trade.set_offer(id, [mine.data.inventory.find(staff)], 30)
+	trade.server_offer(99, id, [theirs.data.inventory.find(ring)], 5)
+	trade.confirm(id)
+	check.call(states[-1].you.confirmed and not states[-1].them.confirmed, "host confirmou, aliado ainda não")
+	trade.server_offer(99, id, [theirs.data.inventory.find(ring)], 6)
+	check.call(not states[-1].you.confirmed, "mudar a oferta desfaz as confirmações")
+	trade.confirm(id)
+	trade.server_confirm(99, id)
+	check.call(ended.has("TRADE_DONE"), "troca concluída (%s)" % [ended])
+	check.call(mine.data.inventory.find(ring) >= 0 and theirs.data.inventory.find(staff) >= 0, "itens trocados")
+	check.call(int(mine.data.gold) == 26 and int(theirs.data.gold) == 44, "ouro trocado: %d e %d" % [mine.data.gold, theirs.data.gold])
+	check.call(trade.trade_of(1) == 0, "troca encerrada")
+
+	# Pedido para quem está longe: ninguém por perto.
+	_ally.global_position = player.global_position + Vector3(30, 0, 0)
+	trade.request_trade()
+	check.call(trade.trade_of(1) == 0, "ninguém ao alcance, sem convite")
+	# Afastar-se cancela uma troca aberta.
+	_ally.global_position = player.global_position + Vector3(1.5, 0, 0)
+	trade.request_trade()
+	id = trade.trade_of(1)
+	trade.server_answer(99, id, true)
+	_ally.global_position = player.global_position + Vector3(20, 0, 0)
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	check.call(trade.trade_of(1) == 0 and ended.has("TRADE_CANCELLED"), "afastar-se cancela a troca")
+	_report(checks.is_empty(), "troca: " + ("tudo certo" if checks.is_empty() else "; ".join(PackedStringArray(checks))))
 
 
 func _clean(path: String) -> void:

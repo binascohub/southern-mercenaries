@@ -9,6 +9,8 @@ const SLOTS: Array[String] = ["weapon", "head", "body", "hands", "feet", "ring_1
 const ATTRIBUTES: Array[String] = ["str", "dex", "int", "vit"]
 const SEXES: Array[String] = ["male", "female"]
 const NAME_MAX := 24
+## Sal do resumo da ficha (anti-trapaça leve entre amigos; o código é aberto).
+const CHECK_SALT := "southern-mercenaries/character"
 
 var data: Dictionary
 
@@ -47,6 +49,7 @@ static func create(class_id: String, sex: String, hero_name: String) -> Characte
 	for entry in kit.get("items", []):
 		c.add_item(Items.stack(Items.CONSUMABLE, entry.id, int(entry.count)))
 	c.data.gold = int(kit.get("gold", 0))
+	c.seal()
 	return c
 
 
@@ -106,6 +109,45 @@ func validate() -> PackedStringArray:
 static func clean_name(text: String) -> String:
 	var name := text.strip_edges().replace("\n", " ").substr(0, NAME_MAX)
 	return name if name != "" else "?"
+
+
+# --- Resumo da ficha (11-saves.md, seção 5: detecta arquivo editado, só avisa) -------
+
+## Resumo do conteúdo da ficha (sem o próprio campo "check").
+func checksum() -> String:
+	var copy := data.duplicate(true)
+	copy.erase("check")
+	var text := JSON.stringify(_canonical(copy), "", true)
+	return (CHECK_SALT + text).sha256_text().left(32)
+
+
+## Grava o resumo atual. O jogo sela a ficha sempre que ela muda por meios
+## legítimos (criação, save, mudança vinda do servidor).
+func seal() -> void:
+	data.check = checksum()
+
+
+## A ficha foi mudada fora do jogo (o resumo não bate). Fichas antigas, sem
+## resumo, não são acusadas.
+func is_edited() -> bool:
+	return data.has("check") and str(data.check) != checksum()
+
+
+## Números inteiros iguais venham do JSON (float) ou da memória (int).
+static func _canonical(value: Variant) -> Variant:
+	if value is Dictionary:
+		var out := {}
+		for key in value:
+			out[str(key)] = _canonical(value[key])
+		return out
+	if value is Array:
+		var items := []
+		for v in value:
+			items.append(_canonical(v))
+		return items
+	if value is float and is_finite(value) and value == floorf(value):
+		return int(value)
+	return value
 
 
 # --- Progressão (13-balanceamento.md) ----------------------------------------------

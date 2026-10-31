@@ -6,6 +6,10 @@ extends CanvasLayer
 ## foco comparada com o equipado. Toda a janela funciona só com o controle.
 ## Os pedidos (equipar, usar, gastar ponto) são validados no servidor.
 ## Não pausa o jogo (no co-op o herói fica vulnerável, 07-rede.md).
+## No co-op, "Trocar" chama o aliado mais perto para uma troca (TradeMenu).
+
+## Pediu para trocar com o aliado mais perto.
+signal trade_requested
 
 const BAG_COLUMNS := 8
 const CELL := Vector2(92, 56)
@@ -18,6 +22,7 @@ var _slot_buttons := {}
 var _bag_buttons: Array[Button] = []
 var _details: Label
 var _hint: Label
+var _trade_button: Button
 var _focused := {}  # {"bag": index} ou {"slot": nome}
 
 
@@ -99,6 +104,7 @@ func _refresh() -> void:
 		button.add_theme_color_override("font_color", Items.color(item) if item else Color.WHITE)
 		button.add_theme_color_override("font_focus_color", Items.color(item) if item else Color.WHITE)
 	_hint.text = tr("INV_HINT").format({"close": InputDevice.prompt(&"inventory")})
+	_trade_button.visible = NetworkManager.is_online()
 	_show_details()
 
 
@@ -217,6 +223,13 @@ func _build() -> void:
 	_hint = _text_label()
 	_hint.modulate = Color(1, 1, 1, 0.7)
 	outer.add_child(_hint)
+	_trade_button = Button.new()
+	_trade_button.text = "INV_TRADE"
+	_trade_button.custom_minimum_size = Vector2(260, 40)
+	_trade_button.pressed.connect(func() -> void:
+		close()
+		trade_requested.emit())
+	outer.add_child(_trade_button)
 
 
 func _text_label() -> Label:

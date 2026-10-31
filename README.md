@@ -22,8 +22,9 @@ Dark co-op action RPG with a top-down camera, inspired by *Baldur's Gate: Dark A
   - **Individual loot:** rolled per player on the server and shown only to its owner; pick up with *Interact* or *Pick up all*; gold is picked up automatically; XP is divided among the players present.
   - **Inventory** (I / Back), navigable with the gamepad: equipment slots, 40-slot bag, attribute points and an item tooltip compared with what is equipped. Equipment shows on the hero for everyone.
   - **Potions** (1 health, 2 mana) with a shared cooldown; HUD with XP bar, gold, potions and "saving…".
-  - **Saves** (`docs/11-saves.md`): JSON with `save_version`, written through a temp file, 3 backups and recovery from a corrupted save. The character is saved on its owner's PC; the campaign (encounter groups already defeated) on the host.
-  - Main menu: choose or create a character, *Continue* / *New campaign*.
+  - **Trading in co-op:** *Trade with the nearest ally* in the inventory invites a player close by; each side offers bag items and gold, any change undoes both confirmations, and the server swaps everything at once only when both confirm (`docs/05-itens-e-loot.md`, section 8).
+  - **Saves** (`docs/11-saves.md`): JSON with `save_version`, written through a temp file, 3 backups and recovery from a corrupted save. The character is saved on its owner's PC; the campaign (encounter groups already defeated, play time, heroes) on the host. A character file edited outside the game is detected by its checksum and only triggers a warning.
+  - Main menu: choose or create a character, *Continue* / *New campaign* / *Load campaign* (play solo or host it on the LAN). In-game menu: *Save and quit*.
 - Keyboard + mouse **and** USB gamepad (rebinding, aim assist, dead zone, vibration); English, Spanish and Portuguese, switchable without restarting.
 - GitHub Actions: tests (data, RPG, host + client in two processes), an inventory screenshot and Windows/Linux builds on every push; GitHub Release on every `v*` tag.
 
@@ -45,9 +46,10 @@ Default controls — keyboard: WASD move, mouse aim, left click attack (hold for
 ```bash
 godot --headless --path . --import
 godot --headless --path . --script res://tests/run_tests.gd            # translations and data
-godot --headless --path . res://tests/rpg_tests.tscn                    # RPG formulas, bag, character validation, saves
+godot --headless --path . res://tests/rpg_tests.tscn                    # RPG formulas, bag, validation, saves, edited character, trade
 godot --headless --path . --fixed-fps 60 res://tests/smoke_arena.tscn  # a bot clears every encounter, collects its loot, equips an item and checks the save
 godot --headless --path . res://tests/smoke_arena.tscn -- revive        # downed, revive, back to checkpoint
+godot --headless --path . res://tests/smoke_arena.tscn -- trade         # invite, offers, confirmations, trade, cancel by distance
 tests/net_smoke.sh godot                                                # host + client together; version refusal; drop and rejoin
 ```
 

@@ -3,7 +3,8 @@ extends Node
 ## Testes do núcleo de RPG (Fase 3), com os autoloads carregados:
 ##   godot --headless --path . res://tests/rpg_tests.tscn
 ## Confere as fórmulas de 13-balanceamento.md, a bolsa, a validação do
-## personagem e os saves (escrita segura, backups e recuperação).
+## personagem, os saves (escrita segura, backups e recuperação, lista de
+## campanhas, ficha editada fora do jogo) e a troca entre jogadores.
 
 const TEST_ROOT := "user://test_saves"
 
@@ -21,6 +22,9 @@ func _ready() -> void:
 	_test_inventory()
 	_test_validation()
 	_test_saves()
+	_test_campaign_list()
+	_test_edited_character()
+	_test_trade()
 	_test_names()
 	_clean(TEST_ROOT)
 	if _failures == 0:
@@ -163,6 +167,79 @@ func _test_saves() -> void:
 	campaign.dead_groups = ["corridor_patrol"]
 	SaveSystem.save_campaign(campaign)
 	_check(SaveSystem.load_campaign(campaign.id).dead_groups == ["corridor_patrol"], "campanha guarda grupos mortos")
+
+
+func _test_campaign_list() -> void:
+	_check(SaveSystem.format_played(0) == "0:00", "tempo de jogo zerado")
+	_check(SaveSystem.format_played(3725) == "1:02", "1 h 2 min de jogo")
+	var older := SaveSystem.new_campaign()
+	older.hero_names = {"a": "Orana"}
+	SaveSystem.save_campaign(older)
+	var newer := SaveSystem.new_campaign()
+	newer.played_seconds = 600
+	SaveSystem.save_campaign(newer)
+	newer.updated = "9999-01-01T00:00:00"  # garante a ordem sem depender do relógio
+	SaveSystem.write_json(SaveSystem.campaign_path(newer.id), newer)
+	var list := SaveSystem.list_campaigns()
+	_check(list.size() >= 2 and list[0].id == newer.id, "campanha mais recente primeiro")
+	var text := CampaignMenu.describe(older)
+	_check(text.contains("Orana") and text.contains("0:00"), "linha da campanha com heróis e tempo: %s" % text)
+
+
+func _test_edited_character() -> void:
+	var c := CharacterData.create("mage", "female", "Orana")
+	_check(not c.is_edited(), "personagem novo não é acusado")
+	SaveSystem.save_character(c)
+	var back := SaveSystem.load_character(c.data.id)
+	_check(back != null and not back.is_edited(), "personagem lido do disco não é acusado (inteiros viram float no JSON)")
+	var net := CharacterData.from_dict(JSON.parse_string(JSON.stringify(c.to_dict())))
+	_check(net != null and not net.is_edited(), "ficha que passou por JSON continua igual")
+	# Edita o arquivo à mão: continua válido, mas o resumo não bate.
+	var path := SaveSystem.character_path(c.data.id)
+	var d: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(path))
+	d.gold = 99999
+	var file := FileAccess.open(path, FileAccess.WRITE)
+	file.store_string(JSON.stringify(d, "\t"))
+	file.close()
+	var edited := SaveSystem.load_character(c.data.id)
+	_check(edited != null, "ficha editada ainda é aceita (só avisa)")
+	_check(edited != null and edited.is_edited(), "ficha editada é detectada")
+	var old := c.to_dict()
+	old.erase("check")
+	_check(not CharacterData.from_dict(old).is_edited(), "ficha antiga sem resumo não é acusada")
+
+
+func _test_trade() -> void:
+	var a := CharacterData.create("mage", "male", "Oren")
+	var b := CharacterData.create("mage", "female", "Orana")
+	a.data.gold = 100
+	b.data.gold = 10
+	var staff := Items.equipment("staff", "iron", "magic", 3)
+	a.add_item(staff)
+	var ring := Items.equipment("ring", "iron", "rare", 3)
+	b.add_item(ring)
+	var ia: int = a.data.inventory.find(staff)
+	var ib: int = b.data.inventory.find(ring)
+	var potions_a := a.count_of("potion_health")
+	_check(Trade.swap(a, {"items": [], "gold": 0}, b, {"items": [], "gold": 0}) == "TRADE_EMPTY", "troca vazia é recusada")
+	_check(Trade.swap(a, {"items": [ia], "gold": 30}, b, {"items": [ib], "gold": 5}) == "", "troca feita")
+	_check(a.data.inventory.find(ring) >= 0 and b.data.inventory.find(staff) >= 0, "itens trocados de bolsa")
+	_check(a.data.inventory.find(staff) < 0 and b.data.inventory.find(ring) < 0, "nenhum item duplicado")
+	_check(int(a.data.gold) == 75 and int(b.data.gold) == 35, "ouro trocado (100 − 30 + 5, 10 − 5 + 30)")
+	_check(Trade.swap(a, {"items": [], "gold": 500}, b, {"items": [], "gold": 0}) == "TRADE_CHANGED", "não oferece mais ouro do que tem")
+	_check(int(a.data.gold) == 75, "troca recusada não muda nada")
+	# Poções empilham na bolsa do outro.
+	var ip: int = a.data.inventory.find(a.data.inventory.filter(func(it: Variant) -> bool:
+		return it != null and it.get("id", "") == "potion_health")[0])
+	_check(Trade.swap(a, {"items": [ip], "gold": 0}, b, {"items": [], "gold": 0}) == "", "dá as poções de vida")
+	_check(a.count_of("potion_health") == 0 and b.count_of("potion_health") == 3 + potions_a, "poções empilham no outro")
+	# Bolsa cheia: nada muda.
+	while b.free_slots() > 0:
+		b.add_item(Items.equipment("ring", "iron"))
+	var bag_before: Array = b.data.inventory.duplicate(true)
+	var ia2: int = a.data.inventory.find(ring)
+	_check(Trade.swap(a, {"items": [ia2], "gold": 0}, b, {"items": [], "gold": 0}) == "TRADE_NO_ROOM", "bolsa cheia recusa a troca")
+	_check(b.data.inventory == bag_before and a.data.inventory.find(ring) >= 0, "bolsa cheia não perde nem duplica item")
 
 
 func _test_names() -> void:
