@@ -112,8 +112,8 @@ func _refresh() -> void:
 
 func _short(item: Dictionary) -> String:
 	var name := Items.display_name(item)
-	if name.length() > 16:
-		name = name.substr(0, 15) + "…"
+	if name.length() > 24:
+		name = name.substr(0, 23) + "…"
 	if item.kind != Items.EQUIPMENT and int(item.count) > 1:
 		name += " x%d" % item.count
 	return name
@@ -153,7 +153,7 @@ func _build() -> void:
 	_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	_panel.grow_vertical = Control.GROW_DIRECTION_BOTH
 	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.09, 0.07, 0.06, 0.94)
+	style.bg_color = Color(0.09, 0.07, 0.06)  # opaco: o HUD não aparece através
 	style.border_color = Color(0.45, 0.33, 0.2)
 	style.set_border_width_all(2)
 	style.set_content_margin_all(16)
@@ -211,6 +211,7 @@ func _build() -> void:
 		button.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 		button.custom_minimum_size = CELL
 		button.clip_text = true
+		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		button.add_theme_font_size_override("font_size", 11)
 		button.pressed.connect(func() -> void: _player.request_use(i))
 		button.focus_entered.connect(func() -> void:

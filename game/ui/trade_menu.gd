@@ -213,7 +213,8 @@ func _build() -> void:
 		button.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 		button.custom_minimum_size = CELL
 		button.clip_text = true
-		button.add_theme_font_size_override("font_size", 12)
+		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		button.add_theme_font_size_override("font_size", 11)
 		button.pressed.connect(_toggle.bind(i))
 		bag.add_child(button)
 		_bag_buttons.append(button)
@@ -250,7 +251,7 @@ func _box() -> PanelContainer:
 	box.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	box.grow_vertical = Control.GROW_DIRECTION_BOTH
 	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.09, 0.07, 0.06, 0.94)
+	style.bg_color = Color(0.09, 0.07, 0.06)  # opaco: o HUD não aparece através
 	style.border_color = Color(0.45, 0.33, 0.2)
 	style.set_border_width_all(2)
 	style.set_content_margin_all(16)
