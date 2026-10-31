@@ -54,7 +54,7 @@ func strike(at: Vector3, radius: float, damage: float, level: int, source: Node3
 	var push := float(extra.get("push", 0.0))
 	for p: Player in get_tree().get_nodes_in_group(&"players"):
 		if p.alive and _inside(p.global_position, at, radius):
-			p.take_damage(damage, level, source)
+			# O empurrão antes do dano (o golpe sofrido deixa o herói invulnerável).
 			if push > 0.0:
 				# Vento: para longe do centro (a esquiva escapa do empurrão).
 				var away := p.global_position - at
@@ -62,6 +62,7 @@ func strike(at: Vector3, radius: float, damage: float, level: int, source: Node3
 				if away.length() < 0.1:
 					away = Vector3.BACK
 				p.knock_back(away.normalized() * push, float(extra.get("push_time", 0.4)))
+			p.take_damage(damage, level, source)
 	if extra.get("wind", false):
 		_show_gust.rpc(at, radius)
 	if float(extra.get("puddle_time", 0.0)) > 0.0:

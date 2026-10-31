@@ -645,15 +645,17 @@ func _sewers_test() -> void:
 	player.teleport_to(queen.global_position + Vector3(0, 0, 3))
 	var pushed := false
 	var gusted := false
-	for i in 180:
+	var hit_health := player.health
+	for i in 300:
 		await get_tree().physics_frame
 		gusted = gusted or (queen.state == Enemy.State.WINDUP and queen._special == "gust")
 		if player.is_knocked_back():
 			pushed = true
 			break
 	check.call(queen.has_wings(), "Rainha ganha asas na metade da vida")
-	check.call(gusted and pushed, "Rajada das Asas: aviso e empurrão (aviso %s, empurrão %s, %.1f m)" % [gusted, pushed,
-		player.global_position.distance_to(queen.global_position)])
+	check.call(gusted and pushed, "Rajada das Asas: aviso e empurrão (aviso %s, empurrão %s, %.1f m, vida %.0f→%.0f, conectado %s, invulnerável %s, estado %d, timers %s)" % [
+		gusted, pushed, player.global_position.distance_to(queen.global_position), hit_health, player.health,
+		player.connected, player.is_invulnerable(), queen.state, queen.boss_timers])
 	queen.health = queen.max_health * 0.2
 	# O gás mira um herói de pé: o do teste (nível 1) aguenta a luta toda.
 	if not player.alive:
