@@ -1,0 +1,4 @@
+brigand_guard.glb — "Brigand" by anthonymyers
+https://opengameart.org/content/brigand
+Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/
+Changes: meshes joined in the original pose, resized to 1.85 m, textures reduced to 1024 px WebP (tools/assets/build_statue_npc.py).

@@ -1465,6 +1465,22 @@
         ],
         "rotation": 200,
         "pose": "talk"
+      },
+      {
+        "role": "guard",
+        "position": [
+          -1.5,
+          -21.8
+        ],
+        "rotation": 180
+      },
+      {
+        "role": "guard",
+        "position": [
+          1.5,
+          -21.8
+        ],
+        "rotation": 180
       }
     ]
   },

@@ -20,6 +20,9 @@ const MODELS := {
 	# por tools/assets/rig_to_ual.py, com as animações deles; texturas geradas.
 	"pirate_captain": {"scene": "res://assets/models/characters/pirate_captain.glb", "scale": 1.0,
 		"poses": {"walk": "Walk_Loop", "idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "drink": "Consume"}},
+	# Guarda (Brigand, anthonymyers, CC BY 3.0): parado na pose do modelo, de
+	# couraça, alabarda e machado (sem animação).
+	"guard": {"scene": "res://assets/models/characters/brigand_guard.glb", "scale": 1.0, "poses": {}},
 	# Galinha (cdmir, CC0): anda e cisca pelas cozinhas de Tortuga (12,6 unidades -> 0,4 m).
 	"chicken": {"scene": "res://assets/models/characters/chicken.glb", "scale": 0.032,
 		"poses": {"walk": "walk", "idle": "eat", "talk": "idle"}},
