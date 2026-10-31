@@ -14,6 +14,7 @@ signal shop_opened(shop_id: String)
 signal dialogue_opened(npc_id: String, index: int)
 signal training_opened
 signal portals_opened
+signal stash_opened
 
 const REACH := 4.0
 
@@ -106,6 +107,8 @@ func interact(player: Player, prop: Dictionary) -> void:
 			_arena()._toast_to(player, String(prop.get("text_key", "")), {})
 		"training":
 			_send(player.peer_id, &"_open_training", [])
+		"stash":
+			_send(player.peer_id, &"_open_stash", [])
 		"exit":
 			var needs: String = prop.get("requires", "")
 			if needs != "" and needs not in _campaign().get("unlocked", []):
@@ -117,6 +120,69 @@ func interact(player: Player, prop: Dictionary) -> void:
 @rpc("authority", "reliable")
 func _open_shop(shop_id: String) -> void:
 	shop_opened.emit(shop_id)
+
+
+# --- Baú (os itens ficam no PC do dono; o servidor só move entre bolsa e baú) ---------
+
+@rpc("authority", "reliable")
+func _open_stash() -> void:
+	stash_opened.emit()
+
+
+func request_deposit(bag_index: int) -> void:
+	_ask(&"_rpc_deposit", [bag_index])
+
+
+## Tirar do baú: o PC do dono manda o item, o servidor confere e põe na bolsa.
+func request_withdraw(stash_index: int) -> void:
+	var stash := SaveSystem.load_stash()
+	if stash_index >= 0 and stash_index < stash.size() and stash[stash_index] != null:
+		_ask(&"_rpc_withdraw", [stash_index, stash[stash_index]])
+
+
+@rpc("any_peer", "reliable")
+func _rpc_deposit(bag_index: int) -> void:
+	var player := _sender()
+	if not multiplayer.is_server() or player == null or _arena().prop_near(player, "stash", "", REACH).is_empty():
+		return
+	var bag: Array = player.character.data.inventory
+	if bag_index < 0 or bag_index >= bag.size() or bag[bag_index] == null:
+		return
+	var item: Dictionary = bag[bag_index]
+	bag[bag_index] = null
+	player.refresh_character()
+	_send(player.peer_id, &"_stash_add", [item])
+
+
+@rpc("any_peer", "reliable")
+func _rpc_withdraw(stash_index: int, item: Dictionary) -> void:
+	var player := _sender()
+	if not multiplayer.is_server() or player == null or _arena().prop_near(player, "stash", "", REACH).is_empty() \
+			or not Items.is_valid(item):
+		return
+	if not player.character.add_item(item.duplicate(true)):
+		_arena()._toast_to(player, "TOAST_BAG_FULL", {})
+		return
+	player.refresh_character()
+	_send(player.peer_id, &"_stash_remove", [stash_index])
+
+
+@rpc("authority", "reliable")
+func _stash_add(item: Dictionary) -> void:
+	var holder := CharacterData.new()
+	holder.data = {"inventory": SaveSystem.load_stash()}
+	holder.add_item(item)
+	SaveSystem.save_stash(holder.data.inventory)
+	stash_opened.emit()
+
+
+@rpc("authority", "reliable")
+func _stash_remove(stash_index: int) -> void:
+	var stash := SaveSystem.load_stash()
+	if stash_index >= 0 and stash_index < stash.size():
+		stash[stash_index] = null
+	SaveSystem.save_stash(stash)
+	stash_opened.emit()
 
 
 @rpc("authority", "reliable")
@@ -221,6 +287,16 @@ func _rpc_service(npc_id: String, service: String) -> void:
 		return
 	if service == "portals":
 		_send(player.peer_id, &"_open_portals", [])
+		return
+	if service == "respec":
+		var price := player.character.respec_price()
+		if int(player.character.data.gold) < price:
+			_arena()._toast_to(player, "TOAST_NO_GOLD", {})
+			return
+		player.character.data.gold = int(player.character.data.gold) - price
+		player.character.respec()
+		player.refresh_character()
+		_arena()._toast_to(player, "TOAST_RESPEC_DONE", {})
 		return
 	if service == "rest":
 		# Descansar na taverna: vida e recurso cheios, de graça.

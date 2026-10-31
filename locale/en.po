@@ -1751,3 +1751,30 @@ msgstr "No checkpoint reached yet"
 
 msgid "PORTALS_ENTRY"
 msgstr "{area} — {checkpoint} — {price} gold each"
+
+msgid "NPC_MASTER"
+msgstr "Old Master"
+
+msgid "DLG_MASTER_1"
+msgstr "Every scar teaches something. Pay me and I'll make you forget the wrong lessons — all your attribute and skill points come back."
+
+msgid "DLG_SERVICE_RESPEC"
+msgstr "Redistribute points ({price} gold)"
+
+msgid "TOAST_RESPEC_DONE"
+msgstr "Points returned: spend them again"
+
+msgid "PROP_STASH"
+msgstr "Stash"
+
+msgid "STASH_TITLE"
+msgstr "Stash"
+
+msgid "STASH_BAG"
+msgstr "Your bag (press to store)"
+
+msgid "STASH_CHEST"
+msgstr "Stash (press to take)"
+
+msgid "STASH_HINT"
+msgstr "The stash is shared by all your characters on this PC."

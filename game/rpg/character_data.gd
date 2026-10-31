@@ -323,6 +323,24 @@ func learn(key: String) -> bool:
 	return true
 
 
+## Altar/Mestre (04-tortuga-e-missoes.md, seção 2): devolve todos os pontos de
+## atributo e de habilidade (fica só a habilidade de nível 1, no rank 1).
+func respec() -> void:
+	var cls := class_data()
+	data.attributes = cls.attributes.duplicate()
+	var levels := int(data.level) - 1
+	data.free_points = int(GameData.balance.attribute_points_per_level) * levels
+	data.skill_points = int(GameData.balance.skill_points_per_level) * levels
+	var first: String = Skills.keys(data.class_id)[0]
+	data.skills = {first: 1}
+	data.skill_slots = [first, "", "", ""]
+
+
+## Preço para redistribuir os pontos (proposta: 50 × nível).
+func respec_price() -> int:
+	return int(GameData.balance.get("respec_gold_per_level", 50)) * int(data.level)
+
+
 ## Põe uma habilidade ativa aprendida num atalho (tira de outro, se estava lá).
 func set_slot(index: int, key: String) -> bool:
 	if index < 0 or index >= data.skill_slots.size():

@@ -32,6 +32,8 @@
   "armor_base_constant": 40,
   "max_damage_reduction": 0.75,
   "inventory_size": 40,
+  "stash_size": 40,
+  "respec_gold_per_level": 50,
   "save_slots": { "_comment": "11-saves.md, seção 3 (proposta)", "characters": 12, "campaigns": 6 },
   "save_version": 1
 }

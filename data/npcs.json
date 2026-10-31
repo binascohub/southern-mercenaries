@@ -95,5 +95,22 @@
         "service": "portals"
       }
     ]
+  },
+  "master": {
+    "name_key": "NPC_MASTER",
+    "color": [
+      0.75,
+      0.75,
+      0.6
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_MASTER_1"
+        ],
+        "service": "respec"
+      }
+    ]
   }
 }

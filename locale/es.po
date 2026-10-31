@@ -1751,3 +1751,30 @@ msgstr "Todavía no hay puntos alcanzados"
 
 msgid "PORTALS_ENTRY"
 msgstr "{area} — {checkpoint} — {price} de oro cada uno"
+
+msgid "NPC_MASTER"
+msgstr "Viejo Maestro"
+
+msgid "DLG_MASTER_1"
+msgstr "Cada cicatriz enseña algo. Págame y te haré olvidar las lecciones equivocadas: vuelven todos tus puntos de atributo y de habilidad."
+
+msgid "DLG_SERVICE_RESPEC"
+msgstr "Redistribuir puntos ({price} de oro)"
+
+msgid "TOAST_RESPEC_DONE"
+msgstr "Puntos devueltos: gástalos de nuevo"
+
+msgid "PROP_STASH"
+msgstr "Baúl"
+
+msgid "STASH_TITLE"
+msgstr "Baúl"
+
+msgid "STASH_BAG"
+msgstr "Tu bolsa (pulsa para guardar)"
+
+msgid "STASH_CHEST"
+msgstr "Baúl (pulsa para sacar)"
+
+msgid "STASH_HINT"
+msgstr "El baúl es compartido por todos tus personajes en este PC."

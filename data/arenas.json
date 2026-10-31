@@ -395,6 +395,24 @@
           16,
           -5.5
         ]
+      },
+      {
+        "id": "master",
+        "kind": "npc",
+        "npc": "master",
+        "position": [
+          -22,
+          4.5
+        ]
+      },
+      {
+        "id": "stash",
+        "kind": "stash",
+        "name_key": "PROP_STASH",
+        "position": [
+          -5,
+          5.5
+        ]
       }
     ],
     "dummies": [

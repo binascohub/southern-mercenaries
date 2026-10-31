@@ -640,6 +640,26 @@ func _town_test() -> void:
 	check.call(player.character.count_of("return_charm") == 0 and not _arena.prop_near(player, "exit", "charm_portal", 5.0).is_empty(), "Patuá abre o portal no chão")
 	_arena.request_interact(player)
 	check.call(_arena.area_id == "tortuga", "portal do Patuá volta a Tortuga")
+	# Baú: guardar e tirar (o baú fica no PC do dono).
+	var bag_coins := Items.stack(Items.VALUABLE, "silver_goblet", 1)
+	player.character.add_item(bag_coins)
+	var goblet_index: int = player.character.data.inventory.find(bag_coins)
+	player.teleport_to(Vector3(-5, 0, 4.5))
+	town._rpc_deposit(goblet_index)
+	check.call(player.character.count_of("silver_goblet") == 0 and SaveSystem.load_stash().any(func(i: Variant) -> bool: return i != null and i.id == "silver_goblet"), "guarda o cálice no baú")
+	var stash_index := SaveSystem.load_stash().find(SaveSystem.load_stash().filter(func(i: Variant) -> bool: return i != null)[0])
+	town.request_withdraw(stash_index)
+	check.call(player.character.count_of("silver_goblet") == 1 and SaveSystem.load_stash().all(func(i: Variant) -> bool: return i == null), "tira o cálice do baú")
+	# Mestre: redistribuir pontos pagando ouro.
+	var hero := player.character
+	hero.data.free_points = 0
+	hero.data.attributes.int = int(hero.data.attributes.int) + 5
+	var price := hero.respec_price()
+	var gold_before := int(hero.data.gold)
+	player.teleport_to(Vector3(-22, 0, 3.5))
+	town._rpc_service("master", "respec")
+	hero = player.character
+	check.call(int(hero.data.free_points) == 5 * (int(hero.data.level) - 1) and int(hero.data.gold) == gold_before - price, "Mestre devolve os pontos por %d" % price)
 	_report(checks.is_empty(), "cidade: " + ("tudo certo" if checks.is_empty() else "; ".join(PackedStringArray(checks))))
 
 

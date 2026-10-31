@@ -115,6 +115,23 @@ func delete_character(id: String) -> void:
 	_delete_with_backups(character_path(id))
 
 
+# --- Baú (04-tortuga-e-missoes.md, seção 2) -------------------------------------------
+
+## Baú do jogador: compartilhado entre os personagens deste PC.
+func stash_path() -> String:
+	return root.path_join("stash.json")
+
+
+func load_stash() -> Array:
+	var items: Array = CharacterData._canonical(read_json(stash_path()).get("items", []))
+	items.resize(int(GameData.balance.stash_size))
+	return items
+
+
+func save_stash(items: Array) -> void:
+	write_json(stash_path(), {"save_version": GameData.balance.save_version, "items": items}, true)
+
+
 # --- Campanhas ------------------------------------------------------------------
 
 func campaign_path(id: String) -> String:

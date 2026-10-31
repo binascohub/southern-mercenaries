@@ -69,7 +69,8 @@ func _show_line() -> void:
 	_decline.visible = last and offer != ""
 	_service.visible = last and service != ""
 	if service != "":
-		_service.text = tr("DLG_SERVICE_" + service.to_upper())
+		var price := Session.character.respec_price() if Session.character else 0
+		_service.text = tr("DLG_SERVICE_" + service.to_upper()).format({"price": price})
 	_next.text = tr("DLG_NEXT")
 	# No fim de uma conversa sem escolha, "Continuar" fecha.
 	if last and offer == "" and service == "":

@@ -1750,3 +1750,30 @@ msgstr ""
 
 msgid "PORTALS_ENTRY"
 msgstr ""
+
+msgid "NPC_MASTER"
+msgstr ""
+
+msgid "DLG_MASTER_1"
+msgstr ""
+
+msgid "DLG_SERVICE_RESPEC"
+msgstr ""
+
+msgid "TOAST_RESPEC_DONE"
+msgstr ""
+
+msgid "PROP_STASH"
+msgstr ""
+
+msgid "STASH_TITLE"
+msgstr ""
+
+msgid "STASH_BAG"
+msgstr ""
+
+msgid "STASH_CHEST"
+msgstr ""
+
+msgid "STASH_HINT"
+msgstr ""

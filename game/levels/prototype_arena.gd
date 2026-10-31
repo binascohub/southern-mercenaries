@@ -75,6 +75,7 @@ var _shop_menu: ShopMenu
 var _dialogue_menu: DialogueMenu
 var _training_menu: TrainingMenu
 var _portal_menu: PortalMenu
+var _stash_menu: StashMenu
 ## Aumenta a cada reinício; timers da partida anterior são ignorados.
 var _run := 0
 ## Grupos de encontro (servidor): id -> {position, awake, members}.
@@ -155,6 +156,9 @@ func _ready() -> void:
 	_portal_menu = PortalMenu.new()
 	training_layer.add_child(_portal_menu)
 	_portal_menu.bind(town)
+	_stash_menu = StashMenu.new()
+	add_child(_stash_menu)
+	_stash_menu.bind(town)
 	InputDevice.gamepad_lost.connect(_on_gamepad_lost)
 	InputDevice.gamepad_restored.connect(_on_gamepad_restored)
 	NetworkManager.session_ended.connect(_on_session_ended)
@@ -187,7 +191,8 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"menu") and not pause_menu.is_open and not _inventory.visible \
 			and not _trade_menu.is_open() and not _skill_menu.visible and not _shop_menu.visible \
-			and not _dialogue_menu.visible and not _training_menu.visible and not _portal_menu.visible:
+			and not _dialogue_menu.visible and not _training_menu.visible and not _portal_menu.visible \
+			and not _stash_menu.visible:
 		pause_menu.open(not NetworkManager.is_online())
 		get_viewport().set_input_as_handled()
 	elif result == Result.VICTORY and event.is_action_pressed(&"attack"):
@@ -490,6 +495,7 @@ func _on_node_spawned(node: Node) -> void:
 		_trade_menu.bind_player(node)
 		_skill_menu.bind_player(node)
 		_shop_menu.bind_player(node)
+		_stash_menu.bind_player(node)
 		hud.show_connecting(false)
 
 
@@ -1175,6 +1181,12 @@ func _build_prop(prop: Dictionary) -> void:
 				_prop_mesh(node, CylinderMesh.new(), Vector3(1.4, 0.06, 1.4), Vector3(0, 0.03, 0), Color(0.25, 0.22, 0.2))
 			"sign":
 				_prop_mesh(node, CylinderMesh.new(), Vector3(2.2, 0.3, 2.2), Vector3(0, 0.15, 0), Color(0.35, 0.35, 0.4))
+			"stash":
+				# Baú acorrentado.
+				_prop_mesh(node, BoxMesh.new(), Vector3(1.4, 0.8, 0.9), Vector3(0, 0.4, 0), Color(0.4, 0.27, 0.15))
+				_prop_mesh(node, BoxMesh.new(), Vector3(1.45, 0.1, 0.95), Vector3(0, 0.55, 0), Color(0.3, 0.3, 0.32))
+			"training":
+				_prop_mesh(node, BoxMesh.new(), Vector3(1.6, 1.2, 0.15), Vector3(0, 1.3, 0), Color(0.45, 0.33, 0.2))
 		if label_key != "":
 			var label := Label3D.new()
 			label.text = label_key
