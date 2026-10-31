@@ -1074,6 +1074,7 @@ func _on_enemy_died(enemy: Enemy) -> void:
 	if enemy.is_boss() and enemy.data.has("drops_key") and String(enemy.data.drops_key) not in _campaign.get("keys", []):
 		# A chave do tesouro cai onde o chefe morreu.
 		_add_prop.rpc({"id": "boss_key", "kind": "key", "key": String(enemy.data.drops_key), "name_key": "PROP_BOSS_KEY",
+			"model": String(enemy.data.get("key_model", "Key_Gold")),
 			"position": [enemy.global_position.x, enemy.global_position.z]})
 	if enemy.is_boss():
 		# Os ajudantes e os ninhos somem com o chefe.
@@ -1634,7 +1635,8 @@ func _build_prop(prop: Dictionary) -> void:
 				_prop_mesh(node, BoxMesh.new(), Vector3(0.6, 0.3, 0.05), Vector3(0.9, 0.7, 0.61), Color(1.0, 0.45, 0.1))
 			"chest" when prop.has("model") and _kit(node, String(prop.model), Transform3D(Basis(Vector3.UP, PI), Vector3.ZERO)):
 				pass  # baú do tesouro do chefe (de ferro, com cravos)
-			"key" when _kit(node, "Key_Gold", Transform3D(Basis(Vector3.RIGHT, -PI / 2.0).scaled(Vector3.ONE * 0.8), Vector3(0, 0.35, 0))):
+			"key" when _kit(node, String(prop.get("model", "Key_Gold")), Transform3D(Basis(Vector3.RIGHT,
+					-PI / 2.0 if String(prop.get("model", "Key_Gold")) == "Key_Gold" else PI / 2.0), Vector3(0, 0.3, 0))):
 				# Chave dourada caída, girando e brilhando.
 				var glow := OmniLight3D.new()
 				glow.light_color = Color(1.0, 0.8, 0.35)

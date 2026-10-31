@@ -1,0 +1,4 @@
+Key_Hearts, Key_Diamonds, Key_Clubs, Key_Spades — "Card Suits Keys" by Clint Bellanger
+https://opengameart.org/content/card-suits-keys
+Creative Commons Attribution 4.0: https://creativecommons.org/licenses/by/4.0/
+Changes: one glTF per key by tools/assets/build_props.py (resized to 0.6 m, plain bronze and iron colors).

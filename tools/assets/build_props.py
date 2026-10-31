@@ -37,6 +37,11 @@ PROPS = [
     ("Wheelbarrow", "mprops/Props2.blend", 0.45, "mprops/wood floor 2.png", {}, ["WheelBarrow"], False),
     # Barricada de estacas (sullivan, CC BY 3.0).
     ("Barricade_Stakes", "barricade/barricade.blend", 1.5, "barricade/barricade_color.png", {}, [], False),
+    # Chaves de naipe dos baús dos chefes (Clint Bellanger, CC BY 4.0); altura < 0 = maior medida.
+    ("Key_Hearts", "suitkeys/keys_suits.blend", -0.6, "", {"Bronze": (0.86, 0.46, 0.3, 1)}, ["KeyofHearts", "StemHearts"], False),
+    ("Key_Diamonds", "suitkeys/keys_suits.blend", -0.6, "", {"Bronze": (0.86, 0.46, 0.3, 1)}, ["KeyofDiamonds", "StemDiamonds"], False),
+    ("Key_Clubs", "suitkeys/keys_suits.blend", -0.6, "", {"Iron": (0.48, 0.48, 0.5, 1)}, ["KeyofClubs", "StemClubs"], False),
+    ("Key_Spades", "suitkeys/keys_suits.blend", -0.6, "", {"Iron": (0.48, 0.48, 0.5, 1)}, ["KeyofSpades", "StemSpades"], False),
     ("Key_Gold", "key/key.blend", 0.32, "", {"Material": (0.95, 0.75, 0.25, 1), "Key_Gold_Mat": (0.95, 0.75, 0.25, 1)}, [], False),
 ]
 
@@ -114,7 +119,7 @@ for name, path, height, tex, colors, keep, cluster in PROPS:
     pts = [v.co for o in meshes for v in o.data.vertices]
     mn = Vector([min(p[i] for p in pts) for i in range(3)])
     mx = Vector([max(p[i] for p in pts) for i in range(3)])
-    scale = height / (mx.z - mn.z)
+    scale = height / (mx.z - mn.z) if height > 0 else -height / max(mx - mn)
     fix = Matrix.Scale(scale, 4) @ Matrix.Translation(-Vector(((mn.x + mx.x) / 2, (mn.y + mx.y) / 2, mn.z)))
     if tex.startswith("@"):
         image = bpy.data.images.get(tex[1:])
@@ -141,7 +146,7 @@ for name, path, height, tex, colors, keep, cluster in PROPS:
                 links.new(node.outputs["Color"], bsdf.inputs["Base Color"])
             else:
                 bsdf.inputs["Base Color"].default_value = colors.get(mat.name, (0.5, 0.5, 0.5, 1))
-                if name == "Key_Gold":
+                if name.startswith("Key_"):
                     bsdf.inputs["Metallic"].default_value = 0.9
                     bsdf.inputs["Roughness"].default_value = 0.3
     for o in list(bpy.context.scene.objects):

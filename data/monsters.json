@@ -246,6 +246,7 @@
     },
     "pact_speed": 1.25,
   "drops_key": "key_rat_queen",
+  "key_model": "Key_Hearts",
   "gust": {
    "_comment": "Rajada das Asas: da metade da vida em diante ela tem asas de morcego e, a cada intervalo, bate as asas com aviso no chão; quem está dentro leva dano e é empurrado para longe (a esquiva escapa).",
    "from": 0.5,
