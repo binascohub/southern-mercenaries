@@ -510,9 +510,18 @@ func _build_visual(size: float) -> void:
 		"gator":
 			body_mesh.radius = 0.28 * size
 			body_mesh.height = 1.9 * size
+	# Boneco de treino, barril e caixote: peças do kit (game/levels/kit.gd).
+	var kit_piece: String = "Dummy" if data.get("dummy", false) else {"barrel": "Barrel", "crate": "Crate_Wooden"}.get(look, "")
+	var kit_node: Node3D = Kit.piece(kit_piece) if kit_piece != "" else null
+	if kit_node:
+		_visual.add_child(kit_node)
+		if data.get("dummy", false):
+			# Bonecos de elemento tingidos pela cor do elemento; gigante maior.
+			kit_node.scale = Vector3.ONE * size / 0.9
 	body.mesh = body_mesh
 	body.rotation.x = PI / 2.0
 	body.position.y = 0.3 * size
+	body.visible = kit_node == null
 	body.material_override = _material
 	if look == "barrel":
 		var barrel := CylinderMesh.new()
@@ -597,7 +606,7 @@ func _build_visual(size: float) -> void:
 	eye_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	eye_material.albedo_color = Color(1.0, 0.15, 0.1)
 	_eye_material = eye_material
-	for side in ([] if data.get("breakable", false) else [-1.0, 1.0]):
+	for side in ([] if data.get("breakable", false) or kit_node else [-1.0, 1.0]):
 		var eye := MeshInstance3D.new()
 		var eye_mesh := SphereMesh.new()
 		eye_mesh.radius = 0.05 * size

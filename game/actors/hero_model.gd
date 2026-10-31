@@ -23,6 +23,8 @@ const ANIMS := {
 	"melee": "Sword_Attack", "cast": "Spell_Simple_Shoot", "shoot": "Pistol_Shoot",
 	"roll": "Roll", "hit": "Hit_Chest", "death": "Death01", "ride": "Driving_Loop",
 	"charge": "Spell_Simple_Idle_Loop", "block": "Sword_Idle",
+	# NPCs: sentado, conversando, segurando a tocha.
+	"sit": "Sitting_Idle_Loop", "talk": "Idle_Talking_Loop", "torch": "Idle_Torch_Loop",
 }
 ## Peças por slot de equipamento: sem item, as de Camponês; com item, as de Ranger.
 const OUTFIT := {
@@ -197,6 +199,12 @@ func update_state(speed: float, alive: bool, mounted: bool, charging: bool, bloc
 		state = "walk"
 	if state != _current:
 		_play(state)
+
+
+## Pose fixa de NPC (sit, talk, torch, idle), em repetição.
+func set_pose(key: String) -> void:
+	if _anim:
+		_play(key if _names.has(key) else "idle", 0.0)
 
 
 func current() -> String:

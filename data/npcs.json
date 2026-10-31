@@ -1,5 +1,5 @@
 {
-  "_comment": "NPCs fixos da Taverna (04-tortuga-e-missoes.md, seção 3). dialogues: o primeiro cujo \"when\" bate é o usado; offer = missão oferecida no fim; service = serviço (rest: descansar). bestiary: criaturas que entram no bestiário ao ouvir a conversa.",
+  "_comment": "NPCs fixos da Taverna (04-tortuga-e-missoes.md, seção 3). dialogues: o primeiro cujo \"when\" bate é o usado; offer = missão oferecida no fim; service = serviço (rest: descansar). bestiary: criaturas que entram no bestiário ao ouvir a conversa. 'body': corpo do NPC (o mesmo dos heróis, hero_model.gd): sexo, cabelo, cor do cabelo, pose (sit, talk, torch, idle) e roupa por slot (material).",
   "old_drunk": {
     "name_key": "NPC_OLD_DRUNK",
     "color": [
@@ -38,7 +38,20 @@
           "DLG_OLD_DRUNK_DONE"
         ]
       }
-    ]
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Buzzed",
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.75,
+        0.72,
+        0.68
+      ],
+      "pose": "sit"
+    }
   },
   "tavern_keeper": {
     "name_key": "NPC_TAVERN_KEEPER",
@@ -55,7 +68,19 @@
         ],
         "service": "rest"
       }
-    ]
+    ],
+    "body": {
+      "sex": "female",
+      "hair": [
+        "Hair_Buns"
+      ],
+      "hair_color": [
+        0.35,
+        0.18,
+        0.1
+      ],
+      "pose": "talk"
+    }
   },
   "bard": {
     "name_key": "NPC_BARD",
@@ -86,7 +111,19 @@
         ],
         "service": "bestiary"
       }
-    ]
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_SimpleParted"
+      ],
+      "hair_color": [
+        0.85,
+        0.65,
+        0.3
+      ],
+      "pose": "sit"
+    }
   },
   "voodoo_priest": {
     "name_key": "NPC_VOODOO_PRIEST",
@@ -103,7 +140,23 @@
         ],
         "service": "portals"
       }
-    ]
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Buzzed"
+      ],
+      "hair_color": [
+        0.08,
+        0.08,
+        0.08
+      ],
+      "pose": "torch",
+      "outfit": {
+        "body": "cloth",
+        "head": "cloth"
+      }
+    }
   },
   "master": {
     "name_key": "NPC_MASTER",
@@ -120,6 +173,24 @@
         ],
         "service": "respec"
       }
-    ]
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_SimpleParted",
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.6,
+        0.6,
+        0.62
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "steel",
+        "hands": "steel",
+        "feet": "steel"
+      }
+    }
   }
 }

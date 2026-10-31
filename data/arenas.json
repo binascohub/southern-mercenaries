@@ -231,7 +231,8 @@
           "north"
         ],
         "torch": true,
-        "wall_height": 0.8
+        "wall_height": 0.8,
+        "floor": "Floor_WoodDark"
       },
       {
         "id": "dock",
@@ -246,7 +247,8 @@
         "doors": [
           "south"
         ],
-        "wall_height": 0.6
+        "wall_height": 0.6,
+        "floor": "Floor_WoodDark"
       },
       {
         "id": "training_yard",
@@ -262,7 +264,8 @@
           "north"
         ],
         "training": true,
-        "torch": true
+        "torch": true,
+        "floor": "Floor_UnevenBrick"
       }
     ],
     "encounters": [],
@@ -523,6 +526,232 @@
           20.5
         ]
       }
+    ],
+    "style": {
+      "_comment": "Peças do kit: casas de reboco, tijolo e enxaimel com janelas e portas na Rua Principal; piso de pedra; cerca baixa no lado sul (a câmera olha do sul) e nas muretas do porto.",
+      "walls": [
+        "Wall_Plaster_Straight",
+        "Wall_Plaster_Window_Wide_Round",
+        "Wall_Plaster_WoodGrid",
+        "Wall_UnevenBrick_Straight",
+        "Wall_Plaster_Door_Round",
+        "Wall_Plaster_Window_Thin_Round",
+        "Wall_UnevenBrick_Window_Wide_Round"
+      ],
+      "floor": "Floor_Brick",
+      "low": "Prop_WoodenFence_Single",
+      "ground": [
+        0.1,
+        0.09,
+        0.07
+      ]
+    },
+    "decor": [
+      {
+        "piece": "Prop_Wagon",
+        "position": [
+          -25,
+          -2
+        ],
+        "rotation": 90,
+        "solid": [
+          4,
+          2
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -17.6,
+          -6.6
+        ]
+      },
+      {
+        "piece": "Barrel_Apples",
+        "position": [
+          -22.4,
+          -6.4
+        ]
+      },
+      {
+        "piece": "FarmCrate_Apple",
+        "position": [
+          -9.6,
+          -6.6
+        ]
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -6.4,
+          -6.6
+        ]
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -1.6,
+          -6.8
+        ]
+      },
+      {
+        "piece": "Pouch_Large",
+        "position": [
+          13.8,
+          -6.6
+        ]
+      },
+      {
+        "piece": "Cauldron",
+        "position": [
+          18.4,
+          -6.2
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          25,
+          -6
+        ],
+        "solid": [
+          0.8,
+          0.8
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          25.9,
+          -6.2
+        ],
+        "solid": [
+          0.8,
+          0.8
+        ]
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          26,
+          -5.1
+        ]
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          20.5,
+          5.5
+        ]
+      },
+      {
+        "piece": "Bag",
+        "position": [
+          -24,
+          6.2
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -26,
+          6
+        ],
+        "solid": [
+          0.8,
+          0.8
+        ]
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          -12,
+          -20.5
+        ],
+        "solid": [
+          1,
+          1
+        ]
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -10.8,
+          -20.6
+        ]
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -11.6,
+          -19.6
+        ]
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          -8.5,
+          -20.4
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          11,
+          -20.6
+        ],
+        "solid": [
+          0.8,
+          0.8
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          12,
+          -20.4
+        ],
+        "solid": [
+          0.8,
+          0.8
+        ]
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          13.5,
+          -20.2
+        ]
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          3.5,
+          -21
+        ]
+      },
+      {
+        "piece": "WeaponStand",
+        "position": [
+          -12,
+          10.4
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          12,
+          9.5
+        ]
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          11.6,
+          10.2
+        ],
+        "y": 0.6
+      }
     ]
   },
   "tavern": {
@@ -597,6 +826,354 @@
         ],
         "to": "tortuga",
         "entry": "tavern"
+      }
+    ],
+    "style": {
+      "_comment": "Peças do kit (game/levels/kit.gd): paredes de enxaimel e reboco, piso de tábuas escuras; a parede sul fica aberta para a câmera.",
+      "walls": [
+        "Wall_Plaster_WoodGrid",
+        "Wall_Plaster_Straight",
+        "Wall_Plaster_Window_Wide_Round",
+        "Wall_Plaster_WoodGrid"
+      ],
+      "floor": "Floor_WoodDark",
+      "low": "",
+      "ground": [
+        0.08,
+        0.06,
+        0.05
+      ]
+    },
+    "decor": [
+      {
+        "piece": "Table_Large",
+        "position": [
+          -2.9,
+          -3.9
+        ],
+        "solid": [
+          2.8,
+          1.1
+        ]
+      },
+      {
+        "piece": "Table_Large",
+        "position": [
+          0,
+          -3.9
+        ],
+        "solid": [
+          2.8,
+          1.1
+        ]
+      },
+      {
+        "piece": "Table_Large",
+        "position": [
+          2.9,
+          -3.9
+        ],
+        "solid": [
+          2.8,
+          1.1
+        ]
+      },
+      {
+        "piece": "Mug",
+        "position": [
+          -2.4,
+          -3.8
+        ],
+        "y": 0.81
+      },
+      {
+        "piece": "Mug",
+        "position": [
+          0.6,
+          -4.0
+        ],
+        "y": 0.81
+      },
+      {
+        "piece": "Bottle_1",
+        "position": [
+          2.6,
+          -3.9
+        ],
+        "y": 0.81
+      },
+      {
+        "piece": "CandleStick_Triple",
+        "position": [
+          -0.8,
+          -4.0
+        ],
+        "y": 0.81
+      },
+      {
+        "piece": "Shelf_Small_Bottles",
+        "position": [
+          -2.5,
+          -6.6
+        ]
+      },
+      {
+        "piece": "Shelf_Small_Bottles",
+        "position": [
+          2.5,
+          -6.6
+        ]
+      },
+      {
+        "piece": "Bookcase_2",
+        "position": [
+          -6.5,
+          -6.6
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -9.0,
+          -6.2
+        ],
+        "solid": [
+          0.8,
+          0.8
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -8.1,
+          -6.4
+        ],
+        "solid": [
+          0.8,
+          0.8
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          8.8,
+          -6.2
+        ],
+        "solid": [
+          0.8,
+          0.8
+        ]
+      },
+      {
+        "piece": "Barrel_Apples",
+        "position": [
+          8.8,
+          5.8
+        ]
+      },
+      {
+        "piece": "Chandelier",
+        "position": [
+          0,
+          -0.5
+        ],
+        "y": 3.4
+      },
+      {
+        "piece": "Chandelier",
+        "position": [
+          -6,
+          1
+        ],
+        "y": 3.4
+      },
+      {
+        "piece": "Chandelier",
+        "position": [
+          6,
+          1
+        ],
+        "y": 3.4
+      },
+      {
+        "piece": "Stool",
+        "position": [
+          -5.5,
+          -2.0
+        ]
+      },
+      {
+        "piece": "Table_Large",
+        "position": [
+          -5.5,
+          -3.1
+        ],
+        "scale": 0.6
+      },
+      {
+        "piece": "Mug",
+        "position": [
+          -5.2,
+          -3.1
+        ],
+        "y": 0.49
+      },
+      {
+        "piece": "Stool",
+        "position": [
+          6.0,
+          -3.5
+        ]
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          9.2,
+          -2.5
+        ]
+      },
+      {
+        "piece": "Bag",
+        "position": [
+          9.0,
+          -1.4
+        ]
+      },
+      {
+        "piece": "Table_Large",
+        "position": [
+          -6.5,
+          1.5
+        ],
+        "solid": [
+          2.8,
+          1.1
+        ]
+      },
+      {
+        "piece": "Bench",
+        "position": [
+          -6.5,
+          2.65
+        ]
+      },
+      {
+        "piece": "Mug",
+        "position": [
+          -6.1,
+          1.5
+        ],
+        "y": 0.81
+      },
+      {
+        "piece": "Table_Plate",
+        "position": [
+          -7.0,
+          1.6
+        ],
+        "y": 0.81
+      },
+      {
+        "piece": "Table_Large",
+        "position": [
+          -2.5,
+          -2.5
+        ],
+        "solid": [
+          2.8,
+          1.1
+        ]
+      },
+      {
+        "piece": "Bench",
+        "position": [
+          -2.5,
+          -1.35
+        ]
+      },
+      {
+        "piece": "Mug",
+        "position": [
+          -2.1,
+          -2.5
+        ],
+        "y": 0.81
+      },
+      {
+        "piece": "Table_Plate",
+        "position": [
+          -3.0,
+          -2.4
+        ],
+        "y": 0.81
+      },
+      {
+        "piece": "Table_Large",
+        "position": [
+          3.5,
+          0.5
+        ],
+        "solid": [
+          2.8,
+          1.1
+        ]
+      },
+      {
+        "piece": "Bench",
+        "position": [
+          3.5,
+          1.65
+        ]
+      },
+      {
+        "piece": "Mug",
+        "position": [
+          3.9,
+          0.5
+        ],
+        "y": 0.81
+      },
+      {
+        "piece": "Table_Plate",
+        "position": [
+          3.0,
+          0.6
+        ],
+        "y": 0.81
+      },
+      {
+        "piece": "Table_Large",
+        "position": [
+          6.5,
+          -2.0
+        ],
+        "solid": [
+          2.8,
+          1.1
+        ]
+      },
+      {
+        "piece": "Bench",
+        "position": [
+          6.5,
+          -0.85
+        ]
+      },
+      {
+        "piece": "Mug",
+        "position": [
+          6.9,
+          -2.0
+        ],
+        "y": 0.81
+      },
+      {
+        "piece": "Table_Plate",
+        "position": [
+          6.0,
+          -1.9
+        ],
+        "y": 0.81
       }
     ]
   },

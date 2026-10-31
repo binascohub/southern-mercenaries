@@ -1499,11 +1499,15 @@ func _build_prop(prop: Dictionary) -> void:
 			"shop" when prop.get("look", "") == "vendor":
 				# Vendedor em pé (o pirata na frente do navio): corpo e lenço na cabeça.
 				var c: Array = prop.get("color", [0.6, 0.2, 0.15])
-				var body := CapsuleMesh.new()
-				body.radius = 0.35
-				body.height = 1.7
-				_prop_mesh(node, body, Vector3.ONE, Vector3(0, 0.85, 0), Color(0.55, 0.45, 0.35))
+				if not _npc_body(node, {"sex": "male", "hair": ["Hair_Buzzed", "Hair_Beard"], "hair_color": [0.08, 0.06, 0.05],
+						"pose": "talk", "outfit": {"body": "copper", "feet": "iron", "head": "cloth"}}):
+					var body := CapsuleMesh.new()
+					body.radius = 0.35
+					body.height = 1.7
+					_prop_mesh(node, body, Vector3.ONE, Vector3(0, 0.85, 0), Color(0.55, 0.45, 0.35))
 				_prop_mesh(node, SphereMesh.new(), Vector3(0.42, 0.2, 0.42), Vector3(0, 1.72, 0), Color(c[0], c[1], c[2]))
+			"shop" when _kit(node, "Stall_Empty", Transform3D(Basis(Vector3.UP, PI), Vector3.ZERO)):
+				pass  # barraca de feira com toldo, de frente para a rua
 			"shop":
 				# Banca: balcão e toldo.
 				_prop_mesh(node, BoxMesh.new(), Vector3(2.4, 1.0, 1.0), Vector3(0, 0.5, 0), Color(0.42, 0.3, 0.2))
@@ -1534,10 +1538,19 @@ func _build_prop(prop: Dictionary) -> void:
 					c = type.get("color", c)
 					label_key = "%s (%s)" % [prop.visitor_name, tr(type.get("name_key", ""))]
 				color = Color(c[0], c[1], c[2])
-				var body := CapsuleMesh.new()
-				body.radius = 0.35
-				body.height = 1.7
-				_prop_mesh(node, body, Vector3.ONE, Vector3(0, 0.85, 0), color)
+				var look: Dictionary = npc.get("body", {})
+				if prop.has("visitor_name"):
+					# Visitante: corpo e cabelo escolhidos pelo nome; sentado à mesa.
+					var h := absi(hash(String(prop.visitor_name)))
+					var hairs := [["Hair_SimpleParted", "Hair_Beard"], ["Hair_Buzzed"], ["Hair_Long"], ["Hair_Buns"]]
+					var colors := [[0.2, 0.13, 0.08], [0.06, 0.06, 0.06], [0.55, 0.3, 0.12], [0.7, 0.62, 0.5]]
+					look = {"sex": "male" if h % 2 == 0 else "female", "hair": hairs[h % 2 * 2 + (h / 2) % 2],
+						"hair_color": colors[(h / 4) % colors.size()], "pose": "sit", "outfit": {"body": "cloth"} if h % 3 == 0 else {}}
+				if not _npc_body(node, look):
+					var body := CapsuleMesh.new()
+					body.radius = 0.35
+					body.height = 1.7
+					_prop_mesh(node, body, Vector3.ONE, Vector3(0, 0.85, 0), color)
 				# Marca "!" de quem tem história/missão para contar.
 				var mark := Label3D.new()
 				mark.text = "!"
@@ -1562,15 +1575,23 @@ func _build_prop(prop: Dictionary) -> void:
 				_prop_mesh(node, SphereMesh.new(), Vector3(0.5, 0.5, 0.1), Vector3(0, 1.7, 0.1), Color(0.8, 0.7, 0.3))
 			"sign":
 				_prop_mesh(node, CylinderMesh.new(), Vector3(2.2, 0.3, 2.2), Vector3(0, 0.15, 0), Color(0.35, 0.35, 0.4))
+			"quest_spot" when _kit(node, "Crate_Wooden"):
+				_prop_mesh(node, CylinderMesh.new(), Vector3(1.6, 0.03, 1.6), Vector3(0, 0.02, 0), Color(0.9, 0.75, 0.3))
 			"quest_spot":
 				# Lugar do rumor / carga perdida: caixote marcado.
 				_prop_mesh(node, BoxMesh.new(), Vector3(0.9, 0.7, 0.9), Vector3(0, 0.35, 0), Color(0.55, 0.42, 0.25))
 				_prop_mesh(node, CylinderMesh.new(), Vector3(1.6, 0.03, 1.6), Vector3(0, 0.02, 0), Color(0.9, 0.75, 0.3))
+			"forge" when _kit(node, "Anvil", Transform3D(Basis(), Vector3(-0.7, 0, 0))):
+				_kit(node, "Workbench", Transform3D(Basis(), Vector3(1.0, 0, -0.3)))
+				_kit(node, "Whetstone", Transform3D(Basis(), Vector3(-1.8, 0, 0)))
 			"forge":
 				# Forja ao ar livre: bigorna e fornalha acesa.
 				_prop_mesh(node, BoxMesh.new(), Vector3(0.9, 0.7, 0.5), Vector3(-0.7, 0.35, 0), Color(0.25, 0.25, 0.27))
 				_prop_mesh(node, BoxMesh.new(), Vector3(1.4, 1.2, 1.2), Vector3(0.9, 0.6, 0), Color(0.35, 0.25, 0.2))
 				_prop_mesh(node, BoxMesh.new(), Vector3(0.6, 0.3, 0.05), Vector3(0.9, 0.7, 0.61), Color(1.0, 0.45, 0.1))
+			"chest" when _kit(node, "Chest_Wood", Transform3D(Basis().scaled(Vector3.ONE * 0.5), Vector3(0, 0.5, 0)),
+					Color(0.55, 0.45, 0.4) if prop.get("secret", false) else Color.WHITE):
+				pass  # baú de madeira com ferragens (o do segredo, mais escuro)
 			"chest":
 				# Baú do mapa; o do segredo fica escuro e sem nome, num canto.
 				var wood := Color(0.3, 0.2, 0.12) if prop.get("secret", false) else Color(0.5, 0.34, 0.16)
@@ -1580,10 +1601,14 @@ func _build_prop(prop: Dictionary) -> void:
 				# Ponte de madeira podre sobre o canal (cenário).
 				var size: Array = prop.get("size", [4, 6])
 				_prop_mesh(node, BoxMesh.new(), Vector3(size[0], 0.12, size[1]), Vector3(0, 0.06, 0), Color(0.33, 0.24, 0.15))
+			"stash" when _kit(node, "Chest_Wood", Transform3D(Basis().scaled(Vector3.ONE * 0.55), Vector3(0, 0.55, 0))):
+				pass
 			"stash":
 				# Baú acorrentado.
 				_prop_mesh(node, BoxMesh.new(), Vector3(1.4, 0.8, 0.9), Vector3(0, 0.4, 0), Color(0.4, 0.27, 0.15))
 				_prop_mesh(node, BoxMesh.new(), Vector3(1.45, 0.1, 0.95), Vector3(0, 0.55, 0), Color(0.3, 0.3, 0.32))
+			"training" when _kit(node, "WeaponStand"):
+				pass
 			"training":
 				_prop_mesh(node, BoxMesh.new(), Vector3(1.6, 1.2, 0.15), Vector3(0, 1.3, 0), Color(0.45, 0.33, 0.2))
 		if label_key != "":
@@ -1594,6 +1619,39 @@ func _build_prop(prop: Dictionary) -> void:
 			label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 			label.position = Vector3(0, 3.0, 0)
 			node.add_child(label)
+
+
+## Corpo de NPC (o mesmo dos heróis): sexo, cabelo, pose e roupa por slot
+## (data/npcs.json "body"). false se o modelo não existe.
+func _npc_body(parent: Node3D, look: Dictionary) -> bool:
+	if look.is_empty() or not ResourceLoader.exists(HeroModel.SCENES.get(String(look.get("sex", "male")), "")):
+		return false
+	var model := HeroModel.new()
+	parent.add_child(model)
+	model.setup(String(look.get("sex", "male")), look)
+	model.set_outfit(look.get("outfit", {}))
+	model.set_pose(String(look.get("pose", "idle")))
+	return true
+
+
+## Põe uma peça do kit dentro do objeto; false se a peça não existe (o objeto
+## usa o visual simples). `tint` escurece/colore os materiais da peça.
+func _kit(parent: Node3D, piece_name: String, offset := Transform3D.IDENTITY, tint := Color.WHITE) -> bool:
+	var piece := Kit.piece(piece_name)
+	if piece == null:
+		return false
+	piece.transform = offset
+	parent.add_child(piece)
+	if tint != Color.WHITE:
+		for mesh in piece.find_children("*", "MeshInstance3D", true, false):
+			var m := mesh as MeshInstance3D
+			for i in m.get_surface_override_material_count():
+				var material := m.get_active_material(i) as StandardMaterial3D
+				if material:
+					var copy := material.duplicate() as StandardMaterial3D
+					copy.albedo_color = copy.albedo_color * tint
+					m.set_surface_override_material(i, copy)
+	return true
 
 
 func _prop_mesh(parent: Node3D, mesh: PrimitiveMesh, scale_: Vector3, at: Vector3, color: Color) -> void:
@@ -1618,6 +1676,11 @@ func _refresh_markers() -> void:
 
 ## Chão único e paredes de cada sala, com vão de porta onde a sala se liga a outra.
 func _build_area() -> void:
+	# Estilo da área (data/arenas.json): paredes e pisos do kit por cima das
+	# caixas de colisão, que ficam invisíveis. Sem estilo (área de teste) ou sem
+	# as peças, as caixas aparecem como antes.
+	var style: Dictionary = arena.get("style", {})
+	var dressed := not style.is_empty() and Kit.has(String(style.get("floor", "")))
 	var bounds := AABB()
 	for i in arena.rooms.size():
 		var room: Dictionary = arena.rooms[i]
@@ -1632,25 +1695,116 @@ func _build_area() -> void:
 			doors[door.get_slice(":", 0)] = float(door.get_slice(":", 1)) if door.contains(":") else 0.0
 		# Mureta baixa no cais e na doca (dá para ver o mar); paredes normais no resto.
 		var height := float(room.get("wall_height", WALL_HEIGHT))
-		_wall_x(c.x, c.z - half.z, half.x * 2.0, doors.has("north"), height, doors.get("north", 0.0))
-		_wall_x(c.x, c.z + half.z, half.x * 2.0, doors.has("south"), height, doors.get("south", 0.0))
-		_wall_z(c.x - half.x - 0.5, c.z, half.z * 2.0 + 2.0, doors.has("west"), height, doors.get("west", 0.0))
-		_wall_z(c.x + half.x + 0.5, c.z, half.z * 2.0 + 2.0, doors.has("east"), height, doors.get("east", 0.0))
+		_wall_x(c.x, c.z - half.z, half.x * 2.0, doors.has("north"), height, doors.get("north", 0.0), not dressed)
+		_wall_x(c.x, c.z + half.z, half.x * 2.0, doors.has("south"), height, doors.get("south", 0.0), not dressed)
+		_wall_z(c.x - half.x - 0.5, c.z, half.z * 2.0 + 2.0, doors.has("west"), height, doors.get("west", 0.0), not dressed)
+		_wall_z(c.x + half.x + 0.5, c.z, half.z * 2.0 + 2.0, doors.has("east"), height, doors.get("east", 0.0), not dressed)
+		if dressed:
+			_dress_room(room, style, c, half, doors, height)
 	var center := bounds.get_center()
-	_box(Vector3(center.x, -0.5, center.z), Vector3(bounds.size.x + 4, 1, bounds.size.z + 4), FLOOR_COLOR)
+	_box(Vector3(center.x, -0.5, center.z), Vector3(bounds.size.x + 4, 1, bounds.size.z + 4),
+		Color(style.get("ground", [0.12, 0.11, 0.1])[0], style.get("ground", [0.12, 0.11, 0.1])[1],
+			style.get("ground", [0.12, 0.11, 0.1])[2]) if dressed else FLOOR_COLOR)
+	if dressed:
+		for decor: Dictionary in arena.get("decor", []):
+			_build_decor(decor)
+
+
+## Reveste a sala com as peças do kit: piso em ladrilhos de 2 m, paredes de
+## 2 m viradas para dentro (o padrão do estilo varia janelas e portas falsas)
+## e, na parede sul e nas muretas, a cerca baixa — a câmera olha do sul, então
+## a parede de baixo fica cortada para o herói aparecer (09-interface.md, seção 2).
+func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3, doors: Dictionary, height: float) -> void:
+	var floor_piece: String = room.get("floor", style.floor)
+	var nx := maxi(ceili(half.x * 2.0 / Kit.FLOOR_SIZE), 1)
+	var nz := maxi(ceili(half.z * 2.0 / Kit.FLOOR_SIZE), 1)
+	var tile := Vector2(half.x * 2.0 / nx, half.z * 2.0 / nz)
+	for ix in nx:
+		for iz in nz:
+			var node := Kit.piece(floor_piece)
+			if node:
+				node.scale = Vector3(tile.x / Kit.FLOOR_SIZE, 1, tile.y / Kit.FLOOR_SIZE)
+				node.position = Vector3(c.x - half.x + tile.x * (ix + 0.5), 0.01, c.z - half.z + tile.y * (iz + 0.5))
+				_area_root.add_child(node)
+	var low := height < 1.5
+	var walls: Array = room.get("walls", style.get("walls", []))
+	var fence: String = style.get("low", "")
+	# Norte: a caixa fica centrada na borda (a face de dentro, 0,5 m para dentro).
+	_dress_side(Vector3(c.x, 0, c.z - half.z + 0.5), Vector3.RIGHT, Vector3.BACK, half.x * 2.0,
+		doors.has("north"), doors.get("north", 0.0), [fence] if low else walls)
+	_dress_side(Vector3(c.x, 0, c.z + half.z - 0.5), Vector3.RIGHT, Vector3.FORWARD, half.x * 2.0,
+		doors.has("south"), doors.get("south", 0.0), [fence])
+	# Leste e oeste: a caixa fica do lado de fora (a face de dentro é a borda).
+	_dress_side(Vector3(c.x - half.x, 0, c.z), Vector3.BACK, Vector3.RIGHT, half.z * 2.0,
+		doors.has("west"), doors.get("west", 0.0), [fence] if low else walls)
+	_dress_side(Vector3(c.x + half.x, 0, c.z), Vector3.BACK, Vector3.LEFT, half.z * 2.0,
+		doors.has("east"), doors.get("east", 0.0), [fence] if low else walls)
+	# Lampião na parede norte das salas com tocha.
+	if room.get("torch", false) and not low:
+		var lantern := Kit.piece("Lantern_Wall")
+		if lantern:
+			lantern.position = Vector3(c.x, 1.4, c.z - half.z + 0.5)
+			_area_root.add_child(lantern)
+
+
+## Um lado da sala: peças de 2 m (esticadas para fechar o comprimento), com o
+## vão da porta; a frente da peça (+Z) vira para `inward`.
+func _dress_side(face: Vector3, along: Vector3, inward: Vector3, length: float, door: bool, offset: float, pieces: Array) -> void:
+	if pieces.is_empty() or String(pieces[0]) == "":
+		return
+	var full := pieces.size() > 1 or String(pieces[0]).begins_with("Wall")
+	for segment in _wall_pieces(length, door, offset):
+		var count := maxi(roundi(segment.y / Kit.WALL_WIDTH), 1)
+		var width := segment.y / count
+		for i in count:
+			var at := segment.x - segment.y / 2.0 + width * (i + 0.5)
+			var piece_name: String = pieces[(i * 3 + roundi(absf(face.x + face.z))) % pieces.size()]
+			var node := Kit.piece(piece_name)
+			if node == null:
+				continue
+			node.scale.x = width / Kit.WALL_WIDTH
+			# A face da parede do kit fica 0,09 m à frente da origem.
+			node.position = face + along * at - inward * (0.09 if full else 0.0)
+			node.rotation.y = atan2(inward.x, inward.z)
+			_area_root.add_child(node)
+
+
+## Objeto de cenário (data/arenas.json "decor"): mesa, banco, barril, carroça…
+## Com "solid", uma caixa de colisão do tamanho dado.
+func _build_decor(decor: Dictionary) -> void:
+	var node := Kit.piece(String(decor.piece))
+	if node == null:
+		return
+	node.position = Vector3(decor.position[0], float(decor.get("y", 0.0)), decor.position[1])
+	node.rotation.y = deg_to_rad(float(decor.get("rotation", 0.0)))
+	node.scale = Vector3.ONE * float(decor.get("scale", 1.0))
+	_area_root.add_child(node)
+	if decor.has("solid"):
+		var size: Array = decor.solid
+		var body := StaticBody3D.new()
+		body.collision_layer = 1
+		body.collision_mask = 0
+		var shape := CollisionShape3D.new()
+		var box := BoxShape3D.new()
+		box.size = Vector3(size[0], 1.0, size[1])
+		shape.shape = box
+		body.add_child(shape)
+		body.position = node.position + Vector3(0, 0.5, 0)
+		body.rotation.y = node.rotation.y
+		_area_root.add_child(body)
 
 
 ## Parede ao longo de x; com porta, deixa um vão de DOOR_WIDTH (no meio, ou
 ## deslocado `offset` metros).
-func _wall_x(cx: float, z: float, width: float, door: bool, height := WALL_HEIGHT, offset := 0.0) -> void:
+func _wall_x(cx: float, z: float, width: float, door: bool, height := WALL_HEIGHT, offset := 0.0, shown := true) -> void:
 	for piece in _wall_pieces(width, door, offset):
-		_box(Vector3(cx + piece.x, height / 2, z), Vector3(piece.y, height, 1), WALL_COLOR)
+		_box(Vector3(cx + piece.x, height / 2, z), Vector3(piece.y, height, 1), WALL_COLOR, shown)
 
 
 ## Parede ao longo de z (leste/oeste), com o mesmo vão de porta.
-func _wall_z(x: float, cz: float, length: float, door: bool, height := WALL_HEIGHT, offset := 0.0) -> void:
+func _wall_z(x: float, cz: float, length: float, door: bool, height := WALL_HEIGHT, offset := 0.0, shown := true) -> void:
 	for piece in _wall_pieces(length, door, offset):
-		_box(Vector3(x, height / 2, cz + piece.x), Vector3(1, height, piece.y), WALL_COLOR)
+		_box(Vector3(x, height / 2, cz + piece.x), Vector3(1, height, piece.y), WALL_COLOR, shown)
 
 
 ## Pedaços de parede (centro relativo, comprimento) em volta do vão da porta.
@@ -1670,7 +1824,8 @@ static func _wall_pieces(length: float, door: bool, offset: float) -> Array[Vect
 	return pieces
 
 
-func _box(center: Vector3, box_size: Vector3, color: Color) -> void:
+## Caixa com colisão; `shown` falso deixa só a colisão (o kit cobre o visual).
+func _box(center: Vector3, box_size: Vector3, color: Color, shown := true) -> void:
 	var body := StaticBody3D.new()
 	body.collision_layer = 1
 	body.collision_mask = 0
@@ -1686,6 +1841,7 @@ func _box(center: Vector3, box_size: Vector3, color: Color) -> void:
 	var material := StandardMaterial3D.new()
 	material.albedo_color = color
 	mesh.material_override = material
+	mesh.visible = shown
 	body.add_child(mesh)
 	_area_root.add_child(body)
 	body.position = center
