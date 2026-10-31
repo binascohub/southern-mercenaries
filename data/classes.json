@@ -480,6 +480,5 @@
         ]
       }
     }
-  },
-  "_comment": " 'look': cabelo (malhas do modelo do herói) e cor do cabelo por sexo (hero_model.gd)."
+  }
 }
