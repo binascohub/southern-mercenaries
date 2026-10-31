@@ -811,12 +811,13 @@ func teleport_to(spot: Vector3) -> void:
 
 ## Troca o cilindro provisório pela arma do kit (de pé, com o meio na origem, como
 ## o cilindro); as partes de metal ficam na cor do material equipado.
-func _dress_weapon(holder: MeshInstance3D, piece_name: String) -> void:
+func _dress_weapon(holder: MeshInstance3D, piece_name: String, offset := Vector3.ZERO) -> void:
 	var weapon := Kit.piece(piece_name)
 	if weapon == null:
 		return
 	holder.mesh = null
 	holder.add_child(weapon)
+	weapon.position = offset
 	for node in weapon.find_children("*", "MeshInstance3D", true, false):
 		var mesh := node as MeshInstance3D
 		for i in mesh.get_surface_override_material_count():
@@ -1126,6 +1127,8 @@ func _build_visual() -> void:
 		_dress_weapon(staff, "Weapon_Polearm")
 	elif ninja:
 		_dress_weapon(staff, "Weapon_Shortsword")
+	elif archer:
+		_dress_weapon(staff, "Bow_Long")  # arco longo (Archery Set, yd, CC0)
 	var right_hand := Node3D.new()
 	right_hand.add_child(staff)
 	_model.attach("hand_r", right_hand, POINT_GRIP if knight or ninja else HAND_GRIP, Vector3(0.45, 0.9, 0.15))
@@ -1161,6 +1164,9 @@ func _build_visual() -> void:
 		# Guarda da espada do pai, presa na cintura.
 		notebook_mesh.size = Vector3(0.2, 0.06, 0.2)
 		notebook.position = Vector3(-0.3, 0.9, 0.0)
+	if archer:
+		# Aljava de couro com flechas (Archery Set): a base fica embaixo do centro da caixa.
+		_dress_weapon(notebook, "Quiver", Vector3(0, -0.45, 0))
 	# Preso ao peito (acompanha o corpo nas animações).
 	_model.attach("spine_03", notebook, Transform3D(Basis(), notebook.position - CHEST), notebook.position)
 

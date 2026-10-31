@@ -6,3 +6,5 @@ Treasure_Chest.glb — "Treasure Chest" by mastahcez: https://opengameart.org/co
 Key_Gold.glb       — "Key (low poly)" by codeinfernogames: https://opengameart.org/content/key-low-poly
 Crate_Open, Crate_Small, Crate_Long, Crate_Big, Bucket_Crate — "Free Wooden Crates" by Yughues: https://opengameart.org/content/free-wooden-crates (one scale for all, x2.2)
 Well_Covered — "Covered Well" by iconoclast: https://opengameart.org/content/covered-well (texture extracted from the .blend)
+Bow_Long, Quiver, Archery_Target — "Archery Set" by yd: https://opengameart.org/content/archery-set (textures extracted from the .blend)
+Watch_Tower, Bench_Wood, Stool_Wood, Cart_Wood, Wheelbarrow — "Medieval Props Pack 2" by Daniel74 (submitted by hreikin): https://opengameart.org/content/medieval-props-pack-2

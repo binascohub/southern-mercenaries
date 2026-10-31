@@ -1,0 +1,4 @@
+Barricade_Stakes.glb — "Barricade" by sullivan
+https://opengameart.org/content/barricade
+Creative Commons Attribution 3.0 (one of the offered licenses): https://creativecommons.org/licenses/by/3.0/
+Changes: joined and resized by tools/assets/build_props.py; texture extracted from the .blend.

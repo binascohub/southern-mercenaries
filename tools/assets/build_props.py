@@ -25,6 +25,18 @@ PROPS = [
     ("Mushroom_Cluster", "mush/shrooms.blend", 0.6, "mush/shroom_color.png", {}, ["Shroom%d" % i for i in range(1, 10)], False),
     ("Mushroom_Tall", "mush/shrooms.blend", 0.65, "mush/shroom_color2.png", {}, ["Shroom4", "Shroom5", "Shroom6"], False),
     ("Mushroom_Flat", "mush/shrooms.blend", 0.15, "mush/shroom_color.png", {}, ["Shroom7", "Shroom8", "Shroom9"], False),
+    # Arqueria (yd, CC0): arco longo do Arqueiro, aljava com flechas e alvo.
+    ("Bow_Long", "archery/archerySetOGA.blend", 1.3, "@bow01D", {}, ["bow"], False),
+    ("Quiver", "archery/archerySetOGA.blend", 0.9, "@bow01D", {}, ["quiver"] + ["Circle.%03d" % i for i in (4, 5, 6, 7, 8, 9, 10, 11, 12, 14)], False),
+    ("Archery_Target", "archery/archerySetOGA.blend", 1.0, "@aim", {}, ["aim"], False),
+    # Medieval Props 2 (Daniel74, CC0): torre de vigia, banco, banquinho, carroça, carrinho de mão.
+    ("Watch_Tower", "mprops/Props2.blend", 4.0, "mprops/wood floor 2.png", {}, ["WoodenTower"], False),
+    ("Bench_Wood", "mprops/Props2.blend", 1.0, "mprops/Wood.jpg", {}, ["Bench"], False),
+    ("Stool_Wood", "mprops/Props2.blend", 0.45, "mprops/Wood.jpg", {}, ["Stool"], False),
+    ("Cart_Wood", "mprops/Props2.blend", 1.0, "mprops/wood floor 2.png", {}, ["Wagon"], False),
+    ("Wheelbarrow", "mprops/Props2.blend", 0.45, "mprops/wood floor 2.png", {}, ["WheelBarrow"], False),
+    # Barricada de estacas (sullivan, CC BY 3.0).
+    ("Barricade_Stakes", "barricade/barricade.blend", 1.5, "barricade/barricade_color.png", {}, [], False),
     ("Key_Gold", "key/key.blend", 0.32, "", {"Material": (0.95, 0.75, 0.25, 1), "Key_Gold_Mat": (0.95, 0.75, 0.25, 1)}, [], False),
 ]
 

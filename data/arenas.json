@@ -952,6 +952,86 @@
           1.6,
           1.6
         ]
+      },
+      {
+        "piece": "Archery_Target",
+        "position": [
+          -11,
+          23.2
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Archery_Target",
+        "position": [
+          -8,
+          23.2
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Bench_Wood",
+        "position": [
+          4,
+          22.6
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Barricade_Stakes",
+        "position": [
+          12,
+          21.5
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Barricade_Stakes",
+        "position": [
+          12,
+          11
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Stool_Wood",
+        "position": [
+          5.6,
+          21.6
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Watch_Tower",
+        "position": [
+          13.5,
+          -9.4
+        ],
+        "rotation": 0,
+        "solid": [
+          1.7,
+          1.7
+        ]
+      },
+      {
+        "piece": "Cart_Wood",
+        "position": [
+          -23,
+          7
+        ],
+        "rotation": 15,
+        "solid": [
+          2.3,
+          1.1
+        ]
+      },
+      {
+        "piece": "Wheelbarrow",
+        "position": [
+          10.5,
+          -20.6
+        ],
+        "rotation": 40
       }
     ],
     "crowd": [
