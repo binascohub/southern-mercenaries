@@ -1956,7 +1956,7 @@ func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3,
 	if style.get("puddles", false):
 		var rng := RandomNumberGenerator.new()
 		rng.seed = hash(str(room.get("id", ""), c, "puddles"))
-		for i in maxi(roundi(half.x * half.z * 4.0 / 70.0), 1):
+		for i in maxi(roundi(half.x * half.z * 8.0 / 70.0), 2):
 			var at := Vector3(c.x + rng.randf_range(-half.x + 1.0, half.x - 1.0), 0.025,
 				c.z + rng.randf_range(-half.z + 1.0, half.z - 1.0))
 			_puddle(at, rng.randf_range(0.6, 1.6), rng)
@@ -2061,7 +2061,7 @@ const TRASH := ["Bottle_1", "Bottle_1", "Mug", "Mug_Wood", "Pot_Small_Shards", "
 func _scatter_trash(room: Dictionary, c: Vector3, half: Vector3) -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = hash(str(room.get("id", ""), c, "trash"))
-	var count := clampi(roundi(half.x * half.z * 4.0 / 9.0), 4, 40)
+	var count := clampi(roundi(half.x * half.z * 8.0 / 9.0), 8, 80)
 	for i in count:
 		# Mais lixo perto das paredes que no meio.
 		var u := rng.randf_range(-1.0, 1.0)
