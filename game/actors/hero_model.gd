@@ -86,7 +86,7 @@ func setup(sex: String, look: Dictionary) -> void:
 			var anim_name: String = ANIMS[key]
 			if _anim.has_animation(anim_name) and anim_name.ends_with("_Loop"):
 				_anim.get_animation(anim_name).loop_mode = Animation.LOOP_LINEAR
-		_play("idle")
+		_play("idle", 0.0)  # sem transição desde a pose de descanso
 
 
 ## Mostra as peças conforme o equipamento ({slot: material}); tinge as de Ranger.

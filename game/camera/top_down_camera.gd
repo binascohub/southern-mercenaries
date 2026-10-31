@@ -5,13 +5,15 @@ extends Camera3D
 ## Sem rotação livre; zoom limitado (01-escopo.md, seção 2).
 
 const PITCH_DEG := 55.0
-const ZOOM_MIN := 11.0
-const ZOOM_MAX := 20.0
+## Padrão: o herói ocupa ~1/8 da altura da tela (09-interface.md, seção 2);
+## do muito próximo (combate) ao médio (explorar), nunca distância de RTS.
+const ZOOM_MIN := 8.0
+const ZOOM_MAX := 17.0
 const ZOOM_STEP := 1.5
 const FOLLOW_SPEED := 8.0
 
 var target: Node3D
-var distance := 15.0
+var distance := 10.5
 
 
 func _ready() -> void:
