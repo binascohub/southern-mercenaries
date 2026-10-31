@@ -42,6 +42,8 @@ PROPS = [
     ("Key_Diamonds", "suitkeys/keys_suits.blend", -0.6, "", {"Bronze": (0.86, 0.46, 0.3, 1)}, ["KeyofDiamonds", "StemDiamonds"], False),
     ("Key_Clubs", "suitkeys/keys_suits.blend", -0.6, "", {"Iron": (0.48, 0.48, 0.5, 1)}, ["KeyofClubs", "StemClubs"], False),
     ("Key_Spades", "suitkeys/keys_suits.blend", -0.6, "", {"Iron": (0.48, 0.48, 0.5, 1)}, ["KeyofSpades", "StemSpades"], False),
+    # Cavalo do Cavaleiro (jjmoser, CC BY 3.0), sem esqueleto.
+    ("Horse", "horse/caballo_lowpoly/CABALLO_low_poly.blend", 1.7, "horse/caballo_lowpoly/caballo_txt.png", {}, [], False),
     ("Key_Gold", "key/key.blend", 0.32, "", {"Material": (0.95, 0.75, 0.25, 1), "Key_Gold_Mat": (0.95, 0.75, 0.25, 1)}, [], False),
 ]
 

@@ -1,0 +1,4 @@
+Horse.glb — "Horse low-poly" by jjmoser
+https://opengameart.org/content/horse-lowpoly
+Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/
+Changes: resized to 1.7 m and exported to glTF by tools/assets/build_props.py.

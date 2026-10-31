@@ -1322,6 +1322,21 @@ func _build_horse() -> Node3D:
 	var horse := Node3D.new()
 	var coat := _material(Color(0.32, 0.22, 0.14))
 	_horse_material = coat
+	# Cavalo de verdade (jjmoser, CC BY 3.0; a cabeça vira para a frente, +Z) e,
+	# no lombo, a sela/barda na cor do material equipado.
+	var model := Kit.piece("Horse")
+	if model:
+		model.rotation.y = PI / 2.0
+		model.position.y = -0.6  # o herói sobe 0,6 m quando montado
+		horse.add_child(model)
+		var saddle := MeshInstance3D.new()
+		var cloth := BoxMesh.new()
+		cloth.size = Vector3(0.72, 0.08, 0.75)
+		saddle.mesh = cloth
+		saddle.material_override = coat
+		saddle.position = Vector3(0, 1.3 - 0.6, -0.05)
+		horse.add_child(saddle)
+		return horse
 	var parts := [
 		[Vector3(0.6, 0.6, 1.6), Vector3(0, 0.95, 0)],
 		[Vector3(0.3, 0.6, 0.3), Vector3(0, 1.4, 0.75)],
