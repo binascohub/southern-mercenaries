@@ -1,0 +1,19 @@
+{
+  "_comment": "Refino (05-1-refino.md): +1 a +3 sempre dá certo; +4 65%, +5 45%. Na falha, pergaminho normal quebra o item em cristais (únicos e lendários voltam a +0); abençoado volta a +0. Bônus por nível em Items.REFINE_BONUS. Cristais ao quebrar/cristalizar: 1 + nível/2 + refino (proposta). Ferreiro faz 1 pergaminho com 10 cristais + 25% do preço do pergaminho (proposta).",
+  "max": 5,
+  "chances": {
+    "1": 1.0,
+    "2": 1.0,
+    "3": 1.0,
+    "4": 0.65,
+    "5": 0.45
+  },
+  "protected_rarities": [
+    "unique",
+    "legendary"
+  ],
+  "craft_crystals": 10,
+  "craft_gold_fraction": 0.25,
+  "armor_set_min": 4,
+  "armor_set_health": 0.05
+}

@@ -1922,3 +1922,75 @@ msgstr "In German folklore a 'rat king' is a knot of rats bound by their tails, 
 
 msgid "BEAST_DEMON_RAT_QUEEN_HINT"
 msgstr "Just bring fire. She already knows what fire is — and she hates it."
+
+msgid "ITEM_SCROLL_REFINE_WEAPON"
+msgstr "Weapon Refining Scroll ({material})"
+
+msgid "ITEM_SCROLL_REFINE_ARMOR"
+msgstr "Armor Refining Scroll ({material})"
+
+msgid "ITEM_BLESSED_SCROLL_REFINE_WEAPON"
+msgstr "Blessed Weapon Scroll ({material})"
+
+msgid "ITEM_BLESSED_SCROLL_REFINE_ARMOR"
+msgstr "Blessed Armor Scroll ({material})"
+
+msgid "ITEM_CRYSTAL"
+msgstr "{material} crystals"
+
+msgid "ITEM_SCROLL_EFFECT"
+msgstr "Refines an item of the same material at the blacksmith (+1 to +3 safe)"
+
+msgid "ITEM_CRYSTAL_EFFECT"
+msgstr "The blacksmith turns 10 of these into a scroll"
+
+msgid "SHOP_BLACKSMITH"
+msgstr "Blacksmith"
+
+msgid "FORGE_TITLE"
+msgstr "Forge — refining"
+
+msgid "FORGE_EQUIPPED"
+msgstr "(equipped)"
+
+msgid "FORGE_REFINE"
+msgstr "Refine {percent}% ({count} scrolls)"
+
+msgid "FORGE_REFINE_BLESSED"
+msgstr "Blessed {percent}% ({count})"
+
+msgid "FORGE_CONFIRM_RISK"
+msgstr "May break! {percent}% — press again"
+
+msgid "FORGE_CRYSTALLIZE"
+msgstr "Crystallize (+{count})"
+
+msgid "FORGE_CRAFT"
+msgstr "Make {scroll}: {count} crystals + {gold} gold (you have {have})"
+
+msgid "FORGE_INFO"
+msgstr "+1 to +3 never fails. +4 (65%) and +5 (45%) can fail: a normal scroll breaks the item into crystals (uniques and legendaries go back to +0); a blessed one only goes back to +0."
+
+msgid "FORGE_SHOP"
+msgstr "Buy scrolls"
+
+msgid "REFINE_NO_TIER0"
+msgstr "Cloth and wood can't be refined"
+
+msgid "REFINE_MAX"
+msgstr "Already at +5"
+
+msgid "REFINE_NO_SCROLL"
+msgstr "You don't have the right scroll"
+
+msgid "REFINE_OK"
+msgstr "Refined to +{level}!"
+
+msgid "REFINE_RESET"
+msgstr "The refining failed: back to +0"
+
+msgid "REFINE_BROKEN"
+msgstr "The item shattered into {count} crystals"
+
+msgid "REFINE_CRAFT_MISSING"
+msgstr "You need {count} crystals and {gold} gold"

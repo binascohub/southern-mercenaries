@@ -431,6 +431,16 @@
           -5,
           5.5
         ]
+      },
+      {
+        "id": "blacksmith",
+        "kind": "forge",
+        "shop": "blacksmith",
+        "name_key": "SHOP_BLACKSMITH",
+        "position": [
+          4,
+          -5.5
+        ]
       }
     ],
     "dummies": [

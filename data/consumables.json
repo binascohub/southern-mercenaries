@@ -1,5 +1,5 @@
 {
-  "_comment": "Consumíveis (13-balanceamento.md, 5.3). As poções de vida e recurso dividem a mesma recarga. Poção Elemental (02-0-elementos.md, seção 4): 100 + 25 × nível, sem recarga. Patuá de Retorno (04-tortuga-e-missoes.md, seção 5.1): abre no chão, por 15 s, um portal de volta à cidade; 150 de ouro (proposta).",
+  "_comment": "Consumíveis (13-balanceamento.md, 5.3). As poções de vida e recurso dividem a mesma recarga. Poção Elemental (02-0-elementos.md, seção 4): 100 + 25 × nível, sem recarga. Patuá de Retorno (04-tortuga-e-missoes.md, seção 5.1): abre no chão, por 15 s, um portal de volta à cidade; 150 de ouro (proposta). Pergaminhos de refino de arma/armadura por material (normais e abençoados) e cristais (05-1-refino.md, seções 2 e 6; preços: proposta).",
   "potion_health": {
     "name_key": "ITEM_POTION_HEALTH",
     "stack": 20,
@@ -62,5 +62,270 @@
     "price_base": 150,
     "price_per_level": 0,
     "portal_time": 15.0
+  },
+  "scroll_refine_weapon_iron": {
+    "name_key": "ITEM_SCROLL_REFINE_WEAPON",
+    "stack": 20,
+    "restore": "refine",
+    "target": "weapon",
+    "material": "iron",
+    "blessed": false,
+    "cooldown": 0.0,
+    "price_base": 80,
+    "price_per_level": 0
+  },
+  "blessed_scroll_refine_weapon_iron": {
+    "name_key": "ITEM_BLESSED_SCROLL_REFINE_WEAPON",
+    "stack": 20,
+    "restore": "refine",
+    "target": "weapon",
+    "material": "iron",
+    "blessed": true,
+    "cooldown": 0.0,
+    "price_base": 320,
+    "price_per_level": 0
+  },
+  "scroll_refine_armor_iron": {
+    "name_key": "ITEM_SCROLL_REFINE_ARMOR",
+    "stack": 20,
+    "restore": "refine",
+    "target": "armor",
+    "material": "iron",
+    "blessed": false,
+    "cooldown": 0.0,
+    "price_base": 50,
+    "price_per_level": 0
+  },
+  "blessed_scroll_refine_armor_iron": {
+    "name_key": "ITEM_BLESSED_SCROLL_REFINE_ARMOR",
+    "stack": 20,
+    "restore": "refine",
+    "target": "armor",
+    "material": "iron",
+    "blessed": true,
+    "cooldown": 0.0,
+    "price_base": 200,
+    "price_per_level": 0
+  },
+  "crystal_iron": {
+    "name_key": "ITEM_CRYSTAL",
+    "stack": 99,
+    "restore": "none",
+    "material": "iron",
+    "cooldown": 0.0,
+    "price_base": 5,
+    "price_per_level": 0
+  },
+  "scroll_refine_weapon_steel": {
+    "name_key": "ITEM_SCROLL_REFINE_WEAPON",
+    "stack": 20,
+    "restore": "refine",
+    "target": "weapon",
+    "material": "steel",
+    "blessed": false,
+    "cooldown": 0.0,
+    "price_base": 160,
+    "price_per_level": 0
+  },
+  "blessed_scroll_refine_weapon_steel": {
+    "name_key": "ITEM_BLESSED_SCROLL_REFINE_WEAPON",
+    "stack": 20,
+    "restore": "refine",
+    "target": "weapon",
+    "material": "steel",
+    "blessed": true,
+    "cooldown": 0.0,
+    "price_base": 640,
+    "price_per_level": 0
+  },
+  "scroll_refine_armor_steel": {
+    "name_key": "ITEM_SCROLL_REFINE_ARMOR",
+    "stack": 20,
+    "restore": "refine",
+    "target": "armor",
+    "material": "steel",
+    "blessed": false,
+    "cooldown": 0.0,
+    "price_base": 100,
+    "price_per_level": 0
+  },
+  "blessed_scroll_refine_armor_steel": {
+    "name_key": "ITEM_BLESSED_SCROLL_REFINE_ARMOR",
+    "stack": 20,
+    "restore": "refine",
+    "target": "armor",
+    "material": "steel",
+    "blessed": true,
+    "cooldown": 0.0,
+    "price_base": 400,
+    "price_per_level": 0
+  },
+  "crystal_steel": {
+    "name_key": "ITEM_CRYSTAL",
+    "stack": 99,
+    "restore": "none",
+    "material": "steel",
+    "cooldown": 0.0,
+    "price_base": 10,
+    "price_per_level": 0
+  },
+  "scroll_refine_weapon_copper": {
+    "name_key": "ITEM_SCROLL_REFINE_WEAPON",
+    "stack": 20,
+    "restore": "refine",
+    "target": "weapon",
+    "material": "copper",
+    "blessed": false,
+    "cooldown": 0.0,
+    "price_base": 320,
+    "price_per_level": 0
+  },
+  "blessed_scroll_refine_weapon_copper": {
+    "name_key": "ITEM_BLESSED_SCROLL_REFINE_WEAPON",
+    "stack": 20,
+    "restore": "refine",
+    "target": "weapon",
+    "material": "copper",
+    "blessed": true,
+    "cooldown": 0.0,
+    "price_base": 1280,
+    "price_per_level": 0
+  },
+  "scroll_refine_armor_copper": {
+    "name_key": "ITEM_SCROLL_REFINE_ARMOR",
+    "stack": 20,
+    "restore": "refine",
+    "target": "armor",
+    "material": "copper",
+    "blessed": false,
+    "cooldown": 0.0,
+    "price_base": 200,
+    "price_per_level": 0
+  },
+  "blessed_scroll_refine_armor_copper": {
+    "name_key": "ITEM_BLESSED_SCROLL_REFINE_ARMOR",
+    "stack": 20,
+    "restore": "refine",
+    "target": "armor",
+    "material": "copper",
+    "blessed": true,
+    "cooldown": 0.0,
+    "price_base": 800,
+    "price_per_level": 0
+  },
+  "crystal_copper": {
+    "name_key": "ITEM_CRYSTAL",
+    "stack": 99,
+    "restore": "none",
+    "material": "copper",
+    "cooldown": 0.0,
+    "price_base": 20,
+    "price_per_level": 0
+  },
+  "scroll_refine_weapon_silver": {
+    "name_key": "ITEM_SCROLL_REFINE_WEAPON",
+    "stack": 20,
+    "restore": "refine",
+    "target": "weapon",
+    "material": "silver",
+    "blessed": false,
+    "cooldown": 0.0,
+    "price_base": 640,
+    "price_per_level": 0
+  },
+  "blessed_scroll_refine_weapon_silver": {
+    "name_key": "ITEM_BLESSED_SCROLL_REFINE_WEAPON",
+    "stack": 20,
+    "restore": "refine",
+    "target": "weapon",
+    "material": "silver",
+    "blessed": true,
+    "cooldown": 0.0,
+    "price_base": 2560,
+    "price_per_level": 0
+  },
+  "scroll_refine_armor_silver": {
+    "name_key": "ITEM_SCROLL_REFINE_ARMOR",
+    "stack": 20,
+    "restore": "refine",
+    "target": "armor",
+    "material": "silver",
+    "blessed": false,
+    "cooldown": 0.0,
+    "price_base": 400,
+    "price_per_level": 0
+  },
+  "blessed_scroll_refine_armor_silver": {
+    "name_key": "ITEM_BLESSED_SCROLL_REFINE_ARMOR",
+    "stack": 20,
+    "restore": "refine",
+    "target": "armor",
+    "material": "silver",
+    "blessed": true,
+    "cooldown": 0.0,
+    "price_base": 1600,
+    "price_per_level": 0
+  },
+  "crystal_silver": {
+    "name_key": "ITEM_CRYSTAL",
+    "stack": 99,
+    "restore": "none",
+    "material": "silver",
+    "cooldown": 0.0,
+    "price_base": 40,
+    "price_per_level": 0
+  },
+  "scroll_refine_weapon_gold": {
+    "name_key": "ITEM_SCROLL_REFINE_WEAPON",
+    "stack": 20,
+    "restore": "refine",
+    "target": "weapon",
+    "material": "gold",
+    "blessed": false,
+    "cooldown": 0.0,
+    "price_base": 1280,
+    "price_per_level": 0
+  },
+  "blessed_scroll_refine_weapon_gold": {
+    "name_key": "ITEM_BLESSED_SCROLL_REFINE_WEAPON",
+    "stack": 20,
+    "restore": "refine",
+    "target": "weapon",
+    "material": "gold",
+    "blessed": true,
+    "cooldown": 0.0,
+    "price_base": 5120,
+    "price_per_level": 0
+  },
+  "scroll_refine_armor_gold": {
+    "name_key": "ITEM_SCROLL_REFINE_ARMOR",
+    "stack": 20,
+    "restore": "refine",
+    "target": "armor",
+    "material": "gold",
+    "blessed": false,
+    "cooldown": 0.0,
+    "price_base": 800,
+    "price_per_level": 0
+  },
+  "blessed_scroll_refine_armor_gold": {
+    "name_key": "ITEM_BLESSED_SCROLL_REFINE_ARMOR",
+    "stack": 20,
+    "restore": "refine",
+    "target": "armor",
+    "material": "gold",
+    "blessed": true,
+    "cooldown": 0.0,
+    "price_base": 3200,
+    "price_per_level": 0
+  },
+  "crystal_gold": {
+    "name_key": "ITEM_CRYSTAL",
+    "stack": 99,
+    "restore": "none",
+    "material": "gold",
+    "cooldown": 0.0,
+    "price_base": 80,
+    "price_per_level": 0
   }
 }

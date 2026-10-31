@@ -223,8 +223,25 @@ func attribute(attr: String) -> int:
 ## Vida = inicial + (nível − 1) × por nível + 5 × (VIT − VIT inicial) + afixos (13-balanceamento.md 2.2).
 func max_health() -> float:
 	var cls := class_data()
-	return cls.max_health + (int(data.level) - 1) * cls.health_per_level \
+	var base: float = cls.max_health + (int(data.level) - 1) * cls.health_per_level \
 		+ 5.0 * (attribute("vit") - int(cls.attributes.vit)) + affix_total("life")
+	# Conjunto de armadura todo em +4 ou mais: +5% de vida (05-1-refino.md, seção 4).
+	return base * (1.0 + float(GameData.refine.armor_set_health) if armor_set_refined() else 1.0)
+
+
+## Cabeça, corpo, mãos e pés equipados e todos em +4 ou mais.
+func armor_set_refined() -> bool:
+	for slot in ["head", "body", "hands", "feet"]:
+		var item: Variant = data.equipment.get(slot)
+		if item == null or int(item.refine) < int(GameData.refine.armor_set_min):
+			return false
+	return true
+
+
+## Nível da aura: o refino da arma (05-1-refino.md, seção 5).
+func aura_level() -> int:
+	var weapon: Variant = data.equipment.get("weapon")
+	return int(weapon.refine) if weapon != null else 0
 
 
 func max_resource() -> float:

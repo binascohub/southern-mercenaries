@@ -38,6 +38,7 @@ func _ready() -> void:
 	_test_shops()
 	_test_town_rules()
 	_test_side_quests()
+	_test_refine()
 	_test_names()
 	_clean(TEST_ROOT)
 	if _failures == 0:
@@ -673,6 +674,52 @@ func _test_side_quests() -> void:
 	_check(SideQuests.creatures_in("prototype_arena").size() == 2, "criaturas do bestiário que existem na área de teste")
 	var title := SideQuests.title({"template": "hunt", "target": "plague_rat", "area": "prototype_arena", "count": 5, "progress": 2, "status": "active"})
 	_check(title.contains("2/5"), "título da caçada com progresso: %s" % title)
+
+
+func _test_refine() -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 5
+	var staff := Items.equipment("staff", "steel", "common", 6)
+	_check(Refine.scroll_for(staff, false) == "scroll_refine_weapon_steel", "pergaminho de arma do mesmo material")
+	_check(Refine.scroll_for(Items.equipment("hood", "iron"), true) == "blessed_scroll_refine_armor_iron", "pergaminho abençoado de armadura")
+	_check(Refine.refuse_reason(Items.equipment("staff", "wood")) == "REFINE_NO_TIER0", "madeira não refina")
+	for i in 3:
+		_check(Refine.attempt(staff, false, rng) == "ok", "+%d é seguro" % (i + 1))
+	_near(Items.weapon_damage(staff), 10 * 2.3 * 1.15, "+3: +15% no dano base")
+	_near(Refine.chance(staff), 0.65, "+4: 65%")
+	var results := {"ok": 0, "broken": 0}
+	for i in 2000:
+		var test := Items.equipment("staff", "steel", "common", 6)
+		test.refine = 3
+		results[Refine.attempt(test, false, rng)] += 1
+	_check(results.ok > 1200 and results.ok < 1400, "+4 dá certo ~65%% das vezes (%d de 2000)" % results.ok)
+	var unique := Items.equipment("staff", "steel", "unique", 6)
+	unique.refine = 4
+	var blessed := Items.equipment("staff", "steel", "common", 6)
+	blessed.refine = 4
+	var never := RandomNumberGenerator.new()
+	never.seed = 1
+	var u_result := ""
+	var b_result := ""
+	while u_result != "reset":
+		unique.refine = 4
+		u_result = Refine.attempt(unique, false, never)
+	while b_result != "reset":
+		blessed.refine = 4
+		b_result = Refine.attempt(blessed, true, never)
+	_check(unique.refine == 0 and blessed.refine == 0, "único e pergaminho abençoado: falha volta a +0, não quebra")
+	_check(Refine.crystals_for(Items.equipment("staff", "steel", "common", 6)) == 4, "cristais: 1 + nível/2 + refino")
+	# Conjunto de armadura em +4: +5% de vida; aura = refino da arma.
+	var c := CharacterData.create("mage", "male", "Oren")
+	var health := c.max_health()
+	for base in ["hood", "tunic", "gloves", "boots"]:
+		var piece := Items.equipment(base, "iron")
+		piece.refine = 4
+		c.data.equipment[GameData.item_bases[base].slot] = piece
+	_check(c.armor_set_refined(), "conjunto todo em +4")
+	_near(c.max_health(), health * 1.05, "conjunto +4: +5% de vida")
+	c.data.equipment.weapon = staff
+	_check(c.aura_level() == 3, "aura no nível do refino da arma")
 
 
 func _test_names() -> void:

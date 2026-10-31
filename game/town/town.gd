@@ -16,6 +16,7 @@ signal training_opened
 signal portals_opened
 signal stash_opened
 signal bestiary_opened
+signal forge_opened
 ## Conversa montada (visitantes): nome, falas [[chave, args]], índice do visitante.
 signal visitor_opened(name: String, lines: Array, visitor_index: int)
 
@@ -128,6 +129,8 @@ func interact(player: Player, prop: Dictionary) -> void:
 				learn(GameData.npcs[prop.npc].dialogues[index].get("bestiary", []))
 		"quest_spot":
 			resolve_spot(player, String(prop.quest))
+		"forge":
+			_send(player.peer_id, &"_open_forge", [])
 		"sign":
 			_arena()._toast_to(player, String(prop.get("text_key", "")), {})
 		"training":
@@ -338,7 +341,7 @@ func _rpc_service(npc_id: String, service: String) -> void:
 func _rpc_buy(shop_id: String, index: int) -> void:
 	var player := _sender()
 	if not multiplayer.is_server() or player == null or player.character == null \
-			or _arena().prop_near(player, "shop", shop_id, REACH).is_empty():
+			or _arena().prop_near(player, "", shop_id, REACH).is_empty():
 		return
 	var c := _campaign()
 	var items := Shops.stock(shop_id, player.character, c.ship)
@@ -367,7 +370,7 @@ func _rpc_buy(shop_id: String, index: int) -> void:
 func _rpc_sell(shop_id: String, bag_index: int) -> void:
 	var player := _sender()
 	if not multiplayer.is_server() or player == null or player.character == null \
-			or _arena().prop_near(player, "shop", shop_id, REACH).is_empty():
+			or _arena().prop_near(player, "", shop_id, REACH).is_empty():
 		return
 	var bag: Array = player.character.data.inventory
 	if bag_index < 0 or bag_index >= bag.size() or bag[bag_index] == null:
@@ -407,6 +410,111 @@ func new_ship(rng: RandomNumberGenerator) -> void:
 	c.ship = Shops.new_ship(int(c.get("ship", {}).get("day", 0)) + 1, rng)
 	c.visitors = SideQuests.generate_visitors(c, rng)
 	sync()
+
+
+# --- Ferreiro: refino, cristais e pergaminhos (05-1-refino.md) -----------------------
+
+@rpc("authority", "reliable")
+func _open_forge() -> void:
+	forge_opened.emit()
+
+
+func request_refine(ref: String, blessed: bool) -> void:
+	_ask(&"_rpc_refine", [ref, blessed])
+
+
+func request_crystallize(bag_index: int) -> void:
+	_ask(&"_rpc_crystallize", [bag_index])
+
+
+func request_craft(scroll_id: String) -> void:
+	_ask(&"_rpc_craft", [scroll_id])
+
+
+## Item da ficha por referência: "bag:3" (bolsa) ou "eq:weapon" (equipado).
+static func item_at(character: CharacterData, ref: String) -> Variant:
+	var where := ref.get_slice(":", 0)
+	var key := ref.get_slice(":", 1)
+	if where == "bag" and key.is_valid_int() and int(key) >= 0 and int(key) < character.data.inventory.size():
+		return character.data.inventory[int(key)]
+	if where == "eq":
+		return character.data.equipment.get(key)
+	return null
+
+
+static func _clear_at(character: CharacterData, ref: String) -> void:
+	if ref.begins_with("bag:"):
+		character.data.inventory[int(ref.get_slice(":", 1))] = null
+	else:
+		character.data.equipment[ref.get_slice(":", 1)] = null
+
+
+## Refinar (só na cidade, perto da forja; sorteio no servidor, salvo em seguida).
+@rpc("any_peer", "reliable")
+func _rpc_refine(ref: String, blessed: bool) -> void:
+	var player := _sender()
+	if not multiplayer.is_server() or player == null or _arena().prop_near(player, "forge", "", REACH).is_empty():
+		return
+	var c := player.character
+	var item: Variant = item_at(c, ref)
+	if item == null or not item is Dictionary:
+		return
+	var reason := Refine.refuse_reason(item)
+	if reason != "":
+		_arena()._toast_to(player, reason, {})
+		return
+	var scroll := Refine.scroll_for(item, blessed)
+	if not c.take_one(scroll):
+		_arena()._toast_to(player, "REFINE_NO_SCROLL", {})
+		return
+	var result := Refine.attempt(item, blessed, _arena()._rng)
+	match result:
+		"ok":
+			_arena()._toast_to(player, "REFINE_OK", {"level": int(item.refine)})
+		"reset":
+			_arena()._toast_to(player, "REFINE_RESET", {})
+		"broken":
+			var crystals := Refine.crystals_for(item)
+			_clear_at(c, ref)
+			c.add_item(Items.stack(Items.CONSUMABLE, "crystal_" + String(item.material), crystals))
+			_arena()._toast_to(player, "REFINE_BROKEN", {"count": crystals})
+	player.refresh_character()
+
+
+## Cristalizar de propósito um item da bolsa.
+@rpc("any_peer", "reliable")
+func _rpc_crystallize(bag_index: int) -> void:
+	var player := _sender()
+	if not multiplayer.is_server() or player == null or _arena().prop_near(player, "forge", "", REACH).is_empty():
+		return
+	var item: Variant = item_at(player.character, "bag:%d" % bag_index)
+	if item == null or Refine.scroll_for(item, false) == "":
+		return
+	_clear_at(player.character, "bag:%d" % bag_index)
+	player.character.add_item(Items.stack(Items.CONSUMABLE, "crystal_" + String(item.material), Refine.crystals_for(item)))
+	player.refresh_character()
+
+
+## Fazer um pergaminho normal com 10 cristais do material + ouro.
+@rpc("any_peer", "reliable")
+func _rpc_craft(scroll_id: String) -> void:
+	var player := _sender()
+	var def: Dictionary = GameData.consumables.get(scroll_id, {})
+	if not multiplayer.is_server() or player == null or def.get("restore", "") != "refine" or def.get("blessed", true) \
+			or _arena().prop_near(player, "forge", "", REACH).is_empty():
+		return
+	var c := player.character
+	var crystal := "crystal_" + String(def.material)
+	var need := int(GameData.refine.craft_crystals)
+	var gold := Refine.craft_gold(scroll_id)
+	if c.count_of(crystal) < need or int(c.data.gold) < gold:
+		_arena()._toast_to(player, "REFINE_CRAFT_MISSING", {"count": need, "gold": gold})
+		return
+	for i in need:
+		c.take_one(crystal)
+	c.data.gold = int(c.data.gold) - gold
+	c.add_item(Items.stack(Items.CONSUMABLE, scroll_id))
+	player.refresh_character()
 
 
 # --- Bestiário e missões secundárias (servidor) ---------------------------------------

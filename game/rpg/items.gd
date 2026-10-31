@@ -201,7 +201,10 @@ static func display_name(item: Dictionary) -> String:
 			})
 			return name + (" +%d" % item.refine if item.refine > 0 else "")
 		CONSUMABLE:
-			return TranslationServer.translate(GameData.consumables[item.id].name_key)
+			var c: Dictionary = GameData.consumables[item.id]
+			# Pergaminhos e cristais levam o material no nome.
+			return str(TranslationServer.translate(c.name_key)).format({
+				"material": str(TranslationServer.translate(GameData.materials.get(c.get("material", ""), {}).get("name_key", "")))})
 		VALUABLE:
 			return TranslationServer.translate(GameData.valuables[item.id].name_key)
 	return "?"
@@ -232,7 +235,11 @@ static func describe(item: Dictionary, class_factor := 1.0) -> PackedStringArray
 		lines.append("x%d" % item.count)
 	if item.kind == CONSUMABLE:
 		var c: Dictionary = GameData.consumables[item.id]
-		if c.restore == "return_portal":
+		if c.restore == "refine":
+			lines.append(t.translate("ITEM_SCROLL_EFFECT"))
+		elif c.restore == "none":
+			lines.append(t.translate("ITEM_CRYSTAL_EFFECT"))
+		elif c.restore == "return_portal":
 			lines.append(t.translate("ITEM_RETURN_CHARM_EFFECT"))
 		elif c.restore == "element":
 			lines.append(t.translate("ITEM_ELEMENTAL_EFFECT").format({

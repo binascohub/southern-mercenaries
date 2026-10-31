@@ -1922,3 +1922,75 @@ msgstr "No folclore alemão, um 'rei dos ratos' é um nó de ratos presos pelas 
 
 msgid "BEAST_DEMON_RAT_QUEEN_HINT"
 msgstr "Só levem fogo. Ela já sabe o que é fogo — e odeia."
+
+msgid "ITEM_SCROLL_REFINE_WEAPON"
+msgstr "Pergaminho de Refino de Arma ({material})"
+
+msgid "ITEM_SCROLL_REFINE_ARMOR"
+msgstr "Pergaminho de Refino de Armadura ({material})"
+
+msgid "ITEM_BLESSED_SCROLL_REFINE_WEAPON"
+msgstr "Pergaminho Abençoado de Arma ({material})"
+
+msgid "ITEM_BLESSED_SCROLL_REFINE_ARMOR"
+msgstr "Pergaminho Abençoado de Armadura ({material})"
+
+msgid "ITEM_CRYSTAL"
+msgstr "Cristais de {material}"
+
+msgid "ITEM_SCROLL_EFFECT"
+msgstr "Refina no ferreiro um item do mesmo material (+1 a +3 seguro)"
+
+msgid "ITEM_CRYSTAL_EFFECT"
+msgstr "O ferreiro transforma 10 destes num pergaminho"
+
+msgid "SHOP_BLACKSMITH"
+msgstr "Ferreiro"
+
+msgid "FORGE_TITLE"
+msgstr "Forja — refino"
+
+msgid "FORGE_EQUIPPED"
+msgstr "(equipado)"
+
+msgid "FORGE_REFINE"
+msgstr "Refinar {percent}% ({count} pergaminhos)"
+
+msgid "FORGE_REFINE_BLESSED"
+msgstr "Abençoado {percent}% ({count})"
+
+msgid "FORGE_CONFIRM_RISK"
+msgstr "Pode quebrar! {percent}% — aperte de novo"
+
+msgid "FORGE_CRYSTALLIZE"
+msgstr "Cristalizar (+{count})"
+
+msgid "FORGE_CRAFT"
+msgstr "Fazer {scroll}: {count} cristais + {gold} de ouro (você tem {have})"
+
+msgid "FORGE_INFO"
+msgstr "+1 a +3 nunca falha. +4 (65%) e +5 (45%) podem falhar: o pergaminho normal quebra o item em cristais (únicos e lendários voltam a +0); o abençoado só volta a +0."
+
+msgid "FORGE_SHOP"
+msgstr "Comprar pergaminhos"
+
+msgid "REFINE_NO_TIER0"
+msgstr "Pano e madeira não podem ser refinados"
+
+msgid "REFINE_MAX"
+msgstr "Já está em +5"
+
+msgid "REFINE_NO_SCROLL"
+msgstr "Você não tem o pergaminho certo"
+
+msgid "REFINE_OK"
+msgstr "Refinado para +{level}!"
+
+msgid "REFINE_RESET"
+msgstr "O refino falhou: voltou a +0"
+
+msgid "REFINE_BROKEN"
+msgstr "O item se quebrou em {count} cristais"
+
+msgid "REFINE_CRAFT_MISSING"
+msgstr "Você precisa de {count} cristais e {gold} de ouro"

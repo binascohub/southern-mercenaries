@@ -71,6 +71,11 @@ var mounted := false
 var free_cooldowns := false
 ## Segurando o bloqueio (escudo, barreira ou aparar do Ninja).
 var blocking := false
+## Aura do refino (05-1-refino.md, seção 5): refino da arma, elemento de origem
+## (não muda com a Poção Elemental) e conjunto de armadura todo em +4.
+var aura_level := 0
+var origin_element := "fire"
+var aura_set := false
 
 var data: Dictionary
 var move_speed := 5.0
@@ -99,6 +104,8 @@ var _body_shape: CapsuleShape3D
 var _horse: Node3D
 var _horse_material: StandardMaterial3D
 var _block_visual: MeshInstance3D
+var _aura: MeshInstance3D
+var _aura_material: StandardMaterial3D
 ## Bloqueio (servidor): quando apertou (para o aparar) e o que sobra da barreira do Mago.
 var _block_pressed_ms := -100000
 var _barrier_left := 0.0
@@ -206,6 +213,9 @@ func _apply_character(fill := false) -> void:
 	level = int(character.data.level)
 	equip_visual = character.equipment_visual()
 	element = character.current_element()
+	origin_element = String(character.data.get("element", "fire"))
+	aura_level = character.aura_level()
+	aura_set = character.armor_set_refined()
 
 
 ## Servidor: manda a ficha atual para o dono gravar.
@@ -330,6 +340,8 @@ func _drink(id: String) -> void:
 			_apply_character()
 			_push_character(0)
 		return
+	if def.restore not in ["health", "resource"]:
+		return  # pergaminhos e cristais não se bebem (refino é no ferreiro)
 	if potion_cooldown > 0.0:
 		return
 	if def.restore == "health" and health >= max_health:
@@ -934,7 +946,8 @@ func _add_synchronizer() -> void:
 	var config := SceneReplicationConfig.new()
 	var always := [":net_position", ":facing", ":charge_time", ":revive_progress", ":evade_cooldown"]
 	var on_change := [":health", ":max_health", ":resource", ":max_resource", ":alive", ":connected",
-		":hero_name", ":level", ":equip_visual", ":potion_cooldown", ":armor_value", ":element", ":shield", ":hidden", ":mounted", ":blocking"]
+		":hero_name", ":level", ":equip_visual", ":potion_cooldown", ":armor_value", ":element", ":shield", ":hidden", ":mounted", ":blocking",
+		":aura_level", ":origin_element", ":aura_set"]
 	for prop in always + on_change:
 		var path := NodePath("." + prop)
 		config.add_property(path)
@@ -1064,6 +1077,26 @@ func _build_visual() -> void:
 
 	_build_gear()
 
+	# Aura do refino: cilindro transparente em volta do herói (sem luz extra).
+	_aura = MeshInstance3D.new()
+	var aura_mesh := CylinderMesh.new()
+	aura_mesh.top_radius = 0.75
+	aura_mesh.bottom_radius = 0.9
+	aura_mesh.height = 2.0
+	aura_mesh.cap_top = false
+	aura_mesh.cap_bottom = false
+	_aura.mesh = aura_mesh
+	_aura_material = StandardMaterial3D.new()
+	_aura_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	_aura_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	_aura_material.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
+	_aura_material.cull_mode = BaseMaterial3D.CULL_DISABLED
+	_aura.material_override = _aura_material
+	_aura.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	_aura.position.y = 1.0
+	_aura.visible = false
+	_visual.add_child(_aura)
+
 	# Bloqueio: barreira (ou o escudo erguido) à frente do herói.
 	if data.has("block"):
 		_block_visual = MeshInstance3D.new()
@@ -1110,6 +1143,22 @@ func _build_visual() -> void:
 func _tick_visual(delta: float) -> void:
 	if _block_visual:
 		_block_visual.visible = blocking
+	# Aura: +1 brilho fraco nos pés … +5 aura máxima pulsando; cor do elemento de origem.
+	_aura.visible = aura_level > 0
+	if aura_level > 0:
+		var pulse := 1.0
+		if aura_level >= 4:
+			pulse = 0.75 + 0.25 * sin(Time.get_ticks_msec() / (180.0 if aura_level == 5 else 320.0))
+		var c := Elements.color(origin_element)
+		_aura_material.albedo_color = Color(c.r, c.g, c.b, 0.07 * aura_level * pulse)
+		var height := 0.2 + 0.4 * aura_level
+		_aura.scale = Vector3(1.0, height / 2.0, 1.0)
+		_aura.position.y = height / 2.0
+	# Conjunto de armadura em +4: contorno brilhante no corpo.
+	_body_material.emission_enabled = aura_set
+	if aura_set:
+		_body_material.emission = Elements.color(origin_element)
+		_body_material.emission_energy_multiplier = 0.25
 	if _horse:
 		# Barda do cavalo na cor do material; sem barda, pelagem e sela simples.
 		var barding: Variant = equip_visual.get("barding")

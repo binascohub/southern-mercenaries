@@ -1922,3 +1922,75 @@ msgstr "En el folclore alemán, un 'rey de las ratas' es un nudo de ratas atadas
 
 msgid "BEAST_DEMON_RAT_QUEEN_HINT"
 msgstr "Solo llevad fuego. Ella ya sabe lo que es el fuego, y lo odia."
+
+msgid "ITEM_SCROLL_REFINE_WEAPON"
+msgstr "Pergamino de refinado de arma ({material})"
+
+msgid "ITEM_SCROLL_REFINE_ARMOR"
+msgstr "Pergamino de refinado de armadura ({material})"
+
+msgid "ITEM_BLESSED_SCROLL_REFINE_WEAPON"
+msgstr "Pergamino bendito de arma ({material})"
+
+msgid "ITEM_BLESSED_SCROLL_REFINE_ARMOR"
+msgstr "Pergamino bendito de armadura ({material})"
+
+msgid "ITEM_CRYSTAL"
+msgstr "Cristales de {material}"
+
+msgid "ITEM_SCROLL_EFFECT"
+msgstr "Refina en el herrero un objeto del mismo material (+1 a +3 seguro)"
+
+msgid "ITEM_CRYSTAL_EFFECT"
+msgstr "El herrero convierte 10 de estos en un pergamino"
+
+msgid "SHOP_BLACKSMITH"
+msgstr "Herrero"
+
+msgid "FORGE_TITLE"
+msgstr "Forja — refinado"
+
+msgid "FORGE_EQUIPPED"
+msgstr "(equipado)"
+
+msgid "FORGE_REFINE"
+msgstr "Refinar {percent}% ({count} pergaminos)"
+
+msgid "FORGE_REFINE_BLESSED"
+msgstr "Bendito {percent}% ({count})"
+
+msgid "FORGE_CONFIRM_RISK"
+msgstr "¡Puede romperse! {percent}% — pulsa otra vez"
+
+msgid "FORGE_CRYSTALLIZE"
+msgstr "Cristalizar (+{count})"
+
+msgid "FORGE_CRAFT"
+msgstr "Hacer {scroll}: {count} cristales + {gold} de oro (tienes {have})"
+
+msgid "FORGE_INFO"
+msgstr "+1 a +3 nunca falla. +4 (65%) y +5 (45%) pueden fallar: un pergamino normal rompe el objeto en cristales (únicos y legendarios vuelven a +0); uno bendito solo vuelve a +0."
+
+msgid "FORGE_SHOP"
+msgstr "Comprar pergaminos"
+
+msgid "REFINE_NO_TIER0"
+msgstr "La tela y la madera no se pueden refinar"
+
+msgid "REFINE_MAX"
+msgstr "Ya está en +5"
+
+msgid "REFINE_NO_SCROLL"
+msgstr "No tienes el pergamino adecuado"
+
+msgid "REFINE_OK"
+msgstr "¡Refinado a +{level}!"
+
+msgid "REFINE_RESET"
+msgstr "El refinado falló: vuelve a +0"
+
+msgid "REFINE_BROKEN"
+msgstr "El objeto se rompió en {count} cristales"
+
+msgid "REFINE_CRAFT_MISSING"
+msgstr "Necesitas {count} cristales y {gold} de oro"

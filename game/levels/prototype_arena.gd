@@ -77,6 +77,7 @@ var _training_menu: TrainingMenu
 var _portal_menu: PortalMenu
 var _stash_menu: StashMenu
 var _journal_menu: JournalMenu
+var _forge_menu: ForgeMenu
 var _bestiary_menu: BestiaryMenu
 ## Aumenta a cada reinício; timers da partida anterior são ignorados.
 var _run := 0
@@ -169,6 +170,9 @@ func _ready() -> void:
 	_stash_menu = StashMenu.new()
 	add_child(_stash_menu)
 	_stash_menu.bind(town)
+	_forge_menu = ForgeMenu.new()
+	add_child(_forge_menu)
+	_forge_menu.bind(town)
 	InputDevice.gamepad_lost.connect(_on_gamepad_lost)
 	InputDevice.gamepad_restored.connect(_on_gamepad_restored)
 	NetworkManager.session_ended.connect(_on_session_ended)
@@ -203,7 +207,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"menu") and not pause_menu.is_open and not _inventory.visible \
 			and not _trade_menu.is_open() and not _skill_menu.visible and not _shop_menu.visible \
 			and not _dialogue_menu.visible and not _training_menu.visible and not _portal_menu.visible \
-			and not _stash_menu.visible and not _journal_menu.visible and not _bestiary_menu.visible:
+			and not _stash_menu.visible and not _journal_menu.visible and not _bestiary_menu.visible \
+			and not _forge_menu.visible:
 		pause_menu.open(not NetworkManager.is_online())
 		get_viewport().set_input_as_handled()
 	elif result == Result.VICTORY and event.is_action_pressed(&"attack"):
@@ -507,6 +512,7 @@ func _on_node_spawned(node: Node) -> void:
 		_skill_menu.bind_player(node)
 		_shop_menu.bind_player(node)
 		_stash_menu.bind_player(node)
+		_forge_menu.bind_player(node)
 		hud.show_connecting(false)
 
 
@@ -1239,6 +1245,11 @@ func _build_prop(prop: Dictionary) -> void:
 				# Lugar do rumor / carga perdida: caixote marcado.
 				_prop_mesh(node, BoxMesh.new(), Vector3(0.9, 0.7, 0.9), Vector3(0, 0.35, 0), Color(0.55, 0.42, 0.25))
 				_prop_mesh(node, CylinderMesh.new(), Vector3(1.6, 0.03, 1.6), Vector3(0, 0.02, 0), Color(0.9, 0.75, 0.3))
+			"forge":
+				# Forja ao ar livre: bigorna e fornalha acesa.
+				_prop_mesh(node, BoxMesh.new(), Vector3(0.9, 0.7, 0.5), Vector3(-0.7, 0.35, 0), Color(0.25, 0.25, 0.27))
+				_prop_mesh(node, BoxMesh.new(), Vector3(1.4, 1.2, 1.2), Vector3(0.9, 0.6, 0), Color(0.35, 0.25, 0.2))
+				_prop_mesh(node, BoxMesh.new(), Vector3(0.6, 0.3, 0.05), Vector3(0.9, 0.7, 0.61), Color(1.0, 0.45, 0.1))
 			"stash":
 				# Baú acorrentado.
 				_prop_mesh(node, BoxMesh.new(), Vector3(1.4, 0.8, 0.9), Vector3(0, 0.4, 0), Color(0.4, 0.27, 0.15))

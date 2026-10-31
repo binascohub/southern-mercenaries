@@ -693,6 +693,34 @@ func _town_test() -> void:
 	var gold_cargo := int(player.character.data.gold)
 	_arena.request_interact(player)
 	check.call(town.side_quests.sq_test_cargo.status == "done" and int(player.character.data.gold) > gold_cargo, "carga entregue: recompensa")
+	# Ferreiro: comprar pergaminhos, refinar até +3, aura, cristalizar.
+	_arena.travel("tortuga", "start")
+	player.character.data.gold = 2000
+	player.character.add_item(Items.equipment("staff", "iron", "common", 2))
+	player.teleport_to(Vector3(4, 0, -4.5))
+	for i in 3:
+		town._rpc_buy("blacksmith", 0)
+	check.call(player.character.count_of("scroll_refine_weapon_iron") == 3, "compra 3 pergaminhos de arma de Ferro")
+	var staff_ref := ""
+	for i in player.character.data.inventory.size():
+		var it: Variant = player.character.data.inventory[i]
+		if it != null and it.kind == Items.EQUIPMENT and it.base == "staff" and it.material == "iron":
+			staff_ref = "bag:%d" % i
+	for i in 3:
+		town._rpc_refine(staff_ref, false)
+	var refined: Dictionary = Town.item_at(player.character, staff_ref)
+	check.call(int(refined.refine) == 3 and player.character.count_of("scroll_refine_weapon_iron") == 0, "refina até +3 (seguro)")
+	player.request_equip(int(staff_ref.get_slice(":", 1)))
+	await get_tree().physics_frame
+	check.call(player.aura_level == 3, "arma +3 acende a aura (%d)" % player.aura_level)
+	player.character.add_item(Items.equipment("hood", "iron", "common", 2))
+	var hood_index := -1
+	for i in player.character.data.inventory.size():
+		var it: Variant = player.character.data.inventory[i]
+		if it != null and it.kind == Items.EQUIPMENT and it.base == "hood":
+			hood_index = i
+	town._rpc_crystallize(hood_index)
+	check.call(player.character.count_of("crystal_iron") == 2, "cristaliza o capuz em 2 cristais de Ferro")
 	_report(checks.is_empty(), "cidade: " + ("tudo certo" if checks.is_empty() else "; ".join(PackedStringArray(checks))))
 
 
