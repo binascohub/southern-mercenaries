@@ -134,6 +134,26 @@ for arm in (arms if length > 0 else []):
                                 k.handle_left.y *= factor
                                 k.handle_right.y *= factor
 
+# Cada ação presa ao esqueleto pelo próprio slot (os .blend antigos trazem um
+# "Legacy Slot" que o exportador só reconhece depois de usado no objeto).
+for arm in arms:
+    arm.animation_data_create()
+    for action in bpy.data.actions:
+        arm.animation_data.action = action
+        if action.slots:
+            arm.animation_data.action_slot = action.slots[0]
+        track = arm.animation_data.nla_tracks.new()
+        track.name = action.name
+        track.strips.new(action.name, int(action.frame_range[0]), action)
+        track.mute = True
+    arm.animation_data.action = None
+
+# Tamanho original: o esqueleto fica com escala 1 (o exportador perderia a
+# do objeto e a malha não bateria com a animação); o jogo escala o modelo.
+if length <= 0:
+    for arm in arms:
+        arm.scale = (1, 1, 1)
+
 for img in bpy.data.images:
     if img.size[0] > 512:
         img.scale(512, max(1, int(img.size[1] * 512 / img.size[0])))
