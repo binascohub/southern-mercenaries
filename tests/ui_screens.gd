@@ -49,12 +49,20 @@ func _physics_process(delta: float) -> void:
 		get_tree().quit()
 
 
-## Golpes com elemento nos ratos mais perto do herói, para a captura.
+## Traz seis ratos para perto do herói (o bot para) e acerta cada um com um
+## elemento diferente, para a captura.
 func _show_elements() -> void:
+	_stop_bot()
 	var player: Player = _arena.local_player
 	var rats: Array = get_tree().get_nodes_in_group(&"enemies")
-	rats.sort_custom(func(a: Node3D, b: Node3D) -> bool:
-		return a.global_position.distance_to(player.global_position) < b.global_position.distance_to(player.global_position))
+	var spots := [Vector3(-3.5, 0, -2.5), Vector3(0, 0, -3.5), Vector3(3.5, 0, -2.5),
+		Vector3(-3.5, 0, 1.5), Vector3(3.5, 0, 1.5), Vector3(0, 0, 3.0)]
+	rats = rats.slice(0, spots.size())
+	for i in rats.size():
+		var spot: Vector3 = player.global_position + spots[i]
+		rats[i].global_position = spot
+		rats[i].net_position = spot
+		rats[i].home = spot
 	var hits := [
 		[{"damage": 4.0, "element": "fire", "state": "burning", "crit_chance": 0.0}],
 		[{"damage": 4.0, "element": "water", "state": "soaked", "crit_chance": 0.0}],
@@ -71,12 +79,18 @@ func _show_elements() -> void:
 		Elements.apply_state(rats[hits.size()].status, "frozen", "earth", false)
 
 
-func _open_trade() -> void:
-	# O bot para (senão se afasta e a troca é cancelada pela distância).
+func _stop_bot() -> void:
 	_done = true
 	for a in [&"aim_left", &"aim_right", &"aim_up", &"aim_down", &"attack",
 			&"move_left", &"move_right", &"move_up", &"move_down", &"pickup_all"]:
 		Input.action_release(a)
+
+
+func _open_trade() -> void:
+	# O bot para (senão se afasta e a troca é cancelada pela distância).
+	_stop_bot()
+	for e in get_tree().get_nodes_in_group(&"enemies"):
+		e.queue_free()  # os ratos da cena dos elementos não atrapalham a troca
 	var player: Player = _arena.local_player
 	var trade: Trade = _arena.trade
 	_arena._spawn_player(99)
