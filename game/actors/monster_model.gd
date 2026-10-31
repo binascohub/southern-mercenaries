@@ -34,6 +34,9 @@ const FAMILIES := {
 	# patas) são animadas aqui ("procedural"). ~1 m por unidade de size.
 	"scorpion": {"scene": "res://assets/models/monsters/scorpion.glb", "scale": 1.5, "procedural": true,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
+	# Lagarto Dourado (Lizardman, skorpio, CC BY-SA 3.0): tingido de ouro no jogo.
+	"lizard": {"scene": "res://assets/models/monsters/golden_lizard.glb", "scale": 0.8,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
 	# O morcego guarda o tamanho original do arquivo (envergadura ~10 unidades).
 	"bat": {"scene": "res://assets/models/monsters/bat.glb", "scale": 0.2,
 		"anims": {"idle": "fly", "walk": "fly", "run": "fly", "attack": "fly", "die": "die"}},

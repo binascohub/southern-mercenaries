@@ -2185,6 +2185,9 @@ msgstr "Morcego Pestilento"
 msgid "MONSTER_VENOM_SCORPION"
 msgstr "Escorpião Venenoso"
 
+msgid "MONSTER_GOLDEN_LIZARD"
+msgstr "Lagarto Dourado"
+
 msgid "MONSTER_ACID_TOAD"
 msgstr "Sapo Ácido"
 

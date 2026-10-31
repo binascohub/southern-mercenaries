@@ -399,6 +399,38 @@
       0.2
     ]
   },
+  "golden_lizard": {
+    "_comment": "Lagarto Dourado (pedido do autor; Lizardman, skorpio, CC BY-SA 3.0): aparece às vezes numa sala do mapa (rare_spawn = chance por área, nunca na área final). Não ataca: passeia; golpeado, corre para longe e solta moedas a cada golpe, e um punhado ao morrer.",
+    "name_key": "MONSTER_GOLDEN_LIZARD",
+    "max_health": 90,
+    "move_speed": 1.4,
+    "damage": 0,
+    "attack_range": 0.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 1.0,
+    "aggro_range": 0.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "",
+    "ai": "flee",
+    "rare_spawn": 0.3,
+    "no_loot": true,
+    "flee": {
+      "time": 3.0,
+      "speed": 7.5,
+      "coins_per_hit": [
+        3,
+        7
+      ],
+      "coins_on_death": 35
+    },
+    "look": "lizard",
+    "color": [
+      1.0,
+      0.8,
+      0.25
+    ]
+  },
   "rat_nest": {
     "_comment": "Ninho de filhotes da fase 2 da Rainha: não anda nem ataca; enquanto existir, ela regenera. Fogo causa dano dobrado (03-inimigos.md).",
     "name_key": "MONSTER_RAT_NEST",

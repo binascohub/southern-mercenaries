@@ -715,6 +715,30 @@ func spawn_adds(at: Vector3, monster_id: String, count: int, radius: float) -> v
 			1.0 + GameData.balance.damage_per_extra_player * extra)
 
 
+## Monstros raros (dados "rare_spawn"): com a chance dada, um deles aparece
+## acordado no meio de uma sala que não é a da entrada.
+func _maybe_spawn_rare() -> void:
+	if arena.get("town", false) or arena.get("final", false) or arena.rooms.size() < 2:
+		return
+	for monster_id: String in GameData.monsters:
+		var data: Variant = GameData.monsters[monster_id]
+		if not data is Dictionary or not data.has("rare_spawn"):
+			continue
+		if _rng.randf() >= float(data.rare_spawn):
+			continue
+		var room: Dictionary = arena.rooms[_rng.randi_range(1, arena.rooms.size() - 1)]
+		spawn_adds(Vector3(room.center[0], 0, room.center[1]), monster_id, 1, 0.0)
+
+
+## Moedas que caem de um monstro (o Lagarto Dourado, a cada golpe): para cada herói.
+func drop_coins(at: Vector3, amount: int) -> void:
+	if not multiplayer.is_server():
+		return
+	for p: Player in get_tree().get_nodes_in_group(&"players"):
+		if p.connected and p.character:
+			_add_loot(p, at, {}, maxi(roundi(amount * (1.0 + p.character.gold_find_bonus())), 1))
+
+
 # --- Mapa que se revela (09-interface.md, seção 8) ----------------------------
 
 ## Servidor: cada herói de pé revela em volta; o que é novo vai para todos e
@@ -856,6 +880,8 @@ func _start_run() -> void:
 			_enemy_spawner.spawn({"monster_id": box.monster, "group": "box:" + String(box.id),
 				"level": arena.get("area_level", 1), "position": Vector3(box.position[0], 0, box.position[1]),
 				"yaw": _rng.randf() * TAU})
+	# Lagarto Dourado: às vezes aparece numa sala do mapa (não na área final).
+	_maybe_spawn_rare()
 	# Bandos das caçadas ativas nesta área (SideQuests.hunt_encounter).
 	for quest: Dictionary in SideQuests.active(_campaign.get("side_quests", {})):
 		if quest.area == area_id:

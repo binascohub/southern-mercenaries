@@ -91,6 +91,9 @@ var _trail_timer := 0.0
 var _ripple: MeshInstance3D
 ## Modelo animado da família (rato, morcego, jacaré); null = cápsula.
 var _model: MonsterModel
+## Fuga (Lagarto Dourado): tempo correndo depois do golpe e o ponto de passeio.
+var _flee_time := 0.0
+var _wander_to := Vector3.INF
 ## Peça do kit deste objeto (pote: os cacos são "<peça>_Shards").
 var _kit_piece := ""
 var _last_visual_pos := Vector3.INF
@@ -213,6 +216,9 @@ func _think(delta: float) -> void:
 	_update_pending(delta)
 	if data.get("ai", "") == "static":
 		return  # ninho: não anda nem ataca
+	if data.get("ai", "") == "flee":
+		_think_flee(delta)
+		return
 	if state == State.HIDDEN:
 		_think_hidden()
 		return
@@ -294,6 +300,32 @@ func _think(delta: float) -> void:
 			if _timer <= 0.0:
 				state = State.CHASE
 	global_position.y = 0.0
+
+
+## Não ataca: passeia devagar perto de onde nasceu; golpeado, corre para longe
+## do herói mais perto por alguns segundos.
+func _think_flee(delta: float) -> void:
+	var flee: Dictionary = data.get("flee", {})
+	_flee_time = maxf(_flee_time - delta, 0.0)
+	var move := Vector3.ZERO
+	if _flee_time > 0.0:
+		var threat := _nearest_player()
+		var away := global_position - threat.global_position if threat else Vector3(_rng.randf_range(-1, 1), 0, _rng.randf_range(-1, 1))
+		away.y = 0.0
+		move = away.normalized() * float(flee.get("speed", 7.0)) * status.move_mult()
+		_wander_to = Vector3.INF
+	else:
+		if _wander_to == Vector3.INF or global_position.distance_to(_wander_to) < 0.5:
+			_wander_to = home + Vector3(_rng.randf_range(-4, 4), 0, _rng.randf_range(-4, 4))
+		var to := _wander_to - global_position
+		to.y = 0.0
+		move = to.normalized() * float(data.move_speed) if to.length() > 0.3 else Vector3.ZERO
+	velocity = move
+	move_and_slide()
+	global_position.y = 0.0
+	if move.length() > 0.1:
+		yaw = atan2(move.x, move.z)
+	state = State.CHASE
 
 
 ## O Pacto da Rainha a deixa mais rápida.
@@ -437,6 +469,14 @@ func _hurt(amount: float, effect: String, hit_element: String, crit: bool, combo
 		_show_damage.rpc(amount, effect, hit_element, crit, combo)
 		get_tree().call_group(&"arena", &"on_dummy_hit", amount, crit)
 		return
+	if data.get("ai", "") == "flee":
+		# Levou golpe: dispara a correr e solta moedas (no fim, o resto delas).
+		var flee: Dictionary = data.get("flee", {})
+		_flee_time = float(flee.get("time", 3.0))
+		var coins: Array = flee.get("coins_per_hit", [3, 6])
+		get_tree().call_group(&"arena", &"drop_coins", global_position, _rng.randi_range(int(coins[0]), int(coins[1])))
+		if health - amount <= 0.0:
+			get_tree().call_group(&"arena", &"drop_coins", global_position, int(flee.get("coins_on_death", 30)))
 	if state == State.SLEEP:
 		disturbed.emit(self)
 	elif state == State.HIDDEN:
