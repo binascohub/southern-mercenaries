@@ -8,17 +8,33 @@ const FILES := {
 	"classes": "res://data/classes.json",
 	"monsters": "res://data/monsters.json",
 	"arenas": "res://data/arenas.json",
+	"materials": "res://data/materials.json",
+	"rarities": "res://data/rarities.json",
+	"affixes": "res://data/affixes.json",
+	"item_bases": "res://data/item_bases.json",
+	"consumables": "res://data/consumables.json",
+	"valuables": "res://data/valuables.json",
+	"loot": "res://data/loot.json",
 }
 
 var balance: Dictionary
 var classes: Dictionary
 var monsters: Dictionary
 var arenas: Dictionary
+var materials: Dictionary
+var rarities: Dictionary
+var affixes: Dictionary
+var item_bases: Dictionary
+var consumables: Dictionary
+var valuables: Dictionary
+var loot: Dictionary
 
 
 func _ready() -> void:
 	for table in FILES:
-		set(table, load_json(FILES[table]))
+		var data := load_json(FILES[table])
+		data.erase("_comment")
+		set(table, data)
 
 
 func get_class_data(id: String) -> Dictionary:

@@ -9,6 +9,10 @@ extends Node3D
 ## Rede: o servidor (host, ou este PC no solo) decide encontros, quedas, revive
 ## e checkpoint; os MultiplayerSpawners replicam jogadores, monstros e
 ## projéteis nos outros PCs, inclusive para quem entra no meio da partida.
+##
+## RPG (Fase 3): o XP de cada monstro é dividido entre os jogadores presentes;
+## o loot é sorteado e mostrado por jogador (cada um vê só o seu) e a coleta é
+## validada no servidor. A campanha (grupos mortos) fica no PC do host.
 
 const ARENA_ID := "prototype_arena"
 const MAIN_SCENE := "res://game/main/main.tscn"
@@ -22,6 +26,9 @@ const SLOT_OFFSETS: Array[Vector3] = [Vector3(0, 0, 0), Vector3(1.6, 0, 0), Vect
 const CHECKPOINT := Vector3(0, 0, 3)
 const ENCOUNTER_CHECK_INTERVAL := 0.2
 const CHECKPOINT_DELAY := 3.0
+## Ouro no chão é recolhido sozinho a esta distância (proposta).
+const GOLD_AUTO_PICKUP := 1.6
+const LOOT_SCATTER := 1.2
 
 enum Result { NONE, VICTORY, DEFEAT }
 
@@ -40,11 +47,21 @@ var _players_spawner: MultiplayerSpawner
 var _enemy_spawner: MultiplayerSpawner
 var _projectile_spawner: MultiplayerSpawner
 var _camera: TopDownCamera
+var _inventory: InventoryMenu
 ## Aumenta a cada reinício; timers da partida anterior são ignorados.
 var _run := 0
 ## Grupos de encontro (servidor): id -> {position, awake, members}.
 var _groups := {}
 var _encounter_timer := 0.0
+## Campanha deste host (11-saves.md): grupos mortos não voltam. Vazia nos
+## clientes (mesmo depois de desconectados, quando o Godot os trata como servidor).
+var _campaign: Dictionary = {}
+## Loot no chão (servidor): id -> {client, peer, position, item, gold}.
+var _loot := {}
+var _next_loot_id := 1
+var _rng := RandomNumberGenerator.new()
+## Nós de loot deste PC (só os do jogador local).
+var _loot_nodes := {}
 ## Reanimação em andamento: caído -> quem está reanimando.
 var _revivers := {}
 ## Quem foi atingido reanimando precisa soltar o botão antes de tentar de novo.
@@ -66,6 +83,8 @@ func _ready() -> void:
 	_camera = TopDownCamera.new()
 	add_child(_camera)
 	_camera.snap()
+	_inventory = InventoryMenu.new()
+	add_child(_inventory)
 	hud.set_progress(0, total_encounters)
 	InputDevice.gamepad_lost.connect(_on_gamepad_lost)
 	InputDevice.gamepad_restored.connect(_on_gamepad_restored)
@@ -81,6 +100,10 @@ func _ready() -> void:
 	if NetworkManager.mode == NetworkManager.Mode.HOST:
 		hud.show_hosting(NetworkManager.local_addresses())
 	if multiplayer.is_server():
+		_rng.randomize()
+		if Session.campaign.is_empty():
+			Session.continue_or_new_campaign()
+		_campaign = Session.campaign
 		_spawn_player(multiplayer.get_unique_id())
 		_start_run()
 	else:
@@ -88,12 +111,12 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"menu") and not pause_menu.is_open:
+	if event.is_action_pressed(&"menu") and not pause_menu.is_open and not _inventory.visible:
 		pause_menu.open(not NetworkManager.is_online())
 		get_viewport().set_input_as_handled()
 	elif result == Result.VICTORY and event.is_action_pressed(&"attack"):
 		if multiplayer.is_server():
-			_start_run()
+			_restart_area()
 		else:
 			_request_restart.rpc_id(1)
 
@@ -105,6 +128,9 @@ func _physics_process(delta: float) -> void:
 		if _encounter_timer <= 0.0:
 			_encounter_timer = ENCOUNTER_CHECK_INTERVAL
 			_update_encounters()
+			_auto_pickup_gold()
+	if not _campaign.is_empty():
+		_campaign.played_seconds = float(_campaign.get("played_seconds", 0)) + delta
 
 
 # --- Spawners -----------------------------------------------------------------
@@ -155,10 +181,18 @@ func _spawn_player(peer_id: int, resume: Player = null) -> Player:
 	if resume:
 		slot = resume.slot
 		position = resume.global_position
+	var character := resume.character if resume and resume.character \
+		else NetworkManager.character_of(peer_id)
+	if character == null:
+		character = CharacterData.create(arena.player_class, "male", "?")
 	var player: Player = _players_spawner.spawn({
-		"peer_id": peer_id, "slot": slot, "class_id": arena.player_class,
-		"position": position,
+		"peer_id": peer_id, "slot": slot, "class_id": character.data.class_id,
+		"position": position, "name": character.data.name, "level": character.data.level,
+		"visual": character.equipment_visual(),
 	})
+	player.set_character(character)
+	if character.data.id not in _campaign.get("participants", []):
+		_campaign.participants = _campaign.get("participants", []) + [character.data.id]
 	player.downed.connect(_on_player_downed)
 	player.hurt.connect(_on_player_hurt.bind(player))
 	_on_node_spawned(player)
@@ -171,6 +205,7 @@ func _on_node_spawned(node: Node) -> void:
 		_camera.target = node
 		_camera.snap()
 		hud.bind_player(node)
+		_inventory.bind_player(node)
 		hud.show_connecting(false)
 
 
@@ -182,6 +217,7 @@ func _on_peer_joined(peer_id: int) -> void:
 		var player := _spawn_player(peer_id, held)
 		player.take_over(held)
 		held.queue_free()
+		_reassign_loot(NetworkManager.client_id_of(peer_id), peer_id)
 		hero_resumed.emit(peer_id)
 	else:
 		_spawn_player(peer_id)
@@ -197,10 +233,12 @@ func _on_peer_left(peer_id: int, dropped: bool) -> void:
 		# Caiu: o herói espera 30 s parado e invulnerável.
 		player.set_disconnected()
 		_held[client] = player
+		var hero: WeakRef = weakref(player)
 		get_tree().create_timer(GameData.balance.drop_hold_time, false).timeout.connect(func() -> void:
-			if _held.get(client) == player:
+			var waiting: Player = hero.get_ref()
+			if waiting and _held.get(client) == waiting:
 				_held.erase(client)
-				player.queue_free()
+				waiting.queue_free()
 				_check_defeat.call_deferred())
 	else:
 		player.queue_free()
@@ -209,7 +247,7 @@ func _on_peer_left(peer_id: int, dropped: bool) -> void:
 
 # --- Partida (servidor) ---------------------------------------------------------
 
-## Começa a área do zero: todos os grupos no lugar, dormindo.
+## Começa (ou continua) a área: os grupos vivos da campanha no lugar, dormindo.
 func _start_run() -> void:
 	_run += 1
 	for node in get_tree().get_nodes_in_group(&"enemies"):
@@ -218,10 +256,20 @@ func _start_run() -> void:
 		if node is Projectile:
 			node.queue_free()
 	_groups.clear()
+	var dead: Array = _campaign.get("dead_groups", [])
 	for encounter: Dictionary in arena.encounters:
-		_spawn_group(encounter)
+		if encounter.id not in dead:
+			_spawn_group(encounter)
 	_reset_players()
-	_broadcast(0, Result.NONE)
+	var done := dead.size()
+	_broadcast(done, Result.VICTORY if done >= total_encounters else Result.NONE)
+	SaveSystem.save_campaign(_campaign)
+
+
+## Depois da vitória, a área de teste pode ser jogada de novo do zero.
+func _restart_area() -> void:
+	_campaign.dead_groups = []
+	_start_run()
 
 
 func _spawn_group(encounter: Dictionary) -> void:
@@ -236,7 +284,7 @@ func _spawn_group(encounter: Dictionary) -> void:
 		var angle := TAU * i / ids.size()
 		var offset := Vector3(cos(angle), 0, sin(angle)) * (1.6 if ids.size() > 1 else 0.0)
 		var enemy: Enemy = _enemy_spawner.spawn({
-			"monster_id": ids[i], "group": encounter.id,
+			"monster_id": ids[i], "group": encounter.id, "level": arena.get("area_level", 1),
 			"position": center + offset, "yaw": randf() * TAU,
 		})
 		members.append(enemy)
@@ -289,15 +337,177 @@ func _groups_distance(a: Dictionary, b: Dictionary) -> float:
 	return best
 
 
-## Monstros mortos ficam mortos (03-inimigos.md, "Sem respawn").
+## Monstros mortos ficam mortos (03-inimigos.md, "Sem respawn"); a campanha
+## guarda os grupos vencidos.
 func _on_enemy_died(enemy: Enemy) -> void:
+	_reward(enemy)
 	var group: Dictionary = _groups.get(enemy.group, {})
 	if group.is_empty():
 		return
 	group.members.erase(enemy)
 	if group.members.is_empty():
+		_campaign.dead_groups = _campaign.get("dead_groups", []) + [enemy.group]
+		SaveSystem.save_campaign(_campaign)
 		var done := cleared + 1
 		_broadcast(done, Result.VICTORY if done >= total_encounters else Result.NONE)
+
+
+# --- XP e loot (servidor) ------------------------------------------------------
+
+## XP dividido igualmente entre os jogadores presentes (07-rede.md, seção 7);
+## loot sorteado para cada um (loot individual).
+func _reward(enemy: Enemy) -> void:
+	var present: Array[Player] = []
+	for p: Player in get_tree().get_nodes_in_group(&"players"):
+		if p.connected and p.character and not p.is_queued_for_deletion():
+			present.append(p)
+	if present.is_empty():
+		return
+	var xp := roundi(enemy.xp_value() / present.size())
+	for p in present:
+		p.grant(xp, 0)
+		_drop_loot_for(p, enemy)
+
+
+func _drop_loot_for(player: Player, enemy: Enemy) -> void:
+	var table: Dictionary = GameData.loot[enemy.data.get("category", "common")]
+	var origin := enemy.global_position
+	var level: int = enemy.level
+	if _rng.randf() < table.gold.chance:
+		var amount := roundi(_rng.randi_range(table.gold.min, table.gold.max) + table.gold.per_level * level)
+		amount = roundi(amount * (1.0 + player.character.gold_find_bonus()))
+		_add_loot(player, origin, {}, maxi(amount, 1))
+	if _rng.randf() < table.item_chance:
+		var rarity := Items.roll_rarity(table.rarity_weights, _rng)
+		_add_loot(player, origin, Items.generate_equipment(level, player.character.data.class_id, rarity, _rng), 0)
+	if _rng.randf() < table.potion_chance:
+		var potion := "potion_health" if _rng.randf() < 0.6 else "potion_resource"
+		_add_loot(player, origin, Items.stack(Items.CONSUMABLE, potion), 0)
+	if _rng.randf() < table.valuable_chance:
+		var options: Array[String] = []
+		for id in GameData.valuables:
+			var maps: Array = GameData.valuables[id].maps
+			if maps.is_empty() or arena.get("map_id", "") in maps:
+				options.append(id)
+		_add_loot(player, origin, Items.stack(Items.VALUABLE, options[_rng.randi_range(0, options.size() - 1)]), 0)
+
+
+func _add_loot(player: Player, origin: Vector3, item: Dictionary, gold: int) -> void:
+	var id := _next_loot_id
+	_next_loot_id += 1
+	var angle := _rng.randf() * TAU
+	var position := origin + Vector3(cos(angle), 0, sin(angle)) * _rng.randf_range(0.3, LOOT_SCATTER)
+	_loot[id] = {"client": _client_key(player.peer_id), "peer": player.peer_id,
+		"position": position, "item": item, "gold": gold}
+	_send_loot(id)
+
+
+func _client_key(peer_id: int) -> String:
+	return "host" if peer_id == 1 else NetworkManager.client_id_of(peer_id)
+
+
+func _send_loot(id: int) -> void:
+	var entry: Dictionary = _loot[id]
+	if entry.peer == multiplayer.get_unique_id():
+		_show_loot(id, entry.position, entry.item, entry.gold)
+	elif entry.peer in multiplayer.get_peers():
+		_show_loot.rpc_id(entry.peer, id, entry.position, entry.item, entry.gold)
+
+
+## Quem voltou depois de cair continua vendo o loot que era dele.
+func _reassign_loot(client: String, peer_id: int) -> void:
+	for id in _loot:
+		if _loot[id].client == client:
+			_loot[id].peer = peer_id
+			_send_loot(id)
+
+
+## Coleta pedida pelo jogador (interagir: o mais perto; pegar tudo: os próximos).
+func request_pickup(player: Player, all: bool) -> void:
+	if not multiplayer.is_server() or not player.alive:
+		return
+	var rules: Dictionary = GameData.loot
+	var reach: float = rules.pickup_all_range if all else rules.pickup_range
+	var ids: Array[int] = []
+	var best_dist := INF
+	for id: int in _loot:
+		var entry: Dictionary = _loot[id]
+		if entry.peer != player.peer_id:
+			continue
+		var d: float = entry.position.distance_to(player.global_position)
+		if d > reach:
+			continue
+		if all:
+			ids.append(id)
+		elif d < best_dist:
+			best_dist = d
+			ids = [id]
+	_collect(player, ids)
+
+
+func _auto_pickup_gold() -> void:
+	for p: Player in get_tree().get_nodes_in_group(&"players"):
+		if not p.alive or not p.connected:
+			continue
+		var ids: Array[int] = []
+		for id: int in _loot:
+			var entry: Dictionary = _loot[id]
+			if entry.peer == p.peer_id and entry.gold > 0 \
+					and entry.position.distance_to(p.global_position) <= GOLD_AUTO_PICKUP:
+				ids.append(id)
+		if not ids.is_empty():
+			_collect(p, ids)
+
+
+func _collect(player: Player, ids: Array[int]) -> void:
+	if ids.is_empty():
+		return
+	var gold := 0
+	var items := []
+	for id in ids:
+		gold += int(_loot[id].gold)
+		if not _loot[id].item.is_empty():
+			items.append(_loot[id].item)
+	var leftover: Array = player.grant(0, gold, items)
+	for id in ids:
+		var entry: Dictionary = _loot[id]
+		if entry.item.is_empty() or entry.item not in leftover:
+			_loot.erase(id)
+			if entry.peer == multiplayer.get_unique_id():
+				_remove_loot(id)
+			elif entry.peer in multiplayer.get_peers():
+				_remove_loot.rpc_id(entry.peer, id)
+	if not leftover.is_empty():
+		_toast_to(player, "TOAST_BAG_FULL", {})
+
+
+@rpc("authority", "reliable")
+func _show_loot(id: int, at: Vector3, item: Dictionary, gold: int) -> void:
+	if _loot_nodes.has(id):
+		return
+	var drop := LootDrop.create(id, at, item, gold)
+	_loot_nodes[id] = drop
+	add_child(drop)
+
+
+@rpc("authority", "reliable")
+func _remove_loot(id: int) -> void:
+	var drop: Node = _loot_nodes.get(id)
+	if drop:
+		drop.queue_free()
+	_loot_nodes.erase(id)
+
+
+func _toast_to(player: Player, key: String, args: Dictionary) -> void:
+	if player.peer_id == multiplayer.get_unique_id():
+		_toast(key, args)
+	elif player.peer_id in multiplayer.get_peers():
+		_toast.rpc_id(player.peer_id, key, args)
+
+
+@rpc("authority", "reliable")
+func _toast(key: String, args: Dictionary) -> void:
+	hud.toast(tr(key).format(args))
 
 
 func _update_revives(delta: float) -> void:
@@ -369,12 +579,13 @@ func _return_to_checkpoint() -> void:
 				enemy.return_home()
 	_reset_players()
 	_broadcast(cleared, Result.NONE)
+	SaveSystem.save_campaign(_campaign)
 
 
 @rpc("any_peer", "reliable")
 func _request_restart() -> void:
 	if multiplayer.is_server() and result == Result.VICTORY:
-		_start_run()
+		_restart_area()
 
 
 ## Agenda `callback` só para a partida atual (reinícios cancelam o resto).
@@ -399,6 +610,13 @@ func _set_state(new_cleared: int, new_result: Result) -> void:
 
 
 # --- Sessão e dispositivos ------------------------------------------------------
+
+## O host guarda a campanha ao sair da área ("Salvar e sair", 11-saves.md).
+func _exit_tree() -> void:
+	if not _campaign.is_empty():
+		SaveSystem.save_campaign(_campaign)
+	SaveSystem.flush()
+
 
 func _on_session_ended(_reason_key: String) -> void:
 	get_tree().paused = false

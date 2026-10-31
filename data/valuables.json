@@ -1,0 +1,46 @@
+{
+  "_comment": "Valiosos (05-itens-e-loot.md, seção 5): só para vender; empilham até 20. Fase 3: os comuns e os do Esgoto.",
+  "old_coins": {
+    "name_key": "VALUABLE_OLD_COINS",
+    "value": 20,
+    "maps": []
+  },
+  "silver_goblet": {
+    "name_key": "VALUABLE_SILVER_GOBLET",
+    "value": 60,
+    "maps": []
+  },
+  "rough_gem": {
+    "name_key": "VALUABLE_ROUGH_GEM",
+    "value": 80,
+    "maps": []
+  },
+  "war_coins": {
+    "name_key": "VALUABLE_WAR_COINS",
+    "value": 40,
+    "maps": [
+      "map_sewers"
+    ]
+  },
+  "war_medal": {
+    "name_key": "VALUABLE_WAR_MEDAL",
+    "value": 120,
+    "maps": [
+      "map_sewers"
+    ]
+  },
+  "royal_seal_ring": {
+    "name_key": "VALUABLE_ROYAL_SEAL_RING",
+    "value": 300,
+    "maps": [
+      "map_sewers"
+    ]
+  },
+  "crown_jewel": {
+    "name_key": "VALUABLE_CROWN_JEWEL",
+    "value": 600,
+    "maps": [
+      "map_sewers"
+    ]
+  }
+}

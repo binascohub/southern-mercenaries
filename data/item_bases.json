@@ -1,0 +1,54 @@
+{
+  "_comment": "Itens base (05-itens-e-loot.md, seção 7). Fase 3: só o Mago (cajado e roupas de tecido); classes novas entram na Fase 5. Armadura base por peça de 13-balanceamento.md 2.3.",
+  "staff": {
+    "slot": "weapon",
+    "classes": [
+      "mage"
+    ],
+    "name_key": "ITEM_TYPE_STAFF",
+    "damage": 10,
+    "weapon_material": true
+  },
+  "hood": {
+    "slot": "head",
+    "classes": [
+      "mage",
+      "summoner"
+    ],
+    "name_key": "ITEM_TYPE_HOOD",
+    "armor": 5
+  },
+  "tunic": {
+    "slot": "body",
+    "classes": [
+      "mage",
+      "summoner"
+    ],
+    "name_key": "ITEM_TYPE_TUNIC",
+    "armor": 10
+  },
+  "gloves": {
+    "slot": "hands",
+    "classes": [],
+    "name_key": "ITEM_TYPE_GLOVES",
+    "armor": 4
+  },
+  "boots": {
+    "slot": "feet",
+    "classes": [],
+    "name_key": "ITEM_TYPE_BOOTS",
+    "armor": 4
+  },
+  "ring": {
+    "slot": "ring",
+    "classes": [],
+    "name_key": "ITEM_TYPE_RING",
+    "jewelry": true
+  },
+  "amulet": {
+    "slot": "amulet",
+    "classes": [],
+    "name_key": "ITEM_TYPE_AMULET",
+    "jewelry": true
+  }
+}

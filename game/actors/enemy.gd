@@ -30,6 +30,10 @@ var home := Vector3.ZERO
 var net_position := Vector3.ZERO
 ## Dano +10% por jogador extra (13-balanceamento.md, 2.5). Só no servidor.
 var damage_mult := 1.0
+## Multiplicador de vida no despertar (o XP total sobe junto, 13-balanceamento.md 2.5).
+var health_mult := 1.0
+## Nível da área: vida e dano × 1,12^(nível − 1) (13-balanceamento.md 2.4).
+var level := 1
 
 var data: Dictionary
 
@@ -52,8 +56,9 @@ static func create(spawn: Dictionary) -> Enemy:
 	enemy.net_position = spawn.position
 	enemy.home = spawn.position
 	enemy.group = spawn.get("group", "")
+	enemy.level = spawn.get("level", 1)
 	enemy.yaw = spawn.get("yaw", 0.0)
-	enemy.max_health = GameData.get_monster(enemy.monster_id).max_health
+	enemy.max_health = GameData.get_monster(enemy.monster_id).max_health * enemy.level_factor()
 	enemy.health = enemy.max_health
 	enemy._add_synchronizer()
 	return enemy
@@ -82,12 +87,23 @@ func _physics_process(delta: float) -> void:
 
 
 ## O grupo acordou: vida e dano escalam com os jogadores de agora.
-func wake(health_mult: float, damage: float) -> void:
+func wake(health_scale: float, damage: float) -> void:
 	if state != State.SLEEP:
 		return
-	max_health = data.max_health * health_mult
+	health_mult = health_scale
+	max_health = data.max_health * level_factor() * health_mult
 	health = max_health
 	damage_mult = damage
+
+
+func level_factor() -> float:
+	return pow(1.12, level - 1)
+
+
+## XP do monstro: 5 × nível para comuns (13-balanceamento.md, seção 4).
+func xp_value() -> float:
+	var category: String = data.get("category", "common")
+	return GameData.balance.xp_per_monster_level[category] * level * health_mult
 	state = State.CHASE
 
 
@@ -97,7 +113,8 @@ func return_home() -> void:
 	net_position = home
 	velocity = Vector3.ZERO
 	state = State.SLEEP
-	max_health = data.max_health
+	health_mult = 1.0
+	max_health = data.max_health * level_factor()
 	health = max_health
 
 
@@ -128,7 +145,7 @@ func _think(delta: float) -> void:
 			_timer -= delta
 			if _timer <= 0.0:
 				if dist <= data.attack_range + 0.4:
-					target.take_damage(data.damage * damage_mult)
+					target.take_damage(data.damage * level_factor() * damage_mult, level)
 				state = State.RECOVER
 				_timer = data.attack_cooldown
 		State.RECOVER:

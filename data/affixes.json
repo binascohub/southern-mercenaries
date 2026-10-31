@@ -1,0 +1,66 @@
+{
+  "_comment": "Afixos de equipamento (05-itens-e-loot.md, seção 7). Faixa por nível do item: valor = base + por_nível × nível, sorteado entre min e max. Números provisórios.",
+  "str": {
+    "name_key": "AFFIX_STR",
+    "min": 1,
+    "max": 3,
+    "per_level": 0.5,
+    "kind": "flat"
+  },
+  "dex": {
+    "name_key": "AFFIX_DEX",
+    "min": 1,
+    "max": 3,
+    "per_level": 0.5,
+    "kind": "flat"
+  },
+  "int": {
+    "name_key": "AFFIX_INT",
+    "min": 1,
+    "max": 3,
+    "per_level": 0.5,
+    "kind": "flat"
+  },
+  "vit": {
+    "name_key": "AFFIX_VIT",
+    "min": 1,
+    "max": 3,
+    "per_level": 0.5,
+    "kind": "flat"
+  },
+  "life": {
+    "name_key": "AFFIX_LIFE",
+    "min": 5,
+    "max": 12,
+    "per_level": 3,
+    "kind": "flat"
+  },
+  "resource": {
+    "name_key": "AFFIX_RESOURCE",
+    "min": 5,
+    "max": 10,
+    "per_level": 2,
+    "kind": "flat"
+  },
+  "crit": {
+    "name_key": "AFFIX_CRIT",
+    "min": 1,
+    "max": 3,
+    "per_level": 0.1,
+    "kind": "percent"
+  },
+  "move_speed": {
+    "name_key": "AFFIX_MOVE_SPEED",
+    "min": 2,
+    "max": 5,
+    "per_level": 0.1,
+    "kind": "percent"
+  },
+  "gold_find": {
+    "name_key": "AFFIX_GOLD_FIND",
+    "min": 5,
+    "max": 12,
+    "per_level": 0.5,
+    "kind": "percent"
+  }
+}

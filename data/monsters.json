@@ -9,7 +9,8 @@
     "attack_windup": 0.35,
     "attack_cooldown": 1.1,
     "aggro_range": 40.0,
-    "size": 0.75
+    "size": 0.75,
+    "category": "common"
   },
   "sewer_rat_big": {
     "_comment": "Variante maior e mais lenta, para testar padrões legíveis.",
@@ -21,6 +22,7 @@
     "attack_windup": 0.7,
     "attack_cooldown": 1.8,
     "aggro_range": 40.0,
-    "size": 1.2
+    "size": 1.2,
+    "category": "common"
   }
 }

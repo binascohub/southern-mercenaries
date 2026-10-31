@@ -1,8 +1,9 @@
 # Southern Mercenaries — GPL-3.0-or-later
 class_name Hud
 extends CanvasLayer
-## HUD: vida, recurso, esquiva, encontros vencidos, aliados e dicas de botões que acompanham
-## o dispositivo em uso. Todo texto vem de chaves de tradução.
+## HUD (09-interface.md, seção 3): vida, recurso, esquiva, poções, XP e nível,
+## ouro, encontros vencidos, aliados, avisos curtos e "salvando…", com dicas de
+## botões que acompanham o dispositivo em uso. Todo texto vem de chaves de tradução.
 
 ## Valores de Result da arena (NONE, VICTORY, DEFEAT).
 const RESULT_NONE := 0
@@ -26,6 +27,13 @@ var _progress := [0, 0]
 var _result := 0
 var _connecting := false
 var _local_alive := true
+var _xp_bar: ProgressBar
+var _xp_label: Label
+var _gold_label: Label
+var _potions: Label
+var _toasts: VBoxContainer
+var _saving: Label
+const TOAST_TIME := 3.0
 
 
 func _ready() -> void:
@@ -33,6 +41,14 @@ func _ready() -> void:
 	InputDevice.device_changed.connect(func(_pad: bool) -> void: _refresh_texts())
 	Controls.bindings_changed.connect(_refresh_texts)
 	Settings.changed.connect(_refresh_texts)
+	SaveSystem.saving.connect(func(active: bool) -> void:
+		if active:
+			_saving.visible = true
+			_saving.modulate.a = 1.0
+			var tween := create_tween()
+			tween.tween_interval(0.8)
+			tween.tween_property(_saving, "modulate:a", 0.0, 0.4)
+			tween.tween_callback(func() -> void: _saving.visible = false))
 	_refresh_texts()
 
 
@@ -43,6 +59,38 @@ func bind_player(player: Player) -> void:
 	_on_health(player.health, player.max_health)
 	_on_resource(player.resource, player.max_resource)
 	_resource_bar.tooltip_text = player.data.resource_key
+	player.character_changed.connect(_on_character)
+	if player.character:
+		_on_character(0)
+
+
+## Aviso curto no topo (subiu de nível, bolsa cheia…), some sozinho.
+func toast(text: String) -> void:
+	var label := _label(22)
+	label.text = text
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_toasts.add_child(label)
+	var tween := label.create_tween()
+	tween.tween_interval(TOAST_TIME)
+	tween.tween_property(label, "modulate:a", 0.0, 0.5)
+	tween.tween_callback(label.queue_free)
+
+
+func _on_character(levels: int) -> void:
+	if levels > 0:
+		toast(tr("TOAST_LEVEL_UP").format({"level": _player.level}))
+	_refresh_character()
+
+
+func _refresh_character() -> void:
+	if _player == null or _player.character == null:
+		return
+	var c := _player.character
+	var needed := CharacterData.xp_to_next(int(c.data.level))
+	_xp_bar.max_value = needed
+	_xp_bar.value = int(c.data.xp)
+	_xp_label.text = tr("HUD_LEVEL_XP").format({"level": c.data.level, "xp": c.data.xp, "next": needed})
+	_gold_label.text = tr("HUD_GOLD").format({"gold": c.data.gold})
 
 
 func set_progress(cleared: int, total: int) -> void:
@@ -102,6 +150,15 @@ func _process(_delta: float) -> void:
 	if _player.alive != _local_alive:
 		_local_alive = _player.alive
 		_refresh_texts()
+	if _player.character:
+		var c := _player.character
+		var cooldown := ""
+		if _player.potion_cooldown > 0.0:
+			cooldown = "  (%.0fs)" % ceilf(_player.potion_cooldown)
+		_potions.text = tr("HUD_POTIONS").format({
+			"health_key": InputDevice.prompt(&"potion_health"), "health": c.count_of("potion_health"),
+			"resource_key": InputDevice.prompt(&"potion_mana"), "resource": c.count_of("potion_resource"),
+		}) + cooldown
 
 
 func _on_health(current: float, maximum: float) -> void:
@@ -122,6 +179,8 @@ func _notification(what: int) -> void:
 
 
 func _refresh_texts() -> void:
+	_refresh_character()
+	_saving.text = tr("HUD_SAVING")
 	_progress_label.text = tr("HUD_ENCOUNTERS").format({"cleared": _progress[0], "total": _progress[1]})
 	var title := ""
 	var sub := ""
@@ -178,9 +237,52 @@ func _build() -> void:
 	_hosting.modulate = Color(1, 1, 1, 0.6)
 	info_box.add_child(_hosting)
 
+	_potions = _label(18)
+	bars.add_child(_potions)
+	_gold_label = _label(18)
+	_gold_label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.35))
+	bars.add_child(_gold_label)
+
+	# Faixa de XP na base da tela.
+	var xp_box := VBoxContainer.new()
+	xp_box.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
+	xp_box.offset_top = -30
+	xp_box.offset_left = 24
+	xp_box.offset_right = -24
+	xp_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(xp_box)
+	_xp_bar = ProgressBar.new()
+	_xp_bar.show_percentage = false
+	_xp_bar.custom_minimum_size = Vector2(0, 8)
+	var xp_fill := StyleBoxFlat.new()
+	xp_fill.bg_color = Color(0.85, 0.7, 0.25)
+	_xp_bar.add_theme_stylebox_override("fill", xp_fill)
+	var xp_bg := StyleBoxFlat.new()
+	xp_bg.bg_color = Color(0, 0, 0, 0.55)
+	_xp_bar.add_theme_stylebox_override("background", xp_bg)
+	xp_box.add_child(_xp_bar)
+	_xp_label = _label(14)
+	_xp_label.set_anchors_preset(Control.PRESET_BOTTOM_LEFT)
+	_xp_label.position = Vector2(24, -52)
+	root.add_child(_xp_label)
+
+	_toasts = VBoxContainer.new()
+	_toasts.set_anchors_preset(Control.PRESET_CENTER_TOP)
+	_toasts.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	_toasts.position.y = 90
+	_toasts.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(_toasts)
+
+	_saving = _label(16)
+	_saving.text = tr("HUD_SAVING")
+	_saving.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
+	_saving.position = Vector2(-140, -60)
+	_saving.visible = false
+	root.add_child(_saving)
+
 	_hints = _label(16)
 	_hints.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
-	_hints.offset_top = -40
+	_hints.offset_top = -64
 	_hints.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_hints.modulate = Color(1, 1, 1, 0.75)
 	root.add_child(_hints)

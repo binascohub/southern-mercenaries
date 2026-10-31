@@ -1,0 +1,184 @@
+# Southern Mercenaries — GPL-3.0-or-later
+extends Node
+## Testes do núcleo de RPG (Fase 3), com os autoloads carregados:
+##   godot --headless --path . res://tests/rpg_tests.tscn
+## Confere as fórmulas de 13-balanceamento.md, a bolsa, a validação do
+## personagem e os saves (escrita segura, backups e recuperação).
+
+const TEST_ROOT := "user://test_saves"
+
+var _failures := 0
+var _checks := 0
+
+
+func _ready() -> void:
+	SaveSystem.root = TEST_ROOT
+	_clean(TEST_ROOT)
+	_test_new_character()
+	_test_progression()
+	_test_item_generation()
+	_test_item_rules()
+	_test_inventory()
+	_test_validation()
+	_test_saves()
+	_test_names()
+	_clean(TEST_ROOT)
+	if _failures == 0:
+		print("OK: %d verificações de RPG passaram" % _checks)
+	else:
+		printerr("FALHOU: %d de %d verificações" % [_failures, _checks])
+	get_tree().quit(1 if _failures else 0)
+
+
+func _check(ok: bool, what: String) -> void:
+	_checks += 1
+	if not ok:
+		_failures += 1
+		printerr("  ✗ " + what)
+
+
+func _near(a: float, b: float, what: String) -> void:
+	_check(absf(a - b) < 0.01, "%s: esperado %s, veio %s" % [what, b, a])
+
+
+func _test_new_character() -> void:
+	var c := CharacterData.create("mage", "female", "Orana")
+	_check(c.validate().is_empty(), "personagem novo válido: %s" % [c.validate()])
+	_near(c.max_health(), 75, "vida do Mago no nível 1")
+	_near(c.max_resource(), 120, "mana do Mago no nível 1")
+	_near(c.power(), 25, "poder mágico: cajado de madeira 10 + INT 30 × 0,5")
+	_check(c.data.equipment.weapon.material == "wood", "começa com cajado de madeira")
+	_check(c.data.equipment.body == null, "começa só com roupa de baixo")
+	_check(c.count_of("potion_health") == 3 and c.count_of("potion_resource") == 2, "poções do kit")
+
+
+func _test_progression() -> void:
+	var c := CharacterData.create("mage", "male", "Oren")
+	_check(CharacterData.xp_to_next(1) == 700, "XP para o nível 2 = 700 × 1")
+	_check(c.add_xp(700) == 1 and int(c.data.level) == 2, "700 XP sobe para o nível 2")
+	_check(int(c.data.free_points) == 5 and int(c.data.skill_points) == 1, "+5 atributos e +1 habilidade por nível")
+	_near(c.max_health(), 105, "vida no nível 2 (75 + 30)")
+	_check(c.spend_point("int"), "gasta ponto em INT")
+	_near(c.max_resource(), 122, "+2 de mana por INT")
+	_near(c.power(), 25.5, "+0,5 de poder por INT")
+	_check(c.spend_point("vit"), "gasta ponto em VIT")
+	_near(c.max_health(), 110, "+5 de vida por VIT")
+	_check(not c.spend_point("luck"), "atributo inexistente é recusado")
+	c.add_xp(10_000_000)
+	_check(int(c.data.level) == 20 and int(c.data.xp) == 0, "nível máximo 20")
+	var total := 0
+	for n in range(1, 20):
+		total += CharacterData.xp_to_next(n)
+	_check(total == 133_000, "nível 20 = 133.000 XP no total")
+
+
+func _test_item_generation() -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 42
+	for level in [1, 2, 5, 10, 18]:
+		for i in 60:
+			var rarity := Items.roll_rarity({"common": 50, "magic": 35, "rare": 15}, rng)
+			var item := Items.generate_equipment(level, "mage", rarity, rng)
+			_check(Items.is_valid(item), "item gerado válido: %s" % item)
+			var range_: Array = GameData.rarities[rarity].affixes
+			_check(item.affixes.size() >= range_[0] and item.affixes.size() <= range_[1], "afixos da raridade %s" % rarity)
+			_check(Items.usable_by_class(item, "mage"), "item da classe do jogador")
+			if level > 2:
+				_check(GameData.materials[item.material].tier > 0, "pano/madeira não cai depois do nível 2")
+
+
+func _test_item_rules() -> void:
+	var iron_staff := Items.equipment("staff", "iron")
+	_near(Items.weapon_damage(iron_staff), 16, "cajado de ferro comum = 10 × 1,6")
+	var magic := Items.equipment("staff", "iron", "magic")
+	_near(Items.weapon_damage(magic), 17.6, "mágico +10% de dano")
+	var steel := Items.equipment("staff", "steel", "common", 6)
+	_check(Items.value(steel) == 87, "valor de aço comum nível 6 = 87 (13-balanceamento.md)")
+	_check(Items.required_level(Items.equipment("hood", "copper")) == 9, "cobre a partir do nível 9")
+	_near(Items.armor(Items.equipment("tunic", "iron"), 0.35), 5.6, "túnica de ferro do Mago")
+	var c := CharacterData.create("mage", "male", "Oren")
+	for base in ["hood", "tunic", "gloves", "boots"]:
+		c.data.equipment[GameData.item_bases[base].slot] = Items.equipment(base, "iron", "common", 4)
+	_near(c.armor(), 12.88, "conjunto de ferro do Mago")
+	_near(c.damage_reduction(4), 12.88 / (12.88 + 40 + 60), "redução de dano contra nível 4")
+
+
+func _test_inventory() -> void:
+	var c := CharacterData.create("mage", "male", "Oren")
+	_check(c.add_item(Items.stack(Items.CONSUMABLE, "potion_health", 30)), "poções empilham")
+	_check(c.count_of("potion_health") == 33, "33 poções de vida")
+	_check(c.take_one("potion_health") and c.count_of("potion_health") == 32, "usar tira uma")
+	var staff := Items.equipment("staff", "iron", "common", 1)
+	_check(c.add_item(staff), "cabe um cajado")
+	var index: int = c.data.inventory.find(staff)
+	_check(c.equip_from_bag(index), "equipa o cajado de ferro")
+	_check(c.data.equipment.weapon.material == "iron", "arma trocada")
+	_check(c.data.inventory[index].material == "wood", "o de madeira volta para a bolsa")
+	_near(c.power(), 31, "poder com cajado de ferro")
+	var gold_hood := Items.equipment("hood", "gold", "common", 17)
+	c.add_item(gold_hood)
+	_check(not c.equip_from_bag(c.data.inventory.find(gold_hood)), "nível insuficiente para ouro")
+	_check(c.unequip("weapon"), "desequipa")
+	while c.free_slots() > 0:
+		c.add_item(Items.equipment("ring", "iron"))
+	_check(not c.add_item(Items.equipment("ring", "iron")), "bolsa cheia recusa item")
+	_check(not c.unequip("head"), "nada para tirar da cabeça")
+
+
+func _test_validation() -> void:
+	var c := CharacterData.create("mage", "male", "Oren")
+	var cheat := c.to_dict()
+	cheat.attributes.int = 999
+	_check(CharacterData.from_dict(cheat) == null, "recusa atributos editados")
+	cheat = c.to_dict()
+	cheat.inventory[5] = {"kind": "equipment", "base": "excalibur", "material": "gold", "rarity": "legendary", "level": 20, "affixes": {}, "refine": 0}
+	_check(CharacterData.from_dict(cheat) == null, "recusa item inexistente")
+	cheat = c.to_dict()
+	cheat.level = 99
+	_check(CharacterData.from_dict(cheat) == null, "recusa nível acima do máximo")
+	_check(CharacterData.from_dict("lixo") == null, "recusa dado que não é personagem")
+	_check(CharacterData.from_dict(c.to_dict()) != null, "aceita personagem honesto")
+
+
+func _test_saves() -> void:
+	var c := CharacterData.create("mage", "male", "Oren")
+	c.add_xp(1500)
+	_check(SaveSystem.save_character(c), "grava personagem")
+	var back := SaveSystem.load_character(c.data.id)
+	_check(back != null and back.data.level == c.data.level and back.data.name == "Oren", "lê o mesmo personagem")
+	_near(back.power(), c.power(), "poder igual depois de ler")
+	for i in 5:
+		c.data.gold = i
+		SaveSystem.save_character(c)
+	var path := SaveSystem.character_path(c.data.id)
+	_check(FileAccess.file_exists(path + ".bak3") and not FileAccess.file_exists(path + ".bak4"), "mantém 3 backups")
+	var file := FileAccess.open(path, FileAccess.WRITE)
+	file.store_string("{ corrompido")
+	file.close()
+	var restored := SaveSystem.load_character(c.data.id)
+	_check(restored != null and int(restored.data.gold) == 3 and SaveSystem.restored_from_backup,
+		"save corrompido volta do backup mais recente")
+	_check(SaveSystem.list_characters().size() == 1, "lista de personagens")
+	var campaign := SaveSystem.new_campaign()
+	campaign.dead_groups = ["corridor_patrol"]
+	SaveSystem.save_campaign(campaign)
+	_check(SaveSystem.load_campaign(campaign.id).dead_groups == ["corridor_patrol"], "campanha guarda grupos mortos")
+
+
+func _test_names() -> void:
+	var item := Items.equipment("staff", "wood")
+	var expected := {"en": "Wooden Staff", "es": "Bastón de madera", "pt_BR": "Cajado de Madeira"}
+	for lang in expected:
+		TranslationServer.set_locale(lang)
+		_check(Items.display_name(item) == expected[lang], "nome em %s: %s" % [lang, Items.display_name(item)])
+	TranslationServer.set_locale(Settings.language)
+
+
+func _clean(path: String) -> void:
+	if not DirAccess.dir_exists_absolute(path):
+		return
+	for file in DirAccess.get_files_at(path):
+		DirAccess.remove_absolute(path.path_join(file))
+	for dir in DirAccess.get_directories_at(path):
+		_clean(path.path_join(dir))
+		DirAccess.remove_absolute(path.path_join(dir))

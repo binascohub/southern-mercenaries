@@ -1,0 +1,21 @@
+{
+  "_comment": "Consumíveis (13-balanceamento.md, 5.3). As poções de vida e recurso dividem a mesma recarga.",
+  "potion_health": {
+    "name_key": "ITEM_POTION_HEALTH",
+    "stack": 20,
+    "restore": "health",
+    "fraction": 0.35,
+    "cooldown": 15.0,
+    "price_base": 12,
+    "price_per_level": 6
+  },
+  "potion_resource": {
+    "name_key": "ITEM_POTION_RESOURCE",
+    "stack": 20,
+    "restore": "resource",
+    "fraction": 0.4,
+    "cooldown": 15.0,
+    "price_base": 10,
+    "price_per_level": 5
+  }
+}

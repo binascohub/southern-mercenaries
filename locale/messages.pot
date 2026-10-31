@@ -307,3 +307,252 @@ msgstr ""
 msgid "HUD_ENCOUNTERS"
 msgstr ""
 
+msgid "ITEM_NAME_PATTERN"
+msgstr ""
+
+msgid "ITEM_TYPE_STAFF"
+msgstr ""
+
+msgid "ITEM_TYPE_HOOD"
+msgstr ""
+
+msgid "ITEM_TYPE_TUNIC"
+msgstr ""
+
+msgid "ITEM_TYPE_GLOVES"
+msgstr ""
+
+msgid "ITEM_TYPE_BOOTS"
+msgstr ""
+
+msgid "ITEM_TYPE_RING"
+msgstr ""
+
+msgid "ITEM_TYPE_AMULET"
+msgstr ""
+
+msgid "MATERIAL_CLOTH"
+msgstr ""
+
+msgid "MATERIAL_WOOD"
+msgstr ""
+
+msgid "MATERIAL_IRON"
+msgstr ""
+
+msgid "MATERIAL_STEEL"
+msgstr ""
+
+msgid "MATERIAL_COPPER"
+msgstr ""
+
+msgid "MATERIAL_SILVER"
+msgstr ""
+
+msgid "MATERIAL_GOLD"
+msgstr ""
+
+msgid "RARITY_COMMON"
+msgstr ""
+
+msgid "RARITY_MAGIC"
+msgstr ""
+
+msgid "RARITY_RARE"
+msgstr ""
+
+msgid "RARITY_UNIQUE"
+msgstr ""
+
+msgid "RARITY_LEGENDARY"
+msgstr ""
+
+msgid "AFFIX_STR"
+msgstr ""
+
+msgid "AFFIX_DEX"
+msgstr ""
+
+msgid "AFFIX_INT"
+msgstr ""
+
+msgid "AFFIX_VIT"
+msgstr ""
+
+msgid "AFFIX_LIFE"
+msgstr ""
+
+msgid "AFFIX_RESOURCE"
+msgstr ""
+
+msgid "AFFIX_CRIT"
+msgstr ""
+
+msgid "AFFIX_MOVE_SPEED"
+msgstr ""
+
+msgid "AFFIX_GOLD_FIND"
+msgstr ""
+
+msgid "ITEM_POTION_HEALTH"
+msgstr ""
+
+msgid "ITEM_POTION_RESOURCE"
+msgstr ""
+
+msgid "VALUABLE_OLD_COINS"
+msgstr ""
+
+msgid "VALUABLE_SILVER_GOBLET"
+msgstr ""
+
+msgid "VALUABLE_ROUGH_GEM"
+msgstr ""
+
+msgid "VALUABLE_WAR_COINS"
+msgstr ""
+
+msgid "VALUABLE_WAR_MEDAL"
+msgstr ""
+
+msgid "VALUABLE_ROYAL_SEAL_RING"
+msgstr ""
+
+msgid "VALUABLE_CROWN_JEWEL"
+msgstr ""
+
+msgid "ITEM_STAT_DAMAGE"
+msgstr ""
+
+msgid "ITEM_STAT_ARMOR"
+msgstr ""
+
+msgid "ITEM_REQUIRED_LEVEL"
+msgstr ""
+
+msgid "ITEM_RESTORES"
+msgstr ""
+
+msgid "ITEM_VALUE"
+msgstr ""
+
+msgid "LOOT_GOLD"
+msgstr ""
+
+msgid "TOAST_LEVEL_UP"
+msgstr ""
+
+msgid "TOAST_BAG_FULL"
+msgstr ""
+
+msgid "HUD_LEVEL_XP"
+msgstr ""
+
+msgid "HUD_GOLD"
+msgstr ""
+
+msgid "HUD_POTIONS"
+msgstr ""
+
+msgid "HUD_SAVING"
+msgstr ""
+
+msgid "INV_TITLE"
+msgstr ""
+
+msgid "INV_LEVEL"
+msgstr ""
+
+msgid "INV_HEALTH"
+msgstr ""
+
+msgid "INV_RESOURCE"
+msgstr ""
+
+msgid "INV_POWER"
+msgstr ""
+
+msgid "INV_ARMOR"
+msgstr ""
+
+msgid "INV_FREE_POINTS"
+msgstr ""
+
+msgid "INV_HINT"
+msgstr ""
+
+msgid "INV_CANNOT_EQUIP"
+msgstr ""
+
+msgid "INV_EQUIPPED_NOW"
+msgstr ""
+
+msgid "ATTR_STR"
+msgstr ""
+
+msgid "ATTR_DEX"
+msgstr ""
+
+msgid "ATTR_INT"
+msgstr ""
+
+msgid "ATTR_VIT"
+msgstr ""
+
+msgid "SLOT_WEAPON"
+msgstr ""
+
+msgid "SLOT_HEAD"
+msgstr ""
+
+msgid "SLOT_BODY"
+msgstr ""
+
+msgid "SLOT_HANDS"
+msgstr ""
+
+msgid "SLOT_FEET"
+msgstr ""
+
+msgid "SLOT_RING_1"
+msgstr ""
+
+msgid "SLOT_RING_2"
+msgstr ""
+
+msgid "SLOT_AMULET"
+msgstr ""
+
+msgid "NET_CHARACTER_INVALID"
+msgstr ""
+
+msgid "MENU_CONTINUE"
+msgstr ""
+
+msgid "MENU_NEW_CAMPAIGN"
+msgstr ""
+
+msgid "MENU_CHARACTERS"
+msgstr ""
+
+msgid "CHAR_TITLE"
+msgstr ""
+
+msgid "CHAR_NEW"
+msgstr ""
+
+msgid "CHAR_CREATE"
+msgstr ""
+
+msgid "CHAR_SEX_MALE"
+msgstr ""
+
+msgid "CHAR_SEX_FEMALE"
+msgstr ""
+
+msgid "CHAR_ENTRY"
+msgstr ""
+
+msgid "CHAR_NONE"
+msgstr ""
+

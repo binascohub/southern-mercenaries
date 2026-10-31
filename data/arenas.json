@@ -140,6 +140,8 @@
           }
         ]
       }
-    ]
+    ],
+    "area_level": 1,
+    "map_id": "map_sewers"
   }
 }

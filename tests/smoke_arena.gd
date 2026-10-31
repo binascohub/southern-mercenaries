@@ -16,6 +16,10 @@ extends Node
 ##
 ## No co-op o host só começa a contar quando todos entraram, e o teste do
 ## cliente passa se ele viu o próprio jogador, os monstros e a vitória.
+##
+## Fase 3: depois da vitória o bot recolhe o loot dele e equipa um item achado;
+## passa se subiu de nível, ganhou ouro e itens e se a ficha gravada no disco
+## (pasta de testes) tem o mesmo nível. O personagem começa perto do nível 2.
 
 const MAX_FRAMES := 60 * 120
 
@@ -33,10 +37,23 @@ var _resumed := 0
 var _stage := 0
 var _ally: Player
 var _stage_frame := 0
+# Fase 3: coleta de loot depois da vitória.
+var _collecting := false
+var _collect_frame := 0
+var _equipped_item := false
 
 
 func _ready() -> void:
 	var args := _args()
+	var role_name: String = args[0] if args.size() > 0 else "solo"
+	SaveSystem.root = "user://test_saves".path_join(role_name)
+	_clean(SaveSystem.root)
+	var hero := CharacterData.create("mage", "male", "Bot")
+	hero.data.xp = 680  # quase no nível 2, para o teste ver a subida
+	Session.character = hero
+	Session.campaign = SaveSystem.new_campaign()
+	# Todo monstro deixa um item, para o teste sempre ter o que recolher.
+	GameData.loot.common.item_chance = 1.0
 	if args.size() > 0 and args[0] == "host":
 		_role = "host"
 		_expected_players = int(args[1]) if args.size() > 1 else 2
@@ -103,7 +120,7 @@ func _physics_process(_delta: float) -> void:
 				return
 	var player: Player = _arena.local_player
 	for a in [&"aim_left", &"aim_right", &"aim_up", &"aim_down", &"attack",
-			&"move_left", &"move_right", &"move_up", &"move_down"]:
+			&"move_left", &"move_right", &"move_up", &"move_down", &"pickup_all"]:
 		Input.action_release(a)
 	if player == null:
 		return
@@ -124,10 +141,58 @@ func _physics_process(_delta: float) -> void:
 				move = Vector2(-signf(player.global_position.x), signf(offset.y) * 0.4).normalized()
 			_axis(&"move_left", &"move_right", move.x)
 			_axis(&"move_up", &"move_down", move.y)
-	if _arena.result == _arena.Result.VICTORY:
-		var ok := _max_players_seen >= _expected_players and _max_enemies_seen > 0 \
-			and (_resumed > 0 or not _expect_resume)
-		_report(ok, "vitória com %d jogador(es), %d herói(s) retomado(s)" % [_max_players_seen, _resumed])
+	if _arena.result == _arena.Result.VICTORY and not _collecting:
+		_collecting = true
+		_collect_frame = _frame
+	if _collecting:
+		_collect_loot(player)
+
+
+## Anda até o loot dele, recolhe tudo e equipa o primeiro item que puder.
+func _collect_loot(player: Player) -> void:
+	var drops := get_tree().get_nodes_in_group(&"loot")
+	var c := player.character
+	if not drops.is_empty() and _frame - _collect_frame < 60 * 40:
+		var nearest: Node3D = drops[0]
+		for d: Node3D in drops:
+			if d.global_position.distance_to(player.global_position) < nearest.global_position.distance_to(player.global_position):
+				nearest = d
+		var offset := Vector2(nearest.global_position.x - player.global_position.x,
+			nearest.global_position.z - player.global_position.z)
+		if offset.length() > 1.0:
+			var move := offset.normalized()
+			if absf(offset.y) > 6.0 and absf(player.global_position.x) > 1.5:
+				move = Vector2(-signf(player.global_position.x), signf(offset.y) * 0.4).normalized()
+			_axis(&"move_left", &"move_right", move.x)
+			_axis(&"move_up", &"move_down", move.y)
+		if _frame % 20 == 0:
+			Input.action_press(&"pickup_all")
+		else:
+			Input.action_release(&"pickup_all")
+		return
+	if not _equipped_item:
+		_equipped_item = true
+		for i in c.data.inventory.size():
+			var item: Variant = c.data.inventory[i]
+			if item != null and c.can_equip(item):
+				player.request_use(i)
+				_stage_frame = _frame
+				return
+	if _frame - _stage_frame < 60:
+		return  # espera o servidor confirmar o equipamento
+	SaveSystem.flush()
+	var saved := SaveSystem.load_character(c.data.id)
+	var items := 0
+	for item in c.data.inventory:
+		if item != null and item.kind == "equipment":
+			items += 1
+	var gear := c.equipped().size()
+	var ok: bool = _max_players_seen >= _expected_players and _max_enemies_seen > 0 \
+		and (_resumed > 0 or not _expect_resume) \
+		and int(c.data.level) >= 2 and int(c.data.gold) > 0 and items + gear > 1 and gear >= 2 \
+		and saved != null and saved.data.level == c.data.level and saved.data.gold == c.data.gold
+	_report(ok, "vitória com %d jogador(es), %d retomado(s); nível %d, ouro %d, %d itens na bolsa, %d equipados, save no disco: %s" % [
+		_max_players_seen, _resumed, c.data.level, c.data.gold, items, gear, saved != null])
 
 
 func _revive_test() -> void:
@@ -166,6 +231,16 @@ func _revive_test() -> void:
 				_report(ok, "derrota voltou ao checkpoint (todos de pé no checkpoint: %s)" % ok)
 			elif _frame > MAX_FRAMES:
 				_report(false, "não voltou ao checkpoint")
+
+
+func _clean(path: String) -> void:
+	if not DirAccess.dir_exists_absolute(path):
+		return
+	for file in DirAccess.get_files_at(path):
+		DirAccess.remove_absolute(path.path_join(file))
+	for dir in DirAccess.get_directories_at(path):
+		_clean(path.path_join(dir))
+		DirAccess.remove_absolute(path.path_join(dir))
 
 
 func _next_stage() -> void:

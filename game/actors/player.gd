@@ -7,6 +7,10 @@ extends CharacterBody3D
 ## Rede: o nó se chama com o ID de rede do dono. O PC dono lê a entrada e a
 ## envia ao servidor; só o servidor simula, aplica dano e decide queda/revive.
 ## Posição e estado chegam aos outros PCs pelo MultiplayerSynchronizer.
+##
+## Ficha (Fase 3): o servidor guarda a cópia oficial do personagem
+## (CharacterData) e aplica XP, loot, ouro, poções e equipamento; cada mudança
+## volta ao PC do dono, que grava no próprio disco (07-rede.md, seção 8).
 
 signal health_changed(current: float, maximum: float)
 signal resource_changed(current: float, maximum: float)
@@ -14,6 +18,8 @@ signal resource_changed(current: float, maximum: float)
 signal downed
 ## Levou dano (só no servidor); interrompe uma reanimação em andamento.
 signal hurt
+## A ficha deste PC mudou (só no PC dono). `levels` = níveis ganhos agora.
+signal character_changed(levels: int)
 
 const AIM_ASSIST_ANGLE := deg_to_rad(15.0)
 const PROJECTILE_HEIGHT := 1.0
@@ -41,14 +47,25 @@ var evade_cooldown := 0.0
 var connected := true
 ## Posição no servidor; os clientes mostram com interpolação.
 var net_position := Vector3.ZERO
+## Nome e nível do herói e material de cada peça visível (para os outros verem).
+var hero_name := ""
+var level := 1
+var equip_visual := {}
+var potion_cooldown := 0.0
+var armor_value := 0.0
 
 var data: Dictionary
 var move_speed := 5.0
 var power := 0.0
 
+## Ficha: no servidor é a oficial; no PC dono é a cópia que vai para o disco.
+var character: CharacterData
+
 # Só no servidor.
 var _input := PlayerInput.new()
 var _seen := PlayerInput.new()
+## Contadores já tratados de poções e coleta (separado de _seen, que zera ao cair).
+var _seen_extra := PlayerInput.new()
 var _attack_cooldown := 0.0
 var _evade_time := 0.0
 var _evade_dir := Vector2.ZERO
@@ -67,6 +84,10 @@ var _body_material: StandardMaterial3D
 var _crystal_material: StandardMaterial3D
 var _revive_bar: MeshInstance3D
 var _ring_material: StandardMaterial3D
+var _staff_material: StandardMaterial3D
+## Peças equipadas no corpo (placeholder até os modelos modulares).
+var _gear := {}
+var _shown_visual := {}
 var _flash := 0.0
 var _shown_health := -1.0
 var _shown_resource := -1.0
@@ -81,6 +102,9 @@ static func create(spawn: Dictionary) -> Player:
 	player.class_id = spawn.class_id
 	player.position = spawn.position
 	player.net_position = spawn.position
+	player.hero_name = spawn.get("name", "")
+	player.level = spawn.get("level", 1)
+	player.equip_visual = spawn.get("visual", {})
 	player._add_synchronizer()
 	return player
 
@@ -102,14 +126,158 @@ func is_local() -> bool:
 
 func _load_class() -> void:
 	data = GameData.get_class_data(class_id)
-	var attrs: Dictionary = data.attributes
 	max_health = data.max_health
 	max_resource = data.max_resource
 	health = max_health
 	resource = max_resource
 	move_speed = GameData.balance.base_move_speed * data.move_speed_pct / 100.0
-	# Poder da classe = dano da arma + atributo × 0,5 (02-personagens.md, seção 4).
-	power = data.weapon_damage + attrs[data.power_attribute] * GameData.balance.power_attribute_factor
+
+
+## Servidor: assume a ficha do personagem e calcula vida, recurso, poder etc.
+func set_character(c: CharacterData) -> void:
+	character = c
+	_apply_character(true)
+	_push_character(0)
+
+
+## Recalcula as estatísticas pela ficha (13-balanceamento.md). Ao subir de
+## nível ou trocar equipamento, a vida e o recurso acompanham o novo máximo.
+func _apply_character(fill := false) -> void:
+	var old_max_health := max_health
+	var old_max_resource := max_resource
+	max_health = character.max_health()
+	max_resource = character.max_resource()
+	power = character.power()
+	armor_value = character.armor()
+	move_speed = GameData.balance.base_move_speed * data.move_speed_pct / 100.0 \
+		* (1.0 + character.move_speed_bonus())
+	if fill:
+		health = max_health
+		resource = max_resource
+	else:
+		health = clampf(health + maxf(max_health - old_max_health, 0.0), 0.0, max_health) if alive else 0.0
+		resource = clampf(resource + maxf(max_resource - old_max_resource, 0.0), 0.0, max_resource)
+	hero_name = character.data.name
+	level = int(character.data.level)
+	equip_visual = character.equipment_visual()
+
+
+## Servidor: manda a ficha atual para o dono gravar.
+func _push_character(levels: int) -> void:
+	if peer_id == multiplayer.get_unique_id():
+		_receive_character(character.data, levels)
+	elif peer_id in multiplayer.get_peers() and connected:
+		_receive_character.rpc_id(peer_id, character.data, levels)
+
+
+@rpc("authority", "reliable")
+func _receive_character(d: Dictionary, levels: int) -> void:
+	var c := CharacterData.new()
+	c.data = d.duplicate(true)
+	character = c
+	if is_local():
+		Session.character = c
+		SaveSystem.request_character_save(c)
+	character_changed.emit(levels)
+
+
+## Servidor: muda a ficha e propaga (XP, ouro, loot…). Retorna níveis ganhos.
+func grant(xp: int, gold: int, items: Array = []) -> Array:
+	var leftover := []
+	var levels := character.add_xp(xp) if xp > 0 else 0
+	character.data.gold = int(character.data.gold) + maxi(gold, 0)
+	for item: Dictionary in items:
+		if not character.add_item(item):
+			leftover.append(item)
+	_apply_character()
+	_push_character(levels)
+	return leftover
+
+
+# --- Pedidos do inventário (validados no servidor) -------------------------------
+
+func request_spend_point(attr: String) -> void:
+	_rpc_or_local(&"_spend_point", [attr])
+
+
+func request_equip(index: int) -> void:
+	_rpc_or_local(&"_equip", [index])
+
+
+func request_unequip(slot_name: String) -> void:
+	_rpc_or_local(&"_unequip", [slot_name])
+
+
+func request_use(index: int) -> void:
+	_rpc_or_local(&"_use", [index])
+
+
+func _rpc_or_local(method: StringName, args: Array) -> void:
+	if multiplayer.is_server():
+		callv(method, args)
+	else:
+		rpc_id.callv([1, method] + args)
+
+
+func _from_owner() -> bool:
+	if not multiplayer.is_server() or character == null:
+		return false
+	var sender := multiplayer.get_remote_sender_id()
+	return sender == 0 or sender == peer_id
+
+
+@rpc("any_peer", "reliable")
+func _spend_point(attr: String) -> void:
+	if _from_owner() and character.spend_point(attr):
+		_apply_character()
+		_push_character(0)
+
+
+@rpc("any_peer", "reliable")
+func _equip(index: int) -> void:
+	if _from_owner() and character.equip_from_bag(index):
+		_apply_character()
+		_push_character(0)
+
+
+@rpc("any_peer", "reliable")
+func _unequip(slot_name: String) -> void:
+	if _from_owner() and character.unequip(slot_name):
+		_apply_character()
+		_push_character(0)
+
+
+## Usar um item da bolsa: equipamento equipa; poção bebe.
+@rpc("any_peer", "reliable")
+func _use(index: int) -> void:
+	if not _from_owner() or index < 0 or index >= character.data.inventory.size():
+		return
+	var item: Variant = character.data.inventory[index]
+	if item == null:
+		return
+	if item.kind == Items.EQUIPMENT:
+		_equip(index)
+	elif item.kind == Items.CONSUMABLE:
+		_drink(item.id)
+
+
+## Poções de vida e de recurso dividem uma recarga (13-balanceamento.md 5.3).
+func _drink(id: String) -> void:
+	if not alive or potion_cooldown > 0.0 or character == null or not GameData.consumables.has(id):
+		return
+	var def: Dictionary = GameData.consumables[id]
+	if def.restore == "health" and health >= max_health:
+		return
+	if def.restore == "resource" and resource >= max_resource:
+		return
+	if not character.take_one(id):
+		return
+	if def.restore == "health":
+		health = minf(health + max_health * def.fraction, max_health)
+	else:
+		resource = minf(resource + max_resource * def.fraction, max_resource)
+	potion_cooldown = def.cooldown
+	_push_character(0)
 
 
 func _physics_process(delta: float) -> void:
@@ -167,12 +335,24 @@ func _server_step(delta: float) -> void:
 	var evade_pressed := input.evade_presses != _seen.evade_presses
 	_seen = input
 	if not alive:
+		_seen_extra = input
 		velocity = Vector3.ZERO
 		return
 
 	_attack_cooldown = maxf(_attack_cooldown - delta, 0.0)
 	evade_cooldown = maxf(evade_cooldown - delta, 0.0)
-	resource = minf(resource + data.resource_regen * delta, max_resource)
+	potion_cooldown = maxf(potion_cooldown - delta, 0.0)
+	var regen: float = character.resource_regen() if character else data.resource_regen
+	resource = minf(resource + regen * delta, max_resource)
+	if input.potion_health_presses != _seen_extra.potion_health_presses:
+		_drink("potion_health")
+	if input.potion_resource_presses != _seen_extra.potion_resource_presses:
+		_drink("potion_resource")
+	if input.interact_presses != _seen_extra.interact_presses:
+		get_tree().call_group(&"arena", &"request_pickup", self, false)
+	if input.pickup_all_presses != _seen_extra.pickup_all_presses:
+		get_tree().call_group(&"arena", &"request_pickup", self, true)
+	_seen_extra = input
 
 	if _evade_time > 0.0:
 		_evade_time -= delta
@@ -220,6 +400,8 @@ func set_disconnected() -> void:
 
 ## Copia o estado de um herói que esperava o dono voltar.
 func take_over(old: Player) -> void:
+	if old.character:
+		set_character(old.character)
 	health = old.health
 	resource = old.resource
 	alive = old.alive
@@ -242,9 +424,12 @@ func is_invulnerable() -> bool:
 	return _evade_time > 0.0 or not connected
 
 
-func take_damage(amount: float) -> void:
+## Dano de um monstro; a armadura reduz conforme o nível dele (13-balanceamento.md 2.3).
+func take_damage(amount: float, monster_level := 1) -> void:
 	if not multiplayer.is_server() or not alive or is_invulnerable():
 		return
+	if character:
+		amount *= 1.0 - character.damage_reduction(monster_level)
 	health = maxf(health - amount, 0.0)
 	hurt.emit()
 	if amount >= max_health * GameData.balance.heavy_hit_fraction:
@@ -318,7 +503,8 @@ func _assisted_aim(aim: Vector2, attack_range: float) -> Vector2:
 func _add_synchronizer() -> void:
 	var config := SceneReplicationConfig.new()
 	var always := [":net_position", ":facing", ":charge_time", ":revive_progress", ":evade_cooldown"]
-	var on_change := [":health", ":max_health", ":resource", ":max_resource", ":alive", ":connected"]
+	var on_change := [":health", ":max_health", ":resource", ":max_resource", ":alive", ":connected",
+		":hero_name", ":level", ":equip_visual", ":potion_cooldown", ":armor_value"]
 	for prop in always + on_change:
 		var path := NodePath("." + prop)
 		config.add_property(path)
@@ -364,7 +550,8 @@ func _build_visual() -> void:
 	staff_mesh.bottom_radius = 0.05
 	staff_mesh.height = 1.7
 	staff.mesh = staff_mesh
-	staff.material_override = _material(Color(0.35, 0.22, 0.12))
+	_staff_material = _material(Color(0.35, 0.22, 0.12))
+	staff.material_override = _staff_material
 	staff.position = Vector3(0.45, 0.9, 0.15)
 	_visual.add_child(staff)
 
@@ -385,6 +572,8 @@ func _build_visual() -> void:
 	notebook.material_override = _material(Color(0.4, 0.28, 0.18))
 	notebook.position = Vector3(-0.32, 0.95, 0.12)
 	_visual.add_child(notebook)
+
+	_build_gear()
 
 	# Anel no chão com a cor do jogador.
 	var ring := MeshInstance3D.new()
@@ -431,6 +620,8 @@ func _tick_visual(delta: float) -> void:
 	if not is_equal_approx(resource, _shown_resource):
 		_shown_resource = resource
 		resource_changed.emit(resource, max_resource)
+	if equip_visual != _shown_visual:
+		_update_gear()
 	_flash = maxf(_flash - delta, 0.0)
 	_body_material.albedo_color = Color(1, 0.35, 0.35) if _flash > 0.0 else BODY_COLOR
 	# O cristal brilha mais quando o ataque forte está carregado.
@@ -439,6 +630,55 @@ func _tick_visual(delta: float) -> void:
 	_ring_material.albedo_color = SLOT_COLORS[slot] if connected else Color(0.4, 0.4, 0.4)
 	_revive_bar.visible = not alive and revive_progress > 0.0
 	_revive_bar.scale.x = maxf(revive_progress, 0.01)
+
+
+## Cada peça aparece no corpo na cor do material (05-itens-e-loot.md: tudo que
+## é equipado aparece no herói); slot vazio mostra a roupa de baixo.
+func _build_gear() -> void:
+	var hat := CylinderMesh.new()
+	hat.top_radius = 0.02
+	hat.bottom_radius = 0.34
+	hat.height = 0.45
+	var robe := CylinderMesh.new()
+	robe.top_radius = 0.33
+	robe.bottom_radius = 0.45
+	robe.height = 1.1
+	var glove := SphereMesh.new()
+	glove.radius = 0.11
+	glove.height = 0.22
+	var boot := BoxMesh.new()
+	boot.size = Vector3(0.16, 0.14, 0.28)
+	var parts := {
+		"head": [[hat, Vector3(0, 1.82, 0)]],
+		"body": [[robe, Vector3(0, 0.6, 0)]],
+		"hands": [[glove, Vector3(0.36, 0.95, 0.12)], [glove, Vector3(-0.36, 0.95, 0.12)]],
+		"feet": [[boot, Vector3(0.13, 0.07, 0.06)], [boot, Vector3(-0.13, 0.07, 0.06)]],
+	}
+	for slot_name in parts:
+		var material := StandardMaterial3D.new()
+		var nodes: Array[MeshInstance3D] = []
+		for part in parts[slot_name]:
+			var mesh := MeshInstance3D.new()
+			mesh.mesh = part[0]
+			mesh.position = part[1]
+			mesh.material_override = material
+			mesh.visible = false
+			_visual.add_child(mesh)
+			nodes.append(mesh)
+		_gear[slot_name] = {"material": material, "nodes": nodes}
+
+
+func _update_gear() -> void:
+	_shown_visual = equip_visual.duplicate()
+	for slot_name in _gear:
+		var material_id: String = equip_visual.get(slot_name, "")
+		var shown := material_id != "" and GameData.materials.has(material_id)
+		for node: MeshInstance3D in _gear[slot_name].nodes:
+			node.visible = shown
+		if shown:
+			_gear[slot_name].material.albedo_color = Color(GameData.materials[material_id].color)
+	var weapon: String = equip_visual.get("weapon", "wood")
+	_staff_material.albedo_color = Color(GameData.materials.get(weapon, GameData.materials.wood).color)
 
 
 static func _material(color: Color, emission := 0.0) -> StandardMaterial3D:

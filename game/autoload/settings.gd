@@ -16,6 +16,8 @@ var vibration := true
 var aim_assist := true
 var invert_aim_y := false
 var deadzone := 0.2
+## Último personagem escolhido no menu (ID do save).
+var last_character := ""
 
 
 func _ready() -> void:
@@ -45,6 +47,7 @@ func save() -> void:
 	cfg.set_value("controls", "aim_assist", aim_assist)
 	cfg.set_value("controls", "invert_aim_y", invert_aim_y)
 	cfg.set_value("controls", "deadzone", deadzone)
+	cfg.set_value("general", "last_character", last_character)
 	cfg.save(PATH)
 	changed.emit()
 
@@ -62,6 +65,7 @@ func _load() -> void:
 	aim_assist = cfg.get_value("controls", "aim_assist", true)
 	invert_aim_y = cfg.get_value("controls", "invert_aim_y", false)
 	deadzone = clampf(cfg.get_value("controls", "deadzone", 0.2), 0.05, 0.6)
+	last_character = cfg.get_value("general", "last_character", "")
 
 
 static func system_language() -> String:

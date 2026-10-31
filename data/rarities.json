@@ -1,0 +1,53 @@
+{
+  "_comment": "Raridades (05-itens-e-loot.md, seção 3); bônus de dano e fator de valor de 13-balanceamento.md (2.1 e 5.2).",
+  "common": {
+    "name_key": "RARITY_COMMON",
+    "color": "#e8e8e8",
+    "affixes": [
+      0,
+      0
+    ],
+    "damage_bonus": 0.0,
+    "value_factor": 1
+  },
+  "magic": {
+    "name_key": "RARITY_MAGIC",
+    "color": "#5b8cff",
+    "affixes": [
+      1,
+      2
+    ],
+    "damage_bonus": 0.1,
+    "value_factor": 2.5
+  },
+  "rare": {
+    "name_key": "RARITY_RARE",
+    "color": "#f2d24b",
+    "affixes": [
+      3,
+      4
+    ],
+    "damage_bonus": 0.25,
+    "value_factor": 6
+  },
+  "unique": {
+    "name_key": "RARITY_UNIQUE",
+    "color": "#ff9a3c",
+    "affixes": [
+      0,
+      0
+    ],
+    "damage_bonus": 0.4,
+    "value_factor": 15
+  },
+  "legendary": {
+    "name_key": "RARITY_LEGENDARY",
+    "color": "#ff4040",
+    "affixes": [
+      0,
+      0
+    ],
+    "damage_bonus": 0.6,
+    "value_factor": 40
+  }
+}

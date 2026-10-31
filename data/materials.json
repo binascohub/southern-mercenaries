@@ -1,0 +1,59 @@
+{
+  "_comment": "Tiers de material (05-itens-e-loot.md, seção 2). Armaduras começam em pano e armas em madeira (tier 0).",
+  "cloth": {
+    "tier": 0,
+    "name_key": "MATERIAL_CLOTH",
+    "mult": 1.0,
+    "min_level": 1,
+    "max_level": 1,
+    "color": "#c9bb9b"
+  },
+  "wood": {
+    "tier": 0,
+    "name_key": "MATERIAL_WOOD",
+    "mult": 1.0,
+    "min_level": 1,
+    "max_level": 1,
+    "color": "#7a5230"
+  },
+  "iron": {
+    "tier": 1,
+    "name_key": "MATERIAL_IRON",
+    "mult": 1.6,
+    "min_level": 1,
+    "max_level": 4,
+    "color": "#4a4c50"
+  },
+  "steel": {
+    "tier": 2,
+    "name_key": "MATERIAL_STEEL",
+    "mult": 2.3,
+    "min_level": 5,
+    "max_level": 8,
+    "color": "#b8bfc6"
+  },
+  "copper": {
+    "tier": 3,
+    "name_key": "MATERIAL_COPPER",
+    "mult": 3.1,
+    "min_level": 9,
+    "max_level": 12,
+    "color": "#c06a3c"
+  },
+  "silver": {
+    "tier": 4,
+    "name_key": "MATERIAL_SILVER",
+    "mult": 4.0,
+    "min_level": 13,
+    "max_level": 16,
+    "color": "#eef2f5"
+  },
+  "gold": {
+    "tier": 5,
+    "name_key": "MATERIAL_GOLD",
+    "mult": 5.0,
+    "min_level": 17,
+    "max_level": 20,
+    "color": "#e3b23c"
+  }
+}

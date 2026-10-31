@@ -15,6 +15,10 @@ var interact_held := false
 var attack_presses := 0
 var attack_releases := 0
 var evade_presses := 0
+var interact_presses := 0
+var pickup_all_presses := 0
+var potion_health_presses := 0
+var potion_resource_presses := 0
 
 
 ## Lê o Input Map local, continuando os contadores de `previous`.
@@ -27,6 +31,18 @@ static func gather(previous: PlayerInput, origin: Vector3, camera: Camera3D, vie
 	input.attack_presses = previous.attack_presses + int(Input.is_action_just_pressed(&"attack"))
 	input.attack_releases = previous.attack_releases + int(Input.is_action_just_released(&"attack"))
 	input.evade_presses = previous.evade_presses + int(Input.is_action_just_pressed(&"evade"))
+	input.interact_presses = previous.interact_presses + int(Input.is_action_just_pressed(&"interact"))
+	input.pickup_all_presses = previous.pickup_all_presses + int(Input.is_action_just_pressed(&"pickup_all"))
+	input.potion_health_presses = previous.potion_health_presses + int(Input.is_action_just_pressed(&"potion_health"))
+	input.potion_resource_presses = previous.potion_resource_presses + int(Input.is_action_just_pressed(&"potion_mana"))
+	# Com uma janela aberta (inventário), os botões não atacam nem esquivam.
+	if Session.ui_open:
+		input.attack_held = false
+		input.interact_held = false
+		input.attack_presses = previous.attack_presses
+		input.attack_releases = previous.attack_releases + int(previous.attack_held)
+		input.evade_presses = previous.evade_presses
+		input.interact_presses = previous.interact_presses
 
 	if InputDevice.using_gamepad:
 		var stick := Input.get_vector(&"aim_left", &"aim_right", &"aim_up", &"aim_down")
@@ -47,12 +63,13 @@ static func gather(previous: PlayerInput, origin: Vector3, camera: Camera3D, vie
 
 func to_array() -> Array:
 	return [move.x, move.y, aim.x, aim.y, attack_held, interact_held,
-		attack_presses, attack_releases, evade_presses]
+		attack_presses, attack_releases, evade_presses, interact_presses,
+		pickup_all_presses, potion_health_presses, potion_resource_presses]
 
 
 static func from_array(a: Array) -> PlayerInput:
 	var input := PlayerInput.new()
-	if a.size() != 9:
+	if a.size() != 13:
 		return input
 	input.move = Vector2(a[0], a[1]).limit_length(1.0)
 	input.aim = Vector2(a[2], a[3]).limit_length(1.0)
@@ -61,4 +78,8 @@ static func from_array(a: Array) -> PlayerInput:
 	input.attack_presses = int(a[6])
 	input.attack_releases = int(a[7])
 	input.evade_presses = int(a[8])
+	input.interact_presses = int(a[9])
+	input.pickup_all_presses = int(a[10])
+	input.potion_health_presses = int(a[11])
+	input.potion_resource_presses = int(a[12])
 	return input

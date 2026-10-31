@@ -1,12 +1,12 @@
 {
-  "_comment": "Constantes globais de balanceamento. Números provisórios para revisar (02-personagens.md, 03-inimigos.md, 07-rede.md, 13-balanceamento.md). revive_health_fraction e max_players ainda não definidos nos docs.",
+  "_comment": "Constantes globais de balanceamento. Números provisórios para revisar (02-personagens.md, 03-inimigos.md, 07-rede.md, 13-balanceamento.md).",
   "base_move_speed": 5.0,
   "power_attribute_factor": 0.5,
   "heavy_hit_fraction": 0.15,
   "health_per_extra_player": 0.6,
   "revive_time": 3.0,
   "revive_range": 1.8,
-  "revive_health_fraction": 0.5,
+  "revive_health_fraction": 0.3,
   "net": {
     "game_port": 24567,
     "discovery_port": 24568,
@@ -17,5 +17,20 @@
     "peer_timeout_ms": 8000
   },
   "damage_per_extra_player": 0.1,
-  "drop_hold_time": 30.0
+  "drop_hold_time": 30.0,
+  "xp_per_level_factor": 700,
+  "max_level": 20,
+  "attribute_points_per_level": 5,
+  "skill_points_per_level": 1,
+  "xp_per_monster_level": {
+    "common": 5,
+    "elite": 25,
+    "miniboss": 100,
+    "boss": 300
+  },
+  "armor_base_per_monster_level": 15,
+  "armor_base_constant": 40,
+  "max_damage_reduction": 0.75,
+  "inventory_size": 40,
+  "save_version": 1
 }

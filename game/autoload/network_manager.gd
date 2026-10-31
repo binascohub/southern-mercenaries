@@ -44,6 +44,7 @@ var hosts := {}
 ## ID do personagem (Fase 3, 11-saves.md).
 var client_id := ""
 var _client_ids := {}  # peer -> client_id (no servidor)
+var _characters := {}  # peer -> personagem enviado na entrada (no servidor)
 var _goodbyes: Array[int] = []
 var _join_address := ""
 var _join_port := 0
@@ -108,6 +109,13 @@ func is_online() -> bool:
 
 func client_id_of(peer_id: int) -> String:
 	return _client_ids.get(peer_id, "")
+
+
+## Personagem que o jogador trouxe (o host usa o da própria sessão).
+func character_of(peer_id: int) -> CharacterData:
+	if peer_id == multiplayer.get_unique_id():
+		return Session.ensure_character()
+	return CharacterData.from_dict(_characters.get(peer_id))
 
 
 func player_count() -> int:
@@ -256,11 +264,11 @@ func _poll_discovery() -> void:
 
 func _on_connected_to_server() -> void:
 	_connect_deadline = 0
-	_hello.rpc_id(1, version(), _content_hash, client_id)
+	_hello.rpc_id(1, version(), _content_hash, client_id, Session.ensure_character().to_dict())
 
 
 @rpc("any_peer", "reliable")
-func _hello(client_version: String, client_content: String, from_client: String) -> void:
+func _hello(client_version: String, client_content: String, from_client: String, character: Dictionary) -> void:
 	if not is_server():
 		return
 	var peer_id := multiplayer.get_remote_sender_id()
@@ -270,6 +278,8 @@ func _hello(client_version: String, client_content: String, from_client: String)
 		_refuse(peer_id, "NET_CONTENT_MISMATCH", {"host": _content_hash, "local": client_content})
 	elif player_count() >= max_players:
 		_refuse(peer_id, "NET_SERVER_FULL", {})
+	elif CharacterData.from_dict(character) == null:
+		_refuse(peer_id, "NET_CHARACTER_INVALID", {})
 	elif peer_id not in _accepted_peers:
 		# Reentrou antes de o host notar a queda: a conexão antiga conta como caída
 		# (e expira sozinha pelo timeout do ENet).
@@ -278,6 +288,7 @@ func _hello(client_version: String, client_content: String, from_client: String)
 				_accepted_peers.erase(old)
 				peer_left.emit(old, true)
 		_client_ids[peer_id] = from_client.substr(0, 64)
+		_characters[peer_id] = character
 		_accepted_peers.append(peer_id)
 		_welcome.rpc_id(peer_id)
 		peer_joined.emit(peer_id)
@@ -346,7 +357,9 @@ func _close() -> void:
 		_announcer = null
 	_accepted_peers.clear()
 	_client_ids.clear()
+	_characters.clear()
 	_goodbyes.clear()
+	SaveSystem.flush()
 	if multiplayer.multiplayer_peer and not multiplayer.multiplayer_peer is OfflineMultiplayerPeer:
 		multiplayer.multiplayer_peer.close()
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()

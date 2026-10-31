@@ -308,3 +308,252 @@ msgstr "Dados do jogo diferentes. Host: {host}. Os seus: {local}."
 msgid "HUD_ENCOUNTERS"
 msgstr "Encontros vencidos: {cleared}/{total}"
 
+msgid "ITEM_NAME_PATTERN"
+msgstr "{type} de {material}"
+
+msgid "ITEM_TYPE_STAFF"
+msgstr "Cajado"
+
+msgid "ITEM_TYPE_HOOD"
+msgstr "Capuz"
+
+msgid "ITEM_TYPE_TUNIC"
+msgstr "Túnica"
+
+msgid "ITEM_TYPE_GLOVES"
+msgstr "Luvas"
+
+msgid "ITEM_TYPE_BOOTS"
+msgstr "Botas"
+
+msgid "ITEM_TYPE_RING"
+msgstr "Anel"
+
+msgid "ITEM_TYPE_AMULET"
+msgstr "Amuleto"
+
+msgid "MATERIAL_CLOTH"
+msgstr "Pano"
+
+msgid "MATERIAL_WOOD"
+msgstr "Madeira"
+
+msgid "MATERIAL_IRON"
+msgstr "Ferro"
+
+msgid "MATERIAL_STEEL"
+msgstr "Aço"
+
+msgid "MATERIAL_COPPER"
+msgstr "Cobre"
+
+msgid "MATERIAL_SILVER"
+msgstr "Prata"
+
+msgid "MATERIAL_GOLD"
+msgstr "Ouro"
+
+msgid "RARITY_COMMON"
+msgstr "Comum"
+
+msgid "RARITY_MAGIC"
+msgstr "Mágico"
+
+msgid "RARITY_RARE"
+msgstr "Raro"
+
+msgid "RARITY_UNIQUE"
+msgstr "Único"
+
+msgid "RARITY_LEGENDARY"
+msgstr "Lendário"
+
+msgid "AFFIX_STR"
+msgstr "+{value} Força"
+
+msgid "AFFIX_DEX"
+msgstr "+{value} Destreza"
+
+msgid "AFFIX_INT"
+msgstr "+{value} Inteligência"
+
+msgid "AFFIX_VIT"
+msgstr "+{value} Vitalidade"
+
+msgid "AFFIX_LIFE"
+msgstr "+{value} de vida"
+
+msgid "AFFIX_RESOURCE"
+msgstr "+{value} de recurso da classe"
+
+msgid "AFFIX_CRIT"
+msgstr "+{value}% de chance de crítico"
+
+msgid "AFFIX_MOVE_SPEED"
+msgstr "+{value}% de velocidade de movimento"
+
+msgid "AFFIX_GOLD_FIND"
+msgstr "+{value}% de ouro encontrado"
+
+msgid "ITEM_POTION_HEALTH"
+msgstr "Poção de vida"
+
+msgid "ITEM_POTION_RESOURCE"
+msgstr "Poção de recurso"
+
+msgid "VALUABLE_OLD_COINS"
+msgstr "Moedas antigas"
+
+msgid "VALUABLE_SILVER_GOBLET"
+msgstr "Cálice de prata"
+
+msgid "VALUABLE_ROUGH_GEM"
+msgstr "Gema bruta"
+
+msgid "VALUABLE_WAR_COINS"
+msgstr "Moedas do reino derrotado"
+
+msgid "VALUABLE_WAR_MEDAL"
+msgstr "Medalha de guerra de ouro"
+
+msgid "VALUABLE_ROYAL_SEAL_RING"
+msgstr "Anel-selo real"
+
+msgid "VALUABLE_CROWN_JEWEL"
+msgstr "Joia da coroa"
+
+msgid "ITEM_STAT_DAMAGE"
+msgstr "Dano: {value}"
+
+msgid "ITEM_STAT_ARMOR"
+msgstr "Armadura: {value}"
+
+msgid "ITEM_REQUIRED_LEVEL"
+msgstr "Requer nível {level}"
+
+msgid "ITEM_RESTORES"
+msgstr "Restaura {percent}%"
+
+msgid "ITEM_VALUE"
+msgstr "Valor: {gold} de ouro"
+
+msgid "LOOT_GOLD"
+msgstr "{amount} de ouro"
+
+msgid "TOAST_LEVEL_UP"
+msgstr "Subiu de nível! Agora você é nível {level}."
+
+msgid "TOAST_BAG_FULL"
+msgstr "Sua bolsa está cheia."
+
+msgid "HUD_LEVEL_XP"
+msgstr "Nível {level} — XP {xp}/{next}"
+
+msgid "HUD_GOLD"
+msgstr "Ouro: {gold}"
+
+msgid "HUD_POTIONS"
+msgstr "{health_key} Vida ×{health}   {resource_key} Recurso ×{resource}"
+
+msgid "HUD_SAVING"
+msgstr "Salvando…"
+
+msgid "INV_TITLE"
+msgstr "Inventário"
+
+msgid "INV_LEVEL"
+msgstr "Nível {level}"
+
+msgid "INV_HEALTH"
+msgstr "Vida: {value}"
+
+msgid "INV_RESOURCE"
+msgstr "{name}: {value}"
+
+msgid "INV_POWER"
+msgstr "{name}: {value}"
+
+msgid "INV_ARMOR"
+msgstr "Armadura: {value}"
+
+msgid "INV_FREE_POINTS"
+msgstr "Pontos livres: {points}"
+
+msgid "INV_HINT"
+msgstr "Selecionar: equipar ou usar · num slot: desequipar · {close}: fechar"
+
+msgid "INV_CANNOT_EQUIP"
+msgstr "Você ainda não pode equipar isto."
+
+msgid "INV_EQUIPPED_NOW"
+msgstr "Equipado agora:"
+
+msgid "ATTR_STR"
+msgstr "Força {value}  [+]"
+
+msgid "ATTR_DEX"
+msgstr "Destreza {value}  [+]"
+
+msgid "ATTR_INT"
+msgstr "Inteligência {value}  [+]"
+
+msgid "ATTR_VIT"
+msgstr "Vitalidade {value}  [+]"
+
+msgid "SLOT_WEAPON"
+msgstr "Arma"
+
+msgid "SLOT_HEAD"
+msgstr "Cabeça"
+
+msgid "SLOT_BODY"
+msgstr "Corpo"
+
+msgid "SLOT_HANDS"
+msgstr "Mãos"
+
+msgid "SLOT_FEET"
+msgstr "Pés"
+
+msgid "SLOT_RING_1"
+msgstr "Anel"
+
+msgid "SLOT_RING_2"
+msgstr "Anel"
+
+msgid "SLOT_AMULET"
+msgstr "Amuleto"
+
+msgid "NET_CHARACTER_INVALID"
+msgstr "O host recusou seu personagem (save inválido)."
+
+msgid "MENU_CONTINUE"
+msgstr "Continuar"
+
+msgid "MENU_NEW_CAMPAIGN"
+msgstr "Nova campanha"
+
+msgid "MENU_CHARACTERS"
+msgstr "Personagens"
+
+msgid "CHAR_TITLE"
+msgstr "Personagens"
+
+msgid "CHAR_NEW"
+msgstr "Novo personagem"
+
+msgid "CHAR_CREATE"
+msgstr "Criar"
+
+msgid "CHAR_SEX_MALE"
+msgstr "Masculino"
+
+msgid "CHAR_SEX_FEMALE"
+msgstr "Feminino"
+
+msgid "CHAR_ENTRY"
+msgstr "{name} — {class}, nível {level}"
+
+msgid "CHAR_NONE"
+msgstr "Nenhum personagem ainda"
+
