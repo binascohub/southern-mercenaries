@@ -1,6 +1,6 @@
 {
   "prototype_arena": {
-    "_comment": "Área de teste: sala inicial (checkpoint), corredor e duas câmaras. Monstros posicionados em grupos de encontro que dormem até um jogador chegar perto (03-inimigos.md, 'Encontros por exploração').",
+    "_comment": "Área de teste: sala inicial (checkpoint), corredor e duas câmaras. Monstros posicionados em grupos de encontro que dormem até um jogador chegar perto (03-inimigos.md, 'Encontros por exploração'). Corredores marcados como \"narrow\" (área estreita, 02-3-cavaleiro.md seção 3): o Cavaleiro desmonta neles.",
     "name_key": "ARENA_PROTOTYPE_NAME",
     "player_class": "mage",
     "wake_radius": 15.0,
@@ -34,7 +34,8 @@
         "doors": [
           "north",
           "south"
-        ]
+        ],
+        "narrow": true
       },
       {
         "id": "middle",
@@ -65,7 +66,8 @@
         "doors": [
           "north",
           "south"
-        ]
+        ],
+        "narrow": true
       },
       {
         "id": "far",

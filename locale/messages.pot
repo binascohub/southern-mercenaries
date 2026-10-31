@@ -1363,3 +1363,141 @@ msgstr ""
 
 msgid "COMPANION_BEAR"
 msgstr ""
+
+msgid "SKILL_LANCE_THRUST_NAME"
+msgstr ""
+
+msgid "SKILL_LANCE_THRUST_DESC"
+msgstr ""
+
+msgid "SKILL_CHARGE_NAME"
+msgstr ""
+
+msgid "SKILL_CHARGE_DESC"
+msgstr ""
+
+msgid "SKILL_HEAVY_ARMOR_NAME"
+msgstr ""
+
+msgid "SKILL_HEAVY_ARMOR_DESC"
+msgstr ""
+
+msgid "SKILL_CHALLENGE_NAME"
+msgstr ""
+
+msgid "SKILL_CHALLENGE_DESC"
+msgstr ""
+
+msgid "SKILL_TRAMPLE_NAME"
+msgstr ""
+
+msgid "SKILL_TRAMPLE_DESC"
+msgstr ""
+
+msgid "SKILL_LANCE_SWEEP_NAME"
+msgstr ""
+
+msgid "SKILL_LANCE_SWEEP_DESC"
+msgstr ""
+
+msgid "SKILL_UNSTOPPABLE_NAME"
+msgstr ""
+
+msgid "SKILL_UNSTOPPABLE_DESC"
+msgstr ""
+
+msgid "SKILL_FIRE_BANNER_NAME"
+msgstr ""
+
+msgid "SKILL_FIRE_BANNER_DESC"
+msgstr ""
+
+msgid "SKILL_BLAZING_LANCE_NAME"
+msgstr ""
+
+msgid "SKILL_BLAZING_LANCE_DESC"
+msgstr ""
+
+msgid "SKILL_INFERNO_CHARGE_NAME"
+msgstr ""
+
+msgid "SKILL_INFERNO_CHARGE_DESC"
+msgstr ""
+
+msgid "SKILL_TIDE_BANNER_NAME"
+msgstr ""
+
+msgid "SKILL_TIDE_BANNER_DESC"
+msgstr ""
+
+msgid "SKILL_FROST_LANCE_NAME"
+msgstr ""
+
+msgid "SKILL_FROST_LANCE_DESC"
+msgstr ""
+
+msgid "SKILL_TIDAL_CHARGE_NAME"
+msgstr ""
+
+msgid "SKILL_TIDAL_CHARGE_DESC"
+msgstr ""
+
+msgid "SKILL_GALE_BANNER_NAME"
+msgstr ""
+
+msgid "SKILL_GALE_BANNER_DESC"
+msgstr ""
+
+msgid "SKILL_THUNDER_LANCE_NAME"
+msgstr ""
+
+msgid "SKILL_THUNDER_LANCE_DESC"
+msgstr ""
+
+msgid "SKILL_STORM_CHARGE_NAME"
+msgstr ""
+
+msgid "SKILL_STORM_CHARGE_DESC"
+msgstr ""
+
+msgid "SKILL_STONE_BANNER_NAME"
+msgstr ""
+
+msgid "SKILL_STONE_BANNER_DESC"
+msgstr ""
+
+msgid "SKILL_EARTHBREAKER_LANCE_NAME"
+msgstr ""
+
+msgid "SKILL_EARTHBREAKER_LANCE_DESC"
+msgstr ""
+
+msgid "SKILL_AVALANCHE_CHARGE_NAME"
+msgstr ""
+
+msgid "SKILL_AVALANCHE_CHARGE_DESC"
+msgstr ""
+
+msgid "CLASS_KNIGHT_NAME"
+msgstr ""
+
+msgid "HERO_KNIGHT_MALE"
+msgstr ""
+
+msgid "HERO_KNIGHT_FEMALE"
+msgstr ""
+
+msgid "RESOURCE_MOMENTUM"
+msgstr ""
+
+msgid "POWER_ATTACK"
+msgstr ""
+
+msgid "ITEM_TYPE_LANCE"
+msgstr ""
+
+msgid "ITEM_TYPE_HELM"
+msgstr ""
+
+msgid "ITEM_TYPE_PLATE"
+msgstr ""

@@ -1364,3 +1364,141 @@ msgstr "Javali"
 
 msgid "COMPANION_BEAR"
 msgstr "Urso guardião"
+
+msgid "SKILL_LANCE_THRUST_NAME"
+msgstr "Estocada"
+
+msgid "SKILL_LANCE_THRUST_DESC"
+msgstr "Golpe longo de lança no inimigo à frente (4 m); leva o estado básico do seu elemento."
+
+msgid "SKILL_CHARGE_NAME"
+msgstr "Investida"
+
+msgid "SKILL_CHARGE_DESC"
+msgstr "Montado: galopa 15 m atravessando e derrubando os inimigos. A pé: avanço de 5 m com escudo que empurra."
+
+msgid "SKILL_HEAVY_ARMOR_NAME"
+msgstr "Armadura Pesada"
+
+msgid "SKILL_HEAVY_ARMOR_DESC"
+msgstr "Passiva: -6% de dano recebido, -2% a mais por rank."
+
+msgid "SKILL_CHALLENGE_NAME"
+msgstr "Desafio"
+
+msgid "SKILL_CHALLENGE_DESC"
+msgstr "Os monstros a até 8 m passam a atacar você por 4 s (+0,5 s por rank)."
+
+msgid "SKILL_TRAMPLE_NAME"
+msgstr "Pisotear"
+
+msgid "SKILL_TRAMPLE_DESC"
+msgstr "Montado: o cavalo empina e pisoteia tudo a até 4 m, atordoando. A pé: golpe de escudo no chão a 2,5 m, mais fraco."
+
+msgid "SKILL_LANCE_SWEEP_NAME"
+msgstr "Varredura"
+
+msgid "SKILL_LANCE_SWEEP_DESC"
+msgstr "Gira a lança num arco de 240° (5 m) empurrando os inimigos."
+
+msgid "SKILL_UNSTOPPABLE_NAME"
+msgstr "Ímpeto Inabalável"
+
+msgid "SKILL_UNSTOPPABLE_DESC"
+msgstr "Passiva: montado, até +20% de dano (+5% por rank) quanto mais rápido o cavalo."
+
+msgid "SKILL_FIRE_BANNER_NAME"
+msgstr "Estandarte Flamejante"
+
+msgid "SKILL_FIRE_BANNER_DESC"
+msgstr "Finca um estandarte em chamas: aliados a até 8 m causam +15% de dano (+3% por rank) e queimam, por 8 s."
+
+msgid "SKILL_BLAZING_LANCE_NAME"
+msgstr "Lança em Brasa"
+
+msgid "SKILL_BLAZING_LANCE_DESC"
+msgstr "Estocada incandescente (5 m); a queimadura causa o dobro de dano."
+
+msgid "SKILL_INFERNO_CHARGE_NAME"
+msgstr "Carga Incendiária"
+
+msgid "SKILL_INFERNO_CHARGE_DESC"
+msgstr "Três investidas seguidas (15 m) incendiando tudo. A pé: três avanços curtos com escudo, 40% mais fracos."
+
+msgid "SKILL_TIDE_BANNER_NAME"
+msgstr "Estandarte da Maré"
+
+msgid "SKILL_TIDE_BANNER_DESC"
+msgstr "Estandarte que verte água por 6 s: cura os aliados a até 6 m e molha os inimigos."
+
+msgid "SKILL_FROST_LANCE_NAME"
+msgstr "Lança Glacial"
+
+msgid "SKILL_FROST_LANCE_DESC"
+msgstr "Estocada de gelo (5 m); alvo molhado fica congelado por 2 s."
+
+msgid "SKILL_TIDAL_CHARGE_NAME"
+msgstr "Carga da Maré"
+
+msgid "SKILL_TIDAL_CHARGE_DESC"
+msgstr "Três investidas seguidas (15 m); cada uma levanta uma onda que empurra e molha. A pé: três avanços curtos, 40% mais fracos."
+
+msgid "SKILL_GALE_BANNER_NAME"
+msgstr "Estandarte do Vendaval"
+
+msgid "SKILL_GALE_BANNER_DESC"
+msgstr "Estandarte que sopra vento a favor: aliados a até 8 m andam e atacam 30% mais rápido (+5% por rank) por 8 s."
+
+msgid "SKILL_THUNDER_LANCE_NAME"
+msgstr "Lança Trovejante"
+
+msgid "SKILL_THUNDER_LANCE_DESC"
+msgstr "Estocada que descarrega um raio (5 m) e eletriza; eletrocuta alvo molhado."
+
+msgid "SKILL_STORM_CHARGE_NAME"
+msgstr "Carga da Tempestade"
+
+msgid "SKILL_STORM_CHARGE_DESC"
+msgstr "Três investidas rápidas (18 m); raios saltam da lança para os inimigos perto. A pé: três avanços curtos, 40% mais fracos."
+
+msgid "SKILL_STONE_BANNER_NAME"
+msgstr "Estandarte de Pedra"
+
+msgid "SKILL_STONE_BANNER_DESC"
+msgstr "Estandarte que ergue pedras protetoras: aliados a até 6 m recebem um escudo por 8 s."
+
+msgid "SKILL_EARTHBREAKER_LANCE_NAME"
+msgstr "Lança Quebra-Terra"
+
+msgid "SKILL_EARTHBREAKER_LANCE_DESC"
+msgstr "Estocada pesada que racha o chão sob o alvo (5 m) e atordoa por 1,5 s."
+
+msgid "SKILL_AVALANCHE_CHARGE_NAME"
+msgstr "Carga Avalanche"
+
+msgid "SKILL_AVALANCHE_CHARGE_DESC"
+msgstr "Três investidas seguidas (15 m); o chão treme e derruba todos perto do caminho. A pé: três avanços curtos, 40% mais fracos."
+
+msgid "CLASS_KNIGHT_NAME"
+msgstr "Cavaleiro"
+
+msgid "HERO_KNIGHT_MALE"
+msgstr "Dorian Vale"
+
+msgid "HERO_KNIGHT_FEMALE"
+msgstr "Dália Vale"
+
+msgid "RESOURCE_MOMENTUM"
+msgstr "Ímpeto"
+
+msgid "POWER_ATTACK"
+msgstr "Poder de Ataque"
+
+msgid "ITEM_TYPE_LANCE"
+msgstr "Lança"
+
+msgid "ITEM_TYPE_HELM"
+msgstr "Elmo"
+
+msgid "ITEM_TYPE_PLATE"
+msgstr "Armadura de Placas"

@@ -1364,3 +1364,141 @@ msgstr "Boar"
 
 msgid "COMPANION_BEAR"
 msgstr "Guardian bear"
+
+msgid "SKILL_LANCE_THRUST_NAME"
+msgstr "Lance Thrust"
+
+msgid "SKILL_LANCE_THRUST_DESC"
+msgstr "A long lance thrust at the enemy in front (4 m); carries your element's basic state."
+
+msgid "SKILL_CHARGE_NAME"
+msgstr "Charge"
+
+msgid "SKILL_CHARGE_DESC"
+msgstr "Mounted: gallops 15 m through enemies, knocking them down. On foot: a 5 m shield rush that pushes."
+
+msgid "SKILL_HEAVY_ARMOR_NAME"
+msgstr "Heavy Armor"
+
+msgid "SKILL_HEAVY_ARMOR_DESC"
+msgstr "Passive: -6% damage taken, -2% more per rank."
+
+msgid "SKILL_CHALLENGE_NAME"
+msgstr "Challenge"
+
+msgid "SKILL_CHALLENGE_DESC"
+msgstr "Monsters within 8 m attack you for 4 s (+0.5 s per rank)."
+
+msgid "SKILL_TRAMPLE_NAME"
+msgstr "Trample"
+
+msgid "SKILL_TRAMPLE_DESC"
+msgstr "Mounted: the horse rears and tramples everything within 4 m, stunning. On foot: a shield slam within 2.5 m, weaker."
+
+msgid "SKILL_LANCE_SWEEP_NAME"
+msgstr "Lance Sweep"
+
+msgid "SKILL_LANCE_SWEEP_DESC"
+msgstr "Swings the lance in a 240° arc (5 m), pushing enemies back."
+
+msgid "SKILL_UNSTOPPABLE_NAME"
+msgstr "Unstoppable Momentum"
+
+msgid "SKILL_UNSTOPPABLE_DESC"
+msgstr "Passive: mounted, up to +20% damage (+5% per rank) the faster the horse goes."
+
+msgid "SKILL_FIRE_BANNER_NAME"
+msgstr "Flaming Banner"
+
+msgid "SKILL_FIRE_BANNER_DESC"
+msgstr "Plants a burning banner: allies within 8 m deal +15% damage (+3% per rank) and burn, for 8 s."
+
+msgid "SKILL_BLAZING_LANCE_NAME"
+msgstr "Blazing Lance"
+
+msgid "SKILL_BLAZING_LANCE_DESC"
+msgstr "A red-hot thrust (5 m); its burn deals double damage."
+
+msgid "SKILL_INFERNO_CHARGE_NAME"
+msgstr "Inferno Charge"
+
+msgid "SKILL_INFERNO_CHARGE_DESC"
+msgstr "Three charges in a row (15 m), setting everything ablaze. On foot: three short shield rushes, 40% weaker."
+
+msgid "SKILL_TIDE_BANNER_NAME"
+msgstr "Tide Banner"
+
+msgid "SKILL_TIDE_BANNER_DESC"
+msgstr "A banner pouring water for 6 s: heals allies within 6 m and soaks enemies."
+
+msgid "SKILL_FROST_LANCE_NAME"
+msgstr "Glacial Lance"
+
+msgid "SKILL_FROST_LANCE_DESC"
+msgstr "Ice thrust (5 m); a soaked target is frozen for 2 s."
+
+msgid "SKILL_TIDAL_CHARGE_NAME"
+msgstr "Tidal Charge"
+
+msgid "SKILL_TIDAL_CHARGE_DESC"
+msgstr "Three charges in a row (15 m); each raises a wave that pushes and soaks. On foot: three short rushes, 40% weaker."
+
+msgid "SKILL_GALE_BANNER_NAME"
+msgstr "Gale Banner"
+
+msgid "SKILL_GALE_BANNER_DESC"
+msgstr "A banner blowing a tailwind: allies within 8 m move and attack 30% faster (+5% per rank) for 8 s."
+
+msgid "SKILL_THUNDER_LANCE_NAME"
+msgstr "Thunder Lance"
+
+msgid "SKILL_THUNDER_LANCE_DESC"
+msgstr "A thrust that discharges lightning (5 m) and shocks; electrocutes a soaked target."
+
+msgid "SKILL_STORM_CHARGE_NAME"
+msgstr "Storm Charge"
+
+msgid "SKILL_STORM_CHARGE_DESC"
+msgstr "Three fast charges (18 m); lightning jumps from the lance to nearby enemies. On foot: three short rushes, 40% weaker."
+
+msgid "SKILL_STONE_BANNER_NAME"
+msgstr "Stone Banner"
+
+msgid "SKILL_STONE_BANNER_DESC"
+msgstr "A banner raising protective stones: allies within 6 m get a shield for 8 s."
+
+msgid "SKILL_EARTHBREAKER_LANCE_NAME"
+msgstr "Earthbreaker Lance"
+
+msgid "SKILL_EARTHBREAKER_LANCE_DESC"
+msgstr "A heavy thrust that cracks the ground under the target (5 m) and stuns for 1.5 s."
+
+msgid "SKILL_AVALANCHE_CHARGE_NAME"
+msgstr "Avalanche Charge"
+
+msgid "SKILL_AVALANCHE_CHARGE_DESC"
+msgstr "Three charges in a row (15 m); the ground shakes and knocks down everyone near the path. On foot: three short rushes, 40% weaker."
+
+msgid "CLASS_KNIGHT_NAME"
+msgstr "Knight"
+
+msgid "HERO_KNIGHT_MALE"
+msgstr "Dorian Vale"
+
+msgid "HERO_KNIGHT_FEMALE"
+msgstr "Dália Vale"
+
+msgid "RESOURCE_MOMENTUM"
+msgstr "Momentum"
+
+msgid "POWER_ATTACK"
+msgstr "Attack Power"
+
+msgid "ITEM_TYPE_LANCE"
+msgstr "Lance"
+
+msgid "ITEM_TYPE_HELM"
+msgstr "Helm"
+
+msgid "ITEM_TYPE_PLATE"
+msgstr "Plate Armor"

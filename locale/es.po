@@ -1364,3 +1364,141 @@ msgstr "Jabalí"
 
 msgid "COMPANION_BEAR"
 msgstr "Oso guardián"
+
+msgid "SKILL_LANCE_THRUST_NAME"
+msgstr "Estocada"
+
+msgid "SKILL_LANCE_THRUST_DESC"
+msgstr "Una larga estocada de lanza al enemigo de enfrente (4 m); lleva el estado básico de tu elemento."
+
+msgid "SKILL_CHARGE_NAME"
+msgstr "Embestida"
+
+msgid "SKILL_CHARGE_DESC"
+msgstr "Montado: galopa 15 m atravesando a los enemigos y derribándolos. A pie: avance de 5 m con escudo que empuja."
+
+msgid "SKILL_HEAVY_ARMOR_NAME"
+msgstr "Armadura Pesada"
+
+msgid "SKILL_HEAVY_ARMOR_DESC"
+msgstr "Pasiva: -6% de daño recibido, -2% más por rango."
+
+msgid "SKILL_CHALLENGE_NAME"
+msgstr "Desafío"
+
+msgid "SKILL_CHALLENGE_DESC"
+msgstr "Los monstruos a 8 m te atacan durante 4 s (+0,5 s por rango)."
+
+msgid "SKILL_TRAMPLE_NAME"
+msgstr "Pisotear"
+
+msgid "SKILL_TRAMPLE_DESC"
+msgstr "Montado: el caballo se encabrita y pisotea todo a 4 m, aturdiendo. A pie: golpe de escudo en el suelo a 2,5 m, más débil."
+
+msgid "SKILL_LANCE_SWEEP_NAME"
+msgstr "Barrido"
+
+msgid "SKILL_LANCE_SWEEP_DESC"
+msgstr "Gira la lanza en un arco de 240° (5 m) y empuja a los enemigos."
+
+msgid "SKILL_UNSTOPPABLE_NAME"
+msgstr "Ímpetu Imparable"
+
+msgid "SKILL_UNSTOPPABLE_DESC"
+msgstr "Pasiva: montado, hasta +20% de daño (+5% por rango) cuanto más rápido va el caballo."
+
+msgid "SKILL_FIRE_BANNER_NAME"
+msgstr "Estandarte Llameante"
+
+msgid "SKILL_FIRE_BANNER_DESC"
+msgstr "Clava un estandarte en llamas: los aliados a 8 m causan +15% de daño (+3% por rango) y queman, durante 8 s."
+
+msgid "SKILL_BLAZING_LANCE_NAME"
+msgstr "Lanza Ardiente"
+
+msgid "SKILL_BLAZING_LANCE_DESC"
+msgstr "Una estocada incandescente (5 m); su quemadura hace el doble de daño."
+
+msgid "SKILL_INFERNO_CHARGE_NAME"
+msgstr "Carga Incendiaria"
+
+msgid "SKILL_INFERNO_CHARGE_DESC"
+msgstr "Tres embestidas seguidas (15 m) que incendian todo. A pie: tres avances cortos con escudo, un 40% más débiles."
+
+msgid "SKILL_TIDE_BANNER_NAME"
+msgstr "Estandarte de la Marea"
+
+msgid "SKILL_TIDE_BANNER_DESC"
+msgstr "Un estandarte que vierte agua durante 6 s: cura a los aliados a 6 m y empapa a los enemigos."
+
+msgid "SKILL_FROST_LANCE_NAME"
+msgstr "Lanza Glacial"
+
+msgid "SKILL_FROST_LANCE_DESC"
+msgstr "Estocada de hielo (5 m); un objetivo empapado queda congelado 2 s."
+
+msgid "SKILL_TIDAL_CHARGE_NAME"
+msgstr "Carga de la Marea"
+
+msgid "SKILL_TIDAL_CHARGE_DESC"
+msgstr "Tres embestidas seguidas (15 m); cada una levanta una ola que empuja y empapa. A pie: tres avances cortos, un 40% más débiles."
+
+msgid "SKILL_GALE_BANNER_NAME"
+msgstr "Estandarte del Vendaval"
+
+msgid "SKILL_GALE_BANNER_DESC"
+msgstr "Un estandarte que sopla viento a favor: los aliados a 8 m se mueven y atacan un 30% más rápido (+5% por rango) durante 8 s."
+
+msgid "SKILL_THUNDER_LANCE_NAME"
+msgstr "Lanza Tronante"
+
+msgid "SKILL_THUNDER_LANCE_DESC"
+msgstr "Estocada que descarga un rayo (5 m) y electriza; electrocuta a un objetivo empapado."
+
+msgid "SKILL_STORM_CHARGE_NAME"
+msgstr "Carga de la Tormenta"
+
+msgid "SKILL_STORM_CHARGE_DESC"
+msgstr "Tres embestidas rápidas (18 m); los rayos saltan de la lanza a los enemigos cercanos. A pie: tres avances cortos, un 40% más débiles."
+
+msgid "SKILL_STONE_BANNER_NAME"
+msgstr "Estandarte de Piedra"
+
+msgid "SKILL_STONE_BANNER_DESC"
+msgstr "Un estandarte que alza piedras protectoras: los aliados a 6 m reciben un escudo durante 8 s."
+
+msgid "SKILL_EARTHBREAKER_LANCE_NAME"
+msgstr "Lanza Rompetierra"
+
+msgid "SKILL_EARTHBREAKER_LANCE_DESC"
+msgstr "Estocada pesada que agrieta el suelo bajo el objetivo (5 m) y aturde 1,5 s."
+
+msgid "SKILL_AVALANCHE_CHARGE_NAME"
+msgstr "Carga Avalancha"
+
+msgid "SKILL_AVALANCHE_CHARGE_DESC"
+msgstr "Tres embestidas seguidas (15 m); el suelo tiembla y derriba a todos cerca del camino. A pie: tres avances cortos, un 40% más débiles."
+
+msgid "CLASS_KNIGHT_NAME"
+msgstr "Caballero"
+
+msgid "HERO_KNIGHT_MALE"
+msgstr "Dorian Vale"
+
+msgid "HERO_KNIGHT_FEMALE"
+msgstr "Dália Vale"
+
+msgid "RESOURCE_MOMENTUM"
+msgstr "Ímpetu"
+
+msgid "POWER_ATTACK"
+msgstr "Poder de Ataque"
+
+msgid "ITEM_TYPE_LANCE"
+msgstr "Lanza"
+
+msgid "ITEM_TYPE_HELM"
+msgstr "Yelmo"
+
+msgid "ITEM_TYPE_PLATE"
+msgstr "Armadura de placas"

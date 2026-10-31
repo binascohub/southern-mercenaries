@@ -28,7 +28,11 @@ extends Node
 ##   summon      chama um animal amigo (Chamar Companheiro, Urso Guardião)
 ##   escape      vira revoada e reaparece à frente; os animais provocam (Fuga em Bando)
 ##   rescue      um animal reanima de longe o aliado caído mais perto (Resgate)
+##   charge      investida em linha atravessando os inimigos (Investida; os finais do
+##               Cavaleiro fazem 3 seguidas, indo e voltando)
+##   taunt       provoca os monstros em volta (Desafio)
 ## Bônus, escudos e curas de grupo também valem para os animais amigos.
+## Cavaleiro a pé: campos foot_* dão a versão mais fraca das habilidades do cavalo.
 ## "imbued": habilidade de classe que aplica o estado básico do elemento atual.
 ## Habilidades com alvo usam a mira como direção; quando precisam de um ponto
 ## (Meteoro, Nevasca), escolhem o inimigo mais perto no cone da mira.
@@ -74,9 +78,13 @@ func cast(player: Player, skill_id: String, rank: int) -> bool:
 			})
 		"nova":
 			var hit := hit_for(player, skill, rank)
-			for e in enemies_in(origin, skill.area):
+			var radius := float(skill.area)
+			if not player.mounted and skill.has("foot_area"):
+				radius = float(skill.foot_area)
+				hit.damage = float(hit.damage) * float(skill.get("foot_power_mult", 1.0))
+			for e in enemies_in(origin, radius):
 				e.take_hit(hit)
-			_fx.rpc("disc", origin, Vector3.ZERO, skill.area, color, 0.4)
+			_fx.rpc("disc", origin, Vector3.ZERO, radius, color, 0.4)
 		"cone":
 			var hit := hit_for(player, skill, rank)
 			var half := deg_to_rad(float(skill.angle) / 2.0)
@@ -243,6 +251,13 @@ func cast(player: Player, skill_id: String, rank: int) -> bool:
 			player.teleport_to(_ray_limited(player, target.global_position, dest))
 		"summon":
 			_summon(player, skill, rank)
+		"charge":
+			_charge(player, skill, rank)
+		"taunt":
+			var duration := Skills.scaled(skill, "duration", "duration_per_rank", rank)
+			for e in enemies_in(origin, skill.area):
+				e.taunt(player, duration)
+			_fx.rpc("disc", origin, Vector3.ZERO, skill.area, Color(0.9, 0.75, 0.3), 0.5)
 		"escape":
 			var dest := _ray_limited(player, origin, origin + aim * float(skill.distance))
 			_fx.rpc("disc", origin, Vector3.ZERO, 1.2, color, 0.4)
@@ -264,6 +279,39 @@ func cast(player: Player, skill_id: String, rank: int) -> bool:
 		_:
 			return false
 	return true
+
+
+## Investida: atravessa uma linha acertando quem estiver nela; montado vai longe,
+## a pé é um avanço curto com escudo que empurra. Os finais fazem 3 seguidas.
+func _charge(player: Player, skill: Dictionary, rank: int) -> void:
+	var mounted := player.mounted
+	var length := float(skill.range) if mounted else float(skill.get("foot_range", 5.0))
+	var charges := int(skill.get("charges", 1))
+	var hit := hit_for(player, skill, rank)
+	if skill.get("power_total", false):
+		hit.damage = float(hit.damage) / charges
+	if not mounted:
+		hit.damage = float(hit.damage) * float(skill.get("foot_power_mult", 1.0))
+		hit.erase("extra_state")  # a pé empurra em vez de derrubar
+	var push := float(skill.get("push", 0.0 if mounted else skill.get("foot_push", 0.0)))
+	var dir := Vector3(player.facing.x, 0, player.facing.y).normalized()
+	var from := player.global_position
+	var color := Elements.color(player.element)
+	for i in charges:
+		var to := _ray_limited(player, from, from + dir * length)
+		for e in enemies_in(from, length + skill.width):
+			if _distance_to_segment(e.global_position, from, to) <= float(skill.width) / 2.0:
+				_strike(player, e, hit)
+				if push > 0.0:
+					e.push(dir * push, 0.25)
+				# Carga da Tempestade: raios saltam para os vizinhos.
+				if skill.has("sparks"):
+					for n in enemies_in(e.global_position, skill.sparks):
+						Elements.apply_state(n.status, "shocked", n.element, n.is_boss())
+		_fx.rpc("beam", from + Vector3.UP * 0.5, to + Vector3.UP * 0.5, float(skill.width) * 0.6, color, 0.4)
+		from = to
+		dir = -dir
+	player.teleport_to(from)
 
 
 func companions_of(player: Player) -> Array[Companion]:
@@ -344,6 +392,7 @@ func _strike(player: Player, e: Enemy, hit: Dictionary) -> void:
 		h.crit_chance = 1.0
 		h.crit_mult = float(h.get("crit_mult", GameData.elements.crit_mult)) + backstab
 	var result := e.take_hit(h)
+	player.on_hit()
 	if result.get("crit", false):
 		player.on_crit()
 

@@ -65,6 +65,8 @@ var element := "fire"
 var shield := 0.0
 ## Invisível para os monstros (Bomba de Fumaça do Ninja).
 var hidden := false
+## Cavaleiro montado (02-3-cavaleiro.md, seção 3).
+var mounted := false
 
 var data: Dictionary
 var move_speed := 5.0
@@ -86,6 +88,11 @@ var _skill_cd := {}
 var _buffs := {}
 var _shield_time := 0.0
 var _rng_dodge := RandomNumberGenerator.new()
+## Cavaleiro: desmontou por conta própria (não remonta sozinho) e espera para remontar.
+var _manual_dismount := false
+var _remount_timer := 0.0
+var _body_shape: CapsuleShape3D
+var _horse: Node3D
 
 # Só no PC dono.
 var _local_input := PlayerInput.new()
@@ -151,7 +158,15 @@ func _load_class() -> void:
 	max_resource = data.max_resource
 	health = max_health
 	resource = max_resource
-	move_speed = GameData.balance.base_move_speed * data.move_speed_pct / 100.0
+	mounted = data.has("mount")
+	move_speed = GameData.balance.base_move_speed * _speed_pct() / 100.0
+
+
+## Velocidade da classe; o Cavaleiro a pé anda a 95% (montado, 120%).
+func _speed_pct() -> float:
+	if data.has("mount") and not mounted:
+		return float(data.get("foot_speed_pct", data.move_speed_pct))
+	return float(data.move_speed_pct)
 
 
 ## Servidor: assume a ficha do personagem e calcula vida, recurso, poder etc.
@@ -170,7 +185,7 @@ func _apply_character(fill := false) -> void:
 	max_resource = character.max_resource()
 	power = character.power()
 	armor_value = character.armor()
-	move_speed = GameData.balance.base_move_speed * data.move_speed_pct / 100.0 \
+	move_speed = GameData.balance.base_move_speed * _speed_pct() / 100.0 \
 		* (1.0 + character.move_speed_bonus())
 	if fill:
 		health = max_health
@@ -405,6 +420,7 @@ func _server_step(delta: float) -> void:
 		_drink("potion_resource")
 	if input.potion_elemental_presses != _seen_extra.potion_elemental_presses:
 		_drink_next_elemental()
+	var mount_pressed := input.mount_presses != _seen_extra.mount_presses
 	var skill_pressed: Array[int] = []
 	for i in 4:
 		if input.skill_presses[i] != _seen_extra.skill_presses[i]:
@@ -428,9 +444,17 @@ func _server_step(delta: float) -> void:
 	if aim != Vector2.ZERO:
 		facing = aim.normalized()
 
-	velocity = Vector3(input.move.x, 0, input.move.y) * move_speed * speed_mult()
+	_update_mount(delta, mount_pressed)
+	var desired := Vector3(input.move.x, 0, input.move.y) * move_speed * speed_mult()
+	if mounted:
+		# Cavalo: acelera e faz curvas mais abertas (inércia).
+		velocity = velocity.move_toward(desired, float(data.mount.acceleration) * delta)
+	else:
+		velocity = desired
 	move_and_slide()
 	global_position.y = 0.0
+	if data.has("momentum"):
+		_update_momentum(delta)
 	for i in skill_pressed:
 		_cast_slot(i)
 
@@ -503,8 +527,10 @@ func take_damage(amount: float, monster_level := 1) -> void:
 		return
 	if character:
 		amount *= 1.0 - character.damage_reduction(monster_level)
-	# Corpo de Ferro: menos dano por alguns segundos.
+	# Corpo de Ferro: menos dano por alguns segundos; Armadura Pesada sempre.
 	amount *= 1.0 - float(_buffs.get("iron_body", {}).get("value", 0.0))
+	if character:
+		amount *= 1.0 - character.passive_value("heavy_armor")
 	# Pele de Pedra absorve primeiro.
 	if shield > 0.0:
 		var absorbed := minf(shield, amount)
@@ -684,8 +710,15 @@ func teleport_to(spot: Vector3) -> void:
 ## o próximo golpe depois do Passo Sombrio.
 func damage_mult() -> float:
 	var mastery := character.passive_value("mastery") if character else 0.0
-	return (1.0 + float(_buffs.get("damage", {}).get("value", 0.0))) * (1.0 + mastery) \
+	var mult := (1.0 + float(_buffs.get("damage", {}).get("value", 0.0))) * (1.0 + mastery) \
 		* (1.0 + float(_buffs.get("next_hit", {}).get("value", 0.0)))
+	if data.has("mount"):
+		if not mounted:
+			mult *= float(data.get("foot_damage_mult", 1.0))  # Cavaleiro a pé: -25%
+		elif character:
+			# Ímpeto Inabalável: até +20% conforme a velocidade do cavalo.
+			mult *= 1.0 + character.passive_value("unstoppable") * clampf(velocity.length() / maxf(move_speed, 0.1), 0.0, 1.0)
+	return mult
 
 
 ## Domínio Elemental: estados duram mais.
@@ -720,7 +753,60 @@ func _set_slot(index: int, key: String) -> void:
 		_push_character(0)
 
 
-## Ataque de perto (Ninja): cortes à frente ou, no forte, corte giratório.
+# --- Cavaleiro: cavalo e Ímpeto ------------------------------------------------------
+
+## Áreas estreitas desmontam sozinhas; ao sair, o cavalo volta depois de um assobio.
+## O botão de montar alterna (não monta dentro de área estreita).
+func _update_mount(delta: float, pressed: bool) -> void:
+	if not data.has("mount"):
+		return
+	var narrow: bool = get_parent().has_method("is_narrow") and get_parent().is_narrow(global_position)
+	if pressed:
+		if mounted:
+			_set_mounted(false)
+			_manual_dismount = true
+		elif not narrow:
+			_manual_dismount = false
+			_set_mounted(true)
+	if mounted and narrow:
+		_set_mounted(false)
+		_remount_timer = float(data.mount.remount_delay)
+	elif not mounted and not narrow and not _manual_dismount:
+		_remount_timer -= delta
+		if _remount_timer <= 0.0:
+			_set_mounted(true)
+
+
+func _set_mounted(value: bool) -> void:
+	if mounted == value:
+		return
+	mounted = value
+	velocity = Vector3.ZERO
+	move_speed = GameData.balance.base_move_speed * _speed_pct() / 100.0 \
+		* (1.0 + (character.move_speed_bonus() if character else 0.0))
+
+
+## Ímpeto: enche galopando, cai parado (02-3-cavaleiro.md, seção 5).
+func _update_momentum(delta: float) -> void:
+	var rules: Dictionary = data.momentum
+	var speed := velocity.length()
+	var change := 0.0
+	if mounted and speed > move_speed * 0.8:
+		change = float(rules.gallop)
+	elif speed < 0.2:
+		change = float(rules.idle)
+	resource = clampf(resource + change * delta, 0.0, max_resource)
+
+
+## Golpe acertado: o Cavaleiro ganha Ímpeto (+5 montado, +8 a pé).
+func on_hit() -> void:
+	if data.has("momentum"):
+		var gain := float(data.momentum.hit_mounted if mounted else data.momentum.hit_foot)
+		resource = minf(resource + gain, max_resource)
+
+
+## Ataque de perto (Ninja, Cavaleiro): cortes/estocadas à frente ou, no forte,
+## corte giratório (Ninja) ou avanço com a lança baixada (Cavaleiro montado).
 func _melee(attack: Dictionary) -> void:
 	var hit := {
 		"damage": power * attack.power_pct * damage_mult(),
@@ -731,6 +817,9 @@ func _melee(attack: Dictionary) -> void:
 		"crit_mult": character.crit_mult() if character else GameData.elements.crit_mult,
 	}
 	consume_buff("next_hit")
+	if attack.has("lunge") and mounted:
+		var dir := Vector3(facing.x, 0, facing.y)
+		teleport_to(get_parent().skills._ray_limited(self, global_position, global_position + dir * float(attack.lunge)))
 	get_parent().skills.melee_strike(self, hit, attack.range, attack.get("arc", 360.0), attack.get("spin", false))
 
 
@@ -756,7 +845,7 @@ func _add_synchronizer() -> void:
 	var config := SceneReplicationConfig.new()
 	var always := [":net_position", ":facing", ":charge_time", ":revive_progress", ":evade_cooldown"]
 	var on_change := [":health", ":max_health", ":resource", ":max_resource", ":alive", ":connected",
-		":hero_name", ":level", ":equip_visual", ":potion_cooldown", ":armor_value", ":element", ":shield", ":hidden"]
+		":hero_name", ":level", ":equip_visual", ":potion_cooldown", ":armor_value", ":element", ":shield", ":hidden", ":mounted"]
 	for prop in always + on_change:
 		var path := NodePath("." + prop)
 		config.add_property(path)
@@ -779,6 +868,7 @@ func _build_visual() -> void:
 	capsule.radius = 0.4
 	capsule.height = 1.8
 	shape.shape = capsule
+	_body_shape = capsule
 	shape.position.y = 0.9
 	add_child(shape)
 
@@ -799,6 +889,7 @@ func _build_visual() -> void:
 	var archer := class_id == "archer"
 	var ninja := class_id == "ninja"
 	var summoner := class_id == "summoner"
+	var knight := class_id == "knight"
 	_body_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA  # invisível (Bomba de Fumaça)
 	# Arma: cajado (Mago) ou arco (Arqueiro), na cor do material equipado.
 	var staff := MeshInstance3D.new()
@@ -813,6 +904,22 @@ func _build_visual() -> void:
 	if archer:
 		staff.rotation.z = 0.15
 		staff.rotation.x = -0.25
+	if knight:
+		# Lança longa apontada para a frente e escudo no braço esquerdo.
+		staff_mesh.top_radius = 0.02
+		staff_mesh.bottom_radius = 0.04
+		staff_mesh.height = 2.6
+		staff.position = Vector3(0.4, 1.05, 0.7)
+		staff.rotation.x = PI / 2.0
+		var shield_node := MeshInstance3D.new()
+		var shield_mesh := BoxMesh.new()
+		shield_mesh.size = Vector3(0.08, 0.7, 0.5)
+		shield_node.mesh = shield_mesh
+		shield_node.material_override = _material(Color(0.45, 0.32, 0.2))
+		shield_node.position = Vector3(-0.42, 1.0, 0.15)
+		_visual.add_child(shield_node)
+		_horse = _build_horse()
+		_visual.add_child(_horse)
 	if summoner:
 		# Livro dos Amigos aberto na mão (a capa na cor do material).
 		staff.mesh = BoxMesh.new()
@@ -839,6 +946,8 @@ func _build_visual() -> void:
 	crystal.mesh = crystal_mesh
 	crystal.material_override = _crystal_material
 	crystal.position = Vector3(0.42, 0.9, 0.62) if ninja else (Vector3(0.45, 0.95, 0.6) if archer else Vector3(0.45, 1.8, 0.15))
+	if knight:
+		crystal.position = Vector3(0.4, 1.05, 2.0)  # ponta da lança
 	if summoner:
 		crystal.position = Vector3(0.38, 1.08, 0.35)  # página brilhando no livro
 	_visual.add_child(crystal)
@@ -854,6 +963,10 @@ func _build_visual() -> void:
 		# Pássaro amigo no ombro.
 		notebook_mesh.size = Vector3(0.16, 0.14, 0.24)
 		notebook.position = Vector3(-0.28, 1.72, 0.0)
+	if knight:
+		# Fita da princesa / broche real no peito.
+		notebook_mesh.size = Vector3(0.14, 0.14, 0.04)
+		notebook.position = Vector3(0.12, 1.35, 0.33)
 	if ninja:
 		# Guarda da espada do pai, presa na cintura.
 		notebook_mesh.size = Vector3(0.2, 0.06, 0.2)
@@ -891,6 +1004,11 @@ func _build_visual() -> void:
 
 
 func _tick_visual(delta: float) -> void:
+	if _horse:
+		# Montado: o herói sobe no cavalo e o corpo (hitbox) fica maior.
+		_horse.visible = mounted
+		_visual.position.y = 0.6 if mounted else 0.0
+		_body_shape.radius = 0.75 if mounted else 0.4
 	for key: String in skill_cd_view.keys():
 		skill_cd_view[key] -= delta
 		if skill_cd_view[key] <= 0.0:
@@ -976,6 +1094,30 @@ func _update_gear() -> void:
 			_gear[slot_name].material.albedo_color = Color(GameData.materials[material_id].color)
 	var weapon: String = equip_visual.get("weapon", "wood")
 	_staff_material.albedo_color = Color(GameData.materials.get(weapon, GameData.materials.wood).color)
+
+
+## Cavalo placeholder: corpo, pescoço, cabeça e quatro patas.
+func _build_horse() -> Node3D:
+	var horse := Node3D.new()
+	var coat := _material(Color(0.32, 0.22, 0.14))
+	var parts := [
+		[Vector3(0.6, 0.6, 1.6), Vector3(0, 0.95, 0)],
+		[Vector3(0.3, 0.6, 0.3), Vector3(0, 1.4, 0.75)],
+		[Vector3(0.28, 0.3, 0.55), Vector3(0, 1.7, 1.0)],
+		[Vector3(0.15, 0.7, 0.15), Vector3(0.22, 0.35, 0.6)],
+		[Vector3(0.15, 0.7, 0.15), Vector3(-0.22, 0.35, 0.6)],
+		[Vector3(0.15, 0.7, 0.15), Vector3(0.22, 0.35, -0.6)],
+		[Vector3(0.15, 0.7, 0.15), Vector3(-0.22, 0.35, -0.6)],
+	]
+	for part in parts:
+		var mesh := MeshInstance3D.new()
+		var box := BoxMesh.new()
+		box.size = part[0]
+		mesh.mesh = box
+		mesh.material_override = coat
+		mesh.position = part[1] - Vector3(0, 0.6, 0)  # o herói sobe 0,6 m quando montado
+		horse.add_child(mesh)
+	return horse
 
 
 static func _material(color: Color, emission := 0.0) -> StandardMaterial3D:

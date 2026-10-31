@@ -5,7 +5,7 @@ Dark co-op action RPG with a top-down camera, inspired by *Baldur's Gate: Dark A
 **Languages:** English · Español · Português (BR)
 
 ## Status
-**Phase 5 — Classes and skills (in progress: Mage, Archer, Ninja and Summoner done)** (`docs/01-escopo.md`, section 9). Phases 1–4 are done. Not the game yet: the technical base the next phases build on.
+**Phase 5 — Classes and skills (all five classes playable; blocking/parry and the horse's barding still to come)** (`docs/01-escopo.md`, section 9). Phases 1–4 are done. Not the game yet: the technical base the next phases build on.
 
 - **Combat (phase 1):** the Mage with the top-down camera: basic attack, charged strong attack and dodge (`docs/02-1-mago.md`).
 - **Test area:** a start room (checkpoint), a corridor and two chambers to explore. Sewer rats are placed in **encounter groups** that sleep until a player gets close (~15 m) and alert nearby groups; dead monsters stay dead (`docs/03-inimigos.md`, no waves). Bites have a visible wind-up.
@@ -20,6 +20,7 @@ Dark co-op action RPG with a top-down camera, inspired by *Baldur's Gate: Dark A
 - **Archer (phase 5):** Focus (100, +1 per DEX) that regenerates fast standing still (15/s) and slowly while moving (5/s); arrows with 16 m reach and a charged shot (1.5 s, 200%); dodge every 3 s instead of a block. 7 class skills that carry the current element's basic state — Precise Shot (always crits), Back Leap, Eagle Eye, Spike Trap (up to 3), Arrow Fan, Piercing Arrow, Mark Target — and 3 per element: a support (Campfire, Spring, Wind, Bulwark), a single-target arrow and a final rain or volley (`docs/02-2-arqueiro.md`). Bow, hunter's cap and leather vest drop for the Archer.
 - **Ninja (phase 5):** agile melee tank — 130 health, quick dagger slashes and a charged spinning cut, 10% evasion (+0.2% per DEX), a 5 m teleport instead of a dodge roll, Energy that regenerates fast and refills on crits. 7 class skills (Twin Slash, Shadow Step behind the target, Backstab — always crits from behind, Smoke Bomb invisibility, Iron Body that taunts, Evasion, Blink Strike) and 3 per element: seals as supports, a heavy single-target cut and the "Thousand Cuts" finals that jump between enemies (`docs/02-4-ninja.md`). +10% gold found (thief trait, proposal). Parry comes later together with blocking.
 - **Summoner (phase 5):** fights with friendly animals — a companion per element (fire fox, otter, falcon, boar), up to 2 (3 at rank 5), and a Guardian Bear that taunts; animals use the Summoner's current element, are attacked by monsters, flee instead of dying, and every hit gives back Essence. Pages of the book as projectiles; Flock, Bond, Scatter Escape, Stampede and Rescue (revives a downed ally from afar), plus 3 skills per element (`docs/02-5-invocador.md`). Book of Friends pages come with the maps.
+- **Knight (phase 5):** mounted charge tank — on horseback 120% speed with inertia and a bigger body; dismounts by itself in narrow areas (the test area's corridors) and whistles the horse back when leaving, or toggles with Shift / L3; on foot 95% speed and -25% damage. Momentum fills while galloping (+10/s) and on hits (+5 mounted, +8 on foot) and drains standing still. Lance thrusts, Charge through a line, Heavy Armor, Challenge (taunt), Trample, Lance Sweep, Unstoppable, banners as supports and three-charge finals, with weaker on-foot versions (`docs/02-3-cavaleiro.md`).
 - **Elements (phase 4):**
   - Every character picks an origin element at creation (Water, Fire, Air, Earth); every monster has one too, shown as a colored gem above it.
   - Weakness cycle Water > Fire > Earth > Air > Water: +50% damage on the weakness, -50% on the same element. Damage numbers are bigger and in the element's color on a weakness, small and gray when resisted; criticals (5% base, x1.5) end with "!".
@@ -50,7 +51,7 @@ godot --path .        # play
 godot -e --path .     # open in the editor
 ```
 
-Default controls — keyboard: WASD move, mouse aim, left click attack (hold for strong attack), Q/E/R/F skills, K skills window, Space dodge, right click / G interact, Z pick up all, 1/2 potions, 3 Elemental Potion, I inventory, Esc pause. Gamepad: left stick move, right stick aim, RT attack, A/B/X/Y skills, LT dodge, RB pick up all, D-pad down/up potions, D-pad right Elemental Potion, Back inventory, Start pause.
+Default controls — keyboard: WASD move, mouse aim, left click attack (hold for strong attack), Q/E/R/F skills, K skills window, Shift mount (Knight), Space dodge, right click / G interact, Z pick up all, 1/2 potions, 3 Elemental Potion, I inventory, Esc pause. Gamepad: left stick move, right stick aim, RT attack, A/B/X/Y skills, L3 mount, LT dodge, RB pick up all, D-pad down/up potions, D-pad right Elemental Potion, Back inventory, Start pause.
 
 ## Tests
 ```bash
@@ -64,6 +65,7 @@ godot --headless --path . res://tests/smoke_arena.tscn -- skills mage   # every 
 godot --headless --path . res://tests/smoke_arena.tscn -- skills archer # every Archer skill
 godot --headless --path . res://tests/smoke_arena.tscn -- skills ninja  # every Ninja skill
 godot --headless --path . res://tests/smoke_arena.tscn -- skills summoner # every Summoner skill, companions, Rescue
+godot --headless --path . res://tests/smoke_arena.tscn -- skills knight  # every Knight skill, mount/dismount in narrow areas
 godot --headless --path . res://tests/smoke_arena.tscn -- trade         # invite, offers, confirmations, trade, cancel by distance
 tests/net_smoke.sh godot                                                # host + client together; version refusal; drop and rejoin
 ```

@@ -271,5 +271,83 @@
       "gold": 0
     },
     "_comment": "Invocador (02-5-invocador.md). Essência 120, +2 por INT, regenera 2/s e +3 a cada golpe de um animal amigo (seção 4); página do livro como projétil e pássaro que atravessa 2 inimigos no forte; armadura x0,35. Kit: Livro dos Amigos com capa de madeira."
+  },
+  "knight": {
+    "name_key": "CLASS_KNIGHT_NAME",
+    "hero_name_keys": {
+      "male": "HERO_KNIGHT_MALE",
+      "female": "HERO_KNIGHT_FEMALE"
+    },
+    "resource": "momentum",
+    "resource_key": "RESOURCE_MOMENTUM",
+    "power_key": "POWER_ATTACK",
+    "power_attribute": "str",
+    "attributes": {
+      "str": 25,
+      "dex": 10,
+      "int": 10,
+      "vit": 30
+    },
+    "max_health": 150,
+    "max_resource": 100,
+    "resource_regen": 0.0,
+    "move_speed_pct": 120,
+    "foot_speed_pct": 95,
+    "foot_damage_mult": 0.75,
+    "mount": {
+      "acceleration": 14.0,
+      "remount_delay": 1.0
+    },
+    "momentum": {
+      "gallop": 10.0,
+      "idle": -5.0,
+      "hit_mounted": 5.0,
+      "hit_foot": 8.0
+    },
+    "basic_attack": {
+      "melee": true,
+      "power_pct": 0.9,
+      "range": 3.2,
+      "arc": 60.0,
+      "cooldown": 0.5
+    },
+    "strong_attack": {
+      "melee": true,
+      "power_pct": 2.0,
+      "range": 3.6,
+      "arc": 70.0,
+      "charge_time": 1.0,
+      "applies_state": true,
+      "lunge": 3.0
+    },
+    "evade": {
+      "distance": 4.0,
+      "duration": 0.3,
+      "cooldown": 4.0
+    },
+    "health_per_level": 55,
+    "resource_per_power_point": 1,
+    "regen_per_power_point": 0.0,
+    "armor_factor": 1.0,
+    "starting_kit": {
+      "equipment": {
+        "weapon": {
+          "base": "lance",
+          "material": "wood"
+        }
+      },
+      "items": [
+        {
+          "id": "potion_health",
+          "count": 3
+        },
+        {
+          "id": "potion_resource",
+          "count": 2
+        }
+      ],
+      "gold": 0
+    },
+    "_comment": "Cavaleiro (02-3-cavaleiro.md). Montado: 120% de velocidade com inércia; a pé (áreas estreitas ou desmontado): 95% e -25% de dano. Ímpeto 100 (+1 por FOR acima de 25): +10/s galopando, -5/s parado, +5 por golpe montado e +8 a pé (seção 5). Estocada de 90% PA e avanço com a lança no forte (200%); armadura x1,0. Kit: lança de madeira."
   }
 }

@@ -240,6 +240,17 @@ func _show_zone(state_id: String, at: Vector3, radius: float, duration: float) -
 	get_tree().create_timer(duration, false).timeout.connect(disc.queue_free)
 
 
+## Área estreita (corredores marcados "narrow"): o Cavaleiro desmonta (02-3-cavaleiro.md, seção 3).
+func is_narrow(at: Vector3) -> bool:
+	for room: Dictionary in arena.rooms:
+		if not room.get("narrow", false):
+			continue
+		var half := Vector2(room.size[0], room.size[1]) / 2.0
+		if absf(at.x - room.center[0]) <= half.x and absf(at.z - room.center[1]) <= half.y:
+			return true
+	return false
+
+
 ## Animal amigo do Invocador (só no servidor; o spawner cria nos outros PCs).
 func spawn_companion(spawn: Dictionary) -> Node:
 	return _companion_spawner.spawn(spawn) if multiplayer.is_server() else null

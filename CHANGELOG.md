@@ -16,7 +16,9 @@
 - Friendly animals (`Companion`, `data/companions.json`): server AI like monsters, replicated by a spawner; follow the Summoner and attack awake monsters near them with the Summoner's current element; monsters attack them too; they flee when they fall; up to 5 per Summoner. Group buffs, shields and heals also reach animals.
 - Summoner skills: Call Companion, Flock, Bond, Scatter Escape (animals taunt), Guardian Bear, Stampede, Rescue (revives a downed ally from afar) and 3 per element.
 - Fix: woken monsters stayed in the sleep state and never chased or attacked (a `state = CHASE` line had ended up after a `return` in phase 3); found by the Summoner test, where companions only fight awake monsters.
-- Not yet: Fire Wall does not block monsters; Ninja parry and blocking in general; Book of Friends pages (with the maps); Knight.
+- Knight (`docs/02-3-cavaleiro.md`): mounted with inertia (120%) or on foot (95%, -25% damage); auto-dismount in rooms marked `narrow` (the test area's corridors) and remount after leaving, or the `mount` action; Momentum resource (gallop, hits, idle drain); lance, helm and plate item bases; horse, lance and shield placeholder visuals; mounted strong attack lunges forward.
+- Knight skills: Lance Thrust, Charge (mounted 15 m knockdown / on-foot shield rush), Heavy Armor, Challenge, Trample, Lance Sweep, Unstoppable, banners and three-charge finals with on-foot versions.
+- Not yet: Fire Wall does not block monsters; blocking and Ninja parry; horse barding slot; Book of Friends pages (with the maps).
 
 ### Phase 4 — Elements
 - `data/elements.json` and `Elements` / `StatusSet`: weakness cycle (x1.5 / x0.5), basic state per element, states (burning, soaked, frozen, shocked, knocked down, stunned) with refresh-not-stack, immunities (fire monsters don't burn, water monsters aren't soaked) and bosses getting a slow instead of control (`docs/02-0-elementos.md`).

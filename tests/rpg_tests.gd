@@ -34,6 +34,7 @@ func _ready() -> void:
 	_test_archer()
 	_test_ninja()
 	_test_summoner()
+	_test_knight()
 	_test_names()
 	_clean(TEST_ROOT)
 	if _failures == 0:
@@ -559,6 +560,23 @@ func _test_summoner() -> void:
 	for element in Elements.ALL:
 		for key in Skills.keys("summoner"):
 			_check(not Skills.def(Skills.skill_id("summoner", key, element)).is_empty(), "habilidade do Invocador %s/%s existe" % [element, key])
+
+
+func _test_knight() -> void:
+	var k := CharacterData.create("knight", "female", "Dália", "fire")
+	_check(k.validate().is_empty(), "Cavaleiro criado válido: %s" % [k.validate()])
+	_near(k.max_health(), 150, "vida do Cavaleiro no nível 1")
+	_near(k.max_resource(), 100, "Ímpeto 100 (FOR inicial 25)")
+	_near(k.power(), 22.5, "Poder de Ataque: lança de madeira 10 + FOR 25 × 0,5")
+	_check(k.data.equipment.weapon.base == "lance" and k.data.skill_slots[0] == "lance_thrust", "lança e Estocada no atalho 1")
+	k.add_xp(30000)
+	_check(k.learn("heavy_armor") and k.learn("heavy_armor"), "Armadura Pesada rank 2")
+	_near(k.passive_value("heavy_armor"), 0.08, "Armadura Pesada: -6%, -2% por rank")
+	for element in Elements.ALL:
+		for key in Skills.keys("knight"):
+			_check(not Skills.def(Skills.skill_id("knight", key, element)).is_empty(), "habilidade do Cavaleiro %s/%s existe" % [element, key])
+	# As 5 classes do jogo existem e são jogáveis.
+	_check(GameData.classes.size() == 5, "5 classes: %s" % [GameData.classes.keys()])
 
 
 func _test_names() -> void:

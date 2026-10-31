@@ -390,6 +390,16 @@ func _skills_test() -> void:
 	check.call(player.shield > 0.0, "habilidade de escudo de Terra")
 	check.call(player._buffs.has("damage") and player._buffs.has("speed"), "bônus de dano (Fogo) e de velocidade (Ar)")
 	check.call(not system._areas.is_empty(), "áreas que duram ativas")
+	# Cavaleiro: desmonta sozinho no corredor (área estreita) e monta de novo ao sair.
+	if player.data.has("mount"):
+		check.call(player.mounted, "Cavaleiro começa montado")
+		player.teleport_to(Vector3(0, 0, -17))
+		await get_tree().physics_frame
+		await get_tree().physics_frame
+		check.call(not player.mounted, "desmonta na área estreita")
+		player.teleport_to(start)
+		await get_tree().create_timer(1.5, false).timeout
+		check.call(player.mounted, "monta de novo ao sair")
 	if fallen:
 		check.call(fallen.alive, "Resgate reanimou o aliado caído")
 		var animals := system.companions_of(player)

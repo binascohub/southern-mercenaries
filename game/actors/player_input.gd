@@ -20,6 +20,7 @@ var pickup_all_presses := 0
 var potion_health_presses := 0
 var potion_resource_presses := 0
 var potion_elemental_presses := 0
+var mount_presses := 0
 ## Atalhos de habilidade 1 a 4 (contadores de apertos).
 var skill_presses: Array[int] = [0, 0, 0, 0]
 
@@ -39,6 +40,7 @@ static func gather(previous: PlayerInput, origin: Vector3, camera: Camera3D, vie
 	input.potion_health_presses = previous.potion_health_presses + int(Input.is_action_just_pressed(&"potion_health"))
 	input.potion_resource_presses = previous.potion_resource_presses + int(Input.is_action_just_pressed(&"potion_mana"))
 	input.potion_elemental_presses = previous.potion_elemental_presses + int(Input.is_action_just_pressed(&"potion_elemental"))
+	input.mount_presses = previous.mount_presses + int(Input.is_action_just_pressed(&"mount") and not Session.ui_open)
 	for i in 4:
 		input.skill_presses[i] = previous.skill_presses[i] \
 			+ int(Input.is_action_just_pressed(StringName("skill_%d" % (i + 1))) and not Session.ui_open)
@@ -72,12 +74,12 @@ func to_array() -> Array:
 	return [move.x, move.y, aim.x, aim.y, attack_held, interact_held,
 		attack_presses, attack_releases, evade_presses, interact_presses,
 		pickup_all_presses, potion_health_presses, potion_resource_presses, potion_elemental_presses] \
-		+ skill_presses
+		+ skill_presses + [mount_presses]
 
 
 static func from_array(a: Array) -> PlayerInput:
 	var input := PlayerInput.new()
-	if a.size() != 18:
+	if a.size() != 19:
 		return input
 	input.move = Vector2(a[0], a[1]).limit_length(1.0)
 	input.aim = Vector2(a[2], a[3]).limit_length(1.0)
@@ -93,4 +95,5 @@ static func from_array(a: Array) -> PlayerInput:
 	input.potion_elemental_presses = int(a[13])
 	for i in 4:
 		input.skill_presses[i] = int(a[14 + i])
+	input.mount_presses = int(a[18])
 	return input
