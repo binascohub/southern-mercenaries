@@ -49,6 +49,9 @@ var _materials: Array[StandardMaterial3D] = []
 var _base_colors: Array[Color] = []
 var _hair: Array[String] = []
 var _shown_equip := {}
+## Nome real de cada animação no arquivo importado (o importador do Godot tira
+## o sufixo "_Loop" e marca a animação como repetida).
+var _names := {}
 
 
 ## Monta o corpo do sexo dado, com o cabelo do visual da classe
@@ -83,9 +86,13 @@ func setup(sex: String, look: Dictionary) -> void:
 	if _anim:
 		_anim.animation_finished.connect(func(_name: StringName) -> void: _action = "")
 		for key: String in ANIMS:
-			var anim_name: String = ANIMS[key]
-			if _anim.has_animation(anim_name) and anim_name.ends_with("_Loop"):
-				_anim.get_animation(anim_name).loop_mode = Animation.LOOP_LINEAR
+			var wanted: String = ANIMS[key]
+			for candidate in [wanted, wanted.trim_suffix("_Loop")]:
+				if _anim.has_animation(candidate):
+					_names[key] = candidate
+					if wanted.ends_with("_Loop"):
+						_anim.get_animation(candidate).loop_mode = Animation.LOOP_LINEAR
+					break
 		_play("idle", 0.0)  # sem transição desde a pose de descanso
 
 
@@ -157,7 +164,7 @@ func attach(bone: String, node: Node3D, offset := Transform3D.IDENTITY, fallback
 
 ## Uma ação de uma vez (ataque, magia, esquiva…): toca por cima da locomoção.
 func play_action(kind: String) -> void:
-	if _anim == null or _dead or not ANIMS.has(kind):
+	if _anim == null or _dead or not _names.has(kind):
 		return
 	_action = kind
 	_anim.stop()
@@ -221,9 +228,14 @@ func _build_capsule() -> void:
 	_base_colors.append(material.albedo_color)
 
 
+## Animações que este modelo tem (testes).
+func animations() -> Array:
+	return _names.keys()
+
+
 func _play(key: String, blend := BLEND) -> void:
-	var anim_name: String = ANIMS.get(key, "")
-	if not _anim.has_animation(anim_name):
+	var anim_name: String = _names.get(key, "")
+	if anim_name == "":
 		return
 	_current = key
 	_anim.play(anim_name, blend)

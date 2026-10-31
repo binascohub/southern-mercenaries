@@ -702,6 +702,11 @@ func _town_test() -> void:
 	var town: Town = _arena.town
 	var c := player.character
 	check.call(_arena.area_id == "tavern", "campanha nova começa na Taverna (%s)" % _arena.area_id)
+	# Herói montado das peças da Quaternius: todas as animações e a roupa de Camponês.
+	var model: HeroModel = player._model
+	check.call(model.animations().size() == HeroModel.ANIMS.size(), "herói com todas as animações (%s)" % [model.animations()])
+	check.call(model._anim != null and model._anim.is_playing(), "herói animado ao nascer")
+	check.call("Peasant_Body" in model.visible_parts() and "Head" in model.visible_parts(), "roupa de Camponês e rosto à mostra (%s)" % [model.visible_parts()])
 	# Abertura: o herói do jogador conta primeiro; "Pular abertura" fecha.
 	var opening: OpeningMenu = _arena._opening_menu
 	check.call(opening.visible and opening.current_key() == "OPENING_SCENE_MAGE", "abertura começa pela história do Mago (%s)" % opening.current_key())
