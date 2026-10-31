@@ -75,6 +75,10 @@ func _physics_process(delta: float) -> void:
 	elif _frame == CLASSES_FRAME:
 		_show_classes()
 	elif _frame == CLASSES_SHOT:
+		for hero: Player in get_tree().get_nodes_in_group(&"players"):
+			var anim: AnimationPlayer = hero._model._anim
+			print("herói %s %s: estado=%s anim=%s tocando=%s ação=%s vivo=%s" % [hero.name, hero.class_id, hero._model.current(),
+				anim.current_animation if anim else "-", anim.is_playing() if anim else false, hero.action, hero.alive])
 		await _shot("classes.png")
 		_arena._camera.distance = 10.5
 		for peer in [91, 92, 93, 94]:
