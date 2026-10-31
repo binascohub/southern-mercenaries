@@ -158,12 +158,6 @@ func _build() -> void:
 	_panel.set_anchors_preset(Control.PRESET_CENTER)
 	_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	_panel.grow_vertical = Control.GROW_DIRECTION_BOTH
-	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.09, 0.07, 0.06)
-	style.border_color = Color(0.45, 0.33, 0.2)
-	style.set_border_width_all(2)
-	style.set_content_margin_all(16)
-	_panel.add_theme_stylebox_override("panel", style)
 	add_child(_panel)
 	var outer := VBoxContainer.new()
 	outer.add_theme_constant_override("separation", 10)
@@ -171,6 +165,7 @@ func _build() -> void:
 	var title := Label.new()
 	title.text = "SKILLS_TITLE"
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	title.theme_type_variation = &"TitleLabel"
 	title.add_theme_font_size_override("font_size", 26)
 	outer.add_child(title)
 	_points = Label.new()

@@ -116,12 +116,8 @@ func _build() -> void:
 	_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	_panel.grow_vertical = Control.GROW_DIRECTION_BEGIN
 	_panel.offset_bottom = -120
-	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.09, 0.07, 0.06)
-	style.border_color = Color(0.45, 0.33, 0.2)
-	style.set_border_width_all(2)
-	style.set_content_margin_all(16)
-	_panel.add_theme_stylebox_override("panel", style)
+	# Pergaminho do tema (09-interface.md, seção 7).
+	_panel.theme_type_variation = &"ParchmentPanel"
 	add_child(_panel)
 	var box := VBoxContainer.new()
 	box.add_theme_constant_override("separation", 10)
@@ -129,9 +125,11 @@ func _build() -> void:
 	_name = Label.new()
 	_name.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	_name.add_theme_font_size_override("font_size", 22)
-	_name.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
+	_name.theme_type_variation = &"ParchmentLabel"
+	_name.add_theme_color_override("font_color", Color(0.45, 0.12, 0.07))
 	box.add_child(_name)
 	_text = Label.new()
+	_text.theme_type_variation = &"ParchmentLabel"
 	_text.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_text.custom_minimum_size = Vector2(760, 90)

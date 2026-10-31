@@ -25,6 +25,8 @@ var last_character := ""
 func _ready() -> void:
 	_load()
 	TranslationServer.set_locale(language)
+	# Tema medieval de toda a interface (09-interface.md, seção 7).
+	get_tree().root.theme = UiTheme.get_theme()
 
 
 func set_language(code: String) -> void:

@@ -61,8 +61,8 @@ func _show_line() -> void:
 	_speaker.text = line.speaker
 	_speaker.visible = line.speaker != ""
 	_text.text = tr(line.key).format(args)
-	# Narração em cinza claro; as falas dos heróis em branco.
-	_text.add_theme_color_override("font_color", Color(0.78, 0.74, 0.68) if line.speaker == "" else Color.WHITE)
+	# Narração em tinta marrom; as falas dos heróis em tinta escura.
+	_text.add_theme_color_override("font_color", Color(0.38, 0.29, 0.2) if line.speaker == "" else UiTheme.INK)
 	var last := _line >= _lines.size() - 1
 	_next.text = tr("DLG_CLOSE") if last else tr("DLG_NEXT")
 	_skip.visible = not last
@@ -83,25 +83,23 @@ func _build() -> void:
 	_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	_panel.grow_vertical = Control.GROW_DIRECTION_BEGIN
 	_panel.offset_bottom = -120
-	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.09, 0.07, 0.06)
-	style.border_color = Color(0.45, 0.33, 0.2)
-	style.set_border_width_all(2)
-	style.set_content_margin_all(16)
-	_panel.add_theme_stylebox_override("panel", style)
+	# Pergaminho do tema (09-interface.md, seção 7).
+	_panel.theme_type_variation = &"ParchmentPanel"
 	add_child(_panel)
 	var box := VBoxContainer.new()
 	box.add_theme_constant_override("separation", 10)
 	_panel.add_child(box)
 	var title := Label.new()
 	title.text = GameData.arenas.get("tavern", {}).get("name_key", "")
+	title.theme_type_variation = &"ParchmentLabel"
 	title.add_theme_font_size_override("font_size", 16)
-	title.modulate = Color(1, 1, 1, 0.6)
+	title.modulate = Color(1, 1, 1, 0.7)
 	box.add_child(title)
 	_speaker = Label.new()
 	_speaker.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	_speaker.add_theme_font_size_override("font_size", 22)
-	_speaker.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
+	_speaker.theme_type_variation = &"ParchmentLabel"
+	_speaker.add_theme_color_override("font_color", Color(0.45, 0.12, 0.07))
 	box.add_child(_speaker)
 	_text = Label.new()
 	_text.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED

@@ -60,7 +60,7 @@ func add_title(key: String) -> Label:
 	var label := Label.new()
 	label.text = key
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.add_theme_font_size_override("font_size", 30)
+	label.theme_type_variation = &"TitleLabel"
 	content.add_child(label)
 	return label
 

@@ -42,6 +42,7 @@ func _ready() -> void:
 	_test_opening()
 	_test_sewers()
 	_test_explore_map()
+	_test_ui_theme()
 	_test_tips()
 	_test_names()
 	_clean(TEST_ROOT)
@@ -865,6 +866,17 @@ func _test_explore_map() -> void:
 			Vector2(6, -68), Vector2(16, -30), Vector2(27, -30)]:
 		ExploreMap.reveal(mask, area, spot)
 	_check(ExploreMap.explored_fraction(mask, area) > 0.95, "andando pela área toda, quase tudo aparece (%.2f)" % ExploreMap.explored_fraction(mask, area))
+
+
+func _test_ui_theme() -> void:
+	var theme := UiTheme.get_theme()
+	_check(theme.default_font != null, "tema: fonte do texto (Alegreya) carregada")
+	_check(theme.get_font("font", "TitleLabel") != null and theme.get_font("font", "TitleLabel") != theme.default_font, "tema: fonte dos títulos (Cinzel)")
+	for item in [["panel", "PanelContainer"], ["panel", "ParchmentPanel"], ["panel", "HudPanel"], ["normal", "Button"], ["hover", "Button"], ["pressed", "Button"], ["focus", "Button"], ["background", "ProgressBar"]]:
+		_check(theme.has_stylebox(item[0], item[1]), "tema: %s de %s" % item)
+	var frame := theme.get_stylebox("panel", "PanelContainer") as StyleBoxTexture
+	_check(frame != null and frame.texture != null and frame.texture.get_width() == UiTheme.FRAME * 4, "moldura de madeira gerada (9-patch)")
+	_check(get_tree().root.theme == theme, "o tema vale para a janela toda")
 
 
 func _test_tips() -> void:

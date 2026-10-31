@@ -428,12 +428,7 @@ func _build() -> void:
 	root.add_child(skill_bar)
 	for i in 4:
 		var box := PanelContainer.new()
-		var style := StyleBoxFlat.new()
-		style.bg_color = Color(0.08, 0.06, 0.05, 0.85)
-		style.border_color = Color(0.45, 0.33, 0.2)
-		style.set_border_width_all(2)
-		style.set_content_margin_all(6)
-		box.add_theme_stylebox_override("panel", style)
+		box.theme_type_variation = &"HudPanel"
 		box.custom_minimum_size = Vector2(112, 64)
 		skill_bar.add_child(box)
 		var slot_label := _label(14)
@@ -454,12 +449,7 @@ func _build() -> void:
 	_xp_bar = ProgressBar.new()
 	_xp_bar.show_percentage = false
 	_xp_bar.custom_minimum_size = Vector2(0, 8)
-	var xp_fill := StyleBoxFlat.new()
-	xp_fill.bg_color = Color(0.85, 0.7, 0.25)
-	_xp_bar.add_theme_stylebox_override("fill", xp_fill)
-	var xp_bg := StyleBoxFlat.new()
-	xp_bg.bg_color = Color(0, 0, 0, 0.55)
-	_xp_bar.add_theme_stylebox_override("background", xp_bg)
+	_xp_bar.add_theme_stylebox_override("fill", UiTheme.bar_fill(Color(0.85, 0.7, 0.25)))
 	xp_box.add_child(_xp_bar)
 	_xp_label = _label(14)
 	_xp_label.set_anchors_preset(Control.PRESET_BOTTOM_LEFT)
@@ -489,12 +479,7 @@ func _build() -> void:
 	_boss_bar.custom_minimum_size = Vector2(440, 18)
 	_boss_bar.show_percentage = false
 	_boss_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var boss_fill := StyleBoxFlat.new()
-	boss_fill.bg_color = Color(0.7, 0.1, 0.08)
-	_boss_bar.add_theme_stylebox_override("fill", boss_fill)
-	var boss_bg := StyleBoxFlat.new()
-	boss_bg.bg_color = Color(0.1, 0.05, 0.05, 0.85)
-	_boss_bar.add_theme_stylebox_override("background", boss_bg)
+	_boss_bar.add_theme_stylebox_override("fill", UiTheme.bar_fill(Color(0.7, 0.1, 0.08)))
 	_boss_box.add_child(_boss_bar)
 	_boss_box.visible = false
 	root.add_child(_boss_box)
@@ -507,14 +492,11 @@ func _build() -> void:
 	_tip.offset_top = 60
 	_tip.offset_bottom = 60
 	_tip.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var tip_style := StyleBoxFlat.new()
-	tip_style.bg_color = Color(0.09, 0.07, 0.06, 0.88)
-	tip_style.border_color = Color(0.85, 0.7, 0.35)
-	tip_style.set_border_width_all(2)
-	tip_style.set_corner_radius_all(6)
-	tip_style.set_content_margin_all(12)
-	_tip.add_theme_stylebox_override("panel", tip_style)
+	_tip.theme_type_variation = &"ParchmentPanel"
 	_tip_label = _label(17)
+	# Tinta no pergaminho, sem o contorno dos textos do HUD.
+	_tip_label.add_theme_color_override("font_color", UiTheme.INK)
+	_tip_label.add_theme_constant_override("outline_size", 0)
 	_tip_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_tip_label.custom_minimum_size = Vector2(320, 0)
 	_tip.add_child(_tip_label)
@@ -566,12 +548,7 @@ func _bar(color: Color) -> Array:
 	var bar := ProgressBar.new()
 	bar.set_anchors_preset(Control.PRESET_FULL_RECT)
 	bar.show_percentage = false
-	var fill := StyleBoxFlat.new()
-	fill.bg_color = color
-	bar.add_theme_stylebox_override("fill", fill)
-	var bg := StyleBoxFlat.new()
-	bg.bg_color = Color(0, 0, 0, 0.55)
-	bar.add_theme_stylebox_override("background", bg)
+	bar.add_theme_stylebox_override("fill", UiTheme.bar_fill(color))
 	holder.add_child(bar)
 	var label := _label(16)
 	label.set_anchors_preset(Control.PRESET_FULL_RECT)
