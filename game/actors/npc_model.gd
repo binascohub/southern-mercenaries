@@ -16,6 +16,10 @@ const MODELS := {
 		"poses": {"walk": "walk", "run": "run"},
 		"colors": {"bra": [0.62, 0.06, 0.05], "trouser": [0.5, 0.05, 0.04], "shoe": [0.55, 0.08, 0.06],
 			"hair": [0.5, 0.16, 0.06], "hair.001": [0.5, 0.16, 0.06]}},
+	# Capitão pirata (Clint Bellanger, CC BY 3.0): preso ao esqueleto dos heróis
+	# por tools/assets/rig_to_ual.py, com as animações deles; texturas geradas.
+	"pirate_captain": {"scene": "res://assets/models/characters/pirate_captain.glb", "scale": 1.0,
+		"poses": {"walk": "Walk_Loop", "idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "drink": "Consume"}},
 	# Galinha (cdmir, CC0): anda e cisca pelas cozinhas de Tortuga (12,6 unidades -> 0,4 m).
 	"chicken": {"scene": "res://assets/models/characters/chicken.glb", "scale": 0.032,
 		"poses": {"walk": "walk", "idle": "eat", "talk": "idle"}},
@@ -37,7 +41,7 @@ static func create(id: String) -> NpcModel:
 	var model := (load(info.scene) as PackedScene).instantiate()
 	npc.add_child(model)
 	npc.scale = Vector3.ONE * float(info.scale)
-	npc._poses = info.poses
+	npc._poses = info.poses.duplicate()
 	# Cores por material (variantes do mesmo modelo).
 	var colors: Dictionary = info.get("colors", {})
 	if not colors.is_empty():
@@ -52,9 +56,14 @@ static func create(id: String) -> NpcModel:
 					mesh.set_surface_override_material(i, copy)
 	npc._anim = model.find_child("AnimationPlayer", true, false) as AnimationPlayer
 	if npc._anim:
-		for anim_name: String in npc._poses.values():
-			if npc._anim.has_animation(anim_name):
-				npc._anim.get_animation(anim_name).loop_mode = Animation.LOOP_LINEAR
+		# O importador do Godot tira o "_Loop" do nome (e marca a repetição).
+		for key: String in npc._poses.keys():
+			var anim_name: String = npc._poses[key]
+			for candidate in [anim_name, anim_name.trim_suffix("_Loop")]:
+				if npc._anim.has_animation(candidate):
+					npc._poses[key] = candidate
+					npc._anim.get_animation(candidate).loop_mode = Animation.LOOP_LINEAR
+					break
 	return npc
 
 

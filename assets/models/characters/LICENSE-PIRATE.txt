@@ -1,0 +1,5 @@
+pirate_captain.glb — "Pirate" by Clint Bellanger
+https://opengameart.org/content/pirate
+Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/
+Changes: bound to the Universal Animation Library skeleton (CC0) with automatic weights by tools/assets/rig_to_ual.py
+(arms fitted to the skeleton, head and hat on the head bone), procedural cloth/leather/skin textures baked into a 1024 px map.
