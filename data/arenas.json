@@ -1032,6 +1032,105 @@
           -20.6
         ],
         "rotation": 40
+      },
+      {
+        "piece": "Weapon_FM_Long_Sword",
+        "position": [
+          -13.4,
+          -7.0
+        ],
+        "y": 0.5,
+        "rotation": 0
+      },
+      {
+        "piece": "Weapon_FM_Great_Sword",
+        "position": [
+          -12.9,
+          -7.1
+        ],
+        "y": 0.7,
+        "rotation": 0
+      },
+      {
+        "piece": "Weapon_FM_War_Axe",
+        "position": [
+          -11.2,
+          -7.0
+        ],
+        "y": 0.4,
+        "rotation": 0
+      },
+      {
+        "piece": "Weapon_FM_Spiked_Mace",
+        "position": [
+          -10.7,
+          -7.1
+        ],
+        "y": 0.425,
+        "rotation": 0
+      },
+      {
+        "piece": "Weapon_FM_Great_Axe",
+        "position": [
+          2.6,
+          -7.1
+        ],
+        "y": 0.65,
+        "rotation": 0
+      },
+      {
+        "piece": "Weapon_FM_Hammer",
+        "position": [
+          3.2,
+          -7.0
+        ],
+        "y": 0.4,
+        "rotation": 0
+      },
+      {
+        "piece": "Weapon_FM_Mace",
+        "position": [
+          5.1,
+          -7.1
+        ],
+        "y": 0.375,
+        "rotation": 0
+      },
+      {
+        "piece": "Weapon_FM_Spear",
+        "position": [
+          -14.5,
+          14.5
+        ],
+        "y": 1.05,
+        "rotation": 0
+      },
+      {
+        "piece": "Weapon_FM_Polearm",
+        "position": [
+          -13.8,
+          14.6
+        ],
+        "y": 1.1,
+        "rotation": 0
+      },
+      {
+        "piece": "Weapon_FM_Quarterstaff",
+        "position": [
+          -13.1,
+          14.5
+        ],
+        "y": 0.85,
+        "rotation": 0
+      },
+      {
+        "piece": "Weapon_FM_Club",
+        "position": [
+          -6.0,
+          22.4
+        ],
+        "y": 0.375,
+        "rotation": 0
       }
     ],
     "crowd": [
