@@ -93,3 +93,15 @@ func set_color(color: Color) -> void:
 ## Animações que este modelo tem (testes).
 func animations() -> Array:
 	return _names.keys()
+
+
+## Tamanho ocupado pelos ossos agora (x, y, z no mundo): confere a escala e a
+## orientação nas capturas do CI.
+func bone_extent() -> Vector3:
+	var skeleton := find_child("Skeleton3D", true, false) as Skeleton3D
+	if skeleton == null or skeleton.get_bone_count() == 0:
+		return Vector3.ZERO
+	var box := AABB(skeleton.global_transform * skeleton.get_bone_global_pose(0).origin, Vector3.ZERO)
+	for i in skeleton.get_bone_count():
+		box = box.expand(skeleton.global_transform * skeleton.get_bone_global_pose(i).origin)
+	return box.size

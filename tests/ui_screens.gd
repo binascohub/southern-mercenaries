@@ -343,7 +343,7 @@ func _shot(file: String) -> void:
 	var models := {}
 	for e: Enemy in get_tree().get_nodes_in_group(&"enemies"):
 		if e.model_family() != "":
-			models["%s:%s" % [e.monster_id, e.model_animation()]] = true
+			models["%s:%s %s" % [e.monster_id, e.model_animation(), e._model.bone_extent().snapped(Vector3.ONE * 0.01)]] = true
 	if not models.is_empty():
 		print("  monstros com modelo: ", models.keys())
 
