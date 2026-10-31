@@ -243,7 +243,7 @@ func _open_street() -> void:
 ## Doca do porto: o navio pirata atracado e o vendedor na frente dele.
 func _go_to_dock() -> void:
 	var player: Player = _arena.local_player
-	player.teleport_to(Vector3(0, 0, -23.5))
+	player.teleport_to(Vector3(0, 0, -24.4))  # a 2,2 m do vendedor (alcance 2,8 m)
 	player.facing = Vector2(0, -1)
 	_arena._camera.snap()
 

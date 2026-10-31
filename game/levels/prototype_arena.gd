@@ -33,6 +33,8 @@ const PROP_REACH := 2.8
 const MAIN_SCENE := "res://game/main/main.tscn"
 const WALL_HEIGHT := 2.5
 const DOOR_WIDTH := 6.0
+## Largura de um telhado do kit (Roof_RoundTiles_4x4) atrás das casas.
+const ROOF_WIDTH := 5.5
 const FLOOR_COLOR := Color(0.18, 0.17, 0.16)
 const WALL_COLOR := Color(0.28, 0.25, 0.23)
 ## Onde cada jogador surge em relação ao host (entrar no meio: "ao lado do host").
@@ -1739,6 +1741,17 @@ func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3,
 		doors.has("west"), doors.get("west", 0.0), [fence] if low else walls)
 	_dress_side(Vector3(c.x + half.x, 0, c.z), Vector3.BACK, Vector3.LEFT, half.z * 2.0,
 		doors.has("east"), doors.get("east", 0.0), [fence] if low else walls)
+	# Telhados atrás das casas do lado norte (a câmera vê a fachada e o telhado).
+	var roof: String = style.get("roof", "")
+	if room.get("roofs", false) and roof != "" and not low:
+		for segment in _wall_pieces(half.x * 2.0, doors.has("north"), doors.get("north", 0.0)):
+			var count := floori(segment.y / ROOF_WIDTH)
+			for i in count:
+				var node := Kit.piece(roof)
+				if node:
+					var x := c.x + segment.x - segment.y / 2.0 + (segment.y - count * ROOF_WIDTH) / 2.0 + ROOF_WIDTH * (i + 0.5)
+					node.position = Vector3(x, 3.4, c.z - half.z - ROOF_WIDTH / 2.0 + 0.6)
+					_area_root.add_child(node)
 	# Lampião na parede norte das salas com tocha.
 	if room.get("torch", false) and not low:
 		var lantern := Kit.piece("Lantern_Wall")
