@@ -59,10 +59,10 @@
         },
         {
           "id": "potion_resource",
-          "count": 2
+          "count": 1
         }
       ],
-      "gold": 0
+      "gold": 150
     },
     "_comment": "Mago (02-1-mago.md). Vida por nível de 13-balanceamento.md 2.2; mana +2 e regeneração +0,05/s por ponto de INT (02-1-mago.md, seção 4). Kit inicial: cajado de madeira e roupa de baixo (02-personagens.md); as poções do kit são provisórias até a loja do Boticário (14-tutorial.md).",
     "block": {
@@ -132,10 +132,10 @@
         },
         {
           "id": "potion_resource",
-          "count": 2
+          "count": 1
         }
       ],
-      "gold": 0
+      "gold": 150
     },
     "_comment": "Arqueiro (02-2-arqueiro.md). Atributos e vida de 02-personagens.md; Foco +1 por DES, regenera 15/s parado e 5/s andando (seção 4); esquiva com recarga 3 s no lugar do bloqueio; armadura x0,6 (13-balanceamento.md). Kit inicial: arco de madeira e roupa de baixo."
   },
@@ -202,10 +202,10 @@
         },
         {
           "id": "potion_resource",
-          "count": 2
+          "count": 1
         }
       ],
-      "gold": 0
+      "gold": 150
     },
     "_comment": "Ninja (02-4-ninja.md). Tanque ágil: vida 130 (+45 por nível), evasão 10% +0,2% por ponto de DES acima do inicial, Energia +1 por DES e +3 por crítico acertado, regenera 12/s; cortes de 60% PL e corte giratório de 180%; esquiva é teleporte de 5 m; armadura x0,7. Traço Ladrão: +10% de ouro (proposta). Kit: adagas de treino de madeira.",
     "block": {
@@ -276,10 +276,10 @@
         },
         {
           "id": "potion_resource",
-          "count": 2
+          "count": 1
         }
       ],
-      "gold": 0
+      "gold": 150
     },
     "_comment": "Invocador (02-5-invocador.md). Essência 120, +2 por INT, regenera 2/s e +3 a cada golpe de um animal amigo (seção 4); página do livro como projétil e pássaro que atravessa 2 inimigos no forte; armadura x0,35. Kit: Livro dos Amigos com capa de madeira.",
     "block": {
@@ -358,10 +358,10 @@
         },
         {
           "id": "potion_resource",
-          "count": 2
+          "count": 1
         }
       ],
-      "gold": 0
+      "gold": 150
     },
     "_comment": "Cavaleiro (02-3-cavaleiro.md). Montado: 120% de velocidade com inércia; a pé (áreas estreitas ou desmontado): 95% e -25% de dano. Ímpeto 100 (+1 por FOR acima de 25): +10/s galopando, -5/s parado, +5 por golpe montado e +8 a pé (seção 5). Estocada de 90% PA e avanço com a lança no forte (200%); armadura x1,0. Kit: lança de madeira.",
     "block": {

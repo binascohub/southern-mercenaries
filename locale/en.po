@@ -1514,3 +1514,156 @@ msgstr "Barding"
 
 msgid "ACTION_BLOCK"
 msgstr "Block / parry"
+
+msgid "SHOP_POTIONS"
+msgstr "Apothecary"
+
+msgid "SHOP_WEAPONS"
+msgstr "Weaponsmith"
+
+msgid "SHOP_ARMOR"
+msgstr "Armorer"
+
+msgid "SHOP_PIRATE"
+msgstr "Pirate Market"
+
+msgid "CAPTAIN_1"
+msgstr "Captain Red Malagueta's ship"
+
+msgid "CAPTAIN_2"
+msgstr "Captain One-Eyed Bastião's ship"
+
+msgid "CAPTAIN_3"
+msgstr "Captain Mother Salt's ship"
+
+msgid "CAPTAIN_4"
+msgstr "Captain Silent Lourenço's ship"
+
+msgid "SHOP_PRICE"
+msgstr "{price} gold"
+
+msgid "SHOP_SOLD"
+msgstr "sold"
+
+msgid "SHOP_NOT_BUYING"
+msgstr "not buying"
+
+msgid "SHOP_BUY"
+msgstr "For sale"
+
+msgid "SHOP_SELL"
+msgstr "Sell (your bag)"
+
+msgid "SHOP_HINT"
+msgstr "Equipment sells for 25% of its value; only the pirates buy valuables, at the price of the day."
+
+msgid "NPC_OLD_DRUNK"
+msgstr "Old Drunk"
+
+msgid "NPC_TAVERN_KEEPER"
+msgstr "Tavern Keeper"
+
+msgid "NPC_BARD"
+msgstr "Bard"
+
+msgid "DLG_OLD_DRUNK_1"
+msgstr "You look like people chasing gold... Listen to this."
+
+msgid "DLG_OLD_DRUNK_2"
+msgstr "When Tortuga was founded, they brought part of the treasure of the kingdom that lost the war and hid it down below, in the sewer, far from the victors."
+
+msgid "DLG_OLD_DRUNK_3"
+msgstr "Years later, folk here poisoned and burned the rats down there... but they forgot the mother."
+
+msgid "DLG_OLD_DRUNK_4"
+msgstr "They say the Rat Queen made a pact with a demon, grew as big as a cart, and now sleeps on top of the treasure, with the king's crown on her head."
+
+msgid "DLG_OLD_DRUNK_5"
+msgstr "If you're looking for treasure, you're standing on one! Just bring fire. She already knows what fire is — and she hates it."
+
+msgid "DLG_OLD_DRUNK_ACTIVE"
+msgstr "The sewer grate is on the main street. Fire, I told you. Fire!"
+
+msgid "DLG_OLD_DRUNK_DONE"
+msgstr "You came back? Then this time I was telling the truth. Buy me a drink."
+
+msgid "DLG_KEEPER_1"
+msgstr "Sit down, rest. In Tortuga nobody asks where the gold comes from — only whether it pays."
+
+msgid "DLG_BARD_QUEEN_1"
+msgstr "The Rat Queen was just a mother once, guarding her young in the dark."
+
+msgid "DLG_BARD_QUEEN_2"
+msgstr "Earth runs in her veins now, and earth fears fire — remember the song."
+
+msgid "DLG_BARD_1"
+msgstr "Every monster was something else once. Come back and I'll sing you its story."
+
+msgid "DLG_NEXT"
+msgstr "Continue"
+
+msgid "DLG_CLOSE"
+msgstr "Leave"
+
+msgid "DLG_ACCEPT"
+msgstr "Accept"
+
+msgid "DLG_DECLINE"
+msgstr "Decline"
+
+msgid "DLG_SERVICE_REST"
+msgstr "Rest"
+
+msgid "QUEST_SEWER_TREASURE"
+msgstr "The treasure under the town"
+
+msgid "QUEST_SEWER_TREASURE_DESC"
+msgstr "Go down the sewer grate, defeat the Rat Queen and take the lost war treasure. The rats are Earth — they fear Fire."
+
+msgid "AREA_TORTUGA"
+msgstr "Tortuga"
+
+msgid "AREA_TAVERN"
+msgstr "The Drowned Crow Tavern"
+
+msgid "PROP_TAVERN"
+msgstr "Tavern"
+
+msgid "PROP_TAVERN_EXIT"
+msgstr "Main Street"
+
+msgid "PROP_SEWER"
+msgstr "Sewer grate"
+
+msgid "PROP_RETURN_PORTAL"
+msgstr "Back to Tortuga"
+
+msgid "PROP_PORTAL"
+msgstr "Tortuga Portal"
+
+msgid "PROP_PORTAL_LOCKED"
+msgstr "The runes are dark. Nobody knows where they lead yet."
+
+msgid "TOAST_LOCKED"
+msgstr "Locked. Someone in the tavern may know a way."
+
+msgid "TOAST_QUEST_ACCEPTED"
+msgstr "New quest: {quest}"
+
+msgid "TOAST_QUEST_DONE"
+msgstr "Quest complete: {quest}"
+
+msgid "TOAST_RESTED"
+msgstr "Rested: health and resource full"
+
+msgid "TOAST_NO_GOLD"
+msgstr "Not enough gold"
+
+msgid "TOAST_NOT_BUYING"
+msgstr "They won't buy that here"
+
+msgid "HUD_QUEST"
+msgstr "Quest: {quest} — weak to {weak}"
+
+msgid "HUD_INTERACT"
+msgstr "{action} {target}"

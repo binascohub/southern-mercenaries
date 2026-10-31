@@ -24,6 +24,11 @@ var _gamepad_lost: PanelContainer
 var _allies: Label
 var _hosting: Label
 var _progress := [0, 0]
+## Fase 6: área, missão ativa (diário) e aviso de interagir.
+var _area_name := ""
+var _quest_id := ""
+var _quest_label: Label
+var _prompt: Label
 var _result := 0
 var _connecting := false
 var _local_alive := true
@@ -100,6 +105,23 @@ func _refresh_character() -> void:
 	_element_label.text = tr("HUD_ELEMENT").format({"element": tr(Elements.data(element).name_key)}) \
 		+ (" " + tr("HUD_ELEMENT_POTION") if c.data.get("element_potion", "") != "" else "")
 	_element_label.add_theme_color_override("font_color", Elements.color(element))
+
+
+func set_area(area_name: String) -> void:
+	_area_name = area_name
+	_refresh_texts()
+
+
+func set_quest(quest_id: String) -> void:
+	_quest_id = quest_id
+	_refresh_texts()
+
+
+## "[G] Taverna": objeto ao alcance para interagir ("" esconde).
+func set_interact_prompt(target: String) -> void:
+	_prompt.visible = target != ""
+	if target != "":
+		_prompt.text = tr("HUD_INTERACT").format({"action": InputDevice.prompt(&"interact"), "target": target})
 
 
 func set_progress(cleared: int, total: int) -> void:
@@ -219,7 +241,15 @@ func _notification(what: int) -> void:
 func _refresh_texts() -> void:
 	_refresh_character()
 	_saving.text = tr("HUD_SAVING")
-	_progress_label.text = tr("HUD_ENCOUNTERS").format({"cleared": _progress[0], "total": _progress[1]})
+	# Na cidade (sem encontros) mostra só o nome da área.
+	_progress_label.text = tr("HUD_ENCOUNTERS").format({"cleared": _progress[0], "total": _progress[1]}) \
+		if _progress[1] > 0 else _area_name
+	if _quest_id != "":
+		var quest: Dictionary = GameData.quests.get(_quest_id, {})
+		var target: String = quest.get("target_element", "")
+		_quest_label.text = tr("HUD_QUEST").format({"quest": tr(quest.get("name_key", "")),
+			"weak": tr(Elements.data(Elements.weakness_of(target)).get("name_key", "")) if target != "" else ""})
+	_quest_label.visible = _quest_id != ""
 	var title := ""
 	var sub := ""
 	if _connecting:
@@ -270,6 +300,19 @@ func _build() -> void:
 	_progress_label = _label(20)
 	_progress_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	info_box.add_child(_progress_label)
+	_quest_label = _label(16)
+	_quest_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_quest_label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.45))
+	_quest_label.visible = false
+	info_box.add_child(_quest_label)
+	_prompt = _label(20)
+	_prompt.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
+	_prompt.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	_prompt.offset_top = -190
+	_prompt.offset_bottom = -160
+	_prompt.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_prompt.visible = false
+	root.add_child(_prompt)
 	_hosting = _label(14)
 	_hosting.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	_hosting.modulate = Color(1, 1, 1, 0.6)

@@ -2,6 +2,15 @@
 
 ## [Unreleased]
 
+### Phase 6 — Tortuga (in progress)
+- Areas by name: the level scene loads any area of `data/arenas.json` (Tortuga's Main Street and port, the Tavern, the test area as the Sewer stand-in) and the server moves the whole group with `_load_area`, without changing scenes; players joining mid-game receive the current area. Area props: shops, NPCs, exits and signs, with an interact prompt.
+- New campaigns start in the Tavern; the campaign keeps quests, what is unlocked and the ship of the day.
+- Tavern NPCs (`data/npcs.json`): Old Drunk with the first quest (`data/quests.json`, unlocks the sewer grate), Tavern Keeper (rest), Bard; dialogue window with accept/decline; "!" over NPCs with a quest; active quest in the HUD with the target's weakness.
+- Shops (`data/shops.json`, `Shops`, `Town`, shop window): Apothecary, Weaponsmith and Armorer (class commons of wood/cloth, iron and steel at 2x), Pirate Market (per-player stock of 3–6 magic/rare/unique items per ship at 3x, Elemental Potions at 100 + 25 × level, buys valuables at 80–120% of the day); selling equipment and consumables at 25%. Purchases and sales validated on the server.
+- Expedition cycle: clearing the quest's area completes it (provisional reward of 150 gold and 300 XP for each player); the return portal brings the group to Tortuga, ends the Elemental Potion and brings a new ship.
+- Starting kit per `docs/14-tutorial.md`: 150 gold, 3 health potions and 1 resource potion. Elemental Potions no longer drop as loot.
+- Tests: shop rules and town rules unit tests; a full walk through Tortuga in CI.
+
 ### Phase 5 — Classes and skills
 - Skill system (`data/skills.json`, `Skills`, `SkillSystem`): 10 skills per class, ranks 1–5, unlocked at levels 1, 2, 4… 18, one skill point per level; the element's basic skill comes at rank 1 on hotkey 1. Element skills are stored by unlock level, so an Elemental Potion swaps them for the new element's with the same ranks.
 - Mage (`docs/02-1-mago.md`, section 6): Sharp Mind, Teleport, Mana Shield, Elemental Mastery and the 6 skills of each element (24), with effects for projectiles (Fireball explodes), novas, cones that push, lines, instant bolts, chains, buffs, shields, teleport, delayed strikes (Meteor, Earthquake) and lasting areas (Fire Wall, Blizzard freezing after 3 s, Tornado pulling, Storm bolts, Healing Rain). All damage goes through the element rules (weakness, combos, crits).

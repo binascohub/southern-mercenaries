@@ -435,7 +435,7 @@ func _server_step(delta: float) -> void:
 		if input.skill_presses[i] != _seen_extra.skill_presses[i]:
 			skill_pressed.append(i)
 	if input.interact_presses != _seen_extra.interact_presses:
-		get_tree().call_group(&"arena", &"request_pickup", self, false)
+		get_tree().call_group(&"arena", &"request_interact", self)
 	if input.pickup_all_presses != _seen_extra.pickup_all_presses:
 		get_tree().call_group(&"arena", &"request_pickup", self, true)
 	_seen_extra = input

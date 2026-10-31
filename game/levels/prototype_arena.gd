@@ -10,11 +10,20 @@ extends Node3D
 ## e checkpoint; os MultiplayerSpawners replicam jogadores, monstros e
 ## projéteis nos outros PCs, inclusive para quem entra no meio da partida.
 ##
+## Áreas (Fase 6): a mesma cena carrega qualquer área de data/arenas.json pelo
+## nome — Tortuga (Rua Principal e porto), a Taverna e, por enquanto, esta área
+## de teste no papel do Esgoto. Viajar (porta da Taverna, bueiro, portal de
+## retorno) troca a área de todos os PCs sem trocar de cena: o servidor manda
+## _load_area e os heróis continuam os mesmos nós. Objetos da área ("props"):
+## lojas, NPCs, saídas e placas; o Town cuida de missões, lojas e conversas.
+##
 ## RPG (Fase 3): o XP de cada monstro é dividido entre os jogadores presentes;
 ## o loot é sorteado e mostrado por jogador (cada um vê só o seu) e a coleta é
 ## validada no servidor. A campanha (grupos mortos) fica no PC do host.
 
 const ARENA_ID := "prototype_arena"
+## Distância para interagir com um objeto da área (loja, NPC, porta).
+const PROP_REACH := 2.8
 const MAIN_SCENE := "res://game/main/main.tscn"
 const WALL_HEIGHT := 2.5
 const DOOR_WIDTH := 6.0
@@ -38,8 +47,12 @@ enum Result { NONE, VICTORY, DEFEAT }
 ## Um jogador que caiu voltou e assumiu o mesmo herói (só no servidor).
 signal hero_resumed(peer_id: int)
 
-var arena: Dictionary
+var arena: Dictionary = {}
+## Área carregada agora (id em data/arenas.json).
+var area_id := ""
 var local_player: Player
+## Missões, lojas e conversas da cidade.
+var town: Town
 # Estado da partida (decidido no servidor, espelhado nos clientes).
 var cleared := 0
 var total_encounters := 0
@@ -58,6 +71,8 @@ var skills: SkillSystem
 var trade: Trade
 var _trade_menu: TradeMenu
 var _skill_menu: SkillMenu
+var _shop_menu: ShopMenu
+var _dialogue_menu: DialogueMenu
 ## Aumenta a cada reinício; timers da partida anterior são ignorados.
 var _run := 0
 ## Grupos de encontro (servidor): id -> {position, awake, members}.
@@ -81,6 +96,11 @@ var _held := {}
 var _thumb_timer := THUMB_FIRST
 ## Áreas dos combos Lama e Vapor (servidor): [{position, radius, time, state}].
 var _zones: Array[Dictionary] = []
+## Nós da área atual (paredes, chão, luzes, objetos), trocados a cada viagem.
+var _area_root: Node3D
+var _props: Array[Dictionary] = []
+## Objeto ao alcance do herói deste PC (aviso de interagir) e suas marcas "!".
+var _prop_markers := {}
 
 @onready var hud: Hud = $Hud
 @onready var pause_menu: PauseMenu = $PauseMenu
@@ -88,11 +108,14 @@ var _zones: Array[Dictionary] = []
 
 func _ready() -> void:
 	add_to_group(&"arena")
-	arena = GameData.get_arena(ARENA_ID)
-	total_encounters = arena.encounters.size()
-	_build_environment()
-	_build_area()
+	_area_root = Node3D.new()
+	_area_root.name = "Area"
+	add_child(_area_root)
 	_build_spawners()
+	town = Town.new()
+	town.name = "Town"
+	add_child(town)
+	town.state_changed.connect(_refresh_markers)
 	_camera = TopDownCamera.new()
 	add_child(_camera)
 	_camera.snap()
@@ -111,7 +134,12 @@ func _ready() -> void:
 	_skill_menu = SkillMenu.new()
 	add_child(_skill_menu)
 	_inventory.skills_requested.connect(_skill_menu.toggle)
-	hud.set_progress(0, total_encounters)
+	_shop_menu = ShopMenu.new()
+	add_child(_shop_menu)
+	_shop_menu.bind(town)
+	_dialogue_menu = DialogueMenu.new()
+	add_child(_dialogue_menu)
+	_dialogue_menu.bind(town)
 	InputDevice.gamepad_lost.connect(_on_gamepad_lost)
 	InputDevice.gamepad_restored.connect(_on_gamepad_restored)
 	NetworkManager.session_ended.connect(_on_session_ended)
@@ -130,15 +158,21 @@ func _ready() -> void:
 		if Session.campaign.is_empty():
 			Session.continue_or_new_campaign()
 		_campaign = Session.campaign
+		var start_area: String = _campaign.get("area", ARENA_ID)
+		if not GameData.arenas.has(start_area):
+			start_area = ARENA_ID
+		_load_area(start_area, "")
 		_spawn_player(multiplayer.get_unique_id())
 		_start_run()
+		town.sync()
 	else:
 		hud.show_connecting(true)
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"menu") and not pause_menu.is_open and not _inventory.visible \
-			and not _trade_menu.is_open() and not _skill_menu.visible:
+			and not _trade_menu.is_open() and not _skill_menu.visible and not _shop_menu.visible \
+			and not _dialogue_menu.visible:
 		pause_menu.open(not NetworkManager.is_online())
 		get_viewport().set_input_as_handled()
 	elif result == Result.VICTORY and event.is_action_pressed(&"attack"):
@@ -157,6 +191,10 @@ func _physics_process(delta: float) -> void:
 			_update_encounters()
 			_auto_pickup_gold()
 		_update_zones(delta)
+	if local_player and is_instance_valid(local_player):
+		var near := prop_near(local_player)
+		var name_key: String = near.get("name_key", GameData.npcs.get(near.get("npc", ""), {}).get("name_key", ""))
+		hud.set_interact_prompt(tr(name_key) if not near.is_empty() else "")
 	if not _campaign.is_empty():
 		_campaign.played_seconds = float(_campaign.get("played_seconds", 0)) + delta
 		_update_thumbnail(delta)
@@ -242,7 +280,7 @@ func _show_zone(state_id: String, at: Vector3, radius: float, duration: float) -
 
 ## Área estreita (corredores marcados "narrow"): o Cavaleiro desmonta (02-3-cavaleiro.md, seção 3).
 func is_narrow(at: Vector3) -> bool:
-	for room: Dictionary in arena.rooms:
+	for room: Dictionary in arena.get("rooms", []):
 		if not room.get("narrow", false):
 			continue
 		var half := Vector2(room.size[0], room.size[1]) / 2.0
@@ -279,7 +317,7 @@ func _spawn_player(peer_id: int, resume: Player = null) -> Player:
 	var slot := 0
 	while slot in used:
 		slot += 1
-	var origin := host.global_position if host else CHECKPOINT
+	var origin := host.global_position if host else entry_point(str(_campaign.get("checkpoint", "start")))
 	var position := origin + SLOT_OFFSETS[slot % SLOT_OFFSETS.size()]
 	if resume:
 		slot = resume.slot
@@ -321,10 +359,13 @@ func _on_node_spawned(node: Node) -> void:
 		_inventory.bind_player(node)
 		_trade_menu.bind_player(node)
 		_skill_menu.bind_player(node)
+		_shop_menu.bind_player(node)
 		hud.show_connecting(false)
 
 
 func _on_peer_joined(peer_id: int) -> void:
+	_load_area.rpc_id(peer_id, area_id, "")
+	town.sync(peer_id)
 	var held: Player = _held.get(NetworkManager.client_id_of(peer_id))
 	if is_instance_valid(held):
 		# Voltou dentro do prazo: assume o mesmo herói (vida, lugar, cor).
@@ -362,6 +403,83 @@ func _on_peer_left(peer_id: int, dropped: bool) -> void:
 
 # --- Partida (servidor) ---------------------------------------------------------
 
+# --- Áreas e viagem ----------------------------------------------------------------
+
+## Carrega a área em todos os PCs (o servidor chama com .rpc; quem entra no meio
+## recebe a área atual). Só monta o cenário; monstros e heróis vêm do servidor.
+@rpc("authority", "call_local", "reliable")
+func _load_area(id: String, _entry: String) -> void:
+	area_id = id
+	arena = GameData.get_arena(id)
+	total_encounters = arena.encounters.size()
+	for child in _area_root.get_children():
+		_area_root.remove_child(child)
+		child.queue_free()
+	for drop in _loot_nodes.values():
+		if is_instance_valid(drop):
+			drop.queue_free()
+	_loot_nodes.clear()
+	_build_environment()
+	_build_area()
+	_build_props()
+	hud.set_progress(cleared, total_encounters)
+	hud.set_area(tr(arena.get("name_key", "")))
+
+
+## Viagem do grupo (porta, bueiro, portal de retorno): todos vão juntos.
+## Voltar de um mapa para a cidade encerra a expedição (a Poção Elemental acaba)
+## e traz um navio novo ao porto (02-0-elementos.md, seção 4; 05-itens-e-loot.md, seção 6).
+func travel(to: String, entry: String, expedition_end := false) -> void:
+	if not multiplayer.is_server() or not GameData.arenas.has(to):
+		return
+	if expedition_end:
+		for p: Player in get_tree().get_nodes_in_group(&"players"):
+			if p.character and p.character.data.get("element_potion", "") != "":
+				p.character.end_expedition()
+				p.refresh_character()
+		town.new_ship(_rng)
+	_loot.clear()
+	_campaign.area = to
+	_campaign.checkpoint = entry
+	_load_area.rpc(to, entry)
+	_start_run()
+	SaveSystem.save_campaign(_campaign, true)
+
+
+## Ponto de chegada na área (entradas em data/arenas.json; sem nome, o checkpoint).
+func entry_point(entry: String) -> Vector3:
+	var entries: Dictionary = arena.get("entries", {})
+	var spot: Array = entries.get(entry, entries.get("start", [CHECKPOINT.x, CHECKPOINT.z]))
+	return Vector3(spot[0], 0, spot[1])
+
+
+## Objeto da área ao alcance do herói (kind/id vazios = qualquer um).
+func prop_near(player: Node3D, kind := "", id := "", reach := PROP_REACH) -> Dictionary:
+	var best := {}
+	var best_d := reach
+	for prop in _props:
+		if kind != "" and prop.kind != kind:
+			continue
+		if id != "" and prop.get(String(prop.kind), prop.id) != id and prop.id != id:
+			continue
+		var d := Vector2(player.global_position.x - prop.position[0], player.global_position.z - prop.position[1]).length()
+		if d <= best_d:
+			best = prop
+			best_d = d
+	return best
+
+
+## Botão de interagir (servidor): objeto perto (loja, NPC, porta) ou o loot mais perto.
+func request_interact(player: Player) -> void:
+	if not multiplayer.is_server() or not player.alive:
+		return
+	var prop := prop_near(player)
+	if not prop.is_empty():
+		town.interact(player, prop)
+	else:
+		request_pickup(player, false)
+
+
 ## Começa (ou continua) a área: os grupos vivos da campanha no lugar, dormindo.
 func _start_run() -> void:
 	_run += 1
@@ -377,8 +495,10 @@ func _start_run() -> void:
 		if encounter.id not in dead:
 			_spawn_group(encounter)
 	_reset_players()
-	var done := dead.size()
-	_broadcast(done, Result.VICTORY if done >= total_encounters else Result.NONE)
+	for c in get_tree().get_nodes_in_group(&"companions"):
+		c.queue_free()  # os animais voltam quando o Invocador os chamar de novo
+	var done := dead.size() if total_encounters > 0 else 0
+	_broadcast(done, Result.VICTORY if total_encounters > 0 and done >= total_encounters else Result.NONE)
 	_reach_checkpoint(str(_campaign.get("checkpoint", "start")))
 
 
@@ -387,11 +507,17 @@ func _start_run() -> void:
 func _reach_checkpoint(id: String) -> void:
 	if _campaign.is_empty():
 		return
-	var key := "%s:%s" % [ARENA_ID, id]
+	if arena.get("town", false):
+		# Na cidade não há checkpoint de mapa (o Macumbeiro só abre portais para os mapas).
+		_campaign.area = area_id
+		_campaign.checkpoint = id
+		SaveSystem.save_campaign(_campaign, true)
+		return
+	var key := "%s:%s" % [area_id, id]
 	var reached: Array = _campaign.get("checkpoints_reached", [])
 	if key not in reached:
 		_campaign.checkpoints_reached = reached + [key]
-	_campaign.area = ARENA_ID
+	_campaign.area = area_id
 	_campaign.checkpoint = id
 	SaveSystem.save_campaign(_campaign, true)
 
@@ -435,8 +561,9 @@ func _spawn_group(encounter: Dictionary) -> void:
 
 
 func _reset_players() -> void:
+	var spot := entry_point(str(_campaign.get("checkpoint", "start")))
 	for p: Player in get_tree().get_nodes_in_group(&"players"):
-		p.reset_at(CHECKPOINT + SLOT_OFFSETS[p.slot % SLOT_OFFSETS.size()])
+		p.reset_at(spot + SLOT_OFFSETS[p.slot % SLOT_OFFSETS.size()])
 
 
 ## Grupo dormindo acorda quando um jogador chega perto (raio de despertar).
@@ -492,7 +619,10 @@ func _on_enemy_died(enemy: Enemy) -> void:
 		_campaign.dead_groups = _campaign.get("dead_groups", []) + [enemy.group]
 		SaveSystem.save_campaign(_campaign, true)
 		var done := cleared + 1
-		_broadcast(done, Result.VICTORY if done >= total_encounters else Result.NONE)
+		var won := done >= total_encounters
+		_broadcast(done, Result.VICTORY if won else Result.NONE)
+		if won:
+			town.complete_quests_in(area_id)
 
 
 # --- XP e loot (servidor) ------------------------------------------------------
@@ -658,7 +788,11 @@ func _toast_all(key: String, args: Dictionary) -> void:
 
 @rpc("authority", "reliable")
 func _toast(key: String, args: Dictionary) -> void:
-	hud.toast(tr(key).format(args))
+	# Valores que são chaves (nome da missão…) saem traduzidos.
+	var shown := {}
+	for k in args:
+		shown[k] = tr(args[k]) if args[k] is String else args[k]
+	hud.toast(tr(key).format(shown))
 
 
 func _update_revives(delta: float) -> void:
@@ -797,35 +931,110 @@ func _on_gamepad_restored() -> void:
 
 
 func _build_environment() -> void:
+	var outdoor: bool = arena.get("outdoor", false)
 	var env := Environment.new()
 	env.background_mode = Environment.BG_COLOR
-	env.background_color = Color(0.03, 0.03, 0.05)
+	# Tortuga à noite, ao ar livre, é mais clara que o esgoto.
+	env.background_color = Color(0.05, 0.06, 0.1) if outdoor else Color(0.03, 0.03, 0.05)
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
-	env.ambient_light_color = Color(0.35, 0.38, 0.5)
-	env.ambient_light_energy = 0.6
+	env.ambient_light_color = Color(0.45, 0.5, 0.65) if outdoor else Color(0.35, 0.38, 0.5)
+	env.ambient_light_energy = 0.8 if outdoor else 0.6
 	env.fog_enabled = true
 	env.fog_light_color = Color(0.06, 0.06, 0.09)
-	env.fog_density = 0.02
+	env.fog_density = 0.01 if outdoor else 0.02
 	var world_env := WorldEnvironment.new()
 	world_env.environment = env
-	add_child(world_env)
+	_area_root.add_child(world_env)
 
 	var sun := DirectionalLight3D.new()
 	sun.rotation_degrees = Vector3(-60, 30, 0)
 	sun.light_energy = 0.8
 	sun.light_color = Color(0.85, 0.8, 0.75)
 	sun.shadow_enabled = true
-	add_child(sun)
+	_area_root.add_child(sun)
 
-	# Uma tocha quente por sala grande — poucas luzes dinâmicas.
+	# Uma tocha (ou lampião) quente por sala grande — poucas luzes dinâmicas.
 	for room: Dictionary in arena.rooms:
 		if room.get("torch", false):
 			var torch := OmniLight3D.new()
 			torch.position = Vector3(room.center[0], 3, room.center[1])
-			torch.omni_range = 12.0
+			torch.omni_range = 12.0 if not outdoor else 20.0
 			torch.light_color = Color(1.0, 0.6, 0.3)
 			torch.light_energy = 1.2
-			add_child(torch)
+			_area_root.add_child(torch)
+
+
+## Objetos da área (lojas, NPCs, saídas, placas): visual provisório + nome.
+func _build_props() -> void:
+	_props.clear()
+	_prop_markers.clear()
+	for prop: Dictionary in arena.get("props", []):
+		_props.append(prop)
+		var at := Vector3(prop.position[0], 0, prop.position[1])
+		var node := Node3D.new()
+		_area_root.add_child(node)
+		node.position = at
+		var label_key: String = prop.get("name_key", "")
+		var color := Color(0.5, 0.4, 0.3)
+		match String(prop.kind):
+			"shop":
+				# Banca: balcão e toldo.
+				_prop_mesh(node, BoxMesh.new(), Vector3(2.4, 1.0, 1.0), Vector3(0, 0.5, 0), Color(0.42, 0.3, 0.2))
+				_prop_mesh(node, BoxMesh.new(), Vector3(2.8, 0.1, 1.6), Vector3(0, 2.2, 0), Color(0.6, 0.25, 0.2))
+			"npc":
+				var npc: Dictionary = GameData.npcs.get(prop.npc, {})
+				label_key = npc.get("name_key", "")
+				var c: Array = npc.get("color", [0.6, 0.5, 0.4])
+				color = Color(c[0], c[1], c[2])
+				var body := CapsuleMesh.new()
+				body.radius = 0.35
+				body.height = 1.7
+				_prop_mesh(node, body, Vector3.ONE, Vector3(0, 0.85, 0), color)
+				# Marca "!" de quem tem história/missão para contar.
+				var mark := Label3D.new()
+				mark.text = "!"
+				mark.font_size = 120
+				mark.outline_size = 12
+				mark.modulate = Color(1.0, 0.85, 0.3)
+				mark.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+				mark.position = Vector3(0, 2.6, 0)
+				mark.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+				node.add_child(mark)
+				_prop_markers[prop.npc] = mark
+			"exit":
+				# Saída: moldura de porta / boca do bueiro / círculo do portal.
+				_prop_mesh(node, CylinderMesh.new(), Vector3(1.4, 0.06, 1.4), Vector3(0, 0.03, 0), Color(0.25, 0.22, 0.2))
+			"sign":
+				_prop_mesh(node, CylinderMesh.new(), Vector3(2.2, 0.3, 2.2), Vector3(0, 0.15, 0), Color(0.35, 0.35, 0.4))
+		if label_key != "":
+			var label := Label3D.new()
+			label.text = label_key
+			label.font_size = 48
+			label.outline_size = 8
+			label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+			label.position = Vector3(0, 3.0, 0)
+			node.add_child(label)
+	_refresh_markers()
+
+
+func _prop_mesh(parent: Node3D, mesh: PrimitiveMesh, scale_: Vector3, at: Vector3, color: Color) -> void:
+	var node := MeshInstance3D.new()
+	node.mesh = mesh
+	node.scale = scale_
+	node.position = at
+	var material := StandardMaterial3D.new()
+	material.albedo_color = color
+	node.material_override = material
+	parent.add_child(node)
+
+
+## "!" só nos NPCs com missão para oferecer agora.
+func _refresh_markers() -> void:
+	for npc_id: String in _prop_markers:
+		var mark: Label3D = _prop_markers[npc_id]
+		if is_instance_valid(mark):
+			mark.visible = town.has_offer(npc_id)
+	hud.set_quest(town.active_quest())
 
 
 ## Chão único e paredes de cada sala, com vão de porta onde a sala se liga a outra.
@@ -876,5 +1085,5 @@ func _box(center: Vector3, box_size: Vector3, color: Color) -> void:
 	material.albedo_color = color
 	mesh.material_override = material
 	body.add_child(mesh)
-	add_child(body)
+	_area_root.add_child(body)
 	body.position = center

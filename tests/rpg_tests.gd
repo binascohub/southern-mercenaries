@@ -35,6 +35,8 @@ func _ready() -> void:
 	_test_ninja()
 	_test_summoner()
 	_test_knight()
+	_test_shops()
+	_test_town_rules()
 	_test_names()
 	_clean(TEST_ROOT)
 	if _failures == 0:
@@ -63,7 +65,8 @@ func _test_new_character() -> void:
 	_near(c.power(), 25, "poder mágico: cajado de madeira 10 + INT 30 × 0,5")
 	_check(c.data.equipment.weapon.material == "wood", "começa com cajado de madeira")
 	_check(c.data.equipment.body == null, "começa só com roupa de baixo")
-	_check(c.count_of("potion_health") == 3 and c.count_of("potion_resource") == 2, "poções do kit")
+	_check(c.count_of("potion_health") == 3 and c.count_of("potion_resource") == 1, "poções do kit: 3 de vida e 1 de recurso")
+	_check(int(c.data.gold) == 150, "começa com 150 de ouro (14-tutorial.md)")
 
 
 func _test_progression() -> void:
@@ -592,6 +595,57 @@ func _test_knight() -> void:
 		_check(GameData.classes[cls_id].has("block") == (cls_id != "archer"), "bloqueio de %s" % cls_id)
 	# As 5 classes do jogo existem e são jogáveis.
 	_check(GameData.classes.size() == 5, "5 classes: %s" % [GameData.classes.keys()])
+
+
+# --- Fase 6: Tortuga (lojas, missões) ---------------------------------------------
+
+func _test_shops() -> void:
+	var c := CharacterData.create("mage", "female", "Orana", "water")
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 3
+	var ship := Shops.new_ship(1, rng)
+	# Boticário: preços por nível (13-balanceamento.md 5.3).
+	var potions := Shops.stock("potions", c, ship)
+	_check(potions.size() == 2 and potions[0].id == "potion_health", "Boticário vende poções de vida e de recurso")
+	_check(Shops.buy_price("potions", potions[0], 1) == 18 and Shops.buy_price("potions", potions[0], 5) == 42, "poção de vida: 12 + 6 × nível")
+	# Rua Principal: comuns da classe, 2x o valor.
+	var weapons := Shops.stock("weapons", c, ship)
+	_check(weapons.size() == 3 and weapons.all(func(i: Dictionary) -> bool: return i.base == "staff" and i.rarity == "common"), "armas do Mago: cajados de madeira, ferro e aço")
+	_check(Shops.buy_price("weapons", weapons[1], 1) == 2 * Items.value(weapons[1]), "Rua Principal: 2x o valor")
+	var armor := Shops.stock("armor", c, ship)
+	_check(armor.all(func(i: Dictionary) -> bool: return Items.usable_by_class(i, "mage")), "armaduras só da classe")
+	_check(Shops.stock("weapons", c, ship) == weapons, "estoque da Rua Principal é sempre o mesmo")
+	# Mercado Pirata: 3 a 6 itens, nunca comum nem lendário, 3x; Poções Elementais.
+	var pirate := Shops.stock("pirate", c, ship)
+	var gear := pirate.filter(func(i: Dictionary) -> bool: return i.kind == Items.EQUIPMENT)
+	_check(gear.size() >= 3 and gear.size() <= 6, "pirata: 3 a 6 itens (%d)" % gear.size())
+	_check(gear.all(func(i: Dictionary) -> bool: return i.rarity in ["magic", "rare", "unique"]), "pirata: mágico, raro ou único")
+	_check(pirate.filter(func(i: Dictionary) -> bool: return i.kind == Items.CONSUMABLE).size() == 4, "pirata: 4 Poções Elementais")
+	_check(Shops.buy_price("pirate", gear[0], 1) == roundi(Items.value(gear[0]) * 3.0), "pirata: 3x o valor")
+	_check(Shops.buy_price("pirate", Items.stack(Items.CONSUMABLE, "elemental_potion_fire"), 4) == 200, "Poção Elemental: 100 + 25 × nível")
+	_check(Shops.stock("pirate", c, ship) == pirate, "o mesmo navio mostra o mesmo estoque (servidor e cliente)")
+	var other_ship := Shops.new_ship(2, rng)
+	_check(Shops.stock("pirate", c, other_ship) != pirate, "navio novo, estoque novo")
+	# Venda: 25% do equipamento; valiosos só com os piratas, pela variação do dia.
+	var staff := Items.equipment("staff", "iron", "common", 3)
+	_check(Shops.sell_price("weapons", staff, 1, ship) == roundi(Items.value(staff) * 0.25), "venda: 25% do valor")
+	var coins := Items.stack(Items.VALUABLE, "old_coins", 2)
+	_check(Shops.sell_price("potions", coins, 1, ship) == -1, "Boticário não compra valiosos")
+	var mult := Shops.valuable_mult(ship, "old_coins")
+	_check(mult >= 0.8 and mult <= 1.2 and mult == Shops.valuable_mult(ship, "old_coins"), "variação do dia entre 80% e 120%: %.2f" % mult)
+	_check(Shops.sell_price("pirate", coins, 1, ship) == roundi(20 * mult) * 2, "piratas pagam o valor × variação pela pilha")
+
+
+func _test_town_rules() -> void:
+	_check(Town.dialogue_index("old_drunk", {}) == 0, "Velho Bêbado oferece a primeira missão")
+	_check(GameData.npcs.old_drunk.dialogues[0].offer == "sewer_treasure", "a missão é o tesouro do esgoto")
+	_check(Town.dialogue_index("old_drunk", {"sewer_treasure": "active"}) == 1, "com a missão ativa, outra fala")
+	_check(Town.dialogue_index("old_drunk", {"sewer_treasure": "done"}) == 2, "depois de concluída, outra fala")
+	var campaign := SaveSystem.new_campaign()
+	_check(campaign.area == "tavern" and campaign.quests.is_empty(), "campanha nova começa na Taverna")
+	var old := {"save_version": 1, "id": "antiga", "area": "prototype_arena"}
+	var migrated := SaveSystem.migrate_campaign(old)
+	_check(migrated.has("quests") and migrated.has("ship") and migrated.unlocked == [], "campanha antiga ganha missões e navio")
 
 
 func _test_names() -> void:

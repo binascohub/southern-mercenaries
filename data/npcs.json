@@ -1,0 +1,82 @@
+{
+  "_comment": "NPCs fixos da Taverna (04-tortuga-e-missoes.md, seção 3). dialogues: o primeiro cujo \"when\" bate é o usado; offer = missão oferecida no fim; service = serviço (rest: descansar).",
+  "old_drunk": {
+    "name_key": "NPC_OLD_DRUNK",
+    "color": [
+      0.55,
+      0.45,
+      0.35
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "sewer_treasure"
+        },
+        "lines": [
+          "DLG_OLD_DRUNK_1",
+          "DLG_OLD_DRUNK_2",
+          "DLG_OLD_DRUNK_3",
+          "DLG_OLD_DRUNK_4",
+          "DLG_OLD_DRUNK_5"
+        ],
+        "offer": "sewer_treasure"
+      },
+      {
+        "when": {
+          "quest_active": "sewer_treasure"
+        },
+        "lines": [
+          "DLG_OLD_DRUNK_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_OLD_DRUNK_DONE"
+        ]
+      }
+    ]
+  },
+  "tavern_keeper": {
+    "name_key": "NPC_TAVERN_KEEPER",
+    "color": [
+      0.7,
+      0.4,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_KEEPER_1"
+        ],
+        "service": "rest"
+      }
+    ]
+  },
+  "bard": {
+    "name_key": "NPC_BARD",
+    "color": [
+      0.35,
+      0.5,
+      0.7
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_active": "sewer_treasure"
+        },
+        "lines": [
+          "DLG_BARD_QUEEN_1",
+          "DLG_BARD_QUEEN_2"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_BARD_1"
+        ]
+      }
+    ]
+  }
+}

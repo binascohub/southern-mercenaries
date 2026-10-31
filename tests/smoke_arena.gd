@@ -19,6 +19,10 @@ extends Node
 ##   habilidades: ... res://tests/smoke_arena.tscn -- skills [classe]
 ##            (todas as habilidades da classe (padrão: mage), dos 4 elementos, em ratos de verdade;
 ##            atalho com mana e recarga; passivas; escudo, cura, bônus e teleporte)
+##   cidade:  ... res://tests/smoke_arena.tscn -- town
+##            (campanha nova na Taverna: missão do Velho Bêbado, descansar, Rua
+##            Principal, comprar e vender, Mercado Pirata, Poção Elemental, bueiro,
+##            vitória conclui a missão, portal de volta encerra a expedição)
 ##   troca:   ... res://tests/smoke_arena.tscn -- trade
 ##            (solo com um aliado fictício: convite, ofertas, confirmações, troca e
 ##            cancelamento ao se afastarem; o aliado responde direto no servidor)
@@ -63,6 +67,9 @@ func _ready() -> void:
 	hero.seal()
 	Session.character = hero
 	Session.campaign = SaveSystem.new_campaign()
+	# Os testes de combate jogam na área de teste; o da cidade começa na Taverna.
+	if role_name != "town":
+		Session.campaign.area = "prototype_arena"
 	# Todo monstro deixa um item, para o teste sempre ter o que recolher.
 	GameData.loot.common.item_chance = 1.0
 	if args.size() > 0 and args[0] == "host":
@@ -86,7 +93,7 @@ func _ready() -> void:
 		get_tree().quit(0 if found else 1)
 		return
 	else:
-		_role = args[0] if args.size() > 0 and args[0] in ["revive", "trade", "elements", "skills"] else "solo"
+		_role = args[0] if args.size() > 0 and args[0] in ["revive", "trade", "elements", "skills", "town"] else "solo"
 		NetworkManager.prepare_solo()
 	NetworkManager.session_ended.connect(func(reason: String) -> void:
 		if _expect_refusal != "":
@@ -124,6 +131,9 @@ func _physics_process(_delta: float) -> void:
 		return
 	if _role == "skills":
 		_skills_test()
+		return
+	if _role == "town":
+		_town_test()
 		return
 	var players := get_tree().get_nodes_in_group(&"players")
 	_max_players_seen = maxi(_max_players_seen, players.size())
@@ -500,6 +510,92 @@ func _skills_test() -> void:
 	check.call(is_equal_approx(player.resource, mana), "em recarga não usa de novo")
 	check.call(player.skill_cooldown_left(slot_key) > 0.0, "o dono vê a recarga")
 	_report(checks.is_empty(), "habilidades (%s): " % class_id + ("tudo certo" if checks.is_empty() else "; ".join(PackedStringArray(checks))))
+
+
+## Uma volta por Tortuga, chamando o servidor como as janelas chamariam.
+func _town_test() -> void:
+	var player: Player = _arena.local_player
+	if player == null or _stage > 0 or _frame < 10:
+		return
+	_stage = 1
+	var checks: Array[String] = []
+	var check := func(ok: bool, what: String) -> void:
+		if not ok:
+			checks.append(what)
+	var town: Town = _arena.town
+	var c := player.character
+	check.call(_arena.area_id == "tavern", "campanha nova começa na Taverna (%s)" % _arena.area_id)
+	check.call(town.has_offer("old_drunk") and not town.has_offer("bard"), "Velho Bêbado com \"!\"")
+	# Aceitar a missão longe dele não vale; perto, vale e abre o bueiro.
+	town._rpc_accept("sewer_treasure")
+	check.call(not town.quests.has("sewer_treasure"), "não aceita missão longe do NPC")
+	player.teleport_to(Vector3(-5.5, 0, -1))
+	town._rpc_accept("sewer_treasure")
+	check.call(town.quests.get("sewer_treasure", "") == "active" and "sewer_entrance" in town.unlocked, "missão aceita abre o bueiro")
+	check.call(town.active_quest() == "sewer_treasure" and not town.has_offer("old_drunk"), "missão no diário, sem \"!\"")
+	# Descansar com a Taberneira.
+	player.health = 10.0
+	player.teleport_to(Vector3(0, 0, -4))
+	town._rpc_service("tavern_keeper", "rest")
+	check.call(is_equal_approx(player.health, player.max_health), "descansar enche a vida")
+	# Sair para a Rua Principal.
+	player.teleport_to(Vector3(0, 0, 6))
+	_arena.request_interact(player)
+	await get_tree().physics_frame
+	check.call(_arena.area_id == "tortuga", "porta da Taverna leva à Rua Principal")
+	# Boticário.
+	var gold := int(c.data.gold)
+	var potions := c.count_of("potion_health")
+	player.teleport_to(Vector3(-20, 0, -4.5))
+	town._rpc_buy("potions", 0)
+	c = player.character
+	check.call(int(c.data.gold) == gold - 18 and c.count_of("potion_health") == potions + 1, "compra poção de vida por 18")
+	# Mercado Pirata: Poção Elemental e venda de equipamento e valiosos.
+	player.teleport_to(Vector3(-6, 0, -17))
+	gold = int(c.data.gold)
+	town._rpc_buy("pirate", 0)
+	c = player.character
+	check.call(c.count_of("elemental_potion_water") == 1 and int(c.data.gold) == gold - 125, "compra Poção Elemental de Água por 125")
+	c.add_item(Items.equipment("staff", "iron", "common", 3))
+	c.add_item(Items.stack(Items.VALUABLE, "old_coins", 2))
+	gold = int(c.data.gold)
+	var staff_index := -1
+	var coins_index := -1
+	for i in c.data.inventory.size():
+		var item: Variant = c.data.inventory[i]
+		if item != null and item.kind == Items.EQUIPMENT and item.base == "staff":
+			staff_index = i
+		if item != null and item.kind == Items.VALUABLE:
+			coins_index = i
+	var expected := Shops.sell_price("pirate", c.data.inventory[staff_index], 1, town.ship) \
+		+ Shops.sell_price("pirate", c.data.inventory[coins_index], 1, town.ship)
+	town._rpc_sell("pirate", staff_index)
+	town._rpc_sell("pirate", coins_index)
+	c = player.character
+	check.call(int(c.data.gold) == gold + expected, "vende cajado (25%%) e valiosos (preço do dia): +%d" % expected)
+	# Poção Elemental e descida pelo bueiro.
+	player._drink("elemental_potion_water")
+	check.call(player.element == "water", "bebeu a Poção de Água")
+	player.teleport_to(Vector3(22, 0, 3))
+	_arena.request_interact(player)
+	await get_tree().physics_frame
+	check.call(_arena.area_id == "prototype_arena" and not get_tree().get_nodes_in_group(&"enemies").is_empty(), "bueiro leva ao Esgoto com monstros")
+	# Vencer a área conclui a missão; cada jogador ganha a recompensa.
+	gold = int(player.character.data.gold)
+	for e in get_tree().get_nodes_in_group(&"enemies"):
+		e.take_damage(1e9)
+	await get_tree().physics_frame
+	check.call(town.quests.get("sewer_treasure", "") == "done", "vencer o Esgoto conclui a missão")
+	check.call(int(player.character.data.gold) >= gold + 150, "recompensa da missão")
+	# Portal de volta: Tortuga, fim da expedição, navio novo.
+	player.teleport_to(Vector3(-6, 0, 5))
+	_arena.request_interact(player)
+	await get_tree().physics_frame
+	check.call(_arena.area_id == "tortuga", "portal de retorno leva a Tortuga")
+	check.call(player.element == player.character.data.element and player.character.data.element_potion == "", "voltar a Tortuga encerra a Poção Elemental")
+	check.call(int(town.ship.day) == 1, "chegou um navio novo")
+	check.call(Session.campaign.area == "tortuga", "a campanha lembra onde o grupo está")
+	_report(checks.is_empty(), "cidade: " + ("tudo certo" if checks.is_empty() else "; ".join(PackedStringArray(checks))))
 
 
 ## Troca com um aliado fictício (peer 99, sem rede): o lado dele é chamado

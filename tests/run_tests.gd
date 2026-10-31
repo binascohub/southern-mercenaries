@@ -154,6 +154,21 @@ func _check_data() -> void:
 	for id in monsters:
 		if not elements.elements.has(monsters[id].get("element", "")):
 			_fail("monstro %s com elemento inexistente" % id)
+	# Fase 6: saídas levam a áreas que existem; NPCs, lojas e missões referenciados existem.
+	var npcs := _json("res://data/npcs.json")
+	var shops := _json("res://data/shops.json")
+	var quests := _json("res://data/quests.json")
+	for id in arenas:
+		for prop in arenas[id].get("props", []):
+			if prop.kind == "exit" and not arenas.has(prop.to):
+				_fail("saída %s leva a área inexistente" % prop.id)
+			if prop.kind == "npc" and not npcs.has(prop.npc):
+				_fail("NPC inexistente: %s" % prop.npc)
+			if prop.kind == "shop" and not shops.has(prop.shop):
+				_fail("loja inexistente: %s" % prop.shop)
+	for id in quests:
+		if id != "_comment" and not npcs.has(quests[id].giver):
+			_fail("missão %s sem quem a ofereça" % id)
 	for id in arenas:
 		if not classes.has(arenas[id].get("player_class", "")):
 			_fail("arena %s usa classe inexistente" % id)

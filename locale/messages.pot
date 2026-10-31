@@ -1513,3 +1513,156 @@ msgstr ""
 
 msgid "ACTION_BLOCK"
 msgstr ""
+
+msgid "SHOP_POTIONS"
+msgstr ""
+
+msgid "SHOP_WEAPONS"
+msgstr ""
+
+msgid "SHOP_ARMOR"
+msgstr ""
+
+msgid "SHOP_PIRATE"
+msgstr ""
+
+msgid "CAPTAIN_1"
+msgstr ""
+
+msgid "CAPTAIN_2"
+msgstr ""
+
+msgid "CAPTAIN_3"
+msgstr ""
+
+msgid "CAPTAIN_4"
+msgstr ""
+
+msgid "SHOP_PRICE"
+msgstr ""
+
+msgid "SHOP_SOLD"
+msgstr ""
+
+msgid "SHOP_NOT_BUYING"
+msgstr ""
+
+msgid "SHOP_BUY"
+msgstr ""
+
+msgid "SHOP_SELL"
+msgstr ""
+
+msgid "SHOP_HINT"
+msgstr ""
+
+msgid "NPC_OLD_DRUNK"
+msgstr ""
+
+msgid "NPC_TAVERN_KEEPER"
+msgstr ""
+
+msgid "NPC_BARD"
+msgstr ""
+
+msgid "DLG_OLD_DRUNK_1"
+msgstr ""
+
+msgid "DLG_OLD_DRUNK_2"
+msgstr ""
+
+msgid "DLG_OLD_DRUNK_3"
+msgstr ""
+
+msgid "DLG_OLD_DRUNK_4"
+msgstr ""
+
+msgid "DLG_OLD_DRUNK_5"
+msgstr ""
+
+msgid "DLG_OLD_DRUNK_ACTIVE"
+msgstr ""
+
+msgid "DLG_OLD_DRUNK_DONE"
+msgstr ""
+
+msgid "DLG_KEEPER_1"
+msgstr ""
+
+msgid "DLG_BARD_QUEEN_1"
+msgstr ""
+
+msgid "DLG_BARD_QUEEN_2"
+msgstr ""
+
+msgid "DLG_BARD_1"
+msgstr ""
+
+msgid "DLG_NEXT"
+msgstr ""
+
+msgid "DLG_CLOSE"
+msgstr ""
+
+msgid "DLG_ACCEPT"
+msgstr ""
+
+msgid "DLG_DECLINE"
+msgstr ""
+
+msgid "DLG_SERVICE_REST"
+msgstr ""
+
+msgid "QUEST_SEWER_TREASURE"
+msgstr ""
+
+msgid "QUEST_SEWER_TREASURE_DESC"
+msgstr ""
+
+msgid "AREA_TORTUGA"
+msgstr ""
+
+msgid "AREA_TAVERN"
+msgstr ""
+
+msgid "PROP_TAVERN"
+msgstr ""
+
+msgid "PROP_TAVERN_EXIT"
+msgstr ""
+
+msgid "PROP_SEWER"
+msgstr ""
+
+msgid "PROP_RETURN_PORTAL"
+msgstr ""
+
+msgid "PROP_PORTAL"
+msgstr ""
+
+msgid "PROP_PORTAL_LOCKED"
+msgstr ""
+
+msgid "TOAST_LOCKED"
+msgstr ""
+
+msgid "TOAST_QUEST_ACCEPTED"
+msgstr ""
+
+msgid "TOAST_QUEST_DONE"
+msgstr ""
+
+msgid "TOAST_RESTED"
+msgstr ""
+
+msgid "TOAST_NO_GOLD"
+msgstr ""
+
+msgid "TOAST_NOT_BUYING"
+msgstr ""
+
+msgid "HUD_QUEST"
+msgstr ""
+
+msgid "HUD_INTERACT"
+msgstr ""

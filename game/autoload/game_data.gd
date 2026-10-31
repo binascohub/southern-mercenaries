@@ -18,6 +18,9 @@ const FILES := {
 	"elements": "res://data/elements.json",
 	"skills": "res://data/skills.json",
 	"companions": "res://data/companions.json",
+	"shops": "res://data/shops.json",
+	"npcs": "res://data/npcs.json",
+	"quests": "res://data/quests.json",
 }
 
 var balance: Dictionary
@@ -34,6 +37,9 @@ var loot: Dictionary
 var elements: Dictionary
 var skills: Dictionary
 var companions: Dictionary
+var shops: Dictionary
+var npcs: Dictionary
+var quests: Dictionary
 
 
 func _ready() -> void:

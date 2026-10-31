@@ -1514,3 +1514,156 @@ msgstr "Barda"
 
 msgid "ACTION_BLOCK"
 msgstr "Bloquear / desviar"
+
+msgid "SHOP_POTIONS"
+msgstr "Boticario"
+
+msgid "SHOP_WEAPONS"
+msgstr "Armero"
+
+msgid "SHOP_ARMOR"
+msgstr "Armaduras"
+
+msgid "SHOP_PIRATE"
+msgstr "Mercado Pirata"
+
+msgid "CAPTAIN_1"
+msgstr "Barco de la capitana Roja Malagueta"
+
+msgid "CAPTAIN_2"
+msgstr "Barco del capitán Bastián el Tuerto"
+
+msgid "CAPTAIN_3"
+msgstr "Barco de la capitana Madre Sal"
+
+msgid "CAPTAIN_4"
+msgstr "Barco del capitán Lorenzo el Mudo"
+
+msgid "SHOP_PRICE"
+msgstr "{price} de oro"
+
+msgid "SHOP_SOLD"
+msgstr "vendido"
+
+msgid "SHOP_NOT_BUYING"
+msgstr "no lo compra"
+
+msgid "SHOP_BUY"
+msgstr "A la venta"
+
+msgid "SHOP_SELL"
+msgstr "Vender (tu bolsa)"
+
+msgid "SHOP_HINT"
+msgstr "El equipo se vende al 25% de su valor; solo los piratas compran objetos de valor, al precio del día."
+
+msgid "NPC_OLD_DRUNK"
+msgstr "Viejo Borracho"
+
+msgid "NPC_TAVERN_KEEPER"
+msgstr "Tabernera"
+
+msgid "NPC_BARD"
+msgstr "Bardo"
+
+msgid "DLG_OLD_DRUNK_1"
+msgstr "Tenéis cara de andar detrás del oro... Escuchad esto."
+
+msgid "DLG_OLD_DRUNK_2"
+msgstr "Cuando fundaron Tortuga, trajeron parte del tesoro del reino que perdió la guerra y lo escondieron allá abajo, en la cloaca, lejos de los vencedores."
+
+msgid "DLG_OLD_DRUNK_3"
+msgstr "Años después, la gente de aquí envenenó y quemó a las ratas de allí... pero se olvidaron de la madre."
+
+msgid "DLG_OLD_DRUNK_4"
+msgstr "Dicen que la Reina de las Ratas hizo un pacto con un demonio, creció como una carreta y ahora duerme sobre el tesoro, con la corona del rey en la cabeza."
+
+msgid "DLG_OLD_DRUNK_5"
+msgstr "¡Si buscáis tesoro, estáis encima de uno! Solo llevad fuego. Ella ya sabe lo que es el fuego, y lo odia."
+
+msgid "DLG_OLD_DRUNK_ACTIVE"
+msgstr "La rejilla de la cloaca está en la calle principal. Fuego, os lo dije. ¡Fuego!"
+
+msgid "DLG_OLD_DRUNK_DONE"
+msgstr "¿Volvisteis? Entonces esta vez decía la verdad. Invitadme a una copa."
+
+msgid "DLG_KEEPER_1"
+msgstr "Sentaos, descansad. En Tortuga nadie pregunta de dónde viene el oro, solo si paga."
+
+msgid "DLG_BARD_QUEEN_1"
+msgstr "La Reina de las Ratas fue solo una madre, cuidando de sus crías en la oscuridad."
+
+msgid "DLG_BARD_QUEEN_2"
+msgstr "Ahora la tierra corre por sus venas, y la tierra teme al fuego: recordad la canción."
+
+msgid "DLG_BARD_1"
+msgstr "Cada monstruo fue otra cosa alguna vez. Volved y os cantaré su historia."
+
+msgid "DLG_NEXT"
+msgstr "Continuar"
+
+msgid "DLG_CLOSE"
+msgstr "Salir"
+
+msgid "DLG_ACCEPT"
+msgstr "Aceptar"
+
+msgid "DLG_DECLINE"
+msgstr "Rechazar"
+
+msgid "DLG_SERVICE_REST"
+msgstr "Descansar"
+
+msgid "QUEST_SEWER_TREASURE"
+msgstr "El tesoro bajo la ciudad"
+
+msgid "QUEST_SEWER_TREASURE_DESC"
+msgstr "Baja por la rejilla de la cloaca, derrota a la Reina de las Ratas y toma el tesoro perdido de la guerra. Las ratas son de Tierra: temen al Fuego."
+
+msgid "AREA_TORTUGA"
+msgstr "Tortuga"
+
+msgid "AREA_TAVERN"
+msgstr "Taberna del Cuervo Ahogado"
+
+msgid "PROP_TAVERN"
+msgstr "Taberna"
+
+msgid "PROP_TAVERN_EXIT"
+msgstr "Calle Principal"
+
+msgid "PROP_SEWER"
+msgstr "Rejilla de la cloaca"
+
+msgid "PROP_RETURN_PORTAL"
+msgstr "Volver a Tortuga"
+
+msgid "PROP_PORTAL"
+msgstr "Portal de Tortuga"
+
+msgid "PROP_PORTAL_LOCKED"
+msgstr "Las runas están apagadas. Nadie sabe aún adónde llevan."
+
+msgid "TOAST_LOCKED"
+msgstr "Cerrado. Alguien en la taberna puede saber cómo."
+
+msgid "TOAST_QUEST_ACCEPTED"
+msgstr "Nueva misión: {quest}"
+
+msgid "TOAST_QUEST_DONE"
+msgstr "Misión cumplida: {quest}"
+
+msgid "TOAST_RESTED"
+msgstr "Descansado: vida y recurso al máximo"
+
+msgid "TOAST_NO_GOLD"
+msgstr "No tienes oro suficiente"
+
+msgid "TOAST_NOT_BUYING"
+msgstr "Aquí no compran eso"
+
+msgid "HUD_QUEST"
+msgstr "Misión: {quest} — débil a {weak}"
+
+msgid "HUD_INTERACT"
+msgstr "{action} {target}"

@@ -144,6 +144,241 @@
       }
     ],
     "area_level": 1,
-    "map_id": "map_sewers"
+    "map_id": "map_sewers",
+    "entries": {
+      "start": [
+        0,
+        3
+      ],
+      "sewer": [
+        0,
+        3
+      ]
+    },
+    "props": [
+      {
+        "id": "return_portal",
+        "kind": "exit",
+        "name_key": "PROP_RETURN_PORTAL",
+        "position": [
+          -6,
+          5
+        ],
+        "to": "tortuga",
+        "entry": "sewer",
+        "expedition_end": true
+      }
+    ]
+  },
+  "tortuga": {
+    "_comment": "Tortuga, área externa (04-tortuga-e-missoes.md, seção 2): Rua Principal com as bancas, o bueiro e a porta da Taverna; ao norte o porto com o Mercado Pirata e o Portal. Geometria provisória até os modelos.",
+    "name_key": "AREA_TORTUGA",
+    "town": true,
+    "outdoor": true,
+    "player_class": "mage",
+    "wake_radius": 0,
+    "alert_radius": 0,
+    "area_level": 1,
+    "rooms": [
+      {
+        "id": "street",
+        "center": [
+          0,
+          0
+        ],
+        "size": [
+          56,
+          16
+        ],
+        "doors": [
+          "north"
+        ],
+        "torch": true
+      },
+      {
+        "id": "port",
+        "center": [
+          0,
+          -15
+        ],
+        "size": [
+          30,
+          14
+        ],
+        "doors": [
+          "south"
+        ],
+        "torch": true
+      }
+    ],
+    "encounters": [],
+    "entries": {
+      "start": [
+        0,
+        4
+      ],
+      "tavern": [
+        0,
+        5
+      ],
+      "sewer": [
+        22,
+        1
+      ],
+      "portal": [
+        8,
+        -14
+      ]
+    },
+    "props": [
+      {
+        "id": "tavern_door",
+        "kind": "exit",
+        "name_key": "PROP_TAVERN",
+        "position": [
+          0,
+          7.2
+        ],
+        "to": "tavern",
+        "entry": "door"
+      },
+      {
+        "id": "shop_potions",
+        "kind": "shop",
+        "shop": "potions",
+        "name_key": "SHOP_POTIONS",
+        "position": [
+          -20,
+          -5.5
+        ]
+      },
+      {
+        "id": "shop_weapons",
+        "kind": "shop",
+        "shop": "weapons",
+        "name_key": "SHOP_WEAPONS",
+        "position": [
+          -12,
+          -5.5
+        ]
+      },
+      {
+        "id": "shop_armor",
+        "kind": "shop",
+        "shop": "armor",
+        "name_key": "SHOP_ARMOR",
+        "position": [
+          -4,
+          -5.5
+        ]
+      },
+      {
+        "id": "sewer_entrance",
+        "kind": "exit",
+        "name_key": "PROP_SEWER",
+        "position": [
+          22,
+          4
+        ],
+        "to": "prototype_arena",
+        "entry": "start",
+        "requires": "sewer_entrance"
+      },
+      {
+        "id": "pirate_market",
+        "kind": "shop",
+        "shop": "pirate",
+        "name_key": "SHOP_PIRATE",
+        "position": [
+          -6,
+          -18
+        ]
+      },
+      {
+        "id": "portal",
+        "kind": "sign",
+        "name_key": "PROP_PORTAL",
+        "position": [
+          8,
+          -19
+        ],
+        "text_key": "PROP_PORTAL_LOCKED"
+      }
+    ]
+  },
+  "tavern": {
+    "_comment": "Interior da Taverna do Corvo Afogado (nome proposto, 04-tortuga-e-missoes.md, seção 3): balcão com a Taberneira, o Velho Bêbado numa mesa, o Bardo no palco. A campanha começa aqui.",
+    "name_key": "AREA_TAVERN",
+    "town": true,
+    "player_class": "mage",
+    "wake_radius": 0,
+    "alert_radius": 0,
+    "area_level": 1,
+    "rooms": [
+      {
+        "id": "hall",
+        "center": [
+          0,
+          0
+        ],
+        "size": [
+          20,
+          14
+        ],
+        "doors": [],
+        "torch": true
+      }
+    ],
+    "encounters": [],
+    "entries": {
+      "start": [
+        0,
+        2
+      ],
+      "door": [
+        0,
+        4.5
+      ]
+    },
+    "props": [
+      {
+        "id": "old_drunk",
+        "kind": "npc",
+        "npc": "old_drunk",
+        "position": [
+          -5.5,
+          -2
+        ]
+      },
+      {
+        "id": "tavern_keeper",
+        "kind": "npc",
+        "npc": "tavern_keeper",
+        "position": [
+          0,
+          -5
+        ]
+      },
+      {
+        "id": "bard",
+        "kind": "npc",
+        "npc": "bard",
+        "position": [
+          6,
+          -3.5
+        ]
+      },
+      {
+        "id": "tavern_exit",
+        "kind": "exit",
+        "name_key": "PROP_TAVERN_EXIT",
+        "position": [
+          0,
+          6.2
+        ],
+        "to": "tortuga",
+        "entry": "tavern"
+      }
+    ]
   }
 }

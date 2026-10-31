@@ -177,9 +177,11 @@ static func new_campaign() -> Dictionary:
 	var rng := RandomNumberGenerator.new()
 	rng.randomize()
 	return {"save_version": GameData.balance.save_version, "id": Items.new_uid(rng),
-		"created": Time.get_datetime_string_from_system(true), "area": "prototype_arena",
+		"created": Time.get_datetime_string_from_system(true), "area": "tavern",
 		"dead_groups": [], "checkpoint": "start", "checkpoints_reached": [],
-		"played_seconds": 0, "participants": [], "hero_names": {}}
+		"played_seconds": 0, "participants": [], "hero_names": {},
+		# Fase 6: missões ("active"/"done"), o que já abriu e o navio do dia no porto.
+		"quests": {}, "unlocked": [], "ship": {"day": 0, "seed": rng.randi(), "bought": {}}}
 
 
 # --- Espaços de save (11-saves.md, seção 3) ---------------------------------------
@@ -232,6 +234,10 @@ func migrate_campaign(d: Dictionary) -> Dictionary:
 			d[key] = []
 	if not d.has("hero_names"):
 		d.hero_names = {}
+	if not d.has("quests"):
+		d.quests = {}
+		d.unlocked = []
+		d.ship = {"day": 0, "seed": hash(d.get("id", "")), "bought": {}}
 	return d
 
 
