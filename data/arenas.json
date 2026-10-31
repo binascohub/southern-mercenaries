@@ -1962,6 +1962,163 @@
           -70
         ]
       }
+    ],
+    "style": {
+      "_comment": "Esgoto: tijolos irregulares do kit cobertos de limo (tinta verde-escura), piso de tijolos; a parede sul fica aberta para a câmera. Água em lodo verde (prototype_arena.gd).",
+      "walls": [
+        "Wall_UnevenBrick_Straight",
+        "Wall_UnevenBrick_Straight",
+        "Wall_UnevenBrick_Window_Wide_Round",
+        "Wall_UnevenBrick_Straight",
+        "Wall_UnevenBrick_Door_Round"
+      ],
+      "floor": "Floor_UnevenBrick",
+      "low": "",
+      "ground": [
+        0.04,
+        0.05,
+        0.035
+      ],
+      "tint": [
+        0.5,
+        0.58,
+        0.42
+      ]
+    },
+    "decor": [
+      {
+        "piece": "Barrel",
+        "position": [
+          -5.5,
+          -4.5
+        ],
+        "rotation": 20
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -4.6,
+          -5.2
+        ]
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          5.5,
+          -4.3
+        ],
+        "rotation": 10
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          4.4,
+          -5.0
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -6.6,
+          -35.5
+        ]
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          6.8,
+          -24.2
+        ],
+        "rotation": 35
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          -6.5,
+          -24.0
+        ]
+      },
+      {
+        "piece": "Lantern_Wall",
+        "position": [
+          -4.5,
+          -37.4
+        ],
+        "y": 1.4
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          8.4,
+          -55.0
+        ],
+        "rotation": 40
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          -8.6,
+          -55.2
+        ]
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -7.6,
+          -56.0
+        ]
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          8.5,
+          -70.5
+        ],
+        "rotation": -30,
+        "y": 0.1
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          -6,
+          -27
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          6,
+          -58
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          0,
+          -70
+        ],
+        "range": 8,
+        "energy": 0.7,
+        "y": 1.0
+      }
     ]
   },
   "sewers_02_canals": {
@@ -2320,6 +2477,131 @@
           -46
         ]
       }
+    ],
+    "style": {
+      "_comment": "Esgoto: tijolos irregulares do kit cobertos de limo (tinta verde-escura), piso de tijolos; a parede sul fica aberta para a câmera. Água em lodo verde (prototype_arena.gd).",
+      "walls": [
+        "Wall_UnevenBrick_Straight",
+        "Wall_UnevenBrick_Straight",
+        "Wall_UnevenBrick_Window_Wide_Round",
+        "Wall_UnevenBrick_Straight",
+        "Wall_UnevenBrick_Door_Round"
+      ],
+      "floor": "Floor_UnevenBrick",
+      "low": "",
+      "ground": [
+        0.04,
+        0.05,
+        0.035
+      ],
+      "tint": [
+        0.5,
+        0.58,
+        0.42
+      ]
+    },
+    "decor": [
+      {
+        "piece": "Barrel",
+        "position": [
+          -5.4,
+          -3.5
+        ],
+        "rotation": 15
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          5.4,
+          -3.4
+        ]
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -4.6,
+          -4.1
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -10.8,
+          -29.5
+        ]
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          10.6,
+          -29.8
+        ],
+        "rotation": 25
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          10.6,
+          -8.0
+        ]
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          -10.6,
+          -8.0
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -8.6,
+          -61.6
+        ]
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          8.6,
+          -61.5
+        ],
+        "rotation": 15
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          7.7,
+          -62.2
+        ]
+      },
+      {
+        "light": [
+          0.4,
+          0.7,
+          0.35
+        ],
+        "position": [
+          0,
+          -18
+        ],
+        "range": 10,
+        "energy": 0.9,
+        "y": 0.6
+      },
+      {
+        "light": [
+          0.4,
+          0.7,
+          0.35
+        ],
+        "position": [
+          0,
+          -55
+        ],
+        "range": 9,
+        "energy": 0.8,
+        "y": 0.6
+      }
     ]
   },
   "sewers_03_war_passage": {
@@ -2653,6 +2935,139 @@
           -75
         ]
       }
+    ],
+    "style": {
+      "_comment": "Esgoto: tijolos irregulares do kit cobertos de limo (tinta verde-escura), piso de tijolos; a parede sul fica aberta para a câmera. Água em lodo verde (prototype_arena.gd).",
+      "walls": [
+        "Wall_UnevenBrick_Straight",
+        "Wall_UnevenBrick_Straight",
+        "Wall_UnevenBrick_Window_Wide_Round",
+        "Wall_UnevenBrick_Straight",
+        "Wall_UnevenBrick_Door_Round"
+      ],
+      "floor": "Floor_UnevenBrick",
+      "low": "",
+      "ground": [
+        0.04,
+        0.05,
+        0.035
+      ],
+      "tint": [
+        0.5,
+        0.58,
+        0.42
+      ]
+    },
+    "decor": [
+      {
+        "piece": "Barrel",
+        "position": [
+          -4.6,
+          -3.4
+        ]
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          4.6,
+          -3.6
+        ],
+        "rotation": 20
+      },
+      {
+        "piece": "Banner_1",
+        "position": [
+          -7.6,
+          -40.6
+        ],
+        "y": 0.2
+      },
+      {
+        "piece": "Banner_1",
+        "position": [
+          7.6,
+          -40.6
+        ],
+        "y": 0.2
+      },
+      {
+        "piece": "WeaponStand",
+        "position": [
+          -7.4,
+          -26.5
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          7.6,
+          -26.6
+        ],
+        "rotation": -90,
+        "y": 0.3
+      },
+      {
+        "piece": "Sword_Bronze",
+        "position": [
+          3.0,
+          -39.0
+        ],
+        "rotation": 60,
+        "y": 0.05
+      },
+      {
+        "piece": "Axe_Bronze",
+        "position": [
+          -3.2,
+          -28.0
+        ],
+        "rotation": -40,
+        "y": 0.05
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -10.6,
+          -76.0
+        ]
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          10.6,
+          -75.8
+        ],
+        "rotation": 30
+      },
+      {
+        "light": [
+          0.4,
+          0.7,
+          0.35
+        ],
+        "position": [
+          27,
+          -33
+        ],
+        "range": 9,
+        "energy": 0.8,
+        "y": 0.6
+      },
+      {
+        "light": [
+          0.4,
+          0.7,
+          0.35
+        ],
+        "position": [
+          0,
+          -68
+        ],
+        "range": 11,
+        "energy": 0.9,
+        "y": 0.6
+      }
     ]
   },
   "sewers_04_nest": {
@@ -2835,6 +3250,125 @@
           -13,
           -22
         ]
+      }
+    ],
+    "style": {
+      "_comment": "Esgoto: tijolos irregulares do kit cobertos de limo (tinta verde-escura), piso de tijolos; a parede sul fica aberta para a câmera. Água em lodo verde (prototype_arena.gd).",
+      "walls": [
+        "Wall_UnevenBrick_Straight",
+        "Wall_UnevenBrick_Straight",
+        "Wall_UnevenBrick_Window_Wide_Round",
+        "Wall_UnevenBrick_Straight",
+        "Wall_UnevenBrick_Door_Round"
+      ],
+      "floor": "Floor_UnevenBrick",
+      "low": "",
+      "ground": [
+        0.04,
+        0.05,
+        0.035
+      ],
+      "tint": [
+        0.5,
+        0.58,
+        0.42
+      ]
+    },
+    "decor": [
+      {
+        "piece": "Barrel",
+        "position": [
+          -4.6,
+          -3.4
+        ]
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          4.6,
+          -3.6
+        ],
+        "rotation": 20
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          -14.5,
+          -21.0
+        ]
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          14.3,
+          -22.0
+        ],
+        "rotation": 30
+      },
+      {
+        "piece": "Bag",
+        "position": [
+          -13.6,
+          -24.0
+        ]
+      },
+      {
+        "piece": "Coin_Pile",
+        "position": [
+          13.2,
+          -50.5
+        ]
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -14.6,
+          -50.0
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          14.6,
+          -30.0
+        ],
+        "rotation": 60
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -14.6,
+          -36.0
+        ],
+        "rotation": 10
+      },
+      {
+        "light": [
+          0.4,
+          0.7,
+          0.35
+        ],
+        "position": [
+          -9,
+          -46
+        ],
+        "range": 9,
+        "energy": 0.8,
+        "y": 0.6
+      },
+      {
+        "light": [
+          0.85,
+          0.25,
+          0.15
+        ],
+        "position": [
+          0,
+          -36
+        ],
+        "range": 14,
+        "energy": 0.6,
+        "y": 3.0
       }
     ]
   }

@@ -89,6 +89,10 @@ var _pending: Array[Dictionary] = []
 var _special := ""
 var _trail_timer := 0.0
 var _ripple: MeshInstance3D
+## Modelo animado da família (rato, morcego, jacaré); null = cápsula.
+var _model: MonsterModel
+var _last_visual_pos := Vector3.INF
+var _visual_speed := 0.0
 
 
 ## Criado pelo spawner em todos os PCs, com os mesmos dados.
@@ -495,6 +499,12 @@ func _build_visual(size: float) -> void:
 	_visual.scale = Vector3.ONE * scale_
 	if data.get("flyer", false):
 		_visual.position.y = 1.1
+	if not data.get("dummy", false) and MonsterModel.has_family(look):
+		_model = MonsterModel.new()
+		_visual.add_child(_model)
+		if not _model.setup(look, size, _base_color):
+			_model.queue_free()
+			_model = null
 	var body := MeshInstance3D.new()
 	var body_mesh := CapsuleMesh.new()
 	body_mesh.radius = 0.3 * size
@@ -521,7 +531,7 @@ func _build_visual(size: float) -> void:
 	body.mesh = body_mesh
 	body.rotation.x = PI / 2.0
 	body.position.y = 0.3 * size
-	body.visible = kit_node == null
+	body.visible = kit_node == null and _model == null
 	body.material_override = _material
 	if look == "barrel":
 		var barrel := CylinderMesh.new()
@@ -538,7 +548,7 @@ func _build_visual(size: float) -> void:
 		body.rotation.x = 0.0
 		body.position.y = 0.42 * size
 	_visual.add_child(body)
-	if look == "bat":
+	if look == "bat" and _model == null:
 		for side in [-1.0, 1.0]:
 			var wing := MeshInstance3D.new()
 			var wing_mesh := BoxMesh.new()
@@ -562,7 +572,12 @@ func _build_visual(size: float) -> void:
 		crown.material_override = gold
 		crown.position = Vector3(0, 0.62 * size, 0.35 * size)
 		crown.rotation.z = 0.25
+		if _model:
+			# Sobre a cabeça do rato (frente +Z, cabeça a ~40% do comprimento).
+			crown.position = Vector3(0, 0.3 * size, 0.52 * size)
+			crown.rotation = Vector3(-0.35, 0, 0.25)
 		_visual.add_child(crown)
+	if look == "queen" and _model == null:
 		var tail := MeshInstance3D.new()
 		var tail_mesh := SphereMesh.new()
 		tail_mesh.radius = 0.25 * size
@@ -606,7 +621,7 @@ func _build_visual(size: float) -> void:
 	eye_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	eye_material.albedo_color = Color(1.0, 0.15, 0.1)
 	_eye_material = eye_material
-	for side in ([] if data.get("breakable", false) or kit_node else [-1.0, 1.0]):
+	for side in ([] if data.get("breakable", false) or kit_node or _model else [-1.0, 1.0]):
 		var eye := MeshInstance3D.new()
 		var eye_mesh := SphereMesh.new()
 		eye_mesh.radius = 0.05 * size
@@ -670,3 +685,48 @@ func _tick_visual(delta: float) -> void:
 		_material.albedo_color = _base_color.lerp(Color(0.9, 0.2, 0.1), 0.7)
 	else:
 		_material.albedo_color = _base_color.lerp(Color(tint.r, tint.g, tint.b), tint.a)
+	if _model:
+		_tick_model(delta, tint)
+
+
+## Modelo animado: animação pelo estado e pela velocidade vista na tela (vale
+## nos PCs que só recebem a posição); cor por cima da textura.
+func _tick_model(delta: float, tint: Color) -> void:
+	if _last_visual_pos != Vector3.INF and delta > 0.0:
+		var moved := global_position - _last_visual_pos
+		moved.y = 0.0
+		_visual_speed = lerpf(_visual_speed, moved.length() / delta, 0.2)
+	_last_visual_pos = global_position
+	var key := "idle"
+	match state:
+		State.WINDUP:
+			key = "attack"
+		State.CHARGE:
+			key = "run"
+		State.SLEEP, State.HIDDEN:
+			key = "idle"
+		_:
+			if _visual_speed > 2.5:
+				key = "run"
+			elif _visual_speed > 0.3:
+				key = "walk"
+	if _model.current() == "attack" and state == State.RECOVER:
+		key = "attack"  # deixa o golpe terminar
+	_model.play(key)
+	var color := Color.WHITE
+	if _flash > 0.0:
+		color = Color(1.8, 1.8, 1.8)
+	elif state == State.WINDUP or state == State.CHARGE:
+		color = Color.WHITE.lerp(Color(1.0, 0.25, 0.15), 0.6)
+	elif tint.a > 0.0:
+		color = Color.WHITE.lerp(Color(tint.r, tint.g, tint.b), tint.a)
+	_model.set_color(color)
+
+
+## Família do modelo animado ("" = cápsula; testes e capturas).
+func model_family() -> String:
+	return _model.family if _model else ""
+
+
+func model_animation() -> String:
+	return _model.current() if _model else ""

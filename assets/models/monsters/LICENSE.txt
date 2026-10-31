@@ -1,0 +1,16 @@
+Sewer monsters of Southern Mercenaries, converted by tools/assets/build_monsters.py.
+
+rat.glb   — "Evil Giant Rat" by cdmir
+            https://opengameart.org/content/evil-giant-rat
+            CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+
+gator.glb — "Crocodile" by br-n518
+            https://opengameart.org/content/crocodile-0
+            CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+
+bat.glb   — "Bat with fire,ice and blood versions" by danimal
+            https://opengameart.org/content/bat-with-fireice-and-blood-versions
+            Creative Commons Attribution-ShareAlike 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+            Changes: only the regular bat kept (mesh, skeleton, flight and death
+            animations), textures re-linked and reduced to 512 px, exported to glTF.
+            This converted file is shared under the same license (CC BY-SA 4.0).

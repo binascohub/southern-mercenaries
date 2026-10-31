@@ -122,6 +122,10 @@ var _explore_timer := 0.0
 var _exit_countdown := ""
 ## Nós da área atual (paredes, chão, luzes, objetos), trocados a cada viagem.
 var _area_root: Node3D
+## Tinta do estilo da área e materiais do kit já tingidos (original → cópia).
+var _style_tint := Color.WHITE
+var _tinted := {}
+var _sludge: StandardMaterial3D
 var _props: Array[Dictionary] = []
 ## Objeto ao alcance do herói deste PC (aviso de interagir) e suas marcas "!".
 var _prop_markers := {}
@@ -1528,6 +1532,16 @@ func _build_prop(prop: Dictionary) -> void:
 				# Arena alagada pelo Pacto: lâmina fina (as marcas de aviso ficam por cima).
 				var size: Array = prop.size
 				_prop_mesh(node, BoxMesh.new(), Vector3(size[0], 0.02, size[1]), Vector3(0, 0.01, 0), Color(0.12, 0.2, 0.16))
+			"water" when not arena.get("outdoor", false):
+				# Água do esgoto: lodo verde-escuro, liso e com brilho (reflete as tochas).
+				var size: Array = prop.get("size", [10, 4])
+				var sludge := MeshInstance3D.new()
+				var plane := BoxMesh.new()
+				plane.size = Vector3(size[0], 0.1, size[1])
+				sludge.mesh = plane
+				sludge.position.y = 0.03
+				sludge.material_override = _sludge_material()
+				node.add_child(sludge)
 			"water":
 				# Mar do porto: um plano simples (04-tortuga-e-missoes.md, seção 6).
 				var size: Array = prop.get("size", [40, 20])
@@ -1601,6 +1615,17 @@ func _build_prop(prop: Dictionary) -> void:
 				var wood := Color(0.3, 0.2, 0.12) if prop.get("secret", false) else Color(0.5, 0.34, 0.16)
 				_prop_mesh(node, BoxMesh.new(), Vector3(1.2, 0.7, 0.8), Vector3(0, 0.35, 0), wood)
 				_prop_mesh(node, BoxMesh.new(), Vector3(1.25, 0.12, 0.85), Vector3(0, 0.72, 0), Color(0.75, 0.6, 0.25))
+			"bridge" when Kit.has("Floor_WoodDark"):
+				# Ponte de tábuas escuras sobre o canal: ladrilhos de madeira do kit.
+				var size: Array = prop.get("size", [4, 6])
+				var nz := maxi(ceili(float(size[1]) / Kit.FLOOR_SIZE), 1)
+				for iz in nz:
+					var plank := Kit.piece("Floor_WoodDark")
+					plank.scale = Vector3(float(size[0]) / Kit.FLOOR_SIZE, 1, float(size[1]) / nz / Kit.FLOOR_SIZE)
+					plank.position = Vector3(0, 0.08, -float(size[1]) / 2.0 + float(size[1]) / nz * (iz + 0.5))
+					node.add_child(plank)
+				for side in [-1.0, 1.0]:
+					_prop_mesh(node, BoxMesh.new(), Vector3(0.15, 0.5, size[1]), Vector3(side * float(size[0]) / 2.0, 0.3, 0), Color(0.25, 0.17, 0.1))
 			"bridge":
 				# Ponte de madeira podre sobre o canal (cenário).
 				var size: Array = prop.get("size", [4, 6])
@@ -1722,6 +1747,17 @@ func _kit(parent: Node3D, piece_name: String, offset := Transform3D.IDENTITY, ti
 	return true
 
 
+## Lodo do esgoto (canais, câmaras alagadas): verde-escuro, liso e brilhante.
+func _sludge_material() -> StandardMaterial3D:
+	if _sludge == null:
+		_sludge = StandardMaterial3D.new()
+		_sludge.albedo_color = Color(0.09, 0.13, 0.06)
+		_sludge.roughness = 0.08
+		_sludge.metallic = 0.3
+		_sludge.metallic_specular = 0.8
+	return _sludge
+
+
 func _prop_mesh(parent: Node3D, mesh: PrimitiveMesh, scale_: Vector3, at: Vector3, color: Color) -> void:
 	var node := MeshInstance3D.new()
 	node.mesh = mesh
@@ -1749,6 +1785,10 @@ func _build_area() -> void:
 	# as peças, as caixas aparecem como antes.
 	var style: Dictionary = arena.get("style", {})
 	var dressed := not style.is_empty() and Kit.has(String(style.get("floor", "")))
+	# Tinta do estilo (o limo verde do esgoto) por cima das cores do kit.
+	var t: Array = style.get("tint", [1, 1, 1])
+	_style_tint = Color(t[0], t[1], t[2])
+	_tinted.clear()
 	var bounds := AABB()
 	for i in arena.rooms.size():
 		var room: Dictionary = arena.rooms[i]
@@ -1796,6 +1836,7 @@ func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3,
 				node.scale = Vector3(tile.x / Kit.FLOOR_SIZE, 1, tile.y / Kit.FLOOR_SIZE)
 				node.position = Vector3(c.x - half.x + tile.x * (ix + 0.5), 0.01, c.z - half.z + tile.y * (iz + 0.5))
 				_area_root.add_child(node)
+				_tint_piece(node)
 	var low := height < 1.5
 	var walls: Array = room.get("walls", style.get("walls", []))
 	var fence: String = style.get("low", "")
@@ -1828,6 +1869,24 @@ func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3,
 			_area_root.add_child(lantern)
 
 
+## Peça do kit na tinta do estilo; os materiais tingidos são compartilhados
+## (um por material original), então custa pouco por peça.
+func _tint_piece(node: Node3D) -> void:
+	if _style_tint == Color.WHITE:
+		return
+	for mesh in node.find_children("*", "MeshInstance3D", true, false):
+		var m := mesh as MeshInstance3D
+		for i in m.get_surface_override_material_count():
+			var material := m.get_active_material(i) as StandardMaterial3D
+			if material == null:
+				continue
+			if not _tinted.has(material):
+				var copy := material.duplicate() as StandardMaterial3D
+				copy.albedo_color = copy.albedo_color * _style_tint
+				_tinted[material] = copy
+			m.set_surface_override_material(i, _tinted[material])
+
+
 ## Um lado da sala: peças de 2 m (esticadas para fechar o comprimento), com o
 ## vão da porta; a frente da peça (+Z) vira para `inward`.
 func _dress_side(face: Vector3, along: Vector3, inward: Vector3, length: float, door: bool, offset: float, pieces: Array) -> void:
@@ -1848,6 +1907,7 @@ func _dress_side(face: Vector3, along: Vector3, inward: Vector3, length: float, 
 			node.position = face + along * at - inward * (0.09 if full else 0.0)
 			node.rotation.y = atan2(inward.x, inward.z)
 			_area_root.add_child(node)
+			_tint_piece(node)
 
 
 ## Objeto de cenário (data/arenas.json "decor"): mesa, banco, barril, carroça…

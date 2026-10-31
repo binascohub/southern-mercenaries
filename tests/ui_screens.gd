@@ -340,6 +340,12 @@ func _shot(file: String) -> void:
 	var path := _dir.path_join(file)
 	get_viewport().get_texture().get_image().save_png(path)
 	print("captura salva em ", path)
+	var models := {}
+	for e: Enemy in get_tree().get_nodes_in_group(&"enemies"):
+		if e.model_family() != "":
+			models["%s:%s" % [e.monster_id, e.model_animation()]] = true
+	if not models.is_empty():
+		print("  monstros com modelo: ", models.keys())
 
 
 func _report(_ok: bool, _detail: String) -> void:

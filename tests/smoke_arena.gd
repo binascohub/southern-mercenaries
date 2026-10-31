@@ -707,6 +707,28 @@ func _town_test() -> void:
 	check.call(model.animations().size() == HeroModel.ANIMS.size(), "herói com todas as animações (%s)" % [model.animations()])
 	check.call(model._anim != null and model._anim.is_playing(), "herói animado ao nascer")
 	check.call("Peasant_Body" in model.visible_parts() and "Head" in model.visible_parts(), "roupa de Camponês e rosto à mostra (%s)" % [model.visible_parts()])
+	# Monstros do Esgoto com modelo animado (rato, morcego, jacaré, a Rainha).
+	for monster_id: String in ["plague_rat", "plague_bat", "sewer_gator", "demon_rat_queen"]:
+		var probe := Enemy.create({"monster_id": monster_id, "position": Vector3(0, -50, 0)})
+		add_child(probe)
+		check.call(probe.model_family() != "", "%s com modelo animado" % monster_id)
+		check.call(probe.model_animation() == "idle", "%s parado em idle (%s)" % [monster_id, probe.model_animation()])
+		probe.queue_free()
+	# Toda peça citada no estilo e no cenário das áreas existe no kit.
+	var missing: Array[String] = []
+	for area_id: String in GameData.arenas:
+		if not GameData.arenas[area_id] is Dictionary:
+			continue
+		var area: Dictionary = GameData.arenas[area_id]
+		var style: Dictionary = area.get("style", {})
+		var pieces: Array = style.get("walls", []).duplicate()
+		pieces.append(style.get("floor", ""))
+		for decor: Dictionary in area.get("decor", []):
+			pieces.append(decor.get("piece", ""))
+		for piece: String in pieces:
+			if piece != "" and not Kit.has(piece) and not missing.has(piece):
+				missing.append(piece)
+	check.call(missing.is_empty(), "peças do kit que faltam: %s" % [missing])
 	# Abertura: o herói do jogador conta primeiro; "Pular abertura" fecha.
 	var opening: OpeningMenu = _arena._opening_menu
 	check.call(opening.visible and opening.current_key() == "OPENING_SCENE_MAGE", "abertura começa pela história do Mago (%s)" % opening.current_key())
