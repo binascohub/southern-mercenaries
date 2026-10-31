@@ -4,12 +4,18 @@ extends "res://tests/smoke_arena.gd"
 ##   godot --path . res://tests/ui_screens.tscn -- <pasta>
 ## 0. elements.png: ratos com estados (molhado, queimando, congelado), números de
 ##    dano na fraqueza/resistência, um combo e a área de vapor;
+## 0b. skill_fx.png: Nevasca, Corrente de Raios e Muralha de Fogo nos mesmos ratos;
+## 0c. skills.png: janela de habilidades de um Mago nível 12 e a barra de atalhos;
 ## 1. trade.png: janela de troca com um aliado fictício (peer 99) e ofertas dos dois lados;
 ## 2. load_campaign.png: menu principal → Carregar campanha, com três campanhas
 ##    (uma com miniatura capturada da própria arena).
 
 const ELEMENTS_FRAME := 200
 const ELEMENTS_SHOT := 206
+const SKILL_FX_FRAME := 210
+const SKILL_FX_SHOT := 216
+const SKILL_MENU_FRAME := 222
+const SKILL_MENU_SHOT := 228
 const THUMB_FRAME := 240
 const TRADE_FRAME := 260
 const TRADE_SHOT := 290
@@ -35,6 +41,15 @@ func _physics_process(delta: float) -> void:
 		_show_elements()
 	elif _frame == ELEMENTS_SHOT:
 		await _shot("elements.png")
+	elif _frame == SKILL_FX_FRAME:
+		_show_skills()
+	elif _frame == SKILL_FX_SHOT:
+		await _shot("skill_fx.png")
+	elif _frame == SKILL_MENU_FRAME:
+		_arena._skill_menu.toggle()
+	elif _frame == SKILL_MENU_SHOT:
+		await _shot("skills.png")
+		_arena._skill_menu.close()
 	elif _frame == THUMB_FRAME:
 		await RenderingServer.frame_post_draw
 		SaveSystem.save_thumbnail(Session.campaign.id, get_viewport().get_texture().get_image())
@@ -77,6 +92,28 @@ func _show_elements() -> void:
 			rats[i].take_hit(hit)
 	if rats.size() > hits.size():
 		Elements.apply_state(rats[hits.size()].status, "frozen", "earth", false)
+
+
+## Mago nível 12 com algumas habilidades e três delas em ação.
+func _show_skills() -> void:
+	var player: Player = _arena.local_player
+	var c := player.character
+	c.add_xp(60000)
+	for key in ["element_2", "element_6", "element_10", "sharp_mind", "teleport", "mana_shield"]:
+		while c.can_learn(key) and c.skill_rank(key) < 2:
+			c.learn(key)
+	player.refresh_character()
+	player.resource = player.max_resource
+	player.facing = Vector2(0, -1)
+	var system: SkillSystem = _arena.skills
+	player.element = "water"
+	system.cast(player, "blizzard", 1)
+	player.element = "air"
+	system.cast(player, "chain_lightning", 2)
+	player.facing = Vector2(0, 1)
+	player.element = "fire"
+	system.cast(player, "fire_wall", 1)
+	player.element = player.character.current_element()
 
 
 func _stop_bot() -> void:
