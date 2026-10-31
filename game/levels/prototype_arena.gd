@@ -1514,8 +1514,8 @@ func _build_prop(prop: Dictionary) -> void:
 				# Banca: balcão e toldo.
 				_prop_mesh(node, BoxMesh.new(), Vector3(2.4, 1.0, 1.0), Vector3(0, 0.5, 0), Color(0.42, 0.3, 0.2))
 				_prop_mesh(node, BoxMesh.new(), Vector3(2.8, 0.1, 1.6), Vector3(0, 2.2, 0), Color(0.6, 0.25, 0.2))
-			"ship" when _kit(node, "pirate_ship", Transform3D(Basis().scaled(Vector3.ONE * 1.3), Vector3(0, -0.9, 0))):
-				pass  # o navio do autor: casco afundado um pouco na água, velas carmesim
+			"ship" when _kit(node, "pirate_ship", Transform3D(Basis().scaled(Vector3.ONE * 0.95), Vector3(-1.5, 0, 0))):
+				pass  # galeão pirata (tools/assets/build_galleon.py): a quilha fica embaixo da água
 			"ship":
 				# Navio pirata atracado: casco, convés, dois mastros e velas escuras.
 				_prop_mesh(node, BoxMesh.new(), Vector3(16, 2.4, 6), Vector3(0, 0.6, 0), Color(0.3, 0.2, 0.12))
