@@ -636,7 +636,9 @@ func _sewers_test() -> void:
 	var gas_before: int = _arena.hazards.count()
 	await _wait_frames(200)
 	check.call(queen.phase == 3 and _arena._area_root.get_node_or_null("flood") != null, "abaixo de 25%: O Pacto alaga a arena")
-	check.call(_arena.hazards.count() > gas_before, "o gás dos canos deixa poças")
+	check.call(_arena.hazards.count() > gas_before, "o gás dos canos deixa poças (antes %d, agora %d, timers %s, alvo %s, estado %d, herói vivo %s a %.1f m)" % [
+		gas_before, _arena.hazards.count(), queen.boss_timers, queen._nearest_player(), queen.state, player.alive,
+		player.global_position.distance_to(queen.global_position)])
 	queen.take_damage(1e9)
 	await _wait_frames(2)
 	var leftovers := get_tree().get_nodes_in_group(&"enemies").filter(func(e: Enemy) -> bool: return e.group == "" and not e.is_queued_for_deletion())
