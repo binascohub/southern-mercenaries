@@ -632,7 +632,7 @@ func _test_shops() -> void:
 	var coins := Items.stack(Items.VALUABLE, "old_coins", 2)
 	_check(Shops.sell_price("potions", coins, 1, ship) == -1, "Boticário não compra valiosos")
 	var mult := Shops.valuable_mult(ship, "old_coins")
-	_check(mult >= 0.8 and mult <= 1.2 and mult == Shops.valuable_mult(ship, "old_coins"), "variação do dia entre 80% e 120%: %.2f" % mult)
+	_check(mult >= 0.8 and mult <= 1.2 and mult == Shops.valuable_mult(ship, "old_coins"), "variação do dia entre 80%% e 120%%: %.2f" % mult)
 	_check(Shops.sell_price("pirate", coins, 1, ship) == roundi(20 * mult) * 2, "piratas pagam o valor × variação pela pilha")
 
 
