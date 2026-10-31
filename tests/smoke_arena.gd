@@ -568,7 +568,8 @@ func _sewers_test() -> void:
 	var elite := get_tree().get_nodes_in_group(&"enemies").filter(func(e: Enemy) -> bool: return e.group == "s1_secret" and e.category() == "elite")
 	check.call(elite.size() == 1 and elite[0].modifier == "toxic" and elite[0].max_health >= 60.0, "elite tóxica no segredo")
 	var boxes := get_tree().get_nodes_in_group(&"enemies").filter(func(e: Enemy) -> bool: return e.data.get("breakable", false))
-	check.call(boxes.size() == 6, "6 barris e caixotes na área 1 (%d)" % boxes.size())
+	var expected: int = GameData.arenas.sewers_01_drains.breakables.size()
+	check.call(boxes.size() == expected, "%d barris, caixotes e potes na área 1 (%d)" % [expected, boxes.size()])
 	for e in get_tree().get_nodes_in_group(&"enemies"):
 		e.take_damage(1e9)
 	await get_tree().physics_frame
