@@ -48,7 +48,13 @@ static func generate_equipment(level: int, class_id: String, rarity: String,
 	var count_range: Array = GameData.rarities[rarity].affixes
 	var count := rng.randi_range(int(count_range[0]), int(count_range[1]))
 	var pool: Array = GameData.affixes.keys()
-	pool.shuffle()
+	# Embaralha com o sorteador do item (não o global): a mesma semente gera o
+	# mesmo item — o estoque do Mercado Pirata é igual no servidor e no cliente.
+	for i in range(pool.size() - 1, 0, -1):
+		var j := rng.randi_range(0, i)
+		var swap: Variant = pool[i]
+		pool[i] = pool[j]
+		pool[j] = swap
 	for i in mini(count, pool.size()):
 		var def: Dictionary = GameData.affixes[pool[i]]
 		var bonus: float = def.per_level * (level - 1)
