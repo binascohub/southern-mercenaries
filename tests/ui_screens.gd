@@ -76,6 +76,7 @@ func _physics_process(delta: float) -> void:
 		_show_classes()
 	elif _frame == CLASSES_SHOT:
 		await _shot("classes.png")
+		_arena._camera.distance = 10.5
 		for peer in [91, 92, 93, 94]:
 			var hero := _arena.get_node_or_null(str(peer))
 			if hero:
@@ -184,12 +185,21 @@ func _show_classes() -> void:
 	for i in heroes.size():
 		var peer: int = heroes[i][0]
 		var c := CharacterData.create(heroes[i][1], "male" if i % 2 == 0 else "female", "?", heroes[i][2])
+		# Metade com o equipamento de Ferro no corpo (a roupa de Ranger tingida).
+		if i % 2 == 1:
+			for item_base in {"ninja": ["leather_vest", "ninja_mask", "gloves", "boots"], "knight": ["plate", "helm", "gloves", "boots"]}.get(heroes[i][1], []):
+				var item := Items.equipment(item_base, "iron", "common", 1)
+				c.data.equipment[Items.slot_of(item)] = item
 		NetworkManager._characters[peer] = c.to_dict()
 		_arena._spawn_player(peer)
 		var hero: Player = _arena.get_node(str(peer))
 		hero.teleport_to(player.global_position + Vector3(-4.0 + 2.0 * i + (2.0 if i >= 2 else 0.0), 0, 0))
 		hero.facing = Vector2(0, 1)
+		hero.mounted = false  # a pé, para ver o corpo
 	player.facing = Vector2(0, 1)
+	# Bem de perto, para conferir os corpos e as roupas.
+	_arena._camera.distance = 6.0
+	_arena._camera.snap()
 
 
 ## Taverna: fecha a troca, viaja e abre a abertura (depois, a conversa do Velho
