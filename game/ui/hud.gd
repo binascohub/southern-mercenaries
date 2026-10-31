@@ -480,7 +480,7 @@ func _build() -> void:
 	_boss_name.add_theme_color_override("font_color", Color(1.0, 0.55, 0.45))
 	_boss_box.add_child(_boss_name)
 	_boss_bar = ProgressBar.new()
-	_boss_bar.custom_minimum_size = Vector2(520, 18)
+	_boss_bar.custom_minimum_size = Vector2(440, 18)
 	_boss_bar.show_percentage = false
 	_boss_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var boss_fill := StyleBoxFlat.new()

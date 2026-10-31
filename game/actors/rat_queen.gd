@@ -30,7 +30,7 @@ static func update(q: Enemy, delta: float, target: Node3D, dist: float) -> bool:
 	match q.phase:
 		1:
 			if float(timers.get("swarm", 0.0)) <= 0.0:
-				timers.swarm = float(data.swarm.interval)
+				timers["swarm"] = float(data.swarm.interval)
 				q.get_tree().call_group(&"arena", &"spawn_adds", q.global_position, String(data.swarm.monster),
 					int(data.swarm.count), 3.0)
 		2:
@@ -38,7 +38,7 @@ static func update(q: Enemy, delta: float, target: Node3D, dist: float) -> bool:
 				q.health = minf(q.health + q.max_health * float(data.nests.regen) * delta, q.max_health)
 		3:
 			if float(timers.get("gas", 0.0)) <= 0.0 and target:
-				timers.gas = float(data.gas.interval)
+				timers["gas"] = float(data.gas.interval)
 				# Gás dos canos: perto de um herói, com aviso no chão.
 				var angle := randf() * TAU
 				var at := target.global_position + Vector3(cos(angle), 0, sin(angle)) * randf_range(0.0, 2.5)
@@ -47,7 +47,7 @@ static func update(q: Enemy, delta: float, target: Node3D, dist: float) -> bool:
 		return false
 	# Pisão em área: quem está em volta tem o aviso para sair.
 	if dist <= float(data.slam.radius) and float(timers.get("slam", 0.0)) <= 0.0:
-		timers.slam = float(data.slam.interval)
+		timers["slam"] = float(data.slam.interval)
 		q.start_slam()
 		return true
 	# Na Ninhada fica no ninho: só ataca quem chega perto.
@@ -87,4 +87,4 @@ static func _enter(q: Enemy, new_phase: int) -> void:
 				tree.call_group(&"arena", &"spawn_adds", at, String(nests.monster), 1, 0.0)
 		3:
 			tree.call_group(&"arena", &"flood_arena")
-			q.boss_timers.gas = 1.5
+			q.boss_timers["gas"] = 1.5
