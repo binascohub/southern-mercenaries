@@ -19,7 +19,7 @@ const FAMILIES := {
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# A Rainha: corpo humano (o dos heróis, com as animações deles) e cabeça de rato.
 	"queen": {"scene": "res://assets/models/monsters/rat_head.glb", "humanoid": true, "scale": 0.6,
-		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "melee", "hit": "hit", "die": "death"}},
+		"anims": {"idle": "zombie_idle", "walk": "zombie_walk", "run": "run", "attack": "zombie_scratch", "hit": "hit", "die": "death"}},
 	"gator": {"scene": "res://assets/models/monsters/gator.glb", "scale": 0.75,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
 	# O morcego guarda o tamanho original do arquivo (envergadura ~10 unidades).

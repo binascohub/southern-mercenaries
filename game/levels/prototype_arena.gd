@@ -947,6 +947,7 @@ func open_chest(player: Player, prop: Dictionary) -> void:
 	if key in opened:
 		return
 	_campaign.opened = opened + [key]
+	player.act("open")
 	var table: Dictionary = GameData.loot.get(String(prop.get("loot", "chest")), GameData.loot.chest)
 	var at := Vector3(prop.position[0], 0, prop.position[1])
 	for p: Player in get_tree().get_nodes_in_group(&"players"):

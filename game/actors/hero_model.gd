@@ -31,7 +31,17 @@ const ANIMS := {
 	"sit_talk": "Sitting_Talking_Loop",
 	# Briga de rua: socos e o golpe na cabeça.
 	"punch_jab": "Punch_Jab", "punch_cross": "Punch_Cross", "hit_head": "Hit_Head",
+	# Universal Animation Library 2: combo de espada (o golpe corpo a corpo
+	# alterna A, B, C), beber poção, abrir baú, jogado para trás (Rajada das Asas),
+	# a Rainha dos Ratos (andar e arranhar de zumbi) e poses de NPC.
+	"melee_b": "Sword_Regular_B", "melee_c": "Sword_Regular_C", "drink": "Consume", "open": "Chest_Open",
+	"knockback": "Hit_Knockback", "zombie_idle": "Zombie_Idle_Loop", "zombie_walk": "Zombie_Walk_Fwd_Loop",
+	"zombie_scratch": "Zombie_Scratch", "fold_arms": "Idle_FoldArms_Loop", "lantern": "Idle_Lantern_Loop",
+	"carry": "Walk_Carry_Loop", "rail": "Idle_Rail_Loop",
 }
+## Golpes corpo a corpo em sequência (dentro de COMBO_WINDOW s, o próximo da lista).
+const MELEE_COMBO := ["melee", "melee_b", "melee_c"]
+const COMBO_WINDOW := 1.2
 ## Peças por slot de equipamento: sem item, as de Camponês; com item, as de Ranger.
 const OUTFIT := {
 	"body": [["Peasant_Body", "Peasant_Legs"], ["Ranger_Body", "Ranger_Legs", "Ranger_Acc"]],
@@ -62,6 +72,8 @@ var _shown_equip := {}
 var _names := {}
 ## Pose fixa de NPC: volta a ela quando uma ação (soco, golpe sofrido) acaba.
 var _pose := ""
+var _combo := 0
+var _last_melee := -10.0
 
 
 ## Monta o corpo do sexo dado, com o cabelo do visual da classe
@@ -204,7 +216,14 @@ func play_action(kind: String) -> void:
 		return
 	_action = kind
 	_anim.stop()
-	_play(kind, 0.05)
+	var anim_key := kind
+	if kind == "melee":
+		# Combo de espada: A, B, C se os golpes vêm seguidos.
+		var now := Time.get_ticks_msec() / 1000.0
+		_combo = (_combo + 1) % MELEE_COMBO.size() if now - _last_melee < COMBO_WINDOW else 0
+		_last_melee = now
+		anim_key = MELEE_COMBO[_combo] if _names.has(MELEE_COMBO[_combo]) else "melee"
+	_play(anim_key, 0.05)
 
 
 ## Estado contínuo, a cada quadro.

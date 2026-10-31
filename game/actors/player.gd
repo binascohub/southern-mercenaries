@@ -270,7 +270,7 @@ func request_tip_seen(id: String) -> void:
 ## Servidor: marca uma ação para a animação em todos os PCs (ataque, magia,
 ## esquiva, golpe sofrido). Um golpe sofrido não corta um ataque em andamento.
 func act(kind: String) -> void:
-	if kind == "hit" and _model and _model.current() in ["melee", "cast", "shoot", "roll"]:
+	if kind == "hit" and _model and _model.current() in ["melee", "cast", "shoot", "roll", "knockback"]:
 		return
 	_action_seq += 1
 	action = "%s:%d" % [kind, _action_seq]
@@ -393,6 +393,7 @@ func _drink(id: String) -> void:
 	else:
 		resource = minf(resource + max_resource * def.fraction, max_resource)
 	potion_cooldown = def.cooldown
+	act("drink")
 	_push_character(0)
 
 
@@ -796,6 +797,7 @@ func knock_back(offset: Vector3, time: float) -> void:
 		return
 	_knock = offset / maxf(time, 0.05)
 	_knock_time = time
+	act("knockback")
 
 
 func is_knocked_back() -> bool:

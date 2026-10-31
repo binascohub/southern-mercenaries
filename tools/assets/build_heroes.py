@@ -1,10 +1,15 @@
 """Monta hero_male.glb e hero_female.glb (Quaternius, CC0): o esqueleto e as 43
 animações do Universal Animation Library; do Universal Base Characters só a
 cabeça (olhos, sobrancelhas) e os cabelos; as roupas de Camponês e Ranger do
-Modular Character Outfits - Fantasy, peça por peça. Texturas em 1024 (cabelo 512)."""
+Modular Character Outfits - Fantasy, peça por peça. Texturas em 1024 (cabelo 512).
+Opcional: as 43 animações a mais do Universal Animation Library 2 (CC0, mesmo
+esqueleto): combos de espada, escudo, arremesso, beber, abrir baú, empurrão,
+zumbi (a Rainha dos Ratos), braços cruzados, lampião.
+uso: build_heroes.py <UAL1.glb> <pasta UBC> <pasta das roupas> <saída> [UAL2.glb]"""
 import bpy, bmesh, sys, os
 args = sys.argv[sys.argv.index("--") + 1:]
-ual, ubc, outfits, out_dir = args
+ual, ubc, outfits, out_dir = args[:4]
+ual2 = args[4] if len(args) > 4 else ""
 CUT = {"Male": 1.50, "Female": 1.46}
 HAIR = {"Male": ["Hair_SimpleParted", "Hair_Buzzed", "Hair_Beard"], "Female": ["Hair_Long", "Hair_Buns", "Hair_BuzzedFemale"]}
 
@@ -57,6 +62,14 @@ for sex in ["Male", "Female"]:
     for o in objs:
         if o.type == "MESH":
             bpy.data.objects.remove(o, do_unlink=True)
+    if ual2:
+        # Só as ações (mesmos nomes de ossos); o manequim e o esqueleto dele saem.
+        before = set(bpy.data.actions)
+        for o in imported(ual2):
+            bpy.data.objects.remove(o, do_unlink=True)
+        for action in set(bpy.data.actions) - before:
+            if action.name.startswith("A_TPose"):
+                bpy.data.actions.remove(action)
     base = adopt(imported(os.path.join(ubc, "Base Characters/Godot - UE/Superhero_%s_FullBody.gltf" % sex)), arm)
     for o in base:
         if o.name.lower().startswith("superhero"):
