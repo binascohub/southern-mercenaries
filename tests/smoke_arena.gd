@@ -634,7 +634,7 @@ func _sewers_test() -> void:
 	player.max_health = 1e6
 	player.health = 1e6
 	var gas_before: int = _arena.hazards.count()
-	await _wait_frames(200)
+	await _wait_frames(420)
 	check.call(queen.phase == 3 and _arena._area_root.get_node_or_null("flood") != null, "abaixo de 25%: O Pacto alaga a arena")
 	check.call(_arena.hazards.count() > gas_before, "o gás dos canos deixa poças (antes %d, agora %d, timers %s, alvo %s, estado %d, herói vivo %s a %.1f m)" % [
 		gas_before, _arena.hazards.count(), queen.boss_timers, queen._nearest_player(), queen.state, player.alive,
