@@ -2478,7 +2478,8 @@
       "grime": true,
       "puddles": true,
       "trash": true,
-      "spiders": true
+      "spiders": true,
+      "grates": true
     },
     "decor": [
       {
@@ -3102,7 +3103,8 @@
       "grime": true,
       "puddles": true,
       "trash": true,
-      "spiders": true
+      "spiders": true,
+      "grates": true
     },
     "decor": [
       {
@@ -3645,7 +3647,8 @@
       "grime": true,
       "puddles": true,
       "trash": true,
-      "spiders": true
+      "spiders": true,
+      "grates": true
     },
     "decor": [
       {
@@ -4047,7 +4050,8 @@
       "grime": true,
       "puddles": true,
       "trash": true,
-      "spiders": true
+      "spiders": true,
+      "grates": true
     },
     "decor": [
       {

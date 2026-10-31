@@ -128,6 +128,8 @@ var _tinted := {}
 var _sludge: StandardMaterial3D
 ## Cristal de save do checkpoint (flutua; acende quando o jogo salva).
 var _crystal_material: StandardMaterial3D
+## Bocas de cano do esgoto desta área: [boca, direção para fora da parede].
+var _pipes: Array = []
 ## Sujeira do esgoto: materiais das poças, da faixa de umidade e dos escorridos.
 var _grime_materials := {}
 var _props: Array[Dictionary] = []
@@ -1917,6 +1919,7 @@ func _build_area() -> void:
 	var t: Array = style.get("tint", [1, 1, 1])
 	_style_tint = Color(t[0], t[1], t[2])
 	_tinted.clear()
+	_pipes.clear()
 	var bounds := AABB()
 	for i in arena.rooms.size():
 		var room: Dictionary = arena.rooms[i]
@@ -1994,6 +1997,11 @@ func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3,
 		_scatter_trash(room, c, half)
 	if style.get("spiders", false):
 		_scatter_spiders(room, c, half)
+	if style.get("grates", false):
+		var grng := RandomNumberGenerator.new()
+		grng.seed = hash(str(room.get("id", ""), c, "grates"))
+		for i in clampi(roundi(half.x * half.z / 40.0), 0, 3):
+			_floor_grate(Vector3(c.x + grng.randf_range(-half.x + 1.5, half.x - 1.5), 0, c.z + grng.randf_range(-half.z + 1.5, half.z - 1.5)), grng)
 	if style.get("puddles", false):
 		var rng := RandomNumberGenerator.new()
 		rng.seed = hash(str(room.get("id", ""), c, "puddles"))
@@ -2193,6 +2201,120 @@ func _grime_side(face: Vector3, along: Vector3, inward: Vector3, length: float, 
 			var height := rng.randf_range(1.4, 2.8)
 			_grime_quad(face + along * at + inward * (0.05 + 0.002 * i) + Vector3.UP * (3.0 - height / 2.0),
 				rng.randf_range(0.7, 1.5), height, inward, "drips")
+		# Bocas de cano: uma a cada ~7 m de parede, com o lodo escorrendo embaixo.
+		var pipes := floori(segment.y / 7.0)
+		for i in pipes:
+			var at: float = segment.x - segment.y / 2.0 + (i + rng.randf_range(0.3, 0.7)) * segment.y / pipes
+			_pipe_mouth(face + along * at, inward, rng)
+
+
+## Cano saindo da parede: tubo de ferro enferrujado com aro, boca escura e o
+## lodo verde que escorre dele até uma poça no chão.
+func _pipe_mouth(on_wall: Vector3, inward: Vector3, rng: RandomNumberGenerator) -> void:
+	var height := rng.randf_range(0.9, 1.6)
+	var radius := rng.randf_range(0.22, 0.32)
+	var root := Node3D.new()
+	root.position = on_wall + Vector3.UP * height
+	root.basis = Basis.looking_at(inward, Vector3.UP)  # -Z do nó = para dentro da sala
+	_area_root.add_child(root)
+	var rust := _grime_material("rust")
+	var tube := MeshInstance3D.new()
+	var cylinder := CylinderMesh.new()
+	cylinder.top_radius = radius
+	cylinder.bottom_radius = radius
+	cylinder.height = 0.5
+	tube.mesh = cylinder
+	tube.material_override = rust
+	tube.rotation.x = PI / 2.0
+	tube.position.z = -0.2
+	root.add_child(tube)
+	var rim := MeshInstance3D.new()
+	var torus := TorusMesh.new()
+	torus.inner_radius = radius * 0.95
+	torus.outer_radius = radius * 1.25
+	rim.mesh = torus
+	rim.material_override = rust
+	rim.rotation.x = PI / 2.0
+	rim.position.z = -0.45
+	root.add_child(rim)
+	var hole := MeshInstance3D.new()
+	var disc := CylinderMesh.new()
+	disc.top_radius = radius * 0.9
+	disc.bottom_radius = radius * 0.9
+	disc.height = 0.02
+	hole.mesh = disc
+	var dark := StandardMaterial3D.new()
+	dark.albedo_color = Color(0.02, 0.025, 0.02)
+	hole.material_override = dark
+	hole.rotation.x = PI / 2.0
+	hole.position.z = -0.44
+	root.add_child(hole)
+	# Fio de lodo descendo da boca até o chão, e a poça.
+	var slime := MeshInstance3D.new()
+	var drip := BoxMesh.new()
+	drip.size = Vector3(radius * 0.8, height, 0.03)
+	slime.mesh = drip
+	slime.material_override = _sludge_material()
+	slime.position = Vector3(0, -height / 2.0, -0.47)
+	root.add_child(slime)
+	_puddle(root.position + (-root.basis.z) * 0.7 - Vector3.UP * (height - 0.025), rng.randf_range(0.5, 0.9), rng)
+	_pipes.append([root.position + (-root.basis.z) * 0.5, -root.basis.z])
+
+
+## Grade de ferro no chão sobre o escuro (o esgoto de baixo).
+func _floor_grate(at: Vector3, rng: RandomNumberGenerator) -> void:
+	var root := Node3D.new()
+	root.position = at
+	root.rotation.y = rng.randi_range(0, 3) * PI / 2.0
+	_area_root.add_child(root)
+	var pit := MeshInstance3D.new()
+	var plane := BoxMesh.new()
+	plane.size = Vector3(1.2, 0.01, 1.2)
+	pit.mesh = plane
+	var dark := StandardMaterial3D.new()
+	dark.albedo_color = Color(0.01, 0.015, 0.01)
+	pit.material_override = dark
+	pit.position.y = 0.012
+	root.add_child(pit)
+	var iron := _grime_material("rust")
+	for side in [-1.0, 1.0]:
+		for axis in 2:
+			var frame := MeshInstance3D.new()
+			var bar := BoxMesh.new()
+			bar.size = Vector3(1.3, 0.06, 0.1) if axis == 0 else Vector3(0.1, 0.06, 1.3)
+			frame.mesh = bar
+			frame.material_override = iron
+			frame.position = Vector3(0, 0.035, 0.6 * side) if axis == 0 else Vector3(0.6 * side, 0.035, 0)
+			root.add_child(frame)
+	for i in 5:
+		var rod := MeshInstance3D.new()
+		var bar := BoxMesh.new()
+		bar.size = Vector3(0.06, 0.05, 1.2)
+		rod.mesh = bar
+		rod.material_override = iron
+		rod.position = Vector3(-0.4 + i * 0.2, 0.03, 0)
+		root.add_child(rod)
+
+
+## O gás do Pacto sai do cano mais perto do ponto marcado (todos os PCs):
+## nuvem verde na boca do cano e um jato até o aviso no chão.
+func pipe_gas(at: Vector3) -> void:
+	if multiplayer.is_server():
+		_pipe_gas.rpc(at)
+
+
+@rpc("authority", "call_local", "reliable")
+func _pipe_gas(at: Vector3) -> void:
+	if _pipes.is_empty():
+		return
+	var best: Array = _pipes[0]
+	for pipe: Array in _pipes:
+		if (pipe[0] as Vector3).distance_to(at) < (best[0] as Vector3).distance_to(at):
+			best = pipe
+	var mouth: Vector3 = best[0]
+	var color := Color(0.45, 0.85, 0.2)
+	Fx.burst(_area_root, Vector3(mouth.x, 0.0, mouth.z), 0.8, color, "air", 1.2)
+	Fx.beam(_area_root, mouth, Vector3(at.x, 0.4, at.z), 0.7, color, "air", 1.1)
 
 
 func _grime_quad(at: Vector3, width: float, height: float, inward: Vector3, kind: String) -> void:
@@ -2250,6 +2372,11 @@ func _grime_material(kind: String) -> StandardMaterial3D:
 		"band":
 			material.albedo_texture = _grime_texture(false)
 			material.roughness = 0.9
+		"rust":
+			material.transparency = BaseMaterial3D.TRANSPARENCY_DISABLED
+			material.albedo_color = Color(0.3, 0.17, 0.09)
+			material.metallic = 0.5
+			material.roughness = 0.75
 		_:
 			material.albedo_texture = _grime_texture(true)
 			material.roughness = 0.9

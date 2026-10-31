@@ -45,6 +45,7 @@ static func update(q: Enemy, delta: float, target: Node3D, dist: float) -> bool:
 				var angle := randf() * TAU
 				var at := target.global_position + Vector3(cos(angle), 0, sin(angle)) * randf_range(0.0, 2.5)
 				q.schedule_strike(at, float(data.gas.radius), float(data.gas.windup), q.attack_damage(float(data.gas.damage_mult)), data.gas)
+				q.get_tree().call_group(&"arena", &"pipe_gas", at)  # sai do cano mais perto
 	var gust: Dictionary = data.get("gust", {})
 	var winged := not gust.is_empty() and q.health <= q.max_health * float(gust.from)
 	if winged and not timers.has("gust"):
