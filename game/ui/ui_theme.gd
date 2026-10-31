@@ -20,7 +20,9 @@ const IRON := Color(0.36, 0.36, 0.38)
 const LEATHER := Color(0.11, 0.085, 0.07)
 const PARCHMENT := Color(0.85, 0.76, 0.58)
 
-const FRAME := 18
+const FRAME := 14
+## A sombra interna fica na borda do 9-patch (o centro é liso, sem emendas).
+const SHADOW := 4
 const BODY_FONT := "res://assets/fonts/Alegreya.ttf"
 const TITLE_FONT := "res://assets/fonts/Cinzel.ttf"
 
@@ -53,10 +55,10 @@ static func build() -> Theme:
 	var title := _font(TITLE_FONT)
 	if body:
 		theme.default_font = body
-	theme.default_font_size = 18
+	theme.default_font_size = 17
 
 	# Janelas: madeira com cantoneiras de ferro, fundo de couro.
-	var window := _texture_box(_frame_image(LEATHER, 0.97), FRAME, 22)
+	var window := _texture_box(_frame_image(LEATHER, 0.97), FRAME + SHADOW, 18)
 	for type in ["PanelContainer", "Panel", "PopupPanel", "PopupMenu"]:
 		theme.set_stylebox("panel", type, window)
 	# Pergaminho: conversas, abertura, dicas, diário.
@@ -67,7 +69,7 @@ static func build() -> Theme:
 	theme.set_constant("outline_size", "ParchmentLabel", 0)
 	# HUD: painéis pequenos e discretos nas bordas.
 	theme.set_type_variation("HudPanel", "PanelContainer")
-	theme.set_stylebox("panel", "HudPanel", _texture_box(_frame_image(Color(0.08, 0.06, 0.05), 0.82, 8), 8, 6))
+	theme.set_stylebox("panel", "HudPanel", _texture_box(_frame_image(Color(0.08, 0.06, 0.05), 0.82, 6), 6 + SHADOW, 6))
 	theme.set_stylebox("panel", "TooltipPanel", _texture_box(_parchment_image(), 14, 10))
 	theme.set_color("font_color", "TooltipLabel", INK)
 
@@ -186,8 +188,9 @@ static func _texture_box(image: Image, margin: int, content: int) -> StyleBoxTex
 	box.texture = ImageTexture.create_from_image(image)
 	box.set_texture_margin_all(margin)
 	box.set_content_margin_all(content)
-	box.axis_stretch_horizontal = StyleBoxTexture.AXIS_STRETCH_MODE_TILE_FIT
-	box.axis_stretch_vertical = StyleBoxTexture.AXIS_STRETCH_MODE_TILE_FIT
+	# Esticar (não repetir): sem emendas visíveis nas texturas geradas.
+	box.axis_stretch_horizontal = StyleBoxTexture.AXIS_STRETCH_MODE_STRETCH
+	box.axis_stretch_vertical = StyleBoxTexture.AXIS_STRETCH_MODE_STRETCH
 	return box
 
 
@@ -219,12 +222,11 @@ static func _frame_image(fill: Color, fill_alpha: float, frame := FRAME) -> Imag
 				elif edge == 2:
 					color = color.lightened(0.15)
 			else:
-				var s := spots.get_noise_2d(x, y)
-				color = fill.lightened(0.05 * s) if s > 0 else fill.darkened(-0.1 * s)
+				color = fill
 				color.a = fill_alpha
 				# Sombra interna junto à moldura.
-				if edge < frame + 4:
-					color = color.darkened(0.35 * (1.0 - (edge - frame) / 4.0))
+				if edge < frame + SHADOW:
+					color = color.darkened(0.35 * (1.0 - float(edge - frame) / SHADOW))
 			image.set_pixel(x, y, color)
 	# Cantoneiras de ferro com dois rebites.
 	for corner in [Vector2i(0, 0), Vector2i(size - frame, 0), Vector2i(0, size - frame), Vector2i(size - frame, size - frame)]:
