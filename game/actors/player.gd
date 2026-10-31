@@ -34,9 +34,11 @@ const TURN_SPEED := 18.0
 const SLOT_COLORS: Array[Color] = [
 	Color(0.95, 0.75, 0.2), Color(0.3, 0.7, 1.0), Color(0.4, 0.9, 0.4), Color(0.9, 0.4, 0.9),
 ]
-## Arma no punho: o cabo segue o eixo Z do osso da mão (para a frente na pose
-## de descanso do Universal Animation Library), um pouco dentro da palma.
-const HAND_GRIP := Transform3D(Basis(Vector3.RIGHT, PI / 2.0), Vector3(0, 0.09, 0.02))
+## Arma no punho (osso da mão do Universal Animation Library: Y segue os dedos).
+## Cajado, arco e livro: o cabo sai do punho para cima, de pé ao lado do corpo
+## quando o herói está parado. Lança e adagas: apontam para a frente.
+const HAND_GRIP := Transform3D(Basis(Vector3.RIGHT, deg_to_rad(150.0)), Vector3(0, 0.08, 0))
+const POINT_GRIP := Transform3D(Basis(Vector3.RIGHT, deg_to_rad(60.0)), Vector3(0, 0.08, 0))
 ## Altura do osso do peito (spine_03) na pose de descanso.
 const CHEST := Vector3(0, 1.315, 0)
 
@@ -1070,14 +1072,14 @@ func _build_visual() -> void:
 		second.position = Vector3(0, 0.15, 0)
 		var left_hand := Node3D.new()
 		left_hand.add_child(second)
-		_model.attach("hand_l", left_hand, HAND_GRIP, Vector3(-0.42, 0.9, 0.35))
+		_model.attach("hand_l", left_hand, POINT_GRIP, Vector3(-0.42, 0.9, 0.35))
 	# Arma na mão direita: o cabo passa pelo punho, apontando para a frente
 	# (o punho segura a um terço do cabo; a lança e o arco mais à frente).
 	staff.rotation = Vector3.ZERO
 	staff.position = Vector3.ZERO if summoner else Vector3(0, staff_mesh.height * (0.3 if knight else 0.2), 0)
 	var right_hand := Node3D.new()
 	right_hand.add_child(staff)
-	_model.attach("hand_r", right_hand, HAND_GRIP, Vector3(0.45, 0.9, 0.15))
+	_model.attach("hand_r", right_hand, POINT_GRIP if knight or ninja else HAND_GRIP, Vector3(0.45, 0.9, 0.15))
 
 	# Brilho na cor do elemento: cristal do cajado ou ponta da flecha (02-0-elementos.md, seção 8).
 	_crystal_material = _material(Color(0.55, 0.75, 1.0), 1.5)
