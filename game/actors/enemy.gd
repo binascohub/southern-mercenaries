@@ -440,8 +440,37 @@ func _hurt(amount: float, effect: String, hit_element: String, crit: bool, combo
 	health -= amount
 	_show_damage.rpc(amount, effect, hit_element, crit, combo)
 	if health <= 0.0:
+		if _model:
+			_leave_corpse.rpc()
 		died.emit(self)
 		queue_free()
+
+
+## Morte (todos os PCs): o corpo fica no chão da área tocando a animação de
+## morrer, afunda e some — o inimigo em si já saiu do jogo.
+@rpc("authority", "call_local", "reliable")
+func _leave_corpse() -> void:
+	var arena := get_tree().get_first_node_in_group(&"arena")
+	var area_root: Node3D = arena.get("_area_root") if arena else null
+	if _visual == null or _model == null or area_root == null or not is_instance_valid(area_root):
+		return
+	if _element_gem:
+		_element_gem.visible = false
+	_model.set_color(Color.WHITE)
+	_model.play("die", 0.1)
+	var body := _visual
+	_visual = null
+	for child in body.get_children():
+		if child != _model:
+			child.visible = false  # aura, asas de cápsula etc.
+	body.reparent(area_root)
+	# Voador cai no chão.
+	var tween := body.create_tween()
+	if body.position.y > 0.2:
+		tween.tween_property(body, "position:y", 0.0, 0.45).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+	tween.tween_interval(1.6)
+	tween.tween_property(body, "position:y", -0.8, 1.2)
+	tween.tween_callback(body.queue_free)
 
 
 @rpc("authority", "call_local", "unreliable")
@@ -654,6 +683,8 @@ func _build_visual(size: float) -> void:
 
 
 func _tick_visual(delta: float) -> void:
+	if _visual == null:
+		return
 	_visual.rotation.y = yaw
 	if _ripple:
 		var submerged := state == State.HIDDEN

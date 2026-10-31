@@ -83,7 +83,8 @@ static func burst(parent: Node, at: Vector3, radius: float, color: Color, elemen
 	disc.mesh = quad
 	var disc_material := _glow_material(color).duplicate() as StandardMaterial3D
 	disc_material.billboard_mode = BaseMaterial3D.BILLBOARD_DISABLED
-	disc_material.albedo_color = Color(color.r, color.g, color.b, 0.55 if lasting else 0.8)
+	# Fraco e na cor do elemento (aditivo: forte demais vira névoa cinza).
+	disc_material.albedo_color = Color(color.r * 0.8, color.g * 0.8, color.b * 0.8, 0.22 if lasting else 0.4)
 	disc.material_override = disc_material
 	disc.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	root.add_child(disc)
