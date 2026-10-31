@@ -435,6 +435,7 @@ func _skills_test() -> void:
 	player.alive = true
 	player.health = player.max_health
 	player.resource = player.max_resource
+	player.shield = 0.0  # escudos das habilidades ainda ativos atrapalhariam a medida
 	var block: Dictionary = player.data.get("block", {})
 	if block.has("parry_window"):
 		Input.action_press(&"block")
