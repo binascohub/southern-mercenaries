@@ -43,6 +43,10 @@ var _skill_slots: Array[Label] = []
 var _potions: Label
 var _toasts: VBoxContainer
 var _saving: Label
+## Balão da dica do tutorial (14-tutorial.md, seção 4): até 2 linhas, sem pausar.
+var _tip: PanelContainer
+var _tip_label: Label
+var _tip_id := ""
 const TOAST_TIME := 3.0
 
 
@@ -59,7 +63,23 @@ func _ready() -> void:
 			tween.tween_interval(0.8)
 			tween.tween_property(_saving, "modulate:a", 0.0, 0.4)
 			tween.tween_callback(func() -> void: _saving.visible = false))
+	TipManager.tip_shown.connect(_on_tip_shown)
+	TipManager.tip_hidden.connect(func() -> void:
+		_tip_id = ""
+		_tip.visible = false)
 	_refresh_texts()
+
+
+func _on_tip_shown(id: String, text: String) -> void:
+	_tip_id = id
+	_tip_label.text = text
+	_tip.visible = true
+	_tip.modulate.a = 0.0
+	_tip.create_tween().tween_property(_tip, "modulate:a", 1.0, 0.25)
+
+
+func tip_text() -> String:
+	return _tip_label.text if _tip.visible else ""
 
 
 func bind_player(player: Player) -> void:
@@ -256,6 +276,8 @@ func _notification(what: int) -> void:
 func _refresh_texts() -> void:
 	_refresh_character()
 	_saving.text = tr("HUD_SAVING")
+	if _tip_id != "":
+		_tip_label.text = TipManager.text(_tip_id)  # o botão segue o dispositivo
 	# Na cidade (sem encontros) mostra só o nome da área.
 	_progress_label.text = tr("HUD_ENCOUNTERS").format({"cleared": _progress[0], "total": _progress[1]}) \
 		if _progress[1] > 0 else _area_name
@@ -404,6 +426,26 @@ func _build() -> void:
 	_toasts.position.y = 90
 	_toasts.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(_toasts)
+
+	_tip = PanelContainer.new()
+	_tip.set_anchors_preset(Control.PRESET_CENTER_RIGHT)
+	_tip.grow_horizontal = Control.GROW_DIRECTION_BEGIN
+	_tip.grow_vertical = Control.GROW_DIRECTION_BOTH
+	_tip.offset_right = -24
+	_tip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var tip_style := StyleBoxFlat.new()
+	tip_style.bg_color = Color(0.09, 0.07, 0.06, 0.88)
+	tip_style.border_color = Color(0.85, 0.7, 0.35)
+	tip_style.set_border_width_all(2)
+	tip_style.set_corner_radius_all(6)
+	tip_style.set_content_margin_all(12)
+	_tip.add_theme_stylebox_override("panel", tip_style)
+	_tip_label = _label(17)
+	_tip_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_tip_label.custom_minimum_size = Vector2(320, 0)
+	_tip.add_child(_tip_label)
+	_tip.visible = false
+	root.add_child(_tip)
 
 	_saving = _label(16)
 	_saving.text = tr("HUD_SAVING")

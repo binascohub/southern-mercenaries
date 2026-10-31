@@ -62,7 +62,7 @@ jobs:
           test -s inventory.png
           xvfb-run -a -s "-screen 0 1280x720x24" \
             godot --path . --rendering-driver opengl3 --fixed-fps 60 res://tests/ui_screens.tscn -- "$PWD"
-          test -s elements.png && test -s classes.png && test -s skill_fx.png && test -s skills.png && test -s trade.png && test -s tavern.png && test -s tortuga.png && test -s pirate_ship.png && test -s shop.png && test -s load_campaign.png
+          test -s elements.png && test -s classes.png && test -s skill_fx.png && test -s skills.png && test -s trade.png && test -s opening.png && test -s tavern.png && test -s tortuga.png && test -s pirate_ship.png && test -s shop.png && test -s load_campaign.png
       - uses: actions/upload-artifact@v4
         if: success() || failure()
         with:

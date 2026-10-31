@@ -39,6 +39,8 @@ func _ready() -> void:
 	_test_town_rules()
 	_test_side_quests()
 	_test_refine()
+	_test_opening()
+	_test_tips()
 	_test_names()
 	_clean(TEST_ROOT)
 	if _failures == 0:
@@ -720,6 +722,78 @@ func _test_refine() -> void:
 	_near(c.max_health(), health * 1.05, "conjunto +4: +5% de vida")
 	c.data.equipment.weapon = staff
 	_check(c.aura_level() == 3, "aura no nível do refino da arma")
+
+
+func _test_opening() -> void:
+	# Solo com um Mago: ele conta primeiro; os outros 4 heróis entram como NPCs, na ordem dos docs.
+	var cast := Opening.cast([{"name": "Zed", "class_id": "mage", "sex": "female"}])
+	_check(cast.size() == 5, "abertura: 5 heróis no solo (%d)" % cast.size())
+	_check(cast[0].name == "Zed" and cast[0].player, "o herói do jogador conta primeiro")
+	_check(cast.slice(1).map(func(h: Dictionary) -> String: return h.class_id) == ["knight", "ninja", "archer", "summoner"],
+		"os outros na ordem de chegada em Tortuga")
+	_check(cast.slice(1).all(func(h: Dictionary) -> bool: return not h.player), "os outros são NPCs")
+	# Co-op com dois heróis: os dois contam, e só os 3 que faltam são NPCs.
+	var coop := Opening.cast([{"name": "A", "class_id": "knight", "sex": "female"}, {"name": "B", "class_id": "ninja", "sex": "male"}])
+	_check(coop.size() == 5 and coop[0].player and coop[1].player and not coop[2].player, "co-op: jogadores primeiro, depois 3 NPCs")
+	_check(Opening.story_of("knight", "female").scene == "OPENING_SCENE_KNIGHT_FEMALE", "Dália tem a própria história")
+	_check(Opening.story_of("mage", "female").scene == "OPENING_SCENE_MAGE", "Mago: mesma história nas duas versões")
+	var lines := Opening.lines([{"name": "Zed", "class_id": "mage", "sex": "male"}])
+	_check(lines[0].speaker == "" and lines[0].key == "OPENING_SCENE_MAGE", "começa com a cena do herói do jogador")
+	_check(lines[1].speaker == "Zed", "as falas são do herói")
+	_check(lines.filter(func(l: Dictionary) -> bool: return l.key == "OPENING_NPC_INVITE").size() == 4, "cada NPC convida o grupo")
+	_check(lines[-1].key == "OPENING_DRUNK_CALL", "termina com o velho bêbado chamando")
+	for line: Dictionary in lines:
+		_check(tr(line.key) != line.key, "fala traduzida: " + String(line.key))
+	_check(GameData.quests.has(GameData.opening.quest), "a abertura leva a uma missão que existe")
+
+
+func _test_tips() -> void:
+	var c := CharacterData.create("knight", "male", "Tip")
+	_check(c.data.tutorial_seen == [], "personagem novo sem dicas vistas")
+	_check(c.mark_tip_seen("tip_move") and not c.mark_tip_seen("tip_move"), "dica guardada uma vez só")
+	_check(not c.mark_tip_seen("tip_nao_existe"), "dica desconhecida não entra")
+	var old := c.to_dict()
+	old.erase("tutorial_seen")
+	_check(CharacterData.from_dict(old).data.tutorial_seen == [], "save antigo ganha tutorial_seen vazio")
+	for id: String in GameData.tips.tips:
+		var tip: Dictionary = GameData.tips.tips[id]
+		var text := TipManager.text(id)
+		_check(tip.key != text and not text.contains("{"), "dica com texto e botões: " + id)
+	var previous := Session.character
+	var tips_on := Settings.tips
+	Session.character = CharacterData.create("knight", "male", "Tip")
+	Settings.tips = true
+	TipManager.reset()
+	var shown: Array[String] = []
+	var record := func(id: String, _text: String) -> void: shown.append(id)
+	TipManager.tip_shown.connect(record)
+	TipManager.notify("start")
+	_check(TipManager.current() == "tip_move", "evento mostra a dica")
+	TipManager.notify("low_health")
+	TipManager.notify("interact_near")
+	_check(TipManager.current() == "tip_move", "uma dica por vez")
+	TipManager._process(100.0)
+	_check(TipManager.current() == "tip_potion", "a fila segue a prioridade (poção antes de interagir)")
+	TipManager.notify("start")
+	TipManager._process(100.0)
+	TipManager._process(100.0)
+	_check(shown.count("tip_move") == 1, "dica vista não repete")
+	TipManager.notify("map_area", "mage")
+	_check(TipManager.current() == "", "dica do Cavaleiro não aparece para o Mago")
+	TipManager.notify("map_area", "knight")
+	_check(TipManager.current() == "tip_mount", "dica de montar para o Cavaleiro")
+	Session.character.data.tutorial_seen = ["tip_attack"]
+	TipManager.reset()
+	TipManager.notify("enemy_near")
+	_check(TipManager.current() == "", "dica guardada no personagem não aparece de novo")
+	Settings.tips = false
+	TipManager.notify("level_up")
+	_check(TipManager.current() == "", "dicas desligadas nas Opções")
+	_check(TipManager.seen_tips().has("tip_attack"), "ajuda lista as dicas vistas")
+	TipManager.tip_shown.disconnect(record)
+	Settings.tips = tips_on
+	TipManager.reset()
+	Session.character = previous
 
 
 func _test_names() -> void:

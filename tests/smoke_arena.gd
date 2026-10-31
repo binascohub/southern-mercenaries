@@ -525,6 +525,23 @@ func _town_test() -> void:
 	var town: Town = _arena.town
 	var c := player.character
 	check.call(_arena.area_id == "tavern", "campanha nova começa na Taverna (%s)" % _arena.area_id)
+	# Abertura: o herói do jogador conta primeiro; "Pular abertura" fecha.
+	var opening: OpeningMenu = _arena._opening_menu
+	check.call(opening.visible and opening.current_key() == "OPENING_SCENE_MAGE", "abertura começa pela história do Mago (%s)" % opening.current_key())
+	check.call(Session.ui_open, "abertura segura o herói")
+	opening._advance()
+	check.call(opening.current_key() == "OPENING_MAGE_1", "Continuar passa a fala")
+	opening.close()
+	check.call(not opening.visible and not Session.ui_open, "pular abertura fecha")
+	# Dicas: a primeira aparece no HUD e fica guardada no personagem.
+	Settings.tips = true
+	player.character.data.tutorial_seen = []
+	Session.character.data.tutorial_seen = []
+	TipManager.reset()
+	_arena.tips._started = false
+	_arena.tips.check(player)
+	check.call(TipManager.current() == "tip_move" and _arena.hud.tip_text() != "", "dica de movimento no HUD (%s)" % TipManager.current())
+	check.call("tip_move" in player.character.data.get("tutorial_seen", []), "dica vista guardada no personagem")
 	check.call(town.has_offer("old_drunk") and not town.has_offer("bard"), "Velho Bêbado com \"!\"")
 	# Aceitar a missão longe dele não vale; perto, vale e abre o bueiro.
 	town._rpc_accept("sewer_treasure")
@@ -533,6 +550,8 @@ func _town_test() -> void:
 	town._rpc_accept("sewer_treasure")
 	check.call(town.quests.get("sewer_treasure", "") == "active" and "sewer_entrance" in town.unlocked, "missão aceita abre o bueiro")
 	check.call(town.active_quest() == "sewer_treasure" and not town.has_offer("old_drunk"), "missão no diário, sem \"!\"")
+	town.send_opening(player.peer_id)
+	check.call(not opening.visible, "com a missão aceita, a abertura não volta")
 	# Descansar com a Taberneira.
 	player.health = 10.0
 	player.teleport_to(Vector3(0, 0, -4))

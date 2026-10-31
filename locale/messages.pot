@@ -1993,3 +1993,177 @@ msgstr ""
 
 msgid "REFINE_CRAFT_MISSING"
 msgstr ""
+
+msgid "OPENING_TITLE"
+msgstr ""
+
+msgid "OPENING_SKIP"
+msgstr ""
+
+msgid "OPENING_NPC_INVITE"
+msgstr ""
+
+msgid "OPENING_TOAST"
+msgstr ""
+
+msgid "OPENING_DRUNK_CALL"
+msgstr ""
+
+msgid "OPENING_SCENE_KNIGHT_MALE"
+msgstr ""
+
+msgid "OPENING_KNIGHT_MALE_1"
+msgstr ""
+
+msgid "OPENING_KNIGHT_MALE_2"
+msgstr ""
+
+msgid "OPENING_KNIGHT_MALE_3"
+msgstr ""
+
+msgid "OPENING_SCENE_KNIGHT_FEMALE"
+msgstr ""
+
+msgid "OPENING_KNIGHT_FEMALE_1"
+msgstr ""
+
+msgid "OPENING_KNIGHT_FEMALE_2"
+msgstr ""
+
+msgid "OPENING_KNIGHT_FEMALE_3"
+msgstr ""
+
+msgid "OPENING_SCENE_NINJA_MALE"
+msgstr ""
+
+msgid "OPENING_NINJA_MALE_1"
+msgstr ""
+
+msgid "OPENING_NINJA_MALE_2"
+msgstr ""
+
+msgid "OPENING_NINJA_MALE_3"
+msgstr ""
+
+msgid "OPENING_SCENE_NINJA_FEMALE"
+msgstr ""
+
+msgid "OPENING_NINJA_FEMALE_1"
+msgstr ""
+
+msgid "OPENING_NINJA_FEMALE_2"
+msgstr ""
+
+msgid "OPENING_NINJA_FEMALE_3"
+msgstr ""
+
+msgid "OPENING_SCENE_ARCHER"
+msgstr ""
+
+msgid "OPENING_ARCHER_1"
+msgstr ""
+
+msgid "OPENING_ARCHER_2"
+msgstr ""
+
+msgid "OPENING_ARCHER_3"
+msgstr ""
+
+msgid "OPENING_SCENE_MAGE"
+msgstr ""
+
+msgid "OPENING_MAGE_1"
+msgstr ""
+
+msgid "OPENING_MAGE_2"
+msgstr ""
+
+msgid "OPENING_MAGE_3"
+msgstr ""
+
+msgid "OPENING_SCENE_SUMMONER"
+msgstr ""
+
+msgid "OPENING_SUMMONER_1"
+msgstr ""
+
+msgid "OPENING_SUMMONER_2"
+msgstr ""
+
+msgid "OPENING_SUMMONER_3"
+msgstr ""
+
+msgid "TIP_MOVE"
+msgstr ""
+
+msgid "TIP_INTERACT"
+msgstr ""
+
+msgid "TIP_ATTACK"
+msgstr ""
+
+msgid "TIP_CHARGED"
+msgstr ""
+
+msgid "TIP_SKILL"
+msgstr ""
+
+msgid "TIP_DODGE"
+msgstr ""
+
+msgid "TIP_POTION"
+msgstr ""
+
+msgid "TIP_LOOT"
+msgstr ""
+
+msgid "TIP_EQUIP"
+msgstr ""
+
+msgid "TIP_LEVELUP"
+msgstr ""
+
+msgid "TIP_ELEMENT"
+msgstr ""
+
+msgid "TIP_CHECKPOINT"
+msgstr ""
+
+msgid "TIP_REVIVE"
+msgstr ""
+
+msgid "TIP_ELITE"
+msgstr ""
+
+msgid "TIP_BOSS"
+msgstr ""
+
+msgid "TIP_RETURN"
+msgstr ""
+
+msgid "TIP_SHOP"
+msgstr ""
+
+msgid "TIP_REFINE"
+msgstr ""
+
+msgid "TIP_ELEMENTAL_POTION"
+msgstr ""
+
+msgid "TIP_MOUNT"
+msgstr ""
+
+msgid "OPTIONS_TIPS"
+msgstr ""
+
+msgid "JOURNAL_TIPS"
+msgstr ""
+
+msgid "JOURNAL_QUESTS"
+msgstr ""
+
+msgid "JOURNAL_TIPS_SEEN"
+msgstr ""
+
+msgid "JOURNAL_STORIES"
+msgstr ""

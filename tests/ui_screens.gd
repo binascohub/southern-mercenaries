@@ -8,7 +8,8 @@ extends "res://tests/smoke_arena.gd"
 ## 0c. skills.png: janela de habilidades de um Mago nível 12 e a barra de atalhos;
 ## 0d. classes.png: as 5 classes lado a lado (Cavaleiro montado), cada uma de um elemento;
 ## 1. trade.png: janela de troca com um aliado fictício (peer 99) e ofertas dos dois lados;
-## 1b. tavern.png: conversa com o Velho Bêbado na Taverna (a primeira missão);
+## 1b. opening.png: abertura na Taverna (a história do herói do jogador);
+##     tavern.png: conversa com o Velho Bêbado na Taverna (a primeira missão);
 ## 1c. tortuga.png: Rua Principal com as bancas; shop.png: Mercado Pirata;
 ## 2. load_campaign.png: menu principal → Carregar campanha, com três campanhas
 ##    (uma com miniatura capturada da própria arena).
@@ -80,6 +81,10 @@ func _physics_process(delta: float) -> void:
 		await _shot("trade.png")
 	elif _frame == TAVERN_FRAME:
 		_open_tavern()
+	elif _frame == TAVERN_FRAME + 4:
+		await _shot("opening.png")
+		_arena._opening_menu.close()
+		_talk_to_drunk()
 	elif _frame == TAVERN_SHOT:
 		await _shot("tavern.png")
 	elif _frame == STREET_FRAME:
@@ -171,7 +176,8 @@ func _show_classes() -> void:
 	player.facing = Vector2(0, 1)
 
 
-## Taverna: fecha a troca, viaja e abre a conversa do Velho Bêbado na última fala.
+## Taverna: fecha a troca, viaja e abre a abertura (depois, a conversa do Velho
+## Bêbado na última fala).
 func _open_tavern() -> void:
 	_arena._trade_menu._hide_all()
 	var ally := _arena.get_node_or_null("99")
@@ -182,6 +188,13 @@ func _open_tavern() -> void:
 	player.teleport_to(Vector3(-4.2, 0, 0.2))
 	player.facing = Vector2(-0.7, -0.7)
 	_arena._camera.snap()
+	_arena.town.send_opening(player.peer_id)
+	var opening: OpeningMenu = _arena._opening_menu
+	opening._advance()  # a primeira fala do herói, com o nome em cima
+
+
+func _talk_to_drunk() -> void:
+	var player: Player = _arena.local_player
 	_arena.town.interact(player, _arena.prop_near(player, "npc", "old_drunk", 4.0))
 	var menu: DialogueMenu = _arena._dialogue_menu
 	menu._line = 4

@@ -238,6 +238,18 @@ func _receive_character(d: Dictionary, levels: int) -> void:
 	character_changed.emit(levels)
 
 
+## Dono: uma dica do tutorial foi mostrada; o servidor guarda na ficha.
+@rpc("any_peer", "reliable")
+func request_tip_seen(id: String) -> void:
+	if not multiplayer.is_server() or character == null:
+		return
+	var sender := multiplayer.get_remote_sender_id()
+	if sender != peer_id and not (sender == 0 and is_local()):
+		return
+	if character.mark_tip_seen(id):
+		_push_character(0)
+
+
 ## Servidor: a ficha mudou por fora (troca entre jogadores): recalcula e propaga.
 func refresh_character() -> void:
 	_apply_character()

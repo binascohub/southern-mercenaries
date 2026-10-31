@@ -1994,3 +1994,177 @@ msgstr "The item shattered into {count} crystals"
 
 msgid "REFINE_CRAFT_MISSING"
 msgstr "You need {count} crystals and {gold} gold"
+
+msgid "OPENING_TITLE"
+msgstr "Tortuga Tavern"
+
+msgid "OPENING_SKIP"
+msgstr "Skip opening"
+
+msgid "OPENING_NPC_INVITE"
+msgstr "If you're going after gold, count me in. I'll keep an eye on Tortuga in the meantime."
+
+msgid "OPENING_TOAST"
+msgstr "The cups meet in the middle of the table. Nobody here trusts anybody — but gold is a fine reason to start. A mercenary company is born."
+
+msgid "OPENING_DRUNK_CALL"
+msgstr "From the corner, an old drunk raises his empty mug: \"Hey, mercenaries! If you're looking for treasure, you're standing on one!\" Talk to him."
+
+msgid "OPENING_SCENE_KNIGHT_MALE"
+msgstr "{name} is slumped over the bar, surrounded by empty cups. Outside, a black horse waits, tied up."
+
+msgid "OPENING_KNIGHT_MALE_1"
+msgstr "I was the best at the Royal Military Academy. I got Corvo on graduation day and a place in the castle guard."
+
+msgid "OPENING_KNIGHT_MALE_2"
+msgstr "There I met the princess. The king didn't see a hero: he saw a soldier with no land and no gold. He banished me from the city."
+
+msgid "OPENING_KNIGHT_MALE_3"
+msgstr "I sold the armor, the sword and the medals. Not Corvo, though. If gold is what the king wants, I'll go get it."
+
+msgid "OPENING_SCENE_KNIGHT_FEMALE"
+msgstr "{name} complains to the barkeep about the wine, as if still at a banquet. Outside, a white horse waits."
+
+msgid "OPENING_KNIGHT_FEMALE_1"
+msgstr "I grew up in a castle. While the ladies embroidered, I trained with the soldiers and rode better than anyone in the stables."
+
+msgid "OPENING_KNIGHT_FEMALE_2"
+msgstr "One day they found out I wasn't the king's true daughter. I lost the title, the throne and the family. I fled at night, riding Aurora."
+
+msgid "OPENING_KNIGHT_FEMALE_3"
+msgstr "I will not stay poor. If the demons guard the kingdom's gold, it will pay for the life I deserve."
+
+msgid "OPENING_SCENE_NINJA_MALE"
+msgstr "{name} walks past a table and, by the time its owner notices, the coin purse has already changed hands."
+
+msgid "OPENING_NINJA_MALE_1"
+msgstr "My father is a famous samurai. Before I learned to read, I already knew a thousand ways to kill."
+
+msgid "OPENING_NINJA_MALE_2"
+msgstr "I was the fastest in the clan, but discipline was never my thing. One day I left without looking back."
+
+msgid "OPENING_NINJA_MALE_3"
+msgstr "Here in Tortuga I steal purses. A treasure guarded by demons? That's the biggest heist of my life."
+
+msgid "OPENING_SCENE_NINJA_FEMALE"
+msgstr "{name} spins a coin between their fingers — a coin that, a minute ago, was in a pirate's pocket."
+
+msgid "OPENING_NINJA_FEMALE_1"
+msgstr "In the Kurogane clan, women don't fight. I learned in secret, before dawn, watching my brothers train."
+
+msgid "OPENING_NINJA_FEMALE_2"
+msgstr "My father chose who I would marry. I chose the door."
+
+msgid "OPENING_NINJA_FEMALE_3"
+msgstr "Now I steal to live. And a demon's treasure is worth more than every purse in Tortuga put together."
+
+msgid "OPENING_SCENE_ARCHER"
+msgstr "At a corner table, {name} eats in silence, back to the wall and bow within reach."
+
+msgid "OPENING_ARCHER_1"
+msgstr "In my childhood, hunger ruled our house. I learned to hunt to feed my family, in the forest they now call the Dark Forest."
+
+msgid "OPENING_ARCHER_2"
+msgstr "Then came the war. My kingdom lost, my village burned, and I was left with no one."
+
+msgid "OPENING_ARCHER_3"
+msgstr "Hunting is all I know. So I hunt for gold. They say part of my kingdom's treasure is with the demons... I want to see that up close."
+
+msgid "OPENING_SCENE_MAGE"
+msgstr "{name} writes in a worn notebook. The candle on the table lit itself when the door slammed."
+
+msgid "OPENING_MAGE_1"
+msgstr "Since childhood, strange things happen around me. Candles light, water freezes, the wind opens windows."
+
+msgid "OPENING_MAGE_2"
+msgstr "It took me years to control one of the elements. The others still answer, but they don't obey me."
+
+msgid "OPENING_MAGE_3"
+msgstr "Every answer brings more questions. And the greatest secrets of magic lie in the demons' treasures."
+
+msgid "OPENING_SCENE_SUMMONER"
+msgstr "A bird lands on {name}'s shoulder and gets a share of the bread, while {name} keeps watching the door."
+
+msgid "OPENING_SUMMONER_1"
+msgstr "Since childhood, animals come to me. Even the ones everyone fears."
+
+msgid "OPENING_SUMMONER_2"
+msgstr "Many of my friends are orphans. The corrupted creatures killed their families."
+
+msgid "OPENING_SUMMONER_3"
+msgstr "So I fight them. If the road goes through gold and mercenaries, so be it."
+
+msgid "TIP_MOVE"
+msgstr "Move with {button} and aim with {button2}."
+
+msgid "TIP_INTERACT"
+msgstr "Press {button} to talk, open doors and use what's nearby."
+
+msgid "TIP_ATTACK"
+msgstr "A monster woke up. Press {button} to attack."
+
+msgid "TIP_CHARGED"
+msgstr "Hold {button} and release for a heavy strike."
+
+msgid "TIP_SKILL"
+msgstr "Resource full: use your skill with {button}. It costs resource and goes on cooldown."
+
+msgid "TIP_DODGE"
+msgstr "Warning on the ground: get out with {button} (or hold {button2} to block)."
+
+msgid "TIP_POTION"
+msgstr "Low health! Drink a potion with {button}."
+
+msgid "TIP_LOOT"
+msgstr "Item on the ground: {button} picks up everything, {button2} the closest. The color is the rarity."
+
+msgid "TIP_EQUIP"
+msgstr "You have gear you can use. Open the inventory with {button} and equip it."
+
+msgid "TIP_LEVELUP"
+msgstr "Level up! Spend your attribute and skill points in {button}."
+
+msgid "TIP_ELEMENT"
+msgstr "The icon shows the monster's element: hitting its weakness deals more damage; its strength, less."
+
+msgid "TIP_CHECKPOINT"
+msgstr "Checkpoint: progress saves on its own. Tortuga's Voodoo Priest opens portals here."
+
+msgid "TIP_REVIVE"
+msgstr "An ally is down! Stay close and hold {button} to revive."
+
+msgid "TIP_ELITE"
+msgstr "Elite: stronger than the rest, but the loot is better."
+
+msgid "TIP_BOSS"
+msgstr "Boss! The bar at the top shows its health. It changes attacks between phases."
+
+msgid "TIP_RETURN"
+msgstr "Return portal: {button} takes the group back to Tortuga."
+
+msgid "TIP_SHOP"
+msgstr "Buy on the left, sell on the right. Shops pay little; valuables only with the pirates."
+
+msgid "TIP_REFINE"
+msgstr "Refine scroll: take it to Tortuga's Blacksmith to improve a weapon or armor. It can fail."
+
+msgid "TIP_ELEMENTAL_POTION"
+msgstr "Elemental Potion: with {button} you change element until you return to town."
+
+msgid "TIP_MOUNT"
+msgstr "Press {button} to mount and dismount. In narrow places the horse waits at the entrance."
+
+msgid "OPTIONS_TIPS"
+msgstr "Tutorial tips"
+
+msgid "JOURNAL_TIPS"
+msgstr "Tips"
+
+msgid "JOURNAL_QUESTS"
+msgstr "Quests"
+
+msgid "JOURNAL_TIPS_SEEN"
+msgstr "Tips seen so far:"
+
+msgid "JOURNAL_STORIES"
+msgstr "Heroes' stories"

@@ -3,10 +3,14 @@ class_name JournalMenu
 extends MenuPanel
 ## Diário de missões (04-tortuga-e-missoes.md, seção 3): a missão principal e as
 ## secundárias aceitas, com o elemento do alvo e a fraqueza (e o progresso das
-## caçadas); embaixo, as concluídas. Abre pelo inventário.
+## caçadas); embaixo, as concluídas. Abre pelo inventário. "Dicas" troca para
+## a ajuda: as dicas do tutorial já vistas (14-tutorial.md, seção 4); "Histórias"
+## revê a abertura na Taverna.
 
 var _town: Town
 var _text: Label
+var _tips_button: Button
+var _showing_tips := false
 
 
 func _ready() -> void:
@@ -16,6 +20,10 @@ func _ready() -> void:
 	_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_text.custom_minimum_size = Vector2(620, 0)
 	content.add_child(_text)
+	_tips_button = add_button("JOURNAL_TIPS", func() -> void:
+		_showing_tips = not _showing_tips
+		_on_open())
+	add_button("JOURNAL_STORIES", _replay_opening)
 	add_button("MENU_BACK", close)
 
 
@@ -30,6 +38,13 @@ func show_journal() -> void:
 
 
 func _on_open() -> void:
+	_tips_button.text = tr("JOURNAL_QUESTS") if _showing_tips else tr("JOURNAL_TIPS")
+	if _showing_tips:
+		var lines := PackedStringArray()
+		for id in TipManager.seen_tips():
+			lines.append("• " + TipManager.text(id))
+		_text.text = tr("JOURNAL_TIPS_SEEN") + "\n" + ("\n".join(lines) if not lines.is_empty() else tr("JOURNAL_NONE"))
+		return
 	var active := PackedStringArray()
 	var done := PackedStringArray()
 	for id: String in _town.quests:
@@ -50,6 +65,15 @@ func _on_open() -> void:
 	if not done.is_empty():
 		text += "\n\n" + tr("JOURNAL_DONE") + "\n" + "\n".join(done)
 	_text.text = text
+
+
+## Histórias dos heróis de novo (a abertura com o herói deste PC).
+func _replay_opening() -> void:
+	var c := Session.character
+	if c == null:
+		return
+	close()
+	_town.opening_started.emit([{"name": c.data.name, "class_id": c.data.class_id, "sex": c.data.sex}])
 
 
 func _target_element(quest: Dictionary) -> String:

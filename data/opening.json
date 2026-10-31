@@ -1,0 +1,17 @@
+{
+  "_comment": "Abertura na Taverna (06-mundo-e-historia.md, seção 5; 14-tutorial.md, seção 2). Quem entra na Taverna antes de aceitar a primeira missão ouve as histórias: primeiro os heróis dos jogadores (na ordem de chegada), depois os outros heróis como NPCs, na ordem de 'order' (quem chegou primeiro em Tortuga). Cada história é uma lista de falas (chaves de tradução, com {name}); 'scene' é a narração antes da história. Histórias por classe, ou por classe_sexo quando a versão feminina é outra pessoa (Dorian/Dália, Ren/Rin). 'npc_sex': versão dos heróis NPC. No fim, o brinde e o velho bêbado chamando para a primeira missão.",
+  "quest": "sewer_treasure",
+  "order": ["knight", "ninja", "archer", "mage", "summoner"],
+  "npc_sex": {"knight": "male", "ninja": "male", "archer": "male", "mage": "male", "summoner": "female"},
+  "stories": {
+    "mage": {"scene": "OPENING_SCENE_MAGE", "lines": ["OPENING_MAGE_1", "OPENING_MAGE_2", "OPENING_MAGE_3"]},
+    "archer": {"scene": "OPENING_SCENE_ARCHER", "lines": ["OPENING_ARCHER_1", "OPENING_ARCHER_2", "OPENING_ARCHER_3"]},
+    "knight_male": {"scene": "OPENING_SCENE_KNIGHT_MALE", "lines": ["OPENING_KNIGHT_MALE_1", "OPENING_KNIGHT_MALE_2", "OPENING_KNIGHT_MALE_3"]},
+    "knight_female": {"scene": "OPENING_SCENE_KNIGHT_FEMALE", "lines": ["OPENING_KNIGHT_FEMALE_1", "OPENING_KNIGHT_FEMALE_2", "OPENING_KNIGHT_FEMALE_3"]},
+    "ninja_male": {"scene": "OPENING_SCENE_NINJA_MALE", "lines": ["OPENING_NINJA_MALE_1", "OPENING_NINJA_MALE_2", "OPENING_NINJA_MALE_3"]},
+    "ninja_female": {"scene": "OPENING_SCENE_NINJA_FEMALE", "lines": ["OPENING_NINJA_FEMALE_1", "OPENING_NINJA_FEMALE_2", "OPENING_NINJA_FEMALE_3"]},
+    "summoner": {"scene": "OPENING_SCENE_SUMMONER", "lines": ["OPENING_SUMMONER_1", "OPENING_SUMMONER_2", "OPENING_SUMMONER_3"]}
+  },
+  "npc_invite": "OPENING_NPC_INVITE",
+  "ending": ["OPENING_TOAST", "OPENING_DRUNK_CALL"]
+}

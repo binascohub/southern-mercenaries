@@ -1,0 +1,26 @@
+{
+  "_comment": "Dicas do tutorial (14-tutorial.md, seção 4). Cada dica aparece uma vez por personagem (tutorial_seen no save), quando o evento acontece, uma por vez (a de maior prioridade primeiro), sem pausar o jogo. 'actions': botões mostrados no texto ({button}, {button2}), com o ícone do dispositivo em uso. 'class': só para essa classe. Os eventos vêm de TipWatcher (game/ui/tip_watcher.gd).",
+  "duration": 7.0,
+  "tips": {
+    "tip_move": {"key": "TIP_MOVE", "event": "start", "priority": 100, "actions": ["move_up", "aim_up"]},
+    "tip_interact": {"key": "TIP_INTERACT", "event": "interact_near", "priority": 90, "actions": ["interact"]},
+    "tip_attack": {"key": "TIP_ATTACK", "event": "enemy_near", "priority": 95, "actions": ["attack"]},
+    "tip_charged": {"key": "TIP_CHARGED", "event": "basic_attacks", "priority": 70, "actions": ["attack"]},
+    "tip_skill": {"key": "TIP_SKILL", "event": "skill_ready", "priority": 65, "actions": ["skill_1"]},
+    "tip_dodge": {"key": "TIP_DODGE", "event": "telegraph", "priority": 85, "actions": ["evade", "block"]},
+    "tip_potion": {"key": "TIP_POTION", "event": "low_health", "priority": 99, "actions": ["potion_health"]},
+    "tip_loot": {"key": "TIP_LOOT", "event": "loot_near", "priority": 60, "actions": ["pickup_all", "interact"]},
+    "tip_equip": {"key": "TIP_EQUIP", "event": "equipment_usable", "priority": 55, "actions": ["inventory"]},
+    "tip_levelup": {"key": "TIP_LEVELUP", "event": "level_up", "priority": 80, "actions": ["skills"]},
+    "tip_element": {"key": "TIP_ELEMENT", "event": "element_matters", "priority": 50, "actions": []},
+    "tip_checkpoint": {"key": "TIP_CHECKPOINT", "event": "checkpoint", "priority": 40, "actions": []},
+    "tip_revive": {"key": "TIP_REVIVE", "event": "ally_down", "priority": 98, "actions": ["interact"]},
+    "tip_elite": {"key": "TIP_ELITE", "event": "elite_near", "priority": 75, "actions": []},
+    "tip_boss": {"key": "TIP_BOSS", "event": "boss_near", "priority": 97, "actions": []},
+    "tip_return": {"key": "TIP_RETURN", "event": "return_near", "priority": 45, "actions": ["interact"]},
+    "tip_shop": {"key": "TIP_SHOP", "event": "shop_opened", "priority": 50, "actions": []},
+    "tip_refine": {"key": "TIP_REFINE", "event": "refine_scroll", "priority": 45, "actions": []},
+    "tip_elemental_potion": {"key": "TIP_ELEMENTAL_POTION", "event": "elemental_potion", "priority": 45, "actions": ["potion_elemental"]},
+    "tip_mount": {"key": "TIP_MOUNT", "event": "map_area", "priority": 88, "actions": ["mount"], "class": "knight"}
+  }
+}

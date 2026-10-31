@@ -241,6 +241,9 @@ func migrate_character(d: Dictionary) -> Dictionary:
 		var first: String = Skills.keys(d.class_id)[0]
 		d.skills = {first: 1}
 		d.skill_slots = [first, "", "", ""]
+	# Fase 6: dicas do tutorial já vistas.
+	if not d.is_empty() and not d.has("tutorial_seen"):
+		d.tutorial_seen = []
 	return d
 
 

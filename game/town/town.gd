@@ -19,6 +19,8 @@ signal bestiary_opened
 signal forge_opened
 ## Conversa montada (visitantes): nome, falas [[chave, args]], índice do visitante.
 signal visitor_opened(name: String, lines: Array, visitor_index: int)
+## Abertura na Taverna: os heróis dos jogadores ([{name, class_id, sex}], ver Opening).
+signal opening_started(players: Array)
 
 const REACH := 4.0
 
@@ -65,6 +67,28 @@ func _set_state(new_quests: Dictionary, new_unlocked: Array, new_ship: Dictionar
 	side_quests = new_side
 	bestiary = new_bestiary
 	state_changed.emit()
+
+
+## Abertura na Taverna (06-mundo-e-historia.md, seção 5): quem está na Taverna
+## antes de aceitar a primeira missão ouve as histórias dos heróis. Servidor.
+func send_opening(peer_id: int) -> void:
+	if not multiplayer.is_server() or _arena().area_id != "tavern" \
+			or _campaign().get("quests", {}).has(GameData.opening.quest):
+		return
+	var heroes := []
+	for p: Player in get_tree().get_nodes_in_group(&"players"):
+		if p.character:
+			heroes.append({"name": p.hero_name, "class_id": String(p.character.data.class_id),
+				"sex": String(p.character.data.sex)})
+	if peer_id == multiplayer.get_unique_id():
+		_rpc_opening(heroes)
+	elif peer_id in multiplayer.get_peers():
+		_rpc_opening.rpc_id(peer_id, heroes)
+
+
+@rpc("authority", "reliable")
+func _rpc_opening(heroes: Array) -> void:
+	opening_started.emit(heroes)
 
 
 ## Preço do portal do Macumbeiro para um ponto salvo, por jogador (seção 5.1).

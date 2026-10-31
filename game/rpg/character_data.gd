@@ -47,6 +47,8 @@ static func create(class_id: String, sex: String, hero_name: String, element := 
 		"inventory": inventory,
 		"created": Time.get_datetime_string_from_system(true),
 		"played_seconds": 0,
+		# Dicas do tutorial já vistas (14-tutorial.md): não repetem em outra campanha.
+		"tutorial_seen": [],
 	}
 	var kit: Dictionary = cls.get("starting_kit", {})
 	for slot in kit.get("equipment", {}):
@@ -342,6 +344,17 @@ func learn(key: String) -> bool:
 
 ## Altar/Mestre (04-tortuga-e-missoes.md, seção 2): devolve todos os pontos de
 ## atributo e de habilidade (fica só a habilidade de nível 1, no rank 1).
+## Guarda uma dica vista. false se já estava (ou não existe).
+func mark_tip_seen(id: String) -> bool:
+	if not GameData.tips.tips.has(id):
+		return false
+	var seen: Array = data.get("tutorial_seen", [])
+	if id in seen:
+		return false
+	data.tutorial_seen = seen + [id]
+	return true
+
+
 func respec() -> void:
 	var cls := class_data()
 	data.attributes = cls.attributes.duplicate()

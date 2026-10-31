@@ -78,6 +78,9 @@ var _portal_menu: PortalMenu
 var _stash_menu: StashMenu
 var _journal_menu: JournalMenu
 var _forge_menu: ForgeMenu
+var _opening_menu: OpeningMenu
+## Dicas do tutorial: olha o jogo e avisa o TipManager (14-tutorial.md, seção 4).
+var tips: TipWatcher
 var _bestiary_menu: BestiaryMenu
 ## Aumenta a cada reinício; timers da partida anterior são ignorados.
 var _run := 0
@@ -173,6 +176,13 @@ func _ready() -> void:
 	_forge_menu = ForgeMenu.new()
 	add_child(_forge_menu)
 	_forge_menu.bind(town)
+	_opening_menu = OpeningMenu.new()
+	add_child(_opening_menu)
+	_opening_menu.bind(town)
+	tips = TipWatcher.new()
+	tips.name = "Tips"
+	add_child(tips)
+	tips.bind(self)
 	InputDevice.gamepad_lost.connect(_on_gamepad_lost)
 	InputDevice.gamepad_restored.connect(_on_gamepad_restored)
 	NetworkManager.session_ended.connect(_on_session_ended)
@@ -208,7 +218,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			and not _trade_menu.is_open() and not _skill_menu.visible and not _shop_menu.visible \
 			and not _dialogue_menu.visible and not _training_menu.visible and not _portal_menu.visible \
 			and not _stash_menu.visible and not _journal_menu.visible and not _bestiary_menu.visible \
-			and not _forge_menu.visible:
+			and not _forge_menu.visible and not _opening_menu.visible:
 		pause_menu.open(not NetworkManager.is_online())
 		get_viewport().set_input_as_handled()
 	elif result == Result.VICTORY and event.is_action_pressed(&"attack"):
@@ -498,6 +508,8 @@ func _spawn_player(peer_id: int, resume: Player = null) -> Player:
 	player.downed.connect(_on_player_downed)
 	player.hurt.connect(_on_player_hurt.bind(player))
 	_on_node_spawned(player)
+	if resume == null:
+		town.send_opening.call_deferred(peer_id)
 	return player
 
 
