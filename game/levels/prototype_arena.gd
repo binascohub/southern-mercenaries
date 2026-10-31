@@ -74,6 +74,7 @@ var _skill_menu: SkillMenu
 var _shop_menu: ShopMenu
 var _dialogue_menu: DialogueMenu
 var _training_menu: TrainingMenu
+var _portal_menu: PortalMenu
 ## Aumenta a cada reinício; timers da partida anterior são ignorados.
 var _run := 0
 ## Grupos de encontro (servidor): id -> {position, awake, members}.
@@ -151,6 +152,9 @@ func _ready() -> void:
 	_training_menu = TrainingMenu.new()
 	training_layer.add_child(_training_menu)
 	_training_menu.bind(self, town)
+	_portal_menu = PortalMenu.new()
+	training_layer.add_child(_portal_menu)
+	_portal_menu.bind(town)
 	InputDevice.gamepad_lost.connect(_on_gamepad_lost)
 	InputDevice.gamepad_restored.connect(_on_gamepad_restored)
 	NetworkManager.session_ended.connect(_on_session_ended)
@@ -183,7 +187,7 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"menu") and not pause_menu.is_open and not _inventory.visible \
 			and not _trade_menu.is_open() and not _skill_menu.visible and not _shop_menu.visible \
-			and not _dialogue_menu.visible and not _training_menu.visible:
+			and not _dialogue_menu.visible and not _training_menu.visible and not _portal_menu.visible:
 		pause_menu.open(not NetworkManager.is_online())
 		get_viewport().set_input_as_handled()
 	elif result == Result.VICTORY and event.is_action_pressed(&"attack"):
@@ -289,6 +293,40 @@ func _show_zone(state_id: String, at: Vector3, radius: float, duration: float) -
 	add_child(disc)
 	disc.global_position = Vector3(at.x, 0.03, at.z)
 	get_tree().create_timer(duration, false).timeout.connect(disc.queue_free)
+
+
+# --- Patuá de Retorno (04-tortuga-e-missoes.md, seção 5.1) ---------------------------
+
+## Abre no chão, por 15 s, um portal de volta a Tortuga (só nos mapas). Retorna
+## false se não deu (o patuá não é gasto).
+func open_return_charm(player: Player) -> bool:
+	if not multiplayer.is_server() or arena.get("town", false) or not prop_near(player, "exit", "charm_portal", 50.0).is_empty():
+		_toast_to(player, "TOAST_CHARM_NOT_HERE", {})
+		return false
+	_reach_checkpoint(str(_campaign.get("checkpoint", "start")))  # ponto de volta para o Macumbeiro
+	var prop := {"id": "charm_portal", "kind": "exit", "look": "charm_portal", "name_key": "PROP_CHARM_PORTAL",
+		"position": [player.global_position.x, player.global_position.z + 1.5], "to": "tortuga",
+		"entry": "start", "expedition_end": true}
+	_add_prop.rpc(prop)
+	var area_now := area_id
+	var time: float = GameData.consumables.return_charm.get("portal_time", 15.0)
+	get_tree().create_timer(time, false).timeout.connect(func() -> void:
+		if area_id == area_now:
+			_remove_prop.rpc("charm_portal"))
+	return true
+
+
+@rpc("authority", "call_local", "reliable")
+func _add_prop(prop: Dictionary) -> void:
+	_build_prop(prop)
+
+
+@rpc("authority", "call_local", "reliable")
+func _remove_prop(id: String) -> void:
+	_props = _props.filter(func(p: Dictionary) -> bool: return p.id != id)
+	var node := _area_root.get_node_or_null(id)
+	if node:
+		node.queue_free()
 
 
 # --- Pátio de treino ---------------------------------------------------------------
@@ -1067,11 +1105,18 @@ func _build_props() -> void:
 	_props.clear()
 	_prop_markers.clear()
 	for prop: Dictionary in arena.get("props", []):
-		# Cenário (navio, mar) não é interagível.
-		if prop.kind not in ["ship", "water"]:
-			_props.append(prop)
+		_build_prop(prop)
+	_refresh_markers()
+
+
+func _build_prop(prop: Dictionary) -> void:
+	# Cenário (navio, mar) não é interagível.
+	if prop.kind not in ["ship", "water"]:
+		_props.append(prop)
+	if true:
 		var at := Vector3(prop.position[0], 0, prop.position[1])
 		var node := Node3D.new()
+		node.name = String(prop.id)
 		_area_root.add_child(node)
 		node.position = at
 		var label_key: String = prop.get("name_key", "")
@@ -1121,6 +1166,10 @@ func _build_props() -> void:
 				mark.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 				node.add_child(mark)
 				_prop_markers[prop.npc] = mark
+			"exit" when prop.get("look", "") == "charm_portal":
+				# Portal do Patuá: círculo riscado no chão, redemoinho de sombra e brasas.
+				_prop_mesh(node, CylinderMesh.new(), Vector3(2.4, 0.04, 2.4), Vector3(0, 0.04, 0), Color(0.35, 0.1, 0.12))
+				_prop_mesh(node, CylinderMesh.new(), Vector3(1.4, 0.06, 1.4), Vector3(0, 0.06, 0), Color(1.0, 0.45, 0.15))
 			"exit":
 				# Saída: moldura de porta / boca do bueiro / círculo do portal.
 				_prop_mesh(node, CylinderMesh.new(), Vector3(1.4, 0.06, 1.4), Vector3(0, 0.03, 0), Color(0.25, 0.22, 0.2))
@@ -1134,7 +1183,6 @@ func _build_props() -> void:
 			label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 			label.position = Vector3(0, 3.0, 0)
 			node.add_child(label)
-	_refresh_markers()
 
 
 func _prop_mesh(parent: Node3D, mesh: PrimitiveMesh, scale_: Vector3, at: Vector3, color: Color) -> void:

@@ -1715,3 +1715,39 @@ msgstr "Recursos y recargas libres: desactivados"
 
 msgid "HUD_TRAINING"
 msgstr "Entrenamiento — total {total} · DPS {dps} · mayor {biggest} · críticos {crits}/{hits}"
+
+msgid "ITEM_RETURN_CHARM"
+msgstr "Amuleto de Regreso"
+
+msgid "ITEM_RETURN_CHARM_EFFECT"
+msgstr "Abre en el suelo un portal de vuelta a la ciudad durante 15 s (solo en los mapas)"
+
+msgid "SHOP_VOODOO"
+msgstr "Amuletos del Brujo"
+
+msgid "NPC_VOODOO_PRIEST"
+msgstr "Brujo"
+
+msgid "DLG_VOODOO_1"
+msgstr "El otro lado también tiene precio, amigo. Dime dónde te quedaste y te dibujo el camino de vuelta."
+
+msgid "DLG_SERVICE_PORTALS"
+msgstr "Portales"
+
+msgid "PROP_CHARM_PORTAL"
+msgstr "Portal a Tortuga"
+
+msgid "TOAST_CHARM_NOT_HERE"
+msgstr "El amuleto solo funciona fuera, en los mapas"
+
+msgid "TOAST_PORTAL_MISSING_GOLD"
+msgstr "Falta oro ({price} cada uno): {names}"
+
+msgid "PORTALS_TITLE"
+msgstr "Portales a puntos guardados"
+
+msgid "PORTALS_NONE"
+msgstr "Todavía no hay puntos alcanzados"
+
+msgid "PORTALS_ENTRY"
+msgstr "{area} — {checkpoint} — {price} de oro cada uno"

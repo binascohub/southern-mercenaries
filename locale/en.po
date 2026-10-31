@@ -1715,3 +1715,39 @@ msgstr "Free resources and cooldowns: off"
 
 msgid "HUD_TRAINING"
 msgstr "Training — total {total} · DPS {dps} · biggest {biggest} · crits {crits}/{hits}"
+
+msgid "ITEM_RETURN_CHARM"
+msgstr "Return Charm"
+
+msgid "ITEM_RETURN_CHARM_EFFECT"
+msgstr "Opens a portal on the ground back to town for 15 s (maps only)"
+
+msgid "SHOP_VOODOO"
+msgstr "Witch doctor's charms"
+
+msgid "NPC_VOODOO_PRIEST"
+msgstr "Witch Doctor"
+
+msgid "DLG_VOODOO_1"
+msgstr "The other side also has a price, friend. Tell me where you stopped, and I'll draw the way back."
+
+msgid "DLG_SERVICE_PORTALS"
+msgstr "Portals"
+
+msgid "PROP_CHARM_PORTAL"
+msgstr "Portal to Tortuga"
+
+msgid "TOAST_CHARM_NOT_HERE"
+msgstr "The charm only works out on the maps"
+
+msgid "TOAST_PORTAL_MISSING_GOLD"
+msgstr "Not enough gold ({price} each): {names}"
+
+msgid "PORTALS_TITLE"
+msgstr "Portals to saved points"
+
+msgid "PORTALS_NONE"
+msgstr "No checkpoint reached yet"
+
+msgid "PORTALS_ENTRY"
+msgstr "{area} — {checkpoint} — {price} gold each"

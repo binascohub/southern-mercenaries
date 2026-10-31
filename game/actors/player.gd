@@ -320,6 +320,11 @@ func _drink(id: String) -> void:
 	if not alive or character == null or not GameData.consumables.has(id):
 		return
 	var def: Dictionary = GameData.consumables[id]
+	if def.restore == "return_portal":
+		# Patuá de Retorno: abre o portal no chão (só nos mapas).
+		if character.count_of(id) > 0 and get_parent().open_return_charm(self) and character.take_one(id):
+			_push_character(0)
+		return
 	if def.restore == "element":
 		if character.count_of(id) > 0 and character.drink_elemental(def.element) and character.take_one(id):
 			_apply_character()

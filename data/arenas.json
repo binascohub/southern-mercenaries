@@ -376,6 +376,25 @@
           -10,
           10.5
         ]
+      },
+      {
+        "id": "voodoo_priest",
+        "kind": "npc",
+        "npc": "voodoo_priest",
+        "position": [
+          12,
+          -5.5
+        ]
+      },
+      {
+        "id": "shop_voodoo",
+        "kind": "shop",
+        "shop": "voodoo",
+        "name_key": "SHOP_VOODOO",
+        "position": [
+          16,
+          -5.5
+        ]
       }
     ],
     "dummies": [

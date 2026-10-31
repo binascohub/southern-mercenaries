@@ -78,5 +78,22 @@
         ]
       }
     ]
+  },
+  "voodoo_priest": {
+    "name_key": "NPC_VOODOO_PRIEST",
+    "color": [
+      0.55,
+      0.3,
+      0.55
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_VOODOO_1"
+        ],
+        "service": "portals"
+      }
+    ]
   }
 }

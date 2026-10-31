@@ -1,5 +1,5 @@
 {
-  "_comment": "Lojas de Tortuga (04-tortuga-e-missoes.md, seção 2; preços de 13-balanceamento.md 5.2 e 5.3; Mercado Pirata de 05-itens-e-loot.md, seção 6). markup: compra = valor x markup (Rua Principal 2x, piratas 3x). Venda ao NPC: 25% do valor; valiosos só com os piratas, pelo valor x variação do dia.",
+  "_comment": "Lojas de Tortuga (04-tortuga-e-missoes.md, seção 2; preços de 13-balanceamento.md 5.2 e 5.3; Mercado Pirata de 05-itens-e-loot.md, seção 6). markup: compra = valor x markup (Rua Principal 2x, piratas 3x). Venda ao NPC: 25% do valor; valiosos só com os piratas, pelo valor x variação do dia. voodoo: o Macumbeiro vende o Patuá de Retorno e cobra os portais para pontos salvos: 40 + 15 × nível da área, por jogador (seção 5.1, proposta).",
   "sell_fraction": 0.25,
   "potions": {
     "name_key": "SHOP_POTIONS",
@@ -65,5 +65,13 @@
       "CAPTAIN_3",
       "CAPTAIN_4"
     ]
+  },
+  "voodoo": {
+    "name_key": "SHOP_VOODOO",
+    "consumables": [
+      "return_charm"
+    ],
+    "portal_base": 40,
+    "portal_per_level": 15
   }
 }

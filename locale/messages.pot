@@ -1714,3 +1714,39 @@ msgstr ""
 
 msgid "HUD_TRAINING"
 msgstr ""
+
+msgid "ITEM_RETURN_CHARM"
+msgstr ""
+
+msgid "ITEM_RETURN_CHARM_EFFECT"
+msgstr ""
+
+msgid "SHOP_VOODOO"
+msgstr ""
+
+msgid "NPC_VOODOO_PRIEST"
+msgstr ""
+
+msgid "DLG_VOODOO_1"
+msgstr ""
+
+msgid "DLG_SERVICE_PORTALS"
+msgstr ""
+
+msgid "PROP_CHARM_PORTAL"
+msgstr ""
+
+msgid "TOAST_CHARM_NOT_HERE"
+msgstr ""
+
+msgid "TOAST_PORTAL_MISSING_GOLD"
+msgstr ""
+
+msgid "PORTALS_TITLE"
+msgstr ""
+
+msgid "PORTALS_NONE"
+msgstr ""
+
+msgid "PORTALS_ENTRY"
+msgstr ""

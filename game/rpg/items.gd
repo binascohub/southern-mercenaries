@@ -232,7 +232,9 @@ static func describe(item: Dictionary, class_factor := 1.0) -> PackedStringArray
 		lines.append("x%d" % item.count)
 	if item.kind == CONSUMABLE:
 		var c: Dictionary = GameData.consumables[item.id]
-		if c.restore == "element":
+		if c.restore == "return_portal":
+			lines.append(t.translate("ITEM_RETURN_CHARM_EFFECT"))
+		elif c.restore == "element":
 			lines.append(t.translate("ITEM_ELEMENTAL_EFFECT").format({
 				"element": t.translate(Elements.data(c.element).name_key)}))
 		else:

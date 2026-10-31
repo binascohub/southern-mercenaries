@@ -1,5 +1,5 @@
 {
-  "_comment": "Consumíveis (13-balanceamento.md, 5.3). As poções de vida e recurso dividem a mesma recarga. Poção Elemental (02-0-elementos.md, seção 4): 100 + 25 × nível, sem recarga.",
+  "_comment": "Consumíveis (13-balanceamento.md, 5.3). As poções de vida e recurso dividem a mesma recarga. Poção Elemental (02-0-elementos.md, seção 4): 100 + 25 × nível, sem recarga. Patuá de Retorno (04-tortuga-e-missoes.md, seção 5.1): abre no chão, por 15 s, um portal de volta à cidade; 150 de ouro (proposta).",
   "potion_health": {
     "name_key": "ITEM_POTION_HEALTH",
     "stack": 20,
@@ -53,5 +53,14 @@
     "cooldown": 0.0,
     "price_base": 100,
     "price_per_level": 25
+  },
+  "return_charm": {
+    "name_key": "ITEM_RETURN_CHARM",
+    "stack": 5,
+    "restore": "return_portal",
+    "cooldown": 0.0,
+    "price_base": 150,
+    "price_per_level": 0,
+    "portal_time": 15.0
   }
 }

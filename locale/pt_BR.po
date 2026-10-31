@@ -1715,3 +1715,39 @@ msgstr "Recursos e recargas livres: desligado"
 
 msgid "HUD_TRAINING"
 msgstr "Treino — total {total} · DPS {dps} · maior {biggest} · críticos {crits}/{hits}"
+
+msgid "ITEM_RETURN_CHARM"
+msgstr "Patuá de Retorno"
+
+msgid "ITEM_RETURN_CHARM_EFFECT"
+msgstr "Abre no chão um portal de volta à cidade por 15 s (só nos mapas)"
+
+msgid "SHOP_VOODOO"
+msgstr "Patuás do Macumbeiro"
+
+msgid "NPC_VOODOO_PRIEST"
+msgstr "Macumbeiro"
+
+msgid "DLG_VOODOO_1"
+msgstr "O outro lado também tem preço, amigo. Diga onde parou e eu risco o caminho de volta."
+
+msgid "DLG_SERVICE_PORTALS"
+msgstr "Portais"
+
+msgid "PROP_CHARM_PORTAL"
+msgstr "Portal para Tortuga"
+
+msgid "TOAST_CHARM_NOT_HERE"
+msgstr "O patuá só funciona nos mapas"
+
+msgid "TOAST_PORTAL_MISSING_GOLD"
+msgstr "Falta ouro ({price} cada): {names}"
+
+msgid "PORTALS_TITLE"
+msgstr "Portais para pontos salvos"
+
+msgid "PORTALS_NONE"
+msgstr "Nenhum checkpoint alcançado ainda"
+
+msgid "PORTALS_ENTRY"
+msgstr "{area} — {checkpoint} — {price} de ouro cada"

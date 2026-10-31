@@ -623,6 +623,23 @@ func _town_test() -> void:
 	check.call(is_equal_approx(player.resource, player.max_resource) and player.free_cooldowns, "recursos e recargas livres no pátio")
 	_arena.request_training("reset_stats")
 	check.call(int(_arena.training.get("hits", -1)) == 0, "zerar o painel")
+	_arena.request_training("toggle_free")
+	# Macumbeiro: Patuá de Retorno e portal para o ponto salvo do Esgoto.
+	player.character.data.gold = 1000
+	player.teleport_to(Vector3(16, 0, -4.5))
+	town._rpc_buy("voodoo", 0)
+	check.call(player.character.count_of("return_charm") == 1 and int(player.character.data.gold) == 850, "compra o Patuá por 150")
+	player._drink("return_charm")
+	check.call(player.character.count_of("return_charm") == 1, "Patuá não funciona na cidade")
+	check.call("prototype_arena:start" in town.reached, "ponto salvo do Esgoto na lista")
+	player.teleport_to(Vector3(12, 0, -4.5))
+	var price := Town.portal_price("prototype_arena:start")
+	town._rpc_portal("prototype_arena:start")
+	check.call(_arena.area_id == "prototype_arena" and int(player.character.data.gold) == 850 - price, "portal do Macumbeiro leva ao Esgoto por %d" % price)
+	player._drink("return_charm")
+	check.call(player.character.count_of("return_charm") == 0 and not _arena.prop_near(player, "exit", "charm_portal", 5.0).is_empty(), "Patuá abre o portal no chão")
+	_arena.request_interact(player)
+	check.call(_arena.area_id == "tortuga", "portal do Patuá volta a Tortuga")
 	_report(checks.is_empty(), "cidade: " + ("tudo certo" if checks.is_empty() else "; ".join(PackedStringArray(checks))))
 
 

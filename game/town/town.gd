@@ -13,6 +13,7 @@ signal state_changed
 signal shop_opened(shop_id: String)
 signal dialogue_opened(npc_id: String, index: int)
 signal training_opened
+signal portals_opened
 
 const REACH := 4.0
 
@@ -20,6 +21,8 @@ const REACH := 4.0
 var quests := {}
 var unlocked: Array = []
 var ship := {}
+## Checkpoints já alcançados nos mapas ("area:checkpoint"), para o Macumbeiro.
+var reached: Array = []
 
 
 func _arena() -> Node:
@@ -34,18 +37,27 @@ func _campaign() -> Dictionary:
 
 func sync(peer_id := 0) -> void:
 	var c := _campaign()
+	var args := [c.get("quests", {}), c.get("unlocked", []), c.get("ship", {}), c.get("checkpoints_reached", [])]
 	if peer_id == 0:
-		_set_state.rpc(c.get("quests", {}), c.get("unlocked", []), c.get("ship", {}))
+		rpc.callv([&"_set_state"] + args)
 	else:
-		_set_state.rpc_id(peer_id, c.get("quests", {}), c.get("unlocked", []), c.get("ship", {}))
+		rpc_id.callv([peer_id, &"_set_state"] + args)
 
 
 @rpc("authority", "call_local", "reliable")
-func _set_state(new_quests: Dictionary, new_unlocked: Array, new_ship: Dictionary) -> void:
+func _set_state(new_quests: Dictionary, new_unlocked: Array, new_ship: Dictionary, new_reached: Array) -> void:
 	quests = new_quests
 	unlocked = new_unlocked
 	ship = new_ship
+	reached = new_reached
 	state_changed.emit()
+
+
+## Preço do portal do Macumbeiro para um ponto salvo, por jogador (seção 5.1).
+static func portal_price(key: String) -> int:
+	var area: Dictionary = GameData.arenas.get(key.get_slice(":", 0), {})
+	var voodoo := Shops.shop("voodoo")
+	return int(voodoo.get("portal_base", 40)) + int(voodoo.get("portal_per_level", 15)) * int(area.get("area_level", 1))
 
 
 ## Conversa que o NPC tem agora (a primeira cujo "when" bate com as missões).
@@ -105,6 +117,39 @@ func interact(player: Player, prop: Dictionary) -> void:
 @rpc("authority", "reliable")
 func _open_shop(shop_id: String) -> void:
 	shop_opened.emit(shop_id)
+
+
+@rpc("authority", "reliable")
+func _open_portals() -> void:
+	portals_opened.emit()
+
+
+func request_portal(key: String) -> void:
+	_ask(&"_rpc_portal", [key])
+
+
+## Portal do Macumbeiro: todos pagam (ouro de cada um); se faltar para alguém,
+## o aviso diz quem. O grupo vai junto para o checkpoint escolhido.
+@rpc("any_peer", "reliable")
+func _rpc_portal(key: String) -> void:
+	var player := _sender()
+	var c := _campaign()
+	if not multiplayer.is_server() or player == null or key not in c.get("checkpoints_reached", []) \
+			or _arena().prop_near(player, "npc", "voodoo_priest", REACH).is_empty():
+		return
+	var price := portal_price(key)
+	var missing := PackedStringArray()
+	var party := get_tree().get_nodes_in_group(&"players")
+	for p: Player in party:
+		if p.character == null or int(p.character.data.gold) < price:
+			missing.append(p.hero_name)
+	if not missing.is_empty():
+		_arena()._toast_all("TOAST_PORTAL_MISSING_GOLD", {"names": ", ".join(missing), "price": price})
+		return
+	for p: Player in party:
+		p.character.data.gold = int(p.character.data.gold) - price
+		p.refresh_character()
+	_arena().travel(key.get_slice(":", 0), key.get_slice(":", 1))
 
 
 @rpc("authority", "reliable")
@@ -173,6 +218,9 @@ func _rpc_accept(quest_id: String) -> void:
 func _rpc_service(npc_id: String, service: String) -> void:
 	var player := _sender()
 	if not multiplayer.is_server() or player == null or _arena().prop_near(player, "npc", npc_id, REACH).is_empty():
+		return
+	if service == "portals":
+		_send(player.peer_id, &"_open_portals", [])
 		return
 	if service == "rest":
 		# Descansar na taverna: vida e recurso cheios, de graça.
