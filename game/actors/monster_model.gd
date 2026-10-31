@@ -37,6 +37,10 @@ const FAMILIES := {
 	# Lagarto Dourado (Lizardman, skorpio, CC BY-SA 3.0): tingido de ouro no jogo.
 	"lizard": {"scene": "res://assets/models/monsters/golden_lizard.glb", "scale": 0.8,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
+	# Sapo Ácido (Triton, guiea7, CC BY-SA 4.0): sapo-homem pintado, 8,2 unidades
+	# de altura -> ~1,3 m no tamanho do sapo; tingido de verde pelos dados.
+	"toad": {"scene": "res://assets/models/monsters/toad.glb", "scale": 0.187,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
 	# O morcego guarda o tamanho original do arquivo (envergadura ~10 unidades).
 	"bat": {"scene": "res://assets/models/monsters/bat.glb", "scale": 0.2,
 		"anims": {"idle": "fly", "walk": "fly", "run": "fly", "attack": "fly", "die": "die"}},
