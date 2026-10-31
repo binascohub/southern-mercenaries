@@ -15,6 +15,7 @@
 - Summoner (`docs/02-5-invocador.md`): Essence (120, +2 per INT, +3 per companion hit), book item base, book and shoulder-bird visuals.
 - Friendly animals (`Companion`, `data/companions.json`): server AI like monsters, replicated by a spawner; follow the Summoner and attack awake monsters near them with the Summoner's current element; monsters attack them too; they flee when they fall; up to 5 per Summoner. Group buffs, shields and heals also reach animals.
 - Summoner skills: Call Companion, Flock, Bond, Scatter Escape (animals taunt), Guardian Bear, Stampede, Rescue (revives a downed ally from afar) and 3 per element.
+- Fix: woken monsters stayed in the sleep state and never chased or attacked (a `state = CHASE` line had ended up after a `return` in phase 3); found by the Summoner test, where companions only fight awake monsters.
 - Not yet: Fire Wall does not block monsters; Ninja parry and blocking in general; Book of Friends pages (with the maps); Knight.
 
 ### Phase 4 — Elements

@@ -126,6 +126,7 @@ func wake(health_scale: float, damage: float) -> void:
 	max_health = data.max_health * level_factor() * health_mult
 	health = max_health
 	damage_mult = damage
+	state = State.CHASE
 
 
 func level_factor() -> float:
@@ -136,7 +137,6 @@ func level_factor() -> float:
 func xp_value() -> float:
 	var category: String = data.get("category", "common")
 	return GameData.balance.xp_per_monster_level[category] * level * health_mult
-	state = State.CHASE
 
 
 ## Todos caíram: quem sobreviveu volta ao seu lugar e dorme de novo.
