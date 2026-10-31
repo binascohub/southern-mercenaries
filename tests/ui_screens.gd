@@ -2,10 +2,14 @@
 extends "res://tests/smoke_arena.gd"
 ## Capturas das telas para conferir o visual (precisa de tela; no CI, Xvfb):
 ##   godot --path . res://tests/ui_screens.tscn -- <pasta>
+## 0. elements.png: ratos com estados (molhado, queimando, congelado), números de
+##    dano na fraqueza/resistência, um combo e a área de vapor;
 ## 1. trade.png: janela de troca com um aliado fictício (peer 99) e ofertas dos dois lados;
 ## 2. load_campaign.png: menu principal → Carregar campanha, com três campanhas
 ##    (uma com miniatura capturada da própria arena).
 
+const ELEMENTS_FRAME := 200
+const ELEMENTS_SHOT := 206
 const THUMB_FRAME := 240
 const TRADE_FRAME := 260
 const TRADE_SHOT := 290
@@ -27,7 +31,11 @@ func _physics_process(delta: float) -> void:
 		super._physics_process(delta)
 	else:
 		_frame += 1
-	if _frame == THUMB_FRAME:
+	if _frame == ELEMENTS_FRAME:
+		_show_elements()
+	elif _frame == ELEMENTS_SHOT:
+		await _shot("elements.png")
+	elif _frame == THUMB_FRAME:
 		await RenderingServer.frame_post_draw
 		SaveSystem.save_thumbnail(Session.campaign.id, get_viewport().get_texture().get_image())
 	elif _frame == TRADE_FRAME:
@@ -39,6 +47,28 @@ func _physics_process(delta: float) -> void:
 	elif _frame == MENU_FRAME + 20:
 		await _shot("load_campaign.png")
 		get_tree().quit()
+
+
+## Golpes com elemento nos ratos mais perto do herói, para a captura.
+func _show_elements() -> void:
+	var player: Player = _arena.local_player
+	var rats: Array = get_tree().get_nodes_in_group(&"enemies")
+	rats.sort_custom(func(a: Node3D, b: Node3D) -> bool:
+		return a.global_position.distance_to(player.global_position) < b.global_position.distance_to(player.global_position))
+	var hits := [
+		[{"damage": 4.0, "element": "fire", "state": "burning", "crit_chance": 0.0}],
+		[{"damage": 4.0, "element": "water", "state": "soaked", "crit_chance": 0.0}],
+		[{"damage": 4.0, "element": "earth", "state": "", "crit_chance": 0.0}],
+		[{"damage": 3.0, "element": "water", "state": "soaked", "crit_chance": 0.0},
+			{"damage": 3.0, "element": "air", "state": "", "crit_chance": 0.0}],
+		[{"damage": 3.0, "element": "fire", "state": "burning", "crit_chance": 0.0},
+			{"damage": 3.0, "element": "water", "state": "", "crit_chance": 0.0}],
+	]
+	for i in mini(hits.size(), rats.size()):
+		for hit: Dictionary in hits[i]:
+			rats[i].take_hit(hit)
+	if rats.size() > hits.size():
+		Elements.apply_state(rats[hits.size()].status, "frozen", "earth", false)
 
 
 func _open_trade() -> void:
