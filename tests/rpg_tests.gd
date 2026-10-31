@@ -774,7 +774,9 @@ func _test_sewers() -> void:
 				_check(door.get_slice(":", 0) in ["north", "south", "east", "west"], "porta válida: " + door)
 	var nest: Dictionary = GameData.arenas.sewers_04_nest
 	_check(nest.final and nest.encounters.any(func(e: Dictionary) -> bool: return e.monsters[0].monster == "demon_rat_queen"), "o Ninho é a área final, com a Rainha")
-	_check(nest.props.filter(func(p: Dictionary) -> bool: return p.get("after_victory", false)).size() == 2, "tesouro e portal só depois da vitória")
+	_check(nest.props.filter(func(p: Dictionary) -> bool: return p.get("after_victory", false)).size() == 1, "portal só depois da vitória")
+	_check(nest.props.any(func(p: Dictionary) -> bool: return p.kind == "chest" and p.get("key", "") == GameData.monsters.demon_rat_queen.get("drops_key", "-")),
+		"tesouro trancado com a chave que a Rainha deixa cair")
 	_check(GameData.quests.sewer_treasure.area == "sewers_04_nest", "o tesouro do esgoto termina no Ninho")
 	_check(GameData.arenas.sewers_01_drains.props.any(func(p: Dictionary) -> bool: return p.get("id", "") == "return_portal"), "portal de retorno na entrada do mapa")
 	var grate: Array = GameData.arenas.tortuga.props.filter(func(p: Dictionary) -> bool: return p.get("id", "") == "sewer_entrance")
