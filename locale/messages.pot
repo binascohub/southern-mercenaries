@@ -1994,9 +1994,6 @@ msgstr ""
 msgid "REFINE_CRAFT_MISSING"
 msgstr ""
 
-msgid "OPENING_TITLE"
-msgstr ""
-
 msgid "OPENING_SKIP"
 msgstr ""
 
@@ -2093,8 +2090,6 @@ msgstr ""
 msgid "OPENING_SUMMONER_3"
 msgstr ""
 
-msgid "TIP_MOVE"
-msgstr ""
 
 msgid "TIP_INTERACT"
 msgstr ""
@@ -2166,4 +2161,10 @@ msgid "JOURNAL_TIPS_SEEN"
 msgstr ""
 
 msgid "JOURNAL_STORIES"
+msgstr ""
+
+msgid "TIP_MOVE"
+msgstr ""
+
+msgid "TIP_MOVE_PAD"
 msgstr ""

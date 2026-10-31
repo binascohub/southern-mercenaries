@@ -94,7 +94,7 @@ func _build() -> void:
 	box.add_theme_constant_override("separation", 10)
 	_panel.add_child(box)
 	var title := Label.new()
-	title.text = "OPENING_TITLE"
+	title.text = GameData.arenas.get("tavern", {}).get("name_key", "")
 	title.add_theme_font_size_override("font_size", 16)
 	title.modulate = Color(1, 1, 1, 0.6)
 	box.add_child(title)

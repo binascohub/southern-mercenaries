@@ -432,6 +432,8 @@ func _build() -> void:
 	_tip.grow_horizontal = Control.GROW_DIRECTION_BEGIN
 	_tip.grow_vertical = Control.GROW_DIRECTION_BOTH
 	_tip.offset_right = -24
+	_tip.offset_top = -170
+	_tip.offset_bottom = -170
 	_tip.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var tip_style := StyleBoxFlat.new()
 	tip_style.bg_color = Color(0.09, 0.07, 0.06, 0.88)

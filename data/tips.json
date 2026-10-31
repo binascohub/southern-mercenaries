@@ -1,8 +1,8 @@
 {
-  "_comment": "Dicas do tutorial (14-tutorial.md, seção 4). Cada dica aparece uma vez por personagem (tutorial_seen no save), quando o evento acontece, uma por vez (a de maior prioridade primeiro), sem pausar o jogo. 'actions': botões mostrados no texto ({button}, {button2}), com o ícone do dispositivo em uso. 'class': só para essa classe. Os eventos vêm de TipWatcher (game/ui/tip_watcher.gd).",
+  "_comment": "Dicas do tutorial (14-tutorial.md, seção 4). Cada dica aparece uma vez por personagem (tutorial_seen no save), quando o evento acontece, uma por vez (a de maior prioridade primeiro), sem pausar o jogo. 'actions': botões mostrados no texto ({button}, {button2}), com o ícone do dispositivo em uso; com 'join', todos juntos em {button} (W/A/S/D). 'key_pad': outro texto quando o jogador usa controle. 'class': só para essa classe. Os eventos vêm de TipWatcher (game/ui/tip_watcher.gd).",
   "duration": 7.0,
   "tips": {
-    "tip_move": {"key": "TIP_MOVE", "event": "start", "priority": 100, "actions": ["move_up", "aim_up"]},
+    "tip_move": {"key": "TIP_MOVE", "key_pad": "TIP_MOVE_PAD", "event": "start", "priority": 100, "actions": ["move_up", "move_left", "move_down", "move_right"], "join": true},
     "tip_interact": {"key": "TIP_INTERACT", "event": "interact_near", "priority": 90, "actions": ["interact"]},
     "tip_attack": {"key": "TIP_ATTACK", "event": "enemy_near", "priority": 95, "actions": ["attack"]},
     "tip_charged": {"key": "TIP_CHARGED", "event": "basic_attacks", "priority": 70, "actions": ["attack"]},

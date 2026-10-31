@@ -1995,9 +1995,6 @@ msgstr "El objeto se rompió en {count} cristales"
 msgid "REFINE_CRAFT_MISSING"
 msgstr "Necesitas {count} cristales y {gold} de oro"
 
-msgid "OPENING_TITLE"
-msgstr "Taberna de Tortuga"
-
 msgid "OPENING_SKIP"
 msgstr "Saltar introducción"
 
@@ -2094,8 +2091,6 @@ msgstr "Muchos de mis amigos son huérfanos. Las criaturas corrompidas mataron a
 msgid "OPENING_SUMMONER_3"
 msgstr "Así que lucho contra ellas. Si el camino pasa por oro y mercenarios, que así sea."
 
-msgid "TIP_MOVE"
-msgstr "Muévete con {button} y apunta con {button2}."
 
 msgid "TIP_INTERACT"
 msgstr "Pulsa {button} para hablar, abrir puertas y usar lo que esté cerca."
@@ -2168,3 +2163,9 @@ msgstr "Consejos ya vistos:"
 
 msgid "JOURNAL_STORIES"
 msgstr "Historias de los héroes"
+
+msgid "TIP_MOVE"
+msgstr "Muévete con {button} y apunta con el ratón."
+
+msgid "TIP_MOVE_PAD"
+msgstr "Muévete con el stick izquierdo y apunta con el derecho."

@@ -1995,9 +1995,6 @@ msgstr "The item shattered into {count} crystals"
 msgid "REFINE_CRAFT_MISSING"
 msgstr "You need {count} crystals and {gold} gold"
 
-msgid "OPENING_TITLE"
-msgstr "Tortuga Tavern"
-
 msgid "OPENING_SKIP"
 msgstr "Skip opening"
 
@@ -2094,8 +2091,6 @@ msgstr "Many of my friends are orphans. The corrupted creatures killed their fam
 msgid "OPENING_SUMMONER_3"
 msgstr "So I fight them. If the road goes through gold and mercenaries, so be it."
 
-msgid "TIP_MOVE"
-msgstr "Move with {button} and aim with {button2}."
 
 msgid "TIP_INTERACT"
 msgstr "Press {button} to talk, open doors and use what's nearby."
@@ -2168,3 +2163,9 @@ msgstr "Tips seen so far:"
 
 msgid "JOURNAL_STORIES"
 msgstr "Heroes' stories"
+
+msgid "TIP_MOVE"
+msgstr "Move with {button} and aim with the mouse."
+
+msgid "TIP_MOVE_PAD"
+msgstr "Move with the left stick and aim with the right one."

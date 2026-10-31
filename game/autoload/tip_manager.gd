@@ -65,10 +65,16 @@ func text(id: String) -> String:
 	var tip: Dictionary = GameData.tips.tips.get(id, {})
 	if tip.is_empty():
 		return ""
+	if InputDevice.using_gamepad and tip.has("key_pad"):
+		return tr(tip.key_pad)
 	var args := {}
 	var actions: Array = tip.get("actions", [])
-	for i in actions.size():
-		args["button" if i == 0 else "button%d" % (i + 1)] = InputDevice.prompt(StringName(actions[i]))
+	if tip.get("join", false):
+		args.button = "/".join(PackedStringArray(actions.map(func(a: String) -> String:
+			return InputDevice.prompt(StringName(a)))))
+	else:
+		for i in actions.size():
+			args["button" if i == 0 else "button%d" % (i + 1)] = InputDevice.prompt(StringName(actions[i]))
 	return tr(tip.key).format(args)
 
 

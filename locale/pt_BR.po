@@ -1995,9 +1995,6 @@ msgstr "O item se quebrou em {count} cristais"
 msgid "REFINE_CRAFT_MISSING"
 msgstr "Você precisa de {count} cristais e {gold} de ouro"
 
-msgid "OPENING_TITLE"
-msgstr "Taverna de Tortuga"
-
 msgid "OPENING_SKIP"
 msgstr "Pular abertura"
 
@@ -2094,8 +2091,6 @@ msgstr "Muitos dos meus amigos são órfãos. As criaturas corrompidas mataram s
 msgid "OPENING_SUMMONER_3"
 msgstr "Então eu luto contra elas. Se o caminho passa por ouro e mercenários, que seja."
 
-msgid "TIP_MOVE"
-msgstr "Ande com {button} e mire com {button2}."
 
 msgid "TIP_INTERACT"
 msgstr "Aperte {button} para falar, abrir portas e usar o que estiver perto."
@@ -2168,3 +2163,9 @@ msgstr "Dicas já vistas:"
 
 msgid "JOURNAL_STORIES"
 msgstr "Histórias dos heróis"
+
+msgid "TIP_MOVE"
+msgstr "Ande com {button} e mire com o mouse."
+
+msgid "TIP_MOVE_PAD"
+msgstr "Ande com o analógico esquerdo e mire com o direito."
