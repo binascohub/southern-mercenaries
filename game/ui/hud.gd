@@ -348,7 +348,11 @@ func _build() -> void:
 
 	var info_box := VBoxContainer.new()
 	info_box.set_anchors_preset(Control.PRESET_TOP_RIGHT)
-	info_box.position = Vector2(-260, 20)
+	# Cresce para a esquerda: nomes longos (área, missão) não saem da tela.
+	info_box.grow_horizontal = Control.GROW_DIRECTION_BEGIN
+	info_box.offset_left = -260
+	info_box.offset_right = -24
+	info_box.offset_top = 20
 	info_box.custom_minimum_size = Vector2(236, 0)
 	root.add_child(info_box)
 	_progress_label = _label(20)
