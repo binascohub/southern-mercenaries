@@ -126,6 +126,8 @@ var _area_root: Node3D
 var _style_tint := Color.WHITE
 var _tinted := {}
 var _sludge: StandardMaterial3D
+## Sujeira do esgoto: materiais das poças, da faixa de umidade e dos escorridos.
+var _grime_materials := {}
 var _props: Array[Dictionary] = []
 ## Objeto ao alcance do herói deste PC (aviso de interagir) e suas marcas "!".
 var _prop_markers := {}
@@ -1850,6 +1852,23 @@ func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3,
 		doors.has("west"), doors.get("west", 0.0), [fence] if low else walls)
 	_dress_side(Vector3(c.x + half.x, 0, c.z), Vector3.BACK, Vector3.LEFT, half.z * 2.0,
 		doors.has("east"), doors.get("east", 0.0), [fence] if low else walls)
+	# Esgoto: sujeira escorrendo nas paredes e poças de água suja no chão.
+	if style.get("grime", false) and not low:
+		var rng := RandomNumberGenerator.new()
+		rng.seed = hash(str(room.get("id", ""), c))
+		_grime_side(Vector3(c.x, 0, c.z - half.z + 0.5), Vector3.RIGHT, Vector3.BACK, half.x * 2.0,
+			doors.has("north"), doors.get("north", 0.0), rng)
+		_grime_side(Vector3(c.x - half.x, 0, c.z), Vector3.BACK, Vector3.RIGHT, half.z * 2.0,
+			doors.has("west"), doors.get("west", 0.0), rng)
+		_grime_side(Vector3(c.x + half.x, 0, c.z), Vector3.BACK, Vector3.LEFT, half.z * 2.0,
+			doors.has("east"), doors.get("east", 0.0), rng)
+	if style.get("puddles", false):
+		var rng := RandomNumberGenerator.new()
+		rng.seed = hash(str(room.get("id", ""), c, "puddles"))
+		for i in maxi(roundi(half.x * half.z * 4.0 / 45.0), 1):
+			var at := Vector3(c.x + rng.randf_range(-half.x + 1.0, half.x - 1.0), 0.025,
+				c.z + rng.randf_range(-half.z + 1.0, half.z - 1.0))
+			_puddle(at, rng.randf_range(0.6, 1.6), rng)
 	# Telhados atrás das casas do lado norte (a câmera vê a fachada e o telhado).
 	var roof: String = style.get("roof", "")
 	if room.get("roofs", false) and roof != "" and not low:
@@ -1885,6 +1904,111 @@ func _tint_piece(node: Node3D) -> void:
 				copy.albedo_color = copy.albedo_color * _style_tint
 				_tinted[material] = copy
 			m.set_surface_override_material(i, _tinted[material])
+
+
+## Sujeira numa parede: faixa escura de umidade embaixo e escorridos de lodo
+## descendo de cima, colados na face de dentro (sem os vãos das portas).
+func _grime_side(face: Vector3, along: Vector3, inward: Vector3, length: float, door: bool, offset: float, rng: RandomNumberGenerator) -> void:
+	for segment in _wall_pieces(length, door, offset):
+		var center: Vector3 = face + along * segment.x + inward * 0.04
+		_grime_quad(center + Vector3.UP * 0.55, segment.y, 1.1, inward, "band")
+		var count := floori(segment.y / 1.6)
+		for i in count:
+			if rng.randf() < 0.35:
+				continue
+			var at: float = segment.x - segment.y / 2.0 + (i + rng.randf_range(0.2, 0.8)) * segment.y / maxf(count, 1)
+			var height := rng.randf_range(1.4, 2.8)
+			_grime_quad(face + along * at + inward * (0.05 + 0.002 * i) + Vector3.UP * (3.0 - height / 2.0),
+				rng.randf_range(0.7, 1.5), height, inward, "drips")
+
+
+func _grime_quad(at: Vector3, width: float, height: float, inward: Vector3, kind: String) -> void:
+	var quad := MeshInstance3D.new()
+	var mesh := QuadMesh.new()
+	mesh.size = Vector2(width, height)
+	quad.mesh = mesh
+	quad.material_override = _grime_material(kind)
+	quad.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	quad.position = at
+	quad.rotation.y = atan2(inward.x, inward.z)
+	_area_root.add_child(quad)
+
+
+## Poça de água suja: mancha irregular, lisa e brilhante (só visual; o lodo
+## tóxico que machuca é o verde dos perigos).
+func _puddle(at: Vector3, radius: float, rng: RandomNumberGenerator) -> void:
+	var st := SurfaceTool.new()
+	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	st.set_normal(Vector3.UP)
+	var steps := 14
+	var stretch := Vector2(rng.randf_range(0.7, 1.3), rng.randf_range(0.7, 1.3))
+	var points: Array[Vector3] = []
+	for i in steps:
+		var angle := TAU * i / steps
+		var r := radius * rng.randf_range(0.7, 1.1)
+		points.append(Vector3(cos(angle) * r * stretch.x, 0, sin(angle) * r * stretch.y))
+	for i in steps:
+		st.add_vertex(Vector3.ZERO)
+		st.add_vertex(points[(i + 1) % steps])
+		st.add_vertex(points[i])
+	var puddle := MeshInstance3D.new()
+	puddle.mesh = st.commit()
+	puddle.material_override = _grime_material("puddle")
+	puddle.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	puddle.position = at
+	puddle.rotation.y = rng.randf() * TAU
+	_area_root.add_child(puddle)
+
+
+## Materiais da sujeira (um de cada, compartilhados); as texturas dos escorridos
+## e da faixa de umidade são geradas aqui.
+func _grime_material(kind: String) -> StandardMaterial3D:
+	if _grime_materials.has(kind):
+		return _grime_materials[kind]
+	var material := StandardMaterial3D.new()
+	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	match kind:
+		"puddle":
+			material.albedo_color = Color(0.11, 0.1, 0.06, 0.88)
+			material.roughness = 0.05
+			material.metallic = 0.25
+			material.metallic_specular = 0.9
+			material.cull_mode = BaseMaterial3D.CULL_DISABLED
+		"band":
+			material.albedo_texture = _grime_texture(false)
+			material.roughness = 0.9
+		_:
+			material.albedo_texture = _grime_texture(true)
+			material.roughness = 0.9
+	_grime_materials[kind] = material
+	return material
+
+
+static func _grime_texture(drips: bool) -> ImageTexture:
+	var w := 64
+	var h := 128
+	var image := Image.create(w, h, false, Image.FORMAT_RGBA8)
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 7 if drips else 11
+	var lengths: Array[float] = []
+	for x in w:
+		lengths.append(rng.randf_range(0.2, 1.0) if drips else 0.0)
+	# Escorridos mais largos: cada coluna puxa a vizinha.
+	for x in range(1, w):
+		lengths[x] = lerpf(lengths[x], lengths[x - 1], 0.6)
+	for y in h:
+		var v := float(y) / (h - 1)  # 0 = topo, 1 = base
+		for x in w:
+			var u := float(x) / (w - 1)
+			var edge := clampf(minf(u, 1.0 - u) * 6.0, 0.0, 1.0)
+			var alpha := 0.0
+			if drips:
+				alpha = clampf((lengths[x] - v) * 3.0, 0.0, 1.0) * 0.75 * edge
+			else:
+				alpha = clampf(v * 1.2 - 0.1, 0.0, 1.0) * 0.6 * (0.8 + 0.2 * rng.randf())
+			var tone := 0.6 + 0.4 * rng.randf()
+			image.set_pixel(x, y, Color(0.12 * tone, 0.14 * tone, 0.06 * tone, alpha))
+	return ImageTexture.create_from_image(image)
 
 
 ## Um lado da sala: peças de 2 m (esticadas para fechar o comprimento), com o

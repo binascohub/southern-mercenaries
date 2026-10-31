@@ -1964,7 +1964,7 @@
       }
     ],
     "style": {
-      "_comment": "Esgoto: tijolos irregulares do kit cobertos de limo (tinta verde-escura), piso de tijolos; a parede sul fica aberta para a câmera. Água em lodo verde (prototype_arena.gd).",
+      "_comment": "Esgoto: tijolos irregulares do kit cobertos de limo (tinta verde-escura), piso de tijolos; a parede sul fica aberta para a câmera. Água em lodo verde (prototype_arena.gd). Sujeira escorrendo nas paredes e poças de água suja (só visual) no chão.",
       "walls": [
         "Wall_UnevenBrick_Straight",
         "Wall_UnevenBrick_Straight",
@@ -1983,7 +1983,9 @@
         0.5,
         0.58,
         0.42
-      ]
+      ],
+      "grime": true,
+      "puddles": true
     },
     "decor": [
       {
@@ -2479,7 +2481,7 @@
       }
     ],
     "style": {
-      "_comment": "Esgoto: tijolos irregulares do kit cobertos de limo (tinta verde-escura), piso de tijolos; a parede sul fica aberta para a câmera. Água em lodo verde (prototype_arena.gd).",
+      "_comment": "Esgoto: tijolos irregulares do kit cobertos de limo (tinta verde-escura), piso de tijolos; a parede sul fica aberta para a câmera. Água em lodo verde (prototype_arena.gd). Sujeira escorrendo nas paredes e poças de água suja (só visual) no chão.",
       "walls": [
         "Wall_UnevenBrick_Straight",
         "Wall_UnevenBrick_Straight",
@@ -2498,7 +2500,9 @@
         0.5,
         0.58,
         0.42
-      ]
+      ],
+      "grime": true,
+      "puddles": true
     },
     "decor": [
       {
@@ -2937,7 +2941,7 @@
       }
     ],
     "style": {
-      "_comment": "Esgoto: tijolos irregulares do kit cobertos de limo (tinta verde-escura), piso de tijolos; a parede sul fica aberta para a câmera. Água em lodo verde (prototype_arena.gd).",
+      "_comment": "Esgoto: tijolos irregulares do kit cobertos de limo (tinta verde-escura), piso de tijolos; a parede sul fica aberta para a câmera. Água em lodo verde (prototype_arena.gd). Sujeira escorrendo nas paredes e poças de água suja (só visual) no chão.",
       "walls": [
         "Wall_UnevenBrick_Straight",
         "Wall_UnevenBrick_Straight",
@@ -2956,7 +2960,9 @@
         0.5,
         0.58,
         0.42
-      ]
+      ],
+      "grime": true,
+      "puddles": true
     },
     "decor": [
       {
@@ -3253,7 +3259,7 @@
       }
     ],
     "style": {
-      "_comment": "Esgoto: tijolos irregulares do kit cobertos de limo (tinta verde-escura), piso de tijolos; a parede sul fica aberta para a câmera. Água em lodo verde (prototype_arena.gd).",
+      "_comment": "Esgoto: tijolos irregulares do kit cobertos de limo (tinta verde-escura), piso de tijolos; a parede sul fica aberta para a câmera. Água em lodo verde (prototype_arena.gd). Sujeira escorrendo nas paredes e poças de água suja (só visual) no chão.",
       "walls": [
         "Wall_UnevenBrick_Straight",
         "Wall_UnevenBrick_Straight",
@@ -3272,7 +3278,9 @@
         0.5,
         0.58,
         0.42
-      ]
+      ],
+      "grime": true,
+      "puddles": true
     },
     "decor": [
       {
