@@ -245,7 +245,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	# Nos mapas a área segue viva depois da vitória (reanimar, ouro, tesouro);
 	# a área de teste para, esperando o recomeço.
-	var running := result == Result.NONE or (result == Result.VICTORY and not arena.get("replayable", false))
+	var running: bool = result == Result.NONE or (result == Result.VICTORY and not arena.get("replayable", false))
 	if multiplayer.is_server() and running:
 		_update_revives(delta)
 		_encounter_timer -= delta
