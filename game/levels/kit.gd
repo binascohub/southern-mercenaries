@@ -2,12 +2,13 @@
 class_name Kit
 extends RefCounted
 ## Peças de cenário e objetos (Quaternius, CC0: Medieval Village MegaKit e
-## Fantasy Props MegaKit; exportadas por tools/assets/export_kit.py). As
+## Fantasy Props MegaKit; exportadas por tools/assets/export_kit.py) e o
+## navio pirata do autor (assets/models/ships/). As
 ## áreas são montadas com elas por cima das caixas de colisão: paredes de 2 m,
 ## pisos de 2×2 m, móveis, barracas, barris. Sem a peça (testes sem
 ## importação), quem chama mantém o visual simples.
 
-const DIRS: Array[String] = ["res://assets/models/village/", "res://assets/models/props/"]
+const DIRS: Array[String] = ["res://assets/models/village/", "res://assets/models/props/", "res://assets/models/ships/"]
 ## Largura de uma parede e lado de um piso do kit (metros).
 const WALL_WIDTH := 2.0
 const FLOOR_SIZE := 2.0
@@ -30,9 +31,12 @@ static func _scene(piece_name: String) -> PackedScene:
 		return _cache[piece_name]
 	var found: PackedScene = null
 	for dir in DIRS:
-		var path := dir + piece_name + ".gltf"
-		if ResourceLoader.exists(path):
-			found = load(path) as PackedScene
+		for ext in [".gltf", ".glb"]:
+			var path: String = dir + piece_name + ext
+			if ResourceLoader.exists(path):
+				found = load(path) as PackedScene
+				break
+		if found:
 			break
 	_cache[piece_name] = found
 	return found
