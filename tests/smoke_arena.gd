@@ -541,6 +541,7 @@ func _sewers_test() -> void:
 	await _wait_frames(20)
 	check.call(_arena.hud.minimap.is_seen(Vector2(0, -63)), "andar revela o fundo da área")
 	_arena.travel("sewers_02_canals", "start")
+	check.call(_arena.hud.area_foes_shown() >= 2, "aviso das criaturas da área com o elemento (%d)" % _arena.hud.area_foes_shown())
 	_arena.travel("sewers_01_drains", "start")
 	await _wait_frames(2)
 	check.call(_arena.hud.minimap.is_seen(Vector2(0, -63)) and _arena._campaign.explored.has("sewers_01_drains"), "o que foi visto continua visto ao voltar")

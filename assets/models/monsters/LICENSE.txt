@@ -23,3 +23,9 @@ scorpion.glb — "Scorpion" by sunburn
             https://opengameart.org/content/scorpion
             Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/
             Changes: decimated, parts kept separate for procedural animation, dark chitin color (tools/assets/build_scorpion.py).
+
+rat_queen_body.glb — "Dark Elf - Game ready and animated" by danimal
+            https://opengameart.org/content/dark-elf-game-ready-and-animated
+            Creative Commons Attribution-ShareAlike 3.0: https://creativecommons.org/licenses/by-sa/3.0/
+            Changes: head, hair and horns removed (the Rat Queen wears the rat head), crossbow left out,
+            textures reduced; idle, walk, run, attack, die and laugh animations kept. Shared under CC BY-SA 3.0.

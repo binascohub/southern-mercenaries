@@ -740,21 +740,8 @@ func _build_visual(size: float) -> void:
 		eye.position = Vector3(0.12 * side * size, 0.42 * size, 0.5 * size)
 		_visual.add_child(eye)
 
-	# Ícone do elemento: losango na cor do elemento flutuando acima (03-inimigos.md).
-	if element != "":
-		_element_gem = MeshInstance3D.new()
-		var gem := PrismMesh.new()
-		gem.size = Vector3(0.3, 0.4, 0.3)
-		_element_gem.mesh = gem
-		var gem_material := StandardMaterial3D.new()
-		gem_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-		gem_material.albedo_color = Elements.color(element)
-		_element_gem.material_override = gem_material
-		_element_gem.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-		# Acima do corpo (no voador, acima de onde ele voa: senão cobre o morcego).
-		_element_gem.position.y = 0.6 * size + 0.55 + (1.3 if data.get("flyer", false) else 0.0)
-		_element_gem.scale = Vector3.ONE * 0.7
-		add_child(_element_gem)
+	# O elemento dos monstros aparece no aviso ao entrar na área (HUD), não
+	# mais num losango em cima do monstro (decisão do autor).
 
 
 func _tick_visual(delta: float) -> void:

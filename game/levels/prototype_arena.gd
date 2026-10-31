@@ -634,6 +634,22 @@ func _load_area(id: String, _entry: String) -> void:
 	hud.set_replayable(arena.get("replayable", false), String(arena.get("victory_key", "HUD_VICTORY")))
 	hud.set_progress(cleared, total_encounters)
 	hud.set_area(tr(arena.get("name_key", "")))
+	hud.show_area_foes(_area_foes())
+
+
+## Monstros desta área (um de cada, na ordem dos encontros) e o elemento deles.
+func _area_foes() -> Array:
+	var seen := {}
+	var foes := []
+	for encounter: Dictionary in arena.get("encounters", []):
+		for entry: Dictionary in encounter.get("monsters", []):
+			var id := String(entry.get("monster", ""))
+			var data := GameData.get_monster(id)
+			if id == "" or seen.has(id) or data.is_empty() or data.get("breakable", false):
+				continue
+			seen[id] = true
+			foes.append({"name_key": data.get("name_key", id), "element": data.get("element", "")})
+	return foes
 
 
 ## Viagem do grupo (porta, bueiro, portal de retorno): todos vão juntos.

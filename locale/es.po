@@ -657,6 +657,9 @@ msgstr "Los {max} espacios de personaje están ocupados. Borra un personaje para
 msgid "CAMPAIGN_SLOTS_FULL"
 msgstr "Los {max} espacios de campaña están ocupados. Borra una en Cargar campaña para empezar otra."
 
+msgid "HUD_AREA_FOES"
+msgstr "Criaturas en esta zona"
+
 msgid "ELEMENT_FIRE"
 msgstr "Fuego"
 

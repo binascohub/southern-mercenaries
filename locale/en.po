@@ -657,6 +657,9 @@ msgstr "All {max} character slots are in use. Delete a character to create a new
 msgid "CAMPAIGN_SLOTS_FULL"
 msgstr "All {max} campaign slots are in use. Delete one in Load campaign to start a new one."
 
+msgid "HUD_AREA_FOES"
+msgstr "Creatures in this area"
+
 msgid "ELEMENT_FIRE"
 msgstr "Fire"
 

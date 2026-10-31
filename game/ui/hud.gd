@@ -56,6 +56,10 @@ var _boss_name: Label
 var _boss_bar: ProgressBar
 ## Balão da dica do tutorial (14-tutorial.md, seção 4): até 2 linhas, sem pausar.
 var _tip: PanelContainer
+## Aviso ao entrar numa área de mapa: os monstros dela e o elemento de cada um.
+var _foes: PanelContainer
+var _foes_list: VBoxContainer
+var _foes_tween: Tween
 var _tip_label: Label
 var _tip_id := ""
 const TOAST_TIME := 3.0
@@ -87,6 +91,45 @@ func _on_tip_shown(id: String, text: String) -> void:
 	_tip.visible = true
 	_tip.modulate.a = 0.0
 	_tip.create_tween().tween_property(_tip, "modulate:a", 1.0, 0.25)
+
+
+## Monstros da área que o grupo acabou de entrar ({nome, elemento}); some sozinho.
+func show_area_foes(foes: Array) -> void:
+	for child in _foes_list.get_children():
+		child.queue_free()
+	if foes.is_empty():
+		_foes.visible = false
+		return
+	var title := _label(18)
+	title.text = tr("HUD_AREA_FOES")
+	title.add_theme_color_override("font_color", UiTheme.INK)
+	title.add_theme_constant_override("outline_size", 0)
+	_foes_list.add_child(title)
+	for foe: Dictionary in foes:
+		var line := _label(16)
+		line.add_theme_constant_override("outline_size", 0)
+		var element: String = foe.get("element", "")
+		if element != "":
+			line.text = "%s — %s" % [tr(foe.name_key), tr("ELEMENT_" + element.to_upper())]
+			line.add_theme_color_override("font_color", Elements.color(element).darkened(0.35))
+		else:
+			line.text = tr(foe.name_key)
+			line.add_theme_color_override("font_color", UiTheme.INK)
+		_foes_list.add_child(line)
+	_foes.visible = true
+	_foes.modulate.a = 0.0
+	if _foes_tween:
+		_foes_tween.kill()
+	_foes_tween = _foes.create_tween()
+	_foes_tween.tween_property(_foes, "modulate:a", 1.0, 0.3)
+	_foes_tween.tween_interval(8.0)
+	_foes_tween.tween_property(_foes, "modulate:a", 0.0, 0.8)
+	_foes_tween.tween_callback(func() -> void: _foes.visible = false)
+
+
+## Monstros listados agora no aviso da área (testes).
+func area_foes_shown() -> int:
+	return maxi(_foes_list.get_child_count() - 1, 0) if _foes.visible else 0
 
 
 ## Chefe acordado (null esconde a barra).
@@ -483,6 +526,19 @@ func _build() -> void:
 	_boss_box.add_child(_boss_bar)
 	_boss_box.visible = false
 	root.add_child(_boss_box)
+
+	_foes = PanelContainer.new()
+	_foes.set_anchors_preset(Control.PRESET_CENTER_LEFT)
+	_foes.grow_vertical = Control.GROW_DIRECTION_BOTH
+	_foes.offset_left = 24
+	_foes.offset_right = 24
+	_foes.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_foes.theme_type_variation = &"ParchmentPanel"
+	_foes_list = VBoxContainer.new()
+	_foes_list.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_foes.add_child(_foes_list)
+	_foes.visible = false
+	root.add_child(_foes)
 
 	_tip = PanelContainer.new()
 	_tip.set_anchors_preset(Control.PRESET_CENTER_RIGHT)

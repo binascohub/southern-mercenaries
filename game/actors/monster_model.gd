@@ -18,8 +18,12 @@ const FAMILIES := {
 	"rat": {"scene": "res://assets/models/monsters/rat.glb", "scale": 1.35,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# A Rainha: corpo humano (o dos heróis, com as animações deles) e cabeça de rato.
+	# Corpo: a Dark Elf (danimal, CC BY-SA 3.0) sem a cabeça (tools/assets/behead.py),
+	# com as animações dela; 7,09 unidades de altura -> 1,8 (body_scale).
 	"queen": {"scene": "res://assets/models/monsters/rat_head.glb", "humanoid": true, "scale": 0.6,
-		"anims": {"idle": "zombie_idle", "walk": "zombie_walk", "run": "run", "attack": "zombie_scratch", "hit": "hit", "die": "death"}},
+		"body_scene": "res://assets/models/monsters/rat_queen_body.glb", "body_scale": 0.254,
+		"bones": {"head": "Head", "chest": "Spine1", "hips": "Hips"},
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "die": "die"}},
 	"gator": {"scene": "res://assets/models/monsters/gator.glb", "scale": 0.75,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
 	# Monstro da Floresta (cdmir, CC0): gigante de casca e pedra com uma árvore nas
@@ -133,14 +137,30 @@ func setup(look: String, size: float, tint: Color) -> bool:
 func _setup_humanoid(info: Dictionary, size: float, tint: Color) -> bool:
 	scale = Vector3.ONE * size * float(info.scale)
 	_tint = QUEEN_FUR
-	_hero = HeroModel.new()
-	add_child(_hero)
-	_hero.setup("female", {"hair": [], "hair_color": [0.2, 0.15, 0.1]})
-	_hero.set_outfit({"body": "copper", "hands": "copper", "feet": "wood"})  # couro marrom
-	_hero.hide_parts(["Head", "Eyes", "Eyebrows"])
-	_hero.tint_skin(QUEEN_PINK)  # mãos rosadas
-	for key: String in info.anims:
-		_names[key] = info.anims[key]
+	var bones: Dictionary = info.get("bones", {"head": "Head", "chest": "spine_03", "hips": "pelvis"})
+	if info.has("body_scene") and ResourceLoader.exists(info.body_scene):
+		# Corpo próprio já sem cabeça, com esqueleto e animações.
+		var body := Node3D.new()
+		body.scale = Vector3.ONE * float(info.body_scale)
+		add_child(body)
+		var model := (load(info.body_scene) as PackedScene).instantiate()
+		body.add_child(model)
+		_skeleton = model.find_child("Skeleton3D", true, false) as Skeleton3D
+		_anim = model.find_child("AnimationPlayer", true, false) as AnimationPlayer
+		for key: String in info.anims:
+			if _anim and _anim.has_animation(info.anims[key]):
+				_names[key] = info.anims[key]
+				_anim.get_animation(info.anims[key]).loop_mode = Animation.LOOP_NONE if key in ONCE else Animation.LOOP_LINEAR
+	else:
+		_hero = HeroModel.new()
+		add_child(_hero)
+		_hero.setup("female", {"hair": [], "hair_color": [0.2, 0.15, 0.1]})
+		_hero.set_outfit({"body": "copper", "hands": "copper", "feet": "wood"})  # couro marrom
+		_hero.hide_parts(["Head", "Eyes", "Eyebrows"])
+		_hero.tint_skin(QUEEN_PINK)  # mãos rosadas
+		_skeleton = _hero.skeleton
+		for key: String in info.anims:
+			_names[key] = info.anims[key]
 	var head := Node3D.new()
 	add_child(head)
 	head.add_child((load(info.scene) as PackedScene).instantiate())
@@ -159,14 +179,13 @@ func _setup_humanoid(info: Dictionary, size: float, tint: Color) -> bool:
 	add_child(back)
 	_tail = Node3D.new()
 	add_child(_tail)
-	_skeleton = _hero.skeleton
-	if _skeleton and _skeleton.find_bone("Head") >= 0 and _skeleton.find_bone("spine_03") >= 0:
-		var neck := _rest_in_model("Head").origin
-		_follow_bone(head, "Head", Transform3D(Basis.from_scale(Vector3.ONE * RAT_HEAD_SCALE),
+	if _skeleton and _skeleton.find_bone(bones.head) >= 0 and _skeleton.find_bone(bones.chest) >= 0:
+		var neck := _rest_in_model(bones.head).origin
+		_follow_bone(head, bones.head, Transform3D(Basis.from_scale(Vector3.ONE * RAT_HEAD_SCALE),
 			neck - RAT_NECK * RAT_HEAD_SCALE + Vector3(0, 0.05, 0)))
-		_follow_bone(back, "spine_03", Transform3D(Basis(), _rest_in_model("spine_03").origin + Vector3(0, 0.05, -0.12)))
-		if _skeleton.find_bone("pelvis") >= 0:
-			_follow_bone(_tail, "pelvis", Transform3D(Basis(), _rest_in_model("pelvis").origin + Vector3(0, -0.05, -0.12)))
+		_follow_bone(back, bones.chest, Transform3D(Basis(), _rest_in_model(bones.chest).origin + Vector3(0, 0.05, -0.12)))
+		if _skeleton.find_bone(bones.hips) >= 0:
+			_follow_bone(_tail, bones.hips, Transform3D(Basis(), _rest_in_model(bones.hips).origin + Vector3(0, -0.05, -0.12)))
 	else:
 		head.position = Vector3(0, 1.6, 0) - RAT_NECK * RAT_HEAD_SCALE
 		head.scale = Vector3.ONE * RAT_HEAD_SCALE

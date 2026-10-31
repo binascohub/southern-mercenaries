@@ -656,6 +656,9 @@ msgstr ""
 msgid "CAMPAIGN_SLOTS_FULL"
 msgstr ""
 
+msgid "HUD_AREA_FOES"
+msgstr ""
+
 msgid "ELEMENT_FIRE"
 msgstr ""
 
