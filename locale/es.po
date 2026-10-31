@@ -2235,3 +2235,60 @@ msgstr "Esperando al grupo en la salida: {names}"
 
 msgid "TOAST_GROUP_EXIT_COUNTDOWN"
 msgstr "El grupo sigue en {seconds} s."
+
+msgid "MONSTER_RAT_NEST"
+msgstr "Nido de Crías"
+
+msgid "BOSS_RAT_QUEEN_PHASE_1"
+msgstr "Madre Furiosa"
+
+msgid "BOSS_RAT_QUEEN_PHASE_2"
+msgstr "La Camada"
+
+msgid "BOSS_RAT_QUEEN_PHASE_3"
+msgstr "El Pacto"
+
+msgid "LEGENDARY_ROYAL_COUNCILOR_STAFF"
+msgstr "Bastón del Consejero Real"
+
+msgid "LEGENDARY_ROYAL_COUNCILOR_STAFF_LORE"
+msgstr "Del arsenal real del reino que perdió la guerra. Aún guarda el calor de quien aconsejaba al rey."
+
+msgid "LEGENDARY_ROYAL_GUARD_BOW"
+msgstr "Arco de la Guardia Real"
+
+msgid "LEGENDARY_ROYAL_GUARD_BOW_LORE"
+msgstr "El águila sobre tres flechas sigue tallada en la empuñadura. La guardia cayó; el arco, no."
+
+msgid "LEGENDARY_STANDARD_BEARER_LANCE"
+msgstr "Lanza del Abanderado"
+
+msgid "LEGENDARY_STANDARD_BEARER_LANCE_LORE"
+msgstr "Llevó la bandera del reino hasta la última batalla. Un trozo de tela sigue atado a ella."
+
+msgid "LEGENDARY_TREASURER_DAGGERS"
+msgstr "Dagas del Tesorero"
+
+msgid "LEGENDARY_TREASURER_DAGGERS_LORE"
+msgstr "El tesorero del rey custodiaba el oro con ellas. Ironía: ahora sirven a un ladrón."
+
+msgid "LEGENDARY_ROYAL_STABLES_BOOK"
+msgstr "Libro de los Establos Reales"
+
+msgid "LEGENDARY_ROYAL_STABLES_BOOK_LORE"
+msgstr "El nombre de cada animal del rey, escrito a mano. Los animales aún responden cuando se abre el libro."
+
+msgid "RELIC_FALLEN_KING_CROWN"
+msgstr "Corona del Rey Caído"
+
+msgid "RELIC_FALLEN_KING_CROWN_DESC"
+msgstr "La corona torcida que llevaba la Reina de las Ratas. Pesa más de lo que debería."
+
+msgid "TOAST_RELIC_FOUND"
+msgstr "Reliquia: {relic}"
+
+msgid "TOAST_MAP_FOUND"
+msgstr "Entre los papeles del tesoro, un mapa antiguo: las Ruinas del reino."
+
+msgid "JOURNAL_RELICS"
+msgstr "Reliquias:"

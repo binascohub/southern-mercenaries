@@ -24,6 +24,8 @@ const FILES := {
 	"bestiary": "res://data/bestiary.json",
 	"visitors": "res://data/visitors.json",
 	"refine": "res://data/refine.json",
+	"legendaries": "res://data/legendaries.json",
+	"relics": "res://data/relics.json",
 	"opening": "res://data/opening.json",
 	"tips": "res://data/tips.json",
 }
@@ -48,6 +50,8 @@ var quests: Dictionary
 var bestiary: Dictionary
 var visitors: Dictionary
 var refine: Dictionary
+var legendaries: Dictionary
+var relics: Dictionary
 var opening: Dictionary
 var tips: Dictionary
 

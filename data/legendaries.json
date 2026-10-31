@@ -1,0 +1,8 @@
+{
+  "_comment": "Lendários (05-itens-e-loot.md, seções 3 e 4): só nos tesouros dos chefes, um garantido por jogador, sempre da classe dele. Afixos fixos; o dano/armadura vem da raridade 'legendary' (+60%). Os do Esgoto são peças do arsenal real do reino do Arqueiro. O 'efeito especial' e o visual exclusivo ficam para depois (só o texto de lore por enquanto).",
+  "royal_councilor_staff": {"name_key": "LEGENDARY_ROYAL_COUNCILOR_STAFF", "lore_key": "LEGENDARY_ROYAL_COUNCILOR_STAFF_LORE", "boss": "demon_rat_queen", "base": "staff", "class": "mage", "affixes": {"int": 4, "resource": 12, "crit": 2}},
+  "royal_guard_bow": {"name_key": "LEGENDARY_ROYAL_GUARD_BOW", "lore_key": "LEGENDARY_ROYAL_GUARD_BOW_LORE", "boss": "demon_rat_queen", "base": "bow", "class": "archer", "affixes": {"dex": 4, "crit": 3, "move_speed": 4}},
+  "standard_bearer_lance": {"name_key": "LEGENDARY_STANDARD_BEARER_LANCE", "lore_key": "LEGENDARY_STANDARD_BEARER_LANCE_LORE", "boss": "demon_rat_queen", "base": "lance", "class": "knight", "affixes": {"str": 4, "vit": 3, "life": 14}},
+  "treasurer_daggers": {"name_key": "LEGENDARY_TREASURER_DAGGERS", "lore_key": "LEGENDARY_TREASURER_DAGGERS_LORE", "boss": "demon_rat_queen", "base": "daggers", "class": "ninja", "affixes": {"dex": 4, "crit": 3, "gold_find": 15}},
+  "royal_stables_book": {"name_key": "LEGENDARY_ROYAL_STABLES_BOOK", "lore_key": "LEGENDARY_ROYAL_STABLES_BOOK_LORE", "boss": "demon_rat_queen", "base": "book", "class": "summoner", "affixes": {"int": 4, "vit": 3, "resource": 12}}
+}

@@ -1,0 +1,4 @@
+{
+  "_comment": "Relíquias dos chefes (06-mundo-e-historia.md, seção 6; 05-itens-e-loot.md, seção 4): uma por chefe, do grupo (fica na campanha do host). Proposta dos docs: juntas, abrem o portal até o covil de Lúcifer.",
+  "fallen_king_crown": {"name_key": "RELIC_FALLEN_KING_CROWN", "desc_key": "RELIC_FALLEN_KING_CROWN_DESC", "boss": "demon_rat_queen"}
+}

@@ -112,7 +112,7 @@
     "valuable_chance": 0.5
   },
   "treasure_sewers": {
-    "_comment": "Tesouro Perdido da Guerra (03-inimigos.md, seção 2): por enquanto ouro, itens e valiosos para cada jogador; a relíquia e o lendário entram com a luta completa da Rainha.",
+    "_comment": "Tesouro Perdido da Guerra (05-itens-e-loot.md, seção 4), por jogador: 1 lendário da classe (legendary_boss), 2 a 3 raros/únicos, 5 a 10 valiosos, 1 a 2 pergaminhos de refino (20% abençoado), ouro alto. Por grupo (uma vez): a relíquia Coroa do Rei Caído e o mapa antigo que libera as Ruínas.",
     "gold": {
       "chance": 1.0,
       "per_level": 100.0,
@@ -132,6 +132,18 @@
     },
     "potion_chance": 1.0,
     "elemental_potion_share": 0.0,
-    "valuable_chance": 1.0
+    "valuable_chance": 0.0,
+    "legendary_boss": "demon_rat_queen",
+    "valuables": [
+      5,
+      10
+    ],
+    "scrolls": [
+      1,
+      2
+    ],
+    "blessed_chance": 0.2,
+    "relic": "fallen_king_crown",
+    "unlocks": "map_ruins"
   }
 }

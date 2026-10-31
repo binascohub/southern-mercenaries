@@ -2234,3 +2234,60 @@ msgstr ""
 
 msgid "TOAST_GROUP_EXIT_COUNTDOWN"
 msgstr ""
+
+msgid "MONSTER_RAT_NEST"
+msgstr ""
+
+msgid "BOSS_RAT_QUEEN_PHASE_1"
+msgstr ""
+
+msgid "BOSS_RAT_QUEEN_PHASE_2"
+msgstr ""
+
+msgid "BOSS_RAT_QUEEN_PHASE_3"
+msgstr ""
+
+msgid "LEGENDARY_ROYAL_COUNCILOR_STAFF"
+msgstr ""
+
+msgid "LEGENDARY_ROYAL_COUNCILOR_STAFF_LORE"
+msgstr ""
+
+msgid "LEGENDARY_ROYAL_GUARD_BOW"
+msgstr ""
+
+msgid "LEGENDARY_ROYAL_GUARD_BOW_LORE"
+msgstr ""
+
+msgid "LEGENDARY_STANDARD_BEARER_LANCE"
+msgstr ""
+
+msgid "LEGENDARY_STANDARD_BEARER_LANCE_LORE"
+msgstr ""
+
+msgid "LEGENDARY_TREASURER_DAGGERS"
+msgstr ""
+
+msgid "LEGENDARY_TREASURER_DAGGERS_LORE"
+msgstr ""
+
+msgid "LEGENDARY_ROYAL_STABLES_BOOK"
+msgstr ""
+
+msgid "LEGENDARY_ROYAL_STABLES_BOOK_LORE"
+msgstr ""
+
+msgid "RELIC_FALLEN_KING_CROWN"
+msgstr ""
+
+msgid "RELIC_FALLEN_KING_CROWN_DESC"
+msgstr ""
+
+msgid "TOAST_RELIC_FOUND"
+msgstr ""
+
+msgid "TOAST_MAP_FOUND"
+msgstr ""
+
+msgid "JOURNAL_RELICS"
+msgstr ""

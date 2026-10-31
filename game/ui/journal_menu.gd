@@ -64,6 +64,12 @@ func _on_open() -> void:
 	var text := tr("JOURNAL_ACTIVE") + "\n" + ("\n".join(active) if not active.is_empty() else tr("JOURNAL_NONE"))
 	if not done.is_empty():
 		text += "\n\n" + tr("JOURNAL_DONE") + "\n" + "\n".join(done)
+	if not _town.relics.is_empty():
+		var relics := PackedStringArray()
+		for id: String in _town.relics:
+			var relic: Dictionary = GameData.relics.get(id, {})
+			relics.append("%s — %s" % [tr(relic.get("name_key", "")), tr(relic.get("desc_key", ""))])
+		text += "\n\n" + tr("JOURNAL_RELICS") + "\n" + "\n".join(relics)
 	_text.text = text
 
 

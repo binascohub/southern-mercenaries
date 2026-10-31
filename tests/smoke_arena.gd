@@ -594,6 +594,52 @@ func _sewers_test() -> void:
 	check.call(gator.state != Enemy.State.HIDDEN, "Jacaré sai da água quando alguém chega perto")
 	var old_gator := _first_enemy("old_gator")
 	check.call(old_gator.category() == "miniboss", "Jacaré Velho é mini-chefe")
+	# A Rainha dos Ratos: 3 fases, ninhos, Pacto, barra do chefe; o tesouro.
+	_arena.travel("sewers_04_nest", "start")
+	var queen := _first_enemy("demon_rat_queen")
+	_arena._wake_group(queen.group)
+	player.teleport_to(queen.global_position + Vector3(0, 0, 12))
+	await _wait_frames(3)
+	check.call(queen.phase == 1 and _arena.hud.boss_visible(), "Rainha acorda na fase 1, com a barra do chefe")
+	queen.health = queen.max_health * 0.55
+	await _wait_frames(2)
+	var nests := get_tree().get_nodes_in_group(&"enemies").filter(func(e: Enemy) -> bool: return e.monster_id == "rat_nest")
+	check.call(queen.phase == 2 and nests.size() == 3, "abaixo de 60%%: A Ninhada, com 3 ninhos (%d)" % nests.size())
+	var before := queen.health
+	await _wait_frames(30)
+	check.call(queen.health > before, "com ninhos de pé, a Rainha regenera")
+	var nest: Enemy = nests[0]
+	var nest_health := nest.health
+	nest.take_hit({"damage": 10.0, "element": "fire", "crit_chance": 0.0})
+	check.call(nest_health - nest.health >= 20.0, "Fogo em dobro no ninho (%.0f)" % (nest_health - nest.health))
+	for n: Enemy in nests:
+		n.take_damage(1e9)
+	await _wait_frames(2)
+	before = queen.health
+	await _wait_frames(30)
+	check.call(is_equal_approx(queen.health, before) or queen.health < before, "sem ninhos, não regenera")
+	queen.health = queen.max_health * 0.2
+	var puddles: int = _arena.hazards.count()
+	await _wait_frames(200)
+	check.call(queen.phase == 3 and _arena._area_root.get_node_or_null("flood") != null, "abaixo de 25%: O Pacto alaga a arena")
+	check.call(_arena.hazards.count() > puddles, "o gás dos canos deixa poças")
+	queen.take_damage(1e9)
+	await _wait_frames(2)
+	var leftovers := get_tree().get_nodes_in_group(&"enemies").filter(func(e: Enemy) -> bool: return e.group == "" and not e.is_queued_for_deletion())
+	check.call(leftovers.is_empty() and not _arena.hud.boss_visible(), "ajudantes somem com a Rainha; a barra some")
+	for e in get_tree().get_nodes_in_group(&"enemies"):
+		e.take_damage(1e9)
+	await _wait_frames(2)
+	check.call(_arena.result == 1, "vencer o Ninho é a vitória do mapa")
+	player.teleport_to(Vector3(0, 0, -48))
+	var loot_ids: Array = _arena._loot.keys()
+	_arena.request_interact(player)
+	var legendary := false
+	for id in _arena._loot:
+		if id not in loot_ids and _arena._loot[id].item.get("rarity", "") == "legendary":
+			legendary = _arena._loot[id].item.get("legendary", "") == Legendaries.for_boss("demon_rat_queen", "mage")
+	check.call(legendary, "tesouro dá o lendário do Mago")
+	check.call("fallen_king_crown" in _arena.town.relics and "map_ruins" in _arena.town.unlocked, "Coroa do Rei Caído e o mapa das Ruínas")
 	# O baú aberto continua aberto ao voltar.
 	_arena.travel("sewers_01_drains", "start")
 	check.call(_arena.prop_near(player, "chest", "", 300.0).is_empty(), "baú aberto não volta")

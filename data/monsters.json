@@ -180,7 +180,7 @@
     ]
   },
   "demon_rat_queen": {
-    "_comment": "Chefe do Esgoto (03-inimigos.md, seção 2): vida 1.000 x fator de chefe 4,3 (13-balanceamento.md 2.4). As 3 fases entram na próxima entrega; por enquanto, mordidas e investidas.",
+    "_comment": "Chefe do Esgoto (03-inimigos.md, seção 2): vida 1.000 x fator de chefe 4,3 (13-balanceamento.md 2.4). Fases por vida: 1 Mãe Furiosa (investidas, pisão em área, enxame a cada 20 s), 2 A Ninhada (abaixo de 60%: volta ao ninho e protege 3 ninhos de filhotes; regenera enquanto houver ninho), 3 O Pacto (abaixo de 25%: alaga a arena e o gás tóxico sai dos canos em lugares marcados).",
     "name_key": "MONSTER_RAT_QUEEN",
     "max_health": 1000,
     "boss_factor": 4.3,
@@ -208,7 +208,43 @@
       0.3,
       0.22,
       0.18
-    ]
+    ],
+    "boss_ai": "rat_queen",
+    "phases": [
+      0.6,
+      0.25
+    ],
+    "phase_keys": [
+      "BOSS_RAT_QUEEN_PHASE_1",
+      "BOSS_RAT_QUEEN_PHASE_2",
+      "BOSS_RAT_QUEEN_PHASE_3"
+    ],
+    "swarm": {
+      "interval": 20.0,
+      "monster": "plague_rat",
+      "count": 4
+    },
+    "slam": {
+      "interval": 7.0,
+      "radius": 4.0,
+      "windup": 1.0,
+      "damage_mult": 1.2
+    },
+    "nests": {
+      "monster": "rat_nest",
+      "count": 3,
+      "radius": 7.0,
+      "regen": 0.012
+    },
+    "gas": {
+      "interval": 3.0,
+      "radius": 2.2,
+      "windup": 1.2,
+      "damage_mult": 0.6,
+      "puddle_time": 4.0,
+      "puddle_dps": 5.0
+    },
+    "pact_speed": 1.25
   },
   "training_dummy_fire": {
     "_comment": "Boneco do pátio de treino (04-tortuga-e-missoes.md, seção 5.2): não anda, não ataca, não morre e não dá XP nem loot.",
@@ -316,5 +352,28 @@
     "category": "dummy",
     "element": "",
     "dummy": true
+  },
+  "rat_nest": {
+    "_comment": "Ninho de filhotes da fase 2 da Rainha: não anda nem ataca; enquanto existir, ela regenera. Fogo causa dano dobrado (03-inimigos.md).",
+    "name_key": "MONSTER_RAT_NEST",
+    "max_health": 150,
+    "move_speed": 0.0,
+    "damage": 0,
+    "attack_range": 0.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 1.0,
+    "aggro_range": 0.0,
+    "size": 1.3,
+    "category": "common",
+    "element": "earth",
+    "ai": "static",
+    "fire_mult": 2.0,
+    "no_loot": true,
+    "look": "nest",
+    "color": [
+      0.35,
+      0.27,
+      0.18
+    ]
   }
 }

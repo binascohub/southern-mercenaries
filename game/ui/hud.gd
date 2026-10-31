@@ -48,6 +48,10 @@ var _skill_slots: Array[Label] = []
 var _potions: Label
 var _toasts: VBoxContainer
 var _saving: Label
+## Barra do chefe (09-interface.md): nome, fase e vida, no alto, enquanto ele luta.
+var _boss_box: VBoxContainer
+var _boss_name: Label
+var _boss_bar: ProgressBar
 ## Balão da dica do tutorial (14-tutorial.md, seção 4): até 2 linhas, sem pausar.
 var _tip: PanelContainer
 var _tip_label: Label
@@ -81,6 +85,24 @@ func _on_tip_shown(id: String, text: String) -> void:
 	_tip.visible = true
 	_tip.modulate.a = 0.0
 	_tip.create_tween().tween_property(_tip, "modulate:a", 1.0, 0.25)
+
+
+## Chefe acordado (null esconde a barra).
+func set_boss(boss: Enemy) -> void:
+	_boss_box.visible = boss != null
+	if boss == null:
+		return
+	var phase_keys: Array = boss.data.get("phase_keys", [])
+	var title := tr(boss.data.get("name_key", ""))
+	if boss.phase > 0 and boss.phase <= phase_keys.size():
+		title += "  —  " + tr(phase_keys[boss.phase - 1])
+	_boss_name.text = title
+	_boss_bar.max_value = boss.max_health
+	_boss_bar.value = boss.health
+
+
+func boss_visible() -> bool:
+	return _boss_box.visible
 
 
 func tip_text() -> String:
@@ -447,6 +469,29 @@ func _build() -> void:
 	_toasts.position.y = 90
 	_toasts.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(_toasts)
+
+	_boss_box = VBoxContainer.new()
+	_boss_box.set_anchors_preset(Control.PRESET_CENTER_TOP)
+	_boss_box.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	_boss_box.offset_top = 16
+	_boss_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_boss_name = _label(20)
+	_boss_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_boss_name.add_theme_color_override("font_color", Color(1.0, 0.55, 0.45))
+	_boss_box.add_child(_boss_name)
+	_boss_bar = ProgressBar.new()
+	_boss_bar.custom_minimum_size = Vector2(520, 18)
+	_boss_bar.show_percentage = false
+	_boss_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var boss_fill := StyleBoxFlat.new()
+	boss_fill.bg_color = Color(0.7, 0.1, 0.08)
+	_boss_bar.add_theme_stylebox_override("fill", boss_fill)
+	var boss_bg := StyleBoxFlat.new()
+	boss_bg.bg_color = Color(0.1, 0.05, 0.05, 0.85)
+	_boss_bar.add_theme_stylebox_override("background", boss_bg)
+	_boss_box.add_child(_boss_bar)
+	_boss_box.visible = false
+	root.add_child(_boss_box)
 
 	_tip = PanelContainer.new()
 	_tip.set_anchors_preset(Control.PRESET_CENTER_RIGHT)

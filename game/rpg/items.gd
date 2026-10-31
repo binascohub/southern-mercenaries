@@ -194,6 +194,10 @@ static func is_valid(item: Variant) -> bool:
 
 static func display_name(item: Dictionary) -> String:
 	match item.kind:
+		EQUIPMENT when item.has("legendary"):
+			# Lendário: nome próprio (data/legendaries.json).
+			var legendary: Dictionary = GameData.legendaries.get(item.legendary, {})
+			return str(TranslationServer.translate(legendary.get("name_key", ""))) + (" +%d" % item.refine if item.refine > 0 else "")
 		EQUIPMENT:
 			var name := TranslationServer.translate("ITEM_NAME_PATTERN").format({
 				"type": TranslationServer.translate(GameData.item_bases[item.base].name_key),
@@ -230,6 +234,8 @@ static func describe(item: Dictionary, class_factor := 1.0) -> PackedStringArray
 			lines.append(t.translate("ITEM_STAT_ARMOR").format({"value": "%.0f" % arm}))
 		for id in item.affixes:
 			lines.append(t.translate(GameData.affixes[id].name_key).format({"value": item.affixes[id]}))
+		if item.has("legendary"):
+			lines.append(t.translate(GameData.legendaries.get(item.legendary, {}).get("lore_key", "")))
 		lines.append(t.translate("ITEM_REQUIRED_LEVEL").format({"level": required_level(item)}))
 	elif item.get("count", 1) > 1:
 		lines.append("x%d" % item.count)

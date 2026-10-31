@@ -34,6 +34,8 @@ var reached: Array = []
 var visitors: Array = []
 var side_quests := {}
 var bestiary: Array = []
+## Relíquias dos chefes já conquistadas pelo grupo.
+var relics: Array = []
 
 
 func _arena() -> Node:
@@ -49,7 +51,7 @@ func _campaign() -> Dictionary:
 func sync(peer_id := 0) -> void:
 	var c := _campaign()
 	var args := [c.get("quests", {}), c.get("unlocked", []), c.get("ship", {}), c.get("checkpoints_reached", []),
-		c.get("visitors", []), c.get("side_quests", {}), c.get("bestiary", [])]
+		c.get("visitors", []), c.get("side_quests", {}), c.get("bestiary", []), c.get("relics", [])]
 	if peer_id == 0:
 		rpc.callv([&"_set_state"] + args)
 	else:
@@ -58,7 +60,7 @@ func sync(peer_id := 0) -> void:
 
 @rpc("authority", "call_local", "reliable")
 func _set_state(new_quests: Dictionary, new_unlocked: Array, new_ship: Dictionary, new_reached: Array,
-		new_visitors: Array, new_side: Dictionary, new_bestiary: Array) -> void:
+		new_visitors: Array, new_side: Dictionary, new_bestiary: Array, new_relics: Array) -> void:
 	quests = new_quests
 	unlocked = new_unlocked
 	ship = new_ship
@@ -66,6 +68,7 @@ func _set_state(new_quests: Dictionary, new_unlocked: Array, new_ship: Dictionar
 	visitors = new_visitors
 	side_quests = new_side
 	bestiary = new_bestiary
+	relics = new_relics
 	state_changed.emit()
 
 

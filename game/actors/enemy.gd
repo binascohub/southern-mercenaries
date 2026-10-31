@@ -52,6 +52,9 @@ var states_mask := 0
 ## Elite/mini-chefe por encontro ("" = a categoria do monstro) e modificador da elite.
 var rank := ""
 var modifier := ""
+## Chefe: fase atual (sincronizada, para a barra do chefe) e temporizadores das ações.
+var phase := 0
+var boss_timers := {}
 
 var data: Dictionary
 
@@ -79,6 +82,10 @@ var _charge_dir := Vector3.ZERO
 var _charge_cd := 0.0
 var _charge_hit: Array[Node] = []
 var _spit_at := Vector3.ZERO
+## Golpe no chão em preparação (cuspe, pisão): {radius, damage_mult, puddle_*}.
+var _strike := {}
+## Golpes agendados no chão (gás da Rainha): {at, radius, time, damage, extra}.
+var _pending: Array[Dictionary] = []
 var _special := ""
 var _trail_timer := 0.0
 var _ripple: MeshInstance3D
@@ -147,6 +154,9 @@ func wake(health_scale: float, damage: float) -> void:
 	health = max_health
 	damage_mult = damage
 	state = State.HIDDEN if data.get("ai", "") == "ambush" else State.CHASE
+	if data.has("boss_ai"):
+		phase = 1
+		boss_timers = {"swarm": 8.0, "slam": 4.0}
 
 
 func level_factor() -> float:
@@ -186,12 +196,17 @@ func return_home() -> void:
 	health_mult = 1.0
 	max_health = base_health()
 	health = max_health
+	phase = 0
+	_pending.clear()
 
 
 func _think(delta: float) -> void:
 	if state == State.SLEEP:
 		return  # Dormindo: sem IA nem movimento (03-inimigos.md, "Desempenho").
 	_charge_cd = maxf(_charge_cd - delta, 0.0)
+	_update_pending(delta)
+	if data.get("ai", "") == "static":
+		return  # ninho: não anda nem ataca
 	if state == State.HIDDEN:
 		_think_hidden()
 		return
@@ -205,14 +220,17 @@ func _think(delta: float) -> void:
 		_think_charge(delta)
 		return
 	var target := _nearest_player()
+	var offset := target.global_position - global_position if target else Vector3.ZERO
+	offset.y = 0.0
+	var dist := offset.length() if target else INF
+	# Chefe: fases, ajudantes e golpes no chão (mesmo sem alvo, a fase muda).
+	if data.get("boss_ai", "") == "rat_queen" and RatQueen.update(self, delta, target, dist):
+		global_position.y = 0.0
+		return
 	if target == null:
 		velocity = Vector3.ZERO
 		state = State.CHASE
 		return
-	var offset := target.global_position - global_position
-	offset.y = 0.0
-	var dist := offset.length()
-
 	var ai: String = data.get("ai", "melee")
 	match state:
 		State.CHASE:
@@ -231,8 +249,8 @@ func _think(delta: float) -> void:
 				_timer = data.attack_windup
 				_spit_at = target.global_position
 				velocity = Vector3.ZERO
-				var spit: Dictionary = data.get("spit", {})
-				get_tree().call_group(&"arena", &"telegraph", _spit_at, float(spit.get("radius", 1.5)), _timer)
+				_strike = data.get("spit", {})
+				get_tree().call_group(&"arena", &"telegraph", _spit_at, float(_strike.get("radius", 1.5)), _timer)
 			elif ai != "ranged" and dist <= data.attack_range:
 				_special = ""
 				state = State.WINDUP
@@ -240,7 +258,7 @@ func _think(delta: float) -> void:
 				velocity = Vector3.ZERO
 			else:
 				var away := ai == "ranged" and dist < float(data.get("keep_distance", 0.0))
-				velocity = (-offset if away else offset).normalized() * data.move_speed * status.move_mult()
+				velocity = (-offset if away else offset).normalized() * data.move_speed * status.move_mult() * speed_mult()
 				move_and_slide()
 				_toxic_trail(delta)
 			if dist > 0.01:
@@ -255,10 +273,9 @@ func _think(delta: float) -> void:
 					_timer = float(data.charge.time)
 					_charge_hit.clear()
 					return
-				if _special == "spit":
-					var spit: Dictionary = data.get("spit", {})
-					get_tree().call_group(&"arena", &"monster_strike", _spit_at, float(spit.get("radius", 1.5)),
-						attack_damage(), level, self, spit)
+				if _special in ["spit", "slam"]:
+					get_tree().call_group(&"arena", &"monster_strike", _spit_at, float(_strike.get("radius", 1.5)),
+						attack_damage(float(_strike.get("damage_mult", 1.0))), level, self, _strike)
 				# No vapor (combo), erra parte dos ataques.
 				elif dist <= data.attack_range + 0.4 and _rng.randf() >= status.miss_chance():
 					target.call(&"take_damage", attack_damage(), level, self)
@@ -269,6 +286,36 @@ func _think(delta: float) -> void:
 			if _timer <= 0.0:
 				state = State.CHASE
 	global_position.y = 0.0
+
+
+## O Pacto da Rainha a deixa mais rápida.
+func speed_mult() -> float:
+	return float(data.get("pact_speed", 1.0)) if phase >= 3 else 1.0
+
+
+## Pisão em área em volta do monstro (chefe), com aviso no chão.
+func start_slam() -> void:
+	_special = "slam"
+	_strike = data.slam
+	state = State.WINDUP
+	_timer = float(_strike.windup)
+	_spit_at = global_position
+	velocity = Vector3.ZERO
+	get_tree().call_group(&"arena", &"telegraph", _spit_at, float(_strike.radius), _timer)
+
+
+## Golpe no chão daqui a `time` s (aviso agora): o gás dos canos.
+func schedule_strike(at: Vector3, radius: float, time: float, damage: float, extra: Dictionary) -> void:
+	get_tree().call_group(&"arena", &"telegraph", at, radius, time)
+	_pending.append({"at": at, "radius": radius, "time": time, "damage": damage, "extra": extra})
+
+
+func _update_pending(delta: float) -> void:
+	for strike in _pending.duplicate():
+		strike.time -= delta
+		if strike.time <= 0.0:
+			_pending.erase(strike)
+			get_tree().call_group(&"arena", &"monster_strike", strike.at, strike.radius, strike.damage, level, self, strike.extra)
 
 
 ## Escondido (emboscada, na água): só aparece quando alguém chega bem perto,
@@ -343,6 +390,9 @@ func take_hit(hit: Dictionary) -> Dictionary:
 	if not multiplayer.is_server() or health <= 0.0:
 		return {}
 	var result := Elements.resolve_hit(hit, element, status, is_boss(), _rng)
+	# Ninhos da Rainha: Fogo causa dano dobrado.
+	if hit.get("element", "") == "fire":
+		result.damage *= float(data.get("fire_mult", 1.0))
 	_hurt(result.damage, result.effect, hit.get("element", ""), result.crit, result.combo)
 	states_mask = status.mask()
 	if result.spread_dps > 0.0 or not result.zone.is_empty():
@@ -405,7 +455,7 @@ func _nearest_player() -> Node3D:
 func _add_synchronizer() -> void:
 	var config := SceneReplicationConfig.new()
 	var always := [":net_position", ":yaw"]
-	var on_change := [":state", ":health", ":max_health", ":states_mask"]
+	var on_change := [":state", ":health", ":max_health", ":states_mask", ":phase"]
 	for prop in always + on_change:
 		var path := NodePath("." + prop)
 		config.add_property(path)
@@ -450,6 +500,10 @@ func _build_visual(size: float) -> void:
 	body_mesh.radius = 0.3 * size
 	body_mesh.height = 1.1 * size
 	match look:
+		"nest":
+			# Monte de palha e trapos com filhotes: achatado e largo.
+			body_mesh.radius = 0.6 * size
+			body_mesh.height = 1.2 * size
 		"toad":
 			body_mesh.radius = 0.45 * size
 			body_mesh.height = 0.95 * size
@@ -572,6 +626,8 @@ func _tick_visual(delta: float) -> void:
 	_flash = maxf(_flash - delta, 0.0)
 	# Dormindo: olhos quase apagados.
 	_eye_material.albedo_color = Color(0.25, 0.05, 0.03) if state == State.SLEEP else Color(1.0, 0.15, 0.1)
+	if phase >= 3:
+		_eye_material.albedo_color = Color(0.45, 0.1, 0.9)  # o Pacto: chamas negras nos olhos
 	if _element_gem:
 		# Sempre visível: dá para planejar o elemento antes de acordar o grupo.
 		_element_gem.rotation.y += delta * 2.0

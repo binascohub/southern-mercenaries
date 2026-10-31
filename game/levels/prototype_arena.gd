@@ -255,6 +255,7 @@ func _physics_process(delta: float) -> void:
 			_auto_pickup_gold()
 		_update_zones(delta)
 		_update_training()
+	hud.set_boss(_awake_boss())
 	if local_player and is_instance_valid(local_player):
 		hud.set_training(training if in_training(local_player.global_position) else {})
 		var near := prop_near(local_player)
@@ -658,12 +659,46 @@ func _add_dynamic_props(peer_id := 0) -> void:
 
 ## Emboscada do rumor falso: monstros acordados em volta do herói.
 func spawn_ambush(at: Vector3, monster_id: String, count: int) -> void:
+	spawn_adds(at, monster_id, count, 4.0)
+
+
+## Monstros que chegam acordados (emboscada, ajudantes do chefe): sem grupo de
+## encontro, com a força do grupo de agora (13-balanceamento.md 2.5).
+func spawn_adds(at: Vector3, monster_id: String, count: int, radius: float) -> void:
+	if not multiplayer.is_server():
+		return
+	var extra := NetworkManager.player_count() - 1
 	for i in count:
-		var angle := TAU * i / count
+		var angle := TAU * i / maxi(count, 1)
 		var enemy: Enemy = _enemy_spawner.spawn({"monster_id": monster_id, "group": "",
-			"level": arena.get("area_level", 1), "position": at + Vector3(cos(angle), 0, sin(angle)) * 4.0,
+			"level": arena.get("area_level", 1), "position": at + Vector3(cos(angle), 0, sin(angle)) * radius,
 			"yaw": angle + PI})
-		enemy.wake(1.0, 1.0)
+		enemy.wake(1.0 + GameData.balance.health_per_extra_player * extra,
+			1.0 + GameData.balance.damage_per_extra_player * extra)
+
+
+## Chefe acordado na área (para a barra do chefe em todos os PCs).
+func _awake_boss() -> Enemy:
+	for node in get_tree().get_nodes_in_group(&"enemies"):
+		var e := node as Enemy
+		if e and e.is_boss() and e.state != Enemy.State.SLEEP and e.health > 0.0 and not e.is_queued_for_deletion():
+			return e
+	return null
+
+
+## Chefe mudou de fase: todos veem o nome da fase.
+func boss_phase(key: String) -> void:
+	_toast_all(key, {})
+
+
+## O Pacto da Rainha: a arena alaga (água sobre a sala maior da área).
+func flood_arena() -> void:
+	var biggest: Dictionary = {}
+	for room: Dictionary in arena.rooms:
+		if biggest.is_empty() or room.size[0] * room.size[1] > biggest.size[0] * biggest.size[1]:
+			biggest = room
+	_add_prop.rpc({"id": "flood", "kind": "water", "position": biggest.center,
+		"size": [biggest.size[0], biggest.size[1]], "flood": true})
 
 
 ## Visitantes sentados nas mesas da Taverna (mudam a cada volta).
@@ -843,6 +878,15 @@ func open_chest(player: Player, prop: Dictionary) -> void:
 	for p: Player in get_tree().get_nodes_in_group(&"players"):
 		if p.connected and p.character:
 			_drop_table(p, at, table, int(arena.get("area_level", 1)))
+	# Por grupo: a relíquia do chefe e o que o tesouro libera (o mapa antigo das Ruínas).
+	if table.has("relic") and table.relic not in _campaign.get("relics", []):
+		_campaign.relics = _campaign.get("relics", []) + [table.relic]
+		_toast_all("TOAST_RELIC_FOUND", {"relic": GameData.relics.get(table.relic, {}).get("name_key", "")})
+	if table.has("unlocks") and table.unlocks not in _campaign.get("unlocked", []):
+		_campaign.unlocked = _campaign.get("unlocked", []) + [table.unlocks]
+		_toast_all("TOAST_MAP_FOUND", {})
+	if table.has("relic") or table.has("unlocks"):
+		town.sync()
 	_remove_prop.rpc(String(prop.id))
 	_toast_all("TOAST_SECRET_FOUND" if prop.get("secret", false) else "TOAST_CHEST_OPENED", {"name": player.hero_name})
 	SaveSystem.save_campaign(_campaign, true)
@@ -932,6 +976,12 @@ func _groups_distance(a: Dictionary, b: Dictionary) -> float:
 ## guarda os grupos vencidos.
 func _on_enemy_died(enemy: Enemy) -> void:
 	_reward(enemy)
+	if enemy.is_boss():
+		# Os ajudantes e os ninhos somem com o chefe.
+		for node in get_tree().get_nodes_in_group(&"enemies"):
+			var add := node as Enemy
+			if add and add != enemy and add.group == "" and not add.data.get("dummy", false):
+				add.queue_free()
 	town.on_monster_killed(enemy.monster_id, area_id)
 	var group: Dictionary = _groups.get(enemy.group, {})
 	if group.is_empty():
@@ -965,7 +1015,8 @@ func _reward(enemy: Enemy) -> void:
 	var xp := roundi(enemy.xp_value() / present.size())
 	for p in present:
 		p.grant(xp, 0)
-		_drop_loot_for(p, enemy)
+		if not enemy.data.get("no_loot", false):
+			_drop_loot_for(p, enemy)
 
 
 func _drop_loot_for(player: Player, enemy: Enemy) -> void:
@@ -994,13 +1045,30 @@ func _drop_table(player: Player, origin: Vector3, table: Dictionary, level: int)
 		if _rng.randf() < float(table.get("elemental_potion_share", 0.0)):
 			potion = "elemental_potion_" + Elements.ALL[_rng.randi_range(0, Elements.ALL.size() - 1)]
 		_add_loot(player, origin, Items.stack(Items.CONSUMABLE, potion), 0)
-	if _rng.randf() < table.valuable_chance:
+	var valuables := 1 if _rng.randf() < table.valuable_chance else 0
+	if table.has("valuables"):
+		valuables = _rng.randi_range(int(table.valuables[0]), int(table.valuables[1]))
+	if valuables > 0:
 		var options: Array[String] = []
 		for id in GameData.valuables:
 			var maps: Array = GameData.valuables[id].maps
 			if maps.is_empty() or arena.get("map_id", "") in maps:
 				options.append(id)
-		_add_loot(player, origin, Items.stack(Items.VALUABLE, options[_rng.randi_range(0, options.size() - 1)]), 0)
+		for i in valuables:
+			_add_loot(player, origin, Items.stack(Items.VALUABLE, options[_rng.randi_range(0, options.size() - 1)]), 0)
+	# Tesouro do covil (05-itens-e-loot.md, seção 4): o lendário da classe e pergaminhos de refino.
+	if table.has("legendary_boss"):
+		var legendary := Legendaries.for_boss(String(table.legendary_boss), String(player.character.data.class_id))
+		if legendary != "":
+			_add_loot(player, origin, Legendaries.create(legendary, level, _rng), 0)
+	if table.has("scrolls"):
+		var tier_material := Items.material_for_tier(maxi(Items.tier_for_level(level), 1), true)
+		for i in _rng.randi_range(int(table.scrolls[0]), int(table.scrolls[1])):
+			var kind := "weapon" if _rng.randf() < 0.5 else "armor"
+			var blessed := _rng.randf() < float(table.get("blessed_chance", 0.0))
+			var id := "%sscroll_refine_%s_%s" % ["blessed_" if blessed else "", kind, tier_material]
+			if GameData.consumables.has(id):
+				_add_loot(player, origin, Items.stack(Items.CONSUMABLE, id), 0)
 
 
 func _add_loot(player: Player, origin: Vector3, item: Dictionary, gold: int) -> void:
@@ -1198,6 +1266,12 @@ func _return_to_checkpoint() -> void:
 			group.awake = false
 			for enemy: Enemy in group.members:
 				enemy.return_home()
+	# Ajudantes e ninhos do chefe somem; a água do Pacto baixa.
+	for node in get_tree().get_nodes_in_group(&"enemies"):
+		var add := node as Enemy
+		if add and add.group == "" and not add.data.get("dummy", false):
+			add.queue_free()
+	_remove_prop.rpc("flood")
 	_reset_players()
 	_broadcast(cleared, Result.NONE)
 	SaveSystem.save_campaign(_campaign, true)
@@ -1344,6 +1418,10 @@ func _build_prop(prop: Dictionary) -> void:
 				for x in [-2.5, 3.5]:
 					_prop_mesh(node, CylinderMesh.new(), Vector3(0.3, 4.5, 0.3), Vector3(x, 6.0, 0), Color(0.35, 0.25, 0.15))
 					_prop_mesh(node, BoxMesh.new(), Vector3(0.1, 4.0, 4.6), Vector3(x + 0.3, 7.2, 0), Color(0.2, 0.2, 0.22))
+			"water" when prop.get("flood", false):
+				# Arena alagada pelo Pacto: lâmina fina (as marcas de aviso ficam por cima).
+				var size: Array = prop.size
+				_prop_mesh(node, BoxMesh.new(), Vector3(size[0], 0.02, size[1]), Vector3(0, 0.01, 0), Color(0.12, 0.2, 0.16))
 			"water":
 				# Mar do porto: um plano simples (04-tortuga-e-missoes.md, seção 6).
 				var size: Array = prop.get("size", [40, 20])

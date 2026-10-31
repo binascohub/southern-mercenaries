@@ -802,6 +802,32 @@ func _test_sewers() -> void:
 	_check(", ".join(SideQuests.open_maps(["sewer_entrance"])) == "sewers_01_drains, sewers_02_canals, sewers_03_war_passage",
 		"missões secundárias nas áreas 1 a 3 do Esgoto")
 	_check(SideQuests.creatures_in("sewers_03_war_passage").has("sewer_gator"), "o Jacaré mora na Passagem da Guerra")
+	# A Rainha: fases pela vida (60% e 25%).
+	var thresholds: Array = GameData.monsters.demon_rat_queen.phases
+	_check(RatQueen.phase_for(1.0, thresholds) == 1 and RatQueen.phase_for(0.61, thresholds) == 1, "fase 1 até 60%")
+	_check(RatQueen.phase_for(0.6, thresholds) == 2 and RatQueen.phase_for(0.26, thresholds) == 2, "fase 2 de 60% a 25%")
+	_check(RatQueen.phase_for(0.25, thresholds) == 3 and RatQueen.phase_for(0.01, thresholds) == 3, "fase 3 abaixo de 25%")
+	_check(GameData.monsters.demon_rat_queen.phase_keys.size() == 3, "nome das 3 fases")
+	# Tesouro: um lendário por classe, do arsenal real; relíquia e mapa das Ruínas.
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 3
+	for class_id: String in GameData.classes:
+		var id := Legendaries.for_boss("demon_rat_queen", class_id)
+		_check(id != "", "lendário do Esgoto para " + class_id)
+		if id == "":
+			continue
+		var item := Legendaries.create(id, 2, rng)
+		_check(Items.is_valid(item) and item.rarity == "legendary" and item.material == "iron", "lendário válido, de ferro: " + id)
+		_check(Items.usable_by_class(item, class_id) and Items.required_level(item) <= 2, "%s usa o lendário no nível 2" % class_id)
+		_check(Items.display_name(item) == tr(GameData.legendaries[id].name_key), "lendário com nome próprio")
+		_check(Items.describe(item).has(tr(GameData.legendaries[id].lore_key)), "lendário com lore")
+		_check(Items.weapon_damage(item) > Items.weapon_damage(Items.equipment(item.base, "iron", "rare", 2)), "lendário bate mais que raro")
+	var treasure: Dictionary = GameData.loot.treasure_sewers
+	_check(GameData.relics.has(treasure.relic) and treasure.unlocks == "map_ruins", "tesouro: relíquia e o mapa das Ruínas")
+	for kind in ["weapon", "armor"]:
+		_check(GameData.consumables.has("scroll_refine_%s_iron" % kind) and GameData.consumables.has("blessed_scroll_refine_%s_iron" % kind),
+			"pergaminhos de ferro do tesouro existem (%s)" % kind)
+	_check(GameData.monsters.rat_nest.ai == "static" and GameData.monsters.rat_nest.fire_mult == 2.0, "ninho parado, Fogo em dobro")
 
 
 func _test_tips() -> void:

@@ -2235,3 +2235,60 @@ msgstr "Waiting for the group at the exit: {names}"
 
 msgid "TOAST_GROUP_EXIT_COUNTDOWN"
 msgstr "The group moves on in {seconds} s."
+
+msgid "MONSTER_RAT_NEST"
+msgstr "Pup Nest"
+
+msgid "BOSS_RAT_QUEEN_PHASE_1"
+msgstr "Furious Mother"
+
+msgid "BOSS_RAT_QUEEN_PHASE_2"
+msgstr "The Brood"
+
+msgid "BOSS_RAT_QUEEN_PHASE_3"
+msgstr "The Pact"
+
+msgid "LEGENDARY_ROYAL_COUNCILOR_STAFF"
+msgstr "Royal Councilor's Staff"
+
+msgid "LEGENDARY_ROYAL_COUNCILOR_STAFF_LORE"
+msgstr "From the royal armory of the kingdom that lost the war. It still holds the warmth of the king's counselor."
+
+msgid "LEGENDARY_ROYAL_GUARD_BOW"
+msgstr "Royal Guard Bow"
+
+msgid "LEGENDARY_ROYAL_GUARD_BOW_LORE"
+msgstr "The eagle over three arrows is still carved on the grip. The guard fell; the bow did not."
+
+msgid "LEGENDARY_STANDARD_BEARER_LANCE"
+msgstr "Standard-Bearer's Lance"
+
+msgid "LEGENDARY_STANDARD_BEARER_LANCE_LORE"
+msgstr "It carried the kingdom's banner to the last battle. A scrap of the cloth is still tied to it."
+
+msgid "LEGENDARY_TREASURER_DAGGERS"
+msgstr "Treasurer's Daggers"
+
+msgid "LEGENDARY_TREASURER_DAGGERS_LORE"
+msgstr "The king's treasurer guarded the gold with these. Irony: now they serve a thief."
+
+msgid "LEGENDARY_ROYAL_STABLES_BOOK"
+msgstr "Book of the Royal Stables"
+
+msgid "LEGENDARY_ROYAL_STABLES_BOOK_LORE"
+msgstr "The name of every one of the king's animals, written by hand. The animals still answer when the book opens."
+
+msgid "RELIC_FALLEN_KING_CROWN"
+msgstr "Crown of the Fallen King"
+
+msgid "RELIC_FALLEN_KING_CROWN_DESC"
+msgstr "The crooked crown the Rat Queen wore. It weighs more than it should."
+
+msgid "TOAST_RELIC_FOUND"
+msgstr "Relic: {relic}"
+
+msgid "TOAST_MAP_FOUND"
+msgstr "Among the treasure's papers, an old map: the kingdom's Ruins."
+
+msgid "JOURNAL_RELICS"
+msgstr "Relics:"
