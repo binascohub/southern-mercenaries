@@ -109,6 +109,11 @@ func _refresh() -> void:
 		var item: Variant = d.inventory[i] if i < d.inventory.size() else null
 		var button := _bag_buttons[i]
 		button.text = _short(item) if item else ""
+		# Poções com ícone: o frasco em cima, só a quantidade embaixo.
+		var icon := Items.icon(item)
+		button.icon = icon
+		if icon:
+			button.text = "x%d" % int(item.count) if int(item.get("count", 1)) > 1 else ""
 		button.add_theme_color_override("font_color", Items.color(item) if item else Color.WHITE)
 		button.add_theme_color_override("font_focus_color", Items.color(item) if item else Color.WHITE)
 	_hint.text = tr("INV_HINT").format({"close": InputDevice.prompt(&"inventory")})
@@ -213,6 +218,9 @@ func _build() -> void:
 		button.custom_minimum_size = CELL
 		button.clip_text = true
 		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		button.expand_icon = true
+		button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		button.vertical_icon_alignment = VERTICAL_ALIGNMENT_TOP
 		button.add_theme_font_size_override("font_size", 11)
 		button.pressed.connect(func() -> void: _player.request_use(i))
 		button.focus_entered.connect(func() -> void:

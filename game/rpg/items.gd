@@ -192,6 +192,15 @@ static func is_valid(item: Variant) -> bool:
 
 # --- Texto (só na tela, no idioma de cada jogador) -------------------------------
 
+## Ícone do item no inventário (assets/ui/icons/<id>.png: as poções, de
+## tools/assets/potion_icons.py); null sem ícone.
+static func icon(item: Variant) -> Texture2D:
+	if not item is Dictionary or not item.has("id"):
+		return null
+	var path := "res://assets/ui/icons/%s.png" % String(item.id)
+	return load(path) as Texture2D if ResourceLoader.exists(path) else null
+
+
 static func display_name(item: Dictionary) -> String:
 	match item.kind:
 		EQUIPMENT when item.has("legendary"):
