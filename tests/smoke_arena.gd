@@ -660,6 +660,37 @@ func _town_test() -> void:
 	town._rpc_service("master", "respec")
 	hero = player.character
 	check.call(int(hero.data.free_points) == 5 * (int(hero.data.level) - 1) and int(hero.data.gold) == gold_before - respec_cost, "Mestre devolve os pontos por %d" % respec_cost)
+	# Visitantes, missões secundárias e bestiário.
+	check.call("demon_rat_queen" in town.bestiary, "a história do Velho Bêbado pôs a Rainha dos Ratos no bestiário")
+	check.call(town.visitors.size() >= 2, "voltar a Tortuga trouxe visitantes (%d)" % town.visitors.size())
+	var hunt := {"type": "hunter", "name": "Teste", "quest": SideQuests.make_quest("sq_test_hunt", "hunt", "prototype_arena", RandomNumberGenerator.new())}
+	hunt.quest.target = "plague_rat"
+	hunt.quest.count = 2
+	var cargo := {"type": "merchant", "name": "Teste 2", "quest": SideQuests.make_quest("sq_test_cargo", "retrieve", "prototype_arena", RandomNumberGenerator.new())}
+	_arena._campaign.visitors = [hunt, cargo]
+	town.sync()
+	_arena.travel("tavern", "start")
+	check.call(_arena.prop_near(player, "npc", "visitor:0", 50.0).size() > 0, "visitantes sentados na Taverna")
+	for i in 2:
+		player.teleport_to(Vector3(GameData.visitors.seats[0][0], 0, GameData.visitors.seats[0][1] + 0.8))
+		town._rpc_accept_side(0)
+	check.call(SideQuests.active(town.side_quests).size() == 2 and town.visitors.is_empty(), "aceitou as duas histórias")
+	check.call("plague_rat" in town.bestiary, "a criatura da caçada entrou no bestiário")
+	# Caçada: matar 2 ratos no Esgoto; carga: achar o caixote.
+	_arena.travel("prototype_arena", "start")
+	var spot: Array = GameData.arenas.prototype_arena.quest_spots[int(cargo.quest.spot)]
+	check.call(not _arena.prop_near(player, "quest_spot", "", 300.0).is_empty(), "carga perdida aparece no mapa")
+	var killed := 0
+	for e: Enemy in get_tree().get_nodes_in_group(&"enemies"):
+		if e.monster_id == "sewer_rat" and killed < 2:
+			e.take_damage(1e9)
+			killed += 1
+	await get_tree().physics_frame
+	check.call(town.side_quests.sq_test_hunt.status == "done", "caçada concluída")
+	player.teleport_to(Vector3(spot[0], 0, spot[1] + 0.5))
+	var gold_cargo := int(player.character.data.gold)
+	_arena.request_interact(player)
+	check.call(town.side_quests.sq_test_cargo.status == "done" and int(player.character.data.gold) > gold_cargo, "carga entregue: recompensa")
 	_report(checks.is_empty(), "cidade: " + ("tudo certo" if checks.is_empty() else "; ".join(PackedStringArray(checks))))
 
 

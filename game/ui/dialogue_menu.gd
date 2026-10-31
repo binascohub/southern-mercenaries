@@ -28,6 +28,18 @@ func _ready() -> void:
 func bind(town: Town) -> void:
 	_town = town
 	town.dialogue_opened.connect(open)
+	town.visitor_opened.connect(open_visitor)
+
+
+## Visitante da taverna: falas montadas (história gerada) e a missão secundária.
+func open_visitor(visitor_name: String, lines: Array, visitor_index: int) -> void:
+	_npc_id = ""
+	_dialogue = {"lines": lines, "offer": "side", "visitor": visitor_index}
+	_line = 0
+	_name.text = visitor_name
+	visible = true
+	Session.ui_open = true
+	_show_line()
 
 
 func open(npc_id: String, index: int) -> void:
@@ -60,7 +72,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _show_line() -> void:
 	var lines: Array = _dialogue.get("lines", [])
-	_text.text = tr(lines[_line]) if _line < lines.size() else ""
+	_text.text = _line_text(lines[_line]) if _line < lines.size() else ""
 	var last := _line >= lines.size() - 1
 	var offer: String = _dialogue.get("offer", "")
 	var service: String = _dialogue.get("service", "")
@@ -78,6 +90,16 @@ func _show_line() -> void:
 		_next.text = tr("DLG_CLOSE")
 	var target: Button = _accept if _accept.visible else (_service if _service.visible else _next)
 	target.grab_focus.call_deferred()
+
+
+## Fala simples (chave) ou montada ([chave, args]); args que são chaves saem traduzidos.
+func _line_text(line: Variant) -> String:
+	if line is Array:
+		var args := {}
+		for k in line[1]:
+			args[k] = tr(line[1][k]) if line[1][k] is String else line[1][k]
+		return tr(line[0]).format(args)
+	return tr(line)
 
 
 func _advance() -> void:
@@ -122,7 +144,10 @@ func _build() -> void:
 		_town.request_service(_npc_id, String(_dialogue.get("service", "")))
 		close())
 	_accept = _button(buttons, func() -> void:
-		_town.request_accept(String(_dialogue.get("offer", "")))
+		if _dialogue.has("visitor"):
+			_town.request_accept_side(int(_dialogue.visitor))
+		else:
+			_town.request_accept(String(_dialogue.get("offer", "")))
 		close())
 	_accept.text = "DLG_ACCEPT"
 	_accept.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_INHERIT

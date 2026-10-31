@@ -1778,3 +1778,147 @@ msgstr "Baú (aperte para tirar)"
 
 msgid "STASH_HINT"
 msgstr "O baú é compartilhado por todos os seus personagens neste PC."
+
+msgid "VISITOR_PIRATE"
+msgstr "pirata"
+
+msgid "VISITOR_HUNTER"
+msgstr "caçador de recompensas"
+
+msgid "VISITOR_DESERTER"
+msgstr "desertor"
+
+msgid "VISITOR_MERCHANT"
+msgstr "mercador do mercado negro"
+
+msgid "VISITOR_STRANGER"
+msgstr "estranho encapuzado"
+
+msgid "VQ_HUNT_INTRO"
+msgstr "Pago {gold} moedas por {count} {target} de {area}. Traga a prova, ou nem volte."
+
+msgid "VQ_RUMOR_INTRO"
+msgstr "Ouvi dizer que tem coisa escondida em {area}. Pode ser tesouro, pode ser armadilha. Se for ouro, tem {gold} pra vocês."
+
+msgid "VQ_RETRIEVE_INTRO"
+msgstr "Perdi um caixote lá embaixo em {area}. Traga de volta e eu pago {gold}. Cuidado com o que vive lá."
+
+msgid "VQ_HUNT_TITLE"
+msgstr "Caçada: {count} {target}"
+
+msgid "VQ_RUMOR_TITLE"
+msgstr "Rumor em {area}"
+
+msgid "VQ_RETRIEVE_TITLE"
+msgstr "Carga perdida em {area}"
+
+msgid "PROP_RUMOR_SPOT"
+msgstr "Lugar do rumor"
+
+msgid "PROP_LOST_CARGO"
+msgstr "Carga perdida"
+
+msgid "TOAST_SIDE_ACCEPTED"
+msgstr "Nova missão secundária: {quest}"
+
+msgid "TOAST_SIDE_DONE"
+msgstr "Missão secundária concluída: {quest}"
+
+msgid "TOAST_SIDE_FULL"
+msgstr "Cinco missões secundárias ao mesmo tempo é o limite"
+
+msgid "TOAST_RUMOR_TREASURE"
+msgstr "O rumor era verdade: tesouro!"
+
+msgid "TOAST_RUMOR_AMBUSH"
+msgstr "Era armadilha! Emboscada!"
+
+msgid "TOAST_RUMOR_NOTHING"
+msgstr "Nada aqui. Só mais uma história de taverna."
+
+msgid "TOAST_BESTIARY_NEW"
+msgstr "Novo no bestiário: {name}"
+
+msgid "JOURNAL_TITLE"
+msgstr "Diário de missões"
+
+msgid "JOURNAL_ACTIVE"
+msgstr "Ativas"
+
+msgid "JOURNAL_DONE"
+msgstr "Concluídas"
+
+msgid "JOURNAL_NONE"
+msgstr "Nenhuma missão ativa"
+
+msgid "JOURNAL_WEAK"
+msgstr "({element} → fraco a {weak})"
+
+msgid "INV_JOURNAL"
+msgstr "Diário"
+
+msgid "BESTIARY_TITLE"
+msgstr "Bestiário"
+
+msgid "BESTIARY_NONE"
+msgstr "Nenhuma lenda ouvida ainda"
+
+msgid "BESTIARY_ENTRY"
+msgstr "{name} — {element} → fraco a {weak}"
+
+msgid "DLG_SERVICE_BESTIARY"
+msgstr "Bestiário"
+
+msgid "BEAST_PLAGUE_RAT"
+msgstr "Rato Pestilento"
+
+msgid "BEAST_PLAGUE_RAT_LEGEND"
+msgstr "Na Europa medieval, os ratos ficaram ligados à Peste Negra: as pulgas deles espalharam a peste que matou boa parte da população. Aqui são os filhotes da Rainha dos Ratos, contaminados pelo pacto dela com o demônio: maiores, de olhos vermelhos, atacam em enxames."
+
+msgid "BEAST_PLAGUE_RAT_HINT"
+msgstr "Rato é rato: tem medo de fogo. Leve uma tocha… ou um mago que saiba acender uma."
+
+msgid "BEAST_MUTANT_RAT"
+msgstr "Ratazana Mutante"
+
+msgid "BEAST_MUTANT_RAT_LEGEND"
+msgstr "A mesma superstição da peste; histórias de ratos do tamanho de cães nos porões são comuns em cidades portuárias. São os filhotes mais velhos da Rainha, do tamanho de um cão de caça."
+
+msgid "BEAST_MUTANT_RAT_HINT"
+msgstr "Tem rato lá embaixo do tamanho de um cachorro. Queima que ele corre."
+
+msgid "BEAST_PLAGUE_BAT"
+msgstr "Morcego Pestilento"
+
+msgid "BEAST_PLAGUE_BAT_LEGEND"
+msgstr "No folclore europeu, morcegos são mau agouro, ligados a bruxas e vampiros. Aqui dormem no teto dos túneis e caem sobre quem passa."
+
+msgid "BEAST_PLAGUE_BAT_HINT"
+msgstr "Olhe para cima nos túneis. Se o teto se mexer, são eles. Pedra neles, que despencam."
+
+msgid "BEAST_ACID_TOAD"
+msgstr "Sapo Ácido"
+
+msgid "BEAST_ACID_TOAD_LEGEND"
+msgstr "No folclore europeu, sapos eram ligados à bruxaria e ao veneno — e alguns sapos de verdade têm toxinas na pele. Aqui sapos inchados cospem ácido que corrói o chão."
+
+msgid "BEAST_ACID_TOAD_HINT"
+msgstr "O cuspe deles derrete bota. São bichos da água podre: um raio e estouram."
+
+msgid "BEAST_SEWER_GATOR"
+msgstr "Jacaré do Esgoto"
+
+msgid "BEAST_SEWER_GATOR_LEGEND"
+msgstr "A famosa lenda urbana dos jacarés nos esgotos: animais jogados pelos canos que cresceram no escuro. Aqui são enormes e pálidos, escondidos nos canais."
+
+msgid "BEAST_SEWER_GATOR_HINT"
+msgstr "Se a água borbulhar, saia de perto. Ele vive no fundo do canal. Raio na água e ele sobe de barriga pra cima."
+
+msgid "BEAST_DEMON_RAT_QUEEN"
+msgstr "Rainha dos Ratos"
+
+msgid "BEAST_DEMON_RAT_QUEEN_LEGEND"
+msgstr "No folclore alemão, um 'rei dos ratos' é um nó de ratos presos pelas caudas, presságio de peste. Aqui ela era a mãe de todos os ratos do esgoto; quando Tortuga envenenou e queimou seus filhotes, fez um pacto com um demônio, cresceu do tamanho de uma carroça e faz o ninho sobre o tesouro perdido da guerra, com a coroa do rei caído."
+
+msgid "BEAST_DEMON_RAT_QUEEN_HINT"
+msgstr "Só levem fogo. Ela já sabe o que é fogo — e odeia."

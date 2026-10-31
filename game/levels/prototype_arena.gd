@@ -76,6 +76,8 @@ var _dialogue_menu: DialogueMenu
 var _training_menu: TrainingMenu
 var _portal_menu: PortalMenu
 var _stash_menu: StashMenu
+var _journal_menu: JournalMenu
+var _bestiary_menu: BestiaryMenu
 ## Aumenta a cada reinício; timers da partida anterior são ignorados.
 var _run := 0
 ## Grupos de encontro (servidor): id -> {position, awake, members}.
@@ -123,6 +125,7 @@ func _ready() -> void:
 	town.name = "Town"
 	add_child(town)
 	town.state_changed.connect(_refresh_markers)
+	town.state_changed.connect(_refresh_visitors)
 	_camera = TopDownCamera.new()
 	add_child(_camera)
 	_camera.snap()
@@ -156,6 +159,13 @@ func _ready() -> void:
 	_portal_menu = PortalMenu.new()
 	training_layer.add_child(_portal_menu)
 	_portal_menu.bind(town)
+	_journal_menu = JournalMenu.new()
+	training_layer.add_child(_journal_menu)
+	_journal_menu.bind(town)
+	_inventory.journal_requested.connect(_journal_menu.show_journal)
+	_bestiary_menu = BestiaryMenu.new()
+	training_layer.add_child(_bestiary_menu)
+	_bestiary_menu.bind(town)
 	_stash_menu = StashMenu.new()
 	add_child(_stash_menu)
 	_stash_menu.bind(town)
@@ -184,6 +194,7 @@ func _ready() -> void:
 		_spawn_player(multiplayer.get_unique_id())
 		_start_run()
 		town.sync()
+		_add_spot_props()
 	else:
 		hud.show_connecting(true)
 
@@ -192,7 +203,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"menu") and not pause_menu.is_open and not _inventory.visible \
 			and not _trade_menu.is_open() and not _skill_menu.visible and not _shop_menu.visible \
 			and not _dialogue_menu.visible and not _training_menu.visible and not _portal_menu.visible \
-			and not _stash_menu.visible:
+			and not _stash_menu.visible and not _journal_menu.visible and not _bestiary_menu.visible:
 		pause_menu.open(not NetworkManager.is_online())
 		get_viewport().set_input_as_handled()
 	elif result == Result.VICTORY and event.is_action_pressed(&"attack"):
@@ -502,6 +513,7 @@ func _on_node_spawned(node: Node) -> void:
 func _on_peer_joined(peer_id: int) -> void:
 	_load_area.rpc_id(peer_id, area_id, "")
 	town.sync(peer_id)
+	_add_spot_props(peer_id)
 	var held: Player = _held.get(NetworkManager.client_id_of(peer_id))
 	if is_instance_valid(held):
 		# Voltou dentro do prazo: assume o mesmo herói (vida, lugar, cor).
@@ -579,7 +591,42 @@ func travel(to: String, entry: String, expedition_end := false) -> void:
 	_campaign.checkpoint = entry
 	_load_area.rpc(to, entry)
 	_start_run()
+	_add_spot_props()
 	SaveSystem.save_campaign(_campaign, true)
+
+
+## Lugares das missões secundárias (rumores, cargas perdidas) desta área.
+func _add_spot_props(peer_id := 0) -> void:
+	for prop in town.spot_props(area_id):
+		if peer_id == 0:
+			_add_prop.rpc(prop)
+		else:
+			_add_prop.rpc_id(peer_id, prop)
+
+
+## Emboscada do rumor falso: monstros acordados em volta do herói.
+func spawn_ambush(at: Vector3, monster_id: String, count: int) -> void:
+	for i in count:
+		var angle := TAU * i / count
+		var enemy: Enemy = _enemy_spawner.spawn({"monster_id": monster_id, "group": "",
+			"level": arena.get("area_level", 1), "position": at + Vector3(cos(angle), 0, sin(angle)) * 4.0,
+			"yaw": angle + PI})
+		enemy.wake(1.0, 1.0)
+
+
+## Visitantes sentados nas mesas da Taverna (mudam a cada volta).
+func _refresh_visitors() -> void:
+	if area_id != "tavern":
+		return
+	for prop in _props.duplicate():
+		if String(prop.id).begins_with("visitor_"):
+			_remove_prop(prop.id)
+	var seats: Array = GameData.visitors.seats
+	for i in mini(town.visitors.size(), seats.size()):
+		var visitor: Dictionary = town.visitors[i]
+		_build_prop({"id": "visitor_%d" % i, "kind": "npc", "npc": "visitor:%d" % i,
+			"position": seats[i], "visitor_name": visitor.name, "visitor_type": visitor.type})
+	_refresh_markers()
 
 
 ## Ponto de chegada na área (entradas em data/arenas.json; sem nome, o checkpoint).
@@ -753,6 +800,7 @@ func _groups_distance(a: Dictionary, b: Dictionary) -> float:
 ## guarda os grupos vencidos.
 func _on_enemy_died(enemy: Enemy) -> void:
 	_reward(enemy)
+	town.on_monster_killed(enemy.monster_id, area_id)
 	var group: Dictionary = _groups.get(enemy.group, {})
 	if group.is_empty():
 		return
@@ -1113,6 +1161,7 @@ func _build_props() -> void:
 	for prop: Dictionary in arena.get("props", []):
 		_build_prop(prop)
 	_refresh_markers()
+	_refresh_visitors()
 
 
 func _build_prop(prop: Dictionary) -> void:
@@ -1156,6 +1205,11 @@ func _build_prop(prop: Dictionary) -> void:
 				var npc: Dictionary = GameData.npcs.get(prop.npc, {})
 				label_key = npc.get("name_key", "")
 				var c: Array = npc.get("color", [0.6, 0.5, 0.4])
+				if prop.has("visitor_type"):
+					# Visitante: nome próprio (não traduzido) e cor do tipo.
+					var type: Dictionary = GameData.visitors.types.get(prop.visitor_type, {})
+					c = type.get("color", c)
+					label_key = "%s (%s)" % [prop.visitor_name, tr(type.get("name_key", ""))]
 				color = Color(c[0], c[1], c[2])
 				var body := CapsuleMesh.new()
 				body.radius = 0.35
@@ -1181,6 +1235,10 @@ func _build_prop(prop: Dictionary) -> void:
 				_prop_mesh(node, CylinderMesh.new(), Vector3(1.4, 0.06, 1.4), Vector3(0, 0.03, 0), Color(0.25, 0.22, 0.2))
 			"sign":
 				_prop_mesh(node, CylinderMesh.new(), Vector3(2.2, 0.3, 2.2), Vector3(0, 0.15, 0), Color(0.35, 0.35, 0.4))
+			"quest_spot":
+				# Lugar do rumor / carga perdida: caixote marcado.
+				_prop_mesh(node, BoxMesh.new(), Vector3(0.9, 0.7, 0.9), Vector3(0, 0.35, 0), Color(0.55, 0.42, 0.25))
+				_prop_mesh(node, CylinderMesh.new(), Vector3(1.6, 0.03, 1.6), Vector3(0, 0.02, 0), Color(0.9, 0.75, 0.3))
 			"stash":
 				# Baú acorrentado.
 				_prop_mesh(node, BoxMesh.new(), Vector3(1.4, 0.8, 0.9), Vector3(0, 0.4, 0), Color(0.4, 0.27, 0.15))

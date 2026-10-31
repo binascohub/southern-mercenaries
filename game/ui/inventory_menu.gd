@@ -12,6 +12,8 @@ extends CanvasLayer
 signal trade_requested
 ## Abrir a janela de habilidades (no controle não há tecla própria).
 signal skills_requested
+## Abrir o diário de missões.
+signal journal_requested
 
 const BAG_COLUMNS := 8
 ## Cabe em 1280 px: atributos 230 + slots 2 × 130 + bolsa 8 × 68 (+ espaços).
@@ -249,6 +251,13 @@ func _build() -> void:
 		close()
 		skills_requested.emit())
 	actions.add_child(skills_button)
+	var journal_button := Button.new()
+	journal_button.text = "INV_JOURNAL"
+	journal_button.custom_minimum_size = Vector2(200, 40)
+	journal_button.pressed.connect(func() -> void:
+		close()
+		journal_requested.emit())
+	actions.add_child(journal_button)
 
 
 func _text_label() -> Label:

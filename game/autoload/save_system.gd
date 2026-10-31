@@ -198,7 +198,9 @@ static func new_campaign() -> Dictionary:
 		"dead_groups": [], "checkpoint": "start", "checkpoints_reached": [],
 		"played_seconds": 0, "participants": [], "hero_names": {},
 		# Fase 6: missões ("active"/"done"), o que já abriu e o navio do dia no porto.
-		"quests": {}, "unlocked": [], "ship": {"day": 0, "seed": rng.randi(), "bought": {}}}
+		"quests": {}, "unlocked": [], "ship": {"day": 0, "seed": rng.randi(), "bought": {}},
+		# Visitantes da taverna, missões secundárias e o bestiário do grupo.
+		"visitors": [], "side_quests": {}, "bestiary": []}
 
 
 # --- Espaços de save (11-saves.md, seção 3) ---------------------------------------
@@ -251,6 +253,10 @@ func migrate_campaign(d: Dictionary) -> Dictionary:
 			d[key] = []
 	if not d.has("hero_names"):
 		d.hero_names = {}
+	if not d.has("visitors"):
+		d.visitors = []
+		d.side_quests = {}
+		d.bestiary = []
 	if not d.has("quests"):
 		d.quests = {}
 		d.unlocked = []

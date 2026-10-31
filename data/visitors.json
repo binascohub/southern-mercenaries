@@ -1,0 +1,129 @@
+{
+  "_comment": "Visitantes da Taverna (04-tortuga-e-missoes.md, seção 3): a cada volta para Tortuga chegam 2 a 4, cada um com uma história que vira missão secundária. names: nomes próprios (não traduzidos). Modelos das missões em quest_templates.",
+  "per_return": [
+    2,
+    4
+  ],
+  "max_active": 5,
+  "seats": [
+    [
+      -6.5,
+      2.5
+    ],
+    [
+      -2.5,
+      -1.5
+    ],
+    [
+      3.5,
+      1.5
+    ],
+    [
+      6.5,
+      -1
+    ]
+  ],
+  "names": [
+    "Bartolomeu",
+    "Inês Faca-Torta",
+    "Jacó Sal",
+    "Mirela",
+    "Old Tobias",
+    "Ulrich",
+    "Saskia",
+    "Teodoro",
+    "Valquíria",
+    "Nuno",
+    "Esteban",
+    "Greta"
+  ],
+  "types": {
+    "pirate": {
+      "name_key": "VISITOR_PIRATE",
+      "color": [
+        0.6,
+        0.2,
+        0.18
+      ],
+      "templates": [
+        "rumor",
+        "retrieve"
+      ]
+    },
+    "hunter": {
+      "name_key": "VISITOR_HUNTER",
+      "color": [
+        0.35,
+        0.45,
+        0.25
+      ],
+      "templates": [
+        "hunt"
+      ]
+    },
+    "deserter": {
+      "name_key": "VISITOR_DESERTER",
+      "color": [
+        0.45,
+        0.45,
+        0.5
+      ],
+      "templates": [
+        "rumor"
+      ]
+    },
+    "merchant": {
+      "name_key": "VISITOR_MERCHANT",
+      "color": [
+        0.65,
+        0.55,
+        0.2
+      ],
+      "templates": [
+        "retrieve"
+      ]
+    },
+    "stranger": {
+      "name_key": "VISITOR_STRANGER",
+      "color": [
+        0.25,
+        0.22,
+        0.3
+      ],
+      "templates": [
+        "hunt",
+        "rumor"
+      ]
+    }
+  },
+  "quest_templates": {
+    "hunt": {
+      "intro_key": "VQ_HUNT_INTRO",
+      "count": [
+        4,
+        8
+      ],
+      "gold_per_level": 40,
+      "xp_per_level": 60
+    },
+    "rumor": {
+      "intro_key": "VQ_RUMOR_INTRO",
+      "outcomes": {
+        "treasure": 50,
+        "ambush": 30,
+        "nothing": 20
+      },
+      "gold_per_level": 60,
+      "xp_per_level": 40,
+      "ambush": {
+        "monster": "sewer_rat",
+        "count": 5
+      }
+    },
+    "retrieve": {
+      "intro_key": "VQ_RETRIEVE_INTRO",
+      "gold_per_level": 50,
+      "xp_per_level": 40
+    }
+  }
+}

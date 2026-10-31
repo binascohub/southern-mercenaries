@@ -37,6 +37,7 @@ func _ready() -> void:
 	_test_knight()
 	_test_shops()
 	_test_town_rules()
+	_test_side_quests()
 	_test_names()
 	_clean(TEST_ROOT)
 	if _failures == 0:
@@ -646,6 +647,32 @@ func _test_town_rules() -> void:
 	var old := {"save_version": 1, "id": "antiga", "area": "prototype_arena"}
 	var migrated := SaveSystem.migrate_campaign(old)
 	_check(migrated.has("quests") and migrated.has("ship") and migrated.unlocked == [], "campanha antiga ganha missões e navio")
+
+
+func _test_side_quests() -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 11
+	var campaign := SaveSystem.new_campaign()
+	_check(SideQuests.generate_visitors(campaign, rng).is_empty(), "sem mapa liberado, sem visitantes")
+	campaign.unlocked = ["sewer_entrance"]
+	var templates := {}
+	for i in 30:
+		var visitors := SideQuests.generate_visitors(campaign, rng)
+		_check(visitors.size() >= 2 and visitors.size() <= 4, "2 a 4 visitantes por volta")
+		for v: Dictionary in visitors:
+			var q: Dictionary = v.quest
+			templates[q.template] = true
+			_check(q.template in GameData.visitors.types[v.type].templates, "o visitante conta o tipo de história dele")
+			_check(GameData.bestiary.has(q.target) and q.area == "prototype_arena", "história de uma criatura do mapa")
+			_check(SideQuests.visitor_lines(v).size() == 3, "roteiro: o que é, lenda e pista")
+			if q.template == "hunt":
+				_check(int(q.count) >= 4 and int(q.count) <= 8 and int(q.progress) == 0, "caçada de 4 a 8")
+			if q.template == "rumor":
+				_check(q.outcome in ["treasure", "ambush", "nothing"], "rumor: tesouro, emboscada ou nada")
+	_check(templates.size() == 3, "os três modelos aparecem: %s" % [templates.keys()])
+	_check(SideQuests.creatures_in("prototype_arena").size() == 2, "criaturas do bestiário que existem na área de teste")
+	var title := SideQuests.title({"template": "hunt", "target": "plague_rat", "area": "prototype_arena", "count": 5, "progress": 2, "status": "active"})
+	_check(title.contains("2/5"), "título da caçada com progresso: %s" % title)
 
 
 func _test_names() -> void:

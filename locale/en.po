@@ -1778,3 +1778,147 @@ msgstr "Stash (press to take)"
 
 msgid "STASH_HINT"
 msgstr "The stash is shared by all your characters on this PC."
+
+msgid "VISITOR_PIRATE"
+msgstr "pirate"
+
+msgid "VISITOR_HUNTER"
+msgstr "bounty hunter"
+
+msgid "VISITOR_DESERTER"
+msgstr "deserter"
+
+msgid "VISITOR_MERCHANT"
+msgstr "black-market merchant"
+
+msgid "VISITOR_STRANGER"
+msgstr "hooded stranger"
+
+msgid "VQ_HUNT_INTRO"
+msgstr "I'll pay {gold} coins for {count} {target} from {area}. Bring proof, or don't come back."
+
+msgid "VQ_RUMOR_INTRO"
+msgstr "I heard there's something hidden in {area}. Could be treasure, could be a trap. If it's gold, there's {gold} in it for you."
+
+msgid "VQ_RETRIEVE_INTRO"
+msgstr "A crate of mine got lost down in {area}. Bring it back and I'll pay {gold}. Mind what lives down there."
+
+msgid "VQ_HUNT_TITLE"
+msgstr "Hunt: {count} {target}"
+
+msgid "VQ_RUMOR_TITLE"
+msgstr "Rumor in {area}"
+
+msgid "VQ_RETRIEVE_TITLE"
+msgstr "Lost cargo in {area}"
+
+msgid "PROP_RUMOR_SPOT"
+msgstr "Spot from the rumor"
+
+msgid "PROP_LOST_CARGO"
+msgstr "Lost cargo"
+
+msgid "TOAST_SIDE_ACCEPTED"
+msgstr "New side quest: {quest}"
+
+msgid "TOAST_SIDE_DONE"
+msgstr "Side quest complete: {quest}"
+
+msgid "TOAST_SIDE_FULL"
+msgstr "Five side quests at once is the limit"
+
+msgid "TOAST_RUMOR_TREASURE"
+msgstr "The rumor was true: treasure!"
+
+msgid "TOAST_RUMOR_AMBUSH"
+msgstr "It was a trap! Ambush!"
+
+msgid "TOAST_RUMOR_NOTHING"
+msgstr "Nothing here. Just another tavern story."
+
+msgid "TOAST_BESTIARY_NEW"
+msgstr "New in the bestiary: {name}"
+
+msgid "JOURNAL_TITLE"
+msgstr "Quest journal"
+
+msgid "JOURNAL_ACTIVE"
+msgstr "Active"
+
+msgid "JOURNAL_DONE"
+msgstr "Completed"
+
+msgid "JOURNAL_NONE"
+msgstr "No active quests"
+
+msgid "JOURNAL_WEAK"
+msgstr "({element} → weak to {weak})"
+
+msgid "INV_JOURNAL"
+msgstr "Journal"
+
+msgid "BESTIARY_TITLE"
+msgstr "Bestiary"
+
+msgid "BESTIARY_NONE"
+msgstr "No legend heard yet"
+
+msgid "BESTIARY_ENTRY"
+msgstr "{name} — {element} → weak to {weak}"
+
+msgid "DLG_SERVICE_BESTIARY"
+msgstr "Bestiary"
+
+msgid "BEAST_PLAGUE_RAT"
+msgstr "Plague Rat"
+
+msgid "BEAST_PLAGUE_RAT_LEGEND"
+msgstr "In medieval Europe rats were tied to the Black Death: their fleas spread the plague that killed much of the population. Here they are the Rat Queen's young, tainted by her pact with the demon — bigger, red-eyed, attacking in swarms."
+
+msgid "BEAST_PLAGUE_RAT_HINT"
+msgstr "A rat's a rat: it fears fire. Bring a torch... or a mage who knows how to light one."
+
+msgid "BEAST_MUTANT_RAT"
+msgstr "Mutant Rat"
+
+msgid "BEAST_MUTANT_RAT_LEGEND"
+msgstr "The same plague superstition; tales of rats as big as dogs in the cellars are common in port towns. These are the Queen's older young, grown to the size of a hunting dog."
+
+msgid "BEAST_MUTANT_RAT_HINT"
+msgstr "There's a rat down there the size of a dog. Burn it and it runs."
+
+msgid "BEAST_PLAGUE_BAT"
+msgstr "Plague Bat"
+
+msgid "BEAST_PLAGUE_BAT_LEGEND"
+msgstr "In European folklore bats are an ill omen, tied to witches and vampires. Here they sleep on the tunnel ceilings and drop on whoever passes."
+
+msgid "BEAST_PLAGUE_BAT_HINT"
+msgstr "Look up in the tunnels. If the ceiling moves, it's them. Stones at them and they drop."
+
+msgid "BEAST_ACID_TOAD"
+msgstr "Acid Toad"
+
+msgid "BEAST_ACID_TOAD_LEGEND"
+msgstr "In European folklore toads were tied to witchcraft and poison — and some real toads have toxic skin. Here swollen toads spit acid that eats the floor."
+
+msgid "BEAST_ACID_TOAD_HINT"
+msgstr "Their spit melts boots. They're creatures of foul water: one lightning bolt and they burst."
+
+msgid "BEAST_SEWER_GATOR"
+msgstr "Sewer Gator"
+
+msgid "BEAST_SEWER_GATOR_LEGEND"
+msgstr "The famous urban legend of alligators in the sewers: animals flushed down the pipes that grew in the dark. Here they are huge and pale, hidden in the channels."
+
+msgid "BEAST_SEWER_GATOR_HINT"
+msgstr "If the water bubbles, get away. It lives at the bottom of the channel. Lightning in the water and it comes up belly-up."
+
+msgid "BEAST_DEMON_RAT_QUEEN"
+msgstr "Rat Queen"
+
+msgid "BEAST_DEMON_RAT_QUEEN_LEGEND"
+msgstr "In German folklore a 'rat king' is a knot of rats bound by their tails, an omen of plague. Here she was the mother of all the sewer's rats; when Tortuga poisoned and burned her young, she made a pact with a demon, grew as big as a cart and nests on the lost war treasure, wearing the fallen king's crown."
+
+msgid "BEAST_DEMON_RAT_QUEEN_HINT"
+msgstr "Just bring fire. She already knows what fire is — and she hates it."

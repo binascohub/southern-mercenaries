@@ -1,5 +1,5 @@
 {
-  "_comment": "NPCs fixos da Taverna (04-tortuga-e-missoes.md, seção 3). dialogues: o primeiro cujo \"when\" bate é o usado; offer = missão oferecida no fim; service = serviço (rest: descansar).",
+  "_comment": "NPCs fixos da Taverna (04-tortuga-e-missoes.md, seção 3). dialogues: o primeiro cujo \"when\" bate é o usado; offer = missão oferecida no fim; service = serviço (rest: descansar). bestiary: criaturas que entram no bestiário ao ouvir a conversa.",
   "old_drunk": {
     "name_key": "NPC_OLD_DRUNK",
     "color": [
@@ -19,7 +19,10 @@
           "DLG_OLD_DRUNK_4",
           "DLG_OLD_DRUNK_5"
         ],
-        "offer": "sewer_treasure"
+        "offer": "sewer_treasure",
+        "bestiary": [
+          "demon_rat_queen"
+        ]
       },
       {
         "when": {
@@ -69,13 +72,19 @@
         "lines": [
           "DLG_BARD_QUEEN_1",
           "DLG_BARD_QUEEN_2"
-        ]
+        ],
+        "bestiary": [
+          "plague_rat",
+          "mutant_rat"
+        ],
+        "service": "bestiary"
       },
       {
         "when": {},
         "lines": [
           "DLG_BARD_1"
-        ]
+        ],
+        "service": "bestiary"
       }
     ]
   },

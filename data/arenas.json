@@ -168,6 +168,24 @@
         "entry": "sewer",
         "expedition_end": true
       }
+    ],
+    "quest_spots": [
+      [
+        0,
+        -12
+      ],
+      [
+        -8,
+        -42
+      ],
+      [
+        8,
+        -30
+      ],
+      [
+        -8,
+        -60
+      ]
     ]
   },
   "tortuga": {
@@ -496,7 +514,7 @@
     ]
   },
   "tavern": {
-    "_comment": "Interior da Taverna do Corvo Afogado (nome proposto, 04-tortuga-e-missoes.md, seção 3): balcão com a Taberneira, o Velho Bêbado numa mesa, o Bardo no palco. A campanha começa aqui.",
+    "_comment": "Interior da Taverna do Corvo Afogado (nome proposto, 04-tortuga-e-missoes.md, seção 3): balcão com a Taberneira, o Velho Bêbado numa mesa, o Bardo no palco. A campanha começa aqui. Visitantes sentam nos lugares de data/visitors.json (seats).",
     "name_key": "AREA_TAVERN",
     "town": true,
     "player_class": "mage",

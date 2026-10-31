@@ -1777,3 +1777,147 @@ msgstr ""
 
 msgid "STASH_HINT"
 msgstr ""
+
+msgid "VISITOR_PIRATE"
+msgstr ""
+
+msgid "VISITOR_HUNTER"
+msgstr ""
+
+msgid "VISITOR_DESERTER"
+msgstr ""
+
+msgid "VISITOR_MERCHANT"
+msgstr ""
+
+msgid "VISITOR_STRANGER"
+msgstr ""
+
+msgid "VQ_HUNT_INTRO"
+msgstr ""
+
+msgid "VQ_RUMOR_INTRO"
+msgstr ""
+
+msgid "VQ_RETRIEVE_INTRO"
+msgstr ""
+
+msgid "VQ_HUNT_TITLE"
+msgstr ""
+
+msgid "VQ_RUMOR_TITLE"
+msgstr ""
+
+msgid "VQ_RETRIEVE_TITLE"
+msgstr ""
+
+msgid "PROP_RUMOR_SPOT"
+msgstr ""
+
+msgid "PROP_LOST_CARGO"
+msgstr ""
+
+msgid "TOAST_SIDE_ACCEPTED"
+msgstr ""
+
+msgid "TOAST_SIDE_DONE"
+msgstr ""
+
+msgid "TOAST_SIDE_FULL"
+msgstr ""
+
+msgid "TOAST_RUMOR_TREASURE"
+msgstr ""
+
+msgid "TOAST_RUMOR_AMBUSH"
+msgstr ""
+
+msgid "TOAST_RUMOR_NOTHING"
+msgstr ""
+
+msgid "TOAST_BESTIARY_NEW"
+msgstr ""
+
+msgid "JOURNAL_TITLE"
+msgstr ""
+
+msgid "JOURNAL_ACTIVE"
+msgstr ""
+
+msgid "JOURNAL_DONE"
+msgstr ""
+
+msgid "JOURNAL_NONE"
+msgstr ""
+
+msgid "JOURNAL_WEAK"
+msgstr ""
+
+msgid "INV_JOURNAL"
+msgstr ""
+
+msgid "BESTIARY_TITLE"
+msgstr ""
+
+msgid "BESTIARY_NONE"
+msgstr ""
+
+msgid "BESTIARY_ENTRY"
+msgstr ""
+
+msgid "DLG_SERVICE_BESTIARY"
+msgstr ""
+
+msgid "BEAST_PLAGUE_RAT"
+msgstr ""
+
+msgid "BEAST_PLAGUE_RAT_LEGEND"
+msgstr ""
+
+msgid "BEAST_PLAGUE_RAT_HINT"
+msgstr ""
+
+msgid "BEAST_MUTANT_RAT"
+msgstr ""
+
+msgid "BEAST_MUTANT_RAT_LEGEND"
+msgstr ""
+
+msgid "BEAST_MUTANT_RAT_HINT"
+msgstr ""
+
+msgid "BEAST_PLAGUE_BAT"
+msgstr ""
+
+msgid "BEAST_PLAGUE_BAT_LEGEND"
+msgstr ""
+
+msgid "BEAST_PLAGUE_BAT_HINT"
+msgstr ""
+
+msgid "BEAST_ACID_TOAD"
+msgstr ""
+
+msgid "BEAST_ACID_TOAD_LEGEND"
+msgstr ""
+
+msgid "BEAST_ACID_TOAD_HINT"
+msgstr ""
+
+msgid "BEAST_SEWER_GATOR"
+msgstr ""
+
+msgid "BEAST_SEWER_GATOR_LEGEND"
+msgstr ""
+
+msgid "BEAST_SEWER_GATOR_HINT"
+msgstr ""
+
+msgid "BEAST_DEMON_RAT_QUEEN"
+msgstr ""
+
+msgid "BEAST_DEMON_RAT_QUEEN_LEGEND"
+msgstr ""
+
+msgid "BEAST_DEMON_RAT_QUEEN_HINT"
+msgstr ""

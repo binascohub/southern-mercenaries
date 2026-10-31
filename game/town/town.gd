@@ -15,6 +15,9 @@ signal dialogue_opened(npc_id: String, index: int)
 signal training_opened
 signal portals_opened
 signal stash_opened
+signal bestiary_opened
+## Conversa montada (visitantes): nome, falas [[chave, args]], índice do visitante.
+signal visitor_opened(name: String, lines: Array, visitor_index: int)
 
 const REACH := 4.0
 
@@ -24,6 +27,10 @@ var unlocked: Array = []
 var ship := {}
 ## Checkpoints já alcançados nos mapas ("area:checkpoint"), para o Macumbeiro.
 var reached: Array = []
+## Visitantes da taverna, missões secundárias e bestiário do grupo.
+var visitors: Array = []
+var side_quests := {}
+var bestiary: Array = []
 
 
 func _arena() -> Node:
@@ -38,7 +45,8 @@ func _campaign() -> Dictionary:
 
 func sync(peer_id := 0) -> void:
 	var c := _campaign()
-	var args := [c.get("quests", {}), c.get("unlocked", []), c.get("ship", {}), c.get("checkpoints_reached", [])]
+	var args := [c.get("quests", {}), c.get("unlocked", []), c.get("ship", {}), c.get("checkpoints_reached", []),
+		c.get("visitors", []), c.get("side_quests", {}), c.get("bestiary", [])]
 	if peer_id == 0:
 		rpc.callv([&"_set_state"] + args)
 	else:
@@ -46,11 +54,15 @@ func sync(peer_id := 0) -> void:
 
 
 @rpc("authority", "call_local", "reliable")
-func _set_state(new_quests: Dictionary, new_unlocked: Array, new_ship: Dictionary, new_reached: Array) -> void:
+func _set_state(new_quests: Dictionary, new_unlocked: Array, new_ship: Dictionary, new_reached: Array,
+		new_visitors: Array, new_side: Dictionary, new_bestiary: Array) -> void:
 	quests = new_quests
 	unlocked = new_unlocked
 	ship = new_ship
 	reached = new_reached
+	visitors = new_visitors
+	side_quests = new_side
+	bestiary = new_bestiary
 	state_changed.emit()
 
 
@@ -74,8 +86,10 @@ static func dialogue_index(npc_id: String, quest_states: Dictionary) -> int:
 	return -1
 
 
-## O NPC tem uma missão para oferecer (marca "!").
+## O NPC tem uma missão para oferecer (marca "!"). Visitantes sempre têm.
 func has_offer(npc_id: String) -> bool:
+	if npc_id.begins_with("visitor:"):
+		return true
 	var i := dialogue_index(npc_id, quests)
 	return i >= 0 and GameData.npcs[npc_id].dialogues[i].has("offer")
 
@@ -101,8 +115,19 @@ func interact(player: Player, prop: Dictionary) -> void:
 	match String(prop.kind):
 		"shop":
 			_send(player.peer_id, &"_open_shop", [String(prop.shop)])
+		"npc" when String(prop.npc).begins_with("visitor:"):
+			var index := int(String(prop.npc).get_slice(":", 1))
+			var list: Array = _campaign().get("visitors", [])
+			if index < list.size():
+				_send(player.peer_id, &"_open_visitor", [index])
 		"npc":
-			_send(player.peer_id, &"_open_dialogue", [String(prop.npc), dialogue_index(prop.npc, _campaign().get("quests", {}))])
+			var index := dialogue_index(prop.npc, _campaign().get("quests", {}))
+			_send(player.peer_id, &"_open_dialogue", [String(prop.npc), index])
+			# Ouvir a história põe as criaturas no bestiário.
+			if index >= 0:
+				learn(GameData.npcs[prop.npc].dialogues[index].get("bestiary", []))
+		"quest_spot":
+			resolve_spot(player, String(prop.quest))
 		"sign":
 			_arena()._toast_to(player, String(prop.get("text_key", "")), {})
 		"training":
@@ -285,6 +310,9 @@ func _rpc_service(npc_id: String, service: String) -> void:
 	var player := _sender()
 	if not multiplayer.is_server() or player == null or _arena().prop_near(player, "npc", npc_id, REACH).is_empty():
 		return
+	if service == "bestiary":
+		_send(player.peer_id, &"_open_bestiary", [])
+		return
 	if service == "portals":
 		_send(player.peer_id, &"_open_portals", [])
 		return
@@ -371,11 +399,131 @@ func complete_quests_in(area_id: String) -> void:
 	sync()
 
 
-## Voltou a Tortuga: chega outro navio (estoque pirata e preços dos valiosos novos).
+## Voltou a Tortuga: chega outro navio (estoque pirata e preços dos valiosos novos)
+## e outros visitantes sentam na taverna.
 func new_ship(rng: RandomNumberGenerator) -> void:
 	var c := _campaign()
 	c.ship = Shops.new_ship(int(c.get("ship", {}).get("day", 0)) + 1, rng)
+	c.visitors = SideQuests.generate_visitors(c, rng)
 	sync()
+
+
+# --- Bestiário e missões secundárias (servidor) ---------------------------------------
+
+## Criaturas cuja história o grupo ouviu entram no bestiário.
+func learn(ids: Array) -> void:
+	var c := _campaign()
+	var changed := false
+	for id in ids:
+		if GameData.bestiary.has(id) and id not in c.bestiary:
+			c.bestiary.append(id)
+			_arena()._toast_all("TOAST_BESTIARY_NEW", {"name": GameData.bestiary[id].name_key})
+			changed = true
+	if changed:
+		sync()
+
+
+@rpc("authority", "reliable")
+func _open_bestiary() -> void:
+	bestiary_opened.emit()
+
+
+@rpc("authority", "reliable")
+func _open_visitor(index: int) -> void:
+	if index < visitors.size():
+		var visitor: Dictionary = visitors[index]
+		visitor_opened.emit(String(visitor.name), SideQuests.visitor_lines(visitor), index)
+
+
+func request_accept_side(visitor_index: int) -> void:
+	_ask(&"_rpc_accept_side", [visitor_index])
+
+
+## Aceitar a história de um visitante: vira missão ativa (até 5); ele vai embora
+## e a criatura entra no bestiário.
+@rpc("any_peer", "reliable")
+func _rpc_accept_side(visitor_index: int) -> void:
+	var player := _sender()
+	var c := _campaign()
+	var list: Array = c.get("visitors", [])
+	if not multiplayer.is_server() or player == null or visitor_index < 0 or visitor_index >= list.size() \
+			or _arena().prop_near(player, "npc", "visitor:%d" % visitor_index, REACH).is_empty():
+		return
+	if SideQuests.active(c.side_quests).size() >= int(GameData.visitors.max_active):
+		_arena()._toast_to(player, "TOAST_SIDE_FULL", {})
+		return
+	var quest: Dictionary = list[visitor_index].quest
+	quest.status = "active"
+	c.side_quests[quest.id] = quest
+	list.remove_at(visitor_index)
+	SaveSystem.save_campaign(c, true)
+	learn([quest.target])
+	sync()
+	_arena()._toast_all("TOAST_SIDE_ACCEPTED", {"quest": SideQuests.title(quest)})
+
+
+## Monstro morto: conta para as caçadas ativas dessa criatura nesta área.
+func on_monster_killed(monster_id: String, area_id: String) -> void:
+	var c := _campaign()
+	for quest: Dictionary in SideQuests.active(c.get("side_quests", {})):
+		if quest.template != "hunt" or quest.area != area_id:
+			continue
+		if monster_id in GameData.bestiary.get(quest.target, {}).get("monsters", []):
+			quest.progress = int(quest.progress) + 1
+			if int(quest.progress) >= int(quest.count):
+				_complete_side(quest)
+			sync()
+
+
+## Lugares de rumor e cargas perdidas das missões ativas nesta área.
+func spot_props(area_id: String) -> Array:
+	var props := []
+	var spots: Array = GameData.arenas.get(area_id, {}).get("quest_spots", [])
+	for quest: Dictionary in SideQuests.active(_campaign().get("side_quests", {})):
+		if quest.area != area_id or not quest.has("spot") or int(quest.spot) >= spots.size():
+			continue
+		props.append({"id": "spot_" + String(quest.id), "kind": "quest_spot", "quest": quest.id,
+			"name_key": "PROP_LOST_CARGO" if quest.template == "retrieve" else "PROP_RUMOR_SPOT",
+			"position": spots[int(quest.spot)]})
+	return props
+
+
+## Chegou ao lugar: carga achada, ou o rumor era verdade (tesouro), armadilha
+## (emboscada) ou nada.
+func resolve_spot(player: Player, quest_id: String) -> void:
+	var c := _campaign()
+	var quest: Dictionary = c.get("side_quests", {}).get(quest_id, {})
+	if quest.is_empty() or quest.status != "active":
+		return
+	_arena()._remove_prop.rpc("spot_" + quest_id)
+	if quest.template == "rumor":
+		match String(quest.outcome):
+			"ambush":
+				var ambush: Dictionary = GameData.visitors.quest_templates.rumor.ambush
+				_arena().spawn_ambush(player.global_position, String(ambush.monster), int(ambush.count))
+				_arena()._toast_all("TOAST_RUMOR_AMBUSH", {})
+				quest.gold = 0
+				quest.xp = 0
+			"nothing":
+				_arena()._toast_all("TOAST_RUMOR_NOTHING", {})
+				quest.gold = 0
+				quest.xp = 0
+			_:
+				_arena()._toast_all("TOAST_RUMOR_TREASURE", {})
+				for p: Player in get_tree().get_nodes_in_group(&"players"):
+					if p.character:
+						p.grant(0, 0, [Items.stack(Items.VALUABLE, "silver_goblet")])
+	_complete_side(quest)
+	sync()
+
+
+func _complete_side(quest: Dictionary) -> void:
+	quest.status = "done"
+	for p: Player in get_tree().get_nodes_in_group(&"players"):
+		if p.character:
+			p.grant(int(quest.xp), int(quest.gold))
+	_arena()._toast_all("TOAST_SIDE_DONE", {"quest": SideQuests.title(quest)})
+	SaveSystem.save_campaign(_campaign(), true)
 
 
 func _send(peer_id: int, method: StringName, args: Array) -> void:
