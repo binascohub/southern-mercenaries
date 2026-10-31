@@ -745,7 +745,7 @@ func _town_test() -> void:
 	# Pote de barro: modelo do kit pela posição; quebrado, os cacos voam.
 	var pot := Enemy.create({"monster_id": "pot", "position": Vector3(1.3, -50, 0.7)})
 	add_child(pot)
-	var shards_before := _arena._area_root.get_child_count()
+	var shards_before: int = _arena._area_root.get_child_count()
 	check.call(pot._kit_piece in GameData.monsters.pot.pieces and Kit.has(pot._kit_piece + "_Shards"), "pote com modelo e cacos (%s)" % pot._kit_piece)
 	pot.take_damage(1e9)
 	check.call(_arena._area_root.get_child_count() > shards_before, "pote quebrado solta os cacos")
