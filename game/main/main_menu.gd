@@ -53,6 +53,9 @@ func _ready() -> void:
 	_continue_button = _main.add_button("MENU_CONTINUE", func() -> void:
 		_start(NetworkManager.prepare_solo, Session.continue_or_new_campaign))
 	_main.add_button("MENU_NEW_CAMPAIGN", func() -> void:
+		if not SaveSystem.can_create_campaign():
+			_show_message(tr("CAMPAIGN_SLOTS_FULL").format({"max": SaveSystem.slot_limit("campaigns")}))
+			return
 		_start(NetworkManager.prepare_solo, Session.start_new_campaign))
 	_load_button = _main.add_button("MENU_LOAD_CAMPAIGN", _open_campaigns)
 	_main.add_button("MENU_HOST_LAN", func() -> void:
@@ -83,7 +86,10 @@ func _ready() -> void:
 
 	_campaigns = CampaignMenu.new()
 	add_child(_campaigns)
-	_campaigns.closed.connect(func() -> void: _main.open(_load_button))
+	_campaigns.closed.connect(func() -> void:
+		# Pode ter apagado campanhas: atualiza Continuar / Carregar.
+		_refresh_hero()
+		_main.open())
 	_campaigns.chosen.connect(func(c: Dictionary, host: bool) -> void:
 		_start(NetworkManager.prepare_host if host else NetworkManager.prepare_solo,
 			Session.use_campaign.bind(c)))
@@ -147,9 +153,14 @@ func _choose_language(code: String) -> void:
 	_main.open()
 
 
+func _show_message(text: String) -> void:
+	_message.text = text
+	_message.visible = text != ""
+
+
 func _open_campaigns() -> void:
 	_main.visible = false
-	_campaigns.open(_load_button)
+	_campaigns.open()
 
 
 func _open_options() -> void:

@@ -2,7 +2,8 @@
 class_name CampaignMenu
 extends MenuPanel
 ## Carregar campanha (11-saves.md, seções 3 e 5): lista as campanhas deste PC,
-## da mais recente para a mais antiga, com data, tempo de jogo, área e heróis.
+## da mais recente para a mais antiga, com miniatura, data, tempo de jogo,
+## área e heróis. "Apagar" pede confirmação (apertar de novo) e libera o espaço.
 ## Só o host continua uma campanha; a opção "hospedar na LAN" abre a mesma
 ## campanha para os amigos entrarem.
 
@@ -30,19 +31,26 @@ func _ready() -> void:
 
 
 func _on_open() -> void:
-	for child in _list.get_children():
-		child.queue_free()
+	clear(_list)
 	var campaigns := SaveSystem.list_campaigns()
 	_empty.visible = campaigns.is_empty()
 	for c in campaigns:
+		var row := HBoxContainer.new()
+		_list.add_child(row)
 		var button := Button.new()
 		button.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 		button.custom_minimum_size = Vector2(420, 56)
+		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		button.text = describe(c)
+		var thumb := SaveSystem.load_thumbnail(c.id)
+		if thumb:
+			button.icon = ImageTexture.create_from_image(thumb)
+			button.add_theme_constant_override("icon_max_width", 112)
 		button.pressed.connect(func() -> void:
 			visible = false
 			chosen.emit(c, _host.button_pressed))
-		_list.add_child(button)
+		row.add_child(button)
+		row.add_child(delete_button(func() -> void: SaveSystem.delete_campaign(c.id)))
 
 
 ## Uma linha por campanha: área, data, tempo de jogo e heróis.

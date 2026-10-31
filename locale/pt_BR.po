@@ -644,3 +644,15 @@ msgstr "Sem espaço na bolsa para esta troca"
 
 msgid "TRADE_EMPTY"
 msgstr "Nada foi oferecido ainda"
+
+msgid "SAVE_DELETE"
+msgstr "Apagar"
+
+msgid "SAVE_DELETE_CONFIRM"
+msgstr "Apagar? Aperte de novo"
+
+msgid "CHAR_SLOTS_FULL"
+msgstr "Os {max} espaços de personagem estão ocupados. Apague um personagem para criar outro."
+
+msgid "CAMPAIGN_SLOTS_FULL"
+msgstr "Os {max} espaços de campanha estão ocupados. Apague uma em Carregar campanha para começar outra."

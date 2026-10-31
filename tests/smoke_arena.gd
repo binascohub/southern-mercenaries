@@ -205,12 +205,19 @@ func _collect_loot(player: Player) -> void:
 		if item != null and item.kind == "equipment":
 			items += 1
 	var gear := c.equipped().size()
+	# Host/solo: a campanha gravada lembra o checkpoint alcançado e os heróis.
+	var campaign_ok := true
+	if _role != "client":
+		var saved_campaign := SaveSystem.load_campaign(Session.campaign.get("id", ""))
+		campaign_ok = "prototype_arena:start" in saved_campaign.get("checkpoints_reached", []) \
+			and saved_campaign.get("hero_names", {}).has(c.data.id)
 	var ok: bool = _max_players_seen >= _expected_players and _max_enemies_seen > 0 \
 		and (_resumed > 0 or not _expect_resume) \
 		and int(c.data.level) >= 2 and int(c.data.gold) > 0 and items + gear > 1 and gear >= 2 \
-		and saved != null and saved.data.level == c.data.level and saved.data.gold == c.data.gold
-	_report(ok, "vitória com %d jogador(es), %d retomado(s); nível %d, ouro %d, %d itens na bolsa, %d equipados, save no disco: %s" % [
-		_max_players_seen, _resumed, c.data.level, c.data.gold, items, gear, saved != null])
+		and saved != null and saved.data.level == c.data.level and saved.data.gold == c.data.gold \
+		and campaign_ok
+	_report(ok, "vitória com %d jogador(es), %d retomado(s); nível %d, ouro %d, %d itens na bolsa, %d equipados, save no disco: %s, campanha: %s" % [
+		_max_players_seen, _resumed, c.data.level, c.data.gold, items, gear, saved != null, campaign_ok])
 
 
 func _revive_test() -> void:

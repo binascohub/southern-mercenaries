@@ -23,6 +23,13 @@ func select_character(c: CharacterData) -> void:
 	Settings.set_value("last_character", c.data.id)
 
 
+## O personagem foi apagado: deixa de ser o escolhido.
+func forget_character(id: String) -> void:
+	if character and character.data.id == id:
+		character = null
+		Settings.set_value("last_character", "")
+
+
 ## Personagem para entrar numa partida (cria um padrão se o jogador não tiver).
 func ensure_character() -> CharacterData:
 	if character == null:

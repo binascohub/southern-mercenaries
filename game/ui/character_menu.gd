@@ -3,7 +3,8 @@ class_name CharacterMenu
 extends MenuPanel
 ## Escolher um personagem salvo ou criar um novo (11-saves.md; 02-personagens.md:
 ## classe, sexo e nome). Por enquanto só o Mago é jogável; as outras classes
-## entram na Fase 5. O nome é livre e não é traduzido.
+## entram na Fase 5. O nome é livre e não é traduzido. Até 12 personagens
+## por PC (11-saves.md, seção 3); "Apagar" libera um espaço.
 
 signal chosen
 
@@ -13,6 +14,8 @@ var _name: LineEdit
 var _sex: OptionButton
 var _class: OptionButton
 var _class_ids: Array[String] = []
+var _create_button: Button
+var _full: Label
 
 
 func _ready() -> void:
@@ -40,26 +43,40 @@ func _ready() -> void:
 	_name.max_length = CharacterData.NAME_MAX
 	_name.custom_minimum_size = Vector2(320, 40)
 	_create.add_child(_name)
-	var create_button := Button.new()
-	create_button.text = "CHAR_CREATE"
-	create_button.custom_minimum_size = Vector2(320, 44)
-	create_button.pressed.connect(_create_character)
-	_create.add_child(create_button)
+	_create_button = Button.new()
+	_create_button.text = "CHAR_CREATE"
+	_create_button.custom_minimum_size = Vector2(320, 44)
+	_create_button.pressed.connect(_create_character)
+	_create.add_child(_create_button)
+	_full = Label.new()
+	_full.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_full.custom_minimum_size = Vector2(320, 0)
+	_full.add_theme_color_override("font_color", Color(1.0, 0.6, 0.45))
+	_create.add_child(_full)
 
 	add_button("MENU_BACK", close)
 
 
 func _on_open() -> void:
-	for child in _list.get_children():
-		child.queue_free()
-	for summary in SaveSystem.list_characters():
+	clear(_list)
+	var characters := SaveSystem.list_characters()
+	for summary in characters:
+		var row := HBoxContainer.new()
+		_list.add_child(row)
 		var button := Button.new()
 		button.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 		button.custom_minimum_size = Vector2(320, 44)
 		button.text = tr("CHAR_ENTRY").format({"name": summary.name,
 			"class": tr(GameData.get_class_data(summary.class_id).name_key), "level": summary.level})
 		button.pressed.connect(_choose.bind(summary.id))
-		_list.add_child(button)
+		row.add_child(button)
+		row.add_child(delete_button(func() -> void:
+			SaveSystem.delete_character(summary.id)
+			Session.forget_character(summary.id)))
+	var full := characters.size() >= SaveSystem.slot_limit("characters")
+	_create_button.disabled = full
+	_full.text = tr("CHAR_SLOTS_FULL").format({"max": SaveSystem.slot_limit("characters")}) if full else ""
+	_full.visible = full
 	_suggest_name()
 
 
@@ -78,6 +95,8 @@ func _choose(id: String) -> void:
 
 
 func _create_character() -> void:
+	if not SaveSystem.can_create_character():
+		return
 	var c := CharacterData.create(_class_ids[_class.selected], CharacterData.SEXES[_sex.selected], _name.text)
 	SaveSystem.save_character(c)
 	Session.select_character(c)

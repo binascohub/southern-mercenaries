@@ -23,6 +23,7 @@ func _ready() -> void:
 	_test_validation()
 	_test_saves()
 	_test_campaign_list()
+	_test_background_saves()
 	_test_edited_character()
 	_test_trade()
 	_test_names()
@@ -184,6 +185,48 @@ func _test_campaign_list() -> void:
 	_check(list.size() >= 2 and list[0].id == newer.id, "campanha mais recente primeiro")
 	var text := CampaignMenu.describe(older)
 	_check(text.contains("Orana") and text.contains("0:00"), "linha da campanha com heróis e tempo: %s" % text)
+
+
+func _test_background_saves() -> void:
+	# Gravação na thread: duas na fila para o mesmo arquivo viram uma (a mais nova).
+	var path := TEST_ROOT.path_join("bg/test.json")
+	SaveSystem.write_json(path, {"save_version": 1, "value": 1}, true)
+	SaveSystem.write_json(path, {"save_version": 1, "value": 2}, true)
+	SaveSystem.flush()
+	_check(int(SaveSystem.read_json(path).get("value", 0)) == 2, "gravação em segundo plano grava a mais nova")
+	var c := CharacterData.create("mage", "male", "Oren")
+	c.data.gold = 77
+	SaveSystem.save_character(c, true)
+	var back := SaveSystem.load_character(c.data.id)  # ler espera a fila
+	_check(back != null and int(back.data.gold) == 77, "ler depois de gravar em segundo plano vê o save novo")
+	# Apagar personagem.
+	var before := SaveSystem.list_characters().size()
+	SaveSystem.delete_character(c.data.id)
+	_check(SaveSystem.load_character(c.data.id) == null and SaveSystem.list_characters().size() == before - 1,
+		"personagem apagado (com os backups)")
+	# Miniatura da campanha.
+	var campaign := SaveSystem.new_campaign()
+	SaveSystem.save_campaign(campaign, true)
+	var image := Image.create_empty(320, 180, false, Image.FORMAT_RGB8)
+	image.fill(Color(0.5, 0.2, 0.1))
+	SaveSystem.save_thumbnail(campaign.id, image)
+	var thumb := SaveSystem.load_thumbnail(campaign.id)
+	_check(thumb != null and thumb.get_size() == SaveSystem.THUMB_SIZE, "miniatura gravada e reduzida")
+	# Checkpoints alcançados e campos novos em campanhas antigas.
+	var old := {"save_version": 1, "id": "antiga", "dead_groups": []}
+	var migrated := SaveSystem.migrate_campaign(old)
+	_check(migrated.checkpoints_reached == [] and migrated.hero_names == {}, "campanha antiga ganha os campos novos")
+	SaveSystem.delete_campaign(campaign.id)
+	_check(SaveSystem.load_campaign(campaign.id).is_empty() and SaveSystem.load_thumbnail(campaign.id) == null,
+		"campanha apagada com a miniatura")
+	_check(not DirAccess.dir_exists_absolute(SaveSystem.campaign_path(campaign.id).get_base_dir()), "pasta da campanha removida")
+	# Espaços de save: 12 personagens e 6 campanhas.
+	_check(SaveSystem.slot_limit("characters") == 12 and SaveSystem.slot_limit("campaigns") == 6, "limites de espaços")
+	while SaveSystem.list_campaigns().size() < SaveSystem.slot_limit("campaigns"):
+		SaveSystem.save_campaign(SaveSystem.new_campaign())
+	_check(not SaveSystem.can_create_campaign(), "sem espaço para a 7ª campanha")
+	SaveSystem.delete_campaign(SaveSystem.list_campaigns()[0].id)
+	_check(SaveSystem.can_create_campaign(), "apagar libera um espaço")
 
 
 func _test_edited_character() -> void:

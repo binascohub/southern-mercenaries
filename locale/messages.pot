@@ -643,3 +643,15 @@ msgstr ""
 
 msgid "TRADE_EMPTY"
 msgstr ""
+
+msgid "SAVE_DELETE"
+msgstr ""
+
+msgid "SAVE_DELETE_CONFIRM"
+msgstr ""
+
+msgid "CHAR_SLOTS_FULL"
+msgstr ""
+
+msgid "CAMPAIGN_SLOTS_FULL"
+msgstr ""

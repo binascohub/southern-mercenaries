@@ -74,6 +74,34 @@ func add_button(key: String, callback: Callable) -> Button:
 	return button
 
 
+## Botão "Apagar" (saves): o primeiro aperto pede confirmação, o segundo apaga
+## e reabre o menu com a lista atualizada.
+func delete_button(on_delete: Callable) -> Button:
+	var button := Button.new()
+	button.text = "SAVE_DELETE"
+	button.custom_minimum_size = Vector2(120, 44)
+	button.pressed.connect(func() -> void:
+		if button.text != "SAVE_DELETE_CONFIRM":
+			button.text = "SAVE_DELETE_CONFIRM"
+			return
+		on_delete.call()
+		_reopen.call_deferred())
+	button.focus_exited.connect(func() -> void: button.text = "SAVE_DELETE")
+	return button
+
+
+## Tira os filhos já (para o foco não cair num nó que vai sumir).
+static func clear(node: Node) -> void:
+	for child in node.get_children():
+		node.remove_child(child)
+		child.queue_free()
+
+
+func _reopen() -> void:
+	_on_open()
+	focus_first()
+
+
 static func _focusables(node: Node) -> Array[Control]:
 	var found: Array[Control] = []
 	for child in node.get_children():

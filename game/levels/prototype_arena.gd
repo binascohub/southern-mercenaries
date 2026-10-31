@@ -29,6 +29,9 @@ const CHECKPOINT_DELAY := 3.0
 ## Ouro no chão é recolhido sozinho a esta distância (proposta).
 const GOLD_AUTO_PICKUP := 1.6
 const LOOT_SCATTER := 1.2
+## Miniatura da campanha: primeira captura logo depois de entrar, depois a cada minuto.
+const THUMB_FIRST := 3.0
+const THUMB_INTERVAL := 60.0
 
 enum Result { NONE, VICTORY, DEFEAT }
 
@@ -71,6 +74,7 @@ var _revivers := {}
 var _interrupted: Array[Player] = []
 ## Heróis esperando o dono que caiu: client_id -> Player (07-rede.md, seção 9).
 var _held := {}
+var _thumb_timer := THUMB_FIRST
 
 @onready var hud: Hud = $Hud
 @onready var pause_menu: PauseMenu = $PauseMenu
@@ -142,6 +146,7 @@ func _physics_process(delta: float) -> void:
 			_auto_pickup_gold()
 	if not _campaign.is_empty():
 		_campaign.played_seconds = float(_campaign.get("played_seconds", 0)) + delta
+		_update_thumbnail(delta)
 
 
 # --- Spawners -----------------------------------------------------------------
@@ -284,7 +289,34 @@ func _start_run() -> void:
 	_reset_players()
 	var done := dead.size()
 	_broadcast(done, Result.VICTORY if done >= total_encounters else Result.NONE)
-	SaveSystem.save_campaign(_campaign)
+	_reach_checkpoint(str(_campaign.get("checkpoint", "start")))
+
+
+## Passou por um checkpoint (autosave, 11-saves.md, seção 4): vira o último
+## checkpoint e entra na lista dos alcançados (portal do Macumbeiro).
+func _reach_checkpoint(id: String) -> void:
+	if _campaign.is_empty():
+		return
+	var key := "%s:%s" % [ARENA_ID, id]
+	var reached: Array = _campaign.get("checkpoints_reached", [])
+	if key not in reached:
+		_campaign.checkpoints_reached = reached + [key]
+	_campaign.area = ARENA_ID
+	_campaign.checkpoint = id
+	SaveSystem.save_campaign(_campaign, true)
+
+
+## Miniatura da campanha: uma captura da tela de jogo de vez em quando (sem
+## menus abertos). Sem tela (headless, testes), não há o que capturar.
+func _update_thumbnail(delta: float) -> void:
+	_thumb_timer -= delta
+	if _thumb_timer > 0.0:
+		return
+	_thumb_timer = THUMB_INTERVAL
+	if DisplayServer.get_name() == "headless" or pause_menu.is_open or _inventory.visible or _trade_menu.is_open():
+		return
+	var image := get_viewport().get_texture().get_image()
+	SaveSystem.save_thumbnail(_campaign.id, image)
 
 
 ## Depois da vitória, a área de teste pode ser jogada de novo do zero.
@@ -368,7 +400,7 @@ func _on_enemy_died(enemy: Enemy) -> void:
 	group.members.erase(enemy)
 	if group.members.is_empty():
 		_campaign.dead_groups = _campaign.get("dead_groups", []) + [enemy.group]
-		SaveSystem.save_campaign(_campaign)
+		SaveSystem.save_campaign(_campaign, true)
 		var done := cleared + 1
 		_broadcast(done, Result.VICTORY if done >= total_encounters else Result.NONE)
 
@@ -605,7 +637,7 @@ func _return_to_checkpoint() -> void:
 				enemy.return_home()
 	_reset_players()
 	_broadcast(cleared, Result.NONE)
-	SaveSystem.save_campaign(_campaign)
+	SaveSystem.save_campaign(_campaign, true)
 
 
 @rpc("any_peer", "reliable")

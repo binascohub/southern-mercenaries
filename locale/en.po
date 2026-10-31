@@ -644,3 +644,15 @@ msgstr "Not enough room in the bag for this trade"
 
 msgid "TRADE_EMPTY"
 msgstr "Nothing offered yet"
+
+msgid "SAVE_DELETE"
+msgstr "Delete"
+
+msgid "SAVE_DELETE_CONFIRM"
+msgstr "Delete? Press again"
+
+msgid "CHAR_SLOTS_FULL"
+msgstr "All {max} character slots are in use. Delete a character to create a new one."
+
+msgid "CAMPAIGN_SLOTS_FULL"
+msgstr "All {max} campaign slots are in use. Delete one in Load campaign to start a new one."
