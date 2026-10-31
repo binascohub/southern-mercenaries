@@ -899,6 +899,8 @@ func _test_tips() -> void:
 	TipManager._process(100.0)
 	_check(shown.count("tip_move") == 1, "dica vista não repete")
 	TipManager.notify("map_area", "mage")
+	_check(TipManager.current() == "tip_map", "Mago numa área de mapa: só a dica do mapa (%s)" % TipManager.current())
+	TipManager._process(100.0)
 	_check(TipManager.current() == "", "dica do Cavaleiro não aparece para o Mago")
 	TipManager.notify("map_area", "knight")
 	_check(TipManager.current() == "tip_mount", "dica de montar para o Cavaleiro")

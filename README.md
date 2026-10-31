@@ -5,7 +5,7 @@ Dark co-op action RPG with a top-down camera, inspired by *Baldur's Gate: Dark A
 **Languages:** English · Español · Português (BR)
 
 ## Status
-**Phase 7 — The Tortuga Sewers (in progress)** (`docs/01-escopo.md`, section 9). Phases 1–6 are done (Tortuga's Portal window waits for maps 2–5). Not the game yet: the technical base the next phases build on.
+**v0.1.0 — first public version.** Phases 1–7 of `docs/01-escopo.md` (section 9) are done: from the Old Drunk's story in the Tortuga tavern to the Rat Queen at the bottom of the Sewers, solo or in LAN co-op. Art, models and sound are placeholders. Next: phase 8 (maps 2 to 5, then the Royal Capital).
 
 - **Combat (phase 1):** the Mage with the top-down camera: basic attack, charged strong attack and dodge (`docs/02-1-mago.md`).
 - **Test area:** a start room (checkpoint), a corridor and two chambers to explore. Sewer rats are placed in **encounter groups** that sleep until a player gets close (~15 m) and alert nearby groups; dead monsters stay dead (`docs/03-inimigos.md`, no waves). Bites have a visible wind-up.
@@ -45,6 +45,14 @@ Dark co-op action RPG with a top-down camera, inspired by *Baldur's Gate: Dark A
 **LAN ports (proposal in `docs/07-rede.md`):** UDP **24567** (game) and **24568** (discovery). Allow them in the firewall of the host PC.
 
 The complete game design lives in [`docs/`](docs/00-README.md).
+
+## Download
+Get the latest version from the [Releases page](https://github.com/binascohub/southern-mercenaries/releases/latest):
+
+- **Windows:** [`southern-mercenaries-windows.zip`](https://github.com/binascohub/southern-mercenaries/releases/latest/download/southern-mercenaries-windows.zip) — unzip and run `southern-mercenaries.exe`. The build is not signed yet, so SmartScreen may warn: *More info → Run anyway*.
+- **Linux (x86_64):** [`southern-mercenaries-linux-x86_64.tar.gz`](https://github.com/binascohub/southern-mercenaries/releases/latest/download/southern-mercenaries-linux-x86_64.tar.gz) — extract and run `./southern-mercenaries.x86_64`.
+
+LAN co-op: everyone needs the same version. The host uses UDP port 24567 (game) and 24568 (LAN discovery); allow them in the firewall if friends can't find the game.
 
 ## Running
 Requires **Godot 4.7.2** (the project's pinned version).

@@ -2,11 +2,15 @@
 
 ## [Unreleased]
 
-### Phase 7 — The Tortuga Sewers (in progress)
+## [0.1.0] — 2026-10-31
+
+First public version (`docs/01-escopo.md`, section 9, phase 7): the vertical slice of the campaign — from the Old Drunk's story in the Tortuga tavern, through the four areas of the Tortuga Sewers, to the Rat Queen and the Lost Treasure of the War — solo or in LAN co-op for up to 4 players, in English, Spanish and Brazilian Portuguese, on Windows and Linux. Art, models and sound are still placeholders.
+
+### Phase 7 — The Tortuga Sewers
 - The real Sewers (`docs/03-2-areas.md`, section 3), four areas after the sewer grate: **Main Street Drains** (combat tutorial: a lone rat, then three, sludge puddles, the swarm of 8 and the Mutant Rat), **Refuse Canals** (Acid Toads, Plague Bats, rotten bridges, the pirates' smuggling cache), **Secret War Passage** (the Archer's kingdom crest — the Archer recognizes it —, flooded chambers, the **Old Gator** mini-boss) and **the Queen's Nest** (the Rat Queen). Each area starts at a checkpoint (Witch Doctor portals), has a secret chest, sludge puddles and 1–3 elites; the return portal is at the map entrance and appears after the boss.
 - The Rat Queen's three phases (`RatQueen`, `docs/03-inimigos.md`): **Furious Mother** (charges, a ground slam with a warning, a swarm of 4 Plague Rats every 20 s), **The Brood** below 60% (she goes back to her nest and guards 3 pup nests — Fire deals double damage to them — regenerating while any stands), **The Pact** below 25% (the arena floods, she gets faster and toxic gas bursts from the pipes at marked spots, leaving puddles). Her helpers vanish when she falls or when the group falls back to the checkpoint. Boss health bar at the top with the phase name, on every PC.
 - The Lost Treasure of the War (`docs/05-itens-e-loot.md`, section 4), per player: a **legendary** for the player's class (`data/legendaries.json` — five pieces of the Archer's kingdom's royal armory, with name, fixed affixes and lore; their special effect and exclusive look come later), 2–3 rare/unique items, 5–10 valuables, 1–2 refine scrolls (20% blessed) and high gold. For the group: the relic **Crown of the Fallen King** (`data/relics.json`, listed in the journal) and the old map that unlocks the Ruins.
-- Sewer creatures (`data/monsters.json`, from `docs/03-inimigos.md`): Plague Rat (swarms), Mutant Rat (charge with a warning), Plague Bat (fast flyer), Acid Toad (keeps its distance and spits acid at a marked spot on the ground, leaving a toxic puddle), Sewer Gator (hidden in the water — only bubbles show — until someone gets close), Old Gator and the Rat Queen (1,000 × boss factor 4.3; her three phases come in the next delivery). Placeholder look per family and an aura for elites (gold), mini-bosses (purple) and bosses (red).
+- Sewer creatures (`data/monsters.json`, from `docs/03-inimigos.md`): Plague Rat (swarms), Mutant Rat (charge with a warning), Plague Bat (fast flyer), Acid Toad (keeps its distance and spits acid at a marked spot on the ground, leaving a toxic puddle), Sewer Gator (hidden in the water — only bubbles show — until someone gets close), Old Gator and the Rat Queen (1,000 × boss factor 4.3). Placeholder look per family and an aura for elites (gold), mini-bosses (purple) and bosses (red).
 - Monster categories: elite (health x3, damage x1.5, 25 XP × level, 1–2 items, at least magic), mini-boss (x6/x1.8, rare guaranteed), boss; the toxic elite modifier leaves sludge puddles. Loot tables for elites, mini-bosses, bosses, chests and the Lost Treasure of the War.
 - Barrels and crates (author's decision, recorded in `docs/03-2-areas.md`): 4–6 per Sewer area; any hit breaks them, once per campaign. What comes out is rolled once (`data/loot.json`, `breakable`): nothing 35%, gold 25%, health potion 15%, resource potion 10%, hidden Plague Rats 10%, a valuable 5%; loot goes to each player present. New tip: barrels and crates.
 - The map reveals itself (`docs/09-interface.md`, sections 3 and 8; `ExploreMap`, `Minimap`): a minimap at the top right shows the current area under fog, revealed 12 m around every hero as the group explores; one mask for the whole group, kept in the campaign save. It shows the heroes, the exits and quest spots already seen; towns have no fog. The `map` action (M / D-pad left) enlarges it. New tip: the map.
@@ -15,7 +19,7 @@
 - Side quests now happen in Sewer areas 1–3 with the creatures that live there; a hunt brings its own pack (with an elite) to a spot of the area, since dead monsters never come back.
 - Tests: Sewer data and category unit tests; a new CI step walks the four areas (sludge, ground strikes, the Toad's spit, the Gator's ambush, the Mutant Rat's charge, the toxic elite, the secret chest, the group exit); the town test goes from the grate to the Queen and the treasure.
 
-### Phase 6 — Tortuga (in progress)
+### Phase 6 — Tortuga
 - Areas by name: the level scene loads any area of `data/arenas.json` (Tortuga's Main Street and port, the Tavern, the test area as the Sewer stand-in) and the server moves the whole group with `_load_area`, without changing scenes; players joining mid-game receive the current area. Area props: shops, NPCs, exits and signs, with an interact prompt.
 - New campaigns start in the Tavern; the campaign keeps quests, what is unlocked and the ship of the day.
 - Tavern NPCs (`data/npcs.json`): Old Drunk with the first quest (`data/quests.json`, unlocks the sewer grate), Tavern Keeper (rest), Bard; dialogue window with accept/decline; "!" over NPCs with a quest; active quest in the HUD with the target's weakness.
@@ -65,7 +69,7 @@
 - Monsters have an element (sewer rats: Earth) with a colored gem above them and a body tint per state; damage numbers show weakness, resistance, criticals and combo names. The staff crystal and the projectiles take the current element's color. HUD shows the current element.
 - Tests: element rules, states and combos unit tests; elements test on real monsters in the arena, run in CI.
 
-### Phase 3 — RPG systems (in progress)
+### Phase 3 — RPG systems
 - Character sheet (`CharacterData`): level up to 20, XP 700 × level, +5 attribute and +1 skill point per level; health, mana, power and armor from `docs/13-balanceamento.md`. Validated by the host when a player joins (`NET_CHARACTER_INVALID`).
 - Items as data: materials (cloth/wood to gold), rarities and affixes, Mage equipment bases, potions and valuables (`data/*.json`); names built with `tr()` in en, es and pt_BR.
 - Individual loot rolled per player on the server and shown only to its owner; pickup validated by the server (*Interact* / *Pick up all*); gold picked up automatically; XP divided among present players. A hero who rejoins in time keeps their loot.
