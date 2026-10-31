@@ -9,3 +9,4 @@ Well_Covered — "Covered Well" by iconoclast: https://opengameart.org/content/c
 Bow_Long, Quiver, Archery_Target — "Archery Set" by yd: https://opengameart.org/content/archery-set (textures extracted from the .blend)
 Watch_Tower, Bench_Wood, Stool_Wood, Cart_Wood, Wheelbarrow — "Medieval Props Pack 2" by Daniel74 (submitted by hreikin): https://opengameart.org/content/medieval-props-pack-2
 Save_Crystal — "3D Mese Crystal" by rubberduck: https://opengameart.org/content/3d-mese-crystal
+Weapon_Dagger — "Simple 3D Dagger" by danilomattos: https://opengameart.org/content/simple-3d-dagger

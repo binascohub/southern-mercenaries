@@ -1076,6 +1076,10 @@ func _update_encounters() -> void:
 		var group: Dictionary = _groups[id]
 		if group.awake or group.members.is_empty():
 			continue
+		# Áreas pacíficas (o Esgoto): os bichos só revidam — quem chega perto não
+		# os acorda; só o chefe ataca por conta própria.
+		if arena.get("passive", false) and not _group_has_boss(group):
+			continue
 		for p: Player in players:
 			if p.alive and p.connected \
 					and p.global_position.distance_to(group.position) <= arena.wake_radius:
@@ -1095,11 +1099,20 @@ func _wake_group(id: String) -> void:
 	var damage_mult: float = 1.0 + GameData.balance.damage_per_extra_player * extra
 	for enemy: Enemy in group.members:
 		enemy.wake(health_mult, damage_mult)
+	if arena.get("passive", false):
+		return  # revida só o grupo atacado; os vizinhos continuam em paz
 	for other_id in _groups:
 		var other: Dictionary = _groups[other_id]
 		if other.awake or _groups_distance(group, other) > arena.alert_radius:
 			continue
 		_wake_group(other_id)
+
+
+func _group_has_boss(group: Dictionary) -> bool:
+	for enemy: Enemy in group.members:
+		if is_instance_valid(enemy) and enemy.is_boss():
+			return true
+	return false
 
 
 func _groups_distance(a: Dictionary, b: Dictionary) -> float:

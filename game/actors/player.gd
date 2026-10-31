@@ -1114,7 +1114,7 @@ func _build_visual() -> void:
 		second.material_override = _staff_material
 		second.rotation = Vector3.ZERO
 		second.position = Vector3(0, 0.15, 0)
-		_dress_weapon(second, "Weapon_Shortsword")
+		_dress_weapon(second, "Weapon_Dagger")
 		var left_hand := Node3D.new()
 		left_hand.add_child(second)
 		_model.attach("hand_l", left_hand, POINT_GRIP, Vector3(-0.42, 0.9, 0.35))
@@ -1128,7 +1128,7 @@ func _build_visual() -> void:
 	elif knight:
 		_dress_weapon(staff, "Weapon_Polearm")
 	elif ninja:
-		_dress_weapon(staff, "Weapon_Shortsword")
+		_dress_weapon(staff, "Weapon_Dagger")  # adaga do assassino (danilomattos, CC0)
 	elif archer:
 		_dress_weapon(staff, "Bow_Long")  # arco longo (Archery Set, yd, CC0)
 	var right_hand := Node3D.new()

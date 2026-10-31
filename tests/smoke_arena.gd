@@ -553,6 +553,14 @@ func _sewers_test() -> void:
 	player.health = player.max_health
 	await _wait_frames(45)
 	check.call(player.health < player.max_health, "poça de lodo tira vida")
+	# Esgoto pacífico: chegar perto não acorda; o golpe acorda só aquele grupo.
+	var calm := _first_enemy("mutant_rat")
+	player.teleport_to(calm.global_position + Vector3(0, 0, 2))
+	await _wait_frames(10)
+	check.call(calm.state == Enemy.State.SLEEP, "bichos do esgoto não atacam quem chega perto")
+	calm.take_hit({"damage": 1.0, "element": "", "crit_chance": 0.0})
+	await _wait_frames(2)
+	check.call(calm.state != Enemy.State.SLEEP, "golpeado, o bicho revida")
 	# Ratazana: investida com aviso.
 	var mutant := _first_enemy("mutant_rat")
 	_arena._wake_group(mutant.group)

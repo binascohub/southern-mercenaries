@@ -2555,7 +2555,8 @@
         ],
         "rotation": 268
       }
-    ]
+    ],
+    "passive": true
   },
   "sewers_02_canals": {
     "_comment": "Esgoto, área 2: Canais de Lixo. Sapos Ácidos e Morcegos Pestilentos; pontes de madeira podre sobre os canais. Segredo: o depósito de contrabando dos piratas, pelo cano do oeste. Elite: Sapo Ácido tóxico na comporta.",
@@ -3138,7 +3139,8 @@
         ],
         "rotation": 201
       }
-    ]
+    ],
+    "passive": true
   },
   "sewers_03_war_passage": {
     "_comment": "Esgoto, área 3: Passagem Secreta da Guerra. Túneis dos fundadores de Tortuga com o brasão do reino do Arqueiro (ele reconhece). Câmaras alagadas; segredo: a câmara alagada do leste (com um Jacaré escondido). Mini-chefe: o Jacaré Velho, na câmara alagada do fim.",
@@ -3688,7 +3690,8 @@
         ],
         "rotation": 201
       }
-    ]
+    ],
+    "passive": true
   },
   "sewers_04_nest": {
     "_comment": "Esgoto, área 4: Ninho da Rainha. Câmara alagada e ampla no fundo do esgoto (misto: o túnel é estreito, o ninho é aberto). A Rainha dos Ratos dorme sobre o Tesouro Perdido da Guerra; vencê-la é a vitória do mapa: aparecem o tesouro e o portal de volta (03-2-areas.md, seção 1). As 3 fases da Rainha entram na próxima entrega.",
@@ -4075,6 +4078,7 @@
         ],
         "rotation": 201
       }
-    ]
+    ],
+    "passive": true
   }
 }
