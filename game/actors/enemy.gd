@@ -91,6 +91,70 @@ var _trail_timer := 0.0
 var _ripple: MeshInstance3D
 ## Modelo animado da família (rato, morcego, jacaré); null = cápsula.
 var _model: MonsterModel
+## Ninho de filhotes da Rainha: monte de palha e trapos (a cor do monstro, que
+## pisca no golpe), palhas soltas, um caixote quebrado e filhotes de rato
+## mexendo-se em cima. Igual em todos os PCs (sorteio pela posição).
+func _build_nest(size: float) -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = hash(Vector2i(roundi(home.x * 10.0), roundi(home.z * 10.0)))
+	var mound := MeshInstance3D.new()
+	var sphere := SphereMesh.new()
+	sphere.radius = 0.75 * size
+	sphere.height = 0.7 * size
+	sphere.radial_segments = 14
+	sphere.rings = 6
+	mound.mesh = sphere
+	mound.material_override = _material
+	mound.position.y = 0.05
+	_visual.add_child(mound)
+	var straw := StandardMaterial3D.new()
+	straw.albedo_color = Color(0.55, 0.45, 0.22)
+	straw.roughness = 1.0
+	var rag := StandardMaterial3D.new()
+	rag.albedo_color = Color(0.3, 0.27, 0.22)
+	rag.roughness = 1.0
+	for i in 26:
+		var stick := MeshInstance3D.new()
+		var rod := CylinderMesh.new()
+		rod.top_radius = 0.012
+		rod.bottom_radius = 0.012
+		rod.height = rng.randf_range(0.4, 0.9) * size
+		rod.radial_segments = 4
+		stick.mesh = rod
+		stick.material_override = straw
+		var angle := rng.randf() * TAU
+		var reach := rng.randf_range(0.2, 0.85) * size
+		stick.position = Vector3(cos(angle) * reach, 0.18 * size + rng.randf_range(-0.05, 0.12), sin(angle) * reach)
+		stick.rotation = Vector3(PI / 2.0 + rng.randf_range(-0.4, 0.4), rng.randf() * TAU, rng.randf_range(-0.3, 0.3))
+		_visual.add_child(stick)
+	for i in 5:
+		var cloth := MeshInstance3D.new()
+		var box := BoxMesh.new()
+		box.size = Vector3(rng.randf_range(0.25, 0.5), 0.02, rng.randf_range(0.2, 0.4)) * size
+		cloth.mesh = box
+		cloth.material_override = rag
+		var angle := rng.randf() * TAU
+		cloth.position = Vector3(cos(angle), 0.0, sin(angle)) * rng.randf_range(0.3, 0.7) * size + Vector3.UP * 0.25 * size
+		cloth.rotation = Vector3(rng.randf_range(-0.5, 0.5), rng.randf() * TAU, rng.randf_range(-0.5, 0.5))
+		_visual.add_child(cloth)
+	var crate := Kit.piece("Crate_Open")
+	if crate:
+		crate.scale = Vector3.ONE * 0.6 * size
+		crate.position = Vector3(0.55, 0.05, -0.35) * size
+		crate.rotation = Vector3(0.0, rng.randf() * TAU, 0.45)
+		_visual.add_child(crate)
+	# Filhotes: ratinhos parados/andando no lugar em cima do monte.
+	if MonsterModel.has_family("rat"):
+		for i in 3:
+			var pup := MonsterModel.new()
+			_visual.add_child(pup)
+			pup.setup("rat", 0.28, Color(0.5, 0.42, 0.36))
+			var angle := TAU * i / 3.0 + rng.randf() * 0.6
+			pup.position = Vector3(cos(angle) * 0.35, 0.28, sin(angle) * 0.35) * size
+			pup.rotation.y = angle + PI / 2.0
+			pup.play("walk" if i % 2 == 0 else "idle", 0.0)
+
+
 ## Fuga (Lagarto Dourado): tempo correndo depois do golpe e o ponto de passeio.
 var _flee_time := 0.0
 var _wander_to := Vector3.INF
@@ -684,7 +748,9 @@ func _build_visual(size: float) -> void:
 	body.mesh = body_mesh
 	body.rotation.x = PI / 2.0
 	body.position.y = 0.3 * size
-	body.visible = kit_node == null and _model == null
+	body.visible = kit_node == null and _model == null and look != "nest"
+	if look == "nest":
+		_build_nest(size)
 	body.material_override = _material
 	if look == "barrel":
 		var barrel := CylinderMesh.new()
