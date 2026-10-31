@@ -1,6 +1,6 @@
 """Objetos de cenário do OpenGameArt (todos CC0) em .glb: barril de cerveja com
-torneira (eugeneloza), caneco de madeira (rehcub), baú do tesouro (mastahcez) e
-chave (codeinfernogames). Malhas juntas com as transformações aplicadas, base em
+torneira (eugeneloza), caneco de madeira (rehcub), baú do tesouro (mastahcez),
+chave (codeinfernogames) e caixotes de madeira (Yughues). Malhas juntas com as transformações aplicadas, base em
 y = 0, altura padronizada; texturas reduzidas (WebP) ou cores lisas quando o
 arquivo original não traz a imagem.
 uso: build_props.py <pasta dl> <saída>"""
@@ -13,6 +13,12 @@ PROPS = [
     ("Beer_Barrel", "beer/DwarfBeerBarrel.blend", 1.05, "beer/DwarfBeerBarrel_texture4.png", {}, [], True),
     ("Mug_Wood", "mug/woodmug_0.blend", 0.16, "", {"Material.001": (0.42, 0.26, 0.13, 1), "Material.002": (0.45, 0.45, 0.48, 1)}, ["Mug Detail"], False),
     ("Treasure_Chest", "chest/treasure_chest.obj", 0.85, "chest/Treasurechest_DIFF.png", {}, [], False),
+    # Caixotes de madeira (Yughues, CC0): todos na mesma escala (x2,2).
+    ("Crate_Open", "crates/Crate-01.obj", 0.40, "crates/diffuse.tga", {}, [], False),
+    ("Crate_Small", "crates/Crate-02.obj", 0.37, "crates/diffuse.tga", {}, [], False),
+    ("Crate_Long", "crates/Crate-03.obj", 0.53, "crates/diffuse.tga", {}, [], False),
+    ("Crate_Big", "crates/Crate-04.obj", 1.17, "crates/diffuse.tga", {}, [], False),
+    ("Bucket_Crate", "crates/Crate-05.obj", 0.44, "crates/diffuse.tga", {}, [], False),
     ("Key_Gold", "key/key.blend", 0.32, "", {"Material": (0.95, 0.75, 0.25, 1), "Key_Gold_Mat": (0.95, 0.75, 0.25, 1)}, [], False),
 ]
 

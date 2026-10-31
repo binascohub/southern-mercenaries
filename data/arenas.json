@@ -876,6 +876,70 @@
         "y": 2.2,
         "range": 6.0,
         "energy": 1.0
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          -12,
+          -20
+        ],
+        "rotation": 10
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          -10.6,
+          -20.3
+        ],
+        "rotation": -20
+      },
+      {
+        "piece": "Bucket_Crate",
+        "position": [
+          -12.2,
+          -18.6
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Crate_Long",
+        "position": [
+          12.5,
+          -19.6
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Crate_Open",
+        "position": [
+          13.8,
+          -17.4
+        ],
+        "rotation": 30
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          23.6,
+          -6.6
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          -20.5,
+          6.5
+        ],
+        "rotation": -15
+      },
+      {
+        "piece": "Crate_Open",
+        "position": [
+          -19.2,
+          6.8
+        ],
+        "rotation": 40
       }
     ],
     "crowd": [

@@ -1,0 +1,5 @@
+Weapon_Axe, Weapon_Crossbow, Weapon_Hammer, Weapon_Longsword, Weapon_Polearm, Weapon_Shortsword, Weapon_Staff
+"Kingdom Weapon Set" by pfunked (submitted by Clint Bellanger): https://opengameart.org/content/kingdom-weapon-set
+Creative Commons Attribution-ShareAlike 3.0: https://creativecommons.org/licenses/by-sa/3.0/
+Changes: one glTF per weapon by tools/assets/build_weapons.py (upright, centered, resized for the game, plain silver and leather colors).
+These converted files are shared under the same license (CC BY-SA 3.0).

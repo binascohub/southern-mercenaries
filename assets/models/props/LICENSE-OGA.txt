@@ -4,3 +4,4 @@ Beer_Barrel.glb    — "Dwarf beer barrel (OpenDungeons)" by eugeneloza: https:/
 Mug_Wood.glb       — "Wood Mug" by rehcub: https://opengameart.org/content/wood-mug (plain colors: the original textures are not in the file)
 Treasure_Chest.glb — "Treasure Chest" by mastahcez: https://opengameart.org/content/treasure-chest-3
 Key_Gold.glb       — "Key (low poly)" by codeinfernogames: https://opengameart.org/content/key-low-poly
+Crate_Open, Crate_Small, Crate_Long, Crate_Big, Bucket_Crate — "Free Wooden Crates" by Yughues: https://opengameart.org/content/free-wooden-crates (one scale for all, x2.2)

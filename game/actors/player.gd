@@ -809,6 +809,22 @@ func teleport_to(spot: Vector3) -> void:
 	net_position = global_position
 
 
+## Troca o cilindro provisório pela arma do kit (de pé, com o meio na origem, como
+## o cilindro); as partes de metal ficam na cor do material equipado.
+func _dress_weapon(holder: MeshInstance3D, piece_name: String) -> void:
+	var weapon := Kit.piece(piece_name)
+	if weapon == null:
+		return
+	holder.mesh = null
+	holder.add_child(weapon)
+	for node in weapon.find_children("*", "MeshInstance3D", true, false):
+		var mesh := node as MeshInstance3D
+		for i in mesh.get_surface_override_material_count():
+			var source := mesh.get_active_material(i)
+			if source and String(source.resource_name) == "Silver":
+				mesh.set_surface_override_material(i, _staff_material)
+
+
 ## Dano a mais: Bênção das Chamas / Fogueira / Selo do Fogo, Domínio Elemental e
 ## o próximo golpe depois do Passo Sombrio.
 func damage_mult() -> float:
@@ -1056,7 +1072,7 @@ func _build_visual() -> void:
 	var staff_mesh := CylinderMesh.new()
 	staff_mesh.top_radius = 0.02 if ninja else (0.03 if archer else 0.04)
 	staff_mesh.bottom_radius = 0.03 if ninja else (0.03 if archer else 0.05)
-	staff_mesh.height = 0.5 if ninja else (1.3 if archer else 1.7)
+	staff_mesh.height = 0.6 if ninja else (1.3 if archer else 1.7)
 	staff.mesh = staff_mesh
 	_staff_material = _material(Color(0.35, 0.22, 0.12))
 	staff.material_override = _staff_material
@@ -1068,7 +1084,7 @@ func _build_visual() -> void:
 		# Lança longa apontada para a frente e escudo no braço esquerdo.
 		staff_mesh.top_radius = 0.02
 		staff_mesh.bottom_radius = 0.04
-		staff_mesh.height = 2.6
+		staff_mesh.height = 2.4
 		staff.position = Vector3(0.4, 1.05, 0.7)
 		staff.rotation.x = PI / 2.0
 		var shield_node := MeshInstance3D.new()
@@ -1095,6 +1111,7 @@ func _build_visual() -> void:
 		second.material_override = _staff_material
 		second.rotation = Vector3.ZERO
 		second.position = Vector3(0, 0.15, 0)
+		_dress_weapon(second, "Weapon_Shortsword")
 		var left_hand := Node3D.new()
 		left_hand.add_child(second)
 		_model.attach("hand_l", left_hand, POINT_GRIP, Vector3(-0.42, 0.9, 0.35))
@@ -1102,6 +1119,13 @@ func _build_visual() -> void:
 	# (o punho segura a um terço do cabo; a lança e o arco mais à frente).
 	staff.rotation = Vector3.ZERO
 	staff.position = Vector3.ZERO if summoner else Vector3(0, staff_mesh.height * (0.3 if knight else 0.2), 0)
+	# Armas do Kingdom Weapon Set: cajado (Mago), alabarda (Cavaleiro), espadas curtas (Ninja).
+	if class_id == "mage":
+		_dress_weapon(staff, "Weapon_Staff")
+	elif knight:
+		_dress_weapon(staff, "Weapon_Polearm")
+	elif ninja:
+		_dress_weapon(staff, "Weapon_Shortsword")
 	var right_hand := Node3D.new()
 	right_hand.add_child(staff)
 	_model.attach("hand_r", right_hand, POINT_GRIP if knight or ninja else HAND_GRIP, Vector3(0.45, 0.9, 0.15))
