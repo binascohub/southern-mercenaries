@@ -11,6 +11,8 @@
 - Expedition cycle: clearing the quest's area completes it (provisional reward of 150 gold and 300 XP for each player); the return portal brings the group to Tortuga, ends the Elemental Potion and brings a new ship.
 - Training yard (`docs/04-tortuga-e-missoes.md`, section 5.2) south of the Main Street: straw dummies per element, armored (50% damage), giant (boss rules) and small dummies that never die and give no XP or loot; group training panel (total, DPS, biggest hit, crits) in the HUD inside the yard; training board to reset the panel or the dummies and toggle free resources and cooldowns. Companions also attack dummies. Proposals still open (attacking dummy, testing locked skills, element altar) are not done.
 - Witch Doctor (`docs/04-tortuga-e-missoes.md`, section 5.1) in a Main Street alley: portals to the map checkpoints reached (40 + 15 × area level, paid by each player; the warning names who lacks gold) and the Return Charm (150 gold, stacks to 5), which opens a portal on the ground back to Tortuga for 15 s on the maps and saves the checkpoint as the way back.
+- Stash (shared by the player's characters, stored on their PC; the server moves items between bag and stash) and the Old Master (redistribute attribute and skill points for 50 × level gold, proposal).
+- Tavern drinks are not implemented: they are an open decision in the docs.
 - Starting kit per `docs/14-tutorial.md`: 150 gold, 3 health potions and 1 resource potion. Elemental Potions no longer drop as loot.
 - Tests: shop rules and town rules unit tests; a full walk through Tortuga in CI.
 

@@ -62,10 +62,18 @@ func _refresh() -> void:
 	for i in stash.size():
 		if stash[i] != null:
 			_stash_list.add_child(_row(stash[i], func() -> void: _town.request_withdraw(i)))
+	_focus_first.call_deferred()
+
+
+## Escolhe o botão na hora de focar (a lista pode ter sido refeita no meio do quadro).
+func _focus_first() -> void:
+	if not visible:
+		return
 	for list in [_bag_list, _stash_list]:
-		if list.get_child_count() > 0:
-			(list.get_child(0) as Control).grab_focus.call_deferred()
-			return
+		for child in list.get_children():
+			if child.is_inside_tree() and not child.is_queued_for_deletion():
+				(child as Control).grab_focus()
+				return
 
 
 func _row(item: Dictionary, callback: Callable) -> Button:

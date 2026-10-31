@@ -111,10 +111,16 @@ func _refresh() -> void:
 		_sell_list.add_child(button)
 	# Depois de comprar/vender o foco fica no mesmo lugar da lista.
 	if focus_index >= 0:
-		var list := _sell_list if focus_index >= 1000 else _buy_list
-		var index := mini(focus_index % 1000, list.get_child_count() - 1)
-		if index >= 0:
-			(list.get_child(index) as Control).grab_focus.call_deferred()
+		_focus_at.call_deferred(_sell_list if focus_index >= 1000 else _buy_list, focus_index % 1000)
+
+
+## Foca o botão da posição (escolhido na hora: a lista pode ter mudado de novo).
+func _focus_at(list: VBoxContainer, index: int) -> void:
+	if not visible or list.get_child_count() == 0:
+		return
+	var child := list.get_child(mini(index, list.get_child_count() - 1)) as Control
+	if child and child.is_inside_tree() and not child.is_queued_for_deletion():
+		child.grab_focus()
 
 
 func _row(text: String, price: String, color: Color) -> Button:
