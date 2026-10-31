@@ -2,6 +2,17 @@
 
 ## [Unreleased]
 
+### Phase 3 — RPG systems (in progress)
+- Character sheet (`CharacterData`): level up to 20, XP 700 × level, +5 attribute and +1 skill point per level; health, mana, power and armor from `docs/13-balanceamento.md`. Validated by the host when a player joins (`NET_CHARACTER_INVALID`).
+- Items as data: materials (cloth/wood to gold), rarities and affixes, Mage equipment bases, potions and valuables (`data/*.json`); names built with `tr()` in en, es and pt_BR.
+- Individual loot rolled per player on the server and shown only to its owner; pickup validated by the server (*Interact* / *Pick up all*); gold picked up automatically; XP divided among present players. A hero who rejoins in time keeps their loot.
+- Inventory window, navigable with the gamepad: equipment slots, 40-slot bag, attribute points, tooltip compared with the equipped item; equipment visible on the hero for everyone.
+- Potions with a shared cooldown; HUD with XP bar, gold, potions, toasts and "saving…".
+- `SaveSystem` (`docs/11-saves.md`): JSON with `save_version`, temp-file write, 3 backups and recovery from a corrupted save; character saved on its owner's PC, campaign (defeated encounter groups) on the host.
+- Main menu: character select/create, *Continue* / *New campaign*.
+- Tests: RPG unit tests (formulas, bag, validation, saves), now run in CI; the bot levels up, collects loot, equips an item and checks the save on disk.
+- CI: in the network test the host waits for the clients to finish collecting loot before leaving; failures also appear as annotations; an inventory screenshot is uploaded as an artifact; `actions/checkout@v5` (Node 24).
+
 ### Phase 2 — basic LAN network
 - `NetworkManager` autoload: ENet host/client with authoritative server; solo uses the same server offline.
 - LAN discovery by UDP broadcast and manual `IP:port` join; host refuses different version, different game data (content hash) or a full game.

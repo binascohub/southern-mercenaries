@@ -13,7 +13,13 @@ cd "$(dirname "$0")/.."
 run() { "$GODOT" --headless --path . res://tests/smoke_arena.tscn -- "$@"; }
 # Em segundo plano sem subshell, para o PID ser o do próprio Godot.
 start() { local log="$1"; shift; "$GODOT" --headless --path . res://tests/smoke_arena.tscn -- "$@" > "$log" 2>&1 & }
-show() { grep -hE "^(OK|FALHOU)|SCRIPT ERROR|ERROR:" "$1" | sed "s/^/$2: /"; }
+show() {
+  grep -hE "^(OK|FALHOU)|SCRIPT ERROR|ERROR:" "$1" | sed "s/^/$2: /"
+  # No GitHub Actions as falhas também viram anotações, legíveis sem baixar o log.
+  if [ -n "${GITHUB_ACTIONS:-}" ]; then
+    grep -hE -A3 "^FALHOU|SCRIPT ERROR|^ERROR:" "$1" | head -20 | sed "s/^/::error title=net_smoke ($2)::/"
+  fi
+}
 FAIL=0
 
 start "$LOGS/host.log" host 2

@@ -276,8 +276,12 @@ func _report(ok: bool, detail: String) -> void:
 		print("OK: " + line)
 	else:
 		printerr("FALHOU: " + line)
-	# O host espera um pouco para o cliente também ver a vitória.
-	var wait := 1.5 if _role == "host" else 0.1
-	get_tree().create_timer(wait).timeout.connect(func() -> void:
-		NetworkManager.leave()
-		get_tree().quit(0 if ok else 1))
+	# O host espera os clientes terminarem (cada um recolhe o próprio loot) e
+	# saírem, para nenhum deles ver o host cair no meio do teste.
+	if _role == "host":
+		var deadline := Time.get_ticks_msec() + 45_000
+		while NetworkManager.player_count() > 1 and Time.get_ticks_msec() < deadline:
+			await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.1).timeout
+	NetworkManager.leave()
+	get_tree().quit(0 if ok else 1)
