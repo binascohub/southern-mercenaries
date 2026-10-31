@@ -484,6 +484,7 @@ func request_interact(player: Player) -> void:
 func _start_run() -> void:
 	_run += 1
 	_zones.clear()
+	skills.clear()
 	for node in get_tree().get_nodes_in_group(&"enemies"):
 		node.queue_free()
 	for node in get_children():

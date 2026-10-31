@@ -55,6 +55,21 @@ func _ready() -> void:
 	_rng.randomize()
 
 
+## Troca de área ou volta ao checkpoint: áreas, golpes marcados, armadilhas e
+## efeitos visuais da área anterior somem (servidor e, pelo _fx, todos os PCs).
+func clear() -> void:
+	_areas.clear()
+	_delayed.clear()
+	_traps.clear()
+	_clear_fx.rpc()
+
+
+@rpc("authority", "call_local", "reliable")
+func _clear_fx() -> void:
+	for child in get_children():
+		child.queue_free()
+
+
 func _arena() -> Node:
 	return get_parent()
 
