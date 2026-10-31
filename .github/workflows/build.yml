@@ -42,6 +42,7 @@ jobs:
       - name: Capturas de tela (inventário, troca, Carregar campanha)
         if: success() || failure()
         continue-on-error: true
+        timeout-minutes: 6
         run: |
           sudo apt-get update -q && sudo apt-get install -y -q xvfb libgl1-mesa-dri
           xvfb-run -a -s "-screen 0 1280x720x24" \

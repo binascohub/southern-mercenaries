@@ -306,7 +306,7 @@ func _elements_test() -> void:
 	check.call(rat.status.has("steam") and rat.status.miss_chance() > 0.0, "quem está no vapor erra ataques")
 	# Poção Elemental: troca o elemento do herói e dos projéteis.
 	player.character.add_item(Items.stack(Items.CONSUMABLE, "elemental_potion_water"))
-	var origin := player.character.data.element
+	var origin: String = player.character.data.element
 	player._drink_next_elemental()
 	check.call(player.element == "water" and player.character.data.element == origin, "Poção Elemental troca o elemento em uso")
 	check.call(player.character.count_of("elemental_potion_water") == 0, "a poção é consumida")

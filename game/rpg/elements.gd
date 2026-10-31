@@ -95,14 +95,14 @@ static func resolve_hit(hit: Dictionary, target_element: String, status: StatusS
 	var crit_chance := float(hit.get("crit_chance", rules.crit_chance))
 	if status.has("frozen") or rng.randf() < crit_chance:
 		result.crit = true
-	var damage := float(hit.damage) * mult * (1.0 + bonus) * (rules.crit_mult if result.crit else 1.0)
+	var damage: float = float(hit.damage) * mult * (1.0 + bonus) * (rules.crit_mult if result.crit else 1.0)
 	result.damage = damage
 	# Estados depois do dano: o do golpe (forte) e o atordoamento do Eletrocutar.
 	var state: String = hit.get("state", "")
 	if state != "":
 		var chance := float(data(element).get("basic_state_chance", 1.0)) if state == data(element).get("basic_state", "") else 1.0
 		if rng.randf() < chance:
-			var dps := damage * float(state_data(state).get("dot_fraction", 0.0))
+			var dps: float = damage * float(state_data(state).get("dot_fraction", 0.0))
 			apply_state(status, state, target_element, is_boss, dps)
 	if stun > 0.0:
 		apply_state(status, "stunned", target_element, is_boss, 0.0, stun)
