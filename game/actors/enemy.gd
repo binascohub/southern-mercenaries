@@ -14,12 +14,18 @@ extends CharacterBody3D
 ## crítico) e deixam estados (queimando, molhado, congelado…). Congelado,
 ## derrubado e atordoado não andam nem atacam; lentidões reduzem a velocidade;
 ## no vapor erra 30% dos ataques. Os outros PCs veem os estados pelo states_mask.
+##
+## Fase 7 (03-inimigos.md, seção 1): categorias (comum, elite, mini-chefe,
+## chefe) multiplicam vida e dano; o "ai" de data/monsters.json escolhe o jeito
+## de lutar — corpo a corpo, investida com aviso (charger), à distância com
+## cuspe que marca o chão antes (ranged) e emboscada escondida na água (ambush).
+## Elites "tóxicas" deixam poças de lodo por onde passam.
 
 signal died(enemy: Enemy)
 ## Levou dano dormindo: o grupo dele acorda (só no servidor).
 signal disturbed(enemy: Enemy)
 
-enum State { CHASE, WINDUP, RECOVER, SLEEP }
+enum State { CHASE, WINDUP, RECOVER, SLEEP, HIDDEN, CHARGE }
 
 const HITBOX_HEIGHT := 1.6
 
@@ -43,6 +49,9 @@ var level := 1
 ## Elemento do monstro (data/monsters.json) e estados ativos (bits, para o visual).
 var element := ""
 var states_mask := 0
+## Elite/mini-chefe por encontro ("" = a categoria do monstro) e modificador da elite.
+var rank := ""
+var modifier := ""
 
 var data: Dictionary
 
@@ -65,6 +74,14 @@ var _shown_health := -1.0
 var _eye_material: StandardMaterial3D
 var _snapshots := SnapshotBuffer.new()
 var _last_net_position := Vector3.INF
+## Investida e cuspe: direção/alvo travados no aviso; recarga da investida.
+var _charge_dir := Vector3.ZERO
+var _charge_cd := 0.0
+var _charge_hit: Array[Node] = []
+var _spit_at := Vector3.ZERO
+var _special := ""
+var _trail_timer := 0.0
+var _ripple: MeshInstance3D
 
 
 ## Criado pelo spawner em todos os PCs, com os mesmos dados.
@@ -77,8 +94,11 @@ static func create(spawn: Dictionary) -> Enemy:
 	enemy.group = spawn.get("group", "")
 	enemy.level = spawn.get("level", 1)
 	enemy.yaw = spawn.get("yaw", 0.0)
-	enemy.element = GameData.get_monster(enemy.monster_id).get("element", "")
-	enemy.max_health = GameData.get_monster(enemy.monster_id).max_health * enemy.level_factor()
+	enemy.rank = spawn.get("rank", "")
+	enemy.modifier = spawn.get("modifier", "")
+	enemy.data = GameData.get_monster(enemy.monster_id)
+	enemy.element = enemy.data.get("element", "")
+	enemy.max_health = enemy.base_health()
 	enemy.health = enemy.max_health
 	enemy._add_synchronizer()
 	return enemy
@@ -123,20 +143,36 @@ func wake(health_scale: float, damage: float) -> void:
 	if state != State.SLEEP:
 		return
 	health_mult = health_scale
-	max_health = data.max_health * level_factor() * health_mult
+	max_health = base_health() * health_mult
 	health = max_health
 	damage_mult = damage
-	state = State.CHASE
+	state = State.HIDDEN if data.get("ai", "") == "ambush" else State.CHASE
 
 
 func level_factor() -> float:
 	return pow(1.12, level - 1)
 
 
+## Comum, elite, mini-chefe ou chefe (a elite vem do encontro).
+func category() -> String:
+	return rank if rank != "" else String(data.get("category", "common"))
+
+
+## Vida sem a escala de jogadores: base × nível × categoria × fator de chefe
+## (13-balanceamento.md, 2.4).
+func base_health() -> float:
+	var mults: Dictionary = GameData.balance.get("category_mults", {}).get(category(), {})
+	return data.max_health * level_factor() * float(mults.get("health", 1.0)) * float(data.get("boss_factor", 1.0))
+
+
+func attack_damage(mult := 1.0) -> float:
+	var mults: Dictionary = GameData.balance.get("category_mults", {}).get(category(), {})
+	return data.damage * level_factor() * damage_mult * float(mults.get("damage", 1.0)) * mult
+
+
 ## XP do monstro: 5 × nível para comuns (13-balanceamento.md, seção 4).
 func xp_value() -> float:
-	var category: String = data.get("category", "common")
-	return GameData.balance.xp_per_monster_level[category] * level * health_mult
+	return GameData.balance.xp_per_monster_level.get(category(), 5) * level * health_mult
 
 
 ## Todos caíram: quem sobreviveu volta ao seu lugar e dorme de novo.
@@ -148,18 +184,25 @@ func return_home() -> void:
 	status.clear()
 	states_mask = 0
 	health_mult = 1.0
-	max_health = data.max_health * level_factor()
+	max_health = base_health()
 	health = max_health
 
 
 func _think(delta: float) -> void:
 	if state == State.SLEEP:
 		return  # Dormindo: sem IA nem movimento (03-inimigos.md, "Desempenho").
+	_charge_cd = maxf(_charge_cd - delta, 0.0)
+	if state == State.HIDDEN:
+		_think_hidden()
+		return
 	if not status.can_act():
-		# Congelado, derrubado ou atordoado: perde o golpe que preparava.
+		# Congelado, derrubado ou atordoado: perde o golpe (ou a investida) que preparava.
 		velocity = Vector3.ZERO
-		if state == State.WINDUP:
+		if state == State.WINDUP or state == State.CHARGE:
 			state = State.CHASE
+		return
+	if state == State.CHARGE:
+		_think_charge(delta)
 		return
 	var target := _nearest_player()
 	if target == null:
@@ -170,23 +213,55 @@ func _think(delta: float) -> void:
 	offset.y = 0.0
 	var dist := offset.length()
 
+	var ai: String = data.get("ai", "melee")
 	match state:
 		State.CHASE:
-			if dist <= data.attack_range:
+			var charge: Dictionary = data.get("charge", {})
+			if ai == "charger" and _charge_cd <= 0.0 and dist >= float(charge["min"]) and dist <= float(charge["max"]):
+				# Investida: aviso (corpo vermelho) e direção travada.
+				_special = "charge"
+				state = State.WINDUP
+				_timer = float(charge.windup)
+				_charge_dir = offset.normalized()
+				velocity = Vector3.ZERO
+			elif ai == "ranged" and dist <= data.attack_range and dist >= float(data.get("keep_distance", 0.0)) * 0.6:
+				# Cuspe: marca o chão onde o alvo está; quem sai a tempo escapa.
+				_special = "spit"
+				state = State.WINDUP
+				_timer = data.attack_windup
+				_spit_at = target.global_position
+				velocity = Vector3.ZERO
+				var spit: Dictionary = data.get("spit", {})
+				get_tree().call_group(&"arena", &"telegraph", _spit_at, float(spit.get("radius", 1.5)), _timer)
+			elif ai != "ranged" and dist <= data.attack_range:
+				_special = ""
 				state = State.WINDUP
 				_timer = data.attack_windup
 				velocity = Vector3.ZERO
 			else:
-				velocity = offset.normalized() * data.move_speed * status.move_mult()
+				var away := ai == "ranged" and dist < float(data.get("keep_distance", 0.0))
+				velocity = (-offset if away else offset).normalized() * data.move_speed * status.move_mult()
 				move_and_slide()
+				_toxic_trail(delta)
 			if dist > 0.01:
 				yaw = atan2(offset.x, offset.z)
 		State.WINDUP:
 			_timer -= delta
+			if _special == "charge":
+				yaw = atan2(_charge_dir.x, _charge_dir.z)
 			if _timer <= 0.0:
+				if _special == "charge":
+					state = State.CHARGE
+					_timer = float(data.charge.time)
+					_charge_hit.clear()
+					return
+				if _special == "spit":
+					var spit: Dictionary = data.get("spit", {})
+					get_tree().call_group(&"arena", &"monster_strike", _spit_at, float(spit.get("radius", 1.5)),
+						attack_damage(), level, self, spit)
 				# No vapor (combo), erra parte dos ataques.
-				if dist <= data.attack_range + 0.4 and _rng.randf() >= status.miss_chance():
-					target.call(&"take_damage", data.damage * level_factor() * damage_mult, level, self)
+				elif dist <= data.attack_range + 0.4 and _rng.randf() >= status.miss_chance():
+					target.call(&"take_damage", attack_damage(), level, self)
 				state = State.RECOVER
 				_timer = data.attack_cooldown
 		State.RECOVER:
@@ -194,6 +269,46 @@ func _think(delta: float) -> void:
 			if _timer <= 0.0:
 				state = State.CHASE
 	global_position.y = 0.0
+
+
+## Escondido (emboscada, na água): só aparece quando alguém chega bem perto,
+## já dando o bote.
+func _think_hidden() -> void:
+	var target := _nearest_player()
+	if target and target.global_position.distance_to(global_position) <= float(data.get("ambush_radius", 4.0)):
+		state = State.WINDUP
+		_special = ""
+		_timer = data.attack_windup * 0.5
+		var offset := target.global_position - global_position
+		yaw = atan2(offset.x, offset.z)
+
+
+## Investida: corre em linha reta e acerta cada herói no caminho uma vez.
+func _think_charge(delta: float) -> void:
+	var charge: Dictionary = data.charge
+	_timer -= delta
+	var collision := move_and_collide(_charge_dir * float(charge.speed) * delta)
+	global_position.y = 0.0
+	for player: Node3D in get_tree().get_nodes_in_group(&"players") + get_tree().get_nodes_in_group(&"companions"):
+		if player in _charge_hit or not player.get("alive"):
+			continue
+		if player.global_position.distance_to(global_position) <= data.attack_range:
+			_charge_hit.append(player)
+			player.call(&"take_damage", attack_damage(float(charge.get("damage_mult", 1.0))), level, self)
+	if _timer <= 0.0 or (collision and collision.get_collider() is StaticBody3D):
+		state = State.RECOVER
+		_timer = data.attack_cooldown
+		_charge_cd = float(charge.get("cooldown", 4.0))
+
+
+## Elite tóxica: deixa poças de lodo por onde passa (03-inimigos.md, seção 12).
+func _toxic_trail(delta: float) -> void:
+	if modifier != "toxic":
+		return
+	_trail_timer -= delta
+	if _trail_timer <= 0.0:
+		_trail_timer = 1.5
+		get_tree().call_group(&"arena", &"add_hazard", global_position, 1.2, 4.0, attack_damage(0.4), level)
 
 
 ## Desloca o monstro `offset` metros em `time` segundos (sem atravessar paredes).
@@ -255,6 +370,8 @@ func _hurt(amount: float, effect: String, hit_element: String, crit: bool, combo
 		return
 	if state == State.SLEEP:
 		disturbed.emit(self)
+	elif state == State.HIDDEN:
+		state = State.CHASE  # acertado escondido: sai da água
 	health -= amount
 	_show_damage.rpc(amount, effect, hit_element, crit, combo)
 	if health <= 0.0:
@@ -314,20 +431,99 @@ func _build_visual(size: float) -> void:
 	shape.position.y = HITBOX_HEIGHT / 2.0
 	add_child(shape)
 
-	# Placeholder: corpo de rato, olhos vermelhos brilhando (clima sombrio).
+	# Placeholder por família (data "look"): rato (padrão), morcego, sapo,
+	# jacaré e a Rainha; olhos vermelhos brilhando (clima sombrio).
 	_visual = Node3D.new()
 	add_child(_visual)
+	var look: String = data.get("look", "rat")
+	var c: Array = data.get("color", [0.36, 0.28, 0.22])
+	_base_color = Color(c[0], c[1], c[2])
 	_material = StandardMaterial3D.new()
 	_material.albedo_color = _base_color
+	# Elites maiores; voadores no alto.
+	var scale_ := 1.25 if category() == "elite" else (1.15 if category() == "miniboss" else 1.0)
+	_visual.scale = Vector3.ONE * scale_
+	if data.get("flyer", false):
+		_visual.position.y = 1.1
 	var body := MeshInstance3D.new()
 	var body_mesh := CapsuleMesh.new()
 	body_mesh.radius = 0.3 * size
 	body_mesh.height = 1.1 * size
+	match look:
+		"toad":
+			body_mesh.radius = 0.45 * size
+			body_mesh.height = 0.95 * size
+		"gator":
+			body_mesh.radius = 0.28 * size
+			body_mesh.height = 1.9 * size
 	body.mesh = body_mesh
 	body.rotation.x = PI / 2.0
 	body.position.y = 0.3 * size
 	body.material_override = _material
 	_visual.add_child(body)
+	if look == "bat":
+		for side in [-1.0, 1.0]:
+			var wing := MeshInstance3D.new()
+			var wing_mesh := BoxMesh.new()
+			wing_mesh.size = Vector3(0.7 * size, 0.04, 0.4 * size)
+			wing.mesh = wing_mesh
+			wing.material_override = _material
+			wing.position = Vector3(0.45 * side * size, 0.35 * size, 0)
+			wing.rotation.z = 0.35 * side
+			_visual.add_child(wing)
+	elif look == "queen":
+		# A coroa torta do rei caído e a cauda de filhotes entrelaçados.
+		var crown := MeshInstance3D.new()
+		var crown_mesh := CylinderMesh.new()
+		crown_mesh.top_radius = 0.22 * size
+		crown_mesh.bottom_radius = 0.18 * size
+		crown_mesh.height = 0.18 * size
+		crown.mesh = crown_mesh
+		var gold := StandardMaterial3D.new()
+		gold.albedo_color = Color(0.95, 0.75, 0.2)
+		gold.metallic = 0.8
+		crown.material_override = gold
+		crown.position = Vector3(0, 0.62 * size, 0.35 * size)
+		crown.rotation.z = 0.25
+		_visual.add_child(crown)
+		var tail := MeshInstance3D.new()
+		var tail_mesh := SphereMesh.new()
+		tail_mesh.radius = 0.25 * size
+		tail_mesh.height = 0.4 * size
+		tail.mesh = tail_mesh
+		tail.material_override = _material
+		tail.position = Vector3(0, 0.15 * size, -0.85 * size)
+		_visual.add_child(tail)
+	# Aura da elite (dourada), do mini-chefe (roxa) e do chefe (vermelha).
+	var aura_colors := {"elite": Color(1.0, 0.8, 0.25), "miniboss": Color(0.7, 0.35, 1.0), "boss": Color(0.9, 0.15, 0.1)}
+	if aura_colors.has(category()):
+		var aura := MeshInstance3D.new()
+		var ring := TorusMesh.new()
+		ring.inner_radius = 0.55 * size
+		ring.outer_radius = 0.7 * size
+		aura.mesh = ring
+		var aura_material := StandardMaterial3D.new()
+		aura_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		aura_material.albedo_color = aura_colors[category()]
+		aura.material_override = aura_material
+		aura.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		aura.position.y = 0.05
+		_visual.add_child(aura)
+	# Emboscada: só as bolhas na água aparecem enquanto está escondido.
+	if data.get("ai", "") == "ambush":
+		_ripple = MeshInstance3D.new()
+		var disc := CylinderMesh.new()
+		disc.top_radius = 0.9
+		disc.bottom_radius = 0.9
+		disc.height = 0.03
+		_ripple.mesh = disc
+		var ripple_material := StandardMaterial3D.new()
+		ripple_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		ripple_material.albedo_color = Color(0.35, 0.5, 0.45, 0.6)
+		ripple_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		_ripple.material_override = ripple_material
+		_ripple.position.y = 0.06
+		add_child(_ripple)
 
 	var eye_material := StandardMaterial3D.new()
 	eye_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
@@ -360,6 +556,16 @@ func _build_visual(size: float) -> void:
 
 func _tick_visual(delta: float) -> void:
 	_visual.rotation.y = yaw
+	if _ripple:
+		var submerged := state == State.HIDDEN
+		_visual.visible = not submerged
+		if _element_gem:
+			_element_gem.visible = not submerged
+		_ripple.visible = submerged
+		if submerged:
+			_ripple.scale = Vector3.ONE * (1.0 + 0.15 * sin(Time.get_ticks_msec() / 200.0))
+	elif data.get("flyer", false):
+		_visual.position.y = 1.1 + 0.15 * sin(Time.get_ticks_msec() / 150.0)
 	if health < _shown_health:
 		_flash = 0.12
 	_shown_health = health
@@ -380,7 +586,7 @@ func _tick_visual(delta: float) -> void:
 			tint.a = strength
 	if _flash > 0.0:
 		_material.albedo_color = Color(1, 1, 1)
-	elif state == State.WINDUP:
+	elif state == State.WINDUP or state == State.CHARGE:
 		# Aviso do golpe: o corpo avermelha durante a preparação.
 		_material.albedo_color = _base_color.lerp(Color(0.9, 0.2, 0.1), 0.7)
 	else:

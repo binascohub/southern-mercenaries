@@ -27,6 +27,189 @@
     "category": "common",
     "element": "earth"
   },
+  "plague_rat": {
+    "_comment": "Esgoto (03-inimigos.md, seção 2): filhotes da Rainha, em enxames. Vida 20, dano 4, rápido.",
+    "name_key": "MONSTER_PLAGUE_RAT",
+    "max_health": 20,
+    "move_speed": 4.2,
+    "damage": 4,
+    "attack_range": 1.2,
+    "attack_windup": 0.3,
+    "attack_cooldown": 1.0,
+    "aggro_range": 40.0,
+    "size": 0.6,
+    "category": "common",
+    "element": "earth",
+    "ai": "melee",
+    "look": "rat",
+    "color": [
+      0.32,
+      0.25,
+      0.2
+    ]
+  },
+  "mutant_rat": {
+    "_comment": "Do tamanho de um cão; investida curta com aviso (charger). Costuma ser elite.",
+    "name_key": "MONSTER_MUTANT_RAT",
+    "max_health": 110,
+    "move_speed": 3.0,
+    "damage": 12,
+    "attack_range": 1.6,
+    "attack_windup": 0.6,
+    "attack_cooldown": 1.6,
+    "aggro_range": 40.0,
+    "size": 1.15,
+    "category": "common",
+    "element": "earth",
+    "ai": "charger",
+    "charge": {
+      "min": 3.5,
+      "max": 9.0,
+      "windup": 0.8,
+      "speed": 13.0,
+      "time": 0.5,
+      "damage_mult": 1.4,
+      "cooldown": 4.0
+    },
+    "look": "rat",
+    "color": [
+      0.42,
+      0.3,
+      0.24
+    ]
+  },
+  "plague_bat": {
+    "_comment": "Bandos que caem do teto; voador rápido.",
+    "name_key": "MONSTER_PLAGUE_BAT",
+    "max_health": 25,
+    "move_speed": 5.0,
+    "damage": 5,
+    "attack_range": 1.3,
+    "attack_windup": 0.3,
+    "attack_cooldown": 0.9,
+    "aggro_range": 40.0,
+    "size": 0.55,
+    "category": "common",
+    "element": "air",
+    "ai": "melee",
+    "flyer": true,
+    "look": "bat",
+    "color": [
+      0.22,
+      0.2,
+      0.24
+    ]
+  },
+  "acid_toad": {
+    "_comment": "À distância: cospe ácido onde o alvo está (marca no chão antes) e deixa uma poça tóxica. Mantém distância.",
+    "name_key": "MONSTER_ACID_TOAD",
+    "max_health": 50,
+    "move_speed": 1.8,
+    "damage": 9,
+    "attack_range": 8.0,
+    "attack_windup": 0.9,
+    "attack_cooldown": 2.4,
+    "aggro_range": 40.0,
+    "size": 0.85,
+    "category": "common",
+    "element": "water",
+    "ai": "ranged",
+    "keep_distance": 5.0,
+    "spit": {
+      "radius": 1.6,
+      "puddle_time": 5.0,
+      "puddle_dps": 4.0
+    },
+    "look": "toad",
+    "color": [
+      0.3,
+      0.42,
+      0.2
+    ]
+  },
+  "sewer_gator": {
+    "_comment": "Emboscada: escondido na água (só as bolhas aparecem) até alguém chegar perto; dá o bote.",
+    "name_key": "MONSTER_SEWER_GATOR",
+    "max_health": 150,
+    "move_speed": 2.8,
+    "damage": 16,
+    "attack_range": 2.0,
+    "attack_windup": 0.7,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 1.5,
+    "category": "common",
+    "element": "water",
+    "ai": "ambush",
+    "ambush_radius": 5.0,
+    "look": "gator",
+    "color": [
+      0.62,
+      0.64,
+      0.55
+    ]
+  },
+  "old_gator": {
+    "_comment": "Mini-chefe da Passagem Secreta da Guerra (03-2-areas.md): o Jacaré Velho, vida x6 e dano x1,8 pela categoria. Emboscada e investida.",
+    "name_key": "MONSTER_OLD_GATOR",
+    "max_health": 150,
+    "move_speed": 2.8,
+    "damage": 16,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 1.8,
+    "category": "miniboss",
+    "element": "water",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 10.0,
+      "windup": 1.0,
+      "speed": 12.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "gator",
+    "color": [
+      0.7,
+      0.72,
+      0.62
+    ]
+  },
+  "demon_rat_queen": {
+    "_comment": "Chefe do Esgoto (03-inimigos.md, seção 2): vida 1.000 x fator de chefe 4,3 (13-balanceamento.md 2.4). As 3 fases entram na próxima entrega; por enquanto, mordidas e investidas.",
+    "name_key": "MONSTER_RAT_QUEEN",
+    "max_health": 1000,
+    "boss_factor": 4.3,
+    "move_speed": 2.6,
+    "damage": 20,
+    "attack_range": 2.6,
+    "attack_windup": 0.9,
+    "attack_cooldown": 1.8,
+    "aggro_range": 60.0,
+    "size": 2.6,
+    "category": "boss",
+    "element": "earth",
+    "ai": "charger",
+    "charge": {
+      "min": 5.0,
+      "max": 14.0,
+      "windup": 1.2,
+      "speed": 12.0,
+      "time": 0.8,
+      "damage_mult": 1.5,
+      "cooldown": 6.0
+    },
+    "look": "queen",
+    "color": [
+      0.3,
+      0.22,
+      0.18
+    ]
+  },
   "training_dummy_fire": {
     "_comment": "Boneco do pátio de treino (04-tortuga-e-missoes.md, seção 5.2): não anda, não ataca, não morre e não dá XP nem loot.",
     "name_key": "MONSTER_DUMMY_FIRE",

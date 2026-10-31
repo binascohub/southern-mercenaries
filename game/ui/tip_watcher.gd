@@ -100,10 +100,9 @@ func _check_enemies(player: Player, c: CharacterData) -> void:
 				or enemy.global_position.distance_to(player.global_position) > ENEMY_NEAR:
 			continue
 		near = true
-		var monster := GameData.get_monster(enemy.monster_id)
-		if monster.get("boss", false) or monster.get("category", "") == "boss":
+		if enemy.is_boss():
 			TipManager.notify("boss_near")
-		if monster.get("elite", false):
+		if enemy.category() in ["elite", "miniboss"]:
 			TipManager.notify("elite_near")
 		if enemy.element != "" and not is_equal_approx(Elements.multiplier(c.current_element(), enemy.element), 1.0):
 			TipManager.notify("element_matters")

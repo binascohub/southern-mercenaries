@@ -47,6 +47,8 @@ jobs:
         run: tests/godot_checked.sh godot --headless --path . res://tests/smoke_arena.tscn -- skills knight
       - name: Tortuga (Taverna, missão, lojas, bueiro, volta)
         run: tests/godot_checked.sh godot --headless --path . res://tests/smoke_arena.tscn -- town
+      - name: Esgoto (as 4 áreas)
+        run: tests/godot_checked.sh godot --headless --path . res://tests/smoke_arena.tscn -- sewers
       - name: Troca entre jogadores
         run: tests/godot_checked.sh godot --headless --path . res://tests/smoke_arena.tscn -- trade
       - name: Rede (host + cliente, versão diferente)

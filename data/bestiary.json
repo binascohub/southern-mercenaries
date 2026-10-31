@@ -1,12 +1,13 @@
 {
-  "_comment": "Bestiário (03-1-bestiario.md): lenda, elemento, fraqueza e pista de cada criatura; entra no bestiário do jogo quando alguém conta a história. monsters: ids em monsters.json que contam como essa criatura (a área de teste usa ratos provisórios no lugar dos do Esgoto).",
+  "_comment": "Bestiário (03-1-bestiario.md): lenda, elemento, fraqueza e pista de cada criatura; entra no bestiário do jogo quando alguém conta a história. monsters: ids em monsters.json que contam como essa criatura (a área de teste usa ratos provisórios no lugar dos do Esgoto). Fase 7: 'monsters' são os IDs de data/monsters.json da criatura (os ratos de teste da área de desenvolvimento contam como Rato Pestilento e Ratazana); as missões secundárias procuram criaturas nos encontros de cada área.",
   "plague_rat": {
     "name_key": "BEAST_PLAGUE_RAT",
     "legend_key": "BEAST_PLAGUE_RAT_LEGEND",
     "hint_key": "BEAST_PLAGUE_RAT_HINT",
     "element": "earth",
-    "map": "prototype_arena",
+    "map": "map_sewers",
     "monsters": [
+      "plague_rat",
       "sewer_rat"
     ]
   },
@@ -15,8 +16,9 @@
     "legend_key": "BEAST_MUTANT_RAT_LEGEND",
     "hint_key": "BEAST_MUTANT_RAT_HINT",
     "element": "earth",
-    "map": "prototype_arena",
+    "map": "map_sewers",
     "monsters": [
+      "mutant_rat",
       "sewer_rat_big"
     ]
   },
@@ -25,32 +27,41 @@
     "legend_key": "BEAST_PLAGUE_BAT_LEGEND",
     "hint_key": "BEAST_PLAGUE_BAT_HINT",
     "element": "air",
-    "map": "prototype_arena",
-    "monsters": []
+    "map": "map_sewers",
+    "monsters": [
+      "plague_bat"
+    ]
   },
   "acid_toad": {
     "name_key": "BEAST_ACID_TOAD",
     "legend_key": "BEAST_ACID_TOAD_LEGEND",
     "hint_key": "BEAST_ACID_TOAD_HINT",
     "element": "water",
-    "map": "prototype_arena",
-    "monsters": []
+    "map": "map_sewers",
+    "monsters": [
+      "acid_toad"
+    ]
   },
   "sewer_gator": {
     "name_key": "BEAST_SEWER_GATOR",
     "legend_key": "BEAST_SEWER_GATOR_LEGEND",
     "hint_key": "BEAST_SEWER_GATOR_HINT",
     "element": "water",
-    "map": "prototype_arena",
-    "monsters": []
+    "map": "map_sewers",
+    "monsters": [
+      "sewer_gator",
+      "old_gator"
+    ]
   },
   "demon_rat_queen": {
     "name_key": "BEAST_DEMON_RAT_QUEEN",
     "legend_key": "BEAST_DEMON_RAT_QUEEN_LEGEND",
     "hint_key": "BEAST_DEMON_RAT_QUEEN_HINT",
     "element": "earth",
-    "map": "prototype_arena",
-    "monsters": [],
+    "map": "map_sewers",
+    "monsters": [
+      "demon_rat_queen"
+    ],
     "boss": true
   }
 }

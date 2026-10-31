@@ -34,6 +34,33 @@
   "inventory_size": 40,
   "stash_size": 40,
   "respec_gold_per_level": 50,
-  "save_slots": { "_comment": "11-saves.md, seção 3 (proposta)", "characters": 12, "campaigns": 6 },
-  "save_version": 1
+  "save_slots": {
+    "_comment": "11-saves.md, seção 3 (proposta)",
+    "characters": 12,
+    "campaigns": 6
+  },
+  "save_version": 1,
+  "category_mults": {
+    "_comment": "Vida e dano por categoria (03-inimigos.md, seção 1; 13-balanceamento.md 2.4). O chefe usa o boss_factor do próprio monstro.",
+    "common": {
+      "health": 1,
+      "damage": 1
+    },
+    "elite": {
+      "health": 3,
+      "damage": 1.5
+    },
+    "miniboss": {
+      "health": 6,
+      "damage": 1.8
+    },
+    "boss": {
+      "health": 1,
+      "damage": 1
+    }
+  },
+  "hazard_tick": 0.5,
+  "group_exit_radius": 8.0,
+  "group_exit_countdown": 10.0,
+  "sludge_dps": 3.0
 }

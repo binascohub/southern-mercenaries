@@ -2169,3 +2169,69 @@ msgstr "Muévete con {button} y apunta con el ratón."
 
 msgid "TIP_MOVE_PAD"
 msgstr "Muévete con el stick izquierdo y apunta con el derecho."
+
+msgid "MONSTER_PLAGUE_RAT"
+msgstr "Rata Pestilente"
+
+msgid "MONSTER_MUTANT_RAT"
+msgstr "Rata Mutante"
+
+msgid "MONSTER_PLAGUE_BAT"
+msgstr "Murciélago Pestilente"
+
+msgid "MONSTER_ACID_TOAD"
+msgstr "Sapo Ácido"
+
+msgid "MONSTER_SEWER_GATOR"
+msgstr "Caimán de la Cloaca"
+
+msgid "MONSTER_OLD_GATOR"
+msgstr "Caimán Viejo"
+
+msgid "MONSTER_RAT_QUEEN"
+msgstr "Reina de las Ratas"
+
+msgid "ARENA_SEWERS_DRAINS"
+msgstr "Cloacas — Desagües de la Calle Principal"
+
+msgid "ARENA_SEWERS_CANALS"
+msgstr "Cloacas — Canales de Basura"
+
+msgid "ARENA_SEWERS_WAR_PASSAGE"
+msgstr "Cloacas — Pasaje Secreto de la Guerra"
+
+msgid "ARENA_SEWERS_NEST"
+msgstr "Cloacas — Nido de la Reina"
+
+msgid "PROP_SEWER_DEEPER"
+msgstr "Bajar más hondo"
+
+msgid "PROP_WAR_CREST"
+msgstr "Escudo antiguo"
+
+msgid "PROP_WAR_TREASURE"
+msgstr "Tesoro Perdido de la Guerra"
+
+msgid "SIGN_WAR_CREST"
+msgstr "Un escudo gastado en la pared: un águila sobre tres flechas. Alguien cavó este túnel con prisa."
+
+msgid "SIGN_WAR_CREST_ARCHER"
+msgstr "El escudo de mi reino. Así que por aquí huyó el tesoro de la guerra."
+
+msgid "HUD_VICTORY_SEWERS"
+msgstr "La Reina de las Ratas ha caído."
+
+msgid "HUD_VICTORY_TREASURE"
+msgstr "El Tesoro Perdido de la Guerra está abierto para el grupo."
+
+msgid "TOAST_SECRET_FOUND"
+msgstr "¡{name} encontró un secreto!"
+
+msgid "TOAST_CHEST_OPENED"
+msgstr "{name} abrió el cofre."
+
+msgid "TOAST_WAITING_GROUP"
+msgstr "Esperando al grupo en la salida: {names}"
+
+msgid "TOAST_GROUP_EXIT_COUNTDOWN"
+msgstr "El grupo sigue en {seconds} s."

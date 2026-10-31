@@ -31,6 +31,11 @@ var _quest_label: Label
 var _prompt: Label
 var _training_label: Label
 var _result := 0
+## Área de teste: a vitória pede "ataque para recomeçar"; nos mapas, o título
+## da vitória (victory_key) aparece e some sozinho.
+var _replayable := true
+var _victory_key := "HUD_VICTORY"
+var _victory_shown := false
 var _connecting := false
 var _local_alive := true
 var _xp_bar: ProgressBar
@@ -164,8 +169,19 @@ func set_progress(cleared: int, total: int) -> void:
 	_refresh_texts()
 
 
+func set_replayable(replayable: bool, victory_key: String) -> void:
+	_replayable = replayable
+	_victory_key = victory_key
+
+
 func show_result(result: int) -> void:
+	var newly_won := result == RESULT_VICTORY and _result != RESULT_VICTORY
 	_result = result
+	_victory_shown = newly_won or (result == RESULT_VICTORY and _replayable)
+	if newly_won and not _replayable:
+		get_tree().create_timer(6.0, false).timeout.connect(func() -> void:
+			_victory_shown = false
+			_refresh_texts())
 	_refresh_texts()
 
 
@@ -291,9 +307,10 @@ func _refresh_texts() -> void:
 	var sub := ""
 	if _connecting:
 		title = tr("NET_CONNECTING")
-	elif _result == RESULT_VICTORY:
-		title = tr("HUD_VICTORY")
-		sub = tr("HUD_PRESS_TO_RESTART").format({"action": InputDevice.prompt(&"attack")})
+	elif _result == RESULT_VICTORY and _victory_shown:
+		title = tr(_victory_key)
+		sub = tr("HUD_PRESS_TO_RESTART").format({"action": InputDevice.prompt(&"attack")}) if _replayable \
+			else tr("HUD_VICTORY_TREASURE")
 	elif _result == RESULT_DEFEAT:
 		title = tr("HUD_DEFEAT")
 		sub = tr("HUD_RETURNING_TO_CHECKPOINT")

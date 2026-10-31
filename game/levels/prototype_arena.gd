@@ -17,6 +17,12 @@ extends Node3D
 ## _load_area e os heróis continuam os mesmos nós. Objetos da área ("props"):
 ## lojas, NPCs, saídas e placas; o Town cuida de missões, lojas e conversas.
 ##
+## Mapas (Fase 7, 03-2-areas.md): o Esgoto de Tortuga em 4 áreas, cada uma com
+## checkpoint na entrada, segredos (baús escondidos), poças de lodo, elites e,
+## no fim, a saída para a próxima área — que só leva o grupo quando todos estão
+## perto (ou o host confirma, com contagem). Só a área final ("final") termina
+## em vitória; a área de teste ("replayable") pode ser jogada de novo.
+##
 ## RPG (Fase 3): o XP de cada monstro é dividido entre os jogadores presentes;
 ## o loot é sorteado e mostrado por jogador (cada um vê só o seu) e a coleta é
 ## validada no servidor. A campanha (grupos mortos) fica no PC do host.
@@ -105,6 +111,10 @@ var _held := {}
 var _thumb_timer := THUMB_FIRST
 ## Áreas dos combos Lama e Vapor (servidor): [{position, radius, time, state}].
 var _zones: Array[Dictionary] = []
+## Poças tóxicas e avisos de golpe no chão (Fase 7).
+var hazards: Hazards
+## Saída em grupo: contagem do host em andamento (id da saída) e em que partida.
+var _exit_countdown := ""
 ## Nós da área atual (paredes, chão, luzes, objetos), trocados a cada viagem.
 var _area_root: Node3D
 var _props: Array[Dictionary] = []
@@ -124,6 +134,10 @@ func _ready() -> void:
 	_area_root = Node3D.new()
 	_area_root.name = "Area"
 	add_child(_area_root)
+	hazards = Hazards.new()
+	hazards.name = "Hazards"
+	hazards.root = _area_root
+	add_child(hazards)
 	_build_spawners()
 	town = Town.new()
 	town.name = "Town"
@@ -208,7 +222,7 @@ func _ready() -> void:
 		_spawn_player(multiplayer.get_unique_id())
 		_start_run()
 		town.sync()
-		_add_spot_props()
+		_add_dynamic_props()
 	else:
 		hud.show_connecting(true)
 
@@ -221,7 +235,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			and not _forge_menu.visible and not _opening_menu.visible:
 		pause_menu.open(not NetworkManager.is_online())
 		get_viewport().set_input_as_handled()
-	elif result == Result.VICTORY and event.is_action_pressed(&"attack"):
+	elif result == Result.VICTORY and arena.get("replayable", false) and event.is_action_pressed(&"attack"):
 		if multiplayer.is_server():
 			_restart_area()
 		else:
@@ -229,7 +243,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if multiplayer.is_server() and result == Result.NONE:
+	# Nos mapas a área segue viva depois da vitória (reanimar, ouro, tesouro);
+	# a área de teste para, esperando o recomeço.
+	var running := result == Result.NONE or (result == Result.VICTORY and not arena.get("replayable", false))
+	if multiplayer.is_server() and running:
 		_update_revives(delta)
 		_encounter_timer -= delta
 		if _encounter_timer <= 0.0:
@@ -441,6 +458,8 @@ func _update_training() -> void:
 
 ## Área estreita (corredores marcados "narrow"): o Cavaleiro desmonta (02-3-cavaleiro.md, seção 3).
 func is_narrow(at: Vector3) -> bool:
+	if arena.get("narrow", false):
+		return true
 	for room: Dictionary in arena.get("rooms", []):
 		if not room.get("narrow", false):
 			continue
@@ -531,7 +550,7 @@ func _on_node_spawned(node: Node) -> void:
 func _on_peer_joined(peer_id: int) -> void:
 	_load_area.rpc_id(peer_id, area_id, "")
 	town.sync(peer_id)
-	_add_spot_props(peer_id)
+	_add_dynamic_props(peer_id)
 	var held: Player = _held.get(NetworkManager.client_id_of(peer_id))
 	if is_instance_valid(held):
 		# Voltou dentro do prazo: assume o mesmo herói (vida, lugar, cor).
@@ -588,6 +607,8 @@ func _load_area(id: String, _entry: String) -> void:
 	_build_environment()
 	_build_area()
 	_build_props()
+	hazards.build_static(arena)
+	hud.set_replayable(arena.get("replayable", false), String(arena.get("victory_key", "HUD_VICTORY")))
 	hud.set_progress(cleared, total_encounters)
 	hud.set_area(tr(arena.get("name_key", "")))
 
@@ -607,15 +628,28 @@ func travel(to: String, entry: String, expedition_end := false) -> void:
 	_loot.clear()
 	_campaign.area = to
 	_campaign.checkpoint = entry
+	_exit_countdown = ""
 	_load_area.rpc(to, entry)
 	_start_run()
-	_add_spot_props()
+	_add_dynamic_props()
 	SaveSystem.save_campaign(_campaign, true)
 
 
-## Lugares das missões secundárias (rumores, cargas perdidas) desta área.
-func _add_spot_props(peer_id := 0) -> void:
-	for prop in town.spot_props(area_id):
+## Objetos que dependem da campanha: lugares das missões secundárias (rumores,
+## cargas perdidas), baús ainda fechados e, depois da vitória da área final, o
+## que aparece com ela (portal de volta, tesouro).
+func _add_dynamic_props(peer_id := 0) -> void:
+	var opened: Array = _campaign.get("opened", [])
+	var dynamic: Array = town.spot_props(area_id)
+	for prop: Dictionary in arena.get("props", []):
+		if prop.kind == "chest" and "%s:%s" % [area_id, prop.id] in opened:
+			continue
+		if prop.get("after_victory", false):
+			if result == Result.VICTORY:
+				dynamic.append(prop)
+		elif prop.kind == "chest":
+			dynamic.append(prop)
+	for prop in dynamic:
 		if peer_id == 0:
 			_add_prop.rpc(prop)
 		else:
@@ -685,6 +719,7 @@ func request_interact(player: Player) -> void:
 func _start_run() -> void:
 	_run += 1
 	_zones.clear()
+	hazards.reset(arena)
 	skills.clear()
 	for node in get_tree().get_nodes_in_group(&"enemies"):
 		node.queue_free()
@@ -696,6 +731,12 @@ func _start_run() -> void:
 	for encounter: Dictionary in arena.encounters:
 		if encounter.id not in dead:
 			_spawn_group(encounter)
+	# Bandos das caçadas ativas nesta área (SideQuests.hunt_encounter).
+	for quest: Dictionary in SideQuests.active(_campaign.get("side_quests", {})):
+		if quest.area == area_id:
+			var hunt := SideQuests.hunt_encounter(quest)
+			if not hunt.is_empty():
+				_spawn_group(hunt)
 	# Bonecos do pátio de treino: não acordam, não andam, não morrem.
 	for dummy: Dictionary in arena.get("dummies", []):
 		_enemy_spawner.spawn({"monster_id": dummy.monster, "group": "",
@@ -704,8 +745,11 @@ func _start_run() -> void:
 	_reset_players()
 	for c in get_tree().get_nodes_in_group(&"companions"):
 		c.queue_free()  # os animais voltam quando o Invocador os chamar de novo
-	var done := dead.size() if total_encounters > 0 else 0
-	_broadcast(done, Result.VICTORY if total_encounters > 0 and done >= total_encounters else Result.NONE)
+	var done := 0
+	for encounter: Dictionary in arena.encounters:
+		if encounter.id in dead:
+			done += 1
+	_broadcast(done, Result.VICTORY if _is_won(done) else Result.NONE)
 	_reach_checkpoint(str(_campaign.get("checkpoint", "start")))
 
 
@@ -742,26 +786,37 @@ func _update_thumbnail(delta: float) -> void:
 	SaveSystem.save_thumbnail(_campaign.id, image)
 
 
+## Vitória: todos os encontros da área final vencidos (as outras áreas só
+## contam o progresso; a saída leva adiante).
+func _is_won(done: int) -> bool:
+	return arena.get("final", false) and total_encounters > 0 and done >= total_encounters
+
+
 ## Depois da vitória, a área de teste pode ser jogada de novo do zero.
 func _restart_area() -> void:
-	_campaign.dead_groups = []
+	if not arena.get("replayable", false):
+		return
+	var ids: Array = arena.encounters.map(func(e: Dictionary) -> String: return e.id)
+	_campaign.dead_groups = _campaign.get("dead_groups", []).filter(func(id: String) -> bool: return id not in ids)
 	_start_run()
 
 
 func _spawn_group(encounter: Dictionary) -> void:
 	var center := Vector3(encounter.position[0], 0, encounter.position[1])
-	var ids: Array[String] = []
-	for entry in encounter.monsters:
+	var entries: Array[Dictionary] = []
+	for entry: Dictionary in encounter.monsters:
 		for i in int(entry.count):
-			ids.append(entry.monster)
+			entries.append(entry)
 	var members: Array[Enemy] = []
-	for i in ids.size():
+	var spread := float(encounter.get("spread", 1.6))
+	for i in entries.size():
 		# Bando em círculo em volta do ponto do grupo.
-		var angle := TAU * i / ids.size()
-		var offset := Vector3(cos(angle), 0, sin(angle)) * (1.6 if ids.size() > 1 else 0.0)
+		var angle := TAU * i / entries.size()
+		var offset := Vector3(cos(angle), 0, sin(angle)) * (spread if entries.size() > 1 else 0.0)
 		var enemy: Enemy = _enemy_spawner.spawn({
-			"monster_id": ids[i], "group": encounter.id, "level": arena.get("area_level", 1),
+			"monster_id": entries[i].monster, "group": encounter.id, "level": arena.get("area_level", 1),
 			"position": center + offset, "yaw": randf() * TAU,
+			"rank": entries[i].get("rank", ""), "modifier": entries[i].get("modifier", ""),
 		})
 		members.append(enemy)
 	_groups[encounter.id] = {"position": center, "awake": false, "members": members}
@@ -771,6 +826,65 @@ func _reset_players() -> void:
 	var spot := entry_point(str(_campaign.get("checkpoint", "start")))
 	for p: Player in get_tree().get_nodes_in_group(&"players"):
 		p.reset_at(spot + SLOT_OFFSETS[p.slot % SLOT_OFFSETS.size()])
+
+
+# --- Mapas: baús, saídas em grupo, golpes no chão (Fase 7) ---------------------
+
+## Baú (segredos e tesouro): cada jogador presente ganha o seu loot; abre uma
+## vez por campanha.
+func open_chest(player: Player, prop: Dictionary) -> void:
+	var key := "%s:%s" % [area_id, prop.id]
+	var opened: Array = _campaign.get("opened", [])
+	if key in opened:
+		return
+	_campaign.opened = opened + [key]
+	var table: Dictionary = GameData.loot.get(String(prop.get("loot", "chest")), GameData.loot.chest)
+	var at := Vector3(prop.position[0], 0, prop.position[1])
+	for p: Player in get_tree().get_nodes_in_group(&"players"):
+		if p.connected and p.character:
+			_drop_table(p, at, table, int(arena.get("area_level", 1)))
+	_remove_prop.rpc(String(prop.id))
+	_toast_all("TOAST_SECRET_FOUND" if prop.get("secret", false) else "TOAST_CHEST_OPENED", {"name": player.hero_name})
+	SaveSystem.save_campaign(_campaign, true)
+
+
+## Saída para a próxima área (03-2-areas.md, seção 1): só quando todos os
+## heróis de pé estão perto; senão avisa quem falta. O host pode forçar: o
+## segundo aperto dele começa uma contagem de 10 s.
+func request_exit(player: Player, prop: Dictionary) -> void:
+	var at := Vector3(prop.position[0], 0, prop.position[1])
+	var radius: float = GameData.balance.get("group_exit_radius", 8.0)
+	var missing: Array[String] = []
+	for p: Player in get_tree().get_nodes_in_group(&"players"):
+		if p.connected and p.alive and p.global_position.distance_to(at) > radius:
+			missing.append(p.hero_name)
+	if missing.is_empty():
+		travel(String(prop.to), String(prop.get("entry", "start")), prop.get("expedition_end", false))
+		return
+	if player.peer_id != 1 or _exit_countdown != String(prop.id):
+		_toast_all("TOAST_WAITING_GROUP", {"names": ", ".join(missing)})
+		if player.peer_id == 1:
+			_exit_countdown = String(prop.id)  # o próximo aperto do host força
+		return
+	var seconds: float = GameData.balance.get("group_exit_countdown", 10.0)
+	_toast_all("TOAST_GROUP_EXIT_COUNTDOWN", {"seconds": int(seconds)})
+	var area_now := area_id
+	_after(seconds, func() -> void:
+		if area_id == area_now:
+			travel(String(prop.to), String(prop.get("entry", "start")), prop.get("expedition_end", false)))
+
+
+## Golpe de monstro no chão: aviso (todos veem), depois o dano (Hazards).
+func telegraph(at: Vector3, radius: float, time: float) -> void:
+	hazards.telegraph(at, radius, time)
+
+
+func monster_strike(at: Vector3, radius: float, damage: float, level: int, source: Node3D, extra: Dictionary) -> void:
+	hazards.strike(at, radius, damage, level, source, extra)
+
+
+func add_hazard(at: Vector3, radius: float, duration: float, dps: float, level: int) -> void:
+	hazards.add(at, radius, duration, dps, level)
 
 
 ## Grupo dormindo acorda quando um jogador chega perto (raio de despertar).
@@ -823,14 +937,18 @@ func _on_enemy_died(enemy: Enemy) -> void:
 	if group.is_empty():
 		return
 	group.members.erase(enemy)
-	if group.members.is_empty():
+	# Bandos de caçada não contam como encontros da área.
+	if group.members.is_empty() and not enemy.group.begins_with("hunt_"):
 		_campaign.dead_groups = _campaign.get("dead_groups", []) + [enemy.group]
 		SaveSystem.save_campaign(_campaign, true)
 		var done := cleared + 1
-		var won := done >= total_encounters
+		var won := _is_won(done)
 		_broadcast(done, Result.VICTORY if won else Result.NONE)
 		if won:
 			town.complete_quests_in(area_id)
+			for prop: Dictionary in arena.get("props", []):
+				if prop.get("after_victory", false):
+					_add_prop.rpc(prop)
 
 
 # --- XP e loot (servidor) ------------------------------------------------------
@@ -851,15 +969,24 @@ func _reward(enemy: Enemy) -> void:
 
 
 func _drop_loot_for(player: Player, enemy: Enemy) -> void:
-	var table: Dictionary = GameData.loot[enemy.data.get("category", "common")]
-	var origin := enemy.global_position
-	var level: int = enemy.level
+	_drop_table(player, enemy.global_position, GameData.loot.get(enemy.category(), GameData.loot.common), enemy.level)
+
+
+## Sorteia uma tabela de loot (data/loot.json) para um jogador: ouro, itens
+## (chance ou "items" garantidos, o primeiro com a raridade "guaranteed"),
+## poções e valiosos.
+func _drop_table(player: Player, origin: Vector3, table: Dictionary, level: int) -> void:
 	if _rng.randf() < table.gold.chance:
 		var amount := roundi(_rng.randi_range(table.gold.min, table.gold.max) + table.gold.per_level * level)
 		amount = roundi(amount * (1.0 + player.character.gold_find_bonus()))
 		_add_loot(player, origin, {}, maxi(amount, 1))
-	if _rng.randf() < table.item_chance:
+	var count := 1 if _rng.randf() < table.item_chance else 0
+	if table.has("items"):
+		count = _rng.randi_range(int(table.items[0]), int(table.items[1]))
+	for i in count:
 		var rarity := Items.roll_rarity(table.rarity_weights, _rng)
+		if i == 0 and table.has("guaranteed"):
+			rarity = String(table.guaranteed)
 		_add_loot(player, origin, Items.generate_equipment(level, player.character.data.class_id, rarity, _rng), 0)
 	if _rng.randf() < table.potion_chance:
 		var potion := "potion_health" if _rng.randf() < 0.6 else "potion_resource"
@@ -1173,18 +1300,20 @@ func _build_environment() -> void:
 
 
 ## Objetos da área (lojas, NPCs, saídas, placas): visual provisório + nome.
+## Baús e o que aparece com a vitória vêm do servidor (_add_dynamic_props).
 func _build_props() -> void:
 	_props.clear()
 	_prop_markers.clear()
 	for prop: Dictionary in arena.get("props", []):
-		_build_prop(prop)
+		if prop.kind != "chest" and not prop.get("after_victory", false):
+			_build_prop(prop)
 	_refresh_markers()
 	_refresh_visitors()
 
 
 func _build_prop(prop: Dictionary) -> void:
-	# Cenário (navio, mar) não é interagível.
-	if prop.kind not in ["ship", "water"]:
+	# Cenário (navio, mar, pontes) não é interagível.
+	if prop.kind not in ["ship", "water", "bridge"]:
 		_props.append(prop)
 	if true:
 		var at := Vector3(prop.position[0], 0, prop.position[1])
@@ -1251,6 +1380,10 @@ func _build_prop(prop: Dictionary) -> void:
 			"exit":
 				# Saída: moldura de porta / boca do bueiro / círculo do portal.
 				_prop_mesh(node, CylinderMesh.new(), Vector3(1.4, 0.06, 1.4), Vector3(0, 0.03, 0), Color(0.25, 0.22, 0.2))
+			"sign" when prop.get("look", "") == "crest":
+				# Brasão do reino do Arqueiro na parede da passagem.
+				_prop_mesh(node, BoxMesh.new(), Vector3(1.4, 1.8, 0.15), Vector3(0, 1.6, 0), Color(0.25, 0.32, 0.5))
+				_prop_mesh(node, SphereMesh.new(), Vector3(0.5, 0.5, 0.1), Vector3(0, 1.7, 0.1), Color(0.8, 0.7, 0.3))
 			"sign":
 				_prop_mesh(node, CylinderMesh.new(), Vector3(2.2, 0.3, 2.2), Vector3(0, 0.15, 0), Color(0.35, 0.35, 0.4))
 			"quest_spot":
@@ -1262,6 +1395,15 @@ func _build_prop(prop: Dictionary) -> void:
 				_prop_mesh(node, BoxMesh.new(), Vector3(0.9, 0.7, 0.5), Vector3(-0.7, 0.35, 0), Color(0.25, 0.25, 0.27))
 				_prop_mesh(node, BoxMesh.new(), Vector3(1.4, 1.2, 1.2), Vector3(0.9, 0.6, 0), Color(0.35, 0.25, 0.2))
 				_prop_mesh(node, BoxMesh.new(), Vector3(0.6, 0.3, 0.05), Vector3(0.9, 0.7, 0.61), Color(1.0, 0.45, 0.1))
+			"chest":
+				# Baú do mapa; o do segredo fica escuro e sem nome, num canto.
+				var wood := Color(0.3, 0.2, 0.12) if prop.get("secret", false) else Color(0.5, 0.34, 0.16)
+				_prop_mesh(node, BoxMesh.new(), Vector3(1.2, 0.7, 0.8), Vector3(0, 0.35, 0), wood)
+				_prop_mesh(node, BoxMesh.new(), Vector3(1.25, 0.12, 0.85), Vector3(0, 0.72, 0), Color(0.75, 0.6, 0.25))
+			"bridge":
+				# Ponte de madeira podre sobre o canal (cenário).
+				var size: Array = prop.get("size", [4, 6])
+				_prop_mesh(node, BoxMesh.new(), Vector3(size[0], 0.12, size[1]), Vector3(0, 0.06, 0), Color(0.33, 0.24, 0.15))
 			"stash":
 				# Baú acorrentado.
 				_prop_mesh(node, BoxMesh.new(), Vector3(1.4, 0.8, 0.9), Vector3(0, 0.4, 0), Color(0.4, 0.27, 0.15))
@@ -1307,28 +1449,49 @@ func _build_area() -> void:
 		var half := Vector3(room.size[0], 0, room.size[1]) / 2.0
 		var box := AABB(c - half, half * 2.0)
 		bounds = box if i == 0 else bounds.merge(box)
-		var doors: Array = room.get("doors", [])
+		# Portas: "north", "south", "east", "west", com deslocamento opcional
+		# do vão ("east:-3" = 3 m para o norte do meio da parede leste).
+		var doors := {}
+		for door: String in room.get("doors", []):
+			doors[door.get_slice(":", 0)] = float(door.get_slice(":", 1)) if door.contains(":") else 0.0
 		# Mureta baixa no cais e na doca (dá para ver o mar); paredes normais no resto.
 		var height := float(room.get("wall_height", WALL_HEIGHT))
-		_wall_x(c.x, c.z - half.z, half.x * 2.0, "north" in doors, height)
-		_wall_x(c.x, c.z + half.z, half.x * 2.0, "south" in doors, height)
-		_box(Vector3(c.x - half.x - 0.5, height / 2, c.z), Vector3(1, height, half.z * 2.0 + 2.0), WALL_COLOR)
-		_box(Vector3(c.x + half.x + 0.5, height / 2, c.z), Vector3(1, height, half.z * 2.0 + 2.0), WALL_COLOR)
+		_wall_x(c.x, c.z - half.z, half.x * 2.0, doors.has("north"), height, doors.get("north", 0.0))
+		_wall_x(c.x, c.z + half.z, half.x * 2.0, doors.has("south"), height, doors.get("south", 0.0))
+		_wall_z(c.x - half.x - 0.5, c.z, half.z * 2.0 + 2.0, doors.has("west"), height, doors.get("west", 0.0))
+		_wall_z(c.x + half.x + 0.5, c.z, half.z * 2.0 + 2.0, doors.has("east"), height, doors.get("east", 0.0))
 	var center := bounds.get_center()
 	_box(Vector3(center.x, -0.5, center.z), Vector3(bounds.size.x + 4, 1, bounds.size.z + 4), FLOOR_COLOR)
 
 
-## Parede ao longo de x; com porta, deixa um vão de DOOR_WIDTH no meio.
-func _wall_x(cx: float, z: float, width: float, door: bool, height := WALL_HEIGHT) -> void:
-	var gap := minf(DOOR_WIDTH, width) if door else 0.0
-	var side := (width - gap) / 2.0
-	if side <= 0.01:
-		return
-	if door:
-		_box(Vector3(cx - gap / 2 - side / 2, height / 2, z), Vector3(side, height, 1), WALL_COLOR)
-		_box(Vector3(cx + gap / 2 + side / 2, height / 2, z), Vector3(side, height, 1), WALL_COLOR)
-	else:
-		_box(Vector3(cx, height / 2, z), Vector3(width, height, 1), WALL_COLOR)
+## Parede ao longo de x; com porta, deixa um vão de DOOR_WIDTH (no meio, ou
+## deslocado `offset` metros).
+func _wall_x(cx: float, z: float, width: float, door: bool, height := WALL_HEIGHT, offset := 0.0) -> void:
+	for piece in _wall_pieces(width, door, offset):
+		_box(Vector3(cx + piece.x, height / 2, z), Vector3(piece.y, height, 1), WALL_COLOR)
+
+
+## Parede ao longo de z (leste/oeste), com o mesmo vão de porta.
+func _wall_z(x: float, cz: float, length: float, door: bool, height := WALL_HEIGHT, offset := 0.0) -> void:
+	for piece in _wall_pieces(length, door, offset):
+		_box(Vector3(x, height / 2, cz + piece.x), Vector3(1, height, piece.y), WALL_COLOR)
+
+
+## Pedaços de parede (centro relativo, comprimento) em volta do vão da porta.
+static func _wall_pieces(length: float, door: bool, offset: float) -> Array[Vector2]:
+	if not door:
+		return [Vector2(0, length)]
+	var gap := minf(DOOR_WIDTH, length)
+	var a := -length / 2.0
+	var b := offset - gap / 2.0
+	var c := offset + gap / 2.0
+	var d := length / 2.0
+	var pieces: Array[Vector2] = []
+	if b - a > 0.01:
+		pieces.append(Vector2((a + b) / 2.0, b - a))
+	if d - c > 0.01:
+		pieces.append(Vector2((c + d) / 2.0, d - c))
+	return pieces
 
 
 func _box(center: Vector3, box_size: Vector3, color: Color) -> void:

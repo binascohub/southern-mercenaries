@@ -2169,3 +2169,69 @@ msgstr "Move with {button} and aim with the mouse."
 
 msgid "TIP_MOVE_PAD"
 msgstr "Move with the left stick and aim with the right one."
+
+msgid "MONSTER_PLAGUE_RAT"
+msgstr "Plague Rat"
+
+msgid "MONSTER_MUTANT_RAT"
+msgstr "Mutant Rat"
+
+msgid "MONSTER_PLAGUE_BAT"
+msgstr "Plague Bat"
+
+msgid "MONSTER_ACID_TOAD"
+msgstr "Acid Toad"
+
+msgid "MONSTER_SEWER_GATOR"
+msgstr "Sewer Gator"
+
+msgid "MONSTER_OLD_GATOR"
+msgstr "Old Gator"
+
+msgid "MONSTER_RAT_QUEEN"
+msgstr "Rat Queen"
+
+msgid "ARENA_SEWERS_DRAINS"
+msgstr "Sewers — Main Street Drains"
+
+msgid "ARENA_SEWERS_CANALS"
+msgstr "Sewers — Refuse Canals"
+
+msgid "ARENA_SEWERS_WAR_PASSAGE"
+msgstr "Sewers — Secret War Passage"
+
+msgid "ARENA_SEWERS_NEST"
+msgstr "Sewers — The Queen's Nest"
+
+msgid "PROP_SEWER_DEEPER"
+msgstr "Go deeper"
+
+msgid "PROP_WAR_CREST"
+msgstr "Old crest"
+
+msgid "PROP_WAR_TREASURE"
+msgstr "Lost Treasure of the War"
+
+msgid "SIGN_WAR_CREST"
+msgstr "A worn crest on the wall: an eagle over three arrows. Someone dug this tunnel in a hurry."
+
+msgid "SIGN_WAR_CREST_ARCHER"
+msgstr "My kingdom's crest. So this is where the treasure fled the war."
+
+msgid "HUD_VICTORY_SEWERS"
+msgstr "The Rat Queen has fallen."
+
+msgid "HUD_VICTORY_TREASURE"
+msgstr "The Lost Treasure of the War is open to the group."
+
+msgid "TOAST_SECRET_FOUND"
+msgstr "{name} found a secret!"
+
+msgid "TOAST_CHEST_OPENED"
+msgstr "{name} opened the chest."
+
+msgid "TOAST_WAITING_GROUP"
+msgstr "Waiting for the group at the exit: {names}"
+
+msgid "TOAST_GROUP_EXIT_COUNTDOWN"
+msgstr "The group moves on in {seconds} s."

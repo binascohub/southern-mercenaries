@@ -68,7 +68,7 @@ func _ready() -> void:
 	Session.character = hero
 	Session.campaign = SaveSystem.new_campaign()
 	# Os testes de combate jogam na área de teste; o da cidade começa na Taverna.
-	if role_name != "town":
+	if role_name not in ["town", "sewers"]:
 		Session.campaign.area = "prototype_arena"
 	# Todo monstro deixa um item, para o teste sempre ter o que recolher.
 	GameData.loot.common.item_chance = 1.0
@@ -93,7 +93,7 @@ func _ready() -> void:
 		get_tree().quit(0 if found else 1)
 		return
 	else:
-		_role = args[0] if args.size() > 0 and args[0] in ["revive", "trade", "elements", "skills", "town"] else "solo"
+		_role = args[0] if args.size() > 0 and args[0] in ["revive", "trade", "elements", "skills", "town", "sewers"] else "solo"
 		NetworkManager.prepare_solo()
 	NetworkManager.session_ended.connect(func(reason: String) -> void:
 		if _expect_refusal != "":
@@ -134,6 +134,9 @@ func _physics_process(_delta: float) -> void:
 		return
 	if _role == "town":
 		_town_test()
+		return
+	if _role == "sewers":
+		_sewers_test()
 		return
 	var players := get_tree().get_nodes_in_group(&"players")
 	_max_players_seen = maxi(_max_players_seen, players.size())
@@ -512,6 +515,103 @@ func _skills_test() -> void:
 	_report(checks.is_empty(), "habilidades (%s): " % class_id + ("tudo certo" if checks.is_empty() else "; ".join(PackedStringArray(checks))))
 
 
+## O Esgoto de verdade (Fase 7): as 4 áreas carregam com checkpoint; poças e
+## golpes no chão ferem; o Sapo cospe com aviso, o Jacaré embosca, a Ratazana
+## investe; elite tóxica, baú secreto (uma vez) e a saída em grupo.
+func _sewers_test() -> void:
+	var player: Player = _arena.local_player
+	if player == null or _stage > 0 or _frame < 10:
+		return
+	_stage = 1
+	var checks: Array[String] = []
+	var check := func(ok: bool, what: String) -> void:
+		if not ok:
+			checks.append(what)
+	for id in ["sewers_01_drains", "sewers_02_canals", "sewers_03_war_passage", "sewers_04_nest"]:
+		_arena.travel(id, "start")
+		await get_tree().physics_frame
+		check.call(_arena.area_id == id and not get_tree().get_nodes_in_group(&"enemies").is_empty(), "%s carrega com monstros" % id)
+		check.call("%s:start" % id in _arena._campaign.checkpoints_reached, "%s: checkpoint na entrada" % id)
+		check.call(_arena.result == 0, "%s: sem vitória ao chegar" % id)
+	# Área 1: poça de lodo fere quem está dentro.
+	_arena.travel("sewers_01_drains", "start")
+	player.teleport_to(Vector3(0, 0, -43))
+	player.health = player.max_health
+	await _wait_frames(45)
+	check.call(player.health < player.max_health, "poça de lodo tira vida")
+	# Ratazana: investida com aviso.
+	var mutant := _first_enemy("mutant_rat")
+	_arena._wake_group(mutant.group)
+	player.teleport_to(mutant.global_position + Vector3(0, 0, 6))
+	player.health = player.max_health
+	var charged := false
+	for i in 150:
+		await get_tree().physics_frame
+		if mutant.state == Enemy.State.CHARGE:
+			charged = true
+			break
+	check.call(charged, "Ratazana dá a investida")
+	# Elite tóxica do segredo; o baú abre uma vez e some.
+	var elite := get_tree().get_nodes_in_group(&"enemies").filter(func(e: Enemy) -> bool: return e.group == "s1_secret" and e.category() == "elite")
+	check.call(elite.size() == 1 and elite[0].modifier == "toxic" and elite[0].max_health >= 60.0, "elite tóxica no segredo")
+	for e in get_tree().get_nodes_in_group(&"enemies"):
+		e.take_damage(1e9)
+	await get_tree().physics_frame
+	player.teleport_to(Vector3(29, 0, -31))
+	var loot_before: int = _arena._loot.size()
+	_arena.request_interact(player)
+	check.call("sewers_01_drains:secret_chest" in _arena._campaign.opened and _arena._loot.size() > loot_before, "baú secreto dá loot")
+	check.call(_arena.prop_near(player, "chest", "", 5.0).is_empty(), "baú aberto some")
+	# Golpe no chão: aviso, dano e poça.
+	var puddles: int = _arena.hazards.count()
+	player.health = player.max_health
+	_arena.telegraph(player.global_position, 1.6, 0.5)
+	_arena.monster_strike(player.global_position, 1.6, 10.0, 1, null, {"puddle_time": 5.0, "puddle_dps": 4.0})
+	check.call(player.health < player.max_health and _arena.hazards.count() == puddles + 1, "golpe no chão fere e deixa poça")
+	# Saída em grupo (sozinho, todo o grupo está perto): desce para a área 2.
+	player.teleport_to(Vector3(0, 0, -68))
+	_arena.request_interact(player)
+	await get_tree().physics_frame
+	check.call(_arena.area_id == "sewers_02_canals", "saída leva à área 2")
+	# Sapo Ácido: cospe com aviso no chão.
+	var toad := _first_enemy("acid_toad")
+	_arena._wake_group(toad.group)
+	player.teleport_to(toad.global_position + Vector3(0, 0, 6))
+	var spat := false
+	for i in 150:
+		await get_tree().physics_frame
+		if toad.state == Enemy.State.WINDUP and toad._special == "spit":
+			spat = true
+			break
+	check.call(spat, "Sapo prepara o cuspe")
+	# Jacaré: escondido até alguém chegar perto.
+	_arena.travel("sewers_03_war_passage", "start")
+	var gator := _first_enemy("sewer_gator")
+	_arena._wake_group(gator.group)
+	check.call(gator.state == Enemy.State.HIDDEN, "Jacaré acorda escondido na água")
+	player.teleport_to(gator.global_position + Vector3(0, 0, 3))
+	await _wait_frames(5)
+	check.call(gator.state != Enemy.State.HIDDEN, "Jacaré sai da água quando alguém chega perto")
+	var old_gator := _first_enemy("old_gator")
+	check.call(old_gator.category() == "miniboss", "Jacaré Velho é mini-chefe")
+	# O baú aberto continua aberto ao voltar.
+	_arena.travel("sewers_01_drains", "start")
+	check.call(_arena.prop_near(player, "chest", "", 300.0).is_empty(), "baú aberto não volta")
+	_report(checks.is_empty(), "esgoto: " + ("tudo certo" if checks.is_empty() else "; ".join(PackedStringArray(checks))))
+
+
+func _wait_frames(n: int) -> void:
+	for i in n:
+		await get_tree().physics_frame
+
+
+func _first_enemy(monster_id: String) -> Enemy:
+	for e: Enemy in get_tree().get_nodes_in_group(&"enemies"):
+		if e.monster_id == monster_id and not e.is_queued_for_deletion():
+			return e
+	return null
+
+
 ## Uma volta por Tortuga, chamando o servidor como as janelas chamariam.
 func _town_test() -> void:
 	var player: Player = _arena.local_player
@@ -598,16 +698,27 @@ func _town_test() -> void:
 	player.teleport_to(Vector3(22, 0, 3))
 	_arena.request_interact(player)
 	await get_tree().physics_frame
-	check.call(_arena.area_id == "prototype_arena" and not get_tree().get_nodes_in_group(&"enemies").is_empty(), "bueiro leva ao Esgoto com monstros")
-	# Vencer a área conclui a missão; cada jogador ganha a recompensa.
-	gold = int(player.character.data.gold)
+	check.call(_arena.area_id == "sewers_01_drains" and not get_tree().get_nodes_in_group(&"enemies").is_empty(), "bueiro leva ao Esgoto com monstros")
+	# Limpar a área 1 não é vitória (só a área final); a saída leva adiante.
 	for e in get_tree().get_nodes_in_group(&"enemies"):
 		e.take_damage(1e9)
 	await get_tree().physics_frame
-	check.call(town.quests.get("sewer_treasure", "") == "done", "vencer o Esgoto conclui a missão")
+	check.call(_arena.result == 0 and town.quests.get("sewer_treasure", "") == "active", "área 1 limpa não conclui a missão")
+	# Vencer a Rainha no Ninho conclui a missão; aparecem o tesouro e o portal.
+	_arena.travel("sewers_04_nest", "start")
+	gold = int(player.character.data.gold)
+	check.call(_arena.prop_near(player, "chest", "", 200.0).is_empty(), "o tesouro só aparece depois da Rainha")
+	for e in get_tree().get_nodes_in_group(&"enemies"):
+		e.take_damage(1e9)
+	await get_tree().physics_frame
+	check.call(town.quests.get("sewer_treasure", "") == "done", "vencer a Rainha conclui a missão")
 	check.call(int(player.character.data.gold) >= gold + 150, "recompensa da missão")
+	player.teleport_to(Vector3(0, 0, -48))
+	var loot_before: int = _arena._loot.size()
+	_arena.request_interact(player)
+	check.call(_arena._loot.size() > loot_before + 2 and "sewers_04_nest:war_treasure" in _arena._campaign.opened, "Tesouro Perdido da Guerra abre e dá loot")
 	# Portal de volta: Tortuga, fim da expedição, navio novo.
-	player.teleport_to(Vector3(-6, 0, 5))
+	player.teleport_to(Vector3(8, 0, -48))
 	_arena.request_interact(player)
 	await get_tree().physics_frame
 	check.call(_arena.area_id == "tortuga", "portal de retorno leva a Tortuga")
@@ -650,11 +761,11 @@ func _town_test() -> void:
 	check.call(player.character.count_of("return_charm") == 1 and int(player.character.data.gold) == 850, "compra o Patuá por 150")
 	player._drink("return_charm")
 	check.call(player.character.count_of("return_charm") == 1, "Patuá não funciona na cidade")
-	check.call("prototype_arena:start" in town.reached, "ponto salvo do Esgoto na lista")
+	check.call("sewers_01_drains:start" in town.reached, "ponto salvo do Esgoto na lista")
 	player.teleport_to(Vector3(12, 0, -4.5))
-	var price := Town.portal_price("prototype_arena:start")
-	town._rpc_portal("prototype_arena:start")
-	check.call(_arena.area_id == "prototype_arena" and int(player.character.data.gold) == 850 - price, "portal do Macumbeiro leva ao Esgoto por %d" % price)
+	var price := Town.portal_price("sewers_01_drains:start")
+	town._rpc_portal("sewers_01_drains:start")
+	check.call(_arena.area_id == "sewers_01_drains" and int(player.character.data.gold) == 850 - price, "portal do Macumbeiro leva ao Esgoto por %d" % price)
 	player._drink("return_charm")
 	check.call(player.character.count_of("return_charm") == 0 and not _arena.prop_near(player, "exit", "charm_portal", 5.0).is_empty(), "Patuá abre o portal no chão")
 	_arena.request_interact(player)

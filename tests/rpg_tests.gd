@@ -40,6 +40,7 @@ func _ready() -> void:
 	_test_side_quests()
 	_test_refine()
 	_test_opening()
+	_test_sewers()
 	_test_tips()
 	_test_names()
 	_clean(TEST_ROOT)
@@ -666,7 +667,9 @@ func _test_side_quests() -> void:
 			var q: Dictionary = v.quest
 			templates[q.template] = true
 			_check(q.template in GameData.visitors.types[v.type].templates, "o visitante conta o tipo de história dele")
-			_check(GameData.bestiary.has(q.target) and q.area == "prototype_arena", "história de uma criatura do mapa")
+			_check(GameData.bestiary.has(q.target) and String(q.area).begins_with("sewers_") and q.area != "sewers_04_nest",
+				"história de uma criatura do Esgoto (fora do Ninho): %s em %s" % [q.target, q.area])
+			_check(q.target in SideQuests.creatures_in(q.area), "a criatura existe na área da missão")
 			_check(SideQuests.visitor_lines(v).size() == 3, "roteiro: o que é, lenda e pista")
 			if q.template == "hunt":
 				_check(int(q.count) >= 4 and int(q.count) <= 8 and int(q.progress) == 0, "caçada de 4 a 8")
@@ -745,6 +748,60 @@ func _test_opening() -> void:
 	for line: Dictionary in lines:
 		_check(tr(line.key) != line.key, "fala traduzida: " + String(line.key))
 	_check(GameData.quests.has(GameData.opening.quest), "a abertura leva a uma missão que existe")
+
+
+func _test_sewers() -> void:
+	var areas := ["sewers_01_drains", "sewers_02_canals", "sewers_03_war_passage", "sewers_04_nest"]
+	var ids := {}
+	for i in areas.size():
+		var area: Dictionary = GameData.arenas[areas[i]]
+		_check(area.map_id == "map_sewers" and area.has("entries") and area.entries.has("start"), "%s: mapa e entrada" % areas[i])
+		_check(int(area.area_level) == (1 if i < 2 else 2), "%s: nível da área (1, 1, 2, 2)" % areas[i])
+		for encounter: Dictionary in area.encounters:
+			_check(not ids.has(encounter.id), "encontro com ID único: " + String(encounter.id))
+			ids[encounter.id] = true
+			for entry: Dictionary in encounter.monsters:
+				_check(GameData.monsters.has(entry.monster), "monstro existe: " + String(entry.monster))
+		var exits: Array = area.props.filter(func(p: Dictionary) -> bool: return p.get("id", "") == "deeper")
+		if i < 3:
+			_check(exits.size() == 1 and exits[0].to == areas[i + 1] and exits[0].get("group", false), "%s leva à área seguinte, em grupo" % areas[i])
+			_check(area.props.any(func(p: Dictionary) -> bool: return p.kind == "chest" and p.get("secret", false)), "%s tem um segredo" % areas[i])
+			_check(not area.get("final", false), "%s não é a área final" % areas[i])
+		for room: Dictionary in area.rooms:
+			for door: String in room.doors:
+				_check(door.get_slice(":", 0) in ["north", "south", "east", "west"], "porta válida: " + door)
+	var nest: Dictionary = GameData.arenas.sewers_04_nest
+	_check(nest.final and nest.encounters.any(func(e: Dictionary) -> bool: return e.monsters[0].monster == "demon_rat_queen"), "o Ninho é a área final, com a Rainha")
+	_check(nest.props.filter(func(p: Dictionary) -> bool: return p.get("after_victory", false)).size() == 2, "tesouro e portal só depois da vitória")
+	_check(GameData.quests.sewer_treasure.area == "sewers_04_nest", "o tesouro do esgoto termina no Ninho")
+	_check(GameData.arenas.sewers_01_drains.props.any(func(p: Dictionary) -> bool: return p.get("id", "") == "return_portal"), "portal de retorno na entrada do mapa")
+	var grate: Array = GameData.arenas.tortuga.props.filter(func(p: Dictionary) -> bool: return p.get("id", "") == "sewer_entrance")
+	_check(grate[0].to == "sewers_01_drains", "o bueiro desce para os Bueiros da Rua Principal")
+	# Categorias (03-inimigos.md): elite vida x3 e dano x1,5; mini-chefe x6/x1,8; chefe com fator 4,3.
+	var rat := Enemy.create({"monster_id": "plague_rat", "position": Vector3.ZERO, "level": 1})
+	var elite := Enemy.create({"monster_id": "plague_rat", "position": Vector3.ZERO, "level": 1, "rank": "elite", "modifier": "toxic"})
+	_near(elite.max_health, rat.max_health * 3.0, "elite: vida x3")
+	_near(elite.attack_damage(), rat.attack_damage() * 1.5, "elite: dano x1,5")
+	_check(elite.category() == "elite" and elite.modifier == "toxic" and elite.xp_value() == 25.0, "elite: categoria, modificador e XP 25 x nível")
+	var gator := Enemy.create({"monster_id": "old_gator", "position": Vector3.ZERO, "level": 2})
+	_near(gator.max_health, 150 * 1.12 * 6, "Jacaré Velho: vida 150 x 1,12 x 6")
+	var queen := Enemy.create({"monster_id": "demon_rat_queen", "position": Vector3.ZERO, "level": 2})
+	_near(queen.max_health, 1000 * 1.12 * 4.3, "Rainha: ~4.800 de vida no solo")
+	_check(queen.is_boss() and queen.category() == "boss", "Rainha é chefe")
+	for e: Enemy in [rat, elite, gator, queen]:
+		e.free()
+	_check(GameData.loot.elite.items[0] >= 1 and GameData.loot.miniboss.guaranteed == "rare", "elite sempre deixa item; mini-chefe garante raro")
+	# Caçada: o bando aparece num ponto da área, com uma elite, só o que falta matar.
+	var quest := {"id": "h1", "template": "hunt", "target": "acid_toad", "area": "sewers_02_canals", "count": 5, "progress": 2, "spot": 1, "status": "active"}
+	var hunt := SideQuests.hunt_encounter(quest)
+	_check(hunt.id == "hunt_h1" and hunt.monsters[0].rank == "elite" and hunt.monsters[0].monster == "acid_toad", "bando da caçada com uma elite")
+	_check(int(hunt.monsters[0].count) + int(hunt.monsters[1].count) == 3, "só os 3 que faltam")
+	_check(hunt.position == GameData.arenas.sewers_02_canals.quest_spots[1], "no ponto da missão")
+	quest.progress = 5
+	_check(SideQuests.hunt_encounter(quest).is_empty(), "caçada completa não traz bando")
+	_check(", ".join(SideQuests.open_maps(["sewer_entrance"])) == "sewers_01_drains, sewers_02_canals, sewers_03_war_passage",
+		"missões secundárias nas áreas 1 a 3 do Esgoto")
+	_check(SideQuests.creatures_in("sewers_03_war_passage").has("sewer_gator"), "o Jacaré mora na Passagem da Guerra")
 
 
 func _test_tips() -> void:

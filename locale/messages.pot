@@ -2168,3 +2168,69 @@ msgstr ""
 
 msgid "TIP_MOVE_PAD"
 msgstr ""
+
+msgid "MONSTER_PLAGUE_RAT"
+msgstr ""
+
+msgid "MONSTER_MUTANT_RAT"
+msgstr ""
+
+msgid "MONSTER_PLAGUE_BAT"
+msgstr ""
+
+msgid "MONSTER_ACID_TOAD"
+msgstr ""
+
+msgid "MONSTER_SEWER_GATOR"
+msgstr ""
+
+msgid "MONSTER_OLD_GATOR"
+msgstr ""
+
+msgid "MONSTER_RAT_QUEEN"
+msgstr ""
+
+msgid "ARENA_SEWERS_DRAINS"
+msgstr ""
+
+msgid "ARENA_SEWERS_CANALS"
+msgstr ""
+
+msgid "ARENA_SEWERS_WAR_PASSAGE"
+msgstr ""
+
+msgid "ARENA_SEWERS_NEST"
+msgstr ""
+
+msgid "PROP_SEWER_DEEPER"
+msgstr ""
+
+msgid "PROP_WAR_CREST"
+msgstr ""
+
+msgid "PROP_WAR_TREASURE"
+msgstr ""
+
+msgid "SIGN_WAR_CREST"
+msgstr ""
+
+msgid "SIGN_WAR_CREST_ARCHER"
+msgstr ""
+
+msgid "HUD_VICTORY_SEWERS"
+msgstr ""
+
+msgid "HUD_VICTORY_TREASURE"
+msgstr ""
+
+msgid "TOAST_SECRET_FOUND"
+msgstr ""
+
+msgid "TOAST_CHEST_OPENED"
+msgstr ""
+
+msgid "TOAST_WAITING_GROUP"
+msgstr ""
+
+msgid "TOAST_GROUP_EXIT_COUNTDOWN"
+msgstr ""

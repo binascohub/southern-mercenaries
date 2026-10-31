@@ -1,6 +1,6 @@
 {
   "prototype_arena": {
-    "_comment": "Área de teste: sala inicial (checkpoint), corredor e duas câmaras. Monstros posicionados em grupos de encontro que dormem até um jogador chegar perto (03-inimigos.md, 'Encontros por exploração'). Corredores marcados como \"narrow\" (área estreita, 02-3-cavaleiro.md seção 3): o Cavaleiro desmonta neles.",
+    "_comment": "Área de teste: sala inicial (checkpoint), corredor e duas câmaras. Monstros posicionados em grupos de encontro que dormem até um jogador chegar perto (03-inimigos.md, 'Encontros por exploração'). Corredores marcados como \"narrow\" (área estreita, 02-3-cavaleiro.md seção 3): o Cavaleiro desmonta neles. Fase 7: continua como área de desenvolvimento (testes de combate e de rede); 'final' (vencer tudo é vitória) e 'replayable' (atacar recomeça).",
     "name_key": "ARENA_PROTOTYPE_NAME",
     "player_class": "mage",
     "wake_radius": 15.0,
@@ -186,7 +186,9 @@
         -8,
         -60
       ]
-    ]
+    ],
+    "final": true,
+    "replayable": true
   },
   "tortuga": {
     "_comment": "Tortuga, área externa (04-tortuga-e-missoes.md, seção 2): Rua Principal com as bancas, o bueiro e a porta da Taverna; ao norte o porto (cais baixo, de onde se vê o mar) com o Portal e a doca, onde o navio pirata atracado é o Mercado Pirata, com o vendedor na frente do navio (decisão do autor). Ao sul, o pátio de treino com os bonecos (seção 5.2). Geometria provisória até os modelos.",
@@ -336,7 +338,7 @@
           22,
           4
         ],
-        "to": "prototype_arena",
+        "to": "sewers_01_drains",
         "entry": "start",
         "requires": "sewer_entrance"
       },
@@ -597,5 +599,1029 @@
         "entry": "tavern"
       }
     ]
+  },
+  "sewers_01_drains": {
+    "_comment": "Esgoto, área 1 (03-2-areas.md, seção 3; 14-tutorial.md, seção 3): Bueiros da Rua Principal. Tutorial de combate: um rato sozinho, depois três, poças de lodo, o enxame de 8 e a Ratazana. Segredo: o cano do leste leva a uma câmara com baú. Estreito: o Cavaleiro desmonta.",
+    "name_key": "ARENA_SEWERS_DRAINS",
+    "map_id": "map_sewers",
+    "area_level": 1,
+    "narrow": true,
+    "wake_radius": 10.0,
+    "alert_radius": 5.0,
+    "side_quests_unlock": "sewer_entrance",
+    "rooms": [
+      {
+        "id": "entry",
+        "center": [
+          0,
+          0
+        ],
+        "size": [
+          14,
+          12
+        ],
+        "doors": [
+          "north"
+        ],
+        "torch": true
+      },
+      {
+        "id": "drain_1",
+        "center": [
+          0,
+          -14
+        ],
+        "size": [
+          5,
+          16
+        ],
+        "doors": [
+          "north",
+          "south"
+        ]
+      },
+      {
+        "id": "junction",
+        "center": [
+          0,
+          -30
+        ],
+        "size": [
+          16,
+          16
+        ],
+        "doors": [
+          "south",
+          "north",
+          "east"
+        ],
+        "torch": true
+      },
+      {
+        "id": "east_pipe",
+        "center": [
+          15,
+          -30
+        ],
+        "size": [
+          12,
+          5
+        ],
+        "doors": [
+          "west",
+          "east"
+        ]
+      },
+      {
+        "id": "secret",
+        "center": [
+          27,
+          -30
+        ],
+        "size": [
+          10,
+          10
+        ],
+        "doors": [
+          "west"
+        ]
+      },
+      {
+        "id": "drain_2",
+        "center": [
+          0,
+          -46
+        ],
+        "size": [
+          5,
+          16
+        ],
+        "doors": [
+          "north",
+          "south"
+        ]
+      },
+      {
+        "id": "outfall",
+        "center": [
+          0,
+          -63
+        ],
+        "size": [
+          20,
+          18
+        ],
+        "doors": [
+          "south"
+        ],
+        "torch": true
+      }
+    ],
+    "encounters": [
+      {
+        "id": "s1_lone",
+        "position": [
+          0,
+          -16
+        ],
+        "monsters": [
+          {
+            "monster": "plague_rat",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "s1_trio",
+        "position": [
+          -3,
+          -31
+        ],
+        "monsters": [
+          {
+            "monster": "plague_rat",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "s1_swarm",
+        "position": [
+          -4,
+          -64
+        ],
+        "monsters": [
+          {
+            "monster": "plague_rat",
+            "count": 8
+          }
+        ],
+        "spread": 2.2
+      },
+      {
+        "id": "s1_mutant",
+        "position": [
+          5,
+          -68
+        ],
+        "monsters": [
+          {
+            "monster": "mutant_rat",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "s1_secret",
+        "position": [
+          25,
+          -30
+        ],
+        "monsters": [
+          {
+            "monster": "plague_rat",
+            "count": 1,
+            "rank": "elite",
+            "modifier": "toxic"
+          },
+          {
+            "monster": "plague_rat",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hazards": [
+      {
+        "position": [
+          0,
+          -43
+        ],
+        "radius": 1.6
+      },
+      {
+        "position": [
+          1,
+          -49
+        ],
+        "radius": 1.3
+      },
+      {
+        "position": [
+          5,
+          -61
+        ],
+        "radius": 2.0
+      }
+    ],
+    "entries": {
+      "start": [
+        0,
+        3
+      ],
+      "sewer": [
+        0,
+        3
+      ]
+    },
+    "props": [
+      {
+        "id": "return_portal",
+        "kind": "exit",
+        "name_key": "PROP_RETURN_PORTAL",
+        "position": [
+          -4,
+          3
+        ],
+        "to": "tortuga",
+        "entry": "sewer",
+        "expedition_end": true
+      },
+      {
+        "id": "secret_chest",
+        "kind": "chest",
+        "position": [
+          29,
+          -32
+        ],
+        "secret": true,
+        "loot": "chest"
+      },
+      {
+        "id": "deeper",
+        "kind": "exit",
+        "name_key": "PROP_SEWER_DEEPER",
+        "position": [
+          0,
+          -69
+        ],
+        "to": "sewers_02_canals",
+        "entry": "start",
+        "group": true
+      }
+    ],
+    "quest_spots": [
+      [
+        0,
+        -26
+      ],
+      [
+        -5,
+        -35
+      ],
+      [
+        0,
+        -58
+      ],
+      [
+        6,
+        -58
+      ]
+    ]
+  },
+  "sewers_02_canals": {
+    "_comment": "Esgoto, área 2: Canais de Lixo. Sapos Ácidos e Morcegos Pestilentos; pontes de madeira podre sobre os canais. Segredo: o depósito de contrabando dos piratas, pelo cano do oeste. Elite: Sapo Ácido tóxico na comporta.",
+    "name_key": "ARENA_SEWERS_CANALS",
+    "map_id": "map_sewers",
+    "area_level": 1,
+    "narrow": true,
+    "wake_radius": 10.0,
+    "alert_radius": 5.0,
+    "side_quests_unlock": "sewer_entrance",
+    "rooms": [
+      {
+        "id": "entry",
+        "center": [
+          0,
+          0
+        ],
+        "size": [
+          14,
+          10
+        ],
+        "doors": [
+          "north"
+        ],
+        "torch": true
+      },
+      {
+        "id": "canal_hall",
+        "center": [
+          0,
+          -18
+        ],
+        "size": [
+          24,
+          26
+        ],
+        "doors": [
+          "south",
+          "north",
+          "west:-6"
+        ],
+        "torch": true
+      },
+      {
+        "id": "west_pipe",
+        "center": [
+          -18,
+          -24
+        ],
+        "size": [
+          10,
+          5
+        ],
+        "doors": [
+          "east",
+          "west"
+        ]
+      },
+      {
+        "id": "cache",
+        "center": [
+          -29,
+          -24
+        ],
+        "size": [
+          10,
+          10
+        ],
+        "doors": [
+          "east"
+        ]
+      },
+      {
+        "id": "drain",
+        "center": [
+          0,
+          -37
+        ],
+        "size": [
+          5,
+          12
+        ],
+        "doors": [
+          "north",
+          "south"
+        ]
+      },
+      {
+        "id": "sluice",
+        "center": [
+          0,
+          -53
+        ],
+        "size": [
+          20,
+          20
+        ],
+        "doors": [
+          "south"
+        ],
+        "torch": true
+      }
+    ],
+    "encounters": [
+      {
+        "id": "s2_bats",
+        "position": [
+          6,
+          -10
+        ],
+        "monsters": [
+          {
+            "monster": "plague_bat",
+            "count": 5
+          }
+        ]
+      },
+      {
+        "id": "s2_toads",
+        "position": [
+          -6,
+          -26
+        ],
+        "monsters": [
+          {
+            "monster": "acid_toad",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "s2_cache",
+        "position": [
+          -28,
+          -23
+        ],
+        "monsters": [
+          {
+            "monster": "plague_rat",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "s2_sluice_toads",
+        "position": [
+          -6,
+          -56
+        ],
+        "monsters": [
+          {
+            "monster": "acid_toad",
+            "count": 1,
+            "rank": "elite",
+            "modifier": "toxic"
+          },
+          {
+            "monster": "acid_toad",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "s2_sluice_bats",
+        "position": [
+          6,
+          -50
+        ],
+        "monsters": [
+          {
+            "monster": "plague_bat",
+            "count": 4
+          }
+        ]
+      }
+    ],
+    "hazards": [
+      {
+        "position": [
+          8,
+          -26
+        ],
+        "radius": 1.5
+      },
+      {
+        "position": [
+          -7,
+          -10
+        ],
+        "radius": 1.3
+      },
+      {
+        "position": [
+          -5,
+          -47
+        ],
+        "radius": 1.5
+      }
+    ],
+    "entries": {
+      "start": [
+        0,
+        2
+      ]
+    },
+    "props": [
+      {
+        "id": "canal_1",
+        "kind": "water",
+        "position": [
+          0,
+          -18
+        ],
+        "size": [
+          24,
+          5
+        ]
+      },
+      {
+        "id": "bridge_1",
+        "kind": "bridge",
+        "position": [
+          -6,
+          -18
+        ],
+        "size": [
+          3,
+          6
+        ]
+      },
+      {
+        "id": "bridge_2",
+        "kind": "bridge",
+        "position": [
+          6,
+          -18
+        ],
+        "size": [
+          3,
+          6
+        ]
+      },
+      {
+        "id": "canal_2",
+        "kind": "water",
+        "position": [
+          0,
+          -55
+        ],
+        "size": [
+          20,
+          4
+        ]
+      },
+      {
+        "id": "bridge_3",
+        "kind": "bridge",
+        "position": [
+          0,
+          -55
+        ],
+        "size": [
+          4,
+          5
+        ]
+      },
+      {
+        "id": "smuggler_cache",
+        "kind": "chest",
+        "position": [
+          -31,
+          -26
+        ],
+        "secret": true,
+        "loot": "chest"
+      },
+      {
+        "id": "deeper",
+        "kind": "exit",
+        "name_key": "PROP_SEWER_DEEPER",
+        "position": [
+          0,
+          -60
+        ],
+        "to": "sewers_03_war_passage",
+        "entry": "start",
+        "group": true
+      }
+    ],
+    "quest_spots": [
+      [
+        0,
+        -12
+      ],
+      [
+        -8,
+        -22
+      ],
+      [
+        0,
+        -38
+      ],
+      [
+        7,
+        -58
+      ]
+    ]
+  },
+  "sewers_03_war_passage": {
+    "_comment": "Esgoto, área 3: Passagem Secreta da Guerra. Túneis dos fundadores de Tortuga com o brasão do reino do Arqueiro (ele reconhece). Câmaras alagadas; segredo: a câmara alagada do leste (com um Jacaré escondido). Mini-chefe: o Jacaré Velho, na câmara alagada do fim.",
+    "name_key": "ARENA_SEWERS_WAR_PASSAGE",
+    "map_id": "map_sewers",
+    "area_level": 2,
+    "narrow": true,
+    "wake_radius": 10.0,
+    "alert_radius": 5.0,
+    "side_quests_unlock": "sewer_entrance",
+    "rooms": [
+      {
+        "id": "entry",
+        "center": [
+          0,
+          0
+        ],
+        "size": [
+          12,
+          10
+        ],
+        "doors": [
+          "north"
+        ],
+        "torch": true
+      },
+      {
+        "id": "tunnel_1",
+        "center": [
+          0,
+          -15
+        ],
+        "size": [
+          5,
+          20
+        ],
+        "doors": [
+          "north",
+          "south"
+        ]
+      },
+      {
+        "id": "crest_hall",
+        "center": [
+          0,
+          -33
+        ],
+        "size": [
+          18,
+          16
+        ],
+        "doors": [
+          "south",
+          "north",
+          "east"
+        ],
+        "torch": true
+      },
+      {
+        "id": "east_tunnel",
+        "center": [
+          15,
+          -33
+        ],
+        "size": [
+          10,
+          5
+        ],
+        "doors": [
+          "west",
+          "east"
+        ]
+      },
+      {
+        "id": "flooded_vault",
+        "center": [
+          27,
+          -33
+        ],
+        "size": [
+          12,
+          12
+        ],
+        "doors": [
+          "west"
+        ]
+      },
+      {
+        "id": "tunnel_2",
+        "center": [
+          0,
+          -48
+        ],
+        "size": [
+          5,
+          14
+        ],
+        "doors": [
+          "north",
+          "south"
+        ]
+      },
+      {
+        "id": "flooded_chamber",
+        "center": [
+          0,
+          -66
+        ],
+        "size": [
+          24,
+          22
+        ],
+        "doors": [
+          "south"
+        ],
+        "torch": true
+      }
+    ],
+    "encounters": [
+      {
+        "id": "s3_bats",
+        "position": [
+          0,
+          -14
+        ],
+        "monsters": [
+          {
+            "monster": "plague_bat",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "s3_crest",
+        "position": [
+          -3,
+          -33
+        ],
+        "monsters": [
+          {
+            "monster": "mutant_rat",
+            "count": 1,
+            "rank": "elite"
+          },
+          {
+            "monster": "plague_rat",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "s3_vault",
+        "position": [
+          26,
+          -33
+        ],
+        "monsters": [
+          {
+            "monster": "sewer_gator",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "s3_toads",
+        "position": [
+          0,
+          -52
+        ],
+        "monsters": [
+          {
+            "monster": "acid_toad",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "s3_old_gator",
+        "position": [
+          0,
+          -68
+        ],
+        "monsters": [
+          {
+            "monster": "old_gator",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hazards": [
+      {
+        "position": [
+          0,
+          -20
+        ],
+        "radius": 1.4
+      },
+      {
+        "position": [
+          -6,
+          -60
+        ],
+        "radius": 1.6
+      }
+    ],
+    "entries": {
+      "start": [
+        0,
+        2
+      ]
+    },
+    "props": [
+      {
+        "id": "vault_water",
+        "kind": "water",
+        "position": [
+          27,
+          -33
+        ],
+        "size": [
+          12,
+          12
+        ]
+      },
+      {
+        "id": "chamber_water",
+        "kind": "water",
+        "position": [
+          0,
+          -68
+        ],
+        "size": [
+          24,
+          12
+        ]
+      },
+      {
+        "id": "war_crest",
+        "kind": "sign",
+        "look": "crest",
+        "name_key": "PROP_WAR_CREST",
+        "position": [
+          0,
+          -40
+        ],
+        "text_key": "SIGN_WAR_CREST",
+        "archer_key": "SIGN_WAR_CREST_ARCHER"
+      },
+      {
+        "id": "vault_chest",
+        "kind": "chest",
+        "position": [
+          30,
+          -36
+        ],
+        "secret": true,
+        "loot": "chest"
+      },
+      {
+        "id": "deeper",
+        "kind": "exit",
+        "name_key": "PROP_SEWER_DEEPER",
+        "position": [
+          0,
+          -74
+        ],
+        "to": "sewers_04_nest",
+        "entry": "start",
+        "group": true
+      }
+    ],
+    "quest_spots": [
+      [
+        0,
+        -22
+      ],
+      [
+        -6,
+        -36
+      ],
+      [
+        0,
+        -46
+      ],
+      [
+        8,
+        -62
+      ]
+    ]
+  },
+  "sewers_04_nest": {
+    "_comment": "Esgoto, área 4: Ninho da Rainha. Câmara alagada e ampla no fundo do esgoto (misto: o túnel é estreito, o ninho é aberto). A Rainha dos Ratos dorme sobre o Tesouro Perdido da Guerra; vencê-la é a vitória do mapa: aparecem o tesouro e o portal de volta (03-2-areas.md, seção 1). As 3 fases da Rainha entram na próxima entrega.",
+    "name_key": "ARENA_SEWERS_NEST",
+    "map_id": "map_sewers",
+    "area_level": 2,
+    "final": true,
+    "victory_key": "HUD_VICTORY_SEWERS",
+    "wake_radius": 14.0,
+    "alert_radius": 5.0,
+    "rooms": [
+      {
+        "id": "entry",
+        "center": [
+          0,
+          0
+        ],
+        "size": [
+          12,
+          10
+        ],
+        "doors": [
+          "north"
+        ],
+        "torch": true,
+        "narrow": true
+      },
+      {
+        "id": "tunnel",
+        "center": [
+          0,
+          -12
+        ],
+        "size": [
+          5,
+          14
+        ],
+        "doors": [
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "nest",
+        "center": [
+          0,
+          -36
+        ],
+        "size": [
+          32,
+          34
+        ],
+        "doors": [
+          "south"
+        ],
+        "torch": true
+      }
+    ],
+    "encounters": [
+      {
+        "id": "s4_guard",
+        "position": [
+          0,
+          -13
+        ],
+        "monsters": [
+          {
+            "monster": "plague_rat",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "s4_queen",
+        "position": [
+          0,
+          -42
+        ],
+        "monsters": [
+          {
+            "monster": "demon_rat_queen",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hazards": [
+      {
+        "position": [
+          -10,
+          -30
+        ],
+        "radius": 2.0
+      },
+      {
+        "position": [
+          11,
+          -44
+        ],
+        "radius": 1.8
+      }
+    ],
+    "entries": {
+      "start": [
+        0,
+        2
+      ]
+    },
+    "props": [
+      {
+        "id": "nest_water",
+        "kind": "water",
+        "position": [
+          -9,
+          -46
+        ],
+        "size": [
+          12,
+          10
+        ]
+      },
+      {
+        "id": "war_treasure",
+        "kind": "chest",
+        "name_key": "PROP_WAR_TREASURE",
+        "position": [
+          0,
+          -49
+        ],
+        "loot": "treasure_sewers",
+        "after_victory": true
+      },
+      {
+        "id": "return_portal",
+        "kind": "exit",
+        "name_key": "PROP_RETURN_PORTAL",
+        "position": [
+          8,
+          -48
+        ],
+        "to": "tortuga",
+        "entry": "sewer",
+        "expedition_end": true,
+        "after_victory": true
+      }
+    ],
+    "quest_spots": []
   }
 }

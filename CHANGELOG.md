@@ -2,6 +2,15 @@
 
 ## [Unreleased]
 
+### Phase 7 — The Tortuga Sewers (in progress)
+- The real Sewers (`docs/03-2-areas.md`, section 3), four areas after the sewer grate: **Main Street Drains** (combat tutorial: a lone rat, then three, sludge puddles, the swarm of 8 and the Mutant Rat), **Refuse Canals** (Acid Toads, Plague Bats, rotten bridges, the pirates' smuggling cache), **Secret War Passage** (the Archer's kingdom crest — the Archer recognizes it —, flooded chambers, the **Old Gator** mini-boss) and **the Queen's Nest** (the Rat Queen). Each area starts at a checkpoint (Witch Doctor portals), has a secret chest, sludge puddles and 1–3 elites; the return portal is at the map entrance and appears after the boss.
+- Sewer creatures (`data/monsters.json`, from `docs/03-inimigos.md`): Plague Rat (swarms), Mutant Rat (charge with a warning), Plague Bat (fast flyer), Acid Toad (keeps its distance and spits acid at a marked spot on the ground, leaving a toxic puddle), Sewer Gator (hidden in the water — only bubbles show — until someone gets close), Old Gator and the Rat Queen (1,000 × boss factor 4.3; her three phases come in the next delivery). Placeholder look per family and an aura for elites (gold), mini-bosses (purple) and bosses (red).
+- Monster categories: elite (health x3, damage x1.5, 25 XP × level, 1–2 items, at least magic), mini-boss (x6/x1.8, rare guaranteed), boss; the toxic elite modifier leaves sludge puddles. Loot tables for elites, mini-bosses, bosses, chests and the Lost Treasure of the War.
+- Moving on: the exit to the next area takes the group only when every standing hero is near it; otherwise everyone sees who is missing, and the host can press again to start a 10 s countdown (`docs/03-2-areas.md`, section 1). Rooms can have doors on any side, off-center.
+- Only the last area of a map ends in victory ("The Rat Queen has fallen."): the quest is completed there, and the Lost Treasure of the War (loot for each player) and the return portal appear. The test area stays as the development area (attack to restart).
+- Side quests now happen in Sewer areas 1–3 with the creatures that live there; a hunt brings its own pack (with an elite) to a spot of the area, since dead monsters never come back.
+- Tests: Sewer data and category unit tests; a new CI step walks the four areas (sludge, ground strikes, the Toad's spit, the Gator's ambush, the Mutant Rat's charge, the toxic elite, the secret chest, the group exit); the town test goes from the grate to the Queen and the treasure.
+
 ### Phase 6 — Tortuga (in progress)
 - Areas by name: the level scene loads any area of `data/arenas.json` (Tortuga's Main Street and port, the Tavern, the test area as the Sewer stand-in) and the server moves the whole group with `_load_area`, without changing scenes; players joining mid-game receive the current area. Area props: shops, NPCs, exits and signs, with an interact prompt.
 - New campaigns start in the Tavern; the campaign keeps quests, what is unlocked and the ship of the day.

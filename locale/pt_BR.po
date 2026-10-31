@@ -2169,3 +2169,69 @@ msgstr "Ande com {button} e mire com o mouse."
 
 msgid "TIP_MOVE_PAD"
 msgstr "Ande com o analógico esquerdo e mire com o direito."
+
+msgid "MONSTER_PLAGUE_RAT"
+msgstr "Rato Pestilento"
+
+msgid "MONSTER_MUTANT_RAT"
+msgstr "Ratazana Mutante"
+
+msgid "MONSTER_PLAGUE_BAT"
+msgstr "Morcego Pestilento"
+
+msgid "MONSTER_ACID_TOAD"
+msgstr "Sapo Ácido"
+
+msgid "MONSTER_SEWER_GATOR"
+msgstr "Jacaré do Esgoto"
+
+msgid "MONSTER_OLD_GATOR"
+msgstr "Jacaré Velho"
+
+msgid "MONSTER_RAT_QUEEN"
+msgstr "Rainha dos Ratos"
+
+msgid "ARENA_SEWERS_DRAINS"
+msgstr "Esgoto — Bueiros da Rua Principal"
+
+msgid "ARENA_SEWERS_CANALS"
+msgstr "Esgoto — Canais de Lixo"
+
+msgid "ARENA_SEWERS_WAR_PASSAGE"
+msgstr "Esgoto — Passagem Secreta da Guerra"
+
+msgid "ARENA_SEWERS_NEST"
+msgstr "Esgoto — Ninho da Rainha"
+
+msgid "PROP_SEWER_DEEPER"
+msgstr "Descer mais fundo"
+
+msgid "PROP_WAR_CREST"
+msgstr "Brasão antigo"
+
+msgid "PROP_WAR_TREASURE"
+msgstr "Tesouro Perdido da Guerra"
+
+msgid "SIGN_WAR_CREST"
+msgstr "Um brasão gasto na parede: uma águia sobre três flechas. Alguém fez este túnel com pressa."
+
+msgid "SIGN_WAR_CREST_ARCHER"
+msgstr "O brasão do meu reino. Então foi por aqui que o tesouro fugiu da guerra."
+
+msgid "HUD_VICTORY_SEWERS"
+msgstr "A Rainha dos Ratos caiu."
+
+msgid "HUD_VICTORY_TREASURE"
+msgstr "O Tesouro Perdido da Guerra está aberto para o grupo."
+
+msgid "TOAST_SECRET_FOUND"
+msgstr "{name} achou um segredo!"
+
+msgid "TOAST_CHEST_OPENED"
+msgstr "{name} abriu o baú."
+
+msgid "TOAST_WAITING_GROUP"
+msgstr "Esperando o grupo na saída: {names}"
+
+msgid "TOAST_GROUP_EXIT_COUNTDOWN"
+msgstr "O grupo segue em {seconds} s."

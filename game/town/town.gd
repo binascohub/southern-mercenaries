@@ -156,7 +156,11 @@ func interact(player: Player, prop: Dictionary) -> void:
 		"forge":
 			_send(player.peer_id, &"_open_forge", [])
 		"sign":
-			_arena()._toast_to(player, String(prop.get("text_key", "")), {})
+			# O Arqueiro reconhece o brasão do próprio reino (03-2-areas.md, seção 3).
+			var key: String = prop.get("text_key", "")
+			if prop.has("archer_key") and player.character and player.character.data.class_id == "archer":
+				key = prop.archer_key
+			_arena()._toast_to(player, key, {})
 		"training":
 			_send(player.peer_id, &"_open_training", [])
 		"stash":
@@ -166,7 +170,12 @@ func interact(player: Player, prop: Dictionary) -> void:
 			if needs != "" and needs not in _campaign().get("unlocked", []):
 				_arena()._toast_to(player, "TOAST_LOCKED", {})
 				return
-			_arena().travel(String(prop.to), String(prop.get("entry", "start")), prop.get("expedition_end", false))
+			if prop.get("group", false):
+				_arena().request_exit(player, prop)
+			else:
+				_arena().travel(String(prop.to), String(prop.get("entry", "start")), prop.get("expedition_end", false))
+		"chest":
+			_arena().open_chest(player, prop)
 
 
 @rpc("authority", "reliable")

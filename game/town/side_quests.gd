@@ -9,21 +9,30 @@ extends RefCounted
 ## do host; no máximo 5 ativas. Cada história segue o roteiro dos docs: o que é,
 ## a lenda da criatura, a recompensa e a pista de fraqueza.
 
-## Mapas com missões secundárias: os já liberados (por enquanto, o Esgoto provisório).
+## Áreas com missões secundárias: as liberadas (data/arenas.json,
+## "side_quests_unlock"), na ordem do arquivo.
 static func open_maps(unlocked: Array) -> Array[String]:
 	var maps: Array[String] = []
-	if "sewer_entrance" in unlocked:
-		maps.append("prototype_arena")
+	for id: String in GameData.arenas:
+		var unlock: String = GameData.arenas[id].get("side_quests_unlock", "")
+		if unlock != "" and unlock in unlocked:
+			maps.append(id)
 	return maps
 
 
-## Criaturas do bestiário que existem de verdade no mapa (para caçar e contar história).
-static func creatures_in(map_id: String) -> Array[String]:
+## Criaturas do bestiário que existem de verdade na área (nos encontros dela),
+## para caçar e contar história.
+static func creatures_in(area_id: String) -> Array[String]:
+	var present := {}
+	for encounter: Dictionary in GameData.arenas.get(area_id, {}).get("encounters", []):
+		for entry: Dictionary in encounter.monsters:
+			present[entry.monster] = true
 	var found: Array[String] = []
 	for id: String in GameData.bestiary:
-		var entry: Dictionary = GameData.bestiary[id]
-		if entry.get("map", "") == map_id and not entry.get("monsters", []).is_empty():
-			found.append(id)
+		for monster: String in GameData.bestiary[id].get("monsters", []):
+			if present.has(monster):
+				found.append(id)
+				break
 	return found
 
 
@@ -58,15 +67,36 @@ static func make_quest(id: String, template: String, map_id: String, rng: Random
 		"gold": int(rules.gold_per_level) * level, "xp": int(rules.xp_per_level) * level}
 	match template:
 		"hunt":
+			# O bando caçado (com uma elite) aparece num ponto da área enquanto a
+			# caçada estiver ativa: os monstros do mapa não voltam (03-inimigos.md).
 			quest.count = rng.randi_range(int(rules.count[0]), int(rules.count[1]))
 			quest.progress = 0
 			quest.gold = int(quest.gold) * int(quest.count) / 4
+			var hunt_spots: Array = GameData.arenas[map_id].get("quest_spots", [[0, 0]])
+			quest.spot = rng.randi_range(0, hunt_spots.size() - 1)
 		"rumor", "retrieve":
 			var spots: Array = GameData.arenas[map_id].get("quest_spots", [[0, 0]])
 			quest.spot = rng.randi_range(0, spots.size() - 1)
 			if template == "rumor":
 				quest.outcome = Items.roll_rarity(rules.outcomes, rng)  # sorteio por peso
 	return quest
+
+
+## Bando da caçada para spawnar na área: um encontro como os de data/arenas.json
+## (a primeira criatura é elite). {} se não há o que caçar ali.
+static func hunt_encounter(quest: Dictionary) -> Dictionary:
+	var monsters: Array = GameData.bestiary.get(quest.target, {}).get("monsters", [])
+	var spots: Array = GameData.arenas.get(quest.area, {}).get("quest_spots", [])
+	if quest.template != "hunt" or monsters.is_empty() or spots.is_empty():
+		return {}
+	var left := int(quest.count) - int(quest.progress)
+	if left <= 0:
+		return {}
+	var spot: Array = spots[int(quest.get("spot", 0)) % spots.size()]
+	var entries: Array = [{"monster": monsters[0], "count": 1, "rank": "elite"}]
+	if left > 1:
+		entries.append({"monster": monsters[0], "count": left - 1})
+	return {"id": "hunt_" + String(quest.id), "position": spot, "monsters": entries}
 
 
 ## Missões ativas agora.
