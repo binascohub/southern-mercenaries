@@ -28,15 +28,15 @@
 | `move` | W A S D | Left stick |
 | `aim` | Mouse position | Right stick (if released: aims in the movement direction) |
 | `attack` | Left button | RT |
-| `skill_1` | Q | A |
-| `skill_2` | E | B |
-| `skill_3` | R | X |
-| `skill_4` (ultimate skill) | F | Y |
+| `skill_1` | 1 | A |
+| `skill_2` | 2 | B |
+| `skill_3` | 3 | X |
+| `skill_4` (ultimate skill) | 4 | Y |
 | `evade` (dodge / Ninja teleport) | Space | LT |
 | `mount` (Knight mounts/dismounts) | Shift | L3 |
-| `potion_health` | 1 | D-pad ↓ |
-| `potion_mana` | 2 | D-pad ↑ |
-| `potion_elemental` | 3 | D-pad → |
+| `potion_health` | Q | D-pad ↓ |
+| `potion_mana` | E | D-pad ↑ |
+| `potion_elemental` | R | D-pad → |
 | `interact` (talk, open chest, pick up item) | Right button or G | A (when something is nearby; otherwise `skill_1`) — **proposal**: dedicated RB |
 | `pickup_all` | Z | RB |
 | `inventory` | I | Select / View |

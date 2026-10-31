@@ -10,6 +10,10 @@ extends Node
 signal bindings_changed
 
 const PATH := "user://controls.cfg"
+## Versão do padrão do teclado: 2 = habilidades nos números 1–4 e poções em Q/E/R
+## (decisão do autor). Arquivos antigos não levam as teclas antigas dessas ações.
+const LAYOUT_VERSION := 2
+const LAYOUT_2_ACTIONS := [&"skill_1", &"skill_2", &"skill_3", &"skill_4", &"potion_health", &"potion_mana", &"potion_elemental"]
 const KB := "kb"
 const PAD := "pad"
 
@@ -224,17 +228,17 @@ func _build_defaults() -> void:
 	d[&"aim_left"] = _pair([], [axis(JOY_AXIS_RIGHT_X, -1)])
 	d[&"aim_right"] = _pair([], [axis(JOY_AXIS_RIGHT_X, 1)])
 	d[&"attack"] = _pair([mouse(MOUSE_BUTTON_LEFT)], [axis(JOY_AXIS_TRIGGER_RIGHT, 1)])
-	d[&"skill_1"] = _pair([key(KEY_Q)], [pad(JOY_BUTTON_A)])
-	d[&"skill_2"] = _pair([key(KEY_E)], [pad(JOY_BUTTON_B)])
-	d[&"skill_3"] = _pair([key(KEY_R)], [pad(JOY_BUTTON_X)])
-	d[&"skill_4"] = _pair([key(KEY_F)], [pad(JOY_BUTTON_Y)])
+	d[&"skill_1"] = _pair([key(KEY_1)], [pad(JOY_BUTTON_A)])
+	d[&"skill_2"] = _pair([key(KEY_2)], [pad(JOY_BUTTON_B)])
+	d[&"skill_3"] = _pair([key(KEY_3)], [pad(JOY_BUTTON_X)])
+	d[&"skill_4"] = _pair([key(KEY_4)], [pad(JOY_BUTTON_Y)])
 	d[&"evade"] = _pair([key(KEY_SPACE)], [axis(JOY_AXIS_TRIGGER_LEFT, 1)])
 	d[&"mount"] = _pair([key(KEY_SHIFT)], [pad(JOY_BUTTON_LEFT_STICK)])
 	# Bloquear / aparar (proposta, 08-controles.md): segurar.
 	d[&"block"] = _pair([key(KEY_C)], [pad(JOY_BUTTON_LEFT_SHOULDER)])
-	d[&"potion_health"] = _pair([key(KEY_1)], [pad(JOY_BUTTON_DPAD_DOWN)])
-	d[&"potion_mana"] = _pair([key(KEY_2)], [pad(JOY_BUTTON_DPAD_UP)])
-	d[&"potion_elemental"] = _pair([key(KEY_3)], [pad(JOY_BUTTON_DPAD_RIGHT)])
+	d[&"potion_health"] = _pair([key(KEY_Q)], [pad(JOY_BUTTON_DPAD_DOWN)])
+	d[&"potion_mana"] = _pair([key(KEY_E)], [pad(JOY_BUTTON_DPAD_UP)])
+	d[&"potion_elemental"] = _pair([key(KEY_R)], [pad(JOY_BUTTON_DPAD_RIGHT)])
 	# Botão de interagir no controle: decisão em aberto (08-controles.md, seção 5).
 	d[&"interact"] = _pair([mouse(MOUSE_BUTTON_RIGHT), key(KEY_G)], [])
 	d[&"pickup_all"] = _pair([key(KEY_Z)], [pad(JOY_BUTTON_RIGHT_SHOULDER)])
@@ -278,6 +282,7 @@ func _save_user() -> void:
 		for kind in [KB, PAD]:
 			var event := get_binding(action, kind)
 			cfg.set_value(kind, action, serialize(event) if event else {})
+	cfg.set_value("meta", "layout", LAYOUT_VERSION)
 	cfg.save(PATH)
 
 
@@ -285,9 +290,12 @@ func _load_user() -> void:
 	var cfg := ConfigFile.new()
 	if cfg.load(PATH) != OK:
 		return
+	var old_layout := int(cfg.get_value("meta", "layout", 1)) < LAYOUT_VERSION
 	for action in REMAPPABLE:
 		for kind in [KB, PAD]:
 			if not cfg.has_section_key(kind, action):
+				continue
+			if old_layout and kind == KB and action in LAYOUT_2_ACTIONS:
 				continue
 			var data: Dictionary = cfg.get_value(kind, action, {})
 			_replace_primary(action, kind, deserialize(data) if not data.is_empty() else null)

@@ -28,15 +28,15 @@
 | `move` | W A S D | Analógico izquierdo |
 | `aim` | Posición del ratón | Analógico derecho (si está suelto: apunta en la dirección del movimiento) |
 | `attack` | Botón izquierdo | RT |
-| `skill_1` | Q | A |
-| `skill_2` | E | B |
-| `skill_3` | R | X |
-| `skill_4` (habilidad final) | F | Y |
+| `skill_1` | 1 | A |
+| `skill_2` | 2 | B |
+| `skill_3` | 3 | X |
+| `skill_4` (habilidad final) | 4 | Y |
 | `evade` (esquiva / teletransporte del Ninja) | Espacio | LT |
 | `mount` (el Caballero monta/desmonta) | Shift | L3 |
-| `potion_health` | 1 | Cruceta ↓ |
-| `potion_mana` | 2 | Cruceta ↑ |
-| `potion_elemental` | 3 | Cruceta → |
+| `potion_health` | Q | Cruceta ↓ |
+| `potion_mana` | E | Cruceta ↑ |
+| `potion_elemental` | R | Cruceta → |
 | `interact` (hablar, abrir cofre, recoger objeto) | Botón derecho o G | A (cuando hay algo cerca; si no, `skill_1`) — **propuesta**: RB dedicado |
 | `pickup_all` | Z | RB |
 | `inventory` | I | Select / View |

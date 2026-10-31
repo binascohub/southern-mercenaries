@@ -28,16 +28,16 @@
 | `move` | W A S D | Analógico esquerdo |
 | `aim` | Posição do mouse | Analógico direito (se solto: mira na direção do movimento) |
 | `attack` | Botão esquerdo | RT |
-| `skill_1` | Q | A |
-| `skill_2` | E | B |
-| `skill_3` | R | X |
-| `skill_4` (habilidade final) | F | Y |
+| `skill_1` | 1 | A |
+| `skill_2` | 2 | B |
+| `skill_3` | 3 | X |
+| `skill_4` (habilidade final) | 4 | Y |
 | `evade` (esquiva / teleporte do Ninja) | Espaço | LT |
 | `block` (segurar: bloqueio / aparar do Ninja; o Arqueiro não bloqueia) — **proposta** | C | LB |
 | `mount` (Cavaleiro monta/desmonta) | Shift | L3 |
-| `potion_health` | 1 | Direcional ↓ |
-| `potion_mana` | 2 | Direcional ↑ |
-| `potion_elemental` | 3 | Direcional → |
+| `potion_health` | Q | Direcional ↓ |
+| `potion_mana` | E | Direcional ↑ |
+| `potion_elemental` | R | Direcional → |
 | `interact` (falar, abrir baú, pegar item) | Botão direito ou G | A (quando há algo perto; senão `skill_1`) — **proposta**: RB dedicado |
 | `pickup_all` | Z | RB |
 | `inventory` | I | Select / View |
