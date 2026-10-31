@@ -1951,6 +1951,8 @@ func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3,
 			doors.has("west"), doors.get("west", 0.0), rng)
 		_grime_side(Vector3(c.x + half.x, 0, c.z), Vector3.BACK, Vector3.LEFT, half.z * 2.0,
 			doors.has("east"), doors.get("east", 0.0), rng)
+	if style.get("trash", false):
+		_scatter_trash(room, c, half)
 	if style.get("puddles", false):
 		var rng := RandomNumberGenerator.new()
 		rng.seed = hash(str(room.get("id", ""), c, "puddles"))
@@ -2047,6 +2049,65 @@ func _tint_piece(node: Node3D) -> void:
 				copy.albedo_color = copy.albedo_color * _style_tint
 				_tinted[material] = copy
 			m.set_surface_override_material(i, _tinted[material])
+
+
+## Lixo jogado pelo chão do esgoto: garrafas e canecas caídas, cacos de pote,
+## sacos, cordas, baldes virados, tábuas quebradas e trapos/papéis. Só visual;
+## espalhado pela posição da sala (igual em todos os PCs), mais perto das paredes.
+const TRASH := ["Bottle_1", "Bottle_1", "Mug", "Mug_Wood", "Pot_Small_Shards", "Pot_Large_Shards",
+	"Bag", "Rope_1", "Bucket_Wooden_1", "Vase_Big_Shards"]
+
+
+func _scatter_trash(room: Dictionary, c: Vector3, half: Vector3) -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = hash(str(room.get("id", ""), c, "trash"))
+	var count := clampi(roundi(half.x * half.z * 4.0 / 9.0), 4, 40)
+	for i in count:
+		# Mais lixo perto das paredes que no meio.
+		var u := rng.randf_range(-1.0, 1.0)
+		var v := rng.randf_range(-1.0, 1.0)
+		if rng.randf() < 0.6:
+			if rng.randf() < 0.5:
+				u = signf(u) * rng.randf_range(0.7, 1.0)
+			else:
+				v = signf(v) * rng.randf_range(0.7, 1.0)
+		var at := Vector3(c.x + u * (half.x - 0.6), 0.0, c.z + v * (half.z - 0.6))
+		if rng.randf() < 0.35:
+			_trash_scrap(at, rng)
+			continue
+		var piece_name: String = TRASH[rng.randi() % TRASH.size()]
+		var node := Kit.piece(piece_name)
+		if node == null:
+			continue
+		node.position = at
+		node.rotation.y = rng.randf() * TAU
+		if piece_name in ["Bottle_1", "Mug", "Mug_Wood", "Bucket_Wooden_1"]:
+			# Caído de lado.
+			node.rotation.x = PI / 2.0
+			node.position.y = 0.08 if piece_name != "Bucket_Wooden_1" else 0.22
+		elif piece_name.ends_with("_Shards"):
+			node.scale = Vector3(1.0, 0.25, 1.0)  # os cacos espalhados, rentes ao chão
+		_area_root.add_child(node)
+		_tint_piece(node)
+
+
+## Trapo, papel ou tábua quebrada no chão (caixas finas na cor da sujeira).
+func _trash_scrap(at: Vector3, rng: RandomNumberGenerator) -> void:
+	var scrap := MeshInstance3D.new()
+	var box := BoxMesh.new()
+	var plank := rng.randf() < 0.4
+	box.size = Vector3(rng.randf_range(0.08, 0.16), 0.03, rng.randf_range(0.5, 1.1)) if plank \
+		else Vector3(rng.randf_range(0.2, 0.45), 0.01, rng.randf_range(0.15, 0.35))
+	scrap.mesh = box
+	var colors := [Color(0.24, 0.17, 0.1), Color(0.33, 0.3, 0.22), Color(0.2, 0.22, 0.16), Color(0.4, 0.36, 0.28)]
+	var material := StandardMaterial3D.new()
+	material.albedo_color = colors[0] if plank else colors[1 + rng.randi() % 3]
+	material.roughness = 0.95
+	scrap.material_override = material
+	scrap.position = at + Vector3(0, 0.02, 0)
+	scrap.rotation = Vector3(rng.randf_range(-0.08, 0.08), rng.randf() * TAU, rng.randf_range(-0.08, 0.08))
+	scrap.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	_area_root.add_child(scrap)
 
 
 ## Sujeira numa parede: faixa escura de umidade embaixo e escorridos de lodo
