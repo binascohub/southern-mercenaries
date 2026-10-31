@@ -12,3 +12,4 @@ Only CC0, CC BY or CC BY-SA assets are allowed (fonts may also use the SIL Open 
 |---|---|---|---|
 | Cinzel (`assets/fonts/Cinzel.ttf`) — titles | The Cinzel Project Authors (Natanael Gama) | [Google Fonts](https://fonts.google.com/specimen/Cinzel) · [GitHub](https://github.com/NDISCOVER/Cinzel) | SIL OFL 1.1 (`assets/fonts/OFL-Cinzel.txt`) |
 | Alegreya (`assets/fonts/Alegreya.ttf`, `Alegreya-Italic.ttf`) — text | The Alegreya Project Authors (Huerta Tipográfica) | [Google Fonts](https://fonts.google.com/specimen/Alegreya) · [GitHub](https://github.com/huertatipografica/Alegreya) | SIL OFL 1.1 (`assets/fonts/OFL-Alegreya.txt`) |
+| Universal Animation Library — Standard (`assets/models/characters/ual_mannequin.glb`): mannequin and 43 animations | Quaternius | [quaternius.com](https://quaternius.com/packs/universalanimationlibrary.html) · [itch.io](https://quaternius.itch.io/universal-animation-library) | CC0 1.0 (`assets/models/characters/LICENSE-UAL.txt`) |

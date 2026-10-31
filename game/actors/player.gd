@@ -35,6 +35,11 @@ const SLOT_COLORS: Array[Color] = [
 	Color(0.95, 0.75, 0.2), Color(0.3, 0.7, 1.0), Color(0.4, 0.9, 0.4), Color(0.9, 0.4, 0.9),
 ]
 const BODY_COLOR := Color(0.78, 0.72, 0.6)
+## Arma no punho: o cabo segue o eixo Z do osso da mão (para a frente na pose
+## de descanso do Universal Animation Library), um pouco dentro da palma.
+const HAND_GRIP := Transform3D(Basis(Vector3.RIGHT, PI / 2.0), Vector3(0, 0.09, 0.02))
+## Altura do osso do peito (spine_03) na pose de descanso.
+const CHEST := Vector3(0, 1.315, 0)
 
 # Sincronizados (servidor -> todos).
 var peer_id := 1
@@ -65,6 +70,8 @@ var element := "fire"
 var shield := 0.0
 ## Invisível para os monstros (Bomba de Fumaça do Ninja).
 var hidden := false
+## Última ação para a animação nos PCs ("tipo:número"): melee, cast, shoot, roll, hit.
+var action := ""
 ## Cavaleiro montado (02-3-cavaleiro.md, seção 3).
 var mounted := false
 ## Pátio de treino com "recursos e recargas livres" (servidor).
@@ -123,6 +130,11 @@ var _last_net_position := Vector3.INF
 
 var _visual: Node3D
 var _body_material: StandardMaterial3D
+## Corpo animado (manequim do Universal Animation Library) e a última ação mostrada.
+var _model: HeroModel
+var _shown_action := ""
+var _last_visual_pos := Vector3.ZERO
+var _action_seq := 0
 var _crystal_material: StandardMaterial3D
 var _revive_bar: MeshInstance3D
 var _ring_material: StandardMaterial3D
@@ -248,6 +260,15 @@ func request_tip_seen(id: String) -> void:
 		return
 	if character.mark_tip_seen(id):
 		_push_character(0)
+
+
+## Servidor: marca uma ação para a animação em todos os PCs (ataque, magia,
+## esquiva, golpe sofrido). Um golpe sofrido não corta um ataque em andamento.
+func act(kind: String) -> void:
+	if kind == "hit" and _model and _model.current() in ["melee", "cast", "shoot", "roll"]:
+		return
+	_action_seq += 1
+	action = "%s:%d" % [kind, _action_seq]
 
 
 ## Servidor: a ficha mudou por fora (troca entre jogadores): recalcula e propaga.
@@ -507,6 +528,7 @@ func _server_step(delta: float) -> void:
 		_evade_time = data.evade.duration
 		evade_cooldown = data.evade.cooldown
 		charge_time = 0.0
+		act("roll")
 		if data.evade.get("teleport", false):
 			# Ninja: a esquiva é um teleporte curto (sem atravessar paredes).
 			var to := global_position + Vector3(_evade_dir.x, 0, _evade_dir.y) * float(data.evade.distance)
@@ -592,6 +614,8 @@ func take_damage(amount: float, monster_level := 1, attacker: Node3D = null) -> 
 			resource -= from_mana / per_mana
 			amount -= from_mana
 	health = maxf(health - amount, 0.0)
+	if amount > 0.0:
+		act("hit")
 	hurt.emit()
 	if amount >= max_health * GameData.balance.heavy_hit_fraction:
 		if peer_id == multiplayer.get_unique_id():
@@ -650,6 +674,7 @@ func _heavy_hit() -> void:
 
 
 func _fire(attack: Dictionary) -> void:
+	act("melee" if attack.get("melee", false) else ("shoot" if class_id == "archer" else "cast"))
 	if attack.get("melee", false):
 		_melee(attack)
 		return
@@ -689,6 +714,7 @@ func _cast_slot(index: int) -> void:
 	if resource < cost or not get_parent().skills.cast(self, id, rank):
 		return
 	resource -= cost
+	act("melee" if class_id in ["ninja", "knight"] else ("shoot" if class_id == "archer" else "cast"))
 	# Sem recarga (as básicas) ainda respeitam o ritmo do ataque básico; no pátio
 	# de treino com recargas livres, todas ficam assim.
 	var cd := maxf(Skills.cooldown(skill, rank), data.basic_attack.cooldown)
@@ -958,7 +984,7 @@ func _add_synchronizer() -> void:
 	var config := SceneReplicationConfig.new()
 	var always := [":net_position", ":facing", ":charge_time", ":revive_progress", ":evade_cooldown"]
 	var on_change := [":health", ":max_health", ":resource", ":max_resource", ":alive", ":connected",
-		":hero_name", ":level", ":equip_visual", ":potion_cooldown", ":armor_value", ":element", ":shield", ":hidden", ":mounted", ":blocking",
+		":hero_name", ":level", ":equip_visual", ":potion_cooldown", ":armor_value", ":element", ":shield", ":hidden", ":mounted", ":blocking", ":action",
 		":aura_level", ":origin_element", ":aura_set"]
 	for prop in always + on_change:
 		var path := NodePath("." + prop)
@@ -991,14 +1017,9 @@ func _build_visual() -> void:
 	_visual = Node3D.new()
 	add_child(_visual)
 	_body_material = _material(BODY_COLOR)
-	var body := MeshInstance3D.new()
-	var body_mesh := CapsuleMesh.new()
-	body_mesh.radius = 0.35
-	body_mesh.height = 1.7
-	body.mesh = body_mesh
-	body.material_override = _body_material
-	body.position.y = 0.85
-	_visual.add_child(body)
+	_model = HeroModel.new()
+	_visual.add_child(_model)
+	_model.setup(_body_material)
 
 	var archer := class_id == "archer"
 	var ninja := class_id == "ninja"
@@ -1030,8 +1051,9 @@ func _build_visual() -> void:
 		shield_mesh.size = Vector3(0.08, 0.7, 0.5)
 		shield_node.mesh = shield_mesh
 		shield_node.material_override = _material(Color(0.45, 0.32, 0.2))
-		shield_node.position = Vector3(-0.42, 1.0, 0.15)
-		_visual.add_child(shield_node)
+		# No antebraço esquerdo, alinhado ao corpo na pose de descanso.
+		_model.attach("lowerarm_l", shield_node, Transform3D(Basis(Vector3(0, 1, 0), Vector3(-1, 0, 0), Vector3(0, 0, 1)),
+			Vector3(0.0, 0.15, 0.08)), Vector3(-0.42, 1.0, 0.15))
 		_horse = _build_horse()
 		_visual.add_child(_horse)
 	if summoner:
@@ -1046,10 +1068,18 @@ func _build_visual() -> void:
 		var second := MeshInstance3D.new()
 		second.mesh = staff_mesh
 		second.material_override = _staff_material
-		second.position = Vector3(-0.42, 0.9, 0.35)
-		second.rotation.x = PI / 2.0
-		_visual.add_child(second)
-	_visual.add_child(staff)
+		second.rotation = Vector3.ZERO
+		second.position = Vector3(0, 0.15, 0)
+		var left_hand := Node3D.new()
+		left_hand.add_child(second)
+		_model.attach("hand_l", left_hand, HAND_GRIP, Vector3(-0.42, 0.9, 0.35))
+	# Arma na mão direita: o cabo passa pelo punho, apontando para a frente
+	# (o punho segura a um terço do cabo; a lança e o arco mais à frente).
+	staff.rotation = Vector3.ZERO
+	staff.position = Vector3.ZERO if summoner else Vector3(0, staff_mesh.height * (0.3 if knight else 0.2), 0)
+	var right_hand := Node3D.new()
+	right_hand.add_child(staff)
+	_model.attach("hand_r", right_hand, HAND_GRIP, Vector3(0.45, 0.9, 0.15))
 
 	# Brilho na cor do elemento: cristal do cajado ou ponta da flecha (02-0-elementos.md, seção 8).
 	_crystal_material = _material(Color(0.55, 0.75, 1.0), 1.5)
@@ -1059,12 +1089,9 @@ func _build_visual() -> void:
 	crystal_mesh.height = 0.12 if archer else 0.2
 	crystal.mesh = crystal_mesh
 	crystal.material_override = _crystal_material
-	crystal.position = Vector3(0.42, 0.9, 0.62) if ninja else (Vector3(0.45, 0.95, 0.6) if archer else Vector3(0.45, 1.8, 0.15))
-	if knight:
-		crystal.position = Vector3(0.4, 1.05, 2.0)  # ponta da lança
-	if summoner:
-		crystal.position = Vector3(0.38, 1.08, 0.35)  # página brilhando no livro
-	_visual.add_child(crystal)
+	# Na ponta da arma (cajado, flecha, lança, adaga) ou na página do livro.
+	crystal.position = Vector3(0, 0.08, 0) if summoner else Vector3(0, staff_mesh.height / 2.0, 0)
+	staff.add_child(crystal)
 
 	# Mago: caderno de anotações; Arqueiro: aljava nas costas.
 	var notebook := MeshInstance3D.new()
@@ -1085,7 +1112,8 @@ func _build_visual() -> void:
 		# Guarda da espada do pai, presa na cintura.
 		notebook_mesh.size = Vector3(0.2, 0.06, 0.2)
 		notebook.position = Vector3(-0.3, 0.9, 0.0)
-	_visual.add_child(notebook)
+	# Preso ao peito (acompanha o corpo nas animações).
+	_model.attach("spine_03", notebook, Transform3D(Basis(), notebook.position - CHEST), notebook.position)
 
 	_build_gear()
 
@@ -1153,6 +1181,16 @@ func _build_visual() -> void:
 
 
 func _tick_visual(delta: float) -> void:
+	# Animação: velocidade vista na tela (igual em todos os PCs) e ações novas.
+	var moved := global_position - _last_visual_pos
+	moved.y = 0.0
+	_last_visual_pos = global_position
+	var speed := moved.length() / maxf(delta, 0.0001)
+	if action != _shown_action:
+		_shown_action = action
+		if action != "":
+			_model.play_action(action.get_slice(":", 0))
+	_model.update_state(speed, alive, mounted, charge_time > 0.15, blocking)
 	if _block_visual:
 		_block_visual.visible = blocking
 	# Aura: +1 brilho fraco nos pés … +5 aura máxima pulsando; cor do elemento de origem.
@@ -1188,7 +1226,9 @@ func _tick_visual(delta: float) -> void:
 		var target := atan2(facing.x, facing.y)
 		_visual.rotation.y = lerp_angle(_visual.rotation.y, target, minf(TURN_SPEED * delta, 1.0))
 		_visual.rotation.x = 0.0
-		_visual.position.y = 0.0
+		_visual.position.y = 0.6 if mounted and _horse else 0.0
+	elif _model.skeleton:
+		_visual.position.y = 0.0  # a animação de queda deita o corpo
 	else:
 		_visual.rotation.x = -PI / 2.0
 		_visual.position.y = 0.3
@@ -1234,11 +1274,15 @@ func _build_gear() -> void:
 	glove.height = 0.22
 	var boot := BoxMesh.new()
 	boot.size = Vector3(0.16, 0.14, 0.28)
+	# [malha, osso, deslocamento no osso, posição sem esqueleto]
+	var foot := Basis(Vector3(1, 0, 0), Vector3(0, -0.51, -0.86), Vector3(0, 0.86, -0.51))  # desfaz o giro do pé
 	var parts := {
-		"head": [[hat, Vector3(0, 1.82, 0)]],
-		"body": [[robe, Vector3(0, 0.6, 0)]],
-		"hands": [[glove, Vector3(0.36, 0.95, 0.12)], [glove, Vector3(-0.36, 0.95, 0.12)]],
-		"feet": [[boot, Vector3(0.13, 0.07, 0.06)], [boot, Vector3(-0.13, 0.07, 0.06)]],
+		"head": [[hat, "Head", Transform3D(Basis(), Vector3(0, 0.27, 0)), Vector3(0, 1.82, 0)]],
+		"body": [[robe, "pelvis", Transform3D(Basis(), Vector3(0, -0.3, 0)), Vector3(0, 0.6, 0)]],
+		"hands": [[glove, "hand_r", Transform3D(Basis(), Vector3(0, 0.06, 0)), Vector3(0.36, 0.95, 0.12)],
+			[glove, "hand_l", Transform3D(Basis(), Vector3(0, 0.06, 0)), Vector3(-0.36, 0.95, 0.12)]],
+		"feet": [[boot, "foot_r", Transform3D(foot, Vector3(0, 0.03, 0.02)), Vector3(0.13, 0.07, 0.06)],
+			[boot, "foot_l", Transform3D(foot, Vector3(0, 0.03, 0.02)), Vector3(-0.13, 0.07, 0.06)]],
 	}
 	for slot_name in parts:
 		var material := StandardMaterial3D.new()
@@ -1246,10 +1290,9 @@ func _build_gear() -> void:
 		for part in parts[slot_name]:
 			var mesh := MeshInstance3D.new()
 			mesh.mesh = part[0]
-			mesh.position = part[1]
 			mesh.material_override = material
 			mesh.visible = false
-			_visual.add_child(mesh)
+			_model.attach(part[1], mesh, part[2], part[3])
 			nodes.append(mesh)
 		_gear[slot_name] = {"material": material, "nodes": nodes}
 
