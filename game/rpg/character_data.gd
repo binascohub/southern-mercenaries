@@ -58,7 +58,8 @@ static func from_dict(source: Variant) -> CharacterData:
 	if not source is Dictionary:
 		return null
 	var c := CharacterData.new()
-	c.data = SaveSystem.migrate_character(source.duplicate(true))
+	# O JSON devolve todo número como float: inteiros voltam a ser int ("Nível 2", não "2.0").
+	c.data = _canonical(SaveSystem.migrate_character(source.duplicate(true)))
 	return c if c.validate().is_empty() else null
 
 
@@ -163,8 +164,9 @@ func add_xp(amount: int) -> int:
 	while int(data.level) < GameData.balance.max_level and int(data.xp) >= xp_to_next(int(data.level)):
 		data.xp = int(data.xp) - xp_to_next(int(data.level))
 		data.level = int(data.level) + 1
-		data.free_points = int(data.free_points) + GameData.balance.attribute_points_per_level
-		data.skill_points = int(data.skill_points) + GameData.balance.skill_points_per_level
+		# Números do JSON chegam como float: a ficha guarda inteiros ("5", não "5.0").
+		data.free_points = int(data.free_points) + int(GameData.balance.attribute_points_per_level)
+		data.skill_points = int(data.skill_points) + int(GameData.balance.skill_points_per_level)
 		gained += 1
 	if int(data.level) >= GameData.balance.max_level:
 		data.xp = 0

@@ -235,6 +235,9 @@ func _test_edited_character() -> void:
 	SaveSystem.save_character(c)
 	var back := SaveSystem.load_character(c.data.id)
 	_check(back != null and not back.is_edited(), "personagem lido do disco não é acusado (inteiros viram float no JSON)")
+	_check(back != null and typeof(back.data.level) == TYPE_INT and typeof(back.data.gold) == TYPE_INT
+		and typeof(back.data.attributes.int) == TYPE_INT, "números inteiros continuam int depois do disco")
+	_check(back != null and str(back.data.free_points) == "0", "pontos livres sem \".0\"")
 	var net := CharacterData.from_dict(JSON.parse_string(JSON.stringify(c.to_dict())))
 	_check(net != null and not net.is_edited(), "ficha que passou por JSON continua igual")
 	# Edita o arquivo à mão: continua válido, mas o resumo não bate.

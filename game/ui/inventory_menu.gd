@@ -12,7 +12,9 @@ extends CanvasLayer
 signal trade_requested
 
 const BAG_COLUMNS := 8
-const CELL := Vector2(92, 56)
+## Cabe em 1280 px: atributos 230 + slots 2 × 130 + bolsa 8 × 68 (+ espaços).
+const CELL := Vector2(68, 56)
+const SLOT_SIZE := Vector2(130, 56)
 
 var _player: Player
 var _panel: PanelContainer
@@ -77,7 +79,7 @@ func _refresh() -> void:
 	var c := _player.character
 	var d := c.data
 	var cls := c.class_data()
-	_stats.text = "\n".join([
+	_stats.text = "\n".join(PackedStringArray([
 		"%s — %s" % [d.name, tr(cls.name_key)],
 		tr("INV_LEVEL").format({"level": d.level}),
 		tr("HUD_LEVEL_XP").format({"level": d.level, "xp": d.xp, "next": CharacterData.xp_to_next(int(d.level))}),
@@ -86,8 +88,8 @@ func _refresh() -> void:
 		tr("INV_POWER").format({"name": tr(cls.power_key), "value": "%.1f" % c.power()}),
 		tr("INV_ARMOR").format({"value": "%.1f" % c.armor()}),
 		tr("HUD_GOLD").format({"gold": d.gold}),
-		tr("INV_FREE_POINTS").format({"points": d.free_points}),
-	])
+		tr("INV_FREE_POINTS").format({"points": int(d.free_points)}),
+	]))
 	for attr in CharacterData.ATTRIBUTES:
 		var button: Button = _attr_buttons[attr]
 		button.text = tr("ATTR_" + attr.to_upper()).format({"value": c.attribute(attr)})
@@ -110,8 +112,8 @@ func _refresh() -> void:
 
 func _short(item: Dictionary) -> String:
 	var name := Items.display_name(item)
-	if name.length() > 22:
-		name = name.substr(0, 21) + "…"
+	if name.length() > 16:
+		name = name.substr(0, 15) + "…"
 	if item.kind != Items.EQUIPMENT and int(item.count) > 1:
 		name += " x%d" % item.count
 	return name
@@ -173,7 +175,7 @@ func _build() -> void:
 
 	# Atributos.
 	var left := VBoxContainer.new()
-	left.custom_minimum_size = Vector2(250, 0)
+	left.custom_minimum_size = Vector2(230, 0)
 	columns.add_child(left)
 	_stats = _text_label()
 	left.add_child(_stats)
@@ -191,7 +193,7 @@ func _build() -> void:
 	for slot in CharacterData.SLOTS:
 		var button := Button.new()
 		button.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
-		button.custom_minimum_size = Vector2(150, 56)
+		button.custom_minimum_size = SLOT_SIZE
 		button.clip_text = true
 		button.pressed.connect(func() -> void: _player.request_unequip(slot))
 		button.focus_entered.connect(func() -> void:
@@ -209,7 +211,7 @@ func _build() -> void:
 		button.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 		button.custom_minimum_size = CELL
 		button.clip_text = true
-		button.add_theme_font_size_override("font_size", 12)
+		button.add_theme_font_size_override("font_size", 11)
 		button.pressed.connect(func() -> void: _player.request_use(i))
 		button.focus_entered.connect(func() -> void:
 			_focused = {"bag": i}
