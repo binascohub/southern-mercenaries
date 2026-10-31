@@ -39,7 +39,7 @@ const SHOP_OPEN := 318
 const SHOP_SHOT := 322
 const SEWER_FRAME := 324
 const SEWER_SHOT := 329
-const QUEEN_FRAME := 331
+const QUEEN_FRAME := 340
 const QUEEN_SHOT := 420
 const MENU_FRAME := 424
 
