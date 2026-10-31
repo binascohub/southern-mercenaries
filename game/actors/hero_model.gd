@@ -1,60 +1,85 @@
 # Southern Mercenaries — GPL-3.0-or-later
 class_name HeroModel
 extends Node3D
-## Corpo animado do herói: o manequim do Universal Animation Library
-## (Quaternius, CC0) com 43 animações no esqueleto padrão. Quando o pacote de
-## roupas modulares (mesmo esqueleto) entrar, só a malha muda. Armas e peças de
-## equipamento vão presas aos ossos (attach). Sem o arquivo do modelo (testes
-## sem importação), fica uma cápsula, como antes.
+## Corpo animado do herói (Quaternius, CC0, montado por tools/build_heroes.py):
+## o esqueleto e as 43 animações do Universal Animation Library, a cabeça e os
+## cabelos do Universal Base Characters e as roupas do Modular Character
+## Outfits - Fantasy (Camponês e Ranger), num modelo por sexo. Cada peça é uma
+## malha separada: o equipamento aparece no corpo (05-itens-e-loot.md) — sem
+## peça no slot, a roupa de Camponês (a "roupa de baixo" do início); com peça,
+## a parte de Ranger tingida pela cor do material. Armas vão presas aos ossos.
+## Sem o arquivo do modelo (testes sem importação), fica uma cápsula.
 ##
 ## Animação dirigida pelo estado que chega a todos os PCs: velocidade (parado,
 ## andar, correr), ação de uma vez (ataque, magia, tiro, esquiva, golpe
 ## sofrido), montado, carregando o ataque forte, bloqueando e caído.
 
-const SCENE := "res://assets/models/characters/ual_mannequin.glb"
+const SCENES := {
+	"male": "res://assets/models/characters/hero_male.glb",
+	"female": "res://assets/models/characters/hero_female.glb",
+}
 const ANIMS := {
 	"idle": "Idle_Loop", "walk": "Walk_Loop", "run": "Jog_Fwd_Loop",
 	"melee": "Sword_Attack", "cast": "Spell_Simple_Shoot", "shoot": "Pistol_Shoot",
 	"roll": "Roll", "hit": "Hit_Chest", "death": "Death01", "ride": "Driving_Loop",
 	"charge": "Spell_Simple_Idle_Loop", "block": "Sword_Idle",
 }
+## Peças por slot de equipamento: sem item, as de Camponês; com item, as de Ranger.
+const OUTFIT := {
+	"body": [["Peasant_Body", "Peasant_Legs"], ["Ranger_Body", "Ranger_Legs", "Ranger_Acc"]],
+	"hands": [["Peasant_Arms"], ["Ranger_Arms"]],
+	"feet": [["Peasant_Feet"], ["Ranger_Feet"]],
+	"head": [[], ["Ranger_Head_Hood"]],
+}
+## Sempre à mostra (o rosto); o cabelo vem do visual da classe.
+const ALWAYS := ["Head", "Eyes", "Eyebrows"]
 ## Velocidades (m/s) em que troca para andar e para correr.
 const WALK_SPEED := 0.4
 const RUN_SPEED := 3.0
 const BLEND := 0.12
 
 var skeleton: Skeleton3D
-var body: MeshInstance3D
 var _anim: AnimationPlayer
 var _action := ""
 var _current := ""
 var _dead := false
+## Malhas por nome e materiais (cópias deste herói) com a cor original.
+var _parts := {}
+var _materials: Array[StandardMaterial3D] = []
+var _base_colors: Array[Color] = []
+var _hair: Array[String] = []
+var _shown_equip := {}
 
 
-## O corpo (ou a cápsula de reserva) com o material dado.
-func setup(material: StandardMaterial3D) -> void:
-	var scene: PackedScene = load(SCENE) as PackedScene if ResourceLoader.exists(SCENE) else null
+## Monta o corpo do sexo dado, com o cabelo do visual da classe
+## ({hair: [nomes], hair_color: [r, g, b]}).
+func setup(sex: String, look: Dictionary) -> void:
+	var path: String = SCENES.get(sex, SCENES.male)
+	var scene: PackedScene = load(path) as PackedScene if ResourceLoader.exists(path) else null
 	if scene == null:
-		body = MeshInstance3D.new()
-		var capsule := CapsuleMesh.new()
-		capsule.radius = 0.35
-		capsule.height = 1.7
-		body.mesh = capsule
-		body.position.y = 0.85
-		body.material_override = material
-		add_child(body)
+		_build_capsule()
 		return
 	var model := scene.instantiate()
 	add_child(model)
 	skeleton = model.find_child("Skeleton3D", true, false) as Skeleton3D
 	_anim = model.find_child("AnimationPlayer", true, false) as AnimationPlayer
+	var hair_color: Array = look.get("hair_color", [0.25, 0.17, 0.1])
+	_hair.assign(look.get("hair", []))
 	for node in model.find_children("*", "MeshInstance3D", true, false):
 		var mesh := node as MeshInstance3D
-		if mesh.name.begins_with("Mannequin"):
-			body = mesh
-			mesh.material_override = material
-		else:
-			mesh.visible = false  # o "Icosphere" de referência do pacote
+		_parts[String(mesh.name)] = mesh
+		var is_hair := String(mesh.name).begins_with("Hair") or String(mesh.name) == "Eyebrows"
+		for i in mesh.get_surface_override_material_count():
+			var source := mesh.get_active_material(i) as StandardMaterial3D
+			if source == null:
+				continue
+			var copy := source.duplicate() as StandardMaterial3D
+			if is_hair:
+				copy.albedo_color = Color(hair_color[0], hair_color[1], hair_color[2])
+			mesh.set_surface_override_material(i, copy)
+			_materials.append(copy)
+			_base_colors.append(copy.albedo_color)
+	set_outfit({})
 	if _anim:
 		_anim.animation_finished.connect(func(_name: StringName) -> void: _action = "")
 		for key: String in ANIMS:
@@ -64,7 +89,59 @@ func setup(material: StandardMaterial3D) -> void:
 		_play("idle")
 
 
-## Prende `node` ao osso (mão, cabeça, pé…), com um deslocamento local.
+## Mostra as peças conforme o equipamento ({slot: material}); tinge as de Ranger.
+func set_outfit(equip: Dictionary) -> void:
+	_shown_equip = equip.duplicate()
+	if _parts.is_empty():
+		return
+	for part_name: String in _parts:
+		(_parts[part_name] as MeshInstance3D).visible = part_name in ALWAYS
+	var hooded := String(equip.get("head", "")) != ""
+	for hair: String in _hair:
+		if _parts.has(hair):
+			_parts[hair].visible = not hooded or hair == "Hair_Beard"
+	for slot: String in OUTFIT:
+		var material_id: String = String(equip.get(slot, ""))
+		var worn := material_id != "" and GameData.materials.has(material_id)
+		var tint := Color.WHITE.lerp(Color(GameData.materials[material_id].color), 0.45) if worn else Color.WHITE
+		for prefix: String in OUTFIT[slot][1 if worn else 0]:
+			for part_name: String in _parts:
+				if part_name.begins_with(prefix):
+					var mesh: MeshInstance3D = _parts[part_name]
+					mesh.visible = true
+					if worn:
+						_tint(mesh, tint)
+
+
+func outfit() -> Dictionary:
+	return _shown_equip
+
+
+## Peças à mostra agora (testes e capturas).
+func visible_parts() -> Array[String]:
+	var shown: Array[String] = []
+	for part_name: String in _parts:
+		if _parts[part_name].visible:
+			shown.append(part_name)
+	return shown
+
+
+## Golpe sofrido (pisca vermelho), invisível (Bomba de Fumaça) e o brilho do
+## conjunto de armadura em +4 (Color com alfa 0 = sem brilho).
+func set_effects(flash: bool, alpha: float, glow: Color) -> void:
+	for i in _materials.size():
+		var material := _materials[i]
+		var color := _base_colors[i]
+		material.albedo_color = Color(color.r, color.g * 0.4, color.b * 0.4, alpha) if flash \
+			else Color(color.r, color.g, color.b, alpha)
+		material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA if alpha < 1.0 else BaseMaterial3D.TRANSPARENCY_DISABLED
+		material.emission_enabled = glow.a > 0.0
+		if glow.a > 0.0:
+			material.emission = glow
+			material.emission_energy_multiplier = 0.25
+
+
+## Prende `node` ao osso (mão, antebraço, peito…), com um deslocamento local.
 ## Sem esqueleto, fica preso ao próprio corpo em `fallback`.
 func attach(bone: String, node: Node3D, offset := Transform3D.IDENTITY, fallback := Vector3.ZERO) -> void:
 	if skeleton == null or skeleton.find_bone(bone) < 0:
@@ -117,6 +194,31 @@ func update_state(speed: float, alive: bool, mounted: bool, charging: bool, bloc
 
 func current() -> String:
 	return _action if _action != "" else _current
+
+
+func _tint(mesh: MeshInstance3D, tint: Color) -> void:
+	for i in mesh.get_surface_override_material_count():
+		var material := mesh.get_surface_override_material(i) as StandardMaterial3D
+		var index := _materials.find(material)
+		# A pele dos braços (material do corpo) não é tingida.
+		if index >= 0 and not String(material.resource_name).contains("Regular"):
+			_base_colors[index] = tint
+			material.albedo_color = tint
+
+
+func _build_capsule() -> void:
+	var body := MeshInstance3D.new()
+	var capsule := CapsuleMesh.new()
+	capsule.radius = 0.35
+	capsule.height = 1.7
+	body.mesh = capsule
+	body.position.y = 0.85
+	var material := StandardMaterial3D.new()
+	material.albedo_color = Color(0.78, 0.72, 0.6)
+	body.material_override = material
+	add_child(body)
+	_materials.append(material)
+	_base_colors.append(material.albedo_color)
 
 
 func _play(key: String, blend := BLEND) -> void:

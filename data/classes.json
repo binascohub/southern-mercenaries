@@ -69,6 +69,28 @@
       "reduction": 1.0,
       "resource_per_damage": 1.0,
       "max_fraction": 0.3
+    },
+    "look": {
+      "male": {
+        "hair": [
+          "Hair_SimpleParted"
+        ],
+        "hair_color": [
+          0.28,
+          0.18,
+          0.11
+        ]
+      },
+      "female": {
+        "hair": [
+          "Hair_Long"
+        ],
+        "hair_color": [
+          0.45,
+          0.2,
+          0.1
+        ]
+      }
     }
   },
   "archer": {
@@ -137,7 +159,30 @@
       ],
       "gold": 150
     },
-    "_comment": "Arqueiro (02-2-arqueiro.md). Atributos e vida de 02-personagens.md; Foco +1 por DES, regenera 15/s parado e 5/s andando (seção 4); esquiva com recarga 3 s no lugar do bloqueio; armadura x0,6 (13-balanceamento.md). Kit inicial: arco de madeira e roupa de baixo."
+    "_comment": "Arqueiro (02-2-arqueiro.md). Atributos e vida de 02-personagens.md; Foco +1 por DES, regenera 15/s parado e 5/s andando (seção 4); esquiva com recarga 3 s no lugar do bloqueio; armadura x0,6 (13-balanceamento.md). Kit inicial: arco de madeira e roupa de baixo.",
+    "look": {
+      "male": {
+        "hair": [
+          "Hair_Buzzed",
+          "Hair_Beard"
+        ],
+        "hair_color": [
+          0.32,
+          0.22,
+          0.12
+        ]
+      },
+      "female": {
+        "hair": [
+          "Hair_Buns"
+        ],
+        "hair_color": [
+          0.3,
+          0.2,
+          0.12
+        ]
+      }
+    }
   },
   "ninja": {
     "name_key": "CLASS_NINJA_NAME",
@@ -213,6 +258,28 @@
       "resource_per_damage": 1.0,
       "parry_window": 0.3,
       "counter_power": 1.5
+    },
+    "look": {
+      "male": {
+        "hair": [
+          "Hair_Buzzed"
+        ],
+        "hair_color": [
+          0.05,
+          0.05,
+          0.06
+        ]
+      },
+      "female": {
+        "hair": [
+          "Hair_Buns"
+        ],
+        "hair_color": [
+          0.05,
+          0.05,
+          0.06
+        ]
+      }
     }
   },
   "summoner": {
@@ -285,6 +352,28 @@
     "block": {
       "reduction": 1.0,
       "resource_per_damage": 1.0
+    },
+    "look": {
+      "male": {
+        "hair": [
+          "Hair_SimpleParted"
+        ],
+        "hair_color": [
+          0.55,
+          0.38,
+          0.2
+        ]
+      },
+      "female": {
+        "hair": [
+          "Hair_BuzzedFemale"
+        ],
+        "hair_color": [
+          0.65,
+          0.25,
+          0.12
+        ]
+      }
     }
   },
   "knight": {
@@ -367,6 +456,30 @@
     "block": {
       "reduction": 0.6,
       "drain_per_second": 2.0
+    },
+    "look": {
+      "male": {
+        "hair": [
+          "Hair_SimpleParted",
+          "Hair_Beard"
+        ],
+        "hair_color": [
+          0.12,
+          0.09,
+          0.07
+        ]
+      },
+      "female": {
+        "hair": [
+          "Hair_Long"
+        ],
+        "hair_color": [
+          0.85,
+          0.7,
+          0.4
+        ]
+      }
     }
-  }
+  },
+  "_comment": " 'look': cabelo (malhas do modelo do herói) e cor do cabelo por sexo (hero_model.gd)."
 }

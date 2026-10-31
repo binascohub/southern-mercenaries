@@ -34,7 +34,6 @@ const TURN_SPEED := 18.0
 const SLOT_COLORS: Array[Color] = [
 	Color(0.95, 0.75, 0.2), Color(0.3, 0.7, 1.0), Color(0.4, 0.9, 0.4), Color(0.9, 0.4, 0.9),
 ]
-const BODY_COLOR := Color(0.78, 0.72, 0.6)
 ## Arma no punho: o cabo segue o eixo Z do osso da mão (para a frente na pose
 ## de descanso do Universal Animation Library), um pouco dentro da palma.
 const HAND_GRIP := Transform3D(Basis(Vector3.RIGHT, PI / 2.0), Vector3(0, 0.09, 0.02))
@@ -70,6 +69,8 @@ var element := "fire"
 var shield := 0.0
 ## Invisível para os monstros (Bomba de Fumaça do Ninja).
 var hidden := false
+## Corpo masculino ou feminino (vem com o herói ao nascer; não muda).
+var sex := "male"
 ## Última ação para a animação nos PCs ("tipo:número"): melee, cast, shoot, roll, hit.
 var action := ""
 ## Cavaleiro montado (02-3-cavaleiro.md, seção 3).
@@ -129,7 +130,6 @@ var _snapshots := SnapshotBuffer.new()
 var _last_net_position := Vector3.INF
 
 var _visual: Node3D
-var _body_material: StandardMaterial3D
 ## Corpo animado (manequim do Universal Animation Library) e a última ação mostrada.
 var _model: HeroModel
 var _shown_action := ""
@@ -140,7 +140,6 @@ var _revive_bar: MeshInstance3D
 var _ring_material: StandardMaterial3D
 var _staff_material: StandardMaterial3D
 ## Peças equipadas no corpo (placeholder até os modelos modulares).
-var _gear := {}
 var _shown_visual := {}
 var _flash := 0.0
 var _shown_health := -1.0
@@ -154,6 +153,7 @@ static func create(spawn: Dictionary) -> Player:
 	player.name = str(spawn.peer_id)
 	player.slot = spawn.slot
 	player.class_id = spawn.class_id
+	player.sex = spawn.get("sex", "male")
 	player.position = spawn.position
 	player.net_position = spawn.position
 	player.hero_name = spawn.get("name", "")
@@ -1016,16 +1016,14 @@ func _build_visual() -> void:
 	# (cor crua), cajado simples com cristal e o caderno de anotações.
 	_visual = Node3D.new()
 	add_child(_visual)
-	_body_material = _material(BODY_COLOR)
 	_model = HeroModel.new()
 	_visual.add_child(_model)
-	_model.setup(_body_material)
+	_model.setup(sex, data.get("look", {}).get(sex, {}))
 
 	var archer := class_id == "archer"
 	var ninja := class_id == "ninja"
 	var summoner := class_id == "summoner"
 	var knight := class_id == "knight"
-	_body_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA  # invisível (Bomba de Fumaça)
 	# Arma: cajado (Mago) ou arco (Arqueiro), na cor do material equipado.
 	var staff := MeshInstance3D.new()
 	var staff_mesh := CylinderMesh.new()
@@ -1115,7 +1113,6 @@ func _build_visual() -> void:
 	# Preso ao peito (acompanha o corpo nas animações).
 	_model.attach("spine_03", notebook, Transform3D(Basis(), notebook.position - CHEST), notebook.position)
 
-	_build_gear()
 
 	# Aura do refino: cilindro transparente em volta do herói (sem luz extra).
 	_aura = MeshInstance3D.new()
@@ -1204,11 +1201,6 @@ func _tick_visual(delta: float) -> void:
 		var height := 0.2 + 0.4 * aura_level
 		_aura.scale = Vector3(1.0, height / 2.0, 1.0)
 		_aura.position.y = height / 2.0
-	# Conjunto de armadura em +4: contorno brilhante no corpo.
-	_body_material.emission_enabled = aura_set
-	if aura_set:
-		_body_material.emission = Elements.color(origin_element)
-		_body_material.emission_energy_multiplier = 0.25
 	if _horse:
 		# Barda do cavalo na cor do material; sem barda, pelagem e sela simples.
 		var barding: Variant = equip_visual.get("barding")
@@ -1243,8 +1235,9 @@ func _tick_visual(delta: float) -> void:
 	if equip_visual != _shown_visual:
 		_update_gear()
 	_flash = maxf(_flash - delta, 0.0)
-	_body_material.albedo_color = Color(1, 0.35, 0.35) if _flash > 0.0 else BODY_COLOR
-	_body_material.albedo_color.a = 0.3 if hidden else 1.0
+	# Pisca ao levar golpe, fica translúcido invisível (Bomba de Fumaça) e o
+	# conjunto de armadura em +4 brilha na cor do elemento de origem.
+	_model.set_effects(_flash > 0.0, 0.3 if hidden else 1.0, Elements.color(origin_element) if aura_set else Color(0, 0, 0, 0))
 	# Cristal na cor do elemento (muda na hora com a Poção Elemental); brilha
 	# mais quando o ataque forte está carregado.
 	var crystal_color := Elements.color(element)
@@ -1258,54 +1251,11 @@ func _tick_visual(delta: float) -> void:
 	_revive_bar.scale.x = maxf(revive_progress, 0.01)
 
 
-## Cada peça aparece no corpo na cor do material (05-itens-e-loot.md: tudo que
-## é equipado aparece no herói); slot vazio mostra a roupa de baixo.
-func _build_gear() -> void:
-	var hat := CylinderMesh.new()
-	hat.top_radius = 0.02
-	hat.bottom_radius = 0.34
-	hat.height = 0.45
-	var robe := CylinderMesh.new()
-	robe.top_radius = 0.33
-	robe.bottom_radius = 0.45
-	robe.height = 1.1
-	var glove := SphereMesh.new()
-	glove.radius = 0.11
-	glove.height = 0.22
-	var boot := BoxMesh.new()
-	boot.size = Vector3(0.16, 0.14, 0.28)
-	# [malha, osso, deslocamento no osso, posição sem esqueleto]
-	var foot := Basis(Vector3(1, 0, 0), Vector3(0, -0.51, -0.86), Vector3(0, 0.86, -0.51))  # desfaz o giro do pé
-	var parts := {
-		"head": [[hat, "Head", Transform3D(Basis(), Vector3(0, 0.27, 0)), Vector3(0, 1.82, 0)]],
-		"body": [[robe, "pelvis", Transform3D(Basis(), Vector3(0, -0.3, 0)), Vector3(0, 0.6, 0)]],
-		"hands": [[glove, "hand_r", Transform3D(Basis(), Vector3(0, 0.06, 0)), Vector3(0.36, 0.95, 0.12)],
-			[glove, "hand_l", Transform3D(Basis(), Vector3(0, 0.06, 0)), Vector3(-0.36, 0.95, 0.12)]],
-		"feet": [[boot, "foot_r", Transform3D(foot, Vector3(0, 0.03, 0.02)), Vector3(0.13, 0.07, 0.06)],
-			[boot, "foot_l", Transform3D(foot, Vector3(0, 0.03, 0.02)), Vector3(-0.13, 0.07, 0.06)]],
-	}
-	for slot_name in parts:
-		var material := StandardMaterial3D.new()
-		var nodes: Array[MeshInstance3D] = []
-		for part in parts[slot_name]:
-			var mesh := MeshInstance3D.new()
-			mesh.mesh = part[0]
-			mesh.material_override = material
-			mesh.visible = false
-			_model.attach(part[1], mesh, part[2], part[3])
-			nodes.append(mesh)
-		_gear[slot_name] = {"material": material, "nodes": nodes}
-
-
+## Cada peça aparece no corpo (05-itens-e-loot.md: tudo que é equipado
+## aparece no herói), tingida pela cor do material; a arma também.
 func _update_gear() -> void:
 	_shown_visual = equip_visual.duplicate()
-	for slot_name in _gear:
-		var material_id: String = equip_visual.get(slot_name, "")
-		var shown := material_id != "" and GameData.materials.has(material_id)
-		for node: MeshInstance3D in _gear[slot_name].nodes:
-			node.visible = shown
-		if shown:
-			_gear[slot_name].material.albedo_color = Color(GameData.materials[material_id].color)
+	_model.set_outfit(equip_visual)
 	var weapon: String = equip_visual.get("weapon", "wood")
 	_staff_material.albedo_color = Color(GameData.materials.get(weapon, GameData.materials.wood).color)
 
