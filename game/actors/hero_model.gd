@@ -23,8 +23,12 @@ const ANIMS := {
 	"melee": "Sword_Attack", "cast": "Spell_Simple_Shoot", "shoot": "Pistol_Shoot",
 	"roll": "Roll", "hit": "Hit_Chest", "death": "Death01", "ride": "Driving_Loop",
 	"charge": "Spell_Simple_Idle_Loop", "block": "Sword_Idle",
-	# NPCs: sentado, conversando, segurando a tocha.
+	# NPCs: sentado, conversando, segurando a tocha, e a gente da rua de Tortuga:
+	# caído (bêbado desmaiado), dançando, agachado (mendigo), empurrando carga,
+	# sentado conversando (apostadores).
 	"sit": "Sitting_Idle_Loop", "talk": "Idle_Talking_Loop", "torch": "Idle_Torch_Loop",
+	"lie": "Death01", "dance": "Dance_Loop", "crouch": "Crouch_Idle_Loop", "push": "Push_Loop",
+	"sit_talk": "Sitting_Talking_Loop",
 }
 ## Peças por slot de equipamento: sem item, as de Camponês; com item, as de Ranger.
 const OUTFIT := {

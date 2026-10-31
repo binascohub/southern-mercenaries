@@ -26,6 +26,7 @@ const FILES := {
 	"refine": "res://data/refine.json",
 	"legendaries": "res://data/legendaries.json",
 	"relics": "res://data/relics.json",
+	"crowd": "res://data/crowd.json",
 	"opening": "res://data/opening.json",
 	"tips": "res://data/tips.json",
 }
@@ -52,6 +53,7 @@ var visitors: Dictionary
 var refine: Dictionary
 var legendaries: Dictionary
 var relics: Dictionary
+var crowd: Dictionary
 var opening: Dictionary
 var tips: Dictionary
 

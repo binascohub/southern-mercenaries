@@ -753,6 +753,384 @@
           10.2
         ],
         "y": 0.6
+      },
+      {
+        "piece": "Bottle_1",
+        "position": [
+          -7.4,
+          -6.2
+        ]
+      },
+      {
+        "piece": "Bottle_1",
+        "position": [
+          -8.9,
+          -5.9
+        ],
+        "rotation": 70
+      },
+      {
+        "piece": "Mug",
+        "position": [
+          25.5,
+          2.6
+        ]
+      },
+      {
+        "piece": "Bottle_1",
+        "position": [
+          7.5,
+          -13
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          10,
+          4.6
+        ]
+      },
+      {
+        "piece": "Coin_Pile",
+        "position": [
+          10,
+          4.6
+        ],
+        "y": 0.9
+      },
+      {
+        "piece": "Mug",
+        "position": [
+          10.3,
+          4.4
+        ],
+        "y": 0.9
+      },
+      {
+        "piece": "Prop_Vine2",
+        "position": [
+          -24,
+          -7.4
+        ]
+      },
+      {
+        "piece": "Prop_Vine2",
+        "position": [
+          -1,
+          -7.4
+        ]
+      },
+      {
+        "piece": "Prop_Vine2",
+        "position": [
+          22,
+          -7.4
+        ]
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -27.2,
+          -6.6
+        ],
+        "rotation": 25
+      },
+      {
+        "piece": "Bag",
+        "position": [
+          23.6,
+          -6.4
+        ]
+      },
+      {
+        "piece": "FarmCrate_Apple",
+        "position": [
+          -19.6,
+          -6.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.25,
+          0.15
+        ],
+        "position": [
+          -14,
+          6.6
+        ],
+        "y": 2.4,
+        "range": 7.0,
+        "energy": 1.6
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.3
+        ],
+        "position": [
+          10,
+          4.6
+        ],
+        "y": 2.2,
+        "range": 6.0,
+        "energy": 1.0
+      }
+    ],
+    "crowd": [
+      {
+        "role": "drunk",
+        "position": [
+          -8.2,
+          -6.7
+        ],
+        "rotation": 90,
+        "pose": "lie"
+      },
+      {
+        "role": "drunk",
+        "position": [
+          -15.8,
+          -6.9
+        ],
+        "pose": "sit",
+        "seat": "Stool"
+      },
+      {
+        "role": "drunk",
+        "position": [
+          8.6,
+          -3.2
+        ],
+        "rotation": 200,
+        "pose": "dance"
+      },
+      {
+        "role": "drunk",
+        "position": [
+          -26,
+          1.5
+        ],
+        "pose": "walk",
+        "path": [
+          -17,
+          3
+        ],
+        "sway": 0.7,
+        "speed": 0.55
+      },
+      {
+        "role": "drunk",
+        "position": [
+          26.2,
+          2
+        ],
+        "rotation": 250,
+        "pose": "lie"
+      },
+      {
+        "role": "drunk",
+        "position": [
+          17.6,
+          -6.9
+        ],
+        "pose": "sit",
+        "seat": "Stool"
+      },
+      {
+        "role": "courtesan",
+        "position": [
+          -11.6,
+          6.4
+        ],
+        "rotation": 200,
+        "pose": "talk"
+      },
+      {
+        "role": "courtesan",
+        "position": [
+          -16.6,
+          6.5
+        ],
+        "rotation": 160,
+        "pose": "idle"
+      },
+      {
+        "role": "courtesan",
+        "position": [
+          19.6,
+          -6.4
+        ],
+        "rotation": 60,
+        "pose": "talk"
+      },
+      {
+        "role": "sailor",
+        "position": [
+          20.7,
+          -6.0
+        ],
+        "rotation": 240,
+        "pose": "talk"
+      },
+      {
+        "role": "gambler",
+        "position": [
+          8.9,
+          4.6
+        ],
+        "rotation": 90,
+        "pose": "sit_talk",
+        "seat": "Stool"
+      },
+      {
+        "role": "gambler",
+        "position": [
+          11.1,
+          4.6
+        ],
+        "rotation": 270,
+        "pose": "sit_talk",
+        "seat": "Stool"
+      },
+      {
+        "role": "gambler",
+        "position": [
+          10,
+          5.7
+        ],
+        "rotation": 180,
+        "pose": "sit_talk",
+        "seat": "Stool"
+      },
+      {
+        "role": "guard",
+        "position": [
+          -3.5,
+          6.1
+        ],
+        "rotation": 200,
+        "pose": "block"
+      },
+      {
+        "role": "beggar",
+        "position": [
+          24.6,
+          -6.8
+        ],
+        "pose": "crouch"
+      },
+      {
+        "role": "beggar",
+        "position": [
+          -27,
+          6.6
+        ],
+        "rotation": 150,
+        "pose": "crouch"
+      },
+      {
+        "role": "sailor",
+        "position": [
+          -2,
+          -1.5
+        ],
+        "pose": "walk",
+        "path": [
+          15,
+          -1.5
+        ],
+        "speed": 1.3
+      },
+      {
+        "role": "pirate",
+        "position": [
+          -20,
+          -1
+        ],
+        "pose": "walk",
+        "path": [
+          -6,
+          0.5
+        ],
+        "speed": 1.1
+      },
+      {
+        "role": "dockworker",
+        "position": [
+          -11.6,
+          -18.6
+        ],
+        "rotation": 180,
+        "pose": "push"
+      },
+      {
+        "role": "dockworker",
+        "position": [
+          -12,
+          -11.5
+        ],
+        "pose": "walk",
+        "path": [
+          12,
+          -11.5
+        ],
+        "speed": 1.0
+      },
+      {
+        "role": "pirate",
+        "position": [
+          -2.9,
+          -19.9
+        ],
+        "rotation": 30,
+        "pose": "talk"
+      },
+      {
+        "role": "pirate",
+        "position": [
+          2.9,
+          -19.9
+        ],
+        "rotation": 330,
+        "pose": "idle"
+      },
+      {
+        "role": "pirate",
+        "position": [
+          12.6,
+          -19.2
+        ],
+        "pose": "sit",
+        "seat": "Crate_Wooden"
+      },
+      {
+        "role": "drunk",
+        "position": [
+          8,
+          -13.5
+        ],
+        "rotation": 30,
+        "pose": "lie"
+      },
+      {
+        "role": "sailor",
+        "position": [
+          -6,
+          -15
+        ],
+        "rotation": 120,
+        "pose": "talk"
+      },
+      {
+        "role": "sailor",
+        "position": [
+          -4.8,
+          -15.8
+        ],
+        "rotation": 300,
+        "pose": "talk"
       }
     ]
   },

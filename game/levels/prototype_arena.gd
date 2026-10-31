@@ -1501,8 +1501,8 @@ func _build_prop(prop: Dictionary) -> void:
 			"shop" when prop.get("look", "") == "vendor":
 				# Vendedor em pé (o pirata na frente do navio): corpo e lenço na cabeça.
 				var c: Array = prop.get("color", [0.6, 0.2, 0.15])
-				if not _npc_body(node, {"sex": "male", "hair": ["Hair_Buzzed", "Hair_Beard"], "hair_color": [0.08, 0.06, 0.05],
-						"pose": "talk", "outfit": {"body": "copper", "feet": "iron", "head": "cloth"}}):
+				if _npc_body(node, {"sex": "male", "hair": ["Hair_Buzzed", "Hair_Beard"], "hair_color": [0.08, 0.06, 0.05],
+						"pose": "talk", "outfit": {"body": "copper", "feet": "iron", "head": "cloth"}}) == null:
 					var body := CapsuleMesh.new()
 					body.radius = 0.35
 					body.height = 1.7
@@ -1548,7 +1548,7 @@ func _build_prop(prop: Dictionary) -> void:
 					var colors := [[0.2, 0.13, 0.08], [0.06, 0.06, 0.06], [0.55, 0.3, 0.12], [0.7, 0.62, 0.5]]
 					look = {"sex": "male" if h % 2 == 0 else "female", "hair": hairs[h % 2 * 2 + (h / 2) % 2],
 						"hair_color": colors[(h / 4) % colors.size()], "pose": "sit", "outfit": {"body": "cloth"} if h % 3 == 0 else {}}
-				if not _npc_body(node, look):
+				if _npc_body(node, look) == null:
 					var body := CapsuleMesh.new()
 					body.radius = 0.35
 					body.height = 1.7
@@ -1624,16 +1624,51 @@ func _build_prop(prop: Dictionary) -> void:
 
 
 ## Corpo de NPC (o mesmo dos heróis): sexo, cabelo, pose e roupa por slot
-## (data/npcs.json "body"). false se o modelo não existe.
-func _npc_body(parent: Node3D, look: Dictionary) -> bool:
+## (data/npcs.json "body"). null se o modelo não existe.
+func _npc_body(parent: Node3D, look: Dictionary) -> HeroModel:
 	if look.is_empty() or not ResourceLoader.exists(HeroModel.SCENES.get(String(look.get("sex", "male")), "")):
-		return false
+		return null
 	var model := HeroModel.new()
 	parent.add_child(model)
 	model.setup(String(look.get("sex", "male")), look)
 	model.set_outfit(look.get("outfit", {}))
 	model.set_pose(String(look.get("pose", "idle")))
-	return true
+	return model
+
+
+## Gente da rua (data/crowd.json + "crowd" da área): o corpo vem do papel,
+## escolhido pela posição (igual em todos os PCs); com "path", vai e volta.
+func _build_crowd(entry: Dictionary) -> void:
+	var role: Dictionary = GameData.crowd.get("roles", {}).get(String(entry.role), {})
+	if role.is_empty():
+		return
+	var at := Vector3(entry.position[0], 0, entry.position[1])
+	var h := absi(hash(Vector2(at.x, at.z)))
+	var sexes: Array = role.get("sex", ["male"])
+	var sex: String = entry.get("sex", sexes[h % sexes.size()])
+	var hairs: Array = role.get("hair", {}).get(sex, [[]])
+	var colors: Array = role.get("hair_color", [[0.2, 0.15, 0.1]])
+	var outfits: Array = role.get("outfit", [{}])
+	var look := {"sex": sex, "hair": hairs[(h / 7) % hairs.size()], "hair_color": colors[(h / 13) % colors.size()],
+		"outfit": outfits[(h / 29) % outfits.size()], "pose": entry.get("pose", "idle")}
+	var path: Array = entry.get("path", [])
+	var node: Node3D = Wanderer.new() if not path.is_empty() else Node3D.new()
+	node.position = at
+	node.rotation.y = deg_to_rad(float(entry.get("rotation", 0.0)))
+	_area_root.add_child(node)
+	if entry.has("seat"):
+		var seat := Kit.piece(String(entry.seat))
+		if seat:
+			node.add_child(seat)
+	var model := _npc_body(node, look)
+	if model and node is Wanderer:
+		var walker := node as Wanderer
+		walker.from = at
+		walker.to = Vector3(path[0], 0, path[1])
+		walker.sway = float(entry.get("sway", 0.0))
+		walker.speed = float(entry.get("speed", 1.2))
+		walker.model = model
+		model.set_pose("walk")
 
 
 ## Põe uma peça do kit dentro do objeto; false se a peça não existe (o objeto
@@ -1710,6 +1745,8 @@ func _build_area() -> void:
 	if dressed:
 		for decor: Dictionary in arena.get("decor", []):
 			_build_decor(decor)
+		for person: Dictionary in arena.get("crowd", []):
+			_build_crowd(person)
 
 
 ## Reveste a sala com as peças do kit: piso em ladrilhos de 2 m, paredes de
@@ -1785,6 +1822,16 @@ func _dress_side(face: Vector3, along: Vector3, inward: Vector3, length: float, 
 ## Objeto de cenário (data/arenas.json "decor"): mesa, banco, barril, carroça…
 ## Com "solid", uma caixa de colisão do tamanho dado.
 func _build_decor(decor: Dictionary) -> void:
+	if decor.has("light"):
+		# Luz de cenário (lanterna vermelha da casa da Madame, fogo dos apostadores).
+		var c: Array = decor.light
+		var light := OmniLight3D.new()
+		light.light_color = Color(c[0], c[1], c[2])
+		light.omni_range = float(decor.get("range", 6.0))
+		light.light_energy = float(decor.get("energy", 1.0))
+		light.position = Vector3(decor.position[0], float(decor.get("y", 2.0)), decor.position[1])
+		_area_root.add_child(light)
+		return
 	var node := Kit.piece(String(decor.piece))
 	if node == null:
 		return
