@@ -119,6 +119,15 @@ func _physics_process(delta: float) -> void:
 		_open_sewers()
 	elif _frame == SEWER_SHOT:
 		await _shot("sewers.png")
+		# 1f. sewers_wall.png: junto à parede oeste do salão do canal (canos, lodo,
+		# grades, lixo e aranhas), a câmera mais aberta.
+		_arena.local_player.teleport_to(Vector3(-9.5, 0, -24))
+		_arena._camera.distance = TopDownCamera.ZOOM_MAX
+		_arena._camera.snap()
+		for i in 3:
+			await get_tree().process_frame
+		await _shot("sewers_wall.png")
+		_arena._camera.distance = 10.5
 	elif _frame == QUEEN_FRAME:
 		_open_queen()
 	elif _frame == QUEEN_SHOT:
