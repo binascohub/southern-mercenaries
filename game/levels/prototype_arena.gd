@@ -1588,7 +1588,7 @@ func _build_prop(prop: Dictionary) -> void:
 					var colors := [[0.2, 0.13, 0.08], [0.06, 0.06, 0.06], [0.55, 0.3, 0.12], [0.7, 0.62, 0.5]]
 					look = {"sex": "male" if h % 2 == 0 else "female", "hair": hairs[h % 2 * 2 + (h / 2) % 2],
 						"hair_color": colors[(h / 4) % colors.size()], "pose": "sit", "outfit": {"body": "cloth"} if h % 3 == 0 else {}}
-				var seated_woman := prop.has("visitor_name") and look.get("sex", "") == "female" and _visitor_woman(node)
+				var seated_woman: bool = prop.has("visitor_name") and look.get("sex", "") == "female" and _visitor_woman(node)
 				if not seated_woman and _npc_body(node, look) == null:
 					var body := CapsuleMesh.new()
 					body.radius = 0.35
