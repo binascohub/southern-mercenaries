@@ -611,7 +611,7 @@
         ]
       },
       {
-        "piece": "Barrel",
+        "piece": "Beer_Barrel",
         "position": [
           25,
           -6
@@ -654,7 +654,7 @@
         ]
       },
       {
-        "piece": "Barrel",
+        "piece": "Beer_Barrel",
         "position": [
           -26,
           6
@@ -740,7 +740,7 @@
         ]
       },
       {
-        "piece": "Barrel",
+        "piece": "Beer_Barrel",
         "position": [
           12,
           9.5
@@ -1397,7 +1397,7 @@
         ]
       },
       {
-        "piece": "Barrel",
+        "piece": "Beer_Barrel",
         "position": [
           -9.0,
           -6.2
@@ -1419,7 +1419,7 @@
         ]
       },
       {
-        "piece": "Barrel",
+        "piece": "Beer_Barrel",
         "position": [
           8.8,
           -6.2
@@ -1639,6 +1639,69 @@
           -1.9
         ],
         "y": 0.81
+      },
+      {
+        "piece": "Mug_Wood",
+        "position": [
+          -2.6,
+          -3.7
+        ],
+        "y": 0.78,
+        "rotation": 0
+      },
+      {
+        "piece": "Mug_Wood",
+        "position": [
+          0.3,
+          -4.1
+        ],
+        "y": 0.78,
+        "rotation": 40
+      },
+      {
+        "piece": "Mug_Wood",
+        "position": [
+          3.1,
+          -3.7
+        ],
+        "y": 0.78,
+        "rotation": 80
+      },
+      {
+        "piece": "Mug_Wood",
+        "position": [
+          -6.2,
+          1.3
+        ],
+        "y": 0.78,
+        "rotation": 120
+      },
+      {
+        "piece": "Mug_Wood",
+        "position": [
+          -2.2,
+          -2.3
+        ],
+        "y": 0.78,
+        "rotation": 160
+      },
+      {
+        "piece": "Mug_Wood",
+        "position": [
+          3.8,
+          0.4
+        ],
+        "y": 0.78,
+        "rotation": 200
+      },
+      {
+        "piece": "Mug_Wood",
+        "position": [
+          6.8,
+          -1.8
+        ],
+        "y": 0.78,
+        "rotation": 240
       }
     ]
   },
@@ -3383,7 +3446,8 @@
           -49
         ],
         "loot": "treasure_sewers",
-        "after_victory": true
+        "key": "key_rat_queen",
+        "model": "Treasure_Chest"
       },
       {
         "id": "return_portal",

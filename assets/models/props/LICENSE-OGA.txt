@@ -1,0 +1,6 @@
+Props from OpenGameArt, all CC0 1.0 Universal (https://creativecommons.org/publicdomain/zero/1.0/),
+converted to glTF by tools/assets/build_props.py (modifiers applied, base at y = 0, standard height, textures 512 px WebP):
+Beer_Barrel.glb    — "Dwarf beer barrel (OpenDungeons)" by eugeneloza: https://opengameart.org/content/dwarf-beer-barrel-opendungeons (only the barrel, without the stool)
+Mug_Wood.glb       — "Wood Mug" by rehcub: https://opengameart.org/content/wood-mug (plain colors: the original textures are not in the file)
+Treasure_Chest.glb — "Treasure Chest" by mastahcez: https://opengameart.org/content/treasure-chest-3
+Key_Gold.glb       — "Key (low poly)" by codeinfernogames: https://opengameart.org/content/key-low-poly

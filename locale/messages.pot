@@ -2226,6 +2226,15 @@ msgstr ""
 msgid "TOAST_SECRET_FOUND"
 msgstr ""
 
+msgid "TOAST_CHEST_LOCKED"
+msgstr ""
+
+msgid "TOAST_KEY_FOUND"
+msgstr ""
+
+msgid "PROP_BOSS_KEY"
+msgstr ""
+
 msgid "TOAST_CHEST_OPENED"
 msgstr ""
 

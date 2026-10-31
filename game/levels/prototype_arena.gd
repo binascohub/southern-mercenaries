@@ -946,6 +946,11 @@ func open_chest(player: Player, prop: Dictionary) -> void:
 	var opened: Array = _campaign.get("opened", [])
 	if key in opened:
 		return
+	# Tesouro do chefe: trancado até o grupo pegar a chave que ele deixa cair.
+	var needs: String = prop.get("key", "")
+	if needs != "" and needs not in _campaign.get("keys", []):
+		_toast_to(player, "TOAST_CHEST_LOCKED", {})
+		return
 	_campaign.opened = opened + [key]
 	player.act("open")
 	var table: Dictionary = GameData.loot.get(String(prop.get("loot", "chest")), GameData.loot.chest)
@@ -964,6 +969,18 @@ func open_chest(player: Player, prop: Dictionary) -> void:
 		town.sync()
 	_remove_prop.rpc(String(prop.id))
 	_toast_all("TOAST_SECRET_FOUND" if prop.get("secret", false) else "TOAST_CHEST_OPENED", {"name": player.hero_name})
+	SaveSystem.save_campaign(_campaign, true)
+
+
+## Chave do chefe (por grupo): fica guardada na campanha e abre o baú dele.
+func pick_key(player: Player, prop: Dictionary) -> void:
+	var key: String = prop.get("key", "")
+	if key == "" or key in _campaign.get("keys", []):
+		return
+	_campaign.keys = _campaign.get("keys", []) + [key]
+	player.act("open")
+	_remove_prop.rpc(String(prop.id))
+	_toast_all("TOAST_KEY_FOUND", {"name": player.hero_name})
 	SaveSystem.save_campaign(_campaign, true)
 
 
@@ -1054,6 +1071,10 @@ func _on_enemy_died(enemy: Enemy) -> void:
 		_break(enemy)
 		return
 	_reward(enemy)
+	if enemy.is_boss() and enemy.data.has("drops_key") and String(enemy.data.drops_key) not in _campaign.get("keys", []):
+		# A chave do tesouro cai onde o chefe morreu.
+		_add_prop.rpc({"id": "boss_key", "kind": "key", "key": String(enemy.data.drops_key), "name_key": "PROP_BOSS_KEY",
+			"position": [enemy.global_position.x, enemy.global_position.z]})
 	if enemy.is_boss():
 		# Os ajudantes e os ninhos somem com o chefe.
 		for node in get_tree().get_nodes_in_group(&"enemies"):
@@ -1611,6 +1632,20 @@ func _build_prop(prop: Dictionary) -> void:
 				_prop_mesh(node, BoxMesh.new(), Vector3(0.9, 0.7, 0.5), Vector3(-0.7, 0.35, 0), Color(0.25, 0.25, 0.27))
 				_prop_mesh(node, BoxMesh.new(), Vector3(1.4, 1.2, 1.2), Vector3(0.9, 0.6, 0), Color(0.35, 0.25, 0.2))
 				_prop_mesh(node, BoxMesh.new(), Vector3(0.6, 0.3, 0.05), Vector3(0.9, 0.7, 0.61), Color(1.0, 0.45, 0.1))
+			"chest" when prop.has("model") and _kit(node, String(prop.model), Transform3D(Basis(Vector3.UP, PI), Vector3.ZERO)):
+				pass  # baú do tesouro do chefe (de ferro, com cravos)
+			"key" when _kit(node, "Key_Gold", Transform3D(Basis(Vector3.RIGHT, -PI / 2.0).scaled(Vector3.ONE * 0.8), Vector3(0, 0.35, 0))):
+				# Chave dourada caída, girando e brilhando.
+				var glow := OmniLight3D.new()
+				glow.light_color = Color(1.0, 0.8, 0.35)
+				glow.omni_range = 3.0
+				glow.light_energy = 1.2
+				glow.position.y = 0.6
+				node.add_child(glow)
+				var spin := node.get_child(0).create_tween().set_loops()
+				spin.tween_property(node.get_child(0), "rotation:y", TAU, 2.0).as_relative()
+			"key":
+				_prop_mesh(node, BoxMesh.new(), Vector3(0.15, 0.08, 0.6), Vector3(0, 0.3, 0), Color(0.95, 0.75, 0.25))
 			"chest" when _kit(node, "Chest_Wood", Transform3D(Basis().scaled(Vector3.ONE * 0.5), Vector3(0, 0.5, 0)),
 					Color(0.55, 0.45, 0.4) if prop.get("secret", false) else Color.WHITE):
 				pass  # baú de madeira com ferragens (o do segredo, mais escuro)
@@ -1746,6 +1781,9 @@ func _build_crowd(entry: Dictionary) -> void:
 		model.call("set_pose", String(entry.get("pose", "idle")))
 	else:
 		model = _npc_body(node, look)
+		# Bêbados com o caneco de madeira na mão.
+		if model is HeroModel and String(entry.role) == "drunk" and Kit.has("Mug_Wood"):
+			(model as HeroModel).attach("hand_r", Kit.piece("Mug_Wood"), Player.HAND_GRIP, Vector3(0.4, 0.9, 0.1))
 	if model and node is Wanderer:
 		var walker := node as Wanderer
 		walker.from = at

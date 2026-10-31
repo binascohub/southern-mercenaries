@@ -1,0 +1,120 @@
+"""Objetos de cenário do OpenGameArt (todos CC0) em .glb: barril de cerveja com
+torneira (eugeneloza), caneco de madeira (rehcub), baú do tesouro (mastahcez) e
+chave (codeinfernogames). Malhas juntas com as transformações aplicadas, base em
+y = 0, altura padronizada; texturas reduzidas (WebP) ou cores lisas quando o
+arquivo original não traz a imagem.
+uso: build_props.py <pasta dl> <saída>"""
+import bpy, sys, os
+from mathutils import Vector, Matrix
+dl, out = sys.argv[sys.argv.index("--") + 1:]
+PROPS = [
+    # nome, arquivo, altura (m), textura, {material: cor} quando não há textura
+    # (o barril vem junto com um banquinho: fica só o grupo de peças do barril)
+    ("Beer_Barrel", "beer/DwarfBeerBarrel.blend", 1.05, "beer/DwarfBeerBarrel_texture4.png", {}, [], True),
+    ("Mug_Wood", "mug/woodmug_0.blend", 0.16, "", {"Material.001": (0.42, 0.26, 0.13, 1), "Material.002": (0.45, 0.45, 0.48, 1)}, ["Mug Detail"], False),
+    ("Treasure_Chest", "chest/treasure_chest.obj", 0.85, "chest/Treasurechest_DIFF.png", {}, [], False),
+    ("Key_Gold", "key/key.blend", 0.32, "", {"Material": (0.95, 0.75, 0.25, 1), "Key_Gold_Mat": (0.95, 0.75, 0.25, 1)}, [], False),
+]
+
+def load(path):
+    bpy.ops.wm.read_factory_settings(use_empty=True)
+    full = os.path.join(dl, path)
+    if path.endswith(".blend"):
+        with bpy.data.libraries.load(full) as (src, dst):
+            dst.objects = src.objects
+        for o in dst.objects:
+            if o is not None and o.type == "MESH":
+                bpy.context.scene.collection.objects.link(o)
+    else:
+        bpy.ops.wm.obj_import(filepath=full)
+    return [o for o in bpy.context.scene.objects if o.type == "MESH" and len(o.data.polygons) > 0]
+
+def biggest_cluster(o):
+    """Só as partes soltas que caem na caixa da maior (o barril, sem o banquinho)."""
+    import bmesh
+    bm = bmesh.new()
+    bm.from_mesh(o.data)
+    bm.verts.ensure_lookup_table()
+    seen, parts = set(), []
+    for v in bm.verts:
+        if v.index in seen:
+            continue
+        stack, part = [v], []
+        seen.add(v.index)
+        while stack:
+            cur = stack.pop()
+            part.append(cur)
+            for e in cur.link_edges:
+                other = e.other_vert(cur)
+                if other.index not in seen:
+                    seen.add(other.index)
+                    stack.append(other)
+        parts.append(part)
+    big = max(parts, key=len)
+    lo = Vector([min(v.co[i] for v in big) for i in range(3)])
+    hi = Vector([max(v.co[i] for v in big) for i in range(3)])
+    pad = (hi - lo) * 0.15
+    gone = []
+    for part in parts:
+        c = sum((v.co for v in part), Vector()) / len(part)
+        if not all(lo[i] - pad[i] <= c[i] <= hi[i] + pad[i] for i in range(3)):
+            gone += part
+    bmesh.ops.delete(bm, geom=gone, context="VERTS")
+    bm.to_mesh(o.data)
+    bm.free()
+
+for name, path, height, tex, colors, keep, cluster in PROPS:
+    meshes = load(path)
+    if keep:
+        meshes = [o for o in meshes if o.name in keep]
+    # Malha avaliada (modificadores aplicados: array, curva, subdivisão…).
+    deps = bpy.context.evaluated_depsgraph_get()
+    for o in meshes:
+        mesh = bpy.data.meshes.new_from_object(o.evaluated_get(deps), preserve_all_data_layers=True, depsgraph=deps)
+        mesh.transform(o.matrix_world)
+        o.modifiers.clear()
+        o.data = mesh
+        o.parent = None
+        o.matrix_world = Matrix.Identity(4)
+        if not o.material_slots or all(sl.material is None for sl in o.material_slots):
+            o.data.materials.clear()
+            o.data.materials.append(bpy.data.materials.new(name + "_Mat"))
+    if cluster:
+        for o in meshes:
+            biggest_cluster(o)
+    pts = [v.co for o in meshes for v in o.data.vertices]
+    mn = Vector([min(p[i] for p in pts) for i in range(3)])
+    mx = Vector([max(p[i] for p in pts) for i in range(3)])
+    scale = height / (mx.z - mn.z)
+    fix = Matrix.Scale(scale, 4) @ Matrix.Translation(-Vector(((mn.x + mx.x) / 2, (mn.y + mx.y) / 2, mn.z)))
+    image = bpy.data.images.load(os.path.join(dl, tex)) if tex else None
+    if image and image.size[0] > 512:
+        image.scale(512, 512)
+    for o in meshes:
+        o.data.transform(fix)
+        for slot in o.material_slots:
+            mat = slot.material
+            if mat is None:
+                continue
+            mat.use_nodes = True
+            nodes, links = mat.node_tree.nodes, mat.node_tree.links
+            nodes.clear()
+            out_node = nodes.new("ShaderNodeOutputMaterial")
+            bsdf = nodes.new("ShaderNodeBsdfPrincipled")
+            links.new(bsdf.outputs["BSDF"], out_node.inputs["Surface"])
+            bsdf.inputs["Roughness"].default_value = 0.7
+            if image:
+                node = nodes.new("ShaderNodeTexImage")
+                node.image = image
+                links.new(node.outputs["Color"], bsdf.inputs["Base Color"])
+            else:
+                bsdf.inputs["Base Color"].default_value = colors.get(mat.name, (0.5, 0.5, 0.5, 1))
+                if name == "Key_Gold":
+                    bsdf.inputs["Metallic"].default_value = 0.9
+                    bsdf.inputs["Roughness"].default_value = 0.3
+    for o in list(bpy.context.scene.objects):
+        if o not in meshes:
+            bpy.data.objects.remove(o, do_unlink=True)
+    bpy.ops.export_scene.gltf(filepath=os.path.join(out, name + ".glb"), export_format="GLB",
+        export_image_format="WEBP", export_image_quality=88)
+    print("OK", name, [round(v * scale, 2) for v in (mx - mn)], len(meshes))

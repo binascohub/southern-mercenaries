@@ -2227,6 +2227,15 @@ msgstr "The Lost Treasure of the War is open to the group."
 msgid "TOAST_SECRET_FOUND"
 msgstr "{name} found a secret!"
 
+msgid "TOAST_CHEST_LOCKED"
+msgstr "Locked. The key must be with whoever guards this treasure."
+
+msgid "TOAST_KEY_FOUND"
+msgstr "{name} picked up the treasure key!"
+
+msgid "PROP_BOSS_KEY"
+msgstr "Treasure Key"
+
 msgid "TOAST_CHEST_OPENED"
 msgstr "{name} opened the chest."
 

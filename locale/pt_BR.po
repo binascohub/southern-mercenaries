@@ -2227,6 +2227,15 @@ msgstr "O Tesouro Perdido da Guerra está aberto para o grupo."
 msgid "TOAST_SECRET_FOUND"
 msgstr "{name} achou um segredo!"
 
+msgid "TOAST_CHEST_LOCKED"
+msgstr "Trancado. A chave deve estar com quem guarda este tesouro."
+
+msgid "TOAST_KEY_FOUND"
+msgstr "{name} pegou a chave do tesouro!"
+
+msgid "PROP_BOSS_KEY"
+msgstr "Chave do Tesouro"
+
 msgid "TOAST_CHEST_OPENED"
 msgstr "{name} abriu o baú."
 

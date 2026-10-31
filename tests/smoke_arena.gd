@@ -676,6 +676,7 @@ func _sewers_test() -> void:
 		e.take_damage(1e9)
 	await _wait_frames(2)
 	check.call(_arena.result == 1, "vencer o Ninho é a vitória do mapa")
+	_arena.pick_key(player, {"id": "boss_key", "key": "key_rat_queen"})
 	player.teleport_to(Vector3(0, 0, -48))
 	var loot_ids: Array = _arena._loot.keys()
 	_arena.request_interact(player)
@@ -846,12 +847,20 @@ func _town_test() -> void:
 	# Vencer a Rainha no Ninho conclui a missão; aparecem o tesouro e o portal.
 	_arena.travel("sewers_04_nest", "start")
 	gold = int(player.character.data.gold)
-	check.call(_arena.prop_near(player, "chest", "", 200.0).is_empty(), "o tesouro só aparece depois da Rainha")
+	# O tesouro já está lá, trancado: a chave cai da Rainha.
+	player.teleport_to(Vector3(0, 0, -48))
+	_arena.request_interact(player)
+	check.call("sewers_04_nest:war_treasure" not in _arena._campaign.get("opened", []), "o tesouro da Rainha começa trancado")
 	for e in get_tree().get_nodes_in_group(&"enemies"):
 		e.take_damage(1e9)
 	await get_tree().physics_frame
 	check.call(town.quests.get("sewer_treasure", "") == "done", "vencer a Rainha conclui a missão")
 	check.call(int(player.character.data.gold) >= gold + 150, "recompensa da missão")
+	var dropped := _arena.prop_near(player, "key", "", 300.0)
+	check.call(not dropped.is_empty(), "a Rainha deixa cair a chave do tesouro")
+	if not dropped.is_empty():
+		_arena.pick_key(player, dropped)
+	check.call("key_rat_queen" in _arena._campaign.get("keys", []), "a chave fica com o grupo")
 	player.teleport_to(Vector3(0, 0, -48))
 	var loot_before: int = _arena._loot.size()
 	_arena.request_interact(player)

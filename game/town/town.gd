@@ -179,6 +179,8 @@ func interact(player: Player, prop: Dictionary) -> void:
 				_arena().travel(String(prop.to), String(prop.get("entry", "start")), prop.get("expedition_end", false))
 		"chest":
 			_arena().open_chest(player, prop)
+		"key":
+			_arena().pick_key(player, prop)
 
 
 @rpc("authority", "reliable")
