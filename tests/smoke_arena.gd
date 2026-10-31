@@ -736,10 +736,10 @@ func _town_test() -> void:
 			check.call(probe.has_wings(), "Rainha ganha asas de morcego na metade da vida")
 		if monster_id == "plague_rat":
 			# Morte: o corpo fica na área tocando a animação de morrer.
-			var model := probe._model
+			var corpse := probe._model
 			probe.take_damage(1e9)
-			check.call(is_instance_valid(model) and model.get_parent().get_parent() == _arena._area_root and model.current() == "die",
-				"rato morto deixa o corpo tocando a morte (%s)" % [model.current() if is_instance_valid(model) else "sumiu"])
+			check.call(is_instance_valid(corpse) and corpse.get_parent().get_parent() == _arena._area_root and corpse.current() == "die",
+				"rato morto deixa o corpo tocando a morte (%s)" % [corpse.current() if is_instance_valid(corpse) else "sumiu"])
 			continue
 		probe.queue_free()
 	# Toda peça citada no estilo e no cenário das áreas existe no kit.
