@@ -73,7 +73,8 @@ const WING_COLOR := Color(0.22, 0.14, 0.16)
 ## A Rainha (referência do autor): couro marrom, pelagem clara e rosada nas
 ## orelhas, mãos e cauda; asas de couro marrom levantadas.
 const QUEEN_FUR := Color(1.5, 1.28, 1.22)
-const QUEEN_PINK := Color(0.93, 0.66, 0.64)
+## Sem rosa (decisão do autor): cauda e detalhes na cor escura da pelagem.
+const QUEEN_PINK := Color(0.24, 0.2, 0.18)
 const QUEEN_WING := Color(0.42, 0.27, 0.19)
 var _wing_color := WING_COLOR
 ## Asas levantadas (radianos para cima, além da batida).
@@ -174,8 +175,7 @@ func _setup_humanoid(info: Dictionary, size: float, tint: Color) -> bool:
 				copy.cull_mode = BaseMaterial3D.CULL_DISABLED
 				mesh.set_surface_override_material(i, copy)
 				_materials.append(copy)
-	_add_ears(head)
-	_fur_skin(head)
+	_fur_skin(head)  # as orelhas são as da própria cabeça de rato
 	var back := Node3D.new()
 	add_child(back)
 	_tail = Node3D.new()
