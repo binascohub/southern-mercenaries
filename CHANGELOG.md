@@ -12,7 +12,10 @@
 - New states: hampered (40% slow), rooted (can't move but still attacks), marked.
 - Ninja (`docs/02-4-ninja.md`): melee basic slashes and spinning strong attack, evasion (10% + 0.2% per DEX, plus the Evasion passive), teleport dodge, Energy +3 per crit, +10% gold found; daggers and mask item bases; dagger visuals.
 - Ninja skills: Twin Slash, Shadow Step (behind the target, next hit +30%), Backstab (always crit from behind), Smoke Bomb (monsters lose the target; 50% misses in the cloud), Iron Body (-50% damage and taunt), Evasion, Blink Strike; seals, element cuts and the Thousand Cuts finals.
-- Not yet: Fire Wall does not block monsters; Ninja parry and blocking in general; Summoner and Knight.
+- Summoner (`docs/02-5-invocador.md`): Essence (120, +2 per INT, +3 per companion hit), book item base, book and shoulder-bird visuals.
+- Friendly animals (`Companion`, `data/companions.json`): server AI like monsters, replicated by a spawner; follow the Summoner and attack awake monsters near them with the Summoner's current element; monsters attack them too; they flee when they fall; up to 5 per Summoner. Group buffs, shields and heals also reach animals.
+- Summoner skills: Call Companion, Flock, Bond, Scatter Escape (animals taunt), Guardian Bear, Stampede, Rescue (revives a downed ally from afar) and 3 per element.
+- Not yet: Fire Wall does not block monsters; Ninja parry and blocking in general; Book of Friends pages (with the maps); Knight.
 
 ### Phase 4 — Elements
 - `data/elements.json` and `Elements` / `StatusSet`: weakness cycle (x1.5 / x0.5), basic state per element, states (burning, soaked, frozen, shocked, knocked down, stunned) with refresh-not-stack, immunities (fire monsters don't burn, water monsters aren't soaked) and bosses getting a slow instead of control (`docs/02-0-elementos.md`).

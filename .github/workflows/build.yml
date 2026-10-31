@@ -41,6 +41,8 @@ jobs:
         run: tests/godot_checked.sh godot --headless --path . res://tests/smoke_arena.tscn -- skills archer
       - name: Habilidades do Ninja (19 habilidades, cortes, evasão, invisível)
         run: tests/godot_checked.sh godot --headless --path . res://tests/smoke_arena.tscn -- skills ninja
+      - name: Habilidades do Invocador (19 habilidades, animais amigos)
+        run: tests/godot_checked.sh godot --headless --path . res://tests/smoke_arena.tscn -- skills summoner
       - name: Troca entre jogadores
         run: tests/godot_checked.sh godot --headless --path . res://tests/smoke_arena.tscn -- trade
       - name: Rede (host + cliente, versão diferente)

@@ -1217,3 +1217,150 @@ msgstr "Fumaça"
 
 msgid "HUD_DODGED"
 msgstr "Desviou!"
+
+msgid "SKILL_CALL_COMPANION_NAME"
+msgstr "Chamar Companheiro"
+
+msgid "SKILL_CALL_COMPANION_DESC"
+msgstr "Chama o companheiro principal do elemento (raposa de fogo, lontra, falcão, javali) com 40% da sua vida; até 2 ao mesmo tempo (3 no rank 5). Fica até cair."
+
+msgid "SKILL_FLOCK_NAME"
+msgstr "Revoada"
+
+msgid "SKILL_FLOCK_DESC"
+msgstr "Uma revoada de pássaros sai do livro e ataca tudo num cone de 8 m."
+
+msgid "SKILL_BOND_NAME"
+msgstr "Laço de Amizade"
+
+msgid "SKILL_BOND_DESC"
+msgstr "Passiva: +8% de vida e dano dos seus animais por rank."
+
+msgid "SKILL_SCATTER_ESCAPE_NAME"
+msgstr "Fuga em Bando"
+
+msgid "SKILL_SCATTER_ESCAPE_DESC"
+msgstr "Você se desfaz numa revoada, atravessa inimigos e reaparece até 7 m à frente; seus animais provocam os inimigos perto por 2 s. Recarga -1 s por rank."
+
+msgid "SKILL_GUARDIAN_BEAR_NAME"
+msgstr "Urso Guardião"
+
+msgid "SKILL_GUARDIAN_BEAR_DESC"
+msgstr "Urso amigo com 150% da sua vida provoca e segura os inimigos por 15 s; só um por vez."
+
+msgid "SKILL_STAMPEDE_NAME"
+msgstr "Estouro da Manada"
+
+msgid "SKILL_STAMPEDE_DESC"
+msgstr "Uma manada de animais amigos atravessa 15 m derrubando os inimigos."
+
+msgid "SKILL_ANIMAL_RESCUE_NAME"
+msgstr "Resgate"
+
+msgid "SKILL_ANIMAL_RESCUE_DESC"
+msgstr "Um animal corre até o aliado caído mais perto (até 20 m) e o reanima com 40% da vida (+5% por rank)."
+
+msgid "SKILL_DEN_WARMTH_NAME"
+msgstr "Calor da Toca"
+
+msgid "SKILL_DEN_WARMTH_DESC"
+msgstr "Raposas de fogo cercam o grupo: aliados e animais a até 8 m causam +15% de dano (+3% por rank) e queimam, por 8 s."
+
+msgid "SKILL_SALAMANDER_BITE_NAME"
+msgstr "Mordida da Salamandra"
+
+msgid "SKILL_SALAMANDER_BITE_DESC"
+msgstr "Uma salamandra gigante surge sob o alvo e o morde; a queimadura causa o dobro de dano."
+
+msgid "SKILL_FIRE_STAMPEDE_NAME"
+msgstr "Manada em Chamas"
+
+msgid "SKILL_FIRE_STAMPEDE_DESC"
+msgstr "Cervos de fogo atravessam uma faixa de 20 m × 6 m incendiando os inimigos."
+
+msgid "SKILL_OTTER_SPRING_NAME"
+msgstr "Fonte das Lontras"
+
+msgid "SKILL_OTTER_SPRING_DESC"
+msgstr "Por 6 s, lontras trazem água fresca que cura aliados e animais a até 5 m e molha os inimigos."
+
+msgid "SKILL_NARWHAL_CHARGE_NAME"
+msgstr "Investida do Narval"
+
+msgid "SKILL_NARWHAL_CHARGE_DESC"
+msgstr "Um narval de água atravessa até o alvo; alvo molhado fica congelado por 2 s."
+
+msgid "SKILL_WHALE_SONG_NAME"
+msgstr "Canto da Baleia"
+
+msgid "SKILL_WHALE_SONG_DESC"
+msgstr "Uma baleia espiritual cai como onda gigante em 8 m: dano, empurra e molha."
+
+msgid "SKILL_FALCON_WINGS_NAME"
+msgstr "Asas do Falcão"
+
+msgid "SKILL_FALCON_WINGS_DESC"
+msgstr "Falcões voam sobre o grupo: aliados e animais a até 8 m andam e atacam 30% mais rápido (+5% por rank) por 8 s."
+
+msgid "SKILL_EAGLE_DIVE_NAME"
+msgstr "Mergulho da Águia"
+
+msgid "SKILL_EAGLE_DIVE_DESC"
+msgstr "Uma águia de raios mergulha no alvo e o eletriza; eletrocuta alvo molhado."
+
+msgid "SKILL_WING_STORM_NAME"
+msgstr "Tempestade de Asas"
+
+msgid "SKILL_WING_STORM_DESC"
+msgstr "Centenas de pássaros elétricos atacam todos os inimigos numa área de 9 m por 5 s."
+
+msgid "SKILL_TURTLE_SHELL_NAME"
+msgstr "Casco da Tartaruga"
+
+msgid "SKILL_TURTLE_SHELL_DESC"
+msgstr "Uma tartaruga gigante ergue o casco: aliados e animais a até 5 m recebem um escudo por 8 s."
+
+msgid "SKILL_RHINO_CHARGE_NAME"
+msgstr "Investida do Rinoceronte"
+
+msgid "SKILL_RHINO_CHARGE_DESC"
+msgstr "Um rinoceronte de pedra atropela o alvo e o atordoa por 1,5 s."
+
+msgid "SKILL_MAMMOTH_STOMP_NAME"
+msgstr "Pisada do Mamute"
+
+msgid "SKILL_MAMMOTH_STOMP_DESC"
+msgstr "Um mamute surge e pisa o chão três vezes em 9 m, derrubando os inimigos."
+
+msgid "CLASS_SUMMONER_NAME"
+msgstr "Invocador"
+
+msgid "HERO_SUMMONER_MALE"
+msgstr "Ari Fennel"
+
+msgid "HERO_SUMMONER_FEMALE"
+msgstr "Aria Fennel"
+
+msgid "RESOURCE_ESSENCE"
+msgstr "Essência"
+
+msgid "POWER_SUMMON"
+msgstr "Poder de Invocação"
+
+msgid "ITEM_TYPE_BOOK"
+msgstr "Livro"
+
+msgid "COMPANION_FOX"
+msgstr "Raposa de fogo"
+
+msgid "COMPANION_OTTER"
+msgstr "Lontra"
+
+msgid "COMPANION_FALCON"
+msgstr "Falcão"
+
+msgid "COMPANION_BOAR"
+msgstr "Javali"
+
+msgid "COMPANION_BEAR"
+msgstr "Urso guardião"

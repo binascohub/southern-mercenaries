@@ -54,8 +54,8 @@ var _element_gem: MeshInstance3D
 ## Empurrão/puxão de habilidade (Onda, Tornado): velocidade e tempo restante.
 var _push := Vector3.ZERO
 var _push_time := 0.0
-## Provocado (Corpo de Ferro do Ninja): persegue este herói enquanto durar.
-var _taunt: Player
+## Provocado (Corpo de Ferro do Ninja, Urso Guardião): persegue este alvo enquanto durar.
+var _taunt: Node3D
 var _taunt_time := 0.0
 var _visual: Node3D
 var _material: StandardMaterial3D
@@ -186,7 +186,7 @@ func _think(delta: float) -> void:
 			if _timer <= 0.0:
 				# No vapor (combo), erra parte dos ataques.
 				if dist <= data.attack_range + 0.4 and _rng.randf() >= status.miss_chance():
-					target.take_damage(data.damage * level_factor() * damage_mult, level)
+					target.call(&"take_damage", data.damage * level_factor() * damage_mult, level)
 				state = State.RECOVER
 				_timer = data.attack_cooldown
 		State.RECOVER:
@@ -205,8 +205,8 @@ func push(offset: Vector3, time := 0.25) -> void:
 	_push_time = time
 
 
-func taunt(player: Player, time: float) -> void:
-	_taunt = player
+func taunt(target: Node3D, time: float) -> void:
+	_taunt = target
 	_taunt_time = time
 
 
@@ -259,14 +259,15 @@ func _show_damage(amount: float, effect := "normal", hit_element := "", crit := 
 		effect, hit_element, crit, combo)
 
 
-func _nearest_player() -> Player:
-	if _taunt_time > 0.0 and is_instance_valid(_taunt) and _taunt.alive and _taunt.connected:
+## Herói ou animal amigo mais perto (ou quem provocou).
+func _nearest_player() -> Node3D:
+	if _taunt_time > 0.0 and is_instance_valid(_taunt) and _taunt.get("alive") and _taunt.get("connected"):
 		return _taunt
-	var best: Player = null
+	var best: Node3D = null
 	var best_dist: float = data.aggro_range
-	for player: Player in get_tree().get_nodes_in_group(&"players"):
+	for player: Node3D in get_tree().get_nodes_in_group(&"players") + get_tree().get_nodes_in_group(&"companions"):
 		# Invisível (Bomba de Fumaça): os monstros perdem o alvo.
-		if not player.alive or not player.connected or player.hidden:
+		if not player.get("alive") or not player.get("connected") or player.get("hidden") or player.is_queued_for_deletion():
 			continue
 		var d := global_position.distance_to(player.global_position)
 		if d < best_dist:

@@ -1,5 +1,5 @@
 {
-  "_comment": "Habilidades (02-personagens.md: 10 por classe, 5 ranks, liberadas nos níveis 1, 2, 4, 6, 8, 10, 12, 14, 16 e 18; 4 ativas nos atalhos). Mago: 02-1-mago.md, seção 6; Arqueiro: 02-2-arqueiro.md, seção 6 (habilidades de classe \"imbued\" aplicam o estado básico do elemento atual). Ninja: 02-4-ninja.md, seção 7. power_total: o dano é o total da habilidade, dividido no tempo. power = fração do poder da classe no rank 1; per_rank soma por rank acima do 1. Áreas e projéteis em metros; tempos em segundos.",
+  "_comment": "Habilidades (02-personagens.md: 10 por classe, 5 ranks, liberadas nos níveis 1, 2, 4, 6, 8, 10, 12, 14, 16 e 18; 4 ativas nos atalhos). Mago: 02-1-mago.md, seção 6; Arqueiro: 02-2-arqueiro.md, seção 6 (habilidades de classe \"imbued\" aplicam o estado básico do elemento atual). Ninja: 02-4-ninja.md, seção 7; Invocador: 02-5-invocador.md, seção 6. power_total: o dano é o total da habilidade, dividido no tempo. power = fração do poder da classe no rank 1; per_rank soma por rank acima do 1. Áreas e projéteis em metros; tempos em segundos.",
   "max_rank": 5,
   "slots": 4,
   "classes": {
@@ -126,6 +126,44 @@
           "stone_seal",
           "stone_fang",
           "quake_thousand_cuts"
+        ]
+      }
+    },
+    "summoner": {
+      "class": {
+        "call_companion": 1,
+        "flock": 2,
+        "bond": 4,
+        "scatter_escape": 8,
+        "guardian_bear": 10,
+        "stampede": 14,
+        "animal_rescue": 16
+      },
+      "element_levels": [
+        6,
+        12,
+        18
+      ],
+      "element": {
+        "fire": [
+          "den_warmth",
+          "salamander_bite",
+          "fire_stampede"
+        ],
+        "water": [
+          "otter_spring",
+          "narwhal_charge",
+          "whale_song"
+        ],
+        "air": [
+          "falcon_wings",
+          "eagle_dive",
+          "wing_storm"
+        ],
+        "earth": [
+          "turtle_shell",
+          "rhino_charge",
+          "mammoth_stomp"
         ]
       }
     }
@@ -1129,6 +1167,284 @@
       "state_chance": 1.0,
       "name_key": "SKILL_QUAKE_THOUSAND_CUTS_NAME",
       "desc_key": "SKILL_QUAKE_THOUSAND_CUTS_DESC"
+    },
+    "call_companion": {
+      "kind": "active",
+      "type": "summon",
+      "effect": "summon",
+      "companion": "element",
+      "cost": 30,
+      "cooldown": 10.0,
+      "health": 0.4,
+      "health_per_rank": 0.1,
+      "power": 0.5,
+      "per_rank": 0.1,
+      "count": 2,
+      "count_at_ranks": [
+        5
+      ],
+      "name_key": "SKILL_CALL_COMPANION_NAME",
+      "desc_key": "SKILL_CALL_COMPANION_DESC"
+    },
+    "flock": {
+      "kind": "active",
+      "type": "aoe",
+      "effect": "cone",
+      "imbued": true,
+      "cost": 18,
+      "cooldown": 4.0,
+      "power": 1.1,
+      "per_rank": 0.12,
+      "range": 8.0,
+      "angle": 60.0,
+      "push": 0.0,
+      "name_key": "SKILL_FLOCK_NAME",
+      "desc_key": "SKILL_FLOCK_DESC"
+    },
+    "bond": {
+      "kind": "passive",
+      "effect": "bond",
+      "value": 0.08,
+      "per_rank": 0.08,
+      "name_key": "SKILL_BOND_NAME",
+      "desc_key": "SKILL_BOND_DESC"
+    },
+    "scatter_escape": {
+      "kind": "active",
+      "type": "evade",
+      "effect": "escape",
+      "cost": 20,
+      "cooldown": 9.0,
+      "cooldown_per_rank": -1.0,
+      "distance": 7.0,
+      "taunt": 2.0,
+      "name_key": "SKILL_SCATTER_ESCAPE_NAME",
+      "desc_key": "SKILL_SCATTER_ESCAPE_DESC"
+    },
+    "guardian_bear": {
+      "kind": "active",
+      "type": "summon",
+      "effect": "summon",
+      "companion": "bear",
+      "cost": 40,
+      "cooldown": 25.0,
+      "health": 1.5,
+      "health_per_rank": 0.12,
+      "power": 0.7,
+      "per_rank": 0.12,
+      "count": 1,
+      "duration": 15.0,
+      "name_key": "SKILL_GUARDIAN_BEAR_NAME",
+      "desc_key": "SKILL_GUARDIAN_BEAR_DESC"
+    },
+    "stampede": {
+      "kind": "active",
+      "type": "aoe",
+      "effect": "line",
+      "imbued": true,
+      "cost": 35,
+      "cooldown": 14.0,
+      "power": 1.8,
+      "per_rank": 0.18,
+      "range": 15.0,
+      "width": 2.5,
+      "name_key": "SKILL_STAMPEDE_NAME",
+      "desc_key": "SKILL_STAMPEDE_DESC",
+      "extra_state": "knocked_down"
+    },
+    "animal_rescue": {
+      "kind": "active",
+      "type": "support",
+      "effect": "rescue",
+      "cost": 40,
+      "cooldown": 40.0,
+      "value": 0.4,
+      "per_rank": 0.05,
+      "range": 20.0,
+      "name_key": "SKILL_ANIMAL_RESCUE_NAME",
+      "desc_key": "SKILL_ANIMAL_RESCUE_DESC"
+    },
+    "den_warmth": {
+      "kind": "active",
+      "type": "support",
+      "effect": "buff",
+      "buff": "damage",
+      "cost": 30,
+      "cooldown": 20.0,
+      "value": 0.15,
+      "per_rank": 0.03,
+      "area": 8.0,
+      "duration": 8.0,
+      "name_key": "SKILL_DEN_WARMTH_NAME",
+      "desc_key": "SKILL_DEN_WARMTH_DESC"
+    },
+    "salamander_bite": {
+      "kind": "active",
+      "type": "single",
+      "effect": "instant",
+      "cost": 30,
+      "cooldown": 8.0,
+      "power": 3.2,
+      "per_rank": 0.3,
+      "range": 15.0,
+      "state": "burning",
+      "dot_mult": 2.0,
+      "name_key": "SKILL_SALAMANDER_BITE_NAME",
+      "desc_key": "SKILL_SALAMANDER_BITE_DESC"
+    },
+    "fire_stampede": {
+      "kind": "active",
+      "type": "final",
+      "effect": "line",
+      "cost": 60,
+      "cooldown": 30.0,
+      "power": 5.2,
+      "per_rank": 0.5,
+      "range": 20.0,
+      "width": 6.0,
+      "state": "burning",
+      "name_key": "SKILL_FIRE_STAMPEDE_NAME",
+      "desc_key": "SKILL_FIRE_STAMPEDE_DESC"
+    },
+    "otter_spring": {
+      "kind": "active",
+      "type": "support",
+      "effect": "area",
+      "shape": "circle",
+      "at": "self",
+      "cost": 35,
+      "cooldown": 15.0,
+      "power": 0.0,
+      "heal": 0.25,
+      "heal_per_rank": 0.05,
+      "area": 5.0,
+      "duration": 6.0,
+      "state": "soaked",
+      "name_key": "SKILL_OTTER_SPRING_NAME",
+      "desc_key": "SKILL_OTTER_SPRING_DESC"
+    },
+    "narwhal_charge": {
+      "kind": "active",
+      "type": "single",
+      "effect": "instant",
+      "cost": 30,
+      "cooldown": 8.0,
+      "power": 3.0,
+      "per_rank": 0.3,
+      "range": 18.0,
+      "upgrade": {
+        "soaked": "frozen"
+      },
+      "state_duration": 2.0,
+      "name_key": "SKILL_NARWHAL_CHARGE_NAME",
+      "desc_key": "SKILL_NARWHAL_CHARGE_DESC"
+    },
+    "whale_song": {
+      "kind": "active",
+      "type": "final",
+      "effect": "delayed",
+      "cost": 60,
+      "cooldown": 30.0,
+      "power": 5.0,
+      "per_rank": 0.5,
+      "range": 14.0,
+      "area": 8.0,
+      "delay": 0.8,
+      "push": 3.0,
+      "state": "soaked",
+      "name_key": "SKILL_WHALE_SONG_NAME",
+      "desc_key": "SKILL_WHALE_SONG_DESC"
+    },
+    "falcon_wings": {
+      "kind": "active",
+      "type": "support",
+      "effect": "buff",
+      "buff": "speed",
+      "cost": 30,
+      "cooldown": 20.0,
+      "value": 0.3,
+      "per_rank": 0.05,
+      "area": 8.0,
+      "duration": 8.0,
+      "name_key": "SKILL_FALCON_WINGS_NAME",
+      "desc_key": "SKILL_FALCON_WINGS_DESC"
+    },
+    "eagle_dive": {
+      "kind": "active",
+      "type": "single",
+      "effect": "instant",
+      "cost": 30,
+      "cooldown": 8.0,
+      "power": 3.3,
+      "per_rank": 0.3,
+      "range": 20.0,
+      "state": "shocked",
+      "name_key": "SKILL_EAGLE_DIVE_NAME",
+      "desc_key": "SKILL_EAGLE_DIVE_DESC"
+    },
+    "wing_storm": {
+      "kind": "active",
+      "type": "final",
+      "effect": "area",
+      "shape": "circle",
+      "at": "aim",
+      "range": 14.0,
+      "cost": 60,
+      "cooldown": 30.0,
+      "power": 5.5,
+      "per_rank": 0.55,
+      "power_total": true,
+      "area": 9.0,
+      "duration": 5.0,
+      "state": "shocked",
+      "name_key": "SKILL_WING_STORM_NAME",
+      "desc_key": "SKILL_WING_STORM_DESC"
+    },
+    "turtle_shell": {
+      "kind": "active",
+      "type": "support",
+      "effect": "shield",
+      "cost": 30,
+      "cooldown": 16.0,
+      "value": 1.2,
+      "per_rank": 0.15,
+      "area": 5.0,
+      "duration": 8.0,
+      "name_key": "SKILL_TURTLE_SHELL_NAME",
+      "desc_key": "SKILL_TURTLE_SHELL_DESC"
+    },
+    "rhino_charge": {
+      "kind": "active",
+      "type": "single",
+      "effect": "instant",
+      "cost": 30,
+      "cooldown": 8.0,
+      "power": 3.2,
+      "per_rank": 0.3,
+      "range": 15.0,
+      "state": "stunned",
+      "state_chance": 1.0,
+      "state_duration": 1.5,
+      "name_key": "SKILL_RHINO_CHARGE_NAME",
+      "desc_key": "SKILL_RHINO_CHARGE_DESC"
+    },
+    "mammoth_stomp": {
+      "kind": "active",
+      "type": "final",
+      "effect": "area",
+      "shape": "circle",
+      "at": "self",
+      "cost": 60,
+      "cooldown": 30.0,
+      "power": 5.0,
+      "per_rank": 0.5,
+      "power_total": true,
+      "area": 9.0,
+      "duration": 1.5,
+      "state": "knocked_down",
+      "state_chance": 1.0,
+      "name_key": "SKILL_MAMMOTH_STOMP_NAME",
+      "desc_key": "SKILL_MAMMOTH_STOMP_DESC"
     }
   }
 }

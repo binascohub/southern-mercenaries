@@ -49,6 +49,7 @@ var finished := false
 var _players_spawner: MultiplayerSpawner
 var _enemy_spawner: MultiplayerSpawner
 var _projectile_spawner: MultiplayerSpawner
+var _companion_spawner: MultiplayerSpawner
 var _camera: TopDownCamera
 var _inventory: InventoryMenu
 ## Habilidades (efeitos no servidor, visual em todos os PCs).
@@ -167,6 +168,7 @@ func _build_spawners() -> void:
 	_players_spawner = _spawner("PlayerSpawner", Player.create)
 	_enemy_spawner = _spawner("EnemySpawner", _create_enemy)
 	_projectile_spawner = _spawner("ProjectileSpawner", Projectile.create)
+	_companion_spawner = _spawner("CompanionSpawner", Companion.create)
 	_players_spawner.spawned.connect(_on_node_spawned)
 
 
@@ -236,6 +238,11 @@ func _show_zone(state_id: String, at: Vector3, radius: float, duration: float) -
 	add_child(disc)
 	disc.global_position = Vector3(at.x, 0.03, at.z)
 	get_tree().create_timer(duration, false).timeout.connect(disc.queue_free)
+
+
+## Animal amigo do Invocador (só no servidor; o spawner cria nos outros PCs).
+func spawn_companion(spawn: Dictionary) -> Node:
+	return _companion_spawner.spawn(spawn) if multiplayer.is_server() else null
 
 
 ## Projétil que explode (Bola de Fogo), chamado pelo grupo "arena".

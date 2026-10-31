@@ -360,6 +360,13 @@ func _skills_test() -> void:
 		c.data.skills[key] = 3
 	player.refresh_character()
 	c = player.character  # o servidor troca a cópia ao propagar a ficha
+	# Invocador: um aliado caído para o Resgate reanimar.
+	var fallen: Player = null
+	if "animal_rescue" in Skills.keys(class_id):
+		_arena._spawn_player(99)
+		fallen = _arena.get_node("99")
+		fallen.global_position = start + Vector3(-3, 0, 0)
+		fallen.take_damage(99999)
 	player.resource = player.max_resource
 	for element in Elements.ALL:
 		player.element = element
@@ -369,6 +376,8 @@ func _skills_test() -> void:
 				continue
 			player.teleport_to(start)
 			player.facing = Vector2(0, 1)
+			if id == "animal_rescue" and fallen:
+				fallen.take_damage(99999)  # cai de novo para cada elemento testar o Resgate
 			var ok := system.cast(player, id, 3)
 			check.call(ok, "habilidade %s funcionou" % id)
 			player.teleport_to(start)
@@ -377,6 +386,16 @@ func _skills_test() -> void:
 	check.call(player.shield > 0.0, "habilidade de escudo de Terra")
 	check.call(player._buffs.has("damage") and player._buffs.has("speed"), "bônus de dano (Fogo) e de velocidade (Ar)")
 	check.call(not system._areas.is_empty(), "áreas que duram ativas")
+	if fallen:
+		check.call(fallen.alive, "Resgate reanimou o aliado caído")
+		var animals := system.companions_of(player)
+		check.call(animals.size() >= 2 and animals.any(func(a: Companion) -> bool: return a.kind == "bear"),
+			"companheiros e Urso Guardião chamados (%d)" % animals.size())
+		var essence := player.resource
+		player.resource = 0.0
+		await get_tree().create_timer(1.5, false).timeout
+		check.call(player.resource > 2.0 * 1.5 + 0.5, "golpes dos animais devolvem Essência")
+		player.resource = essence
 	# Áreas, golpes com atraso e projéteis agem com o tempo.
 	await get_tree().create_timer(2.5, false).timeout
 	check.call(system._delayed.is_empty(), "Meteoro e Terremoto caíram")

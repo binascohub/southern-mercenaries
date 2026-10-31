@@ -1217,3 +1217,150 @@ msgstr "Smoke"
 
 msgid "HUD_DODGED"
 msgstr "Dodged!"
+
+msgid "SKILL_CALL_COMPANION_NAME"
+msgstr "Call Companion"
+
+msgid "SKILL_CALL_COMPANION_DESC"
+msgstr "Calls your element's main companion (Fire fox, Water otter, Air falcon, Earth boar) with 40% of your health; up to 2 at once (3 at rank 5). Stays until it falls."
+
+msgid "SKILL_FLOCK_NAME"
+msgstr "Flock"
+
+msgid "SKILL_FLOCK_DESC"
+msgstr "A flock of birds bursts from the book and strikes everything in an 8 m cone."
+
+msgid "SKILL_BOND_NAME"
+msgstr "Bond of Friendship"
+
+msgid "SKILL_BOND_DESC"
+msgstr "Passive: +8% health and damage for your animals per rank."
+
+msgid "SKILL_SCATTER_ESCAPE_NAME"
+msgstr "Scatter Escape"
+
+msgid "SKILL_SCATTER_ESCAPE_DESC"
+msgstr "You burst into a flock, pass through enemies and reappear up to 7 m ahead; your animals taunt nearby enemies for 2 s. Cooldown -1 s per rank."
+
+msgid "SKILL_GUARDIAN_BEAR_NAME"
+msgstr "Guardian Bear"
+
+msgid "SKILL_GUARDIAN_BEAR_DESC"
+msgstr "A friendly bear with 150% of your health taunts and holds enemies for 15 s; only one at a time."
+
+msgid "SKILL_STAMPEDE_NAME"
+msgstr "Stampede"
+
+msgid "SKILL_STAMPEDE_DESC"
+msgstr "A herd of friendly animals charges along 15 m, knocking enemies down."
+
+msgid "SKILL_ANIMAL_RESCUE_NAME"
+msgstr "Rescue"
+
+msgid "SKILL_ANIMAL_RESCUE_DESC"
+msgstr "An animal runs to the nearest downed ally within 20 m and revives them with 40% health (+5% per rank)."
+
+msgid "SKILL_DEN_WARMTH_NAME"
+msgstr "Den Warmth"
+
+msgid "SKILL_DEN_WARMTH_DESC"
+msgstr "Fire foxes surround the group: allies and animals within 8 m deal +15% damage (+3% per rank) and burn, for 8 s."
+
+msgid "SKILL_SALAMANDER_BITE_NAME"
+msgstr "Salamander Bite"
+
+msgid "SKILL_SALAMANDER_BITE_DESC"
+msgstr "A giant salamander bursts under the target and bites; its burn deals double damage."
+
+msgid "SKILL_FIRE_STAMPEDE_NAME"
+msgstr "Burning Herd"
+
+msgid "SKILL_FIRE_STAMPEDE_DESC"
+msgstr "Fire deer charge across a 20 m × 6 m strip, setting enemies ablaze."
+
+msgid "SKILL_OTTER_SPRING_NAME"
+msgstr "Otter Spring"
+
+msgid "SKILL_OTTER_SPRING_DESC"
+msgstr "For 6 s, otters bring fresh water that heals allies and animals within 5 m and soaks enemies."
+
+msgid "SKILL_NARWHAL_CHARGE_NAME"
+msgstr "Narwhal Charge"
+
+msgid "SKILL_NARWHAL_CHARGE_DESC"
+msgstr "A water narwhal charges the target; a soaked target is frozen for 2 s."
+
+msgid "SKILL_WHALE_SONG_NAME"
+msgstr "Whale Song"
+
+msgid "SKILL_WHALE_SONG_DESC"
+msgstr "A spirit whale crashes down as a giant wave over 8 m: damage, push back and soak."
+
+msgid "SKILL_FALCON_WINGS_NAME"
+msgstr "Falcon Wings"
+
+msgid "SKILL_FALCON_WINGS_DESC"
+msgstr "Falcons fly over the group: allies and animals within 8 m move and attack 30% faster (+5% per rank) for 8 s."
+
+msgid "SKILL_EAGLE_DIVE_NAME"
+msgstr "Eagle Dive"
+
+msgid "SKILL_EAGLE_DIVE_DESC"
+msgstr "A lightning eagle dives onto the target and shocks it; electrocutes a soaked target."
+
+msgid "SKILL_WING_STORM_NAME"
+msgstr "Storm of Wings"
+
+msgid "SKILL_WING_STORM_DESC"
+msgstr "Hundreds of electric birds strike every enemy in a 9 m area for 5 s."
+
+msgid "SKILL_TURTLE_SHELL_NAME"
+msgstr "Turtle Shell"
+
+msgid "SKILL_TURTLE_SHELL_DESC"
+msgstr "A giant turtle raises its shell: allies and animals within 5 m get a shield for 8 s."
+
+msgid "SKILL_RHINO_CHARGE_NAME"
+msgstr "Rhino Charge"
+
+msgid "SKILL_RHINO_CHARGE_DESC"
+msgstr "A stone rhino runs over the target and stuns it for 1.5 s."
+
+msgid "SKILL_MAMMOTH_STOMP_NAME"
+msgstr "Mammoth Stomp"
+
+msgid "SKILL_MAMMOTH_STOMP_DESC"
+msgstr "A mammoth appears and stomps three times within 9 m, knocking enemies down."
+
+msgid "CLASS_SUMMONER_NAME"
+msgstr "Summoner"
+
+msgid "HERO_SUMMONER_MALE"
+msgstr "Ari Fennel"
+
+msgid "HERO_SUMMONER_FEMALE"
+msgstr "Aria Fennel"
+
+msgid "RESOURCE_ESSENCE"
+msgstr "Essence"
+
+msgid "POWER_SUMMON"
+msgstr "Summoning Power"
+
+msgid "ITEM_TYPE_BOOK"
+msgstr "Book"
+
+msgid "COMPANION_FOX"
+msgstr "Fire fox"
+
+msgid "COMPANION_OTTER"
+msgstr "Otter"
+
+msgid "COMPANION_FALCON"
+msgstr "Falcon"
+
+msgid "COMPANION_BOAR"
+msgstr "Boar"
+
+msgid "COMPANION_BEAR"
+msgstr "Guardian bear"

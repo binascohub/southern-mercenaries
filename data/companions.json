@@ -1,0 +1,54 @@
+{
+  "_comment": "Animais amigos do Invocador (02-5-invocador.md, seções 3 e 4). by_element: o companheiro principal de cada elemento. Velocidade em m/s, alcance em m, recarga do golpe em s; size só para o visual provisório.",
+  "by_element": {
+    "fire": "fox",
+    "water": "otter",
+    "air": "falcon",
+    "earth": "boar"
+  },
+  "max_per_summoner": 5,
+  "fox": {
+    "name_key": "COMPANION_FOX",
+    "speed": 6.5,
+    "range": 1.5,
+    "cooldown": 0.8,
+    "size": 0.6
+  },
+  "otter": {
+    "name_key": "COMPANION_OTTER",
+    "speed": 5.0,
+    "range": 6.0,
+    "ranged": true,
+    "cooldown": 1.1,
+    "size": 0.55
+  },
+  "falcon": {
+    "name_key": "COMPANION_FALCON",
+    "speed": 7.5,
+    "range": 1.6,
+    "cooldown": 0.6,
+    "flies": true,
+    "size": 0.5
+  },
+  "boar": {
+    "name_key": "COMPANION_BOAR",
+    "speed": 5.0,
+    "range": 1.6,
+    "cooldown": 1.2,
+    "size": 0.8
+  },
+  "bear": {
+    "name_key": "COMPANION_BEAR",
+    "speed": 4.8,
+    "range": 1.9,
+    "cooldown": 1.4,
+    "size": 1.4,
+    "taunt": 6.0,
+    "element_color": false,
+    "color": [
+      0.4,
+      0.27,
+      0.15
+    ]
+  }
+}

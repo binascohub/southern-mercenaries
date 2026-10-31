@@ -798,6 +798,7 @@ func _build_visual() -> void:
 
 	var archer := class_id == "archer"
 	var ninja := class_id == "ninja"
+	var summoner := class_id == "summoner"
 	_body_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA  # invisível (Bomba de Fumaça)
 	# Arma: cajado (Mago) ou arco (Arqueiro), na cor do material equipado.
 	var staff := MeshInstance3D.new()
@@ -812,6 +813,11 @@ func _build_visual() -> void:
 	if archer:
 		staff.rotation.z = 0.15
 		staff.rotation.x = -0.25
+	if summoner:
+		# Livro dos Amigos aberto na mão (a capa na cor do material).
+		staff.mesh = BoxMesh.new()
+		(staff.mesh as BoxMesh).size = Vector3(0.36, 0.06, 0.28)
+		staff.position = Vector3(0.38, 1.0, 0.35)
 	if ninja:
 		# Par de adagas, uma em cada mão, apontando para a frente.
 		staff.position = Vector3(0.42, 0.9, 0.35)
@@ -833,6 +839,8 @@ func _build_visual() -> void:
 	crystal.mesh = crystal_mesh
 	crystal.material_override = _crystal_material
 	crystal.position = Vector3(0.42, 0.9, 0.62) if ninja else (Vector3(0.45, 0.95, 0.6) if archer else Vector3(0.45, 1.8, 0.15))
+	if summoner:
+		crystal.position = Vector3(0.38, 1.08, 0.35)  # página brilhando no livro
 	_visual.add_child(crystal)
 
 	# Mago: caderno de anotações; Arqueiro: aljava nas costas.
@@ -842,6 +850,10 @@ func _build_visual() -> void:
 	notebook.mesh = notebook_mesh
 	notebook.material_override = _material(Color(0.4, 0.28, 0.18))
 	notebook.position = Vector3(-0.2, 1.2, -0.3) if archer else Vector3(-0.32, 0.95, 0.12)
+	if summoner:
+		# Pássaro amigo no ombro.
+		notebook_mesh.size = Vector3(0.16, 0.14, 0.24)
+		notebook.position = Vector3(-0.28, 1.72, 0.0)
 	if ninja:
 		# Guarda da espada do pai, presa na cintura.
 		notebook_mesh.size = Vector3(0.2, 0.06, 0.2)

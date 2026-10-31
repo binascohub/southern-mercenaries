@@ -25,6 +25,10 @@ extends Node
 ##   iron_body   menos dano recebido e provoca os monstros em volta
 ##   blink       salta entre vários inimigos cortando cada um (Golpe Relâmpago, Mil Cortes)
 ##   dash_strike atravessa o alvo como um raio (Lampejo)
+##   summon      chama um animal amigo (Chamar Companheiro, Urso Guardião)
+##   escape      vira revoada e reaparece à frente; os animais provocam (Fuga em Bando)
+##   rescue      um animal reanima de longe o aliado caído mais perto (Resgate)
+## Bônus, escudos e curas de grupo também valem para os animais amigos.
 ## "imbued": habilidade de classe que aplica o estado básico do elemento atual.
 ## Habilidades com alvo usam a mira como direção; quando precisam de um ponto
 ## (Meteoro, Nevasca), escolhem o inimigo mais perto no cone da mira.
@@ -116,6 +120,8 @@ func cast(player: Player, skill_id: String, rank: int) -> bool:
 			var value := Skills.scaled(skill, "value", "per_rank", rank)
 			for p in allies_in(origin, skill.area):
 				p.add_buff(String(skill.buff), value, skill.duration)
+			for comp in companions_in(origin, skill.area):
+				comp.add_buff(String(skill.buff), value, skill.duration)
 			_fx.rpc("disc", origin, Vector3.ZERO, skill.area, color, 0.6)
 		"shield":
 			var amount := player.power * Skills.scaled(skill, "value", "per_rank", rank)
@@ -123,6 +129,8 @@ func cast(player: Player, skill_id: String, rank: int) -> bool:
 				# Flecha Baluarte: todos os aliados em volta.
 				for p in allies_in(origin, skill.area):
 					p.add_shield(amount, skill.duration)
+				for comp in companions_in(origin, skill.area):
+					comp.add_shield(amount, skill.duration)
 				_fx.rpc("disc", origin, Vector3.ZERO, skill.area, color, 0.6)
 			else:
 				var best: Player = player
@@ -233,9 +241,69 @@ func cast(player: Player, skill_id: String, rank: int) -> bool:
 			var dest := target.global_position + Vector3(through.x, 0, through.y) * 1.5
 			_fx.rpc("beam", origin + Vector3.UP, dest + Vector3.UP, 0.2, color, 0.3)
 			player.teleport_to(_ray_limited(player, target.global_position, dest))
+		"summon":
+			_summon(player, skill, rank)
+		"escape":
+			var dest := _ray_limited(player, origin, origin + aim * float(skill.distance))
+			_fx.rpc("disc", origin, Vector3.ZERO, 1.2, color, 0.4)
+			player.teleport_to(dest)
+			for comp in companions_of(player):
+				comp.taunt_around(5.0, float(skill.taunt))
+		"rescue":
+			var best: Player = null
+			var best_d := float(skill.range)
+			for p: Player in get_tree().get_nodes_in_group(&"players"):
+				var d := _flat(p.global_position - origin).length()
+				if not p.alive and p.connected and d <= best_d:
+					best = p
+					best_d = d
+			if best == null:
+				return false
+			best.revive(Skills.scaled(skill, "value", "per_rank", rank))
+			_fx.rpc("beam", origin + Vector3.UP * 0.5, best.global_position + Vector3.UP * 0.5, 0.2, color, 0.5)
 		_:
 			return false
 	return true
+
+
+func companions_of(player: Player) -> Array[Companion]:
+	var found: Array[Companion] = []
+	for c: Companion in get_tree().get_nodes_in_group(&"companions"):
+		if c.owner_peer == player.peer_id and not c.is_queued_for_deletion():
+			found.append(c)
+	return found
+
+
+func companions_in(center: Vector3, radius: float) -> Array[Companion]:
+	var found: Array[Companion] = []
+	for c: Companion in get_tree().get_nodes_in_group(&"companions"):
+		if not c.is_queued_for_deletion() and _flat(c.global_position - center).length() <= radius:
+			found.append(c)
+	return found
+
+
+## Chama um animal amigo; acima do limite (por tipo ou 5 no total), o mais antigo vai embora.
+func _summon(player: Player, skill: Dictionary, rank: int) -> void:
+	var kind: String = skill.companion
+	if kind == "element":
+		kind = String(GameData.companions.by_element.get(player.element, "fox"))
+	var mine := companions_of(player)
+	var same := mine.filter(func(c: Companion) -> bool:
+		return (c.kind == "bear") == (kind == "bear"))
+	if same.size() >= Skills.count(skill, rank, "count"):
+		same[0]._flee()
+		mine.erase(same[0])
+	if mine.size() >= int(GameData.companions.max_per_summoner):
+		mine[0]._flee()
+	var bond := player.character.passive_value("bond") if player.character else 0.0
+	var side := Vector3(-player.facing.y, 0, player.facing.x) * (1.2 if mine.size() % 2 == 0 else -1.2)
+	_arena().spawn_companion({
+		"owner": player.peer_id, "kind": kind, "element": player.element,
+		"position": player.global_position + side,
+		"max_health": player.max_health * Skills.scaled(skill, "health", "health_per_rank", rank) * (1.0 + bond),
+		"damage_fraction": Skills.power(skill, rank), "time": float(skill.get("duration", 0.0)),
+	})
+	_fx.rpc("disc", player.global_position + side, Vector3.ZERO, 0.8, Elements.color(player.element), 0.4)
 
 
 ## Cortes corpo a corpo: no inimigo à frente (dentro do arco) ou, girando, em
@@ -301,6 +369,8 @@ func hit_for(player: Player, skill: Dictionary, rank: int) -> Dictionary:
 	}
 	if skill.has("dot_mult"):
 		hit.dot_mult = float(skill.dot_mult)
+	if skill.has("extra_state"):
+		hit.extra_state = String(skill.extra_state)
 	player.consume_buff("next_hit")  # Passo Sombrio: só o próximo golpe
 	if skill.has("state_chance"):
 		hit.state_chance = float(skill.state_chance)
@@ -363,6 +433,10 @@ func _physics_process(delta: float) -> void:
 		_delayed.erase(d)
 		for e in enemies_in(d.position, d.radius):
 			e.take_hit(d.hit)
+			if d.skill.has("push"):
+				var away: Vector3 = e.global_position - d.position
+				away.y = 0.0
+				e.push(away.normalized() * float(d.skill.push), 0.3)
 		_fx.rpc("disc", d.position, Vector3.ZERO, d.radius, Elements.color(d.hit.element).lightened(0.3), 0.3)
 		# Meteoro: o chão fica em chamas.
 		if d.skill.has("ground_duration") and is_instance_valid(d.caster):
@@ -448,6 +522,8 @@ func _area_tick(area: Dictionary) -> void:
 		var heal: float = area.caster.power * Skills.scaled(skill, "heal", "heal_per_rank", area.rank) * TICK
 		for p in allies_in(area.position, skill.area):
 			p.heal(heal)
+		for comp in companions_in(area.position, skill.area):
+			comp.heal(heal)
 
 
 func _area_enemies(area: Dictionary) -> Array[Enemy]:

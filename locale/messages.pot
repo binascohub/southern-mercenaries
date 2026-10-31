@@ -1216,3 +1216,150 @@ msgstr ""
 
 msgid "HUD_DODGED"
 msgstr ""
+
+msgid "SKILL_CALL_COMPANION_NAME"
+msgstr ""
+
+msgid "SKILL_CALL_COMPANION_DESC"
+msgstr ""
+
+msgid "SKILL_FLOCK_NAME"
+msgstr ""
+
+msgid "SKILL_FLOCK_DESC"
+msgstr ""
+
+msgid "SKILL_BOND_NAME"
+msgstr ""
+
+msgid "SKILL_BOND_DESC"
+msgstr ""
+
+msgid "SKILL_SCATTER_ESCAPE_NAME"
+msgstr ""
+
+msgid "SKILL_SCATTER_ESCAPE_DESC"
+msgstr ""
+
+msgid "SKILL_GUARDIAN_BEAR_NAME"
+msgstr ""
+
+msgid "SKILL_GUARDIAN_BEAR_DESC"
+msgstr ""
+
+msgid "SKILL_STAMPEDE_NAME"
+msgstr ""
+
+msgid "SKILL_STAMPEDE_DESC"
+msgstr ""
+
+msgid "SKILL_ANIMAL_RESCUE_NAME"
+msgstr ""
+
+msgid "SKILL_ANIMAL_RESCUE_DESC"
+msgstr ""
+
+msgid "SKILL_DEN_WARMTH_NAME"
+msgstr ""
+
+msgid "SKILL_DEN_WARMTH_DESC"
+msgstr ""
+
+msgid "SKILL_SALAMANDER_BITE_NAME"
+msgstr ""
+
+msgid "SKILL_SALAMANDER_BITE_DESC"
+msgstr ""
+
+msgid "SKILL_FIRE_STAMPEDE_NAME"
+msgstr ""
+
+msgid "SKILL_FIRE_STAMPEDE_DESC"
+msgstr ""
+
+msgid "SKILL_OTTER_SPRING_NAME"
+msgstr ""
+
+msgid "SKILL_OTTER_SPRING_DESC"
+msgstr ""
+
+msgid "SKILL_NARWHAL_CHARGE_NAME"
+msgstr ""
+
+msgid "SKILL_NARWHAL_CHARGE_DESC"
+msgstr ""
+
+msgid "SKILL_WHALE_SONG_NAME"
+msgstr ""
+
+msgid "SKILL_WHALE_SONG_DESC"
+msgstr ""
+
+msgid "SKILL_FALCON_WINGS_NAME"
+msgstr ""
+
+msgid "SKILL_FALCON_WINGS_DESC"
+msgstr ""
+
+msgid "SKILL_EAGLE_DIVE_NAME"
+msgstr ""
+
+msgid "SKILL_EAGLE_DIVE_DESC"
+msgstr ""
+
+msgid "SKILL_WING_STORM_NAME"
+msgstr ""
+
+msgid "SKILL_WING_STORM_DESC"
+msgstr ""
+
+msgid "SKILL_TURTLE_SHELL_NAME"
+msgstr ""
+
+msgid "SKILL_TURTLE_SHELL_DESC"
+msgstr ""
+
+msgid "SKILL_RHINO_CHARGE_NAME"
+msgstr ""
+
+msgid "SKILL_RHINO_CHARGE_DESC"
+msgstr ""
+
+msgid "SKILL_MAMMOTH_STOMP_NAME"
+msgstr ""
+
+msgid "SKILL_MAMMOTH_STOMP_DESC"
+msgstr ""
+
+msgid "CLASS_SUMMONER_NAME"
+msgstr ""
+
+msgid "HERO_SUMMONER_MALE"
+msgstr ""
+
+msgid "HERO_SUMMONER_FEMALE"
+msgstr ""
+
+msgid "RESOURCE_ESSENCE"
+msgstr ""
+
+msgid "POWER_SUMMON"
+msgstr ""
+
+msgid "ITEM_TYPE_BOOK"
+msgstr ""
+
+msgid "COMPANION_FOX"
+msgstr ""
+
+msgid "COMPANION_OTTER"
+msgstr ""
+
+msgid "COMPANION_FALCON"
+msgstr ""
+
+msgid "COMPANION_BOAR"
+msgstr ""
+
+msgid "COMPANION_BEAR"
+msgstr ""

@@ -1217,3 +1217,150 @@ msgstr "Humo"
 
 msgid "HUD_DODGED"
 msgstr "¡Esquivado!"
+
+msgid "SKILL_CALL_COMPANION_NAME"
+msgstr "Llamar Compañero"
+
+msgid "SKILL_CALL_COMPANION_DESC"
+msgstr "Llama al compañero principal de tu elemento (zorro de fuego, nutria, halcón, jabalí) con el 40% de tu vida; hasta 2 a la vez (3 en el rango 5). Se queda hasta caer."
+
+msgid "SKILL_FLOCK_NAME"
+msgstr "Bandada"
+
+msgid "SKILL_FLOCK_DESC"
+msgstr "Una bandada de pájaros sale del libro y ataca todo en un cono de 8 m."
+
+msgid "SKILL_BOND_NAME"
+msgstr "Lazo de Amistad"
+
+msgid "SKILL_BOND_DESC"
+msgstr "Pasiva: +8% de vida y daño de tus animales por rango."
+
+msgid "SKILL_SCATTER_ESCAPE_NAME"
+msgstr "Huida en Bandada"
+
+msgid "SKILL_SCATTER_ESCAPE_DESC"
+msgstr "Te deshaces en una bandada, atraviesas enemigos y reapareces hasta 7 m adelante; tus animales provocan a los enemigos cercanos 2 s. Recarga -1 s por rango."
+
+msgid "SKILL_GUARDIAN_BEAR_NAME"
+msgstr "Oso Guardián"
+
+msgid "SKILL_GUARDIAN_BEAR_DESC"
+msgstr "Un oso amigo con el 150% de tu vida provoca y retiene a los enemigos durante 15 s; solo uno a la vez."
+
+msgid "SKILL_STAMPEDE_NAME"
+msgstr "Estampida"
+
+msgid "SKILL_STAMPEDE_DESC"
+msgstr "Una manada de animales amigos carga a lo largo de 15 m y derriba a los enemigos."
+
+msgid "SKILL_ANIMAL_RESCUE_NAME"
+msgstr "Rescate"
+
+msgid "SKILL_ANIMAL_RESCUE_DESC"
+msgstr "Un animal corre hasta el aliado caído más cercano a 20 m y lo reanima con el 40% de vida (+5% por rango)."
+
+msgid "SKILL_DEN_WARMTH_NAME"
+msgstr "Calor de la Madriguera"
+
+msgid "SKILL_DEN_WARMTH_DESC"
+msgstr "Zorros de fuego rodean al grupo: aliados y animales a 8 m causan +15% de daño (+3% por rango) y queman, durante 8 s."
+
+msgid "SKILL_SALAMANDER_BITE_NAME"
+msgstr "Mordisco de Salamandra"
+
+msgid "SKILL_SALAMANDER_BITE_DESC"
+msgstr "Una salamandra gigante surge bajo el objetivo y lo muerde; su quemadura hace el doble de daño."
+
+msgid "SKILL_FIRE_STAMPEDE_NAME"
+msgstr "Manada en Llamas"
+
+msgid "SKILL_FIRE_STAMPEDE_DESC"
+msgstr "Ciervos de fuego cruzan una franja de 20 m × 6 m e incendian a los enemigos."
+
+msgid "SKILL_OTTER_SPRING_NAME"
+msgstr "Manantial de las Nutrias"
+
+msgid "SKILL_OTTER_SPRING_DESC"
+msgstr "Durante 6 s, las nutrias traen agua fresca que cura a aliados y animales a 5 m y empapa a los enemigos."
+
+msgid "SKILL_NARWHAL_CHARGE_NAME"
+msgstr "Embestida del Narval"
+
+msgid "SKILL_NARWHAL_CHARGE_DESC"
+msgstr "Un narval de agua embiste al objetivo; un objetivo empapado queda congelado 2 s."
+
+msgid "SKILL_WHALE_SONG_NAME"
+msgstr "Canto de la Ballena"
+
+msgid "SKILL_WHALE_SONG_DESC"
+msgstr "Una ballena espiritual cae como una ola gigante en 8 m: daño, empuje y empapa."
+
+msgid "SKILL_FALCON_WINGS_NAME"
+msgstr "Alas del Halcón"
+
+msgid "SKILL_FALCON_WINGS_DESC"
+msgstr "Halcones vuelan sobre el grupo: aliados y animales a 8 m se mueven y atacan un 30% más rápido (+5% por rango) durante 8 s."
+
+msgid "SKILL_EAGLE_DIVE_NAME"
+msgstr "Picado del Águila"
+
+msgid "SKILL_EAGLE_DIVE_DESC"
+msgstr "Un águila de rayos cae en picado sobre el objetivo y lo electriza; electrocuta a un objetivo empapado."
+
+msgid "SKILL_WING_STORM_NAME"
+msgstr "Tormenta de Alas"
+
+msgid "SKILL_WING_STORM_DESC"
+msgstr "Cientos de pájaros eléctricos atacan a todos los enemigos en un área de 9 m durante 5 s."
+
+msgid "SKILL_TURTLE_SHELL_NAME"
+msgstr "Caparazón de Tortuga"
+
+msgid "SKILL_TURTLE_SHELL_DESC"
+msgstr "Una tortuga gigante alza su caparazón: aliados y animales a 5 m reciben un escudo durante 8 s."
+
+msgid "SKILL_RHINO_CHARGE_NAME"
+msgstr "Embestida del Rinoceronte"
+
+msgid "SKILL_RHINO_CHARGE_DESC"
+msgstr "Un rinoceronte de piedra arrolla al objetivo y lo aturde 1,5 s."
+
+msgid "SKILL_MAMMOTH_STOMP_NAME"
+msgstr "Pisotón del Mamut"
+
+msgid "SKILL_MAMMOTH_STOMP_DESC"
+msgstr "Un mamut aparece y pisa tres veces en 9 m, derribando a los enemigos."
+
+msgid "CLASS_SUMMONER_NAME"
+msgstr "Invocador"
+
+msgid "HERO_SUMMONER_MALE"
+msgstr "Ari Fennel"
+
+msgid "HERO_SUMMONER_FEMALE"
+msgstr "Aria Fennel"
+
+msgid "RESOURCE_ESSENCE"
+msgstr "Esencia"
+
+msgid "POWER_SUMMON"
+msgstr "Poder de Invocación"
+
+msgid "ITEM_TYPE_BOOK"
+msgstr "Libro"
+
+msgid "COMPANION_FOX"
+msgstr "Zorro de fuego"
+
+msgid "COMPANION_OTTER"
+msgstr "Nutria"
+
+msgid "COMPANION_FALCON"
+msgstr "Halcón"
+
+msgid "COMPANION_BOAR"
+msgstr "Jabalí"
+
+msgid "COMPANION_BEAR"
+msgstr "Oso guardián"

@@ -119,6 +119,9 @@ static func resolve_hit(hit: Dictionary, target_element: String, status: StatusS
 			var dps: float = damage * float(state_data(state).get("dot_fraction", 0.0)) * float(hit.get("dot_mult", 1.0))
 			var duration := float(hit.get("state_duration", state_data(state).get("duration", 1.0))) * duration_mult
 			apply_state(status, state, target_element, is_boss, dps, duration)
+	# Estado a mais da habilidade (Estouro da Manada: imbuída e ainda derruba).
+	if hit.has("extra_state"):
+		apply_state(status, String(hit.extra_state), target_element, is_boss, 0.0, -1.0)
 	if upgraded != "":
 		var duration := float(hit.get("state_duration", state_data(upgraded).get("duration", 1.0))) * duration_mult
 		apply_state(status, upgraded, target_element, is_boss, 0.0, duration)

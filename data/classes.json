@@ -203,5 +203,73 @@
       "gold": 0
     },
     "_comment": "Ninja (02-4-ninja.md). Tanque ágil: vida 130 (+45 por nível), evasão 10% +0,2% por ponto de DES acima do inicial, Energia +1 por DES e +3 por crítico acertado, regenera 12/s; cortes de 60% PL e corte giratório de 180%; esquiva é teleporte de 5 m; armadura x0,7. Traço Ladrão: +10% de ouro (proposta). Kit: adagas de treino de madeira."
+  },
+  "summoner": {
+    "name_key": "CLASS_SUMMONER_NAME",
+    "hero_name_keys": {
+      "male": "HERO_SUMMONER_MALE",
+      "female": "HERO_SUMMONER_FEMALE"
+    },
+    "resource": "essence",
+    "resource_key": "RESOURCE_ESSENCE",
+    "power_key": "POWER_SUMMON",
+    "power_attribute": "int",
+    "attributes": {
+      "str": 10,
+      "dex": 15,
+      "int": 30,
+      "vit": 20
+    },
+    "max_health": 80,
+    "max_resource": 120,
+    "resource_regen": 2.0,
+    "resource_per_companion_hit": 3.0,
+    "move_speed_pct": 100,
+    "basic_attack": {
+      "power_pct": 0.7,
+      "range": 10.0,
+      "projectile_speed": 20.0,
+      "radius": 0.25,
+      "cooldown": 0.35,
+      "pierce": 0
+    },
+    "strong_attack": {
+      "power_pct": 1.6,
+      "range": 12.0,
+      "projectile_speed": 18.0,
+      "radius": 0.4,
+      "charge_time": 1.0,
+      "applies_state": true,
+      "pierce": 2
+    },
+    "evade": {
+      "distance": 4.0,
+      "duration": 0.3,
+      "cooldown": 4.0
+    },
+    "health_per_level": 32,
+    "resource_per_power_point": 2,
+    "regen_per_power_point": 0.0,
+    "armor_factor": 0.35,
+    "starting_kit": {
+      "equipment": {
+        "weapon": {
+          "base": "book",
+          "material": "wood"
+        }
+      },
+      "items": [
+        {
+          "id": "potion_health",
+          "count": 3
+        },
+        {
+          "id": "potion_resource",
+          "count": 2
+        }
+      ],
+      "gold": 0
+    },
+    "_comment": "Invocador (02-5-invocador.md). Essência 120, +2 por INT, regenera 2/s e +3 a cada golpe de um animal amigo (seção 4); página do livro como projétil e pássaro que atravessa 2 inimigos no forte; armadura x0,35. Kit: Livro dos Amigos com capa de madeira."
   }
 }

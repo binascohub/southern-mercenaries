@@ -33,6 +33,7 @@ func _ready() -> void:
 	_test_skills()
 	_test_archer()
 	_test_ninja()
+	_test_summoner()
 	_test_names()
 	_clean(TEST_ROOT)
 	if _failures == 0:
@@ -544,6 +545,20 @@ func _test_ninja() -> void:
 	for element in Elements.ALL:
 		for key in Skills.keys("ninja"):
 			_check(not Skills.def(Skills.skill_id("ninja", key, element)).is_empty(), "habilidade do Ninja %s/%s existe" % [element, key])
+
+
+func _test_summoner() -> void:
+	var s := CharacterData.create("summoner", "female", "Aria", "earth")
+	_check(s.validate().is_empty(), "Invocador criado válido: %s" % [s.validate()])
+	_near(s.max_health(), 80, "vida do Invocador no nível 1")
+	_near(s.max_resource(), 120, "Essência inicial 120")
+	_near(s.power(), 25, "Poder de Invocação: livro de madeira 10 + INT 30 × 0,5")
+	_check(s.data.equipment.weapon.base == "book" and s.data.skill_slots[0] == "call_companion", "livro e Chamar Companheiro no atalho 1")
+	_check(GameData.companions.by_element.earth == "boar" and GameData.companions.by_element.water == "otter", "companheiro principal de cada elemento")
+	_check(Skills.count(Skills.def("call_companion"), 5, "count") == 3, "até 3 companheiros no rank 5")
+	for element in Elements.ALL:
+		for key in Skills.keys("summoner"):
+			_check(not Skills.def(Skills.skill_id("summoner", key, element)).is_empty(), "habilidade do Invocador %s/%s existe" % [element, key])
 
 
 func _test_names() -> void:
