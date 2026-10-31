@@ -619,10 +619,10 @@ func _sewers_test() -> void:
 	await _wait_frames(30)
 	check.call(is_equal_approx(queen.health, before) or queen.health < before, "sem ninhos, não regenera")
 	queen.health = queen.max_health * 0.2
-	var puddles: int = _arena.hazards.count()
+	var gas_before: int = _arena.hazards.count()
 	await _wait_frames(200)
 	check.call(queen.phase == 3 and _arena._area_root.get_node_or_null("flood") != null, "abaixo de 25%: O Pacto alaga a arena")
-	check.call(_arena.hazards.count() > puddles, "o gás dos canos deixa poças")
+	check.call(_arena.hazards.count() > gas_before, "o gás dos canos deixa poças")
 	queen.take_damage(1e9)
 	await _wait_frames(2)
 	var leftovers := get_tree().get_nodes_in_group(&"enemies").filter(func(e: Enemy) -> bool: return e.group == "" and not e.is_queued_for_deletion())
