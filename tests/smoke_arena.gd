@@ -325,6 +325,10 @@ func _skills_test() -> void:
 	var player: Player = _arena.local_player
 	if player == null:
 		return
+	# O teste avalia habilidades, não a esquiva: o herói não cai (senão a arena volta
+	# ao checkpoint e os ratos dormem de novo).
+	if player.alive:
+		player.health = maxf(player.health, player.max_health * 0.5)
 	if _stage > 0 or _frame < 10:
 		return
 	_stage = 1
