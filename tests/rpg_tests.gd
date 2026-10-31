@@ -183,6 +183,7 @@ func _test_campaign_list() -> void:
 	SaveSystem.write_json(SaveSystem.campaign_path(newer.id), newer)
 	var list := SaveSystem.list_campaigns()
 	_check(list.size() >= 2 and list[0].id == newer.id, "campanha mais recente primeiro")
+	_check(CampaignMenu.local_time("2026-10-31T01:38:00").length() == 16, "data local no formato AAAA-MM-DD HH:MM")
 	var text := CampaignMenu.describe(older)
 	_check(text.contains("Orana") and text.contains("0:00"), "linha da campanha com heróis e tempo: %s" % text)
 

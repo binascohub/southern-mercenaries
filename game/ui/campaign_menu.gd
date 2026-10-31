@@ -39,7 +39,8 @@ func _on_open() -> void:
 		_list.add_child(row)
 		var button := Button.new()
 		button.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
-		button.custom_minimum_size = Vector2(420, 56)
+		button.custom_minimum_size = Vector2(520, 64)
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL  # "Apagar" alinhado em coluna
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		button.text = describe(c)
 		var thumb := SaveSystem.load_thumbnail(c.id)
@@ -53,13 +54,22 @@ func _on_open() -> void:
 		row.add_child(delete_button(func() -> void: SaveSystem.delete_campaign(c.id)))
 
 
+## Data do save (gravada em UTC) no fuso deste PC, como "2026-10-30 22:38".
+static func local_time(utc: String) -> String:
+	if utc == "":
+		return ""
+	var unix := Time.get_unix_time_from_datetime_string(utc)
+	unix += int(Time.get_time_zone_from_system().get("bias", 0)) * 60
+	return Time.get_datetime_string_from_unix_time(unix, true).left(16)
+
+
 ## Uma linha por campanha: área, data, tempo de jogo e heróis.
 static func describe(c: Dictionary) -> String:
 	var area: Dictionary = GameData.arenas.get(c.get("area", ""), {})
 	var names: Array = c.get("hero_names", {}).values()
 	var summary := str(TranslationServer.translate("CAMPAIGN_ENTRY")).format({
 		"area": str(TranslationServer.translate(area.get("name_key", ""))),
-		"date": str(c.get("updated", c.get("created", ""))).replace("T", " ").left(16),
+		"date": local_time(str(c.get("updated", c.get("created", "")))),
 		"time": SaveSystem.format_played(float(c.get("played_seconds", 0))),
 	})
 	if not names.is_empty():
