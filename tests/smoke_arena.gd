@@ -676,7 +676,9 @@ func _town_test() -> void:
 		town._rpc_accept_side(0)
 	check.call(SideQuests.active(town.side_quests).size() == 2 and town.visitors.is_empty(), "aceitou as duas histórias")
 	check.call("plague_rat" in town.bestiary, "a criatura da caçada entrou no bestiário")
-	# Caçada: matar 2 ratos no Esgoto; carga: achar o caixote.
+	# Caçada: matar 2 ratos no Esgoto; carga: achar o caixote. (O Esgoto já foi
+	# limpo neste teste e mortos continuam mortos: os grupos voltam só para a caçada.)
+	_arena._campaign.dead_groups = []
 	_arena.travel("prototype_arena", "start")
 	var spot: Array = GameData.arenas.prototype_arena.quest_spots[int(cargo.quest.spot)]
 	check.call(not _arena.prop_near(player, "quest_spot", "", 300.0).is_empty(), "carga perdida aparece no mapa")

@@ -301,6 +301,7 @@ func _rpc_accept(quest_id: String) -> void:
 	if quest.has("unlocks") and quest.unlocks not in c.unlocked:
 		c.unlocked.append(quest.unlocks)
 	SaveSystem.save_campaign(c, true)
+	learn(quest.get("bestiary", []))
 	sync()
 	_arena()._toast_all("TOAST_QUEST_ACCEPTED", {"quest": quest.name_key})
 
