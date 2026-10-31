@@ -1,5 +1,5 @@
 {
-  "_comment": "Itens base (05-itens-e-loot.md, seção 7). Mago: cajado e roupas de tecido; Arqueiro (Fase 5): arco, capuz de caçador e colete de couro; Ninja: adagas, máscara e o colete de couro; Invocador: livro (capuz e túnica do Mago); Cavaleiro: lança, elmo e armadura de placas. Armadura base por peça de 13-balanceamento.md 2.3.",
+  "_comment": "Itens base (05-itens-e-loot.md, seção 7). Mago: cajado e roupas de tecido; Arqueiro (Fase 5): arco, capuz de caçador e colete de couro; Ninja: adagas, máscara e o colete de couro; Invocador: livro (capuz e túnica do Mago); Cavaleiro: lança, elmo, armadura de placas e barda do cavalo (armadura 8, proposta; só conta montado). Armadura base por peça de 13-balanceamento.md 2.3.",
   "staff": {
     "slot": "weapon",
     "classes": [
@@ -127,5 +127,13 @@
     ],
     "name_key": "ITEM_TYPE_PLATE",
     "armor": 10
+  },
+  "barding": {
+    "slot": "barding",
+    "classes": [
+      "knight"
+    ],
+    "name_key": "ITEM_TYPE_BARDING",
+    "armor": 8
   }
 }

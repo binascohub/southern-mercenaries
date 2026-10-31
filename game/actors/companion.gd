@@ -178,7 +178,7 @@ func taunt_around(radius: float, time: float) -> void:
 # --- Dano e suporte (servidor) -------------------------------------------------------
 
 ## Golpe de monstro; mesma assinatura do herói.
-func take_damage(amount: float, _monster_level := 1) -> void:
+func take_damage(amount: float, _monster_level := 1, _attacker: Node3D = null) -> void:
 	if not multiplayer.is_server() or health <= 0.0:
 		return
 	if _shield > 0.0:

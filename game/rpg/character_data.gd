@@ -5,7 +5,7 @@ extends RefCounted
 ## (11-saves.md) e na rede, onde a cópia do servidor é a verdade durante a
 ## partida (07-rede.md, seção 8). Só IDs e números, nunca texto traduzido.
 
-const SLOTS: Array[String] = ["weapon", "head", "body", "hands", "feet", "ring_1", "ring_2", "amulet"]
+const SLOTS: Array[String] = ["weapon", "head", "body", "hands", "feet", "ring_1", "ring_2", "amulet", "barding"]
 const ATTRIBUTES: Array[String] = ["str", "dex", "int", "vit"]
 const SEXES: Array[String] = ["male", "female"]
 const NAME_MAX := 24
@@ -251,16 +251,19 @@ func power() -> float:
 	return weapon_damage() + attribute(class_data().power_attribute) * GameData.balance.power_attribute_factor
 
 
-func armor() -> float:
+## Armadura das peças; a barda do cavalo só conta com o Cavaleiro montado.
+func armor(with_barding := true) -> float:
 	var total := 0.0
-	for item in equipped():
-		total += Items.armor(item, class_data().armor_factor)
+	for slot in SLOTS:
+		var item: Variant = data.equipment.get(slot)
+		if item != null and (with_barding or slot != "barding"):
+			total += Items.armor(item, class_data().armor_factor)
 	return total
 
 
 ## Redução de dano contra um monstro de um nível (13-balanceamento.md 2.3).
-func damage_reduction(monster_level: int) -> float:
-	var a := armor()
+func damage_reduction(monster_level: int, with_barding := true) -> float:
+	var a := armor(with_barding)
 	var b: Dictionary = GameData.balance
 	return minf(a / (a + b.armor_base_constant + b.armor_base_per_monster_level * monster_level),
 		b.max_damage_reduction)
@@ -483,7 +486,7 @@ func unequip(slot: String) -> bool:
 ## Material de cada peça visível, para os outros jogadores verem (02-personagens.md).
 func equipment_visual() -> Dictionary:
 	var visual := {}
-	for slot in ["weapon", "head", "body", "hands", "feet"]:
+	for slot in ["weapon", "head", "body", "hands", "feet", "barding"]:
 		var item: Variant = data.equipment.get(slot)
 		if item != null:
 			visual[slot] = item.material

@@ -186,7 +186,7 @@ func _think(delta: float) -> void:
 			if _timer <= 0.0:
 				# No vapor (combo), erra parte dos ataques.
 				if dist <= data.attack_range + 0.4 and _rng.randf() >= status.miss_chance():
-					target.call(&"take_damage", data.damage * level_factor() * damage_mult, level)
+					target.call(&"take_damage", data.damage * level_factor() * damage_mult, level, self)
 				state = State.RECOVER
 				_timer = data.attack_cooldown
 		State.RECOVER:

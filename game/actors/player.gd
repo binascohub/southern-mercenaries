@@ -67,6 +67,8 @@ var shield := 0.0
 var hidden := false
 ## Cavaleiro montado (02-3-cavaleiro.md, seção 3).
 var mounted := false
+## Segurando o bloqueio (escudo, barreira ou aparar do Ninja).
+var blocking := false
 
 var data: Dictionary
 var move_speed := 5.0
@@ -93,6 +95,11 @@ var _manual_dismount := false
 var _remount_timer := 0.0
 var _body_shape: CapsuleShape3D
 var _horse: Node3D
+var _horse_material: StandardMaterial3D
+var _block_visual: MeshInstance3D
+## Bloqueio (servidor): quando apertou (para o aparar) e o que sobra da barreira do Mago.
+var _block_pressed_ms := -100000
+var _barrier_left := 0.0
 
 # Só no PC dono.
 var _local_input := PlayerInput.new()
@@ -378,7 +385,8 @@ func _send_local_input(delta: float) -> void:
 		or _local_input.attack_releases != _sent_input.attack_releases \
 		or _local_input.evade_presses != _sent_input.evade_presses \
 		or _local_input.interact_held != _sent_input.interact_held \
-		or _local_input.skill_presses != _sent_input.skill_presses
+		or _local_input.skill_presses != _sent_input.skill_presses \
+		or _local_input.block_held != _sent_input.block_held
 	if buttons_changed or _input_timer <= 0.0:
 		_input_timer = 1.0 / GameData.balance.net.input_rate_hz
 		_sent_input = _local_input
@@ -421,6 +429,7 @@ func _server_step(delta: float) -> void:
 	if input.potion_elemental_presses != _seen_extra.potion_elemental_presses:
 		_drink_next_elemental()
 	var mount_pressed := input.mount_presses != _seen_extra.mount_presses
+	var block_pressed := input.block_presses != _seen_extra.block_presses
 	var skill_pressed: Array[int] = []
 	for i in 4:
 		if input.skill_presses[i] != _seen_extra.skill_presses[i]:
@@ -455,6 +464,10 @@ func _server_step(delta: float) -> void:
 	global_position.y = 0.0
 	if data.has("momentum"):
 		_update_momentum(delta)
+	_update_block(delta, block_pressed)
+	if blocking:
+		charge_time = 0.0
+		return  # bloqueando não ataca nem usa habilidade
 	for i in skill_pressed:
 		_cast_slot(i)
 
@@ -517,8 +530,10 @@ func is_invulnerable() -> bool:
 
 
 ## Dano de um monstro; a armadura reduz conforme o nível dele (13-balanceamento.md 2.3).
-func take_damage(amount: float, monster_level := 1) -> void:
+func take_damage(amount: float, monster_level := 1, attacker: Node3D = null) -> void:
 	if not multiplayer.is_server() or not alive or is_invulnerable():
+		return
+	if _try_parry(attacker):
 		return
 	# Evasão do Ninja: desvia do golpe inteiro (e recupera Energia com a passiva).
 	if character and _rng_dodge.randf() < character.evasion_chance():
@@ -526,11 +541,12 @@ func take_damage(amount: float, monster_level := 1) -> void:
 		_show_dodge()
 		return
 	if character:
-		amount *= 1.0 - character.damage_reduction(monster_level)
+		amount *= 1.0 - character.damage_reduction(monster_level, mounted)
 	# Corpo de Ferro: menos dano por alguns segundos; Armadura Pesada sempre.
 	amount *= 1.0 - float(_buffs.get("iron_body", {}).get("value", 0.0))
 	if character:
 		amount *= 1.0 - character.passive_value("heavy_armor")
+	amount -= _blocked(amount, attacker)
 	# Pele de Pedra absorve primeiro.
 	if shield > 0.0:
 		var absorbed := minf(shield, amount)
@@ -578,13 +594,13 @@ func reset_at(spot: Vector3) -> void:
 
 
 func _show_dodge() -> void:
-	_dodge_text.rpc()
+	_float_text.rpc("HUD_DODGED")
 
 
 @rpc("authority", "call_local", "unreliable")
-func _dodge_text() -> void:
+func _float_text(key: String) -> void:
 	var label := Label3D.new()
-	label.text = tr("HUD_DODGED")
+	label.text = tr(key)
 	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	label.no_depth_test = true
 	label.font_size = 56
@@ -753,6 +769,69 @@ func _set_slot(index: int, key: String) -> void:
 		_push_character(0)
 
 
+# --- Bloqueio (02-personagens.md, "Ações básicas"; detalhes em cada classe) ---------
+
+## Segurar o bloqueio: Mago e Invocador erguem uma barreira (gasta o recurso por
+## dano), o Cavaleiro ergue o escudo (gasta Ímpeto por segundo), o Ninja apara.
+## O Arqueiro não bloqueia.
+func _update_block(delta: float, pressed: bool) -> void:
+	var rules: Dictionary = data.get("block", {})
+	if rules.is_empty() or not alive:
+		blocking = false
+		return
+	if pressed:
+		_block_pressed_ms = Time.get_ticks_msec()
+		_barrier_left = max_health * float(rules.get("max_fraction", 0.0))
+	blocking = _input.block_held
+	if blocking and rules.has("drain_per_second"):
+		resource = maxf(resource - float(rules.drain_per_second) * delta, 0.0)
+		if resource <= 0.0:
+			blocking = false
+
+
+## O golpe vem da frente do herói (o bloqueio só pega golpes frontais).
+func _is_frontal(attacker: Node3D) -> bool:
+	if attacker == null or not is_instance_valid(attacker):
+		return false
+	var to := Vector2(attacker.global_position.x - global_position.x, attacker.global_position.z - global_position.z)
+	return to.length() < 0.01 or facing.normalized().dot(to.normalized()) > 0.2
+
+
+## Aparar no tempo certo (Ninja): anula o golpe e contra-ataca com crítico garantido.
+func _try_parry(attacker: Node3D) -> bool:
+	var rules: Dictionary = data.get("block", {})
+	if not rules.has("parry_window") or not blocking or not (attacker is Enemy) or not _is_frontal(attacker):
+		return false
+	if Time.get_ticks_msec() - _block_pressed_ms > float(rules.parry_window) * 1000.0:
+		return false
+	var hit := {
+		"damage": power * float(rules.counter_power) * damage_mult(),
+		"element": element,
+		"state": String(Elements.data(element).get("basic_state", "")),
+		"crit_chance": 1.0,
+		"crit_mult": character.crit_mult() if character else GameData.elements.crit_mult,
+	}
+	get_parent().skills._strike(self, attacker, hit)
+	_float_text.rpc("HUD_PARRIED")
+	return true
+
+
+## Parte do golpe que o bloqueio segura (e o custo em recurso).
+func _blocked(amount: float, attacker: Node3D) -> float:
+	var rules: Dictionary = data.get("block", {})
+	if not blocking or rules.is_empty() or not _is_frontal(attacker):
+		return 0.0
+	var blocked := amount * float(rules.get("reduction", 0.0))
+	if rules.has("max_fraction"):
+		blocked = minf(blocked, _barrier_left)
+		_barrier_left -= blocked
+	if rules.has("resource_per_damage"):
+		var per := float(rules.resource_per_damage)
+		blocked = minf(blocked, resource / per)
+		resource -= blocked * per
+	return blocked
+
+
 # --- Cavaleiro: cavalo e Ímpeto ------------------------------------------------------
 
 ## Áreas estreitas desmontam sozinhas; ao sair, o cavalo volta depois de um assobio.
@@ -845,7 +924,7 @@ func _add_synchronizer() -> void:
 	var config := SceneReplicationConfig.new()
 	var always := [":net_position", ":facing", ":charge_time", ":revive_progress", ":evade_cooldown"]
 	var on_change := [":health", ":max_health", ":resource", ":max_resource", ":alive", ":connected",
-		":hero_name", ":level", ":equip_visual", ":potion_cooldown", ":armor_value", ":element", ":shield", ":hidden", ":mounted"]
+		":hero_name", ":level", ":equip_visual", ":potion_cooldown", ":armor_value", ":element", ":shield", ":hidden", ":mounted", ":blocking"]
 	for prop in always + on_change:
 		var path := NodePath("." + prop)
 		config.add_property(path)
@@ -975,6 +1054,21 @@ func _build_visual() -> void:
 
 	_build_gear()
 
+	# Bloqueio: barreira (ou o escudo erguido) à frente do herói.
+	if data.has("block"):
+		_block_visual = MeshInstance3D.new()
+		var barrier := BoxMesh.new()
+		barrier.size = Vector3(1.3, 1.5, 0.08)
+		_block_visual.mesh = barrier
+		var barrier_material := StandardMaterial3D.new()
+		barrier_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		barrier_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		barrier_material.albedo_color = Color(0.85, 0.85, 1.0, 0.3)
+		_block_visual.material_override = barrier_material
+		_block_visual.position = Vector3(0, 1.0, 0.75)
+		_block_visual.visible = false
+		_visual.add_child(_block_visual)
+
 	# Anel no chão com a cor do jogador.
 	var ring := MeshInstance3D.new()
 	var ring_mesh := TorusMesh.new()
@@ -1004,7 +1098,13 @@ func _build_visual() -> void:
 
 
 func _tick_visual(delta: float) -> void:
+	if _block_visual:
+		_block_visual.visible = blocking
 	if _horse:
+		# Barda do cavalo na cor do material; sem barda, pelagem e sela simples.
+		var barding: Variant = equip_visual.get("barding")
+		_horse_material.albedo_color = Color(GameData.materials[barding].color) if barding != null \
+			and GameData.materials.has(barding) else Color(0.32, 0.22, 0.14)
 		# Montado: o herói sobe no cavalo e o corpo (hitbox) fica maior.
 		_horse.visible = mounted
 		_visual.position.y = 0.6 if mounted else 0.0
@@ -1100,6 +1200,7 @@ func _update_gear() -> void:
 func _build_horse() -> Node3D:
 	var horse := Node3D.new()
 	var coat := _material(Color(0.32, 0.22, 0.14))
+	_horse_material = coat
 	var parts := [
 		[Vector3(0.6, 0.6, 1.6), Vector3(0, 0.95, 0)],
 		[Vector3(0.3, 0.6, 0.3), Vector3(0, 1.4, 0.75)],

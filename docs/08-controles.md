@@ -33,6 +33,7 @@
 | `skill_3` | R | X |
 | `skill_4` (habilidade final) | F | Y |
 | `evade` (esquiva / teleporte do Ninja) | Espaço | LT |
+| `block` (segurar: bloqueio / aparar do Ninja; o Arqueiro não bloqueia) — **proposta** | C | LB |
 | `mount` (Cavaleiro monta/desmonta) | Shift | L3 |
 | `potion_health` | 1 | Direcional ↓ |
 | `potion_mana` | 2 | Direcional ↑ |

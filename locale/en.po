@@ -1502,3 +1502,15 @@ msgstr "Helm"
 
 msgid "ITEM_TYPE_PLATE"
 msgstr "Plate Armor"
+
+msgid "HUD_PARRIED"
+msgstr "Parried!"
+
+msgid "ITEM_TYPE_BARDING"
+msgstr "Barding"
+
+msgid "SLOT_BARDING"
+msgstr "Barding"
+
+msgid "ACTION_BLOCK"
+msgstr "Block / parry"

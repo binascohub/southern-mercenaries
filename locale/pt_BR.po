@@ -1502,3 +1502,15 @@ msgstr "Elmo"
 
 msgid "ITEM_TYPE_PLATE"
 msgstr "Armadura de Placas"
+
+msgid "HUD_PARRIED"
+msgstr "Aparou!"
+
+msgid "ITEM_TYPE_BARDING"
+msgstr "Barda"
+
+msgid "SLOT_BARDING"
+msgstr "Barda"
+
+msgid "ACTION_BLOCK"
+msgstr "Bloquear / aparar"

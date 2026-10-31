@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 
-### Phase 5 — Classes and skills (in progress)
+### Phase 5 — Classes and skills
 - Skill system (`data/skills.json`, `Skills`, `SkillSystem`): 10 skills per class, ranks 1–5, unlocked at levels 1, 2, 4… 18, one skill point per level; the element's basic skill comes at rank 1 on hotkey 1. Element skills are stored by unlock level, so an Elemental Potion swaps them for the new element's with the same ranks.
 - Mage (`docs/02-1-mago.md`, section 6): Sharp Mind, Teleport, Mana Shield, Elemental Mastery and the 6 skills of each element (24), with effects for projectiles (Fireball explodes), novas, cones that push, lines, instant bolts, chains, buffs, shields, teleport, delayed strikes (Meteor, Earthquake) and lasting areas (Fire Wall, Blizzard freezing after 3 s, Tornado pulling, Storm bolts, Healing Rain). All damage goes through the element rules (weakness, combos, crits).
 - Hotkeys `skill_1`–`skill_4` validated on the server (rank, mana, cooldown); HUD skill bar with cooldowns and gray when out of mana; Skills window (K, or from the inventory) to learn ranks and set hotkeys; shield shown on the health bar.
@@ -18,7 +18,10 @@
 - Fix: woken monsters stayed in the sleep state and never chased or attacked (a `state = CHASE` line had ended up after a `return` in phase 3); found by the Summoner test, where companions only fight awake monsters.
 - Knight (`docs/02-3-cavaleiro.md`): mounted with inertia (120%) or on foot (95%, -25% damage); auto-dismount in rooms marked `narrow` (the test area's corridors) and remount after leaving, or the `mount` action; Momentum resource (gallop, hits, idle drain); lance, helm and plate item bases; horse, lance and shield placeholder visuals; mounted strong attack lunges forward.
 - Knight skills: Lance Thrust, Charge (mounted 15 m knockdown / on-foot shield rush), Heavy Armor, Challenge, Trample, Lance Sweep, Unstoppable, banners and three-charge finals with on-foot versions.
-- Not yet: Fire Wall does not block monsters; blocking and Ninja parry; horse barding slot; Book of Friends pages (with the maps).
+- Blocking (`block` action, C / LB — proposal added to `docs/08-controles.md`): frontal only; Mage barrier (mana per damage, up to 30% of max health), Summoner barrier (Essence per damage), Knight shield (-60%, 2 Momentum/s), Ninja parry (-50%, Energy per damage; within 0.3 s of pressing it cancels the hit and counter-attacks at 150% with a guaranteed crit). The Archer has no block.
+- Horse barding: new `barding` equipment slot for the Knight (item base `barding`, armor 8, proposal), shown on the horse and counted only while mounted; older characters get the empty slot.
+- Monsters' hits now carry the attacker, used for frontal blocks and parry counters.
+- Not yet: Fire Wall does not block monsters; Book of Friends pages (with the maps).
 
 ### Phase 4 — Elements
 - `data/elements.json` and `Elements` / `StatusSet`: weakness cycle (x1.5 / x0.5), basic state per element, states (burning, soaked, frozen, shocked, knocked down, stunned) with refresh-not-stack, immunities (fire monsters don't burn, water monsters aren't soaked) and bosses getting a slow instead of control (`docs/02-0-elementos.md`).

@@ -1501,3 +1501,15 @@ msgstr ""
 
 msgid "ITEM_TYPE_PLATE"
 msgstr ""
+
+msgid "HUD_PARRIED"
+msgstr ""
+
+msgid "ITEM_TYPE_BARDING"
+msgstr ""
+
+msgid "SLOT_BARDING"
+msgstr ""
+
+msgid "ACTION_BLOCK"
+msgstr ""

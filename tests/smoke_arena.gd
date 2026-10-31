@@ -428,6 +428,46 @@ func _skills_test() -> void:
 	for r in get_tree().get_nodes_in_group(&"enemies"):
 		total_after += r.health
 	check.call(total_after < total_before, "as habilidades tiraram vida dos ratos")
+	# Bloqueio de frente (o Arqueiro não bloqueia; o Ninja apara no tempo certo).
+	var rat: Enemy = get_tree().get_nodes_in_group(&"enemies")[0]
+	rat.global_position = player.global_position + Vector3(0, 0, 1.5)
+	player.facing = Vector2(0, 1)
+	player.alive = true
+	player.health = player.max_health
+	player.resource = player.max_resource
+	var block: Dictionary = player.data.get("block", {})
+	if block.has("parry_window"):
+		Input.action_press(&"block")
+		await get_tree().physics_frame
+		await get_tree().physics_frame
+		var rat_health := rat.health
+		var before := player.health
+		player.take_damage(30.0, 1, rat)
+		check.call(is_equal_approx(player.health, before) and rat.health < rat_health, "Ninja apara no tempo certo e contra-ataca")
+		Input.action_release(&"block")
+		await get_tree().physics_frame
+	elif not block.is_empty():
+		var before := player.health
+		player.take_damage(30.0, 1, rat)
+		var open_loss := before - player.health
+		player.health = player.max_health
+		Input.action_press(&"block")
+		await get_tree().physics_frame
+		await get_tree().physics_frame
+		check.call(player.blocking, "segurando o bloqueio")
+		var resource_before := player.resource
+		before = player.health
+		player.take_damage(30.0, 1, rat)
+		check.call(before - player.health < open_loss - 1.0, "bloqueio de frente reduz o dano (%.1f contra %.1f)" % [before - player.health, open_loss])
+		check.call(player.resource < resource_before, "bloquear gasta o recurso")
+		Input.action_release(&"block")
+		await get_tree().physics_frame
+	else:
+		Input.action_press(&"block")
+		await get_tree().physics_frame
+		check.call(not player.blocking, "o Arqueiro não bloqueia")
+		Input.action_release(&"block")
+	player.health = player.max_health
 	# Escudo absorve antes da vida; Escudo de Mana tira da mana.
 	player.alive = true
 	player.health = player.max_health

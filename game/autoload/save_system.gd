@@ -212,6 +212,9 @@ func migrate_character(d: Dictionary) -> Dictionary:
 		d.element = "fire"
 	if not d.is_empty() and not d.has("element_potion"):
 		d.element_potion = ""
+	# Fase 5: slot da barda do cavalo.
+	if not d.is_empty() and d.get("equipment") is Dictionary and not d.equipment.has("barding"):
+		d.equipment.barding = null
 	# Fase 5: habilidades. A de nível 1 da classe vem no rank 1 e no atalho 1.
 	if not d.is_empty() and not d.has("skills") and GameData.skills.classes.has(d.get("class_id", "")):
 		var first: String = Skills.keys(d.class_id)[0]

@@ -101,6 +101,8 @@ func _refresh() -> void:
 		var button: Button = _slot_buttons[slot]
 		button.text = "%s\n%s" % [tr("SLOT_" + slot.to_upper()), _short(item) if item else "—"]
 		button.add_theme_color_override("font_color", Items.color(item) if item else Color(0.6, 0.6, 0.6))
+		# Barda: só o Cavaleiro tem cavalo.
+		button.visible = slot != "barding" or cls.has("mount")
 	for i in _bag_buttons.size():
 		var item: Variant = d.inventory[i] if i < d.inventory.size() else null
 		var button := _bag_buttons[i]

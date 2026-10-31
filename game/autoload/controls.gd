@@ -18,7 +18,7 @@ const REMAPPABLE: Array[StringName] = [
 	&"move_up", &"move_down", &"move_left", &"move_right",
 	&"aim_up", &"aim_down", &"aim_left", &"aim_right",
 	&"attack", &"skill_1", &"skill_2", &"skill_3", &"skill_4",
-	&"evade", &"mount", &"potion_health", &"potion_mana", &"potion_elemental",
+	&"evade", &"block", &"mount", &"potion_health", &"potion_mana", &"potion_elemental",
 	&"interact", &"pickup_all", &"inventory", &"skills", &"menu", &"map", &"chat_quick",
 ]
 ## Ações analógicas: recebem a zona morta configurável.
@@ -230,6 +230,8 @@ func _build_defaults() -> void:
 	d[&"skill_4"] = _pair([key(KEY_F)], [pad(JOY_BUTTON_Y)])
 	d[&"evade"] = _pair([key(KEY_SPACE)], [axis(JOY_AXIS_TRIGGER_LEFT, 1)])
 	d[&"mount"] = _pair([key(KEY_SHIFT)], [pad(JOY_BUTTON_LEFT_STICK)])
+	# Bloquear / aparar (proposta, 08-controles.md): segurar.
+	d[&"block"] = _pair([key(KEY_C)], [pad(JOY_BUTTON_LEFT_SHOULDER)])
 	d[&"potion_health"] = _pair([key(KEY_1)], [pad(JOY_BUTTON_DPAD_DOWN)])
 	d[&"potion_mana"] = _pair([key(KEY_2)], [pad(JOY_BUTTON_DPAD_UP)])
 	d[&"potion_elemental"] = _pair([key(KEY_3)], [pad(JOY_BUTTON_DPAD_RIGHT)])

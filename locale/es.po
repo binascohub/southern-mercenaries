@@ -1502,3 +1502,15 @@ msgstr "Yelmo"
 
 msgid "ITEM_TYPE_PLATE"
 msgstr "Armadura de placas"
+
+msgid "HUD_PARRIED"
+msgstr "¡Desviado!"
+
+msgid "ITEM_TYPE_BARDING"
+msgstr "Barda"
+
+msgid "SLOT_BARDING"
+msgstr "Barda"
+
+msgid "ACTION_BLOCK"
+msgstr "Bloquear / desviar"

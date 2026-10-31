@@ -575,6 +575,21 @@ func _test_knight() -> void:
 	for element in Elements.ALL:
 		for key in Skills.keys("knight"):
 			_check(not Skills.def(Skills.skill_id("knight", key, element)).is_empty(), "habilidade do Cavaleiro %s/%s existe" % [element, key])
+	# Barda do cavalo: só o Cavaleiro equipa; a armadura só conta montado.
+	var barding := Items.equipment("barding", "iron", "common", 3)
+	_check(k.can_equip(barding) and not CharacterData.create("mage", "male", "Oren").can_equip(barding), "barda é só do Cavaleiro")
+	k.add_item(barding)
+	_check(k.equip_from_bag(k.data.inventory.find(barding)) and k.data.equipment.barding != null, "equipa a barda")
+	_check(k.armor(true) > k.armor(false), "barda conta montado, não a pé")
+	_check(k.equipment_visual().get("barding", "") == "iron", "barda aparece no cavalo")
+	var old := CharacterData.create("knight", "male", "Dorian")
+	old.data.equipment.erase("barding")
+	old.seal()
+	var migrated := CharacterData.from_dict(JSON.parse_string(JSON.stringify(old.to_dict())))
+	_check(migrated != null and migrated.data.equipment.has("barding") and not migrated.is_edited(), "ficha antiga ganha o slot da barda")
+	# Bloqueio por classe (02-personagens.md): só o Arqueiro não bloqueia.
+	for cls_id in GameData.classes:
+		_check(GameData.classes[cls_id].has("block") == (cls_id != "archer"), "bloqueio de %s" % cls_id)
 	# As 5 classes do jogo existem e são jogáveis.
 	_check(GameData.classes.size() == 5, "5 classes: %s" % [GameData.classes.keys()])
 
