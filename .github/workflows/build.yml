@@ -37,7 +37,7 @@ jobs:
         run: tests/godot_checked.sh godot --headless --path . res://tests/smoke_arena.tscn -- trade
       - name: Rede (host + cliente, versão diferente)
         run: tests/net_smoke.sh godot
-      - name: Captura de tela do inventário
+      - name: Capturas de tela (inventário, troca, Carregar campanha)
         if: success() || failure()
         continue-on-error: true
         run: |
@@ -45,6 +45,9 @@ jobs:
           xvfb-run -a -s "-screen 0 1280x720x24" \
             godot --path . --rendering-driver opengl3 --fixed-fps 60 res://tests/screenshot.tscn -- "$PWD/inventory.png" 900 inventory
           test -s inventory.png
+          xvfb-run -a -s "-screen 0 1280x720x24" \
+            godot --path . --rendering-driver opengl3 --fixed-fps 60 res://tests/ui_screens.tscn -- "$PWD"
+          test -s trade.png && test -s load_campaign.png
       - uses: actions/upload-artifact@v4
         if: success() || failure()
         with:
