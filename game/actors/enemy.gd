@@ -301,7 +301,7 @@ func _build_visual(size: float) -> void:
 	if element != "":
 		_element_gem = MeshInstance3D.new()
 		var gem := PrismMesh.new()
-		gem.size = Vector3(0.22, 0.3, 0.22)
+		gem.size = Vector3(0.3, 0.4, 0.3)
 		_element_gem.mesh = gem
 		var gem_material := StandardMaterial3D.new()
 		gem_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
@@ -321,8 +321,8 @@ func _tick_visual(delta: float) -> void:
 	# Dormindo: olhos quase apagados.
 	_eye_material.albedo_color = Color(0.25, 0.05, 0.03) if state == State.SLEEP else Color(1.0, 0.15, 0.1)
 	if _element_gem:
+		# Sempre visível: dá para planejar o elemento antes de acordar o grupo.
 		_element_gem.rotation.y += delta * 2.0
-		_element_gem.visible = state != State.SLEEP
 	# O estado mais forte tinge o corpo (congelado fica quase branco; queimando pisca).
 	var tint := Color(0, 0, 0, 0)
 	for id in StatusSet.ids_from_mask(states_mask):
