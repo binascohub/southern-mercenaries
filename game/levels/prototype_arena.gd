@@ -2035,25 +2035,31 @@ func _crystal_glow() -> void:
 
 ## Peça do kit na tinta do estilo; os materiais tingidos são compartilhados
 ## (um por material original), então custa pouco por peça.
-func _tint_piece(node: Node3D) -> void:
-	if _style_tint == Color.WHITE:
+func _tint_piece(node: Node3D, extra := Color.WHITE) -> void:
+	if _style_tint == Color.WHITE and extra == Color.WHITE:
 		return
+	var tint := _style_tint * extra
 	for mesh in node.find_children("*", "MeshInstance3D", true, false):
 		var m := mesh as MeshInstance3D
 		for i in m.get_surface_override_material_count():
 			var material := m.get_active_material(i) as StandardMaterial3D
 			if material == null:
 				continue
-			if not _tinted.has(material):
+			var key := [material, extra]
+			if not _tinted.has(key):
 				var copy := material.duplicate() as StandardMaterial3D
-				copy.albedo_color = copy.albedo_color * _style_tint
-				_tinted[material] = copy
-			m.set_surface_override_material(i, _tinted[material])
+				copy.albedo_color = copy.albedo_color * tint
+				copy.roughness = maxf(copy.roughness, 0.9) if extra != Color.WHITE else copy.roughness
+				copy.metallic = 0.0 if extra != Color.WHITE else copy.metallic
+				_tinted[key] = copy
+			m.set_surface_override_material(i, _tinted[key])
 
 
 ## Lixo jogado pelo chão do esgoto: garrafas e canecas caídas, cacos de pote,
 ## sacos, cordas, baldes virados, tábuas quebradas e trapos/papéis. Só visual;
 ## espalhado pela posição da sala (igual em todos os PCs), mais perto das paredes.
+## Lixo coberto de limo: bem mais escuro e esverdeado que o resto (sem brilho).
+const TRASH_GRIME := Color(0.45, 0.5, 0.36)
 const TRASH := ["Bottle_1", "Bottle_1", "Mug", "Mug_Wood", "Pot_Small_Shards", "Pot_Large_Shards",
 	"Bag", "Rope_1", "Bucket_Wooden_1", "Vase_Big_Shards"]
 
@@ -2088,7 +2094,7 @@ func _scatter_trash(room: Dictionary, c: Vector3, half: Vector3) -> void:
 		elif piece_name.ends_with("_Shards"):
 			node.scale = Vector3(1.0, 0.25, 1.0)  # os cacos espalhados, rentes ao chão
 		_area_root.add_child(node)
-		_tint_piece(node)
+		_tint_piece(node, TRASH_GRIME)
 
 
 ## Trapo, papel ou tábua quebrada no chão (caixas finas na cor da sujeira).
@@ -2101,7 +2107,7 @@ func _trash_scrap(at: Vector3, rng: RandomNumberGenerator) -> void:
 	scrap.mesh = box
 	var colors := [Color(0.24, 0.17, 0.1), Color(0.33, 0.3, 0.22), Color(0.2, 0.22, 0.16), Color(0.4, 0.36, 0.28)]
 	var material := StandardMaterial3D.new()
-	material.albedo_color = colors[0] if plank else colors[1 + rng.randi() % 3]
+	material.albedo_color = (colors[0] if plank else colors[1 + rng.randi() % 3]) * Color(0.7, 0.78, 0.6)
 	material.roughness = 0.95
 	scrap.material_override = material
 	scrap.position = at + Vector3(0, 0.02, 0)
