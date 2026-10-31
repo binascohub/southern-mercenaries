@@ -257,6 +257,8 @@ func _think(delta: float) -> void:
 				velocity = Vector3.ZERO
 				_strike = data.get("spit", {})
 				get_tree().call_group(&"arena", &"telegraph", _spit_at, float(_strike.get("radius", 1.5)), _timer)
+				if _strike.has("glob"):
+					_throw_glob.rpc(_spit_at, _timer)
 			elif ai != "ranged" and dist <= data.attack_range:
 				_special = ""
 				state = State.WINDUP
@@ -448,6 +450,32 @@ func _hurt(amount: float, effect: String, hit_element: String, crit: bool, combo
 			_shatter.rpc()
 		died.emit(self)
 		queue_free()
+
+
+## Veneno arremessado (todos os PCs): uma bola que sai do ferrão em arco e cai
+## no aviso quando o golpe acontece.
+@rpc("authority", "call_local", "reliable")
+func _throw_glob(at: Vector3, time: float) -> void:
+	var c: Array = _strike.get("glob", data.get("spit", {}).get("glob", [0.45, 0.85, 0.2]))
+	var color := Color(c[0], c[1], c[2])
+	var glob := Node3D.new()
+	get_parent().add_child(glob)
+	var start := global_position + Vector3.UP * 0.9 * float(data.size)
+	glob.global_position = start
+	Fx.orb(glob, color, "water", 0.16)
+	Fx.trail(glob, color, "water", 0.12)
+	var flight := minf(time, 0.6)
+	var delay := maxf(time - flight, 0.0)
+	var peak := (start + at) / 2.0 + Vector3.UP * 2.2
+	var tween := glob.create_tween()
+	tween.tween_interval(delay)
+	tween.tween_property(glob, "global_position", peak, flight / 2.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(glob, "global_position", at + Vector3.UP * 0.1, flight / 2.0).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+	tween.tween_callback(func() -> void:
+		Fx.burst(get_parent(), at, float(_strike.get("radius", 1.5)), color, "water", 0.5)
+		glob.queue_free())
+	if _model:
+		_model.play("attack")
 
 
 ## Pote quebrado (todos os PCs): os cacos voam para fora, caem girando, ficam

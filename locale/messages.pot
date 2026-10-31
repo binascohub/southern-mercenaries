@@ -2178,6 +2178,9 @@ msgstr ""
 msgid "MONSTER_PLAGUE_BAT"
 msgstr ""
 
+msgid "MONSTER_VENOM_SCORPION"
+msgstr ""
+
 msgid "MONSTER_ACID_TOAD"
 msgstr ""
 

@@ -2179,6 +2179,9 @@ msgstr "Ratazana Mutante"
 msgid "MONSTER_PLAGUE_BAT"
 msgstr "Morcego Pestilento"
 
+msgid "MONSTER_VENOM_SCORPION"
+msgstr "Escorpião Venenoso"
+
 msgid "MONSTER_ACID_TOAD"
 msgstr "Sapo Ácido"
 

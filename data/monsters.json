@@ -367,6 +367,38 @@
     "element": "",
     "dummy": true
   },
+  "venom_scorpion": {
+    "_comment": "Escorpião venenoso (sunburn, CC BY 3.0; pedido do autor): à distância, arremessa o veneno do ferrão em arco; a bola cai na marca do chão e deixa uma poça venenosa. Mantém distância. Para os próximos mapas.",
+    "name_key": "MONSTER_VENOM_SCORPION",
+    "max_health": 70,
+    "move_speed": 2.2,
+    "damage": 11,
+    "attack_range": 9.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 2.6,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "ai": "ranged",
+    "keep_distance": 5.5,
+    "spit": {
+      "radius": 1.5,
+      "puddle_time": 5.0,
+      "puddle_dps": 5.0,
+      "glob": [
+        0.5,
+        0.85,
+        0.15
+      ]
+    },
+    "look": "scorpion",
+    "color": [
+      0.45,
+      0.32,
+      0.2
+    ]
+  },
   "rat_nest": {
     "_comment": "Ninho de filhotes da fase 2 da Rainha: não anda nem ataca; enquanto existir, ela regenera. Fogo causa dano dobrado (03-inimigos.md).",
     "name_key": "MONSTER_RAT_NEST",

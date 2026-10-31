@@ -26,6 +26,10 @@ const FAMILIES := {
 	# costas (34,5 unidades de altura: ~2,5 m por unidade de size). Para os mapas seguintes.
 	"forest": {"scene": "res://assets/models/monsters/forest_monster.glb", "scale": 0.072,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
+	# Escorpião (sunburn, CC BY 3.0): sem esqueleto; as peças (corpo, pinças,
+	# patas) são animadas aqui ("procedural"). ~1 m por unidade de size.
+	"scorpion": {"scene": "res://assets/models/monsters/scorpion.glb", "scale": 1.5, "procedural": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
 	# O morcego guarda o tamanho original do arquivo (envergadura ~10 unidades).
 	"bat": {"scene": "res://assets/models/monsters/bat.glb", "scale": 0.2,
 		"anims": {"idle": "fly", "walk": "fly", "run": "fly", "attack": "fly", "die": "die"}},
@@ -71,6 +75,9 @@ var _wing_color := WING_COLOR
 ## Asas levantadas (radianos para cima, além da batida).
 var _wing_raise := 0.0
 var _tail: Node3D
+## Peças animadas à mão (escorpião): nome -> [nó, transformação de repouso].
+var _parts := {}
+var _action_time := 0.0
 
 
 static func has_family(look: String) -> bool:
@@ -101,6 +108,15 @@ func setup(look: String, size: float, tint: Color) -> bool:
 			copy.cull_mode = BaseMaterial3D.CULL_DISABLED
 			mesh.set_surface_override_material(i, copy)
 			_materials.append(copy)
+	if info.get("procedural", false):
+		for key: String in info.anims:
+			_names[key] = info.anims[key]
+		for node in model.find_children("*", "Node3D", true, false):
+			var part := node as Node3D
+			if String(part.name).begins_with("Leg_") or String(part.name).begins_with("Claw_") or String(part.name) == "Body":
+				_parts[String(part.name)] = [part, part.transform]
+		_current = "idle"
+		return true
 	_anim = model.find_child("AnimationPlayer", true, false) as AnimationPlayer
 	if _anim:
 		for key: String in info.anims:
@@ -332,6 +348,8 @@ func _add_wings(parent: Node3D, at: Vector3) -> void:
 
 
 func _process(delta: float) -> void:
+	if not _parts.is_empty():
+		_animate_parts(delta)
 	if not _follows.is_empty() and _skeleton:
 		var to_model := global_transform.affine_inverse() * _skeleton.global_transform
 		for follow: Array in _follows:
@@ -360,6 +378,36 @@ func _process(delta: float) -> void:
 		wing.rotation.z = (flap + _wing_raise) * side
 
 
+## Escorpião: patas em onda ao andar, pinças abrindo e fechando no ataque,
+## corpo subindo e descendo; na morte, cai de lado.
+func _animate_parts(delta: float) -> void:
+	_time += delta
+	_action_time += delta
+	var moving := _current in ["walk", "run"]
+	var t := _time * (11.0 if moving else 2.0)
+	for part_name: String in _parts:
+		var entry: Array = _parts[part_name]
+		var node: Node3D = entry[0]
+		var rest: Transform3D = entry[1]
+		var turn := Vector3.ZERO
+		if part_name.begins_with("Leg_"):
+			var index := int(part_name.get_slice("_", 2))
+			var side := 1.0 if part_name.contains("_L_") else -1.0
+			var phase := index * 2.1 + (0.0 if side > 0.0 else PI)
+			turn = Vector3(0.0, sin(t + phase) * (0.45 if moving else 0.05), cos(t + phase) * (0.25 if moving else 0.03) * side)
+		elif part_name.begins_with("Claw_"):
+			var side := 1.0 if part_name.ends_with("L") else -1.0
+			var snap := sin(minf(_action_time / 0.5, 1.0) * PI) if _current == "attack" else 0.0
+			turn = Vector3(-0.5 * snap, (0.35 * snap + 0.05 * sin(_time * 1.7)) * side, 0.0)
+		elif part_name == "Body":
+			var lift := sin(t * 2.0) * (0.015 if moving else 0.006)
+			node.transform = rest.translated(Vector3(0, lift, 0))
+			continue
+		node.transform = Transform3D(rest.basis * Basis.from_euler(turn), rest.origin)
+	if _current == "die":
+		rotation.z = lerpf(rotation.z, PI * 0.9, minf(delta * 4.0, 1.0))
+
+
 ## As asas de morcego brotam das costas (a Rainha na metade da vida).
 func show_wings(out: bool) -> void:
 	_wings_out = out
@@ -378,6 +426,10 @@ func play(key: String, blend := BLEND) -> void:
 	if _hero:
 		_current = key
 		_hero.play_key(_names[key], blend)
+		return
+	if not _parts.is_empty():
+		_current = key
+		_action_time = 0.0
 		return
 	if _anim == null:
 		return

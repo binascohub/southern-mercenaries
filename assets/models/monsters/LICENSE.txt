@@ -18,3 +18,8 @@ bat.glb   — "Bat with fire,ice and blood versions" by danimal
 forest_monster.glb — "Forest Monster" by cdmir
             https://opengameart.org/content/forest-monster
             CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+
+scorpion.glb — "Scorpion" by sunburn
+            https://opengameart.org/content/scorpion
+            Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/
+            Changes: decimated, parts kept separate for procedural animation, dark chitin color (tools/assets/build_scorpion.py).

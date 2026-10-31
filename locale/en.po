@@ -2179,6 +2179,9 @@ msgstr "Mutant Rat"
 msgid "MONSTER_PLAGUE_BAT"
 msgstr "Plague Bat"
 
+msgid "MONSTER_VENOM_SCORPION"
+msgstr "Venom Scorpion"
+
 msgid "MONSTER_ACID_TOAD"
 msgstr "Acid Toad"
 
