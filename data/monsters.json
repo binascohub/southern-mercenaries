@@ -411,7 +411,7 @@
     "aggro_range": 0.0,
     "size": 1.0,
     "category": "common",
-    "element": "",
+    "element": "earth",
     "ai": "flee",
     "rare_spawn": 0.3,
     "no_loot": true,
