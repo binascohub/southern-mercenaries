@@ -9,14 +9,17 @@ extends Node3D
 ##
 ## A cor do monstro (dados "color") tinge a textura de leve; o aviso do golpe,
 ## o golpe sofrido e os estados elementais tingem por cima (set_color).
+## A Rainha dos Ratos tem corpo humano (HeroModel, roupa escura) com a cabeça
+## do rato no lugar da humana; cabeça, coroa e asas seguem os ossos do corpo.
 ## A Rainha ganha asas de morcego (feitas aqui: membrana e dedos) quando chega
 ## à metade da vida: elas brotam das costas e batem, mais rápido no ataque.
 
 const FAMILIES := {
 	"rat": {"scene": "res://assets/models/monsters/rat.glb", "scale": 1.35,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
-	"queen": {"scene": "res://assets/models/monsters/rat.glb", "scale": 1.35,
-		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	# A Rainha: corpo humano (o dos heróis, com as animações deles) e cabeça de rato.
+	"queen": {"scene": "res://assets/models/monsters/rat_head.glb", "humanoid": true, "scale": 0.6,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "melee", "hit": "hit", "die": "death"}},
 	"gator": {"scene": "res://assets/models/monsters/gator.glb", "scale": 0.75,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
 	# O morcego guarda o tamanho original do arquivo (envergadura ~10 unidades).
@@ -47,6 +50,13 @@ var _head_rest := Vector3.ZERO
 ## Topo da cabeça do rato em repouso (unidades do modelo; frente +Z).
 const CROWN_AT := Vector3(0, 0.215, 0.39)
 var _wings_out := false
+## Corpo humano (a Rainha) e as peças presas aos ossos: [nó, osso, deslocamento].
+var _hero: HeroModel
+var _follows: Array = []
+var _wing_size := 1.0
+## Pescoço da cabeça de rato (rat_head.glb, unidades do rato) e o tamanho dela no corpo.
+const RAT_NECK := Vector3(0, 0.12, 0.33)
+const RAT_HEAD_SCALE := 1.6
 const WING_COLOR := Color(0.22, 0.14, 0.16)
 
 
@@ -60,6 +70,8 @@ func setup(look: String, size: float, tint: Color) -> bool:
 		return false
 	family = look
 	var info: Dictionary = FAMILIES[look]
+	if info.get("humanoid", false):
+		return _setup_humanoid(info, size, tint)
 	var model := (load(info.scene) as PackedScene).instantiate()
 	add_child(model)
 	scale = Vector3.ONE * size * float(info.scale)
@@ -85,16 +97,70 @@ func setup(look: String, size: float, tint: Color) -> bool:
 				_anim.get_animation(wanted).loop_mode = Animation.LOOP_NONE if key in ONCE and wanted != "fly" \
 					else Animation.LOOP_LINEAR
 		play("idle", 0.0)
-	if look == "queen":
-		_add_wings()
-		_add_crown()
 	return true
 
 
+## Corpo humano com cabeça de rato: as animações são as dos heróis.
+func _setup_humanoid(info: Dictionary, size: float, tint: Color) -> bool:
+	scale = Vector3.ONE * size * float(info.scale)
+	_tint = Color.WHITE.lerp(tint, 0.35)
+	_hero = HeroModel.new()
+	add_child(_hero)
+	_hero.setup("male", {"hair": [], "hair_color": [0.2, 0.15, 0.1]})
+	_hero.set_outfit({"body": "iron", "hands": "iron", "feet": "iron"})
+	_hero.hide_parts(["Head", "Eyes", "Eyebrows"])
+	_hero.tint_skin(Color(0.36, 0.29, 0.26))  # pelagem nas mãos
+	for key: String in info.anims:
+		_names[key] = info.anims[key]
+	var head := Node3D.new()
+	add_child(head)
+	head.add_child((load(info.scene) as PackedScene).instantiate())
+	for node in head.find_children("*", "MeshInstance3D", true, false):
+		var mesh := node as MeshInstance3D
+		for i in mesh.get_surface_override_material_count():
+			var source := mesh.get_active_material(i) as StandardMaterial3D
+			if source:
+				var copy := source.duplicate() as StandardMaterial3D
+				copy.albedo_color = _tint
+				copy.cull_mode = BaseMaterial3D.CULL_DISABLED
+				mesh.set_surface_override_material(i, copy)
+				_materials.append(copy)
+	var back := Node3D.new()
+	add_child(back)
+	_skeleton = _hero.skeleton
+	if _skeleton and _skeleton.find_bone("Head") >= 0 and _skeleton.find_bone("spine_03") >= 0:
+		var neck := _rest_in_model("Head").origin
+		_follow_bone(head, "Head", Transform3D(Basis.from_scale(Vector3.ONE * RAT_HEAD_SCALE),
+			neck - RAT_NECK * RAT_HEAD_SCALE + Vector3(0, 0.05, 0)))
+		_follow_bone(back, "spine_03", Transform3D(Basis(), _rest_in_model("spine_03").origin + Vector3(0, 0.05, -0.12)))
+	else:
+		head.position = Vector3(0, 1.6, 0) - RAT_NECK * RAT_HEAD_SCALE
+		head.scale = Vector3.ONE * RAT_HEAD_SCALE
+		back.position = Vector3(0, 1.35, -0.12)
+	_add_crown(head, false)
+	_wing_size = 1.6
+	_add_wings(back, Vector3(0.08, 0, 0))
+	play("idle", 0.0)
+	return true
+
+
+## Pose de descanso do osso nas coordenadas deste nó.
+func _rest_in_model(bone: String) -> Transform3D:
+	var to_model := global_transform.affine_inverse() * _skeleton.global_transform
+	return to_model * _skeleton.get_bone_global_rest(_skeleton.find_bone(bone))
+
+
+## `node` acompanha o osso: em repouso fica em `at` (coordenadas deste nó).
+func _follow_bone(node: Node3D, bone: String, at: Transform3D) -> void:
+	var rest := _rest_in_model(bone)
+	_follows.append([node, _skeleton.find_bone(bone), rest.affine_inverse() * at])
+	node.transform = at
+
+
 ## Coroa de ouro com pontas (a coroa torta do rei caído), na cabeça.
-func _add_crown() -> void:
+func _add_crown(parent: Node3D, follow_head: bool) -> void:
 	_crown = Node3D.new()
-	add_child(_crown)
+	parent.add_child(_crown)
 	_crown.position = CROWN_AT
 	_crown.rotation = Vector3(-0.25, 0, 0.18)  # torta, caindo para trás
 	var gold := StandardMaterial3D.new()
@@ -134,6 +200,8 @@ func _add_crown() -> void:
 	gem.material_override = red
 	gem.position = Vector3(0, 0.0, 0.075)
 	_crown.add_child(gem)
+	if not follow_head:
+		return
 	_skeleton = find_child("Skeleton3D", true, false) as Skeleton3D
 	if _skeleton:
 		_head_bone = _skeleton.find_bone("Head")
@@ -143,7 +211,7 @@ func _add_crown() -> void:
 
 ## Duas asas de morcego nas costas (em unidades do modelo: o rato tem 1 m, a
 ## frente é +Z): membrana com a borda recortada entre os dedos.
-func _add_wings() -> void:
+func _add_wings(parent: Node3D, at: Vector3) -> void:
 	_wing_material = StandardMaterial3D.new()
 	_wing_material.albedo_color = WING_COLOR
 	_wing_material.roughness = 0.65
@@ -160,10 +228,10 @@ func _add_wings() -> void:
 	edge.append(Vector3(0.05, 0.0, -0.3))
 	for side in [-1.0, 1.0]:
 		var pivot := Node3D.new()
-		pivot.position = Vector3(0.07 * side, 0.27, 0.1)
+		pivot.position = Vector3(at.x * side, at.y, at.z)
 		pivot.scale = Vector3(side, 1, 1) * 0.001
 		pivot.visible = false
-		add_child(pivot)
+		parent.add_child(pivot)
 		var st := SurfaceTool.new()
 		st.begin(Mesh.PRIMITIVE_TRIANGLES)
 		for i in range(1, edge.size() - 1):
@@ -190,6 +258,10 @@ func _add_wings() -> void:
 
 
 func _process(delta: float) -> void:
+	if not _follows.is_empty() and _skeleton:
+		var to_model := global_transform.affine_inverse() * _skeleton.global_transform
+		for follow: Array in _follows:
+			(follow[0] as Node3D).transform = to_model * _skeleton.get_bone_global_pose(follow[1]) * (follow[2] as Transform3D)
 	if _crown and _head_bone >= 0:
 		# A cabeça se mexe com a animação: a coroa vai junto (em unidades do modelo).
 		var moved := _skeleton.get_bone_global_pose(_head_bone).origin - _head_rest
@@ -206,7 +278,7 @@ func _process(delta: float) -> void:
 	for wing in _wings:
 		var side := signf(wing.scale.x)
 		wing.visible = _wings_out
-		wing.scale = Vector3(side, 1, 1) * grow
+		wing.scale = Vector3(side, 1, 1) * grow * _wing_size
 		wing.rotation.z = flap * side
 
 
@@ -223,7 +295,13 @@ func wings_out() -> bool:
 
 ## Toca a animação (idle, walk, run, attack, hit, die) se ainda não está nela.
 func play(key: String, blend := BLEND) -> void:
-	if _anim == null or key == _current or not _names.has(key):
+	if key == _current or not _names.has(key):
+		return
+	if _hero:
+		_current = key
+		_hero.play_key(_names[key], blend)
+		return
+	if _anim == null:
 		return
 	_current = key
 	_anim.play(_names[key], blend)
@@ -240,6 +318,8 @@ func set_color(color: Color) -> void:
 		material.albedo_color = final
 	if _wing_material:
 		_wing_material.albedo_color = WING_COLOR * color
+	if _hero:
+		_hero.set_effects(color != Color.WHITE, 1.0, Color(0, 0, 0, 0))
 
 
 ## Animações que este modelo tem (testes).

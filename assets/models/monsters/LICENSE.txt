@@ -1,6 +1,6 @@
 Sewer monsters of Southern Mercenaries, converted by tools/assets/build_monsters.py.
 
-rat.glb   — "Evil Giant Rat" by cdmir
+rat.glb, rat_head.glb — "Evil Giant Rat" by cdmir (rat_head.glb: only the head, for the Rat Queen)
             https://opengameart.org/content/evil-giant-rat
             CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
 

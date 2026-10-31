@@ -146,6 +146,29 @@ func visible_parts() -> Array[String]:
 	return shown
 
 
+## Esconde peças (a Rainha dos Ratos: sem cabeça humana, a de rato no lugar).
+func hide_parts(names: Array) -> void:
+	for part_name: String in names:
+		if _parts.has(part_name):
+			(_parts[part_name] as MeshInstance3D).visible = false
+
+
+## Pinta a pele (materiais "Regular": braços, mãos) — a pelagem da Rainha.
+func tint_skin(color: Color) -> void:
+	for i in _materials.size():
+		if String(_materials[i].resource_name).contains("Regular"):
+			_base_colors[i] = color
+			_materials[i].albedo_color = color
+
+
+## Toca uma animação pela chave (idle, walk, run, melee, hit, death…), sem a
+## lógica de estado do herói (monstros de corpo humano).
+func play_key(key: String, blend := BLEND) -> void:
+	if _anim and _names.has(key):
+		_action = ""
+		_play(key, blend)
+
+
 ## Golpe sofrido (pisca vermelho), invisível (Bomba de Fumaça) e o brilho do
 ## conjunto de armadura em +4 (Color com alfa 0 = sem brilho).
 func set_effects(flash: bool, alpha: float, glow: Color) -> void:
