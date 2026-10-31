@@ -654,12 +654,12 @@ func _town_test() -> void:
 	var hero := player.character
 	hero.data.free_points = 0
 	hero.data.attributes.int = int(hero.data.attributes.int) + 5
-	var price := hero.respec_price()
+	var respec_cost := hero.respec_price()
 	var gold_before := int(hero.data.gold)
 	player.teleport_to(Vector3(-22, 0, 3.5))
 	town._rpc_service("master", "respec")
 	hero = player.character
-	check.call(int(hero.data.free_points) == 5 * (int(hero.data.level) - 1) and int(hero.data.gold) == gold_before - price, "Mestre devolve os pontos por %d" % price)
+	check.call(int(hero.data.free_points) == 5 * (int(hero.data.level) - 1) and int(hero.data.gold) == gold_before - respec_cost, "Mestre devolve os pontos por %d" % respec_cost)
 	_report(checks.is_empty(), "cidade: " + ("tudo certo" if checks.is_empty() else "; ".join(PackedStringArray(checks))))
 
 

@@ -6,7 +6,8 @@
 # Uso: tests/godot_checked.sh godot --headless --path . res://tests/rpg_tests.tscn
 set -o pipefail
 log="$(mktemp)"
-"$@" 2>&1 | tee "$log"
+# Limite de tempo: um script que não compila deixa o Godot parado, sem sair.
+timeout --signal=KILL "${GODOT_TEST_TIMEOUT:-300}" "$@" 2>&1 | tee "$log"
 status=$?
 if grep -qE "SCRIPT ERROR|^ERROR:" "$log"; then
   if [ -n "${GITHUB_ACTIONS:-}" ]; then
