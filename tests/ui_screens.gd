@@ -114,6 +114,7 @@ func _physics_process(delta: float) -> void:
 	elif _frame == SHOP_SHOT:
 		await _shot("shop.png")
 		_arena._shop_menu.close()
+		_arena._camera.distance = 10.5
 	elif _frame == SEWER_FRAME:
 		_open_sewers()
 	elif _frame == SEWER_SHOT:
@@ -248,6 +249,8 @@ func _go_to_dock() -> void:
 	var player: Player = _arena.local_player
 	player.teleport_to(Vector3(0, 0, -24.4))  # a 2,2 m do vendedor (alcance 2,8 m)
 	player.facing = Vector2(0, -1)
+	# Vista aberta: o vendedor no fim do píer e o navio atracado atrás dele.
+	_arena._camera.distance = TopDownCamera.ZOOM_MAX
 	_arena._camera.snap()
 
 
