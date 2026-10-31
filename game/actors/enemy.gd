@@ -751,7 +751,9 @@ func _build_visual(size: float) -> void:
 		gem_material.albedo_color = Elements.color(element)
 		_element_gem.material_override = gem_material
 		_element_gem.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-		_element_gem.position.y = 0.6 * size + 0.55
+		# Acima do corpo (no voador, acima de onde ele voa: senão cobre o morcego).
+		_element_gem.position.y = 0.6 * size + 0.55 + (1.3 if data.get("flyer", false) else 0.0)
+		_element_gem.scale = Vector3.ONE * 0.7
 		add_child(_element_gem)
 
 
