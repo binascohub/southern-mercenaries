@@ -122,6 +122,13 @@ func _physics_process(delta: float) -> void:
 	elif _frame == QUEEN_FRAME:
 		_open_queen()
 	elif _frame == QUEEN_SHOT:
+		# A Rainha no meio da tela, de asas abertas: o herói logo abaixo dela.
+		for e: Enemy in get_tree().get_nodes_in_group(&"enemies"):
+			if e.monster_id == "demon_rat_queen":
+				_arena.local_player.teleport_to(e.global_position + Vector3(0, 0, 6))
+		_arena._camera.snap()
+		await get_tree().process_frame
+		await get_tree().process_frame
 		await _shot("queen.png")
 	elif _frame == MENU_FRAME:
 		_open_load_campaign()
