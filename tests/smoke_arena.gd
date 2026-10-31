@@ -713,6 +713,11 @@ func _town_test() -> void:
 		add_child(probe)
 		check.call(probe.model_family() != "", "%s com modelo animado" % monster_id)
 		check.call(probe.model_animation() == "idle", "%s parado em idle (%s)" % [monster_id, probe.model_animation()])
+		if monster_id == "demon_rat_queen":
+			check.call(not probe.has_wings(), "Rainha sem asas com a vida cheia")
+			probe.health = probe.max_health * 0.4
+			probe._tick_visual(0.016)
+			check.call(probe.has_wings(), "Rainha ganha asas de morcego na metade da vida")
 		probe.queue_free()
 	# Toda peça citada no estilo e no cenário das áreas existe no kit.
 	var missing: Array[String] = []

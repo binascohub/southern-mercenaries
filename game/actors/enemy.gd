@@ -713,6 +713,9 @@ func _tick_model(delta: float, tint: Color) -> void:
 	if _model.current() == "attack" and state == State.RECOVER:
 		key = "attack"  # deixa o golpe terminar
 	_model.play(key)
+	# A Rainha ganha asas de morcego na metade da vida (e as mantém).
+	if data.get("look", "") == "queen" and health > 0.0 and health <= max_health * 0.5:
+		_model.show_wings(true)
 	var color := Color.WHITE
 	if _flash > 0.0:
 		color = Color(1.8, 1.8, 1.8)
@@ -730,3 +733,7 @@ func model_family() -> String:
 
 func model_animation() -> String:
 	return _model.current() if _model else ""
+
+
+func has_wings() -> bool:
+	return _model != null and _model.wings_out()
