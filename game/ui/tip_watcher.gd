@@ -96,6 +96,10 @@ func _check_enemies(player: Player, c: CharacterData) -> void:
 		var enemy := node as Enemy
 		if enemy == null:
 			continue
+		if enemy.data.get("breakable", false):
+			if enemy.global_position.distance_to(player.global_position) < 6.0:
+				TipManager.notify("breakable_near")
+			continue
 		if enemy.state == Enemy.State.SLEEP or enemy.health <= 0.0 \
 				or enemy.global_position.distance_to(player.global_position) > ENEMY_NEAR:
 			continue

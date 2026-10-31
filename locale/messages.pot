@@ -2291,3 +2291,15 @@ msgstr ""
 
 msgid "JOURNAL_RELICS"
 msgstr ""
+
+msgid "PROP_BARREL"
+msgstr ""
+
+msgid "PROP_CRATE"
+msgstr ""
+
+msgid "TOAST_BREAKABLE_AMBUSH"
+msgstr ""
+
+msgid "TIP_BREAKABLE"
+msgstr ""

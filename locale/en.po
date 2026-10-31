@@ -2292,3 +2292,15 @@ msgstr "Among the treasure's papers, an old map: the kingdom's Ruins."
 
 msgid "JOURNAL_RELICS"
 msgstr "Relics:"
+
+msgid "PROP_BARREL"
+msgstr "Barrel"
+
+msgid "PROP_CRATE"
+msgstr "Crate"
+
+msgid "TOAST_BREAKABLE_AMBUSH"
+msgstr "There were rats inside!"
+
+msgid "TIP_BREAKABLE"
+msgstr "Barrels and crates break with {button}: they may hold potions, gold... or rats."

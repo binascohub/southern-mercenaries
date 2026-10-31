@@ -828,6 +828,21 @@ func _test_sewers() -> void:
 		_check(GameData.consumables.has("scroll_refine_%s_iron" % kind) and GameData.consumables.has("blessed_scroll_refine_%s_iron" % kind),
 			"pergaminhos de ferro do tesouro existem (%s)" % kind)
 	_check(GameData.monsters.rat_nest.ai == "static" and GameData.monsters.rat_nest.fire_mult == 2.0, "ninho parado, Fogo em dobro")
+	# Barris e caixotes (decisão do autor): sorteio por peso; monstros ~10%, poções ~25%.
+	var outcomes := {}
+	var roll_rng := RandomNumberGenerator.new()
+	roll_rng.seed = 21
+	for i in 4000:
+		var outcome := Breakables.roll(roll_rng)
+		outcomes[outcome] = int(outcomes.get(outcome, 0)) + 1
+	_check(outcomes.keys().all(func(k: String) -> bool: return GameData.loot.breakable.outcomes.has(k)), "só sai o que está na tabela")
+	_check(int(outcomes.get("monsters", 0)) > 300 and int(outcomes.get("monsters", 0)) < 500, "monstros em ~10%% (%d de 4000)" % int(outcomes.get("monsters", 0)))
+	var potions := int(outcomes.get("potion_health", 0)) + int(outcomes.get("potion_resource", 0))
+	_check(potions > 850 and potions < 1150, "poções em ~25%% (%d de 4000)" % potions)
+	for area_id in ["sewers_01_drains", "sewers_02_canals", "sewers_03_war_passage", "sewers_04_nest"]:
+		var boxes: Array = GameData.arenas[area_id].get("breakables", [])
+		_check(boxes.size() >= 4 and boxes.all(func(b: Dictionary) -> bool: return GameData.monsters.get(b.monster, {}).get("breakable", false)),
+			"%s tem barris e caixotes" % area_id)
 
 
 func _test_tips() -> void:

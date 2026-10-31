@@ -878,6 +878,56 @@
         6,
         -58
       ]
+    ],
+    "breakables": [
+      {
+        "id": "b1",
+        "monster": "barrel",
+        "position": [
+          5,
+          -3
+        ]
+      },
+      {
+        "id": "b2",
+        "monster": "crate",
+        "position": [
+          -5,
+          -2
+        ]
+      },
+      {
+        "id": "b3",
+        "monster": "barrel",
+        "position": [
+          6,
+          -35
+        ]
+      },
+      {
+        "id": "b4",
+        "monster": "crate",
+        "position": [
+          -6,
+          -26
+        ]
+      },
+      {
+        "id": "b5",
+        "monster": "barrel",
+        "position": [
+          8,
+          -58
+        ]
+      },
+      {
+        "id": "b6",
+        "monster": "crate",
+        "position": [
+          -8,
+          -70
+        ]
+      }
     ]
   },
   "sewers_02_canals": {
@@ -1186,6 +1236,56 @@
         7,
         -58
       ]
+    ],
+    "breakables": [
+      {
+        "id": "b1",
+        "monster": "crate",
+        "position": [
+          5,
+          2
+        ]
+      },
+      {
+        "id": "b2",
+        "monster": "barrel",
+        "position": [
+          -10,
+          -8
+        ]
+      },
+      {
+        "id": "b3",
+        "monster": "barrel",
+        "position": [
+          10,
+          -28
+        ]
+      },
+      {
+        "id": "b4",
+        "monster": "crate",
+        "position": [
+          -27,
+          -20
+        ]
+      },
+      {
+        "id": "b5",
+        "monster": "barrel",
+        "position": [
+          8,
+          -60
+        ]
+      },
+      {
+        "id": "b6",
+        "monster": "crate",
+        "position": [
+          -8,
+          -46
+        ]
+      }
     ]
   },
   "sewers_03_war_passage": {
@@ -1477,6 +1577,48 @@
         8,
         -62
       ]
+    ],
+    "breakables": [
+      {
+        "id": "b1",
+        "monster": "barrel",
+        "position": [
+          4,
+          2
+        ]
+      },
+      {
+        "id": "b2",
+        "monster": "crate",
+        "position": [
+          7,
+          -27
+        ]
+      },
+      {
+        "id": "b3",
+        "monster": "barrel",
+        "position": [
+          -7,
+          -39
+        ]
+      },
+      {
+        "id": "b4",
+        "monster": "crate",
+        "position": [
+          9,
+          -58
+        ]
+      },
+      {
+        "id": "b5",
+        "monster": "barrel",
+        "position": [
+          -10,
+          -75
+        ]
+      }
     ]
   },
   "sewers_04_nest": {
@@ -1626,6 +1768,40 @@
         "after_victory": true
       }
     ],
-    "quest_spots": []
+    "quest_spots": [],
+    "breakables": [
+      {
+        "id": "b1",
+        "monster": "crate",
+        "position": [
+          4,
+          2
+        ]
+      },
+      {
+        "id": "b2",
+        "monster": "barrel",
+        "position": [
+          -4,
+          -1
+        ]
+      },
+      {
+        "id": "b3",
+        "monster": "barrel",
+        "position": [
+          13,
+          -22
+        ]
+      },
+      {
+        "id": "b4",
+        "monster": "crate",
+        "position": [
+          -13,
+          -22
+        ]
+      }
+    ]
   }
 }

@@ -554,6 +554,13 @@ func _sewers_test() -> void:
 	# Elite tóxica do segredo; o baú abre uma vez e some.
 	var elite := get_tree().get_nodes_in_group(&"enemies").filter(func(e: Enemy) -> bool: return e.group == "s1_secret" and e.category() == "elite")
 	check.call(elite.size() == 1 and elite[0].modifier == "toxic" and elite[0].max_health >= 60.0, "elite tóxica no segredo")
+	var boxes := get_tree().get_nodes_in_group(&"enemies").filter(func(e: Enemy) -> bool: return e.data.get("breakable", false))
+	check.call(boxes.size() == 6, "6 barris e caixotes na área 1 (%d)" % boxes.size())
+	for e in get_tree().get_nodes_in_group(&"enemies"):
+		e.take_damage(1e9)
+	await get_tree().physics_frame
+	check.call(_arena._campaign.get("broken", []).size() == 6, "objetos quebrados ficam na campanha")
+	# Ratos que saltaram dos barris também caem.
 	for e in get_tree().get_nodes_in_group(&"enemies"):
 		e.take_damage(1e9)
 	await get_tree().physics_frame
@@ -598,6 +605,8 @@ func _sewers_test() -> void:
 	_arena.travel("sewers_04_nest", "start")
 	var queen := _first_enemy("demon_rat_queen")
 	_arena._wake_group(queen.group)
+	player.max_health = 1e6
+	player.health = 1e6
 	player.teleport_to(queen.global_position + Vector3(0, 0, 12))
 	await _wait_frames(3)
 	check.call(queen.phase == 1 and _arena.hud.boss_visible(), "Rainha acorda na fase 1, com a barra do chefe")
@@ -619,6 +628,11 @@ func _sewers_test() -> void:
 	await _wait_frames(30)
 	check.call(is_equal_approx(queen.health, before) or queen.health < before, "sem ninhos, não regenera")
 	queen.health = queen.max_health * 0.2
+	# O gás mira um herói de pé: o do teste (nível 1) aguenta a luta toda.
+	if not player.alive:
+		player.revive(1.0)
+	player.max_health = 1e6
+	player.health = 1e6
 	var gas_before: int = _arena.hazards.count()
 	await _wait_frames(200)
 	check.call(queen.phase == 3 and _arena._area_root.get_node_or_null("flood") != null, "abaixo de 25%: O Pacto alaga a arena")
@@ -643,6 +657,8 @@ func _sewers_test() -> void:
 	# O baú aberto continua aberto ao voltar.
 	_arena.travel("sewers_01_drains", "start")
 	check.call(_arena.prop_near(player, "chest", "", 300.0).is_empty(), "baú aberto não volta")
+	check.call(not get_tree().get_nodes_in_group(&"enemies").any(func(e: Enemy) -> bool: return e.data.get("breakable", false) and not e.is_queued_for_deletion()),
+		"barris quebrados não voltam")
 	_report(checks.is_empty(), "esgoto: " + ("tudo certo" if checks.is_empty() else "; ".join(PackedStringArray(checks))))
 
 

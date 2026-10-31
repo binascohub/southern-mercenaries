@@ -2292,3 +2292,15 @@ msgstr "Entre os papéis do tesouro, um mapa antigo: as Ruínas do reino."
 
 msgid "JOURNAL_RELICS"
 msgstr "Relíquias:"
+
+msgid "PROP_BARREL"
+msgstr "Barril"
+
+msgid "PROP_CRATE"
+msgstr "Caixote"
+
+msgid "TOAST_BREAKABLE_AMBUSH"
+msgstr "Tinha ratos lá dentro!"
+
+msgid "TIP_BREAKABLE"
+msgstr "Barris e caixotes quebram com {button}: podem ter poções, ouro… ou ratos."

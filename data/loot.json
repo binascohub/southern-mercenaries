@@ -145,5 +145,28 @@
     "blessed_chance": 0.2,
     "relic": "fallen_king_crown",
     "unlocks": "map_ruins"
+  },
+  "breakable": {
+    "_comment": "Barris e caixotes (03-2-areas.md, seção 1, decisão do autor): sorteio único por objeto; o loot sai para cada jogador presente. Pesos propostos.",
+    "outcomes": {
+      "nothing": 35,
+      "gold": 25,
+      "potion_health": 15,
+      "potion_resource": 10,
+      "monsters": 10,
+      "valuable": 5
+    },
+    "gold": {
+      "min": 2,
+      "max": 6,
+      "per_level": 1.0
+    },
+    "monsters": {
+      "monster": "plague_rat",
+      "count": [
+        1,
+        3
+      ]
+    }
   }
 }

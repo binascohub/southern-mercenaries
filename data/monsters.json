@@ -375,5 +375,51 @@
       0.27,
       0.18
     ]
+  },
+  "barrel": {
+    "_comment": "Objeto quebrável (03-2-areas.md, seção 1, decisão do autor): quebra com qualquer golpe; o que sai vem de data/loot.json 'breakable'. Não dá XP.",
+    "name_key": "PROP_BARREL",
+    "max_health": 15,
+    "move_speed": 0.0,
+    "damage": 0,
+    "attack_range": 0.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 1.0,
+    "aggro_range": 0.0,
+    "size": 0.9,
+    "category": "breakable",
+    "element": "",
+    "ai": "static",
+    "breakable": true,
+    "no_loot": true,
+    "look": "barrel",
+    "color": [
+      0.4,
+      0.28,
+      0.16
+    ]
+  },
+  "crate": {
+    "_comment": "Caixote quebrável (igual ao barril).",
+    "name_key": "PROP_CRATE",
+    "max_health": 15,
+    "move_speed": 0.0,
+    "damage": 0,
+    "attack_range": 0.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 1.0,
+    "aggro_range": 0.0,
+    "size": 0.9,
+    "category": "breakable",
+    "element": "",
+    "ai": "static",
+    "breakable": true,
+    "no_loot": true,
+    "look": "crate",
+    "color": [
+      0.48,
+      0.36,
+      0.2
+    ]
   }
 }

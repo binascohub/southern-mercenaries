@@ -766,6 +766,13 @@ func _start_run() -> void:
 	for encounter: Dictionary in arena.encounters:
 		if encounter.id not in dead:
 			_spawn_group(encounter)
+	# Barris e caixotes que ainda não quebraram nesta campanha.
+	var broken: Array = _campaign.get("broken", [])
+	for box: Dictionary in arena.get("breakables", []):
+		if Breakables.key(area_id, box.id) not in broken:
+			_enemy_spawner.spawn({"monster_id": box.monster, "group": "box:" + String(box.id),
+				"level": arena.get("area_level", 1), "position": Vector3(box.position[0], 0, box.position[1]),
+				"yaw": _rng.randf() * TAU})
 	# Bandos das caçadas ativas nesta área (SideQuests.hunt_encounter).
 	for quest: Dictionary in SideQuests.active(_campaign.get("side_quests", {})):
 		if quest.area == area_id:
@@ -975,6 +982,9 @@ func _groups_distance(a: Dictionary, b: Dictionary) -> float:
 ## Monstros mortos ficam mortos (03-inimigos.md, "Sem respawn"); a campanha
 ## guarda os grupos vencidos.
 func _on_enemy_died(enemy: Enemy) -> void:
+	if enemy.data.get("breakable", false):
+		_break(enemy)
+		return
 	_reward(enemy)
 	if enemy.is_boss():
 		# Os ajudantes e os ninhos somem com o chefe.
@@ -999,6 +1009,41 @@ func _on_enemy_died(enemy: Enemy) -> void:
 			for prop: Dictionary in arena.get("props", []):
 				if prop.get("after_victory", false):
 					_add_prop.rpc(prop)
+
+
+## Barril/caixote quebrou (03-2-areas.md, seção 1): sorteio único; o loot sai
+## para cada jogador presente; às vezes, monstros escondidos saltam dele.
+func _break(box: Enemy) -> void:
+	_campaign.broken = _campaign.get("broken", []) + [Breakables.key(area_id, box.group.trim_prefix("box:"))]
+	var table: Dictionary = GameData.loot.breakable
+	var outcome := Breakables.roll(_rng)
+	var at := box.global_position
+	var level := int(arena.get("area_level", 1))
+	if outcome == "monsters":
+		var count := _rng.randi_range(int(table.monsters.count[0]), int(table.monsters.count[1]))
+		spawn_adds(at, String(table.monsters.monster), count, 1.2)
+		_toast_all("TOAST_BREAKABLE_AMBUSH", {})
+		return
+	for p: Player in get_tree().get_nodes_in_group(&"players"):
+		if not p.connected or p.character == null:
+			continue
+		match outcome:
+			"gold":
+				_add_loot(p, at, {}, _rng.randi_range(int(table.gold.min), int(table.gold.max)) + roundi(float(table.gold.per_level) * level))
+			"potion_health", "potion_resource":
+				_add_loot(p, at, Items.stack(Items.CONSUMABLE, outcome), 0)
+			"valuable":
+				_add_loot(p, at, Items.stack(Items.VALUABLE, _random_valuable()), 0)
+
+
+## Um valioso do tema do mapa (05-itens-e-loot.md, seção 5).
+func _random_valuable() -> String:
+	var options: Array[String] = []
+	for id in GameData.valuables:
+		var maps: Array = GameData.valuables[id].maps
+		if maps.is_empty() or arena.get("map_id", "") in maps:
+			options.append(id)
+	return options[_rng.randi_range(0, options.size() - 1)]
 
 
 # --- XP e loot (servidor) ------------------------------------------------------
@@ -1048,14 +1093,8 @@ func _drop_table(player: Player, origin: Vector3, table: Dictionary, level: int)
 	var valuables := 1 if _rng.randf() < table.valuable_chance else 0
 	if table.has("valuables"):
 		valuables = _rng.randi_range(int(table.valuables[0]), int(table.valuables[1]))
-	if valuables > 0:
-		var options: Array[String] = []
-		for id in GameData.valuables:
-			var maps: Array = GameData.valuables[id].maps
-			if maps.is_empty() or arena.get("map_id", "") in maps:
-				options.append(id)
-		for i in valuables:
-			_add_loot(player, origin, Items.stack(Items.VALUABLE, options[_rng.randi_range(0, options.size() - 1)]), 0)
+	for i in valuables:
+		_add_loot(player, origin, Items.stack(Items.VALUABLE, _random_valuable()), 0)
 	# Tesouro do covil (05-itens-e-loot.md, seção 4): o lendário da classe e pergaminhos de refino.
 	if table.has("legendary_boss"):
 		var legendary := Legendaries.for_boss(String(table.legendary_boss), String(player.character.data.class_id))

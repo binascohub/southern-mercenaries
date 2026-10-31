@@ -514,6 +514,20 @@ func _build_visual(size: float) -> void:
 	body.rotation.x = PI / 2.0
 	body.position.y = 0.3 * size
 	body.material_override = _material
+	if look == "barrel":
+		var barrel := CylinderMesh.new()
+		barrel.top_radius = 0.4 * size
+		barrel.bottom_radius = 0.4 * size
+		barrel.height = 1.0 * size
+		body.mesh = barrel
+		body.rotation.x = 0.0
+		body.position.y = 0.5 * size
+	elif look == "crate":
+		var crate := BoxMesh.new()
+		crate.size = Vector3(0.85, 0.85, 0.85) * size
+		body.mesh = crate
+		body.rotation.x = 0.0
+		body.position.y = 0.42 * size
 	_visual.add_child(body)
 	if look == "bat":
 		for side in [-1.0, 1.0]:
@@ -583,7 +597,7 @@ func _build_visual(size: float) -> void:
 	eye_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	eye_material.albedo_color = Color(1.0, 0.15, 0.1)
 	_eye_material = eye_material
-	for side in [-1.0, 1.0]:
+	for side in ([] if data.get("breakable", false) else [-1.0, 1.0]):
 		var eye := MeshInstance3D.new()
 		var eye_mesh := SphereMesh.new()
 		eye_mesh.radius = 0.05 * size
