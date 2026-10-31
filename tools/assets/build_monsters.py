@@ -12,6 +12,8 @@ args = sys.argv[sys.argv.index("--") + 1:]
 src, out, keep_meshes, length = args[0], args[1], args[2].split(","), float(args[3])
 renames = dict(pair.split("=") for pair in args[4].split(",")) if len(args) > 4 and args[4] else {}
 textures = dict(pair.split("=") for pair in args[5].split(",")) if len(args) > 5 and args[5] else {}
+# Mapa UV das texturas (os .blend antigos podem ter mais de um; o certo vira o único).
+uv_name = args[6] if len(args) > 6 else ""
 bpy.ops.wm.open_mainfile(filepath=src)
 
 meshes = [o for o in bpy.data.objects if o.type == "MESH" and o.name in keep_meshes]
@@ -45,6 +47,15 @@ for o in meshes:
 for o in list(bpy.data.objects):
     if o not in keep:
         bpy.data.objects.remove(o, do_unlink=True)
+
+if uv_name:
+    for o in meshes:
+        layers = o.data.uv_layers
+        if layers.get(uv_name):
+            for layer in [l for l in layers if l.name != uv_name]:
+                layers.remove(layer)
+            layers[uv_name].active = True
+            layers[uv_name].active_render = True
 
 # Só as animações pedidas, com nomes simples (idle, walk, run, attack, hit, die, fly).
 for action in list(bpy.data.actions):

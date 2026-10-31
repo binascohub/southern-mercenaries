@@ -1567,7 +1567,8 @@ func _build_prop(prop: Dictionary) -> void:
 					var colors := [[0.2, 0.13, 0.08], [0.06, 0.06, 0.06], [0.55, 0.3, 0.12], [0.7, 0.62, 0.5]]
 					look = {"sex": "male" if h % 2 == 0 else "female", "hair": hairs[h % 2 * 2 + (h / 2) % 2],
 						"hair_color": colors[(h / 4) % colors.size()], "pose": "sit", "outfit": {"body": "cloth"} if h % 3 == 0 else {}}
-				if _npc_body(node, look) == null:
+				var seated_woman := prop.has("visitor_name") and look.get("sex", "") == "female" and _visitor_woman(node)
+				if not seated_woman and _npc_body(node, look) == null:
 					var body := CapsuleMesh.new()
 					body.radius = 0.35
 					body.height = 1.7
@@ -1664,6 +1665,25 @@ func _npc_body(parent: Node3D, look: Dictionary) -> HeroModel:
 	model.set_outfit(look.get("outfit", {}))
 	model.set_pose(String(look.get("pose", "idle")))
 	return model
+
+
+## Visitante da Taverna (Bartender, cdmir, CC0): blusa, saia e cabelo preso,
+## sentada à mesa. O arquivo tem 14,6 unidades de altura: escala para 1,7 m.
+const VISITOR_WOMAN := "res://assets/models/characters/visitor_woman.glb"
+const VISITOR_WOMAN_SCALE := 0.116
+
+
+func _visitor_woman(parent: Node3D) -> bool:
+	if not ResourceLoader.exists(VISITOR_WOMAN):
+		return false
+	var model := (load(VISITOR_WOMAN) as PackedScene).instantiate() as Node3D
+	model.scale = Vector3.ONE * VISITOR_WOMAN_SCALE
+	parent.add_child(model)
+	var anim := model.find_child("AnimationPlayer", true, false) as AnimationPlayer
+	if anim and anim.has_animation("sit"):
+		anim.get_animation("sit").loop_mode = Animation.LOOP_LINEAR
+		anim.play("sit")
+	return true
 
 
 ## Corpo de uma pessoa da rua pelo papel (data/crowd.json), escolhido pela

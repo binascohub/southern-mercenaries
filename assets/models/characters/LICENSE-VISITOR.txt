@@ -1,0 +1,4 @@
+visitor_woman.glb — "Bartender" by cdmir
+https://opengameart.org/content/bartender
+CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+Converted by tools/assets/build_monsters.py: mesh, skeleton and the sitting animation; textures re-linked (UV map "UVmap") and reduced to 512 px WebP.
