@@ -551,7 +551,7 @@ func _town_test() -> void:
 	c = player.character
 	check.call(int(c.data.gold) == gold - 18 and c.count_of("potion_health") == potions + 1, "compra poção de vida por 18")
 	# Mercado Pirata: Poção Elemental e venda de equipamento e valiosos.
-	player.teleport_to(Vector3(-6, 0, -17))
+	player.teleport_to(Vector3(0, 0, -25.4))  # ponta da doca, na frente do navio
 	gold = int(c.data.gold)
 	town._rpc_buy("pirate", 0)
 	c = player.character

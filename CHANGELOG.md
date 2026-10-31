@@ -7,6 +7,7 @@
 - New campaigns start in the Tavern; the campaign keeps quests, what is unlocked and the ship of the day.
 - Tavern NPCs (`data/npcs.json`): Old Drunk with the first quest (`data/quests.json`, unlocks the sewer grate), Tavern Keeper (rest), Bard; dialogue window with accept/decline; "!" over NPCs with a quest; active quest in the HUD with the target's weakness.
 - Shops (`data/shops.json`, `Shops`, `Town`, shop window): Apothecary, Weaponsmith and Armorer (class commons of wood/cloth, iron and steel at 2x), Pirate Market (per-player stock of 3–6 magic/rare/unique items per ship at 3x, Elemental Potions at 100 + 25 × level, buys valuables at 80–120% of the day); selling equipment and consumables at 25%. Purchases and sales validated on the server.
+- The Pirate Market is a pirate ship docked at the end of a pier in Tortuga's port, with a pirate vendor in front of the ship (author's decision, recorded in `docs/04-tortuga-e-missoes.md`); the quay and the pier have low walls so the sea and the ship are visible.
 - Expedition cycle: clearing the quest's area completes it (provisional reward of 150 gold and 300 XP for each player); the return portal brings the group to Tortuga, ends the Elemental Potion and brings a new ship.
 - Starting kit per `docs/14-tutorial.md`: 150 gold, 3 health potions and 1 resource potion. Elemental Potions no longer drop as loot.
 - Tests: shop rules and town rules unit tests; a full walk through Tortuga in CI.

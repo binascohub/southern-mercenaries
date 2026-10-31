@@ -29,7 +29,9 @@ const TAVERN_SHOT := 300
 const STREET_FRAME := 302
 const STREET_SHOT := 310
 const SHOP_FRAME := 312
-const SHOP_SHOT := 318
+const SHIP_SHOT := 316
+const SHOP_OPEN := 318
+const SHOP_SHOT := 322
 const MENU_FRAME := 330
 
 var _dir := "user://"
@@ -85,7 +87,11 @@ func _physics_process(delta: float) -> void:
 	elif _frame == STREET_SHOT:
 		await _shot("tortuga.png")
 	elif _frame == SHOP_FRAME:
-		_open_pirate_market()
+		_go_to_dock()
+	elif _frame == SHIP_SHOT:
+		await _shot("pirate_ship.png")
+	elif _frame == SHOP_OPEN:
+		_arena.request_interact(_arena.local_player)
 	elif _frame == SHOP_SHOT:
 		await _shot("shop.png")
 		_arena._shop_menu.close()
@@ -191,11 +197,12 @@ func _open_street() -> void:
 	_arena._camera.snap()
 
 
-func _open_pirate_market() -> void:
+## Doca do porto: o navio pirata atracado e o vendedor na frente dele.
+func _go_to_dock() -> void:
 	var player: Player = _arena.local_player
-	player.teleport_to(Vector3(-6, 0, -16.5))
+	player.teleport_to(Vector3(0, 0, -23.5))
+	player.facing = Vector2(0, -1)
 	_arena._camera.snap()
-	_arena.request_interact(player)
 
 
 func _stop_bot() -> void:

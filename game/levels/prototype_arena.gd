@@ -970,7 +970,9 @@ func _build_props() -> void:
 	_props.clear()
 	_prop_markers.clear()
 	for prop: Dictionary in arena.get("props", []):
-		_props.append(prop)
+		# Cenário (navio, mar) não é interagível.
+		if prop.kind not in ["ship", "water"]:
+			_props.append(prop)
 		var at := Vector3(prop.position[0], 0, prop.position[1])
 		var node := Node3D.new()
 		_area_root.add_child(node)
@@ -978,10 +980,30 @@ func _build_props() -> void:
 		var label_key: String = prop.get("name_key", "")
 		var color := Color(0.5, 0.4, 0.3)
 		match String(prop.kind):
+			"shop" when prop.get("look", "") == "vendor":
+				# Vendedor em pé (o pirata na frente do navio): corpo e lenço na cabeça.
+				var c: Array = prop.get("color", [0.6, 0.2, 0.15])
+				var body := CapsuleMesh.new()
+				body.radius = 0.35
+				body.height = 1.7
+				_prop_mesh(node, body, Vector3.ONE, Vector3(0, 0.85, 0), Color(0.55, 0.45, 0.35))
+				_prop_mesh(node, SphereMesh.new(), Vector3(0.42, 0.2, 0.42), Vector3(0, 1.72, 0), Color(c[0], c[1], c[2]))
 			"shop":
 				# Banca: balcão e toldo.
 				_prop_mesh(node, BoxMesh.new(), Vector3(2.4, 1.0, 1.0), Vector3(0, 0.5, 0), Color(0.42, 0.3, 0.2))
 				_prop_mesh(node, BoxMesh.new(), Vector3(2.8, 0.1, 1.6), Vector3(0, 2.2, 0), Color(0.6, 0.25, 0.2))
+			"ship":
+				# Navio pirata atracado: casco, convés, dois mastros e velas escuras.
+				_prop_mesh(node, BoxMesh.new(), Vector3(16, 2.4, 6), Vector3(0, 0.6, 0), Color(0.3, 0.2, 0.12))
+				_prop_mesh(node, BoxMesh.new(), Vector3(15, 0.2, 5.4), Vector3(0, 1.85, 0), Color(0.45, 0.33, 0.2))
+				_prop_mesh(node, BoxMesh.new(), Vector3(3, 1.4, 5.6), Vector3(-6, 2.6, 0), Color(0.3, 0.2, 0.12))
+				for x in [-2.5, 3.5]:
+					_prop_mesh(node, CylinderMesh.new(), Vector3(0.3, 4.5, 0.3), Vector3(x, 6.0, 0), Color(0.35, 0.25, 0.15))
+					_prop_mesh(node, BoxMesh.new(), Vector3(0.1, 4.0, 4.6), Vector3(x + 0.3, 7.2, 0), Color(0.2, 0.2, 0.22))
+			"water":
+				# Mar do porto: um plano simples (04-tortuga-e-missoes.md, seção 6).
+				var size: Array = prop.get("size", [40, 20])
+				_prop_mesh(node, BoxMesh.new(), Vector3(size[0], 0.1, size[1]), Vector3(0, 0.02, 0), Color(0.07, 0.16, 0.24))
 			"npc":
 				var npc: Dictionary = GameData.npcs.get(prop.npc, {})
 				label_key = npc.get("name_key", "")
@@ -1048,25 +1070,27 @@ func _build_area() -> void:
 		var box := AABB(c - half, half * 2.0)
 		bounds = box if i == 0 else bounds.merge(box)
 		var doors: Array = room.get("doors", [])
-		_wall_x(c.x, c.z - half.z, half.x * 2.0, "north" in doors)
-		_wall_x(c.x, c.z + half.z, half.x * 2.0, "south" in doors)
-		_box(Vector3(c.x - half.x - 0.5, WALL_HEIGHT / 2, c.z), Vector3(1, WALL_HEIGHT, half.z * 2.0 + 2.0), WALL_COLOR)
-		_box(Vector3(c.x + half.x + 0.5, WALL_HEIGHT / 2, c.z), Vector3(1, WALL_HEIGHT, half.z * 2.0 + 2.0), WALL_COLOR)
+		# Mureta baixa no cais e na doca (dá para ver o mar); paredes normais no resto.
+		var height := float(room.get("wall_height", WALL_HEIGHT))
+		_wall_x(c.x, c.z - half.z, half.x * 2.0, "north" in doors, height)
+		_wall_x(c.x, c.z + half.z, half.x * 2.0, "south" in doors, height)
+		_box(Vector3(c.x - half.x - 0.5, height / 2, c.z), Vector3(1, height, half.z * 2.0 + 2.0), WALL_COLOR)
+		_box(Vector3(c.x + half.x + 0.5, height / 2, c.z), Vector3(1, height, half.z * 2.0 + 2.0), WALL_COLOR)
 	var center := bounds.get_center()
 	_box(Vector3(center.x, -0.5, center.z), Vector3(bounds.size.x + 4, 1, bounds.size.z + 4), FLOOR_COLOR)
 
 
 ## Parede ao longo de x; com porta, deixa um vão de DOOR_WIDTH no meio.
-func _wall_x(cx: float, z: float, width: float, door: bool) -> void:
+func _wall_x(cx: float, z: float, width: float, door: bool, height := WALL_HEIGHT) -> void:
 	var gap := minf(DOOR_WIDTH, width) if door else 0.0
 	var side := (width - gap) / 2.0
 	if side <= 0.01:
 		return
 	if door:
-		_box(Vector3(cx - gap / 2 - side / 2, WALL_HEIGHT / 2, z), Vector3(side, WALL_HEIGHT, 1), WALL_COLOR)
-		_box(Vector3(cx + gap / 2 + side / 2, WALL_HEIGHT / 2, z), Vector3(side, WALL_HEIGHT, 1), WALL_COLOR)
+		_box(Vector3(cx - gap / 2 - side / 2, height / 2, z), Vector3(side, height, 1), WALL_COLOR)
+		_box(Vector3(cx + gap / 2 + side / 2, height / 2, z), Vector3(side, height, 1), WALL_COLOR)
 	else:
-		_box(Vector3(cx, WALL_HEIGHT / 2, z), Vector3(width, WALL_HEIGHT, 1), WALL_COLOR)
+		_box(Vector3(cx, height / 2, z), Vector3(width, height, 1), WALL_COLOR)
 
 
 func _box(center: Vector3, box_size: Vector3, color: Color) -> void:

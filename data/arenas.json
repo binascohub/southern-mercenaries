@@ -171,7 +171,7 @@
     ]
   },
   "tortuga": {
-    "_comment": "Tortuga, área externa (04-tortuga-e-missoes.md, seção 2): Rua Principal com as bancas, o bueiro e a porta da Taverna; ao norte o porto com o Mercado Pirata e o Portal. Geometria provisória até os modelos.",
+    "_comment": "Tortuga, área externa (04-tortuga-e-missoes.md, seção 2): Rua Principal com as bancas, o bueiro e a porta da Taverna; ao norte o porto (cais baixo, de onde se vê o mar) com o Portal e a doca, onde o navio pirata atracado é o Mercado Pirata, com o vendedor na frente do navio (decisão do autor). Geometria provisória até os modelos.",
     "name_key": "AREA_TORTUGA",
     "town": true,
     "outdoor": true,
@@ -206,9 +206,26 @@
           14
         ],
         "doors": [
+          "south",
+          "north"
+        ],
+        "torch": true,
+        "wall_height": 0.8
+      },
+      {
+        "id": "dock",
+        "center": [
+          0,
+          -25
+        ],
+        "size": [
+          8,
+          6
+        ],
+        "doors": [
           "south"
         ],
-        "torch": true
+        "wall_height": 0.6
       }
     ],
     "encounters": [],
@@ -285,16 +302,6 @@
         "requires": "sewer_entrance"
       },
       {
-        "id": "pirate_market",
-        "kind": "shop",
-        "shop": "pirate",
-        "name_key": "SHOP_PIRATE",
-        "position": [
-          -6,
-          -18
-        ]
-      },
-      {
         "id": "portal",
         "kind": "sign",
         "name_key": "PROP_PORTAL",
@@ -303,6 +310,42 @@
           -19
         ],
         "text_key": "PROP_PORTAL_LOCKED"
+      },
+      {
+        "id": "pirate_market",
+        "kind": "shop",
+        "shop": "pirate",
+        "look": "vendor",
+        "name_key": "SHOP_PIRATE",
+        "color": [
+          0.6,
+          0.18,
+          0.15
+        ],
+        "position": [
+          0,
+          -26.6
+        ]
+      },
+      {
+        "id": "pirate_ship",
+        "kind": "ship",
+        "position": [
+          0,
+          -32.5
+        ]
+      },
+      {
+        "id": "sea",
+        "kind": "water",
+        "position": [
+          0,
+          -38
+        ],
+        "size": [
+          80,
+          19
+        ]
       }
     ]
   },

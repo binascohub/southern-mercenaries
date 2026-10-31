@@ -32,8 +32,9 @@ Tortuga é uma **cidade portuária suja, barulhenta e perigosa**, de ruas estrei
 
 ```
   ~~~~~~~~~~~~~~~~~~~~ MAR ~~~~~~~~~~~~~~~~~~~~
-  [Navios piratas]   [PORTO / CAIS]
-                     Mercado Pirata (itens roubados pelo mundo)
+  [NAVIO PIRATA atracado = Mercado Pirata]
+                     │ doca (píer) — vendedor pirata na frente do navio
+                     [PORTO / CAIS]
                      Portal para os mapas
                             │
   ══════════════════════════╪══════ RUA PRINCIPAL ═════════════
@@ -50,7 +51,7 @@ Tortuga é uma **cidade portuária suja, barulhenta e perigosa**, de ruas estrei
 | ID | Local | Onde | Função |
 |---|---|---|---|
 | `tavern` | **Taverna** | **Construção com interior** (a única) | NPCs bebem e contam histórias que **geram as missões** e **revelam as fraquezas** dos monstros (seção 3) |
-| `pirate_market` | **Mercado Pirata** | **Porto**: barracas, caixotes e conveses no cais | **Piratas vendem itens que roubaram pelo mundo afora** (estoque que muda a cada navio que chega), **compram os valiosos** dos tesouros sem perguntas e vendem **Poções Elementais** (`05-itens-e-loot.md`, seção 5) |
+| `pirate_market` | **Mercado Pirata** | **Porto**: um **navio pirata atracado na doca do porto** (decisão do autor); um **NPC pirata na frente do navio** atende | **Piratas vendem itens que roubaram pelo mundo afora** (estoque que muda a cada navio que chega), **compram os valiosos** dos tesouros sem perguntas e vendem **Poções Elementais** (`05-itens-e-loot.md`, seção 5) |
 | `shop_potions` | Boticário | Banca na Rua Principal | Poções de vida e de recurso |
 | `shop_weapons` | Loja de armas | Banca na Rua Principal | Compra e venda de armas comuns de **madeira, ferro e aço** (cobre e prata só na Capital) |
 | `shop_armor` | Loja de armaduras | Banca na Rua Principal | Compra e venda de equipamentos comuns de **pano, ferro e aço** (cobre e prata só na Capital) |
@@ -68,6 +69,7 @@ Tortuga é uma **cidade portuária suja, barulhenta e perigosa**, de ruas estrei
 - No co-op, todos os jogadores ficam juntos na cidade do host.
 
 ### O Mercado Pirata
+- **Fica num navio atracado na doca do porto** (decisão do autor): um píer sai do cais até o navio, e um **pirata na frente do navio**, na ponta do píer, é quem atende (interagir com ele abre a loja). O navio do dia é o mesmo que "chega" a cada volta para Tortuga.
 - **Os piratas trazem itens roubados pelo mundo afora**: armas, armaduras e acessórios de outras terras, às vezes raros ou únicos que não caem nos mapas.
 - **Estoque rotativo:** a cada volta para Tortuga, "chega um navio" e o estoque muda (3 a 6 itens por vez, de raridades variadas, com preço alto).
 - **Compram os valiosos** que os mercenários trazem dos tesouros (para revender em outros portos), com preços que variam conforme o navio do dia.
