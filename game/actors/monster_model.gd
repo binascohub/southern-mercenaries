@@ -58,6 +58,15 @@ var _wing_size := 1.0
 const RAT_NECK := Vector3(0, 0.12, 0.33)
 const RAT_HEAD_SCALE := 1.6
 const WING_COLOR := Color(0.22, 0.14, 0.16)
+## A Rainha (referência do autor): couro marrom, pelagem clara e rosada nas
+## orelhas, mãos e cauda; asas de couro marrom levantadas.
+const QUEEN_FUR := Color(1.5, 1.28, 1.22)
+const QUEEN_PINK := Color(0.93, 0.66, 0.64)
+const QUEEN_WING := Color(0.42, 0.27, 0.19)
+var _wing_color := WING_COLOR
+## Asas levantadas (radianos para cima, além da batida).
+var _wing_raise := 0.0
+var _tail: Node3D
 
 
 static func has_family(look: String) -> bool:
@@ -103,13 +112,13 @@ func setup(look: String, size: float, tint: Color) -> bool:
 ## Corpo humano com cabeça de rato: as animações são as dos heróis.
 func _setup_humanoid(info: Dictionary, size: float, tint: Color) -> bool:
 	scale = Vector3.ONE * size * float(info.scale)
-	_tint = Color.WHITE.lerp(tint, 0.35)
+	_tint = QUEEN_FUR
 	_hero = HeroModel.new()
 	add_child(_hero)
-	_hero.setup("male", {"hair": [], "hair_color": [0.2, 0.15, 0.1]})
-	_hero.set_outfit({"body": "iron", "hands": "iron", "feet": "iron"})
+	_hero.setup("female", {"hair": [], "hair_color": [0.2, 0.15, 0.1]})
+	_hero.set_outfit({"body": "wood", "hands": "wood", "feet": "wood"})  # couro marrom
 	_hero.hide_parts(["Head", "Eyes", "Eyebrows"])
-	_hero.tint_skin(Color(0.36, 0.29, 0.26))  # pelagem nas mãos
+	_hero.tint_skin(QUEEN_PINK)  # mãos rosadas
 	for key: String in info.anims:
 		_names[key] = info.anims[key]
 	var head := Node3D.new()
@@ -125,23 +134,84 @@ func _setup_humanoid(info: Dictionary, size: float, tint: Color) -> bool:
 				copy.cull_mode = BaseMaterial3D.CULL_DISABLED
 				mesh.set_surface_override_material(i, copy)
 				_materials.append(copy)
+	_add_ears(head)
 	var back := Node3D.new()
 	add_child(back)
+	_tail = Node3D.new()
+	add_child(_tail)
 	_skeleton = _hero.skeleton
 	if _skeleton and _skeleton.find_bone("Head") >= 0 and _skeleton.find_bone("spine_03") >= 0:
 		var neck := _rest_in_model("Head").origin
 		_follow_bone(head, "Head", Transform3D(Basis.from_scale(Vector3.ONE * RAT_HEAD_SCALE),
 			neck - RAT_NECK * RAT_HEAD_SCALE + Vector3(0, 0.05, 0)))
 		_follow_bone(back, "spine_03", Transform3D(Basis(), _rest_in_model("spine_03").origin + Vector3(0, 0.05, -0.12)))
+		if _skeleton.find_bone("pelvis") >= 0:
+			_follow_bone(_tail, "pelvis", Transform3D(Basis(), _rest_in_model("pelvis").origin + Vector3(0, -0.05, -0.12)))
 	else:
 		head.position = Vector3(0, 1.6, 0) - RAT_NECK * RAT_HEAD_SCALE
 		head.scale = Vector3.ONE * RAT_HEAD_SCALE
 		back.position = Vector3(0, 1.35, -0.12)
+	if _tail.position == Vector3.ZERO:
+		_tail.position = Vector3(0, 0.9, -0.12)
+	_add_tail(_tail)
 	_add_crown(head, false)
-	_wing_size = 1.6
+	_crown.scale = Vector3.ONE * 0.75  # tiara pequena
+	_crown.rotation = Vector3(-0.1, 0, 0.05)
+	_wing_color = QUEEN_WING
+	_wing_size = 1.9
+	_wing_raise = 0.55
 	_add_wings(back, Vector3(0.08, 0, 0))
 	play("idle", 0.0)
 	return true
+
+
+## Orelhas grandes e rosadas (unidades da cabeça de rato).
+func _add_ears(head: Node3D) -> void:
+	var outer := StandardMaterial3D.new()
+	outer.albedo_color = Color(0.85, 0.72, 0.68)
+	var inner := StandardMaterial3D.new()
+	inner.albedo_color = QUEEN_PINK
+	for side in [-1.0, 1.0]:
+		var ear := Node3D.new()
+		ear.position = Vector3(0.075 * side, 0.215, 0.35)
+		ear.rotation = Vector3(-0.3, 0.5 * side, 0.55 * side)
+		head.add_child(ear)
+		for layer in [[outer, 1.0, 0.0], [inner, 0.75, 0.012]]:
+			var mesh := MeshInstance3D.new()
+			var sphere := SphereMesh.new()
+			sphere.radius = 0.075 * layer[1]
+			sphere.height = 0.15 * layer[1]
+			mesh.mesh = sphere
+			mesh.scale = Vector3(1.0, 1.15, 0.22)
+			mesh.position = Vector3(0, 0.06 * layer[1], layer[2])
+			mesh.material_override = layer[0]
+			ear.add_child(mesh)
+
+
+## Cauda longa e rosada: segmentos do quadril até o chão, afinando.
+func _add_tail(root: Node3D) -> void:
+	var pink := StandardMaterial3D.new()
+	pink.albedo_color = QUEEN_PINK
+	pink.roughness = 0.6
+	var sway := Node3D.new()  # o nó de cima segue o osso; este balança
+	root.add_child(sway)
+	var points := [Vector3(0, 0, 0), Vector3(0, -0.2, -0.22), Vector3(0.05, -0.5, -0.4), Vector3(0.12, -0.78, -0.6),
+		Vector3(0.22, -0.88, -0.9), Vector3(0.36, -0.9, -1.15), Vector3(0.5, -0.86, -1.35), Vector3(0.58, -0.8, -1.5)]
+	for i in points.size() - 1:
+		var a: Vector3 = points[i]
+		var b: Vector3 = points[i + 1]
+		var segment := MeshInstance3D.new()
+		var rod := CylinderMesh.new()
+		var t := float(i) / (points.size() - 1)
+		rod.bottom_radius = lerpf(0.05, 0.012, t)
+		rod.top_radius = lerpf(0.05, 0.012, t + 1.0 / (points.size() - 1))
+		rod.height = a.distance_to(b) + 0.02
+		rod.radial_segments = 8
+		segment.mesh = rod
+		segment.material_override = pink
+		segment.position = (a + b) / 2.0
+		segment.basis = Basis(Quaternion(Vector3.UP, (b - a).normalized()))
+		sway.add_child(segment)
 
 
 ## Pose de descanso do osso nas coordenadas deste nó.
@@ -213,11 +283,11 @@ func _add_crown(parent: Node3D, follow_head: bool) -> void:
 ## frente é +Z): membrana com a borda recortada entre os dedos.
 func _add_wings(parent: Node3D, at: Vector3) -> void:
 	_wing_material = StandardMaterial3D.new()
-	_wing_material.albedo_color = WING_COLOR
+	_wing_material.albedo_color = _wing_color
 	_wing_material.roughness = 0.65
 	_wing_material.cull_mode = BaseMaterial3D.CULL_DISABLED
 	var bone_material := StandardMaterial3D.new()
-	bone_material.albedo_color = Color(0.12, 0.08, 0.08)
+	bone_material.albedo_color = _wing_color.darkened(0.45)
 	# Dedos (pontas) e os recortes da borda entre eles.
 	var tips := [Vector3(0.95, 0.3, 0.05), Vector3(0.85, 0.12, -0.3), Vector3(0.6, 0.02, -0.52), Vector3(0.3, 0.0, -0.5)]
 	var edge: Array[Vector3] = [Vector3(0.12, 0.08, 0.12), tips[0]]
@@ -267,6 +337,10 @@ func _process(delta: float) -> void:
 		var moved := _skeleton.get_bone_global_pose(_head_bone).origin - _head_rest
 		var to_model := global_transform.affine_inverse() * _skeleton.global_transform
 		_crown.position = CROWN_AT + to_model.basis * moved
+	if _tail and _tail.get_child_count() > 0:
+		# A cauda balança devagar de um lado para o outro.
+		var sway := _tail.get_child(0) as Node3D
+		sway.rotation.y = sin(Time.get_ticks_msec() / 700.0) * 0.35
 	if _wings.is_empty():
 		return
 	# Bate devagar parada, mais rápido correndo ou no golpe.
@@ -279,7 +353,7 @@ func _process(delta: float) -> void:
 		var side := signf(wing.scale.x)
 		wing.visible = _wings_out
 		wing.scale = Vector3(side, 1, 1) * grow * _wing_size
-		wing.rotation.z = flap * side
+		wing.rotation.z = (flap + _wing_raise) * side
 
 
 ## As asas de morcego brotam das costas (a Rainha na metade da vida).
@@ -317,7 +391,7 @@ func set_color(color: Color) -> void:
 	for material in _materials:
 		material.albedo_color = final
 	if _wing_material:
-		_wing_material.albedo_color = WING_COLOR * color
+		_wing_material.albedo_color = _wing_color * color
 	if _hero:
 		_hero.set_effects(color != Color.WHITE, 1.0, Color(0, 0, 0, 0))
 
