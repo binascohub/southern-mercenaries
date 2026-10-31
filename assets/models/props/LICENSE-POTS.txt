@@ -1,0 +1,4 @@
+Pot_Large, Pot_Small, Vase_Big (and *_Shards) — "Stylized Vases And Pots" by FabinhoSC
+https://opengameart.org/content/stylized-vases-and-pots
+CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+Converted to glTF by tools/assets/build_pots.py (scaled to 70 %, base at y = 0, shards with their own origins).

@@ -433,5 +433,34 @@
       0.36,
       0.2
     ]
+  },
+  "pot": {
+    "_comment": "Pote de barro do Esgoto (Stylized Vases And Pots, FabinhoSC, CC0): quebrável como o barril; o modelo sai de 'pieces' pela posição (igual em todos os PCs) e, ao quebrar, os cacos voam ('shards').",
+    "name_key": "PROP_POT",
+    "max_health": 8,
+    "move_speed": 0.0,
+    "damage": 0,
+    "attack_range": 0.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 1.0,
+    "aggro_range": 0.0,
+    "size": 0.8,
+    "category": "breakable",
+    "element": "",
+    "ai": "static",
+    "breakable": true,
+    "no_loot": true,
+    "look": "pot",
+    "pieces": [
+      "Pot_Large",
+      "Pot_Small",
+      "Vase_Big"
+    ],
+    "shards": true,
+    "color": [
+      0.6,
+      0.32,
+      0.2
+    ]
   }
 }

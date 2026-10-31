@@ -91,6 +91,8 @@ var _trail_timer := 0.0
 var _ripple: MeshInstance3D
 ## Modelo animado da família (rato, morcego, jacaré); null = cápsula.
 var _model: MonsterModel
+## Peça do kit deste objeto (pote: os cacos são "<peça>_Shards").
+var _kit_piece := ""
 var _last_visual_pos := Vector3.INF
 var _visual_speed := 0.0
 
@@ -442,8 +444,46 @@ func _hurt(amount: float, effect: String, hit_element: String, crit: bool, combo
 	if health <= 0.0:
 		if _model:
 			_leave_corpse.rpc()
+		elif data.get("shards", false):
+			_shatter.rpc()
 		died.emit(self)
 		queue_free()
+
+
+## Pote quebrado (todos os PCs): os cacos voam para fora, caem girando, ficam
+## um tempo no chão e afundam.
+@rpc("authority", "call_local", "reliable")
+func _shatter() -> void:
+	var arena := get_tree().get_first_node_in_group(&"arena")
+	var area_root: Node3D = arena.get("_area_root") if arena else null
+	var shards := Kit.piece(_kit_piece + "_Shards") if _kit_piece != "" else null
+	if shards == null or area_root == null or not is_instance_valid(area_root):
+		return
+	if _visual:
+		_visual.visible = false
+	area_root.add_child(shards)
+	shards.global_position = global_position
+	shards.rotation.y = yaw
+	var rng := RandomNumberGenerator.new()
+	rng.seed = hash(global_position)
+	for node in shards.get_children():
+		var shard := node as Node3D
+		if shard == null:
+			continue
+		var out := Vector3(shard.position.x, 0, shard.position.z)
+		out = (out.normalized() if out.length() > 0.01 else Vector3(rng.randf_range(-1, 1), 0, rng.randf_range(-1, 1)).normalized())
+		var land := shard.position + out * rng.randf_range(0.4, 1.3)
+		land.y = 0.04
+		var peak := (shard.position + land) / 2.0 + Vector3.UP * rng.randf_range(0.25, 0.6)
+		var spin := Vector3(rng.randf_range(-6, 6), rng.randf_range(-6, 6), rng.randf_range(-6, 6))
+		var tween := shard.create_tween()
+		tween.tween_property(shard, "position", peak, 0.18).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+		tween.tween_property(shard, "position", land, 0.22).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+		shard.create_tween().tween_property(shard, "rotation", shard.rotation + spin * 0.4, 0.4)
+	var fade := shards.create_tween()
+	fade.tween_interval(4.0)
+	fade.tween_property(shards, "position:y", -0.4, 1.5)
+	fade.tween_callback(shards.queue_free)
 
 
 ## Morte (todos os PCs): o corpo fica no chão da área tocando a animação de
@@ -562,6 +602,11 @@ func _build_visual(size: float) -> void:
 			body_mesh.height = 1.9 * size
 	# Boneco de treino, barril e caixote: peças do kit (game/levels/kit.gd).
 	var kit_piece: String = "Dummy" if data.get("dummy", false) else {"barrel": "Barrel", "crate": "Crate_Wooden"}.get(look, "")
+	if data.has("pieces"):
+		# Pote: o modelo sai da posição (o mesmo em todos os PCs).
+		var pieces: Array = data.pieces
+		kit_piece = pieces[absi(hash(Vector2i(roundi(home.x * 10.0), roundi(home.z * 10.0)))) % pieces.size()]
+	_kit_piece = kit_piece
 	var kit_node: Node3D = Kit.piece(kit_piece) if kit_piece != "" else null
 	if kit_node:
 		_visual.add_child(kit_node)

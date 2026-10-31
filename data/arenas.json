@@ -1961,6 +1961,62 @@
           -8,
           -70
         ]
+      },
+      {
+        "id": "pot1",
+        "monster": "pot",
+        "position": [
+          -6,
+          -5
+        ]
+      },
+      {
+        "id": "pot2",
+        "monster": "pot",
+        "position": [
+          6.2,
+          -5.2
+        ]
+      },
+      {
+        "id": "pot3",
+        "monster": "pot",
+        "position": [
+          7,
+          -37
+        ]
+      },
+      {
+        "id": "pot4",
+        "monster": "pot",
+        "position": [
+          -7,
+          -23
+        ]
+      },
+      {
+        "id": "pot5",
+        "monster": "pot",
+        "position": [
+          -9,
+          -71
+        ]
+      },
+      {
+        "id": "pot6",
+        "monster": "pot",
+        "position": [
+          9,
+          -70
+        ]
+      },
+      {
+        "id": "pot7",
+        "monster": "pot",
+        "position": [
+          -9,
+          -56
+        ]
       }
     ],
     "style": {
@@ -2478,6 +2534,70 @@
           -8,
           -46
         ]
+      },
+      {
+        "id": "pot1",
+        "monster": "pot",
+        "position": [
+          6,
+          -4
+        ]
+      },
+      {
+        "id": "pot2",
+        "monster": "pot",
+        "position": [
+          -6,
+          -4.2
+        ]
+      },
+      {
+        "id": "pot3",
+        "monster": "pot",
+        "position": [
+          -11,
+          -6
+        ]
+      },
+      {
+        "id": "pot4",
+        "monster": "pot",
+        "position": [
+          11,
+          -30
+        ]
+      },
+      {
+        "id": "pot5",
+        "monster": "pot",
+        "position": [
+          -11,
+          -27
+        ]
+      },
+      {
+        "id": "pot6",
+        "monster": "pot",
+        "position": [
+          -9,
+          -45
+        ]
+      },
+      {
+        "id": "pot7",
+        "monster": "pot",
+        "position": [
+          9,
+          -45
+        ]
+      },
+      {
+        "id": "pot8",
+        "monster": "pot",
+        "position": [
+          -9,
+          -62
+        ]
       }
     ],
     "style": {
@@ -2938,6 +3058,54 @@
           -10,
           -75
         ]
+      },
+      {
+        "id": "pot1",
+        "monster": "pot",
+        "position": [
+          5,
+          -4
+        ]
+      },
+      {
+        "id": "pot2",
+        "monster": "pot",
+        "position": [
+          8,
+          -40
+        ]
+      },
+      {
+        "id": "pot3",
+        "monster": "pot",
+        "position": [
+          -8,
+          -40
+        ]
+      },
+      {
+        "id": "pot4",
+        "monster": "pot",
+        "position": [
+          8,
+          -27
+        ]
+      },
+      {
+        "id": "pot5",
+        "monster": "pot",
+        "position": [
+          -11,
+          -58
+        ]
+      },
+      {
+        "id": "pot6",
+        "monster": "pot",
+        "position": [
+          11,
+          -58
+        ]
       }
     ],
     "style": {
@@ -3255,6 +3423,54 @@
         "position": [
           -13,
           -22
+        ]
+      },
+      {
+        "id": "pot1",
+        "monster": "pot",
+        "position": [
+          -5,
+          -4
+        ]
+      },
+      {
+        "id": "pot2",
+        "monster": "pot",
+        "position": [
+          -15,
+          -25
+        ]
+      },
+      {
+        "id": "pot3",
+        "monster": "pot",
+        "position": [
+          15,
+          -25
+        ]
+      },
+      {
+        "id": "pot4",
+        "monster": "pot",
+        "position": [
+          -15,
+          -45
+        ]
+      },
+      {
+        "id": "pot5",
+        "monster": "pot",
+        "position": [
+          15,
+          -45
+        ]
+      },
+      {
+        "id": "pot6",
+        "monster": "pot",
+        "position": [
+          -12,
+          -52
         ]
       }
     ],
