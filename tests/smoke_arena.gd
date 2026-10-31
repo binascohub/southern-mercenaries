@@ -573,7 +573,7 @@ func _sewers_test() -> void:
 	for e in get_tree().get_nodes_in_group(&"enemies"):
 		e.take_damage(1e9)
 	await get_tree().physics_frame
-	check.call(_arena._campaign.get("broken", []).size() == 6, "objetos quebrados ficam na campanha")
+	check.call(_arena._campaign.get("broken", []).size() == expected, "objetos quebrados ficam na campanha")
 	# Ratos que saltaram dos barris também caem.
 	for e in get_tree().get_nodes_in_group(&"enemies"):
 		e.take_damage(1e9)
