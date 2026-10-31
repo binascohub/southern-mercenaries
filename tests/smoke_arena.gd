@@ -394,7 +394,18 @@ func _skills_test() -> void:
 		var essence := player.resource
 		player.resource = 0.0
 		await get_tree().create_timer(1.5, false).timeout
-		check.call(player.resource > 2.0 * 1.5 + 0.5, "golpes dos animais devolvem Essência")
+		var info := PackedStringArray()
+		for a in system.companions_of(player):
+			var near := INF
+			var near_state := -1
+			for r in get_tree().get_nodes_in_group(&"enemies"):
+				var d: float = r.global_position.distance_to(a.global_position)
+				if d < near:
+					near = d
+					near_state = r.state
+			info.append("%s d=%.1f estado=%d vida=%.0f pos=%s" % [a.kind, near, near_state, a.health, a.global_position])
+		check.call(player.resource > 2.0 * 1.5 + 0.5, "golpes dos animais devolvem Essência (Essência %.1f, vivo %s; %s)" % [
+			player.resource, player.alive, "; ".join(info)])
 		player.resource = essence
 	# Áreas, golpes com atraso e projéteis agem com o tempo.
 	await get_tree().create_timer(2.5, false).timeout
