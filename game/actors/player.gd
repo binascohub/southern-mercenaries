@@ -67,6 +67,8 @@ var shield := 0.0
 var hidden := false
 ## Cavaleiro montado (02-3-cavaleiro.md, seção 3).
 var mounted := false
+## Pátio de treino com "recursos e recargas livres" (servidor).
+var free_cooldowns := false
 ## Segurando o bloqueio (escudo, barreira ou aparar do Ninja).
 var blocking := false
 
@@ -658,8 +660,11 @@ func _cast_slot(index: int) -> void:
 	if resource < cost or not get_parent().skills.cast(self, id, rank):
 		return
 	resource -= cost
-	# Sem recarga (as básicas) ainda respeitam o ritmo do ataque básico.
+	# Sem recarga (as básicas) ainda respeitam o ritmo do ataque básico; no pátio
+	# de treino com recargas livres, todas ficam assim.
 	var cd := maxf(Skills.cooldown(skill, rank), data.basic_attack.cooldown)
+	if free_cooldowns:
+		cd = data.basic_attack.cooldown
 	_skill_cd[key] = cd
 	charge_time = 0.0
 	if is_local():

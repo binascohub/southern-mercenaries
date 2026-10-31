@@ -1667,3 +1667,51 @@ msgstr "Misión: {quest} — débil a {weak}"
 
 msgid "HUD_INTERACT"
 msgstr "{action} {target}"
+
+msgid "MONSTER_DUMMY_FIRE"
+msgstr "Muñeco de paja (Fuego)"
+
+msgid "MONSTER_DUMMY_WATER"
+msgstr "Muñeco de paja (Agua)"
+
+msgid "MONSTER_DUMMY_AIR"
+msgstr "Muñeco de paja (Aire)"
+
+msgid "MONSTER_DUMMY_EARTH"
+msgstr "Muñeco de paja (Tierra)"
+
+msgid "MONSTER_DUMMY_ARMORED"
+msgstr "Muñeco blindado"
+
+msgid "MONSTER_DUMMY_GIANT"
+msgstr "Muñeco gigante"
+
+msgid "MONSTER_DUMMY_SMALL"
+msgstr "Muñeco pequeño"
+
+msgid "PROP_TRAINING_BOARD"
+msgstr "Tablón de entrenamiento"
+
+msgid "TRAINING_TITLE"
+msgstr "Patio de entrenamiento"
+
+msgid "TRAINING_INFO"
+msgstr "Los muñecos no mueren ni dan experiencia, oro o botín. El panel de arriba muestra el daño del grupo mientras estás en el patio."
+
+msgid "TRAINING_RESET_STATS"
+msgstr "Reiniciar el panel"
+
+msgid "TRAINING_RESET_DUMMIES"
+msgstr "Reiniciar los muñecos"
+
+msgid "TRAINING_TOGGLE_FREE"
+msgstr "Recursos y recargas libres: sí/no"
+
+msgid "TRAINING_FREE_ON"
+msgstr "Recursos y recargas libres: activados"
+
+msgid "TRAINING_FREE_OFF"
+msgstr "Recursos y recargas libres: desactivados"
+
+msgid "HUD_TRAINING"
+msgstr "Entrenamiento — total {total} · DPS {dps} · mayor {biggest} · críticos {crits}/{hits}"

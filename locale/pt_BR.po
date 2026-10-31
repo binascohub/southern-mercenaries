@@ -1667,3 +1667,51 @@ msgstr "Missão: {quest} — fraco a {weak}"
 
 msgid "HUD_INTERACT"
 msgstr "{action} {target}"
+
+msgid "MONSTER_DUMMY_FIRE"
+msgstr "Boneco de palha (Fogo)"
+
+msgid "MONSTER_DUMMY_WATER"
+msgstr "Boneco de palha (Água)"
+
+msgid "MONSTER_DUMMY_AIR"
+msgstr "Boneco de palha (Ar)"
+
+msgid "MONSTER_DUMMY_EARTH"
+msgstr "Boneco de palha (Terra)"
+
+msgid "MONSTER_DUMMY_ARMORED"
+msgstr "Boneco blindado"
+
+msgid "MONSTER_DUMMY_GIANT"
+msgstr "Boneco gigante"
+
+msgid "MONSTER_DUMMY_SMALL"
+msgstr "Boneco pequeno"
+
+msgid "PROP_TRAINING_BOARD"
+msgstr "Quadro de treino"
+
+msgid "TRAINING_TITLE"
+msgstr "Pátio de treino"
+
+msgid "TRAINING_INFO"
+msgstr "Os bonecos não morrem e não dão experiência, ouro nem loot. O painel no alto mostra o dano do grupo enquanto você está no pátio."
+
+msgid "TRAINING_RESET_STATS"
+msgstr "Zerar o painel"
+
+msgid "TRAINING_RESET_DUMMIES"
+msgstr "Reiniciar os bonecos"
+
+msgid "TRAINING_TOGGLE_FREE"
+msgstr "Recursos e recargas livres: liga/desliga"
+
+msgid "TRAINING_FREE_ON"
+msgstr "Recursos e recargas livres: ligado"
+
+msgid "TRAINING_FREE_OFF"
+msgstr "Recursos e recargas livres: desligado"
+
+msgid "HUD_TRAINING"
+msgstr "Treino — total {total} · DPS {dps} · maior {biggest} · críticos {crits}/{hits}"

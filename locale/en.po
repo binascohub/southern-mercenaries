@@ -1667,3 +1667,51 @@ msgstr "Quest: {quest} — weak to {weak}"
 
 msgid "HUD_INTERACT"
 msgstr "{action} {target}"
+
+msgid "MONSTER_DUMMY_FIRE"
+msgstr "Straw dummy (Fire)"
+
+msgid "MONSTER_DUMMY_WATER"
+msgstr "Straw dummy (Water)"
+
+msgid "MONSTER_DUMMY_AIR"
+msgstr "Straw dummy (Air)"
+
+msgid "MONSTER_DUMMY_EARTH"
+msgstr "Straw dummy (Earth)"
+
+msgid "MONSTER_DUMMY_ARMORED"
+msgstr "Armored dummy"
+
+msgid "MONSTER_DUMMY_GIANT"
+msgstr "Giant dummy"
+
+msgid "MONSTER_DUMMY_SMALL"
+msgstr "Small dummy"
+
+msgid "PROP_TRAINING_BOARD"
+msgstr "Training board"
+
+msgid "TRAINING_TITLE"
+msgstr "Training yard"
+
+msgid "TRAINING_INFO"
+msgstr "Dummies don't die and give no experience, gold or loot. The panel at the top shows the group's damage while you are in the yard."
+
+msgid "TRAINING_RESET_STATS"
+msgstr "Reset the panel"
+
+msgid "TRAINING_RESET_DUMMIES"
+msgstr "Reset the dummies"
+
+msgid "TRAINING_TOGGLE_FREE"
+msgstr "Free resources and cooldowns: on/off"
+
+msgid "TRAINING_FREE_ON"
+msgstr "Free resources and cooldowns: on"
+
+msgid "TRAINING_FREE_OFF"
+msgstr "Free resources and cooldowns: off"
+
+msgid "HUD_TRAINING"
+msgstr "Training — total {total} · DPS {dps} · biggest {biggest} · crits {crits}/{hits}"

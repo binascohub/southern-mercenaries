@@ -12,6 +12,7 @@ extends Node
 signal state_changed
 signal shop_opened(shop_id: String)
 signal dialogue_opened(npc_id: String, index: int)
+signal training_opened
 
 const REACH := 4.0
 
@@ -66,6 +67,13 @@ func has_offer(npc_id: String) -> bool:
 	return i >= 0 and GameData.npcs[npc_id].dialogues[i].has("offer")
 
 
+## DPS do painel de treino: dano total pelo tempo entre o primeiro e o último
+## golpe (mínimo 1 s).
+static func training_dps(stats: Dictionary) -> float:
+	var seconds := maxf((int(stats.get("last_ms", 0)) - int(stats.get("start_ms", 0))) / 1000.0, 1.0)
+	return float(stats.get("total", 0.0)) / seconds
+
+
 ## Missão principal ativa (para o HUD).
 func active_quest() -> String:
 	for id: String in quests:
@@ -84,6 +92,8 @@ func interact(player: Player, prop: Dictionary) -> void:
 			_send(player.peer_id, &"_open_dialogue", [String(prop.npc), dialogue_index(prop.npc, _campaign().get("quests", {}))])
 		"sign":
 			_arena()._toast_to(player, String(prop.get("text_key", "")), {})
+		"training":
+			_send(player.peer_id, &"_open_training", [])
 		"exit":
 			var needs: String = prop.get("requires", "")
 			if needs != "" and needs not in _campaign().get("unlocked", []):
@@ -95,6 +105,11 @@ func interact(player: Player, prop: Dictionary) -> void:
 @rpc("authority", "reliable")
 func _open_shop(shop_id: String) -> void:
 	shop_opened.emit(shop_id)
+
+
+@rpc("authority", "reliable")
+func _open_training() -> void:
+	training_opened.emit()
 
 
 @rpc("authority", "reliable")

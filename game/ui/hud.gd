@@ -29,6 +29,7 @@ var _area_name := ""
 var _quest_id := ""
 var _quest_label: Label
 var _prompt: Label
+var _training_label: Label
 var _result := 0
 var _connecting := false
 var _local_alive := true
@@ -122,6 +123,20 @@ func set_interact_prompt(target: String) -> void:
 	_prompt.visible = target != ""
 	if target != "":
 		_prompt.text = tr("HUD_INTERACT").format({"action": InputDevice.prompt(&"interact"), "target": target})
+
+
+## Painel de treino ({} esconde): mostrado só dentro do pátio.
+func set_training(stats: Dictionary) -> void:
+	_training_label.visible = not stats.is_empty()
+	if stats.is_empty():
+		return
+	_training_label.text = tr("HUD_TRAINING").format({
+		"total": roundi(float(stats.get("total", 0.0))),
+		"dps": "%.1f" % Town.training_dps(stats),
+		"biggest": roundi(float(stats.get("biggest", 0.0))),
+		"crits": int(stats.get("crits", 0)),
+		"hits": int(stats.get("hits", 0)),
+	})
 
 
 func set_progress(cleared: int, total: int) -> void:
@@ -313,6 +328,15 @@ func _build() -> void:
 	_prompt.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_prompt.visible = false
 	root.add_child(_prompt)
+	# Painel de treino (pátio): dano total, DPS, maior golpe, críticos.
+	_training_label = _label(18)
+	_training_label.set_anchors_preset(Control.PRESET_CENTER_TOP)
+	_training_label.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	_training_label.offset_top = 24
+	_training_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_training_label.add_theme_color_override("font_color", Color(0.85, 0.95, 1.0))
+	_training_label.visible = false
+	root.add_child(_training_label)
 	_hosting = _label(14)
 	_hosting.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	_hosting.modulate = Color(1, 1, 1, 0.6)

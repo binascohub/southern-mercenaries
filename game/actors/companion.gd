@@ -139,7 +139,8 @@ func _target(master: Player) -> Enemy:
 	var best: Enemy = null
 	var best_d := LEASH
 	for e: Enemy in get_tree().get_nodes_in_group(&"enemies"):
-		if e.state == Enemy.State.SLEEP or e.health <= 0.0:
+		# Bonecos do pátio de treino também servem de alvo (para testar os animais).
+		if (e.state == Enemy.State.SLEEP and not e.data.get("dummy", false)) or e.health <= 0.0:
 			continue
 		var d := e.global_position.distance_to(master.global_position)
 		if d < best_d:

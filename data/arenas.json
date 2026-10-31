@@ -171,7 +171,7 @@
     ]
   },
   "tortuga": {
-    "_comment": "Tortuga, área externa (04-tortuga-e-missoes.md, seção 2): Rua Principal com as bancas, o bueiro e a porta da Taverna; ao norte o porto (cais baixo, de onde se vê o mar) com o Portal e a doca, onde o navio pirata atracado é o Mercado Pirata, com o vendedor na frente do navio (decisão do autor). Geometria provisória até os modelos.",
+    "_comment": "Tortuga, área externa (04-tortuga-e-missoes.md, seção 2): Rua Principal com as bancas, o bueiro e a porta da Taverna; ao norte o porto (cais baixo, de onde se vê o mar) com o Portal e a doca, onde o navio pirata atracado é o Mercado Pirata, com o vendedor na frente do navio (decisão do autor). Ao sul, o pátio de treino com os bonecos (seção 5.2). Geometria provisória até os modelos.",
     "name_key": "AREA_TORTUGA",
     "town": true,
     "outdoor": true,
@@ -191,7 +191,8 @@
           16
         ],
         "doors": [
-          "north"
+          "north",
+          "south"
         ],
         "torch": true
       },
@@ -226,6 +227,22 @@
           "south"
         ],
         "wall_height": 0.6
+      },
+      {
+        "id": "training_yard",
+        "center": [
+          0,
+          16
+        ],
+        "size": [
+          26,
+          16
+        ],
+        "doors": [
+          "north"
+        ],
+        "training": true,
+        "torch": true
       }
     ],
     "encounters": [],
@@ -245,6 +262,10 @@
       "portal": [
         8,
         -14
+      ],
+      "training": [
+        0,
+        10
       ]
     },
     "props": [
@@ -253,7 +274,7 @@
         "kind": "exit",
         "name_key": "PROP_TAVERN",
         "position": [
-          0,
+          -14,
           7.2
         ],
         "to": "tavern",
@@ -345,6 +366,94 @@
         "size": [
           80,
           19
+        ]
+      },
+      {
+        "id": "training_board",
+        "kind": "training",
+        "name_key": "PROP_TRAINING_BOARD",
+        "position": [
+          -10,
+          10.5
+        ]
+      }
+    ],
+    "dummies": [
+      {
+        "monster": "training_dummy_water",
+        "position": [
+          -9,
+          15
+        ]
+      },
+      {
+        "monster": "training_dummy_fire",
+        "position": [
+          -5,
+          15
+        ]
+      },
+      {
+        "monster": "training_dummy_air",
+        "position": [
+          -1,
+          15
+        ]
+      },
+      {
+        "monster": "training_dummy_earth",
+        "position": [
+          3,
+          15
+        ]
+      },
+      {
+        "monster": "training_dummy_armored",
+        "position": [
+          9,
+          13
+        ]
+      },
+      {
+        "monster": "training_dummy_giant",
+        "position": [
+          9,
+          19.5
+        ]
+      },
+      {
+        "monster": "training_dummy_small",
+        "position": [
+          -8.0,
+          20.5
+        ]
+      },
+      {
+        "monster": "training_dummy_small",
+        "position": [
+          -6.4,
+          20.5
+        ]
+      },
+      {
+        "monster": "training_dummy_small",
+        "position": [
+          -4.8,
+          20.5
+        ]
+      },
+      {
+        "monster": "training_dummy_small",
+        "position": [
+          -3.1999999999999993,
+          20.5
+        ]
+      },
+      {
+        "monster": "training_dummy_small",
+        "position": [
+          -1.5999999999999996,
+          20.5
         ]
       }
     ]

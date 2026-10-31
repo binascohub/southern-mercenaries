@@ -73,6 +73,7 @@ var _trade_menu: TradeMenu
 var _skill_menu: SkillMenu
 var _shop_menu: ShopMenu
 var _dialogue_menu: DialogueMenu
+var _training_menu: TrainingMenu
 ## Aumenta a cada reinício; timers da partida anterior são ignorados.
 var _run := 0
 ## Grupos de encontro (servidor): id -> {position, awake, members}.
@@ -101,6 +102,10 @@ var _area_root: Node3D
 var _props: Array[Dictionary] = []
 ## Objeto ao alcance do herói deste PC (aviso de interagir) e suas marcas "!".
 var _prop_markers := {}
+## Pátio de treino (04-tortuga-e-missoes.md, seção 5.2): painel do grupo
+## {total, biggest, crits, hits, start_ms, last_ms} e quem ligou "recursos livres".
+var training := {}
+var _training_free := {}
 
 @onready var hud: Hud = $Hud
 @onready var pause_menu: PauseMenu = $PauseMenu
@@ -140,6 +145,12 @@ func _ready() -> void:
 	_dialogue_menu = DialogueMenu.new()
 	add_child(_dialogue_menu)
 	_dialogue_menu.bind(town)
+	var training_layer := CanvasLayer.new()
+	training_layer.layer = 6
+	add_child(training_layer)
+	_training_menu = TrainingMenu.new()
+	training_layer.add_child(_training_menu)
+	_training_menu.bind(self, town)
 	InputDevice.gamepad_lost.connect(_on_gamepad_lost)
 	InputDevice.gamepad_restored.connect(_on_gamepad_restored)
 	NetworkManager.session_ended.connect(_on_session_ended)
@@ -172,7 +183,7 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"menu") and not pause_menu.is_open and not _inventory.visible \
 			and not _trade_menu.is_open() and not _skill_menu.visible and not _shop_menu.visible \
-			and not _dialogue_menu.visible:
+			and not _dialogue_menu.visible and not _training_menu.visible:
 		pause_menu.open(not NetworkManager.is_online())
 		get_viewport().set_input_as_handled()
 	elif result == Result.VICTORY and event.is_action_pressed(&"attack"):
@@ -191,7 +202,9 @@ func _physics_process(delta: float) -> void:
 			_update_encounters()
 			_auto_pickup_gold()
 		_update_zones(delta)
+		_update_training()
 	if local_player and is_instance_valid(local_player):
+		hud.set_training(training if in_training(local_player.global_position) else {})
 		var near := prop_near(local_player)
 		var name_key: String = near.get("name_key", GameData.npcs.get(near.get("npc", ""), {}).get("name_key", ""))
 		hud.set_interact_prompt(tr(name_key) if not near.is_empty() else "")
@@ -276,6 +289,85 @@ func _show_zone(state_id: String, at: Vector3, radius: float, duration: float) -
 	add_child(disc)
 	disc.global_position = Vector3(at.x, 0.03, at.z)
 	get_tree().create_timer(duration, false).timeout.connect(disc.queue_free)
+
+
+# --- Pátio de treino ---------------------------------------------------------------
+
+## O ponto fica no pátio de treino (sala marcada "training").
+func in_training(at: Vector3) -> bool:
+	for room: Dictionary in arena.get("rooms", []):
+		if room.get("training", false):
+			var half := Vector2(room.size[0], room.size[1]) / 2.0
+			if absf(at.x - room.center[0]) <= half.x and absf(at.z - room.center[1]) <= half.y:
+				return true
+	return false
+
+
+## Golpe num boneco (chamado pelo boneco no servidor): soma no painel do grupo.
+func on_dummy_hit(amount: float, crit: bool) -> void:
+	if not multiplayer.is_server():
+		return
+	var now := Time.get_ticks_msec()
+	if int(training.get("hits", 0)) == 0:
+		training.start_ms = now
+	training.total = float(training.get("total", 0.0)) + amount
+	training.biggest = maxf(float(training.get("biggest", 0.0)), amount)
+	training.crits = int(training.get("crits", 0)) + int(crit)
+	training.hits = int(training.get("hits", 0)) + 1
+	training.last_ms = now
+	_set_training.rpc(training)
+
+
+func reset_training() -> void:
+	training = {"total": 0.0, "biggest": 0.0, "crits": 0, "hits": 0, "start_ms": 0, "last_ms": 0}
+	if multiplayer.is_server():
+		_set_training.rpc(training)
+
+
+@rpc("authority", "call_local", "unreliable_ordered")
+func _set_training(stats: Dictionary) -> void:
+	training = stats
+
+
+## Pedidos do quadro de treino (qualquer PC; o servidor confere se está no pátio).
+func request_training(action: String) -> void:
+	if multiplayer.is_server():
+		_rpc_training(action)
+	else:
+		_rpc_training.rpc_id(1, action)
+
+
+@rpc("any_peer", "reliable")
+func _rpc_training(action: String) -> void:
+	if not multiplayer.is_server():
+		return
+	var sender := multiplayer.get_remote_sender_id()
+	var peer := sender if sender != 0 else multiplayer.get_unique_id()
+	var player := get_node_or_null(str(peer)) as Player
+	if player == null or not in_training(player.global_position):
+		return
+	match action:
+		"reset_stats":
+			reset_training()
+		"reset_dummies":
+			for e: Enemy in get_tree().get_nodes_in_group(&"enemies"):
+				if e.data.get("dummy", false):
+					e.health = e.max_health
+					e.status.clear()
+			reset_training()
+		"toggle_free":
+			_training_free[peer] = not _training_free.get(peer, false)
+			_toast_to(player, "TRAINING_FREE_ON" if _training_free[peer] else "TRAINING_FREE_OFF", {})
+
+
+## Recursos e recargas livres no pátio: vida, recurso e recargas voltam ao máximo.
+func _update_training() -> void:
+	for p: Player in get_tree().get_nodes_in_group(&"players"):
+		var free: bool = _training_free.get(p.peer_id, false) and p.alive and in_training(p.global_position)
+		p.free_cooldowns = free
+		if free:
+			p.health = p.max_health
+			p.resource = p.max_resource
 
 
 ## Área estreita (corredores marcados "narrow"): o Cavaleiro desmonta (02-3-cavaleiro.md, seção 3).
@@ -495,6 +587,11 @@ func _start_run() -> void:
 	for encounter: Dictionary in arena.encounters:
 		if encounter.id not in dead:
 			_spawn_group(encounter)
+	# Bonecos do pátio de treino: não acordam, não andam, não morrem.
+	for dummy: Dictionary in arena.get("dummies", []):
+		_enemy_spawner.spawn({"monster_id": dummy.monster, "group": "",
+			"level": 1, "position": Vector3(dummy.position[0], 0, dummy.position[1]), "yaw": PI})
+	reset_training()
 	_reset_players()
 	for c in get_tree().get_nodes_in_group(&"companions"):
 		c.queue_free()  # os animais voltam quando o Invocador os chamar de novo

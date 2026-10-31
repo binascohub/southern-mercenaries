@@ -1666,3 +1666,51 @@ msgstr ""
 
 msgid "HUD_INTERACT"
 msgstr ""
+
+msgid "MONSTER_DUMMY_FIRE"
+msgstr ""
+
+msgid "MONSTER_DUMMY_WATER"
+msgstr ""
+
+msgid "MONSTER_DUMMY_AIR"
+msgstr ""
+
+msgid "MONSTER_DUMMY_EARTH"
+msgstr ""
+
+msgid "MONSTER_DUMMY_ARMORED"
+msgstr ""
+
+msgid "MONSTER_DUMMY_GIANT"
+msgstr ""
+
+msgid "MONSTER_DUMMY_SMALL"
+msgstr ""
+
+msgid "PROP_TRAINING_BOARD"
+msgstr ""
+
+msgid "TRAINING_TITLE"
+msgstr ""
+
+msgid "TRAINING_INFO"
+msgstr ""
+
+msgid "TRAINING_RESET_STATS"
+msgstr ""
+
+msgid "TRAINING_RESET_DUMMIES"
+msgstr ""
+
+msgid "TRAINING_TOGGLE_FREE"
+msgstr ""
+
+msgid "TRAINING_FREE_ON"
+msgstr ""
+
+msgid "TRAINING_FREE_OFF"
+msgstr ""
+
+msgid "HUD_TRAINING"
+msgstr ""

@@ -595,6 +595,34 @@ func _town_test() -> void:
 	check.call(player.element == player.character.data.element and player.character.data.element_potion == "", "voltar a Tortuga encerra a Poção Elemental")
 	check.call(int(town.ship.day) == 1, "chegou um navio novo")
 	check.call(Session.campaign.area == "tortuga", "a campanha lembra onde o grupo está")
+	# Pátio de treino: bonecos que não morrem, painel do grupo, recursos livres.
+	var dummies := get_tree().get_nodes_in_group(&"enemies").filter(func(e: Enemy) -> bool: return e.data.get("dummy", false))
+	check.call(dummies.size() == 11, "11 bonecos no pátio (%d)" % dummies.size())
+	player.teleport_to(Vector3(-9, 0, 12))
+	check.call(_arena.in_training(player.global_position), "herói dentro do pátio")
+	var xp := int(player.character.data.xp)
+	var fire_dummy: Enemy = dummies.filter(func(e: Enemy) -> bool: return e.monster_id == "training_dummy_fire")[0]
+	var result: Dictionary = fire_dummy.take_hit({"damage": 40.0, "element": "water", "state": "", "crit_chance": 0.0})
+	check.call(result.get("effect", "") == "weak", "Água no boneco de Fogo: fraqueza")
+	fire_dummy.take_damage(1e9)
+	await get_tree().physics_frame
+	check.call(is_instance_valid(fire_dummy) and fire_dummy.health > 0.0, "boneco não morre")
+	check.call(int(player.character.data.xp) == xp, "boneco não dá experiência")
+	check.call(float(_arena.training.get("total", 0.0)) > 60.0 and int(_arena.training.get("hits", 0)) >= 2, "painel soma o dano do grupo")
+	var giant: Enemy = dummies.filter(func(e: Enemy) -> bool: return e.monster_id == "training_dummy_giant")[0]
+	Elements.apply_state(giant.status, "stunned", giant.element, giant.is_boss())
+	check.call(giant.status.has("slowed") and not giant.status.has("stunned"), "boneco gigante age como chefe (lentidão no lugar de atordoar)")
+	var armored: Enemy = dummies.filter(func(e: Enemy) -> bool: return e.monster_id == "training_dummy_armored")[0]
+	var before := armored.health
+	armored.take_damage(100.0)
+	check.call(is_equal_approx(before - armored.health, 50.0), "boneco blindado recebe metade")
+	_arena.request_training("toggle_free")
+	player.resource = 0.0
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	check.call(is_equal_approx(player.resource, player.max_resource) and player.free_cooldowns, "recursos e recargas livres no pátio")
+	_arena.request_training("reset_stats")
+	check.call(int(_arena.training.get("hits", -1)) == 0, "zerar o painel")
 	_report(checks.is_empty(), "cidade: " + ("tudo certo" if checks.is_empty() else "; ".join(PackedStringArray(checks))))
 
 

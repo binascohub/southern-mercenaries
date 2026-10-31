@@ -219,7 +219,7 @@ func is_behind(from: Vector3) -> bool:
 
 
 func is_boss() -> bool:
-	return data.get("category", "") == "boss"
+	return data.get("category", "") == "boss" or data.get("boss", false)
 
 
 ## Golpe de jogador com elemento (projétil, habilidade). Só no servidor.
@@ -243,6 +243,15 @@ func take_damage(amount: float) -> void:
 
 func _hurt(amount: float, effect: String, hit_element: String, crit: bool, combo: String) -> void:
 	if not multiplayer.is_server() or health <= 0.0:
+		return
+	if data.get("dummy", false):
+		# Boneco do pátio: blindado recebe menos, nunca morre, avisa o painel de treino.
+		amount *= float(data.get("damage_taken", 1.0))
+		health -= amount
+		if health <= 0.0:
+			health = max_health
+		_show_damage.rpc(amount, effect, hit_element, crit, combo)
+		get_tree().call_group(&"arena", &"on_dummy_hit", amount, crit)
 		return
 	if state == State.SLEEP:
 		disturbed.emit(self)
