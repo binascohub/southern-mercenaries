@@ -2248,6 +2248,9 @@ msgstr "A Ninhada"
 msgid "BOSS_RAT_QUEEN_PHASE_3"
 msgstr "O Pacto"
 
+msgid "BOSS_RAT_QUEEN_WINGS"
+msgstr "Asas de Morcego — a Rajada das Asas!"
+
 msgid "LEGENDARY_ROYAL_COUNCILOR_STAFF"
 msgstr "Cajado do Conselheiro Real"
 

@@ -7,6 +7,8 @@ extends RefCounted
 ##      de Ratos Pestilentos a cada 20 s.
 ##   2. A Ninhada (60%–25%): volta ao ninho e protege 3 ninhos de filhotes;
 ##      enquanto houver ninho, regenera vida. Só morde quem chega perto.
+## Da metade da vida em diante, asas de morcego: a Rajada das Asas (vento em
+## volta dela com aviso no chão) empurra os heróis para longe a cada intervalo.
 ##   3. O Pacto (25%–0%): o demônio toma o corpo; alaga a arena, fica mais
 ##      rápida e o gás tóxico sai dos canos em lugares marcados no chão.
 ## Os ajudantes não contam como encontro: somem quando ela cai.
@@ -43,8 +45,18 @@ static func update(q: Enemy, delta: float, target: Node3D, dist: float) -> bool:
 				var angle := randf() * TAU
 				var at := target.global_position + Vector3(cos(angle), 0, sin(angle)) * randf_range(0.0, 2.5)
 				q.schedule_strike(at, float(data.gas.radius), float(data.gas.windup), q.attack_damage(float(data.gas.damage_mult)), data.gas)
+	var gust: Dictionary = data.get("gust", {})
+	var winged := not gust.is_empty() and q.health <= q.max_health * float(gust.from)
+	if winged and not timers.has("gust"):
+		timers["gust"] = float(gust.first)
+		q.get_tree().call_group(&"arena", &"boss_phase", "BOSS_RAT_QUEEN_WINGS")
 	if q.state != Enemy.State.CHASE:
 		return false
+	# Rajada das Asas: quem está perto tem o aviso para esquivar ou sair.
+	if winged and float(timers.get("gust", 0.0)) <= 0.0 and dist <= float(gust.radius) + 1.0:
+		timers["gust"] = float(gust.interval)
+		q.start_gust()
+		return true
 	# Pisão em área: quem está em volta tem o aviso para sair.
 	if dist <= float(data.slam.radius) and float(timers.get("slam", 0.0)) <= 0.0:
 		timers["slam"] = float(data.slam.interval)

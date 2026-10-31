@@ -101,6 +101,9 @@ var _seen := PlayerInput.new()
 var _seen_extra := PlayerInput.new()
 var _attack_cooldown := 0.0
 var _evade_time := 0.0
+## Empurrão em andamento (velocidade e tempo restante; servidor).
+var _knock := Vector3.ZERO
+var _knock_time := 0.0
 var _evade_dir := Vector2.ZERO
 ## Recargas das habilidades (chave -> s), bônus ativos (id -> {value, time}) e escudo.
 var _skill_cd := {}
@@ -494,6 +497,13 @@ func _server_step(delta: float) -> void:
 		get_tree().call_group(&"arena", &"request_pickup", self, true)
 	_seen_extra = input
 
+	if _knock_time > 0.0:
+		_knock_time -= delta
+		velocity = _knock
+		move_and_slide()
+		global_position.y = 0.0
+		return
+
 	if _evade_time > 0.0:
 		_evade_time -= delta
 		var evade: Dictionary = data.evade
@@ -777,6 +787,19 @@ func add_shield(amount: float, duration: float) -> void:
 func heal(amount: float) -> void:
 	if alive:
 		health = minf(health + amount, max_health)
+
+
+## Empurrão (a Rajada das Asas da Rainha): `offset` metros em `time` s, sem
+## controle. Quem está na esquiva escapa (servidor).
+func knock_back(offset: Vector3, time: float) -> void:
+	if not multiplayer.is_server() or not alive or _evade_time > 0.0 or is_invulnerable():
+		return
+	_knock = offset / maxf(time, 0.05)
+	_knock_time = time
+
+
+func is_knocked_back() -> bool:
+	return _knock_time > 0.0
 
 
 func teleport_to(spot: Vector3) -> void:

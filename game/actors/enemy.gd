@@ -277,7 +277,7 @@ func _think(delta: float) -> void:
 					_timer = float(data.charge.time)
 					_charge_hit.clear()
 					return
-				if _special in ["spit", "slam"]:
+				if _special in ["spit", "slam", "gust"]:
 					get_tree().call_group(&"arena", &"monster_strike", _spit_at, float(_strike.get("radius", 1.5)),
 						attack_damage(float(_strike.get("damage_mult", 1.0))), level, self, _strike)
 				# No vapor (combo), erra parte dos ataques.
@@ -301,6 +301,17 @@ func speed_mult() -> float:
 func start_slam() -> void:
 	_special = "slam"
 	_strike = data.slam
+	state = State.WINDUP
+	_timer = float(_strike.windup)
+	_spit_at = global_position
+	velocity = Vector3.ZERO
+	get_tree().call_group(&"arena", &"telegraph", _spit_at, float(_strike.radius), _timer)
+
+
+## Rajada das Asas da Rainha: vento em volta dela que empurra (aviso no chão).
+func start_gust() -> void:
+	_special = "gust"
+	_strike = data.gust
 	state = State.WINDUP
 	_timer = float(_strike.windup)
 	_spit_at = global_position

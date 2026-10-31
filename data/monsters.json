@@ -244,7 +244,19 @@
       "puddle_time": 4.0,
       "puddle_dps": 5.0
     },
-    "pact_speed": 1.25
+    "pact_speed": 1.25,
+  "gust": {
+   "_comment": "Rajada das Asas: da metade da vida em diante ela tem asas de morcego e, a cada intervalo, bate as asas com aviso no chão; quem está dentro leva dano e é empurrado para longe (a esquiva escapa).",
+   "from": 0.5,
+   "interval": 9.0,
+   "first": 1.0,
+   "windup": 1.2,
+   "radius": 7.0,
+   "damage_mult": 0.8,
+   "push": 7.0,
+   "push_time": 0.45,
+   "wind": true
+  }
   },
   "training_dummy_fire": {
     "_comment": "Boneco do pátio de treino (04-tortuga-e-missoes.md, seção 5.2): não anda, não ataca, não morre e não dá XP nem loot.",

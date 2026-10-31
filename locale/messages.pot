@@ -2247,6 +2247,9 @@ msgstr ""
 msgid "BOSS_RAT_QUEEN_PHASE_3"
 msgstr ""
 
+msgid "BOSS_RAT_QUEEN_WINGS"
+msgstr ""
+
 msgid "LEGENDARY_ROYAL_COUNCILOR_STAFF"
 msgstr ""
 

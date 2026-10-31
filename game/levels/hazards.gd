@@ -51,9 +51,19 @@ func telegraph(at: Vector3, radius: float, time: float) -> void:
 func strike(at: Vector3, radius: float, damage: float, level: int, source: Node3D, extra: Dictionary) -> void:
 	if not multiplayer.is_server():
 		return
+	var push := float(extra.get("push", 0.0))
 	for p: Player in get_tree().get_nodes_in_group(&"players"):
 		if p.alive and _inside(p.global_position, at, radius):
 			p.take_damage(damage, level, source)
+			if push > 0.0:
+				# Vento: para longe do centro (a esquiva escapa do empurrão).
+				var away := p.global_position - at
+				away.y = 0.0
+				if away.length() < 0.1:
+					away = Vector3.BACK
+				p.knock_back(away.normalized() * push, float(extra.get("push_time", 0.4)))
+	if extra.get("wind", false):
+		_show_gust.rpc(at, radius)
 	if float(extra.get("puddle_time", 0.0)) > 0.0:
 		add(at, radius, float(extra.puddle_time), float(extra.get("puddle_dps", 3.0)) * pow(1.12, level - 1), level)
 
@@ -92,6 +102,55 @@ static func _inside(point: Vector3, center: Vector3, radius: float) -> bool:
 @rpc("authority", "call_local", "reliable")
 func _show_sludge(at: Vector3, radius: float, duration: float) -> void:
 	_disc(at, radius, SLUDGE_COLOR, duration)
+
+
+## Rajada de vento (asas da Rainha): anéis claros que se abrem e somem, e
+## riscos de vento correndo para fora.
+@rpc("authority", "call_local", "reliable")
+func _show_gust(at: Vector3, radius: float) -> void:
+	if root == null or not is_instance_valid(root):
+		return
+	var gust := Node3D.new()
+	root.add_child(gust)
+	gust.position = Vector3(at.x, 0.6, at.z)
+	for i in 3:
+		var ring := MeshInstance3D.new()
+		var torus := TorusMesh.new()
+		torus.inner_radius = 0.85
+		torus.outer_radius = 1.0
+		ring.mesh = torus
+		var material := StandardMaterial3D.new()
+		material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		material.albedo_color = Color(0.85, 0.95, 1.0, 0.55)
+		ring.material_override = material
+		ring.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		ring.position.y = 0.3 * i
+		ring.scale = Vector3.ONE * 0.5
+		gust.add_child(ring)
+		var tween := ring.create_tween().set_parallel()
+		tween.tween_property(ring, "scale", Vector3(radius, 1.0, radius), 0.45 + 0.12 * i).set_delay(0.08 * i)
+		tween.tween_property(material, "albedo_color:a", 0.0, 0.45 + 0.12 * i).set_delay(0.08 * i)
+	for i in 14:
+		var streak := MeshInstance3D.new()
+		var box := BoxMesh.new()
+		box.size = Vector3(0.06, 0.06, 1.2)
+		streak.mesh = box
+		var material := StandardMaterial3D.new()
+		material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		material.albedo_color = Color(0.9, 0.97, 1.0, 0.7)
+		streak.material_override = material
+		streak.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		var angle := TAU * i / 14.0 + randf() * 0.2
+		var dir := Vector3(sin(angle), 0, cos(angle))
+		streak.rotation.y = angle
+		streak.position = dir * 1.0 + Vector3.UP * randf_range(-0.3, 0.6)
+		gust.add_child(streak)
+		var tween := streak.create_tween().set_parallel()
+		tween.tween_property(streak, "position", dir * radius + Vector3.UP * streak.position.y, 0.5)
+		tween.tween_property(material, "albedo_color:a", 0.0, 0.5)
+	get_tree().create_timer(1.0, false).timeout.connect(gust.queue_free)
 
 
 @rpc("authority", "call_local", "reliable")

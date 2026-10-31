@@ -2248,6 +2248,9 @@ msgstr "La Camada"
 msgid "BOSS_RAT_QUEEN_PHASE_3"
 msgstr "El Pacto"
 
+msgid "BOSS_RAT_QUEEN_WINGS"
+msgstr "Alas de Murciélago — ¡la Ráfaga de Alas!"
+
 msgid "LEGENDARY_ROYAL_COUNCILOR_STAFF"
 msgstr "Bastón del Consejero Real"
 

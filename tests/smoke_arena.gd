@@ -640,6 +640,20 @@ func _sewers_test() -> void:
 	before = queen.health
 	await _wait_frames(30)
 	check.call(is_equal_approx(queen.health, before) or queen.health < before, "sem ninhos, não regenera")
+	# Metade da vida: asas de morcego e a Rajada das Asas, que empurra o herói.
+	queen.health = queen.max_health * 0.45
+	player.teleport_to(queen.global_position + Vector3(0, 0, 3))
+	var pushed := false
+	var gusted := false
+	for i in 180:
+		await get_tree().physics_frame
+		gusted = gusted or (queen.state == Enemy.State.WINDUP and queen._special == "gust")
+		if player.is_knocked_back():
+			pushed = true
+			break
+	check.call(queen.has_wings(), "Rainha ganha asas na metade da vida")
+	check.call(gusted and pushed, "Rajada das Asas: aviso e empurrão (aviso %s, empurrão %s, %.1f m)" % [gusted, pushed,
+		player.global_position.distance_to(queen.global_position)])
 	queen.health = queen.max_health * 0.2
 	# O gás mira um herói de pé: o do teste (nível 1) aguenta a luta toda.
 	if not player.alive:
