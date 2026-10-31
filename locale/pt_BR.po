@@ -393,7 +393,7 @@ msgid "AFFIX_MOVE_SPEED"
 msgstr "+{value}% de velocidade de movimento"
 
 msgid "AFFIX_GOLD_FIND"
-msgstr "+{value}% de ouro encontrado"
+msgstr "+{value}% de Binascoins encontradas"
 
 msgid "ITEM_POTION_HEALTH"
 msgstr "Poção de vida"
@@ -435,10 +435,10 @@ msgid "ITEM_RESTORES"
 msgstr "Restaura {percent}%"
 
 msgid "ITEM_VALUE"
-msgstr "Valor: {gold} de ouro"
+msgstr "Valor: B$ {gold}"
 
 msgid "LOOT_GOLD"
-msgstr "{amount} de ouro"
+msgstr "B$ {amount}"
 
 msgid "TOAST_LEVEL_UP"
 msgstr "Subiu de nível! Agora você é nível {level}."
@@ -450,7 +450,7 @@ msgid "HUD_LEVEL_XP"
 msgstr "Nível {level} — XP {xp}/{next}"
 
 msgid "HUD_GOLD"
-msgstr "Ouro: {gold}"
+msgstr "Binascoins: B$ {gold}"
 
 msgid "HUD_POTIONS"
 msgstr "{health_key} Vida ×{health}   {resource_key} Recurso ×{resource}"
@@ -601,7 +601,7 @@ msgid "TRADE_TITLE"
 msgstr "Troca com {name}"
 
 msgid "TRADE_GOLD"
-msgstr "Ouro oferecido: {gold} de {total}"
+msgstr "Binascoins oferecidas: B$ {gold} de B$ {total}"
 
 msgid "TRADE_YOUR_OFFER"
 msgstr "Sua oferta"
@@ -1543,7 +1543,7 @@ msgid "CAPTAIN_4"
 msgstr "Navio do capitão Lourenço Mudo"
 
 msgid "SHOP_PRICE"
-msgstr "{price} de ouro"
+msgstr "B$ {price}"
 
 msgid "SHOP_SOLD"
 msgstr "vendido"
@@ -1660,7 +1660,7 @@ msgid "TOAST_RESTED"
 msgstr "Descansou: vida e recurso cheios"
 
 msgid "TOAST_NO_GOLD"
-msgstr "Ouro insuficiente"
+msgstr "Binascoins insuficientes"
 
 msgid "TOAST_NOT_BUYING"
 msgstr "Aqui não compram isso"
@@ -1699,7 +1699,7 @@ msgid "TRAINING_TITLE"
 msgstr "Pátio de treino"
 
 msgid "TRAINING_INFO"
-msgstr "Os bonecos não morrem e não dão experiência, ouro nem loot. O painel no alto mostra o dano do grupo enquanto você está no pátio."
+msgstr "Os bonecos não morrem e não dão experiência, Binascoins nem loot. O painel no alto mostra o dano do grupo enquanto você está no pátio."
 
 msgid "TRAINING_RESET_STATS"
 msgstr "Zerar o painel"
@@ -1744,7 +1744,7 @@ msgid "TOAST_CHARM_NOT_HERE"
 msgstr "O patuá só funciona nos mapas"
 
 msgid "TOAST_PORTAL_MISSING_GOLD"
-msgstr "Falta ouro ({price} cada): {names}"
+msgstr "Faltam Binascoins (B$ {price} cada): {names}"
 
 msgid "PORTALS_TITLE"
 msgstr "Portais para pontos salvos"
@@ -1753,7 +1753,7 @@ msgid "PORTALS_NONE"
 msgstr "Nenhum checkpoint alcançado ainda"
 
 msgid "PORTALS_ENTRY"
-msgstr "{area} — {checkpoint} — {price} de ouro cada"
+msgstr "{area} — {checkpoint} — B$ {price} cada"
 
 msgid "NPC_MASTER"
 msgstr "Velho Mestre"
@@ -1762,7 +1762,7 @@ msgid "DLG_MASTER_1"
 msgstr "Toda cicatriz ensina alguma coisa. Me pague e eu faço você esquecer as lições erradas — todos os pontos de atributo e de habilidade voltam."
 
 msgid "DLG_SERVICE_RESPEC"
-msgstr "Redistribuir pontos ({price} de ouro)"
+msgstr "Redistribuir pontos (B$ {price})"
 
 msgid "TOAST_RESPEC_DONE"
 msgstr "Pontos devolvidos: distribua de novo"
@@ -1798,13 +1798,13 @@ msgid "VISITOR_STRANGER"
 msgstr "estranho encapuzado"
 
 msgid "VQ_HUNT_INTRO"
-msgstr "Pago {gold} moedas por {count} {target} de {area}. Traga a prova, ou nem volte."
+msgstr "Pago B$ {gold} por {count} {target} de {area}. Traga a prova, ou nem volte."
 
 msgid "VQ_RUMOR_INTRO"
-msgstr "Ouvi dizer que tem coisa escondida em {area}. Pode ser tesouro, pode ser armadilha. Se for ouro, tem {gold} pra vocês."
+msgstr "Ouvi dizer que tem coisa escondida em {area}. Pode ser tesouro, pode ser armadilha. Se for ouro, tem B$ {gold} pra vocês."
 
 msgid "VQ_RETRIEVE_INTRO"
-msgstr "Perdi um caixote lá embaixo em {area}. Traga de volta e eu pago {gold}. Cuidado com o que vive lá."
+msgstr "Perdi um caixote lá embaixo em {area}. Traga de volta e eu pago B$ {gold}. Cuidado com o que vive lá."
 
 msgid "VQ_HUNT_TITLE"
 msgstr "Caçada: {count} {target}"
@@ -1969,7 +1969,7 @@ msgid "FORGE_CRYSTALLIZE"
 msgstr "Cristalizar (+{count})"
 
 msgid "FORGE_CRAFT"
-msgstr "Fazer {scroll}: {count} cristais + {gold} de ouro (você tem {have})"
+msgstr "Fazer {scroll}: {count} cristais + B$ {gold} (você tem {have})"
 
 msgid "FORGE_INFO"
 msgstr "+1 a +3 nunca falha. +4 (65%) e +5 (45%) podem falhar: o pergaminho normal quebra o item em cristais (únicos e lendários voltam a +0); o abençoado só volta a +0."
@@ -1996,7 +1996,7 @@ msgid "REFINE_BROKEN"
 msgstr "O item se quebrou em {count} cristais"
 
 msgid "REFINE_CRAFT_MISSING"
-msgstr "Você precisa de {count} cristais e {gold} de ouro"
+msgstr "Você precisa de {count} cristais e B$ {gold}"
 
 msgid "OPENING_SKIP"
 msgstr "Pular abertura"

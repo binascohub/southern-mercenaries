@@ -12,7 +12,7 @@
 | `material` | Material | Crafting no ferreiro (lista em `03-inimigos.md`, seção 13) e **cristais** de refino | Sim |
 | `valuable` | **Valioso** | Sem uso em combate; serve **só para vender** (piratas, joalheiro) | Sim (preço alto) |
 | `relic` | Relíquia | Item da história, guardado por cada chefe | Não |
-| `gold` | Ouro | Moeda; **cada jogador tem o seu** | — |
+| `gold` | **Binascoin (B$)** | Moeda do jogo (decisão do autor); **cada jogador tem a sua**. No código e nos dados continua `gold` | — |
 
 ## 2. Materiais dos equipamentos (tiers)
 

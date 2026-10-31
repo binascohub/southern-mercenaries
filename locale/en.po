@@ -393,7 +393,7 @@ msgid "AFFIX_MOVE_SPEED"
 msgstr "+{value}% movement speed"
 
 msgid "AFFIX_GOLD_FIND"
-msgstr "+{value}% gold found"
+msgstr "+{value}% Binascoins found"
 
 msgid "ITEM_POTION_HEALTH"
 msgstr "Health potion"
@@ -435,10 +435,10 @@ msgid "ITEM_RESTORES"
 msgstr "Restores {percent}%"
 
 msgid "ITEM_VALUE"
-msgstr "Value: {gold} gold"
+msgstr "Value: B$ {gold}"
 
 msgid "LOOT_GOLD"
-msgstr "{amount} gold"
+msgstr "B$ {amount}"
 
 msgid "TOAST_LEVEL_UP"
 msgstr "Level up! You are now level {level}."
@@ -450,7 +450,7 @@ msgid "HUD_LEVEL_XP"
 msgstr "Level {level} — XP {xp}/{next}"
 
 msgid "HUD_GOLD"
-msgstr "Gold: {gold}"
+msgstr "Binascoins: B$ {gold}"
 
 msgid "HUD_POTIONS"
 msgstr "{health_key} Health ×{health}   {resource_key} Resource ×{resource}"
@@ -601,7 +601,7 @@ msgid "TRADE_TITLE"
 msgstr "Trade with {name}"
 
 msgid "TRADE_GOLD"
-msgstr "Gold offered: {gold} of {total}"
+msgstr "Binascoins offered: B$ {gold} of B$ {total}"
 
 msgid "TRADE_YOUR_OFFER"
 msgstr "Your offer"
@@ -1543,7 +1543,7 @@ msgid "CAPTAIN_4"
 msgstr "Captain Silent Lourenço's ship"
 
 msgid "SHOP_PRICE"
-msgstr "{price} gold"
+msgstr "B$ {price}"
 
 msgid "SHOP_SOLD"
 msgstr "sold"
@@ -1660,7 +1660,7 @@ msgid "TOAST_RESTED"
 msgstr "Rested: health and resource full"
 
 msgid "TOAST_NO_GOLD"
-msgstr "Not enough gold"
+msgstr "Not enough Binascoins"
 
 msgid "TOAST_NOT_BUYING"
 msgstr "They won't buy that here"
@@ -1699,7 +1699,7 @@ msgid "TRAINING_TITLE"
 msgstr "Training yard"
 
 msgid "TRAINING_INFO"
-msgstr "Dummies don't die and give no experience, gold or loot. The panel at the top shows the group's damage while you are in the yard."
+msgstr "Dummies don't die and give no experience, Binascoins or loot. The panel at the top shows the group's damage while you are in the yard."
 
 msgid "TRAINING_RESET_STATS"
 msgstr "Reset the panel"
@@ -1744,7 +1744,7 @@ msgid "TOAST_CHARM_NOT_HERE"
 msgstr "The charm only works out on the maps"
 
 msgid "TOAST_PORTAL_MISSING_GOLD"
-msgstr "Not enough gold ({price} each): {names}"
+msgstr "Not enough Binascoins (B$ {price} each): {names}"
 
 msgid "PORTALS_TITLE"
 msgstr "Portals to saved points"
@@ -1753,7 +1753,7 @@ msgid "PORTALS_NONE"
 msgstr "No checkpoint reached yet"
 
 msgid "PORTALS_ENTRY"
-msgstr "{area} — {checkpoint} — {price} gold each"
+msgstr "{area} — {checkpoint} — B$ {price} each"
 
 msgid "NPC_MASTER"
 msgstr "Old Master"
@@ -1762,7 +1762,7 @@ msgid "DLG_MASTER_1"
 msgstr "Every scar teaches something. Pay me and I'll make you forget the wrong lessons — all your attribute and skill points come back."
 
 msgid "DLG_SERVICE_RESPEC"
-msgstr "Redistribute points ({price} gold)"
+msgstr "Redistribute points (B$ {price})"
 
 msgid "TOAST_RESPEC_DONE"
 msgstr "Points returned: spend them again"
@@ -1798,13 +1798,13 @@ msgid "VISITOR_STRANGER"
 msgstr "hooded stranger"
 
 msgid "VQ_HUNT_INTRO"
-msgstr "I'll pay {gold} coins for {count} {target} from {area}. Bring proof, or don't come back."
+msgstr "I'll pay B$ {gold} for {count} {target} from {area}. Bring proof, or don't come back."
 
 msgid "VQ_RUMOR_INTRO"
-msgstr "I heard there's something hidden in {area}. Could be treasure, could be a trap. If it's gold, there's {gold} in it for you."
+msgstr "I heard there's something hidden in {area}. Could be treasure, could be a trap. If it's gold, there's B$ {gold} in it for you."
 
 msgid "VQ_RETRIEVE_INTRO"
-msgstr "A crate of mine got lost down in {area}. Bring it back and I'll pay {gold}. Mind what lives down there."
+msgstr "A crate of mine got lost down in {area}. Bring it back and I'll pay B$ {gold}. Mind what lives down there."
 
 msgid "VQ_HUNT_TITLE"
 msgstr "Hunt: {count} {target}"
@@ -1969,7 +1969,7 @@ msgid "FORGE_CRYSTALLIZE"
 msgstr "Crystallize (+{count})"
 
 msgid "FORGE_CRAFT"
-msgstr "Make {scroll}: {count} crystals + {gold} gold (you have {have})"
+msgstr "Make {scroll}: {count} crystals + B$ {gold} (you have {have})"
 
 msgid "FORGE_INFO"
 msgstr "+1 to +3 never fails. +4 (65%) and +5 (45%) can fail: a normal scroll breaks the item into crystals (uniques and legendaries go back to +0); a blessed one only goes back to +0."
@@ -1996,7 +1996,7 @@ msgid "REFINE_BROKEN"
 msgstr "The item shattered into {count} crystals"
 
 msgid "REFINE_CRAFT_MISSING"
-msgstr "You need {count} crystals and {gold} gold"
+msgstr "You need {count} crystals and B$ {gold}"
 
 msgid "OPENING_SKIP"
 msgstr "Skip opening"
