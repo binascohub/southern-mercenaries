@@ -675,35 +675,12 @@ static func _distance_to_segment(p: Vector3, a: Vector3, b: Vector3) -> float:
 
 # --- Visual (todos os PCs) ---------------------------------------------------------
 
-## "disc": disco no chão em `a` com raio; "beam": feixe de `a` a `b` com largura.
+## "disc": área no chão em `a` com raio; "beam": feixe de `a` a `b` com largura.
+## O elemento vem da cor (fx.gd: partículas por elemento).
 @rpc("authority", "call_local", "unreliable")
 func _fx(kind: String, a: Vector3, b: Vector3, size: float, color: Color, duration: float) -> void:
-	var node := MeshInstance3D.new()
-	var material := StandardMaterial3D.new()
-	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	material.albedo_color = Color(color.r, color.g, color.b, 0.35 if kind == "disc" else 0.75)
-	node.material_override = material
-	node.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	var element := Fx.element_for(color)
 	if kind == "disc":
-		var mesh := CylinderMesh.new()
-		mesh.top_radius = size
-		mesh.bottom_radius = size
-		mesh.height = 0.05
-		mesh.radial_segments = 28
-		node.mesh = mesh
-		add_child(node)
-		node.global_position = Vector3(a.x, 0.05, a.z)
+		Fx.burst(self, a, size, color, element, duration)
 	else:
-		var length := a.distance_to(b)
-		if length < 0.01:
-			return
-		var mesh := BoxMesh.new()
-		mesh.size = Vector3(size, size * 0.5, length)
-		node.mesh = mesh
-		add_child(node)
-		node.global_position = (a + b) / 2.0
-		node.look_at(b, Vector3.UP if absf((b - a).normalized().y) < 0.99 else Vector3.FORWARD)
-	var tween := node.create_tween()
-	tween.tween_property(material, "albedo_color:a", 0.0, maxf(duration, 0.05)).set_ease(Tween.EASE_IN)
-	tween.tween_callback(node.queue_free)
+		Fx.beam(self, a, b, size, color, element, duration)

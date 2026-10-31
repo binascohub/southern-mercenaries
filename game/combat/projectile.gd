@@ -61,19 +61,10 @@ func _ready() -> void:
 	shape.shape = sphere
 	add_child(shape)
 
-	var mesh := MeshInstance3D.new()
-	var sphere_mesh := SphereMesh.new()
-	sphere_mesh.radius = radius
-	sphere_mesh.height = radius * 2.0
-	sphere_mesh.radial_segments = 12
-	sphere_mesh.rings = 6
-	mesh.mesh = sphere_mesh
-	var material := StandardMaterial3D.new()
-	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	material.albedo_color = color
-	mesh.material_override = material
-	mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-	add_child(mesh)
+	# Núcleo brilhante e rastro de partículas do elemento (fx.gd).
+	var look := element if element != "" else Fx.element_for(color)
+	Fx.orb(self, color, look, radius)
+	Fx.trail(self, color, look, radius)
 
 	body_entered.connect(_on_body_entered)
 
