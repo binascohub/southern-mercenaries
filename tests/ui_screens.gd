@@ -6,6 +6,7 @@ extends "res://tests/smoke_arena.gd"
 ##    dano na fraqueza/resistência, um combo e a área de vapor;
 ## 0b. skill_fx.png: Nevasca, Corrente de Raios e Muralha de Fogo nos mesmos ratos;
 ## 0c. skills.png: janela de habilidades de um Mago nível 12 e a barra de atalhos;
+## 0d. classes.png: as 5 classes lado a lado (Cavaleiro montado), cada uma de um elemento;
 ## 1. trade.png: janela de troca com um aliado fictício (peer 99) e ofertas dos dois lados;
 ## 2. load_campaign.png: menu principal → Carregar campanha, com três campanhas
 ##    (uma com miniatura capturada da própria arena).
@@ -16,6 +17,8 @@ const SKILL_FX_FRAME := 210
 const SKILL_FX_SHOT := 216
 const SKILL_MENU_FRAME := 222
 const SKILL_MENU_SHOT := 228
+const CLASSES_FRAME := 230
+const CLASSES_SHOT := 236
 const THUMB_FRAME := 240
 const TRADE_FRAME := 260
 const TRADE_SHOT := 290
@@ -50,6 +53,14 @@ func _physics_process(delta: float) -> void:
 	elif _frame == SKILL_MENU_SHOT:
 		await _shot("skills.png")
 		_arena._skill_menu.close()
+	elif _frame == CLASSES_FRAME:
+		_show_classes()
+	elif _frame == CLASSES_SHOT:
+		await _shot("classes.png")
+		for peer in [91, 92, 93, 94]:
+			var hero := _arena.get_node_or_null(str(peer))
+			if hero:
+				hero.queue_free()
 	elif _frame == THUMB_FRAME:
 		await RenderingServer.frame_post_draw
 		SaveSystem.save_thumbnail(Session.campaign.id, get_viewport().get_texture().get_image())
@@ -114,6 +125,23 @@ func _show_skills() -> void:
 	player.element = "fire"
 	system.cast(player, "fire_wall", 1)
 	player.element = player.character.current_element()
+
+
+## Heróis fictícios (peers 91–94) das outras classes ao lado do Mago.
+func _show_classes() -> void:
+	var player: Player = _arena.local_player
+	for e in get_tree().get_nodes_in_group(&"enemies"):
+		e.queue_free()
+	var heroes := [[91, "archer", "air"], [92, "ninja", "water"], [93, "summoner", "earth"], [94, "knight", "fire"]]
+	for i in heroes.size():
+		var peer: int = heroes[i][0]
+		var c := CharacterData.create(heroes[i][1], "male" if i % 2 == 0 else "female", "?", heroes[i][2])
+		NetworkManager._characters[peer] = c.to_dict()
+		_arena._spawn_player(peer)
+		var hero: Player = _arena.get_node(str(peer))
+		hero.teleport_to(player.global_position + Vector3(-4.0 + 2.0 * i + (2.0 if i >= 2 else 0.0), 0, 0))
+		hero.facing = Vector2(0, 1)
+	player.facing = Vector2(0, 1)
 
 
 func _stop_bot() -> void:
