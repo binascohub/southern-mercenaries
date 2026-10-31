@@ -2,3 +2,8 @@ Inventory potion icons rendered from "Potions" by Clint Bellanger
 https://opengameart.org/content/potions
 Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/
 Changes: rendered to 128 px icons by tools/assets/potion_icons.py, liquid recolored per item (health, resource, elements, return charm).
+
+crystal_iron/steel/copper/silver/gold.png (and assets/models/props/Crystal_Gem.glb) — from "Fantasy Crystals" by Brett Post-Script
+https://opengameart.org/content/fantasy-crystals
+Creative Commons Attribution-ShareAlike 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+Changes: one crystal upright and resized; icons rendered in each material's color. Shared under CC BY-SA 4.0.

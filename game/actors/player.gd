@@ -1142,6 +1142,14 @@ func _build_visual() -> void:
 	crystal_mesh.radius = 0.06 if archer else 0.1
 	crystal_mesh.height = 0.12 if archer else 0.2
 	crystal.mesh = crystal_mesh
+	if class_id == "mage":
+		# Cristal lapidado na ponta do cajado (Fantasy Crystals, CC BY-SA 4.0), na cor do elemento.
+		var gem := Kit.piece("Crystal_Gem")
+		if gem:
+			var gem_mesh := gem.find_children("*", "MeshInstance3D", true, false)
+			if not gem_mesh.is_empty():
+				crystal.mesh = (gem_mesh[0] as MeshInstance3D).mesh
+			gem.free()
 	crystal.material_override = _crystal_material
 	# Na ponta da arma (cajado, flecha, lança, adaga) ou na página do livro.
 	crystal.position = Vector3(0, 0.08, 0) if summoner else Vector3(0, staff_mesh.height / 2.0, 0)
