@@ -1130,7 +1130,7 @@ func _build_visual() -> void:
 	ring_mesh.inner_radius = 0.5
 	ring_mesh.outer_radius = 0.62
 	ring.mesh = ring_mesh
-	var ring_material := _material(SLOT_COLORS[slot], 1.0)
+	var ring_material := _material(SLOT_COLORS[slot % SLOT_COLORS.size()], 1.0)
 	ring_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	ring.material_override = ring_material
 	ring.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
@@ -1213,7 +1213,7 @@ func _tick_visual(delta: float) -> void:
 		_crystal_material.emission = crystal_color
 	_crystal_material.emission_energy_multiplier = 4.0 if is_charged() else 1.5
 	# Dono desconectado: anel cinza enquanto o herói espera.
-	_ring_material.albedo_color = SLOT_COLORS[slot] if connected else Color(0.4, 0.4, 0.4)
+	_ring_material.albedo_color = SLOT_COLORS[slot % SLOT_COLORS.size()] if connected else Color(0.4, 0.4, 0.4)
 	_revive_bar.visible = not alive and revive_progress > 0.0
 	_revive_bar.scale.x = maxf(revive_progress, 0.01)
 
