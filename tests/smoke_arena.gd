@@ -856,7 +856,7 @@ func _town_test() -> void:
 	await get_tree().physics_frame
 	check.call(town.quests.get("sewer_treasure", "") == "done", "vencer a Rainha conclui a missão")
 	check.call(int(player.character.data.gold) >= gold + 150, "recompensa da missão")
-	var dropped := _arena.prop_near(player, "key", "", 300.0)
+	var dropped: Dictionary = _arena.prop_near(player, "key", "", 300.0)
 	check.call(not dropped.is_empty(), "a Rainha deixa cair a chave do tesouro")
 	if not dropped.is_empty():
 		_arena.pick_key(player, dropped)
