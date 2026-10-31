@@ -30,6 +30,7 @@ func _ready() -> void:
 	_test_states()
 	_test_combos()
 	_test_character_element()
+	_test_skills()
 	_test_names()
 	_clean(TEST_ROOT)
 	if _failures == 0:
@@ -421,6 +422,67 @@ func _test_character_element() -> void:
 	_check(migrated != null and migrated.data.element == "fire" and not migrated.is_edited(), "ficha antiga ganha Fogo sem ser acusada")
 	_near(Items.value(Items.stack(Items.CONSUMABLE, "elemental_potion_fire")), 125.0, "Poção Elemental: 100 + 25 × nível")
 	_near(c.crit_chance(), 0.05, "crítico base 5%")
+
+
+# --- Fase 5: habilidades (02-personagens.md, 02-1-mago.md) -------------------------
+
+func _test_skills() -> void:
+	var keys := Skills.keys("mage")
+	var levels: Array[int] = []
+	for key in keys:
+		levels.append(Skills.unlock_level("mage", key))
+	var expected: Array[int] = [1, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+	_check(levels == expected, "10 habilidades nos níveis 1, 2, 4… 18: %s" % [levels])
+	_check(keys[2] == "sharp_mind" and keys[4] == "teleport", "comuns do Mago nos níveis 4 e 8")
+	# Toda habilidade existe e tem nome/descrição.
+	for element in Elements.ALL:
+		for key in keys:
+			var id := Skills.skill_id("mage", key, element)
+			_check(not Skills.def(id).is_empty(), "habilidade %s/%s existe (%s)" % [element, key, id])
+	_check(Skills.skill_id("mage", "element_6", "water") == "healing_rain"
+		and Skills.skill_id("mage", "element_18", "earth") == "earthquake", "tabela do elemento")
+	# Personagem novo: básica do elemento no rank 1 e no atalho 1.
+	var c := CharacterData.create("mage", "female", "Orana", "water")
+	_check(c.skill_rank("element_1") == 1 and c.data.skill_slots[0] == "element_1" and c.validate().is_empty(), "começa com a básica no atalho 1")
+	_check(c.skill_of("element_1") == "water_bolt", "básica de Água = Jato d'Água")
+	_check(not c.can_learn("element_2"), "sem ponto no nível 1")
+	c.add_xp(700)
+	_check(int(c.data.skill_points) == 1 and c.learn("element_2"), "nível 2: aprende a área")
+	_check(c.data.skill_slots[1] == "element_2" and int(c.data.skill_points) == 0, "habilidade nova vai para o atalho livre")
+	_check(not c.can_learn("teleport"), "Teleporte só no nível 8")
+	_check(c.validate().is_empty(), "ficha com habilidades válida")
+	# Poção Elemental troca as do elemento, com os mesmos ranks.
+	c.drink_elemental("fire")
+	_check(c.skill_of("element_2") == "fireball" and c.skill_rank("element_2") == 1, "Poção de Fogo: Nova de Gelo vira Bola de Fogo, mesmo rank")
+	c.end_expedition()
+	# Atalhos trocam de lugar.
+	_check(c.set_slot(0, "element_2") and c.data.skill_slots[0] == "element_2" and c.data.skill_slots[1] == "element_1", "trocar atalhos")
+	_check(not c.set_slot(2, "teleport"), "não põe no atalho o que não aprendeu")
+	# Trapaça: rank sem pontos.
+	var cheat := c.to_dict()
+	cheat.skills.element_2 = 5
+	_check(CharacterData.from_dict(cheat) == null, "recusa ranks sem pontos")
+	cheat = c.to_dict()
+	cheat.skills.meteor = 1
+	_check(CharacterData.from_dict(cheat) == null, "recusa habilidade inexistente")
+	# Passivas e regras por rank.
+	var m := CharacterData.create("mage", "male", "Oren")
+	m.add_xp(30000)
+	var base_regen := m.resource_regen()
+	_check(m.learn("sharp_mind") and m.learn("sharp_mind"), "Mente Afiada rank 2")
+	_near(m.resource_regen(), base_regen * 1.2, "Mente Afiada: +10% por rank")
+	_check(m.data.skill_slots.find("sharp_mind") < 0, "passiva não vai para atalho")
+	var chain := Skills.def("chain_lightning")
+	_check(Skills.jumps(chain, 1) == 5 and Skills.jumps(chain, 3) == 6 and Skills.jumps(chain, 5) == 7, "Corrente de Raios: 5, +1 nos ranks 3 e 5")
+	_near(Skills.cooldown(Skills.def("teleport"), 3), 6.0, "Teleporte: -1 s por rank")
+	_near(Skills.power(Skills.def("fireball"), 3), 1.8, "Bola de Fogo rank 3: 150% + 2 × 15%")
+	# Ficha antiga (antes da Fase 5) ganha a básica sem ser acusada.
+	var old := CharacterData.create("mage", "male", "Oren")
+	old.data.erase("skills")
+	old.data.erase("skill_slots")
+	old.seal()
+	var migrated := CharacterData.from_dict(JSON.parse_string(JSON.stringify(old.to_dict())))
+	_check(migrated != null and migrated.skill_rank("element_1") == 1 and not migrated.is_edited(), "ficha antiga ganha a básica")
 
 
 func _test_names() -> void:

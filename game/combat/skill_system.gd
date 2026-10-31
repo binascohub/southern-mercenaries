@@ -1,0 +1,364 @@
+# Southern Mercenaries — GPL-3.0-or-later
+class_name SkillSystem
+extends Node
+## Executa as habilidades ativas (02-1-mago.md, seção 6) no servidor, a partir
+## de data/skills.json. Cada habilidade tem um "effect":
+##   projectile  projétil (pode explodir em área: Bola de Fogo)
+##   nova        área em volta do herói (Nova de Gelo, Tremor)
+##   cone        cone na direção da mira, empurra (Onda)
+##   line        linha na direção da mira (Espinhos de Pedra)
+##   instant     acerta na hora o alvo na mira (Relâmpago)
+##   chain       salta entre inimigos (Corrente de Raios)
+##   buff        bônus nos aliados em volta (Bênção das Chamas, Vento a Favor)
+##   shield      escudo no aliado mais ferido por perto (Pele de Pedra)
+##   teleport    teleporte na direção da mira, sem atravessar paredes
+##   delayed     marca no chão e cai depois (Meteoro, Terremoto)
+##   area        área que dura (Muralha de Fogo, Nevasca, Tornado, Tempestade, Chuva)
+## Habilidades com alvo usam a mira como direção; quando precisam de um ponto
+## (Meteoro, Nevasca), escolhem o inimigo mais perto no cone da mira.
+## Todo dano passa por Enemy.take_hit (fraqueza, combos, crítico). Os efeitos
+## visuais são discos e feixes simples, mandados a todos os PCs (_fx).
+
+const TICK := 0.5
+const AIM_CONE := deg_to_rad(30.0)
+
+## Áreas que duram (servidor).
+var _areas: Array[Dictionary] = []
+## Golpes marcados que caem depois (servidor).
+var _delayed: Array[Dictionary] = []
+var _rng := RandomNumberGenerator.new()
+
+
+func _ready() -> void:
+	_rng.randomize()
+
+
+func _arena() -> Node:
+	return get_parent()
+
+
+## Usa a habilidade. Retorna false se não houve efeito (ex.: Relâmpago sem alvo),
+## e aí o herói não gasta mana nem recarga.
+func cast(player: Player, skill_id: String, rank: int) -> bool:
+	if not multiplayer.is_server():
+		return false
+	var skill := Skills.def(skill_id)
+	var aim := Vector3(player.facing.x, 0, player.facing.y).normalized()
+	var origin := player.global_position
+	var color := Elements.color(player.element)
+	match String(skill.get("effect", "")):
+		"projectile":
+			_arena().spawn_projectile({
+				"position": origin + Vector3.UP * Player.PROJECTILE_HEIGHT + aim * 0.6,
+				"direction": aim, "speed": skill.speed, "range": skill.range,
+				"radius": skill.radius, "pierce": int(skill.get("pierce", 0)), "damage": 0.0,
+				"color": color, "hit": hit_for(player, skill, rank), "explode": float(skill.get("explode", 0.0)),
+			})
+		"nova":
+			var hit := hit_for(player, skill, rank)
+			for e in enemies_in(origin, skill.area):
+				e.take_hit(hit)
+			_fx.rpc("disc", origin, Vector3.ZERO, skill.area, color, 0.4)
+		"cone":
+			var hit := hit_for(player, skill, rank)
+			var half := deg_to_rad(float(skill.angle) / 2.0)
+			for e in enemies_in(origin, skill.range):
+				var to := _flat(e.global_position - origin)
+				if to.length() < 0.01 or absf(Vector2(aim.x, aim.z).angle_to(to)) <= half:
+					e.take_hit(hit)
+					e.push(Vector3(to.x, 0, to.y).normalized() * float(skill.push), 0.3)
+			_fx.rpc("disc", origin + aim * skill.range * 0.5, Vector3.ZERO, skill.range * 0.5, color, 0.4)
+		"line":
+			var hit := hit_for(player, skill, rank)
+			var end: Vector3 = origin + aim * float(skill.range)
+			for e in enemies_in(origin, skill.range + skill.width):
+				if _distance_to_segment(e.global_position, origin, end) <= skill.width / 2.0:
+					e.take_hit(hit)
+			_fx.rpc("beam", origin, end, skill.width, color, 0.5)
+		"instant":
+			var target := target_in_aim(player, skill.range)
+			if target == null:
+				return false
+			target.take_hit(hit_for(player, skill, rank))
+			_fx.rpc("beam", origin + Vector3.UP, target.global_position + Vector3.UP * 0.5, 0.25, color, 0.25)
+		"chain":
+			var target := target_in_aim(player, skill.range)
+			if target == null:
+				return false
+			var hit := hit_for(player, skill, rank)
+			var hits: Array[Enemy] = []
+			var from := origin + Vector3.UP
+			for i in Skills.jumps(skill, rank):
+				var step := hit.duplicate()
+				step.damage = float(hit.damage) * pow(1.0 - float(skill.falloff), i)
+				target.take_hit(step)
+				hits.append(target)
+				_fx.rpc("beam", from, target.global_position + Vector3.UP * 0.5, 0.18, color, 0.3)
+				from = target.global_position + Vector3.UP * 0.5
+				target = _nearest(target.global_position, skill.jump_range, hits)
+				if target == null:
+					break
+		"buff":
+			var value := Skills.scaled(skill, "value", "per_rank", rank)
+			for p in allies_in(origin, skill.area):
+				p.add_buff(String(skill.buff), value, skill.duration)
+			_fx.rpc("disc", origin, Vector3.ZERO, skill.area, color, 0.6)
+		"shield":
+			var best: Player = player
+			for p in allies_in(origin, skill.range):
+				if p.health / p.max_health < best.health / best.max_health:
+					best = p
+			best.add_shield(player.power * Skills.scaled(skill, "value", "per_rank", rank), skill.duration)
+			_fx.rpc("disc", best.global_position, Vector3.ZERO, 1.2, color, 0.6)
+		"teleport":
+			var dest := origin + aim * float(skill.distance)
+			var space := player.get_world_3d().direct_space_state
+			var query := PhysicsRayQueryParameters3D.create(origin + Vector3.UP, dest + Vector3.UP, 1)
+			var ray := space.intersect_ray(query)
+			if not ray.is_empty():
+				dest = Vector3(ray.position.x, 0, ray.position.z) - aim * 0.6
+			_fx.rpc("disc", origin, Vector3.ZERO, 0.9, color, 0.3)
+			player.teleport_to(dest)
+			_fx.rpc("disc", dest, Vector3.ZERO, 0.9, color, 0.3)
+		"delayed":
+			var center := origin if skill.get("at", "aim") == "self" else _aim_point(player, skill.range)
+			_delayed.append({"position": center, "time": float(skill.delay), "radius": float(skill.area),
+				"hit": hit_for(player, skill, rank), "skill": skill, "rank": rank, "caster": player})
+			_fx.rpc("disc", center, Vector3.ZERO, skill.area, color.darkened(0.3), skill.delay)
+		"area":
+			_start_area(player, skill, rank)
+		_:
+			return false
+	return true
+
+
+## Golpe da habilidade para Elements.resolve_hit: dano = poder × % do rank ×
+## bônus do herói (Bênção das Chamas, Domínio Elemental).
+func hit_for(player: Player, skill: Dictionary, rank: int) -> Dictionary:
+	var hit := {
+		"damage": player.power * Skills.power(skill, rank) * player.damage_mult(),
+		"element": player.element,
+		"state": String(skill.get("state", "")),
+		"crit_chance": player.character.crit_chance() if player.character else GameData.elements.crit_chance,
+		"duration_mult": player.state_duration_mult(),
+	}
+	if skill.has("state_chance"):
+		hit.state_chance = float(skill.state_chance)
+	if skill.has("state_duration"):
+		hit.state_duration = Skills.scaled(skill, "state_duration", "state_duration_per_rank", rank)
+	if skill.has("upgrade"):
+		hit.upgrade = skill.upgrade
+	return hit
+
+
+## Bola de Fogo explodindo (chamado pelo projétil via arena).
+func burst(at: Vector3, radius: float, hit: Dictionary) -> void:
+	for e in enemies_in(at, radius):
+		e.take_hit(hit)
+	_fx.rpc("disc", at, Vector3.ZERO, radius, Elements.color(hit.get("element", "")), 0.35)
+
+
+# --- Áreas que duram e golpes com atraso ------------------------------------------
+
+func _start_area(player: Player, skill: Dictionary, rank: int) -> void:
+	var aim := Vector3(player.facing.x, 0, player.facing.y).normalized()
+	var at: String = skill.get("at", "aim")
+	var center := player.global_position
+	if skill.get("shape", "circle") == "wall":
+		center = player.global_position + aim * float(skill.distance)
+	elif at == "aim":
+		center = _aim_point(player, skill.get("range", 10.0))
+	var area := {"skill": skill, "rank": rank, "caster": player, "position": center, "aim": aim,
+		"time": float(skill.duration), "tick": 0.0, "hit": hit_for(player, skill, rank),
+		"inside": {}}
+	if at == "moving":
+		area.velocity = aim * float(skill.travel) / float(skill.duration)
+	# Dano por segundo: cada tique (0,5 s) leva metade.
+	if not skill.get("bolts", false):
+		area.hit.damage = float(area.hit.damage) * TICK
+	_areas.append(area)
+	var color := Elements.color(player.element)
+	if skill.get("shape", "circle") == "wall":
+		var side := Vector3(-aim.z, 0, aim.x) * float(skill.length) / 2.0
+		_fx.rpc("beam", center - side, center + side, skill.width, color, skill.duration)
+	elif at != "moving":
+		_fx.rpc("disc", center, Vector3.ZERO, skill.area, color, skill.duration)
+
+
+func _physics_process(delta: float) -> void:
+	if not multiplayer.is_server():
+		return
+	for d in _delayed.duplicate():
+		d.time -= delta
+		if d.time > 0.0:
+			continue
+		_delayed.erase(d)
+		for e in enemies_in(d.position, d.radius):
+			e.take_hit(d.hit)
+		_fx.rpc("disc", d.position, Vector3.ZERO, d.radius, Elements.color(d.hit.element).lightened(0.3), 0.3)
+		# Meteoro: o chão fica em chamas.
+		if d.skill.has("ground_duration") and is_instance_valid(d.caster):
+			var ground := {"position": d.position, "time": float(d.skill.ground_duration), "tick": 0.0,
+				"skill": {"area": d.radius, "shape": "circle"}, "rank": d.rank, "caster": d.caster,
+				"aim": Vector3.FORWARD, "inside": {}, "hit": d.hit.duplicate()}
+			ground.hit.damage = d.caster.power * float(d.skill.ground_power) * TICK * d.caster.damage_mult()
+			_areas.append(ground)
+			_fx.rpc("disc", d.position, Vector3.ZERO, d.radius, Elements.state_color("burning"), ground.time)
+	for area in _areas.duplicate():
+		area.time -= delta
+		if area.has("velocity"):
+			area.position += area.velocity * delta
+		if area.time <= 0.0:
+			_areas.erase(area)
+			continue
+		area.tick -= delta
+		if area.tick > 0.0:
+			continue
+		area.tick = TICK
+		_area_tick(area)
+
+
+func _area_tick(area: Dictionary) -> void:
+	var skill: Dictionary = area.skill
+	var inside := _area_enemies(area)
+	if skill.get("bolts", false):
+		# Tempestade: um raio num inimigo ao acaso a cada tique.
+		if not inside.is_empty():
+			var target: Enemy = inside[_rng.randi_range(0, inside.size() - 1)]
+			target.take_hit(area.hit)
+			_fx.rpc("beam", target.global_position + Vector3.UP * 8.0, target.global_position, 0.2,
+				Elements.color(area.hit.element), 0.2)
+		return
+	for e in inside:
+		if float(area.hit.damage) > 0.0:
+			e.take_hit(area.hit)
+		elif area.hit.state != "":
+			Elements.apply_state(e.status, area.hit.state, e.element, e.is_boss())
+		# Nevasca: quem fica 3 s dentro congela.
+		if skill.has("freeze_after"):
+			var key := e.get_instance_id()
+			area.inside[key] = float(area.inside.get(key, 0.0)) + TICK
+			if area.inside[key] >= float(skill.freeze_after):
+				area.inside[key] = 0.0
+				Elements.apply_state(e.status, "frozen", e.element, e.is_boss())
+		# Tornado: puxa para o centro.
+		if skill.has("pull"):
+			var to_center: Vector3 = area.position - e.global_position
+			to_center.y = 0.0
+			e.push(to_center.limit_length(float(skill.pull) * TICK), TICK)
+	if area.has("velocity"):
+		_fx.rpc("disc", area.position, Vector3.ZERO, skill.area, Elements.color(area.hit.element), TICK)
+	# Chuva Restauradora: cura os aliados na área (por segundo, metade a cada tique).
+	if skill.has("heal") and is_instance_valid(area.caster):
+		var heal: float = area.caster.power * Skills.scaled(skill, "heal", "heal_per_rank", area.rank) * TICK
+		for p in allies_in(area.position, skill.area):
+			p.heal(heal)
+
+
+func _area_enemies(area: Dictionary) -> Array[Enemy]:
+	var skill: Dictionary = area.skill
+	if skill.get("shape", "circle") != "wall":
+		return enemies_in(area.position, skill.area)
+	var found: Array[Enemy] = []
+	var aim: Vector3 = area.aim
+	var side := Vector3(-aim.z, 0, aim.x)
+	for e in enemies_in(area.position, skill.length):
+		var rel: Vector3 = e.global_position - area.position
+		if absf(rel.dot(side)) <= skill.length / 2.0 and absf(rel.dot(aim)) <= skill.width / 2.0:
+			found.append(e)
+	return found
+
+
+# --- Alvos -------------------------------------------------------------------------
+
+func enemies_in(center: Vector3, radius: float) -> Array[Enemy]:
+	var found: Array[Enemy] = []
+	for e: Enemy in get_tree().get_nodes_in_group(&"enemies"):
+		if e.health > 0.0 and _flat(e.global_position - center).length() <= radius:
+			found.append(e)
+	return found
+
+
+func allies_in(center: Vector3, radius: float) -> Array[Player]:
+	var found: Array[Player] = []
+	for p: Player in get_tree().get_nodes_in_group(&"players"):
+		if p.alive and p.connected and _flat(p.global_position - center).length() <= radius:
+			found.append(p)
+	return found
+
+
+## Inimigo mais perto no cone da mira; sem ninguém no cone, o mais perto ao alcance.
+func target_in_aim(player: Player, max_range: float) -> Enemy:
+	var aim := player.facing
+	var best: Enemy = null
+	var best_score := INF
+	for e in enemies_in(player.global_position, max_range):
+		var to := _flat(e.global_position - player.global_position)
+		var score := to.length() + (0.0 if absf(aim.angle_to(to)) <= AIM_CONE else 1000.0)
+		if score < best_score:
+			best_score = score
+			best = e
+	return best
+
+
+func _aim_point(player: Player, max_range: float) -> Vector3:
+	var target := target_in_aim(player, max_range)
+	if target and absf(player.facing.angle_to(_flat(target.global_position - player.global_position))) <= AIM_CONE:
+		return target.global_position
+	return player.global_position + Vector3(player.facing.x, 0, player.facing.y).normalized() * max_range * 0.5
+
+
+func _nearest(from: Vector3, max_range: float, exclude: Array[Enemy]) -> Enemy:
+	var best: Enemy = null
+	var best_d := max_range
+	for e in enemies_in(from, max_range):
+		var d := _flat(e.global_position - from).length()
+		if e not in exclude and d <= best_d:
+			best = e
+			best_d = d
+	return best
+
+
+static func _flat(v: Vector3) -> Vector2:
+	return Vector2(v.x, v.z)
+
+
+static func _distance_to_segment(p: Vector3, a: Vector3, b: Vector3) -> float:
+	var closest := Geometry2D.get_closest_point_to_segment(_flat(p), _flat(a), _flat(b))
+	return closest.distance_to(_flat(p))
+
+
+# --- Visual (todos os PCs) ---------------------------------------------------------
+
+## "disc": disco no chão em `a` com raio; "beam": feixe de `a` a `b` com largura.
+@rpc("authority", "call_local", "unreliable")
+func _fx(kind: String, a: Vector3, b: Vector3, size: float, color: Color, duration: float) -> void:
+	var node := MeshInstance3D.new()
+	var material := StandardMaterial3D.new()
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	material.albedo_color = Color(color.r, color.g, color.b, 0.35 if kind == "disc" else 0.75)
+	node.material_override = material
+	node.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	if kind == "disc":
+		var mesh := CylinderMesh.new()
+		mesh.top_radius = size
+		mesh.bottom_radius = size
+		mesh.height = 0.05
+		mesh.radial_segments = 28
+		node.mesh = mesh
+		add_child(node)
+		node.global_position = Vector3(a.x, 0.05, a.z)
+	else:
+		var length := a.distance_to(b)
+		if length < 0.01:
+			return
+		var mesh := BoxMesh.new()
+		mesh.size = Vector3(size, size * 0.5, length)
+		node.mesh = mesh
+		add_child(node)
+		node.global_position = (a + b) / 2.0
+		node.look_at(b, Vector3.UP if absf((b - a).normalized().y) < 0.99 else Vector3.FORWARD)
+	var tween := node.create_tween()
+	tween.tween_property(material, "albedo_color:a", 0.0, maxf(duration, 0.05)).set_ease(Tween.EASE_IN)
+	tween.tween_callback(node.queue_free)

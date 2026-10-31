@@ -63,7 +63,9 @@ static func apply_state(status: StatusSet, id: String, target_element: String, i
 
 
 ## Resolve um golpe de jogador num alvo e já muda os estados dele.
-## hit: {damage, element, state ("" ou o estado básico), crit_chance}
+## hit: {damage, element, state ("" ou o estado básico), crit_chance} e, nas
+## habilidades: state_chance, state_duration, duration_mult (Domínio Elemental)
+## e upgrade ({"soaked": "frozen"}: se o alvo estiver molhado, congela).
 ## Retorna {damage, crit, effect ("weak"/"resist"/"normal"), combo, spread_dps,
 ## zone ({state, radius, duration} ou {})}. O chamador aplica o dano, espalha o
 ## fogo do Incêndio e cria a área da Lama/Vapor.
@@ -92,18 +94,29 @@ static func resolve_hit(hit: Dictionary, target_element: String, status: StatusS
 	# Eletrizado: +15% de dano de Ar.
 	if status.has("shocked") and element == state_data("shocked").get("bonus_element", ""):
 		bonus += float(state_data("shocked").bonus)
+	# Lança de Gelo: alvo molhado fica congelado (antes do crítico: congelado leva crítico).
+	var upgraded := ""
+	for from: String in hit.get("upgrade", {}):
+		if status.has(from):
+			upgraded = String(hit.upgrade[from])
 	var crit_chance := float(hit.get("crit_chance", rules.crit_chance))
 	if status.has("frozen") or rng.randf() < crit_chance:
 		result.crit = true
 	var damage: float = float(hit.damage) * mult * (1.0 + bonus) * (rules.crit_mult if result.crit else 1.0)
 	result.damage = damage
-	# Estados depois do dano: o do golpe (forte) e o atordoamento do Eletrocutar.
+	# Estados depois do dano: o do golpe (forte ou habilidade) e o atordoamento do Eletrocutar.
+	var duration_mult := float(hit.get("duration_mult", 1.0))
 	var state: String = hit.get("state", "")
 	if state != "":
 		var chance := float(data(element).get("basic_state_chance", 1.0)) if state == data(element).get("basic_state", "") else 1.0
+		chance = float(hit.get("state_chance", chance))
 		if rng.randf() < chance:
 			var dps: float = damage * float(state_data(state).get("dot_fraction", 0.0))
-			apply_state(status, state, target_element, is_boss, dps)
+			var duration := float(hit.get("state_duration", state_data(state).get("duration", 1.0))) * duration_mult
+			apply_state(status, state, target_element, is_boss, dps, duration)
+	if upgraded != "":
+		var duration := float(hit.get("state_duration", state_data(upgraded).get("duration", 1.0))) * duration_mult
+		apply_state(status, upgraded, target_element, is_boss, 0.0, duration)
 	if stun > 0.0:
 		apply_state(status, "stunned", target_element, is_boss, 0.0, stun)
 	return result

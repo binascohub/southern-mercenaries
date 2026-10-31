@@ -10,6 +10,8 @@ extends CanvasLayer
 
 ## Pediu para trocar com o aliado mais perto.
 signal trade_requested
+## Abrir a janela de habilidades (no controle não há tecla própria).
+signal skills_requested
 
 const BAG_COLUMNS := 8
 ## Cabe em 1280 px: atributos 230 + slots 2 × 130 + bolsa 8 × 68 (+ espaços).
@@ -226,13 +228,25 @@ func _build() -> void:
 	_hint = _text_label()
 	_hint.modulate = Color(1, 1, 1, 0.7)
 	outer.add_child(_hint)
+	# Ações lado a lado, para a janela continuar cabendo em 720 px de altura.
+	var actions := HBoxContainer.new()
+	actions.alignment = BoxContainer.ALIGNMENT_CENTER
+	actions.add_theme_constant_override("separation", 12)
+	outer.add_child(actions)
 	_trade_button = Button.new()
 	_trade_button.text = "INV_TRADE"
 	_trade_button.custom_minimum_size = Vector2(260, 40)
 	_trade_button.pressed.connect(func() -> void:
 		close()
 		trade_requested.emit())
-	outer.add_child(_trade_button)
+	actions.add_child(_trade_button)
+	var skills_button := Button.new()
+	skills_button.text = "INV_SKILLS"
+	skills_button.custom_minimum_size = Vector2(260, 40)
+	skills_button.pressed.connect(func() -> void:
+		close()
+		skills_requested.emit())
+	actions.add_child(skills_button)
 
 
 func _text_label() -> Label:

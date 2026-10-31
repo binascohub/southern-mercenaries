@@ -19,7 +19,7 @@ const REMAPPABLE: Array[StringName] = [
 	&"aim_up", &"aim_down", &"aim_left", &"aim_right",
 	&"attack", &"skill_1", &"skill_2", &"skill_3", &"skill_4",
 	&"evade", &"mount", &"potion_health", &"potion_mana", &"potion_elemental",
-	&"interact", &"pickup_all", &"inventory", &"menu", &"map", &"chat_quick",
+	&"interact", &"pickup_all", &"inventory", &"skills", &"menu", &"map", &"chat_quick",
 ]
 ## Ações analógicas: recebem a zona morta configurável.
 const ANALOG: Array[StringName] = [
@@ -237,6 +237,8 @@ func _build_defaults() -> void:
 	d[&"interact"] = _pair([mouse(MOUSE_BUTTON_RIGHT), key(KEY_G)], [])
 	d[&"pickup_all"] = _pair([key(KEY_Z)], [pad(JOY_BUTTON_RIGHT_SHOULDER)])
 	d[&"inventory"] = _pair([key(KEY_I)], [pad(JOY_BUTTON_BACK)])
+	# Habilidades: K no teclado; no controle, pelo botão na janela do inventário.
+	d[&"skills"] = _pair([key(KEY_K)], [])
 	d[&"menu"] = _pair([key(KEY_ESCAPE)], [pad(JOY_BUTTON_START)])
 	d[&"map"] = _pair([key(KEY_M)], [pad(JOY_BUTTON_DPAD_LEFT)])
 	d[&"chat_quick"] = _pair([key(KEY_T)], [pad(JOY_BUTTON_RIGHT_STICK)])

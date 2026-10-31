@@ -8,6 +8,12 @@ extends CharacterBody3D
 ## envia ao servidor; só o servidor simula, aplica dano e decide queda/revive.
 ## Posição e estado chegam aos outros PCs pelo MultiplayerSynchronizer.
 ##
+## Habilidades (Fase 5): os atalhos 1–4 usam as habilidades ativas da ficha;
+## o servidor confere rank, recarga e mana e chama o SkillSystem da arena.
+## Passivas: Mente Afiada (regeneração), Escudo de Mana (parte do dano sai da
+## mana), Domínio Elemental (dano e duração dos estados). Bônus de aliados
+## (Bênção das Chamas, Vento a Favor) e escudo (Pele de Pedra) ficam aqui.
+##
 ## Ficha (Fase 3): o servidor guarda a cópia oficial do personagem
 ## (CharacterData) e aplica XP, loot, ouro, poções e equipamento; cada mudança
 ## volta ao PC do dono, que grava no próprio disco (07-rede.md, seção 8).
@@ -55,6 +61,8 @@ var potion_cooldown := 0.0
 var armor_value := 0.0
 ## Elemento em uso (de origem ou da Poção Elemental): cor do cristal e dos projéteis.
 var element := "fire"
+## Escudo que absorve dano (Pele de Pedra); sincronizado para a barra.
+var shield := 0.0
 
 var data: Dictionary
 var move_speed := 5.0
@@ -71,11 +79,17 @@ var _seen_extra := PlayerInput.new()
 var _attack_cooldown := 0.0
 var _evade_time := 0.0
 var _evade_dir := Vector2.ZERO
+## Recargas das habilidades (chave -> s), bônus ativos (id -> {value, time}) e escudo.
+var _skill_cd := {}
+var _buffs := {}
+var _shield_time := 0.0
 
 # Só no PC dono.
 var _local_input := PlayerInput.new()
 var _sent_input := PlayerInput.new()
 var _input_timer := 0.0
+## Recargas vistas pelo dono (para o HUD): chave -> segundos.
+var skill_cd_view := {}
 
 # Só nos clientes.
 var _snapshots := SnapshotBuffer.new()
@@ -344,7 +358,8 @@ func _send_local_input(delta: float) -> void:
 	var buttons_changed := _local_input.attack_presses != _sent_input.attack_presses \
 		or _local_input.attack_releases != _sent_input.attack_releases \
 		or _local_input.evade_presses != _sent_input.evade_presses \
-		or _local_input.interact_held != _sent_input.interact_held
+		or _local_input.interact_held != _sent_input.interact_held \
+		or _local_input.skill_presses != _sent_input.skill_presses
 	if buttons_changed or _input_timer <= 0.0:
 		_input_timer = 1.0 / GameData.balance.net.input_rate_hz
 		_sent_input = _local_input
@@ -372,6 +387,7 @@ func _server_step(delta: float) -> void:
 		return
 
 	_attack_cooldown = maxf(_attack_cooldown - delta, 0.0)
+	_tick_skills(delta)
 	evade_cooldown = maxf(evade_cooldown - delta, 0.0)
 	potion_cooldown = maxf(potion_cooldown - delta, 0.0)
 	var regen: float = character.resource_regen() if character else data.resource_regen
@@ -382,6 +398,10 @@ func _server_step(delta: float) -> void:
 		_drink("potion_resource")
 	if input.potion_elemental_presses != _seen_extra.potion_elemental_presses:
 		_drink_next_elemental()
+	var skill_pressed: Array[int] = []
+	for i in 4:
+		if input.skill_presses[i] != _seen_extra.skill_presses[i]:
+			skill_pressed.append(i)
 	if input.interact_presses != _seen_extra.interact_presses:
 		get_tree().call_group(&"arena", &"request_pickup", self, false)
 	if input.pickup_all_presses != _seen_extra.pickup_all_presses:
@@ -401,9 +421,11 @@ func _server_step(delta: float) -> void:
 	if aim != Vector2.ZERO:
 		facing = aim.normalized()
 
-	velocity = Vector3(input.move.x, 0, input.move.y) * move_speed
+	velocity = Vector3(input.move.x, 0, input.move.y) * move_speed * speed_mult()
 	move_and_slide()
 	global_position.y = 0.0
+	for i in skill_pressed:
+		_cast_slot(i)
 
 	if evade_pressed and evade_cooldown <= 0.0:
 		_evade_dir = input.move.normalized() if input.move.length() > 0.2 else facing
@@ -415,7 +437,7 @@ func _server_step(delta: float) -> void:
 	# Toque: ataque básico na hora. Segurando por charge_time e soltando: ataque forte.
 	if attack_pressed and _attack_cooldown <= 0.0:
 		_fire(data.basic_attack)
-		_attack_cooldown = data.basic_attack.cooldown
+		_attack_cooldown = data.basic_attack.cooldown / speed_mult()
 	if input.attack_held:
 		charge_time += delta
 	if attack_released or (not input.attack_held and charge_time > 0.0):
@@ -464,6 +486,19 @@ func take_damage(amount: float, monster_level := 1) -> void:
 		return
 	if character:
 		amount *= 1.0 - character.damage_reduction(monster_level)
+	# Pele de Pedra absorve primeiro.
+	if shield > 0.0:
+		var absorbed := minf(shield, amount)
+		shield -= absorbed
+		amount -= absorbed
+	# Escudo de Mana: parte do dano sai da mana (1 de mana absorve 2 de dano).
+	if character and amount > 0.0:
+		var share := character.passive_value("mana_shield")
+		if share > 0.0:
+			var per_mana := character.passive_value("mana_shield", "damage_per_mana", "_none")
+			var from_mana := minf(amount * share, resource * per_mana)
+			resource -= from_mana / per_mana
+			amount -= from_mana
 	health = maxf(health - amount, 0.0)
 	hurt.emit()
 	if amount >= max_health * GameData.balance.heavy_hit_fraction:
@@ -511,13 +546,123 @@ func _fire(attack: Dictionary) -> void:
 		"range": attack.range,
 		"radius": attack.radius,
 		"pierce": attack.pierce,
-		"damage": power * attack.power_pct,
+		"damage": power * attack.power_pct * damage_mult(),
 		"color": Elements.color(element),
 		# O ataque forte aplica o estado básico do elemento (02-0-elementos.md 5.3).
 		"element": element,
-		"state": String(Elements.data(element).get("basic_state", "")) if attack.get("applies_state", false) else "",
+		"state": String(Elements.data(element).get("basic_state", "")) if attack.get("applies_state", false) \
+			else ("burning" if _buffs.has("damage") else ""),  # Bênção das Chamas: golpes queimam
 		"crit_chance": character.crit_chance() if character else GameData.elements.crit_chance,
 	})
+
+
+# --- Habilidades -----------------------------------------------------------------
+
+func _cast_slot(index: int) -> void:
+	if not alive or character == null or _evade_time > 0.0:
+		return
+	var key: String = character.data.skill_slots[index]
+	if key == "" or float(_skill_cd.get(key, 0.0)) > 0.0:
+		return
+	var id := character.skill_of(key)
+	var rank := character.skill_rank(key)
+	var skill := Skills.def(id)
+	if rank <= 0 or not Skills.is_active(id):
+		return
+	var cost := float(skill.get("cost", 0.0))
+	if resource < cost or not get_parent().skills.cast(self, id, rank):
+		return
+	resource -= cost
+	# Sem recarga (as básicas) ainda respeitam o ritmo do ataque básico.
+	var cd := maxf(Skills.cooldown(skill, rank), data.basic_attack.cooldown)
+	_skill_cd[key] = cd
+	charge_time = 0.0
+	if is_local():
+		_skill_used(key, cd)
+	elif peer_id in multiplayer.get_peers():
+		_skill_used.rpc_id(peer_id, key, cd)
+
+
+@rpc("authority", "reliable")
+func _skill_used(key: String, cd: float) -> void:
+	skill_cd_view[key] = cd
+
+
+func skill_cooldown_left(key: String) -> float:
+	return float(skill_cd_view.get(key, 0.0))
+
+
+func _tick_skills(delta: float) -> void:
+	for key: String in _skill_cd.keys():
+		_skill_cd[key] -= delta
+		if _skill_cd[key] <= 0.0:
+			_skill_cd.erase(key)
+	for id: String in _buffs.keys():
+		_buffs[id].time -= delta
+		if _buffs[id].time <= 0.0:
+			_buffs.erase(id)
+	if _shield_time > 0.0:
+		_shield_time -= delta
+		if _shield_time <= 0.0:
+			shield = 0.0
+
+
+## Bônus de aliado (renova, não soma): "damage" (Bênção das Chamas), "speed" (Vento a Favor).
+func add_buff(id: String, value: float, duration: float) -> void:
+	_buffs[id] = {"value": maxf(value, float(_buffs.get(id, {}).get("value", 0.0))), "time": duration}
+
+
+func add_shield(amount: float, duration: float) -> void:
+	shield = maxf(shield, amount)
+	_shield_time = duration
+
+
+func heal(amount: float) -> void:
+	if alive:
+		health = minf(health + amount, max_health)
+
+
+func teleport_to(spot: Vector3) -> void:
+	global_position = Vector3(spot.x, 0, spot.z)
+	net_position = global_position
+
+
+## Dano a mais: Bênção das Chamas e Domínio Elemental.
+func damage_mult() -> float:
+	var mastery := character.passive_value("mastery") if character else 0.0
+	return (1.0 + float(_buffs.get("damage", {}).get("value", 0.0))) * (1.0 + mastery)
+
+
+## Domínio Elemental: estados duram mais.
+func state_duration_mult() -> float:
+	return 1.0 + (character.passive_value("mastery", "duration_value", "duration_per_rank") if character else 0.0)
+
+
+## Vento a Favor: anda e ataca mais rápido.
+func speed_mult() -> float:
+	return 1.0 + float(_buffs.get("speed", {}).get("value", 0.0))
+
+
+## Pedidos da janela de habilidades (validados no servidor).
+func request_learn(key: String) -> void:
+	_rpc_or_local(&"_learn", [key])
+
+
+func request_slot(index: int, key: String) -> void:
+	_rpc_or_local(&"_set_slot", [index, key])
+
+
+@rpc("any_peer", "reliable")
+func _learn(key: String) -> void:
+	if _from_owner() and character.learn(key):
+		_apply_character()
+		_push_character(0)
+
+
+@rpc("any_peer", "reliable")
+func _set_slot(index: int, key: String) -> void:
+	if _from_owner() and character.set_slot(index, key):
+		_push_character(0)
 
 
 ## Mira assistida leve: puxa para o inimigo mais próximo dentro do cone.
@@ -542,7 +687,7 @@ func _add_synchronizer() -> void:
 	var config := SceneReplicationConfig.new()
 	var always := [":net_position", ":facing", ":charge_time", ":revive_progress", ":evade_cooldown"]
 	var on_change := [":health", ":max_health", ":resource", ":max_resource", ":alive", ":connected",
-		":hero_name", ":level", ":equip_visual", ":potion_cooldown", ":armor_value", ":element"]
+		":hero_name", ":level", ":equip_visual", ":potion_cooldown", ":armor_value", ":element", ":shield"]
 	for prop in always + on_change:
 		var path := NodePath("." + prop)
 		config.add_property(path)
@@ -642,6 +787,10 @@ func _build_visual() -> void:
 
 
 func _tick_visual(delta: float) -> void:
+	for key: String in skill_cd_view.keys():
+		skill_cd_view[key] -= delta
+		if skill_cd_view[key] <= 0.0:
+			skill_cd_view.erase(key)
 	if alive:
 		var target := atan2(facing.x, facing.y)
 		_visual.rotation.y = lerp_angle(_visual.rotation.y, target, minf(TURN_SPEED * delta, 1.0))

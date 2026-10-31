@@ -733,3 +733,198 @@ msgstr ""
 
 msgid "HUD_POTION_ELEMENTAL"
 msgstr ""
+
+msgid "SKILL_SHARP_MIND_NAME"
+msgstr ""
+
+msgid "SKILL_SHARP_MIND_DESC"
+msgstr ""
+
+msgid "SKILL_TELEPORT_NAME"
+msgstr ""
+
+msgid "SKILL_TELEPORT_DESC"
+msgstr ""
+
+msgid "SKILL_MANA_SHIELD_NAME"
+msgstr ""
+
+msgid "SKILL_MANA_SHIELD_DESC"
+msgstr ""
+
+msgid "SKILL_ELEMENTAL_MASTERY_NAME"
+msgstr ""
+
+msgid "SKILL_ELEMENTAL_MASTERY_DESC"
+msgstr ""
+
+msgid "SKILL_FIRE_BOLT_NAME"
+msgstr ""
+
+msgid "SKILL_FIRE_BOLT_DESC"
+msgstr ""
+
+msgid "SKILL_FIREBALL_NAME"
+msgstr ""
+
+msgid "SKILL_FIREBALL_DESC"
+msgstr ""
+
+msgid "SKILL_FLAME_BLESSING_NAME"
+msgstr ""
+
+msgid "SKILL_FLAME_BLESSING_DESC"
+msgstr ""
+
+msgid "SKILL_FIRE_LANCE_NAME"
+msgstr ""
+
+msgid "SKILL_FIRE_LANCE_DESC"
+msgstr ""
+
+msgid "SKILL_FIRE_WALL_NAME"
+msgstr ""
+
+msgid "SKILL_FIRE_WALL_DESC"
+msgstr ""
+
+msgid "SKILL_METEOR_NAME"
+msgstr ""
+
+msgid "SKILL_METEOR_DESC"
+msgstr ""
+
+msgid "SKILL_WATER_BOLT_NAME"
+msgstr ""
+
+msgid "SKILL_WATER_BOLT_DESC"
+msgstr ""
+
+msgid "SKILL_FROST_NOVA_NAME"
+msgstr ""
+
+msgid "SKILL_FROST_NOVA_DESC"
+msgstr ""
+
+msgid "SKILL_HEALING_RAIN_NAME"
+msgstr ""
+
+msgid "SKILL_HEALING_RAIN_DESC"
+msgstr ""
+
+msgid "SKILL_ICE_LANCE_NAME"
+msgstr ""
+
+msgid "SKILL_ICE_LANCE_DESC"
+msgstr ""
+
+msgid "SKILL_TIDAL_WAVE_NAME"
+msgstr ""
+
+msgid "SKILL_TIDAL_WAVE_DESC"
+msgstr ""
+
+msgid "SKILL_BLIZZARD_NAME"
+msgstr ""
+
+msgid "SKILL_BLIZZARD_DESC"
+msgstr ""
+
+msgid "SKILL_WIND_BLADE_NAME"
+msgstr ""
+
+msgid "SKILL_WIND_BLADE_DESC"
+msgstr ""
+
+msgid "SKILL_CHAIN_LIGHTNING_NAME"
+msgstr ""
+
+msgid "SKILL_CHAIN_LIGHTNING_DESC"
+msgstr ""
+
+msgid "SKILL_TAILWIND_NAME"
+msgstr ""
+
+msgid "SKILL_TAILWIND_DESC"
+msgstr ""
+
+msgid "SKILL_LIGHTNING_BOLT_NAME"
+msgstr ""
+
+msgid "SKILL_LIGHTNING_BOLT_DESC"
+msgstr ""
+
+msgid "SKILL_TORNADO_NAME"
+msgstr ""
+
+msgid "SKILL_TORNADO_DESC"
+msgstr ""
+
+msgid "SKILL_STORM_NAME"
+msgstr ""
+
+msgid "SKILL_STORM_DESC"
+msgstr ""
+
+msgid "SKILL_STONE_BOLT_NAME"
+msgstr ""
+
+msgid "SKILL_STONE_BOLT_DESC"
+msgstr ""
+
+msgid "SKILL_EARTH_SPIKES_NAME"
+msgstr ""
+
+msgid "SKILL_EARTH_SPIKES_DESC"
+msgstr ""
+
+msgid "SKILL_STONE_SKIN_NAME"
+msgstr ""
+
+msgid "SKILL_STONE_SKIN_DESC"
+msgstr ""
+
+msgid "SKILL_BOULDER_NAME"
+msgstr ""
+
+msgid "SKILL_BOULDER_DESC"
+msgstr ""
+
+msgid "SKILL_QUAKE_NAME"
+msgstr ""
+
+msgid "SKILL_QUAKE_DESC"
+msgstr ""
+
+msgid "SKILL_EARTHQUAKE_NAME"
+msgstr ""
+
+msgid "SKILL_EARTHQUAKE_DESC"
+msgstr ""
+
+msgid "INV_SKILLS"
+msgstr ""
+
+msgid "ACTION_SKILLS"
+msgstr ""
+
+msgid "SKILLS_TITLE"
+msgstr ""
+
+msgid "SKILLS_POINTS"
+msgstr ""
+
+msgid "SKILLS_ROW"
+msgstr ""
+
+msgid "SKILLS_PASSIVE"
+msgstr ""
+
+msgid "SKILLS_COST"
+msgstr ""
+
+msgid "SKILLS_POWER"
+msgstr ""
+
+msgid "SKILLS_HINT"
+msgstr ""

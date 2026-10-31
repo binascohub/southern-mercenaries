@@ -51,9 +51,12 @@ var _enemy_spawner: MultiplayerSpawner
 var _projectile_spawner: MultiplayerSpawner
 var _camera: TopDownCamera
 var _inventory: InventoryMenu
+## Habilidades (efeitos no servidor, visual em todos os PCs).
+var skills: SkillSystem
 ## Troca entre jogadores (lógica no servidor) e a janela deste PC.
 var trade: Trade
 var _trade_menu: TradeMenu
+var _skill_menu: SkillMenu
 ## Aumenta a cada reinício; timers da partida anterior são ignorados.
 var _run := 0
 ## Grupos de encontro (servidor): id -> {position, awake, members}.
@@ -94,6 +97,9 @@ func _ready() -> void:
 	_camera.snap()
 	_inventory = InventoryMenu.new()
 	add_child(_inventory)
+	skills = SkillSystem.new()
+	skills.name = "Skills"
+	add_child(skills)
 	trade = Trade.new()
 	trade.name = "Trade"
 	add_child(trade)
@@ -101,6 +107,9 @@ func _ready() -> void:
 	add_child(_trade_menu)
 	_trade_menu.bind(trade, hud)
 	_inventory.trade_requested.connect(trade.request_trade)
+	_skill_menu = SkillMenu.new()
+	add_child(_skill_menu)
+	_inventory.skills_requested.connect(_skill_menu.toggle)
 	hud.set_progress(0, total_encounters)
 	InputDevice.gamepad_lost.connect(_on_gamepad_lost)
 	InputDevice.gamepad_restored.connect(_on_gamepad_restored)
@@ -128,7 +137,7 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"menu") and not pause_menu.is_open and not _inventory.visible \
-			and not _trade_menu.is_open():
+			and not _trade_menu.is_open() and not _skill_menu.visible:
 		pause_menu.open(not NetworkManager.is_online())
 		get_viewport().set_input_as_handled()
 	elif result == Result.VICTORY and event.is_action_pressed(&"attack"):
@@ -229,6 +238,12 @@ func _show_zone(state_id: String, at: Vector3, radius: float, duration: float) -
 	get_tree().create_timer(duration, false).timeout.connect(disc.queue_free)
 
 
+## Projétil que explode (Bola de Fogo), chamado pelo grupo "arena".
+func skill_burst(at: Vector3, radius: float, hit: Dictionary) -> void:
+	if multiplayer.is_server():
+		skills.burst(at, radius, hit)
+
+
 ## Chamado pelo grupo "arena" quando um jogador atira (só no servidor).
 func spawn_projectile(spawn: Dictionary) -> void:
 	if multiplayer.is_server():
@@ -287,6 +302,7 @@ func _on_node_spawned(node: Node) -> void:
 		hud.bind_player(node)
 		_inventory.bind_player(node)
 		_trade_menu.bind_player(node)
+		_skill_menu.bind_player(node)
 		hud.show_connecting(false)
 
 

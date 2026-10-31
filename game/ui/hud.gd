@@ -31,6 +31,9 @@ var _xp_bar: ProgressBar
 var _xp_label: Label
 var _gold_label: Label
 var _element_label: Label
+## Barra de habilidades (09-interface.md, seção 3): 4 atalhos com tecla, nome,
+## recarga e cinza quando falta mana.
+var _skill_slots: Array[Label] = []
 var _potions: Label
 var _toasts: VBoxContainer
 var _saving: Label
@@ -124,6 +127,26 @@ func show_gamepad_lost(value: bool) -> void:
 	_gamepad_lost.visible = value
 
 
+func _update_skill_bar() -> void:
+	var c := _player.character
+	for i in _skill_slots.size():
+		var label := _skill_slots[i]
+		var prompt := InputDevice.prompt(StringName("skill_%d" % (i + 1)))
+		var key: String = c.data.skill_slots[i] if c else ""
+		if key == "":
+			label.text = "%s\n—" % prompt
+			label.modulate = Color(1, 1, 1, 0.45)
+			continue
+		var skill := Skills.def(c.skill_of(key))
+		var cd := _player.skill_cooldown_left(key)
+		var text := "%s\n%s" % [prompt, tr(skill.get("name_key", ""))]
+		if cd > 0.0:
+			text += "\n%.0fs" % ceilf(cd)
+		label.text = text
+		var ready := cd <= 0.0 and _player.resource >= float(skill.get("cost", 0.0))
+		label.modulate = Color.WHITE if ready else Color(0.55, 0.55, 0.55)
+
+
 func is_gamepad_lost_visible() -> bool:
 	return _gamepad_lost.visible
 
@@ -156,6 +179,9 @@ func _process(_delta: float) -> void:
 	if _player.alive != _local_alive:
 		_local_alive = _player.alive
 		_refresh_texts()
+	_update_skill_bar()
+	if _player.shield > 0.0:
+		_health_label.text = "%d / %d  (+%d)" % [ceili(_player.health), roundi(_player.max_health), ceili(_player.shield)]
 	if _player.character:
 		var c := _player.character
 		var cooldown := ""
@@ -256,6 +282,31 @@ func _build() -> void:
 	bars.add_child(_gold_label)
 	_element_label = _label(18)
 	bars.add_child(_element_label)
+
+	var skill_bar := HBoxContainer.new()
+	skill_bar.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
+	skill_bar.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	skill_bar.grow_vertical = Control.GROW_DIRECTION_BEGIN
+	skill_bar.offset_bottom = -76
+	skill_bar.add_theme_constant_override("separation", 8)
+	skill_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(skill_bar)
+	for i in 4:
+		var box := PanelContainer.new()
+		var style := StyleBoxFlat.new()
+		style.bg_color = Color(0.08, 0.06, 0.05, 0.85)
+		style.border_color = Color(0.45, 0.33, 0.2)
+		style.set_border_width_all(2)
+		style.set_content_margin_all(6)
+		box.add_theme_stylebox_override("panel", style)
+		box.custom_minimum_size = Vector2(112, 64)
+		skill_bar.add_child(box)
+		var slot_label := _label(14)
+		slot_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		slot_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		slot_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		box.add_child(slot_label)
+		_skill_slots.append(slot_label)
 
 	# Faixa de XP na base da tela.
 	var xp_box := VBoxContainer.new()

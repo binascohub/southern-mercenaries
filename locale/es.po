@@ -734,3 +734,198 @@ msgstr "(poción)"
 
 msgid "HUD_POTION_ELEMENTAL"
 msgstr "{key} Elemental ×{count}"
+
+msgid "SKILL_SHARP_MIND_NAME"
+msgstr "Mente Aguda"
+
+msgid "SKILL_SHARP_MIND_DESC"
+msgstr "Pasiva: +10% de regeneración de maná por rango."
+
+msgid "SKILL_TELEPORT_NAME"
+msgstr "Teletransporte"
+
+msgid "SKILL_TELEPORT_DESC"
+msgstr "Se teletransporta hasta 8 m hacia la mira; atraviesa enemigos, no paredes. Recarga -1 s por rango."
+
+msgid "SKILL_MANA_SHIELD_NAME"
+msgstr "Escudo de Maná"
+
+msgid "SKILL_MANA_SHIELD_DESC"
+msgstr "Pasiva: el 20% del daño recibido sale del maná (+5% por rango); 1 de maná absorbe 2 de daño."
+
+msgid "SKILL_ELEMENTAL_MASTERY_NAME"
+msgstr "Dominio Elemental"
+
+msgid "SKILL_ELEMENTAL_MASTERY_DESC"
+msgstr "Pasiva: +6% de daño y +10% de duración de los estados por rango."
+
+msgid "SKILL_FIRE_BOLT_NAME"
+msgstr "Dardo de Fuego"
+
+msgid "SKILL_FIRE_BOLT_DESC"
+msgstr "Proyectil rápido que deja al objetivo ardiendo."
+
+msgid "SKILL_FIREBALL_NAME"
+msgstr "Bola de Fuego"
+
+msgid "SKILL_FIREBALL_DESC"
+msgstr "Explota al impactar (radio de 3 m) y deja a los enemigos ardiendo."
+
+msgid "SKILL_FLAME_BLESSING_NAME"
+msgstr "Bendición de las Llamas"
+
+msgid "SKILL_FLAME_BLESSING_DESC"
+msgstr "Los aliados a 8 m causan +15% de daño (+3% por rango) y sus golpes queman, durante 8 s."
+
+msgid "SKILL_FIRE_LANCE_NAME"
+msgstr "Lanza de Fuego"
+
+msgid "SKILL_FIRE_LANCE_DESC"
+msgstr "Lanza en llamas que atraviesa un objetivo; combo Fundir en enemigos aturdidos."
+
+msgid "SKILL_FIRE_WALL_NAME"
+msgstr "Muro de Fuego"
+
+msgid "SKILL_FIRE_WALL_DESC"
+msgstr "Una línea de fuego de 8 m durante 6 s que quema a todo lo que la cruza."
+
+msgid "SKILL_METEOR_NAME"
+msgstr "Meteoro"
+
+msgid "SKILL_METEOR_DESC"
+msgstr "Marca el suelo y cae tras 1,5 s (radio de 5 m); el suelo arde durante 4 s."
+
+msgid "SKILL_WATER_BOLT_NAME"
+msgstr "Chorro de Agua"
+
+msgid "SKILL_WATER_BOLT_DESC"
+msgstr "Proyectil que empapa al objetivo."
+
+msgid "SKILL_FROST_NOVA_NAME"
+msgstr "Nova de Hielo"
+
+msgid "SKILL_FROST_NOVA_DESC"
+msgstr "Congela a los enemigos a 5 m durante 2 s (+0,25 s por rango)."
+
+msgid "SKILL_HEALING_RAIN_NAME"
+msgstr "Lluvia Sanadora"
+
+msgid "SKILL_HEALING_RAIN_DESC"
+msgstr "Durante 6 s, cura a los aliados a 5 m y empapa a los enemigos."
+
+msgid "SKILL_ICE_LANCE_NAME"
+msgstr "Lanza de Hielo"
+
+msgid "SKILL_ICE_LANCE_DESC"
+msgstr "Lanza de hielo; un objetivo empapado queda congelado 2 s."
+
+msgid "SKILL_TIDAL_WAVE_NAME"
+msgstr "Ola"
+
+msgid "SKILL_TIDAL_WAVE_DESC"
+msgstr "Un cono de 8 m que empuja a los enemigos y los empapa."
+
+msgid "SKILL_BLIZZARD_NAME"
+msgstr "Ventisca"
+
+msgid "SKILL_BLIZZARD_DESC"
+msgstr "Una tormenta de 7 m durante 6 s que ralentiza; quien siga dentro 3 s se congela."
+
+msgid "SKILL_WIND_BLADE_NAME"
+msgstr "Hoja de Viento"
+
+msgid "SKILL_WIND_BLADE_DESC"
+msgstr "Proyectil muy rápido y de largo alcance."
+
+msgid "SKILL_CHAIN_LIGHTNING_NAME"
+msgstr "Cadena de Rayos"
+
+msgid "SKILL_CHAIN_LIGHTNING_DESC"
+msgstr "Salta entre 5 enemigos (+1 en los rangos 3 y 5), -15% de daño por salto; electriza."
+
+msgid "SKILL_TAILWIND_NAME"
+msgstr "Viento a Favor"
+
+msgid "SKILL_TAILWIND_DESC"
+msgstr "Los aliados a 8 m se mueven y atacan un 30% más rápido (+5% por rango) durante 8 s."
+
+msgid "SKILL_LIGHTNING_BOLT_NAME"
+msgstr "Relámpago"
+
+msgid "SKILL_LIGHTNING_BOLT_DESC"
+msgstr "Golpea al instante al objetivo de la mira y lo electriza; electrocuta a un objetivo empapado."
+
+msgid "SKILL_TORNADO_NAME"
+msgstr "Tornado"
+
+msgid "SKILL_TORNADO_DESC"
+msgstr "Avanza 10 m hacia la mira durante 5 s y arrastra a los enemigos hacia su centro."
+
+msgid "SKILL_STORM_NAME"
+msgstr "Tormenta"
+
+msgid "SKILL_STORM_DESC"
+msgstr "Durante 8 s, un rayo cae sobre un enemigo al azar a 9 m cada 0,5 s."
+
+msgid "SKILL_STONE_BOLT_NAME"
+msgstr "Piedra Lanzada"
+
+msgid "SKILL_STONE_BOLT_DESC"
+msgstr "Proyectil lento y pesado; 15% de probabilidad de aturdir."
+
+msgid "SKILL_EARTH_SPIKES_NAME"
+msgstr "Púas de Piedra"
+
+msgid "SKILL_EARTH_SPIKES_DESC"
+msgstr "Púas salen del suelo a lo largo de 10 m y derriban a los enemigos."
+
+msgid "SKILL_STONE_SKIN_NAME"
+msgstr "Piel de Piedra"
+
+msgid "SKILL_STONE_SKIN_DESC"
+msgstr "Escudo sobre el aliado más herido a 10 m (o sobre ti) durante 8 s."
+
+msgid "SKILL_BOULDER_NAME"
+msgstr "Roca Aplastante"
+
+msgid "SKILL_BOULDER_DESC"
+msgstr "Una roca enorme contra un objetivo que lo aturde 1,5 s."
+
+msgid "SKILL_QUAKE_NAME"
+msgstr "Temblor"
+
+msgid "SKILL_QUAKE_DESC"
+msgstr "Aturde a los enemigos a 5 m durante 1,5 s (+0,2 s por rango)."
+
+msgid "SKILL_EARTHQUAKE_NAME"
+msgstr "Terremoto"
+
+msgid "SKILL_EARTHQUAKE_DESC"
+msgstr "Tras 1 s el suelo se agrieta a tu alrededor (10 m): daño enorme y aturdimiento de 2 s."
+
+msgid "INV_SKILLS"
+msgstr "Habilidades"
+
+msgid "ACTION_SKILLS"
+msgstr "Habilidades"
+
+msgid "SKILLS_TITLE"
+msgstr "Habilidades"
+
+msgid "SKILLS_POINTS"
+msgstr "Puntos de habilidad: {points} · Elemento en uso: {element}"
+
+msgid "SKILLS_ROW"
+msgstr "{name} — nivel {level} — rango {rank}/{max}"
+
+msgid "SKILLS_PASSIVE"
+msgstr "(pasiva)"
+
+msgid "SKILLS_COST"
+msgstr "Coste: {cost} de {resource} · Recarga: {cooldown} s"
+
+msgid "SKILLS_POWER"
+msgstr "Daño: {percent}% de {power} (rango {rank})"
+
+msgid "SKILLS_HINT"
+msgstr "+ gasta un punto de habilidad. 1–4 ponen una habilidad activa en un atajo. Una Poción elemental cambia las habilidades del elemento por las del nuevo, con los mismos rangos."

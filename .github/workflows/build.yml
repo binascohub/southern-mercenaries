@@ -35,6 +35,8 @@ jobs:
         run: tests/godot_checked.sh godot --headless --path . res://tests/smoke_arena.tscn -- revive
       - name: Elementos (estados, combos, Poção Elemental)
         run: tests/godot_checked.sh godot --headless --path . res://tests/smoke_arena.tscn -- elements
+      - name: Habilidades do Mago (28 habilidades, atalhos, passivas)
+        run: tests/godot_checked.sh godot --headless --path . res://tests/smoke_arena.tscn -- skills
       - name: Troca entre jogadores
         run: tests/godot_checked.sh godot --headless --path . res://tests/smoke_arena.tscn -- trade
       - name: Rede (host + cliente, versão diferente)

@@ -51,6 +51,9 @@ var _timer := 0.0
 var status := StatusSet.new()
 var _rng := RandomNumberGenerator.new()
 var _element_gem: MeshInstance3D
+## Empurrão/puxão de habilidade (Onda, Tornado): velocidade e tempo restante.
+var _push := Vector3.ZERO
+var _push_time := 0.0
 var _visual: Node3D
 var _material: StandardMaterial3D
 var _base_color := Color(0.36, 0.28, 0.22)
@@ -97,6 +100,10 @@ func _physics_process(delta: float) -> void:
 		states_mask = status.mask()
 		if not is_inside_tree() or health <= 0.0:
 			return
+		if _push_time > 0.0:
+			_push_time -= delta
+			move_and_collide(_push * delta)
+			global_position.y = 0.0
 		_think(delta)
 		net_position = global_position
 	else:
@@ -183,6 +190,15 @@ func _think(delta: float) -> void:
 			if _timer <= 0.0:
 				state = State.CHASE
 	global_position.y = 0.0
+
+
+## Desloca o monstro `offset` metros em `time` segundos (sem atravessar paredes).
+func push(offset: Vector3, time := 0.25) -> void:
+	if not multiplayer.is_server() or is_boss():
+		return
+	offset.y = 0.0
+	_push = offset / maxf(time, 0.01)
+	_push_time = time
 
 
 func is_boss() -> bool:

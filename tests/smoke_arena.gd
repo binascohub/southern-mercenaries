@@ -16,6 +16,9 @@ extends Node
 ##   elementos: ... res://tests/smoke_arena.tscn -- elements
 ##            (golpes com elemento em ratos de verdade: estados, combos, queimando,
 ##            área de vapor, congelado parado, Poção Elemental e projétil do herói)
+##   habilidades: ... res://tests/smoke_arena.tscn -- skills
+##            (as 28 habilidades do Mago, dos 4 elementos, em ratos de verdade;
+##            atalho com mana e recarga; passivas; escudo, cura, bônus e teleporte)
 ##   troca:   ... res://tests/smoke_arena.tscn -- trade
 ##            (solo com um aliado fictício: convite, ofertas, confirmações, troca e
 ##            cancelamento ao se afastarem; o aliado responde direto no servidor)
@@ -82,7 +85,7 @@ func _ready() -> void:
 		get_tree().quit(0 if found else 1)
 		return
 	else:
-		_role = args[0] if args.size() > 0 and args[0] in ["revive", "trade", "elements"] else "solo"
+		_role = args[0] if args.size() > 0 and args[0] in ["revive", "trade", "elements", "skills"] else "solo"
 		NetworkManager.prepare_solo()
 	NetworkManager.session_ended.connect(func(reason: String) -> void:
 		if _expect_refusal != "":
@@ -117,6 +120,9 @@ func _physics_process(_delta: float) -> void:
 		return
 	if _role == "elements":
 		_elements_test()
+		return
+	if _role == "skills":
+		_skills_test()
 		return
 	var players := get_tree().get_nodes_in_group(&"players")
 	_max_players_seen = maxi(_max_players_seen, players.size())
@@ -311,6 +317,94 @@ func _elements_test() -> void:
 	check.call(player.element == "water" and player.character.data.element == origin, "Poção Elemental troca o elemento em uso")
 	check.call(player.character.count_of("elemental_potion_water") == 0, "a poção é consumida")
 	_report(checks.is_empty(), "elementos: " + ("tudo certo" if checks.is_empty() else "; ".join(PackedStringArray(checks))))
+
+
+## Todas as habilidades do Mago em ratos de verdade (efeitos no servidor).
+func _skills_test() -> void:
+	var player: Player = _arena.local_player
+	if player == null:
+		return
+	if _stage > 0 or _frame < 10:
+		return
+	_stage = 1
+	var checks: Array[String] = []
+	var check := func(ok: bool, what: String) -> void:
+		if not ok:
+			checks.append(what)
+	var system: SkillSystem = _arena.skills
+	# Ratos em fila na frente do herói (olhando para +z).
+	player.facing = Vector2(0, 1)
+	var rats: Array = get_tree().get_nodes_in_group(&"enemies")
+	for i in mini(rats.size(), 8):
+		var spot: Vector3 = player.global_position + Vector3((i % 4 - 1.5) * 1.2, 0, 3.0 + 1.5 * (i / 4))
+		rats[i].global_position = spot
+		rats[i].net_position = spot
+		rats[i].home = spot
+	# Acorda os grupos antes (acordar zera a vida) e deixa os ratos resistentes,
+	# para todos continuarem vivos como alvo até o fim.
+	for r in rats:
+		_arena._wake_group(r.group)
+	for r in rats:
+		r.max_health = 100000.0
+		r.health = r.max_health
+	var total_before := 0.0
+	for r in rats:
+		total_before += r.health
+	# Herói forte e com todas as habilidades no rank 3.
+	var c := player.character
+	c.add_xp(200000)
+	for key in Skills.keys("mage"):
+		c.data.skills[key] = 3
+	player.refresh_character()
+	c = player.character  # o servidor troca a cópia ao propagar a ficha
+	player.resource = player.max_resource
+	for element in Elements.ALL:
+		player.element = element
+		for key in Skills.keys("mage"):
+			var id := Skills.skill_id("mage", key, element)
+			if not Skills.is_active(id):
+				continue
+			player.global_position = Vector3(player.global_position.x, 0, player.global_position.z)
+			player.facing = Vector2(0, 1)
+			var ok := system.cast(player, id, 3)
+			check.call(ok, "habilidade %s funcionou" % id)
+			if id == "teleport":
+				player.teleport_to(_arena.CHECKPOINT)
+			player.health = player.max_health * 0.5
+			await get_tree().physics_frame
+	check.call(player.shield > 0.0, "Pele de Pedra deu escudo")
+	check.call(player._buffs.has("damage") and player._buffs.has("speed"), "Bênção das Chamas e Vento a Favor")
+	check.call(not system._areas.is_empty(), "áreas que duram ativas")
+	# Áreas, golpes com atraso e projéteis agem com o tempo.
+	await get_tree().create_timer(2.5, false).timeout
+	check.call(system._delayed.is_empty(), "Meteoro e Terremoto caíram")
+	var total_after := 0.0
+	for r in get_tree().get_nodes_in_group(&"enemies"):
+		total_after += r.health
+	check.call(total_after < total_before, "as habilidades tiraram vida dos ratos")
+	# Escudo absorve antes da vida; Escudo de Mana tira da mana.
+	player.alive = true
+	player.health = player.max_health
+	player.add_shield(50.0, 5.0)
+	var health := player.health
+	player.take_damage(20.0)
+	check.call(is_equal_approx(player.health, health) and player.shield < 50.0, "escudo absorve o golpe")
+	player.shield = 0.0
+	player.resource = player.max_resource
+	player.take_damage(20.0)
+	check.call(player.resource < player.max_resource, "Escudo de Mana gasta mana")
+	# Atalho: mana e recarga conferidas no servidor.
+	player.element = "fire"
+	c.data.skill_slots[0] = "element_2"
+	player.resource = player.max_resource
+	var mana := player.resource
+	player._cast_slot(0)
+	check.call(player.resource < mana and player._skill_cd.has("element_2"), "atalho gasta mana e entra em recarga")
+	mana = player.resource
+	player._cast_slot(0)
+	check.call(is_equal_approx(player.resource, mana), "em recarga não usa de novo")
+	check.call(player.skill_cooldown_left("element_2") > 0.0, "o dono vê a recarga")
+	_report(checks.is_empty(), "habilidades: " + ("tudo certo" if checks.is_empty() else "; ".join(PackedStringArray(checks))))
 
 
 ## Troca com um aliado fictício (peer 99, sem rede): o lado dele é chamado

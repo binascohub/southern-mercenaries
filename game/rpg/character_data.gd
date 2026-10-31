@@ -34,6 +34,9 @@ static func create(class_id: String, sex: String, hero_name: String, element := 
 		# Elemento de origem (não muda) e o da Poção Elemental ativa ("" = nenhuma).
 		"element": element if element in Elements.ALL else "fire",
 		"element_potion": "",
+		# Habilidades por chave (Skills): a básica do elemento vem no rank 1 e no atalho 1.
+		"skills": {"element_1": 1},
+		"skill_slots": ["element_1", "", "", ""],
 		"level": 1,
 		"xp": 0,
 		"attributes": cls.attributes.duplicate(),
@@ -96,6 +99,7 @@ func validate() -> PackedStringArray:
 		errors.append("elemento")
 	if data.get("element_potion", "") != "" and data.element_potion not in Elements.ALL:
 		errors.append("poção elemental")
+	errors.append_array(_validate_skills())
 	if int(data.level) < 1 or int(data.level) > GameData.balance.max_level:
 		errors.append("nível")
 	if int(data.gold) < 0 or int(data.xp) < 0 or int(data.free_points) < 0:
@@ -233,7 +237,8 @@ func max_resource() -> float:
 func resource_regen() -> float:
 	var cls := class_data()
 	var attr: String = cls.power_attribute
-	return cls.resource_regen + cls.regen_per_power_point * (attribute(attr) - int(cls.attributes[attr]))
+	return (cls.resource_regen + cls.regen_per_power_point * (attribute(attr) - int(cls.attributes[attr]))) \
+		* (1.0 + passive_value("regen"))
 
 
 func weapon_damage() -> float:
@@ -259,6 +264,82 @@ func damage_reduction(monster_level: int) -> float:
 	var b: Dictionary = GameData.balance
 	return minf(a / (a + b.armor_base_constant + b.armor_base_per_monster_level * monster_level),
 		b.max_damage_reduction)
+
+
+# --- Habilidades (02-personagens.md, "Progressão") -----------------------------------
+
+func _validate_skills() -> PackedStringArray:
+	var errors := PackedStringArray()
+	var skills: Variant = data.get("skills", {})
+	var slots: Variant = data.get("skill_slots", [])
+	if not skills is Dictionary or not slots is Array or slots.size() != int(GameData.skills.slots):
+		return PackedStringArray(["habilidades"])
+	var keys := Skills.keys(data.class_id)
+	var spent := 0
+	for key: String in skills:
+		var rank := int(skills[key])
+		if key not in keys or rank < 1 or rank > Skills.max_rank() \
+				or Skills.unlock_level(data.class_id, key) > int(data.level):
+			errors.append("habilidade " + key)
+		spent += rank
+	# O rank 1 da básica vem de graça; o resto sai dos pontos (+1 por nível).
+	var earned := int(GameData.balance.skill_points_per_level) * (int(data.level) - 1) + 1
+	if spent + int(data.get("skill_points", 0)) > earned:
+		errors.append("pontos de habilidade demais")
+	for key: Variant in slots:
+		if key != "" and (not skills.has(key) or not Skills.is_active(skill_of(key))):
+			errors.append("atalho " + str(key))
+	return errors
+
+
+func skill_rank(key: String) -> int:
+	return int(data.get("skills", {}).get(key, 0))
+
+
+## ID da habilidade da chave no elemento em uso (a Poção Elemental troca as do elemento).
+func skill_of(key: String) -> String:
+	return Skills.skill_id(data.class_id, key, current_element())
+
+
+func can_learn(key: String) -> bool:
+	return key in Skills.keys(data.class_id) and int(data.get("skill_points", 0)) > 0 \
+		and skill_rank(key) < Skills.max_rank() and Skills.unlock_level(data.class_id, key) <= int(data.level)
+
+
+## Gasta um ponto de habilidade: aprende (rank 1) ou sobe o rank.
+func learn(key: String) -> bool:
+	if not can_learn(key):
+		return false
+	data.skills[key] = skill_rank(key) + 1
+	data.skill_points = int(data.skill_points) - 1
+	# Habilidade ativa nova vai para o primeiro atalho livre.
+	if skill_rank(key) == 1 and Skills.is_active(skill_of(key)) and key not in data.skill_slots:
+		var free: int = data.skill_slots.find("")
+		if free >= 0:
+			data.skill_slots[free] = key
+	return true
+
+
+## Põe uma habilidade ativa aprendida num atalho (tira de outro, se estava lá).
+func set_slot(index: int, key: String) -> bool:
+	if index < 0 or index >= data.skill_slots.size():
+		return false
+	if key != "" and (skill_rank(key) == 0 or not Skills.is_active(skill_of(key))):
+		return false
+	var old: int = data.skill_slots.find(key)
+	if key != "" and old >= 0:
+		data.skill_slots[old] = data.skill_slots[index]
+	data.skill_slots[index] = key
+	return true
+
+
+## Soma de uma passiva aprendida (0 se não tiver): ex. "regen" do Mente Afiada.
+func passive_value(effect: String, field := "value", per_rank := "per_rank") -> float:
+	for key: String in data.get("skills", {}):
+		var skill := Skills.def(skill_of(key))
+		if skill.get("kind", "") == "passive" and skill.get("effect", "") == effect:
+			return Skills.scaled(skill, field, per_rank, skill_rank(key))
+	return 0.0
 
 
 # --- Elemento (02-0-elementos.md) ---------------------------------------------------

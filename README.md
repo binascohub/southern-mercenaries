@@ -5,7 +5,7 @@ Dark co-op action RPG with a top-down camera, inspired by *Baldur's Gate: Dark A
 **Languages:** English · Español · Português (BR)
 
 ## Status
-**Phase 4 — Elements (in progress)** (`docs/01-escopo.md`, section 9; `docs/02-0-elementos.md`). Phases 1–3 are done. Not the game yet: the technical base the next phases build on.
+**Phase 5 — Classes and skills (in progress: the Mage is done)** (`docs/01-escopo.md`, section 9). Phases 1–4 are done. Not the game yet: the technical base the next phases build on.
 
 - **Combat (phase 1):** the Mage with the top-down camera: basic attack, charged strong attack and dodge (`docs/02-1-mago.md`).
 - **Test area:** a start room (checkpoint), a corridor and two chambers to explore. Sewer rats are placed in **encounter groups** that sleep until a player gets close (~15 m) and alert nearby groups; dead monsters stay dead (`docs/03-inimigos.md`, no waves). Bites have a visible wind-up.
@@ -16,6 +16,7 @@ Dark co-op action RPG with a top-down camera, inspired by *Baldur's Gate: Dark A
   - A client that drops leaves its hero standing still and invulnerable for 30 s; rejoining in time takes the same hero back (`docs/07-rede.md`, section 9).
   - A downed player is revived by an ally holding *Interact* for 3 s (interrupted if the reviver is hit); if everyone falls, back to the checkpoint (surviving groups go back to sleep).
   - No pause in co-op; gamepad disconnect only shows a warning.
+- **Skills (phase 5, Mage):** 10 skills per class with up to 5 ranks, unlocked at levels 1, 2, 4… 18, one skill point per level (`docs/02-personagens.md`). The Mage has 4 class skills (Sharp Mind, Teleport, Mana Shield, Elemental Mastery) and 6 per element — 28 in all, from Fire Bolt to Earthquake (`docs/02-1-mago.md`, section 6). Four active skills on the hotkeys (Q E R F / A B X Y) with mana cost and cooldown shown in the HUD; the Skills window (K, or the button in the inventory) learns ranks and assigns hotkeys. An Elemental Potion swaps the element skills for the new element's with the same ranks.
 - **Elements (phase 4):**
   - Every character picks an origin element at creation (Water, Fire, Air, Earth); every monster has one too, shown as a colored gem above it.
   - Weakness cycle Water > Fire > Earth > Air > Water: +50% damage on the weakness, -50% on the same element. Damage numbers are bigger and in the element's color on a weakness, small and gray when resisted; criticals (5% base, x1.5) end with "!".
@@ -46,7 +47,7 @@ godot --path .        # play
 godot -e --path .     # open in the editor
 ```
 
-Default controls — keyboard: WASD move, mouse aim, left click attack (hold for strong attack), Space dodge, right click / G interact, Z pick up all, 1/2 potions, 3 Elemental Potion, I inventory, Esc pause. Gamepad: left stick move, right stick aim, RT attack, LT dodge, RB pick up all, D-pad down/up potions, D-pad right Elemental Potion, Back inventory, Start pause.
+Default controls — keyboard: WASD move, mouse aim, left click attack (hold for strong attack), Q/E/R/F skills, K skills window, Space dodge, right click / G interact, Z pick up all, 1/2 potions, 3 Elemental Potion, I inventory, Esc pause. Gamepad: left stick move, right stick aim, RT attack, A/B/X/Y skills, LT dodge, RB pick up all, D-pad down/up potions, D-pad right Elemental Potion, Back inventory, Start pause.
 
 ## Tests
 ```bash
@@ -56,6 +57,7 @@ godot --headless --path . res://tests/rpg_tests.tscn                    # RPG fo
 godot --headless --path . --fixed-fps 60 res://tests/smoke_arena.tscn  # a bot clears every encounter, collects its loot, equips an item and checks the save
 godot --headless --path . res://tests/smoke_arena.tscn -- revive        # downed, revive, back to checkpoint
 godot --headless --path . res://tests/smoke_arena.tscn -- elements      # states, combos, burning, steam area, Elemental Potion on real monsters
+godot --headless --path . res://tests/smoke_arena.tscn -- skills        # all 28 Mage skills on real monsters, hotkeys, passives
 godot --headless --path . res://tests/smoke_arena.tscn -- trade         # invite, offers, confirmations, trade, cancel by distance
 tests/net_smoke.sh godot                                                # host + client together; version refusal; drop and rejoin
 ```

@@ -2,7 +2,14 @@
 
 ## [Unreleased]
 
-### Phase 4 — Elements (in progress)
+### Phase 5 — Classes and skills (in progress)
+- Skill system (`data/skills.json`, `Skills`, `SkillSystem`): 10 skills per class, ranks 1–5, unlocked at levels 1, 2, 4… 18, one skill point per level; the element's basic skill comes at rank 1 on hotkey 1. Element skills are stored by unlock level, so an Elemental Potion swaps them for the new element's with the same ranks.
+- Mage (`docs/02-1-mago.md`, section 6): Sharp Mind, Teleport, Mana Shield, Elemental Mastery and the 6 skills of each element (24), with effects for projectiles (Fireball explodes), novas, cones that push, lines, instant bolts, chains, buffs, shields, teleport, delayed strikes (Meteor, Earthquake) and lasting areas (Fire Wall, Blizzard freezing after 3 s, Tornado pulling, Storm bolts, Healing Rain). All damage goes through the element rules (weakness, combos, crits).
+- Hotkeys `skill_1`–`skill_4` validated on the server (rank, mana, cooldown); HUD skill bar with cooldowns and gray when out of mana; Skills window (K, or from the inventory) to learn ranks and set hotkeys; shield shown on the health bar.
+- Characters saved before phase 5 get the basic element skill without being flagged as edited.
+- Not yet: Fire Wall does not block monsters; the other four classes.
+
+### Phase 4 — Elements
 - `data/elements.json` and `Elements` / `StatusSet`: weakness cycle (x1.5 / x0.5), basic state per element, states (burning, soaked, frozen, shocked, knocked down, stunned) with refresh-not-stack, immunities (fire monsters don't burn, water monsters aren't soaked) and bosses getting a slow instead of control (`docs/02-0-elementos.md`).
 - Combos completed by any player: Electrocute, Wildfire, Mud and Steam (areas on the ground), Melt; a combo consumes the state that started it and stacks with the weakness bonus.
 - Critical hits: 5% base plus the `crit` affix, x1.5; frozen targets always take a critical.
