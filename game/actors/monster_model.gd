@@ -208,11 +208,20 @@ func _setup_humanoid(info: Dictionary, size: float, tint: Color) -> bool:
 ## A pele do corpo ganha a mesma pelagem da cabeça (a textura do rato, projetada
 ## em três eixos porque o mapa UV do corpo é outro), na mesma cor.
 func _fur_skin(head: Node3D) -> void:
+	# A textura do corpo do rato (só pelo; a da cabeça tem olhos e boca).
 	var fur: Texture2D = null
-	for material in _materials:
-		if material.albedo_texture:
-			fur = material.albedo_texture
-			break
+	if ResourceLoader.exists(FAMILIES.rat.scene):
+		var rat := (load(FAMILIES.rat.scene) as PackedScene).instantiate()
+		for node in rat.find_children("*", "MeshInstance3D", true, false):
+			var mesh := node as MeshInstance3D
+			if String(mesh.name) == "Body" and mesh.get_active_material(0) is StandardMaterial3D:
+				fur = (mesh.get_active_material(0) as StandardMaterial3D).albedo_texture
+		rat.free()
+	if fur == null:
+		for material in _materials:
+			if material.albedo_texture:
+				fur = material.albedo_texture
+				break
 	if fur == null:
 		return
 	var skin := StandardMaterial3D.new()
