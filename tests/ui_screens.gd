@@ -11,6 +11,8 @@ extends "res://tests/smoke_arena.gd"
 ## 1b. opening.png: abertura na Taverna (a história do herói do jogador);
 ##     tavern.png: conversa com o Velho Bêbado na Taverna (a primeira missão);
 ## 1c. tortuga.png: Rua Principal com as bancas; shop.png: Mercado Pirata;
+## 1d. sewers.png: Canais de Lixo (Esgoto, área 2): canal, ponte, poças, morcegos
+##     e o Sapo Ácido elite (aura dourada) acordados;
 ## 2. load_campaign.png: menu principal → Carregar campanha, com três campanhas
 ##    (uma com miniatura capturada da própria arena).
 
@@ -33,7 +35,9 @@ const SHOP_FRAME := 312
 const SHIP_SHOT := 316
 const SHOP_OPEN := 318
 const SHOP_SHOT := 322
-const MENU_FRAME := 330
+const SEWER_FRAME := 324
+const SEWER_SHOT := 329
+const MENU_FRAME := 332
 
 var _dir := "user://"
 var _menu: Node
@@ -100,6 +104,10 @@ func _physics_process(delta: float) -> void:
 	elif _frame == SHOP_SHOT:
 		await _shot("shop.png")
 		_arena._shop_menu.close()
+	elif _frame == SEWER_FRAME:
+		_open_sewers()
+	elif _frame == SEWER_SHOT:
+		await _shot("sewers.png")
 	elif _frame == MENU_FRAME:
 		_open_load_campaign()
 	elif _frame == MENU_FRAME + 20:
@@ -215,6 +223,16 @@ func _go_to_dock() -> void:
 	var player: Player = _arena.local_player
 	player.teleport_to(Vector3(0, 0, -23.5))
 	player.facing = Vector2(0, -1)
+	_arena._camera.snap()
+
+
+func _open_sewers() -> void:
+	_arena.travel("sewers_02_canals", "start")
+	var player: Player = _arena.local_player
+	player.teleport_to(Vector3(0, 0, -45))
+	player.facing = Vector2(0, -1)
+	_arena._wake_group("s2_sluice_toads")
+	_arena._wake_group("s2_sluice_bats")
 	_arena._camera.snap()
 
 
