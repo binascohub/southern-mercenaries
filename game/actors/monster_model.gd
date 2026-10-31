@@ -68,7 +68,7 @@ var _follows: Array = []
 var _wing_size := 1.0
 ## Pescoço da cabeça de rato (rat_head.glb, unidades do rato) e o tamanho dela no corpo.
 const RAT_NECK := Vector3(0, 0.12, 0.33)
-const RAT_HEAD_SCALE := 2.0
+const RAT_HEAD_SCALE := 2.6
 const WING_COLOR := Color(0.22, 0.14, 0.16)
 ## A Rainha (referência do autor): couro marrom, pelagem clara e rosada nas
 ## orelhas, mãos e cauda; asas de couro marrom levantadas.
@@ -175,6 +175,7 @@ func _setup_humanoid(info: Dictionary, size: float, tint: Color) -> bool:
 				mesh.set_surface_override_material(i, copy)
 				_materials.append(copy)
 	_add_ears(head)
+	_fur_skin(head)
 	var back := Node3D.new()
 	add_child(back)
 	_tail = Node3D.new()
@@ -182,7 +183,7 @@ func _setup_humanoid(info: Dictionary, size: float, tint: Color) -> bool:
 	if _skeleton and _skeleton.find_bone(bones.head) >= 0 and _skeleton.find_bone(bones.chest) >= 0:
 		var neck := _rest_in_model(bones.head).origin
 		_follow_bone(head, bones.head, Transform3D(Basis.from_scale(Vector3.ONE * RAT_HEAD_SCALE),
-			neck - RAT_NECK * RAT_HEAD_SCALE + Vector3(0, 0.05, 0)))
+			neck - RAT_NECK * RAT_HEAD_SCALE + Vector3(0, -0.04, 0.02)))
 		_follow_bone(back, bones.chest, Transform3D(Basis(), _rest_in_model(bones.chest).origin + Vector3(0, 0.05, -0.12)))
 		if _skeleton.find_bone(bones.hips) >= 0:
 			_follow_bone(_tail, bones.hips, Transform3D(Basis(), _rest_in_model(bones.hips).origin + Vector3(0, -0.05, -0.12)))
@@ -202,6 +203,33 @@ func _setup_humanoid(info: Dictionary, size: float, tint: Color) -> bool:
 	_add_wings(back, Vector3(0.08, 0, 0))
 	play("idle", 0.0)
 	return true
+
+
+## A pele do corpo ganha a mesma pelagem da cabeça (a textura do rato, projetada
+## em três eixos porque o mapa UV do corpo é outro), na mesma cor.
+func _fur_skin(head: Node3D) -> void:
+	var fur: Texture2D = null
+	for material in _materials:
+		if material.albedo_texture:
+			fur = material.albedo_texture
+			break
+	if fur == null:
+		return
+	var skin := StandardMaterial3D.new()
+	skin.albedo_texture = fur
+	skin.albedo_color = _tint
+	skin.uv1_triplanar = true
+	skin.uv1_scale = Vector3.ONE * 2.5
+	skin.roughness = 0.85
+	for node in find_children("*", "MeshInstance3D", true, false):
+		var mesh := node as MeshInstance3D
+		if mesh.is_ancestor_of(head) or head.is_ancestor_of(mesh):
+			continue
+		for i in mesh.get_surface_override_material_count():
+			var source := mesh.get_active_material(i)
+			if source and String(source.resource_name).contains("Skin"):
+				mesh.set_surface_override_material(i, skin)
+	_materials.append(skin)
 
 
 ## Orelhas grandes e rosadas (unidades da cabeça de rato).
