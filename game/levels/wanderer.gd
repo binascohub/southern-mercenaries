@@ -10,7 +10,8 @@ var to := Vector3.ZERO
 var speed := 1.2
 ## 0 = anda reto; mais = cambaleia de lado.
 var sway := 0.0
-var model: HeroModel
+## HeroModel ou NpcModel (os dois têm set_pose).
+var model: Node3D
 
 var _forward := true
 var _pause := 0.0
@@ -24,7 +25,7 @@ func _process(delta: float) -> void:
 	if _pause > 0.0:
 		_pause -= delta
 		if _pause <= 0.0:
-			model.set_pose("walk")
+			model.call("set_pose", "walk")
 		return
 	var target := to if _forward else from
 	var offset := target - position
@@ -32,7 +33,7 @@ func _process(delta: float) -> void:
 	if offset.length() < 0.2:
 		_forward = not _forward
 		_pause = randf_range(1.5, 4.0)
-		model.set_pose("idle" if sway == 0.0 else "talk")
+		model.call("set_pose", "idle" if sway == 0.0 else "talk")
 		return
 	var dir := offset.normalized()
 	var side := Vector3(-dir.z, 0, dir.x) * sin(_time * 2.3) * sway

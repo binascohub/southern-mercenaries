@@ -1,0 +1,4 @@
+courtesan.glb — "Female NPC" by umask007
+https://opengameart.org/content/female-npc
+Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/
+Changes: converted to glTF by tools/assets/build_monsters.py (mesh, hair, skeleton; walk, run, attack and die animations; material colors kept).

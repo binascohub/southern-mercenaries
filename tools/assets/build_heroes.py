@@ -45,11 +45,13 @@ def adopt(objs, arm, prefix=""):
         bpy.data.objects.remove(o, do_unlink=True)
     return keep
 
-def cut_to_head(o, z_cut):
+def cut_to_head(o, z_cut, keep_head=True):
+    """keep_head: só a cabeça ("Head"); senão, o corpo sem a cabeça ("Skin": a
+    pele com a roupa de baixo, à mostra só em quem usa roupa curta)."""
     bm = bmesh.new()
     bm.from_mesh(o.data)
     mw = o.matrix_world
-    gone = [v for v in bm.verts if not ((mw @ v.co).z > z_cut and abs((mw @ v.co).x) < 0.2)]
+    gone = [v for v in bm.verts if ((mw @ v.co).z > z_cut and abs((mw @ v.co).x) < 0.2) != keep_head]
     bmesh.ops.delete(bm, geom=gone, context="VERTS")
     bm.to_mesh(o.data)
     bm.free()
@@ -73,8 +75,13 @@ for sex in ["Male", "Female"]:
     base = adopt(imported(os.path.join(ubc, "Base Characters/Godot - UE/Superhero_%s_FullBody.gltf" % sex)), arm)
     for o in base:
         if o.name.lower().startswith("superhero"):
+            skin = o.copy()
+            skin.data = o.data.copy()
+            bpy.context.scene.collection.objects.link(skin)
             o.name = "Head"
             cut_to_head(o, CUT[sex])
+            skin.name = "Skin"
+            cut_to_head(skin, CUT[sex], keep_head=False)
     for hair in HAIR[sex]:
         path = os.path.join(ubc, "Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)/%s.gltf" % hair)
         for o in adopt(imported(path), arm):

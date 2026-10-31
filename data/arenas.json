@@ -963,7 +963,11 @@
           -6.4
         ],
         "rotation": 60,
-        "pose": "talk"
+        "path": [
+          11.0,
+          -6.4
+        ],
+        "speed": 0.9
       },
       {
         "role": "sailor",
@@ -1177,7 +1181,11 @@
           3.4
         ],
         "rotation": 200,
-        "pose": "talk"
+        "path": [
+          6.0,
+          3.4
+        ],
+        "speed": 0.9
       },
       {
         "role": "brawl",

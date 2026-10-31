@@ -1739,7 +1739,13 @@ func _build_crowd(entry: Dictionary) -> void:
 		var seat := Kit.piece(String(entry.seat))
 		if seat:
 			node.add_child(seat)
-	var model := _npc_body(node, look)
+	# Papéis com modelo próprio (a cortesã); senão, o corpo dos heróis.
+	var model: Node3D = NpcModel.create(String(entry.role)) if NpcModel.has_model(String(entry.role)) else null
+	if model:
+		node.add_child(model)
+		model.call("set_pose", String(entry.get("pose", "idle")))
+	else:
+		model = _npc_body(node, look)
 	if model and node is Wanderer:
 		var walker := node as Wanderer
 		walker.from = at
@@ -1747,7 +1753,7 @@ func _build_crowd(entry: Dictionary) -> void:
 		walker.sway = float(entry.get("sway", 0.0))
 		walker.speed = float(entry.get("speed", 1.2))
 		walker.model = model
-		model.set_pose("walk")
+		model.call("set_pose", "walk")
 
 
 ## Põe uma peça do kit dentro do objeto; false se a peça não existe (o objeto
