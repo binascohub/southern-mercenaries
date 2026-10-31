@@ -19,6 +19,12 @@ extends Node
 ##   trap        armadilha que prende quem pisar (até 3 por herói)
 ##   fan         várias flechas em leque (Leque de Flechas)
 ##   mark        marca o alvo na mira: recebe mais dano de todos (Marcar Alvo)
+##   melee       cortes no inimigo à frente (Corte Duplo, Golpe da Chama…)
+##   shadow_step teleporta para as costas do alvo; o próximo golpe causa mais dano
+##   smoke       nuvem: o herói some para os monstros, que erram ataques nela
+##   iron_body   menos dano recebido e provoca os monstros em volta
+##   blink       salta entre vários inimigos cortando cada um (Golpe Relâmpago, Mil Cortes)
+##   dash_strike atravessa o alvo como um raio (Lampejo)
 ## "imbued": habilidade de classe que aplica o estado básico do elemento atual.
 ## Habilidades com alvo usam a mira como direção; quando precisam de um ponto
 ## (Meteoro, Nevasca), escolhem o inimigo mais perto no cone da mira.
@@ -172,9 +178,111 @@ func cast(player: Player, skill_id: String, rank: int) -> bool:
 			_fx.rpc("disc", center, Vector3.ZERO, skill.area, color.darkened(0.3), skill.delay)
 		"area":
 			_start_area(player, skill, rank)
+		"melee":
+			melee_strike(player, hit_for(player, skill, rank), skill.range, skill.arc, false, int(skill.get("strikes", 1)))
+		"shadow_step":
+			var target := target_in_aim(player, skill.range)
+			if target == null:
+				return false
+			var away := _flat(target.global_position - origin).normalized()
+			var behind := target.global_position + Vector3(away.x, 0, away.y) * 1.2
+			player.teleport_to(_ray_limited(player, target.global_position, behind))
+			player.facing = -away
+			player.add_buff("next_hit", Skills.scaled(skill, "value", "per_rank", rank), 3.0)
+			_fx.rpc("disc", origin, Vector3.ZERO, 0.8, Color(0.2, 0.2, 0.25), 0.4)
+		"smoke":
+			var duration := Skills.scaled(skill, "duration", "duration_per_rank", rank)
+			player.add_buff("hidden", 1.0, duration)
+			_add_area(origin, skill.area, duration, {"damage": 0.0, "element": "", "state": "smoke"}, player)
+			_fx.rpc("disc", origin, Vector3.ZERO, skill.area, Elements.state_color("smoke"), duration)
+		"iron_body":
+			var duration := Skills.scaled(skill, "duration", "duration_per_rank", rank)
+			player.add_buff("iron_body", float(skill.value), duration)
+			for e in enemies_in(origin, skill.area):
+				e.taunt(player, duration)
+			_fx.rpc("disc", origin, Vector3.ZERO, skill.area, Color(0.7, 0.7, 0.75), 0.5)
+		"blink":
+			var targets := enemies_in(origin, skill.range)
+			if targets.is_empty():
+				return false
+			targets.sort_custom(func(a: Enemy, b: Enemy) -> bool:
+				return a.global_position.distance_to(origin) < b.global_position.distance_to(origin))
+			var max_targets := int(skill.targets)
+			targets = targets.slice(0, max_targets)
+			var hit := hit_for(player, skill, rank)
+			if skill.get("power_total", false):
+				hit.damage = float(hit.damage) / max_targets
+			var from := origin
+			for e in targets:
+				if not is_instance_valid(e) or e.health <= 0.0:
+					continue
+				_fx.rpc("beam", from + Vector3.UP, e.global_position + Vector3.UP * 0.6, 0.15, color, 0.3)
+				from = e.global_position
+				player.teleport_to(_ray_limited(player, e.global_position, e.global_position - Vector3(aim.x, 0, aim.z)))
+				_strike(player, e, hit)
+				# Mil Cortes do Trovão: faíscas eletrizam os vizinhos.
+				if skill.has("sparks"):
+					for n in enemies_in(e.global_position, skill.sparks):
+						Elements.apply_state(n.status, "shocked", n.element, n.is_boss())
+		"dash_strike":
+			var target := target_in_aim(player, skill.range)
+			if target == null:
+				return false
+			_strike(player, target, hit_for(player, skill, rank))
+			var through := _flat(target.global_position - origin).normalized()
+			var dest := target.global_position + Vector3(through.x, 0, through.y) * 1.5
+			_fx.rpc("beam", origin + Vector3.UP, dest + Vector3.UP, 0.2, color, 0.3)
+			player.teleport_to(_ray_limited(player, target.global_position, dest))
 		_:
 			return false
 	return true
+
+
+## Cortes corpo a corpo: no inimigo à frente (dentro do arco) ou, girando, em
+## todos em volta. Golpe pelas Costas: por trás é sempre crítico. Retorna quantos
+## inimigos acertou.
+func melee_strike(player: Player, hit: Dictionary, reach: float, arc_degrees: float, spin: bool, strikes := 1) -> int:
+	var origin := player.global_position
+	var targets: Array[Enemy] = []
+	if spin:
+		targets = enemies_in(origin, reach)
+		_fx.rpc("disc", origin, Vector3.ZERO, reach, Elements.color(hit.get("element", "")), 0.25)
+	else:
+		var half := deg_to_rad(arc_degrees / 2.0)
+		var best: Enemy = null
+		var best_d := INF
+		for e in enemies_in(origin, reach + 0.4):
+			var to := _flat(e.global_position - origin)
+			var d := to.length()
+			if (d < 0.8 or absf(player.facing.angle_to(to)) <= half) and d < best_d:
+				best = e
+				best_d = d
+		if best:
+			targets.append(best)
+			_fx.rpc("beam", origin + Vector3.UP, best.global_position + Vector3.UP * 0.6, 0.12,
+				Elements.color(hit.get("element", "")), 0.15)
+	for e in targets:
+		for i in strikes:
+			if is_instance_valid(e) and e.health > 0.0:
+				_strike(player, e, hit)
+	return targets.size()
+
+
+## Um golpe de perto: Golpe pelas Costas (crítico garantido por trás) e Energia por crítico.
+func _strike(player: Player, e: Enemy, hit: Dictionary) -> void:
+	var h := hit.duplicate()
+	var backstab := player.character.passive_value("backstab") if player.character else 0.0
+	if backstab > 0.0 and e.is_behind(player.global_position):
+		h.crit_chance = 1.0
+		h.crit_mult = float(h.get("crit_mult", GameData.elements.crit_mult)) + backstab
+	var result := e.take_hit(h)
+	if result.get("crit", false):
+		player.on_crit()
+
+
+func _add_area(at: Vector3, radius: float, time: float, hit: Dictionary, caster: Player) -> void:
+	_areas.append({"position": at, "time": time, "tick": 0.0, "skill": {"area": radius, "shape": "circle"},
+		"rank": 1, "caster": caster, "aim": Vector3.FORWARD, "inside": {}, "hit": hit})
 
 
 ## Golpe da habilidade para Elements.resolve_hit: dano = poder × % do rank ×
@@ -193,6 +301,7 @@ func hit_for(player: Player, skill: Dictionary, rank: int) -> Dictionary:
 	}
 	if skill.has("dot_mult"):
 		hit.dot_mult = float(skill.dot_mult)
+	player.consume_buff("next_hit")  # Passo Sombrio: só o próximo golpe
 	if skill.has("state_chance"):
 		hit.state_chance = float(skill.state_chance)
 	if skill.has("state_duration"):

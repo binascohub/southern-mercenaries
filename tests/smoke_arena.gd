@@ -389,7 +389,11 @@ func _skills_test() -> void:
 	player.health = player.max_health
 	player.add_shield(50.0, 5.0)
 	var health := player.health
-	player.take_damage(20.0)
+	# O Ninja pode desviar (evasão): tenta até um golpe pegar.
+	for i in 30:
+		player.take_damage(20.0)
+		if player.shield < 50.0:
+			break
 	check.call(is_equal_approx(player.health, health) and player.shield < 50.0, "escudo absorve o golpe")
 	player.shield = 0.0
 	player.resource = player.max_resource

@@ -378,8 +378,20 @@ func move_speed_bonus() -> float:
 	return affix_total("move_speed") / 100.0
 
 
+## Ouro a mais: afixos + traço de classe (Ninja ladrão: +10%, proposta).
 func gold_find_bonus() -> float:
-	return affix_total("gold_find") / 100.0
+	return affix_total("gold_find") / 100.0 + float(class_data().get("gold_find", 0.0))
+
+
+## Evasão (Ninja, 02-4-ninja.md seção 3): base + por ponto do atributo de poder
+## acima do inicial + passiva Evasão.
+func evasion_chance() -> float:
+	var cls := class_data()
+	if not cls.has("evasion_base"):
+		return 0.0
+	var attr: String = cls.power_attribute
+	return float(cls.evasion_base) + float(cls.evasion_per_point) * (attribute(attr) - int(cls.attributes[attr])) \
+		+ passive_value("evasion")
 
 
 # --- Bolsa e equipamento ---------------------------------------------------------

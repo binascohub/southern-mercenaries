@@ -54,6 +54,9 @@ var _element_gem: MeshInstance3D
 ## Empurrão/puxão de habilidade (Onda, Tornado): velocidade e tempo restante.
 var _push := Vector3.ZERO
 var _push_time := 0.0
+## Provocado (Corpo de Ferro do Ninja): persegue este herói enquanto durar.
+var _taunt: Player
+var _taunt_time := 0.0
 var _visual: Node3D
 var _material: StandardMaterial3D
 var _base_color := Color(0.36, 0.28, 0.22)
@@ -100,6 +103,7 @@ func _physics_process(delta: float) -> void:
 		states_mask = status.mask()
 		if not is_inside_tree() or health <= 0.0:
 			return
+		_taunt_time = maxf(_taunt_time - delta, 0.0)
 		if _push_time > 0.0:
 			_push_time -= delta
 			move_and_collide(_push * delta)
@@ -201,6 +205,19 @@ func push(offset: Vector3, time := 0.25) -> void:
 	_push_time = time
 
 
+func taunt(player: Player, time: float) -> void:
+	_taunt = player
+	_taunt_time = time
+
+
+## O golpe vem de trás do monstro (Golpe pelas Costas do Ninja).
+func is_behind(from: Vector3) -> bool:
+	var forward := Vector3(sin(yaw), 0, cos(yaw))
+	var to_attacker := from - global_position
+	to_attacker.y = 0.0
+	return to_attacker.length() > 0.01 and forward.dot(to_attacker.normalized()) < -0.3
+
+
 func is_boss() -> bool:
 	return data.get("category", "") == "boss"
 
@@ -243,10 +260,13 @@ func _show_damage(amount: float, effect := "normal", hit_element := "", crit := 
 
 
 func _nearest_player() -> Player:
+	if _taunt_time > 0.0 and is_instance_valid(_taunt) and _taunt.alive and _taunt.connected:
+		return _taunt
 	var best: Player = null
 	var best_dist: float = data.aggro_range
 	for player: Player in get_tree().get_nodes_in_group(&"players"):
-		if not player.alive or not player.connected:
+		# Invisível (Bomba de Fumaça): os monstros perdem o alvo.
+		if not player.alive or not player.connected or player.hidden:
 			continue
 		var d := global_position.distance_to(player.global_position)
 		if d < best_dist:

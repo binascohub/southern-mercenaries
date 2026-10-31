@@ -1075,3 +1075,144 @@ msgstr ""
 
 msgid "STATE_MARKED"
 msgstr ""
+
+msgid "SKILL_TWIN_SLASH_NAME"
+msgstr ""
+
+msgid "SKILL_TWIN_SLASH_DESC"
+msgstr ""
+
+msgid "SKILL_SHADOW_STEP_NAME"
+msgstr ""
+
+msgid "SKILL_SHADOW_STEP_DESC"
+msgstr ""
+
+msgid "SKILL_BACKSTAB_NAME"
+msgstr ""
+
+msgid "SKILL_BACKSTAB_DESC"
+msgstr ""
+
+msgid "SKILL_SMOKE_BOMB_NAME"
+msgstr ""
+
+msgid "SKILL_SMOKE_BOMB_DESC"
+msgstr ""
+
+msgid "SKILL_IRON_BODY_NAME"
+msgstr ""
+
+msgid "SKILL_IRON_BODY_DESC"
+msgstr ""
+
+msgid "SKILL_EVASION_NAME"
+msgstr ""
+
+msgid "SKILL_EVASION_DESC"
+msgstr ""
+
+msgid "SKILL_BLINK_STRIKE_NAME"
+msgstr ""
+
+msgid "SKILL_BLINK_STRIKE_DESC"
+msgstr ""
+
+msgid "SKILL_FIRE_SEAL_NAME"
+msgstr ""
+
+msgid "SKILL_FIRE_SEAL_DESC"
+msgstr ""
+
+msgid "SKILL_FLAME_STRIKE_NAME"
+msgstr ""
+
+msgid "SKILL_FLAME_STRIKE_DESC"
+msgstr ""
+
+msgid "SKILL_FLAME_THOUSAND_CUTS_NAME"
+msgstr ""
+
+msgid "SKILL_FLAME_THOUSAND_CUTS_DESC"
+msgstr ""
+
+msgid "SKILL_MIST_SEAL_NAME"
+msgstr ""
+
+msgid "SKILL_MIST_SEAL_DESC"
+msgstr ""
+
+msgid "SKILL_ICE_FANG_NAME"
+msgstr ""
+
+msgid "SKILL_ICE_FANG_DESC"
+msgstr ""
+
+msgid "SKILL_RAIN_THOUSAND_CUTS_NAME"
+msgstr ""
+
+msgid "SKILL_RAIN_THOUSAND_CUTS_DESC"
+msgstr ""
+
+msgid "SKILL_WIND_SEAL_NAME"
+msgstr ""
+
+msgid "SKILL_WIND_SEAL_DESC"
+msgstr ""
+
+msgid "SKILL_LIGHTNING_FLASH_NAME"
+msgstr ""
+
+msgid "SKILL_LIGHTNING_FLASH_DESC"
+msgstr ""
+
+msgid "SKILL_STORM_THOUSAND_CUTS_NAME"
+msgstr ""
+
+msgid "SKILL_STORM_THOUSAND_CUTS_DESC"
+msgstr ""
+
+msgid "SKILL_STONE_SEAL_NAME"
+msgstr ""
+
+msgid "SKILL_STONE_SEAL_DESC"
+msgstr ""
+
+msgid "SKILL_STONE_FANG_NAME"
+msgstr ""
+
+msgid "SKILL_STONE_FANG_DESC"
+msgstr ""
+
+msgid "SKILL_QUAKE_THOUSAND_CUTS_NAME"
+msgstr ""
+
+msgid "SKILL_QUAKE_THOUSAND_CUTS_DESC"
+msgstr ""
+
+msgid "CLASS_NINJA_NAME"
+msgstr ""
+
+msgid "HERO_NINJA_MALE"
+msgstr ""
+
+msgid "HERO_NINJA_FEMALE"
+msgstr ""
+
+msgid "RESOURCE_ENERGY"
+msgstr ""
+
+msgid "POWER_BLADE"
+msgstr ""
+
+msgid "ITEM_TYPE_DAGGERS"
+msgstr ""
+
+msgid "ITEM_TYPE_NINJA_MASK"
+msgstr ""
+
+msgid "STATE_SMOKE"
+msgstr ""
+
+msgid "HUD_DODGED"
+msgstr ""

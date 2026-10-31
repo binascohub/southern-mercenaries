@@ -63,6 +63,8 @@ var armor_value := 0.0
 var element := "fire"
 ## Escudo que absorve dano (Pele de Pedra); sincronizado para a barra.
 var shield := 0.0
+## Invisível para os monstros (Bomba de Fumaça do Ninja).
+var hidden := false
 
 var data: Dictionary
 var move_speed := 5.0
@@ -83,6 +85,7 @@ var _evade_dir := Vector2.ZERO
 var _skill_cd := {}
 var _buffs := {}
 var _shield_time := 0.0
+var _rng_dodge := RandomNumberGenerator.new()
 
 # Só no PC dono.
 var _local_input := PlayerInput.new()
@@ -128,6 +131,7 @@ static func create(spawn: Dictionary) -> Player:
 
 func _ready() -> void:
 	add_to_group(&"players")
+	_rng_dodge.randomize()
 	_snapshots.delay = GameData.balance.net.interpolation_delay
 	collision_layer = 2
 	collision_mask = 1 | 4
@@ -435,6 +439,11 @@ func _server_step(delta: float) -> void:
 		_evade_time = data.evade.duration
 		evade_cooldown = data.evade.cooldown
 		charge_time = 0.0
+		if data.evade.get("teleport", false):
+			# Ninja: a esquiva é um teleporte curto (sem atravessar paredes).
+			var to := global_position + Vector3(_evade_dir.x, 0, _evade_dir.y) * float(data.evade.distance)
+			teleport_to(get_parent().skills._ray_limited(self, global_position, to))
+			_evade_dir = Vector2.ZERO
 		return
 
 	# Toque: ataque básico na hora. Segurando por charge_time e soltando: ataque forte.
@@ -487,8 +496,15 @@ func is_invulnerable() -> bool:
 func take_damage(amount: float, monster_level := 1) -> void:
 	if not multiplayer.is_server() or not alive or is_invulnerable():
 		return
+	# Evasão do Ninja: desvia do golpe inteiro (e recupera Energia com a passiva).
+	if character and _rng_dodge.randf() < character.evasion_chance():
+		resource = minf(resource + character.passive_value("evasion", "resource_on_dodge", "_none"), max_resource)
+		_show_dodge()
+		return
 	if character:
 		amount *= 1.0 - character.damage_reduction(monster_level)
+	# Corpo de Ferro: menos dano por alguns segundos.
+	amount *= 1.0 - float(_buffs.get("iron_body", {}).get("value", 0.0))
 	# Pele de Pedra absorve primeiro.
 	if shield > 0.0:
 		var absorbed := minf(shield, amount)
@@ -535,12 +551,35 @@ func reset_at(spot: Vector3) -> void:
 	evade_cooldown = 0.0
 
 
+func _show_dodge() -> void:
+	_dodge_text.rpc()
+
+
+@rpc("authority", "call_local", "unreliable")
+func _dodge_text() -> void:
+	var label := Label3D.new()
+	label.text = tr("HUD_DODGED")
+	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	label.no_depth_test = true
+	label.font_size = 56
+	label.outline_size = 8
+	label.modulate = Color(0.8, 0.9, 1.0)
+	add_child(label)
+	label.position = Vector3.UP * 2.3
+	var tween := label.create_tween()
+	tween.tween_property(label, "modulate:a", 0.0, 0.6)
+	tween.tween_callback(label.queue_free)
+
+
 @rpc("authority", "call_local", "reliable")
 func _heavy_hit() -> void:
 	InputDevice.vibrate(0.4, 0.8, 0.25)
 
 
 func _fire(attack: Dictionary) -> void:
+	if attack.get("melee", false):
+		_melee(attack)
+		return
 	var dir := Vector3(facing.x, 0, facing.y)
 	get_tree().call_group(&"arena", &"spawn_projectile", {
 		"position": global_position + Vector3.UP * PROJECTILE_HEIGHT + dir * 0.6,
@@ -609,11 +648,21 @@ func _tick_skills(delta: float) -> void:
 		_shield_time -= delta
 		if _shield_time <= 0.0:
 			shield = 0.0
+	hidden = _buffs.has("hidden")
 
 
 ## Bônus de aliado (renova, não soma): "damage" (Bênção das Chamas), "speed" (Vento a Favor).
 func add_buff(id: String, value: float, duration: float) -> void:
 	_buffs[id] = {"value": maxf(value, float(_buffs.get(id, {}).get("value", 0.0))), "time": duration}
+
+
+func consume_buff(id: String) -> void:
+	_buffs.erase(id)
+
+
+## Acertou um crítico: o Ninja recupera Energia (02-4-ninja.md, seção 5).
+func on_crit() -> void:
+	resource = minf(resource + float(data.get("resource_per_crit", 0.0)), max_resource)
 
 
 func add_shield(amount: float, duration: float) -> void:
@@ -631,10 +680,12 @@ func teleport_to(spot: Vector3) -> void:
 	net_position = global_position
 
 
-## Dano a mais: Bênção das Chamas e Domínio Elemental.
+## Dano a mais: Bênção das Chamas / Fogueira / Selo do Fogo, Domínio Elemental e
+## o próximo golpe depois do Passo Sombrio.
 func damage_mult() -> float:
 	var mastery := character.passive_value("mastery") if character else 0.0
-	return (1.0 + float(_buffs.get("damage", {}).get("value", 0.0))) * (1.0 + mastery)
+	return (1.0 + float(_buffs.get("damage", {}).get("value", 0.0))) * (1.0 + mastery) \
+		* (1.0 + float(_buffs.get("next_hit", {}).get("value", 0.0)))
 
 
 ## Domínio Elemental: estados duram mais.
@@ -669,6 +720,20 @@ func _set_slot(index: int, key: String) -> void:
 		_push_character(0)
 
 
+## Ataque de perto (Ninja): cortes à frente ou, no forte, corte giratório.
+func _melee(attack: Dictionary) -> void:
+	var hit := {
+		"damage": power * attack.power_pct * damage_mult(),
+		"element": element,
+		"state": String(Elements.data(element).get("basic_state", "")) if attack.get("applies_state", false) \
+			else ("burning" if _buffs.has("damage") else ""),
+		"crit_chance": character.crit_chance() if character else GameData.elements.crit_chance,
+		"crit_mult": character.crit_mult() if character else GameData.elements.crit_mult,
+	}
+	consume_buff("next_hit")
+	get_parent().skills.melee_strike(self, hit, attack.range, attack.get("arc", 360.0), attack.get("spin", false))
+
+
 ## Mira assistida leve: puxa para o inimigo mais próximo dentro do cone.
 func _assisted_aim(aim: Vector2, attack_range: float) -> Vector2:
 	var best := aim
@@ -691,7 +756,7 @@ func _add_synchronizer() -> void:
 	var config := SceneReplicationConfig.new()
 	var always := [":net_position", ":facing", ":charge_time", ":revive_progress", ":evade_cooldown"]
 	var on_change := [":health", ":max_health", ":resource", ":max_resource", ":alive", ":connected",
-		":hero_name", ":level", ":equip_visual", ":potion_cooldown", ":armor_value", ":element", ":shield"]
+		":hero_name", ":level", ":equip_visual", ":potion_cooldown", ":armor_value", ":element", ":shield", ":hidden"]
 	for prop in always + on_change:
 		var path := NodePath("." + prop)
 		config.add_property(path)
@@ -732,12 +797,14 @@ func _build_visual() -> void:
 	_visual.add_child(body)
 
 	var archer := class_id == "archer"
+	var ninja := class_id == "ninja"
+	_body_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA  # invisível (Bomba de Fumaça)
 	# Arma: cajado (Mago) ou arco (Arqueiro), na cor do material equipado.
 	var staff := MeshInstance3D.new()
 	var staff_mesh := CylinderMesh.new()
-	staff_mesh.top_radius = 0.03 if archer else 0.04
-	staff_mesh.bottom_radius = 0.03 if archer else 0.05
-	staff_mesh.height = 1.3 if archer else 1.7
+	staff_mesh.top_radius = 0.02 if ninja else (0.03 if archer else 0.04)
+	staff_mesh.bottom_radius = 0.03 if ninja else (0.03 if archer else 0.05)
+	staff_mesh.height = 0.5 if ninja else (1.3 if archer else 1.7)
 	staff.mesh = staff_mesh
 	_staff_material = _material(Color(0.35, 0.22, 0.12))
 	staff.material_override = _staff_material
@@ -745,6 +812,16 @@ func _build_visual() -> void:
 	if archer:
 		staff.rotation.z = 0.15
 		staff.rotation.x = -0.25
+	if ninja:
+		# Par de adagas, uma em cada mão, apontando para a frente.
+		staff.position = Vector3(0.42, 0.9, 0.35)
+		staff.rotation.x = PI / 2.0
+		var second := MeshInstance3D.new()
+		second.mesh = staff_mesh
+		second.material_override = _staff_material
+		second.position = Vector3(-0.42, 0.9, 0.35)
+		second.rotation.x = PI / 2.0
+		_visual.add_child(second)
 	_visual.add_child(staff)
 
 	# Brilho na cor do elemento: cristal do cajado ou ponta da flecha (02-0-elementos.md, seção 8).
@@ -755,7 +832,7 @@ func _build_visual() -> void:
 	crystal_mesh.height = 0.12 if archer else 0.2
 	crystal.mesh = crystal_mesh
 	crystal.material_override = _crystal_material
-	crystal.position = Vector3(0.45, 0.95, 0.6) if archer else Vector3(0.45, 1.8, 0.15)
+	crystal.position = Vector3(0.42, 0.9, 0.62) if ninja else (Vector3(0.45, 0.95, 0.6) if archer else Vector3(0.45, 1.8, 0.15))
 	_visual.add_child(crystal)
 
 	# Mago: caderno de anotações; Arqueiro: aljava nas costas.
@@ -765,6 +842,10 @@ func _build_visual() -> void:
 	notebook.mesh = notebook_mesh
 	notebook.material_override = _material(Color(0.4, 0.28, 0.18))
 	notebook.position = Vector3(-0.2, 1.2, -0.3) if archer else Vector3(-0.32, 0.95, 0.12)
+	if ninja:
+		# Guarda da espada do pai, presa na cintura.
+		notebook_mesh.size = Vector3(0.2, 0.06, 0.2)
+		notebook.position = Vector3(-0.3, 0.9, 0.0)
 	_visual.add_child(notebook)
 
 	_build_gear()
@@ -822,6 +903,7 @@ func _tick_visual(delta: float) -> void:
 		_update_gear()
 	_flash = maxf(_flash - delta, 0.0)
 	_body_material.albedo_color = Color(1, 0.35, 0.35) if _flash > 0.0 else BODY_COLOR
+	_body_material.albedo_color.a = 0.3 if hidden else 1.0
 	# Cristal na cor do elemento (muda na hora com a Poção Elemental); brilha
 	# mais quando o ataque forte está carregado.
 	var crystal_color := Elements.color(element)

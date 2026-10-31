@@ -1,5 +1,5 @@
 {
-  "_comment": "Itens base (05-itens-e-loot.md, seção 7). Mago: cajado e roupas de tecido; Arqueiro (Fase 5): arco, capuz de caçador e colete de couro. Armadura base por peça de 13-balanceamento.md 2.3.",
+  "_comment": "Itens base (05-itens-e-loot.md, seção 7). Mago: cajado e roupas de tecido; Arqueiro (Fase 5): arco, capuz de caçador e colete de couro; Ninja: adagas, máscara e o colete de couro. Armadura base por peça de 13-balanceamento.md 2.3.",
   "staff": {
     "slot": "weapon",
     "classes": [
@@ -71,9 +71,27 @@
   "leather_vest": {
     "slot": "body",
     "classes": [
-      "archer"
+      "archer",
+      "ninja"
     ],
     "name_key": "ITEM_TYPE_LEATHER_VEST",
     "armor": 10
+  },
+  "daggers": {
+    "slot": "weapon",
+    "classes": [
+      "ninja"
+    ],
+    "name_key": "ITEM_TYPE_DAGGERS",
+    "damage": 10,
+    "weapon_material": true
+  },
+  "ninja_mask": {
+    "slot": "head",
+    "classes": [
+      "ninja"
+    ],
+    "name_key": "ITEM_TYPE_NINJA_MASK",
+    "armor": 5
   }
 }

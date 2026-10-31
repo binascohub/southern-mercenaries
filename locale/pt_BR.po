@@ -1076,3 +1076,144 @@ msgstr "Preso"
 
 msgid "STATE_MARKED"
 msgstr "Marcado"
+
+msgid "SKILL_TWIN_SLASH_NAME"
+msgstr "Corte Duplo"
+
+msgid "SKILL_TWIN_SLASH_DESC"
+msgstr "Dois cortes rápidos cruzados no inimigo à frente; levam o estado básico do seu elemento."
+
+msgid "SKILL_SHADOW_STEP_NAME"
+msgstr "Passo Sombrio"
+
+msgid "SKILL_SHADOW_STEP_DESC"
+msgstr "Teleporta para as costas do alvo na mira (até 10 m); o próximo golpe causa +30% de dano (+5% por rank)."
+
+msgid "SKILL_BACKSTAB_NAME"
+msgstr "Golpe pelas Costas"
+
+msgid "SKILL_BACKSTAB_DESC"
+msgstr "Passiva: golpes pelas costas são sempre críticos; +10% de dano crítico por rank."
+
+msgid "SKILL_SMOKE_BOMB_NAME"
+msgstr "Bomba de Fumaça"
+
+msgid "SKILL_SMOKE_BOMB_DESC"
+msgstr "Invisível para os monstros por 3 s (+0,5 s por rank); quem está na nuvem de 4 m erra metade dos ataques."
+
+msgid "SKILL_IRON_BODY_NAME"
+msgstr "Corpo de Ferro"
+
+msgid "SKILL_IRON_BODY_DESC"
+msgstr "Recebe 50% menos dano por 5 s (+0,5 s por rank) e provoca os monstros a até 6 m."
+
+msgid "SKILL_EVASION_NAME"
+msgstr "Evasão"
+
+msgid "SKILL_EVASION_DESC"
+msgstr "Passiva: +5% de chance de desviar (+2% por rank); ao desviar, recupera 5 de Energia."
+
+msgid "SKILL_BLINK_STRIKE_NAME"
+msgstr "Golpe Relâmpago"
+
+msgid "SKILL_BLINK_STRIKE_DESC"
+msgstr "Teleporta entre 3 inimigos a até 8 m, atingindo cada um."
+
+msgid "SKILL_FIRE_SEAL_NAME"
+msgstr "Selo do Fogo"
+
+msgid "SKILL_FIRE_SEAL_DESC"
+msgstr "Selo em chamas por 8 s; aliados a até 6 m causam +15% de dano (+3% por rank) e seus golpes queimam."
+
+msgid "SKILL_FLAME_STRIKE_NAME"
+msgstr "Golpe da Chama"
+
+msgid "SKILL_FLAME_STRIKE_DESC"
+msgstr "Corte flamejante; a queimadura causa o dobro de dano."
+
+msgid "SKILL_FLAME_THOUSAND_CUTS_NAME"
+msgstr "Mil Cortes Flamejantes"
+
+msgid "SKILL_FLAME_THOUSAND_CUTS_DESC"
+msgstr "Salta entre até 8 inimigos a até 10 m, cortando cada um e deixando chamas."
+
+msgid "SKILL_MIST_SEAL_NAME"
+msgstr "Selo da Névoa"
+
+msgid "SKILL_MIST_SEAL_DESC"
+msgstr "Névoa por 6 s que cura os aliados a até 5 m e molha os inimigos."
+
+msgid "SKILL_ICE_FANG_NAME"
+msgstr "Presa de Gelo"
+
+msgid "SKILL_ICE_FANG_DESC"
+msgstr "Corte de gelo; alvo molhado fica congelado por 2 s."
+
+msgid "SKILL_RAIN_THOUSAND_CUTS_NAME"
+msgstr "Mil Cortes da Chuva"
+
+msgid "SKILL_RAIN_THOUSAND_CUTS_DESC"
+msgstr "Salta entre até 8 inimigos a até 10 m como gotas de chuva, molhando e deixando lentos."
+
+msgid "SKILL_WIND_SEAL_NAME"
+msgstr "Selo do Vento"
+
+msgid "SKILL_WIND_SEAL_DESC"
+msgstr "Aliados a até 8 m andam e atacam 30% mais rápido (+5% por rank) por 8 s."
+
+msgid "SKILL_LIGHTNING_FLASH_NAME"
+msgstr "Lampejo"
+
+msgid "SKILL_LIGHTNING_FLASH_DESC"
+msgstr "Atravessa o alvo como um raio (até 12 m) e o eletriza; eletrocuta alvo molhado."
+
+msgid "SKILL_STORM_THOUSAND_CUTS_NAME"
+msgstr "Mil Cortes do Trovão"
+
+msgid "SKILL_STORM_THOUSAND_CUTS_DESC"
+msgstr "Salta entre até 10 inimigos a até 12 m em raios; cada corte solta faíscas nos vizinhos."
+
+msgid "SKILL_STONE_SEAL_NAME"
+msgstr "Selo de Pedra"
+
+msgid "SKILL_STONE_SEAL_DESC"
+msgstr "Selo que ergue placas de pedra como escudo nos aliados a até 5 m por 8 s."
+
+msgid "SKILL_STONE_FANG_NAME"
+msgstr "Presa de Pedra"
+
+msgid "SKILL_STONE_FANG_DESC"
+msgstr "Corte pesado com fio de pedra que atordoa por 1,5 s."
+
+msgid "SKILL_QUAKE_THOUSAND_CUTS_NAME"
+msgstr "Mil Cortes do Tremor"
+
+msgid "SKILL_QUAKE_THOUSAND_CUTS_DESC"
+msgstr "Salta entre até 8 inimigos a até 10 m; cada corte faz o chão tremer e os derruba."
+
+msgid "CLASS_NINJA_NAME"
+msgstr "Ninja"
+
+msgid "HERO_NINJA_MALE"
+msgstr "Ren Kurogane"
+
+msgid "HERO_NINJA_FEMALE"
+msgstr "Rin Kurogane"
+
+msgid "RESOURCE_ENERGY"
+msgstr "Energia"
+
+msgid "POWER_BLADE"
+msgstr "Poder de Lâmina"
+
+msgid "ITEM_TYPE_DAGGERS"
+msgstr "Adagas"
+
+msgid "ITEM_TYPE_NINJA_MASK"
+msgstr "Máscara"
+
+msgid "STATE_SMOKE"
+msgstr "Fumaça"
+
+msgid "HUD_DODGED"
+msgstr "Desviou!"

@@ -1,5 +1,5 @@
 {
-  "_comment": "Habilidades (02-personagens.md: 10 por classe, 5 ranks, liberadas nos níveis 1, 2, 4, 6, 8, 10, 12, 14, 16 e 18; 4 ativas nos atalhos). Mago: 02-1-mago.md, seção 6; Arqueiro: 02-2-arqueiro.md, seção 6 (habilidades de classe \"imbued\" aplicam o estado básico do elemento atual). power_total: o dano é o total da habilidade, dividido no tempo. power = fração do poder da classe no rank 1; per_rank soma por rank acima do 1. Áreas e projéteis em metros; tempos em segundos.",
+  "_comment": "Habilidades (02-personagens.md: 10 por classe, 5 ranks, liberadas nos níveis 1, 2, 4, 6, 8, 10, 12, 14, 16 e 18; 4 ativas nos atalhos). Mago: 02-1-mago.md, seção 6; Arqueiro: 02-2-arqueiro.md, seção 6 (habilidades de classe \"imbued\" aplicam o estado básico do elemento atual). Ninja: 02-4-ninja.md, seção 7. power_total: o dano é o total da habilidade, dividido no tempo. power = fração do poder da classe no rank 1; per_rank soma por rank acima do 1. Áreas e projéteis em metros; tempos em segundos.",
   "max_rank": 5,
   "slots": 4,
   "classes": {
@@ -88,6 +88,44 @@
           "bulwark_arrow",
           "boulder_arrow",
           "stone_rain"
+        ]
+      }
+    },
+    "ninja": {
+      "class": {
+        "twin_slash": 1,
+        "shadow_step": 2,
+        "backstab": 4,
+        "smoke_bomb": 8,
+        "iron_body": 10,
+        "evasion": 14,
+        "blink_strike": 16
+      },
+      "element_levels": [
+        6,
+        12,
+        18
+      ],
+      "element": {
+        "fire": [
+          "fire_seal",
+          "flame_strike",
+          "flame_thousand_cuts"
+        ],
+        "water": [
+          "mist_seal",
+          "ice_fang",
+          "rain_thousand_cuts"
+        ],
+        "air": [
+          "wind_seal",
+          "lightning_flash",
+          "storm_thousand_cuts"
+        ],
+        "earth": [
+          "stone_seal",
+          "stone_fang",
+          "quake_thousand_cuts"
         ]
       }
     }
@@ -820,6 +858,277 @@
       "state_chance": 0.3,
       "name_key": "SKILL_STONE_RAIN_NAME",
       "desc_key": "SKILL_STONE_RAIN_DESC"
+    },
+    "twin_slash": {
+      "kind": "active",
+      "type": "single",
+      "effect": "melee",
+      "imbued": true,
+      "cost": 15,
+      "cooldown": 2.0,
+      "power": 1.1,
+      "per_rank": 0.1,
+      "range": 2.4,
+      "arc": 100.0,
+      "strikes": 2,
+      "name_key": "SKILL_TWIN_SLASH_NAME",
+      "desc_key": "SKILL_TWIN_SLASH_DESC"
+    },
+    "shadow_step": {
+      "kind": "active",
+      "type": "evade",
+      "effect": "shadow_step",
+      "cost": 20,
+      "cooldown": 7.0,
+      "cooldown_per_rank": -0.5,
+      "range": 10.0,
+      "value": 0.3,
+      "per_rank": 0.05,
+      "name_key": "SKILL_SHADOW_STEP_NAME",
+      "desc_key": "SKILL_SHADOW_STEP_DESC"
+    },
+    "backstab": {
+      "kind": "passive",
+      "effect": "backstab",
+      "value": 0.1,
+      "per_rank": 0.1,
+      "name_key": "SKILL_BACKSTAB_NAME",
+      "desc_key": "SKILL_BACKSTAB_DESC"
+    },
+    "smoke_bomb": {
+      "kind": "active",
+      "type": "evade",
+      "effect": "smoke",
+      "cost": 25,
+      "cooldown": 14.0,
+      "area": 4.0,
+      "duration": 3.0,
+      "duration_per_rank": 0.5,
+      "name_key": "SKILL_SMOKE_BOMB_NAME",
+      "desc_key": "SKILL_SMOKE_BOMB_DESC"
+    },
+    "iron_body": {
+      "kind": "active",
+      "type": "tank",
+      "effect": "iron_body",
+      "cost": 25,
+      "cooldown": 15.0,
+      "value": 0.5,
+      "duration": 5.0,
+      "duration_per_rank": 0.5,
+      "area": 6.0,
+      "name_key": "SKILL_IRON_BODY_NAME",
+      "desc_key": "SKILL_IRON_BODY_DESC"
+    },
+    "evasion": {
+      "kind": "passive",
+      "effect": "evasion",
+      "value": 0.05,
+      "per_rank": 0.02,
+      "resource_on_dodge": 5,
+      "name_key": "SKILL_EVASION_NAME",
+      "desc_key": "SKILL_EVASION_DESC"
+    },
+    "blink_strike": {
+      "kind": "active",
+      "type": "aoe",
+      "effect": "blink",
+      "imbued": true,
+      "cost": 35,
+      "cooldown": 10.0,
+      "power": 1.6,
+      "per_rank": 0.16,
+      "range": 8.0,
+      "targets": 3,
+      "name_key": "SKILL_BLINK_STRIKE_NAME",
+      "desc_key": "SKILL_BLINK_STRIKE_DESC"
+    },
+    "fire_seal": {
+      "kind": "active",
+      "type": "support",
+      "effect": "area",
+      "shape": "circle",
+      "at": "self",
+      "cost": 30,
+      "cooldown": 20.0,
+      "power": 0.0,
+      "area": 6.0,
+      "duration": 8.0,
+      "ally_buff": "damage",
+      "value": 0.15,
+      "per_rank": 0.03,
+      "name_key": "SKILL_FIRE_SEAL_NAME",
+      "desc_key": "SKILL_FIRE_SEAL_DESC"
+    },
+    "flame_strike": {
+      "kind": "active",
+      "type": "single",
+      "effect": "melee",
+      "cost": 30,
+      "cooldown": 8.0,
+      "power": 3.2,
+      "per_rank": 0.3,
+      "range": 3.0,
+      "arc": 100.0,
+      "strikes": 1,
+      "state": "burning",
+      "dot_mult": 2.0,
+      "name_key": "SKILL_FLAME_STRIKE_NAME",
+      "desc_key": "SKILL_FLAME_STRIKE_DESC"
+    },
+    "flame_thousand_cuts": {
+      "kind": "active",
+      "type": "final",
+      "effect": "blink",
+      "cost": 60,
+      "cooldown": 30.0,
+      "power": 5.2,
+      "per_rank": 0.5,
+      "power_total": true,
+      "range": 10.0,
+      "targets": 8,
+      "state": "burning",
+      "name_key": "SKILL_FLAME_THOUSAND_CUTS_NAME",
+      "desc_key": "SKILL_FLAME_THOUSAND_CUTS_DESC"
+    },
+    "mist_seal": {
+      "kind": "active",
+      "type": "support",
+      "effect": "area",
+      "shape": "circle",
+      "at": "self",
+      "cost": 35,
+      "cooldown": 15.0,
+      "power": 0.0,
+      "heal": 0.25,
+      "heal_per_rank": 0.05,
+      "area": 5.0,
+      "duration": 6.0,
+      "state": "soaked",
+      "name_key": "SKILL_MIST_SEAL_NAME",
+      "desc_key": "SKILL_MIST_SEAL_DESC"
+    },
+    "ice_fang": {
+      "kind": "active",
+      "type": "single",
+      "effect": "melee",
+      "cost": 30,
+      "cooldown": 8.0,
+      "power": 3.0,
+      "per_rank": 0.3,
+      "range": 3.0,
+      "arc": 100.0,
+      "strikes": 1,
+      "upgrade": {
+        "soaked": "frozen"
+      },
+      "state_duration": 2.0,
+      "name_key": "SKILL_ICE_FANG_NAME",
+      "desc_key": "SKILL_ICE_FANG_DESC"
+    },
+    "rain_thousand_cuts": {
+      "kind": "active",
+      "type": "final",
+      "effect": "blink",
+      "cost": 60,
+      "cooldown": 30.0,
+      "power": 5.0,
+      "per_rank": 0.5,
+      "power_total": true,
+      "range": 10.0,
+      "targets": 8,
+      "state": "soaked",
+      "name_key": "SKILL_RAIN_THOUSAND_CUTS_NAME",
+      "desc_key": "SKILL_RAIN_THOUSAND_CUTS_DESC"
+    },
+    "wind_seal": {
+      "kind": "active",
+      "type": "support",
+      "effect": "buff",
+      "buff": "speed",
+      "cost": 30,
+      "cooldown": 20.0,
+      "value": 0.3,
+      "per_rank": 0.05,
+      "area": 8.0,
+      "duration": 8.0,
+      "name_key": "SKILL_WIND_SEAL_NAME",
+      "desc_key": "SKILL_WIND_SEAL_DESC"
+    },
+    "lightning_flash": {
+      "kind": "active",
+      "type": "single",
+      "effect": "dash_strike",
+      "cost": 30,
+      "cooldown": 8.0,
+      "power": 3.3,
+      "per_rank": 0.3,
+      "range": 12.0,
+      "state": "shocked",
+      "name_key": "SKILL_LIGHTNING_FLASH_NAME",
+      "desc_key": "SKILL_LIGHTNING_FLASH_DESC"
+    },
+    "storm_thousand_cuts": {
+      "kind": "active",
+      "type": "final",
+      "effect": "blink",
+      "cost": 60,
+      "cooldown": 30.0,
+      "power": 5.5,
+      "per_rank": 0.55,
+      "power_total": true,
+      "range": 12.0,
+      "targets": 10,
+      "state": "shocked",
+      "sparks": 2.5,
+      "name_key": "SKILL_STORM_THOUSAND_CUTS_NAME",
+      "desc_key": "SKILL_STORM_THOUSAND_CUTS_DESC"
+    },
+    "stone_seal": {
+      "kind": "active",
+      "type": "support",
+      "effect": "shield",
+      "cost": 30,
+      "cooldown": 16.0,
+      "value": 1.2,
+      "per_rank": 0.15,
+      "area": 5.0,
+      "duration": 8.0,
+      "name_key": "SKILL_STONE_SEAL_NAME",
+      "desc_key": "SKILL_STONE_SEAL_DESC"
+    },
+    "stone_fang": {
+      "kind": "active",
+      "type": "single",
+      "effect": "melee",
+      "cost": 30,
+      "cooldown": 8.0,
+      "power": 3.2,
+      "per_rank": 0.3,
+      "range": 3.0,
+      "arc": 100.0,
+      "strikes": 1,
+      "state": "stunned",
+      "state_chance": 1.0,
+      "state_duration": 1.5,
+      "name_key": "SKILL_STONE_FANG_NAME",
+      "desc_key": "SKILL_STONE_FANG_DESC"
+    },
+    "quake_thousand_cuts": {
+      "kind": "active",
+      "type": "final",
+      "effect": "blink",
+      "cost": 60,
+      "cooldown": 30.0,
+      "power": 5.0,
+      "per_rank": 0.5,
+      "power_total": true,
+      "range": 10.0,
+      "targets": 8,
+      "state": "knocked_down",
+      "state_chance": 1.0,
+      "name_key": "SKILL_QUAKE_THOUSAND_CUTS_NAME",
+      "desc_key": "SKILL_QUAKE_THOUSAND_CUTS_DESC"
     }
   }
 }

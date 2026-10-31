@@ -32,6 +32,7 @@ func _ready() -> void:
 	_test_character_element()
 	_test_skills()
 	_test_archer()
+	_test_ninja()
 	_test_names()
 	_clean(TEST_ROOT)
 	if _failures == 0:
@@ -522,6 +523,27 @@ func _test_archer() -> void:
 	var b := StatusSet.new()
 	Elements.resolve_hit({"damage": 100.0, "element": "fire", "state": "burning", "crit_chance": 0.0, "dot_mult": 2.0}, "air", b, false, rng)
 	_near(b.dps("burning"), 60.0, "queimadura dobrada: 2 × 30% por segundo")
+
+
+func _test_ninja() -> void:
+	var n := CharacterData.create("ninja", "male", "Ren", "air")
+	_check(n.validate().is_empty(), "Ninja criado válido: %s" % [n.validate()])
+	_near(n.max_health(), 130, "vida do Ninja no nível 1")
+	_near(n.power(), 22.5, "Poder de Lâmina: adagas de madeira 10 + DES 25 × 0,5")
+	_near(n.evasion_chance(), 0.10, "evasão base 10%")
+	_near(n.gold_find_bonus(), 0.10, "traço Ladrão: +10% de ouro")
+	_check(n.data.equipment.weapon.base == "daggers" and n.data.skill_slots[0] == "twin_slash", "adagas e Corte Duplo no atalho 1")
+	_near(CharacterData.create("mage", "male", "Oren").evasion_chance(), 0.0, "Mago não tem evasão")
+	n.add_xp(200000)
+	n.data.free_points = int(n.data.free_points) - 10
+	n.data.attributes.dex = int(n.data.attributes.dex) + 10
+	_near(n.evasion_chance(), 0.12, "evasão +0,2% por ponto de DES")
+	while n.can_learn("evasion"):
+		n.learn("evasion")
+	_near(n.evasion_chance(), 0.12 + 0.05 + 0.02 * 4, "passiva Evasão rank 5: +5% e +2% por rank")
+	for element in Elements.ALL:
+		for key in Skills.keys("ninja"):
+			_check(not Skills.def(Skills.skill_id("ninja", key, element)).is_empty(), "habilidade do Ninja %s/%s existe" % [element, key])
 
 
 func _test_names() -> void:

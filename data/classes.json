@@ -133,5 +133,75 @@
       "gold": 0
     },
     "_comment": "Arqueiro (02-2-arqueiro.md). Atributos e vida de 02-personagens.md; Foco +1 por DES, regenera 15/s parado e 5/s andando (seção 4); esquiva com recarga 3 s no lugar do bloqueio; armadura x0,6 (13-balanceamento.md). Kit inicial: arco de madeira e roupa de baixo."
+  },
+  "ninja": {
+    "name_key": "CLASS_NINJA_NAME",
+    "hero_name_keys": {
+      "male": "HERO_NINJA_MALE",
+      "female": "HERO_NINJA_FEMALE"
+    },
+    "resource": "energy",
+    "resource_key": "RESOURCE_ENERGY",
+    "power_key": "POWER_BLADE",
+    "power_attribute": "dex",
+    "attributes": {
+      "str": 15,
+      "dex": 25,
+      "int": 10,
+      "vit": 25
+    },
+    "max_health": 130,
+    "max_resource": 100,
+    "resource_regen": 12.0,
+    "move_speed_pct": 110,
+    "basic_attack": {
+      "melee": true,
+      "power_pct": 0.6,
+      "range": 2.2,
+      "arc": 100.0,
+      "cooldown": 0.3
+    },
+    "strong_attack": {
+      "melee": true,
+      "spin": true,
+      "power_pct": 1.8,
+      "range": 2.6,
+      "charge_time": 1.0,
+      "applies_state": true
+    },
+    "evade": {
+      "teleport": true,
+      "distance": 5.0,
+      "duration": 0.1,
+      "cooldown": 4.0
+    },
+    "health_per_level": 45,
+    "resource_per_power_point": 1,
+    "regen_per_power_point": 0.0,
+    "armor_factor": 0.7,
+    "evasion_base": 0.1,
+    "evasion_per_point": 0.002,
+    "resource_per_crit": 3,
+    "gold_find": 0.1,
+    "starting_kit": {
+      "equipment": {
+        "weapon": {
+          "base": "daggers",
+          "material": "wood"
+        }
+      },
+      "items": [
+        {
+          "id": "potion_health",
+          "count": 3
+        },
+        {
+          "id": "potion_resource",
+          "count": 2
+        }
+      ],
+      "gold": 0
+    },
+    "_comment": "Ninja (02-4-ninja.md). Tanque ágil: vida 130 (+45 por nível), evasão 10% +0,2% por ponto de DES acima do inicial, Energia +1 por DES e +3 por crítico acertado, regenera 12/s; cortes de 60% PL e corte giratório de 180%; esquiva é teleporte de 5 m; armadura x0,7. Traço Ladrão: +10% de ouro (proposta). Kit: adagas de treino de madeira."
   }
 }

@@ -1076,3 +1076,144 @@ msgstr "Rooted"
 
 msgid "STATE_MARKED"
 msgstr "Marked"
+
+msgid "SKILL_TWIN_SLASH_NAME"
+msgstr "Twin Slash"
+
+msgid "SKILL_TWIN_SLASH_DESC"
+msgstr "Two quick crossed slashes on the enemy in front; carries your element's basic state."
+
+msgid "SKILL_SHADOW_STEP_NAME"
+msgstr "Shadow Step"
+
+msgid "SKILL_SHADOW_STEP_DESC"
+msgstr "Teleports behind the target in your aim (up to 10 m); your next hit deals +30% damage (+5% per rank)."
+
+msgid "SKILL_BACKSTAB_NAME"
+msgstr "Backstab"
+
+msgid "SKILL_BACKSTAB_DESC"
+msgstr "Passive: hits from behind are always critical; +10% critical damage per rank."
+
+msgid "SKILL_SMOKE_BOMB_NAME"
+msgstr "Smoke Bomb"
+
+msgid "SKILL_SMOKE_BOMB_DESC"
+msgstr "Invisible to monsters for 3 s (+0.5 s per rank); anyone in the 4 m cloud misses half their attacks."
+
+msgid "SKILL_IRON_BODY_NAME"
+msgstr "Iron Body"
+
+msgid "SKILL_IRON_BODY_DESC"
+msgstr "Takes 50% less damage for 5 s (+0.5 s per rank) and taunts monsters within 6 m."
+
+msgid "SKILL_EVASION_NAME"
+msgstr "Evasion"
+
+msgid "SKILL_EVASION_DESC"
+msgstr "Passive: +5% dodge chance (+2% per rank); dodging restores 5 Energy."
+
+msgid "SKILL_BLINK_STRIKE_NAME"
+msgstr "Blink Strike"
+
+msgid "SKILL_BLINK_STRIKE_DESC"
+msgstr "Teleports between 3 enemies within 8 m, striking each one."
+
+msgid "SKILL_FIRE_SEAL_NAME"
+msgstr "Fire Seal"
+
+msgid "SKILL_FIRE_SEAL_DESC"
+msgstr "A burning seal for 8 s; allies within 6 m deal +15% damage (+3% per rank) and their hits burn."
+
+msgid "SKILL_FLAME_STRIKE_NAME"
+msgstr "Flame Strike"
+
+msgid "SKILL_FLAME_STRIKE_DESC"
+msgstr "Flaming slash; its burn deals double damage."
+
+msgid "SKILL_FLAME_THOUSAND_CUTS_NAME"
+msgstr "Thousand Flaming Cuts"
+
+msgid "SKILL_FLAME_THOUSAND_CUTS_DESC"
+msgstr "Jumps between up to 8 enemies within 10 m, cutting each and leaving flames."
+
+msgid "SKILL_MIST_SEAL_NAME"
+msgstr "Mist Seal"
+
+msgid "SKILL_MIST_SEAL_DESC"
+msgstr "A mist for 6 s that heals allies within 5 m and soaks enemies."
+
+msgid "SKILL_ICE_FANG_NAME"
+msgstr "Ice Fang"
+
+msgid "SKILL_ICE_FANG_DESC"
+msgstr "Ice slash; a soaked target is frozen for 2 s."
+
+msgid "SKILL_RAIN_THOUSAND_CUTS_NAME"
+msgstr "Thousand Rain Cuts"
+
+msgid "SKILL_RAIN_THOUSAND_CUTS_DESC"
+msgstr "Jumps between up to 8 enemies within 10 m like raindrops, soaking and slowing them."
+
+msgid "SKILL_WIND_SEAL_NAME"
+msgstr "Wind Seal"
+
+msgid "SKILL_WIND_SEAL_DESC"
+msgstr "Allies within 8 m move and attack 30% faster (+5% per rank) for 8 s."
+
+msgid "SKILL_LIGHTNING_FLASH_NAME"
+msgstr "Lightning Flash"
+
+msgid "SKILL_LIGHTNING_FLASH_DESC"
+msgstr "Goes through the target like lightning (up to 12 m) and shocks it; electrocutes a soaked target."
+
+msgid "SKILL_STORM_THOUSAND_CUTS_NAME"
+msgstr "Thousand Thunder Cuts"
+
+msgid "SKILL_STORM_THOUSAND_CUTS_DESC"
+msgstr "Jumps between up to 10 enemies within 12 m as lightning; every cut sparks onto its neighbours."
+
+msgid "SKILL_STONE_SEAL_NAME"
+msgstr "Stone Seal"
+
+msgid "SKILL_STONE_SEAL_DESC"
+msgstr "A seal that raises stone plates as a shield on allies within 5 m for 8 s."
+
+msgid "SKILL_STONE_FANG_NAME"
+msgstr "Stone Fang"
+
+msgid "SKILL_STONE_FANG_DESC"
+msgstr "Heavy stone-edged slash that stuns for 1.5 s."
+
+msgid "SKILL_QUAKE_THOUSAND_CUTS_NAME"
+msgstr "Thousand Quake Cuts"
+
+msgid "SKILL_QUAKE_THOUSAND_CUTS_DESC"
+msgstr "Jumps between up to 8 enemies within 10 m; every cut shakes the ground and knocks them down."
+
+msgid "CLASS_NINJA_NAME"
+msgstr "Ninja"
+
+msgid "HERO_NINJA_MALE"
+msgstr "Ren Kurogane"
+
+msgid "HERO_NINJA_FEMALE"
+msgstr "Rin Kurogane"
+
+msgid "RESOURCE_ENERGY"
+msgstr "Energy"
+
+msgid "POWER_BLADE"
+msgstr "Blade Power"
+
+msgid "ITEM_TYPE_DAGGERS"
+msgstr "Daggers"
+
+msgid "ITEM_TYPE_NINJA_MASK"
+msgstr "Mask"
+
+msgid "STATE_SMOKE"
+msgstr "Smoke"
+
+msgid "HUD_DODGED"
+msgstr "Dodged!"

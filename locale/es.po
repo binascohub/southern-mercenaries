@@ -1076,3 +1076,144 @@ msgstr "Inmovilizado"
 
 msgid "STATE_MARKED"
 msgstr "Marcado"
+
+msgid "SKILL_TWIN_SLASH_NAME"
+msgstr "Corte Doble"
+
+msgid "SKILL_TWIN_SLASH_DESC"
+msgstr "Dos cortes rápidos cruzados al enemigo de enfrente; lleva el estado básico de tu elemento."
+
+msgid "SKILL_SHADOW_STEP_NAME"
+msgstr "Paso Sombrío"
+
+msgid "SKILL_SHADOW_STEP_DESC"
+msgstr "Se teletransporta a la espalda del objetivo de la mira (hasta 10 m); tu siguiente golpe hace +30% de daño (+5% por rango)."
+
+msgid "SKILL_BACKSTAB_NAME"
+msgstr "Puñalada por la Espalda"
+
+msgid "SKILL_BACKSTAB_DESC"
+msgstr "Pasiva: los golpes por la espalda siempre son críticos; +10% de daño crítico por rango."
+
+msgid "SKILL_SMOKE_BOMB_NAME"
+msgstr "Bomba de Humo"
+
+msgid "SKILL_SMOKE_BOMB_DESC"
+msgstr "Invisible para los monstruos 3 s (+0,5 s por rango); quien esté en la nube de 4 m falla la mitad de sus ataques."
+
+msgid "SKILL_IRON_BODY_NAME"
+msgstr "Cuerpo de Hierro"
+
+msgid "SKILL_IRON_BODY_DESC"
+msgstr "Recibe un 50% menos de daño durante 5 s (+0,5 s por rango) y provoca a los monstruos a 6 m."
+
+msgid "SKILL_EVASION_NAME"
+msgstr "Evasión"
+
+msgid "SKILL_EVASION_DESC"
+msgstr "Pasiva: +5% de probabilidad de esquivar (+2% por rango); esquivar recupera 5 de Energía."
+
+msgid "SKILL_BLINK_STRIKE_NAME"
+msgstr "Golpe Relámpago"
+
+msgid "SKILL_BLINK_STRIKE_DESC"
+msgstr "Se teletransporta entre 3 enemigos a 8 m y golpea a cada uno."
+
+msgid "SKILL_FIRE_SEAL_NAME"
+msgstr "Sello del Fuego"
+
+msgid "SKILL_FIRE_SEAL_DESC"
+msgstr "Un sello en llamas durante 8 s; los aliados a 6 m causan +15% de daño (+3% por rango) y sus golpes queman."
+
+msgid "SKILL_FLAME_STRIKE_NAME"
+msgstr "Golpe de la Llama"
+
+msgid "SKILL_FLAME_STRIKE_DESC"
+msgstr "Corte en llamas; su quemadura hace el doble de daño."
+
+msgid "SKILL_FLAME_THOUSAND_CUTS_NAME"
+msgstr "Mil Cortes Llameantes"
+
+msgid "SKILL_FLAME_THOUSAND_CUTS_DESC"
+msgstr "Salta entre hasta 8 enemigos a 10 m, cortando a cada uno y dejando llamas."
+
+msgid "SKILL_MIST_SEAL_NAME"
+msgstr "Sello de la Niebla"
+
+msgid "SKILL_MIST_SEAL_DESC"
+msgstr "Una niebla durante 6 s que cura a los aliados a 5 m y empapa a los enemigos."
+
+msgid "SKILL_ICE_FANG_NAME"
+msgstr "Colmillo de Hielo"
+
+msgid "SKILL_ICE_FANG_DESC"
+msgstr "Corte de hielo; un objetivo empapado queda congelado 2 s."
+
+msgid "SKILL_RAIN_THOUSAND_CUTS_NAME"
+msgstr "Mil Cortes de la Lluvia"
+
+msgid "SKILL_RAIN_THOUSAND_CUTS_DESC"
+msgstr "Salta entre hasta 8 enemigos a 10 m como gotas de lluvia, empapándolos y ralentizándolos."
+
+msgid "SKILL_WIND_SEAL_NAME"
+msgstr "Sello del Viento"
+
+msgid "SKILL_WIND_SEAL_DESC"
+msgstr "Los aliados a 8 m se mueven y atacan un 30% más rápido (+5% por rango) durante 8 s."
+
+msgid "SKILL_LIGHTNING_FLASH_NAME"
+msgstr "Destello"
+
+msgid "SKILL_LIGHTNING_FLASH_DESC"
+msgstr "Atraviesa al objetivo como un rayo (hasta 12 m) y lo electriza; electrocuta a un objetivo empapado."
+
+msgid "SKILL_STORM_THOUSAND_CUTS_NAME"
+msgstr "Mil Cortes del Trueno"
+
+msgid "SKILL_STORM_THOUSAND_CUTS_DESC"
+msgstr "Salta entre hasta 10 enemigos a 12 m como rayos; cada corte suelta chispas a los vecinos."
+
+msgid "SKILL_STONE_SEAL_NAME"
+msgstr "Sello de Piedra"
+
+msgid "SKILL_STONE_SEAL_DESC"
+msgstr "Un sello que alza placas de piedra como escudo sobre los aliados a 5 m durante 8 s."
+
+msgid "SKILL_STONE_FANG_NAME"
+msgstr "Colmillo de Piedra"
+
+msgid "SKILL_STONE_FANG_DESC"
+msgstr "Corte pesado con filo de piedra que aturde 1,5 s."
+
+msgid "SKILL_QUAKE_THOUSAND_CUTS_NAME"
+msgstr "Mil Cortes del Temblor"
+
+msgid "SKILL_QUAKE_THOUSAND_CUTS_DESC"
+msgstr "Salta entre hasta 8 enemigos a 10 m; cada corte hace temblar el suelo y los derriba."
+
+msgid "CLASS_NINJA_NAME"
+msgstr "Ninja"
+
+msgid "HERO_NINJA_MALE"
+msgstr "Ren Kurogane"
+
+msgid "HERO_NINJA_FEMALE"
+msgstr "Rin Kurogane"
+
+msgid "RESOURCE_ENERGY"
+msgstr "Energía"
+
+msgid "POWER_BLADE"
+msgstr "Poder de Hoja"
+
+msgid "ITEM_TYPE_DAGGERS"
+msgstr "Dagas"
+
+msgid "ITEM_TYPE_NINJA_MASK"
+msgstr "Máscara"
+
+msgid "STATE_SMOKE"
+msgstr "Humo"
+
+msgid "HUD_DODGED"
+msgstr "¡Esquivado!"

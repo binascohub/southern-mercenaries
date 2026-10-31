@@ -10,7 +10,9 @@
 - Archer (`docs/02-2-arqueiro.md`): Focus resource (regenerates 15/s standing, 5/s moving), Shot Power from DEX, 16 m arrows, 1.5 s charged shot, dodge every 3 s; bow, hunter's cap and leather vest item bases; bow and quiver placeholder visuals.
 - Archer skills: 7 class skills imbued with the current element's basic state (Precise Shot with a guaranteed crit, Back Leap that slows, Eagle Eye crit chance/damage, Spike Trap that roots, Arrow Fan, Piercing Arrow, Mark Target that makes the target take more damage from everyone) and 3 per element (Campfire/Spring/Wind/Bulwark supports, Flaming/Frost/Thunder/Rockbreaker arrows, Fire/Hail/Stone rains and Storm Volley with jumping bolts).
 - New states: hampered (40% slow), rooted (can't move but still attacks), marked.
-- Not yet: Fire Wall does not block monsters; Ninja, Summoner and Knight.
+- Ninja (`docs/02-4-ninja.md`): melee basic slashes and spinning strong attack, evasion (10% + 0.2% per DEX, plus the Evasion passive), teleport dodge, Energy +3 per crit, +10% gold found; daggers and mask item bases; dagger visuals.
+- Ninja skills: Twin Slash, Shadow Step (behind the target, next hit +30%), Backstab (always crit from behind), Smoke Bomb (monsters lose the target; 50% misses in the cloud), Iron Body (-50% damage and taunt), Evasion, Blink Strike; seals, element cuts and the Thousand Cuts finals.
+- Not yet: Fire Wall does not block monsters; Ninja parry and blocking in general; Summoner and Knight.
 
 ### Phase 4 — Elements
 - `data/elements.json` and `Elements` / `StatusSet`: weakness cycle (x1.5 / x0.5), basic state per element, states (burning, soaked, frozen, shocked, knocked down, stunned) with refresh-not-stack, immunities (fire monsters don't burn, water monsters aren't soaked) and bosses getting a slow instead of control (`docs/02-0-elementos.md`).
