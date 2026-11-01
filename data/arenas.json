@@ -3416,6 +3416,10 @@
           {
             "monster": "acid_toad",
             "count": 2
+          },
+          {
+            "monster": "venom_scorpion",
+            "count": 1
           }
         ]
       },

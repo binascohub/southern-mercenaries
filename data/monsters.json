@@ -368,7 +368,7 @@
     "dummy": true
   },
   "venom_scorpion": {
-    "_comment": "Escorpião venenoso (sunburn, CC BY 3.0; pedido do autor): à distância, arremessa o veneno do ferrão em arco; a bola cai na marca do chão e deixa uma poça venenosa. Mantém distância. Para os próximos mapas.",
+    "_comment": "Escorpião venenoso (sunburn, CC BY 3.0; pedido do autor): à distância, arremessa o veneno do ferrão em arco; a bola cai na marca do chão e deixa uma poça venenosa. Mantém distância. Mora na Passagem da Guerra do Esgoto (decisão do autor).",
     "name_key": "MONSTER_VENOM_SCORPION",
     "max_health": 70,
     "move_speed": 2.2,
