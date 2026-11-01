@@ -28,6 +28,9 @@ signal hurt
 signal character_changed(levels: int)
 
 const AIM_ASSIST_ANGLE := deg_to_rad(15.0)
+## Salto: altura máxima (m) e duração (s).
+const JUMP_HEIGHT := 0.9
+const JUMP_TIME := 0.6
 const PROJECTILE_HEIGHT := 1.0
 const TURN_SPEED := 18.0
 ## Cor do anel de cada jogador (1 a 4), para se reconhecerem no co-op.
@@ -55,6 +58,8 @@ var alive := true
 var charge_time := 0.0
 var revive_progress := 0.0
 var evade_cooldown := 0.0
+## Pulo: 0 = no chão; 0..1 = quanto do salto já passou (replicado, o visual sobe e desce).
+var jump_phase := 0.0
 ## false enquanto o dono caiu da rede: o herói espera parado e invulnerável.
 var connected := true
 ## Posição no servidor; os clientes mostram com interpolação.
@@ -446,6 +451,7 @@ func _send_local_input(delta: float) -> void:
 		or _local_input.evade_presses != _sent_input.evade_presses \
 		or _local_input.interact_held != _sent_input.interact_held \
 		or _local_input.skill_presses != _sent_input.skill_presses \
+		or _local_input.jump_presses != _sent_input.jump_presses \
 		or _local_input.block_held != _sent_input.block_held
 	if buttons_changed or _input_timer <= 0.0:
 		_input_timer = 1.0 / GameData.balance.net.input_rate_hz
@@ -488,6 +494,7 @@ func _server_step(delta: float) -> void:
 		_drink("potion_resource")
 	if input.potion_elemental_presses != _seen_extra.potion_elemental_presses:
 		_drink_next_elemental()
+	var jump_pressed := input.jump_presses != _seen_extra.jump_presses
 	var mount_pressed := input.mount_presses != _seen_extra.mount_presses
 	var block_pressed := input.block_presses != _seen_extra.block_presses
 	var skill_pressed: Array[int] = []
@@ -499,6 +506,7 @@ func _server_step(delta: float) -> void:
 	if input.pickup_all_presses != _seen_extra.pickup_all_presses:
 		get_tree().call_group(&"arena", &"request_pickup", self, true)
 	_seen_extra = input
+	_update_jump(delta, jump_pressed)
 
 	if _knock_time > 0.0:
 		_knock_time -= delta
@@ -561,6 +569,27 @@ func _server_step(delta: float) -> void:
 		if charge_time >= data.strong_attack.charge_time:
 			_fire(data.strong_attack)
 		charge_time = 0.0
+
+
+## Salto (servidor): sobe e desce em JUMP_TIME s; só do chão e sem estar sendo
+## empurrado, esquivando ou bloqueando. No ar anda e ataca normalmente.
+func _update_jump(delta: float, pressed: bool) -> void:
+	if jump_phase > 0.0:
+		jump_phase += delta / JUMP_TIME
+		if jump_phase >= 1.0:
+			jump_phase = 0.0
+	elif pressed and _knock_time <= 0.0 and _evade_time <= 0.0 and not blocking:
+		jump_phase = 0.001
+
+
+## Altura do salto agora (m): parábola de 0 a JUMP_HEIGHT.
+func jump_height() -> float:
+	return 4.0 * JUMP_HEIGHT * jump_phase * (1.0 - jump_phase) if jump_phase > 0.0 else 0.0
+
+
+## No ar o bastante para passar por cima de poças no chão.
+func is_airborne() -> bool:
+	return jump_height() > 0.25
 
 
 ## O dono caiu: o herói fica parado, sem entrada, e não leva dano.
@@ -1028,7 +1057,7 @@ func _assisted_aim(aim: Vector2, attack_range: float) -> Vector2:
 
 func _add_synchronizer() -> void:
 	var config := SceneReplicationConfig.new()
-	var always := [":net_position", ":facing", ":charge_time", ":revive_progress", ":evade_cooldown"]
+	var always := [":net_position", ":facing", ":charge_time", ":revive_progress", ":evade_cooldown", ":jump_phase"]
 	var on_change := [":health", ":max_health", ":resource", ":max_resource", ":alive", ":connected",
 		":hero_name", ":level", ":equip_visual", ":potion_cooldown", ":armor_value", ":element", ":shield", ":hidden", ":mounted", ":blocking", ":action",
 		":aura_level", ":origin_element", ":aura_set"]
@@ -1254,7 +1283,7 @@ func _tick_visual(delta: float) -> void:
 		_shown_action = action
 		if action != "":
 			_model.play_action(action.get_slice(":", 0))
-	_model.update_state(speed, alive, mounted, charge_time > 0.15, blocking)
+	_model.update_state(speed, alive, mounted, charge_time > 0.15, blocking, jump_phase > 0.0)
 	if _block_visual:
 		_block_visual.visible = blocking
 	# Aura: +1 brilho fraco nos pés … +5 aura máxima pulsando; cor do elemento de origem.
@@ -1300,6 +1329,7 @@ func _tick_visual(delta: float) -> void:
 	else:
 		_visual.rotation.x = -PI / 2.0
 		_visual.position.y = 0.3
+	_visual.position.y += jump_height()
 	if health < _shown_health:
 		_flash = 0.15
 	if health != _shown_health:

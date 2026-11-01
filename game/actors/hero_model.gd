@@ -22,7 +22,7 @@ const ANIMS := {
 	"idle": "Idle_Loop", "walk": "Walk_Loop", "run": "Jog_Fwd_Loop",
 	"melee": "Sword_Attack", "cast": "Spell_Simple_Shoot", "shoot": "Pistol_Shoot",
 	"roll": "Roll", "hit": "Hit_Chest", "death": "Death01", "ride": "Driving_Loop",
-	"charge": "Spell_Simple_Idle_Loop", "block": "Sword_Idle",
+	"charge": "Spell_Simple_Idle_Loop", "block": "Sword_Idle", "jump": "Jump_Loop",
 	# NPCs: sentado, conversando, segurando a tocha, e a gente da rua de Tortuga:
 	# caído (bêbado desmaiado), dançando, agachado (mendigo), empurrando carga,
 	# sentado conversando (apostadores).
@@ -227,7 +227,7 @@ func play_action(kind: String) -> void:
 
 
 ## Estado contínuo, a cada quadro.
-func update_state(speed: float, alive: bool, mounted: bool, charging: bool, blocking: bool) -> void:
+func update_state(speed: float, alive: bool, mounted: bool, charging: bool, blocking: bool, airborne := false) -> void:
 	if _anim == null:
 		return
 	if not alive:
@@ -240,7 +240,9 @@ func update_state(speed: float, alive: bool, mounted: bool, charging: bool, bloc
 	if _action != "":
 		return
 	var state := "idle"
-	if mounted:
+	if airborne and not mounted:
+		state = "jump"
+	elif mounted:
 		state = "ride"
 	elif blocking:
 		state = "block"

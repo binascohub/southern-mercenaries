@@ -143,6 +143,9 @@ msgstr "Final skill"
 msgid "ACTION_EVADE"
 msgstr "Dodge"
 
+msgid "ACTION_JUMP"
+msgstr "Jump"
+
 msgid "ACTION_MOUNT"
 msgstr "Mount / dismount"
 

@@ -142,6 +142,9 @@ msgstr ""
 msgid "ACTION_EVADE"
 msgstr ""
 
+msgid "ACTION_JUMP"
+msgstr ""
+
 msgid "ACTION_MOUNT"
 msgstr ""
 

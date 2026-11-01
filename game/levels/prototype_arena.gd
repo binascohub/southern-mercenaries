@@ -758,12 +758,16 @@ func _maybe_spawn_rare() -> void:
 
 
 ## Moedas que caem de um monstro (o Lagarto Dourado, a cada golpe): para cada herói.
-func drop_coins(at: Vector3, amount: int) -> void:
+## Moedas no chão (cada herói vê as dele); `pieces` as espalha em várias moedas.
+func drop_coins(at: Vector3, amount: int, pieces := 1) -> void:
 	if not multiplayer.is_server():
 		return
 	for p: Player in get_tree().get_nodes_in_group(&"players"):
 		if p.connected and p.character:
-			_add_loot(p, at, {}, maxi(roundi(amount * (1.0 + p.character.gold_find_bonus())), 1))
+			var total := maxi(roundi(amount * (1.0 + p.character.gold_find_bonus())), 1)
+			var count := clampi(pieces, 1, total)
+			for i in count:
+				_add_loot(p, at, {}, total / count + (1 if i < total % count else 0))
 
 
 # --- Mapa que se revela (09-interface.md, seção 8) ----------------------------

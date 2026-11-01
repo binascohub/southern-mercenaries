@@ -2421,7 +2421,7 @@
     ]
   },
   "sewers_01_drains": {
-    "_comment": "Esgoto, área 1 (03-2-areas.md, seção 3; 14-tutorial.md, seção 3): Bueiros da Rua Principal. Tutorial de combate: um rato sozinho, depois três, poças de lodo, o enxame de 8 e a Ratazana. Segredo: o cano do leste leva a uma câmara com baú. Estreito: o Cavaleiro desmonta.",
+    "_comment": "Esgoto, área 1 (03-2-areas.md, seção 3; 14-tutorial.md, seção 3): Bueiros da Rua Principal. Um LABIRINTO de 5 x 6 salas de 8 m entre a entrada e o fundo (gerado por tools/assets/build_sewer_maze.py), com becos, laços, baús nos becos mais fundos, grupos de ratos espalhados e poças de lodo. Segredo: a sala do leste, a partir da ponta leste do labirinto, leva a uma câmara com baú. Estreito: o Cavaleiro desmonta.",
     "name_key": "ARENA_SEWERS_DRAINS",
     "player_class": "mage",
     "map_id": "map_sewers",
@@ -2447,14 +2447,138 @@
         "torch": true
       },
       {
-        "id": "drain_1",
+        "id": "maze_2_0",
         "center": [
           0,
-          -14
+          -10
         ],
         "size": [
-          5,
-          16
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west",
+          "north",
+          "south"
+        ]
+      },
+      {
+        "id": "maze_3_0",
+        "center": [
+          9,
+          -10
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west"
+        ]
+      },
+      {
+        "id": "maze_1_0",
+        "center": [
+          -9,
+          -10
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west",
+          "north"
+        ]
+      },
+      {
+        "id": "maze_2_1",
+        "center": [
+          0,
+          -18
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "south"
+        ]
+      },
+      {
+        "id": "maze_4_0",
+        "center": [
+          18,
+          -10
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "north"
+        ]
+      },
+      {
+        "id": "maze_0_0",
+        "center": [
+          -18,
+          -10
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "north"
+        ]
+      },
+      {
+        "id": "maze_1_1",
+        "center": [
+          -9,
+          -18
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "north",
+          "south"
+        ]
+      },
+      {
+        "id": "maze_3_1",
+        "center": [
+          9,
+          -18
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "north"
+        ]
+      },
+      {
+        "id": "maze_4_1",
+        "center": [
+          18,
+          -18
+        ],
+        "size": [
+          8,
+          8
         ],
         "doors": [
           "north",
@@ -2462,30 +2586,339 @@
         ]
       },
       {
-        "id": "junction",
+        "id": "maze_0_1",
         "center": [
-          0,
-          -30
+          -18,
+          -18
         ],
         "size": [
-          16,
-          16
+          8,
+          8
         ],
         "doors": [
-          "south",
+          "east",
           "north",
+          "south"
+        ]
+      },
+      {
+        "id": "maze_1_2",
+        "center": [
+          -9,
+          -26
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "south"
+        ]
+      },
+      {
+        "id": "maze_3_2",
+        "center": [
+          9,
+          -26
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "north",
+          "south"
+        ]
+      },
+      {
+        "id": "maze_4_2",
+        "center": [
+          18,
+          -26
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "north",
+          "south",
           "east"
         ],
         "torch": true
       },
       {
-        "id": "east_pipe",
+        "id": "maze_0_2",
         "center": [
-          15,
-          -30
+          -18,
+          -26
         ],
         "size": [
-          12,
+          8,
+          8
+        ],
+        "doors": [
+          "north",
+          "south"
+        ],
+        "torch": true
+      },
+      {
+        "id": "maze_2_2",
+        "center": [
+          0,
+          -26
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "north"
+        ],
+        "torch": true
+      },
+      {
+        "id": "maze_3_3",
+        "center": [
+          9,
+          -34
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "north",
+          "south"
+        ],
+        "torch": true
+      },
+      {
+        "id": "maze_4_3",
+        "center": [
+          18,
+          -34
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "south"
+        ]
+      },
+      {
+        "id": "maze_0_3",
+        "center": [
+          -18,
+          -34
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "north",
+          "south"
+        ]
+      },
+      {
+        "id": "maze_2_3",
+        "center": [
+          0,
+          -34
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "north",
+          "south"
+        ]
+      },
+      {
+        "id": "maze_3_4",
+        "center": [
+          9,
+          -42
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "north",
+          "south"
+        ]
+      },
+      {
+        "id": "maze_1_3",
+        "center": [
+          -9,
+          -34
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "north"
+        ]
+      },
+      {
+        "id": "maze_0_4",
+        "center": [
+          -18,
+          -42
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "north",
+          "south"
+        ]
+      },
+      {
+        "id": "maze_2_4",
+        "center": [
+          0,
+          -42
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "north",
+          "south"
+        ]
+      },
+      {
+        "id": "maze_3_5",
+        "center": [
+          9,
+          -50
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west",
+          "south"
+        ]
+      },
+      {
+        "id": "maze_1_4",
+        "center": [
+          -9,
+          -42
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "south"
+        ]
+      },
+      {
+        "id": "maze_0_5",
+        "center": [
+          -18,
+          -50
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "south"
+        ]
+      },
+      {
+        "id": "maze_2_5",
+        "center": [
+          0,
+          -50
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "south",
+          "north"
+        ]
+      },
+      {
+        "id": "maze_4_5",
+        "center": [
+          18,
+          -50
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "south"
+        ]
+      },
+      {
+        "id": "maze_1_5",
+        "center": [
+          -9,
+          -50
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west"
+        ],
+        "torch": true
+      },
+      {
+        "id": "maze_4_4",
+        "center": [
+          18,
+          -42
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "north"
+        ],
+        "torch": true
+      },
+      {
+        "id": "secret_pipe",
+        "center": [
+          26,
+          -26
+        ],
+        "size": [
+          6,
           5
         ],
         "doors": [
@@ -2496,8 +2929,8 @@
       {
         "id": "secret",
         "center": [
-          27,
-          -30
+          35,
+          -26
         ],
         "size": [
           10,
@@ -2505,21 +2938,6 @@
         ],
         "doors": [
           "west"
-        ]
-      },
-      {
-        "id": "drain_2",
-        "center": [
-          0,
-          -46
-        ],
-        "size": [
-          5,
-          16
-        ],
-        "doors": [
-          "north",
-          "south"
         ]
       },
       {
@@ -2543,7 +2961,7 @@
         "id": "s1_lone",
         "position": [
           0,
-          -16
+          -18
         ],
         "monsters": [
           {
@@ -2555,13 +2973,78 @@
       {
         "id": "s1_trio",
         "position": [
-          -3,
-          -31
+          -9,
+          -18
         ],
         "monsters": [
           {
             "monster": "plague_rat",
             "count": 3
+          }
+        ]
+      },
+      {
+        "id": "m_pair_a",
+        "position": [
+          -9,
+          -26
+        ],
+        "monsters": [
+          {
+            "monster": "plague_rat",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "m_pair_b",
+        "position": [
+          9,
+          -34
+        ],
+        "monsters": [
+          {
+            "monster": "plague_rat",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "m_trio_b",
+        "position": [
+          9,
+          -42
+        ],
+        "monsters": [
+          {
+            "monster": "plague_rat",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "m_mutant",
+        "position": [
+          18,
+          -42
+        ],
+        "monsters": [
+          {
+            "monster": "mutant_rat",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "m_pair_c",
+        "position": [
+          18,
+          -50
+        ],
+        "monsters": [
+          {
+            "monster": "plague_rat",
+            "count": 2
           }
         ]
       },
@@ -2595,8 +3078,8 @@
       {
         "id": "s1_secret",
         "position": [
-          25,
-          -30
+          37,
+          -26
         ],
         "monsters": [
           {
@@ -2633,6 +3116,27 @@
           -61
         ],
         "radius": 2.0
+      },
+      {
+        "position": [
+          -20,
+          -48
+        ],
+        "radius": 1.5
+      },
+      {
+        "position": [
+          11,
+          -24
+        ],
+        "radius": 1.5
+      },
+      {
+        "position": [
+          -16,
+          -44
+        ],
+        "radius": 1.5
       }
     ],
     "entries": {
@@ -2659,16 +3163,6 @@
         "expedition_end": true
       },
       {
-        "id": "secret_chest",
-        "kind": "chest",
-        "position": [
-          29,
-          -32
-        ],
-        "secret": true,
-        "loot": "chest"
-      },
-      {
         "id": "deeper",
         "kind": "exit",
         "name_key": "PROP_SEWER_DEEPER",
@@ -2679,6 +3173,34 @@
         "to": "sewers_02_canals",
         "entry": "start",
         "group": true
+      },
+      {
+        "id": "secret_chest",
+        "kind": "chest",
+        "position": [
+          38,
+          -28
+        ],
+        "secret": true,
+        "loot": "chest"
+      },
+      {
+        "id": "maze_chest_1",
+        "kind": "chest",
+        "position": [
+          -9,
+          -52.5
+        ],
+        "loot": "chest"
+      },
+      {
+        "id": "maze_chest_2",
+        "kind": "chest",
+        "position": [
+          18,
+          -44.5
+        ],
+        "loot": "chest"
       }
     ],
     "quest_spots": [
@@ -2687,8 +3209,8 @@
         -26
       ],
       [
-        -5,
-        -35
+        -9,
+        -34
       ],
       [
         0,
@@ -2714,22 +3236,6 @@
         "position": [
           -5,
           -2
-        ]
-      },
-      {
-        "id": "b3",
-        "monster": "barrel",
-        "position": [
-          6,
-          -35
-        ]
-      },
-      {
-        "id": "b4",
-        "monster": "crate",
-        "position": [
-          -6,
-          -26
         ]
       },
       {
@@ -2765,22 +3271,6 @@
         ]
       },
       {
-        "id": "pot3",
-        "monster": "pot",
-        "position": [
-          7,
-          -37
-        ]
-      },
-      {
-        "id": "pot4",
-        "monster": "pot",
-        "position": [
-          -7,
-          -23
-        ]
-      },
-      {
         "id": "pot5",
         "monster": "pot",
         "position": [
@@ -2802,6 +3292,118 @@
         "position": [
           -9,
           -56
+        ]
+      },
+      {
+        "id": "mb0",
+        "monster": "barrel",
+        "position": [
+          15.2,
+          -12.8
+        ]
+      },
+      {
+        "id": "mc1",
+        "monster": "crate",
+        "position": [
+          20.8,
+          -36.8
+        ]
+      },
+      {
+        "id": "mp2",
+        "monster": "pot",
+        "position": [
+          6.2,
+          -31.2
+        ]
+      },
+      {
+        "id": "mp3",
+        "monster": "pot",
+        "position": [
+          -11.8,
+          -47.2
+        ]
+      },
+      {
+        "id": "mb4",
+        "monster": "barrel",
+        "position": [
+          -15.2,
+          -52.8
+        ]
+      },
+      {
+        "id": "mc5",
+        "monster": "crate",
+        "position": [
+          -6.2,
+          -28.8
+        ]
+      },
+      {
+        "id": "mp6",
+        "monster": "pot",
+        "position": [
+          2.8,
+          -20.8
+        ]
+      },
+      {
+        "id": "mb7",
+        "monster": "barrel",
+        "position": [
+          -20.8,
+          -12.8
+        ]
+      },
+      {
+        "id": "mc8",
+        "monster": "crate",
+        "position": [
+          20.8,
+          -44.8
+        ]
+      },
+      {
+        "id": "mp9",
+        "monster": "pot",
+        "position": [
+          6.2,
+          -23.2
+        ]
+      },
+      {
+        "id": "mp10",
+        "monster": "pot",
+        "position": [
+          -15.2,
+          -20.8
+        ]
+      },
+      {
+        "id": "mb11",
+        "monster": "barrel",
+        "position": [
+          -11.8,
+          -39.2
+        ]
+      },
+      {
+        "id": "mc12",
+        "monster": "crate",
+        "position": [
+          -6.2,
+          -15.2
+        ]
+      },
+      {
+        "id": "mp13",
+        "monster": "pot",
+        "position": [
+          -2.8,
+          -31.2
         ]
       }
     ],
@@ -2866,36 +3468,6 @@
       {
         "piece": "Barrel",
         "position": [
-          -6.6,
-          -35.5
-        ]
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          6.8,
-          -24.2
-        ],
-        "rotation": 35
-      },
-      {
-        "piece": "Cage_Small",
-        "position": [
-          -6.5,
-          -24.0
-        ]
-      },
-      {
-        "piece": "Lantern_Wall",
-        "position": [
-          -4.5,
-          -37.4
-        ],
-        "y": 1.4
-      },
-      {
-        "piece": "Barrel",
-        "position": [
           8.4,
           -55.0
         ],
@@ -2923,20 +3495,6 @@
         ],
         "rotation": -30,
         "y": 0.1
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -6,
-          -27
-        ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "light": [
@@ -2975,22 +3533,6 @@
         "rotation": 0
       },
       {
-        "piece": "Mushroom_Tall",
-        "position": [
-          6.5,
-          -24.5
-        ],
-        "rotation": 67
-      },
-      {
-        "piece": "Mushroom_Flat",
-        "position": [
-          -7.3,
-          -37.2
-        ],
-        "rotation": 134
-      },
-      {
         "piece": "Mushroom_Cluster",
         "position": [
           -9.2,
@@ -3005,6 +3547,184 @@
           -61
         ],
         "rotation": 268
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          6.0,
+          -31.0
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          21.0,
+          -53.0
+        ],
+        "rotation": 225
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          -6.0,
+          -45.0
+        ],
+        "rotation": 315
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          15.0,
+          -23.0
+        ],
+        "rotation": 330
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          -21.0,
+          -47.0
+        ],
+        "rotation": 75
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          3.0,
+          -15.0
+        ],
+        "rotation": 30
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          21.0,
+          -15.0
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          15.0,
+          -13.0
+        ],
+        "rotation": 75
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          -3.0,
+          -45.0
+        ],
+        "rotation": 60
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          21.0,
+          -37.0
+        ],
+        "rotation": 285
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          -9,
+          -50
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          -9,
+          -34
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          18,
+          -34
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          0,
+          -42
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          18,
+          -26
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          -18,
+          -10
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          0,
+          -34
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
       }
     ],
     "passive": true

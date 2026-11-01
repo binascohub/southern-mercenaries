@@ -2,6 +2,16 @@
 
 ## [Unreleased]
 
+### The Sewers
+- **Area 1 (Main Street Drains) is now a maze**: a 5 x 6 grid of 8 m rooms between the entrance hall and the outfall, with dead ends, a few loops, seven rat groups spread through it, extra puddles, barrels, crates and pots, two chests at the deepest dead ends and the secret chamber behind the east end (`tools/assets/build_sewer_maze.py` regenerates it).
+- Toxic puddles are now organic slimy green stains (glossy, with bubbles and a dark translucent rim) instead of flat green discs.
+- The sewer rats are tougher: more health, 40% less damage taken, weaker bites. Monsters can now have a `damage_taken` multiplier.
+- The sewer rats are five times bigger (plague rat, sewer rat, big sewer rat and mutant rat): their size and bite reach grow with the body, health and damage are unchanged. Unaware rats now patrol around where they were born instead of standing still (they walk through each other until they notice you).
+- The Golden Lizard now takes about five hits (400 health) and each hit showers 4 coins (10 to 25 gold in all), plus 150 gold when it dies.
+
+### Heroes
+- **Jump** (key `X`, remappable; no default gamepad button): a 0.9 m hop in 0.6 s with the heroes' jump animation, synced in co-op. In the air you can walk and attack, and you pass over toxic puddles.
+
 ### Tavern
 - An old lady (CC0) sits on a chair at a table in the Drowned Crow Tavern with wooden beer mugs in front of her (`tools/assets/build_old_lady.py`).
 

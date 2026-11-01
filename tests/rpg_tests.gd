@@ -864,9 +864,9 @@ func _test_explore_map() -> void:
 	var copy := ExploreMap.decode(ExploreMap.encode(mask), area)
 	_check(copy == mask, "máscara volta igual do save")
 	_check(ExploreMap.decode("", area) == ExploreMap.empty(area) and ExploreMap.decode("lixo:3", area).count(1) == 0, "save sem máscara (ou de outra área) começa em névoa")
-	for spot in [Vector2(0, -14), Vector2(0, -30), Vector2(0, -46), Vector2(-6, -58), Vector2(6, -58), Vector2(-6, -68),
-			Vector2(6, -68), Vector2(16, -30), Vector2(27, -30)]:
-		ExploreMap.reveal(mask, area, spot)
+	# Andando de sala em sala (o centro de cada uma), a área toda aparece.
+	for room: Dictionary in area.rooms:
+		ExploreMap.reveal(mask, area, Vector2(room.center[0], room.center[1]))
 	_check(ExploreMap.explored_fraction(mask, area) > 0.95, "andando pela área toda, quase tudo aparece (%.2f)" % ExploreMap.explored_fraction(mask, area))
 
 

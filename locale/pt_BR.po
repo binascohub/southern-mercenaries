@@ -143,6 +143,9 @@ msgstr "Habilidade final"
 msgid "ACTION_EVADE"
 msgstr "Esquivar"
 
+msgid "ACTION_JUMP"
+msgstr "Pular"
+
 msgid "ACTION_MOUNT"
 msgstr "Montar / desmontar"
 

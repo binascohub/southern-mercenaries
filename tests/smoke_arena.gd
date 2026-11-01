@@ -537,6 +537,44 @@ func _sewers_test() -> void:
 	_arena.travel("sewers_01_drains", "start")
 	await _wait_frames(20)
 	check.call(_arena.hud.minimap.is_seen(Vector2(0, 3)) and not _arena.hud.minimap.is_seen(Vector2(0, -63)), "minimapa: começo visto, fundo em névoa")
+	# Labirinto da área 1: passagens abertas livres, paredes fechadas barram, e dá para chegar ao fundo.
+	var maze_rooms: Array = GameData.arenas.sewers_01_drains.rooms
+	var by_center := {}
+	for room: Dictionary in maze_rooms:
+		by_center[Vector2(room.center[0], room.center[1])] = room
+	var space: PhysicsDirectSpaceState3D = _arena.get_world_3d().direct_space_state
+	var wrong := 0
+	var pairs := 0
+	var links := {}
+	for room: Dictionary in maze_rooms:
+		var from := Vector2(room.center[0], room.center[1])
+		for side: String in ["east", "south"]:
+			var step := Vector2(9, 0) if side == "east" else Vector2(0, 8)
+			if not by_center.has(from + step) or not String(room.id).begins_with("maze_"):
+				continue
+			var other: Dictionary = by_center[from + step]
+			var open: bool = side in room.doors
+			pairs += 1
+			var query := PhysicsRayQueryParameters3D.create(Vector3(from.x, 0.6, from.y), Vector3(from.x + step.x, 0.6, from.y + step.y), 1)
+			if open == not space.intersect_ray(query).is_empty():
+				wrong += 1
+			if open:
+				links[room.id] = links.get(room.id, []) + [other.id]
+				links[other.id] = links.get(other.id, []) + [room.id]
+	check.call(pairs >= 40 and wrong == 0, "labirinto: %d passagens, %d com a colisão errada" % [pairs, wrong])
+	var reached := {"maze_2_0": true}
+	var frontier := ["maze_2_0"]
+	while not frontier.is_empty():
+		for next_id: String in links.get(frontier.pop_back(), []):
+			if not reached.has(next_id):
+				reached[next_id] = true
+				frontier.append(next_id)
+	var from_entry := PhysicsRayQueryParameters3D.create(Vector3(0, 0.6, 0), Vector3(0, 0.6, -10), 1)
+	var to_outfall := PhysicsRayQueryParameters3D.create(Vector3(0, 0.6, -50), Vector3(0, 0.6, -63), 1)
+	check.call(space.intersect_ray(from_entry).is_empty() and space.intersect_ray(to_outfall).is_empty(), "labirinto: ligado à entrada e ao fundo")
+	var to_secret := PhysicsRayQueryParameters3D.create(Vector3(18, 0.6, -26), Vector3(35, 0.6, -26), 1)
+	check.call(reached.has("maze_2_5") and reached.size() >= 30 and space.intersect_ray(to_secret).is_empty(),
+		"labirinto: do começo dá para chegar ao fundo (%d salas) e a passagem ao segredo está livre" % reached.size())
 	player.teleport_to(Vector3(0, 0, -63))
 	await _wait_frames(20)
 	check.call(_arena.hud.minimap.is_seen(Vector2(0, -63)), "andar revela o fundo da área")
@@ -591,7 +629,8 @@ func _sewers_test() -> void:
 	for e in get_tree().get_nodes_in_group(&"enemies"):
 		e.take_damage(1e9)
 	await get_tree().physics_frame
-	player.teleport_to(Vector3(29, 0, -31))
+	var chest_at: Array = GameData.arenas.sewers_01_drains.props.filter(func(p: Dictionary) -> bool: return p.id == "secret_chest")[0].position
+	player.teleport_to(Vector3(chest_at[0], 0, chest_at[1] + 1.0))
 	var loot_before: int = _arena._loot.size()
 	_arena.request_interact(player)
 	check.call("sewers_01_drains:secret_chest" in _arena._campaign.opened and _arena._loot.size() > loot_before, "baú secreto dá loot")
@@ -702,7 +741,8 @@ func _sewers_test() -> void:
 	check.call("fallen_king_crown" in _arena.town.relics and "map_ruins" in _arena.town.unlocked, "Coroa do Rei Caído e o mapa das Ruínas")
 	# O baú aberto continua aberto ao voltar.
 	_arena.travel("sewers_01_drains", "start")
-	check.call(_arena.prop_near(player, "chest", "", 300.0).is_empty(), "baú aberto não volta")
+	var chest_left: Dictionary = _arena.prop_near(player, "chest", "", 300.0)
+	check.call(chest_left.is_empty() or chest_left.id != "secret_chest", "baú aberto não volta")
 	check.call(not get_tree().get_nodes_in_group(&"enemies").any(func(e: Enemy) -> bool: return e.data.get("breakable", false) and not e.is_queued_for_deletion()),
 		"barris quebrados não voltam")
 	_report(checks.is_empty(), "esgoto: " + ("tudo certo" if checks.is_empty() else "; ".join(PackedStringArray(checks))))
@@ -733,6 +773,15 @@ func _town_test() -> void:
 	var town: Town = _arena.town
 	var c := player.character
 	check.call(_arena.area_id == "tavern", "campanha nova começa na Taverna (%s)" % _arena.area_id)
+	# Pulo: sai do chão, passa por cima de poças no pico e volta ao chão.
+	player._update_jump(0.0, true)
+	check.call(player.jump_phase > 0.0, "pular: sai do chão")
+	for i in 19:
+		player._update_jump(0.016, false)
+	check.call(player.is_airborne() and absf(player.jump_height() - Player.JUMP_HEIGHT) < 0.1, "pular: no pico chega perto da altura máxima (%.2f)" % player.jump_height())
+	for i in 25:
+		player._update_jump(0.016, false)
+	check.call(player.jump_phase == 0.0 and not player.is_airborne(), "pular: volta ao chão")
 	# Herói montado das peças da Quaternius: todas as animações e a roupa de Camponês.
 	var model: HeroModel = player._model
 	check.call(model.animations().size() == HeroModel.ANIMS.size(), "herói com todas as animações (%s)" % [model.animations()])
