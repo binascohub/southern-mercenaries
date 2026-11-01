@@ -1187,6 +1187,7 @@ func _on_enemy_died(enemy: Enemy) -> void:
 	if group.members.is_empty() and not enemy.group.begins_with("hunt_"):
 		_campaign.dead_groups = _campaign.get("dead_groups", []) + [enemy.group]
 		SaveSystem.save_campaign(_campaign, true)
+		town.complete_cleared(area_id)  # missões da aldeia que pedem limpar este bando
 		var done := cleared + 1
 		var won := _is_won(done)
 		_broadcast(done, Result.VICTORY if won else Result.NONE)

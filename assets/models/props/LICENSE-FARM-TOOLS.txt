@@ -1,0 +1,2 @@
+Tool_Shovel.glb, Tool_Pitchfork.glb, Tool_Hoe.glb, Tool_Scythe.glb, Tool_Sickle.glb — "Retextured Gnarly Tools" by Mev Lyshkin, CC BY 3.0: https://opengameart.org/content/retextured-gnarly-tools
+Each tool split from the single mesh of the Blender file by tools/assets/build_farm_tools.py (upright, origin at mid-length, game size).

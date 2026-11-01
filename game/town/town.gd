@@ -345,6 +345,7 @@ func _rpc_accept(quest_id: String) -> void:
 	learn(quest.get("bestiary", []))
 	sync()
 	_arena()._toast_all("TOAST_QUEST_ACCEPTED", {"quest": quest.name_key})
+	complete_cleared(_arena().area_id)  # os bichos da missão já podiam estar mortos
 
 
 @rpc("any_peer", "reliable")
@@ -425,20 +426,43 @@ func _rpc_sell(shop_id: String, bag_index: int) -> void:
 # --- Missões e navio (servidor) -----------------------------------------------------
 
 ## Venceu a área da missão: concluída; cada jogador recebe a recompensa inteira.
+## As missões com "clear" (aldeia da Floresta) não terminam aqui: ver complete_cleared.
 func complete_quests_in(area_id: String) -> void:
 	var c := _campaign()
 	for id: String in c.get("quests", {}):
 		var quest: Dictionary = GameData.quests.get(id, {})
-		if c.quests[id] != "active" or quest.get("area", "") != area_id:
+		if c.quests[id] != "active" or quest.get("area", "") != area_id or quest.has("clear"):
 			continue
-		c.quests[id] = "done"
-		var reward: Dictionary = quest.get("reward", {})
-		for p: Player in get_tree().get_nodes_in_group(&"players"):
-			if p.character:
-				p.grant(int(reward.get("xp", 0)), int(reward.get("gold", 0)))
-		_arena()._toast_all("TOAST_QUEST_DONE", {"quest": quest.name_key})
+		_finish_quest(c, id, quest)
 	SaveSystem.save_campaign(c, true)
 	sync()
+
+
+## Missões "clear": terminam quando todos os encontros listados da área foram vencidos
+## (chamado quando um bando cai e ao aceitar, caso os bichos já tenham morrido).
+func complete_cleared(area_id: String) -> void:
+	var c := _campaign()
+	var dead: Array = c.get("dead_groups", [])
+	var changed := false
+	for id: String in c.get("quests", {}):
+		var quest: Dictionary = GameData.quests.get(id, {})
+		if c.quests[id] != "active" or quest.get("area", "") != area_id or not quest.has("clear"):
+			continue
+		if quest.clear.all(func(group: String) -> bool: return group in dead):
+			_finish_quest(c, id, quest)
+			changed = true
+	if changed:
+		SaveSystem.save_campaign(c, true)
+		sync()
+
+
+func _finish_quest(c: Dictionary, id: String, quest: Dictionary) -> void:
+	c.quests[id] = "done"
+	var reward: Dictionary = quest.get("reward", {})
+	for p: Player in get_tree().get_nodes_in_group(&"players"):
+		if p.character:
+			p.grant(int(reward.get("xp", 0)), int(reward.get("gold", 0)))
+	_arena()._toast_all("TOAST_QUEST_DONE", {"quest": quest.name_key})
 
 
 ## Voltou a Tortuga: chega outro navio (estoque pirata e preços dos valiosos novos)

@@ -1,5 +1,5 @@
 {
-  "_comment": "Missões (04-tortuga-e-missoes.md, seção 4). area: onde a missão termina (vencer todos os encontros da área); unlocks: o que abre ao aceitar. Fase 7: o tesouro do esgoto termina ao vencer a Rainha no Ninho (área final do Esgoto). Recompensa provisória até o Tesouro Perdido da Guerra. bestiary: criaturas que entram no bestiário ao aceitar (a história já foi ouvida).",
+  "_comment": "Missões (04-tortuga-e-missoes.md, seção 4). area: onde a missão termina (vencer todos os encontros da área); unlocks: o que abre ao aceitar. Fase 7: o tesouro do esgoto termina ao vencer a Rainha no Ninho (área final do Esgoto). Recompensa provisória até o Tesouro Perdido da Guerra. bestiary: criaturas que entram no bestiário ao aceitar (a história já foi ouvida). clear: lista de encontros da área; a missão termina quando todos estão vencidos (aldeia da Floresta).",
   "sewer_treasure": {
     "name_key": "QUEST_SEWER_TREASURE",
     "desc_key": "QUEST_SEWER_TREASURE_DESC",
@@ -15,5 +15,36 @@
     "bestiary": [
       "demon_rat_queen"
     ]
+  },
+  "forest_reptiles": {
+    "name_key": "QUEST_FOREST_REPTILES",
+    "desc_key": "QUEST_FOREST_REPTILES_DESC",
+    "type": "village",
+    "giver": "village_hunter",
+    "area": "forest_01_path",
+    "clear": [
+      "f_reptiles"
+    ],
+    "target_element": "earth",
+    "reward": {
+      "gold": 100,
+      "xp": 200
+    }
+  },
+  "forest_golems": {
+    "name_key": "QUEST_FOREST_GOLEMS",
+    "desc_key": "QUEST_FOREST_GOLEMS_DESC",
+    "type": "village",
+    "giver": "village_wife",
+    "area": "forest_01_path",
+    "clear": [
+      "f_golem_stone",
+      "f_golem_ice",
+      "f_golem_fire"
+    ],
+    "reward": {
+      "gold": 180,
+      "xp": 350
+    }
   }
 }

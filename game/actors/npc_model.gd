@@ -142,6 +142,10 @@ const MODELS := {
 		"poses": {"walk": "walk", "idle": "walk", "talk": "walk"}},
 	"chicken": {"scene": "res://assets/models/characters/chicken.glb", "scale": 0.032,
 		"poses": {"walk": "walk", "idle": "eat", "talk": "idle"}},
+	# Ovelha da Fazenda (Sheep rigged, textured and animated, p0ss, CC-BY-SA 3.0; tools/assets/build_sheep.sh):
+	# 1,2 m de comprimento no arquivo; anda devagar pelos campos e pasta parada.
+	"sheep": {"scene": "res://assets/models/characters/sheep.glb", "scale": 1.0,
+		"poses": {"walk": "walk", "idle": "eat", "talk": "idle"}},
 }
 
 var _anim: AnimationPlayer

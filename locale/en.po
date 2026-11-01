@@ -2535,3 +2535,9 @@ msgstr "Royal Capital — Aurenhold"
 
 msgid "PROP_TO_CAPITAL"
 msgstr "Portal to the Royal Capital"
+
+msgid "ARENA_FARM"
+msgstr "Farm"
+
+msgid "PROP_TO_FARM"
+msgstr "Path to the Farm"

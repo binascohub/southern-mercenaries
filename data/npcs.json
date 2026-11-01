@@ -1,5 +1,5 @@
 {
-  "_comment": "NPCs fixos da Taverna (04-tortuga-e-missoes.md, seção 3). dialogues: o primeiro cujo \"when\" bate é o usado; offer = missão oferecida no fim; service = serviço (rest: descansar). bestiary: criaturas que entram no bestiário ao ouvir a conversa. 'body': corpo do NPC (o mesmo dos heróis, hero_model.gd): sexo, cabelo, cor do cabelo, pose (sit, talk, torch, idle) e roupa por slot (material).",
+  "_comment": "NPCs fixos da Taverna (04-tortuga-e-missoes.md, seção 3). dialogues: o primeiro cujo \"when\" bate é o usado; offer = missão oferecida no fim; service = serviço (rest: descansar). bestiary: criaturas que entram no bestiário ao ouvir a conversa. 'body': corpo do NPC (o mesmo dos heróis, hero_model.gd): sexo, cabelo, cor do cabelo, pose (sit, talk, torch, idle) e roupa por slot (material). A Floresta (aldeia de Ferncroft): o casal Bertram (caçador) e Elara (curtidora) dá duas missões; terminam ao limpar os encontros listados em 'clear' de data/quests.json.",
   "old_drunk": {
     "name_key": "NPC_OLD_DRUNK",
     "color": [
@@ -201,6 +201,108 @@
         "body": "steel",
         "hands": "steel",
         "feet": "steel"
+      }
+    }
+  },
+  "village_hunter": {
+    "name_key": "NPC_VILLAGE_HUNTER",
+    "color": [
+      0.45,
+      0.5,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "forest_reptiles"
+        },
+        "lines": [
+          "DLG_HUNTER_1",
+          "DLG_HUNTER_2",
+          "DLG_HUNTER_3"
+        ],
+        "offer": "forest_reptiles"
+      },
+      {
+        "when": {
+          "quest_active": "forest_reptiles"
+        },
+        "lines": [
+          "DLG_HUNTER_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_HUNTER_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_SimpleParted",
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.32,
+        0.2,
+        0.1
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "copper",
+        "feet": "wood"
+      }
+    }
+  },
+  "village_wife": {
+    "name_key": "NPC_VILLAGE_WIFE",
+    "color": [
+      0.6,
+      0.35,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "forest_golems"
+        },
+        "lines": [
+          "DLG_WIFE_1",
+          "DLG_WIFE_2",
+          "DLG_WIFE_3"
+        ],
+        "offer": "forest_golems"
+      },
+      {
+        "when": {
+          "quest_active": "forest_golems"
+        },
+        "lines": [
+          "DLG_WIFE_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_WIFE_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "female",
+      "hair": [
+        "Hair_Long"
+      ],
+      "hair_color": [
+        0.45,
+        0.2,
+        0.1
+      ],
+      "pose": "talk",
+      "outfit": {
+        "body": "cloth"
       }
     }
   }

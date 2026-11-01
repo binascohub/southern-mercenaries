@@ -158,6 +158,7 @@ var _book_rank := ""
 var _second_holder: MeshInstance3D  ## adaga da mão esquerda do Ninja
 var _dagger_rank := ""
 var _shield_rank := ""
+var _sword_rank := ""
 var _shield_node: Node3D
 ## Peças equipadas no corpo (placeholder até os modelos modulares).
 var _shown_visual := {}
@@ -1381,6 +1382,7 @@ func _update_gear() -> void:
 	_update_book(HeroGear.rank_of(weapon))
 	_update_daggers(HeroGear.rank_of(weapon))
 	_update_shield(HeroGear.rank_of(weapon))
+	_update_sword(HeroGear.rank_of(weapon))
 	_staff_material.albedo_color = Color(GameData.materials.get(weapon, GameData.materials.wood).color)
 
 
@@ -1430,6 +1432,22 @@ func _update_shield(rank: String) -> void:
 	_shield_node = Kit.piece("Shield_" + rank)
 	# No antebraço esquerdo: a frente do escudo para fora do braço (ajustado a olho na pose de repouso).
 	_model.attach("lowerarm_l", _shield_node, Transform3D(Basis(Vector3.UP, -PI / 2.0).scaled(Vector3.ONE * 1.2), Vector3(0.0, 0.15, 0.08)), Vector3(-0.42, 1.0, 0.15))
+
+
+## Espada do Cavaleiro (Low Poly Swords, Lamoot, CC BY 3.0): uma espada por rank do material da arma, de D a S, no lugar da lança.
+func _update_sword(rank: String) -> void:
+	if class_id != "knight" or _weapon_holder == null or rank == _sword_rank or not Kit.has("Sword_" + rank):
+		return
+	_sword_rank = rank
+	var old: Variant = _weapon_holder.get_meta("weapon_node", null)
+	if old is Node:
+		(old as Node).free()
+	var sword := Kit.piece("Sword_" + rank)
+	_weapon_holder.mesh = null
+	sword.position = Vector3(0, -_weapon_holder.position.y + 0.3, 0)  # o punho segura perto do cabo
+	sword.rotation_degrees = Vector3(55.0, 0.0, 0.0)  # a ponta para cima e para a frente, não deitada como a lança
+	_weapon_holder.add_child(sword)
+	_weapon_holder.set_meta("weapon_node", sword)
 
 
 ## Cavalo placeholder: corpo, pescoço, cabeça e quatro patas.

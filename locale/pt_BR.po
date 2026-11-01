@@ -2535,3 +2535,9 @@ msgstr "Capital Real — Aurenhold"
 
 msgid "PROP_TO_CAPITAL"
 msgstr "Portal da Capital Real"
+
+msgid "ARENA_FARM"
+msgstr "Fazenda"
+
+msgid "PROP_TO_FARM"
+msgstr "Caminho para a Fazenda"

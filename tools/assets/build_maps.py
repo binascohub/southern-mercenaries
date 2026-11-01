@@ -161,7 +161,7 @@ f_enc = [
     {"id": "f_leshy", "position": [0, -76], "monsters": [{"monster": "leshy", "count": 1}]},
 ]
 # Um golem de cada: Pedra na clareira, Gelo na sala lateral, Fogo no bosque; e o bando de répteis no bosque. Entram depois de f_keep para não mudar o sorteio das plantas.
-f_extra = [{"id": "f_golem_stone", "position": [-12, -23], "monsters": [{"monster": "golem_stone", "count": 1}]},
+f_extra = [{"id": "f_golem_stone", "position": [-9, -25.5], "monsters": [{"monster": "golem_stone", "count": 1}]},
             {"id": "f_golem_ice", "position": [22, -12], "monsters": [{"monster": "golem_ice", "count": 1}]},
             {"id": "f_golem_fire", "position": [0, -62], "monsters": [{"monster": "golem_fire", "count": 1}]},
             {"id": "f_reptiles", "position": [-12, -45], "monsters": [{"monster": "forest_reptile", "count": 3}]}]
@@ -205,17 +205,72 @@ for rd, count in ((f_rooms[1], 2), (f_rooms[2], 1), (f_rooms[4], 2), (f_rooms[0]
     for spot in scatter(dr_, rd, ["deer"], count, margin=4.0, avoid=f_keep + f_fixed + [(g["position"][0], g["position"][1], 5) for g in f_extra] + [(d["position"][0], d["position"][1], 10) for d in f_deer]):
         f_deer.append({"id": "d%d" % (len(f_deer) + 1), "monster": "deer_buck" if len(f_deer) % 2 == 0 else "deer_doe",
                        "position": spot["position"], "table": "breakable_potion"})
+# --- Aldeia de Ferncroft (Medieval Props Pack 3, Daniel Andersson, CC0; casas do kit de Tortuga) ---------------------------------------------
+# Sala nova a oeste da clareira (porta no meio da parede). Os encontros e o sorteio das outras salas ficam como estavam: a porta nova da
+# clareira só entra na lista final de salas, e o que o sorteio pôs na passagem é tirado depois.
+village_room = room("village", -29, -17.5, 24, 21, ["east"], wall_height=0.8)
+f_rooms_out = [dict(r, doors=r["doors"] + ["west"]) if r["id"] == "glade" else r for r in f_rooms] + [village_room]
+f_decor = [d for d in f_decor if not (-20.5 < d["position"][0] < -13.5 and abs(d["position"][1] + 17.5) < 3.6)]
+
+
+def cabin(cx, cz, windows_first=True):
+    """Casa 4 x 4 m com a fachada para o sul (+Z): paredes do kit com colisão, cantos, piso de tábua e telhado."""
+    front = ["Wall_Plaster_Door_Round", "Wall_Plaster_Window_Wide_Round"] if windows_first else ["Wall_Plaster_Window_Thin_Round", "Wall_Plaster_Door_Round"]
+    walls = [(front[0], cx - 1, cz + 2, 0), (front[1], cx + 1, cz + 2, 0),
+             ("Wall_Plaster_Straight", cx - 1, cz - 2, 180), ("Wall_Plaster_Straight", cx + 1, cz - 2, 180),
+             ("Wall_Plaster_Window_Wide_Round", cx + 2, cz - 1, 90), ("Wall_Plaster_Straight", cx + 2, cz + 1, 90),
+             ("Wall_Plaster_Straight", cx - 2, cz - 1, 270), ("Wall_Plaster_Window_Thin_Round", cx - 2, cz + 1, 270)]
+    out = [{"piece": w, "position": [x, z], "rotation": r, "solid": [2.0, 0.5]} for w, x, z, r in walls]
+    out += [{"piece": "Corner_Exterior_Wood", "position": [cx + sx, cz + sz]} for sx in (-2, 2) for sz in (-2, 2)]
+    out += [{"piece": "Floor_WoodDark", "position": [cx + fx, cz + fz], "y": 0.03} for fx in (-1, 1) for fz in (-1, 1)]
+    out.append({"piece": "Roof_RoundTiles_4x4", "position": [cx, cz], "y": 3.2})
+    return out
+
+
+v_decor = cabin(-35, -23) + cabin(-26, -23.5, False)
+v_decor += [
+    {"piece": "Vl_Cellar", "position": [-38.5, -10], "solid": [2.4, 2.3]},
+    {"piece": "Vl_Outhouse", "position": [-39.5, -14.5], "solid": [1.4, 1.5]},
+    {"piece": "Vl_Logs", "position": [-39.2, -19.5], "rotation": 90, "solid": [2.2, 0.8]},
+    {"piece": "Vl_ChoppingBlock", "position": [-37.6, -17.2], "rotation": 30, "solid": [0.5, 0.5]},
+    {"piece": "Vl_TanningStand", "position": [-30.2, -24.4], "solid": [2.2, 0.5]},
+    {"piece": "Vl_FishRack", "position": [-21.0, -22.0], "solid": [2.1, 0.4]},
+    {"piece": "Vl_Ladder", "position": [-33.2, -25.2], "rotation": 0, "y": 0.0},
+    {"piece": "Well_Covered", "position": [-27.5, -15.5], "solid": [1.8, 1.8]},
+    {"piece": "Cart_Wood", "position": [-30.0, -9.6], "rotation": 15, "solid": [2.4, 1.3]},
+    {"piece": "Wheelbarrow", "position": [-34.5, -12.3], "rotation": 340, "solid": [1.0, 0.8]},
+    {"piece": "Barrel", "position": [-32.0, -26.3], "solid": [0.9, 0.9]},
+    {"piece": "Barrel", "position": [-22.0, -26.2], "solid": [0.9, 0.9]},
+    {"piece": "Crate_Wooden", "position": [-31.0, -26.4], "rotation": 20, "solid": [0.9, 0.9]},
+    {"piece": "Bucket_Wooden_1", "position": [-26.2, -16.9]},
+    {"piece": "Stool_Wood", "position": [-36.2, -17.0]},
+    {"piece": "Bench_Wood", "position": [-22.6, -19.4], "rotation": 0},
+    {"piece": "Mushroom_Cluster", "position": [-40.0, -25.2]}, {"piece": "Mushroom_Tall", "position": [-39.4, -25.8]},
+    {"piece": "Mushroom_Flat", "position": [-39.0, -7.9]},
+]
+vr = rng("forest_village")
+v_keep = [(-35, -23, 4.6), (-26, -23.5, 4.6), (-38.5, -10, 2.2), (-39.5, -14.5, 1.6), (-27.5, -15.5, 2.0), (-30, -9.6, 2.2),
+          (-19, -17.5, 4.0), (-34.5, -19, 2.0), (-30.2, -21.2, 2.0), (-30.2, -24.4, 2.0), (-21, -22, 2.0), (-39.2, -19.5, 2.0), (-37.6, -17.2, 1.5)]
+v_decor += ring(vr, village_room, ["Pl_Bamboo", "Pl_Bamboo", "Pl_Bush"], 2.4, scale=(0.9, 1.5))
+v_decor += scatter(vr, village_room, ["Pl_Bush", "Pl_Flower", "Pl_Swirl", "Pl_Shrub1", "Pl_Shrub3"], 10, margin=2.5, scale=(0.8, 1.4), avoid=v_keep)
+v_decor += scatter(vr, village_room, ["Pl_Weed1", "Pl_Weed2", "Pl_Weed3", "Pl_Weed4", "Pl_Weed5"], 60, margin=1.5, scale=(1.0, 2.0), avoid=v_keep)
+f_decor += v_decor
+v_props = [
+    {"id": "village_hunter", "kind": "npc", "npc": "village_hunter", "position": [-34.5, -19.0]},
+    {"id": "village_wife", "kind": "npc", "npc": "village_wife", "position": [-30.2, -21.2]},
+    {"id": "village_sign", "kind": "sign", "name_key": "PROP_VILLAGE_SIGN", "position": [-19.5, -14.6], "text_key": "PROP_VILLAGE_SIGN_TEXT"},
+]
 arenas["forest_01_path"] = {
     "_comment": "Floresta (04-tortuga-e-missoes.md, missão 3 na ordem do mapa: Tortuga -> Floresta -> Ruínas -> Cemitério -> Forte). Clareiras abertas com cerca viva de bambu e arbustos (Stylish Plants, Nobiax, CC0), obeliscos e pilares quebrados (Medieval Props Textured). O Leshy guarda o bosque do fundo. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_FOREST", "player_class": "mage", "map_id": "map_forest", "area_level": 3, "outdoor": True,
-    "wake_radius": 10.0, "alert_radius": 5.0, "rooms": f_rooms, "encounters": f_enc + f_extra, "hazards": [],
+    "wake_radius": 10.0, "alert_radius": 5.0, "rooms": f_rooms_out, "encounters": f_enc + f_extra, "hazards": [],
     "entries": {"start": [0, 3], "forest": [0, 3]},
     "props": [
         {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-6, 3], "to": "tortuga", "entry": "forest", "expedition_end": True},
         {"id": "to_ruins", "kind": "exit", "name_key": "PROP_TO_RUINS", "position": [0, -82], "to": "ruins_01_city", "entry": "start", "group": True},
         {"id": "forest_chest_1", "kind": "chest", "position": [24, -22], "loot": "chest"},
         {"id": "forest_chest_2", "kind": "chest", "position": [-14, -74], "loot": "chest"},
-    ],
+    ] + v_props,
     "quest_spots": [], "breakables": f_deer,
     "style": {"_comment": "Floresta: sem piso do kit (chão de grama), cerca viva de arbustos nas bordas.", "walls": [""], "floor": "Ground_Grass", "low": "Pl_Bush",
               "ground": [0.12, 0.2, 0.09]},

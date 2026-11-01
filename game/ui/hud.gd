@@ -384,7 +384,7 @@ func _refresh_texts() -> void:
 	if _quest_id != "":
 		var quest: Dictionary = GameData.quests.get(_quest_id, {})
 		var target: String = quest.get("target_element", "")
-		_quest_label.text = tr("HUD_QUEST").format({"quest": tr(quest.get("name_key", "")),
+		_quest_label.text = tr("HUD_QUEST" if target != "" else "HUD_QUEST_PLAIN").format({"quest": tr(quest.get("name_key", "")),
 			"weak": tr(Elements.data(Elements.weakness_of(target)).get("name_key", "")) if target != "" else ""})
 	_quest_label.visible = _quest_id != ""
 	var title := ""
