@@ -76,29 +76,29 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":78,
+			"count":82,
 			"max":[
 				1.2500040531158447,
 				2.8298349380493164,
-				0.6250025033950806
+				0.3750014901161194
 			],
 			"min":[
 				-1.2500100135803223,
-				0.21968995034694672,
-				-0.6250052452087402
+				0.2196899652481079,
+				-0.37500321865081787
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":78,
+			"count":82,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":78,
+			"count":82,
 			"type":"VEC2"
 		},
 		{
@@ -111,26 +111,26 @@
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":936,
+			"byteLength":984,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":936,
-			"byteOffset":936,
+			"byteLength":984,
+			"byteOffset":984,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":624,
-			"byteOffset":1872,
+			"byteLength":656,
+			"byteOffset":1968,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":228,
-			"byteOffset":2496,
+			"byteOffset":2624,
 			"target":34963
 		}
 	],
@@ -142,7 +142,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":2724,
+			"byteLength":2852,
 			"uri":"Fort_10111010.bin"
 		}
 	]

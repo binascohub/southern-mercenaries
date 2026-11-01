@@ -36,9 +36,9 @@ for path in files:
         for name in names:
             key = "Claimedwall" if "wall" in name.lower() else "Claimed"
             o.data.materials.append(material(key))
-        # O piso sai com 2 m (o lado do piso do kit); as pedras ficam com metade da altura (1,4 m): a câmera olha do sul
-        # e uma parede de 2,8 m na frente esconderia o herói.
-        o.scale = (0.8, 0.8, 1.0) if stem == "Claimed0" else (1.0, 1.0, 0.5)
+        # O piso sai com 2 m (o lado do piso do kit); as pedras ficam com 0,85 m de altura: a câmera olha do sul
+        # e uma parede alta na frente esconderia o herói.
+        o.scale = (0.8, 0.8, 1.0) if stem == "Claimed0" else (1.0, 1.0, 0.3)
         bpy.context.view_layer.objects.active = o
         o.select_set(True)
         bpy.ops.object.transform_apply(scale=True)
