@@ -18,68 +18,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Lab_ArcBig",
-			"rotation":[
-				0.5,
-				0.5,
-				-0.5,
-				0.5
-			],
-			"scale":[
-				0.02500000037252903,
-				0.02500000037252903,
-				0.02500000037252903
-			],
-			"translation":[
-				-13.407003402709961,
-				0.32507839798927307,
-				0.6540111303329468
-			]
-		}
-	],
-	"animations":[
-		{
-			"channels":[
-				{
-					"sampler":0,
-					"target":{
-						"node":0,
-						"path":"translation"
-					}
-				},
-				{
-					"sampler":1,
-					"target":{
-						"node":0,
-						"path":"rotation"
-					}
-				},
-				{
-					"sampler":2,
-					"target":{
-						"node":0,
-						"path":"scale"
-					}
-				}
-			],
-			"name":"arc_big|Take 001|BaseLayer",
-			"samplers":[
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":5
-				},
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":6
-				},
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":7
-				}
-			]
+			"name":"Lab_ArcBig"
 		}
 	],
 	"materials":[
@@ -162,36 +101,6 @@
 			"componentType":5123,
 			"count":2940,
 			"type":"SCALAR"
-		},
-		{
-			"bufferView":4,
-			"componentType":5126,
-			"count":1,
-			"max":[
-				0.03333333333333333
-			],
-			"min":[
-				0.03333333333333333
-			],
-			"type":"SCALAR"
-		},
-		{
-			"bufferView":5,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":6,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC4"
-		},
-		{
-			"bufferView":7,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
 		}
 	],
 	"bufferViews":[
@@ -218,26 +127,6 @@
 			"byteLength":5880,
 			"byteOffset":19776,
 			"target":34963
-		},
-		{
-			"buffer":0,
-			"byteLength":4,
-			"byteOffset":25656
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":25660
-		},
-		{
-			"buffer":0,
-			"byteLength":16,
-			"byteOffset":25672
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":25688
 		}
 	],
 	"samplers":[
@@ -248,7 +137,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":25700,
+			"byteLength":25656,
 			"uri":"Lab_ArcBig.bin"
 		}
 	]

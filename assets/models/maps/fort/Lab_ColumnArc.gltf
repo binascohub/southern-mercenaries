@@ -18,62 +18,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Lab_ColumnArc",
-			"scale":[
-				0.009999999776482582,
-				0.009999999776482582,
-				0.009999999776482582
-			],
-			"translation":[
-				-1.8144675493240356,
-				-0.0318114310503006,
-				1.0585440397262573
-			]
-		}
-	],
-	"animations":[
-		{
-			"channels":[
-				{
-					"sampler":0,
-					"target":{
-						"node":0,
-						"path":"translation"
-					}
-				},
-				{
-					"sampler":1,
-					"target":{
-						"node":0,
-						"path":"rotation"
-					}
-				},
-				{
-					"sampler":2,
-					"target":{
-						"node":0,
-						"path":"scale"
-					}
-				}
-			],
-			"name":"column_arc_full|Take 001|BaseLayer",
-			"samplers":[
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":5
-				},
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":6
-				},
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":7
-				}
-			]
+			"name":"Lab_ColumnArc"
 		}
 	],
 	"materials":[
@@ -156,36 +101,6 @@
 			"componentType":5123,
 			"count":492,
 			"type":"SCALAR"
-		},
-		{
-			"bufferView":4,
-			"componentType":5126,
-			"count":1,
-			"max":[
-				0.03333333333333333
-			],
-			"min":[
-				0.03333333333333333
-			],
-			"type":"SCALAR"
-		},
-		{
-			"bufferView":5,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":6,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC4"
-		},
-		{
-			"bufferView":7,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
 		}
 	],
 	"bufferViews":[
@@ -212,26 +127,6 @@
 			"byteLength":984,
 			"byteOffset":9216,
 			"target":34963
-		},
-		{
-			"buffer":0,
-			"byteLength":4,
-			"byteOffset":10200
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":10204
-		},
-		{
-			"buffer":0,
-			"byteLength":16,
-			"byteOffset":10216
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":10232
 		}
 	],
 	"samplers":[
@@ -242,7 +137,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":10244,
+			"byteLength":10200,
 			"uri":"Lab_ColumnArc.bin"
 		}
 	]

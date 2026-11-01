@@ -18,68 +18,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Lab_Arc2",
-			"rotation":[
-				0.5,
-				0.5,
-				-0.5,
-				0.5
-			],
-			"scale":[
-				0.02500000037252903,
-				0.02500000037252903,
-				0.02500000037252903
-			],
-			"translation":[
-				-10.029900550842285,
-				0.32507839798927307,
-				0.6540111303329468
-			]
-		}
-	],
-	"animations":[
-		{
-			"channels":[
-				{
-					"sampler":0,
-					"target":{
-						"node":0,
-						"path":"translation"
-					}
-				},
-				{
-					"sampler":1,
-					"target":{
-						"node":0,
-						"path":"rotation"
-					}
-				},
-				{
-					"sampler":2,
-					"target":{
-						"node":0,
-						"path":"scale"
-					}
-				}
-			],
-			"name":"arc_2|Take 001|BaseLayer",
-			"samplers":[
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":5
-				},
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":6
-				},
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":7
-				}
-			]
+			"name":"Lab_Arc2"
 		}
 	],
 	"materials":[
@@ -162,36 +101,6 @@
 			"componentType":5123,
 			"count":2106,
 			"type":"SCALAR"
-		},
-		{
-			"bufferView":4,
-			"componentType":5126,
-			"count":1,
-			"max":[
-				0.03333333333333333
-			],
-			"min":[
-				0.03333333333333333
-			],
-			"type":"SCALAR"
-		},
-		{
-			"bufferView":5,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":6,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC4"
-		},
-		{
-			"bufferView":7,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
 		}
 	],
 	"bufferViews":[
@@ -218,26 +127,6 @@
 			"byteLength":4212,
 			"byteOffset":14880,
 			"target":34963
-		},
-		{
-			"buffer":0,
-			"byteLength":4,
-			"byteOffset":19092
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":19096
-		},
-		{
-			"buffer":0,
-			"byteLength":16,
-			"byteOffset":19108
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":19124
 		}
 	],
 	"samplers":[
@@ -248,7 +137,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":19136,
+			"byteLength":19092,
 			"uri":"Lab_Arc2.bin"
 		}
 	]

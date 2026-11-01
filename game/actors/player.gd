@@ -155,6 +155,10 @@ var _ring_material: StandardMaterial3D
 var _staff_material: StandardMaterial3D
 var _weapon_holder: MeshInstance3D  ## onde a arma (ou o livro do Invocador) está presa
 var _book_rank := ""
+var _second_holder: MeshInstance3D  ## adaga da mão esquerda do Ninja
+var _dagger_rank := ""
+var _shield_rank := ""
+var _shield_node: Node3D
 ## Peças equipadas no corpo (placeholder até os modelos modulares).
 var _shown_visual := {}
 var _flash := 0.0
@@ -853,6 +857,7 @@ func _dress_weapon(holder: MeshInstance3D, piece_name: String, offset := Vector3
 		return
 	holder.mesh = null
 	holder.add_child(weapon)
+	holder.set_meta("weapon_node", weapon)
 	weapon.position = offset
 	for node in weapon.find_children("*", "MeshInstance3D", true, false):
 		var mesh := node as MeshInstance3D
@@ -1124,16 +1129,10 @@ func _build_visual() -> void:
 		staff_mesh.height = 2.4
 		staff.position = Vector3(0.4, 1.05, 0.7)
 		staff.rotation.x = PI / 2.0
-		var shield_node := MeshInstance3D.new()
-		var shield_mesh := BoxMesh.new()
-		shield_mesh.size = Vector3(0.08, 0.7, 0.5)
-		shield_node.mesh = shield_mesh
-		shield_node.material_override = _material(Color(0.45, 0.32, 0.2))
-		# No antebraço esquerdo, alinhado ao corpo na pose de descanso.
-		_model.attach("lowerarm_l", shield_node, Transform3D(Basis(Vector3(0, 1, 0), Vector3(-1, 0, 0), Vector3(0, 0, 1)),
-			Vector3(0.0, 0.15, 0.08)), Vector3(-0.42, 1.0, 0.15))
-		_horse = _build_horse()
-		_visual.add_child(_horse)
+		# O escudo (Cethiel's Weapons 3D, CC0) vem de _update_shield, conforme o rank do material da arma.
+		if data.has("mount"):
+			_horse = _build_horse()
+			_visual.add_child(_horse)
 	if summoner:
 		# Livro dos Amigos aberto na mão (a capa na cor do material).
 		staff.mesh = BoxMesh.new()
@@ -1149,6 +1148,7 @@ func _build_visual() -> void:
 		second.rotation = Vector3.ZERO
 		second.position = Vector3(0, 0.15, 0)
 		_dress_weapon(second, "Weapon_Stiletto")  # estilete na mão esquerda (tigeruppercut, CC0)
+		_second_holder = second
 		var left_hand := Node3D.new()
 		left_hand.add_child(second)
 		_model.attach("hand_l", left_hand, POINT_GRIP, Vector3(-0.42, 0.9, 0.35))
@@ -1379,6 +1379,8 @@ func _update_gear() -> void:
 		_model.set_outfit(equip_visual)
 	var weapon: String = equip_visual.get("weapon", "wood")
 	_update_book(HeroGear.rank_of(weapon))
+	_update_daggers(HeroGear.rank_of(weapon))
+	_update_shield(HeroGear.rank_of(weapon))
 	_staff_material.albedo_color = Color(GameData.materials.get(weapon, GameData.materials.wood).color)
 
 
@@ -1399,6 +1401,35 @@ func _update_book(rank: String) -> void:
 	book.scale = Vector3.ONE * 1.15
 	book.rotation_degrees = Vector3(-70.0, 0.0, 0.0)  # em pé, a capa para a frente
 	_weapon_holder.add_child(book)
+
+
+## Adagas do Ninja (Cethiel's Weapons 3D, CC0): as duas mãos levam a adaga do rank do material da arma, de D a S.
+func _update_daggers(rank: String) -> void:
+	if class_id != "ninja" or _weapon_holder == null or _second_holder == null or rank == _dagger_rank:
+		return
+	if not Kit.has("Dagger_" + rank):
+		return
+	_dagger_rank = rank
+	for holder: MeshInstance3D in [_weapon_holder, _second_holder]:
+		var old: Variant = holder.get_meta("weapon_node", null)
+		if old is Node:
+			(old as Node).free()
+		var dagger := Kit.piece("Dagger_" + rank)
+		holder.mesh = null
+		holder.add_child(dagger)
+		holder.set_meta("weapon_node", dagger)
+
+
+## Escudo do Cavaleiro (sem cavalo): no antebraço esquerdo, com a capa do rank do material da arma (D a S).
+func _update_shield(rank: String) -> void:
+	if class_id != "knight" or rank == _shield_rank or not Kit.has("Shield_" + rank):
+		return
+	_shield_rank = rank
+	if _shield_node:
+		_shield_node.get_parent().free()  # a peça e o BoneAttachment3D que a segurava
+	_shield_node = Kit.piece("Shield_" + rank)
+	# No antebraço esquerdo: a frente do escudo para fora do braço (ajustado a olho na pose de repouso).
+	_model.attach("lowerarm_l", _shield_node, Transform3D(Basis(Vector3.UP, -PI / 2.0).scaled(Vector3.ONE * 1.2), Vector3(0.0, 0.15, 0.08)), Vector3(-0.42, 1.0, 0.15))
 
 
 ## Cavalo placeholder: corpo, pescoço, cabeça e quatro patas.

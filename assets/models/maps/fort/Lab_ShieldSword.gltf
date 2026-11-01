@@ -18,62 +18,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Lab_ShieldSword",
-			"scale":[
-				0.009999999776482582,
-				0.009999999776482582,
-				0.009999999776482582
-			],
-			"translation":[
-				-16.80229949951172,
-				0,
-				6.2753825187683105
-			]
-		}
-	],
-	"animations":[
-		{
-			"channels":[
-				{
-					"sampler":0,
-					"target":{
-						"node":0,
-						"path":"translation"
-					}
-				},
-				{
-					"sampler":1,
-					"target":{
-						"node":0,
-						"path":"rotation"
-					}
-				},
-				{
-					"sampler":2,
-					"target":{
-						"node":0,
-						"path":"scale"
-					}
-				}
-			],
-			"name":"shield|Take 001|BaseLayer",
-			"samplers":[
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":5
-				},
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":6
-				},
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":7
-				}
-			]
+			"name":"Lab_ShieldSword"
 		}
 	],
 	"materials":[
@@ -156,36 +101,6 @@
 			"componentType":5123,
 			"count":390,
 			"type":"SCALAR"
-		},
-		{
-			"bufferView":4,
-			"componentType":5126,
-			"count":1,
-			"max":[
-				0.03333333333333333
-			],
-			"min":[
-				0.03333333333333333
-			],
-			"type":"SCALAR"
-		},
-		{
-			"bufferView":5,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":6,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC4"
-		},
-		{
-			"bufferView":7,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
 		}
 	],
 	"bufferViews":[
@@ -212,26 +127,6 @@
 			"byteLength":780,
 			"byteOffset":8448,
 			"target":34963
-		},
-		{
-			"buffer":0,
-			"byteLength":4,
-			"byteOffset":9228
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":9232
-		},
-		{
-			"buffer":0,
-			"byteLength":16,
-			"byteOffset":9244
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":9260
 		}
 	],
 	"samplers":[
@@ -242,7 +137,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":9272,
+			"byteLength":9228,
 			"uri":"Lab_ShieldSword.bin"
 		}
 	]

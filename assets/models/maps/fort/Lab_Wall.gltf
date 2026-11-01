@@ -18,68 +18,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Lab_Wall",
-			"rotation":[
-				0.70710688829422,
-				0,
-				0,
-				0.7071066498756409
-			],
-			"scale":[
-				0.009999999776482582,
-				0.009999999776482582,
-				0.009999999776482582
-			],
-			"translation":[
-				0.33672982454299927,
-				2,
-				-2.987271547317505
-			]
-		}
-	],
-	"animations":[
-		{
-			"channels":[
-				{
-					"sampler":0,
-					"target":{
-						"node":0,
-						"path":"translation"
-					}
-				},
-				{
-					"sampler":1,
-					"target":{
-						"node":0,
-						"path":"rotation"
-					}
-				},
-				{
-					"sampler":2,
-					"target":{
-						"node":0,
-						"path":"scale"
-					}
-				}
-			],
-			"name":"wall|Take 001|BaseLayer",
-			"samplers":[
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":5
-				},
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":6
-				},
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":7
-				}
-			]
+			"name":"Lab_Wall"
 		}
 	],
 	"materials":[
@@ -162,36 +101,6 @@
 			"componentType":5123,
 			"count":108,
 			"type":"SCALAR"
-		},
-		{
-			"bufferView":4,
-			"componentType":5126,
-			"count":1,
-			"max":[
-				0.03333333333333333
-			],
-			"min":[
-				0.03333333333333333
-			],
-			"type":"SCALAR"
-		},
-		{
-			"bufferView":5,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":6,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC4"
-		},
-		{
-			"bufferView":7,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
 		}
 	],
 	"bufferViews":[
@@ -218,26 +127,6 @@
 			"byteLength":216,
 			"byteOffset":2304,
 			"target":34963
-		},
-		{
-			"buffer":0,
-			"byteLength":4,
-			"byteOffset":2520
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":2524
-		},
-		{
-			"buffer":0,
-			"byteLength":16,
-			"byteOffset":2536
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":2552
 		}
 	],
 	"samplers":[
@@ -248,7 +137,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":2564,
+			"byteLength":2520,
 			"uri":"Lab_Wall.bin"
 		}
 	]

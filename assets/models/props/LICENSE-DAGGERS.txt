@@ -1,2 +1,3 @@
 Dagger_D.glb ... Dagger_S.glb — "Cethiel's Weapons 3D" by Drummyfish (3D models based on Cethiel's 2D weapon collection), CC0 1.0: https://opengameart.org/content/cethiels-weapons-3d
-Converted from the OBJ files by tools/assets/build_ninja_daggers.py (D sword_h, C sword_e variant 3, B sword_a variant 2, A sword_f, S sword_i variant 3; scaled to 0.5 m).
+Converted from the OBJ files by tools/assets/build_ninja_daggers.py (D sword_h, C sword_e variant 3, B sword_a variant 2, A sword_f, S sword_i variant 3; scaled to 0.75 m).
+Shield_D.glb ... Shield_S.glb — same pack, by tools/assets/build_knight_shields.py (D shield_c, C shield_b variant 2, B shield_a variant 3, A shield_b, S shield_d variant 2; 0.6 m).

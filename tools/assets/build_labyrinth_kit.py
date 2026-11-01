@@ -32,6 +32,7 @@ for name, (names, scale) in PIECES.items():
         o = srcobj[n]
         c = o.copy(); c.data = o.data.copy(); c.parent = None
         c.matrix_world = o.matrix_world.copy()
+        c.animation_data_clear()  # o FBX traz uma "take" por objeto, que o exportador gravaria como animação
         bpy.context.scene.collection.objects.link(c)
         copies.append(c)
     bpy.ops.object.select_all(action="DESELECT")
@@ -45,7 +46,12 @@ for name, (names, scale) in PIECES.items():
     mn, mx = world_bbox([obj])
     print("DIMS", name, [round(v * scale, 2) for v in (mx - mn)])
     obj.data.transform(Matrix.Scale(scale, 4) @ Matrix.Translation(Vector((-(mn.x + mx.x) / 2, -(mn.y + mx.y) / 2, -mn.z))) @ obj.matrix_world)
-    obj.matrix_world = Matrix.Identity(4)
+    obj.parent = None
+    obj.matrix_parent_inverse = Matrix.Identity(4)
+    obj.location, obj.scale, obj.rotation_euler = (0, 0, 0), (1, 1, 1), (0, 0, 0)
+    obj.delta_location, obj.delta_scale, obj.delta_rotation_euler = (0, 0, 0), (1, 1, 1), (0, 0, 0)  # o FBX traz a escala/posição aqui
+    obj.rotation_mode = "XYZ"
+    bpy.context.view_layer.update()
     for mat in obj.data.materials:
         if mat:
             mat.use_backface_culling = False
@@ -56,6 +62,6 @@ for name, (names, scale) in PIECES.items():
     bpy.ops.object.select_all(action="DESELECT")
     obj.select_set(True)
     bpy.ops.export_scene.gltf(filepath=os.path.join(out, "Lab_" + name + ".gltf"), export_format="GLTF_SEPARATE",
-                              export_image_format="JPEG", use_selection=True)
+                              export_image_format="JPEG", use_selection=True, export_animations=False)
     bpy.data.objects.remove(obj)
 print("OK", len(PIECES))

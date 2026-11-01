@@ -18,68 +18,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Lab_WallBroken",
-			"rotation":[
-				0.70710688829422,
-				0,
-				0,
-				0.7071066498756409
-			],
-			"scale":[
-				0.02500000037252903,
-				0.02500000037252903,
-				0.02500000037252903
-			],
-			"translation":[
-				1.9429744482040405,
-				0.3250785171985626,
-				8.529234886169434
-			]
-		}
-	],
-	"animations":[
-		{
-			"channels":[
-				{
-					"sampler":0,
-					"target":{
-						"node":0,
-						"path":"translation"
-					}
-				},
-				{
-					"sampler":1,
-					"target":{
-						"node":0,
-						"path":"rotation"
-					}
-				},
-				{
-					"sampler":2,
-					"target":{
-						"node":0,
-						"path":"scale"
-					}
-				}
-			],
-			"name":"wall_long_broken|Take 001|BaseLayer",
-			"samplers":[
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":5
-				},
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":6
-				},
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":7
-				}
-			]
+			"name":"Lab_WallBroken"
 		}
 	],
 	"materials":[
@@ -162,36 +101,6 @@
 			"componentType":5123,
 			"count":444,
 			"type":"SCALAR"
-		},
-		{
-			"bufferView":4,
-			"componentType":5126,
-			"count":1,
-			"max":[
-				0.03333333333333333
-			],
-			"min":[
-				0.03333333333333333
-			],
-			"type":"SCALAR"
-		},
-		{
-			"bufferView":5,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":6,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC4"
-		},
-		{
-			"bufferView":7,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
 		}
 	],
 	"bufferViews":[
@@ -218,26 +127,6 @@
 			"byteLength":888,
 			"byteOffset":5824,
 			"target":34963
-		},
-		{
-			"buffer":0,
-			"byteLength":4,
-			"byteOffset":6712
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":6716
-		},
-		{
-			"buffer":0,
-			"byteLength":16,
-			"byteOffset":6728
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":6744
 		}
 	],
 	"samplers":[
@@ -248,7 +137,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":6756,
+			"byteLength":6712,
 			"uri":"Lab_WallBroken.bin"
 		}
 	]

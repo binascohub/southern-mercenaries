@@ -18,62 +18,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Lab_Column",
-			"scale":[
-				0.009999999776482582,
-				0.009999999776482582,
-				0.009999999776482582
-			],
-			"translation":[
-				2.2002811431884766,
-				0,
-				-2.6872715950012207
-			]
-		}
-	],
-	"animations":[
-		{
-			"channels":[
-				{
-					"sampler":0,
-					"target":{
-						"node":0,
-						"path":"translation"
-					}
-				},
-				{
-					"sampler":1,
-					"target":{
-						"node":0,
-						"path":"rotation"
-					}
-				},
-				{
-					"sampler":2,
-					"target":{
-						"node":0,
-						"path":"scale"
-					}
-				}
-			],
-			"name":"column|Take 001|BaseLayer",
-			"samplers":[
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":5
-				},
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":6
-				},
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":7
-				}
-			]
+			"name":"Lab_Column"
 		}
 	],
 	"materials":[
@@ -156,36 +101,6 @@
 			"componentType":5123,
 			"count":108,
 			"type":"SCALAR"
-		},
-		{
-			"bufferView":4,
-			"componentType":5126,
-			"count":1,
-			"max":[
-				0.03333333333333333
-			],
-			"min":[
-				0.03333333333333333
-			],
-			"type":"SCALAR"
-		},
-		{
-			"bufferView":5,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":6,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC4"
-		},
-		{
-			"bufferView":7,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
 		}
 	],
 	"bufferViews":[
@@ -212,26 +127,6 @@
 			"byteLength":216,
 			"byteOffset":2304,
 			"target":34963
-		},
-		{
-			"buffer":0,
-			"byteLength":4,
-			"byteOffset":2520
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":2524
-		},
-		{
-			"buffer":0,
-			"byteLength":16,
-			"byteOffset":2536
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":2552
 		}
 	],
 	"samplers":[
@@ -242,7 +137,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":2564,
+			"byteLength":2520,
 			"uri":"Lab_Column.bin"
 		}
 	]

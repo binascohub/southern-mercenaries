@@ -1,5 +1,5 @@
 """Adagas do Ninja por rank (Cethiel's Weapons 3D, Drummyfish sobre arte de Cethiel, CC0, opengameart.org/content/cethiels-weapons-3d):
-as espadas do pacote em tamanho de adaga (0,5 m), de pé (lâmina em +Y), com o meio na origem, uma .glb por rank
+as espadas do pacote em tamanho de adaga (0,75 m), de pé (lâmina em +Y), com o meio na origem, uma .glb por rank
 (Dagger_D ... Dagger_S) com a textura escolhida para o rank.
 uso: build_ninja_daggers.py <pasta do pacote descompactado> <saída>"""
 import bpy, sys, os
@@ -8,7 +8,7 @@ src, out = sys.argv[sys.argv.index("--") + 1:]
 # rank: (modelo, textura): D reta e simples, C fina e curva, B serrilhada, A de espinhos de gelo, S escura e ornada.
 PICK = {"D": ("sword_h", "sword_h.png"), "C": ("sword_e", "sword_e_3.png"), "B": ("sword_a", "sword_a_2.png"),
         "A": ("sword_f", "sword_f.png"), "S": ("sword_i", "sword_i_3.png")}
-LENGTH = 0.5
+LENGTH = 0.75
 for rank, (model, tex) in PICK.items():
     bpy.ops.wm.read_factory_settings(use_empty=True)
     bpy.ops.wm.obj_import(filepath=os.path.join(src, model + ".obj"))

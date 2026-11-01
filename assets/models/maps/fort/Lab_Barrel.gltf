@@ -18,62 +18,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Lab_Barrel",
-			"scale":[
-				0.02500000037252903,
-				0.02500000037252903,
-				0.02500000037252903
-			],
-			"translation":[
-				-14.811216354370117,
-				-1.2242860794067383,
-				2.5050466060638428
-			]
-		}
-	],
-	"animations":[
-		{
-			"channels":[
-				{
-					"sampler":0,
-					"target":{
-						"node":0,
-						"path":"translation"
-					}
-				},
-				{
-					"sampler":1,
-					"target":{
-						"node":0,
-						"path":"rotation"
-					}
-				},
-				{
-					"sampler":2,
-					"target":{
-						"node":0,
-						"path":"scale"
-					}
-				}
-			],
-			"name":"Cylinder001|Take 001|BaseLayer",
-			"samplers":[
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":5
-				},
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":6
-				},
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":7
-				}
-			]
+			"name":"Lab_Barrel"
 		}
 	],
 	"materials":[
@@ -156,36 +101,6 @@
 			"componentType":5123,
 			"count":1080,
 			"type":"SCALAR"
-		},
-		{
-			"bufferView":4,
-			"componentType":5126,
-			"count":1,
-			"max":[
-				0.03333333333333333
-			],
-			"min":[
-				0.03333333333333333
-			],
-			"type":"SCALAR"
-		},
-		{
-			"bufferView":5,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":6,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC4"
-		},
-		{
-			"bufferView":7,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
 		}
 	],
 	"bufferViews":[
@@ -212,26 +127,6 @@
 			"byteLength":2160,
 			"byteOffset":14048,
 			"target":34963
-		},
-		{
-			"buffer":0,
-			"byteLength":4,
-			"byteOffset":16208
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":16212
-		},
-		{
-			"buffer":0,
-			"byteLength":16,
-			"byteOffset":16224
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":16240
 		}
 	],
 	"samplers":[
@@ -242,7 +137,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":16252,
+			"byteLength":16208,
 			"uri":"Lab_Barrel.bin"
 		}
 	]

@@ -18,68 +18,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Lab_ColumnBroken",
-			"rotation":[
-				0.70710688829422,
-				0,
-				0,
-				0.7071066498756409
-			],
-			"scale":[
-				0.02500000037252903,
-				0.02500000037252903,
-				0.02500000037252903
-			],
-			"translation":[
-				-1.925276279449463,
-				0.3238999843597412,
-				8.579911231994629
-			]
-		}
-	],
-	"animations":[
-		{
-			"channels":[
-				{
-					"sampler":0,
-					"target":{
-						"node":0,
-						"path":"translation"
-					}
-				},
-				{
-					"sampler":1,
-					"target":{
-						"node":0,
-						"path":"rotation"
-					}
-				},
-				{
-					"sampler":2,
-					"target":{
-						"node":0,
-						"path":"scale"
-					}
-				}
-			],
-			"name":"column_broken|Take 001|BaseLayer",
-			"samplers":[
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":5
-				},
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":6
-				},
-				{
-					"input":4,
-					"interpolation":"LINEAR",
-					"output":7
-				}
-			]
+			"name":"Lab_ColumnBroken"
 		}
 	],
 	"materials":[
@@ -162,36 +101,6 @@
 			"componentType":5123,
 			"count":219,
 			"type":"SCALAR"
-		},
-		{
-			"bufferView":4,
-			"componentType":5126,
-			"count":1,
-			"max":[
-				0.03333333333333333
-			],
-			"min":[
-				0.03333333333333333
-			],
-			"type":"SCALAR"
-		},
-		{
-			"bufferView":5,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":6,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC4"
-		},
-		{
-			"bufferView":7,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
 		}
 	],
 	"bufferViews":[
@@ -218,26 +127,6 @@
 			"byteLength":438,
 			"byteOffset":2464,
 			"target":34963
-		},
-		{
-			"buffer":0,
-			"byteLength":4,
-			"byteOffset":2904
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":2908
-		},
-		{
-			"buffer":0,
-			"byteLength":16,
-			"byteOffset":2920
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":2936
 		}
 	],
 	"samplers":[
@@ -248,7 +137,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":2948,
+			"byteLength":2904,
 			"uri":"Lab_ColumnBroken.bin"
 		}
 	]

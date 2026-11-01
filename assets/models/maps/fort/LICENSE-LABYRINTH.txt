@@ -1,0 +1,4 @@
+Lab_*.gltf and their textures — "3D Walls & Props" (Labyrinth) by deadkir
+https://opengameart.org/content/3d-walls-props
+CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+Changes: the pieces are exported one by one from the FBX by tools/assets/build_labyrinth_kit.py (architecture scaled to 0.65, FBX takes dropped).
