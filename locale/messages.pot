@@ -2450,3 +2450,39 @@ msgstr ""
 
 msgid "TIP_MAP"
 msgstr ""
+
+msgid "ARENA_FOREST"
+msgstr ""
+
+msgid "ARENA_RUINS"
+msgstr ""
+
+msgid "ARENA_CEMETERY"
+msgstr ""
+
+msgid "ARENA_FORT"
+msgstr ""
+
+msgid "PROP_TO_FOREST"
+msgstr ""
+
+msgid "PROP_TO_RUINS"
+msgstr ""
+
+msgid "PROP_TO_CEMETERY"
+msgstr ""
+
+msgid "PROP_TO_FORT"
+msgstr ""
+
+msgid "MONSTER_LESHY"
+msgstr ""
+
+msgid "MONSTER_RUIN_WARDEN"
+msgstr ""
+
+msgid "MONSTER_CRYPT_SCORPION"
+msgstr ""
+
+msgid "MONSTER_FORT_COMMANDER"
+msgstr ""

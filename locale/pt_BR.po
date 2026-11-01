@@ -2451,3 +2451,39 @@ msgstr "Barris e caixotes quebram com {button}: podem ter poções, ouro… ou r
 
 msgid "TIP_MAP"
 msgstr "O mapa se revela conforme você explora. {button} amplia o mapa."
+
+msgid "ARENA_FOREST"
+msgstr "Floresta Escura"
+
+msgid "ARENA_RUINS"
+msgstr "Ruínas da Cidade"
+
+msgid "ARENA_CEMETERY"
+msgstr "Cemitério"
+
+msgid "ARENA_FORT"
+msgstr "Forte"
+
+msgid "PROP_TO_FOREST"
+msgstr "Trilha para a Floresta"
+
+msgid "PROP_TO_RUINS"
+msgstr "Caminho das Ruínas"
+
+msgid "PROP_TO_CEMETERY"
+msgstr "Portão do Cemitério"
+
+msgid "PROP_TO_FORT"
+msgstr "Estrada do Forte"
+
+msgid "MONSTER_LESHY"
+msgstr "Leshy"
+
+msgid "MONSTER_RUIN_WARDEN"
+msgstr "Guardião do Cofre"
+
+msgid "MONSTER_CRYPT_SCORPION"
+msgstr "Escorpião da Cripta"
+
+msgid "MONSTER_FORT_COMMANDER"
+msgstr "Comandante Amaldiçoado"

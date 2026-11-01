@@ -2451,3 +2451,39 @@ msgstr "Barrels and crates break with {button}: they may hold potions, gold... o
 
 msgid "TIP_MAP"
 msgstr "The map reveals itself as you explore. {button} enlarges it."
+
+msgid "ARENA_FOREST"
+msgstr "Dark Forest"
+
+msgid "ARENA_RUINS"
+msgstr "City Ruins"
+
+msgid "ARENA_CEMETERY"
+msgstr "Graveyard"
+
+msgid "ARENA_FORT"
+msgstr "Fort"
+
+msgid "PROP_TO_FOREST"
+msgstr "Path to the Forest"
+
+msgid "PROP_TO_RUINS"
+msgstr "Road to the Ruins"
+
+msgid "PROP_TO_CEMETERY"
+msgstr "Graveyard Gate"
+
+msgid "PROP_TO_FORT"
+msgstr "Road to the Fort"
+
+msgid "MONSTER_LESHY"
+msgstr "Leshy"
+
+msgid "MONSTER_RUIN_WARDEN"
+msgstr "Vault Warden"
+
+msgid "MONSTER_CRYPT_SCORPION"
+msgstr "Crypt Scorpion"
+
+msgid "MONSTER_FORT_COMMANDER"
+msgstr "Cursed Commander"

@@ -2524,6 +2524,19 @@ func _build_decor(decor: Dictionary) -> void:
 		light.position = Vector3(decor.position[0], float(decor.get("y", 2.0)), decor.position[1])
 		_area_root.add_child(light)
 		return
+	if decor.has("collider"):
+		# Só colisão (as paredes das Ruínas já estão desenhadas na peça Ruins_Layout).
+		var wall := StaticBody3D.new()
+		wall.collision_layer = 1
+		wall.collision_mask = 0
+		var wall_shape := CollisionShape3D.new()
+		var wall_box := BoxShape3D.new()
+		wall_box.size = Vector3(decor.collider[0], 3.0, decor.collider[1])
+		wall_shape.shape = wall_box
+		wall.add_child(wall_shape)
+		wall.position = Vector3(decor.position[0], 1.5, decor.position[1])
+		_area_root.add_child(wall)
+		return
 	var node := Kit.piece(String(decor.piece))
 	if node == null:
 		return

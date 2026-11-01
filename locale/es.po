@@ -2451,3 +2451,39 @@ msgstr "Barriles y cajones se rompen con {button}: pueden tener pociones, oro...
 
 msgid "TIP_MAP"
 msgstr "El mapa se revela a medida que exploras. {button} lo amplía."
+
+msgid "ARENA_FOREST"
+msgstr "Bosque Oscuro"
+
+msgid "ARENA_RUINS"
+msgstr "Ruinas de la Ciudad"
+
+msgid "ARENA_CEMETERY"
+msgstr "Cementerio"
+
+msgid "ARENA_FORT"
+msgstr "Fuerte"
+
+msgid "PROP_TO_FOREST"
+msgstr "Sendero al Bosque"
+
+msgid "PROP_TO_RUINS"
+msgstr "Camino a las Ruinas"
+
+msgid "PROP_TO_CEMETERY"
+msgstr "Portón del Cementerio"
+
+msgid "PROP_TO_FORT"
+msgstr "Camino al Fuerte"
+
+msgid "MONSTER_LESHY"
+msgstr "Leshy"
+
+msgid "MONSTER_RUIN_WARDEN"
+msgstr "Guardián de la Cámara"
+
+msgid "MONSTER_CRYPT_SCORPION"
+msgstr "Escorpión de la Cripta"
+
+msgid "MONSTER_FORT_COMMANDER"
+msgstr "Comandante Maldito"
