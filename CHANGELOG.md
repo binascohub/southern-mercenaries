@@ -2,6 +2,33 @@
 
 ## [Unreleased]
 
+## [0.2.0] — 2026-11-01
+
+The visual pass up to the first boss: the vertical slice of 0.1.0 (Tortuga, the Tavern, the four Sewer areas and the Rat Queen) now has real models, animations, effects and a medieval interface, all from CC0, CC BY and CC BY-SA sources listed in `CREDITS.md`.
+
+### Interface
+- Medieval theme (parchment, leather, gold frames) with the Cinzel and Alegreya fonts (SIL OFL); minimap, boss bar, tip balloon and journal in the theme.
+- The game's currency is the **Binascoin (B$)**.
+- Keyboard: skills on **1–4**, potions on **Q** (health), **E** (resource) and **R** (elemental); W A S D unchanged.
+- The element of the monsters now shows in a parchment panel ("Creatures in this area") when the group enters a map area, instead of a gem over each monster.
+- Potion and refining-crystal icons in the inventory.
+
+### Heroes
+- Animated heroes (Quaternius Universal Animation Library 1 and 2, Base Characters, Outfits): Peasant clothes by default, Ranger pieces tinted by the equipped material; three-hit sword combo, drinking, opening chests, knockback.
+- Weapons: the Mage's staff with a cut crystal glowing in the element color, the Archer's longbow and quiver, the Knight's halberd and galloping horse, the Ninja's curved dagger and stiletto.
+- Spell and hit effects with particles per element (flames, drops, swirl, pebbles), glowing projectiles with trails, bursts and beams.
+
+### Tortuga and the Tavern
+- The town built from the Medieval Village and Fantasy Props kits; a chaotic street with drunks, courtesans (two kinds), pirate captains, guards, gamblers, beggars, street brawls and chickens; the pirate galleon at the pier; a covered well, beer barrels, crates, a watchtower, a training yard with archery targets, weapon racks and stake barricades.
+- Tavern visitors, mugs on the tables and in the drunks' hands; story NPCs dressed for their roles.
+
+### The Sewers
+- Slimy brick walls and floors, dirt and drips on the walls, green pipes leaking sludge, iron floor grates, dirty-water puddles, lots of trash, mushrooms, breakable clay pots (shards fly), little red spiders walking around; walls between the camera and the hero hide (cutaway).
+- Animated monsters: rats, bats, gators, the Acid Toad, the Venom Scorpion (throws venom in an arc, War Passage) and the rare **Golden Lizard** (never attacks, runs and drops coins when hit). Bodies stay and play their death animation.
+- Sewer creatures only fight back; only the boss attacks on sight.
+- **The Rat Queen**: a slim body with a crowned rat head and a tail; at half health she sprouts **bat wings** and uses the **Wing Gust** (pushes heroes away); the Pact's gas bursts from the nearest pipe. Rat nests of straw and rags with pups.
+- The boss's treasure chest waits locked: the Queen drops the **key of hearts** that opens it. A floating save crystal at each checkpoint lights up when the game saves.
+
 ## [0.1.0] — 2026-10-31
 
 First public version (`docs/01-escopo.md`, section 9, phase 7): the vertical slice of the campaign — from the Old Drunk's story in the Tortuga tavern, through the four areas of the Tortuga Sewers, to the Rat Queen and the Lost Treasure of the War — solo or in LAN co-op for up to 4 players, in English, Spanish and Brazilian Portuguese, on Windows and Linux. Art, models and sound are still placeholders.
