@@ -31,7 +31,7 @@ func _ready() -> void:
 	for key in ["CONTROLS_ACTION", "CONTROLS_KEYBOARD", "CONTROLS_GAMEPAD"]:
 		var header := Label.new()
 		header.text = key
-		header.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
+		header.add_theme_color_override("font_color", Color(0.45, 0.09, 0.07))
 		_grid.add_child(header)
 	for action in Controls.REMAPPABLE:
 		var label := Label.new()

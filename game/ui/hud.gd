@@ -67,22 +67,39 @@ const TOAST_TIME := 3.0
 
 func _ready() -> void:
 	_build()
-	InputDevice.device_changed.connect(func(_pad: bool) -> void: _refresh_texts())
+	# Métodos (e não funções anônimas) nos sinais globais, que seguem disparando depois que
+	# o HUD é liberado (trocar de cena); as conexões se desfazem sozinhas com o nó.
+	InputDevice.device_changed.connect(_on_device_changed)
 	Controls.bindings_changed.connect(_refresh_texts)
 	Settings.changed.connect(_refresh_texts)
-	SaveSystem.saving.connect(func(active: bool) -> void:
-		if active:
-			_saving.visible = true
-			_saving.modulate.a = 1.0
-			var tween := create_tween()
-			tween.tween_interval(0.8)
-			tween.tween_property(_saving, "modulate:a", 0.0, 0.4)
-			tween.tween_callback(func() -> void: _saving.visible = false))
+	SaveSystem.saving.connect(_on_saving)
 	TipManager.tip_shown.connect(_on_tip_shown)
-	TipManager.tip_hidden.connect(func() -> void:
-		_tip_id = ""
-		_tip.visible = false)
+	TipManager.tip_hidden.connect(_on_tip_hidden)
 	_refresh_texts()
+
+
+func _on_device_changed(_pad: bool) -> void:
+	_refresh_texts()
+
+
+func _on_saving(active: bool) -> void:
+	if not active:
+		return
+	_saving.visible = true
+	_saving.modulate.a = 1.0
+	var tween := create_tween()
+	tween.tween_interval(0.8)
+	tween.tween_property(_saving, "modulate:a", 0.0, 0.4)
+	tween.tween_callback(_hide_saving)
+
+
+func _hide_saving() -> void:
+	_saving.visible = false
+
+
+func _on_tip_hidden() -> void:
+	_tip_id = ""
+	_tip.visible = false
 
 
 func _on_tip_shown(id: String, text: String) -> void:

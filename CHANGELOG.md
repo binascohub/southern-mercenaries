@@ -9,10 +9,26 @@
 - The sewer rats are five times bigger (plague rat, sewer rat, big sewer rat and mutant rat): their size and bite reach grow with the body, health and damage are unchanged. Unaware rats now patrol around where they were born instead of standing still (they walk through each other until they notice you).
 - The Golden Lizard now takes about five hits (400 health) and each hit showers 4 coins (10 to 25 gold in all), plus 150 gold when it dies.
 
+### Menus
+- **One visual identity for everything**: `docs/09-interface.md` section 7 now states the rule (Tortuga at night, gold / navy / wax-red on leather and parchment) and `CONTRIBUTING.md` points to it.
+- New main menu: a text-free cover image (the mercenaries resting on a pile of gold among ruins at sunset) fills the window, with the game title as an embossed, textured gold image (two lines, compass stars; `tools/ui/make_title.py`) and the leather button column on the left over a soft dark veil.
+- The crest is a golden rabbit sitting on the crossed swords, and the whole shield sways gently from side to side on its chains.
+- Windows and dialogs are pieces of old paper (fibres, damp stains, rust spots, torn and scorched edges, ink-dark text, wax-red titles); buttons and select fields are textured dark leather with stitching and a brass rim. Generated in code (`ui_theme.gd`); new OFL fonts in `CREDITS.md`.
+
+### Market stalls
+- Tortuga's trade stalls are now built in code after the author's reference (`game/levels/market_stall.gd`): a yellow-and-green striped awning for the Apothecary, a blue-and-white one for the Armorer, a shingle roof on blue posts for the Weaponsmith, a teal tent with pink scalloped trim and tied curtains for the Witch Doctor, and a ramshackle checkered-cloth roof over the Blacksmith's forge; each with a plank counter or table and back shelves.
+
+### Dancing
+- The dancers now use the Universal Animation Library's own dance (`Dance`, the one the heroes have), retargeted to the courtesan skeleton (`game/actors/dance_retarget.gd`) in four variations: slow with swaying hips, mirrored with emphasized hips, a twirl and a faster party dance. The skirts hang from the root so they no longer tilt with the hips. The old hand-made dances stay only as a fallback.
+
+### Clothes
+- The courtesans and dancers (who wore a top and shorts) now wear long medieval gowns built in code from the author's references (`game/actors/clothing.gd`): royal blue with a yellow panel, crimson, wine with teal and gold lacing, orange with lime, black with purple and red linen, with bell, puff or cap sleeves and a contrasting centre panel. The gowns follow the bones, so they move with the dances. Everyone else keeps their own clothes; the code also knows vests, a wide-sleeved robe, a laced linen shirt and linen dresses (`"clothes"` in `data/crowd.json`) for later.
+
 ### Heroes
 - **Jump** (key `X`, remappable; no default gamepad button): a 0.9 m hop in 0.6 s with the heroes' jump animation, synced in co-op. In the air you can walk and attack, and you pass over toxic puddles.
 
 ### Tavern
+- The Bartender (cdmir, CC0), already seated as the visitors, now also works behind the counter, standing and gesturing to whoever comes in (the file only has a sitting animation, so the standing one is made in code).
 - An old lady (CC0) sits on a chair at a table in the Drowned Crow Tavern with wooden beer mugs in front of her (`tools/assets/build_old_lady.py`).
 
 ### Tortuga

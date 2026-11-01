@@ -15,6 +15,7 @@ func _init() -> void:
 	grow_horizontal = Control.GROW_DIRECTION_BOTH
 	grow_vertical = Control.GROW_DIRECTION_BOTH
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	theme = UiTheme.paper_theme()
 	var margin := MarginContainer.new()
 	for side in ["left", "right", "top", "bottom"]:
 		margin.add_theme_constant_override("margin_" + side, 24)
@@ -62,6 +63,7 @@ func add_title(key: String) -> Label:
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.theme_type_variation = &"TitleLabel"
 	content.add_child(label)
+	content.add_child(OrnamentDivider.new())
 	return label
 
 

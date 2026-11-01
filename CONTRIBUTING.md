@@ -11,6 +11,7 @@ Thanks for your interest in Southern Mercenaries!
 - No hardcoded text: use translation keys (`tr()`). Languages: `en`, `es`, `pt_BR`.
 - Use Input Map actions, never fixed keys (keyboard and gamepad must work).
 - Must run well on integrated GPUs and on both Windows and Linux.
+- **One visual identity.** Everything visual (menus, windows, HUD, characters, clothes, scenery, effects, icons) follows the identity in `docs/09-interface.md`, section 7: Tortuga at night, gold / navy / wax-red on dark leather and parchment, Pirata One titles with the brass divider, the golden rabbit crest. Do not add pieces in another style: change the new piece to fit (or propose a change to the identity for the whole game). Check new art in a screenshot next to the existing screens.
 - Only add assets that are your own or CC0 / CC BY / CC BY-SA, and list them in `CREDITS.md`. No Mixamo, no assets that forbid redistribution.
 
 ## License

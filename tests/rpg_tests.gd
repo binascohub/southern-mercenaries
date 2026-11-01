@@ -877,7 +877,7 @@ func _test_ui_theme() -> void:
 	for item in [["panel", "PanelContainer"], ["panel", "ParchmentPanel"], ["panel", "HudPanel"], ["normal", "Button"], ["hover", "Button"], ["pressed", "Button"], ["focus", "Button"], ["background", "ProgressBar"]]:
 		_check(theme.has_stylebox(item[0], item[1]), "tema: %s de %s" % item)
 	var frame := theme.get_stylebox("panel", "PanelContainer") as StyleBoxTexture
-	_check(frame != null and frame.texture != null and frame.texture.get_width() == UiTheme.FRAME * 4, "moldura de madeira gerada (9-patch)")
+	_check(frame != null and frame.texture != null and frame.texture.get_width() == UiTheme.PAPER_PERIOD + UiTheme.PAPER_MARGIN * 2, "janela de papel antigo gerada (9-patch)")
 	var default := ThemeDB.get_default_theme()
 	_check(default.get_stylebox("panel", "PanelContainer") == theme.get_stylebox("panel", "PanelContainer")
 		and default.default_font == theme.default_font, "o tema vale para todos os controles (tema padrão)")

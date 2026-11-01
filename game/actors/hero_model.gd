@@ -106,10 +106,9 @@ func setup(sex: String, look: Dictionary) -> void:
 			_base_colors.append(copy.albedo_color)
 	set_outfit({})
 	if _anim:
-		_anim.animation_finished.connect(func(_name: StringName) -> void:
-			_action = ""
-			if _pose != "":
-				_play(_pose))
+		if sex == "female":
+			_drop_finger_tracks()
+		_anim.animation_finished.connect(_on_animation_finished)
 		for key: String in ANIMS:
 			var wanted: String = ANIMS[key]
 			for candidate in [wanted, wanted.trim_suffix("_Loop")]:
@@ -119,6 +118,25 @@ func setup(sex: String, look: Dictionary) -> void:
 						_anim.get_animation(candidate).loop_mode = Animation.LOOP_LINEAR
 					break
 		_play("idle", 0.0)  # sem transição desde a pose de descanso
+
+
+## As animações giram os dedos pensando no corpo masculino: no esqueleto da heroína eles
+## abrem em leque (garras). Sem essas faixas a mão fica na pose de repouso, natural.
+func _drop_finger_tracks() -> void:
+	for animation_name in _anim.get_animation_list():
+		var animation := _anim.get_animation(animation_name)
+		for track in range(animation.get_track_count() - 1, -1, -1):
+			var bone := String(animation.track_get_path(track).get_concatenated_subnames())
+			for finger in ["index_", "middle_", "ring_", "pinky_", "thumb_"]:
+				if bone.begins_with(finger):
+					animation.remove_track(track)
+					break
+
+
+func _on_animation_finished(_name: StringName) -> void:
+	_action = ""
+	if _pose != "" and is_inside_tree():
+		_play(_pose)
 
 
 ## Mostra as peças conforme o equipamento ({slot: material}); tinge as de Ranger.

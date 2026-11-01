@@ -312,7 +312,8 @@
         "position": [
           -20,
           -5.5
-        ]
+        ],
+        "stall": "awning_yellow"
       },
       {
         "id": "shop_weapons",
@@ -322,7 +323,8 @@
         "position": [
           -12,
           -5.5
-        ]
+        ],
+        "stall": "shingle_blue"
       },
       {
         "id": "shop_armor",
@@ -332,7 +334,8 @@
         "position": [
           -4,
           -5.5
-        ]
+        ],
+        "stall": "awning_blue"
       },
       {
         "id": "sewer_entrance",
@@ -418,7 +421,8 @@
         "position": [
           16,
           -5.5
-        ]
+        ],
+        "stall": "tent_teal"
       },
       {
         "id": "master",
@@ -446,7 +450,8 @@
         "position": [
           4,
           -5.5
-        ]
+        ],
+        "stall": "patch"
       }
     ],
     "dummies": [
@@ -2417,6 +2422,15 @@
         "rotation": 180,
         "pose": "sit",
         "seat": "Chair_1"
+      },
+      {
+        "role": "bartender",
+        "position": [
+          -2.9,
+          -5.15
+        ],
+        "rotation": 0,
+        "pose": "stand"
       }
     ]
   },

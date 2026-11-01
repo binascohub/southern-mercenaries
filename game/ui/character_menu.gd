@@ -29,7 +29,7 @@ func _ready() -> void:
 	content.add_child(_create)
 	var create_title := Label.new()
 	create_title.text = "CHAR_NEW"
-	create_title.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
+	create_title.add_theme_color_override("font_color", Color(0.45, 0.09, 0.07))
 	_create.add_child(create_title)
 	_class = OptionButton.new()
 	for id in GameData.classes:

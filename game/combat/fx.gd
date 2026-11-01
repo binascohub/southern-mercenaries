@@ -126,9 +126,9 @@ static func burst(parent: Node, at: Vector3, radius: float, color: Color, elemen
 	root.add_child(p)
 	var life := maxf(duration, 0.3)
 	if lasting:
-		root.get_tree().create_timer(life, false).timeout.connect(func() -> void:
-			if is_instance_valid(p):
-				p.emitting = false)
+		# Ligado ao método da partícula (não a uma função anônima): se ela for liberada antes
+		# (o dono do efeito saiu de cena), a ligação some junto, sem erro.
+		root.get_tree().create_timer(life, false).timeout.connect(p.set_emitting.bind(false))
 	root.get_tree().create_timer(life + 1.0, false).timeout.connect(root.queue_free)
 
 

@@ -18,7 +18,7 @@
 
 ## 2. Câmera e mapas
 
-- **Visão de cima, inclinada e próxima** (estilo Dark Alliance): olhando para baixo em ângulo de ~55°, mais perto do personagem do que no 0 A.D. Visual e interface no estilo do 0 A.D. Detalhes em `09-interface.md`.
+- **Visão de cima, inclinada e próxima** (estilo Dark Alliance): olhando para baixo em ângulo de ~55°, mais perto do personagem do que no 0 A.D. Visual e interface seguem **uma só identidade visual** (`09-interface.md`, seção 7).
 - **Câmera segue o personagem** de cada jogador, no PC dele. Os jogadores podem se separar no mapa.
 - **Sem rotação livre** da câmera; zoom limitado (de muito próximo a médio).
 - Paredes e objetos entre a câmera e o personagem ficam **transparentes** ou somem, para o personagem estar sempre visível.

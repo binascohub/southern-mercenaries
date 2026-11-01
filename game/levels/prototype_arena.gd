@@ -1627,6 +1627,8 @@ func _build_prop(prop: Dictionary) -> void:
 					body.height = 1.7
 					_prop_mesh(node, body, Vector3.ONE, Vector3(0, 0.85, 0), Color(0.55, 0.45, 0.35))
 				_prop_mesh(node, SphereMesh.new(), Vector3(0.42, 0.2, 0.42), Vector3(0, 1.72, 0), Color(c[0], c[1], c[2]))
+			"shop" when prop.has("stall"):
+				node.add_child(MarketStall.build(String(prop.stall)))  # barraca de feira, de frente para a rua
 			"shop" when _kit(node, "Stall_Empty", Transform3D(Basis(Vector3.UP, PI), Vector3.ZERO)):
 				pass  # barraca de feira com toldo, de frente para a rua
 			"shop":
@@ -1715,7 +1717,7 @@ func _build_prop(prop: Dictionary) -> void:
 				# Lugar do rumor / carga perdida: caixote marcado.
 				_prop_mesh(node, BoxMesh.new(), Vector3(0.9, 0.7, 0.9), Vector3(0, 0.35, 0), Color(0.55, 0.42, 0.25))
 				_prop_mesh(node, CylinderMesh.new(), Vector3(1.6, 0.03, 1.6), Vector3(0, 0.02, 0), Color(0.9, 0.75, 0.3))
-			"forge" when _kit(node, "Anvil", Transform3D(Basis(), Vector3(-0.7, 0, 0))):
+			"forge" when _forge_shed(node, prop) and _kit(node, "Anvil", Transform3D(Basis(), Vector3(-0.7, 0, 0))):
 				_kit(node, "Workbench", Transform3D(Basis(), Vector3(1.0, 0, -0.3)))
 				_kit(node, "Whetstone", Transform3D(Basis(), Vector3(-1.8, 0, 0)))
 			"forge":
@@ -1793,6 +1795,8 @@ func _npc_body(parent: Node3D, look: Dictionary) -> HeroModel:
 	model.set_pose(String(look.get("pose", "idle")))
 	if look.get("mug", false) and Kit.has("Mug_Wood"):
 		model.attach("hand_r", Kit.piece("Mug_Wood"), Player.HAND_GRIP, Vector3(0.4, 0.9, 0.1))
+	if not look.get("clothes", {}).is_empty():
+		Clothing.dress(model, Clothing.HERO_BONES, look.clothes)
 	# Arma na mão direita (soldados treinando): cada golpe começa num ponto diferente do ciclo.
 	var weapon := String(look.get("weapon", ""))
 	if weapon != "" and Kit.has(weapon):
@@ -1838,7 +1842,17 @@ func _crowd_look(role_name: String, at: Vector3, entry: Dictionary) -> Dictionar
 	var outfits: Array = role.get("outfit", [{}])
 	return {"sex": sex, "hair": hairs[(h / 7) % hairs.size()], "hair_color": colors[(h / 13) % colors.size()],
 		"outfit": outfits[(h / 29) % outfits.size()], "pose": entry.get("pose", "idle"),
-		"weapon": entry.get("weapon", role.get("weapon", "")) if String(entry.get("pose", "idle")).begins_with("melee") or entry.has("weapon") else ""}
+		"weapon": entry.get("weapon", role.get("weapon", "")) if String(entry.get("pose", "idle")).begins_with("melee") or entry.has("weapon") else "",
+		"clothes": _crowd_clothes(role, sex, h)}
+
+
+## Roupa por cima do corpo (colete, túnica, camisa de cadarço, vestido de linho), sorteada
+## pela posição: o papel lista os estilos de cada sexo em data/crowd.json ("clothes").
+func _crowd_clothes(role: Dictionary, sex: String, h: int) -> Dictionary:
+	var styles: Array = role.get("clothes", {}).get(sex, [])
+	if styles.is_empty():
+		return {}
+	return NpcModel.clothing_style(styles[(h / 31) % styles.size()])
 
 
 ## Briga de rua: dois brigões (papéis em "fighters") frente a frente, trocando socos.
@@ -1896,6 +1910,14 @@ func _build_crowd(entry: Dictionary) -> void:
 		walker.speed = float(entry.get("speed", 1.2))
 		walker.model = model
 		model.call("set_pose", "walk")
+
+
+## Cobertura da forja (o telhado de pano xadrez da barraca "patch"); sempre verdadeiro,
+## para encaixar na condição de quem monta a forja.
+func _forge_shed(node: Node3D, prop: Dictionary) -> bool:
+	if prop.has("stall"):
+		node.add_child(MarketStall.build(String(prop.stall)))
+	return true
 
 
 ## Põe uma peça do kit dentro do objeto; false se a peça não existe (o objeto

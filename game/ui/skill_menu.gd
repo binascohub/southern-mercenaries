@@ -27,10 +27,13 @@ func _ready() -> void:
 
 func bind_player(player: Player) -> void:
 	_player = player
-	player.character_changed.connect(func(_levels: int) -> void:
-		if visible:
-			_refresh())
+	player.character_changed.connect(_on_character_changed)
 
+
+## Ligado por método (não lambda): some junto com o menu quando a cena é desmontada.
+func _on_character_changed(_levels: int) -> void:
+	if visible:
+		_refresh()
 
 func toggle() -> void:
 	if visible:
@@ -155,6 +158,7 @@ func _show_details() -> void:
 
 func _build() -> void:
 	_panel = PanelContainer.new()
+	_panel.theme = UiTheme.paper_theme()
 	_panel.set_anchors_preset(Control.PRESET_CENTER)
 	_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	_panel.grow_vertical = Control.GROW_DIRECTION_BOTH
@@ -171,7 +175,7 @@ func _build() -> void:
 	_points = Label.new()
 	_points.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	_points.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_points.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
+	_points.add_theme_color_override("font_color", Color(0.45, 0.09, 0.07))
 	outer.add_child(_points)
 	_rows = VBoxContainer.new()
 	_rows.add_theme_constant_override("separation", 4)

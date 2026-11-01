@@ -51,6 +51,14 @@ const DANCES := {
 		"unterSchenkel_L": [[2, 0.5, 0.5, 2, 0.0]], "unterSchenkel_R": [[2, 0.5, 0.5, 2, 3.14]],
 		"oberSchenkel_L": [[2, 0.0, 0.35, 1, 0.0]], "oberSchenkel_R": [[2, 0.0, 0.35, 1, 3.14]]}},
 }
+## Variações da dança profissional dos heróis (DanceRetarget): espelhada ou não, quadril mais
+## ou menos marcado e velocidade. As danças acima só entram se o retarget falhar.
+const DANCE_UAL := {
+	"dance_sway": {"mirror": false, "hips": 1.8, "speed": 0.8},   # lenta, de quadril
+	"dance_hips": {"mirror": true, "hips": 1.4, "speed": 0.9},
+	"dance_twirl": {"mirror": false, "hips": 1.0, "speed": 1.1},  # gira o corpo todo (DANCE_STYLE)
+	"dance_wild": {"mirror": true, "hips": 1.0, "speed": 1.3},    # farra, com pulos
+}
 ## Movimentos do corpo todo durante a dança: giro (rad/s) e pulo (m).
 const DANCE_STYLE := {
 	"dance_twirl": {"spin": 2.2},
@@ -59,31 +67,42 @@ const DANCE_STYLE := {
 const COURTESAN_POSES := {"walk": "walk", "run": "run", "dance_sway": "dance_sway",
 	"dance_hips": "dance_hips", "dance_twirl": "dance_twirl", "dance_wild": "dance_wild"}
 
+## Vestidos das cortesãs (Clothing): cores do corpo, do painel central e dos detalhes;
+## mangas "bell" (em sino), "puff" (bufante) ou "cap" (curta); "laced" = cadarços em X.
+const GOWN_BLUE := {"body": [0.14, 0.22, 0.5], "panel": [0.78, 0.58, 0.14], "trim": [0.82, 0.66, 0.22], "sleeve": "cap", "laced": false}
+const GOWN_CRIMSON := {"body": [0.52, 0.1, 0.16], "panel": [0.58, 0.14, 0.2], "trim": [0.8, 0.62, 0.22], "sleeve": "bell", "laced": false}
+const GOWN_TEAL := {"body": [0.5, 0.1, 0.16], "panel": [0.12, 0.38, 0.42], "trim": [0.82, 0.66, 0.22], "sleeve": "cap", "laced": true}
+const GOWN_ORANGE := {"body": [0.78, 0.38, 0.1], "panel": [0.55, 0.7, 0.28], "trim": [0.85, 0.75, 0.5], "sleeve": "bell", "laced": true}
+const GOWN_NIGHT := {"body": [0.12, 0.1, 0.14], "panel": [0.32, 0.12, 0.38], "trim": [0.7, 0.7, 0.75], "sleeve": "bell", "laced": true}
+const GOWN_LINEN := {"body": [0.62, 0.28, 0.26], "panel": [0.8, 0.76, 0.64], "trim": [0.8, 0.76, 0.64], "sleeve": "puff", "laced": false}
+const COURTESAN_BONES := {"hips": "hips", "skirt": "root", "chest": "brust", "upper_l": "oberArm_L", "upper_r": "oberArm_R",
+	"lower_l": "unterarm_L", "lower_r": "unterarm_R", "hand_l": "hand_L", "hand_r": "hand_R"}
+
 const MODELS := {
 	# Cortesã de Tortuga (Female NPC, umask007, CC BY 3.0): top decotado, short e botas.
 	"courtesan": {"scene": "res://assets/models/characters/courtesan.glb", "scale": 0.186,
-		"poses": COURTESAN_POSES, "dances": true, "paint": COURTESAN_PAINT},
+		"poses": COURTESAN_POSES, "dances": true, "paint": COURTESAN_PAINT, "gown": GOWN_BLUE},
 	# Segunda cortesã: o mesmo corpo nas cores da Tetine Elfe (escolha do autor):
 	# top, short e botas de couro vermelho e cabelo ruivo.
 	"courtesan_red": {"scene": "res://assets/models/characters/courtesan.glb", "scale": 0.186,
-		"poses": COURTESAN_POSES, "dances": true, "paint": COURTESAN_PAINT,
+		"poses": COURTESAN_POSES, "dances": true, "paint": COURTESAN_PAINT, "gown": GOWN_CRIMSON,
 		"colors": {"bra": [0.50, 0.10, 0.09], "trouser": [0.42, 0.08, 0.07], "shoe": [0.40, 0.10, 0.08],
 			"hair": [0.40, 0.15, 0.07], "hair.001": [0.40, 0.15, 0.07]}},
 	# Mais cortesãs, cada uma com seu jeito: esmeralda, preto com loira, dourado e linho.
 	"courtesan_green": {"scene": "res://assets/models/characters/courtesan.glb", "scale": 0.186,
-		"poses": COURTESAN_POSES, "dances": true, "paint": COURTESAN_PAINT,
+		"poses": COURTESAN_POSES, "dances": true, "paint": COURTESAN_PAINT, "gown": GOWN_TEAL,
 		"colors": {"skin": [0.80, 0.58, 0.45], "bra": [0.12, 0.35, 0.22], "trouser": [0.10, 0.25, 0.18],
 			"shoe": [0.22, 0.14, 0.09], "hair": [0.07, 0.05, 0.04], "hair.001": [0.07, 0.05, 0.04]}},
 	"courtesan_black": {"scene": "res://assets/models/characters/courtesan.glb", "scale": 0.186,
-		"poses": COURTESAN_POSES, "dances": true, "paint": COURTESAN_PAINT,
+		"poses": COURTESAN_POSES, "dances": true, "paint": COURTESAN_PAINT, "gown": GOWN_NIGHT,
 		"colors": {"skin": [0.90, 0.72, 0.60], "bra": [0.08, 0.08, 0.10], "trouser": [0.12, 0.08, 0.10],
 			"shoe": [0.10, 0.08, 0.07], "hair": [0.72, 0.62, 0.40], "hair.001": [0.72, 0.62, 0.40]}},
 	"courtesan_gold": {"scene": "res://assets/models/characters/courtesan.glb", "scale": 0.186,
-		"poses": COURTESAN_POSES, "dances": true, "paint": COURTESAN_PAINT,
+		"poses": COURTESAN_POSES, "dances": true, "paint": COURTESAN_PAINT, "gown": GOWN_ORANGE,
 		"colors": {"skin": [0.55, 0.38, 0.28], "bra": [0.70, 0.52, 0.18], "trouser": [0.55, 0.30, 0.12],
 			"shoe": [0.30, 0.18, 0.10], "hair": [0.12, 0.07, 0.05], "hair.001": [0.12, 0.07, 0.05]}},
 	"courtesan_white": {"scene": "res://assets/models/characters/courtesan.glb", "scale": 0.186,
-		"poses": COURTESAN_POSES, "dances": true, "paint": COURTESAN_PAINT,
+		"poses": COURTESAN_POSES, "dances": true, "paint": COURTESAN_PAINT, "gown": GOWN_LINEN,
 		"colors": {"skin": [0.72, 0.50, 0.38], "bra": [0.80, 0.76, 0.66], "trouser": [0.70, 0.65, 0.55],
 			"shoe": [0.35, 0.24, 0.15], "hair": [0.50, 0.22, 0.09], "hair.001": [0.50, 0.22, 0.09]}},
 	# Capitão pirata (Clint Bellanger, CC BY 3.0): preso ao esqueleto dos heróis
@@ -98,6 +117,10 @@ const MODELS := {
 	"spider": {"scene": "res://assets/models/monsters/spider.glb", "scale": 0.4,
 		"poses": {"walk": "walk", "idle": "idle", "talk": "idle"},
 		"colors": {"Spider": [0.55, 0.1, 0.06]}},
+	# Atendente da Taverna (Bartender, cdmir, CC0): o mesmo modelo da visitante sentada, em pé
+	# atrás do balcão (a animação "stand" é criada por código: o arquivo só tem a sentada).
+	"bartender": {"scene": "res://assets/models/characters/visitor_woman.glb", "scale": 0.116, "bartender": true,
+		"poses": {"stand": "stand", "idle": "stand", "talk": "stand", "walk": "stand"}},
 	# Velha (Old Lady, cdmir, CC0): sentada à mesa da Taverna. Só tem a animação de sentada
 	# (um trecho de 10 s, tocado de ida e volta para não dar salto). Altura ~135 unidades -> 1,5 m.
 	"old_lady": {"scene": "res://assets/models/characters/old_lady.glb", "scale": 0.011, "pingpong": true,
@@ -132,8 +155,15 @@ static func create(id: String) -> NpcModel:
 	npc.scale = Vector3.ONE * float(info.scale)
 	npc._poses = info.poses.duplicate()
 	var colors: Dictionary = info.get("colors", {})
+	if info.has("gown"):
+		# O top e o short velhos (o que sobra à vista) combinam com o vestido.
+		colors = colors.duplicate()
+		colors["bra"] = info.gown.get("top", info.gown.body)
+		colors["trouser"] = info.gown.body
 	if info.has("paint"):
 		_paint(model, info.paint, colors)
+	if info.has("gown"):
+		Clothing.dress(model, COURTESAN_BONES, clothing_style(info.gown))
 	# Cores por material (variantes do mesmo modelo).
 	if not colors.is_empty() and not info.has("paint"):
 		for node in model.find_children("*", "MeshInstance3D", true, false):
@@ -148,6 +178,8 @@ static func create(id: String) -> NpcModel:
 	npc._anim = model.find_child("AnimationPlayer", true, false) as AnimationPlayer
 	if npc._anim and info.get("dances", false):
 		npc._make_dances()
+	if npc._anim and info.get("bartender", false):
+		npc._make_bartender(model)
 	if npc._anim:
 		# O importador do Godot tira o "_Loop" do nome (e marca a repetição).
 		for key: String in npc._poses.keys():
@@ -185,6 +217,10 @@ func _make_dances() -> void:
 		return
 	var walk := _anim.get_animation("walk")
 	for dance_name: String in DANCES:
+		var retargeted := DanceRetarget.build(skeleton, walk, DANCE_UAL.get(dance_name, {}))
+		if retargeted:
+			_anim.get_animation_library("").add_animation(dance_name, retargeted)
+			continue
 		var data: Dictionary = DANCES[dance_name]
 		var length: float = data.length
 		var dance := Animation.new()
@@ -219,6 +255,88 @@ func _make_dances() -> void:
 				var q := base * Quaternion(Vector3.RIGHT, angles[0]) * Quaternion(Vector3.UP, angles[1]) * Quaternion(Vector3.BACK, angles[2])
 				dance.rotation_track_insert_key(track, length * k / steps, q)
 		_anim.get_animation_library("").add_animation(dance_name, dance)
+
+
+## Estilo de roupa com as cores como Color (os dados guardam [r, g, b]).
+static func clothing_style(style: Dictionary) -> Dictionary:
+	var out := style.duplicate()
+	for key: String in ["body", "panel", "trim", "lace", "top", "belt"]:
+		if style.has(key):
+			var c: Array = style[key]
+			out[key] = Color(c[0], c[1], c[2])
+	return out
+
+
+## "stand": o corpo em pé (o arquivo está em pose de T), braços baixos e os antebraços à
+## frente (conversando com quem chega ao balcão), respirando e balançando de leve.
+## As rotações são globais por osso (o repouso é a pose de T): braço desce, antebraço dobra.
+func _make_bartender(model: Node) -> void:
+	var skeleton := model.find_child("Skeleton3D", true, false) as Skeleton3D
+	if skeleton == null or _anim.has_animation("stand"):
+		return
+	var prefix := String(_anim.get_animation("sit").track_get_path(0)).get_slice(":", 0)
+	var length := 3.6
+	var animation := Animation.new()
+	animation.length = length
+	animation.loop_mode = Animation.LOOP_LINEAR
+	var count := skeleton.get_bone_count()
+	var rest_local: Array[Quaternion] = []
+	var rest_global: Array[Quaternion] = []
+	for i in count:
+		var local := skeleton.get_bone_rest(i).basis.get_rotation_quaternion()
+		rest_local.append(local)
+		var parent := skeleton.get_bone_parent(i)
+		rest_global.append((rest_global[parent] if parent >= 0 else Quaternion.IDENTITY) * local)
+	# Só os ossos deste conjunto mudam; o resto fica no repouso.
+	var moving := {}
+	for side in ["L", "R"]:
+		for bone: String in ["Arm_", "ForeArm_", "Hand_"]:
+			moving[skeleton.find_bone(bone + side)] = side
+	var spine := skeleton.find_bone("Spine")
+	var head := skeleton.find_bone("Head")
+	var tracks := {}
+	for i in [spine, head] + moving.keys():
+		var track := animation.add_track(Animation.TYPE_ROTATION_3D)
+		animation.track_set_path(track, NodePath("%s:%s" % [prefix, skeleton.get_bone_name(i)]))
+		tracks[i] = track
+	var steps := 36
+	for k in steps + 1:
+		var t := length * k / steps
+		var phase := TAU * k / steps
+		var global_now: Array[Quaternion] = []
+		for i in count:
+			var parent := skeleton.get_bone_parent(i)
+			var parent_new: Quaternion = global_now[parent] if parent >= 0 else Quaternion.IDENTITY
+			var parent_rest: Quaternion = rest_global[parent] if parent >= 0 else Quaternion.IDENTITY
+			var q := parent_new * parent_rest.inverse() * rest_global[i]  # sem mexer: segue o pai
+			if i == spine:
+				q = q * Quaternion(Vector3.RIGHT, 0.02 * sin(phase))
+			elif i == head:
+				q = q * Quaternion(Vector3.UP, 0.12 * sin(phase * 0.5)) * Quaternion(Vector3.RIGHT, 0.03 * sin(phase))
+			elif moving.has(i):
+				var side: String = moving[i]
+				var outward := 1.0 if skeleton.get_bone_global_rest(i).origin.x >= 0.0 else -1.0
+				var name := skeleton.get_bone_name(i)
+				if name.begins_with("Arm_"):
+					# Braço: da pose de T para baixo, um pouco à frente.
+					q = Quaternion(Vector3.BACK, -outward * deg_to_rad(72.0)) * q
+					q = Quaternion(Vector3.RIGHT, deg_to_rad(-22.0)) * q
+				elif name.begins_with("ForeArm_"):
+					# Antebraço dobrado para a frente (a direita faz o gesto de polir).
+					var direction := q * Vector3(0, 1, 0)
+					var along := skeleton.get_bone_global_rest(skeleton.find_bone("Hand_" + side)).origin - skeleton.get_bone_global_rest(i).origin
+					var axis := (along.normalized()).cross(Vector3.BACK).normalized()
+					var wipe := 0.0
+					if side == "R":
+						wipe = deg_to_rad(10.0) * sin(phase * 2.0)
+					q = Quaternion(Vector3.RIGHT, deg_to_rad(-52.0) + wipe) * q
+					direction = direction
+					axis = axis
+			global_now.append(q)
+			if tracks.has(i):
+				var local_q := (global_now[parent].inverse() if parent >= 0 else Quaternion.IDENTITY) * q
+				animation.rotation_track_insert_key(tracks[i], t, local_q.normalized())
+	_anim.get_animation_library("").add_animation("stand", animation)
 
 
 func _process(delta: float) -> void:

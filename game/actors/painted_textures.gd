@@ -12,7 +12,7 @@ static var _cache := {}
 
 
 ## Material pintado: `color` é a cor base; `kind` um de skin, cloth, leather,
-## hair; `tile` o tamanho (em unidades do modelo) de uma repetição.
+## hair, wood; `tile` o tamanho (em unidades do modelo) de uma repetição.
 static func material(source: StandardMaterial3D, kind: String, color: Color, tile: float) -> StandardMaterial3D:
 	var out := source.duplicate() as StandardMaterial3D
 	var textures := _textures(kind)
@@ -68,6 +68,13 @@ static func _textures(kind: String) -> Dictionary:
 					shade = 0.72 + (b - 0.5) * 0.45 + (c - 0.5) * 0.15
 					strength = 1.3
 					roughness = 0.6
+				"wood":
+					# Tábuas: veios compridos (na horizontal da textura), nós e manchas.
+					var grain_line := 0.5 + 0.5 * sin(TAU * (y * 3.0 + (g - 0.5) * 5.0 + (b - 0.5) * 9.0) / SIZE * 2.0)
+					h = 0.5 + (grain_line - 0.5) * 0.5 + (c - 0.5) * 0.2
+					shade = 0.72 + grain_line * 0.2 + (b - 0.5) * 0.25
+					strength = 0.9
+					roughness = 0.88
 				"hair":
 					# Fios compridos (na vertical da textura) com brilho fraco.
 					var strand := 0.5 + 0.5 * sin(TAU * (x * 2.0 + sin(TAU * y / SIZE) * 0.6) / 8.0 + g * 5.0)
