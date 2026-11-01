@@ -685,6 +685,10 @@ func _test_minibosses_and_relics() -> void:
 	_check(Town.dialogue_index("court_jester", {}) == 0 and Town.dialogue_index("court_jester", {"royal_banquet": "active"}) == 1
 		and Town.dialogue_index("court_jester", {"royal_banquet": "done"}) == 2, "o Bobo oferece, lembra e agradece a carne")
 	_check(capital.decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Food_Apple").size() >= 8, "mesa farta com maçãs na sala do rei")
+	_check(capital.rooms.any(func(r: Dictionary) -> bool: return r.id == "church") and capital.rooms.any(func(r: Dictionary) -> bool: return r.id == "king_bedroom")
+		and capital.props.any(func(p: Dictionary) -> bool: return p.get("npc", "") == "priest" and p.position[0] < -15.0 and p.position[1] < -39.0)
+		and capital.decor.any(func(d: Dictionary) -> bool: return d.get("piece", "") == "Podium")
+		and capital.decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Chair_1" and d.position[0] < -15.0).size() >= 6, "igreja com o Padre, o altar e as cadeiras; quarto do rei ao lado")
 	_check(capital.rooms.any(func(r: Dictionary) -> bool: return r.id == "throne_room")
 		and capital.props.any(func(p: Dictionary) -> bool: return p.get("npc", "") == "court_jester" and p.position[1] < -39.0)
 		and capital.decor.any(func(d: Dictionary) -> bool: return d.get("piece", "") == "Sofa_Group"), "a sala do rei tem o Bobo da Corte e os sofás")

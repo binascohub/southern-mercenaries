@@ -45434,7 +45434,8 @@
         ],
         "doors": [
           "south",
-          "east"
+          "east",
+          "west"
         ],
         "torch": true,
         "wall_height": 2.0,
@@ -45456,6 +45457,23 @@
         "torch": true,
         "wall_height": 2.0,
         "floor": "Floor_WoodDark"
+      },
+      {
+        "id": "church",
+        "center": [
+          -31,
+          -47
+        ],
+        "size": [
+          32,
+          16
+        ],
+        "doors": [
+          "east"
+        ],
+        "torch": true,
+        "wall_height": 2.0,
+        "floor": "Floor_UnevenBrick"
       }
     ],
     "encounters": [],
@@ -45546,15 +45564,6 @@
         "stall": "patch"
       },
       {
-        "id": "priest",
-        "kind": "npc",
-        "npc": "priest",
-        "position": [
-          12,
-          1
-        ]
-      },
-      {
         "id": "castle_guard_w",
         "kind": "npc",
         "npc": "castle_guard",
@@ -45579,6 +45588,15 @@
         "position": [
           2.6,
           -48.8
+        ]
+      },
+      {
+        "id": "priest",
+        "kind": "npc",
+        "npc": "priest",
+        "position": [
+          -31,
+          -53.0
         ]
       }
     ],
@@ -47125,6 +47143,295 @@
         "solid": [
           1.7,
           1.7
+        ]
+      },
+      {
+        "piece": "Podium",
+        "position": [
+          -31,
+          -51.8
+        ],
+        "rotation": 0,
+        "solid": [
+          1.0,
+          0.8
+        ]
+      },
+      {
+        "piece": "Pr_Cross4",
+        "position": [
+          -31,
+          -54.2
+        ],
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "CandleStick_Triple",
+        "position": [
+          -33.2,
+          -52.0
+        ],
+        "y": 0.0
+      },
+      {
+        "piece": "CandleStick_Triple",
+        "position": [
+          -28.8,
+          -52.0
+        ],
+        "y": 0.0
+      },
+      {
+        "piece": "Banner_1",
+        "position": [
+          -37,
+          -54.6
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Banner_1",
+        "position": [
+          -25,
+          -54.6
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Chair_1",
+        "position": [
+          -39.5,
+          -47.0
+        ],
+        "rotation": 180,
+        "scale": 1.2,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Chair_1",
+        "position": [
+          -37.0,
+          -47.0
+        ],
+        "rotation": 180,
+        "scale": 1.2,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Chair_1",
+        "position": [
+          -34.5,
+          -47.0
+        ],
+        "rotation": 180,
+        "scale": 1.2,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Chair_1",
+        "position": [
+          -27.5,
+          -47.0
+        ],
+        "rotation": 180,
+        "scale": 1.2,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Chair_1",
+        "position": [
+          -25.0,
+          -47.0
+        ],
+        "rotation": 180,
+        "scale": 1.2,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Chair_1",
+        "position": [
+          -22.5,
+          -47.0
+        ],
+        "rotation": 180,
+        "scale": 1.2,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Chair_1",
+        "position": [
+          -39.5,
+          -44.4
+        ],
+        "rotation": 180,
+        "scale": 1.2,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Chair_1",
+        "position": [
+          -37.0,
+          -44.4
+        ],
+        "rotation": 180,
+        "scale": 1.2,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Chair_1",
+        "position": [
+          -34.5,
+          -44.4
+        ],
+        "rotation": 180,
+        "scale": 1.2,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Chair_1",
+        "position": [
+          -27.5,
+          -44.4
+        ],
+        "rotation": 180,
+        "scale": 1.2,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Chair_1",
+        "position": [
+          -25.0,
+          -44.4
+        ],
+        "rotation": 180,
+        "scale": 1.2,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Chair_1",
+        "position": [
+          -22.5,
+          -44.4
+        ],
+        "rotation": 180,
+        "scale": 1.2,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Chair_1",
+        "position": [
+          -39.5,
+          -41.8
+        ],
+        "rotation": 180,
+        "scale": 1.2,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Chair_1",
+        "position": [
+          -37.0,
+          -41.8
+        ],
+        "rotation": 180,
+        "scale": 1.2,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Chair_1",
+        "position": [
+          -34.5,
+          -41.8
+        ],
+        "rotation": 180,
+        "scale": 1.2,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Chair_1",
+        "position": [
+          -27.5,
+          -41.8
+        ],
+        "rotation": 180,
+        "scale": 1.2,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Chair_1",
+        "position": [
+          -25.0,
+          -41.8
+        ],
+        "rotation": 180,
+        "scale": 1.2,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Chair_1",
+        "position": [
+          -22.5,
+          -41.8
+        ],
+        "rotation": 180,
+        "scale": 1.2,
+        "solid": [
+          0.9,
+          0.9
         ]
       }
     ],
