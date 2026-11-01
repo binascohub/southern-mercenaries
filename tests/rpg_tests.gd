@@ -862,6 +862,10 @@ func _test_sewers() -> void:
 	_check(golems.size() == 3 and golems.all(func(e: Dictionary) -> bool:
 		var m: Dictionary = GameData.monsters.get(e.monsters[0].monster, {})
 		return m.get("category", "") == "elite" and MonsterModel.FAMILIES.has(m.get("look", "")) and float(m.get("damage", 0)) > 0.0), "Floresta tem os três golens")
+	# Floresta: o bando de répteis (corpo a corpo, com modelo).
+	var reptiles: Array = GameData.arenas.forest_01_path.encounters.filter(func(e: Dictionary) -> bool: return e.id == "f_reptiles")
+	_check(reptiles.size() == 1 and reptiles[0].monsters[0].monster == "forest_reptile" and reptiles[0].monsters[0].count == 3
+		and MonsterModel.FAMILIES.has(GameData.monsters.forest_reptile.look), "Floresta tem o bando de répteis")
 	# Floresta: poucos cervos quebráveis, parados, que só soltam poção.
 	var deer: Array = GameData.arenas.forest_01_path.get("breakables", [])
 	_check(deer.size() >= 3 and deer.size() <= 10 and deer.all(func(b: Dictionary) -> bool:

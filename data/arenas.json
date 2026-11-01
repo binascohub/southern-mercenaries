@@ -5934,6 +5934,19 @@
             "count": 1
           }
         ]
+      },
+      {
+        "id": "f_reptiles",
+        "position": [
+          -12,
+          -45
+        ],
+        "monsters": [
+          {
+            "monster": "forest_reptile",
+            "count": 3
+          }
+        ]
       }
     ],
     "hazards": [],
@@ -15240,6 +15253,32 @@
         "monsters": [
           {
             "monster": "skeleton",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "c_zombie_w",
+        "position": [
+          -18,
+          -28
+        ],
+        "monsters": [
+          {
+            "monster": "zombie",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "c_zombie_e",
+        "position": [
+          18,
+          -44
+        ],
+        "monsters": [
+          {
+            "monster": "zombie",
             "count": 3
           }
         ]

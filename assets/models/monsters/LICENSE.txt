@@ -58,6 +58,11 @@ skeleton.glb — "Skeleton with rig" by rudy85
             Changes: scaled to 1.8 m, bone material, and idle, walk, run, attack, hit and die animations
             made by hand on the rig's controls (tools/assets/build_skeleton.py).
 
+night_demon.glb — "Night Demon" by nubux (morgan strauss)
+            https://opengameart.org/content/night-demon
+            Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/
+            Changes: arms lowered from the T-pose, scaled to 1 m, textures (colour, normal) re-linked at 1024 px, no animations: the game sways and tilts it (tools/assets/build_night_demon.py).
+
 succubus.glb — "Goth Female (Fleur du Mal)" by tizeta
             https://opengameart.org/content/goth-female-fleur-du-mal
             Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/
@@ -70,3 +75,9 @@ undead_lord.glb — "Undead male" by TiZeta (Tiziana)
             Changes: scaled to 1.8 m, textures re-linked to the materials (512 px WebP), mirrored mesh fixed,
             and idle, walk, run, attack, hit and die animations made by hand on the original skeleton
             (tools/assets/build_undead.py).
+
+zombie.glb — "Thin Zombie / awake zombie asset" by Rosswet Mobile
+            https://opengameart.org/content/thin-zombie-awake-zombie-asset
+            Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/
+            Changes: only the mesh, skeleton and the idle, walk, run, attack (attack1_r), hurt and death (dead1)
+            animations kept, texture re-linked to the material and exported to glTF (tools/assets/build_monsters.py).

@@ -2494,6 +2494,9 @@ msgstr "Gólem de Hielo"
 msgid "MONSTER_GOLEM_STONE"
 msgstr "Gólem de Piedra"
 
+msgid "MONSTER_FOREST_REPTILE"
+msgstr "Reptil del Bosque"
+
 msgid "MONSTER_RUIN_WARDEN"
 msgstr "Guardián de la Cámara"
 
@@ -2509,11 +2512,17 @@ msgstr "Comandante Maldito"
 msgid "MONSTER_DARK_ELF"
 msgstr "Elfo Oscuro"
 
+msgid "MONSTER_NIGHT_DEMON"
+msgstr "Demonio de la Noche"
+
 msgid "MONSTER_SUCCUBUS"
 msgstr "Súcubo"
 
 msgid "MONSTER_SKELETON"
 msgstr "Esqueleto"
+
+msgid "MONSTER_ZOMBIE"
+msgstr "Zombi Delgado"
 
 msgid "ARENA_DARK_FOREST"
 msgstr "Bosque Oscuro"

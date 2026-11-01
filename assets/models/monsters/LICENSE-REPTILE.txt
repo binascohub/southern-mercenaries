@@ -1,0 +1,3 @@
+reptile.glb — "Rigged Textured Reptile" by thecubber (commissioned by the OpenGameArt.org community), CC BY-SA 3.0 (also offered under CC BY 3.0, GPL 2.0 and GPL 3.0): https://opengameart.org/content/rigged-textured-reptile
+Model by thecubber, commissioned by the OpenGameArt.org community (http://opengameart.org).
+Converted from the Blender file by tools/assets/build_reptile.sh (the file only has a crouching pose: the idle, walk, attack, hit and die animations were made for this game by tools/assets/build_reptile_anims.py; 512 px color texture).

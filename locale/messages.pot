@@ -2493,6 +2493,9 @@ msgstr ""
 msgid "MONSTER_GOLEM_STONE"
 msgstr ""
 
+msgid "MONSTER_FOREST_REPTILE"
+msgstr ""
+
 msgid "MONSTER_RUIN_WARDEN"
 msgstr ""
 
@@ -2508,10 +2511,16 @@ msgstr ""
 msgid "MONSTER_DARK_ELF"
 msgstr ""
 
+msgid "MONSTER_NIGHT_DEMON"
+msgstr ""
+
 msgid "MONSTER_SUCCUBUS"
 msgstr ""
 
 msgid "MONSTER_SKELETON"
+msgstr ""
+
+msgid "MONSTER_ZOMBIE"
 msgstr ""
 
 msgid "ARENA_DARK_FOREST"

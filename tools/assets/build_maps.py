@@ -91,6 +91,8 @@ monster("succubus", "acid_toad", _comment="Súcubo (docs/03-1-bestiario.md, seç
         name_key="MONSTER_SUCCUBUS", max_health=110, damage=18, move_speed=2.2, attack_range=10.0, attack_windup=1.2, attack_cooldown=2.6,
         size=1.0, element="fire", look="succubus", color=[1.0, 1.0, 1.0], keep_distance=7.0,
         spit={"radius": 1.8, "puddle_time": 3.0, "puddle_dps": 5.0, "glob": [1.0, 0.35, 0.1]})
+monster("night_demon", "skeleton", _comment="Demônio da Noite (Night Demon, nubux / morgan strauss, CC BY 3.0): demônio magro de garras longas, corpo a corpo e rápido; ainda não está em nenhum mapa (pode entrar em qualquer um, é só pôr em um encontro).",
+        name_key="MONSTER_NIGHT_DEMON", max_health=140, damage=20, move_speed=3.4, size=1.3, element="air", look="night_demon", color=[1.0, 1.0, 1.0])
 monster("dark_elf", "acid_toad", _comment="Elfo Sombrio (Dark Elf, danimal, CC BY-SA 3.0): besteiro do Forte; atira de longe um virote de sombra (marca no chão antes) e recua.",
         name_key="MONSTER_DARK_ELF", max_health=90, damage=14, move_speed=2.4, attack_range=9.0, attack_windup=1.0, attack_cooldown=2.2,
         size=1.0, element="air", look="dark_elf", color=[1.0, 1.0, 1.0], keep_distance=6.0,
@@ -103,6 +105,10 @@ monsters["skeleton"] = {
     "attack_windup": 0.6, "attack_cooldown": 1.4, "aggro_range": 40.0, "size": 1.0, "category": "common", "element": "earth",
     "patrol": True, "patrol_radius": 6.0, "patrol_speed": 0.8, "look": "skeleton", "color": [0.92, 0.86, 0.72],
 }
+# Zumbi Magro (Thin Zombie, Rosswet Mobile, CC BY 3.0; build_monsters.py): mais lento e resistente que o esqueleto.
+monster("zombie", "skeleton", _comment="Zumbi Magro do Cemitério (Thin Zombie, Rosswet Mobile, CC BY 3.0): corpo a corpo, lento e resistente; vaga entre as covas. Terra (fraco a Fogo).",
+        name_key="MONSTER_ZOMBIE", max_health=130, damage=12, move_speed=2.2, attack_windup=0.8, attack_cooldown=1.7, look="zombie",
+        color=[1.0, 1.0, 1.0])
 
 
 # Golens da Floresta (umask007, CC BY / CC BY-SA): três elites corpo a corpo lentos e resistentes; o de pedra investe.
@@ -120,6 +126,12 @@ monsters["golem_stone"].update({"ai": "charger", "charge": {"min": 4.0, "max": 9
 for _g in ("golem_stone", "golem_ice", "golem_fire"):
     for _k in ("rare_spawn", "no_loot", "flee", "patrol_radius", "patrol_speed"):
         monsters[_g].pop(_k, None)
+
+
+# Réptil da Floresta (Rigged Textured Reptile, thecubber, CC BY-SA 3.0): corpo a corpo rápido, anda em bando e vaga por perto até alguém chegar.
+monster("forest_reptile", "skeleton", _comment="Réptil da Floresta (thecubber, CC BY-SA 3.0): garras rápidas, em bando de três; vaga entre as árvores até alguém chegar perto.",
+        name_key="MONSTER_FOREST_REPTILE", max_health=70, move_speed=3.2, damage=10, attack_range=2.0, attack_windup=0.5, attack_cooldown=1.3,
+        size=1.1, element="earth", look="reptile", color=[1.0, 1.0, 1.0])
 
 
 # Cervos da Floresta (CDmir e TinyWorlds, CC0): quebráveis como os potes do Esgoto: não atacam, não perseguem, não voltam depois de mortos
@@ -148,10 +160,11 @@ f_enc = [
     {"id": "f_grove_b", "position": [9, -54], "monsters": [{"monster": "mutant_rat", "count": 4}]},
     {"id": "f_leshy", "position": [0, -76], "monsters": [{"monster": "leshy", "count": 1}]},
 ]
-# Um golem de cada: Pedra na clareira, Gelo na sala lateral, Fogo no bosque. Entram depois de f_keep para não mudar o sorteio das plantas.
-f_golems = [{"id": "f_golem_stone", "position": [-12, -23], "monsters": [{"monster": "golem_stone", "count": 1}]},
+# Um golem de cada: Pedra na clareira, Gelo na sala lateral, Fogo no bosque; e o bando de répteis no bosque. Entram depois de f_keep para não mudar o sorteio das plantas.
+f_extra = [{"id": "f_golem_stone", "position": [-12, -23], "monsters": [{"monster": "golem_stone", "count": 1}]},
             {"id": "f_golem_ice", "position": [22, -12], "monsters": [{"monster": "golem_ice", "count": 1}]},
-            {"id": "f_golem_fire", "position": [0, -62], "monsters": [{"monster": "golem_fire", "count": 1}]}]
+            {"id": "f_golem_fire", "position": [0, -62], "monsters": [{"monster": "golem_fire", "count": 1}]},
+            {"id": "f_reptiles", "position": [-12, -45], "monsters": [{"monster": "forest_reptile", "count": 3}]}]
 f_decor = []
 plants = ["Pl_Bush", "Pl_Swirl", "Pl_Hemp", "Pl_Flower"]
 for rd in f_rooms:
@@ -179,7 +192,7 @@ for rd in f_rooms:
     f_decor += scatter(wdr, rd, ["Pl_Weed%d" % i for i in range(1, 6)], int(rd["size"][0] * rd["size"][1] / 8), margin=1.5,
                        scale=(1.0, 2.0), avoid=f_keep)
 # Nenhuma pedra (sólida) onde um golem nasce.
-f_decor = [d for d in f_decor if not (d["piece"].startswith("Rock_") and any(math.hypot(d["position"][0] - g["position"][0], d["position"][1] - g["position"][1]) < 3.5 for g in f_golems))]
+f_decor = [d for d in f_decor if not (d["piece"].startswith("Rock_") and any(math.hypot(d["position"][0] - g["position"][0], d["position"][1] - g["position"][1]) < 3.5 for g in f_extra))]
 f_decor += [{"piece": "Pr_RoadSign", "position": [4, 2], "rotation": 200}, {"piece": "Pr_LampPost", "position": [-6, 3], "rotation": 0, "solid": [0.6, 0.6]},
             {"piece": "Pr_Obelisk3", "position": [0, -80], "solid": [1.4, 1.4]}, {"piece": "Pr_Obelisk2", "position": [-6, -78], "solid": [1.0, 1.0]},
             {"piece": "Pr_Obelisk2", "position": [6, -78], "solid": [1.0, 1.0]}, {"piece": "Pr_BrokenPillar2", "position": [-12, -70], "solid": [1.2, 1.2]},
@@ -189,13 +202,13 @@ f_deer = []
 dr_ = rng("forest_deer")
 f_fixed = [(4, 2, 3), (-8, -4, 4), (0, -80, 5), (-6, -78, 3), (6, -78, 3), (-12, -70, 3), (12, -68, 3)]
 for rd, count in ((f_rooms[1], 2), (f_rooms[2], 1), (f_rooms[4], 2), (f_rooms[0], 1)):  # clareira, lateral, bosque, portão
-    for spot in scatter(dr_, rd, ["deer"], count, margin=4.0, avoid=f_keep + f_fixed + [(g["position"][0], g["position"][1], 5) for g in f_golems] + [(d["position"][0], d["position"][1], 10) for d in f_deer]):
+    for spot in scatter(dr_, rd, ["deer"], count, margin=4.0, avoid=f_keep + f_fixed + [(g["position"][0], g["position"][1], 5) for g in f_extra] + [(d["position"][0], d["position"][1], 10) for d in f_deer]):
         f_deer.append({"id": "d%d" % (len(f_deer) + 1), "monster": "deer_buck" if len(f_deer) % 2 == 0 else "deer_doe",
                        "position": spot["position"], "table": "breakable_potion"})
 arenas["forest_01_path"] = {
     "_comment": "Floresta (04-tortuga-e-missoes.md, missão 3 na ordem do mapa: Tortuga -> Floresta -> Ruínas -> Cemitério -> Forte). Clareiras abertas com cerca viva de bambu e arbustos (Stylish Plants, Nobiax, CC0), obeliscos e pilares quebrados (Medieval Props Textured). O Leshy guarda o bosque do fundo. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_FOREST", "player_class": "mage", "map_id": "map_forest", "area_level": 3, "outdoor": True,
-    "wake_radius": 10.0, "alert_radius": 5.0, "rooms": f_rooms, "encounters": f_enc + f_golems, "hazards": [],
+    "wake_radius": 10.0, "alert_radius": 5.0, "rooms": f_rooms, "encounters": f_enc + f_extra, "hazards": [],
     "entries": {"start": [0, 3], "forest": [0, 3]},
     "props": [
         {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-6, 3], "to": "tortuga", "entry": "forest", "expedition_end": True},
@@ -267,6 +280,8 @@ c_enc = [
     {"id": "c_skel_gate", "position": [0, -17], "monsters": [{"monster": "skeleton", "count": 3}]},
     {"id": "c_skel_mid", "position": [0, -38], "monsters": [{"monster": "skeleton", "count": 4}]},
     {"id": "c_skel_crypt", "position": [-6, -52], "monsters": [{"monster": "skeleton", "count": 3}]},
+    {"id": "c_zombie_w", "position": [-18, -28], "monsters": [{"monster": "zombie", "count": 3}]},
+    {"id": "c_zombie_e", "position": [18, -44], "monsters": [{"monster": "zombie", "count": 3}]},
     {"id": "c_boss", "position": [0, -60], "monsters": [{"monster": "crypt_lord", "count": 1}]},
 ]
 c_decor = []

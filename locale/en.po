@@ -2494,6 +2494,9 @@ msgstr "Ice Golem"
 msgid "MONSTER_GOLEM_STONE"
 msgstr "Stone Golem"
 
+msgid "MONSTER_FOREST_REPTILE"
+msgstr "Forest Reptile"
+
 msgid "MONSTER_RUIN_WARDEN"
 msgstr "Vault Warden"
 
@@ -2509,11 +2512,17 @@ msgstr "Cursed Commander"
 msgid "MONSTER_DARK_ELF"
 msgstr "Dark Elf"
 
+msgid "MONSTER_NIGHT_DEMON"
+msgstr "Night Demon"
+
 msgid "MONSTER_SUCCUBUS"
 msgstr "Succubus"
 
 msgid "MONSTER_SKELETON"
 msgstr "Skeleton"
+
+msgid "MONSTER_ZOMBIE"
+msgstr "Thin Zombie"
 
 msgid "ARENA_DARK_FOREST"
 msgstr "Dark Forest"

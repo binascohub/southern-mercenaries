@@ -52,11 +52,19 @@ const FAMILIES := {
 	# Súcubo (Goth Female "Fleur du Mal", tizeta, CC BY 3.0): corpo único em pose de repouso, sem animações
 	# (o Blender o traz com esqueleto, mas sem ações): flutua e inclina por código (`static`); 44,8 unidades de
 	# altura no arquivo (`unit`) -> ~1,8 m no tamanho 1. Ataque de magia à distância.
+	# Demônio da Noite (Night Demon, nubux / morgan strauss, CC BY 3.0): corpo único sem animações (o pacote só tem a malha;
+	# braços baixados por tools/assets/build_night_demon.py): balança, avança e cai por código (`static`); 1 m no arquivo -> ~1,8 m no tamanho 1.
+	"night_demon": {"scene": "res://assets/models/monsters/night_demon.glb", "scale": 1.8, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	"succubus": {"scene": "res://assets/models/monsters/succubus.glb", "scale": 0.04, "static": true, "unit": 44.8,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Senhor da Cripta (Undead male, TiZeta, CC BY): nobre morto-vivo de casaco roxo, 1,8 m no tamanho 1, com animações
 	# feitas à mão (tools/assets/build_undead.py). Chefe do Cemitério.
 	"undead": {"scene": "res://assets/models/monsters/undead_lord.glb", "scale": 1.0,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Zumbi Magro (Thin Zombie, Rosswet Mobile, CC BY 3.0): humanoide com animações próprias (andar, correr, atacar,
+	# apanhar, morrer). Morto-vivo comum do Cemitério.
+	"zombie": {"scene": "res://assets/models/monsters/zombie.glb", "scale": 0.9,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Sapo Ácido (Triton, guiea7, CC BY-SA 4.0): sapo-homem pintado, 8,2 unidades
 	# de altura -> ~1,3 m no tamanho do sapo; tingido de verde pelos dados.
@@ -69,6 +77,9 @@ const FAMILIES := {
 	"golem_ice": {"scene": "res://assets/models/monsters/golem_ice.glb", "scale": 0.62,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
 	"golem_stone": {"scene": "res://assets/models/monsters/golem_stone.glb", "scale": 0.62,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Réptil da Floresta (thecubber, CC BY-SA 3.0; tools/assets/build_reptile.sh): ~1,6 m de altura curvado, de garras; animações feitas para o jogo.
+	"reptile": {"scene": "res://assets/models/monsters/reptile.glb", "scale": 1.0,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Cervos da Floresta (CDmir e TinyWorlds, CC0; tools/assets/build_deer.sh): 1,6 m de comprimento no arquivo, "size" 1.4 nos dados.
 	"deer_buck": {"scene": "res://assets/models/monsters/deer_buck.glb", "scale": 0.714,
