@@ -806,12 +806,12 @@ func _town_test() -> void:
 				"rato morto deixa o corpo tocando a morte (%s)" % [corpse.current() if is_instance_valid(corpse) else "sumiu"])
 			continue
 		probe.queue_free()
-	# Lagarto Dourado: não ataca; golpeado, corre e solta moedas.
-	var lizard := Enemy.create({"monster_id": "golden_lizard", "position": Vector3(3, -50, 3)})
+	# Coelho Dourado: não ataca; golpeado, corre e solta moedas.
+	var lizard := Enemy.create({"monster_id": "golden_rabbit", "position": Vector3(3, -50, 3)})
 	add_child(lizard)
 	var coins_before: int = _arena._loot.size()
 	lizard.take_damage(5.0)
-	check.call(lizard._flee_time > 0.0 and _arena._loot.size() > coins_before, "Lagarto Dourado foge e solta moedas ao levar golpe")
+	check.call(lizard._flee_time > 0.0 and _arena._loot.size() > coins_before, "Coelho Dourado foge e solta moedas ao levar golpe")
 	lizard.queue_free()
 	# Pote de barro: modelo do kit pela posição; quebrado, os cacos voam.
 	var pot := Enemy.create({"monster_id": "pot", "position": Vector3(1.3, -50, 0.7)})

@@ -403,9 +403,9 @@
       0.2
     ]
   },
-  "golden_lizard": {
-    "_comment": "Lagarto Dourado (pedido do autor; Lizardman, skorpio, CC BY-SA 3.0): aparece às vezes numa sala do mapa (rare_spawn = chance por área, nunca na área final). Não ataca: passeia; golpeado, corre para longe e solta moedas (em 4 peças) a cada golpe, e um punhado ao morrer; aguenta uns 5 golpes.",
-    "name_key": "MONSTER_GOLDEN_LIZARD",
+  "golden_rabbit": {
+    "_comment": "Coelho Dourado (pedido do autor; Rabbit, cdmir, CC0): aparece às vezes numa sala do mapa (rare_spawn = chance por área, nunca na área final). Não ataca: passeia; golpeado, corre para longe e solta moedas (em 4 peças) a cada golpe, e um punhado ao morrer; aguenta uns 5 golpes. Era o Lagarto Dourado.",
+    "name_key": "MONSTER_GOLDEN_RABBIT",
     "max_health": 400,
     "move_speed": 1.4,
     "damage": 0,
@@ -429,11 +429,11 @@
       "coin_pieces": 4,
       "coins_on_death": 150
     },
-    "look": "lizard",
+    "look": "rabbit",
     "color": [
       1.0,
-      0.8,
-      0.25
+      0.72,
+      0.12
     ]
   },
   "spawn_nest": {

@@ -155,7 +155,7 @@ func _build_nest(size: float) -> void:
 			pup.play("walk" if i % 2 == 0 else "idle", 0.0)
 
 
-## Fuga (Lagarto Dourado): tempo correndo depois do golpe e o ponto de passeio.
+## Fuga (Coelho Dourado): tempo correndo depois do golpe e o ponto de passeio.
 var _flee_time := 0.0
 var _patrol_pause := 0.0
 var _stuck_time := 0.0

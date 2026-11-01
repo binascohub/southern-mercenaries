@@ -764,7 +764,7 @@ func _maybe_spawn_rare() -> void:
 		spawn_adds(Vector3(room.center[0], 0, room.center[1]), monster_id, 1, 0.0)
 
 
-## Moedas que caem de um monstro (o Lagarto Dourado, a cada golpe): para cada herói.
+## Moedas que caem de um monstro (o Coelho Dourado, a cada golpe): para cada herói.
 ## Moedas no chão (cada herói vê as dele); `pieces` as espalha em várias moedas.
 func drop_coins(at: Vector3, amount: int, pieces := 1) -> void:
 	if not multiplayer.is_server():
@@ -940,7 +940,7 @@ func _start_run() -> void:
 			_enemy_spawner.spawn({"monster_id": box.monster, "group": "box:" + String(box.id),
 				"level": arena.get("area_level", 1), "position": Vector3(box.position[0], 0, box.position[1]),
 				"yaw": _rng.randf() * TAU})
-	# Lagarto Dourado: às vezes aparece numa sala do mapa (não na área final).
+	# Coelho Dourado: às vezes aparece numa sala do mapa (não na área final).
 	_maybe_spawn_rare()
 	# Bandos das caçadas ativas nesta área (SideQuests.hunt_encounter).
 	for quest: Dictionary in SideQuests.active(_campaign.get("side_quests", {})):

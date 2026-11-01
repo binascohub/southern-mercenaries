@@ -2316,7 +2316,7 @@ msgstr ""
 msgid "MONSTER_VENOM_SCORPION"
 msgstr ""
 
-msgid "MONSTER_GOLDEN_LIZARD"
+msgid "MONSTER_GOLDEN_RABBIT"
 msgstr ""
 
 msgid "MONSTER_ACID_TOAD"

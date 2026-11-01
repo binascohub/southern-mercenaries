@@ -2317,8 +2317,8 @@ msgstr "Plague Bat"
 msgid "MONSTER_VENOM_SCORPION"
 msgstr "Venom Scorpion"
 
-msgid "MONSTER_GOLDEN_LIZARD"
-msgstr "Golden Lizard"
+msgid "MONSTER_GOLDEN_RABBIT"
+msgstr "Golden Rabbit"
 
 msgid "MONSTER_ACID_TOAD"
 msgstr "Acid Toad"

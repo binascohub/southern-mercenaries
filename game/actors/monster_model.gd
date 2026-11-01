@@ -53,7 +53,11 @@ const FAMILIES := {
 	# patas) são animadas aqui ("procedural"). ~1 m por unidade de size.
 	"scorpion": {"scene": "res://assets/models/monsters/scorpion.glb", "scale": 1.5, "procedural": true,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
-	# Lagarto Dourado (Lizardman, skorpio, CC BY-SA 3.0): tingido de ouro no jogo.
+	# Coelho (Rabbit, cdmir, CC0): o Coelho Dourado que solta moedas (tingido de ouro no jogo); ~15 unidades -> ~0,75 m no tamanho 1.
+	# Só tem idle, pulo, corrida e sentado: o pulo faz de andar e de ataque, e a sentada faz de queda.
+	"rabbit": {"scene": "res://assets/models/characters/rabbit.glb", "scale": 0.05,
+		"anims": {"idle": "idle", "walk": "jump", "run": "run", "attack": "jump", "hit": "sit", "die": "sit"}},
+	# Lagarto Dourado (Lizardman, skorpio, CC BY-SA 3.0): tingido de ouro no jogo (agora só o Guardião do Cofre usa este corpo).
 	"lizard": {"scene": "res://assets/models/monsters/golden_lizard.glb", "scale": 0.8,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
 	# Elfo Sombrio (Dark Elf, danimal, CC BY-SA 3.0; besta de Lamoot, CC BY): o corpo inteiro com chifres, cabelo e a besta,

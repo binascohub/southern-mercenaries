@@ -2317,8 +2317,8 @@ msgstr "Murciélago Pestilente"
 msgid "MONSTER_VENOM_SCORPION"
 msgstr "Escorpión Venenoso"
 
-msgid "MONSTER_GOLDEN_LIZARD"
-msgstr "Lagarto Dorado"
+msgid "MONSTER_GOLDEN_RABBIT"
+msgstr "Conejo Dorado"
 
 msgid "MONSTER_ACID_TOAD"
 msgstr "Sapo Ácido"

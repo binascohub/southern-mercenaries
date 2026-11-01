@@ -351,6 +351,13 @@ for rd in f_rooms:
         side = round(0.9 * tree["scale"], 1)
         tree["solid"] = [side, side]
         f_decor.append(tree)
+# Carvalhos velhos (Old oak tree, Julius Krischan Makowka, GPL / CC BY-SA 3.0; build_oak.py): copas grandes, semente própria; o tronco bloqueia.
+oakr = rng("forest_oaks")
+for rd in f_rooms:
+    for tree in scatter(oakr, rd, ["Oak_Tree"], int(rd["size"][0] * rd["size"][1] / 150), margin=5.0, scale=(0.8, 1.4), avoid=f_keep):
+        side = round(1.1 * tree["scale"], 1)
+        tree["solid"] = [side, side]
+        f_decor.append(tree)
 # Peças postas à mão: placa e poste na partida, obeliscos e pilares no Covil do Leshy.
 f_decor += [{"piece": "Pr_RoadSign", "position": [-19.0, -9.5], "rotation": 200}, {"piece": "Pr_LampPost", "position": [-24.0, -8.2], "rotation": 0, "solid": [0.6, 0.6]},
             {"piece": "Pr_Obelisk3", "position": [47, -119], "solid": [1.4, 1.4]}, {"piece": "Pr_Obelisk2", "position": [41, -117], "solid": [1.0, 1.0]},
@@ -442,8 +449,8 @@ for rid, piece in FOR_SECTORS.items():
             x, z = {"north": (coord + off, z0 + 1.2), "south": (coord + off, z1 - 1.2), "west": (x0 + 1.2, coord + off), "east": (x1 - 1.2, coord + off)}[side]
             f_markers.append({"piece": piece, "position": [round(x, 1), round(z, 1)], "solid": [1.4, 1.4]})
 # Nada sorteado (plantas, pedras, árvores) em cima das trilhas, das praças e dos marcos.
-f_decor = [d for d in f_decor if not (d["piece"].startswith(("Pl_", "Rock", "Dead_")) and (
-    f_trail_dist(*d["position"]) < (2.6 if d["piece"].startswith(("Rock", "Dead_")) else 1.9)
+f_decor = [d for d in f_decor if not (d["piece"].startswith(("Pl_", "Rock", "Dead_", "Oak_")) and (
+    f_trail_dist(*d["position"]) < (3.4 if d["piece"].startswith("Oak_") else 2.6 if d["piece"].startswith(("Rock", "Dead_")) else 1.9)
     or any(math.hypot(d["position"][0] - cx, d["position"][1] - cz) < F_PLAZA_R + 1.5 for cx, cz in F_PLAZAS.values())
     or any(math.hypot(d["position"][0] - m["position"][0], d["position"][1] - m["position"][1]) < 2.2 for m in f_markers)))]
 f_decor += f_plaza_decor + f_markers
@@ -471,8 +478,8 @@ arenas["forest_01_path"] = {
         {"id": "forest_pyre_keeper", "kind": "npc", "npc": "forest_pyre_keeper", "position": list(F_PLAZAS["fire"]), "rotation": 0, "summon": f_summons["fire"]},
     ] + v_props,
     "quest_spots": [], "breakables": f_deer,
-    "style": {"_comment": "Floresta: sem piso do kit (chão de grama), cerca viva de arbustos nas bordas.", "walls": [""], "floor": "Ground_Grass", "low": "Pl_Bush",
-              "ground": [0.12, 0.2, 0.09]},
+    "style": {"_comment": "Floresta: sem piso do kit (chão de grama), cerca viva de arbustos nas bordas; o chão de fora das salas é quase preto (o vazio do desenho).", "walls": [""], "floor": "Ground_Grass", "low": "Pl_Bush",
+              "ground": [0.02, 0.035, 0.02]},
     "decor": f_decor, "passive": True,
 }
 
@@ -485,11 +492,11 @@ r_rooms = [
     room("vault", 0, -66, 30, 20, ["south"], wall_height=0.8),
 ]
 r_enc = [
-    {"id": "r_lizards_a", "position": [-14, -22], "monsters": [{"monster": "golden_lizard", "count": 3}]},
+    {"id": "r_lizards_a", "position": [-14, -22], "monsters": [{"monster": "golden_rabbit", "count": 3}]},
     {"id": "r_goblins_a", "position": [14, -12], "monsters": [{"monster": "goblin", "count": 4}]},
     {"id": "r_scorp", "position": [12, -28], "monsters": [{"monster": "venom_scorpion", "count": 3}]},
     {"id": "r_bats", "position": [0, -42], "monsters": [{"monster": "plague_bat", "count": 4}]},
-    {"id": "r_lizards_b", "position": [-18, -44], "monsters": [{"monster": "golden_lizard", "count": 3}]},
+    {"id": "r_lizards_b", "position": [-18, -44], "monsters": [{"monster": "golden_rabbit", "count": 3}]},
     {"id": "r_goblins_b", "position": [-10, -62], "monsters": [{"monster": "goblin", "count": 5}]},
     {"id": "r_warden", "position": [0, -70], "monsters": [{"monster": "ruin_warden", "count": 1}]},
 ]
@@ -1445,7 +1452,7 @@ fort_chests = [{"id": i, "kind": "chest", "position": node_pos(n), **extra} for 
 fort_encounters = []
 for eid, cands, kind_id, count in (
         ("fo_elves_gate", spaced, "dark_elf", 2), ("fo_succubi_hall", spaced, "succubus", 2), ("fo_elves_hall_w", spaced, "dark_elf", 2),
-        ("fo_elves_hall_e", spaced, "dark_elf", 2), ("fo_cell_w", leaves, "golden_lizard", 3), ("fo_cell_e", leaves, "venom_scorpion", 3),
+        ("fo_elves_hall_e", spaced, "dark_elf", 2), ("fo_cell_w", leaves, "golden_rabbit", 3), ("fo_cell_e", leaves, "venom_scorpion", 3),
         ("fo_hall_a", far, "plague_bat", 4), ("fo_hall_b", far, "mutant_frog", 4)):
     fort_encounters.append({"id": eid, "position": node_pos(take(cands)), "monsters": [{"monster": kind_id, "count": count}]})
 fort_encounters += [{"id": "fo_succubi_court", "position": cell_pos(9, 5), "monsters": [{"monster": "succubus", "count": 2}]},

@@ -271,7 +271,7 @@ func migrate_campaign(d: Dictionary) -> Dictionary:
 ## Os ratos deixaram de ser monstros (só cenário): os bichos do Esgoto que ainda tinham "rato" no id (sapos de verdade)
 ## foram renomeados; bestiário, caçadas e visitantes de saves antigos ganham os ids novos.
 const RAT_IDS := {"plague_rat": "plague_frog", "mutant_rat": "mutant_frog", "sewer_rat": "plague_frog", "sewer_rat_big": "mutant_frog",
-	"rat_nest": "spawn_nest", "rat_king": "frog_king"}
+	"rat_nest": "spawn_nest", "rat_king": "frog_king", "golden_lizard": "golden_rabbit"}
 
 
 static func _rename_rat_ids(d: Dictionary) -> void:
