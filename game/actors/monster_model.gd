@@ -66,6 +66,14 @@ const FAMILIES := {
 	# apanhar, morrer). Morto-vivo comum do Cemitério.
 	"zombie": {"scene": "res://assets/models/monsters/zombie.glb", "scale": 0.9,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Troll Magro (Skinny Troll, piacenti, CC BY 3.0): troll de 2,4 m com clava de espinhos na mão esquerda e saia de
+	# couro com caveiras; animações feitas à mão (tools/assets/build_troll.py). Elite do Cemitério.
+	"troll": {"scene": "res://assets/models/monsters/troll.glb", "scale": 1.0,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Goblin (Goblin, CDmir, CC0): pequeno e ágil, ~12 unidades de altura no arquivo -> ~1,2 m no tamanho 1;
+	# animações do arquivo (idle, walk, run, attack, hit, die; tools/assets/build_monsters.py). Bando das Ruínas.
+	"goblin": {"scene": "res://assets/models/monsters/goblin.glb", "scale": 0.1,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Sapo Ácido (Triton, guiea7, CC BY-SA 4.0): sapo-homem pintado, 8,2 unidades
 	# de altura -> ~1,3 m no tamanho do sapo; tingido de verde pelos dados.
 	"toad": {"scene": "res://assets/models/monsters/toad.glb", "scale": 0.187,

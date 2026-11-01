@@ -2524,6 +2524,12 @@ msgstr "Esqueleto"
 msgid "MONSTER_ZOMBIE"
 msgstr "Zombi Delgado"
 
+msgid "MONSTER_GOBLIN"
+msgstr "Goblin"
+
+msgid "MONSTER_TROLL"
+msgstr "Troll Flaco"
+
 msgid "ARENA_DARK_FOREST"
 msgstr "Bosque Oscuro"
 
@@ -2541,3 +2547,60 @@ msgstr "Granja"
 
 msgid "PROP_TO_FARM"
 msgstr "Camino a la granja"
+
+msgid "NPC_VILLAGE_HUNTER"
+msgstr "Bertram el Cazador"
+
+msgid "NPC_VILLAGE_WIFE"
+msgstr "Elara la Curtidora"
+
+msgid "DLG_HUNTER_1"
+msgstr "¡Forasteros! Cuidado con el seto al salir: el bosque ya no es el de antes. Soy Bertram. Elara y yo somos lo que queda de Ferncroft."
+
+msgid "DLG_HUNTER_2"
+msgstr "Algo se arrastra desde la oscuridad del bosque: flaco, verde, todo garras. Tres de ellos se llevaron mi último ciervo y el resto de mi paciencia."
+
+msgid "DLG_HUNTER_3"
+msgstr "Acaben con ellos y pagaré lo que pueda. Son criaturas de Tierra: odian el Fuego."
+
+msgid "DLG_HUNTER_ACTIVE"
+msgstr "Tres de ellos, en el bosque, más allá de las piedras. Fuego, recuerden. Fuego."
+
+msgid "DLG_HUNTER_DONE"
+msgstr "¡Por fin silencio! Los ciervos vuelven. Elara tiene más trabajo para ustedes, si aguantan."
+
+msgid "DLG_WIFE_1"
+msgstr "No se fijen en el olor, son las pieles. Soy Elara. Bertram dice que ustedes se enfrentan a lo que los cazadores no pueden."
+
+msgid "DLG_WIFE_2"
+msgstr "En este bosque han empezado a caminar las piedras: un gólem de roca, uno de hielo y uno de fuego, vagando donde estaban nuestros senderos. Pisotean mis tendederos, mis peces… todo."
+
+msgid "DLG_WIFE_3"
+msgstr "Derríbenlos a los tres y entregaré con gusto nuestros ahorros."
+
+msgid "DLG_WIFE_ACTIVE"
+msgstr "Piedra, hielo y fuego. Tres. Cada uno tiene un punto débil: búsquenlo."
+
+msgid "DLG_WIFE_DONE"
+msgstr "El bosque vuelve a respirar. Ferncroft se lo agradece: llévense lo que ahorramos."
+
+msgid "QUEST_FOREST_REPTILES"
+msgstr "Acechadores del bosque"
+
+msgid "QUEST_FOREST_REPTILES_DESC"
+msgstr "Bertram el Cazador pide que acaben con la manada de Reptiles del Bosque. Son de Tierra: temen el Fuego."
+
+msgid "QUEST_FOREST_GOLEMS"
+msgstr "Piedras que caminan"
+
+msgid "QUEST_FOREST_GOLEMS_DESC"
+msgstr "Elara la Curtidora pide que derroten a los Gólems de Piedra, Hielo y Fuego que vagan por el Bosque."
+
+msgid "PROP_VILLAGE_SIGN"
+msgstr "Ferncroft"
+
+msgid "PROP_VILLAGE_SIGN_TEXT"
+msgstr "Ferncroft: media docena de casas, un cazador y una curtidora. Los forasteros son bienvenidos."
+
+msgid "HUD_QUEST_PLAIN"
+msgstr "Misión: {quest}"

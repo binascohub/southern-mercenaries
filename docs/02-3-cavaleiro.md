@@ -2,7 +2,7 @@
 
 > Versão 3 · 2026-10-30 · Detalha a classe Cavaleiro de `02-personagens.md`
 
-> **Atualização (decisão do autor): o Cavaleiro não usa mais cavalo.** No jogo, `data/classes.json` não tem mais `mount`: não há montaria, nem barda, nem tecla de montar, e ele anda a 105% sempre a pé. Ele usa **escudo** no braço esquerdo (Cethiel's Weapons 3D, CC0), com a capa pelo rank do material da arma (D broquel de madeira, C leão verde, B caveira, A leão azul e dourado, S dragão roxo). Os trechos abaixo sobre montaria, galope e barda ficam como histórico até a reescrita da classe (o momentum só cresce com golpes).
+> **Atualização (decisão do autor): o Cavaleiro não usa mais cavalo.** No jogo, `data/classes.json` não tem mais `mount`: não há montaria, nem barda, nem tecla de montar, e ele anda a 105% sempre a pé. Ele usa **escudo** no braço esquerdo (Cethiel's Weapons 3D, CC0), com a capa pelo rank do material da arma (D broquel de madeira, C leão verde, B caveira, A leão azul e dourado, S dragão roxo). A arma visual agora é uma **espada** por rank do material (Low Poly Swords, CC BY 3.0: D reta, C dha, B falcata, A espada longa fina, S espada "estranha" dourada); o item continua chamado de lança nos dados até a reescrita. Os trechos abaixo sobre montaria, galope e barda ficam como histórico até a reescrita da classe (o momentum só cresce com golpes).
 
 > Modelo de personagem: **misto** — herói fixo (nome, história, visual de referência); o jogador pode mudar o nome, a aparência e **escolher o sexo (masculino ou feminino)**.
 > **Exceção:** no Cavaleiro, **cada sexo tem uma história diferente** (seção 1). Atributos e habilidades continuam iguais.

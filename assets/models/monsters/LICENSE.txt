@@ -81,3 +81,16 @@ zombie.glb — "Thin Zombie / awake zombie asset" by Rosswet Mobile
             Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/
             Changes: only the mesh, skeleton and the idle, walk, run, attack (attack1_r), hurt and death (dead1)
             animations kept, texture re-linked to the material and exported to glTF (tools/assets/build_monsters.py).
+
+troll.glb — "Skinny Troll" by piacenti
+            https://opengameart.org/content/skinny-troll
+            Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/
+            Changes: body, club and skirt joined on the skeleton (club on a hand bone, skirt on the hip bone),
+            scaled to 2.4 m, textures re-linked and reduced, and idle, walk, run, attack, hit and die animations made
+            by hand on the original skeleton (tools/assets/build_troll.py).
+
+goblin.glb — "Goblin" by CDmir (collaborator: TinyWorlds)
+            https://opengameart.org/content/goblin-1
+            CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+            Changes: mesh and skeleton kept with the idle, walk, run, attack, hit and die animations, textures re-linked
+            and reduced to 512 px, exported to glTF (tools/assets/build_monsters.py).

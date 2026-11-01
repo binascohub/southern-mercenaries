@@ -969,5 +969,48 @@
       1.0
     ],
     "_comment": "Réptil da Floresta (thecubber, CC BY-SA 3.0): garras rápidas, em bando de três; vaga entre as árvores até alguém chegar perto."
+  },
+  "troll": {
+    "name_key": "MONSTER_TROLL",
+    "max_health": 320,
+    "move_speed": 2.4,
+    "damage": 24,
+    "attack_range": 3.2,
+    "attack_windup": 1.1,
+    "attack_cooldown": 2.2,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "elite",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 4.0,
+    "patrol_speed": 0.8,
+    "look": "troll",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Troll Magro do Cemitério (Skinny Troll, piacenti, CC BY 3.0): elite corpo a corpo; lento, resistente e de pancada lenta e pesada com a clava. Terra (fraco a Fogo)."
+  },
+  "goblin": {
+    "_comment": "Goblin das Ruínas (Goblin, CDmir, CC0): pequeno, rápido e frágil; ataca em bando, corpo a corpo. Terra.",
+    "name_key": "MONSTER_GOBLIN",
+    "max_health": 55,
+    "move_speed": 3.6,
+    "damage": 10,
+    "attack_range": 1.8,
+    "attack_windup": 0.5,
+    "attack_cooldown": 1.2,
+    "aggro_range": 40.0,
+    "size": 0.9,
+    "category": "common",
+    "element": "earth",
+    "look": "goblin",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ]
   }
 }

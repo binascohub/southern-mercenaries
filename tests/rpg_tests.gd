@@ -866,6 +866,21 @@ func _test_sewers() -> void:
 	var reptiles: Array = GameData.arenas.forest_01_path.encounters.filter(func(e: Dictionary) -> bool: return e.id == "f_reptiles")
 	_check(reptiles.size() == 1 and reptiles[0].monsters[0].monster == "forest_reptile" and reptiles[0].monsters[0].count == 3
 		and MonsterModel.FAMILIES.has(GameData.monsters.forest_reptile.look), "Floresta tem o bando de répteis")
+	# Floresta: a aldeia de Ferncroft, com o casal que dá duas missões que terminam ao limpar encontros da área.
+	var forest: Dictionary = GameData.arenas.forest_01_path
+	var forest_ids: Array = forest.encounters.map(func(e: Dictionary) -> String: return e.id)
+	var village_npcs: Array = forest.props.filter(func(p: Dictionary) -> bool: return p.kind == "npc")
+	_check(village_npcs.size() == 2 and village_npcs.all(func(p: Dictionary) -> bool: return GameData.npcs.has(p.npc)), "Floresta tem o casal da aldeia")
+	_check(forest.rooms.any(func(r: Dictionary) -> bool: return r.id == "village"), "Floresta tem a sala da aldeia")
+	for quest_id in ["forest_reptiles", "forest_golems"]:
+		var quest: Dictionary = GameData.quests.get(quest_id, {})
+		_check(quest.get("area", "") == "forest_01_path" and quest.get("clear", []).all(func(id: String) -> bool: return id in forest_ids)
+			and village_npcs.any(func(p: Dictionary) -> bool: return p.npc == quest.get("giver", "")) and tr(quest.get("name_key", "")) != "",
+			"missão da aldeia %s: encontros e quem a dá existem" % quest_id)
+		var giver: Dictionary = GameData.npcs[quest.giver]
+		_check(Town.dialogue_index(quest.giver, {}) == 0 and Town.dialogue_index(quest.giver, {quest_id: "active"}) == 1
+			and Town.dialogue_index(quest.giver, {quest_id: "done"}) == 2 and giver.dialogues[0].get("offer", "") == quest_id,
+			"conversa de %s: oferece, lembra e agradece" % quest_id)
 	# Floresta: poucos cervos quebráveis, parados, que só soltam poção.
 	var deer: Array = GameData.arenas.forest_01_path.get("breakables", [])
 	_check(deer.size() >= 3 and deer.size() <= 10 and deer.all(func(b: Dictionary) -> bool:

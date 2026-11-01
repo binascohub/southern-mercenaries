@@ -2523,6 +2523,12 @@ msgstr ""
 msgid "MONSTER_ZOMBIE"
 msgstr ""
 
+msgid "MONSTER_GOBLIN"
+msgstr ""
+
+msgid "MONSTER_TROLL"
+msgstr ""
+
 msgid "ARENA_DARK_FOREST"
 msgstr ""
 
@@ -2539,4 +2545,61 @@ msgid "ARENA_FARM"
 msgstr ""
 
 msgid "PROP_TO_FARM"
+msgstr ""
+
+msgid "NPC_VILLAGE_HUNTER"
+msgstr ""
+
+msgid "NPC_VILLAGE_WIFE"
+msgstr ""
+
+msgid "DLG_HUNTER_1"
+msgstr ""
+
+msgid "DLG_HUNTER_2"
+msgstr ""
+
+msgid "DLG_HUNTER_3"
+msgstr ""
+
+msgid "DLG_HUNTER_ACTIVE"
+msgstr ""
+
+msgid "DLG_HUNTER_DONE"
+msgstr ""
+
+msgid "DLG_WIFE_1"
+msgstr ""
+
+msgid "DLG_WIFE_2"
+msgstr ""
+
+msgid "DLG_WIFE_3"
+msgstr ""
+
+msgid "DLG_WIFE_ACTIVE"
+msgstr ""
+
+msgid "DLG_WIFE_DONE"
+msgstr ""
+
+msgid "QUEST_FOREST_REPTILES"
+msgstr ""
+
+msgid "QUEST_FOREST_REPTILES_DESC"
+msgstr ""
+
+msgid "QUEST_FOREST_GOLEMS"
+msgstr ""
+
+msgid "QUEST_FOREST_GOLEMS_DESC"
+msgstr ""
+
+msgid "PROP_VILLAGE_SIGN"
+msgstr ""
+
+msgid "PROP_VILLAGE_SIGN_TEXT"
+msgstr ""
+
+msgid "HUD_QUEST_PLAIN"
 msgstr ""

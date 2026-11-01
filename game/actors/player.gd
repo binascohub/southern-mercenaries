@@ -1444,8 +1444,9 @@ func _update_sword(rank: String) -> void:
 		(old as Node).free()
 	var sword := Kit.piece("Sword_" + rank)
 	_weapon_holder.mesh = null
-	sword.position = Vector3(0, -_weapon_holder.position.y + 0.3, 0)  # o punho segura perto do cabo
 	sword.rotation_degrees = Vector3(55.0, 0.0, 0.0)  # a ponta para cima e para a frente, não deitada como a lança
+	# O meio da espada fica na origem: sobe meio comprimento ao longo da lâmina para o punho ficar na mão.
+	sword.position = Vector3(0, -_weapon_holder.position.y + 0.05, 0) + sword.basis * Vector3(0, 0.45, 0)
 	_weapon_holder.add_child(sword)
 	_weapon_holder.set_meta("weapon_node", sword)
 

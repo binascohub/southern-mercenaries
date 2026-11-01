@@ -109,6 +109,10 @@ monsters["skeleton"] = {
 monster("zombie", "skeleton", _comment="Zumbi Magro do Cemitério (Thin Zombie, Rosswet Mobile, CC BY 3.0): corpo a corpo, lento e resistente; vaga entre as covas. Terra (fraco a Fogo).",
         name_key="MONSTER_ZOMBIE", max_health=130, damage=12, move_speed=2.2, attack_windup=0.8, attack_cooldown=1.7, look="zombie",
         color=[1.0, 1.0, 1.0])
+# Troll Magro (Skinny Troll, piacenti, CC BY 3.0; build_troll.py): elite corpo a corpo do Cemitério, lento, de pancada pesada.
+monster("troll", "skeleton", _comment="Troll Magro do Cemitério (Skinny Troll, piacenti, CC BY 3.0): elite corpo a corpo; lento, resistente e de pancada lenta e pesada com a clava. Terra (fraco a Fogo).",
+        name_key="MONSTER_TROLL", max_health=320, damage=24, move_speed=2.4, attack_range=3.2, attack_windup=1.1, attack_cooldown=2.2,
+        category="elite", size=1.0, look="troll", color=[1.0, 1.0, 1.0], patrol_radius=4.0)
 
 
 # Golens da Floresta (umask007, CC BY / CC BY-SA): três elites corpo a corpo lentos e resistentes; o de pedra investe.
@@ -229,10 +233,10 @@ def cabin(cx, cz, windows_first=True):
 
 v_decor = cabin(-35, -23) + cabin(-26, -23.5, False)
 v_decor += [
-    {"piece": "Vl_Cellar", "position": [-38.5, -10], "solid": [2.4, 2.3]},
-    {"piece": "Vl_Outhouse", "position": [-39.5, -14.5], "solid": [1.4, 1.5]},
-    {"piece": "Vl_Logs", "position": [-39.2, -19.5], "rotation": 90, "solid": [2.2, 0.8]},
-    {"piece": "Vl_ChoppingBlock", "position": [-37.6, -17.2], "rotation": 30, "solid": [0.5, 0.5]},
+    {"piece": "Vl_Cellar", "position": [-36.5, -10.6], "solid": [2.4, 2.3]},
+    {"piece": "Vl_Outhouse", "position": [-38.3, -14.6], "solid": [1.4, 1.5]},
+    {"piece": "Vl_Logs", "position": [-38.5, -19.9], "rotation": 90, "solid": [2.2, 0.8]},
+    {"piece": "Vl_ChoppingBlock", "position": [-37.0, -17.4], "rotation": 30, "solid": [0.5, 0.5]},
     {"piece": "Vl_TanningStand", "position": [-30.2, -24.4], "solid": [2.2, 0.5]},
     {"piece": "Vl_FishRack", "position": [-21.0, -22.0], "solid": [2.1, 0.4]},
     {"piece": "Vl_Ladder", "position": [-33.2, -25.2], "rotation": 0, "y": 0.0},
@@ -243,14 +247,14 @@ v_decor += [
     {"piece": "Barrel", "position": [-22.0, -26.2], "solid": [0.9, 0.9]},
     {"piece": "Crate_Wooden", "position": [-31.0, -26.4], "rotation": 20, "solid": [0.9, 0.9]},
     {"piece": "Bucket_Wooden_1", "position": [-26.2, -16.9]},
-    {"piece": "Stool_Wood", "position": [-36.2, -17.0]},
+    {"piece": "Stool_Wood", "position": [-35.9, -17.2]},
     {"piece": "Bench_Wood", "position": [-22.6, -19.4], "rotation": 0},
     {"piece": "Mushroom_Cluster", "position": [-40.0, -25.2]}, {"piece": "Mushroom_Tall", "position": [-39.4, -25.8]},
     {"piece": "Mushroom_Flat", "position": [-39.0, -7.9]},
 ]
 vr = rng("forest_village")
-v_keep = [(-35, -23, 4.6), (-26, -23.5, 4.6), (-38.5, -10, 2.2), (-39.5, -14.5, 1.6), (-27.5, -15.5, 2.0), (-30, -9.6, 2.2),
-          (-19, -17.5, 4.0), (-34.5, -19, 2.0), (-30.2, -21.2, 2.0), (-30.2, -24.4, 2.0), (-21, -22, 2.0), (-39.2, -19.5, 2.0), (-37.6, -17.2, 1.5)]
+v_keep = [(-35, -23, 4.6), (-26, -23.5, 4.6), (-36.5, -10.6, 2.2), (-38.3, -14.6, 1.6), (-27.5, -15.5, 2.0), (-30, -9.6, 2.2),
+          (-19, -17.5, 4.0), (-34.5, -19, 2.0), (-30.2, -21.2, 2.0), (-30.2, -24.4, 2.0), (-21, -22, 2.0), (-38.5, -19.9, 2.0), (-37.0, -17.4, 1.5)]
 v_decor += ring(vr, village_room, ["Pl_Bamboo", "Pl_Bamboo", "Pl_Bush"], 2.4, scale=(0.9, 1.5))
 v_decor += scatter(vr, village_room, ["Pl_Bush", "Pl_Flower", "Pl_Swirl", "Pl_Shrub1", "Pl_Shrub3"], 10, margin=2.5, scale=(0.8, 1.4), avoid=v_keep)
 v_decor += scatter(vr, village_room, ["Pl_Weed1", "Pl_Weed2", "Pl_Weed3", "Pl_Weed4", "Pl_Weed5"], 60, margin=1.5, scale=(1.0, 2.0), avoid=v_keep)
@@ -287,9 +291,11 @@ r_rooms = [
 ]
 r_enc = [
     {"id": "r_lizards_a", "position": [-14, -22], "monsters": [{"monster": "golden_lizard", "count": 3}]},
+    {"id": "r_goblins_a", "position": [14, -12], "monsters": [{"monster": "goblin", "count": 4}]},
     {"id": "r_scorp", "position": [12, -28], "monsters": [{"monster": "venom_scorpion", "count": 3}]},
     {"id": "r_bats", "position": [0, -42], "monsters": [{"monster": "plague_bat", "count": 4}]},
     {"id": "r_lizards_b", "position": [-18, -44], "monsters": [{"monster": "golden_lizard", "count": 3}]},
+    {"id": "r_goblins_b", "position": [-10, -62], "monsters": [{"monster": "goblin", "count": 5}]},
     {"id": "r_warden", "position": [0, -70], "monsters": [{"monster": "ruin_warden", "count": 1}]},
 ]
 r_decor = [{"collider": c["size"], "position": [c["position"][0], round(c["position"][1] - 31, 2)]} for c in colliders]
@@ -337,6 +343,7 @@ c_enc = [
     {"id": "c_skel_crypt", "position": [-6, -52], "monsters": [{"monster": "skeleton", "count": 3}]},
     {"id": "c_zombie_w", "position": [-18, -28], "monsters": [{"monster": "zombie", "count": 3}]},
     {"id": "c_zombie_e", "position": [18, -44], "monsters": [{"monster": "zombie", "count": 3}]},
+    {"id": "c_troll", "position": [-9, -43], "monsters": [{"monster": "troll", "count": 1}]},
     {"id": "c_boss", "position": [0, -60], "monsters": [{"monster": "crypt_lord", "count": 1}]},
 ]
 c_decor = []

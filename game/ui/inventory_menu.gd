@@ -115,7 +115,7 @@ func _refresh() -> void:
 		# Poções com ícone: o frasco em cima, só a quantidade embaixo.
 		var icon := Items.icon(item)
 		button.icon = icon
-		if icon:
+		if icon and item.kind != Items.EQUIPMENT:
 			button.text = "x%d" % int(item.count) if int(item.get("count", 1)) > 1 else ""
 		button.add_theme_color_override("font_color", Items.color(item) if item else Color.WHITE)
 		button.add_theme_color_override("font_focus_color", Items.color(item) if item else Color.WHITE)

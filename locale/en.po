@@ -2524,6 +2524,12 @@ msgstr "Skeleton"
 msgid "MONSTER_ZOMBIE"
 msgstr "Thin Zombie"
 
+msgid "MONSTER_GOBLIN"
+msgstr "Goblin"
+
+msgid "MONSTER_TROLL"
+msgstr "Skinny Troll"
+
 msgid "ARENA_DARK_FOREST"
 msgstr "Dark Forest"
 
@@ -2541,3 +2547,60 @@ msgstr "Farm"
 
 msgid "PROP_TO_FARM"
 msgstr "Path to the Farm"
+
+msgid "NPC_VILLAGE_HUNTER"
+msgstr "Bertram the Hunter"
+
+msgid "NPC_VILLAGE_WIFE"
+msgstr "Elara the Tanner"
+
+msgid "DLG_HUNTER_1"
+msgstr "Strangers! Mind the hedge when you leave — the grove is not what it was. I'm Bertram. Elara and I are all that's left of Ferncroft."
+
+msgid "DLG_HUNTER_2"
+msgstr "Something crawls out of the dark in the grove: lean, green, all claws. Three of them took my last deer and the rest of my patience."
+
+msgid "DLG_HUNTER_3"
+msgstr "Clear them out and I'll pay what I can. They're Earth-blooded things — they hate Fire."
+
+msgid "DLG_HUNTER_ACTIVE"
+msgstr "Three of them, in the grove, past the stones. Fire, remember. Fire."
+
+msgid "DLG_HUNTER_DONE"
+msgstr "Quiet at last! The deer are coming back. Elara has more work for you, if you have the stomach."
+
+msgid "DLG_WIFE_1"
+msgstr "Don't mind the smell, it's the hides. I'm Elara. Bertram says you fight what hunters cannot."
+
+msgid "DLG_WIFE_2"
+msgstr "Stones have started to walk in these woods — a golem of rock, one of ice, one of fire, wandering where our paths used to be. They trample my racks, my fish… everything."
+
+msgid "DLG_WIFE_3"
+msgstr "Put all three down and I'll gladly hand over our savings."
+
+msgid "DLG_WIFE_ACTIVE"
+msgstr "Stone, ice and fire. Three of them. Each has a weakness — look for it."
+
+msgid "DLG_WIFE_DONE"
+msgstr "The woods are breathing again. Ferncroft thanks you — take what we saved."
+
+msgid "QUEST_FOREST_REPTILES"
+msgstr "Lurkers in the Grove"
+
+msgid "QUEST_FOREST_REPTILES_DESC"
+msgstr "Bertram the Hunter asks you to clear the pack of Forest Reptiles from the grove. They are Earth — they fear Fire."
+
+msgid "QUEST_FOREST_GOLEMS"
+msgstr "Walking Stones"
+
+msgid "QUEST_FOREST_GOLEMS_DESC"
+msgstr "Elara the Tanner asks you to defeat the Stone, Ice and Fire Golems that wander the Forest."
+
+msgid "PROP_VILLAGE_SIGN"
+msgstr "Ferncroft"
+
+msgid "PROP_VILLAGE_SIGN_TEXT"
+msgstr "Ferncroft — half a dozen houses, one hunter and one tanner. Strangers welcome."
+
+msgid "HUD_QUEST_PLAIN"
+msgstr "Quest: {quest}"

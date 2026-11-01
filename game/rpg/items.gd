@@ -195,9 +195,19 @@ static func is_valid(item: Variant) -> bool:
 ## Ícone do item no inventário (assets/ui/icons/<id>.png: as poções, de
 ## tools/assets/potion_icons.py); null sem ícone.
 static func icon(item: Variant) -> Texture2D:
+	if item is Dictionary and item.get("kind", "") == EQUIPMENT:
+		return equipment_icon(item)
 	if not item is Dictionary or not item.has("id"):
 		return null
 	var path := "res://assets/ui/icons/%s.png" % String(item.id)
+	return load(path) as Texture2D if ResourceLoader.exists(path) else null
+
+
+## Ícone de equipamento: a lança do Cavaleiro aparece como a espada do rank do material (3D Swords Pack, CC0).
+static func equipment_icon(item: Dictionary) -> Texture2D:
+	if item.get("kind", "") != EQUIPMENT or String(item.get("base", "")) != "lance":
+		return null
+	var path := "res://assets/ui/icons/sword_%s.png" % NinjaGear.rank_of(String(item.get("material", "")))
 	return load(path) as Texture2D if ResourceLoader.exists(path) else null
 
 
