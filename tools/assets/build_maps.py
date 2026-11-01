@@ -454,12 +454,13 @@ arenas["ruins_01_city"] = {
 }
 
 # --- Cemitério --------------------------------------------------------------------------------------
-# Mapa grande (64 x 324 m de pátio + cripta: o comprimento é 3x o da primeira versão, a largura é a mesma, então a área é 3x) cortado por uma rede de trilhas de pedra, para confundir os heróis:
-# três pistas (oeste, centro, leste) saem do portão, se separam e se ligam por travessias; as laterais passam por mais
-# grupos de monstros, a do oeste e um ramal do leste terminam em becos sem saída com baú, e só o centro e o leste
-# chegam à cripta. Os monstros ficam em setores, separados por pares de marcos de pedra em cada pista:
-#   portão (seguro) -> A Campo de Covas (ratos e morcegos) -> B Ossuário (esqueletos e escorpiões)
-#   -> C Cova dos Mortos (zumbis) -> D Covil do Troll (o troll, esqueletos) -> cripta (o Senhor da Cripta).
+# Mapa grande (64 x 312 m de pátio + cripta: o comprimento é 3x o da primeira versão, a largura é a mesma, então a área é 3x) cortado por
+# uma rede de trilhas de pedra, para confundir os heróis: três pistas (oeste, centro, leste) saem do portão, se separam e se ligam por
+# travessias; as laterais passam por mais grupos de monstros, a do oeste e um ramal do leste terminam em becos sem saída com baú, e só
+# o centro e o leste chegam à cripta. Sete setores, separados por pares de marcos de pedra em cada pista e por grades pretas:
+#   portão (seguro) -> A Campo de Covas (ratos e morcegos) -> B Ossuário (esqueletos) -> C Terra dos Escorpiões (escorpiões e esqueletos;
+#   Praça das Pedras, com mini-chefe) -> D Cova dos Mortos (zumbis) -> E Catacumbas (zumbis, esqueletos e morcegos) -> F Alameda da Estátua
+#   (esqueletos e zumbis; Praça da Estátua, com mini-chefe invocado) -> G Covil do Troll (os trolls e esqueletos) -> cripta (o Senhor da Cripta).
 cr = rng("cemetery")
 ZS = 3                                  # o pátio é ZS vezes mais comprido que o da primeira versão (104 m -> 312 m)
 YARD_W, YARD_TOP, YARD_BOTTOM = 64, -6, -6 - 104 * ZS
@@ -468,7 +469,8 @@ c_rooms = [
     room("yard", 0, (YARD_TOP + YARD_BOTTOM) / 2, YARD_W, YARD_TOP - YARD_BOTTOM, ["south", "north"], wall_height=0.8),
     room("crypt", 0, YARD_BOTTOM - 10, 24, 20, ["south"], wall_height=0.8),
 ]
-SECTOR_BORDERS = tuple(b * ZS for b in (-38, -66, -92))     # z dos marcos entre os setores A|B, B|C e C|D
+SECTOR_BORDERS = (-56, -100, -144, -188, -230, -274)     # z dos marcos entre os sete setores (A|B ... F|G)
+SECTOR_Z = (-12,) + SECTOR_BORDERS + (YARD_BOTTOM,)     # z de cima e de baixo de cada setor (A a G)
 
 
 def lane_m(z):
@@ -538,37 +540,35 @@ def trail_dist(x, z):
 
 
 # Praças de ruínas (mais abaixo): a das Pedras (setor B) e a da Estátua (setor C), cada uma com um mini-chefe.
-PLAZA_A = (round(lane_m(-52 * ZS), 1), -52 * ZS)
-PLAZA_B = (round(lane_m(-80 * ZS) + 2.6, 1), -80 * ZS)
-# Grupos de monstros por setor, ao longo das pistas: em cada setor, posições z igualmente espaçadas, uma pista por vez (oeste,
-# centro, leste); no centro o grupo fica ao lado da trilha (os elites, em cima dela). O desenho dos grupos é o da primeira versão,
-# com o dobro de grupos para o mapa 3x mais comprido.
+PLAZA_A = (round(lane_m(-122), 1), -122)            # Praça das Pedras: meio do setor C
+PLAZA_B = (round(lane_m(-252) + 2.6, 1), -252)      # Praça da Estátua: meio do setor F (130 m da outra)
+# Grupos de monstros por setor, ao longo das pistas: em cada setor, posições z igualmente espaçadas, uma pista por vez (oeste, centro,
+# leste); no centro o grupo fica ao lado da trilha (os trolls, em cima dela); nada nasce dentro de uma praça.
 er_enc = rng("cemetery_groups")
-
-
-def sector_groups(tag, z_top, z_bottom, palette):
-    out = []
+SECTOR_PALETTES = [
+    [("plague_rat", 5), ("plague_bat", 4), ("plague_rat", 5), ("plague_rat", 5), ("plague_bat", 4)],                        # A Campo de Covas
+    [("skeleton", 3), ("skeleton", 4), ("skeleton", 3), ("skeleton", 3), ("skeleton", 4)],                                  # B Ossuário
+    [("venom_scorpion", 3), ("skeleton", 3), ("venom_scorpion", 3), ("skeleton", 3), ("venom_scorpion", 3)],                # C Terra dos Escorpiões
+    [("zombie", 3), ("zombie", 3), ("zombie", 4), ("zombie", 3), ("zombie", 3)],                                            # D Cova dos Mortos
+    [("zombie", 3), ("skeleton", 3), ("plague_bat", 4), ("zombie", 3), ("skeleton", 4)],                                    # E Catacumbas
+    [("skeleton", 3), ("zombie", 3), ("skeleton", 3), ("zombie", 4), ("skeleton", 3)],                                      # F Alameda da Estátua
+    [("skeleton", 3), ("troll", 1), ("skeleton", 3), ("skeleton", 3), ("troll", 1), ("skeleton", 3)],                       # G Covil do Troll
+]
+c_enc = []
+for k, palette in enumerate(SECTOR_PALETTES):
+    z_top = SECTOR_Z[k] - (16 if k == 0 else 5)
+    z_bottom = SECTOR_Z[k + 1] + 3
     step = (z_top - z_bottom) / len(palette)
     for i, (monster, count) in enumerate(palette):
         lane = "WME"[i % 3]
         z = round(z_top - step * (i + 0.5))
         off = 0.0 if lane != "M" or monster == "troll" else er_enc.choice((-1, 1)) * 6.0
-        out.append({"id": "c_%s_%d" % (tag, i + 1), "position": on(lane, z, off), "monsters": [{"monster": monster, "count": count}]})
-    return out
-
-
-c_enc = []
-# A - Campo de Covas: a vermina, para aquecer.
-c_enc += sector_groups("a", -28, -38 * ZS + 2, [("plague_rat", 5), ("plague_bat", 4), ("plague_rat", 5), ("plague_rat", 5), ("plague_bat", 4), ("plague_rat", 5)])
-# B - Ossuário: esqueletos em bando e escorpiões atirando de longe.
-c_enc += sector_groups("b", -38 * ZS - 4, -66 * ZS + 2, [("skeleton", 3), ("venom_scorpion", 3), ("skeleton", 4), ("skeleton", 3), ("venom_scorpion", 3),
-                                                      ("skeleton", 3), ("skeleton", 4), ("venom_scorpion", 3), ("skeleton", 3), ("skeleton", 3)])
+        position = on(lane, z, off)
+        if any(math.hypot(position[0] - px, position[1] - pz) < 14 for px, pz in (PLAZA_A, PLAZA_B)):
+            continue
+        c_enc.append({"id": "c_%s_%d" % ("abcdefg"[k], i + 1), "position": position, "monsters": [{"monster": monster, "count": count}]})
 c_enc.append({"id": "c_plaza_a", "position": [PLAZA_A[0], PLAZA_A[1] + 4.2], "spread": 2.6,    # Praça das Pedras: o mini-chefe e dois esqueletos de guarda
               "monsters": [{"monster": "crypt_scorpion", "count": 1}, {"monster": "skeleton", "count": 2}]})
-# C - Cova dos Mortos: zumbis lentos e resistentes.
-c_enc += sector_groups("c", -66 * ZS - 4, -92 * ZS + 2, [("zombie", 3), ("zombie", 3), ("zombie", 4), ("zombie", 3), ("zombie", 3), ("zombie", 4), ("zombie", 3), ("zombie", 3)])
-# D - Covil do Troll: os elites no centro, esqueletos guardando o beco do oeste e a pista do leste.
-c_enc += sector_groups("d", -92 * ZS - 4, YARD_BOTTOM - 4, [("skeleton", 3), ("troll", 1), ("skeleton", 3), ("skeleton", 3), ("troll", 1), ("skeleton", 3)])
 c_enc.append({"id": "c_boss", "position": [0, YARD_BOTTOM - 8], "monsters": [{"monster": "crypt_lord", "count": 1}]})
 c_props = [
     {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-6, 3], "to": "tortuga", "entry": "forest", "expedition_end": True},
@@ -604,9 +604,10 @@ put({"piece": "Pr_CoveredWell", "position": well_at, "solid": [1.8, 1.8]}, 2.2)
 put({"piece": "Pr_Trough", "position": free_spot(well_at[0] - 4, well_at[1] + 1, 4.5, avoid=well_at), "rotation": 90, "solid": [3.0, 1.2]}, 2.4)
 put({"piece": "Pr_LampPost", "position": [-3, 3], "solid": [0.6, 0.6]}, 1.0)
 put({"piece": "Pr_LampPost", "position": [4, -3], "solid": [0.6, 0.6]}, 1.0)
-# Marcos de pedra nas divisas dos setores: um par de cada lado de cada pista, de um tipo por divisa.
-for z, (left, right) in zip(SECTOR_BORDERS, (("Pr_Obelisk3", "Pr_Obelisk2"), ("Pr_Cross4", "Pr_Cross4"),
-                                           ("Pr_BrokenPillar2", "Pr_BrokenPillar2"))):
+# Marcos de pedra nas divisas dos setores: um par de cada lado de cada pista, de um tipo por divisa (obelisco, cruz, pilar, e de novo).
+BORDER_MARKS = (("Pr_Obelisk3", "Pr_Obelisk2"), ("Pr_Cross4", "Pr_Cross4"), ("Pr_BrokenPillar2", "Pr_BrokenPillar2"))
+for k, z in enumerate(SECTOR_BORDERS):
+    left, right = BORDER_MARKS[k % 3]
     for lane, half in (("W", 3.6), ("M", 4.5), ("E", 3.6)):
         put({"piece": left, "position": on(lane, z, -half), "solid": [1.4, 1.4]}, 2.4)
         put({"piece": right, "position": on(lane, z, half), "solid": [1.4, 1.4]}, 2.4)
@@ -806,10 +807,11 @@ def jar_cluster(cx, cz, count, spread=1.8):
 
 
 chest_e, chest_w = c_props[2]["position"], c_props[3]["position"]
-JAR_CLUSTERS = [(("W", "M"), -30, 4), (("M", "E"), -60, 5), (("W", "M"), -96, 4),                     # setor A
-                (("M", "E"), -38 * ZS - 14, 5), (("W", "M"), -38 * ZS - 44, 4), (("M", "E"), -66 * ZS + 24, 5),   # setor B
-                (("W", "M"), -66 * ZS - 16, 4), (("M", "E"), -66 * ZS - 46, 5), (("W", "M"), -92 * ZS + 22, 4),   # setor C
-                (("M", "E"), -92 * ZS - 14, 5)]                                                         # setor D
+JAR_CLUSTERS = []
+for k in range(7):                                    # um grupo por setor, alternando oeste-centro e centro-leste
+    mid = (SECTOR_Z[k] + SECTOR_Z[k + 1]) / 2 + (-14 if k in (2, 5) else 0)     # nos setores das praças, longe delas
+    JAR_CLUSTERS.append(((("W", "M"), ("M", "E"))[k % 2], round(mid), 4 + k % 2))
+JAR_CLUSTERS += [(("M", "E"), -86, 5), (("W", "M"), -166, 4), (("M", "E"), -210, 5)]       # três a mais entre os grupos
 for (lane_a, lane_b), cz, count in JAR_CLUSTERS:
     jar_cluster((LANES[lane_a](cz) + LANES[lane_b](cz)) / 2, cz, count)
 for cx, cz, count in ((chest_e[0] - 2.5, chest_e[1] + 3.5, 4), (chest_w[0] + 2.5, chest_w[1] + 3.5, 4)):
@@ -849,9 +851,10 @@ BONES_SMALL = ["Dungeon_Skull_1", "Dungeon_Skull_2", "Dungeon_Bone"]
 BONES_MID = ["Dungeon_CrossBones", "Dungeon_BonePile_1", "Dungeon_Arm", "Dungeon_Leg", "Dungeon_Ribcage", "Dungeon_Pelvis", "Dungeon_Spine"]
 BONES_BIG = ["Dungeon_SkullPile", "Dungeon_BonePile_2", "Dungeon_BonePile_3", "Dungeon_BonePile_4", "Dungeon_BonePile_5", "Dungeon_BonePile_6"]
 # (nome, quantos, xmax, z de cima, z de baixo, pesos pequeno / médio / grande)
-BONE_AREAS = [("A", 8 * ZS, 28, -12, -38 * ZS + 2, (0.8, 0.2, 0.0)), ("B", 14 * ZS, 28, -38 * ZS - 3, -66 * ZS + 2, (0.4, 0.5, 0.1)),
-              ("C", 16 * ZS, 28, -66 * ZS - 3, -92 * ZS + 2, (0.25, 0.45, 0.3)), ("D", 14 * ZS, 28, -92 * ZS - 3, YARD_BOTTOM + 2, (0.15, 0.35, 0.5)),
-              ("crypt", 10, 10, YARD_BOTTOM - 2, YARD_BOTTOM - 19, (0.2, 0.3, 0.5))]
+BONE_AREAS = [(name, count, 28, SECTOR_Z[k] - 3, SECTOR_Z[k + 1] + 3, weights) for k, (name, count, weights) in enumerate((
+    ("A", 20, (0.8, 0.2, 0.0)), ("B", 24, (0.6, 0.35, 0.05)), ("C", 28, (0.45, 0.45, 0.1)), ("D", 32, (0.3, 0.5, 0.2)),
+    ("E", 36, (0.25, 0.45, 0.3)), ("F", 36, (0.2, 0.4, 0.4)), ("G", 36, (0.15, 0.35, 0.5))))]
+BONE_AREAS.append(("crypt", 10, 10, YARD_BOTTOM - 2, YARD_BOTTOM - 19, (0.2, 0.3, 0.5)))
 bn = random.Random("cemetery_bones")
 bones = []
 for _name, count, xmax, z_top, z_bottom, weights in BONE_AREAS:
@@ -870,7 +873,7 @@ for _name, count, xmax, z_top, z_bottom, weights in BONE_AREAS:
             placed += 1
 c_decor += bones
 arenas["cemetery_01_yard"] = {
-    "_comment": "Cemitério (Medieval Props Textured, Clint Bellanger, CC BY 3.0, modelos de Lamoot): mapa grande de terra escura cortado por uma rede de trilhas de lajes (três pistas que se separam, se cruzam e se reencontram; becos sem saída com baú) do portão à cripta, com quatro setores de monstros, cada um 3x mais comprido que na primeira versão (A Campo de Covas, B Ossuário, C Cova dos Mortos, D Covil do Troll), marcos de pedra nas divisas, fileiras de lápides e cruzes, poço coberto, estátuas e túmulos de cavaleiro, e a cripta do Senhor da Cripta no fundo. Gerado por tools/assets/build_maps.py.",
+    "_comment": "Cemitério (Medieval Props Textured, Clint Bellanger, CC BY 3.0, modelos de Lamoot): mapa grande de terra escura cortado por uma rede de trilhas de lajes (três pistas que se separam, se cruzam e se reencontram; becos sem saída com baú) do portão à cripta, com sete setores de monstros (A Campo de Covas, B Ossuário, C Terra dos Escorpiões, D Cova dos Mortos, E Catacumbas, F Alameda da Estátua, G Covil do Troll), duas praças de ruínas com mini-chefe bem afastadas, marcos de pedra nas divisas, fileiras de lápides e cruzes, poço coberto, estátuas e túmulos de cavaleiro, e a cripta do Senhor da Cripta no fundo. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_CEMETERY", "player_class": "mage", "map_id": "map_cemetery", "area_level": 7, "outdoor": True,
     "wake_radius": 10.0, "alert_radius": 5.0, "rooms": c_rooms, "encounters": c_enc, "hazards": [],
     "entries": {"start": [0, 3], "cemetery": [0, 3]},
