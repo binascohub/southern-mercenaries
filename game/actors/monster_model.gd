@@ -24,6 +24,10 @@ const FAMILIES := {
 		"body_scene": "res://assets/models/monsters/rat_queen_body.glb", "body_scale": 0.254,
 		"bones": {"head": "Head", "chest": "Spine1", "hips": "Hips"},
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "die": "die"}},
+	# O Feiticeiro-aranha (Wizard, piacenti, CC BY-SA 3.0): malha única sem esqueleto, 1 m de altura no
+	# arquivo; o corpo todo balança, avança e cai por código (`static`). Chefe do Esgoto no lugar da Rainha.
+	"demon": {"scene": "res://assets/models/monsters/demon_wizard.glb", "scale": 0.8, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	"gator": {"scene": "res://assets/models/monsters/gator.glb", "scale": 0.75,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
 	# Monstro da Floresta (cdmir, CC0): gigante de casca e pedra com uma árvore nas
@@ -90,6 +94,8 @@ var _tail: Node3D
 ## Peças animadas à mão (escorpião): nome -> [nó, transformação de repouso].
 var _parts := {}
 var _action_time := 0.0
+## Modelo sem esqueleto (o Feiticeiro-aranha): o corpo todo é movido por código.
+var _static_root: Node3D
 
 
 static func has_family(look: String) -> bool:
@@ -120,6 +126,12 @@ func setup(look: String, size: float, tint: Color) -> bool:
 			copy.cull_mode = BaseMaterial3D.CULL_DISABLED
 			mesh.set_surface_override_material(i, copy)
 			_materials.append(copy)
+	if info.get("static", false):
+		for key: String in info.anims:
+			_names[key] = info.anims[key]
+		_static_root = model as Node3D
+		_current = "idle"
+		return true
 	if info.get("procedural", false):
 		for key: String in info.anims:
 			_names[key] = info.anims[key]
@@ -411,6 +423,8 @@ func _add_wings(parent: Node3D, at: Vector3) -> void:
 
 
 func _process(delta: float) -> void:
+	if _static_root:
+		_animate_static(delta)
 	if not _parts.is_empty():
 		_animate_parts(delta)
 	if not _follows.is_empty() and _skeleton:
@@ -471,6 +485,31 @@ func _animate_parts(delta: float) -> void:
 		rotation.z = lerpf(rotation.z, PI * 0.9, minf(delta * 4.0, 1.0))
 
 
+## Feiticeiro-aranha: flutua e balança parado, anda inclinado para a frente, investe no golpe e tomba na morte.
+func _animate_static(delta: float) -> void:
+	_time += delta
+	_action_time += delta
+	var lift := sin(_time * 1.6) * 0.015
+	var pitch := 0.0
+	var roll := sin(_time * 0.9) * 0.02
+	if _current in ["walk", "run"]:
+		var rate := 9.0 if _current == "run" else 6.0
+		lift = absf(sin(_time * rate)) * 0.04
+		pitch = 0.12
+		roll = sin(_time * rate * 0.5) * 0.07
+	elif _current == "attack":
+		var swing := sin(minf(_action_time / 0.7, 1.0) * PI)
+		pitch = 0.55 * swing
+		lift = 0.05 * swing
+	elif _current == "hit":
+		pitch = -0.15 * sin(minf(_action_time / 0.3, 1.0) * PI)
+	elif _current == "die":
+		var fall := minf(_action_time / 0.9, 1.0)
+		pitch = -1.45 * ease(fall, 2.0)
+	_static_root.position.y = lift
+	_static_root.rotation = Vector3(pitch, 0.0, roll)
+
+
 ## As asas de morcego brotam das costas (a Rainha na metade da vida).
 func show_wings(out: bool) -> void:
 	_wings_out = out
@@ -490,7 +529,7 @@ func play(key: String, blend := BLEND) -> void:
 		_current = key
 		_hero.play_key(_names[key], blend)
 		return
-	if not _parts.is_empty():
+	if not _parts.is_empty() or _static_root:
 		_current = key
 		_action_time = 0.0
 		return

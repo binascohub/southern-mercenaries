@@ -111,6 +111,9 @@ const MODELS := {
 		"poses": {"walk": "Walk_Loop", "idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "drink": "Consume"}},
 	# Guarda (Brigand, anthonymyers, CC BY 3.0): parado na pose do modelo, de
 	# couraça, alabarda e machado (sem animação).
+	# Macumbeiro de Tortuga (Rigged Textured Mage, thecubber, CC BY-SA 3.0): mago de capuz e manto
+	# escuro com a trama celta nas costas, parado na pose do arquivo (sem animação).
+	"voodoo_priest": {"scene": "res://assets/models/characters/voodoo_mage.glb", "scale": 1.0, "poses": {}},
 	"guard": {"scene": "res://assets/models/characters/brigand_guard.glb", "scale": 1.0, "poses": {}},
 	# Aranhinha do esgoto (Spider animated, pantherone, CC BY 3.0): não ataca,
 	# só anda pelo chão. Arquivo de 1 m -> 40 cm, avermelhada (decisão do autor).
@@ -133,6 +136,10 @@ const MODELS := {
 	# Gato (Simple Cat, drummyfish, CC0): passeia pelas ruas de Tortuga; parado, fica no 1º quadro da caminhada.
 	"cat": {"scene": "res://assets/models/characters/cat.glb", "scale": 0.2,
 		"poses": {"walk": "walk"}},
+	# Cavalo de tração (Rigged Horse, Lyndon Daniels / ChadM, CC0): passeia pelas ruas de Tortuga; o ciclo de
+	# passo foi criado por tools/assets/build_horse.py (o arquivo original não tem animação).
+	"horse": {"scene": "res://assets/models/characters/horse.glb", "scale": 1.0,
+		"poses": {"walk": "walk", "idle": "walk", "talk": "walk"}},
 	"chicken": {"scene": "res://assets/models/characters/chicken.glb", "scale": 0.032,
 		"poses": {"walk": "walk", "idle": "eat", "talk": "idle"}},
 }

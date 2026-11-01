@@ -196,7 +196,7 @@
     ]
   },
   "demon_rat_queen": {
-    "_comment": "Chefe do Esgoto (03-inimigos.md, seção 2): vida 1.000 x fator de chefe 4,3 (13-balanceamento.md 2.4). Fases por vida: 1 Mãe Furiosa (investidas, pisão em área, enxame a cada 20 s), 2 A Ninhada (abaixo de 60%: volta ao ninho e protege 3 ninhos de filhotes; regenera enquanto houver ninho), 3 O Pacto (abaixo de 25%: alaga a arena e o gás tóxico sai dos canos em lugares marcados).",
+    "_comment": "Chefe do Esgoto — o Feiticeiro-Aranha (no lugar da Rainha dos Ratos; o id e a mecânica ficam, a aparência e o nome mudam) (03-inimigos.md, seção 2): vida 1.000 x fator de chefe 4,3 (13-balanceamento.md 2.4). Fases por vida: 1 Mãe Furiosa (investidas, pisão em área, enxame a cada 20 s), 2 A Ninhada (abaixo de 60%: volta ao ninho e protege 3 ninhos de filhotes; regenera enquanto houver ninho), 3 O Pacto (abaixo de 25%: alaga a arena e o gás tóxico sai dos canos em lugares marcados).",
     "name_key": "MONSTER_RAT_QUEEN",
     "max_health": 1000,
     "boss_factor": 4.3,
@@ -219,11 +219,11 @@
       "damage_mult": 1.5,
       "cooldown": 6.0
     },
-    "look": "queen",
+    "look": "demon",
     "color": [
-      0.3,
-      0.22,
-      0.18
+      1.0,
+      1.0,
+      1.0
     ],
     "boss_ai": "rat_queen",
     "phases": [
@@ -261,20 +261,20 @@
       "puddle_dps": 5.0
     },
     "pact_speed": 1.25,
-  "drops_key": "key_rat_queen",
-  "key_model": "Key_Hearts",
-  "gust": {
-   "_comment": "Rajada das Asas: da metade da vida em diante ela tem asas de morcego e, a cada intervalo, bate as asas com aviso no chão; quem está dentro leva dano e é empurrado para longe (a esquiva escapa).",
-   "from": 0.5,
-   "interval": 9.0,
-   "first": 1.0,
-   "windup": 1.2,
-   "radius": 7.0,
-   "damage_mult": 0.8,
-   "push": 7.0,
-   "push_time": 0.45,
-   "wind": true
-  }
+    "drops_key": "key_rat_queen",
+    "key_model": "Key_Hearts",
+    "gust": {
+      "_comment": "Rajada das Asas: da metade da vida em diante ela tem asas de morcego e, a cada intervalo, bate as asas com aviso no chão; quem está dentro leva dano e é empurrado para longe (a esquiva escapa).",
+      "from": 0.5,
+      "interval": 9.0,
+      "first": 1.0,
+      "windup": 1.2,
+      "radius": 7.0,
+      "damage_mult": 0.8,
+      "push": 7.0,
+      "push_time": 0.45,
+      "wind": true
+    }
   },
   "training_dummy_fire": {
     "_comment": "Boneco do pátio de treino (04-tortuga-e-missoes.md, seção 5.2): não anda, não ataca, não morre e não dá XP nem loot.",

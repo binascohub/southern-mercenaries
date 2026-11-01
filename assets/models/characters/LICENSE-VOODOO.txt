@@ -1,0 +1,2 @@
+voodoo_mage.glb — "Rigged Textured Mage" by thecubber, CC BY-SA 3.0: https://opengameart.org/content/rigged-textured-mage
+Converted from the Blender file by tools/assets/build_mage_npc.py (static, pose of the file, 1024 px color and normal maps).

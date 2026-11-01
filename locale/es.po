@@ -1699,7 +1699,7 @@ msgid "DLG_OLD_DRUNK_3"
 msgstr "Años después, la gente de aquí envenenó y quemó a las ratas de allí... pero se olvidaron de la madre."
 
 msgid "DLG_OLD_DRUNK_4"
-msgstr "Dicen que la Reina de las Ratas hizo un pacto con un demonio, creció como una carreta y ahora duerme sobre el tesoro, con la corona del rey en la cabeza."
+msgstr "Dicen que el Hechicero Araña hizo un pacto con un demonio, le salieron ocho patas y ahora duerme sobre el tesoro, con la corona del rey guardada en la capa."
 
 msgid "DLG_OLD_DRUNK_5"
 msgstr "¡Si buscáis tesoro, estáis encima de uno! Solo llevad fuego. Ella ya sabe lo que es el fuego, y lo odia."
@@ -1714,7 +1714,7 @@ msgid "DLG_KEEPER_1"
 msgstr "Sentaos, descansad. En Tortuga nadie pregunta de dónde viene el oro, solo si paga."
 
 msgid "DLG_BARD_QUEEN_1"
-msgstr "La Reina de las Ratas fue solo una madre, cuidando de sus crías en la oscuridad."
+msgstr "El Hechicero Araña fue solo un erudito, leyendo libros prohibidos en la oscuridad."
 
 msgid "DLG_BARD_QUEEN_2"
 msgstr "Ahora la tierra corre por sus venas, y la tierra teme al fuego: recordad la canción."
@@ -1741,7 +1741,7 @@ msgid "QUEST_SEWER_TREASURE"
 msgstr "El tesoro bajo la ciudad"
 
 msgid "QUEST_SEWER_TREASURE_DESC"
-msgstr "Baja por la rejilla de la cloaca, derrota a la Reina de las Ratas y toma el tesoro perdido de la guerra. Las ratas son de Tierra: temen al Fuego."
+msgstr "Baja por la rejilla de la cloaca, derrota al Hechicero Araña y toma el tesoro perdido de la guerra. Las ratas son de Tierra: temen al Fuego."
 
 msgid "AREA_TORTUGA"
 msgstr "Tortuga"
@@ -1996,7 +1996,7 @@ msgid "BEAST_PLAGUE_RAT"
 msgstr "Rata Pestilente"
 
 msgid "BEAST_PLAGUE_RAT_LEGEND"
-msgstr "En la Europa medieval las ratas quedaron ligadas a la Peste Negra: sus pulgas propagaron la peste que mató a buena parte de la población. Aquí son las crías de la Reina de las Ratas, contaminadas por su pacto con el demonio: más grandes, de ojos rojos, atacan en enjambres."
+msgstr "En la Europa medieval las ratas quedaron ligadas a la Peste Negra: sus pulgas propagaron la peste que mató a buena parte de la población. Aquí son los familiares del Hechicero Araña, contaminados por su pacto con el demonio: más grandes, de ojos rojos, atacan en enjambres."
 
 msgid "BEAST_PLAGUE_RAT_HINT"
 msgstr "Una rata es una rata: le teme al fuego. Llevad una antorcha... o un mago que sepa encenderla."
@@ -2005,7 +2005,7 @@ msgid "BEAST_MUTANT_RAT"
 msgstr "Rata Mutante"
 
 msgid "BEAST_MUTANT_RAT_LEGEND"
-msgstr "La misma superstición de la peste; en las ciudades portuarias abundan historias de ratas del tamaño de perros en los sótanos. Son las crías mayores de la Reina, del tamaño de un perro de caza."
+msgstr "La misma superstición de la peste; en las ciudades portuarias abundan historias de ratas del tamaño de perros en los sótanos. Son las ratas mayores del Hechicero, del tamaño de un perro de caza."
 
 msgid "BEAST_MUTANT_RAT_HINT"
 msgstr "Hay ratas allá abajo del tamaño de un perro. Quémalas y huyen."
@@ -2038,7 +2038,7 @@ msgid "BEAST_SEWER_GATOR_HINT"
 msgstr "Si el agua burbujea, aléjate. Vive en el fondo del canal. Un rayo en el agua y sube panza arriba."
 
 msgid "BEAST_DEMON_RAT_QUEEN"
-msgstr "Reina de las Ratas"
+msgstr "Hechicero Araña"
 
 msgid "BEAST_DEMON_RAT_QUEEN_LEGEND"
 msgstr "En el folclore alemán, un 'rey de las ratas' es un nudo de ratas atadas por la cola, presagio de peste. Aquí era la madre de todas las ratas de la cloaca; cuando Tortuga envenenó y quemó a sus crías, pactó con un demonio, creció como una carreta y anida sobre el tesoro perdido de la guerra, con la corona del rey caído."
@@ -2318,7 +2318,7 @@ msgid "MONSTER_OLD_GATOR"
 msgstr "Caimán Viejo"
 
 msgid "MONSTER_RAT_QUEEN"
-msgstr "Reina de las Ratas"
+msgstr "Hechicero Araña"
 
 msgid "ARENA_SEWERS_DRAINS"
 msgstr "Cloacas — Desagües de la Calle Principal"
@@ -2330,7 +2330,7 @@ msgid "ARENA_SEWERS_WAR_PASSAGE"
 msgstr "Cloacas — Pasaje Secreto de la Guerra"
 
 msgid "ARENA_SEWERS_NEST"
-msgstr "Cloacas — Nido de la Reina"
+msgstr "Cloacas — Guarida del Hechicero"
 
 msgid "PROP_SEWER_DEEPER"
 msgstr "Bajar más hondo"
@@ -2348,7 +2348,7 @@ msgid "SIGN_WAR_CREST_ARCHER"
 msgstr "El escudo de mi reino. Así que por aquí huyó el tesoro de la guerra."
 
 msgid "HUD_VICTORY_SEWERS"
-msgstr "La Reina de las Ratas ha caído."
+msgstr "El Hechicero Araña ha caído."
 
 msgid "HUD_VICTORY_TREASURE"
 msgstr "El Tesoro Perdido de la Guerra está abierto para el grupo."
@@ -2423,7 +2423,7 @@ msgid "RELIC_FALLEN_KING_CROWN"
 msgstr "Corona del Rey Caído"
 
 msgid "RELIC_FALLEN_KING_CROWN_DESC"
-msgstr "La corona torcida que llevaba la Reina de las Ratas. Pesa más de lo que debería."
+msgstr "La corona torcida que llevaba el Hechicero Araña. Pesa más de lo que debería."
 
 msgid "TOAST_RELIC_FOUND"
 msgstr "Reliquia: {relic}"

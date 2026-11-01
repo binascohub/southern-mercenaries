@@ -1699,7 +1699,7 @@ msgid "DLG_OLD_DRUNK_3"
 msgstr "Anos depois, o povo daqui envenenou e queimou os ratos de lá… mas esqueceram da mãe."
 
 msgid "DLG_OLD_DRUNK_4"
-msgstr "Dizem que a Rainha dos Ratos fez um pacto com um demônio, cresceu do tamanho de uma carroça e agora dorme em cima do tesouro, com a coroa do rei na cabeça."
+msgstr "Dizem que o Feiticeiro-Aranha fez um pacto com um demônio, ganhou oito patas e agora dorme em cima do tesouro, com a coroa do rei guardada no manto."
 
 msgid "DLG_OLD_DRUNK_5"
 msgstr "Se vocês estão procurando tesouro, estão em cima de um! Só levem fogo. Ela já sabe o que é fogo — e odeia."
@@ -1714,7 +1714,7 @@ msgid "DLG_KEEPER_1"
 msgstr "Sentem, descansem. Em Tortuga ninguém pergunta de onde vem o ouro — só se ele paga."
 
 msgid "DLG_BARD_QUEEN_1"
-msgstr "A Rainha dos Ratos já foi só uma mãe, cuidando dos filhotes no escuro."
+msgstr "O Feiticeiro-Aranha já foi só um estudioso, lendo livros proibidos no escuro."
 
 msgid "DLG_BARD_QUEEN_2"
 msgstr "Agora a terra corre nas veias dela, e a terra teme o fogo — lembrem da canção."
@@ -1741,7 +1741,7 @@ msgid "QUEST_SEWER_TREASURE"
 msgstr "O tesouro embaixo da cidade"
 
 msgid "QUEST_SEWER_TREASURE_DESC"
-msgstr "Desça pelo bueiro, derrote a Rainha dos Ratos e pegue o tesouro perdido da guerra. Os ratos são de Terra — temem o Fogo."
+msgstr "Desça pelo bueiro, derrote o Feiticeiro-Aranha e pegue o tesouro perdido da guerra. Os ratos são de Terra — temem o Fogo."
 
 msgid "AREA_TORTUGA"
 msgstr "Tortuga"
@@ -1996,7 +1996,7 @@ msgid "BEAST_PLAGUE_RAT"
 msgstr "Rato Pestilento"
 
 msgid "BEAST_PLAGUE_RAT_LEGEND"
-msgstr "Na Europa medieval, os ratos ficaram ligados à Peste Negra: as pulgas deles espalharam a peste que matou boa parte da população. Aqui são os filhotes da Rainha dos Ratos, contaminados pelo pacto dela com o demônio: maiores, de olhos vermelhos, atacam em enxames."
+msgstr "Na Europa medieval, os ratos ficaram ligados à Peste Negra: as pulgas deles espalharam a peste que matou boa parte da população. Aqui são os familiares do Feiticeiro-Aranha, contaminados pelo pacto dele com o demônio: maiores, de olhos vermelhos, atacam em enxames."
 
 msgid "BEAST_PLAGUE_RAT_HINT"
 msgstr "Rato é rato: tem medo de fogo. Leve uma tocha… ou um mago que saiba acender uma."
@@ -2005,7 +2005,7 @@ msgid "BEAST_MUTANT_RAT"
 msgstr "Ratazana Mutante"
 
 msgid "BEAST_MUTANT_RAT_LEGEND"
-msgstr "A mesma superstição da peste; histórias de ratos do tamanho de cães nos porões são comuns em cidades portuárias. São os filhotes mais velhos da Rainha, do tamanho de um cão de caça."
+msgstr "A mesma superstição da peste; histórias de ratos do tamanho de cães nos porões são comuns em cidades portuárias. São os ratos mais velhos do Feiticeiro, do tamanho de um cão de caça."
 
 msgid "BEAST_MUTANT_RAT_HINT"
 msgstr "Tem rato lá embaixo do tamanho de um cachorro. Queima que ele corre."
@@ -2038,7 +2038,7 @@ msgid "BEAST_SEWER_GATOR_HINT"
 msgstr "Se a água borbulhar, saia de perto. Ele vive no fundo do canal. Raio na água e ele sobe de barriga pra cima."
 
 msgid "BEAST_DEMON_RAT_QUEEN"
-msgstr "Rainha dos Ratos"
+msgstr "Feiticeiro-Aranha"
 
 msgid "BEAST_DEMON_RAT_QUEEN_LEGEND"
 msgstr "No folclore alemão, um 'rei dos ratos' é um nó de ratos presos pelas caudas, presságio de peste. Aqui ela era a mãe de todos os ratos do esgoto; quando Tortuga envenenou e queimou seus filhotes, fez um pacto com um demônio, cresceu do tamanho de uma carroça e faz o ninho sobre o tesouro perdido da guerra, com a coroa do rei caído."
@@ -2318,7 +2318,7 @@ msgid "MONSTER_OLD_GATOR"
 msgstr "Jacaré Velho"
 
 msgid "MONSTER_RAT_QUEEN"
-msgstr "Rainha dos Ratos"
+msgstr "Feiticeiro-Aranha"
 
 msgid "ARENA_SEWERS_DRAINS"
 msgstr "Esgoto — Bueiros da Rua Principal"
@@ -2330,7 +2330,7 @@ msgid "ARENA_SEWERS_WAR_PASSAGE"
 msgstr "Esgoto — Passagem Secreta da Guerra"
 
 msgid "ARENA_SEWERS_NEST"
-msgstr "Esgoto — Ninho da Rainha"
+msgstr "Esgoto — Covil do Feiticeiro"
 
 msgid "PROP_SEWER_DEEPER"
 msgstr "Descer mais fundo"
@@ -2348,7 +2348,7 @@ msgid "SIGN_WAR_CREST_ARCHER"
 msgstr "O brasão do meu reino. Então foi por aqui que o tesouro fugiu da guerra."
 
 msgid "HUD_VICTORY_SEWERS"
-msgstr "A Rainha dos Ratos caiu."
+msgstr "O Feiticeiro-Aranha caiu."
 
 msgid "HUD_VICTORY_TREASURE"
 msgstr "O Tesouro Perdido da Guerra está aberto para o grupo."
@@ -2423,7 +2423,7 @@ msgid "RELIC_FALLEN_KING_CROWN"
 msgstr "Coroa do Rei Caído"
 
 msgid "RELIC_FALLEN_KING_CROWN_DESC"
-msgstr "A coroa torta que a Rainha dos Ratos usava. Pesa mais do que deveria."
+msgstr "A coroa torta que o Feiticeiro-Aranha usava. Pesa mais do que deveria."
 
 msgid "TOAST_RELIC_FOUND"
 msgstr "Relíquia: {relic}"

@@ -1699,7 +1699,7 @@ msgid "DLG_OLD_DRUNK_3"
 msgstr "Years later, folk here poisoned and burned the rats down there... but they forgot the mother."
 
 msgid "DLG_OLD_DRUNK_4"
-msgstr "They say the Rat Queen made a pact with a demon, grew as big as a cart, and now sleeps on top of the treasure, with the king's crown on her head."
+msgstr "They say the Spider Sorcerer made a pact with a demon, grew eight legs, and now sleeps on top of the treasure, with the king's crown tucked in his cloak."
 
 msgid "DLG_OLD_DRUNK_5"
 msgstr "If you're looking for treasure, you're standing on one! Just bring fire. She already knows what fire is — and she hates it."
@@ -1714,7 +1714,7 @@ msgid "DLG_KEEPER_1"
 msgstr "Sit down, rest. In Tortuga nobody asks where the gold comes from — only whether it pays."
 
 msgid "DLG_BARD_QUEEN_1"
-msgstr "The Rat Queen was just a mother once, guarding her young in the dark."
+msgstr "The Spider Sorcerer was just a scholar once, reading forbidden books in the dark."
 
 msgid "DLG_BARD_QUEEN_2"
 msgstr "Earth runs in her veins now, and earth fears fire — remember the song."
@@ -1741,7 +1741,7 @@ msgid "QUEST_SEWER_TREASURE"
 msgstr "The treasure under the town"
 
 msgid "QUEST_SEWER_TREASURE_DESC"
-msgstr "Go down the sewer grate, defeat the Rat Queen and take the lost war treasure. The rats are Earth — they fear Fire."
+msgstr "Go down the sewer grate, defeat the Spider Sorcerer and take the lost war treasure. The rats are Earth — they fear Fire."
 
 msgid "AREA_TORTUGA"
 msgstr "Tortuga"
@@ -1996,7 +1996,7 @@ msgid "BEAST_PLAGUE_RAT"
 msgstr "Plague Rat"
 
 msgid "BEAST_PLAGUE_RAT_LEGEND"
-msgstr "In medieval Europe rats were tied to the Black Death: their fleas spread the plague that killed much of the population. Here they are the Rat Queen's young, tainted by her pact with the demon — bigger, red-eyed, attacking in swarms."
+msgstr "In medieval Europe rats were tied to the Black Death: their fleas spread the plague that killed much of the population. Here they are the Spider Sorcerer's familiars, tainted by his pact with the demon — bigger, red-eyed, attacking in swarms."
 
 msgid "BEAST_PLAGUE_RAT_HINT"
 msgstr "A rat's a rat: it fears fire. Bring a torch... or a mage who knows how to light one."
@@ -2038,7 +2038,7 @@ msgid "BEAST_SEWER_GATOR_HINT"
 msgstr "If the water bubbles, get away. It lives at the bottom of the channel. Lightning in the water and it comes up belly-up."
 
 msgid "BEAST_DEMON_RAT_QUEEN"
-msgstr "Rat Queen"
+msgstr "Spider Sorcerer"
 
 msgid "BEAST_DEMON_RAT_QUEEN_LEGEND"
 msgstr "In German folklore a 'rat king' is a knot of rats bound by their tails, an omen of plague. Here she was the mother of all the sewer's rats; when Tortuga poisoned and burned her young, she made a pact with a demon, grew as big as a cart and nests on the lost war treasure, wearing the fallen king's crown."
@@ -2318,7 +2318,7 @@ msgid "MONSTER_OLD_GATOR"
 msgstr "Old Gator"
 
 msgid "MONSTER_RAT_QUEEN"
-msgstr "Rat Queen"
+msgstr "Spider Sorcerer"
 
 msgid "ARENA_SEWERS_DRAINS"
 msgstr "Sewers — Main Street Drains"
@@ -2348,7 +2348,7 @@ msgid "SIGN_WAR_CREST_ARCHER"
 msgstr "My kingdom's crest. So this is where the treasure fled the war."
 
 msgid "HUD_VICTORY_SEWERS"
-msgstr "The Rat Queen has fallen."
+msgstr "The Spider Sorcerer has fallen."
 
 msgid "HUD_VICTORY_TREASURE"
 msgstr "The Lost Treasure of the War is open to the group."
@@ -2423,7 +2423,7 @@ msgid "RELIC_FALLEN_KING_CROWN"
 msgstr "Crown of the Fallen King"
 
 msgid "RELIC_FALLEN_KING_CROWN_DESC"
-msgstr "The crooked crown the Rat Queen wore. It weighs more than it should."
+msgstr "The crooked crown the Spider Sorcerer wore. It weighs more than it should."
 
 msgid "TOAST_RELIC_FOUND"
 msgstr "Relic: {relic}"

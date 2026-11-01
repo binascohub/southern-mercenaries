@@ -974,8 +974,8 @@ func _tick_model(delta: float, tint: Color) -> void:
 	if _model.current() == "attack" and state == State.RECOVER:
 		key = "attack"  # deixa o golpe terminar
 	_model.play(key)
-	# A Rainha ganha asas de morcego na metade da vida (e as mantém).
-	if data.get("look", "") == "queen" and health > 0.0 and health <= max_health * 0.5:
+	# O chefe entra na fase de metade da vida (a Rainha ganhava asas de morcego; o Feiticeiro-Aranha só marca o estado).
+	if data.get("look", "") in ["queen", "demon"] and health > 0.0 and health <= max_health * 0.5:
 		_model.show_wings(true)
 	var color := Color.WHITE
 	if _flash > 0.0:
