@@ -30,8 +30,8 @@ const HEAD_BONES := ["Head_2", "head", "Head"]
 
 
 ## Só o Ninja masculino tem os conjuntos por rank por enquanto (o feminino e as outras classes vêm depois).
-static func has_gear(class_id: String, sex: String) -> bool:
-	return class_id == "ninja" and sex == "male"
+static func has_gear(class_id: String, _sex: String) -> bool:
+	return class_id == "ninja"
 
 
 static func rank_of(material: String) -> String:
@@ -41,6 +41,9 @@ static func rank_of(material: String) -> String:
 ## Veste o modelo: `ranks` = {body, head, hands, feet} com o rank de cada peça ("" = sem a peça).
 static func apply(model: HeroModel, ranks: Dictionary) -> void:
 	clear(model)
+	if model.is_suit():  # o corpo próprio do Ninja só muda a cor do tecido
+		model.dress_suit(ranks)
+		return
 	model.set_outfit({})  # volta ao corpo de base (cabelo, texturas) antes de vestir
 	var skeleton := model.skeleton
 	if skeleton == null:

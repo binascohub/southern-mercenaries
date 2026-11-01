@@ -1033,9 +1033,22 @@ func _test_ninja_gear() -> void:
 	_check(NinjaGear.rank_of("cloth") == "D" and NinjaGear.rank_of("iron") == "D" and NinjaGear.rank_of("steel") == "C"
 		and NinjaGear.rank_of("copper") == "B" and NinjaGear.rank_of("silver") == "A" and NinjaGear.rank_of("gold") == "S",
 		"ninja: material vira rank (pano/ferro D, aço C, cobre B, prata A, ouro S)")
-	_check(NinjaGear.has_gear("ninja", "male") and not NinjaGear.has_gear("mage", "male"), "ninja: só o Ninja masculino tem conjuntos por rank")
-	_check(HeroGear.has_gear("mage", "female") and HeroGear.has_gear("knight", "male") and HeroGear.has_gear("ninja", "male") and not HeroGear.has_gear("ninja", "female"),
-		"conjuntos por rank: Mago, Cavaleiro, Arqueiro e Invocador nos dois sexos; Ninja só masculino")
+	_check(NinjaGear.has_gear("ninja", "male") and NinjaGear.has_gear("ninja", "female") and not NinjaGear.has_gear("mage", "male"), "ninja: o Ninja (os dois sexos) tem conjuntos por rank")
+	_check(HeroGear.has_gear("mage", "female") and HeroGear.has_gear("knight", "male") and HeroGear.has_gear("ninja", "male") and HeroGear.has_gear("ninja", "female"),
+		"conjuntos por rank: todas as classes nos dois sexos")
+	var suit := HeroModel.new()
+	add_child(suit)
+	suit.setup("male", {}, "ninja")
+	_check(suit.is_suit() and suit.visible_parts().size() == 4, "ninja: corpo próprio em 4 peças (uma por slot)")
+	var cloth: Array[Color] = []
+	for rank in NinjaGear.RANKS:
+		NinjaGear.apply(suit, {"body": rank, "head": rank, "hands": rank, "feet": rank})
+		var body_mat := (suit.find_child("Ninja_Body", true, false) as MeshInstance3D).get_surface_override_material(0) as StandardMaterial3D
+		cloth.append(body_mat.albedo_color)
+	var skin_mat := (suit.find_child("Ninja_Body", true, false) as MeshInstance3D).get_surface_override_material(1) as StandardMaterial3D
+	_check(cloth.size() == 5 and cloth[0] != cloth[1] and cloth[2] != cloth[3] and cloth[3] != cloth[4], "ninja: a cor do tecido muda a cada rank")
+	_check(skin_mat.albedo_color == Color.WHITE, "ninja: a pele não é tingida pelo rank")
+	suit.queue_free()
 	for class_id in ClassGear.CLASSES:
 		for sex in ["male", "female"]:
 			var other := HeroModel.new()

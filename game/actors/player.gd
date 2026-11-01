@@ -1104,7 +1104,7 @@ func _build_visual() -> void:
 	add_child(_visual)
 	_model = HeroModel.new()
 	_visual.add_child(_model)
-	_model.setup(sex, Appearance.model_look(sex, look, data.get("look", {}).get(sex, {})))
+	_model.setup(sex, Appearance.model_look(sex, look, data.get("look", {}).get(sex, {})), class_id)
 
 	var archer := class_id == "archer"
 	var ninja := class_id == "ninja"

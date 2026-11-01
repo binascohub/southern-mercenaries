@@ -43,6 +43,13 @@ const ANIMS := {
 ## Golpes corpo a corpo em sequência (dentro de COMBO_WINDOW s, o próximo da lista).
 const MELEE_COMBO := ["melee", "melee_b", "melee_c"]
 const COMBO_WINDOW := 1.2
+## Ninja: corpo próprio (ninja.glb ligado ao mesmo esqueleto e às mesmas animações, tools/assets/build_ninja_hero.py), em quatro
+## peças (uma por slot de equipamento) cujo tecido é tingido com a cor do rank (dress_suit); pele e faixa vermelha não mudam.
+const NINJA_SCENE := "res://assets/models/characters/hero_ninja.glb"
+const SUIT_SLOTS := {"body": "Ninja_Body", "head": "Ninja_Head", "hands": "Ninja_Hands", "feet": "Ninja_Feet"}
+const SUIT_COLORS := {
+	"D": Color(0.62, 0.6, 0.55), "C": Color(0.36, 0.52, 0.32), "B": Color(0.27, 0.4, 0.8), "A": Color(0.8, 0.22, 0.2), "S": Color(0.5, 0.25, 0.8),
+}
 ## Peças por slot de equipamento: sem item, as de Camponês; com item, as de Ranger.
 const OUTFIT := {
 	"body": [["Peasant_Body", "Peasant_Legs"], ["Ranger_Body", "Ranger_Legs", "Ranger_Acc"]],
@@ -78,14 +85,19 @@ var _held := false
 ## Sexo do corpo montado ("male"/"female"); as roupas femininas têm paleta própria.
 var sex := "male"
 var _combo := 0
+## Corpo do Ninja (uma peça por slot, tecido tingido pelo rank).
+var _suit := false
 var _last_melee := -10.0
 
 
 ## Monta o corpo do sexo dado, com o cabelo do visual da classe
 ## ({hair: [nomes], hair_color: [r, g, b], skin: [r, g, b] opcional}).
-func setup(sex: String, look: Dictionary) -> void:
+func setup(sex: String, look: Dictionary, class_id := "") -> void:
 	self.sex = sex
 	var path: String = SCENES.get(sex, SCENES.male)
+	if class_id == "ninja" and ResourceLoader.exists(NINJA_SCENE):
+		path = NINJA_SCENE
+		_suit = true
 	var scene: PackedScene = load(path) as PackedScene if ResourceLoader.exists(path) else null
 	if scene == null:
 		_build_capsule()
@@ -110,7 +122,8 @@ func setup(sex: String, look: Dictionary) -> void:
 			mesh.set_surface_override_material(i, copy)
 			_materials.append(copy)
 			_base_colors.append(copy.albedo_color)
-	_build_kit_hair(hair_color)
+	if not _suit:
+		_build_kit_hair(hair_color)
 	set_outfit({})
 	if look.has("skin"):
 		var skin: Array = look.skin
@@ -197,6 +210,9 @@ func set_outfit(equip: Dictionary) -> void:
 	_shown_equip = equip.duplicate()
 	if _parts.is_empty():
 		return
+	if _suit:
+		dress_suit({})
+		return
 	for part_name: String in _parts:
 		(_parts[part_name] as MeshInstance3D).visible = part_name in ALWAYS
 	var hooded := String(equip.get("head", "")) != ""
@@ -219,11 +235,35 @@ func set_outfit(equip: Dictionary) -> void:
 ## Esconde toda a roupa de base (o rosto e o cabelo ficam); NinjaGear mostra só o que precisa.
 func hide_clothes() -> void:
 	_restore_textures()
+	if _suit:
+		return
 	for part_name: String in _parts:
 		var mesh: MeshInstance3D = _parts[part_name]
 		if part_name in ALWAYS or part_name in _hair:
 			continue
 		mesh.visible = false
+
+
+## Corpo do Ninja? (ele se veste com dress_suit, não com peças soltas)
+func is_suit() -> bool:
+	return _suit
+
+
+## Veste o corpo do Ninja: `ranks` = {body, head, hands, feet} (rank D a S, "" = sem a peça, que fica como o D).
+## Só o tecido (material 0 de cada peça) muda de cor; a pele e a faixa vermelha ficam como são.
+func dress_suit(ranks: Dictionary) -> void:
+	for slot: String in SUIT_SLOTS:
+		var mesh := _parts.get(SUIT_SLOTS[slot]) as MeshInstance3D
+		if mesh == null:
+			continue
+		mesh.visible = true
+		var rank := String(ranks.get(slot, ""))
+		var tint: Color = SUIT_COLORS.get(rank, SUIT_COLORS.D)
+		var material := mesh.get_surface_override_material(0) as StandardMaterial3D
+		var index := _materials.find(material)
+		if index >= 0:
+			_base_colors[index] = tint
+			material.albedo_color = tint
 
 
 ## Mostra uma parte do corpo pelo nome, tingida de `tint`.

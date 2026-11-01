@@ -51,7 +51,7 @@ func show_hero(sex: String, look: Dictionary, gear_rank := "", class_id := "ninj
 		_model.queue_free()
 	_model = HeroModel.new()
 	_holder.add_child(_model)
-	_model.setup(sex, Appearance.model_look(sex, look, {}))
+	_model.setup(sex, Appearance.model_look(sex, look, {}), class_id)
 	_model.set_outfit({})
 	if gear_rank != "":
 		# Prévia do equipamento da classe no rank escolhido (todas as peças do mesmo rank).
