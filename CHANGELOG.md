@@ -10,6 +10,7 @@
 - Sheep ("Sheep (rigged, textured and animated)", p0ss, CC BY-SA 3.0; `assets/models/characters/sheep.glb`, built by `tools/assets/build_sheep.sh`; new `sheep` model in `NpcModel`): nine of them wander and graze in the fields. `build_monsters.py` now also handles meshes parented to a bone.
 - Farmers (new `farmer` role in `data/crowd.json`, hero bodies) with the tools from "Retextured Gnarly Tools" (Mev Lyshkin, CC BY 3.0): shovel, pitchfork, hoe, scythe and sickle (`assets/models/props/Tool_*.glb`, split from the single mesh by `tools/assets/build_farm_tools.py`), working the fields.
 - Grass tufts ("Grass Pack 01", Yughues / Nobiax, CC0; `Pl_Grass1..3.glb`, `tools/assets/build_grass.py`), the water-powered sawmill ("Medieval waterpowered sawmill", Daniel Andersson, CC0; `Pr_Sawmill.glb`, `tools/assets/build_sawmill.py`) and a log barricade ("Barricade", Sullivan, CC BY 3.0; `Pr_Barricade.glb`, `tools/assets/build_barricade.py`) as scenery.
+- A creek (`creek` water prop, light blue; the outdoor `water` prop now accepts an optional `color`) runs north–south through the sawmill clearing under the water wheel, with rocks and grass on its banks.
 - Carts ("Carts", cemkalyoncu, CC BY 3.0; `Pr_CartLarge.glb` and `Pr_CartSmall.glb`, `tools/assets/build_carts.py`): one large and two small carts in the Farm.
 
 ### The Fort

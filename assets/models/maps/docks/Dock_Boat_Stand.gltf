@@ -22,14 +22,15 @@
 		{
 			"doubleSided":true,
 			"name":"BoatTrim_Mat",
+			"normalTexture":{
+				"index":0
+			},
 			"pbrMetallicRoughness":{
-				"baseColorFactor":[
-					0.800000011920929,
-					0.800000011920929,
-					0.800000011920929,
-					1
-				],
-				"metallicFactor":0
+				"baseColorTexture":{
+					"index":1
+				},
+				"metallicFactor":0,
+				"roughnessFactor":0.8500000238418579
 			}
 		}
 	],
@@ -47,6 +48,28 @@
 					"material":0
 				}
 			]
+		}
+	],
+	"textures":[
+		{
+			"sampler":0,
+			"source":0
+		},
+		{
+			"sampler":0,
+			"source":1
+		}
+	],
+	"images":[
+		{
+			"mimeType":"image/jpeg",
+			"name":"BoatTrim_Normal",
+			"uri":"BoatTrim_Normal.jpg"
+		},
+		{
+			"mimeType":"image/jpeg",
+			"name":"BoatTrim_Diffuse",
+			"uri":"BoatTrim_Diffuse.jpg"
 		}
 	],
 	"accessors":[
@@ -109,6 +132,12 @@
 			"byteLength":1176,
 			"byteOffset":12160,
 			"target":34963
+		}
+	],
+	"samplers":[
+		{
+			"magFilter":9729,
+			"minFilter":9987
 		}
 	],
 	"buffers":[

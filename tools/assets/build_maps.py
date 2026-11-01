@@ -726,9 +726,21 @@ farm_decor = [
     {"piece": "Bucket_Wooden_1", "position": [-10.4, -19.2]},
     {"piece": "Bucket_Wooden_1", "position": [13.5, -28.6], "rotation": 90},
 ]
+# Riacho que passa debaixo da roda d'água da serraria (a roda fica no lado oeste do prédio, com o eixo de leste a oeste:
+# a água corre de norte a sul, em x = 26.9), de ponta a ponta da clareira, com pedras e capim nas margens.
+CREEK_X, CREEK_W = 26.9, 3.6
+creek_avoid = [(CREEK_X, z, 3.0) for z in range(-37, -6, 3)]
+for z in range(-36, -7, 4):
+    for side in (-1, 1):
+        farm_decor.append({"piece": fr.choice(["RockP_1", "RockP_2", "RockP_3", "RockP_6"]),
+                           "position": [round(CREEK_X + side * (CREEK_W / 2 + fr.uniform(0.1, 0.6)), 1), z + round(fr.uniform(-1.2, 1.2), 1)],
+                           "rotation": fr.randrange(0, 360, 15), "scale": round(fr.uniform(0.6, 1.1), 2)})
+        farm_decor.append({"piece": fr.choice(["Pl_Grass1", "Pl_Grass2", "Pl_Grass3"]),
+                           "position": [round(CREEK_X + side * (CREEK_W / 2 + fr.uniform(0.7, 1.5)), 1), z + round(fr.uniform(-1.5, 1.5), 1)],
+                           "rotation": fr.randrange(0, 360, 15), "scale": round(fr.uniform(1.0, 1.6), 2)})
 for rd in farm_rooms:
     farm_decor += scatter(fr, rd, ["Pl_Grass1", "Pl_Grass2", "Pl_Grass3"], int(rd["size"][0] * rd["size"][1] / 10), margin=1.5,
-                          scale=(0.8, 1.6), avoid=[(0, 3, 3), (29, -22, 5)])
+                          scale=(0.8, 1.6), avoid=[(0, 3, 3), (29, -22, 5)] + creek_avoid)
     farm_decor += ring(fr, rd, ["Pl_Grass1", "Pl_Grass2", "Pl_Grass3", "Pl_Bush"], 2.4, scale=(1.0, 1.8))
 # Fazendeiros (data/crowd.json, papel "farmer") com as ferramentas do pacote Gnarly Tools na mão, e ovelhas que passeiam.
 farm_crowd = [
@@ -746,12 +758,14 @@ for i in range(9):
     farm_crowd.append({"role": "sheep", "position": [round(x, 1), round(z, 1)], "rotation": fr.randrange(0, 360, 15), "pose": "idle",
                        "path": [round(x + fr.uniform(-4, 4), 1), round(z + fr.uniform(-4, 4), 1)], "speed": 0.5})
 arenas["farm_01_fields"] = {
-    "_comment": "Fazenda: campos abertos com capim (Grass Pack 01, Yughues / Nobiax, CC0), serraria movida a água (CC0), barricadas de toras (Sullivan, CC-BY), fazendeiros com ferramentas (Retextured Gnarly Tools, Mev Lyshkin, CC-BY) e ovelhas (p0ss, CC-BY-SA). Só o mapa por enquanto: sem monstros, lojas, baús nem missões; portal em Tortuga ao lado do da Floresta. Gerado por tools/assets/build_maps.py.",
+    "_comment": "Fazenda: campos abertos com capim (Grass Pack 01, Yughues / Nobiax, CC0), serraria movida a água (CC0) com a roda sobre um riacho, barricadas de toras (Sullivan, CC-BY), fazendeiros com ferramentas (Retextured Gnarly Tools, Mev Lyshkin, CC-BY) e ovelhas (p0ss, CC-BY-SA). Só o mapa por enquanto: sem monstros, lojas, baús nem missões; portal em Tortuga ao lado do da Floresta. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_FARM", "town": True, "outdoor": True, "player_class": "mage", "map_id": "map_farm", "area_level": 1,
     "wake_radius": 10.0, "alert_radius": 5.0, "rooms": farm_rooms, "encounters": [], "hazards": [],
     "entries": {"start": [0, 3], "farm": [0, 3]},
     "props": [
         {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-6, 3], "to": "tortuga", "entry": "forest"},
+        {"id": "creek", "kind": "water", "position": [CREEK_X, -22], "size": [CREEK_W, 31], "color": [0.18, 0.36, 0.45]},
+        {"id": "mine_gate", "kind": "exit", "name_key": "PROP_TO_MINE", "position": [28, -31], "to": "mine_01_crystal_vein", "entry": "start"},
     ],
     "quest_spots": [], "breakables": [],
     "style": {"_comment": "Fazenda: chão de grama, cerca baixa de madeira nas bordas.", "walls": [""], "floor": "Ground_Grass",

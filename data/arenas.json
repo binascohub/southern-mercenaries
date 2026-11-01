@@ -26989,7 +26989,7 @@
     ]
   },
   "farm_01_fields": {
-    "_comment": "Fazenda: campos abertos com capim (Grass Pack 01, Yughues / Nobiax, CC0), serraria movida a água (CC0), barricadas de toras (Sullivan, CC-BY), fazendeiros com ferramentas (Retextured Gnarly Tools, Mev Lyshkin, CC-BY) e ovelhas (p0ss, CC-BY-SA). Só o mapa por enquanto: sem monstros, lojas, baús nem missões; portal em Tortuga ao lado do da Floresta. Gerado por tools/assets/build_maps.py.",
+    "_comment": "Fazenda: campos abertos com capim (Grass Pack 01, Yughues / Nobiax, CC0), serraria movida a água (CC0) com a roda sobre um riacho, barricadas de toras (Sullivan, CC-BY), fazendeiros com ferramentas (Retextured Gnarly Tools, Mev Lyshkin, CC-BY) e ovelhas (p0ss, CC-BY-SA). Só o mapa por enquanto: sem monstros, lojas, baús nem missões; portal em Tortuga ao lado do da Floresta. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_FARM",
     "town": true,
     "outdoor": true,
@@ -27070,6 +27070,34 @@
         ],
         "to": "tortuga",
         "entry": "forest"
+      },
+      {
+        "id": "creek",
+        "kind": "water",
+        "position": [
+          26.9,
+          -22
+        ],
+        "size": [
+          3.6,
+          31
+        ],
+        "color": [
+          0.18,
+          0.36,
+          0.45
+        ]
+      },
+      {
+        "id": "mine_gate",
+        "kind": "exit",
+        "name_key": "PROP_TO_MINE",
+        "position": [
+          28,
+          -31
+        ],
+        "to": "mine_01_crystal_vein",
+        "entry": "start"
       }
     ],
     "quest_spots": [],
@@ -27199,1126 +27227,1090 @@
         "rotation": 90
       },
       {
-        "piece": "Pl_Grass3",
+        "piece": "RockP_3",
         "position": [
-          -5.0,
-          2.1
+          24.6,
+          -35.8
         ],
         "rotation": 150,
-        "scale": 1.32
+        "scale": 0.93
       },
       {
         "piece": "Pl_Grass2",
         "position": [
-          -8.3,
-          -4.0
+          24.0,
+          -34.6
         ],
-        "rotation": 120,
-        "scale": 1.43
+        "rotation": 180,
+        "scale": 1.08
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          29.2,
+          -35.3
+        ],
+        "rotation": 150,
+        "scale": 0.91
       },
       {
         "piece": "Pl_Grass3",
         "position": [
-          9.7,
-          -1.9
+          29.8,
+          -35.3
         ],
-        "rotation": 255,
-        "scale": 0.83
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -4.4,
-          -2.5
-        ],
-        "rotation": 195,
-        "scale": 0.88
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -1.4,
-          -5.0
-        ],
-        "rotation": 270,
+        "rotation": 75,
         "scale": 1.16
       },
       {
-        "piece": "Pl_Grass2",
+        "piece": "RockP_6",
         "position": [
-          -4.2,
-          2.0
+          25.0,
+          -32.2
         ],
         "rotation": 15,
-        "scale": 1.21
+        "scale": 0.61
       },
       {
-        "piece": "Pl_Grass2",
+        "piece": "Pl_Grass3",
         "position": [
-          5.9,
-          5.3
+          24.0,
+          -32.6
         ],
-        "rotation": 255,
-        "scale": 1.33
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          9.1,
-          -1.5
-        ],
-        "rotation": 45,
-        "scale": 0.82
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -7.6,
-          3.8
-        ],
-        "rotation": 0,
-        "scale": 0.85
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          10.0,
-          -4.7
-        ],
-        "rotation": 330,
-        "scale": 1.17
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          9.1,
-          -3.2
-        ],
-        "rotation": 15,
-        "scale": 1.22
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -1.2,
-          -0.9
-        ],
-        "rotation": 165,
+        "rotation": 315,
         "scale": 1.37
       },
       {
-        "piece": "Pl_Grass2",
+        "piece": "RockP_1",
         "position": [
-          -8.4,
-          -4.2
+          29.1,
+          -31.3
         ],
-        "rotation": 270,
-        "scale": 1.25
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          2.8,
-          -3.3
-        ],
-        "rotation": 165,
-        "scale": 0.9
+        "rotation": 135,
+        "scale": 0.79
       },
       {
         "piece": "Pl_Grass3",
         "position": [
-          -7.0,
-          -3.7
-        ],
-        "rotation": 15,
-        "scale": 1.1
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -8.7,
-          2.1
+          29.8,
+          -33.3
         ],
         "rotation": 315,
-        "scale": 1.36
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -9.2,
-          -2.2
-        ],
-        "rotation": 90,
         "scale": 1.19
       },
       {
-        "piece": "Pl_Grass3",
+        "piece": "RockP_1",
         "position": [
-          3.1,
-          -1.6
-        ],
-        "rotation": 255,
-        "scale": 1.2
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -8.0,
-          -1.6
-        ],
-        "rotation": 165,
-        "scale": 1.28
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -2.0,
-          -2.5
-        ],
-        "rotation": 285,
-        "scale": 1.48
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          -3.3,
-          -4.0
-        ],
-        "rotation": 135,
-        "scale": 1.29
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -10.3,
-          -4.0
-        ],
-        "rotation": 0,
-        "scale": 1.34
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          4.3,
-          0.6
-        ],
-        "rotation": 300,
-        "scale": 1.11
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          1.4,
-          -3.8
-        ],
-        "rotation": 210,
-        "scale": 0.93
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          0.0,
-          -2.0
-        ],
-        "rotation": 300,
-        "scale": 1.14
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          3.2,
-          1.1
-        ],
-        "rotation": 300,
-        "scale": 1.04
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          4.8,
-          -5.2
-        ],
-        "rotation": 345,
-        "scale": 1.37
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          0.3,
-          -3.6
-        ],
-        "rotation": 45,
-        "scale": 1.21
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          6.9,
-          -2.3
-        ],
-        "rotation": 75,
-        "scale": 1.07
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          8.1,
-          -3.5
-        ],
-        "rotation": 330,
-        "scale": 1.54
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -5.7,
-          -2.1
-        ],
-        "rotation": 330,
-        "scale": 1.09
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -3.4,
-          2.2
-        ],
-        "rotation": 210,
-        "scale": 1.23
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -6.2,
-          -1.5
-        ],
-        "rotation": 90,
-        "scale": 1.48
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          -10.9,
-          -6.2
-        ],
-        "rotation": 195,
-        "scale": 1.56
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          -8.2,
-          -6.2
+          24.7,
+          -27.9
         ],
         "rotation": 240,
-        "scale": 1.79
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -5.8,
-          -6.2
-        ],
-        "rotation": 150,
-        "scale": 1.77
+        "scale": 0.74
       },
       {
         "piece": "Pl_Grass1",
         "position": [
-          -3.5,
-          -6.2
+          24.0,
+          -26.7
         ],
         "rotation": 15,
-        "scale": 1.51
+        "scale": 1.53
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          29.0,
+          -27.6
+        ],
+        "rotation": 255,
+        "scale": 1.08
       },
       {
         "piece": "Pl_Grass1",
         "position": [
-          3.7,
-          -6.2
+          29.8,
+          -28.2
         ],
-        "rotation": 180,
-        "scale": 1.47
+        "rotation": 195,
+        "scale": 1.43
       },
       {
-        "piece": "Pl_Grass2",
+        "piece": "RockP_3",
         "position": [
-          6.1,
-          -6.2
-        ],
-        "rotation": 0,
-        "scale": 1.55
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          8.4,
-          -6.2
-        ],
-        "rotation": 135,
-        "scale": 1.07
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          10.9,
-          -6.2
+          24.6,
+          -25.0
         ],
         "rotation": 45,
-        "scale": 1.13
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          -11.1,
-          6.2
-        ],
-        "rotation": 255,
-        "scale": 1.55
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          -8.4,
-          6.2
-        ],
-        "rotation": 195,
-        "scale": 1.51
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          -5.9,
-          6.2
-        ],
-        "rotation": 150,
-        "scale": 1.42
+        "scale": 0.78
       },
       {
         "piece": "Pl_Grass2",
         "position": [
-          -3.3,
-          6.2
-        ],
-        "rotation": 210,
-        "scale": 1.1
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -1.1,
-          6.2
-        ],
-        "rotation": 165,
-        "scale": 1.4
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          1.4,
-          6.2
-        ],
-        "rotation": 135,
-        "scale": 1.2
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          3.6,
-          6.2
-        ],
-        "rotation": 300,
-        "scale": 1.28
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          6.1,
-          6.2
-        ],
-        "rotation": 225,
-        "scale": 1.71
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          8.6,
-          6.2
-        ],
-        "rotation": 75,
-        "scale": 1.41
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          10.8,
-          6.2
-        ],
-        "rotation": 75,
-        "scale": 1.49
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          -11.2,
-          -5.8
-        ],
-        "rotation": 255,
-        "scale": 1.35
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          -11.2,
-          -3.3
-        ],
-        "rotation": 195,
-        "scale": 1.26
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -11.2,
-          -0.9
-        ],
-        "rotation": 90,
-        "scale": 1.34
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -11.2,
-          1.6
-        ],
-        "rotation": 285,
-        "scale": 1.75
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -11.2,
-          3.6
-        ],
-        "rotation": 345,
-        "scale": 1.39
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          11.2,
-          -5.5
-        ],
-        "rotation": 90,
-        "scale": 1.5
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          11.2,
-          -3.4
+          23.9,
+          -23.2
         ],
         "rotation": 315,
-        "scale": 1.68
+        "scale": 1.12
       },
       {
-        "piece": "Pl_Grass3",
+        "piece": "RockP_1",
         "position": [
-          11.2,
-          -0.8
+          29.3,
+          -24.9
         ],
-        "rotation": 165,
-        "scale": 1.33
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          11.2,
-          1.3
-        ],
-        "rotation": 285,
-        "scale": 1.29
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          11.2,
-          4.0
-        ],
-        "rotation": 15,
-        "scale": 1.48
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          14.5,
-          -15.5
-        ],
-        "rotation": 270,
-        "scale": 1.44
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          11.0,
-          -8.7
-        ],
-        "rotation": 225,
-        "scale": 1.01
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          14.0,
-          -34.8
-        ],
-        "rotation": 30,
-        "scale": 1.42
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          -0.7,
-          -10.2
-        ],
-        "rotation": 195,
-        "scale": 1.16
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          11.3,
-          -28.9
-        ],
-        "rotation": 300,
-        "scale": 1.05
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          6.8,
-          -9.7
-        ],
-        "rotation": 255,
-        "scale": 1.04
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -9.2,
-          -21.3
-        ],
-        "rotation": 45,
-        "scale": 1.36
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -2.7,
-          -14.8
-        ],
-        "rotation": 120,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          12.1,
-          -16.9
-        ],
-        "rotation": 60,
-        "scale": 1.16
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -4.7,
-          -9.3
-        ],
-        "rotation": 0,
-        "scale": 1.17
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          -11.5,
-          -10.0
-        ],
-        "rotation": 225,
-        "scale": 1.47
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          6.1,
-          -21.8
-        ],
-        "rotation": 15,
-        "scale": 1.25
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          15.9,
-          -13.1
-        ],
-        "rotation": 135,
-        "scale": 1.26
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -9.6,
-          -21.6
-        ],
-        "rotation": 15,
-        "scale": 0.88
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -12.6,
-          -33.3
-        ],
-        "rotation": 330,
-        "scale": 1.28
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          2.0,
-          -17.3
-        ],
-        "rotation": 225,
-        "scale": 0.87
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -6.3,
-          -22.2
-        ],
-        "rotation": 60,
-        "scale": 0.93
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -0.9,
-          -33.0
-        ],
-        "rotation": 270,
-        "scale": 1.16
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -7.7,
-          -16.6
-        ],
-        "rotation": 270,
-        "scale": 0.95
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          9.7,
-          -30.0
-        ],
-        "rotation": 105,
-        "scale": 1.34
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -14.6,
-          -33.8
-        ],
-        "rotation": 195,
-        "scale": 1.23
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -3.7,
-          -15.7
-        ],
-        "rotation": 300,
-        "scale": 1.17
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          8.9,
-          -32.8
-        ],
-        "rotation": 90,
-        "scale": 0.92
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -8.0,
-          -21.7
-        ],
-        "rotation": 240,
-        "scale": 1.2
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          6.0,
-          -10.5
-        ],
-        "rotation": 285,
-        "scale": 1.45
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          9.4,
-          -29.4
-        ],
-        "rotation": 255,
-        "scale": 1.09
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          8.1,
-          -26.0
-        ],
-        "rotation": 15,
-        "scale": 1.52
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -15.5,
-          -33.3
-        ],
-        "rotation": 45,
-        "scale": 1.4
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -10.4,
-          -26.4
-        ],
-        "rotation": 60,
-        "scale": 1.54
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -1.9,
-          -13.6
-        ],
-        "rotation": 330,
-        "scale": 0.83
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -0.8,
-          -30.0
-        ],
-        "rotation": 255,
-        "scale": 1.44
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          16.6,
-          -33.2
-        ],
-        "rotation": 255,
-        "scale": 1.41
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -16.0,
-          -9.4
-        ],
-        "rotation": 315,
-        "scale": 1.57
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          6.8,
-          -13.9
-        ],
-        "rotation": 120,
-        "scale": 1.49
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          6.2,
-          -8.6
-        ],
-        "rotation": 45,
-        "scale": 0.87
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          -16.7,
-          -28.1
-        ],
-        "rotation": 45,
-        "scale": 0.89
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          -17.1,
-          -23.1
-        ],
-        "rotation": 105,
-        "scale": 1.15
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          0.9,
-          -34.5
-        ],
-        "rotation": 0,
-        "scale": 1.42
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -6.9,
-          -31.6
-        ],
-        "rotation": 195,
-        "scale": 1.22
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -4.3,
-          -16.1
-        ],
-        "rotation": 90,
-        "scale": 1.01
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -9.8,
-          -11.5
-        ],
-        "rotation": 210,
-        "scale": 1.05
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          -6.5,
-          -16.3
-        ],
-        "rotation": 225,
+        "rotation": 75,
         "scale": 0.96
       },
       {
         "piece": "Pl_Grass3",
         "position": [
-          -6.0,
-          -34.6
+          30.0,
+          -24.4
         ],
-        "rotation": 315,
-        "scale": 1.05
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          0.2,
-          -16.5
-        ],
-        "rotation": 180,
+        "rotation": 30,
         "scale": 1.32
       },
       {
-        "piece": "Pl_Grass3",
+        "piece": "RockP_3",
         "position": [
-          15.2,
-          -19.2
-        ],
-        "rotation": 285,
-        "scale": 1.03
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          11.5,
-          -28.9
-        ],
-        "rotation": 90,
-        "scale": 1.01
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          14.4,
-          -13.6
+          25.0,
+          -20.5
         ],
         "rotation": 300,
-        "scale": 1.24
+        "scale": 0.71
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          23.9,
+          -20.4
+        ],
+        "rotation": 330,
+        "scale": 1.33
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          29.1,
+          -19.2
+        ],
+        "rotation": 165,
+        "scale": 0.9
       },
       {
         "piece": "Pl_Grass2",
         "position": [
-          -18.2,
-          -33.9
+          29.5,
+          -18.8
         ],
-        "rotation": 210,
-        "scale": 1.05
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          -2.8,
-          -13.3
-        ],
-        "rotation": 345,
-        "scale": 1.46
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          -8.1,
-          -24.6
-        ],
-        "rotation": 330,
-        "scale": 1.13
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          -2.6,
-          -29.1
-        ],
-        "rotation": 225,
+        "rotation": 285,
         "scale": 1.51
       },
       {
-        "piece": "Pl_Grass3",
+        "piece": "RockP_3",
         "position": [
-          -17.4,
-          -11.3
+          24.7,
+          -17.1
         ],
-        "rotation": 240,
-        "scale": 1.28
+        "rotation": 135,
+        "scale": 0.9
       },
       {
-        "piece": "Pl_Grass3",
+        "piece": "Pl_Grass1",
         "position": [
-          -10.2,
-          -23.8
+          24.4,
+          -17.4
         ],
-        "rotation": 105,
-        "scale": 1.18
+        "rotation": 0,
+        "scale": 1.41
       },
       {
-        "piece": "Pl_Grass2",
+        "piece": "RockP_6",
         "position": [
-          8.8,
-          -26.6
+          29.0,
+          -16.0
         ],
-        "rotation": 285,
-        "scale": 0.91
+        "rotation": 30,
+        "scale": 0.88
       },
       {
-        "piece": "Pl_Grass2",
+        "piece": "Pl_Grass1",
         "position": [
-          9.7,
-          -21.0
+          29.9,
+          -16.4
         ],
         "rotation": 60,
+        "scale": 1.31
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          24.9,
+          -12.0
+        ],
+        "rotation": 150,
+        "scale": 1.06
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          23.6,
+          -12.2
+        ],
+        "rotation": 300,
+        "scale": 1.2
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          29.0,
+          -12.5
+        ],
+        "rotation": 345,
+        "scale": 0.75
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          29.5,
+          -11.4
+        ],
+        "rotation": 240,
+        "scale": 1.11
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          24.9,
+          -9.1
+        ],
+        "rotation": 15,
+        "scale": 0.75
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          24.3,
+          -8.8
+        ],
+        "rotation": 150,
+        "scale": 1.11
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          28.9,
+          -8.4
+        ],
+        "rotation": 315,
+        "scale": 1.04
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          29.7,
+          -8.5
+        ],
+        "rotation": 330,
         "scale": 1.47
       },
       {
-        "piece": "Pl_Grass2",
+        "piece": "Pl_Grass1",
         "position": [
-          -8.7,
-          -29.2
+          1.9,
+          0.5
+        ],
+        "rotation": 165,
+        "scale": 1.01
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -6.5,
+          -3.6
+        ],
+        "rotation": 195,
+        "scale": 1.36
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          7.4,
+          -0.4
         ],
         "rotation": 45,
-        "scale": 1.18
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          -12.6,
-          -14.2
-        ],
-        "rotation": 330,
-        "scale": 1.13
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          -15.5,
-          -14.1
-        ],
-        "rotation": 30,
-        "scale": 1.39
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          -0.9,
-          -30.1
-        ],
-        "rotation": 15,
-        "scale": 1.52
+        "scale": 1.25
       },
       {
         "piece": "Pl_Grass3",
         "position": [
-          -2.8,
-          -17.8
+          -2.7,
+          -1.7
+        ],
+        "rotation": 225,
+        "scale": 0.89
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          2.9,
+          1.0
+        ],
+        "rotation": 285,
+        "scale": 1.04
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -8.9,
+          0.9
+        ],
+        "rotation": 210,
+        "scale": 0.94
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -10.3,
+          2.8
         ],
         "rotation": 135,
+        "scale": 1.57
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -8.6,
+          1.2
+        ],
+        "rotation": 45,
         "scale": 0.93
       },
       {
         "piece": "Pl_Grass3",
         "position": [
-          4.3,
-          -26.3
+          -9.2,
+          -4.8
         ],
-        "rotation": 75,
-        "scale": 1.35
+        "rotation": 225,
+        "scale": 1.23
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -3.5,
+          -0.5
+        ],
+        "rotation": 105,
+        "scale": 1.56
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -7.8,
+          2.0
+        ],
+        "rotation": 165,
+        "scale": 1.2
       },
       {
         "piece": "Pl_Grass2",
         "position": [
-          7.8,
-          -18.0
+          5.7,
+          1.1
         ],
-        "rotation": 120,
-        "scale": 1.21
+        "rotation": 105,
+        "scale": 1.45
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -7.3,
+          4.0
+        ],
+        "rotation": 195,
+        "scale": 1.29
       },
       {
         "piece": "Pl_Grass3",
         "position": [
-          -6.3,
-          -9.2
+          -10.2,
+          4.2
         ],
-        "rotation": 165,
-        "scale": 0.91
+        "rotation": 210,
+        "scale": 1.43
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          0.3,
+          -0.7
+        ],
+        "rotation": 75,
+        "scale": 1.29
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          1.1,
+          -0.7
+        ],
+        "rotation": 195,
+        "scale": 1.06
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          4.8,
+          -3.3
+        ],
+        "rotation": 195,
+        "scale": 0.86
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          0.9,
+          -3.9
+        ],
+        "rotation": 240,
+        "scale": 1.51
       },
       {
         "piece": "Pl_Grass2",
         "position": [
-          4.2,
-          -12.9
+          -3.8,
+          3.0
+        ],
+        "rotation": 270,
+        "scale": 1.55
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -6.6,
+          1.4
+        ],
+        "rotation": 330,
+        "scale": 1.34
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          3.4,
+          -1.3
+        ],
+        "rotation": 150,
+        "scale": 1.09
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -3.8,
+          -1.8
+        ],
+        "rotation": 165,
+        "scale": 1.29
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -9.2,
+          -0.6
+        ],
+        "rotation": 285,
+        "scale": 1.07
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -9.8,
+          2.2
+        ],
+        "rotation": 270,
+        "scale": 1.44
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          6.3,
+          5.4
+        ],
+        "rotation": 225,
+        "scale": 1.01
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          8.0,
+          -5.2
+        ],
+        "rotation": 30,
+        "scale": 1.42
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -9.1,
+          -0.9
+        ],
+        "rotation": 105,
+        "scale": 1.26
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          8.8,
+          -2.1
+        ],
+        "rotation": 30,
+        "scale": 1.57
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          4.1,
+          -2.2
+        ],
+        "rotation": 60,
+        "scale": 1.22
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -5.1,
+          2.3
+        ],
+        "rotation": 90,
+        "scale": 1.41
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -5.1,
+          -2.6
+        ],
+        "rotation": 90,
+        "scale": 1.06
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -1.1,
+          -1.4
+        ],
+        "rotation": 330,
+        "scale": 0.8
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          5.1,
+          -1.1
+        ],
+        "rotation": 45,
+        "scale": 1.54
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -10.6,
+          -6.2
+        ],
+        "rotation": 315,
+        "scale": 1.04
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -8.7,
+          -6.2
+        ],
+        "rotation": 270,
+        "scale": 1.53
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -6.2,
+          -6.2
+        ],
+        "rotation": 45,
+        "scale": 1.78
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -3.4,
+          -6.2
+        ],
+        "rotation": 195,
+        "scale": 1.57
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          3.7,
+          -6.2
+        ],
+        "rotation": 30,
+        "scale": 1.15
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          6.1,
+          -6.2
+        ],
+        "rotation": 75,
+        "scale": 1.53
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          8.3,
+          -6.2
+        ],
+        "rotation": 285,
+        "scale": 1.46
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          11.0,
+          -6.2
+        ],
+        "rotation": 270,
+        "scale": 1.15
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -10.6,
+          6.2
+        ],
+        "rotation": 15,
+        "scale": 1.18
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -8.3,
+          6.2
+        ],
+        "rotation": 30,
+        "scale": 1.01
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          -6.0,
+          6.2
+        ],
+        "rotation": 195,
+        "scale": 1.59
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          -3.5,
+          6.2
+        ],
+        "rotation": 90,
+        "scale": 1.59
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -1.4,
+          6.2
+        ],
+        "rotation": 90,
+        "scale": 1.12
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          1.1,
+          6.2
+        ],
+        "rotation": 240,
+        "scale": 1.4
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          3.7,
+          6.2
+        ],
+        "rotation": 285,
+        "scale": 1.65
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          6.2,
+          6.2
+        ],
+        "rotation": 180,
+        "scale": 1.43
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          8.5,
+          6.2
+        ],
+        "rotation": 165,
+        "scale": 1.76
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          10.5,
+          6.2
+        ],
+        "rotation": 30,
+        "scale": 1.71
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -11.2,
+          -5.6
+        ],
+        "rotation": 105,
+        "scale": 1.45
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -11.2,
+          -3.7
+        ],
+        "rotation": 60,
+        "scale": 1.74
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          -11.2,
+          -1.0
+        ],
+        "rotation": 330,
+        "scale": 1.03
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -11.2,
+          1.4
+        ],
+        "rotation": 105,
+        "scale": 1.36
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -11.2,
+          4.0
+        ],
+        "rotation": 15,
+        "scale": 1.45
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          11.2,
+          -6.1
+        ],
+        "rotation": 0,
+        "scale": 1.58
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          11.2,
+          -3.1
+        ],
+        "rotation": 135,
+        "scale": 1.53
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          11.2,
+          -0.7
+        ],
+        "rotation": 30,
+        "scale": 1.35
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          11.2,
+          1.2
+        ],
+        "rotation": 45,
+        "scale": 1.09
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          11.2,
+          3.5
+        ],
+        "rotation": 240,
+        "scale": 1.06
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -10.2,
+          -24.6
+        ],
+        "rotation": 15,
+        "scale": 0.82
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -18.4,
+          -11.7
+        ],
+        "rotation": 60,
+        "scale": 1.23
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -2.7,
+          -22.8
+        ],
+        "rotation": 330,
+        "scale": 1.08
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -10.9,
+          -10.6
+        ],
+        "rotation": 195,
+        "scale": 1.43
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          1.5,
+          -27.1
+        ],
+        "rotation": 195,
+        "scale": 1.37
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -14.4,
+          -30.0
+        ],
+        "rotation": 105,
+        "scale": 0.83
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          6.6,
+          -27.2
+        ],
+        "rotation": 330,
+        "scale": 1.4
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -4.6,
+          -17.9
+        ],
+        "rotation": 285,
+        "scale": 1.25
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          4.6,
+          -19.1
+        ],
+        "rotation": 105,
+        "scale": 0.93
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -11.5,
+          -13.2
+        ],
+        "rotation": 270,
+        "scale": 1.52
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          11.7,
+          -20.7
+        ],
+        "rotation": 15,
+        "scale": 0.84
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          17.0,
+          -22.9
+        ],
+        "rotation": 195,
+        "scale": 1.27
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -6.4,
+          -16.0
+        ],
+        "rotation": 120,
+        "scale": 0.86
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -4.1,
+          -16.7
+        ],
+        "rotation": 195,
+        "scale": 1.01
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          14.7,
+          -22.7
+        ],
+        "rotation": 0,
+        "scale": 0.87
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -11.3,
+          -17.2
+        ],
+        "rotation": 105,
+        "scale": 1.01
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          5.7,
+          -28.8
+        ],
+        "rotation": 345,
+        "scale": 0.82
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          3.6,
+          -10.9
+        ],
+        "rotation": 60,
+        "scale": 0.85
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          8.7,
+          -32.0
+        ],
+        "rotation": 120,
+        "scale": 1.08
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -2.6,
+          -32.4
+        ],
+        "rotation": 75,
+        "scale": 1.4
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          11.9,
+          -16.4
+        ],
+        "rotation": 30,
+        "scale": 0.81
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          1.7,
+          -12.2
+        ],
+        "rotation": 345,
+        "scale": 1.4
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -13.6,
+          -32.3
+        ],
+        "rotation": 195,
+        "scale": 1.57
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          0.5,
+          -27.2
+        ],
+        "rotation": 330,
+        "scale": 1.07
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          6.8,
+          -16.9
+        ],
+        "rotation": 165,
+        "scale": 1.32
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -3.9,
+          -21.8
+        ],
+        "rotation": 315,
+        "scale": 1.58
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          10.6,
+          -11.1
+        ],
+        "rotation": 60,
+        "scale": 1.2
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          4.4,
+          -16.7
         ],
         "rotation": 60,
         "scale": 1.28
@@ -28830,395 +28822,332 @@
       {
         "piece": "Pl_Grass3",
         "position": [
-          -19.0,
-          -36.2
+          -9.7,
+          -15.2
         ],
-        "rotation": 300,
-        "scale": 1.1
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          -16.6,
-          -36.2
-        ],
-        "rotation": 225,
-        "scale": 1.49
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -13.8,
-          -36.2
-        ],
-        "rotation": 15,
-        "scale": 1.41
+        "rotation": 60,
+        "scale": 1.3
       },
       {
         "piece": "Pl_Grass3",
         "position": [
-          -11.4,
-          -36.2
+          5.1,
+          -22.8
         ],
-        "rotation": 240,
-        "scale": 1.57
+        "rotation": 285,
+        "scale": 0.9
       },
       {
         "piece": "Pl_Grass2",
         "position": [
-          -9.2,
-          -36.2
+          0.6,
+          -15.0
         ],
-        "rotation": 330,
-        "scale": 1.15
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          -7.0,
-          -36.2
-        ],
-        "rotation": 270,
+        "rotation": 240,
         "scale": 1.37
       },
       {
-        "piece": "Pl_Bush",
-        "position": [
-          -4.3,
-          -36.2
-        ],
-        "rotation": 240,
-        "scale": 1.31
-      },
-      {
         "piece": "Pl_Grass1",
         "position": [
-          -2.3,
-          -36.2
-        ],
-        "rotation": 15,
-        "scale": 1.53
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          0.3,
-          -36.2
-        ],
-        "rotation": 90,
-        "scale": 1.12
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          3.0,
-          -36.2
+          1.2,
+          -15.8
         ],
         "rotation": 330,
-        "scale": 1.4
+        "scale": 0.95
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Pl_Grass2",
         "position": [
-          5.2,
-          -36.2
+          -13.3,
+          -33.6
         ],
-        "rotation": 150,
-        "scale": 1.75
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          7.3,
-          -36.2
-        ],
-        "rotation": 300,
+        "rotation": 285,
         "scale": 1.27
       },
       {
-        "piece": "Pl_Grass3",
-        "position": [
-          10.1,
-          -36.2
-        ],
-        "rotation": 225,
-        "scale": 1.25
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          12.2,
-          -36.2
-        ],
-        "rotation": 270,
-        "scale": 1.21
-      },
-      {
         "piece": "Pl_Grass1",
         "position": [
-          14.6,
-          -36.2
+          -1.6,
+          -25.0
         ],
-        "rotation": 300,
-        "scale": 1.52
+        "rotation": 30,
+        "scale": 0.84
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Pl_Grass2",
         "position": [
-          17.3,
-          -36.2
+          2.8,
+          -14.8
         ],
-        "rotation": 300,
+        "rotation": 90,
+        "scale": 0.92
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          12.4,
+          -22.3
+        ],
+        "rotation": 30,
         "scale": 1.23
       },
       {
-        "piece": "Pl_Grass3",
-        "position": [
-          -18.6,
-          -7.8
-        ],
-        "rotation": 270,
-        "scale": 1.26
-      },
-      {
         "piece": "Pl_Grass1",
         "position": [
-          -16.6,
-          -7.8
+          -1.4,
+          -10.2
         ],
-        "rotation": 240,
-        "scale": 1.78
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -13.9,
-          -7.8
-        ],
-        "rotation": 270,
-        "scale": 1.07
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -11.6,
-          -7.8
-        ],
-        "rotation": 105,
-        "scale": 1.26
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          -9.4,
-          -7.8
-        ],
-        "rotation": 195,
-        "scale": 1.42
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -6.8,
-          -7.8
-        ],
-        "rotation": 330,
-        "scale": 1.69
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          -4.3,
-          -7.8
-        ],
-        "rotation": 75,
-        "scale": 1.69
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          5.4,
-          -7.8
-        ],
-        "rotation": 75,
-        "scale": 1.56
+        "rotation": 180,
+        "scale": 1.3
       },
       {
         "piece": "Pl_Grass2",
         "position": [
-          7.8,
-          -7.8
+          -2.3,
+          -14.6
         ],
-        "rotation": 165,
-        "scale": 1.06
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          10.0,
-          -7.8
-        ],
-        "rotation": 225,
-        "scale": 1.42
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          12.3,
-          -7.8
-        ],
-        "rotation": 330,
-        "scale": 1.5
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          15.0,
-          -7.8
-        ],
-        "rotation": 195,
-        "scale": 1.6
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          17.3,
-          -7.8
-        ],
-        "rotation": 135,
-        "scale": 1.03
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -19.2,
-          -35.7
-        ],
-        "rotation": 270,
-        "scale": 1.23
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -19.2,
-          -33.1
-        ],
-        "rotation": 45,
-        "scale": 1.26
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -19.2,
-          -31.1
-        ],
-        "rotation": 75,
-        "scale": 1.35
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          -19.2,
-          -28.7
-        ],
-        "rotation": 255,
-        "scale": 1.51
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -19.2,
-          -26.3
-        ],
-        "rotation": 255,
-        "scale": 1.26
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -19.2,
-          -23.9
-        ],
-        "rotation": 240,
-        "scale": 1.17
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -19.2,
-          -21.7
-        ],
-        "rotation": 330,
-        "scale": 1.25
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -19.2,
-          -19.2
-        ],
-        "rotation": 315,
-        "scale": 1.32
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -19.2,
-          -16.6
-        ],
-        "rotation": 60,
-        "scale": 1.09
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          -19.2,
-          -14.2
-        ],
-        "rotation": 285,
-        "scale": 1.13
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          -19.2,
-          -11.6
-        ],
-        "rotation": 240,
-        "scale": 1.35
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          -19.2,
-          -9.3
-        ],
-        "rotation": 270,
-        "scale": 1.66
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          19.2,
-          -35.8
-        ],
-        "rotation": 15,
-        "scale": 1.11
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          19.2,
-          -33.5
-        ],
-        "rotation": 270,
+        "rotation": 150,
         "scale": 1.12
       },
       {
         "piece": "Pl_Grass2",
         "position": [
-          19.2,
-          -31.2
+          -3.8,
+          -26.5
+        ],
+        "rotation": 225,
+        "scale": 0.92
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -15.4,
+          -18.0
+        ],
+        "rotation": 300,
+        "scale": 1.16
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -7.8,
+          -14.2
+        ],
+        "rotation": 270,
+        "scale": 1.06
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -13.5,
+          -11.7
+        ],
+        "rotation": 240,
+        "scale": 1.58
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          7.3,
+          -27.1
+        ],
+        "rotation": 270,
+        "scale": 1.0
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -9.7,
+          -28.3
+        ],
+        "rotation": 195,
+        "scale": 1.22
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          1.9,
+          -21.3
+        ],
+        "rotation": 120,
+        "scale": 1.55
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          13.5,
+          -16.2
+        ],
+        "rotation": 255,
+        "scale": 0.86
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -12.7,
+          -21.5
+        ],
+        "rotation": 225,
+        "scale": 1.33
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          13.7,
+          -13.2
+        ],
+        "rotation": 75,
+        "scale": 1.36
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          12.6,
+          -30.7
+        ],
+        "rotation": 240,
+        "scale": 1.44
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          10.4,
+          -22.4
+        ],
+        "rotation": 90,
+        "scale": 1.3
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          11.4,
+          -31.7
+        ],
+        "rotation": 45,
+        "scale": 1.44
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          10.5,
+          -19.7
+        ],
+        "rotation": 345,
+        "scale": 1.33
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          16.3,
+          -27.6
+        ],
+        "rotation": 135,
+        "scale": 1.52
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          3.4,
+          -19.9
+        ],
+        "rotation": 240,
+        "scale": 1.58
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -12.8,
+          -26.8
+        ],
+        "rotation": 150,
+        "scale": 0.95
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -2.1,
+          -27.3
+        ],
+        "rotation": 45,
+        "scale": 1.54
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          5.1,
+          -25.0
+        ],
+        "rotation": 255,
+        "scale": 1.06
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -3.4,
+          -25.8
+        ],
+        "rotation": 195,
+        "scale": 0.86
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -9.7,
+          -27.0
+        ],
+        "rotation": 225,
+        "scale": 1.28
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          18.3,
+          -24.8
+        ],
+        "rotation": 120,
+        "scale": 1.08
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -14.4,
+          -22.9
+        ],
+        "rotation": 300,
+        "scale": 1.2
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          3.9,
+          -20.2
+        ],
+        "rotation": 240,
+        "scale": 1.15
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          6.3,
+          -29.0
+        ],
+        "rotation": 150,
+        "scale": 0.86
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -13.5,
+          -27.5
+        ],
+        "rotation": 270,
+        "scale": 0.92
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -19.0,
+          -36.2
         ],
         "rotation": 90,
         "scale": 1.4
@@ -29226,8 +29155,8 @@
       {
         "piece": "Pl_Grass2",
         "position": [
-          19.2,
-          -28.9
+          -16.7,
+          -36.2
         ],
         "rotation": 15,
         "scale": 1.0
@@ -29235,35 +29164,44 @@
       {
         "piece": "Pl_Grass3",
         "position": [
-          19.2,
-          -26.2
+          -14.0,
+          -36.2
         ],
         "rotation": 240,
         "scale": 1.17
       },
       {
-        "piece": "Pl_Grass3",
-        "position": [
-          19.2,
-          -18.8
-        ],
-        "rotation": 240,
-        "scale": 1.39
-      },
-      {
         "piece": "Pl_Grass1",
         "position": [
-          19.2,
-          -16.4
+          -11.4,
+          -36.2
         ],
-        "rotation": 240,
-        "scale": 1.21
+        "rotation": 75,
+        "scale": 1.46
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          -9.3,
+          -36.2
+        ],
+        "rotation": 180,
+        "scale": 1.7
       },
       {
         "piece": "Pl_Grass3",
         "position": [
-          19.2,
-          -14.2
+          -7.1,
+          -36.2
+        ],
+        "rotation": 120,
+        "scale": 1.45
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -4.1,
+          -36.2
         ],
         "rotation": 270,
         "scale": 1.37
@@ -29271,8 +29209,8 @@
       {
         "piece": "Pl_Grass3",
         "position": [
-          19.2,
-          -11.9
+          -2.1,
+          -36.2
         ],
         "rotation": 225,
         "scale": 1.62
@@ -29280,314 +29218,395 @@
       {
         "piece": "Pl_Grass2",
         "position": [
-          19.2,
-          -9.2
+          0.6,
+          -36.2
         ],
         "rotation": 240,
         "scale": 1.46
       },
       {
+        "piece": "Pl_Bush",
+        "position": [
+          2.7,
+          -36.2
+        ],
+        "rotation": 345,
+        "scale": 1.29
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          5.2,
+          -36.2
+        ],
+        "rotation": 165,
+        "scale": 1.52
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          7.3,
+          -36.2
+        ],
+        "rotation": 120,
+        "scale": 1.26
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          10.0,
+          -36.2
+        ],
+        "rotation": 345,
+        "scale": 1.17
+      },
+      {
         "piece": "Pl_Grass2",
         "position": [
-          29.6,
-          -27.3
+          12.3,
+          -36.2
         ],
-        "rotation": 300,
-        "scale": 1.54
+        "rotation": 15,
+        "scale": 1.5
       },
       {
-        "piece": "Pl_Grass3",
+        "piece": "Pl_Bush",
         "position": [
-          26.9,
-          -28.6
+          14.5,
+          -36.2
         ],
         "rotation": 255,
-        "scale": 1.1
+        "scale": 1.47
       },
       {
-        "piece": "Pl_Grass3",
+        "piece": "Pl_Grass2",
         "position": [
-          29.3,
-          -12.2
-        ],
-        "rotation": 90,
-        "scale": 1.4
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          23.5,
-          -34.6
-        ],
-        "rotation": 30,
-        "scale": 1.04
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          26.3,
-          -11.4
+          17.5,
+          -36.2
         ],
         "rotation": 105,
+        "scale": 1.8
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          -18.6,
+          -7.8
+        ],
+        "rotation": 180,
+        "scale": 1.25
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          -16.4,
+          -7.8
+        ],
+        "rotation": 180,
         "scale": 1.6
       },
       {
-        "piece": "Pl_Grass2",
+        "piece": "Pl_Bush",
         "position": [
-          33.8,
-          -10.7
+          -13.9,
+          -7.8
         ],
-        "rotation": 285,
-        "scale": 1.36
+        "rotation": 15,
+        "scale": 1.3
       },
       {
-        "piece": "Pl_Grass2",
+        "piece": "Pl_Bush",
         "position": [
-          33.3,
-          -12.1
+          -11.5,
+          -7.8
         ],
-        "rotation": 255,
-        "scale": 1.34
+        "rotation": 300,
+        "scale": 1.14
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          -9.2,
+          -7.8
+        ],
+        "rotation": 135,
+        "scale": 1.5
       },
       {
         "piece": "Pl_Grass1",
         "position": [
-          29.1,
-          -27.7
+          -6.7,
+          -7.8
         ],
-        "rotation": 270,
-        "scale": 0.85
+        "rotation": 330,
+        "scale": 1.6
       },
       {
-        "piece": "Pl_Grass3",
+        "piece": "Pl_Bush",
         "position": [
-          34.1,
-          -23.8
+          -4.5,
+          -7.8
         ],
-        "rotation": 75,
-        "scale": 1.05
+        "rotation": 345,
+        "scale": 1.66
       },
       {
         "piece": "Pl_Grass2",
         "position": [
-          23.4,
-          -31.0
+          5.3,
+          -7.8
+        ],
+        "rotation": 240,
+        "scale": 1.33
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          7.4,
+          -7.8
+        ],
+        "rotation": 60,
+        "scale": 1.76
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          10.1,
+          -7.8
+        ],
+        "rotation": 165,
+        "scale": 1.61
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          12.3,
+          -7.8
+        ],
+        "rotation": 75,
+        "scale": 1.7
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          14.9,
+          -7.8
+        ],
+        "rotation": 90,
+        "scale": 1.49
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          17.2,
+          -7.8
+        ],
+        "rotation": 210,
+        "scale": 1.07
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          -19.2,
+          -36.1
+        ],
+        "rotation": 90,
+        "scale": 1.24
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          -19.2,
+          -33.5
+        ],
+        "rotation": 135,
+        "scale": 1.16
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          -19.2,
+          -30.9
+        ],
+        "rotation": 135,
+        "scale": 1.12
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -19.2,
+          -28.9
         ],
         "rotation": 255,
-        "scale": 1.28
+        "scale": 1.19
       },
       {
-        "piece": "Pl_Grass3",
+        "piece": "Pl_Grass1",
         "position": [
-          28.3,
-          -30.0
+          -19.2,
+          -26.1
         ],
-        "rotation": 195,
-        "scale": 0.89
+        "rotation": 105,
+        "scale": 1.71
       },
       {
-        "piece": "Pl_Grass3",
+        "piece": "Pl_Grass2",
         "position": [
-          23.2,
-          -25.1
+          -19.2,
+          -23.7
         ],
         "rotation": 300,
         "scale": 1.35
       },
       {
-        "piece": "Pl_Grass3",
-        "position": [
-          26.1,
-          -17.8
-        ],
-        "rotation": 135,
-        "scale": 0.94
-      },
-      {
         "piece": "Pl_Grass1",
         "position": [
-          29.9,
-          -33.5
-        ],
-        "rotation": 285,
-        "scale": 1.42
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          31.8,
-          -9.7
-        ],
-        "rotation": 210,
-        "scale": 0.87
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          22.6,
-          -22.3
-        ],
-        "rotation": 135,
-        "scale": 1.03
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          32.9,
-          -27.8
-        ],
-        "rotation": 345,
-        "scale": 0.89
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          26.5,
-          -31.5
+          -19.2,
+          -21.1
         ],
         "rotation": 15,
-        "scale": 1.57
+        "scale": 1.31
       },
       {
         "piece": "Pl_Grass1",
         "position": [
-          24.6,
-          -17.0
+          -19.2,
+          -19.2
         ],
-        "rotation": 105,
-        "scale": 1.51
+        "rotation": 45,
+        "scale": 1.65
       },
       {
         "piece": "Pl_Grass3",
         "position": [
-          30.4,
-          -15.3
+          -19.2,
+          -16.3
         ],
-        "rotation": 210,
-        "scale": 1.51
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          26.6,
-          -34.8
-        ],
-        "rotation": 165,
-        "scale": 0.97
+        "rotation": 0,
+        "scale": 1.35
       },
       {
         "piece": "Pl_Grass1",
         "position": [
-          22.9,
-          -12.8
+          -19.2,
+          -14.2
         ],
-        "rotation": 315,
+        "rotation": 135,
+        "scale": 1.8
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -19.2,
+          -11.8
+        ],
+        "rotation": 195,
+        "scale": 1.3
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -19.2,
+          -9.6
+        ],
+        "rotation": 300,
+        "scale": 1.38
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          19.2,
+          -36.0
+        ],
+        "rotation": 195,
         "scale": 1.29
       },
       {
-        "piece": "Pl_Grass2",
-        "position": [
-          28.7,
-          -33.9
-        ],
-        "rotation": 270,
-        "scale": 1.28
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          24.1,
-          -35.4
-        ],
-        "rotation": 105,
-        "scale": 1.18
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          22.5,
-          -25.6
-        ],
-        "rotation": 105,
-        "scale": 1.57
-      },
-      {
         "piece": "Pl_Grass1",
         "position": [
-          30.2,
-          -14.2
-        ],
-        "rotation": 60,
-        "scale": 0.85
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          32.3,
-          -27.0
+          19.2,
+          -33.5
         ],
         "rotation": 90,
-        "scale": 1.42
+        "scale": 1.74
       },
       {
-        "piece": "Pl_Grass1",
+        "piece": "Pl_Grass3",
         "position": [
-          28.7,
-          -15.0
+          19.2,
+          -31.3
         ],
         "rotation": 150,
+        "scale": 1.35
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          19.2,
+          -28.8
+        ],
+        "rotation": 180,
+        "scale": 1.45
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          19.2,
+          -26.0
+        ],
+        "rotation": 150,
+        "scale": 1.21
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          19.2,
+          -16.3
+        ],
+        "rotation": 165,
+        "scale": 1.48
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          19.2,
+          -14.1
+        ],
+        "rotation": 210,
         "scale": 1.01
       },
       {
         "piece": "Pl_Grass1",
         "position": [
-          25.7,
-          -25.8
+          19.2,
+          -11.9
         ],
-        "rotation": 150,
-        "scale": 1.08
+        "rotation": 135,
+        "scale": 1.21
       },
       {
-        "piece": "Pl_Grass2",
+        "piece": "Pl_Grass1",
         "position": [
-          27.4,
-          -28.5
-        ],
-        "rotation": 0,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          22.5,
-          -33.3
-        ],
-        "rotation": 120,
-        "scale": 1.38
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          27.6,
-          -32.2
-        ],
-        "rotation": 30,
-        "scale": 1.33
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          31.9,
-          -8.6
+          19.2,
+          -9.2
         ],
         "rotation": 240,
-        "scale": 1.1
+        "scale": 1.36
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          30.1,
+          -13.8
+        ],
+        "rotation": 120,
+        "scale": 1.2
       },
       {
         "piece": "Pl_Grass3",
         "position": [
-          22.1,
-          -26.8
+          21.9,
+          -12.3
         ],
         "rotation": 270,
         "scale": 1.27
@@ -29611,382 +29630,670 @@
         "scale": 1.04
       },
       {
-        "piece": "Pl_Grass2",
+        "piece": "Pl_Grass3",
         "position": [
-          25.6,
-          -35.1
+          22.7,
+          -23.1
         ],
-        "rotation": 150,
-        "scale": 1.53
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          29.1,
-          -9.6
-        ],
-        "rotation": 255,
-        "scale": 1.17
+        "rotation": 315,
+        "scale": 1.58
       },
       {
         "piece": "Pl_Grass3",
         "position": [
-          28.9,
-          -9.2
+          30.7,
+          -31.5
         ],
-        "rotation": 135,
-        "scale": 0.92
+        "rotation": 45,
+        "scale": 1.55
       },
       {
         "piece": "Pl_Grass2",
         "position": [
-          33.0,
-          -32.2
-        ],
-        "rotation": 285,
-        "scale": 1.22
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          28.8,
-          -16.3
-        ],
-        "rotation": 150,
-        "scale": 1.01
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          26.6,
-          -26.9
-        ],
-        "rotation": 240,
-        "scale": 0.86
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          28.2,
-          -11.2
-        ],
-        "rotation": 75,
-        "scale": 1.36
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          22.2,
-          -31.4
-        ],
-        "rotation": 330,
-        "scale": 1.05
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          23.5,
-          -27.0
-        ],
-        "rotation": 270,
-        "scale": 1.01
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          28.4,
-          -32.7
-        ],
-        "rotation": 165,
-        "scale": 1.31
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          22.2,
-          -26.1
-        ],
-        "rotation": 60,
-        "scale": 1.34
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          24.2,
-          -14.2
-        ],
-        "rotation": 300,
-        "scale": 1.42
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          21.1,
-          -36.2
-        ],
-        "rotation": 285,
-        "scale": 1.68
-      },
-      {
-        "piece": "Pl_Grass1",
-        "position": [
-          23.3,
-          -36.2
-        ],
-        "rotation": 30,
-        "scale": 1.73
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          26.0,
-          -36.2
-        ],
-        "rotation": 105,
-        "scale": 1.64
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          28.7,
-          -36.2
+          22.5,
+          -16.8
         ],
         "rotation": 120,
-        "scale": 1.46
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          30.9,
-          -36.2
-        ],
-        "rotation": 30,
-        "scale": 1.71
+        "scale": 1.08
       },
       {
         "piece": "Pl_Grass3",
         "position": [
-          33.5,
-          -36.2
+          32.9,
+          -26.6
         ],
-        "rotation": 0,
+        "rotation": 150,
+        "scale": 0.87
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          34.2,
+          -33.5
+        ],
+        "rotation": 30,
+        "scale": 1.52
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          34.0,
+          -30.9
+        ],
+        "rotation": 15,
+        "scale": 0.83
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          31.3,
+          -16.7
+        ],
+        "rotation": 60,
         "scale": 1.41
       },
       {
         "piece": "Pl_Grass2",
         "position": [
-          21.0,
-          -7.8
+          34.4,
+          -20.2
         ],
-        "rotation": 75,
-        "scale": 1.15
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          23.6,
-          -7.8
-        ],
-        "rotation": 330,
-        "scale": 1.79
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          26.2,
-          -7.8
-        ],
-        "rotation": 195,
-        "scale": 1.12
-      },
-      {
-        "piece": "Pl_Grass3",
-        "position": [
-          28.2,
-          -7.8
-        ],
-        "rotation": 210,
-        "scale": 1.01
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          31.0,
-          -7.8
-        ],
-        "rotation": 105,
-        "scale": 1.08
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          33.2,
-          -7.8
-        ],
-        "rotation": 135,
-        "scale": 1.58
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          20.8,
-          -35.8
-        ],
-        "rotation": 135,
-        "scale": 1.7
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          20.8,
-          -33.1
-        ],
-        "rotation": 90,
-        "scale": 1.5
+        "rotation": 315,
+        "scale": 1.42
       },
       {
         "piece": "Pl_Grass1",
         "position": [
-          20.8,
-          -30.9
+          23.1,
+          -31.3
         ],
-        "rotation": 15,
+        "rotation": 315,
+        "scale": 1.09
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          33.8,
+          -14.9
+        ],
+        "rotation": 30,
+        "scale": 1.53
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          31.9,
+          -10.7
+        ],
+        "rotation": 120,
         "scale": 1.26
       },
       {
         "piece": "Pl_Grass2",
         "position": [
-          20.8,
-          -28.8
+          33.0,
+          -10.7
         ],
-        "rotation": 60,
-        "scale": 1.52
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          20.8,
-          -26.2
-        ],
-        "rotation": 165,
-        "scale": 1.43
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          20.8,
-          -16.6
-        ],
-        "rotation": 270,
-        "scale": 1.67
+        "rotation": 0,
+        "scale": 1.21
       },
       {
         "piece": "Pl_Grass1",
         "position": [
-          20.8,
-          -14.0
+          23.1,
+          -28.9
         ],
-        "rotation": 60,
+        "rotation": 285,
         "scale": 1.23
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          20.8,
-          -12.1
-        ],
-        "rotation": 15,
-        "scale": 1.56
       },
       {
         "piece": "Pl_Grass2",
         "position": [
-          20.8,
-          -9.6
+          34.3,
+          -12.4
         ],
-        "rotation": 150,
+        "rotation": 195,
+        "scale": 0.92
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          23.8,
+          -26.1
+        ],
+        "rotation": 225,
+        "scale": 1.51
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          23.3,
+          -32.8
+        ],
+        "rotation": 75,
+        "scale": 1.0
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          30.3,
+          -9.1
+        ],
+        "rotation": 210,
+        "scale": 0.97
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          23.0,
+          -26.6
+        ],
+        "rotation": 285,
+        "scale": 1.4
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          22.2,
+          -10.0
+        ],
+        "rotation": 255,
+        "scale": 0.92
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          32.5,
+          -28.8
+        ],
+        "rotation": 210,
+        "scale": 0.83
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          22.6,
+          -16.2
+        ],
+        "rotation": 300,
+        "scale": 1.55
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          30.0,
+          -31.8
+        ],
+        "rotation": 0,
+        "scale": 0.91
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          29.6,
+          -32.4
+        ],
+        "rotation": 90,
+        "scale": 1.55
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          32.8,
+          -25.6
+        ],
+        "rotation": 270,
+        "scale": 1.32
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          32.7,
+          -32.6
+        ],
+        "rotation": 30,
         "scale": 1.16
       },
       {
         "piece": "Pl_Grass1",
         "position": [
-          35.2,
-          -35.5
+          34.0,
+          -10.2
         ],
-        "rotation": 330,
-        "scale": 1.18
+        "rotation": 300,
+        "scale": 1.51
       },
       {
         "piece": "Pl_Grass3",
         "position": [
-          35.2,
-          -33.3
+          31.4,
+          -27.9
         ],
-        "rotation": 60,
-        "scale": 1.02
+        "rotation": 315,
+        "scale": 1.59
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          32.9,
+          -13.0
+        ],
+        "rotation": 315,
+        "scale": 1.06
       },
       {
         "piece": "Pl_Grass2",
         "position": [
-          35.2,
+          23.9,
+          -9.2
+        ],
+        "rotation": 135,
+        "scale": 1.41
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          30.3,
           -30.9
         ],
-        "rotation": 180,
-        "scale": 1.75
+        "rotation": 345,
+        "scale": 1.19
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          34.3,
+          -33.1
+        ],
+        "rotation": 255,
+        "scale": 1.56
       },
       {
         "piece": "Pl_Grass2",
         "position": [
-          35.2,
-          -28.9
+          30.9,
+          -10.9
+        ],
+        "rotation": 255,
+        "scale": 1.14
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          34.5,
+          -18.8
+        ],
+        "rotation": 345,
+        "scale": 0.89
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          22.6,
+          -13.4
+        ],
+        "rotation": 345,
+        "scale": 1.06
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          33.3,
+          -34.8
+        ],
+        "rotation": 0,
+        "scale": 1.53
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          33.2,
+          -13.7
         ],
         "rotation": 285,
+        "scale": 1.56
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          21.6,
+          -17.7
+        ],
+        "rotation": 120,
+        "scale": 0.99
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          33.1,
+          -10.0
+        ],
+        "rotation": 45,
+        "scale": 1.26
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          22.2,
+          -20.6
+        ],
+        "rotation": 15,
+        "scale": 1.14
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          22.4,
+          -13.3
+        ],
+        "rotation": 240,
+        "scale": 1.32
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          21.6,
+          -34.1
+        ],
+        "rotation": 165,
+        "scale": 0.96
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          31.8,
+          -14.9
+        ],
+        "rotation": 165,
+        "scale": 0.82
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          31.4,
+          -17.5
+        ],
+        "rotation": 345,
+        "scale": 1.1
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          34.4,
+          -11.5
+        ],
+        "rotation": 255,
+        "scale": 0.82
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          21.4,
+          -36.2
+        ],
+        "rotation": 330,
+        "scale": 1.05
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          23.7,
+          -36.2
+        ],
+        "rotation": 135,
+        "scale": 1.13
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          25.9,
+          -36.2
+        ],
+        "rotation": 90,
+        "scale": 1.72
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          28.3,
+          -36.2
+        ],
+        "rotation": 0,
+        "scale": 1.43
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          31.0,
+          -36.2
+        ],
+        "rotation": 180,
+        "scale": 1.53
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          33.0,
+          -36.2
+        ],
+        "rotation": 315,
+        "scale": 1.13
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          21.2,
+          -7.8
+        ],
+        "rotation": 60,
+        "scale": 1.55
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          23.9,
+          -7.8
+        ],
+        "rotation": 240,
+        "scale": 1.0
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          26.1,
+          -7.8
+        ],
+        "rotation": 255,
+        "scale": 1.11
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          28.3,
+          -7.8
+        ],
+        "rotation": 90,
+        "scale": 1.3
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          31.0,
+          -7.8
+        ],
+        "rotation": 330,
+        "scale": 1.74
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          33.4,
+          -7.8
+        ],
+        "rotation": 15,
+        "scale": 1.15
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          20.8,
+          -36.0
+        ],
+        "rotation": 285,
+        "scale": 1.13
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          20.8,
+          -33.2
+        ],
+        "rotation": 90,
+        "scale": 1.09
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          20.8,
+          -30.7
+        ],
+        "rotation": 165,
+        "scale": 1.06
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          20.8,
+          -28.5
+        ],
+        "rotation": 345,
+        "scale": 1.61
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          20.8,
+          -26.5
+        ],
+        "rotation": 150,
+        "scale": 1.76
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          20.8,
+          -16.8
+        ],
+        "rotation": 345,
+        "scale": 1.74
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          20.8,
+          -14.4
+        ],
+        "rotation": 315,
+        "scale": 1.07
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          20.8,
+          -11.9
+        ],
+        "rotation": 75,
+        "scale": 1.4
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          20.8,
+          -9.1
+        ],
+        "rotation": 240,
         "scale": 1.42
       },
       {
-        "piece": "Pl_Grass2",
+        "piece": "Pl_Grass3",
         "position": [
           35.2,
-          -25.9
+          -35.5
         ],
-        "rotation": 315,
-        "scale": 1.29
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          35.2,
-          -23.9
-        ],
-        "rotation": 225,
-        "scale": 1.7
+        "rotation": 210,
+        "scale": 1.73
       },
       {
         "piece": "Pl_Grass3",
+        "position": [
+          35.2,
+          -33.6
+        ],
+        "rotation": 120,
+        "scale": 1.11
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          35.2,
+          -31.3
+        ],
+        "rotation": 195,
+        "scale": 1.68
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          35.2,
+          -28.4
+        ],
+        "rotation": 45,
+        "scale": 1.76
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          35.2,
+          -26.1
+        ],
+        "rotation": 270,
+        "scale": 1.15
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          35.2,
+          -23.8
+        ],
+        "rotation": 15,
+        "scale": 1.29
+      },
+      {
+        "piece": "Pl_Grass1",
         "position": [
           35.2,
           -21.2
         ],
-        "rotation": 45,
-        "scale": 1.04
+        "rotation": 210,
+        "scale": 1.1
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          35.2,
+          -19.2
+        ],
+        "rotation": 225,
+        "scale": 1.77
       },
       {
         "piece": "Pl_Grass3",
         "position": [
           35.2,
-          -19.2
+          -16.7
         ],
-        "rotation": 195,
-        "scale": 1.67
-      },
-      {
-        "piece": "Pl_Grass2",
-        "position": [
-          35.2,
-          -16.8
-        ],
-        "rotation": 75,
-        "scale": 1.03
+        "rotation": 240,
+        "scale": 1.23
       },
       {
         "piece": "Pl_Grass2",
@@ -29994,26 +30301,26 @@
           35.2,
           -14.1
         ],
-        "rotation": 180,
-        "scale": 1.44
+        "rotation": 165,
+        "scale": 1.11
       },
       {
-        "piece": "Pl_Grass2",
+        "piece": "Pl_Grass1",
         "position": [
           35.2,
-          -11.8
+          -11.7
         ],
-        "rotation": 150,
-        "scale": 1.41
+        "rotation": 225,
+        "scale": 1.42
       },
       {
         "piece": "Pl_Bush",
         "position": [
           35.2,
-          -9.4
+          -9.1
         ],
-        "rotation": 285,
-        "scale": 1.1
+        "rotation": 195,
+        "scale": 1.06
       }
     ],
     "crowd": [
@@ -30099,56 +30406,42 @@
       {
         "role": "sheep",
         "position": [
-          11.5,
-          -15.8
+          0.5,
+          -28.0
         ],
-        "rotation": 225,
+        "rotation": 15,
         "pose": "idle",
         "path": [
-          14.1,
-          -16.5
+          2.6,
+          -29.1
         ],
         "speed": 0.5
       },
       {
         "role": "sheep",
         "position": [
-          7.7,
-          -13.1
+          -14.6,
+          -24.9
         ],
-        "rotation": 60,
+        "rotation": 165,
         "pose": "idle",
         "path": [
-          6.6,
-          -9.7
+          -13.8,
+          -28.1
         ],
         "speed": 0.5
       },
       {
         "role": "sheep",
         "position": [
-          0.3,
-          -20.1
+          -7.1,
+          -32.1
         ],
-        "rotation": 240,
+        "rotation": 75,
         "pose": "idle",
         "path": [
-          4.3,
-          -23.6
-        ],
-        "speed": 0.5
-      },
-      {
-        "role": "sheep",
-        "position": [
-          -1.3,
-          -16.0
-        ],
-        "rotation": 315,
-        "pose": "idle",
-        "path": [
-          -2.7,
-          -18.5
+          -7.9,
+          -34.7
         ],
         "speed": 0.5
       },
@@ -30156,69 +30449,83 @@
         "role": "sheep",
         "position": [
           14.2,
-          -22.5
+          -23.8
         ],
-        "rotation": 75,
+        "rotation": 30,
         "pose": "idle",
         "path": [
-          15.6,
-          -25.2
+          16.2,
+          -23.9
         ],
         "speed": 0.5
       },
       {
         "role": "sheep",
         "position": [
-          -8.0,
-          -22.4
+          3.8,
+          -30.9
         ],
-        "rotation": 285,
+        "rotation": 225,
         "pose": "idle",
         "path": [
-          -10.7,
-          -19.7
+          1.1,
+          -33.0
         ],
         "speed": 0.5
       },
       {
         "role": "sheep",
         "position": [
-          -5.3,
-          -18.1
-        ],
-        "rotation": 315,
-        "pose": "idle",
-        "path": [
-          -4.9,
-          -20.9
-        ],
-        "speed": 0.5
-      },
-      {
-        "role": "sheep",
-        "position": [
-          -6.3,
-          -13.2
-        ],
-        "rotation": 150,
-        "pose": "idle",
-        "path": [
-          -3.7,
-          -12.8
-        ],
-        "speed": 0.5
-      },
-      {
-        "role": "sheep",
-        "position": [
-          1.4,
-          -27.9
+          -12.1,
+          -22.6
         ],
         "rotation": 210,
         "pose": "idle",
         "path": [
-          1.8,
-          -27.3
+          -11.1,
+          -25.6
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "sheep",
+        "position": [
+          11.7,
+          -20.9
+        ],
+        "rotation": 270,
+        "pose": "idle",
+        "path": [
+          13.5,
+          -21.7
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "sheep",
+        "position": [
+          -7.1,
+          -23.6
+        ],
+        "rotation": 0,
+        "pose": "idle",
+        "path": [
+          -7.7,
+          -23.8
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "sheep",
+        "position": [
+          -7.5,
+          -22.1
+        ],
+        "rotation": 330,
+        "pose": "idle",
+        "path": [
+          -10.8,
+          -19.7
         ],
         "speed": 0.5
       }

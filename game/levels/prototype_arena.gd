@@ -1673,7 +1673,8 @@ func _build_prop(prop: Dictionary) -> void:
 			"water":
 				# Mar do porto: um plano simples (04-tortuga-e-missoes.md, seção 6).
 				var size: Array = prop.get("size", [40, 20])
-				_prop_mesh(node, BoxMesh.new(), Vector3(size[0], 0.1, size[1]), Vector3(0, 0.02, 0), Color(0.07, 0.16, 0.24))
+				var tint: Array = prop.get("color", [0.07, 0.16, 0.24])  # riacho da Fazenda: água mais clara
+				_prop_mesh(node, BoxMesh.new(), Vector3(size[0], 0.1, size[1]), Vector3(0, 0.02, 0), Color(tint[0], tint[1], tint[2]))
 			"npc":
 				var npc: Dictionary = GameData.npcs.get(prop.npc, {})
 				label_key = npc.get("name_key", "")
