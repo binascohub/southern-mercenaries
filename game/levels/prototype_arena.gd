@@ -2076,6 +2076,7 @@ func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3,
 		_scatter_trash(room, c, half)
 	if style.get("spiders", false):
 		_scatter_spiders(room, c, half)
+		_scatter_critters(room, c, half, "rat", 0.7, 3)
 	if style.get("grates", false):
 		var grng := RandomNumberGenerator.new()
 		grng.seed = hash(str(room.get("id", ""), c, "grates"))
@@ -2227,11 +2228,16 @@ func _scatter_trash(room: Dictionary, c: Vector3, half: Vector3) -> void:
 
 ## Aranhinhas que andam pelo chão do esgoto (não atacam; só cenário, em cada PC).
 func _scatter_spiders(room: Dictionary, c: Vector3, half: Vector3) -> void:
-	if not NpcModel.has_model("spider"):
+	_scatter_critters(room, c, half, "spider", 1.0, 6)
+
+
+## Bichinhos de cenário (aranhas, ratos): andam entre dois pontos do chão da sala; `density` escala a quantidade.
+func _scatter_critters(room: Dictionary, c: Vector3, half: Vector3, kind: String, density: float, max_count: int) -> void:
+	if not NpcModel.has_model(kind):
 		return
 	var rng := RandomNumberGenerator.new()
-	rng.seed = hash(str(room.get("id", ""), c, "spiders"))
-	var count := clampi(roundi(half.x * half.z / 25.0), 1, 6)
+	rng.seed = hash(str(room.get("id", ""), c, kind + "s"))
+	var count := clampi(roundi(half.x * half.z / 25.0 * density), 1, max_count)
 	for i in count:
 		var walker := Wanderer.new()
 		var a := Vector3(c.x + rng.randf_range(-half.x + 0.8, half.x - 0.8), 0, c.z + rng.randf_range(-half.z + 0.8, half.z - 0.8))
@@ -2241,7 +2247,7 @@ func _scatter_spiders(room: Dictionary, c: Vector3, half: Vector3) -> void:
 		walker.to = b
 		walker.speed = rng.randf_range(0.6, 1.4)
 		_area_root.add_child(walker)
-		var model := NpcModel.create("spider")
+		var model := NpcModel.create(kind)
 		walker.add_child(model)
 		walker.model = model
 		model.call("set_pose", "walk")

@@ -18,3 +18,4 @@ Chest_Potion.glb — "Chest (animated)" by cdmir (Čestmír Dammer)
             https://opengameart.org/content/chest-animated
             CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
             Changes: mesh and skeleton with the open and close animations, color texture reduced (tools/assets/build_monsters.py).
+Tv_* (Fireplace, Fire, Firewood, Table, Table_Round, Stool_Wood, Stool_Round, Bench, Barrel, Basket, Bucket, Sack, Sack_2, Lamp, Candle, Tankard, Plate, Counter, Torch) — "Medieval Tavern Props Pack" by System G6: https://opengameart.org/content/medieval-tavern-props-pack (textures from the pack, 512 px WebP)

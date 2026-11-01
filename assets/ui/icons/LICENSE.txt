@@ -7,3 +7,6 @@ crystal_iron/steel/copper/silver/gold.png (and assets/models/props/Crystal_Gem.g
 https://opengameart.org/content/fantasy-crystals
 Creative Commons Attribution-ShareAlike 4.0: https://creativecommons.org/licenses/by-sa/4.0/
 Changes: one crystal upright and resized; icons rendered in each material's color. Shared under CC BY-SA 4.0.
+
+sword_D..S.png — 3D Swords Pack by mehrasaur (Inborn Ninja), CC0 1.0: https://opengameart.org/content/3d-swords-pack (tools/assets/sword_icons.py)
+dagger_D.png — Iron Knife by Clint Bellanger, CC0 1.0: https://opengameart.org/content/iron-knife (tools/assets/knife_icon.py)

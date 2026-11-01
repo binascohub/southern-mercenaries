@@ -1993,7 +1993,7 @@ msgid "DLG_SERVICE_BESTIARY"
 msgstr "Bestiario"
 
 msgid "BEAST_PLAGUE_RAT"
-msgstr "Rata Pestilente"
+msgstr "Sapo Pestilente"
 
 msgid "BEAST_PLAGUE_RAT_LEGEND"
 msgstr "En la Europa medieval las ratas quedaron ligadas a la Peste Negra: sus pulgas propagaron la peste que mató a buena parte de la población. Aquí son los familiares del Hechicero Araña, contaminados por su pacto con el demonio: más grandes, de ojos rojos, atacan en enjambres."
@@ -2002,7 +2002,7 @@ msgid "BEAST_PLAGUE_RAT_HINT"
 msgstr "Una rata es una rata: le teme al fuego. Llevad una antorcha... o un mago que sepa encenderla."
 
 msgid "BEAST_MUTANT_RAT"
-msgstr "Rata Mutante"
+msgstr "Sapo Mutante"
 
 msgid "BEAST_MUTANT_RAT_LEGEND"
 msgstr "La misma superstición de la peste; en las ciudades portuarias abundan historias de ratas del tamaño de perros en los sótanos. Son las ratas mayores del Hechicero, del tamaño de un perro de caza."
@@ -2294,10 +2294,10 @@ msgid "TIP_MOVE_PAD"
 msgstr "Muévete con el stick izquierdo y apunta con el derecho."
 
 msgid "MONSTER_PLAGUE_RAT"
-msgstr "Rata Pestilente"
+msgstr "Sapo Pestilente"
 
 msgid "MONSTER_MUTANT_RAT"
-msgstr "Rata Mutante"
+msgstr "Sapo Mutante"
 
 msgid "MONSTER_PLAGUE_BAT"
 msgstr "Murciélago Pestilente"
@@ -2604,3 +2604,15 @@ msgstr "Ferncroft: media docena de casas, un cazador y una curtidora. Los forast
 
 msgid "HUD_QUEST_PLAIN"
 msgstr "Misión: {quest}"
+
+msgid "PROP_COIN_BAG"
+msgstr "Bolsa de monedas"
+
+msgid "ARENA_MINE"
+msgstr "Mina de Cristales"
+
+msgid "PROP_TO_MINE"
+msgstr "Camino a la mina"
+
+msgid "MONSTER_CRYSTAL_GOLEM"
+msgstr "Gólem de Cristal"

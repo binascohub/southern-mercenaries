@@ -1,0 +1,2 @@
+frog.glb — "Frog Guy" by Drummyfish, CC0 1.0: https://opengameart.org/content/frog-guy
+Converted from the Blender file by tools/assets/build_frog.py (single static mesh, pose of the rig at rest, 1024 px photo texture).

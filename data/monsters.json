@@ -53,7 +53,7 @@
     "patrol_radius": 8.0,
     "patrol_speed": 0.8,
     "ai": "melee",
-    "look": "rat",
+    "look": "frog",
     "color": [
       0.32,
       0.25,
@@ -87,7 +87,7 @@
       "damage_mult": 1.4,
       "cooldown": 4.0
     },
-    "look": "rat",
+    "look": "frog",
     "color": [
       0.42,
       0.3,
@@ -1012,5 +1012,62 @@
       1.0,
       1.0
     ]
+  },
+  "coin_bag": {
+    "name_key": "PROP_COIN_BAG",
+    "max_health": 6,
+    "move_speed": 0.0,
+    "damage": 0,
+    "attack_range": 0.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 1.0,
+    "aggro_range": 0.0,
+    "size": 0.8,
+    "category": "breakable",
+    "element": "",
+    "ai": "static",
+    "breakable": true,
+    "no_loot": true,
+    "look": "coin_bag",
+    "pieces": [
+      "Coin_Bag"
+    ],
+    "shards": false,
+    "color": [
+      0.8,
+      0.6,
+      0.2
+    ],
+    "_comment": "Bolsa de moedas (Bag of Coins, yd, CC0): uma por mapa; quebra com qualquer golpe e solta ouro (data/loot.json 'coin_bag'). Não dá XP."
+  },
+  "crystal_golem": {
+    "name_key": "MONSTER_CRYSTAL_GOLEM",
+    "max_health": 500,
+    "move_speed": 1.8,
+    "damage": 24,
+    "attack_range": 2.6,
+    "attack_windup": 0.9,
+    "attack_cooldown": 2.0,
+    "aggro_range": 40.0,
+    "size": 2.6,
+    "category": "elite",
+    "element": "earth",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 9.0,
+      "windup": 1.0,
+      "speed": 10.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "golem_stone",
+    "color": [
+      0.6,
+      0.75,
+      1.0
+    ],
+    "_comment": "Chefe da Mina: o golem do coração de cristal (usa o modelo do Golem de Pedra até haver arte própria)."
   }
 }

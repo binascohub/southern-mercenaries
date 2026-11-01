@@ -423,6 +423,98 @@ arenas["dark_forest_01_woods"] = {
     "decor": d_decor, "passive": True,
 }
 
+# --- Mina de Cristais (Lowpoly Crystals Pack, iPoly3D, CC0 + todas as pedras do jogo) -------------------
+mr = rng("mine")
+ROCKS = ["Rock_1", "Rock_2", "Rock_3", "Rock_4", "Rock_5", "RockP_1", "RockP_2", "RockP_3", "RockP_4", "RockP_5", "RockP_6"]
+BLUE, PURPLE = (0.3, 0.6, 1.0), (0.7, 0.4, 1.0)
+m_rooms = [
+    room("entry", 0, 0, 20, 12, ["north"], wall_height=2.0, torch=True),
+    room("shaft", 0, -22, 26, 28, ["south", "north", "east"], wall_height=2.0),
+    room("vein", 24, -22, 16, 16, ["west"], wall_height=2.0),
+    room("hall", 0, -52, 36, 30, ["south", "north", "west"], wall_height=2.0),
+    room("cart_cave", -27, -52, 16, 18, ["east"], wall_height=2.0),
+    room("heart", 0, -84, 38, 34, ["south"], wall_height=2.0),
+]
+m_enc = [
+    {"id": "m_bats_a", "position": [-6, -16], "monsters": [{"monster": "plague_bat", "count": 4}]},
+    {"id": "m_rats", "position": [7, -26], "monsters": [{"monster": "plague_rat", "count": 5}]},
+    {"id": "m_gob_a", "position": [-5, -29], "monsters": [{"monster": "goblin", "count": 4}]},
+    {"id": "m_vein", "position": [26, -22], "monsters": [{"monster": "venom_scorpion", "count": 3}]},
+    {"id": "m_skel", "position": [-8, -46], "monsters": [{"monster": "skeleton", "count": 4}]},
+    {"id": "m_gob_b", "position": [8, -50], "monsters": [{"monster": "goblin", "count": 4}, {"monster": "plague_bat", "count": 2}]},
+    {"id": "m_troll", "position": [-27, -52], "monsters": [{"monster": "troll", "count": 1}]},
+    {"id": "m_golem_stone", "position": [0, -62], "monsters": [{"monster": "golem_stone", "count": 1}]},
+    {"id": "m_golem_a", "position": [-10, -78], "monsters": [{"monster": "golem_stone", "count": 1}, {"monster": "goblin", "count": 3}]},
+    {"id": "m_golem_b", "position": [10, -80], "monsters": [{"monster": "golem_ice", "count": 1}, {"monster": "golem_fire", "count": 1}]},
+    {"id": "m_boss", "position": [0, -92], "monsters": [{"monster": "crystal_golem", "count": 1}]},
+]
+monster("crystal_golem", "golem_stone", _comment="Chefe da Mina: o golem do coração de cristal (usa o modelo do Golem de Pedra até haver arte própria).",
+        name_key="MONSTER_CRYSTAL_GOLEM", max_health=500, damage=24, size=2.6, color=[0.6, 0.75, 1.0])
+m_decor = []
+m_lights = []
+
+
+def crystal_cluster(x, z, n, spread, big=(1.0, 2.0), light=True):
+    """Aglomerado de cristais (azuis ou roxos) em volta de (x, z), com uma luz da mesma cor no meio."""
+    tag, color = ("B", BLUE) if mr.random() < 0.6 else ("P", PURPLE)
+    for _ in range(n):
+        ang, dist = mr.uniform(0, 6.283), mr.uniform(0, spread)
+        m_decor.append({"piece": "Crystal_%s_%d" % (tag, mr.randint(1, 28)),
+                        "position": [round(x + math.cos(ang) * dist, 1), round(z + math.sin(ang) * dist, 1)],
+                        "rotation": mr.randrange(0, 360, 15), "scale": round(mr.uniform(*big), 2)})
+    if light:
+        m_lights.append({"light": list(color), "position": [round(x, 1), round(z, 1)], "range": 9.0, "energy": 1.6, "y": 1.2})
+
+
+# Paredes de pedra: fileira de pedras grandes (todas as pedras do jogo) junto às bordas, com vão nas portas.
+for rd in m_rooms:
+    m_decor += ring(mr, rd, ROCKS, 2.0, inset=0.4, scale=(2.2, 3.6))
+    m_decor += ring(mr, rd, ROCKS, 3.2, inset=1.6, scale=(1.2, 2.2))
+# Pedras menores espalhadas no chão e um ou outro bloco com colisão.
+for rd in m_rooms:
+    m_decor += scatter(mr, rd, ROCKS, int(rd["size"][0] * rd["size"][1] / 22), margin=2.5, scale=(0.3, 0.9), avoid=[(0, 3, 4)])
+# Cristais: veios nas paredes e aglomerados nas salas.
+for rd, n in zip(m_rooms, (2, 5, 6, 6, 4, 9)):
+    cx, cz = rd["center"]
+    w, h = rd["size"]
+    for _ in range(n):
+        crystal_cluster(cx + mr.uniform(-w / 2 + 3, w / 2 - 3), cz + mr.uniform(-h / 2 + 3, h / 2 - 3), mr.randint(2, 4), 1.6)
+# A gruta lateral e o coração da mina: cristais gigantes.
+m_decor += [{"piece": "Crystal_B_%d" % i, "position": p, "rotation": r, "scale": s, "solid": [s * 0.6, s * 0.6]} for i, p, r, s in (
+    (4, [22, -26], 30, 3.2), (12, [28, -19], 100, 2.6), (16, [-6, -90], 0, 3.6), (21, [8, -92], 45, 3.0), (3, [-12, -96], 200, 3.4))]
+m_lights += [{"light": list(BLUE), "position": [24, -22], "range": 12.0, "energy": 2.4, "y": 1.5},
+             {"light": list(PURPLE), "position": [0, -92], "range": 16.0, "energy": 3.0, "y": 2.0}]
+# Equipamento dos mineiros.
+m_decor += [{"piece": "Cart_Wood", "position": [-29, -50], "rotation": 40, "solid": [2.0, 1.2]}, {"piece": "Cart_Wood", "position": [6, -12], "rotation": 100, "solid": [2.0, 1.2]},
+            {"piece": "Barrel", "position": [-24, -57], "scale": 1.0, "solid": [0.9, 0.9]}, {"piece": "Beer_Barrel", "position": [-30, -56], "solid": [0.9, 0.9]},
+            {"piece": "Bucket_Crate", "position": [-23, -47], "solid": [0.9, 0.9]}, {"piece": "Whetstone", "position": [-4, 4], "scale": 2.0},
+            {"piece": "Pr_BrokenPillar1", "position": [-8, -36], "solid": [1.2, 1.2]}, {"piece": "Pr_BrokenPillar2", "position": [9, -36], "solid": [1.2, 1.2]},
+            {"piece": "Pr_BrokenPillar1", "position": [-9, -66], "solid": [1.2, 1.2]}, {"piece": "Pr_BrokenPillar2", "position": [9, -66], "solid": [1.2, 1.2]},
+            {"piece": "Pr_LampPost", "position": [-3, 3], "solid": [0.6, 0.6]}, {"piece": "Pr_LampPost", "position": [3, -34], "solid": [0.6, 0.6]},
+            {"piece": "Pr_LampPost", "position": [-3, -66], "solid": [0.6, 0.6]}]
+m_lights += [{"light": [1.0, 0.7, 0.35], "position": [-3, 3], "range": 8.0, "energy": 1.2, "y": 2.2},
+             {"light": [1.0, 0.7, 0.35], "position": [3, -34], "range": 8.0, "energy": 1.2, "y": 2.2},
+             {"light": [1.0, 0.7, 0.35], "position": [-3, -66], "range": 8.0, "energy": 1.2, "y": 2.2}]
+m_decor += m_lights
+arenas["mine_01_crystal_vein"] = {
+    "_comment": "Mina de Cristais (Lowpoly Crystals Pack, iPoly3D, CC0; Rocks, Nobiax, CC0; Low Poly Rocks, para, CC0): galerias entre paredes de pedra (todas as pedras do jogo) com cristais azuis e roxos que brilham no escuro, uma gruta lateral de veios, a gruta das carroças e o coração da mina, onde o golem de cristal espera. Gerado por tools/assets/build_maps.py.",
+    "name_key": "ARENA_MINE", "player_class": "mage", "map_id": "map_mine", "area_level": 5,
+    "wake_radius": 10.0, "alert_radius": 5.0, "rooms": m_rooms, "encounters": m_enc, "hazards": [],
+    "entries": {"start": [0, 3], "mine": [0, 3]},
+    "props": [
+        {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-6, 3], "to": "tortuga", "entry": "forest", "expedition_end": True},
+        {"id": "mine_chest_1", "kind": "chest", "position": [29, -26], "loot": "chest"},
+        {"id": "mine_chest_2", "kind": "chest", "position": [-32, -46], "loot": "chest"},
+        {"id": "mine_chest_3", "kind": "chest", "position": [16, -96], "loot": "chest"},
+    ],
+    "quest_spots": [], "breakables": [],
+    "style": {"_comment": "Mina: chão de terra escuro; as paredes são fileiras de pedras (decor), sem muro do kit.", "walls": [""], "floor": "Ground_Dirt", "low": "",
+              "ground": [0.05, 0.045, 0.05], "tint": [0.55, 0.5, 0.55]},
+    "decor": m_decor, "passive": True,
+}
+if not any(p["id"] == "mine_gate" for p in arenas["tortuga"]["props"]):
+    arenas["tortuga"]["props"].append({"id": "mine_gate", "kind": "exit", "name_key": "PROP_TO_MINE", "position": [-28.5, 5.9], "to": "mine_01_crystal_vein", "entry": "start"})
+
 # --- Forte (3D Dungeon Tileset, grade de 2,5 m) -------------------------------------------------------
 import os
 COLS, ROWS, CELL = 20, 26, 2.5
@@ -523,6 +615,21 @@ lab = [{"piece": "Lab_" + n, "position": cell_pos(c, r), "rotation": rot, "solid
     ("ColumnBroken", 13, 12, 0, 0.32, 0.32), ("ColumnBig", 9, 11, 0, 0.63, 0.63), ("ColumnSmall", 10, 15, 0, 0.32, 0.32))]
 lab.append({"piece": "Lab_ShieldSword", "position": cell_pos(8, 5), "rotation": 25})
 fort_decor += lab
+# Ratos pequenos de cenário (papel "rat" do NpcModel): correm de um canto a outro pelas celas, pelo salão do meio e pelo pátio,
+# sempre entre duas células de piso a até 3 células de distância, com sorteio fixo.
+fr = rng("fort_rats")
+floor_cells = [(c, r) for r in range(ROWS) for c in range(COLS) if grid[r][c] != "#"]
+fort_rats = []
+while len(fort_rats) < 14:
+    c, r = fr.choice(floor_cells)
+    c2, r2 = c + fr.randint(-3, 3), r + fr.randint(-3, 3)
+    if (c2, r2) == (c, r) or not (0 <= c2 < COLS and 0 <= r2 < ROWS) or grid[r2][c2] == "#":
+        continue
+    if any(grid[r + round((r2 - r) * t / 6)][c + round((c2 - c) * t / 6)] == "#" for t in range(7)):
+        continue  # o caminho não atravessa pedra
+    a, b = cell_pos(c, r), cell_pos(c2, r2)
+    fort_rats.append({"role": "rat", "position": [round(a[0] + fr.uniform(-0.8, 0.8), 2), round(a[1] + fr.uniform(-0.8, 0.8), 2)],
+                      "path": b, "speed": round(fr.uniform(1.2, 2.2), 1), "pose": "walk"})
 arenas["fort_01_gate"] = {
     "_comment": "Forte (3D Dungeon Tileset, Skorpio, CC BY-SA 3.0): uma grade de 20 x 26 células de 2,5 m com pedra e piso do pacote (Fort_<máscara>, a máscara é o 8-vizinhança de pedra); a colisão é uma caixa por trecho de pedra. Pátio de entrada, duas celas, salão do meio e o salão do comandante no fundo. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_FORT", "player_class": "mage", "map_id": "map_fort", "area_level": 10,
@@ -540,9 +647,9 @@ arenas["fort_01_gate"] = {
         {"id": "fo_succubi_court", "position": cell_pos(9, 5), "monsters": [{"monster": "succubus", "count": 2}]},
         {"id": "fo_commander", "position": cell_pos(9, 3), "monsters": [{"monster": "fort_commander", "count": 1}]},
     ],
-    "hazards": [], "entries": {"start": cell_pos(9, 23)},
+    "hazards": [], "entries": {"start": cell_pos(8, 24)},
     "props": [
-        {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [cell_pos(6, 23)[0], cell_pos(6, 23)[1]], "to": "tortuga", "entry": "forest", "expedition_end": True},
+        {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [cell_pos(5, 24)[0], cell_pos(5, 24)[1]], "to": "tortuga", "entry": "forest", "expedition_end": True},
         {"id": "to_capital", "kind": "exit", "name_key": "PROP_TO_CAPITAL", "position": [cell_pos(9, 1)[0], cell_pos(9, 1)[1] - 1.0], "to": "capital_01_aurenhold", "entry": "start", "after_victory": True, "group": True},
         {"id": "fort_chest_1", "kind": "chest", "position": cell_pos(2, 19), "loot": "chest"},
         {"id": "fort_chest_2", "kind": "chest", "position": cell_pos(17, 19), "loot": "chest"},
@@ -552,7 +659,7 @@ arenas["fort_01_gate"] = {
     ],
     "quest_spots": [], "breakables": [],
     "style": {"_comment": "Forte: piso de pedra do pacote; a pedra vem das peças Fort_* em decor.", "walls": [""], "floor": "Fort_Floor", "low": "", "ground": [0.07, 0.07, 0.08]},
-    "decor": fort_decor, "passive": True,
+    "decor": fort_decor, "crowd": fort_rats, "passive": True,
 }
 
 # --- Capital Real, Aurenhold (cidade-base; depois do Forte) ---------------------------------------------
@@ -566,15 +673,23 @@ cap_decor = [{"piece": "Pr_CoveredWell", "position": [0, -15], "solid": [1.8, 1.
 for x in (-18, -9, 9, 18):
     cap_decor.append({"piece": "Pr_LampPost", "position": [x, -9.5], "solid": [0.6, 0.6]})
     cap_decor.append({"piece": "Pr_LampPost", "position": [x, -20.5], "solid": [0.6, 0.6]})
+# Suportes de armas (Medieval Weapon Rack, CC BY 3.0) junto aos guardas: uma de cada lado da avenida e uma no portão, cada uma com as espadas por rank.
+for rx, rz, rot in ((-14, -9.2, 0), (14, -9.2, 0), (-17, 5.2, 0)):
+    cap_decor.append({"piece": "Weapon_Rack", "position": [rx, rz], "rotation": rot, "solid": [2.2, 0.9]})
+    for k, rank in enumerate("DCBAS"):
+        cap_decor.append({"piece": "Sword_" + rank, "position": [round(rx - 0.8 + 0.4 * k, 2), rz], "y": 0.85, "rotation": 90})
 cap_decor += [{"piece": "Pr_Obelisk3", "position": [-8, -36], "solid": [1.4, 1.4]}, {"piece": "Pr_Obelisk3", "position": [8, -36], "solid": [1.4, 1.4]},
               {"piece": "Pr_RoadSign", "position": [5, 2], "rotation": 200}]
 # Os guardas que treinavam em Tortuga agora fazem a segurança daqui (data/capital_royal_guards.json): portão, avenida e pátio do castelo.
 guards = json.load(open("data/capital_royal_guards.json"))["guards"]
-spots = [(-6, 1, 0), (6, 1, 0), (-20, -2, 90), (20, -2, 270), (-12, -15, 90), (12, -15, 270), (-5, -26, 0), (5, -26, 0), (-10, -34, 0), (10, -34, 0)]
+spots = [(-6, 1, 0), (6, 1, 0), (-20, -2, 90), (20, -2, 270), (-12, -15, 90), (12, -15, 270), (-5, -20, 0), (5, -20, 0), (-24, -12, 90), (24, -12, 270)]
 cap_crowd = []
 for g, (x, z, rot) in zip(guards, spots):
-    c = dict(g)
-    c.update({"position": [x, z], "rotation": rot, "pose": "idle", "weapon": "Weapon_Polearm" if abs(x) < 8 else g.get("weapon", "Weapon_Longsword")})
+    # Guarda animado (Defender): os do portão ficam parados; os da avenida e do castelo fazem ronda de ida e volta.
+    c = {"role": "defender", "position": [x, z], "rotation": rot, "pose": "idle"}
+    if z < -10:
+        c["path"] = [x + (10 if x < 0 else -10), z]
+        c["speed"] = 0.9
     cap_crowd.append(c)
 arenas["capital_01_aurenhold"] = {
     "_comment": "Capital Real, Aurenhold (04-1-capital-real.md): a cidade do reino vencedor, rica e cheia de guardas; segunda cidade-base, depois do Forte. Primeira passada: praça do portão, avenida e pátio do castelo, com a segurança feita pelos 10 guardas que treinavam em Tortuga. Ainda sem lojas, Bobo da Corte nem missões. Gerado por tools/assets/build_maps.py.",
@@ -604,6 +719,10 @@ farm_decor = [
     {"piece": "Pr_Barricade", "position": [8.5, -5.0], "rotation": 345, "solid": [2.0, 1.2]},
     {"piece": "Well_Covered", "position": [-12, -20], "solid": [1.6, 1.6]},
     {"piece": "Cart_Wood", "position": [12, -30], "rotation": 40, "solid": [2.4, 1.4]},
+    # Carroças (Carts, cemkalyoncu, CC-BY 3.0): a grande no campo, a pequena (de mão) perto do portão e da serraria.
+    {"piece": "Pr_CartLarge", "position": [-15, -31], "rotation": 20, "solid": [3.2, 2.6]},
+    {"piece": "Pr_CartSmall", "position": [5, -12], "rotation": 100, "solid": [1.2, 2.4]},
+    {"piece": "Pr_CartSmall", "position": [20, -33], "rotation": 300, "solid": [2.0, 1.8]},
     {"piece": "Bucket_Wooden_1", "position": [-10.4, -19.2]},
     {"piece": "Bucket_Wooden_1", "position": [13.5, -28.6], "rotation": 90},
 ]
@@ -644,6 +763,17 @@ tortuga_props = arenas["tortuga"]["props"]
 if not any(p["id"] == "farm_gate" for p in tortuga_props):
     tortuga_props.append({"id": "farm_gate", "kind": "exit", "name_key": "PROP_TO_FARM", "position": [-27.5, 3.2], "to": "farm_01_fields", "entry": "start"})
 
+# --- Bolsa de moedas: uma por mapa de expedição; ao bater nela, cai ouro (data/loot.json "coin_bag") --------
+for key in ("sewers_01_drains", "sewers_02_canals", "sewers_03_war_passage", "sewers_04_nest", "forest_01_path", "ruins_01_city",
+            "cemetery_01_yard", "dark_forest_01_woods", "fort_01_gate", "mine_01_crystal_vein"):
+    area = arenas[key]
+    start = area["entries"]["start"]
+    boxes = [b for b in area.get("breakables", []) if b.get("id") != "coin_bag"]
+    boxes.append({"id": "coin_bag", "monster": "coin_bag", "position": [round(start[0] + 4.0, 1), round(start[1] - 1.5, 1)], "table": "coin_bag"})
+    area["breakables"] = boxes
+monster("coin_bag", "pot", _comment="Bolsa de moedas (Bag of Coins, yd, CC0): uma por mapa; quebra com qualquer golpe e solta ouro (data/loot.json 'coin_bag'). Não dá XP.",
+        name_key="PROP_COIN_BAG", max_health=6, size=0.8, look="coin_bag", pieces=["Coin_Bag"], shards=False, color=[0.8, 0.6, 0.2])
+
 json.dump(arenas, open(ARENAS, "w"), indent=2, ensure_ascii=False); open(ARENAS, "a").write("\n")
 json.dump(monsters, open(MONSTERS, "w"), indent=2, ensure_ascii=False); open(MONSTERS, "a").write("\n")
-print("OK", [k for k in arenas if k.split("_")[0] in ("forest", "ruins", "cemetery", "fort", "farm")])
+print("OK", [k for k in arenas if k.split("_")[0] in ("forest", "ruins", "cemetery", "fort", "farm", "mine")])

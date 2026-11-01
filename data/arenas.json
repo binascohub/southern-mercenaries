@@ -478,6 +478,17 @@
         ],
         "to": "farm_01_fields",
         "entry": "start"
+      },
+      {
+        "id": "mine_gate",
+        "kind": "exit",
+        "name_key": "PROP_TO_MINE",
+        "position": [
+          -28.5,
+          5.9
+        ],
+        "to": "mine_01_crystal_vein",
+        "entry": "start"
       }
     ],
     "dummies": [
@@ -2674,6 +2685,272 @@
         ],
         "y": 0.81,
         "rotation": 0
+      },
+      {
+        "piece": "Tv_Fireplace",
+        "position": [
+          -8.85,
+          -1.0
+        ],
+        "rotation": 90,
+        "solid": [
+          1.28,
+          1.36
+        ]
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          -8.95,
+          -1.0
+        ],
+        "rotation": 90,
+        "y": 0.02
+      },
+      {
+        "light": [
+          1.0,
+          0.5,
+          0.18
+        ],
+        "position": [
+          -7.9,
+          -1.0
+        ],
+        "range": 8,
+        "energy": 1.3,
+        "y": 0.9
+      },
+      {
+        "piece": "Tv_Stool_Round",
+        "position": [
+          -7.4,
+          -0.2
+        ],
+        "rotation": 35
+      },
+      {
+        "piece": "Tv_Stool_Round",
+        "position": [
+          -7.5,
+          -1.9
+        ],
+        "rotation": -20
+      },
+      {
+        "piece": "Tv_Firewood",
+        "position": [
+          -8.3,
+          0.9
+        ],
+        "rotation": 80,
+        "y": 0.0
+      },
+      {
+        "piece": "Tv_Firewood",
+        "position": [
+          -8.35,
+          1.05
+        ],
+        "rotation": 100,
+        "y": 0.0
+      },
+      {
+        "piece": "Tv_Firewood",
+        "position": [
+          -8.3,
+          0.97
+        ],
+        "rotation": 90,
+        "y": 0.1
+      },
+      {
+        "piece": "Tv_Table_Round",
+        "position": [
+          7.2,
+          3.2
+        ],
+        "solid": [
+          1.9,
+          1.9
+        ]
+      },
+      {
+        "piece": "Tv_Stool_Round",
+        "position": [
+          5.8,
+          3.2
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Tv_Stool_Round",
+        "position": [
+          8.6,
+          3.2
+        ],
+        "rotation": -90
+      },
+      {
+        "piece": "Tv_Stool_Round",
+        "position": [
+          7.2,
+          4.55
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Tv_Candle",
+        "position": [
+          7.2,
+          3.2
+        ],
+        "y": 0.75
+      },
+      {
+        "piece": "Tv_Tankard",
+        "position": [
+          6.7,
+          3.45
+        ],
+        "rotation": 30,
+        "y": 0.75
+      },
+      {
+        "piece": "Tv_Tankard",
+        "position": [
+          7.7,
+          2.9
+        ],
+        "rotation": 200,
+        "y": 0.75
+      },
+      {
+        "piece": "Tv_Lamp",
+        "position": [
+          7.55,
+          3.5
+        ],
+        "y": 0.75
+      },
+      {
+        "light": [
+          1.0,
+          0.75,
+          0.4
+        ],
+        "position": [
+          7.2,
+          3.2
+        ],
+        "range": 6,
+        "energy": 0.7,
+        "y": 1.4
+      },
+      {
+        "piece": "Tv_Table_Round",
+        "position": [
+          -3.6,
+          3.6
+        ],
+        "solid": [
+          1.9,
+          1.9
+        ]
+      },
+      {
+        "piece": "Tv_Stool_Wood",
+        "position": [
+          -4.95,
+          3.6
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Tv_Stool_Wood",
+        "position": [
+          -2.25,
+          3.6
+        ],
+        "rotation": -90
+      },
+      {
+        "piece": "Tv_Stool_Wood",
+        "position": [
+          -3.6,
+          4.95
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Tv_Plate",
+        "position": [
+          -3.3,
+          3.75
+        ],
+        "y": 0.75
+      },
+      {
+        "piece": "Tv_Tankard",
+        "position": [
+          -3.95,
+          3.4
+        ],
+        "rotation": 310,
+        "y": 0.75
+      },
+      {
+        "piece": "Tv_Lamp",
+        "position": [
+          -3.6,
+          3.6
+        ],
+        "y": 0.75
+      },
+      {
+        "light": [
+          1.0,
+          0.75,
+          0.4
+        ],
+        "position": [
+          -3.6,
+          3.6
+        ],
+        "range": 6,
+        "energy": 0.7,
+        "y": 1.4
+      },
+      {
+        "piece": "Tv_Basket",
+        "position": [
+          9.0,
+          -4.7
+        ]
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          8.0,
+          -4.9
+        ],
+        "rotation": 20
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          9.1,
+          -3.7
+        ],
+        "rotation": 40
+      },
+      {
+        "piece": "Tv_Bucket",
+        "position": [
+          7.4,
+          -6.3
+        ],
+        "rotation": 60
       }
     ],
     "crowd": [
@@ -3683,6 +3960,15 @@
           -2.8,
           -31.2
         ]
+      },
+      {
+        "id": "coin_bag",
+        "monster": "coin_bag",
+        "position": [
+          4.0,
+          1.5
+        ],
+        "table": "coin_bag"
       }
     ],
     "style": {
@@ -4426,6 +4712,15 @@
           -9,
           -62
         ]
+      },
+      {
+        "id": "coin_bag",
+        "monster": "coin_bag",
+        "position": [
+          4.0,
+          0.5
+        ],
+        "table": "coin_bag"
       }
     ],
     "style": {
@@ -4974,6 +5269,15 @@
           11,
           -58
         ]
+      },
+      {
+        "id": "coin_bag",
+        "monster": "coin_bag",
+        "position": [
+          4.0,
+          0.5
+        ],
+        "table": "coin_bag"
       }
     ],
     "style": {
@@ -5377,6 +5681,15 @@
           -12,
           -52
         ]
+      },
+      {
+        "id": "coin_bag",
+        "monster": "coin_bag",
+        "position": [
+          4.0,
+          0.5
+        ],
+        "table": "coin_bag"
       }
     ],
     "style": {
@@ -6005,6 +6318,15 @@
           -1.4
         ],
         "table": "breakable_potion"
+      },
+      {
+        "id": "coin_bag",
+        "monster": "coin_bag",
+        "position": [
+          4.0,
+          1.5
+        ],
+        "table": "coin_bag"
       }
     ],
     "style": {
@@ -14893,19 +15215,6 @@
         ]
       },
       {
-        "id": "r_goblins_b",
-        "position": [
-          -10,
-          -62
-        ],
-        "monsters": [
-          {
-            "monster": "goblin",
-            "count": 5
-          }
-        ]
-      },
-      {
         "id": "r_lizards_b",
         "position": [
           -18,
@@ -14915,6 +15224,19 @@
           {
             "monster": "golden_lizard",
             "count": 3
+          }
+        ]
+      },
+      {
+        "id": "r_goblins_b",
+        "position": [
+          -10,
+          -62
+        ],
+        "monsters": [
+          {
+            "monster": "goblin",
+            "count": 5
           }
         ]
       },
@@ -15114,6 +15436,15 @@
           -60
         ],
         "table": "breakable_potion"
+      },
+      {
+        "id": "coin_bag",
+        "monster": "coin_bag",
+        "position": [
+          4.0,
+          1.5
+        ],
+        "table": "coin_bag"
       }
     ],
     "style": {
@@ -16746,7 +17077,17 @@
       }
     ],
     "quest_spots": [],
-    "breakables": [],
+    "breakables": [
+      {
+        "id": "coin_bag",
+        "monster": "coin_bag",
+        "position": [
+          4.0,
+          1.5
+        ],
+        "table": "coin_bag"
+      }
+    ],
     "style": {
       "_comment": "Cemitério: terra escura sem piso, cerca de madeira nas bordas (Pr_Fence1 vem de decor).",
       "walls": [
@@ -18679,8 +19020,8 @@
     "hazards": [],
     "entries": {
       "start": [
-        -1.25,
-        26.25
+        -3.75,
+        28.75
       ]
     },
     "props": [
@@ -18689,8 +19030,8 @@
         "kind": "exit",
         "name_key": "PROP_RETURN_PORTAL",
         "position": [
-          -8.75,
-          26.25
+          -11.25,
+          28.75
         ],
         "to": "tortuga",
         "entry": "forest",
@@ -18759,7 +19100,17 @@
       }
     ],
     "quest_spots": [],
-    "breakables": [],
+    "breakables": [
+      {
+        "id": "coin_bag",
+        "monster": "coin_bag",
+        "position": [
+          0.2,
+          27.2
+        ],
+        "table": "coin_bag"
+      }
+    ],
     "style": {
       "_comment": "Forte: piso de pedra do pacote; a pedra vem das peças Fort_* em decor.",
       "walls": [
@@ -21590,6 +21941,190 @@
         "rotation": 25
       }
     ],
+    "crowd": [
+      {
+        "role": "rat",
+        "position": [
+          4.42,
+          -0.55
+        ],
+        "path": [
+          6.25,
+          6.25
+        ],
+        "speed": 2.1,
+        "pose": "walk"
+      },
+      {
+        "role": "rat",
+        "position": [
+          6.17,
+          -6.27
+        ],
+        "path": [
+          1.25,
+          -11.25
+        ],
+        "speed": 1.4,
+        "pose": "walk"
+      },
+      {
+        "role": "rat",
+        "position": [
+          13.88,
+          1.03
+        ],
+        "path": [
+          21.25,
+          1.25
+        ],
+        "speed": 1.7,
+        "pose": "walk"
+      },
+      {
+        "role": "rat",
+        "position": [
+          -16.89,
+          26.79
+        ],
+        "path": [
+          -13.75,
+          28.75
+        ],
+        "speed": 1.4,
+        "pose": "walk"
+      },
+      {
+        "role": "rat",
+        "position": [
+          -1.07,
+          -5.89
+        ],
+        "path": [
+          -8.75,
+          1.25
+        ],
+        "speed": 1.9,
+        "pose": "walk"
+      },
+      {
+        "role": "rat",
+        "position": [
+          16.11,
+          10.68
+        ],
+        "path": [
+          13.75,
+          13.75
+        ],
+        "speed": 1.3,
+        "pose": "walk"
+      },
+      {
+        "role": "rat",
+        "position": [
+          16.5,
+          29.07
+        ],
+        "path": [
+          13.75,
+          26.25
+        ],
+        "speed": 1.7,
+        "pose": "walk"
+      },
+      {
+        "role": "rat",
+        "position": [
+          8.71,
+          29.48
+        ],
+        "path": [
+          3.75,
+          26.25
+        ],
+        "speed": 1.9,
+        "pose": "walk"
+      },
+      {
+        "role": "rat",
+        "position": [
+          17.02,
+          0.47
+        ],
+        "path": [
+          18.75,
+          -6.25
+        ],
+        "speed": 2.0,
+        "pose": "walk"
+      },
+      {
+        "role": "rat",
+        "position": [
+          -17.97,
+          -26.03
+        ],
+        "path": [
+          -16.25,
+          -21.25
+        ],
+        "speed": 1.9,
+        "pose": "walk"
+      },
+      {
+        "role": "rat",
+        "position": [
+          8.78,
+          -18.89
+        ],
+        "path": [
+          13.75,
+          -23.75
+        ],
+        "speed": 1.4,
+        "pose": "walk"
+      },
+      {
+        "role": "rat",
+        "position": [
+          -9.18,
+          -28.18
+        ],
+        "path": [
+          -6.25,
+          -26.25
+        ],
+        "speed": 1.3,
+        "pose": "walk"
+      },
+      {
+        "role": "rat",
+        "position": [
+          4.13,
+          -8.34
+        ],
+        "path": [
+          11.25,
+          -3.75
+        ],
+        "speed": 1.5,
+        "pose": "walk"
+      },
+      {
+        "role": "rat",
+        "position": [
+          -13.32,
+          -18.67
+        ],
+        "path": [
+          -6.25,
+          -18.75
+        ],
+        "speed": 1.8,
+        "pose": "walk"
+      }
+    ],
     "passive": true
   },
   "dark_forest_01_woods": {
@@ -21721,7 +22256,17 @@
       }
     ],
     "quest_spots": [],
-    "breakables": [],
+    "breakables": [
+      {
+        "id": "coin_bag",
+        "monster": "coin_bag",
+        "position": [
+          4.0,
+          1.5
+        ],
+        "table": "coin_bag"
+      }
+    ],
     "style": {
       "_comment": "Floresta Escura: grama escura, cerca viva densa, tom azulado.",
       "walls": [
@@ -26498,6 +27043,177 @@
         ]
       },
       {
+        "piece": "Weapon_Rack",
+        "position": [
+          -14,
+          -9.2
+        ],
+        "rotation": 0,
+        "solid": [
+          2.2,
+          0.9
+        ]
+      },
+      {
+        "piece": "Sword_D",
+        "position": [
+          -14.8,
+          -9.2
+        ],
+        "y": 0.85,
+        "rotation": 90
+      },
+      {
+        "piece": "Sword_C",
+        "position": [
+          -14.4,
+          -9.2
+        ],
+        "y": 0.85,
+        "rotation": 90
+      },
+      {
+        "piece": "Sword_B",
+        "position": [
+          -14.0,
+          -9.2
+        ],
+        "y": 0.85,
+        "rotation": 90
+      },
+      {
+        "piece": "Sword_A",
+        "position": [
+          -13.6,
+          -9.2
+        ],
+        "y": 0.85,
+        "rotation": 90
+      },
+      {
+        "piece": "Sword_S",
+        "position": [
+          -13.2,
+          -9.2
+        ],
+        "y": 0.85,
+        "rotation": 90
+      },
+      {
+        "piece": "Weapon_Rack",
+        "position": [
+          14,
+          -9.2
+        ],
+        "rotation": 0,
+        "solid": [
+          2.2,
+          0.9
+        ]
+      },
+      {
+        "piece": "Sword_D",
+        "position": [
+          13.2,
+          -9.2
+        ],
+        "y": 0.85,
+        "rotation": 90
+      },
+      {
+        "piece": "Sword_C",
+        "position": [
+          13.6,
+          -9.2
+        ],
+        "y": 0.85,
+        "rotation": 90
+      },
+      {
+        "piece": "Sword_B",
+        "position": [
+          14.0,
+          -9.2
+        ],
+        "y": 0.85,
+        "rotation": 90
+      },
+      {
+        "piece": "Sword_A",
+        "position": [
+          14.4,
+          -9.2
+        ],
+        "y": 0.85,
+        "rotation": 90
+      },
+      {
+        "piece": "Sword_S",
+        "position": [
+          14.8,
+          -9.2
+        ],
+        "y": 0.85,
+        "rotation": 90
+      },
+      {
+        "piece": "Weapon_Rack",
+        "position": [
+          -17,
+          5.2
+        ],
+        "rotation": 0,
+        "solid": [
+          2.2,
+          0.9
+        ]
+      },
+      {
+        "piece": "Sword_D",
+        "position": [
+          -17.8,
+          5.2
+        ],
+        "y": 0.85,
+        "rotation": 90
+      },
+      {
+        "piece": "Sword_C",
+        "position": [
+          -17.4,
+          5.2
+        ],
+        "y": 0.85,
+        "rotation": 90
+      },
+      {
+        "piece": "Sword_B",
+        "position": [
+          -17.0,
+          5.2
+        ],
+        "y": 0.85,
+        "rotation": 90
+      },
+      {
+        "piece": "Sword_A",
+        "position": [
+          -16.6,
+          5.2
+        ],
+        "y": 0.85,
+        "rotation": 90
+      },
+      {
+        "piece": "Sword_S",
+        "position": [
+          -16.2,
+          5.2
+        ],
+        "y": 0.85,
+        "rotation": 90
+      },
+      {
         "piece": "Pr_Obelisk3",
         "position": [
           -8,
@@ -26530,104 +27246,124 @@
     ],
     "crowd": [
       {
-        "role": "soldier",
+        "role": "defender",
         "position": [
           -6,
           1
         ],
         "rotation": 0,
-        "pose": "idle",
-        "weapon": "Weapon_Polearm"
+        "pose": "idle"
       },
       {
-        "role": "soldier",
+        "role": "defender",
         "position": [
           6,
           1
         ],
         "rotation": 0,
-        "pose": "idle",
-        "weapon": "Weapon_Polearm"
+        "pose": "idle"
       },
       {
-        "role": "soldier",
+        "role": "defender",
         "position": [
           -20,
           -2
         ],
         "rotation": 90,
-        "pose": "idle",
-        "weapon": "Weapon_Axe"
+        "pose": "idle"
       },
       {
-        "role": "soldier",
+        "role": "defender",
         "position": [
           20,
           -2
         ],
         "rotation": 270,
-        "pose": "idle",
-        "weapon": "Weapon_Hammer"
+        "pose": "idle"
       },
       {
-        "role": "soldier",
+        "role": "defender",
         "position": [
           -12,
           -15
         ],
         "rotation": 90,
         "pose": "idle",
-        "weapon": "Weapon_Longsword"
+        "path": [
+          -2,
+          -15
+        ],
+        "speed": 0.9
       },
       {
-        "role": "soldier",
+        "role": "defender",
         "position": [
           12,
           -15
         ],
         "rotation": 270,
         "pose": "idle",
-        "weapon": "Weapon_Polearm"
+        "path": [
+          2,
+          -15
+        ],
+        "speed": 0.9
       },
       {
-        "role": "soldier",
+        "role": "defender",
         "position": [
           -5,
-          -26
+          -20
         ],
         "rotation": 0,
         "pose": "idle",
-        "weapon": "Weapon_Polearm"
+        "path": [
+          5,
+          -20
+        ],
+        "speed": 0.9
       },
       {
-        "role": "soldier",
+        "role": "defender",
         "position": [
           5,
-          -26
+          -20
         ],
         "rotation": 0,
         "pose": "idle",
-        "weapon": "Weapon_Polearm"
+        "path": [
+          -5,
+          -20
+        ],
+        "speed": 0.9
       },
       {
-        "role": "soldier",
+        "role": "defender",
         "position": [
-          -10,
-          -34
+          -24,
+          -12
         ],
-        "rotation": 0,
+        "rotation": 90,
         "pose": "idle",
-        "weapon": "Weapon_Longsword"
+        "path": [
+          -14,
+          -12
+        ],
+        "speed": 0.9
       },
       {
-        "role": "soldier",
+        "role": "defender",
         "position": [
-          10,
-          -34
+          24,
+          -12
         ],
-        "rotation": 0,
+        "rotation": 270,
         "pose": "idle",
-        "weapon": "Weapon_Shortsword"
+        "path": [
+          14,
+          -12
+        ],
+        "speed": 0.9
       }
     ]
   },
@@ -26788,6 +27524,42 @@
         "solid": [
           2.4,
           1.4
+        ]
+      },
+      {
+        "piece": "Pr_CartLarge",
+        "position": [
+          -15,
+          -31
+        ],
+        "rotation": 20,
+        "solid": [
+          3.2,
+          2.6
+        ]
+      },
+      {
+        "piece": "Pr_CartSmall",
+        "position": [
+          5,
+          -12
+        ],
+        "rotation": 100,
+        "solid": [
+          1.2,
+          2.4
+        ]
+      },
+      {
+        "piece": "Pr_CartSmall",
+        "position": [
+          20,
+          -33
+        ],
+        "rotation": 300,
+        "solid": [
+          2.0,
+          1.8
         ]
       },
       {
@@ -29828,6 +30600,7218 @@
           -27.3
         ],
         "speed": 0.5
+      }
+    ],
+    "passive": true
+  },
+  "mine_01_crystal_vein": {
+    "_comment": "Mina de Cristais (Lowpoly Crystals Pack, iPoly3D, CC0; Rocks, Nobiax, CC0; Low Poly Rocks, para, CC0): galerias entre paredes de pedra (todas as pedras do jogo) com cristais azuis e roxos que brilham no escuro, uma gruta lateral de veios, a gruta das carroças e o coração da mina, onde o golem de cristal espera. Gerado por tools/assets/build_maps.py.",
+    "name_key": "ARENA_MINE",
+    "player_class": "mage",
+    "map_id": "map_mine",
+    "area_level": 5,
+    "wake_radius": 10.0,
+    "alert_radius": 5.0,
+    "rooms": [
+      {
+        "id": "entry",
+        "center": [
+          0,
+          0
+        ],
+        "size": [
+          20,
+          12
+        ],
+        "doors": [
+          "north"
+        ],
+        "wall_height": 2.0,
+        "torch": true
+      },
+      {
+        "id": "shaft",
+        "center": [
+          0,
+          -22
+        ],
+        "size": [
+          26,
+          28
+        ],
+        "doors": [
+          "south",
+          "north",
+          "east"
+        ],
+        "wall_height": 2.0
+      },
+      {
+        "id": "vein",
+        "center": [
+          24,
+          -22
+        ],
+        "size": [
+          16,
+          16
+        ],
+        "doors": [
+          "west"
+        ],
+        "wall_height": 2.0
+      },
+      {
+        "id": "hall",
+        "center": [
+          0,
+          -52
+        ],
+        "size": [
+          36,
+          30
+        ],
+        "doors": [
+          "south",
+          "north",
+          "west"
+        ],
+        "wall_height": 2.0
+      },
+      {
+        "id": "cart_cave",
+        "center": [
+          -27,
+          -52
+        ],
+        "size": [
+          16,
+          18
+        ],
+        "doors": [
+          "east"
+        ],
+        "wall_height": 2.0
+      },
+      {
+        "id": "heart",
+        "center": [
+          0,
+          -84
+        ],
+        "size": [
+          38,
+          34
+        ],
+        "doors": [
+          "south"
+        ],
+        "wall_height": 2.0
+      }
+    ],
+    "encounters": [
+      {
+        "id": "m_bats_a",
+        "position": [
+          -6,
+          -16
+        ],
+        "monsters": [
+          {
+            "monster": "plague_bat",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "m_rats",
+        "position": [
+          7,
+          -26
+        ],
+        "monsters": [
+          {
+            "monster": "plague_rat",
+            "count": 5
+          }
+        ]
+      },
+      {
+        "id": "m_gob_a",
+        "position": [
+          -5,
+          -29
+        ],
+        "monsters": [
+          {
+            "monster": "goblin",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "m_vein",
+        "position": [
+          26,
+          -22
+        ],
+        "monsters": [
+          {
+            "monster": "venom_scorpion",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "m_skel",
+        "position": [
+          -8,
+          -46
+        ],
+        "monsters": [
+          {
+            "monster": "skeleton",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "m_gob_b",
+        "position": [
+          8,
+          -50
+        ],
+        "monsters": [
+          {
+            "monster": "goblin",
+            "count": 4
+          },
+          {
+            "monster": "plague_bat",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "m_troll",
+        "position": [
+          -27,
+          -52
+        ],
+        "monsters": [
+          {
+            "monster": "troll",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "m_golem_stone",
+        "position": [
+          0,
+          -62
+        ],
+        "monsters": [
+          {
+            "monster": "golem_stone",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "m_golem_a",
+        "position": [
+          -10,
+          -78
+        ],
+        "monsters": [
+          {
+            "monster": "golem_stone",
+            "count": 1
+          },
+          {
+            "monster": "goblin",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "m_golem_b",
+        "position": [
+          10,
+          -80
+        ],
+        "monsters": [
+          {
+            "monster": "golem_ice",
+            "count": 1
+          },
+          {
+            "monster": "golem_fire",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "m_boss",
+        "position": [
+          0,
+          -92
+        ],
+        "monsters": [
+          {
+            "monster": "crystal_golem",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hazards": [],
+    "entries": {
+      "start": [
+        0,
+        3
+      ],
+      "mine": [
+        0,
+        3
+      ]
+    },
+    "props": [
+      {
+        "id": "return_portal",
+        "kind": "exit",
+        "name_key": "PROP_RETURN_PORTAL",
+        "position": [
+          -6,
+          3
+        ],
+        "to": "tortuga",
+        "entry": "forest",
+        "expedition_end": true
+      },
+      {
+        "id": "mine_chest_1",
+        "kind": "chest",
+        "position": [
+          29,
+          -26
+        ],
+        "loot": "chest"
+      },
+      {
+        "id": "mine_chest_2",
+        "kind": "chest",
+        "position": [
+          -32,
+          -46
+        ],
+        "loot": "chest"
+      },
+      {
+        "id": "mine_chest_3",
+        "kind": "chest",
+        "position": [
+          16,
+          -96
+        ],
+        "loot": "chest"
+      }
+    ],
+    "quest_spots": [],
+    "breakables": [
+      {
+        "id": "coin_bag",
+        "monster": "coin_bag",
+        "position": [
+          4.0,
+          1.5
+        ],
+        "table": "coin_bag"
+      }
+    ],
+    "style": {
+      "_comment": "Mina: chão de terra escuro; as paredes são fileiras de pedras (decor), sem muro do kit.",
+      "walls": [
+        ""
+      ],
+      "floor": "Ground_Dirt",
+      "low": "",
+      "ground": [
+        0.05,
+        0.045,
+        0.05
+      ],
+      "tint": [
+        0.55,
+        0.5,
+        0.55
+      ]
+    },
+    "decor": [
+      {
+        "piece": "RockP_5",
+        "position": [
+          -8.7,
+          -5.6
+        ],
+        "rotation": 315,
+        "scale": 2.49
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          -7.1,
+          -5.6
+        ],
+        "rotation": 210,
+        "scale": 2.31
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -5.0,
+          -5.6
+        ],
+        "rotation": 345,
+        "scale": 2.8
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          3.1,
+          -5.6
+        ],
+        "rotation": 30,
+        "scale": 3.29
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          4.9,
+          -5.6
+        ],
+        "rotation": 240,
+        "scale": 2.72
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          6.9,
+          -5.6
+        ],
+        "rotation": 15,
+        "scale": 3.48
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          9.2,
+          -5.6
+        ],
+        "rotation": 255,
+        "scale": 2.57
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -8.7,
+          5.6
+        ],
+        "rotation": 120,
+        "scale": 2.49
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          -7.3,
+          5.6
+        ],
+        "rotation": 120,
+        "scale": 2.68
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -5.0,
+          5.6
+        ],
+        "rotation": 165,
+        "scale": 2.86
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -2.9,
+          5.6
+        ],
+        "rotation": 75,
+        "scale": 3.36
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -1.3,
+          5.6
+        ],
+        "rotation": 240,
+        "scale": 3.56
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          1.2,
+          5.6
+        ],
+        "rotation": 330,
+        "scale": 2.59
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          2.8,
+          5.6
+        ],
+        "rotation": 210,
+        "scale": 3.19
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          4.9,
+          5.6
+        ],
+        "rotation": 120,
+        "scale": 3.53
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          6.8,
+          5.6
+        ],
+        "rotation": 60,
+        "scale": 2.94
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          9.1,
+          5.6
+        ],
+        "rotation": 240,
+        "scale": 2.81
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -9.6,
+          -5.0
+        ],
+        "rotation": 255,
+        "scale": 3.25
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -9.6,
+          -3.0
+        ],
+        "rotation": 315,
+        "scale": 3.44
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -9.6,
+          -0.9
+        ],
+        "rotation": 75,
+        "scale": 3.39
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          -9.6,
+          1.3
+        ],
+        "rotation": 180,
+        "scale": 3.32
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -9.6,
+          2.8
+        ],
+        "rotation": 210,
+        "scale": 3.54
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -9.6,
+          4.8
+        ],
+        "rotation": 345,
+        "scale": 3.04
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          9.6,
+          -4.9
+        ],
+        "rotation": 120,
+        "scale": 2.67
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          9.6,
+          -3.0
+        ],
+        "rotation": 180,
+        "scale": 2.98
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          9.6,
+          -0.9
+        ],
+        "rotation": 45,
+        "scale": 2.67
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          9.6,
+          1.0
+        ],
+        "rotation": 135,
+        "scale": 2.42
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          9.6,
+          2.7
+        ],
+        "rotation": 225,
+        "scale": 2.74
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          9.6,
+          5.2
+        ],
+        "rotation": 240,
+        "scale": 3.12
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -8.2,
+          -4.4
+        ],
+        "rotation": 240,
+        "scale": 1.75
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -5.1,
+          -4.4
+        ],
+        "rotation": 345,
+        "scale": 1.31
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          4.3,
+          -4.4
+        ],
+        "rotation": 315,
+        "scale": 1.95
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          7.5,
+          -4.4
+        ],
+        "rotation": 240,
+        "scale": 1.88
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          -8.1,
+          4.4
+        ],
+        "rotation": 60,
+        "scale": 2.1
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -5.4,
+          4.4
+        ],
+        "rotation": 270,
+        "scale": 1.71
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -2.1,
+          4.4
+        ],
+        "rotation": 135,
+        "scale": 1.87
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          1.3,
+          4.4
+        ],
+        "rotation": 135,
+        "scale": 1.88
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          4.2,
+          4.4
+        ],
+        "rotation": 105,
+        "scale": 1.7
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          7.8,
+          4.4
+        ],
+        "rotation": 210,
+        "scale": 1.47
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -8.4,
+          -4.4
+        ],
+        "rotation": 60,
+        "scale": 1.54
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -8.4,
+          -1.3
+        ],
+        "rotation": 0,
+        "scale": 2.02
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -8.4,
+          2.3
+        ],
+        "rotation": 345,
+        "scale": 1.76
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          8.4,
+          -4.3
+        ],
+        "rotation": 165,
+        "scale": 1.72
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          8.4,
+          -1.4
+        ],
+        "rotation": 270,
+        "scale": 1.9
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          8.4,
+          2.2
+        ],
+        "rotation": 30,
+        "scale": 1.73
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -12.3,
+          -35.6
+        ],
+        "rotation": 240,
+        "scale": 3.47
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -10.3,
+          -35.6
+        ],
+        "rotation": 135,
+        "scale": 2.55
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          -8.0,
+          -35.6
+        ],
+        "rotation": 240,
+        "scale": 2.58
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -6.2,
+          -35.6
+        ],
+        "rotation": 60,
+        "scale": 2.36
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -3.8,
+          -35.6
+        ],
+        "rotation": 30,
+        "scale": 2.78
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          4.0,
+          -35.6
+        ],
+        "rotation": 120,
+        "scale": 3.51
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          5.7,
+          -35.6
+        ],
+        "rotation": 30,
+        "scale": 2.51
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          7.7,
+          -35.6
+        ],
+        "rotation": 30,
+        "scale": 2.25
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          9.9,
+          -35.6
+        ],
+        "rotation": 300,
+        "scale": 2.82
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          12.1,
+          -35.6
+        ],
+        "rotation": 285,
+        "scale": 2.4
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          -11.9,
+          -8.4
+        ],
+        "rotation": 165,
+        "scale": 2.41
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          -9.8,
+          -8.4
+        ],
+        "rotation": 0,
+        "scale": 3.55
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -8.0,
+          -8.4
+        ],
+        "rotation": 0,
+        "scale": 3.55
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -6.1,
+          -8.4
+        ],
+        "rotation": 105,
+        "scale": 3.58
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -3.8,
+          -8.4
+        ],
+        "rotation": 165,
+        "scale": 3.13
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          3.8,
+          -8.4
+        ],
+        "rotation": 45,
+        "scale": 3.54
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          5.9,
+          -8.4
+        ],
+        "rotation": 300,
+        "scale": 2.63
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          7.8,
+          -8.4
+        ],
+        "rotation": 195,
+        "scale": 2.59
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          10.3,
+          -8.4
+        ],
+        "rotation": 30,
+        "scale": 2.47
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          12.1,
+          -8.4
+        ],
+        "rotation": 90,
+        "scale": 2.58
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -12.6,
+          -35.1
+        ],
+        "rotation": 120,
+        "scale": 2.68
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          -12.6,
+          -32.8
+        ],
+        "rotation": 165,
+        "scale": 3.58
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          -12.6,
+          -31.2
+        ],
+        "rotation": 45,
+        "scale": 2.65
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -12.6,
+          -29.0
+        ],
+        "rotation": 135,
+        "scale": 3.07
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -12.6,
+          -27.0
+        ],
+        "rotation": 30,
+        "scale": 2.21
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -12.6,
+          -25.1
+        ],
+        "rotation": 165,
+        "scale": 2.42
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -12.6,
+          -22.9
+        ],
+        "rotation": 0,
+        "scale": 3.2
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -12.6,
+          -20.9
+        ],
+        "rotation": 195,
+        "scale": 2.32
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -12.6,
+          -18.8
+        ],
+        "rotation": 210,
+        "scale": 3.42
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -12.6,
+          -17.2
+        ],
+        "rotation": 195,
+        "scale": 2.97
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          -12.6,
+          -15.3
+        ],
+        "rotation": 150,
+        "scale": 2.83
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -12.6,
+          -12.9
+        ],
+        "rotation": 180,
+        "scale": 2.82
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -12.6,
+          -11.2
+        ],
+        "rotation": 60,
+        "scale": 2.47
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -12.6,
+          -9.1
+        ],
+        "rotation": 345,
+        "scale": 3.42
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          12.6,
+          -34.9
+        ],
+        "rotation": 210,
+        "scale": 2.67
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          12.6,
+          -33.2
+        ],
+        "rotation": 120,
+        "scale": 2.68
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          12.6,
+          -30.9
+        ],
+        "rotation": 315,
+        "scale": 3.45
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          12.6,
+          -29.1
+        ],
+        "rotation": 105,
+        "scale": 3.42
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          12.6,
+          -27.3
+        ],
+        "rotation": 135,
+        "scale": 2.62
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          12.6,
+          -25.2
+        ],
+        "rotation": 255,
+        "scale": 2.56
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          12.6,
+          -18.9
+        ],
+        "rotation": 90,
+        "scale": 3.4
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          12.6,
+          -17.3
+        ],
+        "rotation": 135,
+        "scale": 3.44
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          12.6,
+          -14.8
+        ],
+        "rotation": 105,
+        "scale": 3.02
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          12.6,
+          -13.1
+        ],
+        "rotation": 60,
+        "scale": 3.47
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          12.6,
+          -10.8
+        ],
+        "rotation": 270,
+        "scale": 2.21
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          12.6,
+          -8.8
+        ],
+        "rotation": 0,
+        "scale": 2.94
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          -11.1,
+          -34.4
+        ],
+        "rotation": 345,
+        "scale": 2.02
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -8.0,
+          -34.4
+        ],
+        "rotation": 330,
+        "scale": 1.57
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -5.2,
+          -34.4
+        ],
+        "rotation": 315,
+        "scale": 1.99
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          4.7,
+          -34.4
+        ],
+        "rotation": 105,
+        "scale": 1.96
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          7.9,
+          -34.4
+        ],
+        "rotation": 15,
+        "scale": 1.4
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          11.1,
+          -34.4
+        ],
+        "rotation": 150,
+        "scale": 1.56
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          -11.4,
+          -9.6
+        ],
+        "rotation": 285,
+        "scale": 1.41
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -8.4,
+          -9.6
+        ],
+        "rotation": 330,
+        "scale": 2.14
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          -5.0,
+          -9.6
+        ],
+        "rotation": 75,
+        "scale": 2.15
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          4.7,
+          -9.6
+        ],
+        "rotation": 165,
+        "scale": 1.83
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          7.8,
+          -9.6
+        ],
+        "rotation": 180,
+        "scale": 1.3
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          11.2,
+          -9.6
+        ],
+        "rotation": 255,
+        "scale": 1.33
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          -11.4,
+          -34.6
+        ],
+        "rotation": 270,
+        "scale": 1.86
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -11.4,
+          -31.2
+        ],
+        "rotation": 30,
+        "scale": 1.74
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -11.4,
+          -28.3
+        ],
+        "rotation": 210,
+        "scale": 1.97
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -11.4,
+          -24.9
+        ],
+        "rotation": 300,
+        "scale": 2.05
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -11.4,
+          -21.5
+        ],
+        "rotation": 330,
+        "scale": 1.89
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -11.4,
+          -18.1
+        ],
+        "rotation": 255,
+        "scale": 2.04
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -11.4,
+          -15.4
+        ],
+        "rotation": 225,
+        "scale": 1.99
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          -11.4,
+          -11.8
+        ],
+        "rotation": 255,
+        "scale": 2.03
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          11.4,
+          -34.4
+        ],
+        "rotation": 300,
+        "scale": 1.84
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          11.4,
+          -31.4
+        ],
+        "rotation": 330,
+        "scale": 1.73
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          11.4,
+          -28.2
+        ],
+        "rotation": 195,
+        "scale": 1.97
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          11.4,
+          -18.5
+        ],
+        "rotation": 165,
+        "scale": 1.81
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          11.4,
+          -15.3
+        ],
+        "rotation": 135,
+        "scale": 1.25
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          11.4,
+          -12.3
+        ],
+        "rotation": 0,
+        "scale": 1.4
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          17.1,
+          -29.6
+        ],
+        "rotation": 270,
+        "scale": 2.26
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          19.2,
+          -29.6
+        ],
+        "rotation": 75,
+        "scale": 2.91
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          21.1,
+          -29.6
+        ],
+        "rotation": 60,
+        "scale": 2.53
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          22.9,
+          -29.6
+        ],
+        "rotation": 285,
+        "scale": 2.3
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          25.0,
+          -29.6
+        ],
+        "rotation": 285,
+        "scale": 2.48
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          26.9,
+          -29.6
+        ],
+        "rotation": 300,
+        "scale": 2.88
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          28.9,
+          -29.6
+        ],
+        "rotation": 75,
+        "scale": 3.4
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          30.9,
+          -29.6
+        ],
+        "rotation": 0,
+        "scale": 3.36
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          17.0,
+          -14.4
+        ],
+        "rotation": 285,
+        "scale": 2.49
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          19.2,
+          -14.4
+        ],
+        "rotation": 30,
+        "scale": 3.02
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          20.7,
+          -14.4
+        ],
+        "rotation": 255,
+        "scale": 3.56
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          23.2,
+          -14.4
+        ],
+        "rotation": 135,
+        "scale": 3.22
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          24.8,
+          -14.4
+        ],
+        "rotation": 195,
+        "scale": 2.87
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          27.1,
+          -14.4
+        ],
+        "rotation": 45,
+        "scale": 3.34
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          28.8,
+          -14.4
+        ],
+        "rotation": 270,
+        "scale": 2.54
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          31.2,
+          -14.4
+        ],
+        "rotation": 90,
+        "scale": 2.78
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          16.4,
+          -29.0
+        ],
+        "rotation": 195,
+        "scale": 3.47
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          16.4,
+          -26.7
+        ],
+        "rotation": 75,
+        "scale": 3.38
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          16.4,
+          -25.2
+        ],
+        "rotation": 180,
+        "scale": 2.42
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          16.4,
+          -18.8
+        ],
+        "rotation": 0,
+        "scale": 2.29
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          16.4,
+          -17.0
+        ],
+        "rotation": 300,
+        "scale": 2.27
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          16.4,
+          -15.0
+        ],
+        "rotation": 285,
+        "scale": 2.74
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          31.6,
+          -29.1
+        ],
+        "rotation": 315,
+        "scale": 2.54
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          31.6,
+          -26.8
+        ],
+        "rotation": 255,
+        "scale": 3.02
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          31.6,
+          -25.2
+        ],
+        "rotation": 60,
+        "scale": 2.42
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          31.6,
+          -22.8
+        ],
+        "rotation": 15,
+        "scale": 2.91
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          31.6,
+          -21.1
+        ],
+        "rotation": 180,
+        "scale": 2.45
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          31.6,
+          -18.8
+        ],
+        "rotation": 135,
+        "scale": 2.42
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          31.6,
+          -17.2
+        ],
+        "rotation": 330,
+        "scale": 3.02
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          31.6,
+          -14.8
+        ],
+        "rotation": 30,
+        "scale": 2.28
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          17.3,
+          -28.4
+        ],
+        "rotation": 255,
+        "scale": 1.49
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          20.5,
+          -28.4
+        ],
+        "rotation": 240,
+        "scale": 1.91
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          24.1,
+          -28.4
+        ],
+        "rotation": 180,
+        "scale": 1.39
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          27.0,
+          -28.4
+        ],
+        "rotation": 195,
+        "scale": 1.47
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          30.1,
+          -28.4
+        ],
+        "rotation": 195,
+        "scale": 1.51
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          17.3,
+          -15.6
+        ],
+        "rotation": 90,
+        "scale": 1.24
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          20.9,
+          -15.6
+        ],
+        "rotation": 150,
+        "scale": 1.73
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          23.9,
+          -15.6
+        ],
+        "rotation": 150,
+        "scale": 1.7
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          26.9,
+          -15.6
+        ],
+        "rotation": 150,
+        "scale": 1.4
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          30.5,
+          -15.6
+        ],
+        "rotation": 270,
+        "scale": 1.26
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          17.6,
+          -28.3
+        ],
+        "rotation": 270,
+        "scale": 2.12
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          17.6,
+          -25.1
+        ],
+        "rotation": 15,
+        "scale": 1.92
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          17.6,
+          -18.9
+        ],
+        "rotation": 225,
+        "scale": 2.01
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          17.6,
+          -15.6
+        ],
+        "rotation": 180,
+        "scale": 1.74
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          30.4,
+          -28.6
+        ],
+        "rotation": 150,
+        "scale": 1.62
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          30.4,
+          -25.3
+        ],
+        "rotation": 120,
+        "scale": 1.67
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          30.4,
+          -21.9
+        ],
+        "rotation": 120,
+        "scale": 2.19
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          30.4,
+          -18.7
+        ],
+        "rotation": 195,
+        "scale": 1.5
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          30.4,
+          -15.5
+        ],
+        "rotation": 255,
+        "scale": 1.5
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -17.3,
+          -66.6
+        ],
+        "rotation": 75,
+        "scale": 3.18
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -15.0,
+          -66.6
+        ],
+        "rotation": 330,
+        "scale": 2.26
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          -13.2,
+          -66.6
+        ],
+        "rotation": 0,
+        "scale": 2.99
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -10.7,
+          -66.6
+        ],
+        "rotation": 45,
+        "scale": 3.21
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -8.9,
+          -66.6
+        ],
+        "rotation": 300,
+        "scale": 3.06
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -7.0,
+          -66.6
+        ],
+        "rotation": 105,
+        "scale": 2.76
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -4.8,
+          -66.6
+        ],
+        "rotation": 225,
+        "scale": 3.36
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -3.1,
+          -66.6
+        ],
+        "rotation": 0,
+        "scale": 3.31
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          4.7,
+          -66.6
+        ],
+        "rotation": 120,
+        "scale": 2.34
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          7.0,
+          -66.6
+        ],
+        "rotation": 180,
+        "scale": 3.22
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          9.2,
+          -66.6
+        ],
+        "rotation": 30,
+        "scale": 2.65
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          10.8,
+          -66.6
+        ],
+        "rotation": 225,
+        "scale": 3.15
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          13.2,
+          -66.6
+        ],
+        "rotation": 105,
+        "scale": 3.22
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          15.3,
+          -66.6
+        ],
+        "rotation": 315,
+        "scale": 2.87
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          17.2,
+          -66.6
+        ],
+        "rotation": 75,
+        "scale": 2.46
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -17.1,
+          -37.4
+        ],
+        "rotation": 120,
+        "scale": 2.49
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -15.1,
+          -37.4
+        ],
+        "rotation": 300,
+        "scale": 2.55
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -12.8,
+          -37.4
+        ],
+        "rotation": 225,
+        "scale": 2.83
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -11.2,
+          -37.4
+        ],
+        "rotation": 315,
+        "scale": 3.23
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -8.9,
+          -37.4
+        ],
+        "rotation": 270,
+        "scale": 2.43
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -7.2,
+          -37.4
+        ],
+        "rotation": 345,
+        "scale": 2.35
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -5.0,
+          -37.4
+        ],
+        "rotation": 315,
+        "scale": 2.67
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          5.1,
+          -37.4
+        ],
+        "rotation": 45,
+        "scale": 2.61
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          6.8,
+          -37.4
+        ],
+        "rotation": 120,
+        "scale": 2.94
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          9.1,
+          -37.4
+        ],
+        "rotation": 120,
+        "scale": 3.37
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          10.8,
+          -37.4
+        ],
+        "rotation": 75,
+        "scale": 2.46
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          13.0,
+          -37.4
+        ],
+        "rotation": 180,
+        "scale": 2.21
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          15.2,
+          -37.4
+        ],
+        "rotation": 300,
+        "scale": 3.3
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          17.1,
+          -37.4
+        ],
+        "rotation": 120,
+        "scale": 2.64
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -17.6,
+          -66.2
+        ],
+        "rotation": 150,
+        "scale": 2.56
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -17.6,
+          -64.2
+        ],
+        "rotation": 270,
+        "scale": 2.76
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -17.6,
+          -61.9
+        ],
+        "rotation": 315,
+        "scale": 3.31
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          -17.6,
+          -60.2
+        ],
+        "rotation": 255,
+        "scale": 3.42
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          -17.6,
+          -57.8
+        ],
+        "rotation": 330,
+        "scale": 2.22
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -17.6,
+          -56.3
+        ],
+        "rotation": 330,
+        "scale": 2.9
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -17.6,
+          -48.1
+        ],
+        "rotation": 135,
+        "scale": 2.75
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -17.6,
+          -46.0
+        ],
+        "rotation": 255,
+        "scale": 3.06
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -17.6,
+          -43.9
+        ],
+        "rotation": 285,
+        "scale": 2.71
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          -17.6,
+          -41.9
+        ],
+        "rotation": 210,
+        "scale": 3.42
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -17.6,
+          -39.8
+        ],
+        "rotation": 30,
+        "scale": 2.31
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -17.6,
+          -38.0
+        ],
+        "rotation": 165,
+        "scale": 2.95
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          17.6,
+          -66.2
+        ],
+        "rotation": 75,
+        "scale": 2.85
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          17.6,
+          -63.9
+        ],
+        "rotation": 75,
+        "scale": 3.47
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          17.6,
+          -61.8
+        ],
+        "rotation": 60,
+        "scale": 2.94
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          17.6,
+          -60.1
+        ],
+        "rotation": 30,
+        "scale": 2.34
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          17.6,
+          -58.0
+        ],
+        "rotation": 315,
+        "scale": 3.14
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          17.6,
+          -55.7
+        ],
+        "rotation": 45,
+        "scale": 2.23
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          17.6,
+          -54.2
+        ],
+        "rotation": 0,
+        "scale": 3.0
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          17.6,
+          -52.3
+        ],
+        "rotation": 270,
+        "scale": 2.49
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          17.6,
+          -50.0
+        ],
+        "rotation": 135,
+        "scale": 3.55
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          17.6,
+          -47.7
+        ],
+        "rotation": 105,
+        "scale": 2.79
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          17.6,
+          -45.8
+        ],
+        "rotation": 120,
+        "scale": 2.44
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          17.6,
+          -44.3
+        ],
+        "rotation": 165,
+        "scale": 2.49
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          17.6,
+          -41.9
+        ],
+        "rotation": 120,
+        "scale": 2.79
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          17.6,
+          -40.3
+        ],
+        "rotation": 345,
+        "scale": 3.45
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          17.6,
+          -37.8
+        ],
+        "rotation": 315,
+        "scale": 2.25
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -16.4,
+          -65.4
+        ],
+        "rotation": 285,
+        "scale": 2.1
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -13.2,
+          -65.4
+        ],
+        "rotation": 195,
+        "scale": 1.24
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -9.9,
+          -65.4
+        ],
+        "rotation": 240,
+        "scale": 2.1
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -7.0,
+          -65.4
+        ],
+        "rotation": 270,
+        "scale": 2.18
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -3.5,
+          -65.4
+        ],
+        "rotation": 150,
+        "scale": 1.2
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          5.9,
+          -65.4
+        ],
+        "rotation": 210,
+        "scale": 1.83
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          9.5,
+          -65.4
+        ],
+        "rotation": 120,
+        "scale": 2.0
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          12.5,
+          -65.4
+        ],
+        "rotation": 240,
+        "scale": 1.87
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          15.7,
+          -65.4
+        ],
+        "rotation": 330,
+        "scale": 1.59
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -16.4,
+          -38.6
+        ],
+        "rotation": 150,
+        "scale": 1.85
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -13.1,
+          -38.6
+        ],
+        "rotation": 45,
+        "scale": 1.4
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -10.1,
+          -38.6
+        ],
+        "rotation": 195,
+        "scale": 2.13
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          -6.9,
+          -38.6
+        ],
+        "rotation": 90,
+        "scale": 1.43
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -3.4,
+          -38.6
+        ],
+        "rotation": 210,
+        "scale": 1.28
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          5.8,
+          -38.6
+        ],
+        "rotation": 165,
+        "scale": 1.93
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          9.4,
+          -38.6
+        ],
+        "rotation": 210,
+        "scale": 1.83
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          12.2,
+          -38.6
+        ],
+        "rotation": 0,
+        "scale": 1.65
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          15.7,
+          -38.6
+        ],
+        "rotation": 105,
+        "scale": 1.26
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -16.4,
+          -65.2
+        ],
+        "rotation": 45,
+        "scale": 1.85
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -16.4,
+          -62.1
+        ],
+        "rotation": 15,
+        "scale": 2.04
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -16.4,
+          -59.2
+        ],
+        "rotation": 315,
+        "scale": 1.65
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -16.4,
+          -55.9
+        ],
+        "rotation": 30,
+        "scale": 2.0
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -16.4,
+          -46.0
+        ],
+        "rotation": 60,
+        "scale": 1.8
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -16.4,
+          -43.0
+        ],
+        "rotation": 0,
+        "scale": 1.45
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          -16.4,
+          -39.9
+        ],
+        "rotation": 135,
+        "scale": 1.62
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          16.4,
+          -65.5
+        ],
+        "rotation": 105,
+        "scale": 2.09
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          16.4,
+          -62.2
+        ],
+        "rotation": 210,
+        "scale": 1.42
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          16.4,
+          -59.2
+        ],
+        "rotation": 255,
+        "scale": 1.98
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          16.4,
+          -56.1
+        ],
+        "rotation": 195,
+        "scale": 2.01
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          16.4,
+          -52.3
+        ],
+        "rotation": 285,
+        "scale": 1.9
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          16.4,
+          -49.5
+        ],
+        "rotation": 180,
+        "scale": 1.41
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          16.4,
+          -46.2
+        ],
+        "rotation": 105,
+        "scale": 1.42
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          16.4,
+          -43.2
+        ],
+        "rotation": 240,
+        "scale": 1.34
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          16.4,
+          -40.0
+        ],
+        "rotation": 180,
+        "scale": 2.05
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -33.9,
+          -60.6
+        ],
+        "rotation": 0,
+        "scale": 3.0
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -32.3,
+          -60.6
+        ],
+        "rotation": 300,
+        "scale": 2.86
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -29.8,
+          -60.6
+        ],
+        "rotation": 105,
+        "scale": 3.01
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -28.2,
+          -60.6
+        ],
+        "rotation": 315,
+        "scale": 3.34
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -26.1,
+          -60.6
+        ],
+        "rotation": 225,
+        "scale": 2.9
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -23.8,
+          -60.6
+        ],
+        "rotation": 45,
+        "scale": 2.36
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -22.2,
+          -60.6
+        ],
+        "rotation": 300,
+        "scale": 3.54
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -19.7,
+          -60.6
+        ],
+        "rotation": 195,
+        "scale": 2.99
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -33.8,
+          -43.4
+        ],
+        "rotation": 285,
+        "scale": 2.77
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          -32.0,
+          -43.4
+        ],
+        "rotation": 0,
+        "scale": 2.58
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          -30.1,
+          -43.4
+        ],
+        "rotation": 225,
+        "scale": 2.52
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -27.8,
+          -43.4
+        ],
+        "rotation": 315,
+        "scale": 2.74
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -26.1,
+          -43.4
+        ],
+        "rotation": 0,
+        "scale": 3.06
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -23.7,
+          -43.4
+        ],
+        "rotation": 150,
+        "scale": 3.33
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -22.0,
+          -43.4
+        ],
+        "rotation": 300,
+        "scale": 3.54
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          -19.9,
+          -43.4
+        ],
+        "rotation": 270,
+        "scale": 3.52
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -34.6,
+          -59.8
+        ],
+        "rotation": 210,
+        "scale": 2.76
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          -34.6,
+          -58.0
+        ],
+        "rotation": 30,
+        "scale": 3.19
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          -34.6,
+          -55.8
+        ],
+        "rotation": 255,
+        "scale": 2.76
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -34.6,
+          -54.0
+        ],
+        "rotation": 120,
+        "scale": 2.23
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -34.6,
+          -52.3
+        ],
+        "rotation": 240,
+        "scale": 3.2
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -34.6,
+          -50.1
+        ],
+        "rotation": 45,
+        "scale": 3.42
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -34.6,
+          -48.3
+        ],
+        "rotation": 165,
+        "scale": 2.33
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          -34.6,
+          -45.9
+        ],
+        "rotation": 75,
+        "scale": 3.08
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -34.6,
+          -43.9
+        ],
+        "rotation": 150,
+        "scale": 3.06
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -19.4,
+          -59.8
+        ],
+        "rotation": 30,
+        "scale": 2.55
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -19.4,
+          -58.2
+        ],
+        "rotation": 105,
+        "scale": 3.35
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -19.4,
+          -56.3
+        ],
+        "rotation": 0,
+        "scale": 2.56
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -19.4,
+          -47.8
+        ],
+        "rotation": 285,
+        "scale": 2.67
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -19.4,
+          -46.3
+        ],
+        "rotation": 105,
+        "scale": 3.2
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -19.4,
+          -44.0
+        ],
+        "rotation": 345,
+        "scale": 2.28
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -33.1,
+          -59.4
+        ],
+        "rotation": 75,
+        "scale": 1.61
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -30.0,
+          -59.4
+        ],
+        "rotation": 90,
+        "scale": 1.96
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -26.7,
+          -59.4
+        ],
+        "rotation": 210,
+        "scale": 2.03
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -23.9,
+          -59.4
+        ],
+        "rotation": 240,
+        "scale": 1.56
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -20.9,
+          -59.4
+        ],
+        "rotation": 195,
+        "scale": 1.79
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -33.6,
+          -44.6
+        ],
+        "rotation": 345,
+        "scale": 1.52
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -30.1,
+          -44.6
+        ],
+        "rotation": 270,
+        "scale": 2.03
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -26.8,
+          -44.6
+        ],
+        "rotation": 165,
+        "scale": 1.25
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -24.0,
+          -44.6
+        ],
+        "rotation": 345,
+        "scale": 1.93
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          -20.6,
+          -44.6
+        ],
+        "rotation": 315,
+        "scale": 1.4
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -33.4,
+          -59.3
+        ],
+        "rotation": 195,
+        "scale": 1.47
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -33.4,
+          -56.5
+        ],
+        "rotation": 255,
+        "scale": 2.11
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -33.4,
+          -52.8
+        ],
+        "rotation": 135,
+        "scale": 1.91
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -33.4,
+          -49.9
+        ],
+        "rotation": 180,
+        "scale": 1.55
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -33.4,
+          -46.7
+        ],
+        "rotation": 180,
+        "scale": 1.51
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -20.6,
+          -59.3
+        ],
+        "rotation": 180,
+        "scale": 2.14
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -20.6,
+          -56.3
+        ],
+        "rotation": 0,
+        "scale": 1.96
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -20.6,
+          -46.4
+        ],
+        "rotation": 120,
+        "scale": 2.09
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          -17.8,
+          -100.6
+        ],
+        "rotation": 225,
+        "scale": 3.16
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -16.1,
+          -100.6
+        ],
+        "rotation": 105,
+        "scale": 2.33
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -13.8,
+          -100.6
+        ],
+        "rotation": 30,
+        "scale": 3.29
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -12.0,
+          -100.6
+        ],
+        "rotation": 225,
+        "scale": 2.87
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -10.0,
+          -100.6
+        ],
+        "rotation": 270,
+        "scale": 3.48
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -8.0,
+          -100.6
+        ],
+        "rotation": 285,
+        "scale": 2.63
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -6.0,
+          -100.6
+        ],
+        "rotation": 45,
+        "scale": 3.53
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -3.9,
+          -100.6
+        ],
+        "rotation": 135,
+        "scale": 3.13
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -1.7,
+          -100.6
+        ],
+        "rotation": 105,
+        "scale": 3.53
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -0.0,
+          -100.6
+        ],
+        "rotation": 195,
+        "scale": 3.04
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          1.7,
+          -100.6
+        ],
+        "rotation": 60,
+        "scale": 2.52
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          4.2,
+          -100.6
+        ],
+        "rotation": 75,
+        "scale": 2.59
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          5.8,
+          -100.6
+        ],
+        "rotation": 150,
+        "scale": 3.25
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          7.8,
+          -100.6
+        ],
+        "rotation": 210,
+        "scale": 2.66
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          10.1,
+          -100.6
+        ],
+        "rotation": 135,
+        "scale": 3.13
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          12.1,
+          -100.6
+        ],
+        "rotation": 60,
+        "scale": 2.54
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          13.9,
+          -100.6
+        ],
+        "rotation": 345,
+        "scale": 3.3
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          15.9,
+          -100.6
+        ],
+        "rotation": 90,
+        "scale": 3.31
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          18.3,
+          -100.6
+        ],
+        "rotation": 135,
+        "scale": 2.62
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -18.0,
+          -67.4
+        ],
+        "rotation": 330,
+        "scale": 3.35
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -16.2,
+          -67.4
+        ],
+        "rotation": 180,
+        "scale": 2.52
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -13.7,
+          -67.4
+        ],
+        "rotation": 210,
+        "scale": 2.51
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -12.0,
+          -67.4
+        ],
+        "rotation": 270,
+        "scale": 2.53
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -10.1,
+          -67.4
+        ],
+        "rotation": 330,
+        "scale": 2.4
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -8.2,
+          -67.4
+        ],
+        "rotation": 15,
+        "scale": 2.84
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -6.3,
+          -67.4
+        ],
+        "rotation": 105,
+        "scale": 2.47
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -4.3,
+          -67.4
+        ],
+        "rotation": 165,
+        "scale": 3.5
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          4.2,
+          -67.4
+        ],
+        "rotation": 150,
+        "scale": 2.54
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          5.8,
+          -67.4
+        ],
+        "rotation": 15,
+        "scale": 3.3
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          7.8,
+          -67.4
+        ],
+        "rotation": 330,
+        "scale": 3.16
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          9.9,
+          -67.4
+        ],
+        "rotation": 165,
+        "scale": 2.58
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          11.9,
+          -67.4
+        ],
+        "rotation": 0,
+        "scale": 2.52
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          13.9,
+          -67.4
+        ],
+        "rotation": 330,
+        "scale": 3.0
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          16.2,
+          -67.4
+        ],
+        "rotation": 180,
+        "scale": 3.58
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          18.3,
+          -67.4
+        ],
+        "rotation": 75,
+        "scale": 2.47
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -18.6,
+          -99.8
+        ],
+        "rotation": 120,
+        "scale": 2.43
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -18.6,
+          -98.2
+        ],
+        "rotation": 345,
+        "scale": 2.94
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -18.6,
+          -96.0
+        ],
+        "rotation": 0,
+        "scale": 2.79
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -18.6,
+          -93.9
+        ],
+        "rotation": 270,
+        "scale": 2.58
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -18.6,
+          -91.9
+        ],
+        "rotation": 120,
+        "scale": 3.27
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -18.6,
+          -90.0
+        ],
+        "rotation": 285,
+        "scale": 2.64
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -18.6,
+          -88.0
+        ],
+        "rotation": 300,
+        "scale": 3.39
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -18.6,
+          -86.3
+        ],
+        "rotation": 255,
+        "scale": 3.03
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -18.6,
+          -84.2
+        ],
+        "rotation": 45,
+        "scale": 2.66
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -18.6,
+          -82.0
+        ],
+        "rotation": 195,
+        "scale": 3.08
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -18.6,
+          -79.9
+        ],
+        "rotation": 30,
+        "scale": 2.97
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -18.6,
+          -78.0
+        ],
+        "rotation": 165,
+        "scale": 2.77
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -18.6,
+          -76.3
+        ],
+        "rotation": 30,
+        "scale": 3.49
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          -18.6,
+          -74.0
+        ],
+        "rotation": 285,
+        "scale": 2.65
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -18.6,
+          -71.8
+        ],
+        "rotation": 120,
+        "scale": 2.26
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          -18.6,
+          -70.1
+        ],
+        "rotation": 330,
+        "scale": 3.03
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -18.6,
+          -68.0
+        ],
+        "rotation": 330,
+        "scale": 2.96
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          18.6,
+          -100.2
+        ],
+        "rotation": 0,
+        "scale": 2.56
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          18.6,
+          -98.2
+        ],
+        "rotation": 225,
+        "scale": 2.73
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          18.6,
+          -95.7
+        ],
+        "rotation": 225,
+        "scale": 2.58
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          18.6,
+          -94.3
+        ],
+        "rotation": 180,
+        "scale": 2.61
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          18.6,
+          -91.8
+        ],
+        "rotation": 330,
+        "scale": 3.58
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          18.6,
+          -90.2
+        ],
+        "rotation": 75,
+        "scale": 2.55
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          18.6,
+          -87.8
+        ],
+        "rotation": 165,
+        "scale": 2.79
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          18.6,
+          -86.1
+        ],
+        "rotation": 225,
+        "scale": 3.26
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          18.6,
+          -84.2
+        ],
+        "rotation": 195,
+        "scale": 3.52
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          18.6,
+          -82.0
+        ],
+        "rotation": 300,
+        "scale": 3.18
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          18.6,
+          -80.2
+        ],
+        "rotation": 180,
+        "scale": 3.36
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          18.6,
+          -77.8
+        ],
+        "rotation": 105,
+        "scale": 3.05
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          18.6,
+          -75.9
+        ],
+        "rotation": 135,
+        "scale": 2.97
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          18.6,
+          -74.3
+        ],
+        "rotation": 30,
+        "scale": 3.34
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          18.6,
+          -71.7
+        ],
+        "rotation": 75,
+        "scale": 3.13
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          18.6,
+          -70.1
+        ],
+        "rotation": 315,
+        "scale": 3.14
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          18.6,
+          -67.9
+        ],
+        "rotation": 105,
+        "scale": 2.87
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -17.4,
+          -99.4
+        ],
+        "rotation": 270,
+        "scale": 1.87
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -13.9,
+          -99.4
+        ],
+        "rotation": 60,
+        "scale": 1.32
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -11.0,
+          -99.4
+        ],
+        "rotation": 120,
+        "scale": 1.72
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -7.8,
+          -99.4
+        ],
+        "rotation": 195,
+        "scale": 1.88
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -4.5,
+          -99.4
+        ],
+        "rotation": 15,
+        "scale": 1.78
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -1.2,
+          -99.4
+        ],
+        "rotation": 195,
+        "scale": 1.66
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          2.0,
+          -99.4
+        ],
+        "rotation": 135,
+        "scale": 1.59
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          5.1,
+          -99.4
+        ],
+        "rotation": 255,
+        "scale": 1.81
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          8.2,
+          -99.4
+        ],
+        "rotation": 135,
+        "scale": 1.81
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          11.6,
+          -99.4
+        ],
+        "rotation": 0,
+        "scale": 1.95
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          14.6,
+          -99.4
+        ],
+        "rotation": 195,
+        "scale": 1.61
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -17.5,
+          -68.6
+        ],
+        "rotation": 90,
+        "scale": 2.2
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          -14.1,
+          -68.6
+        ],
+        "rotation": 15,
+        "scale": 2.0
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -10.7,
+          -68.6
+        ],
+        "rotation": 135,
+        "scale": 1.23
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -7.8,
+          -68.6
+        ],
+        "rotation": 225,
+        "scale": 1.47
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -4.8,
+          -68.6
+        ],
+        "rotation": 270,
+        "scale": 1.87
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          5.1,
+          -68.6
+        ],
+        "rotation": 120,
+        "scale": 1.51
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          8.0,
+          -68.6
+        ],
+        "rotation": 270,
+        "scale": 1.96
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          11.1,
+          -68.6
+        ],
+        "rotation": 75,
+        "scale": 1.59
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          14.8,
+          -68.6
+        ],
+        "rotation": 195,
+        "scale": 1.78
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -17.4,
+          -99.6
+        ],
+        "rotation": 240,
+        "scale": 1.46
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          -17.4,
+          -96.3
+        ],
+        "rotation": 270,
+        "scale": 1.81
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -17.4,
+          -93.2
+        ],
+        "rotation": 45,
+        "scale": 1.49
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -17.4,
+          -89.7
+        ],
+        "rotation": 330,
+        "scale": 1.59
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -17.4,
+          -86.5
+        ],
+        "rotation": 105,
+        "scale": 2.01
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -17.4,
+          -83.2
+        ],
+        "rotation": 210,
+        "scale": 1.24
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          -17.4,
+          -80.1
+        ],
+        "rotation": 75,
+        "scale": 2.01
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          -17.4,
+          -76.7
+        ],
+        "rotation": 315,
+        "scale": 1.44
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -17.4,
+          -73.6
+        ],
+        "rotation": 225,
+        "scale": 2.11
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -17.4,
+          -70.7
+        ],
+        "rotation": 270,
+        "scale": 2.01
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          17.4,
+          -99.6
+        ],
+        "rotation": 45,
+        "scale": 1.84
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          17.4,
+          -96.1
+        ],
+        "rotation": 105,
+        "scale": 1.7
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          17.4,
+          -92.9
+        ],
+        "rotation": 150,
+        "scale": 1.55
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          17.4,
+          -90.0
+        ],
+        "rotation": 345,
+        "scale": 2.04
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          17.4,
+          -86.6
+        ],
+        "rotation": 75,
+        "scale": 1.58
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          17.4,
+          -83.2
+        ],
+        "rotation": 255,
+        "scale": 1.42
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          17.4,
+          -80.2
+        ],
+        "rotation": 180,
+        "scale": 1.54
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          17.4,
+          -77.2
+        ],
+        "rotation": 105,
+        "scale": 1.26
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          17.4,
+          -73.5
+        ],
+        "rotation": 180,
+        "scale": 1.24
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          17.4,
+          -70.5
+        ],
+        "rotation": 270,
+        "scale": 1.65
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          3.4,
+          -2.5
+        ],
+        "rotation": 120,
+        "scale": 0.55
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -4.5,
+          0.6
+        ],
+        "rotation": 15,
+        "scale": 0.52
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -5.0,
+          2.8
+        ],
+        "rotation": 225,
+        "scale": 0.4
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -3.2,
+          -2.4
+        ],
+        "rotation": 45,
+        "scale": 0.81
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -1.2,
+          -2.5
+        ],
+        "rotation": 30,
+        "scale": 0.72
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -2.6,
+          -3.4
+        ],
+        "rotation": 300,
+        "scale": 0.39
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          -4.8,
+          2.2
+        ],
+        "rotation": 45,
+        "scale": 0.69
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          4.1,
+          -2.0
+        ],
+        "rotation": 330,
+        "scale": 0.6
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -4.2,
+          3.4
+        ],
+        "rotation": 285,
+        "scale": 0.72
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -1.7,
+          -1.1
+        ],
+        "rotation": 120,
+        "scale": 0.86
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          7.6,
+          -28.1
+        ],
+        "rotation": 60,
+        "scale": 0.46
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          9.0,
+          -12.2
+        ],
+        "rotation": 135,
+        "scale": 0.9
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          -10.0,
+          -14.6
+        ],
+        "rotation": 90,
+        "scale": 0.52
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -3.6,
+          -25.6
+        ],
+        "rotation": 240,
+        "scale": 0.78
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          4.5,
+          -15.2
+        ],
+        "rotation": 165,
+        "scale": 0.69
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -1.2,
+          -25.3
+        ],
+        "rotation": 15,
+        "scale": 0.43
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          -10.2,
+          -19.0
+        ],
+        "rotation": 60,
+        "scale": 0.6
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          3.4,
+          -22.8
+        ],
+        "rotation": 195,
+        "scale": 0.82
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          9.9,
+          -21.5
+        ],
+        "rotation": 300,
+        "scale": 0.63
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          3.0,
+          -11.6
+        ],
+        "rotation": 60,
+        "scale": 0.66
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          6.2,
+          -11.1
+        ],
+        "rotation": 30,
+        "scale": 0.52
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          10.3,
+          -14.1
+        ],
+        "rotation": 120,
+        "scale": 0.48
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          1.1,
+          -27.2
+        ],
+        "rotation": 75,
+        "scale": 0.68
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          3.4,
+          -11.3
+        ],
+        "rotation": 45,
+        "scale": 0.7
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          0.5,
+          -10.9
+        ],
+        "rotation": 135,
+        "scale": 0.71
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -7.6,
+          -20.5
+        ],
+        "rotation": 105,
+        "scale": 0.63
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          4.6,
+          -11.0
+        ],
+        "rotation": 345,
+        "scale": 0.5
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          3.7,
+          -18.6
+        ],
+        "rotation": 90,
+        "scale": 0.4
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          2.4,
+          -26.2
+        ],
+        "rotation": 165,
+        "scale": 0.39
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          -8.3,
+          -18.9
+        ],
+        "rotation": 45,
+        "scale": 0.44
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -2.2,
+          -32.6
+        ],
+        "rotation": 45,
+        "scale": 0.52
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          1.2,
+          -14.3
+        ],
+        "rotation": 30,
+        "scale": 0.78
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          1.5,
+          -17.9
+        ],
+        "rotation": 195,
+        "scale": 0.5
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          5.0,
+          -19.5
+        ],
+        "rotation": 225,
+        "scale": 0.57
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -7.7,
+          -14.8
+        ],
+        "rotation": 240,
+        "scale": 0.4
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          -3.4,
+          -12.6
+        ],
+        "rotation": 210,
+        "scale": 0.47
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -3.7,
+          -23.6
+        ],
+        "rotation": 75,
+        "scale": 0.62
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -3.7,
+          -15.8
+        ],
+        "rotation": 180,
+        "scale": 0.31
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          -9.2,
+          -21.8
+        ],
+        "rotation": 15,
+        "scale": 0.85
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          3.8,
+          -32.2
+        ],
+        "rotation": 300,
+        "scale": 0.32
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -7.8,
+          -14.5
+        ],
+        "rotation": 15,
+        "scale": 0.33
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          7.2,
+          -25.0
+        ],
+        "rotation": 120,
+        "scale": 0.46
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          -7.6,
+          -15.6
+        ],
+        "rotation": 75,
+        "scale": 0.48
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          25.8,
+          -17.0
+        ],
+        "rotation": 180,
+        "scale": 0.49
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          21.8,
+          -19.6
+        ],
+        "rotation": 180,
+        "scale": 0.61
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          20.0,
+          -21.2
+        ],
+        "rotation": 60,
+        "scale": 0.74
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          29.2,
+          -27.2
+        ],
+        "rotation": 120,
+        "scale": 0.7
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          22.1,
+          -23.8
+        ],
+        "rotation": 0,
+        "scale": 0.45
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          20.5,
+          -24.6
+        ],
+        "rotation": 330,
+        "scale": 0.78
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          28.8,
+          -25.9
+        ],
+        "rotation": 315,
+        "scale": 0.81
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          24.0,
+          -24.6
+        ],
+        "rotation": 195,
+        "scale": 0.87
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          18.5,
+          -27.0
+        ],
+        "rotation": 150,
+        "scale": 0.37
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          25.0,
+          -25.4
+        ],
+        "rotation": 270,
+        "scale": 0.77
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          19.3,
+          -26.9
+        ],
+        "rotation": 15,
+        "scale": 0.79
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -2.6,
+          -62.1
+        ],
+        "rotation": 210,
+        "scale": 0.86
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          -2.5,
+          -61.8
+        ],
+        "rotation": 75,
+        "scale": 0.41
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          14.7,
+          -60.8
+        ],
+        "rotation": 75,
+        "scale": 0.59
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          13.5,
+          -46.1
+        ],
+        "rotation": 225,
+        "scale": 0.83
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -7.6,
+          -61.1
+        ],
+        "rotation": 150,
+        "scale": 0.56
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -5.9,
+          -62.1
+        ],
+        "rotation": 75,
+        "scale": 0.46
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          14.7,
+          -54.4
+        ],
+        "rotation": 270,
+        "scale": 0.57
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          -3.8,
+          -60.9
+        ],
+        "rotation": 150,
+        "scale": 0.63
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -9.3,
+          -54.6
+        ],
+        "rotation": 330,
+        "scale": 0.6
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          0.0,
+          -50.9
+        ],
+        "rotation": 195,
+        "scale": 0.72
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -13.5,
+          -60.9
+        ],
+        "rotation": 90,
+        "scale": 0.35
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -7.2,
+          -53.9
+        ],
+        "rotation": 120,
+        "scale": 0.89
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          -12.9,
+          -48.5
+        ],
+        "rotation": 135,
+        "scale": 0.49
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          6.7,
+          -51.3
+        ],
+        "rotation": 150,
+        "scale": 0.74
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          14.2,
+          -53.2
+        ],
+        "rotation": 240,
+        "scale": 0.51
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          13.9,
+          -55.7
+        ],
+        "rotation": 270,
+        "scale": 0.44
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          12.9,
+          -41.4
+        ],
+        "rotation": 120,
+        "scale": 0.86
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -4.3,
+          -43.3
+        ],
+        "rotation": 90,
+        "scale": 0.71
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          9.5,
+          -41.7
+        ],
+        "rotation": 300,
+        "scale": 0.89
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          14.4,
+          -43.0
+        ],
+        "rotation": 180,
+        "scale": 0.71
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          7.9,
+          -47.6
+        ],
+        "rotation": 165,
+        "scale": 0.58
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          2.3,
+          -44.1
+        ],
+        "rotation": 60,
+        "scale": 0.46
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -7.4,
+          -53.4
+        ],
+        "rotation": 105,
+        "scale": 0.31
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          7.9,
+          -57.6
+        ],
+        "rotation": 285,
+        "scale": 0.47
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          0.1,
+          -52.9
+        ],
+        "rotation": 180,
+        "scale": 0.56
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          11.1,
+          -45.1
+        ],
+        "rotation": 285,
+        "scale": 0.71
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          3.2,
+          -51.9
+        ],
+        "rotation": 315,
+        "scale": 0.84
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -15.2,
+          -54.0
+        ],
+        "rotation": 345,
+        "scale": 0.44
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          13.7,
+          -58.4
+        ],
+        "rotation": 225,
+        "scale": 0.85
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          -9.9,
+          -39.5
+        ],
+        "rotation": 135,
+        "scale": 0.48
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          14.1,
+          -49.7
+        ],
+        "rotation": 30,
+        "scale": 0.72
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -12.0,
+          -49.5
+        ],
+        "rotation": 315,
+        "scale": 0.47
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          15.3,
+          -60.2
+        ],
+        "rotation": 225,
+        "scale": 0.58
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          -6.2,
+          -62.3
+        ],
+        "rotation": 75,
+        "scale": 0.69
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -10.6,
+          -49.4
+        ],
+        "rotation": 300,
+        "scale": 0.31
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          13.1,
+          -63.8
+        ],
+        "rotation": 105,
+        "scale": 0.37
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          3.9,
+          -53.3
+        ],
+        "rotation": 105,
+        "scale": 0.64
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -0.2,
+          -61.3
+        ],
+        "rotation": 330,
+        "scale": 0.34
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          13.2,
+          -58.6
+        ],
+        "rotation": 135,
+        "scale": 0.32
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          15.5,
+          -51.1
+        ],
+        "rotation": 150,
+        "scale": 0.85
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          8.0,
+          -48.6
+        ],
+        "rotation": 90,
+        "scale": 0.56
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          5.8,
+          -54.6
+        ],
+        "rotation": 0,
+        "scale": 0.86
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -3.1,
+          -49.7
+        ],
+        "rotation": 300,
+        "scale": 0.42
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          3.4,
+          -50.2
+        ],
+        "rotation": 240,
+        "scale": 0.62
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          4.2,
+          -51.1
+        ],
+        "rotation": 165,
+        "scale": 0.5
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          9.0,
+          -56.2
+        ],
+        "rotation": 15,
+        "scale": 0.4
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          6.1,
+          -60.1
+        ],
+        "rotation": 15,
+        "scale": 0.89
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          10.3,
+          -63.0
+        ],
+        "rotation": 30,
+        "scale": 0.3
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -10.6,
+          -51.9
+        ],
+        "rotation": 240,
+        "scale": 0.82
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -23.0,
+          -52.0
+        ],
+        "rotation": 75,
+        "scale": 0.56
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          -29.9,
+          -55.7
+        ],
+        "rotation": 165,
+        "scale": 0.7
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -25.2,
+          -54.4
+        ],
+        "rotation": 60,
+        "scale": 0.6
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -31.5,
+          -46.0
+        ],
+        "rotation": 225,
+        "scale": 0.5
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -24.5,
+          -58.0
+        ],
+        "rotation": 120,
+        "scale": 0.66
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -31.0,
+          -54.1
+        ],
+        "rotation": 60,
+        "scale": 0.44
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -22.1,
+          -52.3
+        ],
+        "rotation": 210,
+        "scale": 0.39
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          -22.1,
+          -46.9
+        ],
+        "rotation": 195,
+        "scale": 0.42
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          -31.1,
+          -57.8
+        ],
+        "rotation": 210,
+        "scale": 0.48
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -22.9,
+          -46.3
+        ],
+        "rotation": 210,
+        "scale": 0.37
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -24.6,
+          -51.1
+        ],
+        "rotation": 300,
+        "scale": 0.9
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -27.9,
+          -48.1
+        ],
+        "rotation": 60,
+        "scale": 0.45
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -24.9,
+          -45.7
+        ],
+        "rotation": 15,
+        "scale": 0.44
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -3.3,
+          -82.3
+        ],
+        "rotation": 180,
+        "scale": 0.34
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          3.3,
+          -83.4
+        ],
+        "rotation": 150,
+        "scale": 0.7
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          -3.3,
+          -92.8
+        ],
+        "rotation": 105,
+        "scale": 0.58
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          4.0,
+          -90.2
+        ],
+        "rotation": 240,
+        "scale": 0.42
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          9.8,
+          -85.5
+        ],
+        "rotation": 45,
+        "scale": 0.33
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          3.1,
+          -86.2
+        ],
+        "rotation": 285,
+        "scale": 0.79
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -1.5,
+          -72.2
+        ],
+        "rotation": 210,
+        "scale": 0.54
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          1.7,
+          -76.3
+        ],
+        "rotation": 300,
+        "scale": 0.51
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          2.9,
+          -83.9
+        ],
+        "rotation": 45,
+        "scale": 0.52
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          -3.1,
+          -98.1
+        ],
+        "rotation": 285,
+        "scale": 0.34
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -12.5,
+          -75.4
+        ],
+        "rotation": 75,
+        "scale": 0.72
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          6.0,
+          -77.1
+        ],
+        "rotation": 225,
+        "scale": 0.53
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          5.6,
+          -96.6
+        ],
+        "rotation": 300,
+        "scale": 0.39
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -15.5,
+          -92.6
+        ],
+        "rotation": 240,
+        "scale": 0.51
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -0.2,
+          -98.3
+        ],
+        "rotation": 195,
+        "scale": 0.74
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          -3.2,
+          -83.1
+        ],
+        "rotation": 180,
+        "scale": 0.38
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          9.2,
+          -85.9
+        ],
+        "rotation": 345,
+        "scale": 0.69
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -4.1,
+          -85.9
+        ],
+        "rotation": 75,
+        "scale": 0.86
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          15.2,
+          -73.2
+        ],
+        "rotation": 60,
+        "scale": 0.57
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -5.0,
+          -77.3
+        ],
+        "rotation": 330,
+        "scale": 0.49
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -10.3,
+          -74.5
+        ],
+        "rotation": 240,
+        "scale": 0.68
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -8.2,
+          -97.2
+        ],
+        "rotation": 0,
+        "scale": 0.84
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          -6.1,
+          -83.2
+        ],
+        "rotation": 285,
+        "scale": 0.71
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          1.3,
+          -74.0
+        ],
+        "rotation": 30,
+        "scale": 0.57
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          6.6,
+          -72.0
+        ],
+        "rotation": 195,
+        "scale": 0.32
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -11.8,
+          -97.7
+        ],
+        "rotation": 270,
+        "scale": 0.52
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          -9.6,
+          -92.8
+        ],
+        "rotation": 120,
+        "scale": 0.79
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          7.5,
+          -90.9
+        ],
+        "rotation": 165,
+        "scale": 0.82
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          12.5,
+          -97.6
+        ],
+        "rotation": 240,
+        "scale": 0.47
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          14.8,
+          -96.9
+        ],
+        "rotation": 135,
+        "scale": 0.86
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -6.1,
+          -93.2
+        ],
+        "rotation": 45,
+        "scale": 0.46
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          3.0,
+          -76.1
+        ],
+        "rotation": 300,
+        "scale": 0.61
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          5.1,
+          -78.8
+        ],
+        "rotation": 105,
+        "scale": 0.39
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          4.4,
+          -78.2
+        ],
+        "rotation": 165,
+        "scale": 0.31
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          13.3,
+          -90.1
+        ],
+        "rotation": 0,
+        "scale": 0.76
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          -8.3,
+          -88.4
+        ],
+        "rotation": 75,
+        "scale": 0.82
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          8.1,
+          -94.0
+        ],
+        "rotation": 30,
+        "scale": 0.82
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -6.0,
+          -85.5
+        ],
+        "rotation": 210,
+        "scale": 0.83
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          1.3,
+          -86.2
+        ],
+        "rotation": 60,
+        "scale": 0.4
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          14.4,
+          -87.4
+        ],
+        "rotation": 0,
+        "scale": 0.89
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -7.1,
+          -85.2
+        ],
+        "rotation": 210,
+        "scale": 0.56
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          -15.0,
+          -70.7
+        ],
+        "rotation": 150,
+        "scale": 0.64
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -9.1,
+          -76.4
+        ],
+        "rotation": 330,
+        "scale": 0.72
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          -8.5,
+          -98.5
+        ],
+        "rotation": 240,
+        "scale": 0.56
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          -12.1,
+          -92.2
+        ],
+        "rotation": 60,
+        "scale": 0.76
+      },
+      {
+        "piece": "RockP_4",
+        "position": [
+          -10.6,
+          -71.6
+        ],
+        "rotation": 30,
+        "scale": 0.3
+      },
+      {
+        "piece": "RockP_2",
+        "position": [
+          7.1,
+          -79.8
+        ],
+        "rotation": 105,
+        "scale": 0.57
+      },
+      {
+        "piece": "RockP_6",
+        "position": [
+          -10.7,
+          -93.7
+        ],
+        "rotation": 255,
+        "scale": 0.5
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          -12.1,
+          -80.7
+        ],
+        "rotation": 345,
+        "scale": 0.4
+      },
+      {
+        "piece": "RockP_3",
+        "position": [
+          9.6,
+          -97.8
+        ],
+        "rotation": 285,
+        "scale": 0.44
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -4.0,
+          -85.2
+        ],
+        "rotation": 165,
+        "scale": 0.51
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -10.6,
+          -69.8
+        ],
+        "rotation": 270,
+        "scale": 0.58
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -10.8,
+          -71.4
+        ],
+        "rotation": 30,
+        "scale": 0.47
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          15.2,
+          -96.1
+        ],
+        "rotation": 240,
+        "scale": 0.37
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          -5.3,
+          -89.4
+        ],
+        "rotation": 285,
+        "scale": 0.55
+      },
+      {
+        "piece": "RockP_1",
+        "position": [
+          -5.8,
+          -77.3
+        ],
+        "rotation": 75,
+        "scale": 0.65
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          6.6,
+          -78.0
+        ],
+        "rotation": 45,
+        "scale": 0.53
+      },
+      {
+        "piece": "RockP_5",
+        "position": [
+          12.9,
+          -88.4
+        ],
+        "rotation": 330,
+        "scale": 0.64
+      },
+      {
+        "piece": "Crystal_B_18",
+        "position": [
+          2.5,
+          -1.5
+        ],
+        "rotation": 105,
+        "scale": 1.14
+      },
+      {
+        "piece": "Crystal_B_4",
+        "position": [
+          3.6,
+          -1.3
+        ],
+        "rotation": 105,
+        "scale": 1.09
+      },
+      {
+        "piece": "Crystal_B_24",
+        "position": [
+          4.2,
+          -2.9
+        ],
+        "rotation": 255,
+        "scale": 1.37
+      },
+      {
+        "piece": "Crystal_B_21",
+        "position": [
+          4.0,
+          -1.9
+        ],
+        "rotation": 30,
+        "scale": 1.6
+      },
+      {
+        "piece": "Crystal_P_6",
+        "position": [
+          1.0,
+          2.0
+        ],
+        "rotation": 345,
+        "scale": 1.69
+      },
+      {
+        "piece": "Crystal_P_5",
+        "position": [
+          0.3,
+          2.3
+        ],
+        "rotation": 15,
+        "scale": 1.18
+      },
+      {
+        "piece": "Crystal_B_26",
+        "position": [
+          2.1,
+          -23.3
+        ],
+        "rotation": 165,
+        "scale": 1.53
+      },
+      {
+        "piece": "Crystal_B_27",
+        "position": [
+          0.6,
+          -23.9
+        ],
+        "rotation": 180,
+        "scale": 1.62
+      },
+      {
+        "piece": "Crystal_B_27",
+        "position": [
+          -0.6,
+          -24.3
+        ],
+        "rotation": 15,
+        "scale": 1.81
+      },
+      {
+        "piece": "Crystal_B_15",
+        "position": [
+          1.1,
+          -23.1
+        ],
+        "rotation": 330,
+        "scale": 1.4
+      },
+      {
+        "piece": "Crystal_B_17",
+        "position": [
+          -4.1,
+          -14.3
+        ],
+        "rotation": 90,
+        "scale": 1.88
+      },
+      {
+        "piece": "Crystal_B_25",
+        "position": [
+          -4.4,
+          -13.2
+        ],
+        "rotation": 75,
+        "scale": 1.71
+      },
+      {
+        "piece": "Crystal_B_20",
+        "position": [
+          -1.9,
+          -12.8
+        ],
+        "rotation": 180,
+        "scale": 1.47
+      },
+      {
+        "piece": "Crystal_B_21",
+        "position": [
+          1.9,
+          -10.2
+        ],
+        "rotation": 330,
+        "scale": 1.26
+      },
+      {
+        "piece": "Crystal_B_9",
+        "position": [
+          2.6,
+          -10.5
+        ],
+        "rotation": 120,
+        "scale": 1.97
+      },
+      {
+        "piece": "Crystal_B_14",
+        "position": [
+          3.1,
+          -12.3
+        ],
+        "rotation": 195,
+        "scale": 1.08
+      },
+      {
+        "piece": "Crystal_B_28",
+        "position": [
+          5.0,
+          -16.8
+        ],
+        "rotation": 150,
+        "scale": 1.69
+      },
+      {
+        "piece": "Crystal_B_27",
+        "position": [
+          4.8,
+          -16.9
+        ],
+        "rotation": 225,
+        "scale": 1.97
+      },
+      {
+        "piece": "Crystal_B_25",
+        "position": [
+          5.6,
+          -16.8
+        ],
+        "rotation": 15,
+        "scale": 1.25
+      },
+      {
+        "piece": "Crystal_B_24",
+        "position": [
+          5.0,
+          -16.3
+        ],
+        "rotation": 75,
+        "scale": 1.83
+      },
+      {
+        "piece": "Crystal_B_17",
+        "position": [
+          1.8,
+          -21.9
+        ],
+        "rotation": 45,
+        "scale": 1.86
+      },
+      {
+        "piece": "Crystal_B_3",
+        "position": [
+          1.6,
+          -19.8
+        ],
+        "rotation": 330,
+        "scale": 1.44
+      },
+      {
+        "piece": "Crystal_B_25",
+        "position": [
+          20.4,
+          -23.8
+        ],
+        "rotation": 300,
+        "scale": 1.19
+      },
+      {
+        "piece": "Crystal_B_19",
+        "position": [
+          20.9,
+          -24.7
+        ],
+        "rotation": 75,
+        "scale": 1.62
+      },
+      {
+        "piece": "Crystal_B_19",
+        "position": [
+          20.3,
+          -24.6
+        ],
+        "rotation": 285,
+        "scale": 1.19
+      },
+      {
+        "piece": "Crystal_B_15",
+        "position": [
+          23.5,
+          -19.5
+        ],
+        "rotation": 345,
+        "scale": 1.01
+      },
+      {
+        "piece": "Crystal_B_16",
+        "position": [
+          24.1,
+          -19.6
+        ],
+        "rotation": 135,
+        "scale": 1.16
+      },
+      {
+        "piece": "Crystal_B_6",
+        "position": [
+          22.9,
+          -19.7
+        ],
+        "rotation": 120,
+        "scale": 1.53
+      },
+      {
+        "piece": "Crystal_B_24",
+        "position": [
+          23.1,
+          -19.4
+        ],
+        "rotation": 345,
+        "scale": 1.12
+      },
+      {
+        "piece": "Crystal_B_1",
+        "position": [
+          22.1,
+          -19.4
+        ],
+        "rotation": 210,
+        "scale": 1.37
+      },
+      {
+        "piece": "Crystal_B_25",
+        "position": [
+          21.8,
+          -19.5
+        ],
+        "rotation": 165,
+        "scale": 1.77
+      },
+      {
+        "piece": "Crystal_B_5",
+        "position": [
+          21.4,
+          -19.4
+        ],
+        "rotation": 195,
+        "scale": 1.72
+      },
+      {
+        "piece": "Crystal_P_8",
+        "position": [
+          21.5,
+          -20.0
+        ],
+        "rotation": 0,
+        "scale": 1.13
+      },
+      {
+        "piece": "Crystal_P_12",
+        "position": [
+          21.0,
+          -20.4
+        ],
+        "rotation": 270,
+        "scale": 1.19
+      },
+      {
+        "piece": "Crystal_B_6",
+        "position": [
+          22.1,
+          -25.4
+        ],
+        "rotation": 255,
+        "scale": 1.28
+      },
+      {
+        "piece": "Crystal_B_21",
+        "position": [
+          22.8,
+          -24.9
+        ],
+        "rotation": 45,
+        "scale": 1.26
+      },
+      {
+        "piece": "Crystal_B_14",
+        "position": [
+          22.6,
+          -25.6
+        ],
+        "rotation": 270,
+        "scale": 1.17
+      },
+      {
+        "piece": "Crystal_B_1",
+        "position": [
+          21.7,
+          -24.2
+        ],
+        "rotation": 105,
+        "scale": 1.01
+      },
+      {
+        "piece": "Crystal_P_16",
+        "position": [
+          25.6,
+          -21.3
+        ],
+        "rotation": 315,
+        "scale": 1.62
+      },
+      {
+        "piece": "Crystal_P_1",
+        "position": [
+          24.5,
+          -21.7
+        ],
+        "rotation": 165,
+        "scale": 1.12
+      },
+      {
+        "piece": "Crystal_P_15",
+        "position": [
+          8.2,
+          -40.0
+        ],
+        "rotation": 195,
+        "scale": 1.65
+      },
+      {
+        "piece": "Crystal_P_16",
+        "position": [
+          8.1,
+          -41.4
+        ],
+        "rotation": 270,
+        "scale": 1.89
+      },
+      {
+        "piece": "Crystal_P_10",
+        "position": [
+          9.2,
+          -40.5
+        ],
+        "rotation": 30,
+        "scale": 1.42
+      },
+      {
+        "piece": "Crystal_B_18",
+        "position": [
+          3.2,
+          -49.2
+        ],
+        "rotation": 30,
+        "scale": 1.0
+      },
+      {
+        "piece": "Crystal_B_24",
+        "position": [
+          2.8,
+          -50.6
+        ],
+        "rotation": 15,
+        "scale": 1.13
+      },
+      {
+        "piece": "Crystal_B_16",
+        "position": [
+          3.4,
+          -51.4
+        ],
+        "rotation": 225,
+        "scale": 1.75
+      },
+      {
+        "piece": "Crystal_B_17",
+        "position": [
+          13.0,
+          -52.6
+        ],
+        "rotation": 135,
+        "scale": 1.63
+      },
+      {
+        "piece": "Crystal_B_19",
+        "position": [
+          13.1,
+          -53.4
+        ],
+        "rotation": 315,
+        "scale": 1.59
+      },
+      {
+        "piece": "Crystal_B_26",
+        "position": [
+          -14.6,
+          -49.2
+        ],
+        "rotation": 15,
+        "scale": 1.11
+      },
+      {
+        "piece": "Crystal_B_5",
+        "position": [
+          -15.4,
+          -48.5
+        ],
+        "rotation": 255,
+        "scale": 1.23
+      },
+      {
+        "piece": "Crystal_B_6",
+        "position": [
+          -14.6,
+          -49.7
+        ],
+        "rotation": 0,
+        "scale": 1.44
+      },
+      {
+        "piece": "Crystal_P_17",
+        "position": [
+          2.6,
+          -48.2
+        ],
+        "rotation": 105,
+        "scale": 1.95
+      },
+      {
+        "piece": "Crystal_P_4",
+        "position": [
+          1.9,
+          -47.5
+        ],
+        "rotation": 345,
+        "scale": 1.15
+      },
+      {
+        "piece": "Crystal_P_7",
+        "position": [
+          2.9,
+          -47.6
+        ],
+        "rotation": 195,
+        "scale": 1.82
+      },
+      {
+        "piece": "Crystal_P_10",
+        "position": [
+          2.6,
+          -47.5
+        ],
+        "rotation": 315,
+        "scale": 1.1
+      },
+      {
+        "piece": "Crystal_B_3",
+        "position": [
+          -6.6,
+          -54.8
+        ],
+        "rotation": 315,
+        "scale": 1.58
+      },
+      {
+        "piece": "Crystal_B_9",
+        "position": [
+          -5.9,
+          -56.6
+        ],
+        "rotation": 270,
+        "scale": 1.46
+      },
+      {
+        "piece": "Crystal_B_5",
+        "position": [
+          -30.3,
+          -54.5
+        ],
+        "rotation": 75,
+        "scale": 1.8
+      },
+      {
+        "piece": "Crystal_B_22",
+        "position": [
+          -30.1,
+          -53.7
+        ],
+        "rotation": 195,
+        "scale": 1.17
+      },
+      {
+        "piece": "Crystal_B_9",
+        "position": [
+          -28.9,
+          -52.9
+        ],
+        "rotation": 30,
+        "scale": 1.69
+      },
+      {
+        "piece": "Crystal_B_5",
+        "position": [
+          -29.3,
+          -53.3
+        ],
+        "rotation": 0,
+        "scale": 1.82
+      },
+      {
+        "piece": "Crystal_P_6",
+        "position": [
+          -31.1,
+          -53.0
+        ],
+        "rotation": 165,
+        "scale": 1.16
+      },
+      {
+        "piece": "Crystal_P_10",
+        "position": [
+          -31.5,
+          -53.8
+        ],
+        "rotation": 0,
+        "scale": 1.27
+      },
+      {
+        "piece": "Crystal_P_23",
+        "position": [
+          -31.5,
+          -54.6
+        ],
+        "rotation": 45,
+        "scale": 1.89
+      },
+      {
+        "piece": "Crystal_P_14",
+        "position": [
+          -32.8,
+          -53.5
+        ],
+        "rotation": 270,
+        "scale": 1.04
+      },
+      {
+        "piece": "Crystal_P_6",
+        "position": [
+          -30.4,
+          -55.5
+        ],
+        "rotation": 75,
+        "scale": 1.49
+      },
+      {
+        "piece": "Crystal_P_25",
+        "position": [
+          -31.9,
+          -56.5
+        ],
+        "rotation": 330,
+        "scale": 1.84
+      },
+      {
+        "piece": "Crystal_B_16",
+        "position": [
+          -31.5,
+          -53.2
+        ],
+        "rotation": 210,
+        "scale": 1.79
+      },
+      {
+        "piece": "Crystal_B_5",
+        "position": [
+          -31.8,
+          -53.0
+        ],
+        "rotation": 330,
+        "scale": 1.69
+      },
+      {
+        "piece": "Crystal_B_27",
+        "position": [
+          -0.9,
+          -92.7
+        ],
+        "rotation": 285,
+        "scale": 1.06
+      },
+      {
+        "piece": "Crystal_B_19",
+        "position": [
+          -0.2,
+          -93.0
+        ],
+        "rotation": 45,
+        "scale": 1.37
+      },
+      {
+        "piece": "Crystal_B_16",
+        "position": [
+          -0.1,
+          -94.5
+        ],
+        "rotation": 165,
+        "scale": 1.82
+      },
+      {
+        "piece": "Crystal_B_1",
+        "position": [
+          6.5,
+          -74.9
+        ],
+        "rotation": 150,
+        "scale": 1.14
+      },
+      {
+        "piece": "Crystal_B_3",
+        "position": [
+          6.1,
+          -73.5
+        ],
+        "rotation": 270,
+        "scale": 1.12
+      },
+      {
+        "piece": "Crystal_P_4",
+        "position": [
+          -8.8,
+          -95.8
+        ],
+        "rotation": 135,
+        "scale": 1.71
+      },
+      {
+        "piece": "Crystal_P_20",
+        "position": [
+          -8.5,
+          -95.8
+        ],
+        "rotation": 135,
+        "scale": 1.74
+      },
+      {
+        "piece": "Crystal_P_20",
+        "position": [
+          -9.7,
+          -95.6
+        ],
+        "rotation": 30,
+        "scale": 1.37
+      },
+      {
+        "piece": "Crystal_P_21",
+        "position": [
+          -8.6,
+          -96.7
+        ],
+        "rotation": 105,
+        "scale": 1.68
+      },
+      {
+        "piece": "Crystal_B_24",
+        "position": [
+          -13.3,
+          -76.2
+        ],
+        "rotation": 30,
+        "scale": 1.3
+      },
+      {
+        "piece": "Crystal_B_2",
+        "position": [
+          -12.2,
+          -75.3
+        ],
+        "rotation": 210,
+        "scale": 1.83
+      },
+      {
+        "piece": "Crystal_B_3",
+        "position": [
+          -12.7,
+          -76.7
+        ],
+        "rotation": 180,
+        "scale": 1.38
+      },
+      {
+        "piece": "Crystal_B_18",
+        "position": [
+          -13.5,
+          -75.3
+        ],
+        "rotation": 240,
+        "scale": 1.17
+      },
+      {
+        "piece": "Crystal_P_25",
+        "position": [
+          -14.7,
+          -93.4
+        ],
+        "rotation": 30,
+        "scale": 1.48
+      },
+      {
+        "piece": "Crystal_P_8",
+        "position": [
+          -14.2,
+          -94.4
+        ],
+        "rotation": 165,
+        "scale": 1.85
+      },
+      {
+        "piece": "Crystal_P_20",
+        "position": [
+          -12.1,
+          -94.7
+        ],
+        "rotation": 150,
+        "scale": 1.98
+      },
+      {
+        "piece": "Crystal_P_20",
+        "position": [
+          -13.3,
+          -93.5
+        ],
+        "rotation": 315,
+        "scale": 1.84
+      },
+      {
+        "piece": "Crystal_P_21",
+        "position": [
+          -6.8,
+          -87.9
+        ],
+        "rotation": 210,
+        "scale": 1.06
+      },
+      {
+        "piece": "Crystal_P_19",
+        "position": [
+          -8.7,
+          -88.2
+        ],
+        "rotation": 195,
+        "scale": 1.52
+      },
+      {
+        "piece": "Crystal_B_7",
+        "position": [
+          0.8,
+          -71.3
+        ],
+        "rotation": 120,
+        "scale": 1.45
+      },
+      {
+        "piece": "Crystal_B_24",
+        "position": [
+          0.6,
+          -72.4
+        ],
+        "rotation": 225,
+        "scale": 1.02
+      },
+      {
+        "piece": "Crystal_B_9",
+        "position": [
+          6.1,
+          -76.6
+        ],
+        "rotation": 345,
+        "scale": 1.53
+      },
+      {
+        "piece": "Crystal_B_24",
+        "position": [
+          6.1,
+          -75.0
+        ],
+        "rotation": 0,
+        "scale": 1.42
+      },
+      {
+        "piece": "Crystal_B_5",
+        "position": [
+          -6.1,
+          -89.3
+        ],
+        "rotation": 75,
+        "scale": 1.87
+      },
+      {
+        "piece": "Crystal_B_12",
+        "position": [
+          -5.9,
+          -89.4
+        ],
+        "rotation": 330,
+        "scale": 1.3
+      },
+      {
+        "piece": "Crystal_B_4",
+        "position": [
+          22,
+          -26
+        ],
+        "rotation": 30,
+        "scale": 3.2,
+        "solid": [
+          1.92,
+          1.92
+        ]
+      },
+      {
+        "piece": "Crystal_B_12",
+        "position": [
+          28,
+          -19
+        ],
+        "rotation": 100,
+        "scale": 2.6,
+        "solid": [
+          1.56,
+          1.56
+        ]
+      },
+      {
+        "piece": "Crystal_B_16",
+        "position": [
+          -6,
+          -90
+        ],
+        "rotation": 0,
+        "scale": 3.6,
+        "solid": [
+          2.16,
+          2.16
+        ]
+      },
+      {
+        "piece": "Crystal_B_21",
+        "position": [
+          8,
+          -92
+        ],
+        "rotation": 45,
+        "scale": 3.0,
+        "solid": [
+          1.7999999999999998,
+          1.7999999999999998
+        ]
+      },
+      {
+        "piece": "Crystal_B_3",
+        "position": [
+          -12,
+          -96
+        ],
+        "rotation": 200,
+        "scale": 3.4,
+        "solid": [
+          2.04,
+          2.04
+        ]
+      },
+      {
+        "piece": "Cart_Wood",
+        "position": [
+          -29,
+          -50
+        ],
+        "rotation": 40,
+        "solid": [
+          2.0,
+          1.2
+        ]
+      },
+      {
+        "piece": "Cart_Wood",
+        "position": [
+          6,
+          -12
+        ],
+        "rotation": 100,
+        "solid": [
+          2.0,
+          1.2
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -24,
+          -57
+        ],
+        "scale": 1.0,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Beer_Barrel",
+        "position": [
+          -30,
+          -56
+        ],
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Bucket_Crate",
+        "position": [
+          -23,
+          -47
+        ],
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Whetstone",
+        "position": [
+          -4,
+          4
+        ],
+        "scale": 2.0
+      },
+      {
+        "piece": "Pr_BrokenPillar1",
+        "position": [
+          -8,
+          -36
+        ],
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar2",
+        "position": [
+          9,
+          -36
+        ],
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar1",
+        "position": [
+          -9,
+          -66
+        ],
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar2",
+        "position": [
+          9,
+          -66
+        ],
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          -3,
+          3
+        ],
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          3,
+          -34
+        ],
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          -3,
+          -66
+        ],
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          3.6,
+          -1.5
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.7,
+          0.4,
+          1.0
+        ],
+        "position": [
+          -0.0,
+          2.3
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          0.9,
+          -24.0
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          -3.1,
+          -13.7
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          2.5,
+          -11.5
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          4.9,
+          -17.0
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          0.6,
+          -20.9
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          20.4,
+          -24.7
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          23.1,
+          -19.4
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          22.0,
+          -19.3
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.7,
+          0.4,
+          1.0
+        ],
+        "position": [
+          21.6,
+          -19.9
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          22.2,
+          -24.6
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.7,
+          0.4,
+          1.0
+        ],
+        "position": [
+          24.9,
+          -21.9
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.7,
+          0.4,
+          1.0
+        ],
+        "position": [
+          8.9,
+          -41.1
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          2.7,
+          -50.5
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          12.9,
+          -52.9
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          -14.6,
+          -49.1
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.7,
+          0.4,
+          1.0
+        ],
+        "position": [
+          2.7,
+          -48.1
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          -6.4,
+          -55.5
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          -29.8,
+          -53.7
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.7,
+          0.4,
+          1.0
+        ],
+        "position": [
+          -31.5,
+          -53.8
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.7,
+          0.4,
+          1.0
+        ],
+        "position": [
+          -31.0,
+          -55.3
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          -31.4,
+          -52.7
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          0.1,
+          -93.9
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          6.6,
+          -74.4
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.7,
+          0.4,
+          1.0
+        ],
+        "position": [
+          -8.5,
+          -96.1
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          -13.2,
+          -76.1
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.7,
+          0.4,
+          1.0
+        ],
+        "position": [
+          -13.3,
+          -93.8
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.7,
+          0.4,
+          1.0
+        ],
+        "position": [
+          -7.8,
+          -87.4
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          1.0,
+          -72.1
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          6.1,
+          -75.8
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          -5.2,
+          -88.3
+        ],
+        "range": 9.0,
+        "energy": 1.6,
+        "y": 1.2
+      },
+      {
+        "light": [
+          0.3,
+          0.6,
+          1.0
+        ],
+        "position": [
+          24,
+          -22
+        ],
+        "range": 12.0,
+        "energy": 2.4,
+        "y": 1.5
+      },
+      {
+        "light": [
+          0.7,
+          0.4,
+          1.0
+        ],
+        "position": [
+          0,
+          -92
+        ],
+        "range": 16.0,
+        "energy": 3.0,
+        "y": 2.0
+      },
+      {
+        "light": [
+          1.0,
+          0.7,
+          0.35
+        ],
+        "position": [
+          -3,
+          3
+        ],
+        "range": 8.0,
+        "energy": 1.2,
+        "y": 2.2
+      },
+      {
+        "light": [
+          1.0,
+          0.7,
+          0.35
+        ],
+        "position": [
+          3,
+          -34
+        ],
+        "range": 8.0,
+        "energy": 1.2,
+        "y": 2.2
+      },
+      {
+        "light": [
+          1.0,
+          0.7,
+          0.35
+        ],
+        "position": [
+          -3,
+          -66
+        ],
+        "range": 8.0,
+        "energy": 1.2,
+        "y": 2.2
       }
     ],
     "passive": true

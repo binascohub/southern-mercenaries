@@ -1993,7 +1993,7 @@ msgid "DLG_SERVICE_BESTIARY"
 msgstr "Bestiary"
 
 msgid "BEAST_PLAGUE_RAT"
-msgstr "Plague Rat"
+msgstr "Plague Frog"
 
 msgid "BEAST_PLAGUE_RAT_LEGEND"
 msgstr "In medieval Europe rats were tied to the Black Death: their fleas spread the plague that killed much of the population. Here they are the Spider Sorcerer's familiars, tainted by his pact with the demon — bigger, red-eyed, attacking in swarms."
@@ -2002,7 +2002,7 @@ msgid "BEAST_PLAGUE_RAT_HINT"
 msgstr "A rat's a rat: it fears fire. Bring a torch... or a mage who knows how to light one."
 
 msgid "BEAST_MUTANT_RAT"
-msgstr "Mutant Rat"
+msgstr "Mutant Frog"
 
 msgid "BEAST_MUTANT_RAT_LEGEND"
 msgstr "The same plague superstition; tales of rats as big as dogs in the cellars are common in port towns. These are the Queen's older young, grown to the size of a hunting dog."
@@ -2294,10 +2294,10 @@ msgid "TIP_MOVE_PAD"
 msgstr "Move with the left stick and aim with the right one."
 
 msgid "MONSTER_PLAGUE_RAT"
-msgstr "Plague Rat"
+msgstr "Plague Frog"
 
 msgid "MONSTER_MUTANT_RAT"
-msgstr "Mutant Rat"
+msgstr "Mutant Frog"
 
 msgid "MONSTER_PLAGUE_BAT"
 msgstr "Plague Bat"
@@ -2604,3 +2604,15 @@ msgstr "Ferncroft — half a dozen houses, one hunter and one tanner. Strangers 
 
 msgid "HUD_QUEST_PLAIN"
 msgstr "Quest: {quest}"
+
+msgid "PROP_COIN_BAG"
+msgstr "Coin bag"
+
+msgid "ARENA_MINE"
+msgstr "Crystal Mine"
+
+msgid "PROP_TO_MINE"
+msgstr "Path to the Mine"
+
+msgid "MONSTER_CRYSTAL_GOLEM"
+msgstr "Crystal Golem"

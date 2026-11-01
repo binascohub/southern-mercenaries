@@ -1,3 +1,4 @@
 Pl_Grass1.glb … Pl_Grass3.glb — "Grass Pack 01" by Yughues (Nobiax), CC0 1.0: https://opengameart.org/content/grass-pack-01 (tools/assets/build_grass.py)
 Pr_Sawmill.glb — "Medieval waterpowered sawmill" by Daniel Andersson (submitted by hreikin), CC0 1.0: https://opengameart.org/content/medieval-waterpowered-sawmill (tools/assets/build_sawmill.py; first frame of the animation, one mesh)
 Pr_Barricade.glb — "Barricade" by Sullivan, used under CC BY 3.0 (also offered under CC BY-SA 3.0, GPL 2.0/3.0): https://opengameart.org/content/barricade (tools/assets/build_barricade.py)
+Pr_CartLarge.glb, Pr_CartSmall.glb — "Carts" by cemkalyoncu, CC BY 3.0: https://opengameart.org/content/carts (tools/assets/build_carts.py; wheels in the first animation frame, one mesh per cart)

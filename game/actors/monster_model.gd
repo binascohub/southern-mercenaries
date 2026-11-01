@@ -28,6 +28,10 @@ const FAMILIES := {
 	# arquivo; o corpo todo balança, avança e cai por código (`static`). Chefe do Esgoto no lugar da Rainha.
 	"demon": {"scene": "res://assets/models/monsters/demon_wizard.glb", "scale": 0.8, "static": true,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Sapo (Frog Guy, CC0): malha única de pé sem animação (tools/assets/build_frog.py); balança, avança e cai
+	# por código (`static`); 1 m no arquivo. Toma o lugar dos ratos do Esgoto (os ratos viraram cenário).
+	"frog": {"scene": "res://assets/models/monsters/frog.glb", "scale": 0.4, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
 	"gator": {"scene": "res://assets/models/monsters/gator.glb", "scale": 0.75,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
 	# Monstro da Floresta (cdmir, CC0): gigante de casca e pedra com uma árvore nas

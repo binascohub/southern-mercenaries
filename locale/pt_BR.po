@@ -1993,7 +1993,7 @@ msgid "DLG_SERVICE_BESTIARY"
 msgstr "Bestiário"
 
 msgid "BEAST_PLAGUE_RAT"
-msgstr "Rato Pestilento"
+msgstr "Sapo Pestilento"
 
 msgid "BEAST_PLAGUE_RAT_LEGEND"
 msgstr "Na Europa medieval, os ratos ficaram ligados à Peste Negra: as pulgas deles espalharam a peste que matou boa parte da população. Aqui são os familiares do Feiticeiro-Aranha, contaminados pelo pacto dele com o demônio: maiores, de olhos vermelhos, atacam em enxames."
@@ -2002,7 +2002,7 @@ msgid "BEAST_PLAGUE_RAT_HINT"
 msgstr "Rato é rato: tem medo de fogo. Leve uma tocha… ou um mago que saiba acender uma."
 
 msgid "BEAST_MUTANT_RAT"
-msgstr "Ratazana Mutante"
+msgstr "Sapo Mutante"
 
 msgid "BEAST_MUTANT_RAT_LEGEND"
 msgstr "A mesma superstição da peste; histórias de ratos do tamanho de cães nos porões são comuns em cidades portuárias. São os ratos mais velhos do Feiticeiro, do tamanho de um cão de caça."
@@ -2294,10 +2294,10 @@ msgid "TIP_MOVE_PAD"
 msgstr "Ande com o analógico esquerdo e mire com o direito."
 
 msgid "MONSTER_PLAGUE_RAT"
-msgstr "Rato Pestilento"
+msgstr "Sapo Pestilento"
 
 msgid "MONSTER_MUTANT_RAT"
-msgstr "Ratazana Mutante"
+msgstr "Sapo Mutante"
 
 msgid "MONSTER_PLAGUE_BAT"
 msgstr "Morcego Pestilento"
@@ -2604,3 +2604,15 @@ msgstr "Ferncroft — meia dúzia de casas, um caçador e uma curtidora. Foraste
 
 msgid "HUD_QUEST_PLAIN"
 msgstr "Missão: {quest}"
+
+msgid "PROP_COIN_BAG"
+msgstr "Bolsa de moedas"
+
+msgid "ARENA_MINE"
+msgstr "Mina de Cristais"
+
+msgid "PROP_TO_MINE"
+msgstr "Caminho para a Mina"
+
+msgid "MONSTER_CRYSTAL_GOLEM"
+msgstr "Golem de Cristal"

@@ -195,5 +195,16 @@
     ],
     "elemental_potion_share": 0.0,
     "valuable_chance": 0.0
+  },
+  "coin_bag": {
+    "_comment": "Bolsa de moedas (uma por mapa, escolhida por 'table' no objeto): sempre solta ouro, mais nas áreas mais fundas.",
+    "outcomes": {
+      "gold": 100
+    },
+    "gold": {
+      "min": 40,
+      "max": 70,
+      "per_level": 8.0
+    }
   }
 }

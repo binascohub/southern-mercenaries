@@ -205,9 +205,11 @@ static func icon(item: Variant) -> Texture2D:
 
 ## Ícone de equipamento: a lança do Cavaleiro aparece como a espada do rank do material (3D Swords Pack, CC0).
 static func equipment_icon(item: Dictionary) -> Texture2D:
-	if item.get("kind", "") != EQUIPMENT or String(item.get("base", "")) != "lance":
+	# Espada do Cavaleiro (3D Swords Pack, CC0) e adaga do Ninja (Iron Knife, CC0; só o rank D tem ícone).
+	var prefix: String = {"lance": "sword", "daggers": "dagger"}.get(String(item.get("base", "")), "")
+	if item.get("kind", "") != EQUIPMENT or prefix == "":
 		return null
-	var path := "res://assets/ui/icons/sword_%s.png" % NinjaGear.rank_of(String(item.get("material", "")))
+	var path := "res://assets/ui/icons/%s_%s.png" % [prefix, NinjaGear.rank_of(String(item.get("material", "")))]
 	return load(path) as Texture2D if ResourceLoader.exists(path) else null
 
 

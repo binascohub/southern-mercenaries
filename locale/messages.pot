@@ -2603,3 +2603,6 @@ msgstr ""
 
 msgid "HUD_QUEST_PLAIN"
 msgstr ""
+
+msgid "PROP_COIN_BAG"
+msgstr ""

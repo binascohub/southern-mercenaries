@@ -114,12 +114,19 @@ const MODELS := {
 	# Macumbeiro de Tortuga (Rigged Textured Mage, thecubber, CC BY-SA 3.0): mago de capuz e manto
 	# escuro com a trama celta nas costas, parado na pose do arquivo (sem animação).
 	"voodoo_priest": {"scene": "res://assets/models/characters/voodoo_mage.glb", "scale": 1.0, "poses": {}},
+	# Defensor animado (Animated Defender aka Brigand, Danimal sobre o Brigand de anthonymyers, CC BY 3.0): guarda da
+	# Capital Real, com alabarda; anda em ronda (walk) ou fica de guarda (idle). Criado por tools/assets/build_defender.py.
+	"defender": {"scene": "res://assets/models/characters/defender.glb", "scale": 1.07,
+		"poses": {"walk": "walk", "run": "run", "idle": "idle", "talk": "idle", "melee": "attack", "scared": "scared"}},
 	"guard": {"scene": "res://assets/models/characters/brigand_guard.glb", "scale": 1.0, "poses": {}},
 	# Aranhinha do esgoto (Spider animated, pantherone, CC BY 3.0): não ataca,
-	# só anda pelo chão. Arquivo de 1 m -> 40 cm, avermelhada (decisão do autor).
+	# só anda pelo chão. Arquivo de 1 m -> 40 cm, preta (decisão do autor).
 	"spider": {"scene": "res://assets/models/monsters/spider.glb", "scale": 0.4,
 		"poses": {"walk": "walk", "idle": "idle", "talk": "idle"},
-		"colors": {"Spider": [0.55, 0.1, 0.06]}},
+		"colors": {"Spider": [0.03, 0.03, 0.035]}},
+	# Ratinho do esgoto (o mesmo modelo dos monstros antigos): não ataca, só cenário como as aranhas.
+	"rat": {"scene": "res://assets/models/monsters/rat.glb", "scale": 0.4,
+		"poses": {"walk": "walk", "idle": "idle", "talk": "idle"}},
 	# Atendente da Taverna (Bartender, cdmir, CC0): o mesmo modelo da visitante sentada, em pé
 	# atrás do balcão (a animação "stand" é criada por código: o arquivo só tem a sentada).
 	"bartender": {"scene": "res://assets/models/characters/visitor_woman.glb", "scale": 0.116, "bartender": true,
