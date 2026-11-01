@@ -388,6 +388,39 @@ static func _summoner_body(skeleton: Skeleton3D, frame: Clothing.Frame, rank: St
 
 # --- Cabeça ------------------------------------------------------------------
 
+## Elmo do Cavaleiro por rank: peça Helm_N (D = 1 ... S = 5), virada para a frente do herói, com o
+## tamanho da cabeça e a cor do conjunto (aço no C, azulado no B, dourado no A, negro no S).
+const HELMETS := {"D": "Helm_1", "C": "Helm_2", "B": "Helm_3", "A": "Helm_4", "S": "Helm_5"}
+const HELMET_TINT := {"D": Color(0.85, 0.75, 0.65), "C": Color(1, 1, 1), "B": Color(0.82, 0.9, 1.1), "A": Color(1.25, 1.0, 0.55), "S": Color(0.3, 0.28, 0.32)}
+
+
+static func _helmet(skeleton: Skeleton3D, bone: String, frame: Clothing.Frame, rank: String, centre: Vector3, radius: float, _p: Dictionary) -> Node:
+	var piece_name: String = HELMETS.get(rank, "")
+	if piece_name == "" or not Kit.has(piece_name):
+		return null
+	var piece := Kit.piece(piece_name)
+	var tint: Color = HELMET_TINT[rank]
+	for node in piece.find_children("*", "MeshInstance3D", true, false):
+		var mesh := node as MeshInstance3D
+		for i in mesh.get_surface_override_material_count():
+			var source := mesh.get_active_material(i) as StandardMaterial3D
+			if source:
+				var copy := source.duplicate() as StandardMaterial3D
+				copy.albedo_color = tint
+				mesh.set_surface_override_material(i, copy)
+	# O elmo tem 0,30 m de frente a fundo: ajusta ao tamanho da cabeça do modelo.
+	var scale := radius * 2.3 / 0.3
+	var yaw := atan2(frame.forward.x, frame.forward.z)
+	var base := centre.y - radius * (0.9 if rank == "D" else 1.45)
+	var holder := BoneAttachment3D.new()
+	holder.bone_name = bone
+	skeleton.add_child(holder)
+	piece.transform = skeleton.get_bone_global_rest(skeleton.find_bone(bone)).affine_inverse() \
+		* Transform3D(Basis(Vector3.UP, yaw).scaled(Vector3.ONE * scale), Vector3(centre.x, base, centre.z))
+	holder.add_child(piece)
+	return holder
+
+
 static func _head(skeleton: Skeleton3D, frame: Clothing.Frame, class_id: String, rank: String) -> Array[Node]:
 	var p := _pal(class_id, rank)
 	var main: Color = p.main
@@ -415,17 +448,19 @@ static func _head(skeleton: Skeleton3D, frame: Clothing.Frame, class_id: String,
 					made.append(NinjaGear._attach(skeleton, bone, Clothing._tube(frame, centre + Vector3(0, radius * 0.2, 0), centre + Vector3(0, radius * 0.38, 0),
 						[[0.0, radius * 0.7], [1.0, radius * 0.7]], trim, trim, true), "metal", 0.6))
 		"knight":
-			if rank != "D":
+			# Elmos anglo-saxões (Lotnik / ulf, CC-BY 3.0), um por rank, tingidos pelo conjunto: D calota
+			# com crista, C nasal com faixa dourada, B nasal com malha, A e S com malha e protetor de rosto.
+			var holder := _helmet(skeleton, bone, frame, rank, centre, radius, p)
+			if holder != null:
+				made.append(holder)
+			elif rank != "D":
+				# Sem a peça (testes sem importação): calota e protetor simples.
 				var helm := Color(0.5, 0.52, 0.56) if rank == "C" else (main.darkened(0.1) if rank in ["A", "S"] else Color(0.66, 0.68, 0.72))
 				made.append(NinjaGear._attach(skeleton, bone, NinjaGear._dome(frame, centre + Vector3(0, radius * 0.38, 0), radius * 1.1, 0.0, helm, accent if rank != "C" else trim), "metal", 1.0))
-				if rank in ["B", "A", "S"]:
-					# Protetor de nariz e laterais.
-					made.append(NinjaGear._attach(skeleton, bone, Clothing._tube(frame, centre + frame.forward * (radius * 1.1) + Vector3(0, radius * 0.7, 0), centre + frame.forward * (radius * 1.1) + Vector3(0, radius * 0.1, 0),
-						[[0.0, radius * 0.07], [1.0, radius * 0.05]], helm, accent), "metal", 0.6))
-				if rank == "S":
-					for side in [1.0, -1.0]:
-						made.append(NinjaGear._attach(skeleton, bone, NinjaGear._horn(frame, centre, side, accent, h), "metal", 1.0))
-					made.append(NinjaGear._attach_glow(skeleton, bone, NinjaGear._eyes(frame, centre, radius, h), p.glow))
+			if rank == "S":
+				for side in [1.0, -1.0]:
+					made.append(NinjaGear._attach(skeleton, bone, NinjaGear._horn(frame, centre + Vector3(0, radius * 0.25, 0), side, accent, h), "metal", 1.0))
+				made.append(NinjaGear._attach_glow(skeleton, bone, NinjaGear._eyes(frame, centre, radius, h), p.glow))
 		"archer":
 			if rank == "A":
 				made.append(NinjaGear._attach(skeleton, "spine_03", GearKit.cowl(frame, origin, radius, main.lightened(0.05), trim, 0.05), "chain", 0.45))

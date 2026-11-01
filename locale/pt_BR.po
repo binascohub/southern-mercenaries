@@ -1854,6 +1854,15 @@ msgstr "Macumbeiro"
 msgid "DLG_VOODOO_1"
 msgstr "O outro lado também tem preço, amigo. Diga onde parou e eu risco o caminho de volta."
 
+msgid "NPC_PRIEST"
+msgstr "Padre"
+
+msgid "DLG_PRIEST_1"
+msgstr "Que a luz do reino guie seus passos, mercenário. Aqui, na Capital, até os pecadores têm um banco na igreja."
+
+msgid "DLG_PRIEST_2"
+msgstr "A guerra já passou, mas os mortos ainda pedem oração. Se voltar vivo da estrada, acenda uma vela por quem não voltou."
+
 msgid "DLG_SERVICE_PORTALS"
 msgstr "Portais"
 
@@ -2299,6 +2308,9 @@ msgstr "Sapo Pestilento"
 msgid "MONSTER_MUTANT_RAT"
 msgstr "Sapo Mutante"
 
+msgid "MONSTER_FUNGUS_UNCLE"
+msgstr "Tio Fungo"
+
 msgid "MONSTER_PLAGUE_BAT"
 msgstr "Morcego Pestilento"
 
@@ -2625,3 +2637,6 @@ msgstr "Passagem para as Docas"
 
 msgid "PROP_TO_PORT"
 msgstr "Voltar ao porto"
+
+msgid "MONSTER_CHITIN_BEAST"
+msgstr "Besta Quitinosa"

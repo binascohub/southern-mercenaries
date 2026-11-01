@@ -3,7 +3,8 @@ extends Node3D
 ## Modo espectador: abre uma área do jogo (padrão: o Cemitério) com uma câmera livre, sem herói à vista
 ## e sem interface, para olhar o mapa, os monstros e a decoração de perto.
 ##
-##   XDG_DATA_HOME=$(mktemp -d) godot --path . res://tools/spectator/spectator.tscn -- [area] [x y z]
+##   XDG_DATA_HOME=$(mktemp -d) godot --path . res://tools/spectator/spectator.tscn -- [area] [x y z [inclinação_graus]]
+## (inclinação: -26 padrão, -90 olha reto para baixo)
 ##
 ## O XDG_DATA_HOME temporário isola os saves e as configurações: a arena grava campanha e personagem em user://.
 ## Controles: W A S D andam, Q / E descem e sobem, Shift acelera; segure o botão direito do mouse e arraste para
@@ -49,7 +50,8 @@ func _ready() -> void:
 	var look := START_LOOK
 	if args.size() >= 4:
 		pos = Vector3(float(args[1]), float(args[2]), float(args[3]))
-		look = pos + Vector3(0, -0.5, -1)
+		var pitch_deg := float(args[4]) if args.size() >= 5 else -26.0
+		look = pos + Vector3(0, tan(deg_to_rad(pitch_deg)), -1) if pitch_deg > -89.0 else pos + Vector3(0, -1, -0.001)
 	_cam.global_position = pos
 	_cam.look_at(look)
 	_yaw = _cam.rotation.y

@@ -146,7 +146,7 @@ Ordem de expedição no jogo: **Tortuga → Floresta → Ruínas → Cemitério 
 |---|---|---|---|---|
 | 1 | `forest_01_path` | Floresta | Plantas Stylish Plants (CC0), obeliscos e pilares | Leshy |
 | 2 | `ruins_01_city` | Ruínas da Cidade | Cena inteira de Destroyed Walls (CC BY 3.0) com colisor por parede | Guardião do Cofre |
-| 3 | `cemetery_01_yard` | Cemitério | Medieval Props Textured (CC BY 3.0): lápides, cruzes, poço, cerca | Escorpião da Cripta |
+| 3 | `cemetery_01_yard` | Cemitério | Medieval Props Textured (CC BY 3.0): lápides, cruzes, poço, marcos de pedra; chão de terra escura e rede de trilhas de lajes do portão à cripta (três pistas que se separam e se cruzam, dois becos com baú); mapa de 64 x 104 m em quatro setores (A Campo de Covas, B Ossuário, C Cova dos Mortos, D Covil do Troll) | Senhor da Cripta |
 | 4 | `dark_forest_01_woods` | Floresta Escura | Mesma vegetação, mais densa e escura; **só o mapa** (sem monstros, chefe ou baús por enquanto) | — |
 | 5 | `fort_01_gate` | Forte | 3D Dungeon Tileset (CC BY-SA 3.0), grade de 20 x 26 células de 2,5 m; paredes baixas (0,85 m) por causa da câmera | Comandante Amaldiçoado |
 

@@ -114,6 +114,10 @@ const MODELS := {
 	# Macumbeiro de Tortuga (Rigged Textured Mage, thecubber, CC BY-SA 3.0): mago de capuz e manto
 	# escuro com a trama celta nas costas, parado na pose do arquivo (sem animação).
 	"voodoo_priest": {"scene": "res://assets/models/characters/voodoo_mage.glb", "scale": 1.0, "poses": {}},
+	# Padre da Capital (Monk, CDmir, CC0): monge de hábito, de pé, com a animação de parado
+	# ("idle"). Criado por tools/assets/build_monk.py.
+	"priest": {"scene": "res://assets/models/characters/monk.glb", "scale": 1.0,
+		"poses": {"idle": "idle", "talk": "idle", "stand": "idle"}},
 	# Defensor animado (Animated Defender aka Brigand, Danimal sobre o Brigand de anthonymyers, CC BY 3.0): guarda da
 	# Capital Real, com alabarda; anda em ronda (walk) ou fica de guarda (idle). Criado por tools/assets/build_defender.py.
 	"defender": {"scene": "res://assets/models/characters/defender.glb", "scale": 1.07,

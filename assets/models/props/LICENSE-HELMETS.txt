@@ -1,0 +1,3 @@
+Helm_1.glb ... Helm_6.glb — "Anglo-Saxons helmets and spears" by Lotnik / ulf, CC-BY 3.0:
+https://opengameart.org/content/anglo-saxons-helmets-and-spears (chainmail texture by Dejawolf).
+Converted from the Blender files by tools/assets/build_knight_helmets.py (modifiers applied, one color texture each).

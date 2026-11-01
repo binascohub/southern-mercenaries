@@ -1853,6 +1853,15 @@ msgstr ""
 msgid "DLG_VOODOO_1"
 msgstr ""
 
+msgid "NPC_PRIEST"
+msgstr ""
+
+msgid "DLG_PRIEST_1"
+msgstr ""
+
+msgid "DLG_PRIEST_2"
+msgstr ""
+
 msgid "DLG_SERVICE_PORTALS"
 msgstr ""
 
@@ -2298,6 +2307,9 @@ msgstr ""
 msgid "MONSTER_MUTANT_RAT"
 msgstr ""
 
+msgid "MONSTER_FUNGUS_UNCLE"
+msgstr ""
+
 msgid "MONSTER_PLAGUE_BAT"
 msgstr ""
 
@@ -2614,4 +2626,7 @@ msgid "PROP_TO_DOCKS"
 msgstr ""
 
 msgid "PROP_TO_PORT"
+msgstr ""
+
+msgid "MONSTER_CHITIN_BEAST"
 msgstr ""

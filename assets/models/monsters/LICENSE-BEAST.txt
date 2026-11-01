@@ -1,0 +1,3 @@
+chitin_beast.glb — "Beast 02" by Atmostatic, CC BY 3.0 / CC BY-SA 3.0 (also offered under GPL 2.0 and GPL 3.0): https://opengameart.org/content/beast-02
+Please link back to http://atmostatic.blogspot.com (the author's request for credit).
+Converted from the OBJ by tools/assets/build_beast.py (single static mesh without rig or animation, moved by code in MonsterModel; 1024 px color and normal maps).

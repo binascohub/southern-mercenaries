@@ -305,5 +305,37 @@
         "body": "cloth"
       }
     }
+  },
+  "priest": {
+    "name_key": "NPC_PRIEST",
+    "color": [
+      0.6,
+      0.5,
+      0.35
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_PRIEST_1",
+          "DLG_PRIEST_2"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Buzzed"
+      ],
+      "hair_color": [
+        0.1,
+        0.08,
+        0.06
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
   }
 }

@@ -1854,6 +1854,15 @@ msgstr "Witch Doctor"
 msgid "DLG_VOODOO_1"
 msgstr "The other side also has a price, friend. Tell me where you stopped, and I'll draw the way back."
 
+msgid "NPC_PRIEST"
+msgstr "Priest"
+
+msgid "DLG_PRIEST_1"
+msgstr "May the kingdom's light guide your steps, mercenary. Here in the Capital, even sinners have a pew in the church."
+
+msgid "DLG_PRIEST_2"
+msgstr "The war is over, but the dead still ask for prayer. If you come back alive from the road, light a candle for those who did not."
+
 msgid "DLG_SERVICE_PORTALS"
 msgstr "Portals"
 
@@ -2299,6 +2308,9 @@ msgstr "Plague Frog"
 msgid "MONSTER_MUTANT_RAT"
 msgstr "Mutant Frog"
 
+msgid "MONSTER_FUNGUS_UNCLE"
+msgstr "Uncle Fungus"
+
 msgid "MONSTER_PLAGUE_BAT"
 msgstr "Plague Bat"
 
@@ -2625,3 +2637,6 @@ msgstr "Gangway to the Docks"
 
 msgid "PROP_TO_PORT"
 msgstr "Back to the port"
+
+msgid "MONSTER_CHITIN_BEAST"
+msgstr "Chitinous Beast"

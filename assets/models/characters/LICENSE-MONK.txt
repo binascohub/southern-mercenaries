@@ -1,0 +1,2 @@
+monk.glb — "Monk" by CDmir, CC0: https://opengameart.org/content/monk
+Converted from the Blender file by tools/assets/build_monk.py (textures baked into the file, only the idle animation kept).

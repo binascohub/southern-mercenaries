@@ -14,8 +14,6 @@ mn = Vector([min(p[i] for p in pts) for i in range(3)])
 mx = Vector([max(p[i] for p in pts) for i in range(3)])
 h = mx.z - mn.z
 mesh.transform(Matrix.Scale(1.0 / h, 4) @ Matrix.Translation(Vector((-(mn.x + mx.x) / 2, -(mn.y + mx.y) / 2, -mn.z))))
-# a frente do Blender é -Y; o glTF (+Z) pede a rotação de 180° em torno de Z antes da conversão de eixos
-mesh.transform(Matrix.Rotation(3.14159265, 4, "Z"))
 mat = bpy.data.materials.new("frog")
 mat.use_nodes = True
 nodes, links = mat.node_tree.nodes, mat.node_tree.links

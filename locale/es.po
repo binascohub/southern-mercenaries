@@ -1854,6 +1854,15 @@ msgstr "Brujo"
 msgid "DLG_VOODOO_1"
 msgstr "El otro lado también tiene precio, amigo. Dime dónde te quedaste y te dibujo el camino de vuelta."
 
+msgid "NPC_PRIEST"
+msgstr "Padre"
+
+msgid "DLG_PRIEST_1"
+msgstr "Que la luz del reino guíe tus pasos, mercenario. Aquí, en la Capital, hasta los pecadores tienen un banco en la iglesia."
+
+msgid "DLG_PRIEST_2"
+msgstr "La guerra pasó, pero los muertos aún piden oración. Si vuelves vivo del camino, enciende una vela por quienes no volvieron."
+
 msgid "DLG_SERVICE_PORTALS"
 msgstr "Portales"
 
@@ -2299,6 +2308,9 @@ msgstr "Sapo Pestilente"
 msgid "MONSTER_MUTANT_RAT"
 msgstr "Sapo Mutante"
 
+msgid "MONSTER_FUNGUS_UNCLE"
+msgstr "Tío Hongo"
+
 msgid "MONSTER_PLAGUE_BAT"
 msgstr "Murciélago Pestilente"
 
@@ -2625,3 +2637,6 @@ msgstr "Pasarela a los Muelles"
 
 msgid "PROP_TO_PORT"
 msgstr "Volver al puerto"
+
+msgid "MONSTER_CHITIN_BEAST"
+msgstr "Bestia Quitinosa"

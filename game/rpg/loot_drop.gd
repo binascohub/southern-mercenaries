@@ -8,8 +8,10 @@ var loot_id := 0
 var item: Dictionary = {}
 var gold := 0
 
+const COIN_MODEL := "res://assets/models/props/Coin_Gold.glb"
+
 var _time := 0.0
-var _mesh: MeshInstance3D
+var _mesh: Node3D
 
 
 static func create(id: int, at: Vector3, drop_item: Dictionary, drop_gold: int) -> LootDrop:
@@ -24,23 +26,25 @@ static func create(id: int, at: Vector3, drop_item: Dictionary, drop_gold: int) 
 func _ready() -> void:
 	add_to_group(&"loot")
 	var color := Items.color(item) if not item.is_empty() else Color(1.0, 0.82, 0.25)
-	_mesh = MeshInstance3D.new()
-	var material := StandardMaterial3D.new()
-	material.albedo_color = color
-	material.emission_enabled = true
-	material.emission = color
-	material.emission_energy_multiplier = 0.8
+	_mesh = Node3D.new()
 	if gold > 0:
-		var coin := CylinderMesh.new()
-		coin.top_radius = 0.18
-		coin.bottom_radius = 0.18
-		coin.height = 0.06
-		_mesh.mesh = coin
+		# Moeda pirata em pé, girando (3d Pirate Coin, Acasas, CC-BY 3.0).
+		var coin: Node3D = load(COIN_MODEL).instantiate()
+		coin.rotation.x = deg_to_rad(90.0)
+		coin.position.y = 0.0
+		_mesh.add_child(coin)
 	else:
-		var bag := BoxMesh.new()
-		bag.size = Vector3(0.35, 0.3, 0.35)
-		_mesh.mesh = bag
-	_mesh.material_override = material
+		var material := StandardMaterial3D.new()
+		material.albedo_color = color
+		material.emission_enabled = true
+		material.emission = color
+		material.emission_energy_multiplier = 0.8
+		var bag := MeshInstance3D.new()
+		var box := BoxMesh.new()
+		box.size = Vector3(0.35, 0.3, 0.35)
+		bag.mesh = box
+		bag.material_override = material
+		_mesh.add_child(bag)
 	_mesh.position.y = 0.3
 	add_child(_mesh)
 

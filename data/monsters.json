@@ -60,6 +60,30 @@
       0.2
     ]
   },
+  "fungus_uncle": {
+    "_comment": "Tio Fungo (Uncle Fungus, piacenti, CC BY-SA 3.0): fera de fungo, lenta e pesada, corpo a corpo; investe com aviso. Esgoto, 3ª área (Passagem da Guerra).",
+    "name_key": "MONSTER_FUNGUS_UNCLE",
+    "max_health": 700,
+    "move_speed": 2.6,
+    "damage": 14,
+    "attack_range": 3.4,
+    "attack_windup": 0.7,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 2.2,
+    "category": "common",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 5.0,
+    "patrol_speed": 0.6,
+    "ai": "melee",
+    "look": "fungus",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
   "mutant_rat": {
     "_comment": "Do tamanho de um cão; investida curta com aviso (charger). Costuma ser elite.",
     "name_key": "MONSTER_MUTANT_RAT",
@@ -1069,5 +1093,28 @@
       1.0
     ],
     "_comment": "Chefe da Mina: o golem do coração de cristal (usa o modelo do Golem de Pedra até haver arte própria)."
+  },
+  "chitin_beast": {
+    "name_key": "MONSTER_CHITIN_BEAST",
+    "max_health": 80,
+    "move_speed": 3.4,
+    "damage": 12,
+    "attack_range": 2.2,
+    "attack_windup": 0.5,
+    "attack_cooldown": 1.3,
+    "aggro_range": 40.0,
+    "size": 1.1,
+    "category": "common",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 6.0,
+    "patrol_speed": 0.8,
+    "look": "chitin_beast",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Besta Quitinosa da Floresta (Beast 02, Atmostatic, CC BY / CC BY-SA): corpo a corpo rápido e frágil; vaga até alguém chegar. Terra."
   }
 }

@@ -1694,9 +1694,9 @@ func _build_prop(prop: Dictionary) -> void:
 					look = {"sex": "male" if h % 2 == 0 else "female", "hair": hairs[h % 2 * 2 + (h / 2) % 2],
 						"hair_color": colors[(h / 4) % colors.size()], "pose": "sit", "outfit": {"body": "cloth"} if h % 3 == 0 else {}}
 				var seated_woman: bool = prop.has("visitor_name") and look.get("sex", "") == "female" and _visitor_woman(node)
-				var own_model: Node3D = NpcModel.create(String(prop.npc)) if String(prop.npc) == "voodoo_priest" else null
+				var own_model: Node3D = NpcModel.create(String(prop.npc)) if String(prop.npc) in ["voodoo_priest", "priest"] else null
 				if own_model:
-					node.add_child(own_model)  # o Macumbeiro tem modelo próprio (mago de capuz)
+					node.add_child(own_model)  # o Macumbeiro (mago de capuz) e o Padre (monge) têm modelo próprio
 				elif not seated_woman and _npc_body(node, look) == null:
 					var body := CapsuleMesh.new()
 					body.radius = 0.35

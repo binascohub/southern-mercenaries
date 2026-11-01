@@ -32,6 +32,10 @@ const FAMILIES := {
 	# por código (`static`); 1 m no arquivo. Toma o lugar dos ratos do Esgoto (os ratos viraram cenário).
 	"frog": {"scene": "res://assets/models/monsters/frog.glb", "scale": 0.4, "static": true,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Tio Fungo (Uncle Fungus, piacenti, CC BY-SA 3.0; tools/assets/build_fungus.py): fera de fungo sem esqueleto
+	# nem animação (`static`); 1 m no arquivo -> ~2,2 m no tamanho 1.
+	"fungus": {"scene": "res://assets/models/monsters/fungus.glb", "scale": 1.1, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
 	"gator": {"scene": "res://assets/models/monsters/gator.glb", "scale": 0.75,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
 	# Monstro da Floresta (cdmir, CC0): gigante de casca e pedra com uma árvore nas
@@ -93,6 +97,10 @@ const FAMILIES := {
 	# Réptil da Floresta (thecubber, CC BY-SA 3.0; tools/assets/build_reptile.sh): ~1,6 m de altura curvado, de garras; animações feitas para o jogo.
 	"reptile": {"scene": "res://assets/models/monsters/reptile.glb", "scale": 1.0,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Besta Quitinosa (Beast 02, Atmostatic, CC BY 3.0 / CC BY-SA 3.0; tools/assets/build_beast.py): malha única sem esqueleto, 1 m de comprimento
+	# no arquivo (1,4 m de altura); o corpo todo balança, avança, investe e tomba (de barriga para cima) por código (`static`).
+	"chitin_beast": {"scene": "res://assets/models/monsters/chitin_beast.glb", "scale": 1.0, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Cervos da Floresta (CDmir e TinyWorlds, CC0; tools/assets/build_deer.sh): 1,6 m de comprimento no arquivo, "size" 1.4 nos dados.
 	"deer_buck": {"scene": "res://assets/models/monsters/deer_buck.glb", "scale": 0.714,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "die": "die"}},
