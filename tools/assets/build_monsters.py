@@ -30,6 +30,14 @@ for arm in arms:  # o esqueleto vira a raiz (sem pai), no mesmo lugar
         world = arm.matrix_world.copy()
         arm.parent = None
         arm.matrix_world = world
+# Malha presa a um osso (a ovelha, p0ss): vira filha do objeto do esqueleto, no mesmo lugar do mundo
+# (o osso "pai" faria o vértice ser transformado duas vezes).
+for o in meshes:
+    if o.parent and o.parent_type == "BONE":
+        world = o.matrix_world.copy()
+        o.parent_type = "OBJECT"
+        o.parent_bone = ""
+        o.matrix_world = world
 # A malha passa a ser filha do esqueleto (escala e posição vão juntas).
 arm_obj = next(iter(arms)) if arms else None
 for o in meshes:

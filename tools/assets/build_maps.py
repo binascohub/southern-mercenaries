@@ -528,6 +528,60 @@ arenas["capital_01_aurenhold"] = {
     "decor": cap_decor, "crowd": cap_crowd,
 }
 
+# --- Fazenda (cidade-base campestre; só o mapa por enquanto, ligada a Tortuga por um portal) -----------------
+fr = rng("farm")
+farm_rooms = [
+    room("gate", 0, 0, 24, 14, ["north"], torch=True, wall_height=0.8),
+    room("fields", 0, -22, 40, 30, ["south", "east"], wall_height=0.8),
+    room("mill", 28, -22, 16, 30, ["west"], wall_height=0.8),
+]
+farm_decor = [
+    # Serraria movida a água (CC0) no fundo da clareira lateral; barricadas de toras (CC-BY) fechando o portão.
+    {"piece": "Pr_Sawmill", "position": [29, -22], "rotation": 270, "solid": [8.0, 6.5]},
+    {"piece": "Pr_Barricade", "position": [-8.5, -5.0], "rotation": 15, "solid": [2.0, 1.2]},
+    {"piece": "Pr_Barricade", "position": [8.5, -5.0], "rotation": 345, "solid": [2.0, 1.2]},
+    {"piece": "Well_Covered", "position": [-12, -20], "solid": [1.6, 1.6]},
+    {"piece": "Cart_Wood", "position": [12, -30], "rotation": 40, "solid": [2.4, 1.4]},
+    {"piece": "Bucket_Wooden_1", "position": [-10.4, -19.2]},
+    {"piece": "Bucket_Wooden_1", "position": [13.5, -28.6], "rotation": 90},
+]
+for rd in farm_rooms:
+    farm_decor += scatter(fr, rd, ["Pl_Grass1", "Pl_Grass2", "Pl_Grass3"], int(rd["size"][0] * rd["size"][1] / 10), margin=1.5,
+                          scale=(0.8, 1.6), avoid=[(0, 3, 3), (29, -22, 5)])
+    farm_decor += ring(fr, rd, ["Pl_Grass1", "Pl_Grass2", "Pl_Grass3", "Pl_Bush"], 2.4, scale=(1.0, 1.8))
+# Fazendeiros (data/crowd.json, papel "farmer") com as ferramentas do pacote Gnarly Tools na mão, e ovelhas que passeiam.
+farm_crowd = [
+    {"role": "farmer", "position": [-6, -14], "rotation": 200, "pose": "melee", "weapon": "Tool_Hoe"},
+    {"role": "farmer", "position": [-2, -14], "rotation": 160, "pose": "melee_b", "weapon": "Tool_Hoe"},
+    {"role": "farmer", "position": [-8, -26], "rotation": 90, "pose": "melee", "weapon": "Tool_Shovel"},
+    {"role": "farmer", "position": [8, -16], "rotation": 250, "pose": "idle", "weapon": "Tool_Pitchfork"},
+    {"role": "farmer", "position": [14, -22], "rotation": 120, "pose": "melee_c", "weapon": "Tool_Scythe"},
+    {"role": "farmer", "position": [17, -26], "rotation": 60, "pose": "idle", "weapon": "Tool_Sickle"},
+    {"role": "farmer", "position": [-12, -17.5], "rotation": 180, "pose": "talk"},
+    {"role": "farmer", "position": [22, -14], "rotation": 270, "pose": "idle", "weapon": "Tool_Pitchfork"},
+]
+for i in range(9):
+    x, z = fr.uniform(-16, 15), fr.uniform(-34, -10)
+    farm_crowd.append({"role": "sheep", "position": [round(x, 1), round(z, 1)], "rotation": fr.randrange(0, 360, 15), "pose": "idle",
+                       "path": [round(x + fr.uniform(-4, 4), 1), round(z + fr.uniform(-4, 4), 1)], "speed": 0.5})
+arenas["farm_01_fields"] = {
+    "_comment": "Fazenda: campos abertos com capim (Grass Pack 01, Yughues / Nobiax, CC0), serraria movida a água (CC0), barricadas de toras (Sullivan, CC-BY), fazendeiros com ferramentas (Retextured Gnarly Tools, Mev Lyshkin, CC-BY) e ovelhas (p0ss, CC-BY-SA). Só o mapa por enquanto: sem monstros, lojas, baús nem missões; portal em Tortuga ao lado do da Floresta. Gerado por tools/assets/build_maps.py.",
+    "name_key": "ARENA_FARM", "town": True, "outdoor": True, "player_class": "mage", "map_id": "map_farm", "area_level": 1,
+    "wake_radius": 10.0, "alert_radius": 5.0, "rooms": farm_rooms, "encounters": [], "hazards": [],
+    "entries": {"start": [0, 3], "farm": [0, 3]},
+    "props": [
+        {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-6, 3], "to": "tortuga", "entry": "forest"},
+    ],
+    "quest_spots": [], "breakables": [],
+    "style": {"_comment": "Fazenda: chão de grama, cerca baixa de madeira nas bordas.", "walls": [""], "floor": "Ground_Grass",
+              "low": "Prop_WoodenFence_Single", "ground": [0.2, 0.28, 0.12]},
+    "decor": farm_decor, "crowd": farm_crowd, "passive": True,
+}
+# Portal de Tortuga para a Fazenda (ao lado do da Floresta; sem duplicar se o script rodar de novo).
+tortuga_props = arenas["tortuga"]["props"]
+if not any(p["id"] == "farm_gate" for p in tortuga_props):
+    tortuga_props.append({"id": "farm_gate", "kind": "exit", "name_key": "PROP_TO_FARM", "position": [-27.5, 3.2], "to": "farm_01_fields", "entry": "start"})
+
 json.dump(arenas, open(ARENAS, "w"), indent=2, ensure_ascii=False); open(ARENAS, "a").write("\n")
 json.dump(monsters, open(MONSTERS, "w"), indent=2, ensure_ascii=False); open(MONSTERS, "a").write("\n")
-print("OK", [k for k in arenas if k.split("_")[0] in ("forest", "ruins", "cemetery", "fort")])
+print("OK", [k for k in arenas if k.split("_")[0] in ("forest", "ruins", "cemetery", "fort", "farm")])
