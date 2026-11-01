@@ -153,6 +153,8 @@ var _crystal_material: StandardMaterial3D
 var _revive_bar: MeshInstance3D
 var _ring_material: StandardMaterial3D
 var _staff_material: StandardMaterial3D
+var _weapon_holder: MeshInstance3D  ## onde a arma (ou o livro do Invocador) está presa
+var _book_rank := ""
 ## Peças equipadas no corpo (placeholder até os modelos modulares).
 var _shown_visual := {}
 var _flash := 0.0
@@ -1163,6 +1165,7 @@ func _build_visual() -> void:
 		_dress_weapon(staff, "Weapon_Dagger")  # adaga do assassino (danilomattos, CC0)
 	elif archer:
 		_dress_weapon(staff, "Bow_Long")  # arco longo (Archery Set, yd, CC0)
+	_weapon_holder = staff
 	var right_hand := Node3D.new()
 	right_hand.add_child(staff)
 	_model.attach("hand_r", right_hand, POINT_GRIP if knight or ninja else HAND_GRIP, Vector3(0.45, 0.9, 0.15))
@@ -1184,7 +1187,9 @@ func _build_visual() -> void:
 			gem.free()
 	crystal.material_override = _crystal_material
 	# Na ponta da arma (cajado, flecha, lança, adaga) ou na página do livro.
-	crystal.position = Vector3(0, 0.08, 0) if summoner else Vector3(0, staff_mesh.height / 2.0, 0)
+	crystal.position = Vector3(0, 0.32, 0) if summoner else Vector3(0, staff_mesh.height / 2.0, 0)
+	if summoner:
+		crystal.scale = Vector3.ONE * 0.5  # brilho do elemento flutua acima do livro
 	staff.add_child(crystal)
 
 	# Mago: caderno de anotações; Arqueiro: aljava nas costas.
@@ -1364,16 +1369,36 @@ func _tick_visual(delta: float) -> void:
 ## aparece no herói), tingida pela cor do material; a arma também.
 func _update_gear() -> void:
 	_shown_visual = equip_visual.duplicate()
-	if NinjaGear.has_gear(class_id, sex):
-		# O Ninja usa os conjuntos por rank (D a S): o rank vem do material de cada peça.
+	if HeroGear.has_gear(class_id, sex):
+		# Os heróis usam os conjuntos por rank (D a S): o rank vem do material de cada peça.
 		var ranks := {}
-		for slot in NinjaGear.SLOTS:
-			ranks[slot] = NinjaGear.rank_of(String(equip_visual[slot])) if equip_visual.has(slot) else ""
-		NinjaGear.apply(_model, ranks)
+		for slot in HeroGear.SLOTS:
+			ranks[slot] = HeroGear.rank_of(String(equip_visual[slot])) if equip_visual.has(slot) else ""
+		HeroGear.apply(_model, class_id, ranks)
 	else:
 		_model.set_outfit(equip_visual)
 	var weapon: String = equip_visual.get("weapon", "wood")
+	_update_book(HeroGear.rank_of(weapon))
 	_staff_material.albedo_color = Color(GameData.materials.get(weapon, GameData.materials.wood).color)
+
+
+## Livro de feitiço do Invocador (Spell Book Pack, CC BY-SA 3.0): a capa muda com o rank do material
+## da arma, de D a S. Os outros heróis não usam livro.
+func _update_book(rank: String) -> void:
+	if class_id != "summoner" or _weapon_holder == null or rank == _book_rank:
+		return
+	var book := Kit.piece("Book_" + rank)
+	if book == null:
+		return
+	_book_rank = rank
+	var old := _weapon_holder.get_node_or_null("Book")
+	if old:
+		old.free()
+	_weapon_holder.mesh = null
+	book.name = "Book"
+	book.scale = Vector3.ONE * 1.15
+	book.rotation_degrees = Vector3(-70.0, 0.0, 0.0)  # em pé, a capa para a frente
+	_weapon_holder.add_child(book)
 
 
 ## Cavalo placeholder: corpo, pescoço, cabeça e quatro patas.

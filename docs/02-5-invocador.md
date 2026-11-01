@@ -223,3 +223,9 @@ Falas neutras, servindo para os dois sexos.
 
 - Detalhar as habilidades e o papel de cada um dos 10 animais novos (seção 6.6).
 - O pássaro do ombro tem algum efeito de jogo (ex.: avisa armadilhas e emboscadas) ou é só visual?
+
+## Visual do equipamento por rank (implementado)
+
+O Invocador troca de roupa por **rank**, de **D** (a mais simples) a **S** (a mais rara e melhor), seguindo a referência do autor (`clothes.jpeg`, níveis 1 a 5). Cada peça (corpo, cabeça, mãos, pés) troca separadamente; o rank sai do material da peça (pano e ferro = D, aço = C, cobre = B, prata = A, ouro = S). Vale para os dois sexos. Código em `game/actors/class_gear.gd` e `game/actors/gear_kit.gd`; dá para ver cada rank na tela de criação do personagem ("Equipamento").
+
+D retalhos de couro com colar de ossos e corda; C poncho escuro com barra rasgada, penas e contas; B túnica tribal com faixas turquesa, colar de contas e penas; A manto de pele, bordado e pingente turquesa; S túnica cósmica azul e roxa com cristais nos ombros, luzes e coroa de chifres.

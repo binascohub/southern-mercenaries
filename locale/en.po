@@ -569,6 +569,42 @@ msgstr "Hair: buns"
 msgid "CHAR_HAIR_Hair_BuzzedFemale"
 msgstr "Hair: buzzed"
 
+msgid "CHAR_HAIR_Kit_Pixie"
+msgstr "Hair: pixie cut"
+
+msgid "CHAR_HAIR_Kit_Bob"
+msgstr "Hair: chin-length bob"
+
+msgid "CHAR_HAIR_Kit_BobBangs"
+msgstr "Hair: bob with bangs"
+
+msgid "CHAR_HAIR_Kit_Wavy"
+msgstr "Hair: long and wavy"
+
+msgid "CHAR_HAIR_Kit_Ponytail"
+msgstr "Hair: high ponytail"
+
+msgid "CHAR_HAIR_Kit_DoubleBun"
+msgstr "Hair: double bun"
+
+msgid "CHAR_HAIR_Kit_AfroPuffs"
+msgstr "Hair: afro puffs"
+
+msgid "CHAR_HAIR_Kit_MessyBun"
+msgstr "Hair: messy bun"
+
+msgid "CHAR_HAIR_Kit_SpaceBuns"
+msgstr "Hair: space buns"
+
+msgid "CHAR_HAIR_Kit_Braids"
+msgstr "Hair: double braids"
+
+msgid "CHAR_HAIR_Kit_Shag"
+msgstr "Hair: shag with bangs"
+
+msgid "CHAR_HAIR_Kit_LongStraight"
+msgstr "Hair: long straight"
+
 msgid "CHAR_HAIR_NONE"
 msgstr "Hair: none"
 

@@ -569,6 +569,42 @@ msgstr "Pelo: moños"
 msgid "CHAR_HAIR_Hair_BuzzedFemale"
 msgstr "Pelo: rapado"
 
+msgid "CHAR_HAIR_Kit_Pixie"
+msgstr "Pelo: pixie"
+
+msgid "CHAR_HAIR_Kit_Bob"
+msgstr "Pelo: bob"
+
+msgid "CHAR_HAIR_Kit_BobBangs"
+msgstr "Pelo: bob con flequillo"
+
+msgid "CHAR_HAIR_Kit_Wavy"
+msgstr "Pelo: largo ondulado"
+
+msgid "CHAR_HAIR_Kit_Ponytail"
+msgstr "Pelo: cola alta"
+
+msgid "CHAR_HAIR_Kit_DoubleBun"
+msgstr "Pelo: moño doble"
+
+msgid "CHAR_HAIR_Kit_AfroPuffs"
+msgstr "Pelo: puffs afro"
+
+msgid "CHAR_HAIR_Kit_MessyBun"
+msgstr "Pelo: moño desordenado"
+
+msgid "CHAR_HAIR_Kit_SpaceBuns"
+msgstr "Pelo: moños laterales"
+
+msgid "CHAR_HAIR_Kit_Braids"
+msgstr "Pelo: trenzas dobles"
+
+msgid "CHAR_HAIR_Kit_Shag"
+msgstr "Pelo: capas con flequillo"
+
+msgid "CHAR_HAIR_Kit_LongStraight"
+msgstr "Pelo: largo liso"
+
 msgid "CHAR_HAIR_NONE"
 msgstr "Pelo: ninguno"
 

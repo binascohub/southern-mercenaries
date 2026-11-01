@@ -881,6 +881,16 @@ func _test_appearance() -> void:
 	_check(not Appearance.clean("female", {"beard": true}).beard, "aparência: feminino não tem barba")
 	_check(Appearance.hair_styles("female").has("Hair_Long") and Appearance.hair_styles("male").has("Hair_Buzzed"),
 		"aparência: cada sexo tem os seus cabelos")
+	for kit in HairKit.STYLES:
+		_check(Appearance.hair_styles("female").has(kit) and tr("CHAR_HAIR_" + kit) != "CHAR_HAIR_" + kit, "cabelo %s: está na lista feminina e tem tradução" % kit)
+	var hair_model := HeroModel.new()
+	add_child(hair_model)
+	hair_model.setup("female", {"hair": HairKit.STYLES.duplicate(), "hair_color": [0.2, 0.1, 0.1]})
+	var made := 0
+	for kit in HairKit.STYLES:
+		made += 1 if hair_model.get_node_or_null("**/" + kit) != null or hair_model.find_child(kit, true, false) != null else 0
+	_check(made == HairKit.STYLES.size(), "cabelo: todos os penteados feitos por código geram malha na cabeça")
+	hair_model.queue_free()
 	var c := CharacterData.create("knight", "male", "Teste", "fire", {"hair": 1, "hair_color": 3, "skin": 4, "beard": true})
 	var back := CharacterData.from_dict(c.to_dict())
 	_check(back != null and back.data.look == c.data.look and back.data.look.skin == 4 and back.data.look.beard,
@@ -903,6 +913,21 @@ func _test_ninja_gear() -> void:
 		and NinjaGear.rank_of("copper") == "B" and NinjaGear.rank_of("silver") == "A" and NinjaGear.rank_of("gold") == "S",
 		"ninja: material vira rank (pano/ferro D, aço C, cobre B, prata A, ouro S)")
 	_check(NinjaGear.has_gear("ninja", "male") and not NinjaGear.has_gear("mage", "male"), "ninja: só o Ninja masculino tem conjuntos por rank")
+	_check(HeroGear.has_gear("mage", "female") and HeroGear.has_gear("knight", "male") and HeroGear.has_gear("ninja", "male") and not HeroGear.has_gear("ninja", "female"),
+		"conjuntos por rank: Mago, Cavaleiro, Arqueiro e Invocador nos dois sexos; Ninja só masculino")
+	for class_id in ClassGear.CLASSES:
+		for sex in ["male", "female"]:
+			var other := HeroModel.new()
+			add_child(other)
+			other.setup(sex, {})
+			var made := []
+			for rank in HeroGear.RANKS:
+				HeroGear.apply(other, class_id, {"body": rank, "head": rank, "hands": rank, "feet": rank})
+				made.append((other.get_meta(NinjaGear.META) as Array).size())
+			_check(made.min() >= 2 and made[4] > made[0], "%s (%s): cada rank monta peças e o S tem mais que o D %s" % [class_id, sex, str(made)])
+			HeroGear.apply(other, class_id, {"body": "", "head": "", "hands": "", "feet": ""})
+			_check((other.get_meta(NinjaGear.META) as Array).is_empty(), "%s (%s): sem peças equipadas não monta nada" % [class_id, sex])
+			other.queue_free()
 	var hero := HeroModel.new()
 	add_child(hero)
 	hero.setup("male", {"hair": ["Hair_SimpleParted"], "hair_color": [0.2, 0.12, 0.07]})

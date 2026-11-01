@@ -569,6 +569,42 @@ msgstr "Cabelo: coques"
 msgid "CHAR_HAIR_Hair_BuzzedFemale"
 msgstr "Cabelo: raspado"
 
+msgid "CHAR_HAIR_Kit_Pixie"
+msgstr "Cabelo: pixie"
+
+msgid "CHAR_HAIR_Kit_Bob"
+msgstr "Cabelo: chanel"
+
+msgid "CHAR_HAIR_Kit_BobBangs"
+msgstr "Cabelo: chanel com franja"
+
+msgid "CHAR_HAIR_Kit_Wavy"
+msgstr "Cabelo: longo ondulado"
+
+msgid "CHAR_HAIR_Kit_Ponytail"
+msgstr "Cabelo: rabo de cavalo alto"
+
+msgid "CHAR_HAIR_Kit_DoubleBun"
+msgstr "Cabelo: coque duplo"
+
+msgid "CHAR_HAIR_Kit_AfroPuffs"
+msgstr "Cabelo: puffs afro"
+
+msgid "CHAR_HAIR_Kit_MessyBun"
+msgstr "Cabelo: coque bagunçado"
+
+msgid "CHAR_HAIR_Kit_SpaceBuns"
+msgstr "Cabelo: coques laterais"
+
+msgid "CHAR_HAIR_Kit_Braids"
+msgstr "Cabelo: tranças duplas"
+
+msgid "CHAR_HAIR_Kit_Shag"
+msgstr "Cabelo: repicado com franja"
+
+msgid "CHAR_HAIR_Kit_LongStraight"
+msgstr "Cabelo: longo liso"
+
 msgid "CHAR_HAIR_NONE"
 msgstr "Cabelo: nenhum"
 

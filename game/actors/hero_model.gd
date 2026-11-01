@@ -72,6 +72,8 @@ var _shown_equip := {}
 var _names := {}
 ## Pose fixa de NPC: volta a ela quando uma ação (soco, golpe sofrido) acaba.
 var _pose := ""
+## Sexo do corpo montado ("male"/"female"); as roupas femininas têm paleta própria.
+var sex := "male"
 var _combo := 0
 var _last_melee := -10.0
 
@@ -79,6 +81,7 @@ var _last_melee := -10.0
 ## Monta o corpo do sexo dado, com o cabelo do visual da classe
 ## ({hair: [nomes], hair_color: [r, g, b], skin: [r, g, b] opcional}).
 func setup(sex: String, look: Dictionary) -> void:
+	self.sex = sex
 	var path: String = SCENES.get(sex, SCENES.male)
 	var scene: PackedScene = load(path) as PackedScene if ResourceLoader.exists(path) else null
 	if scene == null:
@@ -104,6 +107,7 @@ func setup(sex: String, look: Dictionary) -> void:
 			mesh.set_surface_override_material(i, copy)
 			_materials.append(copy)
 			_base_colors.append(copy.albedo_color)
+	_build_kit_hair(hair_color)
 	set_outfit({})
 	if look.has("skin"):
 		var skin: Array = look.skin
@@ -207,10 +211,17 @@ static func _grey_texture(texture: Texture2D) -> Texture2D:
 		image.decompress()
 	image.convert(Image.FORMAT_L8)
 	image.convert(Image.FORMAT_RGB8)
+	image.adjust_bcs(1.25, 1.4, 1.0)  # mais luz e contraste: costuras e dobras aparecem sob a cor do rank
 	image.generate_mipmaps()
 	var grey := ImageTexture.create_from_image(image)
 	_grey_cache[key] = grey
 	return grey
+
+
+## Esconde uma parte do corpo pelo nome.
+func hide_part(part_name: String) -> void:
+	if _parts.has(part_name):
+		(_parts[part_name] as MeshInstance3D).visible = false
 
 
 ## Devolve as texturas trocadas por show_part(flat).
@@ -219,6 +230,19 @@ func _restore_textures() -> void:
 		if material.has_meta("original_texture"):
 			material.albedo_texture = material.get_meta("original_texture")
 			material.remove_meta("original_texture")
+
+
+## Penteados montados por código (HairKit): entram em `_parts` com o nome do estilo, como as malhas.
+func _build_kit_hair(hair_color: Array) -> void:
+	var frame: Clothing.Frame = null
+	for style in _hair:
+		if not HairKit.is_kit(style):
+			continue
+		if frame == null:
+			frame = Clothing._measure(self, skeleton, Clothing.HERO_BONES)
+		var piece := HairKit.build(skeleton, frame, style, Color(hair_color[0], hair_color[1], hair_color[2]))
+		if piece:
+			_parts[style] = piece
 
 
 ## Cabelo e barba somem (capuz, máscara ou elmo por cima); `keep_beard` deixa a barba.

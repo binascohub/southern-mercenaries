@@ -210,3 +210,9 @@ Falas neutras, servindo para os dois sexos.
 
 - Arcos curtos e longos como dois tipos de arma, ou um tipo só?
 - A vila do Arqueiro aparece dentro do mapa das Ruínas (com uma cena ou missão pessoal)?
+
+## Visual do equipamento por rank (implementado)
+
+O Arqueiro troca de roupa por **rank**, de **D** (a mais simples) a **S** (a mais rara e melhor), seguindo a referência do autor (`clothes.jpeg`, níveis 1 a 5). Cada peça (corpo, cabeça, mãos, pés) troca separadamente; o rank sai do material da peça (pano e ferro = D, aço = C, cobre = B, prata = A, ouro = S). Vale para os dois sexos. Código em `game/actors/class_gear.gd` e `game/actors/gear_kit.gd`; dá para ver cada rank na tela de criação do personagem ("Equipamento").
+
+D túnica verde esfarrapada com corda; C jaqueta de couro marrom com capuz e bandoleira; B túnica verde com capa, colete de tiras e cinto; A escamas e malha verdes, ombreiras de couro e gola de malha; S armadura élfica verde e dourada, capa, folhas nos ombros e gema esmeralda.

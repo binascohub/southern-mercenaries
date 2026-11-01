@@ -250,3 +250,9 @@ As falas mudam conforme a versão.
 - Quem é o verdadeiro pai da Dália? (Gancho possível para a história.)
 - O final da campanha mostra a volta do Cavaleiro (Dorian ou Dália) ao reino?
 - O rei, a princesa ou a Academia aparecem em Tortuga (NPCs, missões)?
+
+## Visual do equipamento por rank (implementado)
+
+O Cavaleiro troca de roupa por **rank**, de **D** (a mais simples) a **S** (a mais rara e melhor), seguindo a referência do autor (`clothes.jpeg`, níveis 1 a 5). Cada peça (corpo, cabeça, mãos, pés) troca separadamente; o rank sai do material da peça (pano e ferro = D, aço = C, cobre = B, prata = A, ouro = S). Vale para os dois sexos. Código em `game/actors/class_gear.gd` e `game/actors/gear_kit.gd`; dá para ver cada rank na tela de criação do personagem ("Equipamento").
+
+D gibão acolchoado com cordas cruzadas e saiote remendado; C peitoral de aço, saia de malha e elmo; B placas, tabardo azul com losango e elmo com protetor de nariz; A armadura dourada, ombreiras largas e tabardo longo azul-marinho; S armadura negra e dourada com chifres, espinhos, capa e luzes âmbar.

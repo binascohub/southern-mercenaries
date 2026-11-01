@@ -568,6 +568,42 @@ msgstr ""
 msgid "CHAR_HAIR_Hair_BuzzedFemale"
 msgstr ""
 
+msgid "CHAR_HAIR_Kit_Pixie"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_Bob"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_BobBangs"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_Wavy"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_Ponytail"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_DoubleBun"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_AfroPuffs"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_MessyBun"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_SpaceBuns"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_Braids"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_Shag"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_LongStraight"
+msgstr ""
+
 msgid "CHAR_HAIR_NONE"
 msgstr ""
 

@@ -80,10 +80,10 @@ func _ready() -> void:
 		_skin.add_item("CHAR_SKIN_%d" % i)
 	_skin.item_selected.connect(_on_look_changed)
 	fields.add_child(_skin)
-	# Prévia do equipamento por classificação (D a S); só o Ninja masculino tem os visuais por enquanto.
+	# Prévia do equipamento por classificação (D a S).
 	_gear = OptionButton.new()
 	_gear.add_item("CHAR_GEAR_NONE")
-	for rank in NinjaGear.RANKS:
+	for rank in HeroGear.RANKS:
 		_gear.add_item("CHAR_GEAR_" + rank)
 	_gear.item_selected.connect(_on_look_changed)
 	fields.add_child(_gear)
@@ -151,10 +151,11 @@ func _refresh_hair_options() -> void:
 
 func _on_look_changed(_value: Variant = null) -> void:
 	var sex := CharacterData.SEXES[_sex.selected]
-	var has_gear := NinjaGear.has_gear(_class_ids[_class.selected], sex)
+	var class_id := _class_ids[_class.selected]
+	var has_gear := HeroGear.has_gear(class_id, sex)
 	_gear.visible = has_gear
-	var rank: String = NinjaGear.RANKS[_gear.selected - 1] if has_gear and _gear.selected > 0 else ""
-	_preview.show_hero(sex, _current_look(), rank)
+	var rank: String = HeroGear.RANKS[_gear.selected - 1] if has_gear and _gear.selected > 0 else ""
+	_preview.show_hero(sex, _current_look(), rank, class_id)
 
 
 ## A escolha de aparência como a ficha guarda (índices).
