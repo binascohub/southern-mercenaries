@@ -74,9 +74,9 @@ O elemento define **quais animais amigos** respondem ao chamado.
 
 | Elemento | Companheiro principal | Papel do Invocador | Suporte | Dificuldade |
 |---|---|---|---|---|
-| Fogo | **Raposa de fogo** (rápida, ataques que queimam) | Mais dano dos companheiros | Aumenta o dano dos aliados e dos animais | Fácil |
-| Água | **Lontra** (ataca à distância com jatos d'água) | Controle e cura | Cura | Fácil |
-| Ar | **Falcão** (voa, ataques rápidos e elétricos) | Velocidade e dano em cadeia | Velocidade para o grupo | Média |
+| Fogo | **Rottweiler de fogo, o Benny** (rápido, ataques que queimam) | Mais dano dos companheiros | Aumenta o dano dos aliados e dos animais | Fácil |
+| Água | **Crocodilo** (ataca à distância com jatos d'água) | Controle e cura | Cura | Fácil |
+| Ar | **Águia** (voa, ataques rápidos e elétricos) | Velocidade e dano em cadeia | Velocidade para o grupo | Média |
 | Terra | **Javali** (resistente, chance de atordoar) | O Invocador mais seguro | Escudo nos aliados | Fácil |
 
 ## 4. Recurso e Poder de Invocação

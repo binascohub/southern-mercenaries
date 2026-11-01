@@ -1,0 +1,1 @@
+Rottweiler.glb — "Benny, the Rottweiler" by umask007 / Acorn, CC-BY-SA 3.0: https://opengameart.org/content/benny-the-rottweiler (rigged, animations idle/run/attack/attack2/flinch/die; tools/assets/build_rottweiler.py). The Summoner's Fire companion (id fox).

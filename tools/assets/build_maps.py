@@ -1867,4 +1867,6 @@ subprocess.run([sys.executable, "tools/assets/add_fish.py"], check=True)  # peix
 subprocess.run([sys.executable, "tools/assets/build_desert.py"], check=True)  # mapa do Deserto ligado à Fazenda
 subprocess.run([sys.executable, "tools/assets/add_signposts.py"], check=True)  # placas nos cruzamentos dos mapas ao ar livre
 subprocess.run([sys.executable, "tools/assets/add_mossy_rocks.py"], check=True)  # rochas musgosas na Floresta e no Cemitério
+subprocess.run([sys.executable, "tools/assets/add_decor_animals.py"], check=True)  # lhama, cavalo marrom, caranguejos e guaxinins de cenário
+subprocess.run([sys.executable, "tools/assets/remove_forest_crosses.py"], check=True)  # sem cruzes na Floresta
 print("OK", [k for k in arenas if k.split("_")[0] in ("forest", "ruins", "cemetery", "fort", "farm", "mine")])

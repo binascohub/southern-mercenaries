@@ -1,0 +1,3 @@
+Animal_Alligator.glb — from "Animal Kit 1.0" by britdawgmasterfunk (Sketchfab): https://sketchfab.com/3d-models/animal-kit-10-cc0-ef03a5b686cc46189218b52cd63ade18
+License registered on Sketchfab: Creative Commons Attribution 4.0 (http://creativecommons.org/licenses/by/4.0/); the title and description say CC0, so the author is credited here to be safe.
+Converted by tools/assets/build_animal_kit.py (modifiers applied, polygons reduced, plain color, static pose). The same script also builds a pigeon (Animal_Pigeon.glb), which is no longer used in the game.

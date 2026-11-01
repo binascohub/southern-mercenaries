@@ -2977,6 +2977,14 @@ func _build_decor(decor: Dictionary) -> void:
 		_area_root.add_child(pivot)
 		var loop := pivot.create_tween().set_loops()
 		loop.tween_property(pivot, "rotation:y", TAU, TAU * radius / float(decor.swim.get("speed", 0.6))).as_relative()
+		if decor.get("flap", false):
+			# Borboleta: bate as asas (o modelo é parado) e sobe e desce de leve enquanto voa em círculo.
+			var wings := node.create_tween().set_loops()
+			wings.tween_property(node, "scale:x", node.scale.x * 0.4, 0.09)
+			wings.tween_property(node, "scale:x", node.scale.x, 0.09)
+			var bob := node.create_tween().set_loops()
+			bob.tween_property(node, "position:y", node.position.y + 0.35, 1.1).set_trans(Tween.TRANS_SINE)
+			bob.tween_property(node, "position:y", node.position.y, 1.1).set_trans(Tween.TRANS_SINE)
 		return
 	_area_root.add_child(node)
 	# Peça animada (o aparelho de treino gira): toca a primeira animação em laço.

@@ -1,0 +1,1 @@
+Boar.glb — "Boar" by Teh_Bucket / Saltflower, CC0: https://opengameart.org/content/boar (rigged, walk and attack animations; created by request by bloons). Converted by tools/assets/build_boar.py.

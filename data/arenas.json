@@ -23953,160 +23953,6 @@
         ]
       },
       {
-        "piece": "Pr_Cross3",
-        "position": [
-          73.2,
-          -30.6
-        ],
-        "solid": [
-          1.4,
-          1.4
-        ]
-      },
-      {
-        "piece": "Pr_Cross3",
-        "position": [
-          73.2,
-          -23.4
-        ],
-        "solid": [
-          1.4,
-          1.4
-        ]
-      },
-      {
-        "piece": "Pr_Cross4",
-        "position": [
-          1.2,
-          -21.1
-        ],
-        "solid": [
-          1.4,
-          1.4
-        ]
-      },
-      {
-        "piece": "Pr_Cross4",
-        "position": [
-          1.2,
-          -13.9
-        ],
-        "solid": [
-          1.4,
-          1.4
-        ]
-      },
-      {
-        "piece": "Pr_Cross4",
-        "position": [
-          22.8,
-          -21.1
-        ],
-        "solid": [
-          1.4,
-          1.4
-        ]
-      },
-      {
-        "piece": "Pr_Cross4",
-        "position": [
-          22.8,
-          -13.9
-        ],
-        "solid": [
-          1.4,
-          1.4
-        ]
-      },
-      {
-        "piece": "Pr_Cross4",
-        "position": [
-          8.4,
-          -26.8
-        ],
-        "solid": [
-          1.4,
-          1.4
-        ]
-      },
-      {
-        "piece": "Pr_Cross4",
-        "position": [
-          15.6,
-          -26.8
-        ],
-        "solid": [
-          1.4,
-          1.4
-        ]
-      },
-      {
-        "piece": "Pr_Cross4",
-        "position": [
-          42.4,
-          -57.2
-        ],
-        "solid": [
-          1.4,
-          1.4
-        ]
-      },
-      {
-        "piece": "Pr_Cross4",
-        "position": [
-          49.6,
-          -57.2
-        ],
-        "solid": [
-          1.4,
-          1.4
-        ]
-      },
-      {
-        "piece": "Pr_Cross4",
-        "position": [
-          42.4,
-          -80.8
-        ],
-        "solid": [
-          1.4,
-          1.4
-        ]
-      },
-      {
-        "piece": "Pr_Cross4",
-        "position": [
-          49.6,
-          -80.8
-        ],
-        "solid": [
-          1.4,
-          1.4
-        ]
-      },
-      {
-        "piece": "Pr_Cross4",
-        "position": [
-          33.2,
-          -73.6
-        ],
-        "solid": [
-          1.4,
-          1.4
-        ]
-      },
-      {
-        "piece": "Pr_Cross4",
-        "position": [
-          33.2,
-          -66.4
-        ],
-        "solid": [
-          1.4,
-          1.4
-        ]
-      },
-      {
         "piece": "Pr_Obelisk3",
         "position": [
           42.4,
@@ -30074,9 +29920,289 @@
           1.7,
           1.4
         ]
+      },
+      {
+        "piece": "Butterfly_Small",
+        "position": [
+          -30.2,
+          -11.4
+        ],
+        "y": 1.35,
+        "scale": 1.6,
+        "flap": true,
+        "swim": {
+          "radius": 2.9,
+          "speed": 0.96,
+          "phase": 5.03
+        }
+      },
+      {
+        "piece": "Butterfly_Small",
+        "position": [
+          -30.8,
+          -24.3
+        ],
+        "y": 1.4,
+        "scale": 1.6,
+        "flap": true,
+        "swim": {
+          "radius": 2.9,
+          "speed": 1.13,
+          "phase": 3.36
+        }
+      },
+      {
+        "piece": "Butterfly_Small",
+        "position": [
+          13.6,
+          -19.9
+        ],
+        "y": 1.53,
+        "scale": 1.6,
+        "flap": true,
+        "swim": {
+          "radius": 3.2,
+          "speed": 1.03,
+          "phase": 1.68
+        }
+      },
+      {
+        "piece": "Butterfly_Small",
+        "position": [
+          7.8,
+          -12.7
+        ],
+        "y": 1.87,
+        "scale": 1.6,
+        "flap": true,
+        "swim": {
+          "radius": 2.8,
+          "speed": 0.91,
+          "phase": 0.53
+        }
+      },
+      {
+        "piece": "Butterfly_Small",
+        "position": [
+          -5.0,
+          -17.0
+        ],
+        "y": 1.19,
+        "scale": 1.6,
+        "flap": true,
+        "swim": {
+          "radius": 1.8,
+          "speed": 1.39,
+          "phase": 2.06
+        }
+      },
+      {
+        "piece": "Butterfly_Small",
+        "position": [
+          -4.6,
+          -17.0
+        ],
+        "y": 1.2,
+        "scale": 1.6,
+        "flap": true,
+        "swim": {
+          "radius": 2.9,
+          "speed": 1.1,
+          "phase": 2.27
+        }
+      },
+      {
+        "piece": "Butterfly_Small",
+        "position": [
+          29.0,
+          -18.4
+        ],
+        "y": 1.98,
+        "scale": 1.6,
+        "flap": true,
+        "swim": {
+          "radius": 3.4,
+          "speed": 1.23,
+          "phase": 2.71
+        }
+      },
+      {
+        "piece": "Butterfly_Small",
+        "position": [
+          29.4,
+          -16.8
+        ],
+        "y": 1.66,
+        "scale": 1.6,
+        "flap": true,
+        "swim": {
+          "radius": 2.5,
+          "speed": 1.42,
+          "phase": 3.63
+        }
+      },
+      {
+        "piece": "Butterfly_Small",
+        "position": [
+          -28.8,
+          -33.4
+        ],
+        "y": 1.03,
+        "scale": 1.6,
+        "flap": true,
+        "swim": {
+          "radius": 1.8,
+          "speed": 1.32,
+          "phase": 1.77
+        }
+      },
+      {
+        "piece": "Butterfly_Small",
+        "position": [
+          -29.3,
+          -33.6
+        ],
+        "y": 1.82,
+        "scale": 1.6,
+        "flap": true,
+        "swim": {
+          "radius": 1.9,
+          "speed": 1.12,
+          "phase": 2.12
+        }
+      },
+      {
+        "piece": "Butterfly_Small",
+        "position": [
+          9.6,
+          -32.7
+        ],
+        "y": 1.52,
+        "scale": 1.6,
+        "flap": true,
+        "swim": {
+          "radius": 2.2,
+          "speed": 0.92,
+          "phase": 2.15
+        }
+      },
+      {
+        "piece": "Butterfly_Small",
+        "position": [
+          14.7,
+          -34.3
+        ],
+        "y": 1.03,
+        "scale": 1.6,
+        "flap": true,
+        "swim": {
+          "radius": 2.9,
+          "speed": 0.96,
+          "phase": 5.95
+        }
       }
     ],
-    "passive": true
+    "passive": true,
+    "crowd": [
+      {
+        "role": "raccoon",
+        "position": [
+          14.0,
+          -21.0
+        ],
+        "rotation": 200,
+        "pose": "idle",
+        "path": [
+          16.0,
+          -22.5
+        ],
+        "speed": 0.4
+      },
+      {
+        "role": "raccoon",
+        "position": [
+          -30.0,
+          -36.0
+        ],
+        "rotation": 80,
+        "pose": "idle",
+        "path": [
+          -28.0,
+          -37.5
+        ],
+        "speed": 0.4
+      },
+      {
+        "role": "raccoon",
+        "position": [
+          30.0,
+          -19.0
+        ],
+        "rotation": 310,
+        "pose": "idle",
+        "path": [
+          28.5,
+          -17.0
+        ],
+        "speed": 0.4
+      },
+      {
+        "role": "squirrel",
+        "position": [
+          -12.0,
+          -19.0
+        ],
+        "rotation": 120,
+        "pose": "idle",
+        "path": [
+          -10.5,
+          -20.5
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "squirrel",
+        "position": [
+          22.0,
+          -22.0
+        ],
+        "rotation": 30,
+        "pose": "idle",
+        "path": [
+          23.5,
+          -20.0
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "squirrel",
+        "position": [
+          -34.0,
+          -22.0
+        ],
+        "rotation": 200,
+        "pose": "idle",
+        "path": [
+          -33.0,
+          -24.0
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "squirrel",
+        "position": [
+          6.0,
+          -36.0
+        ],
+        "rotation": 270,
+        "pose": "idle",
+        "path": [
+          7.5,
+          -37.0
+        ],
+        "speed": 0.5
+      }
+    ]
   },
   "ruins_01_city": {
     "_comment": "Ruínas da cidade destruída na guerra (Destroyed Walls, LFA, CC BY 3.0): a cena de paredes inteira do pacote é o labirinto de ruas (Ruins_Layout, 1 unidade = 25 cm); a colisão vem dos recortes de cada parede (data/ruins_colliders.json). O guardião do cofre real espera no fundo. Gerado por tools/assets/build_maps.py.",
@@ -112290,6 +112416,34 @@
           -6.3
         ],
         "speed": 0.9
+      },
+      {
+        "role": "llama",
+        "position": [
+          -8.0,
+          -17.0
+        ],
+        "rotation": 40,
+        "pose": "idle",
+        "path": [
+          -4.5,
+          -20.5
+        ],
+        "speed": 0.45
+      },
+      {
+        "role": "brown_horse",
+        "position": [
+          20.0,
+          -29.5
+        ],
+        "rotation": 250,
+        "pose": "idle",
+        "path": [
+          24.0,
+          -31.5
+        ],
+        "speed": 0.55
       }
     ],
     "passive": true
@@ -120830,7 +120984,93 @@
         ]
       }
     ],
-    "passive": true
+    "passive": true,
+    "crowd": [
+      {
+        "role": "crab",
+        "position": [
+          4.0,
+          -25.4
+        ],
+        "rotation": 77,
+        "pose": "walk",
+        "path": [
+          4.5,
+          -24.2
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "crab",
+        "position": [
+          -17.1,
+          -24.2
+        ],
+        "rotation": 86,
+        "pose": "walk",
+        "path": [
+          -16.9,
+          -23.0
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "crab",
+        "position": [
+          -27.7,
+          -23.4
+        ],
+        "rotation": 188,
+        "pose": "walk",
+        "path": [
+          -30.2,
+          -23.5
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "crab",
+        "position": [
+          27.4,
+          -23.6
+        ],
+        "rotation": 41,
+        "pose": "walk",
+        "path": [
+          29.3,
+          -22.8
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "crab",
+        "position": [
+          1.8,
+          -38.9
+        ],
+        "rotation": 50,
+        "pose": "walk",
+        "path": [
+          3.4,
+          -38.0
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "crab",
+        "position": [
+          0.6,
+          -16.3
+        ],
+        "rotation": 105,
+        "pose": "walk",
+        "path": [
+          -0.1,
+          -15.2
+        ],
+        "speed": 0.5
+      }
+    ]
   },
   "bunker_01_entrance": {
     "_comment": "Bunker (3D Dungeon Modular Wall Set 2, Paul Wortmann, CC0): grade de células de 2 m com paredes e pilares do pacote (Bk_*) e lampiões de parede (Lamp, Mev Lyshkin, CC-BY), uma parede em cada divisa entre piso e pedra, colisão por parede e pilar. Salão de entrada, corredor, sala principal com dois nichos e câmara ao fundo; por enquanto só o mapa (sem monstros, baús nem missões). Entrada pela Fazenda. Gerado por tools/assets/build_maps.py.",

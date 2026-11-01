@@ -1468,13 +1468,13 @@ msgid "ITEM_TYPE_BOOK"
 msgstr "Book"
 
 msgid "COMPANION_FOX"
-msgstr "Fire fox"
+msgstr "Fire rottweiler (Benny)"
 
 msgid "COMPANION_OTTER"
-msgstr "Otter"
+msgstr "Water crocodile"
 
 msgid "COMPANION_FALCON"
-msgstr "Falcon"
+msgstr "Air eagle"
 
 msgid "COMPANION_BOAR"
 msgstr "Boar"

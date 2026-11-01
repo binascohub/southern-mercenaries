@@ -39,6 +39,9 @@ var _shield_time := 0.0
 var _snapshots := SnapshotBuffer.new()
 var _last_net_position := Vector3.INF
 var _material: StandardMaterial3D
+var _anim: AnimationPlayer
+var _anim_lock := 0.0
+var _last_pos := Vector3.INF
 
 
 ## spawn: {owner, kind, position, max_health, damage_fraction, time, element}
@@ -81,9 +84,24 @@ func _physics_process(delta: float) -> void:
 			_snapshots.push(net_position)
 		global_position = _snapshots.sample()
 	rotation.y = yaw
+	_update_animation(delta)
 	if _material:
 		var c := Elements.color(element) if data.get("element_color", true) else Color(data.color[0], data.color[1], data.color[2])
 		_material.albedo_color = c.lerp(Color.WHITE, 0.15)
+
+
+## Anima o modelo próprio: anda quando se mexe, fica parado senão; o golpe toca "attack" por um instante.
+func _update_animation(delta: float) -> void:
+	if _anim == null:
+		return
+	var speed := 0.0 if _last_pos == Vector3.INF else global_position.distance_to(_last_pos) / maxf(delta, 0.001)
+	_last_pos = global_position
+	_anim_lock = maxf(_anim_lock - delta, 0.0)
+	if _anim_lock > 0.0:
+		return
+	var clip := "walk" if speed > 0.4 else "idle"
+	if _anim.has_animation(clip) and _anim.current_animation != clip:
+		_anim.play(clip, 0.15)
 
 
 func _think(delta: float) -> void:
@@ -150,6 +168,9 @@ func _target(master: Player) -> Enemy:
 
 
 func _attack(master: Player, target: Enemy) -> void:
+	if _anim and _anim.has_animation("attack"):
+		_anim.play("attack", 0.05)
+		_anim_lock = 0.7
 	var bond := master.character.passive_value("bond") if master.character else 0.0
 	var hit := {
 		"damage": master.power * damage_fraction * (1.0 + bond) * damage_mult(),
@@ -252,8 +273,13 @@ func _build_visual() -> void:
 	var model_name: String = data.get("model", "")
 	if model_name != "" and Kit.has(model_name):
 		var model := Kit.piece(model_name)
-		model.scale = Vector3.ONE * (size / 1.4)
+		model.scale = Vector3.ONE * float(data.get("model_scale", size / 1.4))
+		model.position.y = float(data.get("model_y", 0.0))  # o pombo voa a ~0,9 m do chão
 		add_child(model)
+		_anim = model.find_child("AnimationPlayer", true, false) as AnimationPlayer  # o javali anda e ataca (idle, walk, attack)
+		if _anim:
+			for clip: String in _anim.get_animation_list():
+				_anim.get_animation(clip).loop_mode = Animation.LOOP_LINEAR if clip != "attack" else Animation.LOOP_NONE
 		return
 	var body := MeshInstance3D.new()
 	var mesh := CapsuleMesh.new()

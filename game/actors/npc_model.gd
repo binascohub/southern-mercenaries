@@ -178,6 +178,13 @@ const MODELS := {
 	# Porco e cavalo da Fazenda (Farm Animals, Quaternius, CC0; tools/assets/build_farm_animals.sh): 1,2 m e 2,2 m de comprimento.
 	"pig": {"scene": "res://assets/models/characters/pig.glb", "scale": 1.0,
 		"poses": {"walk": "walk", "idle": "idle", "talk": "idle"}},
+	# Animais de cenário fornecidos pelo autor (modelos estáticos reduzidos por tools/assets/reduce_scan_model.py; autoria e licença a confirmar):
+	# lhama e cavalo marrom da Fazenda, caranguejo das Docas (low-poly, ~0,2 m: dobrado) e guaxinim da Floresta.
+	"llama": {"scene": "res://assets/models/characters/llama_farm.glb", "scale": 1.0, "poses": {}},
+	"brown_horse": {"scene": "res://assets/models/characters/horse_brown.glb", "scale": 1.0, "poses": {}},
+	"crab": {"scene": "res://assets/models/characters/crab.glb", "scale": 2.0, "poses": {}},
+	"squirrel": {"scene": "res://assets/models/characters/squirrel_forest.glb", "scale": 1.0, "poses": {}},
+	"raccoon": {"scene": "res://assets/models/characters/raccoon_forest.glb", "scale": 1.0, "poses": {}},
 	"farm_horse": {"scene": "res://assets/models/characters/farm_horse.glb", "scale": 1.0,
 		"poses": {"walk": "walk", "idle": "idle", "talk": "idle"}},
 }

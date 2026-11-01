@@ -110,6 +110,9 @@ static func dialogue_index(npc_id: String, quest_states: Dictionary) -> int:
 			continue
 		if when.has("quest_active") and quest_states.get(when.quest_active, "") != "active":
 			continue
+		# Troca do mapa: o NPC só oferece quando a missão da cidade que pede o item dele está ativa.
+		if when.has("requires") and quest_states.get(when.requires, "") != "active":
+			continue
 		return i
 	return -1
 
@@ -382,26 +385,34 @@ func _rpc_service(npc_id: String, service: String) -> void:
 		_arena()._toast_to(player, "TOAST_RESTED", {})
 
 
-## Entrega a relíquia de uma missão ao NPC que a deu (quest "item"): tira um da bolsa do herói e conclui a missão.
+## Entrega a relíquia de uma missão ao NPC que a deu (quest "item" ou "items"): tira os itens da bolsa do herói e conclui a missão. Se a missão tem "gives" (troca do
+## mapa), o NPC devolve o item que o NPC da cidade pediu.
 func _turn_in(player: Player, npc_id: String) -> void:
 	var c := _campaign()
 	for id: String in c.get("quests", {}):
 		var quest: Dictionary = GameData.quests.get(id, {})
-		if c.quests[id] != "active" or quest.get("giver", "") != npc_id or not quest.has("item"):
+		if c.quests[id] != "active" or quest.get("giver", "") != npc_id or not (quest.has("item") or quest.has("items")):
 			continue
-		var bag: Array = player.character.data.inventory
-		for i in bag.size():
-			var item: Variant = bag[i]
-			if item != null and item.kind == Items.VALUABLE and item.id == quest.item:
-				item.count = int(item.count) - 1
-				if int(item.count) <= 0:
-					bag[i] = null
-				player.refresh_character()
-				_finish_quest(c, id, quest)
-				SaveSystem.save_campaign(c, true)
-				sync()
+		var needed: Array = quest.get("items", [quest.get("item", "")])
+		for item_id: String in needed:
+			if player.character.count_of(item_id) < 1:
+				_arena()._toast_to(player, "TOAST_NEED_QUEST_ITEM", {"item": GameData.valuables[item_id].name_key})
 				return
-		_arena()._toast_to(player, "TOAST_NEED_QUEST_ITEM", {"item": GameData.valuables[quest.item].name_key})
+		for item_id: String in needed:
+			var bag: Array = player.character.data.inventory
+			for i in bag.size():
+				var item: Variant = bag[i]
+				if item != null and item.kind == Items.VALUABLE and item.id == item_id:
+					item.count = int(item.count) - 1
+					if int(item.count) <= 0:
+						bag[i] = null
+					break
+		if quest.has("gives"):
+			player.character.add_item(Items.stack(Items.VALUABLE, String(quest.gives)))
+		player.refresh_character()
+		_finish_quest(c, id, quest)
+		SaveSystem.save_campaign(c, true)
+		sync()
 		return
 
 
@@ -460,7 +471,7 @@ func complete_quests_in(area_id: String) -> void:
 	var c := _campaign()
 	for id: String in c.get("quests", {}):
 		var quest: Dictionary = GameData.quests.get(id, {})
-		if c.quests[id] != "active" or quest.get("area", "") != area_id or quest.has("clear") or quest.has("item"):
+		if c.quests[id] != "active" or quest.get("area", "") != area_id or quest.has("clear") or quest.has("item") or quest.has("items"):
 			continue
 		_finish_quest(c, id, quest)
 	SaveSystem.save_campaign(c, true)

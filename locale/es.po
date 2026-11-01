@@ -1468,13 +1468,13 @@ msgid "ITEM_TYPE_BOOK"
 msgstr "Libro"
 
 msgid "COMPANION_FOX"
-msgstr "Zorro de fuego"
+msgstr "Rottweiler de fuego (Benny)"
 
 msgid "COMPANION_OTTER"
-msgstr "Nutria"
+msgstr "Cocodrilo de agua"
 
 msgid "COMPANION_FALCON"
-msgstr "Halcón"
+msgstr "Águila del aire"
 
 msgid "COMPANION_BOAR"
 msgstr "Jabalí"
