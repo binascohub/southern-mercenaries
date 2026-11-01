@@ -671,7 +671,7 @@ func _test_minibosses_and_relics() -> void:
 					if GameData.monsters.get(m.monster, {}).get("category", "") == "miniboss":
 						found[m.monster] = true
 		_check(found.size() == 2, "%s tem 2 mini-chefes (%d)" % [map_name, found.size()])
-	for quest_id in ["royal_heart", "royal_skull", "royal_banquet"]:
+	for quest_id in ["royal_heart", "royal_lungs", "royal_skull", "royal_banquet"]:
 		var quest: Dictionary = GameData.quests[quest_id]
 		var relic: Dictionary = GameData.valuables.get(quest.item, {})
 		var droppers := GameData.monsters.values().filter(func(m: Variant) -> bool: return m is Dictionary and m.get("quest_drop", "") == quest.item and m.get("category", "") == "miniboss")
@@ -679,9 +679,12 @@ func _test_minibosses_and_relics() -> void:
 			and GameData.arenas.has(quest.area) and GameData.npcs.has(quest.giver) and tr(quest.name_key) != quest.name_key,
 			"relíquia de %s: item, mini-chefe que larga, mapa e quem pede" % quest_id)
 		_check(Shops.sell_price("blacksmith", Items.stack(Items.VALUABLE, quest.item), 1, {}) < 0, "a relíquia de %s não se vende" % quest_id)
+	var heart_done := {"royal_heart": "done"}
+	var lungs_done := {"royal_heart": "done", "royal_lungs": "done"}
 	_check(Town.dialogue_index("priest", {}) == 0 and Town.dialogue_index("priest", {"royal_heart": "active"}) == 1
-		and Town.dialogue_index("priest", {"royal_heart": "done"}) == 2 and Town.dialogue_index("priest", {"royal_heart": "done", "royal_skull": "active"}) == 3
-		and Town.dialogue_index("priest", {"royal_heart": "done", "royal_skull": "done"}) == 4, "o Padre oferece, lembra e agradece as duas relíquias")
+		and Town.dialogue_index("priest", heart_done) == 2 and Town.dialogue_index("priest", {"royal_heart": "done", "royal_lungs": "active"}) == 3
+		and Town.dialogue_index("priest", lungs_done) == 4 and Town.dialogue_index("priest", {"royal_heart": "done", "royal_lungs": "done", "royal_skull": "active"}) == 5
+		and Town.dialogue_index("priest", {"royal_heart": "done", "royal_lungs": "done", "royal_skull": "done"}) == 6, "o Padre oferece, lembra e agradece as três relíquias")
 	_check(Town.dialogue_index("court_jester", {}) == 0 and Town.dialogue_index("court_jester", {"royal_banquet": "active"}) == 1
 		and Town.dialogue_index("court_jester", {"royal_banquet": "done"}) == 2, "o Bobo oferece, lembra e agradece a carne")
 	_check(capital.decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Food_Apple").size() >= 8, "mesa farta com maçãs na sala do rei")

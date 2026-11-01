@@ -1,7 +1,7 @@
 """Dois mini-chefes por mapa de combate (docs/03-2-areas.md) e os drops das relíquias de missão do Padre da Capital.
 Idempotente: roda de novo sem duplicar. Também é chamado no fim de tools/assets/build_maps.py (que regenera os mapas).
   Esgoto   Gator Velho (s3) + Rei dos Sapos (s2)        Floresta  Leshy + Rainha das Víboras
-  Ruínas   Guardião do Cofre + Alfa da Matilha (larga a Carne Selvagem)         Cemitério Ogro da Cripta (id crypt_scorpion) + Senhor da Cripta (larga o Coração Humano)
+  Ruínas   Guardião do Cofre + Alfa da Matilha (larga a Carne Selvagem)         Cemitério Ogro da Cripta (id crypt_scorpion, larga os Pulmões Humanos) + Senhor da Cripta (larga o Coração Humano)
   Forte    Comandante (larga o Crânio Antigo) + Rainha das Súcubos     Mina  Chefe Troll + Guardião do Túmulo
 uso: python3 tools/assets/add_minibosses.py   (a partir da raiz do projeto)"""
 import json
@@ -31,6 +31,7 @@ clone("troll_chief", "troll", _comment="Mini-chefe da Mina: o Chefe Troll.",
 monsters["crypt_scorpion"].update({"look": "ogre", "size": 1.6, "color": [1.0, 1.0, 1.0],
                                    "_comment": "Mini-chefe do Cemitério (praça): o Ogro da Cripta (Ogre lowpoly, nubux / rudy85, CC BY 3.0); investidas. O id continua crypt_scorpion (saves e encontros)."})
 monsters["crypt_lord"]["quest_drop"] = "human_heart"
+monsters["crypt_scorpion"]["quest_drop"] = "human_lungs"  # o Ogro da Cripta guarda os pulmões do rei
 monsters["fort_commander"]["quest_drop"] = "old_skull"
 monsters["ruin_alpha"]["quest_drop"] = "wild_meat"
 
@@ -48,7 +49,7 @@ def set_monsters(area, enc_id, mons):
 add_encounter("sewers_02_canals", {"id": "s2_frog_king", "position": [0, -58], "monsters": [{"monster": "frog_king", "count": 1}]})
 add_encounter("forest_01_path", {"id": "f_viper_queen", "position": [-3, -78], "monsters": [{"monster": "viper_queen", "count": 1}]})
 add_encounter("ruins_01_city", {"id": "r_alpha", "position": [20, -40], "monsters": [{"monster": "ruin_alpha", "count": 1}]})
-set_monsters("fort_01_gate", "fo_succubi_court", [{"monster": "succubus_queen", "count": 1}, {"monster": "succubus", "count": 1}])
+set_monsters("fort_01_gate", "fo_area_east", [{"monster": "succubus_queen", "count": 1}, {"monster": "dark_elf", "count": 2}])  # o Forte regenerado não tem mais fo_succubi_court
 set_monsters("mine_01_crystal_vein", "m_troll", [{"monster": "troll_chief", "count": 1}])
 set_monsters("mine_01_crystal_vein", "m_golem_stone", [{"monster": "tomb_guardian", "count": 1}])
 json.dump(arenas, open(ARENAS, "w", encoding="utf-8"), indent=2, ensure_ascii=False); open(ARENAS, "a").write("\n")

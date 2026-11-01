@@ -27,7 +27,7 @@ Cada mapa de combate tem **2 mini-chefes** (elites fortes com nome, categoria `m
 | Esgoto | Gator Velho (Passagem da Guerra) · **Rei dos Ratos** (Canais) |
 | Floresta | Leshy · **Rainha das Víboras** |
 | Ruínas | Guardião do Cofre · **Alfa da Matilha** |
-| Cemitério | Ogro da Cripta (era o Escorpião) · Senhor da Cripta (larga o **Coração Humano**) |
+| Cemitério | Ogro da Cripta (era o Escorpião; larga os **Pulmões Humanos**) · Senhor da Cripta (larga o **Coração Humano**) |
 | Forte | Comandante (larga o **Crânio Antigo**) · **Rainha das Súcubos** |
 | Mina | **Chefe Troll** · Guardião do Túmulo |
 

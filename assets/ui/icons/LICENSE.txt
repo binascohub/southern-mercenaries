@@ -15,3 +15,5 @@ human_heart.png — render of Human Heart by Scribe / bart, CC0 1.0: https://ope
 old_skull.png — render of Old Skull by vrav / Snabisch, CC BY-SA 3.0: https://opengameart.org/content/old-skull (tools/assets/build_quest_relics.py)
 wild_meat.png — render of Food Props (meat) by Vinrax, CC BY 3.0: https://opengameart.org/content/food-props (tools/assets/build_food.py)
 bow_D..S.png — renders of Vulture Bow by Mophs / genderfreak, CC BY 4.0: https://opengameart.org/content/vulture-bow (tools/assets/bow_icons.gd)
+human_lungs.png — render of Human Lungs by Scribe, CC0 1.0: https://opengameart.org/content/human-lungs
+book_D..S.png — renders of Old Tome 2 by bobjh / Varkalandar, CC BY 4.0: https://opengameart.org/content/old-tome-2 (tools/assets/book_icons.gd)

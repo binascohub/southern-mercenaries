@@ -2720,7 +2720,7 @@ msgid "DLG_PRIEST_HEART_ACTIVE"
 msgstr "Traigan el Corazón Humano que guarda el Señor de la Cripta en el Cementerio. Cuando lo tengan, solo entréguenlo."
 
 msgid "DLG_PRIEST_SKULL_1"
-msgstr "El corazón ya descansa. Falta el cráneo: el Comandante maldito del Fuerte lo lleva como trofeo para Lucifer."
+msgstr "El corazón y los pulmones ya descansan. Falta el cráneo: el Comandante maldito del Fuerte lo lleva como trofeo para Lucifer."
 
 msgid "DLG_PRIEST_SKULL_2"
 msgstr "Traigan el Cráneo Antiguo y el rey tendrá una tumba completa. La Iglesia paga bien por ello."
@@ -2916,3 +2916,21 @@ msgstr "Las brasas aún rugen. Acaben con él, forasteros."
 
 msgid "DLG_PYRE_DONE"
 msgstr "La pira arde mansa otra vez. Lleven lo que les debo."
+
+msgid "VALUABLE_HUMAN_LUNGS"
+msgstr "Pulmones Humanos"
+
+msgid "QUEST_ROYAL_LUNGS"
+msgstr "Los pulmones del rey caído"
+
+msgid "QUEST_ROYAL_LUNGS_DESC"
+msgstr "El Ogro de la Cripta, en el Cementerio, guarda los pulmones del último rey de Veldmark: derrótalo y lleva los Pulmones Humanos al Padre."
+
+msgid "DLG_PRIEST_LUNGS_1"
+msgstr "El corazón ya descansa, pero el rey aún no respira en paz: los pulmones terminaron con el Ogro de la Cripta, en el mismo Cementerio."
+
+msgid "DLG_PRIEST_LUNGS_2"
+msgstr "Es grande y bruto, pero solo guarda lo que le ordenaron. Traigan los pulmones y la Iglesia vuelve a pagar."
+
+msgid "DLG_PRIEST_LUNGS_ACTIVE"
+msgstr "Los Pulmones Humanos están con el Ogro de la Cripta, en el Cementerio. Entréguenmelos cuando los tengan."

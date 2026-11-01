@@ -2903,3 +2903,21 @@ msgstr ""
 
 msgid "DLG_PYRE_DONE"
 msgstr ""
+
+msgid "VALUABLE_HUMAN_LUNGS"
+msgstr ""
+
+msgid "QUEST_ROYAL_LUNGS"
+msgstr ""
+
+msgid "QUEST_ROYAL_LUNGS_DESC"
+msgstr ""
+
+msgid "DLG_PRIEST_LUNGS_1"
+msgstr ""
+
+msgid "DLG_PRIEST_LUNGS_2"
+msgstr ""
+
+msgid "DLG_PRIEST_LUNGS_ACTIVE"
+msgstr ""

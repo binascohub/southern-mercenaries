@@ -2720,7 +2720,7 @@ msgid "DLG_PRIEST_HEART_ACTIVE"
 msgstr "Bring the Human Heart the Crypt Lord keeps in the Cemetery. When you have it, just hand it over."
 
 msgid "DLG_PRIEST_SKULL_1"
-msgstr "The heart now rests. The skull is missing: the cursed Commander of the Fort carries it as a trophy for Lucifer."
+msgstr "The heart and the lungs now rest. The skull is missing: the cursed Commander of the Fort carries it as a trophy for Lucifer."
 
 msgid "DLG_PRIEST_SKULL_2"
 msgstr "Bring the Old Skull and the king will have a whole grave. The Church pays well for it."
@@ -2916,3 +2916,21 @@ msgstr "The embers still roar. Put an end to him, strangers."
 
 msgid "DLG_PYRE_DONE"
 msgstr "The pyre burns gently again. Take what I owe you."
+
+msgid "VALUABLE_HUMAN_LUNGS"
+msgstr "Human Lungs"
+
+msgid "QUEST_ROYAL_LUNGS"
+msgstr "The Fallen King's Lungs"
+
+msgid "QUEST_ROYAL_LUNGS_DESC"
+msgstr "The Crypt Ogre, in the Cemetery, keeps the lungs of Veldmark's last king: defeat him and bring the Human Lungs to the Priest."
+
+msgid "DLG_PRIEST_LUNGS_1"
+msgstr "The heart now rests, but the king still does not breathe in peace: the lungs ended up with the Crypt Ogre, in the same Cemetery."
+
+msgid "DLG_PRIEST_LUNGS_2"
+msgstr "He is big and brutish, but only guards what he was told to. Bring the lungs and the Church pays again."
+
+msgid "DLG_PRIEST_LUNGS_ACTIVE"
+msgstr "The Human Lungs are with the Crypt Ogre, in the Cemetery. Hand them to me when you have them."

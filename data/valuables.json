@@ -63,5 +63,12 @@
     "maps": [],
     "quest_item": true,
     "model": "Food_Meat"
+  },
+  "human_lungs": {
+    "name_key": "VALUABLE_HUMAN_LUNGS",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Quest_Lungs"
   }
 }

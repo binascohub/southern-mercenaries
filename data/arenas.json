@@ -80907,11 +80907,11 @@
         ],
         "monsters": [
           {
-            "monster": "dark_elf",
-            "count": 2
+            "monster": "succubus_queen",
+            "count": 1
           },
           {
-            "monster": "succubus",
+            "monster": "dark_elf",
             "count": 2
           }
         ]

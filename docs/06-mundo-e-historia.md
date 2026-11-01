@@ -57,6 +57,7 @@ Antes do jogo, houve uma **grande guerra entre dois reinos**:
 - Quando Lúcifer aproveitou a guerra, os demônios dele **desenterraram o último rei de Veldmark** e levaram o corpo, peça por peça, para serem guardadas por criaturas dos covis.
 - O **Padre da Capital** (Aurenhold) lutou contra esse rei em vida, mas acha que **nenhum homem merece isso**: paga em ouro da Igreja a quem trouxer as peças de volta para uma sepultura inteira.
 - **O Coração Humano** (missão `royal_heart`): guardado pelo **Senhor da Cripta**, mini-chefe do Cemitério (mapa 2, Ruínas do Reino do Arqueiro). Item de missão no inventário; entregue ao Padre.
+- **Os Pulmões Humanos** (missão `royal_lungs`, depois do coração): guardados pelo **Ogro da Cripta**, o outro mini-chefe do Cemitério.
 - **O Crânio Antigo** (missão `royal_skull`): carregado como troféu para Lúcifer pelo **Comandante do Forte**, mini-chefe do Forte. Só aparece depois do coração.
 - Os itens **não se vendem** e só caem para quem tem a missão ativa; cada herói precisa do seu.
 

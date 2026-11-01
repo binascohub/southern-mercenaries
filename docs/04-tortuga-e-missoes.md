@@ -311,7 +311,8 @@ Decisão do autor: **cada cidade tem uma área de treinamento com bonecos**, par
 
 ## Missões de relíquia (Padre da Capital)
 - **O coração do rei caído** (`royal_heart`): o **Senhor da Cripta** (mini-chefe do Cemitério) deixa cair o **Coração Humano**; entregar ao Padre rende 220 B$ e 450 XP.
-- **O crânio do rei caído** (`royal_skull`, depois da primeira): o **Comandante do Forte** deixa cair o **Crânio Antigo**; 420 B$ e 800 XP.
+- **Os pulmões do rei caído** (`royal_lungs`, depois do coração): o **Ogro da Cripta** (mini-chefe da praça do Cemitério) deixa cair os **Pulmões Humanos**; 300 B$ e 600 XP.
+- **O crânio do rei caído** (`royal_skull`, depois dos pulmões): o **Comandante do Forte** deixa cair o **Crânio Antigo**; 420 B$ e 800 XP.
 - O item é um **valioso de missão** no inventário de cada herói (não se vende), cai só para quem tem a missão ativa, e a missão termina pelo botão **Entregar a relíquia** na conversa com o Padre.
 
 ## Missão do Bobo da Corte (Sala do Rei)

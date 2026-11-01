@@ -129,5 +129,18 @@
       "gold": 200,
       "xp": 400
     }
+  },
+  "royal_lungs": {
+    "name_key": "QUEST_ROYAL_LUNGS",
+    "desc_key": "QUEST_ROYAL_LUNGS_DESC",
+    "type": "main",
+    "giver": "priest",
+    "area": "cemetery_01_yard",
+    "item": "human_lungs",
+    "target_element": "earth",
+    "reward": {
+      "gold": 300,
+      "xp": 600
+    }
   }
 }

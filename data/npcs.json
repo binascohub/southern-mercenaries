@@ -320,6 +320,25 @@
       },
       {
         "when": {
+          "quest_new": "royal_lungs"
+        },
+        "lines": [
+          "DLG_PRIEST_LUNGS_1",
+          "DLG_PRIEST_LUNGS_2"
+        ],
+        "offer": "royal_lungs"
+      },
+      {
+        "when": {
+          "quest_active": "royal_lungs"
+        },
+        "lines": [
+          "DLG_PRIEST_LUNGS_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {
           "quest_new": "royal_skull"
         },
         "lines": [

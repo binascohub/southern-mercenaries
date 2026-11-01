@@ -622,7 +622,8 @@
       1.0,
       1.0
     ],
-    "_comment": "Mini-chefe do Cemitério (praça): o Ogro da Cripta (Ogre lowpoly, nubux / rudy85, CC BY 3.0); investidas. O id continua crypt_scorpion (saves e encontros)."
+    "_comment": "Mini-chefe do Cemitério (praça): o Ogro da Cripta (Ogre lowpoly, nubux / rudy85, CC BY 3.0); investidas. O id continua crypt_scorpion (saves e encontros).",
+    "quest_drop": "human_lungs"
   },
   "fort_commander": {
     "name_key": "MONSTER_FORT_COMMANDER",
