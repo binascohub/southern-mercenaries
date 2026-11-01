@@ -1264,15 +1264,6 @@
         "seat": "Stool"
       },
       {
-        "role": "guard",
-        "position": [
-          -3.5,
-          6.1
-        ],
-        "rotation": 200,
-        "pose": "block"
-      },
-      {
         "role": "beggar",
         "position": [
           24.6,
@@ -1521,6 +1512,277 @@
         "speed": 0.5
       },
       {
+        "role": "courtesan_gold",
+        "position": [
+          14.4,
+          0.2
+        ],
+        "rotation": 79,
+        "pose": "dance_hips"
+      },
+      {
+        "role": "courtesan_black",
+        "position": [
+          17.6,
+          -0.8
+        ],
+        "rotation": 309,
+        "pose": "dance_sway"
+      },
+      {
+        "role": "courtesan_green",
+        "position": [
+          16.2,
+          2.1
+        ],
+        "rotation": 187,
+        "pose": "dance_wild"
+      },
+      {
+        "role": "courtesan_white",
+        "position": [
+          15.4,
+          -1.7
+        ],
+        "rotation": 15,
+        "pose": "dance_twirl"
+      },
+      {
+        "role": "sailor",
+        "position": [
+          12.4,
+          1.4
+        ],
+        "rotation": 104,
+        "pose": "talk"
+      },
+      {
+        "role": "drunk",
+        "position": [
+          19.8,
+          1.0
+        ],
+        "rotation": 263,
+        "pose": "dance"
+      },
+      {
+        "role": "pirate",
+        "position": [
+          18.4,
+          3.2
+        ],
+        "rotation": 222,
+        "pose": "talk"
+      },
+      {
+        "role": "courtesan_red",
+        "position": [
+          -22.8,
+          0.6
+        ],
+        "rotation": 52,
+        "pose": "dance_sway"
+      },
+      {
+        "role": "courtesan_white",
+        "position": [
+          -20.2,
+          2.6
+        ],
+        "rotation": 232,
+        "pose": "dance_hips"
+      },
+      {
+        "role": "courtesan_gold",
+        "position": [
+          -19.0,
+          3.4
+        ],
+        "rotation": 234,
+        "pose": "dance_twirl"
+      },
+      {
+        "role": "gambler",
+        "position": [
+          -18.2,
+          0.6
+        ],
+        "rotation": 287,
+        "pose": "talk"
+      },
+      {
+        "role": "drunk",
+        "position": [
+          -24.8,
+          3.0
+        ],
+        "rotation": 113,
+        "pose": "idle"
+      },
+      {
+        "role": "courtesan_black",
+        "position": [
+          -1.4,
+          -11.6
+        ],
+        "rotation": 106,
+        "pose": "dance_wild"
+      },
+      {
+        "role": "courtesan_green",
+        "position": [
+          1.6,
+          -12.4
+        ],
+        "rotation": 284,
+        "pose": "dance_hips"
+      },
+      {
+        "role": "courtesan",
+        "position": [
+          0.2,
+          -13.6
+        ],
+        "rotation": 353,
+        "pose": "dance_sway"
+      },
+      {
+        "role": "sailor",
+        "position": [
+          3.6,
+          -11.0
+        ],
+        "rotation": 254,
+        "pose": "talk"
+      },
+      {
+        "role": "dockworker",
+        "position": [
+          -3.6,
+          -13.0
+        ],
+        "rotation": 74,
+        "pose": "idle"
+      },
+      {
+        "role": "courtesan_white",
+        "position": [
+          -9.5,
+          -2.5
+        ],
+        "rotation": 77,
+        "pose": "dance_sway"
+      },
+      {
+        "role": "courtesan_green",
+        "position": [
+          5.8,
+          -0.8
+        ],
+        "rotation": 38,
+        "pose": "dance_twirl"
+      },
+      {
+        "role": "soldier",
+        "position": [
+          -9,
+          13.7
+        ],
+        "rotation": 0,
+        "pose": "melee",
+        "weapon": "Weapon_Longsword"
+      },
+      {
+        "role": "soldier",
+        "position": [
+          -5,
+          13.7
+        ],
+        "rotation": 0,
+        "pose": "melee_b",
+        "weapon": "Weapon_Shortsword"
+      },
+      {
+        "role": "soldier",
+        "position": [
+          -1,
+          13.7
+        ],
+        "rotation": 0,
+        "pose": "melee_c",
+        "weapon": "Weapon_Axe"
+      },
+      {
+        "role": "soldier",
+        "position": [
+          3,
+          13.7
+        ],
+        "rotation": 0,
+        "pose": "melee",
+        "weapon": "Weapon_Hammer"
+      },
+      {
+        "role": "soldier",
+        "position": [
+          9,
+          11.7
+        ],
+        "rotation": 0,
+        "pose": "melee_c",
+        "weapon": "Weapon_Longsword"
+      },
+      {
+        "role": "soldier",
+        "position": [
+          9,
+          17.6
+        ],
+        "rotation": 0,
+        "pose": "melee_b",
+        "weapon": "Weapon_Polearm"
+      },
+      {
+        "role": "soldier",
+        "position": [
+          -8.0,
+          19.2
+        ],
+        "rotation": 0,
+        "pose": "melee",
+        "weapon": "Weapon_Shortsword"
+      },
+      {
+        "role": "soldier",
+        "position": [
+          -4.8,
+          19.2
+        ],
+        "rotation": 0,
+        "pose": "melee_b",
+        "weapon": "Weapon_Axe"
+      },
+      {
+        "role": "soldier",
+        "position": [
+          -1.6,
+          19.2
+        ],
+        "rotation": 0,
+        "pose": "melee_c",
+        "weapon": "Weapon_Longsword"
+      },
+      {
+        "role": "soldier",
+        "position": [
+          0,
+          10.4
+        ],
+        "rotation": 0,
+        "pose": "talk",
+        "weapon": "Weapon_Shortsword"
+      },
+      {
         "role": "courtesan_red",
         "position": [
           -6,
@@ -1564,22 +1826,6 @@
         ],
         "rotation": 200,
         "pose": "talk"
-      },
-      {
-        "role": "guard",
-        "position": [
-          -1.5,
-          -21.8
-        ],
-        "rotation": 180
-      },
-      {
-        "role": "guard",
-        "position": [
-          1.5,
-          -21.8
-        ],
-        "rotation": 180
       }
     ]
   },

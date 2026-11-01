@@ -261,6 +261,12 @@ func set_pose(key: String) -> void:
 		_play(_pose, 0.0)
 
 
+## Começa a pose fixa num ponto do ciclo (0..1), para um grupo não ficar em uníssono.
+func desync(fraction: float) -> void:
+	if _anim and _anim.current_animation != "":
+		_anim.seek(_anim.current_animation_length * fraction, true)
+
+
 func current() -> String:
 	return _action if _action != "" else _current
 

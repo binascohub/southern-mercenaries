@@ -1,5 +1,5 @@
 {
-  "_comment": "Gente de Tortuga (04-tortuga-e-missoes.md, seções 1 e 2): 'desertores, renegados, ladrões, assassinos, prostitutas, piratas' e os NPCs de ambientação — bêbados nas portas, marinheiros, piratas, estivadores, apostadores, guardas de aluguel, mendigos. Só cenário (sem conversa). Cada papel tem os corpos possíveis (o mesmo dos heróis, hero_model.gd); a escolha vem da posição, sempre a mesma em todos os PCs. As pessoas ficam em data/arenas.json, 'crowd': papel, posição, rotação, pose (sit, sit_talk, lie, dance, crouch, push, talk, idle, block), banco embaixo ('seat') e caminho de ida e volta ('path', 'sway' para cambalear). Briga: papel 'brawl', com os dois brigões em 'fighters' (game/levels/brawl.gd).",
+  "_comment": "Gente de Tortuga (04-tortuga-e-missoes.md, seções 1 e 2): 'desertores, renegados, ladrões, assassinos, prostitutas, piratas' e os NPCs de ambientação — bêbados nas portas, marinheiros, piratas, estivadores, apostadores, guardas de aluguel, mendigos. Só cenário (sem conversa). Cada papel tem os corpos possíveis (o mesmo dos heróis, hero_model.gd); a escolha vem da posição, sempre a mesma em todos os PCs. As pessoas ficam em data/arenas.json, 'crowd': papel, posição, rotação, pose (sit, sit_talk, lie, dance, crouch, push, talk, idle, block, melee, melee_b, melee_c), 'weapon' (peça do kit na mão direita; os soldados treinam no pátio), banco embaixo ('seat') e caminho de ida e volta ('path', 'sway' para cambalear). Briga: papel 'brawl', com os dois brigões em 'fighters' (game/levels/brawl.gd).",
   "roles": {
     "drunk": {"sex": ["male", "male", "female"], "hair": {"male": [["Hair_Buzzed", "Hair_Beard"], ["Hair_SimpleParted"], ["Hair_Beard"]], "female": [["Hair_Long"], ["Hair_Buns"]]},
       "hair_color": [[0.25, 0.17, 0.1], [0.45, 0.4, 0.35], [0.1, 0.08, 0.06], [0.55, 0.3, 0.12]], "outfit": [{}, {"body": "cloth"}, {"feet": "cloth"}]},
@@ -15,6 +15,9 @@
       "hair_color": [[0.25, 0.17, 0.1], [0.06, 0.05, 0.05], [0.6, 0.6, 0.62]], "outfit": [{"body": "cloth"}, {}]},
     "guard": {"sex": ["male"], "hair": {"male": [["Hair_Buzzed", "Hair_Beard"]]},
       "hair_color": [[0.12, 0.09, 0.07]], "outfit": [{"body": "iron", "hands": "iron", "feet": "iron", "head": "iron"}]},
+    "soldier": {"sex": ["male", "male", "female"], "hair": {"male": [["Hair_Buzzed", "Hair_Beard"], ["Hair_Buzzed"], ["Hair_SimpleParted"]], "female": [["Hair_Buns"], ["Hair_BuzzedFemale"]]},
+      "hair_color": [[0.12, 0.09, 0.07], [0.3, 0.2, 0.12], [0.06, 0.05, 0.05], [0.5, 0.35, 0.2]], "weapon": "Weapon_Longsword",
+      "outfit": [{"body": "iron", "hands": "iron", "feet": "iron", "head": "iron"}, {"body": "iron", "hands": "iron", "feet": "iron"}, {"body": "steel", "hands": "iron", "feet": "iron", "head": "iron"}]},
     "beggar": {"sex": ["male", "female"], "hair": {"male": [["Hair_Beard"], ["Hair_Buzzed", "Hair_Beard"]], "female": [["Hair_Long"]]},
       "hair_color": [[0.55, 0.52, 0.48], [0.3, 0.25, 0.2]], "outfit": [{}]}
   }

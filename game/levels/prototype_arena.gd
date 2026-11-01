@@ -1789,6 +1789,15 @@ func _npc_body(parent: Node3D, look: Dictionary) -> HeroModel:
 	model.set_pose(String(look.get("pose", "idle")))
 	if look.get("mug", false) and Kit.has("Mug_Wood"):
 		model.attach("hand_r", Kit.piece("Mug_Wood"), Player.HAND_GRIP, Vector3(0.4, 0.9, 0.1))
+	# Arma na mão direita (soldados treinando): cada golpe começa num ponto diferente do ciclo.
+	var weapon := String(look.get("weapon", ""))
+	if weapon != "" and Kit.has(weapon):
+		var piece := Kit.piece(weapon)
+		piece.position = Vector3(0, 0.12, 0)
+		var grip := Node3D.new()
+		grip.add_child(piece)
+		model.attach("hand_r", grip, Player.HAND_GRIP, Vector3(0.45, 0.9, 0.15))
+		model.desync(randf())
 	return model
 
 
@@ -1824,7 +1833,8 @@ func _crowd_look(role_name: String, at: Vector3, entry: Dictionary) -> Dictionar
 	var colors: Array = role.get("hair_color", [[0.2, 0.15, 0.1]])
 	var outfits: Array = role.get("outfit", [{}])
 	return {"sex": sex, "hair": hairs[(h / 7) % hairs.size()], "hair_color": colors[(h / 13) % colors.size()],
-		"outfit": outfits[(h / 29) % outfits.size()], "pose": entry.get("pose", "idle")}
+		"outfit": outfits[(h / 29) % outfits.size()], "pose": entry.get("pose", "idle"),
+		"weapon": entry.get("weapon", role.get("weapon", "")) if String(entry.get("pose", "idle")).begins_with("melee") or entry.has("weapon") else ""}
 
 
 ## Briga de rua: dois brigões (papéis em "fighters") frente a frente, trocando socos.
