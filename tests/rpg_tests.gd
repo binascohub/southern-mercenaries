@@ -772,7 +772,9 @@ func _test_refine() -> void:
 	_check(c.armor_set_refined(), "conjunto todo em +4")
 	_near(c.max_health(), health * 1.05, "conjunto +4: +5% de vida")
 	c.data.equipment.weapon = staff
-	_check(c.aura_level() == 3, "aura no nível do refino da arma")
+	_check(c.aura_level() == 1, "brilho no nível do rank das roupas (ferro = D = 1), não do refino da arma")
+	c.data.equipment.body = Items.equipment("tunic", "gold")
+	_check(c.aura_level() == 2, "brilho: média dos ranks vestidos (3 D e 1 S = 2)")
 
 
 func _test_opening() -> void:
@@ -928,8 +930,8 @@ func _test_sewers() -> void:
 	# Floresta: trilhas de lajes e marcos de pedra nas divisas dos setores (como no Cemitério).
 	var forest_decor: Array = GameData.arenas.forest_01_path.decor
 	_check(forest_decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Floor_UnevenBrick").size() > 300
-		and forest_decor.filter(func(d: Dictionary) -> bool: return String(d.get("piece", "")).begins_with("Pr_") and d.get("solid", []) == [1.4, 1.4]).size() >= 20,
-		"Floresta tem trilhas de lajes e marcos nas portas dos setores")
+		and forest_decor.filter(func(d: Dictionary) -> bool: return String(d.get("piece", "")).begins_with("Pr_Cross")).is_empty(),
+		"Floresta tem trilhas de lajes e nenhuma cruz")
 	# Floresta: a Besta Quitinosa (corpo a corpo, modelo estático animado por código).
 	var beasts: Array = GameData.arenas.forest_01_path.encounters.filter(func(e: Dictionary) -> bool: return e.id == "f_beasts")
 	_check(beasts.size() == 1 and beasts[0].monsters[0].monster == "chitin_beast" and MonsterModel.FAMILIES.get(GameData.monsters.chitin_beast.look, {}).get("static", false),
@@ -1041,13 +1043,27 @@ func _test_ninja_gear() -> void:
 	suit.setup("male", {}, "ninja")
 	_check(suit.is_suit() and suit.visible_parts().size() == 4, "ninja: corpo próprio em 4 peças (uma por slot)")
 	var cloth: Array[Color] = []
+	var others := func() -> Array:
+		var colors := []
+		for part: MeshInstance3D in suit.find_children("Ninja_*", "MeshInstance3D", true, false):
+			for k in part.get_surface_override_material_count():
+				var m := part.get_surface_override_material(k) as StandardMaterial3D
+				if m and not String(m.resource_name).contains("Cloth"):
+					colors.append(m.albedo_color)
+		return colors
+	var others_before: Array = others.call()
+	var by_rank := []
 	for rank in NinjaGear.RANKS:
 		NinjaGear.apply(suit, {"body": rank, "head": rank, "hands": rank, "feet": rank})
-		var body_mat := (suit.find_child("Ninja_Body", true, false) as MeshInstance3D).get_surface_override_material(0) as StandardMaterial3D
-		cloth.append(body_mat.albedo_color)
-	var skin_mat := (suit.find_child("Ninja_Body", true, false) as MeshInstance3D).get_surface_override_material(1) as StandardMaterial3D
-	_check(cloth.size() == 5 and cloth[0] != cloth[1] and cloth[2] != cloth[3] and cloth[3] != cloth[4], "ninja: a cor do tecido muda a cada rank")
-	_check(skin_mat.albedo_color == Color.WHITE, "ninja: a pele não é tingida pelo rank")
+		by_rank.append((suit.find_child("Ninja_Body", true, false) as MeshInstance3D).get_surface_override_material(0).albedo_color)
+	_check(by_rank.all(func(c: Color) -> bool: return c == by_rank[0]), "ninja: o rank não muda a cor da roupa")
+	for element in Elements.ALL:
+		suit.set_suit_element(element)
+		cloth.append((suit.find_child("Ninja_Body", true, false) as MeshInstance3D).get_surface_override_material(0).albedo_color)
+	_check(cloth.size() == 4 and cloth[0] != cloth[1] and cloth[1] != cloth[2] and cloth[2] != cloth[3], "ninja: a cor da roupa é a do elemento (água, fogo, vento, terra)")
+	suit.set_suit_element("fire")
+	_check(cloth[1].r > cloth[1].b and cloth[0].b > cloth[0].r and cloth[3].g > cloth[3].r, "ninja: fogo vermelho, água azul, terra verde")
+	_check(others_before == others.call(), "ninja: a pele e a faixa não são tingidas pelo rank")
 	suit.queue_free()
 	for class_id in ClassGear.CLASSES:
 		for sex in ["male", "female"]:

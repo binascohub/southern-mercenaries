@@ -45,10 +45,11 @@ const MELEE_COMBO := ["melee", "melee_b", "melee_c"]
 const COMBO_WINDOW := 1.2
 ## Ninja: corpo próprio (ninja.glb ligado ao mesmo esqueleto e às mesmas animações, tools/assets/build_ninja_hero.py), em quatro
 ## peças (uma por slot de equipamento) cujo tecido é tingido com a cor do rank (dress_suit); pele e faixa vermelha não mudam.
-const NINJA_SCENE := "res://assets/models/characters/hero_ninja.glb"
+const NINJA_SCENES := {"male": "res://assets/models/characters/hero_ninja.glb", "female": "res://assets/models/characters/hero_ninja_female.glb"}
 const SUIT_SLOTS := {"body": "Ninja_Body", "head": "Ninja_Head", "hands": "Ninja_Hands", "feet": "Ninja_Feet"}
+## A cor da roupa do Ninja identifica o elemento de origem (fogo vermelho, água azul, vento branco, terra verde); o rank não muda a cor.
 const SUIT_COLORS := {
-	"D": Color(0.62, 0.6, 0.55), "C": Color(0.36, 0.52, 0.32), "B": Color(0.27, 0.4, 0.8), "A": Color(0.8, 0.22, 0.2), "S": Color(0.5, 0.25, 0.8),
+	"fire": Color(0.8, 0.22, 0.2), "water": Color(0.27, 0.4, 0.8), "air": Color(0.92, 0.92, 0.9), "earth": Color(0.3, 0.55, 0.28),
 }
 ## Peças por slot de equipamento: sem item, as de Camponês; com item, as de Ranger.
 const OUTFIT := {
@@ -87,6 +88,8 @@ var sex := "male"
 var _combo := 0
 ## Corpo do Ninja (uma peça por slot, tecido tingido pelo rank).
 var _suit := false
+var suit_element := "fire"
+var _hooded := false
 var _last_melee := -10.0
 
 
@@ -95,8 +98,8 @@ var _last_melee := -10.0
 func setup(sex: String, look: Dictionary, class_id := "") -> void:
 	self.sex = sex
 	var path: String = SCENES.get(sex, SCENES.male)
-	if class_id == "ninja" and ResourceLoader.exists(NINJA_SCENE):
-		path = NINJA_SCENE
+	if class_id == "ninja" and ResourceLoader.exists(NINJA_SCENES.get(sex, NINJA_SCENES.male)):
+		path = NINJA_SCENES.get(sex, NINJA_SCENES.male)
 		_suit = true
 	var scene: PackedScene = load(path) as PackedScene if ResourceLoader.exists(path) else null
 	if scene == null:
@@ -122,9 +125,9 @@ func setup(sex: String, look: Dictionary, class_id := "") -> void:
 			mesh.set_surface_override_material(i, copy)
 			_materials.append(copy)
 			_base_colors.append(copy.albedo_color)
-	if not _suit:
-		_build_kit_hair(hair_color)
+	_build_kit_hair(hair_color)
 	set_outfit({})
+	set_hooded(true)
 	if look.has("skin"):
 		var skin: Array = look.skin
 		tint_skin(Color(skin[0], skin[1], skin[2]))
@@ -249,21 +252,41 @@ func is_suit() -> bool:
 	return _suit
 
 
-## Veste o corpo do Ninja: `ranks` = {body, head, hands, feet} (rank D a S, "" = sem a peça, que fica como o D).
-## Só o tecido (material 0 de cada peça) muda de cor; a pele e a faixa vermelha ficam como são.
-func dress_suit(ranks: Dictionary) -> void:
+## Capuz e máscara do Ninja (campo de batalha) ou rosto e cabelo à mostra (cidade e criação de personagem).
+func set_hooded(on: bool) -> void:
+	if not _suit or on == _hooded:
+		return
+	_hooded = on
+	for part_name: String in _parts:
+		var mesh: MeshInstance3D = _parts[part_name]
+		if part_name == "Ninja_Head":
+			mesh.visible = on
+		elif part_name in ALWAYS or part_name in _hair:
+			mesh.visible = not on
+
+
+## Elemento de origem do Ninja: dá a cor do tecido.
+func set_suit_element(element: String) -> void:
+	suit_element = element
+	if _suit:
+		dress_suit({})
+
+
+## Veste o corpo do Ninja na cor do elemento (`_ranks` não muda a cor: o rank só dá brilho em torno do herói).
+## Só o tecido azul de cada peça muda; botas, luvas, espada, faixa, rosto e mãos ficam como são.
+func dress_suit(_ranks: Dictionary) -> void:
+	var tint: Color = SUIT_COLORS.get(suit_element, SUIT_COLORS.fire)
 	for slot: String in SUIT_SLOTS:
 		var mesh := _parts.get(SUIT_SLOTS[slot]) as MeshInstance3D
 		if mesh == null:
 			continue
 		mesh.visible = true
-		var rank := String(ranks.get(slot, ""))
-		var tint: Color = SUIT_COLORS.get(rank, SUIT_COLORS.D)
-		var material := mesh.get_surface_override_material(0) as StandardMaterial3D
-		var index := _materials.find(material)
-		if index >= 0:
-			_base_colors[index] = tint
-			material.albedo_color = tint
+		for i in mesh.get_surface_override_material_count():
+			var material := mesh.get_surface_override_material(i) as StandardMaterial3D
+			var index := _materials.find(material)
+			if index >= 0 and String(material.resource_name).contains("Cloth"):
+				_base_colors[index] = tint
+				material.albedo_color = tint
 
 
 ## Mostra uma parte do corpo pelo nome, tingida de `tint`.

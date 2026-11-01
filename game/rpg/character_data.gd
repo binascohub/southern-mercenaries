@@ -242,10 +242,17 @@ func armor_set_refined() -> bool:
 	return true
 
 
-## Nível da aura: o refino da arma (05-1-refino.md, seção 5).
+## Nível do brilho (aura) em torno do herói: o rank (D=1 a S=5) das roupas e armaduras vestidas, em média (arredondada).
+## O rank da roupa só serve para isso: não há mais refino.
 func aura_level() -> int:
-	var weapon: Variant = data.equipment.get("weapon")
-	return int(weapon.refine) if weapon != null else 0
+	var total := 0
+	var worn := 0
+	for slot in ["head", "body", "hands", "feet"]:
+		var item: Variant = data.equipment.get(slot)
+		if item != null:
+			total += HeroGear.RANKS.find(HeroGear.rank_of(String(item.material))) + 1
+			worn += 1
+	return roundi(float(total) / float(worn)) if worn > 0 else 0
 
 
 func max_resource() -> float:

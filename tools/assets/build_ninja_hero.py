@@ -2,8 +2,9 @@
 animações do herói masculino (assets/models/characters/hero_male.glb): gera assets/models/characters/hero_ninja.glb.
  - decima para ~45 mil triângulos e reduz a textura para 2048;
  - pesos por distância às cápsulas dos ossos (braços no A-pose do modelo) e, depois, os braços sobem para o T-pose do esqueleto (o peso decide quanto);
- - separa em 4 peças, uma por slot de equipamento (Ninja_Body, Ninja_Head, Ninja_Hands, Ninja_Feet), cada uma com 3 materiais:
-   0 tecido (textura em tons de cinza, tingida no jogo pela cor do rank), 1 pele e 2 faixa vermelha (textura original, sem tingir).
+ - separa em 4 peças, uma por slot de equipamento (Ninja_Body, Ninja_Head, Ninja_Hands, Ninja_Feet), cada uma com 2 materiais:
+   0 tecido azul (textura em tons de cinza, tingida no jogo pela cor do rank), 1 o resto (botas, luvas, espada, faixa, rosto e mãos: textura original, sem tingir).
+Mantém a cabeça, os olhos e os cabelos do herói (a cidade esconde a peça Ninja_Head: capuz e máscara). Rode com o hero_male.glb e com o hero_female.glb.
 uso: blender -b -P tools/assets/build_ninja_hero.py -- <ninja.glb> <hero_male.glb> <saida.glb> [--debug]"""
 import bpy, bmesh, sys, math, os
 import numpy as np
@@ -17,13 +18,18 @@ tmp = os.path.join(os.path.expanduser("~/.cache/sm-animalkit/ninja"))
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.gltf(filepath=hero_path)
 arm = [o for o in bpy.data.objects if o.type == 'ARMATURE'][0]
+# fica o rosto do herói (Head, Eyes, Eyebrows e os cabelos), que a cidade mostra no lugar do capuz e da máscara
+keep = []
 for o in list(bpy.data.objects):
     if o.type == 'MESH':
-        bpy.data.objects.remove(o, do_unlink=True)
-hero_top = 1.81
+        if o.name in ("Head", "Eyes", "Eyebrows") or o.name.startswith("Hair"):
+            keep.append(o)
+        else:
+            bpy.data.objects.remove(o, do_unlink=True)
+hero_top = max(max((o.matrix_world @ Vector(c)).z for c in o.bound_box) for o in keep if o.name == "Head")
 bones = {b.name: (Vector(b.head_local), Vector(b.tail_local)) for b in arm.data.bones}
 bpy.ops.import_scene.gltf(filepath=src)
-nin = [o for o in bpy.data.objects if o.type == 'MESH'][0]
+nin = [o for o in bpy.data.objects if o.type == 'MESH' and o not in keep][0]
 nin.parent = None
 bpy.context.view_layer.objects.active = nin
 nin.select_set(True)
@@ -72,8 +78,8 @@ for i, (name, h, t, r) in enumerate(caps):
     D[:, i] = np.maximum(d - r, 0) + 0.004
 W = (D.min(axis=1, keepdims=True) / D) ** 6
 W[W < 0.04] = 0
-keep = np.argsort(-W, axis=1)[:, 4:]
-np.put_along_axis(W, keep, 0, axis=1)
+drop = np.argsort(-W, axis=1)[:, 4:]
+np.put_along_axis(W, drop, 0, axis=1)
 W /= W.sum(axis=1, keepdims=True)
 names = [c[0] for c in caps]
 # braços do A-pose para o T-pose
@@ -102,14 +108,15 @@ face_class = []
 for poly in mesh.polygons:
     u = np.mean([uv[l].uv[0] for l in poly.loop_indices]); w = np.mean([uv[l].uv[1] for l in poly.loop_indices])
     r, g, b = px[min(2047, max(0, int(w * 2048))), min(2047, max(0, int(u * 2048)))]
-    mx, mn = max(r, g, b), min(r, g, b)
-    sat = (mx - mn) / (mx + 1e-6)
-    if r > 0.38 and r > g > b and sat > 0.55 and g < 0.45:
-        face_class.append(2)  # faixa vermelha
-    elif r > 0.4 and r > g >= b * 0.95 and 0.12 < sat <= 0.62:
-        face_class.append(1)  # pele
-    else:
-        face_class.append(0)
+    sat = (max(r, g, b) - min(r, g, b)) / (max(r, g, b) + 1e-6)
+    cx, cy, cz = np.mean(P[list(poly.vertices)], axis=0)
+    skin = r > 0.4 and r > g >= b * 0.95 and 0.12 < sat <= 0.62
+    sash = r > 0.15 and r > g >= b * 0.8 and sat > 0.62 and g < 0.5 * r
+    boots = cz < 0.38  # botas e faixas das pernas
+    gloves = abs(cx) > 0.52  # faixas, luvas e mãos (a partir do cotovelo)
+    sword = cy > 0.2 and abs(cx) < 0.22 and cz > 0.9  # a espada nas costas
+    # só o tecido azul (casaco, calça, capuz e mangas) muda de cor; o resto fica como é no modelo
+    face_class.append(1 if (skin or sash or boots or gloves or sword) else 0)
 # slot de cada face (peso dominante dos vértices)
 def slot_of(poly):
     acc = {}
@@ -126,7 +133,8 @@ def slot_of(poly):
         return "Feet"
     return "Body"
 face_slot = [slot_of(p) for p in mesh.polygons]
-print("CLASSES", {k: face_class.count(k) for k in (0, 1, 2)}, {k: face_slot.count(k) for k in ("Head", "Hands", "Feet", "Body")})
+
+print("CLASSES", {k: face_class.count(k) for k in (0, 1)}, {k: face_slot.count(k) for k in ("Head", "Hands", "Feet", "Body")})
 # texturas e materiais
 grey = np.dot(px, [0.299, 0.587, 0.114])
 grey = np.clip(grey / (np.percentile(grey, 90) + 1e-6) * 0.85, 0, 1)
@@ -140,12 +148,12 @@ def material(name, image, rough=0.85):
     t = m.node_tree.nodes.new("ShaderNodeTexImage"); t.image = image
     m.node_tree.links.new(t.outputs["Color"], b.inputs["Base Color"])
     return m
-mats = [material("Ninja_Cloth", gimg), material("Ninja_Skin", img, 0.6), material("Ninja_Sash", img)]
-for i, p in enumerate(mesh.polygons):
-    p.material_index = face_class[i]
+mats = [material("Ninja_Cloth", gimg), material("Ninja_Skin", img, 0.7)]
 mesh.materials.clear()
 for m in mats:
     mesh.materials.append(m)
+for i, p in enumerate(mesh.polygons):
+    p.material_index = face_class[i]
 # cada face leva o slot dela: guarda em um atributo para cortar as peças
 attr = mesh.attributes.new("slot", 'INT', 'FACE')
 order = ["Body", "Head", "Hands", "Feet"]
@@ -164,7 +172,7 @@ for k, slot in enumerate(order):
     parts.append(o)
 bpy.data.objects.remove(nin, do_unlink=True)
 bpy.ops.object.select_all(action='DESELECT')
-for o in parts + [arm]:
+for o in parts + keep + [arm]:
     o.select_set(True)
 bpy.context.view_layer.objects.active = arm
 bpy.ops.export_scene.gltf(filepath=dst, export_format='GLB', export_image_format='JPEG', export_jpeg_quality=88, export_animations=True,

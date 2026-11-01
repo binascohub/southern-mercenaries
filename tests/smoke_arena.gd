@@ -1062,7 +1062,7 @@ func _town_test() -> void:
 	check.call(int(refined.refine) == 3 and player.character.count_of("scroll_refine_weapon_iron") == 0, "refina até +3 (seguro)")
 	player.request_equip(int(staff_ref.get_slice(":", 1)))
 	await get_tree().physics_frame
-	check.call(player.aura_level == 3, "arma +3 acende a aura (%d)" % player.aura_level)
+	check.call(player.aura_level == 0, "arma refinada não acende o brilho (%d)" % player.aura_level)
 	player.character.add_item(Items.equipment("hood", "iron", "common", 2))
 	var hood_index := -1
 	for i in player.character.data.inventory.size():

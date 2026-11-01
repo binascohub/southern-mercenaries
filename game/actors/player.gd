@@ -1191,6 +1191,7 @@ func _build_visual() -> void:
 	crystal.position = Vector3(0, 0.32, 0) if summoner else Vector3(0, staff_mesh.height / 2.0, 0)
 	if summoner:
 		crystal.scale = Vector3.ONE * 0.5  # brilho do elemento flutua acima do livro
+	crystal.visible = not ninja  # a bola do elemento não aparece na mão do Ninja: o elemento é a cor da roupa
 	staff.add_child(crystal)
 
 	# Mago: caderno de anotações; Arqueiro: aljava nas costas.
@@ -1293,16 +1294,17 @@ func _tick_visual(delta: float) -> void:
 		if action != "":
 			_model.play_action(action.get_slice(":", 0))
 	_model.update_state(speed, alive, mounted, charge_time > 0.15, blocking, jump_phase > 0.0)
+	var host_arena: Variant = get_parent().get("arena") if get_parent() else null
+	_model.set_hooded(not (host_arena is Dictionary and host_arena.get("town", false)))  # Ninja: rosto e cabelo à mostra na cidade
 	if _block_visual:
 		_block_visual.visible = blocking
-	# Aura: +1 brilho fraco nos pés … +5 aura máxima pulsando; cor do elemento de origem.
+	# Aura: +1 brilho fraco nos pés … +5 aura máxima pulsando; amarelo (o elemento é a cor da roupa).
 	_aura.visible = aura_level > 0
 	if aura_level > 0:
 		var pulse := 1.0
 		if aura_level >= 4:
 			pulse = 0.75 + 0.25 * sin(Time.get_ticks_msec() / (180.0 if aura_level == 5 else 320.0))
-		var c := Elements.color(origin_element)
-		_aura_material.albedo_color = Color(c.r, c.g, c.b, 0.07 * aura_level * pulse)
+		_aura_material.albedo_color = Color(1.0, 0.85, 0.2, 0.07 * aura_level * pulse)  # o brilho do rank é amarelo (o elemento é a cor da roupa)
 		var height := 0.2 + 0.4 * aura_level
 		_aura.scale = Vector3(1.0, height / 2.0, 1.0)
 		_aura.position.y = height / 2.0
@@ -1370,6 +1372,7 @@ func _tick_visual(delta: float) -> void:
 ## aparece no herói), tingida pela cor do material; a arma também.
 func _update_gear() -> void:
 	_shown_visual = equip_visual.duplicate()
+	_model.suit_element = origin_element
 	if HeroGear.has_gear(class_id, sex):
 		# Os heróis usam os conjuntos por rank (D a S): o rank vem do material de cada peça.
 		var ranks := {}

@@ -56,6 +56,7 @@ func _ready() -> void:
 	_element = OptionButton.new()
 	for id in Elements.ALL:
 		_element.add_item(Elements.data(id).name_key)
+	_element.item_selected.connect(_on_look_changed)
 	fields.add_child(_element)
 	_sex = OptionButton.new()
 	_sex.add_item("CHAR_SEX_MALE")
@@ -153,9 +154,9 @@ func _on_look_changed(_value: Variant = null) -> void:
 	var sex := CharacterData.SEXES[_sex.selected]
 	var class_id := _class_ids[_class.selected]
 	var has_gear := HeroGear.has_gear(class_id, sex)
-	_gear.visible = has_gear
-	var rank: String = HeroGear.RANKS[_gear.selected - 1] if has_gear and _gear.selected > 0 else ""
-	_preview.show_hero(sex, _current_look(), rank, class_id)
+	_gear.visible = has_gear and class_id != "ninja"  # no Ninja o rank não muda a roupa (a cor é o elemento)
+	var rank: String = HeroGear.RANKS[_gear.selected - 1] if _gear.visible and _gear.selected > 0 else ""
+	_preview.show_hero(sex, _current_look(), rank, class_id, Elements.ALL[_element.selected])
 
 
 ## A escolha de aparência como a ficha guarda (índices).

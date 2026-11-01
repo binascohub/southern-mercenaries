@@ -1468,7 +1468,7 @@ msgid "ITEM_TYPE_BOOK"
 msgstr "Book"
 
 msgid "COMPANION_FOX"
-msgstr "Fire rottweiler (Benny)"
+msgstr "Phoenix"
 
 msgid "COMPANION_OTTER"
 msgstr "Water crocodile"
