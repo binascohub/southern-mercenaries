@@ -48,6 +48,10 @@ const COMBO_WINDOW := 1.2
 const NINJA_SCENE := "res://assets/models/characters/hero_ninja.glb"
 ## A Maga (feminina) tem o corpo do witch.glb pelo mesmo caminho (tools/assets/build_witch_hero.py): o roxo vira a cor do elemento.
 const WITCH_SCENE := "res://assets/models/characters/hero_witch.glb"
+## A Arqueira (feminina), a Elfa do elf.glb (tools/assets/build_elf_hero.py): o verde-oliva vira a cor do elemento.
+const ELF_SCENE := "res://assets/models/characters/hero_elf.glb"
+## O Cavaleiro (masculino), o armored-knight do knight.glb (tools/assets/build_knight_hero.py): o azul vira a cor do elemento.
+const KNIGHT_SCENE := "res://assets/models/characters/hero_knight.glb"
 ## A cor da roupa do Ninja identifica o elemento de origem (fogo vermelho, água azul, vento branco, terra verde); o rank não muda a cor.
 const SUIT_COLORS := {
 	"fire": Color(0.8, 0.22, 0.2), "water": Color(0.27, 0.4, 0.8), "air": Color(0.92, 0.92, 0.9), "earth": Color(0.3, 0.55, 0.28),
@@ -109,6 +113,14 @@ func setup(sex: String, look: Dictionary, class_id := "") -> void:
 		path = WITCH_SCENE
 		_suit = true
 		_suit_prefix = "Witch_"
+	elif class_id == "knight" and ResourceLoader.exists(KNIGHT_SCENE):
+		path = KNIGHT_SCENE  # o Cavaleiro é sempre homem
+		_suit = true
+		_suit_prefix = "Knight_"
+	elif class_id == "archer" and sex == "female" and ResourceLoader.exists(ELF_SCENE):
+		path = ELF_SCENE
+		_suit = true
+		_suit_prefix = "Elf_"
 	var scene: PackedScene = load(path) as PackedScene if ResourceLoader.exists(path) else null
 	if scene == null:
 		_build_capsule()
@@ -128,7 +140,7 @@ func setup(sex: String, look: Dictionary, class_id := "") -> void:
 			if source == null:
 				continue
 			var copy := source.duplicate() as StandardMaterial3D
-			if _suit_prefix == "Witch_" and String(mesh.name).begins_with("Witch_"):
+			if _suit_prefix != "Ninja_" and String(mesh.name).begins_with(_suit_prefix):
 				copy.set_meta("scissor", true)  # tecido e resto dividem as faces por recorte de alfa na textura
 			if is_hair:
 				copy.albedo_color = Color(hair_color[0], hair_color[1], hair_color[2])

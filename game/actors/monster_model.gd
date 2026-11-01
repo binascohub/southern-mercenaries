@@ -121,6 +121,10 @@ const FAMILIES := {
 	# no arquivo (1,4 m de altura); o corpo todo balança, avança, investe e tomba (de barriga para cima) por código (`static`).
 	"chitin_beast": {"scene": "res://assets/models/monsters/chitin_beast.glb", "scale": 1.0, "static": true,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Rei Golem de Pedra (stone-golem.glb; tools/assets/build_stone_golem_king.py): malha única sem esqueleto, 1 m de altura no arquivo
+	# (o "size" dos dados dá a altura); o corpo todo balança, avança, investe e tomba por código (`static`).
+	"golem_king": {"scene": "res://assets/models/monsters/golem_king.glb", "scale": 1.0, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Cervos da Floresta (CDmir e TinyWorlds, CC0; tools/assets/build_deer.sh): 1,6 m de comprimento no arquivo, "size" 1.4 nos dados.
 	"deer_buck": {"scene": "res://assets/models/monsters/deer_buck.glb", "scale": 0.714,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "die": "die"}},

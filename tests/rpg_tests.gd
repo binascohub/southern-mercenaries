@@ -923,15 +923,19 @@ func _test_sewers() -> void:
 	_check(golems.size() == 2 and golems.all(func(e: Dictionary) -> bool:
 		var m: Dictionary = GameData.monsters.get(e.monsters[0].monster, {})
 		return m.get("category", "") == "elite" and MonsterModel.FAMILIES.has(m.get("look", "")) and float(m.get("damage", 0)) > 0.0), "Floresta tem os dois golens invocados (mini-chefes)")
-	# Floresta: o bando de répteis (corpo a corpo, com modelo).
-	var reptiles: Array = GameData.arenas.forest_01_path.encounters.filter(func(e: Dictionary) -> bool: return e.id == "f_reptiles")
-	_check(reptiles.size() == 1 and reptiles[0].monsters[0].monster == "forest_reptile" and reptiles[0].monsters[0].count == 3
-		and MonsterModel.FAMILIES.has(GameData.monsters.forest_reptile.look), "Floresta tem o bando de répteis")
+	# Floresta: a Toca dos Répteis só tem o Rei Golem de Pedra (maior) e o Guardião (menor); sem bandos de répteis.
+	var den: Array = GameData.arenas.forest_01_path.encounters.filter(func(e: Dictionary) -> bool: return e.id == "f_viper_queen")
+	var no_reptiles: bool = GameData.arenas.forest_01_path.encounters.all(func(e: Dictionary) -> bool: return not e.id.begins_with("f_reptiles"))
+	_check(den.size() == 1 and den[0].monsters.size() == 2 and den[0].monsters[0].monster == "viper_queen" and den[0].monsters[1].monster == "forest_tomb_guardian"
+		and MonsterModel.FAMILIES.has(GameData.monsters.viper_queen.look) and MonsterModel.FAMILIES.has(GameData.monsters.forest_tomb_guardian.look)
+		and GameData.monsters.viper_queen.size > GameData.monsters.forest_tomb_guardian.size and no_reptiles, "Floresta: Rei Golem maior que o Guardião e sem répteis")
 	# Floresta: trilhas de lajes e marcos de pedra nas divisas dos setores (como no Cemitério).
 	var forest_decor: Array = GameData.arenas.forest_01_path.decor
-	_check(forest_decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Floor_UnevenBrick").size() > 300
-		and forest_decor.filter(func(d: Dictionary) -> bool: return String(d.get("piece", "")).begins_with("Pr_Cross")).is_empty(),
-		"Floresta tem trilhas de lajes e nenhuma cruz")
+	_check(forest_decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Trail_Dirt").size() > 100
+		and forest_decor.filter(func(d: Dictionary) -> bool: return String(d.get("piece", "")).begins_with("Pr_") and d.get("piece", "") != "Pr_RoadSign").is_empty(),
+		"Floresta tem trilhas de terra e nenhum asset de cemitério (cruz, lápide, obelisco, pilar, poste)")
+	_check(forest_decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") in ["Dead_Tree", "Oak_Tree", "Vl_Logs"]).is_empty()
+		and forest_decor.filter(func(d: Dictionary) -> bool: return String(d.get("piece", "")).begins_with("Pl_")).size() > 100, "Floresta sem troncos, só plantas")
 	# Floresta: a Besta Quitinosa (corpo a corpo, modelo estático animado por código).
 	var beasts: Array = GameData.arenas.forest_01_path.encounters.filter(func(e: Dictionary) -> bool: return e.id == "f_beasts")
 	_check(beasts.size() == 1 and beasts[0].monsters[0].monster == "chitin_beast" and MonsterModel.FAMILIES.get(GameData.monsters.chitin_beast.look, {}).get("static", false),
@@ -957,9 +961,9 @@ func _test_sewers() -> void:
 	# Floresta: seis setores, um monstro em cada, e duas praças com NPC que invoca um mini-chefe.
 	var sectors := {}
 	for e: Dictionary in forest.encounters:
-		if GameData.monsters[e.monsters[0].monster].get("category", "") in ["common", "elite"]:     # (os mini-chefes ficam de fora)
+		if e.id != "f_viper_queen" and GameData.monsters[e.monsters[0].monster].get("category", "") in ["common", "elite"]:     # (os mini-chefes e a Toca do Rei Golem ficam de fora)
 			sectors[e.monsters[0].monster] = true
-	_check(sectors.size() == 4, "Floresta tem quatro salas de monstros, um tipo em cada (%d)" % sectors.size())
+	_check(sectors.size() == 3, "Floresta tem três salas de monstros, um tipo em cada (%d)" % sectors.size())
 	var summoners: Array = forest.props.filter(func(p: Dictionary) -> bool: return p.has("summon"))
 	_check(summoners.size() == 2 and summoners.all(func(p: Dictionary) -> bool:
 		var group: Dictionary = p.summon
@@ -1091,6 +1095,35 @@ func _test_ninja_gear() -> void:
 	_check(not male_mage.is_suit(), "mago masculino mantém o corpo e as roupas de antes")
 	male_mage.queue_free()
 	witch.queue_free()
+	var elf := HeroModel.new()
+	add_child(elf)
+	elf.setup("female", {}, "archer")
+	_check(elf.is_suit() and not elf.suit_worn() and elf.visible_parts().has("Peasant_Body"), "arqueira: sem peça equipada aparece o Camponês")
+	HeroGear.apply(elf, "archer", {"body": "D", "head": "", "hands": "", "feet": ""})
+	_check(elf.suit_worn() and elf.visible_parts() == ["Elf_Body"], "arqueira: com uma peça equipada veste a roupa da Elfa inteira")
+	var elf_colors := []
+	for element in Elements.ALL:
+		elf.set_suit_element(element)
+		elf_colors.append((elf.find_child("Elf_Body", true, false) as MeshInstance3D).get_surface_override_material(0).albedo_color)
+	_check(elf_colors[0] != elf_colors[1] and elf_colors[1] != elf_colors[2] and elf_colors[2] != elf_colors[3], "arqueira: o verde da roupa vira a cor do elemento")
+	elf.queue_free()
+	var male_archer := HeroModel.new()
+	add_child(male_archer)
+	male_archer.setup("male", {}, "archer")
+	_check(not male_archer.is_suit(), "arqueiro masculino mantém o corpo e as roupas de antes")
+	male_archer.queue_free()
+	var knight := HeroModel.new()
+	add_child(knight)
+	knight.setup("male", {}, "knight")
+	_check(knight.is_suit() and not knight.suit_worn() and knight.visible_parts().has("Peasant_Body"), "cavaleiro: sem peça equipada aparece o Camponês")
+	HeroGear.apply(knight, "knight", {"body": "D", "head": "", "hands": "", "feet": ""})
+	_check(knight.suit_worn() and knight.visible_parts() == ["Knight_Body"], "cavaleiro: com uma peça equipada veste a armadura inteira")
+	var knight_colors := []
+	for element in Elements.ALL:
+		knight.set_suit_element(element)
+		knight_colors.append((knight.find_child("Knight_Body", true, false) as MeshInstance3D).get_surface_override_material(0).albedo_color)
+	_check(knight_colors[0] != knight_colors[1] and knight_colors[1] != knight_colors[2] and knight_colors[2] != knight_colors[3], "cavaleiro: o azul vira a cor do elemento")
+	knight.queue_free()
 	for class_id in ClassGear.CLASSES:
 		for sex in ["male", "female"]:
 			var other := HeroModel.new()

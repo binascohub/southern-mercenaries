@@ -23,7 +23,7 @@
     "giver": "village_hunter",
     "area": "forest_01_path",
     "clear": [
-      "f_reptiles"
+      "f_viper_queen"
     ],
     "target_element": "earth",
     "reward": {

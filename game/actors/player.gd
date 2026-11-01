@@ -153,6 +153,7 @@ var _crystal_material: StandardMaterial3D
 var _revive_bar: MeshInstance3D
 var _ring_material: StandardMaterial3D
 var _staff_material: StandardMaterial3D
+var _backpack: MeshInstance3D  ## caderno / aljava nas costas
 var _weapon_holder: MeshInstance3D  ## onde a arma (ou o livro do Invocador) está presa
 var _book_rank := ""
 var _second_holder: MeshInstance3D  ## adaga da mão esquerda do Ninja
@@ -1218,6 +1219,7 @@ func _build_visual() -> void:
 		_dress_weapon(notebook, "Quiver", Vector3(0, -0.45, 0))
 	# Preso ao peito (acompanha o corpo nas animações).
 	_model.attach("spine_03", notebook, Transform3D(Basis(), notebook.position - CHEST), notebook.position)
+	_backpack = notebook
 
 
 	# Aura do refino: cilindro transparente em volta do herói (sem luz extra).
@@ -1377,6 +1379,8 @@ func _update_gear() -> void:
 		for slot in HeroGear.SLOTS:
 			ranks[slot] = HeroGear.rank_of(String(equip_visual[slot])) if equip_visual.has(slot) else ""
 		HeroGear.apply(_model, class_id, ranks)
+		if class_id == "archer" and _backpack:
+			_backpack.visible = not _model.suit_worn()  # a roupa da Elfa já tem a aljava dela
 	else:
 		_model.set_outfit(equip_visual)
 	var weapon: String = equip_visual.get("weapon", "wood")

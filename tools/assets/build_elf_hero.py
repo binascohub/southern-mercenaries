@@ -101,7 +101,7 @@ px = np.array(img.pixels[:], dtype=np.float32).reshape(2048, 2048, 4)[:, :, :3]
 mesh = nin.data
 # máscara por pixel do roxo (a textura é um mosaico de retalhos e as faces cruzam os retalhos): duas superfícies sobre as mesmas faces,
 # cada uma com recorte de alfa; a de tecido (tons de cinza, tingida no jogo) só aparece onde é roxo, a outra (cores originais) no resto
-purple = (px[..., 1] >= px[..., 0] * 0.88) & (px[..., 1] > px[..., 2] * 1.3)  # verde-oliva
+purple = (px[..., 0] >= px[..., 1] * 0.9) & (px[..., 0] <= px[..., 1] * 1.4) & (px[..., 1] >= px[..., 2] * 1.35)  # verde-oliva (r/g ~1,2; g/b ~1,6)
 print("GREEN PIXELS", float(purple.mean()))
 def dilate(m):
     o = m.copy()

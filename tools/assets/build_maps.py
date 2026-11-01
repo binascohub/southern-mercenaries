@@ -194,6 +194,26 @@ def stone_trail(rng_, points, step=0.9, spread=0.5, scale=(0.42, 0.62)):
     return out
 
 
+def dirt_trail(rng_, points, step=1.1):
+    """Trilha de terra batida da Floresta: manchas de solo (Trail_Dirt: terra seca com pedrinhas; de vez em quando Trail_Moss: musgo) de borda
+    irregular e transparente, sobrepostas ao longo da linha (as mesmas peças do leito das trilhas do Cemitério, sem as lajes)."""
+    out = []
+    n = 0
+    for (x0, z0), (x1, z1) in zip(points, points[1:]):
+        length = math.hypot(x1 - x0, z1 - z0)
+        if length < 0.01:
+            continue
+        dx, dz = (x1 - x0) / length, (z1 - z0) / length
+        for i in range(max(int(length / step), 1)):
+            t = (i + 0.5) * step
+            off = rng_.uniform(-0.25, 0.25)
+            out.append({"piece": "Trail_Dirt" if rng_.random() < 0.85 else "Trail_Moss", "rotation": rng_.randrange(0, 360, 15),
+                        "position": [round(x0 + dx * t - dz * off, 2), round(z0 + dz * t + dx * off, 2)],
+                        "scale": round(rng_.uniform(0.7, 0.9), 2), "y": round(0.012 + 0.002 * (n % 5), 3)})
+            n += 1
+    return out
+
+
 # --- Floresta ---------------------------------------------------------------------------------------
 # Mapa de salas e trilhas no desenho da referência do autor (~/Downloads/map-forest.jpg): a aldeia no canto sudoeste (a partida) e uma rota
 # principal até a sala do chefe final (o Leshy, no nordeste, com a saída). Na rota ficam as duas áreas de mini-chefe: cada uma tem uma praça
@@ -272,9 +292,6 @@ f_enc = [
     {"id": "f_bats_a", "position": [0, -44], "monsters": [{"monster": "plague_bat", "count": 3}]},
     {"id": "f_bats_b", "position": [24, -44], "monsters": [{"monster": "plague_bat", "count": 3}]},
     {"id": "f_bats_c", "position": [12, -52], "monsters": [{"monster": "plague_bat", "count": 4}]},
-    {"id": "f_reptiles", "position": [-6, -66], "monsters": [{"monster": "forest_reptile", "count": 3}]},
-    {"id": "f_reptiles_b", "position": [7, -85], "monsters": [{"monster": "forest_reptile", "count": 3}]},
-    {"id": "f_reptiles_c", "position": [-7, -85], "monsters": [{"monster": "forest_reptile", "count": 3}]},
     {"id": "f_beasts", "position": [80, -39], "monsters": [{"monster": "chitin_beast", "count": 2}]},
     {"id": "f_beasts_b", "position": [90, -39], "monsters": [{"monster": "chitin_beast", "count": 2}]},
     {"id": "f_beasts_c", "position": [80, -15], "monsters": [{"monster": "chitin_beast", "count": 2}]},
@@ -458,7 +475,7 @@ f_decor = [d for d in f_decor if not (d["piece"].startswith(("Pl_", "Rock", "Dea
 f_decor += f_plaza_decor + f_markers
 ft = random.Random("forest_trails")
 for line in f_trails:
-    f_decor += [s for s in stone_trail(ft, line) if all(math.hypot(s["position"][0] - cx, s["position"][1] - cz) > F_PLAZA_R + 0.6 for cx, cz in F_PLAZAS.values())]
+    f_decor += [s for s in dirt_trail(ft, line) if all(math.hypot(s["position"][0] - cx, s["position"][1] - cz) > F_PLAZA_R + 0.6 for cx, cz in F_PLAZAS.values())]
 v_props = [
     {"id": "village_hunter", "kind": "npc", "npc": "village_hunter", "position": [-34.5, -19.0]},
     {"id": "village_wife", "kind": "npc", "npc": "village_wife", "position": [-30.2, -21.2]},
