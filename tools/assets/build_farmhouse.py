@@ -4,6 +4,9 @@ vazios ficam em madeira cinza), põe o chão em y = 0, centra em x/z e vira a po
 uso: blender -b -P tools/assets/build_farmhouse.py -- <pasta do pacote extraído> <saida.glb> [rotacao_graus]"""
 import bpy, sys, os, math
 from mathutils import Vector, Matrix
+import os as _os
+sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from farm_palette import unify_wood
 
 args = sys.argv[sys.argv.index("--") + 1:]
 src, out = args[0], args[1]
@@ -23,6 +26,7 @@ for mat in house.data.materials:
     if mat.name in IMAGES:
         tex = nodes.new("ShaderNodeTexImage")
         tex.image = bpy.data.images.load(os.path.join(src, IMAGES[mat.name]))
+        unify_wood(tex.image)  # madeira cinza -> o tom da cerca do kit (farm_palette.py); a palha fica como está
         links.new(tex.outputs["Color"], bsdf.inputs["Base Color"])
         links.new(tex.outputs["Alpha"], bsdf.inputs["Alpha"])
         mat.blend_method = "CLIP"

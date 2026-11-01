@@ -454,27 +454,28 @@ arenas["ruins_01_city"] = {
 }
 
 # --- Cemitério --------------------------------------------------------------------------------------
-# Mapa grande (64 x 104 m de pátio + cripta) cortado por uma rede de trilhas de pedra, para confundir os heróis:
+# Mapa grande (64 x 324 m de pátio + cripta: o comprimento é 3x o da primeira versão, a largura é a mesma, então a área é 3x) cortado por uma rede de trilhas de pedra, para confundir os heróis:
 # três pistas (oeste, centro, leste) saem do portão, se separam e se ligam por travessias; as laterais passam por mais
 # grupos de monstros, a do oeste e um ramal do leste terminam em becos sem saída com baú, e só o centro e o leste
 # chegam à cripta. Os monstros ficam em setores, separados por pares de marcos de pedra em cada pista:
 #   portão (seguro) -> A Campo de Covas (ratos e morcegos) -> B Ossuário (esqueletos e escorpiões)
 #   -> C Cova dos Mortos (zumbis) -> D Covil do Troll (o troll, esqueletos) -> cripta (o Senhor da Cripta).
 cr = rng("cemetery")
-YARD_W, YARD_TOP, YARD_BOTTOM = 64, -6, -110
+ZS = 3                                  # o pátio é ZS vezes mais comprido que o da primeira versão (104 m -> 312 m)
+YARD_W, YARD_TOP, YARD_BOTTOM = 64, -6, -6 - 104 * ZS
 c_rooms = [
     room("gate", 0, 0, 22, 12, ["north"], wall_height=0.8, torch=True),
     room("yard", 0, (YARD_TOP + YARD_BOTTOM) / 2, YARD_W, YARD_TOP - YARD_BOTTOM, ["south", "north"], wall_height=0.8),
-    room("crypt", 0, -120, 24, 20, ["south"], wall_height=0.8),
+    room("crypt", 0, YARD_BOTTOM - 10, 24, 20, ["south"], wall_height=0.8),
 ]
-SECTOR_BORDERS = (-38, -66, -92)     # z dos marcos entre os setores A|B, B|C e C|D
+SECTOR_BORDERS = tuple(b * ZS for b in (-38, -66, -92))     # z dos marcos entre os setores A|B, B|C e C|D
 
 
 def lane_m(z):
     """Pista do centro: serpenteia pelo pátio (meio período a cada 34 m), nasce reta no portão e volta ao centro
     antes da cripta."""
     start = min(1.0, max(0.0, (2 - z) / 12.0))
-    end = min(1.0, max(0.0, (z + 112) / 14.0))
+    end = min(1.0, max(0.0, (z - (YARD_BOTTOM - 2)) / 14.0))
     return 6.0 * math.sin(z * math.pi / 34.0) * start * end
 
 
@@ -505,22 +506,31 @@ def connect(a, b, wobble=1.2):
 
 
 # As trilhas (linhas de pontos): pistas, saídas do portão, travessias e becos.
+def P(lane, z):
+    return (round(LANES[lane](z), 2), z)
+
+
 trails = [
-    curve(lane_m, 2, -112) + [(0.0, -122)],                               # centro: do portão à porta da cripta
-    curve(lane_w, -26, -102),                                             # oeste: acaba num beco (baú)
-    curve(lane_e, -26, -100),                                             # leste: segue até a cripta
-    connect((round(lane_m(-14), 2), -14), (round(lane_w(-26), 2), -26)),   # o centro se abre para o oeste...
-    connect((round(lane_m(-14), 2), -14), (round(lane_e(-26), 2), -26), -1.2),  # ...e para o leste
-    connect((round(lane_w(-44), 2), -44), (round(lane_m(-52), 2), -52)),   # travessias entre as pistas
-    connect((round(lane_m(-58), 2), -58), (round(lane_e(-64), 2), -64), -1.2),
-    connect((round(lane_m(-70), 2), -70), (round(lane_w(-76), 2), -76)),
-    connect((round(lane_e(-76), 2), -76), (round(lane_m(-82), 2), -82), -1.2),
-    connect((round(lane_w(-82), 2), -82), (round(lane_m(-89), 2), -89)),
-    connect((round(lane_e(-100), 2), -100), (round(lane_m(-108), 2), -108), -1.2),   # o leste volta ao centro antes da cripta
-    [(round(lane_e(-56), 2), -56), (27.0, -56)],                           # beco do leste (baú)
-    [(round(lane_m(-7), 2), -7), (-16.0, -7)], [(round(lane_m(-7), 2), -7), (16.0, -7)],   # ramais até os túmulos do cavaleiro
-    [(0.0, -113.5), (-8.5, -113.5)], [(0.0, -113.5), (8.5, -113.5)],       # ramais até as estátuas da cripta
+    curve(lane_m, 2, YARD_BOTTOM - 2) + [(0.0, YARD_BOTTOM - 12)],        # centro: do portão à porta da cripta
+    curve(lane_w, -26, -102 * ZS),                                         # oeste: acaba num beco (baú)
+    curve(lane_e, -26, -100 * ZS),                                         # leste: segue até a cripta
+    connect(P("M", -14), P("W", -26)),                                     # o centro se abre para o oeste...
+    connect(P("M", -14), P("E", -26), -1.2),                               # ...e para o leste
+    [P("E", -56 * ZS), (27.0, -56 * ZS)],                                  # beco do leste (baú)
+    [P("M", -7), (-16.0, -7)], [P("M", -7), (16.0, -7)],                   # ramais até os túmulos do cavaleiro
+    [(0.0, YARD_BOTTOM - 3.5), (-8.5, YARD_BOTTOM - 3.5)], [(0.0, YARD_BOTTOM - 3.5), (8.5, YARD_BOTTOM - 3.5)],   # ramais até as estátuas da cripta
+    connect(P("E", -100 * ZS), P("M", YARD_BOTTOM + 2), -1.2),             # o leste volta ao centro antes da cripta
 ]
+# Travessias entre as pistas, uma a cada 24 m, em quatro desenhos que se repetem (oeste-centro, centro-leste, centro-oeste,
+# leste-centro); nenhuma cruza as grades das divisas (1,6 m depois de cada marco) e nenhuma nasce em cima de uma praça.
+RUNG_PATTERN = (("W", "M", 1), ("M", "E", -1), ("M", "W", 1), ("E", "M", -1))
+for i, rung_z in enumerate(range(-44, -98 * ZS, -24)):
+    if any(border - 1.6 - 1.5 < rung_z - 4 and rung_z + 1.5 > border - 1.6 for border in SECTOR_BORDERS):
+        continue
+    if rung_z - 8 < -100 * ZS:
+        continue
+    lane_a, lane_b, wob = RUNG_PATTERN[i % 4]
+    trails.append(connect(P(lane_a, rung_z), P(lane_b, rung_z - 8), 1.2 * wob))
 
 
 def trail_dist(x, z):
@@ -528,36 +538,43 @@ def trail_dist(x, z):
 
 
 # Praças de ruínas (mais abaixo): a das Pedras (setor B) e a da Estátua (setor C), cada uma com um mini-chefe.
-PLAZA_A = (round(lane_m(-52), 1), -52)
-PLAZA_B = (-3.0, -80)
-c_enc = [
-    # A - Campo de Covas: a vermina, para aquecer.
-    {"id": "c_a_rats_w", "position": on("W", -32), "monsters": [{"monster": "plague_rat", "count": 5}]},
-    {"id": "c_a_bats", "position": on("M", -26, 7), "monsters": [{"monster": "plague_bat", "count": 4}]},
-    {"id": "c_a_rats_e", "position": on("E", -34), "monsters": [{"monster": "plague_rat", "count": 5}]},
-    # B - Ossuário: esqueletos em bando e escorpiões atirando de longe.
-    {"id": "c_b_skel_w", "position": on("W", -46), "monsters": [{"monster": "skeleton", "count": 3}]},
-    {"id": "c_b_scorp_w", "position": on("W", -60, -8), "monsters": [{"monster": "venom_scorpion", "count": 3}]},
-    {"id": "c_plaza_a", "position": [PLAZA_A[0], PLAZA_A[1] + 4.2], "spread": 2.6,    # Praça das Pedras: o mini-chefe e dois esqueletos de guarda
-     "monsters": [{"monster": "crypt_scorpion", "count": 1}, {"monster": "skeleton", "count": 2}]},
-    {"id": "c_b_skel_e1", "position": on("E", -44), "monsters": [{"monster": "skeleton", "count": 3}]},
-    {"id": "c_b_skel_e2", "position": on("E", -62), "monsters": [{"monster": "skeleton", "count": 3}]},
-    # C - Cova dos Mortos: zumbis lentos e resistentes.
-    {"id": "c_c_zombie_w1", "position": on("W", -72), "monsters": [{"monster": "zombie", "count": 3}]},
-    {"id": "c_c_zombie_w2", "position": on("W", -86), "monsters": [{"monster": "zombie", "count": 3}]},
-    {"id": "c_c_zombie_e1", "position": on("E", -74), "monsters": [{"monster": "zombie", "count": 3}]},
-    {"id": "c_c_zombie_e2", "position": on("E", -88), "monsters": [{"monster": "zombie", "count": 3}]},
-    # D - Covil do Troll: o elite no centro, esqueletos guardando o beco do oeste e a pista do leste.
-    {"id": "c_d_skel_w", "position": on("W", -97), "monsters": [{"monster": "skeleton", "count": 3}]},
-    {"id": "c_d_troll", "position": on("M", -100), "monsters": [{"monster": "troll", "count": 1}]},
-    {"id": "c_d_skel_e", "position": on("E", -98), "monsters": [{"monster": "skeleton", "count": 3}]},
-    {"id": "c_boss", "position": [0, -118], "monsters": [{"monster": "crypt_lord", "count": 1}]},
-]
+PLAZA_A = (round(lane_m(-52 * ZS), 1), -52 * ZS)
+PLAZA_B = (round(lane_m(-80 * ZS) + 2.6, 1), -80 * ZS)
+# Grupos de monstros por setor, ao longo das pistas: em cada setor, posições z igualmente espaçadas, uma pista por vez (oeste,
+# centro, leste); no centro o grupo fica ao lado da trilha (os elites, em cima dela). O desenho dos grupos é o da primeira versão,
+# com o dobro de grupos para o mapa 3x mais comprido.
+er_enc = rng("cemetery_groups")
+
+
+def sector_groups(tag, z_top, z_bottom, palette):
+    out = []
+    step = (z_top - z_bottom) / len(palette)
+    for i, (monster, count) in enumerate(palette):
+        lane = "WME"[i % 3]
+        z = round(z_top - step * (i + 0.5))
+        off = 0.0 if lane != "M" or monster == "troll" else er_enc.choice((-1, 1)) * 6.0
+        out.append({"id": "c_%s_%d" % (tag, i + 1), "position": on(lane, z, off), "monsters": [{"monster": monster, "count": count}]})
+    return out
+
+
+c_enc = []
+# A - Campo de Covas: a vermina, para aquecer.
+c_enc += sector_groups("a", -28, -38 * ZS + 2, [("plague_rat", 5), ("plague_bat", 4), ("plague_rat", 5), ("plague_rat", 5), ("plague_bat", 4), ("plague_rat", 5)])
+# B - Ossuário: esqueletos em bando e escorpiões atirando de longe.
+c_enc += sector_groups("b", -38 * ZS - 4, -66 * ZS + 2, [("skeleton", 3), ("venom_scorpion", 3), ("skeleton", 4), ("skeleton", 3), ("venom_scorpion", 3),
+                                                      ("skeleton", 3), ("skeleton", 4), ("venom_scorpion", 3), ("skeleton", 3), ("skeleton", 3)])
+c_enc.append({"id": "c_plaza_a", "position": [PLAZA_A[0], PLAZA_A[1] + 4.2], "spread": 2.6,    # Praça das Pedras: o mini-chefe e dois esqueletos de guarda
+              "monsters": [{"monster": "crypt_scorpion", "count": 1}, {"monster": "skeleton", "count": 2}]})
+# C - Cova dos Mortos: zumbis lentos e resistentes.
+c_enc += sector_groups("c", -66 * ZS - 4, -92 * ZS + 2, [("zombie", 3), ("zombie", 3), ("zombie", 4), ("zombie", 3), ("zombie", 3), ("zombie", 4), ("zombie", 3), ("zombie", 3)])
+# D - Covil do Troll: os elites no centro, esqueletos guardando o beco do oeste e a pista do leste.
+c_enc += sector_groups("d", -92 * ZS - 4, YARD_BOTTOM - 4, [("skeleton", 3), ("troll", 1), ("skeleton", 3), ("skeleton", 3), ("troll", 1), ("skeleton", 3)])
+c_enc.append({"id": "c_boss", "position": [0, YARD_BOTTOM - 8], "monsters": [{"monster": "crypt_lord", "count": 1}]})
 c_props = [
     {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-6, 3], "to": "tortuga", "entry": "forest", "expedition_end": True},
-    {"id": "to_fort", "kind": "exit", "name_key": "PROP_TO_DARK_FOREST", "position": [0, -124], "to": "dark_forest_01_woods", "entry": "start", "group": True},
-    {"id": "cemetery_chest_1", "kind": "chest", "position": [28.8, -56], "loot": "chest"},     # fim do beco do leste
-    {"id": "cemetery_chest_2", "kind": "chest", "position": [round(lane_w(-102) - 1.0, 1), -104], "loot": "chest"},   # fim da pista do oeste
+    {"id": "to_fort", "kind": "exit", "name_key": "PROP_TO_DARK_FOREST", "position": [0, YARD_BOTTOM - 14], "to": "dark_forest_01_woods", "entry": "start", "group": True},
+    {"id": "cemetery_chest_1", "kind": "chest", "position": [28.8, -56 * ZS], "loot": "chest"},     # fim do beco do leste
+    {"id": "cemetery_chest_2", "kind": "chest", "position": [round(lane_w(-102 * ZS) - 1.0, 1), -102 * ZS - 2], "loot": "chest"},   # fim da pista do oeste
 ]
 
 c_decor = []
@@ -659,13 +676,13 @@ def statue_center():
 plaza(PLAZA_A[0], PLAZA_A[1], stones_center)
 plaza(PLAZA_B[0], PLAZA_B[1], statue_center)
 # Na entrada da cripta.
-put({"piece": "Pr_Cross4", "position": [-6, -109], "solid": [1.2, 1.2]}, 2.0)
-put({"piece": "Pr_Cross4", "position": [6, -109], "solid": [1.2, 1.2]}, 2.0)
-put({"piece": "Pr_BrokenPillar2", "position": [-9, -127], "solid": [1.2, 1.2]}, 2.0)
-put({"piece": "Pr_BrokenPillar2", "position": [9, -127], "solid": [1.2, 1.2]}, 2.0)
+put({"piece": "Pr_Cross4", "position": [-6, YARD_BOTTOM + 1], "solid": [1.2, 1.2]}, 2.0)
+put({"piece": "Pr_Cross4", "position": [6, YARD_BOTTOM + 1], "solid": [1.2, 1.2]}, 2.0)
+put({"piece": "Pr_BrokenPillar2", "position": [-9, YARD_BOTTOM - 17], "solid": [1.2, 1.2]}, 2.0)
+put({"piece": "Pr_BrokenPillar2", "position": [9, YARD_BOTTOM - 17], "solid": [1.2, 1.2]}, 2.0)
 # Estátuas do cavaleiro (Knight Statue, yd, CC0; build_knight_statue.py): um par na entrada do pátio e outro na
 # entrada da cripta, viradas um pouco para a trilha (a peça olha para +Z, para quem chega do portão).
-for x, z, rot in ((on("M", -10, -4.5)[0], -10, 20), (on("M", -10, 4.5)[0], -10, -20), (-11, -114, 25), (11, -114, -25)):
+for x, z, rot in ((on("M", -10, -4.5)[0], -10, 20), (on("M", -10, 4.5)[0], -10, -20), (-11, YARD_BOTTOM - 4, 25), (11, YARD_BOTTOM - 4, -25)):
     put({"piece": "Statue_Knight", "position": [x, z], "rotation": rot, "solid": [1.1, 1.2]}, 2.0)
 # Túmulos do cavaleiro deitado (Knight Lying, yd, CC0): um de cada lado do pátio, perto do portão, com os degraus
 # (lado +X da peça) voltados para a trilha.
@@ -751,7 +768,7 @@ for line in trails:
 for line in trails:
     c_decor += [q for q in mossy_slabs(tr, line) if trail_piece_ok(q)]
 
-for bush in scatter(cr, c_rooms[1], ["Pl_Hemp", "Pl_Bush"], 90, margin=2.0):
+for bush in scatter(cr, c_rooms[1], ["Pl_Hemp", "Pl_Bush"], 90 * ZS, margin=2.0):
     x, z = bush["position"]
     if trail_dist(x, z) > 2.2 and not any(math.hypot(x - bx, z - bz) < br for bx, bz, br in blockers):
         c_decor.append(bush)
@@ -764,7 +781,7 @@ c_jars = []
 
 
 def jar_ok(x, z):
-    return (abs(x) < 29 and -108 < z < 4 and trail_dist(x, z) > 1.9
+    return (abs(x) < 29 and YARD_BOTTOM + 2 < z < 4 and trail_dist(x, z) > 1.9
             and all(math.hypot(x - sx, z - sz) > sr for sx, sz, sr in jar_solids)
             and all(math.hypot(x - e["position"][0], z - e["position"][1]) > 3.0 for e in c_enc)
             and all(math.hypot(x - q["position"][0], z - q["position"][1]) > 3.0 for q in c_props)
@@ -789,9 +806,14 @@ def jar_cluster(cx, cz, count, spread=1.8):
 
 
 chest_e, chest_w = c_props[2]["position"], c_props[3]["position"]
-for cx, cz, count in (((lane_w(-24) + lane_m(-24)) / 2, -24, 4), ((lane_m(-30) + lane_e(-30)) / 2, -30, 5),
-                      ((lane_w(-56) + lane_m(-56)) / 2, -56, 4), ((lane_m(-82) + lane_e(-82)) / 2, -82, 5),
-                      (chest_e[0] - 2.5, chest_e[1] + 3.5, 4), (chest_w[0] + 2.5, chest_w[1] + 3.5, 4)):
+JAR_CLUSTERS = [(("W", "M"), -30, 4), (("M", "E"), -60, 5), (("W", "M"), -96, 4),                     # setor A
+                (("M", "E"), -38 * ZS - 14, 5), (("W", "M"), -38 * ZS - 44, 4), (("M", "E"), -66 * ZS + 24, 5),   # setor B
+                (("W", "M"), -66 * ZS - 16, 4), (("M", "E"), -66 * ZS - 46, 5), (("W", "M"), -92 * ZS + 22, 4),   # setor C
+                (("M", "E"), -92 * ZS - 14, 5)]                                                         # setor D
+for (lane_a, lane_b), cz, count in JAR_CLUSTERS:
+    jar_cluster((LANES[lane_a](cz) + LANES[lane_b](cz)) / 2, cz, count)
+for cx, cz, count in ((chest_e[0] - 2.5, chest_e[1] + 3.5, 4), (chest_w[0] + 2.5, chest_w[1] + 3.5, 4)):
+    jar_cluster(cx, cz, count)
     jar_cluster(cx, cz, count)
 
 # Pedras das margens da trilha: as formações rochosas do pacote (Mossy_Formation_1..4), uma a cada 4 a 5 m, num lado ou no
@@ -812,7 +834,7 @@ for line in trails:
         while t < length:
             side = er.choice((-1, 1)) * er.uniform(1.9, 2.5)
             x, z = x0 + dx * t - dz * side, z0 + dz * t + dx * side
-            if (abs(x) < 30 and -110 < z < 5 and trail_dist(x, z) > 1.7
+            if (abs(x) < 30 and YARD_BOTTOM < z < 5 and trail_dist(x, z) > 1.7
                     and all(math.hypot(x - sx, z - sz) > sr for sx, sz, sr in edge_solids)
                     and all(math.hypot(x - r["position"][0], z - r["position"][1]) > 1.8 for r in edge_rocks)):
                 edge_rocks.append({"piece": "Mossy_Formation_%d" % er.randint(1, 4), "position": [round(x, 2), round(z, 2)],
@@ -827,8 +849,9 @@ BONES_SMALL = ["Dungeon_Skull_1", "Dungeon_Skull_2", "Dungeon_Bone"]
 BONES_MID = ["Dungeon_CrossBones", "Dungeon_BonePile_1", "Dungeon_Arm", "Dungeon_Leg", "Dungeon_Ribcage", "Dungeon_Pelvis", "Dungeon_Spine"]
 BONES_BIG = ["Dungeon_SkullPile", "Dungeon_BonePile_2", "Dungeon_BonePile_3", "Dungeon_BonePile_4", "Dungeon_BonePile_5", "Dungeon_BonePile_6"]
 # (nome, quantos, xmax, z de cima, z de baixo, pesos pequeno / médio / grande)
-BONE_AREAS = [("A", 8, 28, -12, -36, (0.8, 0.2, 0.0)), ("B", 14, 28, -41, -64, (0.4, 0.5, 0.1)), ("C", 16, 28, -69, -90, (0.25, 0.45, 0.3)),
-              ("D", 14, 28, -95, -108, (0.15, 0.35, 0.5)), ("crypt", 10, 10, -112, -129, (0.2, 0.3, 0.5))]
+BONE_AREAS = [("A", 8 * ZS, 28, -12, -38 * ZS + 2, (0.8, 0.2, 0.0)), ("B", 14 * ZS, 28, -38 * ZS - 3, -66 * ZS + 2, (0.4, 0.5, 0.1)),
+              ("C", 16 * ZS, 28, -66 * ZS - 3, -92 * ZS + 2, (0.25, 0.45, 0.3)), ("D", 14 * ZS, 28, -92 * ZS - 3, YARD_BOTTOM + 2, (0.15, 0.35, 0.5)),
+              ("crypt", 10, 10, YARD_BOTTOM - 2, YARD_BOTTOM - 19, (0.2, 0.3, 0.5))]
 bn = random.Random("cemetery_bones")
 bones = []
 for _name, count, xmax, z_top, z_bottom, weights in BONE_AREAS:
@@ -847,7 +870,7 @@ for _name, count, xmax, z_top, z_bottom, weights in BONE_AREAS:
             placed += 1
 c_decor += bones
 arenas["cemetery_01_yard"] = {
-    "_comment": "Cemitério (Medieval Props Textured, Clint Bellanger, CC BY 3.0, modelos de Lamoot): mapa grande de terra escura cortado por uma rede de trilhas de lajes (três pistas que se separam, se cruzam e se reencontram; becos sem saída com baú) do portão à cripta, com quatro setores de monstros (A Campo de Covas, B Ossuário, C Cova dos Mortos, D Covil do Troll), marcos de pedra nas divisas, fileiras de lápides e cruzes, poço coberto, estátuas e túmulos de cavaleiro, e a cripta do Senhor da Cripta no fundo. Gerado por tools/assets/build_maps.py.",
+    "_comment": "Cemitério (Medieval Props Textured, Clint Bellanger, CC BY 3.0, modelos de Lamoot): mapa grande de terra escura cortado por uma rede de trilhas de lajes (três pistas que se separam, se cruzam e se reencontram; becos sem saída com baú) do portão à cripta, com quatro setores de monstros, cada um 3x mais comprido que na primeira versão (A Campo de Covas, B Ossuário, C Cova dos Mortos, D Covil do Troll), marcos de pedra nas divisas, fileiras de lápides e cruzes, poço coberto, estátuas e túmulos de cavaleiro, e a cripta do Senhor da Cripta no fundo. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_CEMETERY", "player_class": "mage", "map_id": "map_cemetery", "area_level": 7, "outdoor": True,
     "wake_radius": 10.0, "alert_radius": 5.0, "rooms": c_rooms, "encounters": c_enc, "hazards": [],
     "entries": {"start": [0, 3], "cemetery": [0, 3]},
@@ -1351,12 +1374,13 @@ if "capital_01_aurenhold" not in arenas:  # depois de criada, a Capital (lojas, 
 fr = rng("farm")
 farm_rooms = [
     room("gate", 0, 0, 24, 14, ["north"], torch=True, wall_height=0.8),
-    room("fields", 0, -22, 40, 30, ["south", "east"], wall_height=0.8),
-    room("mill", 28, -22, 16, 30, ["west"], wall_height=0.8),
+    room("fields", 0, -26, 56, 38, ["south", "east"], wall_height=0.8),
+    room("mill", 38, -26, 20, 38, ["west"], wall_height=0.8),
 ]
+CREEK_X, CREEK_W, BRIDGE_Z = 36.9, 3.6, -36.0
 farm_decor = [
     # Serraria movida a água (CC0) no fundo da clareira lateral; barricadas de toras (CC-BY) fechando o portão.
-    {"piece": "Pr_Sawmill", "position": [29, -22], "rotation": 270, "solid": [8.0, 6.5]},
+    {"piece": "Pr_Sawmill", "position": [CREEK_X + 2.1, -22], "rotation": 270, "solid": [8.0, 6.5]},
     # Casa da Fazenda (Old Medieval Shack House, Spiral, CC0): 7 x 4,9 m, porta para o portão (+Z), ao lado da horta.
     {"piece": "Pr_Farmhouse", "position": [-14, -12], "solid": [7.0, 4.9]},
     # Entrada do Bunker (peças Bk_*, CC0): batente de pedra com duas paredes laterais, no canto nordeste dos campos.
@@ -1366,30 +1390,27 @@ farm_decor = [
     {"piece": "Pr_Barricade", "position": [-8.5, -5.0], "rotation": 15, "solid": [2.0, 1.2]},
     {"piece": "Pr_Barricade", "position": [8.5, -5.0], "rotation": 345, "solid": [2.0, 1.2]},
     {"piece": "Well_Covered", "position": [-12, -20], "solid": [1.6, 1.6]},
-    {"piece": "Cart_Wood", "position": [16, -31], "rotation": 40, "solid": [2.4, 1.4]},
-    # Carroças (Carts, cemkalyoncu, CC-BY 3.0): a grande no campo, a pequena (de mão) perto do portão e da serraria.
-    {"piece": "Pr_CartLarge", "position": [-15, -31], "rotation": 20, "solid": [3.2, 2.6]},
+    # Carroças (Carts, cemkalyoncu, CC-BY 3.0): a grande no campo, as pequenas (de mão) perto do portão e do pasto dos cavalos.
+    {"piece": "Pr_CartLarge", "position": [-22, -29], "rotation": 20, "solid": [3.2, 2.6]},
     {"piece": "Pr_CartSmall", "position": [5, -12], "rotation": 100, "solid": [1.2, 2.4]},
-    {"piece": "Pr_CartSmall", "position": [20, -33], "rotation": 300, "solid": [2.0, 1.8]},
+    {"piece": "Pr_CartSmall", "position": [10, -40], "rotation": 300, "solid": [2.0, 1.8]},
     {"piece": "Bucket_Wooden_1", "position": [-10.4, -19.2]},
-    {"piece": "Bucket_Wooden_1", "position": [17.5, -29.4], "rotation": 90},
+    # Ponte de tábuas sobre o riacho (Pr_Bridge, feita para o jogo): os corrimãos bloqueiam, a travessia fica livre.
+    {"piece": "Pr_Bridge", "position": [CREEK_X, BRIDGE_Z]},
+    {"collider": [5.0, 0.2], "position": [CREEK_X, BRIDGE_Z - 0.92]}, {"collider": [5.0, 0.2], "position": [CREEK_X, BRIDGE_Z + 0.92]},
 ]
 # Riacho que passa debaixo da roda d'água da serraria (a roda fica no lado oeste do prédio, com o eixo de leste a oeste:
-# a água corre de norte a sul, em x = 26.9), de ponta a ponta da clareira, com pedras e capim nas margens.
-CREEK_X, CREEK_W = 26.9, 3.6
-creek_avoid = [(CREEK_X, z, 3.0) for z in range(-37, -6, 3)]
-for z in range(-36, -7, 4):
+# a água corre de norte a sul), de ponta a ponta da clareira, com pedras e capim nas margens (menos na ponte).
+for z in range(-44, -7, 4):
+    if abs(z - BRIDGE_Z) < 3.0:
+        continue
     for side in (-1, 1):
         farm_decor.append({"piece": fr.choice(["RockP_1", "RockP_2", "RockP_3", "RockP_6"]),
                            "position": [round(CREEK_X + side * (CREEK_W / 2 + fr.uniform(0.1, 0.6)), 1), z + round(fr.uniform(-1.2, 1.2), 1)],
                            "rotation": fr.randrange(0, 360, 15), "scale": round(fr.uniform(0.6, 1.1), 2)})
         farm_decor.append({"piece": fr.choice(["Pl_Grass1", "Pl_Grass2", "Pl_Grass3"]),
                            "position": [round(CREEK_X + side * (CREEK_W / 2 + fr.uniform(0.7, 1.5)), 1), z + round(fr.uniform(-1.5, 1.5), 1)],
-                           "rotation": fr.randrange(0, 360, 15), "scale": round(fr.uniform(1.0, 1.6), 2)})
-for rd in farm_rooms:
-    farm_decor += scatter(fr, rd, ["Pl_Grass1", "Pl_Grass2", "Pl_Grass3"], int(rd["size"][0] * rd["size"][1] / 10), margin=1.5,
-                          scale=(0.8, 1.6), avoid=[(0, 3, 3), (29, -22, 5), (-14, -12, 5)] + creek_avoid)
-    farm_decor += ring(fr, rd, ["Pl_Grass1", "Pl_Grass2", "Pl_Grass3", "Pl_Bush"], 2.4, scale=(1.0, 1.8))
+                           "rotation": fr.randrange(0, 360, 15), "scale": round(fr.uniform(1.0, 1.8), 2)})
 
 
 def fence_rect(x0, z0, x1, z1, gaps=(), piece="Prop_WoodenFence_Single", step=2.0):
@@ -1413,37 +1434,57 @@ def fence_rect(x0, z0, x1, z1, gaps=(), piece="Prop_WoodenFence_Single", step=2.
     return out
 
 
-# Pasto das ovelhas (cerca com portão ao norte) e horta dos fazendeiros (portão ao sul, fileiras de cânhamo como plantação).
+# Cercados (portão virado para o portão da fazenda, lado "s"): pasto das ovelhas, curral dos porcos, pasto dos cavalos; horta dos fazendeiros.
 PASTURE = (-2, -35, 12, -27)
+PIGPEN = (-26, -44, -14, -34)
+PADDOCK = (14, -44, 28, -33)
 GARDEN = (-10, -17, 2, -10)
-farm_decor += fence_rect(*PASTURE, gaps=[("n", 5, 3.0)])
+farm_decor += fence_rect(*PASTURE, gaps=[("s", 5, 3.0)])
+farm_decor += fence_rect(*PIGPEN, gaps=[("s", -20, 2.6)])
+farm_decor += fence_rect(*PADDOCK, gaps=[("s", 21, 3.4)])
 farm_decor += fence_rect(*GARDEN, gaps=[("s", -4, 2.6)])
 for row_z in (-15.9, -12.2, -10.9):
     for gx in range(-9, 2, 1):
         farm_decor.append({"piece": "Pl_Hemp", "position": [gx + fr.uniform(-0.15, 0.15), round(row_z + fr.uniform(-0.1, 0.1), 1)],
                            "rotation": fr.randrange(0, 360, 15), "scale": round(fr.uniform(0.8, 1.0), 2)})
-# Fazendeiros (data/crowd.json, papel "farmer") com as ferramentas do pacote Gnarly Tools na mão, e ovelhas que passeiam.
-farm_crowd = [
-    {"role": "farmer", "position": [-6, -14], "rotation": 200, "pose": "melee", "weapon": "Tool_Hoe"},
-    {"role": "farmer", "position": [-2, -14], "rotation": 160, "pose": "melee_b", "weapon": "Tool_Hoe"},
-    {"role": "farmer", "position": [-8, -26], "rotation": 90, "pose": "melee", "weapon": "Tool_Shovel"},
-    {"role": "farmer", "position": [8, -16], "rotation": 250, "pose": "idle", "weapon": "Tool_Pitchfork"},
-    {"role": "farmer", "position": [14, -22], "rotation": 120, "pose": "melee_c", "weapon": "Tool_Scythe"},
-    {"role": "farmer", "position": [17, -26], "rotation": 60, "pose": "idle", "weapon": "Tool_Sickle"},
-    {"role": "farmer", "position": [-12, -17.5], "rotation": 180, "pose": "talk"},
-    {"role": "farmer", "position": [22, -14], "rotation": 270, "pose": "idle", "weapon": "Tool_Pitchfork"},
-]
-for i in range(9):  # dentro do pasto cercado
+# Capim com mais detalhe: três tufos em quantidade, ervas e flores (Tiny Weeds, Stylish Plants) espalhadas, e bordas mais cheias; fora da
+# casa, da horta, da serraria, do riacho, da ponte e da entrada do bunker.
+grass_avoid = ([(0, 3, 3), (-14, -12, 5), (-4, -13.5, 6.5), (CREEK_X + 2.1, -22, 6), (17, -10, 3), (CREEK_X, BRIDGE_Z, 4)]
+               + [(CREEK_X, z, 3.0) for z in range(-45, -6, 3)])
+for rd in farm_rooms:
+    area_m2 = rd["size"][0] * rd["size"][1]
+    farm_decor += scatter(fr, rd, ["Pl_Grass1", "Pl_Grass2", "Pl_Grass3"], int(area_m2 / 5), margin=1.5, scale=(0.7, 2.0), avoid=grass_avoid)
+    farm_decor += scatter(fr, rd, ["Pl_Weed1", "Pl_Weed2", "Pl_Weed3", "Pl_Weed4", "Pl_Weed5"], int(area_m2 / 22), margin=1.5, scale=(0.8, 1.5), avoid=grass_avoid)
+    farm_decor += scatter(fr, rd, ["Pl_Flower"], int(area_m2 / 45), margin=1.5, scale=(0.35, 0.6), avoid=grass_avoid)
+    farm_decor += ring(fr, rd, ["Pl_Grass1", "Pl_Grass2", "Pl_Grass3", "Pl_Bush", "Pl_Weed2"], 1.8, scale=(1.0, 2.0))
+# Fazendeiros (data/crowd.json, papel "farmer"): só caminham pelos campos, de ida e volta, com as ferramentas do pacote Gnarly Tools na mão.
+farm_crowd = []
+for (x, z), (tx, tz), tool, speed in (
+        ((-8, -8.0), (4, -8.0), "Tool_Hoe", 0.9), ((-18, -16), (-18, -26), "Tool_Shovel", 0.8), ((15, -14), (15, -26), "Tool_Pitchfork", 0.9),
+        (( -6, -22), (8, -22), "Tool_Scythe", 1.0), ((18, -20), (26, -20), "Tool_Sickle", 0.8), ((18, -28), (26, -28), "Tool_Pitchfork", 0.8),
+        ((-24, -10), (-24, -18), "Tool_Hoe", 0.8), ((33, -12), (33, -40), "Tool_Scythe", 1.0)):
+    farm_crowd.append({"role": "farmer", "position": [x, z], "rotation": 0, "pose": "idle", "weapon": tool, "path": [tx, tz], "speed": speed})
+for i in range(9):  # ovelhas dentro do pasto cercado
     x, z = fr.uniform(PASTURE[0] + 1.5, PASTURE[2] - 1.5), fr.uniform(PASTURE[1] + 1.5, PASTURE[3] - 1.5)
     tx = min(max(x + fr.uniform(-2.5, 2.5), PASTURE[0] + 1.2), PASTURE[2] - 1.2)
     tz = min(max(z + fr.uniform(-2.0, 2.0), PASTURE[1] + 1.2), PASTURE[3] - 1.2)
     farm_crowd.append({"role": "sheep", "position": [round(x, 1), round(z, 1)], "rotation": fr.randrange(0, 360, 15), "pose": "idle",
                        "path": [round(tx, 1), round(tz, 1)], "speed": 0.5})
+for role, box, count, speed in (("pig", PIGPEN, 5, 0.5), ("farm_horse", PADDOCK, 3, 0.7)):  # porcos no curral, cavalos no pasto
+    for i in range(count):
+        x, z = fr.uniform(box[0] + 2.0, box[2] - 2.0), fr.uniform(box[1] + 2.0, box[3] - 2.0)
+        tx = min(max(x + fr.uniform(-3, 3), box[0] + 1.6), box[2] - 1.6)
+        tz = min(max(z + fr.uniform(-3, 3), box[1] + 1.6), box[3] - 1.6)
+        farm_crowd.append({"role": role, "position": [round(x, 1), round(z, 1)], "rotation": fr.randrange(0, 360, 15), "pose": "idle",
+                           "path": [round(tx, 1), round(tz, 1)], "speed": speed})
+for i, (x, z) in enumerate(((-16, -8), (-6, -7), (-12, -23), (-20, -20), (4, -20), (12, -19), (20, -16), (-4, -25), (8, -8), (24, -24))):  # galinhas soltas
+    farm_crowd.append({"role": "chicken", "position": [x, z], "rotation": fr.randrange(0, 360, 15), "pose": "idle",
+                       "path": [round(x + fr.uniform(-3.5, 3.5), 1), round(z + fr.uniform(-3.0, 3.0), 1)], "speed": 0.6})
 # Cestos de vime (Willow Basket with Handle, ulf, CC-BY-SA 3.0; Pr_Basket): quebráveis que sempre soltam poção (tabela breakable_potion).
 monster("basket", "pot", _comment="Cesto de vime da Fazenda (Willow Basket with Handle, ulf, CC BY-SA 3.0): quebra com qualquer golpe e sempre solta poção (data/loot.json 'breakable_potion'). Não dá XP.",
         name_key="PROP_BASKET", max_health=8, size=0.8, look="basket", pieces=["Pr_Basket"], shards=False, color=[0.75, 0.6, 0.3])
 farm_baskets = [{"id": "bk%d" % (i + 1), "monster": "basket", "position": pos, "table": "breakable_potion"} for i, pos in enumerate(
-    ([-16.6, -8.3], [-11.6, -8.3], [-6.4, -8.7], [-10.0, -21.2], [7.6, -25.6], [14.2, -28.4], [24.4, -13.6], [23.2, -29.0]))]
+    ([-16.6, -8.3], [-11.6, -8.3], [-6.4, -7.2], [-10.0, -21.5], [7.6, -25.6], [-20.0, -31.8], [33.8, -13.6], [41.4, -30.0], [-12.4, -33.2], [22.4, -31.8]))]
 arenas["farm_01_fields"] = {
     "_comment": "Fazenda: campos abertos com capim (Grass Pack 01, Yughues / Nobiax, CC0), casa de fazenda (CC0), serraria movida a água (CC0) com a roda sobre um riacho, barricadas de toras (Sullivan, CC-BY), fazendeiros com ferramentas (Retextured Gnarly Tools, Mev Lyshkin, CC-BY) e ovelhas (p0ss, CC-BY-SA). Só o mapa por enquanto: sem monstros, lojas, baús nem missões (só cestos quebráveis que soltam poção); portal em Tortuga ao lado do da Floresta e entrada do Bunker no canto nordeste dos campos. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_FARM", "town": True, "outdoor": True, "player_class": "mage", "map_id": "map_farm", "area_level": 1,
@@ -1452,8 +1493,8 @@ arenas["farm_01_fields"] = {
     "props": [
         {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-6, 3], "to": "tortuga", "entry": "forest"},
         {"id": "to_bunker", "kind": "exit", "name_key": "PROP_TO_BUNKER", "position": [17.0, -9.0], "to": "bunker_01_entrance", "entry": "start", "group": True},
-        {"id": "creek", "kind": "water", "position": [CREEK_X, -22], "size": [CREEK_W, 31], "color": [0.18, 0.36, 0.45]},
-        {"id": "mine_gate", "kind": "exit", "name_key": "PROP_TO_MINE", "position": [28, -31], "to": "mine_01_crystal_vein", "entry": "start"},
+        {"id": "creek", "kind": "water", "position": [CREEK_X, -26], "size": [CREEK_W, 38], "color": [0.18, 0.36, 0.45]},
+        {"id": "mine_gate", "kind": "exit", "name_key": "PROP_TO_MINE", "position": [26, -12], "to": "mine_01_crystal_vein", "entry": "start"},
     ],
     "quest_spots": [], "breakables": farm_baskets,
     "style": {"_comment": "Fazenda: chão de grama, cerca baixa de madeira nas bordas.", "walls": [""], "floor": "Ground_Grass",

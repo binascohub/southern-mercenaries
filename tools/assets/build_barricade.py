@@ -4,6 +4,9 @@ deixa em pé (base em y = 0), centrada em x/z e na escala do jogo (~1,9 m de lar
 uso: blender -b -P tools/assets/build_barricade.py -- <barricade.blend> <saida.glb> [escala]"""
 import bpy, sys
 from mathutils import Vector, Matrix
+import os as _os
+sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from farm_palette import unify_wood
 
 args = sys.argv[sys.argv.index("--") + 1:]
 src, out = args[0], args[1]
@@ -26,6 +29,7 @@ bsdf.inputs["Roughness"].default_value = 0.9
 links.new(bsdf.outputs["BSDF"], out_node.inputs["Surface"])
 color = nodes.new("ShaderNodeTexImage")
 color.image = bpy.data.images["col.001"]
+unify_wood(color.image)  # tom único de madeira da Fazenda (farm_palette.py)
 links.new(color.outputs["Color"], bsdf.inputs["Base Color"])
 normal_tex = nodes.new("ShaderNodeTexImage")
 normal_tex.image = bpy.data.images["normals"]

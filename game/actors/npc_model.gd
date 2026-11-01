@@ -167,6 +167,11 @@ const MODELS := {
 	# 1,2 m de comprimento no arquivo; anda devagar pelos campos e pasta parada.
 	"sheep": {"scene": "res://assets/models/characters/sheep.glb", "scale": 1.0,
 		"poses": {"walk": "walk", "idle": "eat", "talk": "idle"}},
+	# Porco e cavalo da Fazenda (Farm Animals, Quaternius, CC0; tools/assets/build_farm_animals.sh): 1,2 m e 2,2 m de comprimento.
+	"pig": {"scene": "res://assets/models/characters/pig.glb", "scale": 1.0,
+		"poses": {"walk": "walk", "idle": "idle", "talk": "idle"}},
+	"farm_horse": {"scene": "res://assets/models/characters/farm_horse.glb", "scale": 1.0,
+		"poses": {"walk": "walk", "idle": "idle", "talk": "idle"}},
 }
 
 var _anim: AnimationPlayer

@@ -2,9 +2,14 @@
 Pega a pose do primeiro quadro (a roda, a manivela e a serra ficam paradas, sem esqueleto), junta tudo numa malha só
 com os materiais refeitos (as imagens vêm embutidas no .blend), em pé com o topo da fundação em y = 0, centrada em x/z
 e de frente para +Z (a roda d'água do lado de -X no arquivo fica para o lado esquerdo de quem olha).
-uso: blender -b -P tools/assets/build_sawmill.py -- <WaterPoweredSawmillUpload.blend> <saida.glb> [escala]"""
+uso: blender -b -P tools/assets/build_sawmill.py -- <WaterPoweredSawmillUpload.blend> <saida.glb> [escala] [pasta do Old Medieval Shack House extraído: a palha do telhado]"""
 import bpy, sys
 from mathutils import Vector, Matrix
+import os
+import numpy as np
+import os as _os
+sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from farm_palette import unify_wood
 
 args = sys.argv[sys.argv.index("--") + 1:]
 src, out = args[0], args[1]
@@ -14,8 +19,22 @@ bpy.context.scene.frame_set(1)
 deps = bpy.context.evaluated_depsgraph_get()
 IMAGES = {"RoofTiles": "RoofTiles.jpg", "RustedMetal": "Rusted Metal.jpg", "StoneWall": "StoneWall1.jpg",
           "TreeLogEdgeWeathered": "TreeLogEdgeWeathered.jpg", "Wood": "Wood.jpg"}
+# Cobertura de palha (a mesma da casa da Fazenda): recorta o telhado do atlas do Old Medieval Shack House (argumento 4, pasta do pacote).
+thatch_dir = args[3] if len(args) > 3 else ""
+thatch = None
+if thatch_dir:
+    atlas = bpy.data.images.load(os.path.join(thatch_dir, "shack_main_diff.png"))
+    aw, ah = atlas.size
+    px = np.array(atlas.pixels[:], dtype=np.float32).reshape(ah, aw, 4)
+    crop = px[int(ah * 0.09):int(ah * 0.63), int(aw * 0.30):int(aw * 0.95)].copy()  # linhas de baixo para cima: o telhado fica na metade de baixo do atlas
+    crop[:, :, 3] = 1.0
+    thatch = bpy.data.images.new("Thatch", crop.shape[1], crop.shape[0], alpha=False)
+    thatch.pixels = crop.ravel().tolist()
+    thatch.pack()
+for name in ("Wood.jpg", "TreeLogEdgeWeathered.jpg"):
+    unify_wood(bpy.data.images[name])  # tom único de madeira da Fazenda (farm_palette.py)
 for mat in bpy.data.materials:
-    img = bpy.data.images.get(IMAGES.get(mat.name, ""))
+    img = thatch if (mat.name == "RoofTiles" and thatch) else bpy.data.images.get(IMAGES.get(mat.name, ""))
     mat.use_nodes = True
     nodes, links = mat.node_tree.nodes, mat.node_tree.links
     nodes.clear()

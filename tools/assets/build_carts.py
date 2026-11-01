@@ -5,6 +5,9 @@ com as rodas no chão (base em y = 0), centrada em x/z.
 uso: blender -b -P tools/assets/build_carts.py -- <cart_0.blend> <pasta de saída>"""
 import bpy, sys, os
 from mathutils import Vector, Matrix
+import os as _os
+sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from farm_palette import unify_wood
 
 src, out = sys.argv[sys.argv.index("--") + 1:][:2]
 NAMES = {"Armature": "Pr_CartSmall", "Armature.001": "Pr_CartLarge"}
@@ -12,6 +15,7 @@ bpy.ops.wm.open_mainfile(filepath=src)
 bpy.context.scene.frame_set(1)
 deps = bpy.context.evaluated_depsgraph_get()
 wood = bpy.data.images["wood tex2.png"]
+unify_wood(wood)  # tom único de madeira da Fazenda (farm_palette.py)
 for mat in bpy.data.materials:
     color = tuple(mat.diffuse_color)
     mat.use_nodes = True
@@ -26,6 +30,11 @@ for mat in bpy.data.materials:
         tex.image = wood
         links.new(tex.outputs["Color"], bsdf.inputs["Base Color"])
     else:
+        if "wood" in mat.name.lower():  # madeira lisa: o tom da cerca, com o claro/escuro da cor original
+            from farm_palette import WOOD
+            lum = 0.2126 * color[0] + 0.7152 * color[1] + 0.0722 * color[2]
+            k = min(max(lum / 0.3, 0.55), 1.3)
+            color = (WOOD[0] * k, WOOD[1] * k, WOOD[2] * k, 1.0)
         bsdf.inputs["Base Color"].default_value = color
 made = []
 for arm_name, name in NAMES.items():
