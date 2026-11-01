@@ -2988,3 +2988,6 @@ msgstr "El muelle del Viejo Lobo"
 
 msgid "QUEST_DOCKS_SMUGGLERS_DESC"
 msgstr "El Viejo Lobo de Mar, en la taberna, quiere el muelle de los Muelles libre de bichos: derrota todos los encuentros del mapa de los Muelles."
+
+msgid "CHAR_NINJA_HOOD"
+msgstr "Capucha y máscara del Ninja"

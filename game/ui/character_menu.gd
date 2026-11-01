@@ -16,6 +16,7 @@ var _class: OptionButton
 var _class_ids: Array[String] = []
 ## Elemento de origem (02-0-elementos.md, seção 1): escolhido na criação, não muda.
 var _element: OptionButton
+var _hood: CheckBox
 var _create_button: Button
 var _full: Label
 var _hair: OptionButton
@@ -81,6 +82,11 @@ func _ready() -> void:
 		_skin.add_item("CHAR_SKIN_%d" % i)
 	_skin.item_selected.connect(_on_look_changed)
 	fields.add_child(_skin)
+	# Ninja: ver o herói com e sem capuz e máscara (na cidade ele aparece sem).
+	_hood = CheckBox.new()
+	_hood.text = "CHAR_NINJA_HOOD"
+	_hood.toggled.connect(_on_look_changed)
+	fields.add_child(_hood)
 	# Prévia do equipamento por classificação (D a S).
 	_gear = OptionButton.new()
 	_gear.add_item("CHAR_GEAR_NONE")
@@ -156,7 +162,8 @@ func _on_look_changed(_value: Variant = null) -> void:
 	var has_gear := HeroGear.has_gear(class_id, sex)
 	_gear.visible = has_gear and class_id != "ninja"  # no Ninja o rank não muda a roupa (a cor é o elemento)
 	var rank: String = HeroGear.RANKS[_gear.selected - 1] if _gear.visible and _gear.selected > 0 else ""
-	_preview.show_hero(sex, _current_look(), rank, class_id, Elements.ALL[_element.selected])
+	_hood.visible = class_id == "ninja"
+	_preview.show_hero(sex, _current_look(), rank, class_id, Elements.ALL[_element.selected], _hood.visible and _hood.button_pressed)
 
 
 ## A escolha de aparência como a ficha guarda (índices).

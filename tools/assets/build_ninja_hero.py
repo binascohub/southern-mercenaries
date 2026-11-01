@@ -104,17 +104,44 @@ for i in range(len(P)):
 px = np.array(img.pixels[:], dtype=np.float32).reshape(2048, 2048, 4)[:, :, :3]
 uv = nin.data.uv_layers.active.data
 mesh = nin.data
+# ilhas de malha (a espada e a alça são peças soltas do corpo)
+parent = list(range(len(P)))
+def find(i):
+    while parent[i] != i:
+        parent[i] = parent[parent[i]]; i = parent[i]
+    return i
+for poly in mesh.polygons:
+    vs = list(poly.vertices)
+    for q in vs[1:]:
+        parent[find(q)] = find(vs[0])
+island = [find(i) for i in range(len(P))]
+from collections import Counter
+isl_size = Counter(island)
+if debug:
+    for root_i, n in isl_size.most_common(12):
+        ids = [i for i in range(len(P)) if island[i] == root_i]
+        print("ISLAND", n, np.round(P[ids].min(axis=0), 2), np.round(P[ids].max(axis=0), 2))
+_fc = np.array([np.mean(P[list(q.vertices)], axis=0) for q in mesh.polygons])
+_sel = (abs(_fc[:, 0]) < 0.25) & (_fc[:, 2] > 0.9)
+_bins = {}
+for _b in range(18, 36):
+    _m = _sel & (_fc[:, 2] >= _b * 0.05) & (_fc[:, 2] < (_b + 1) * 0.05)
+    if _m.sum() > 10:
+        _bins[_b] = float(np.percentile(_fc[_m, 1], 82))
+def back_surface(z):
+    k = min(_bins, key=lambda b: abs(b - z / 0.05)) if _bins else 0
+    return _bins.get(k, 0.12)
 face_class = []
 for poly in mesh.polygons:
     u = np.mean([uv[l].uv[0] for l in poly.loop_indices]); w = np.mean([uv[l].uv[1] for l in poly.loop_indices])
     r, g, b = px[min(2047, max(0, int(w * 2048))), min(2047, max(0, int(u * 2048)))]
     sat = (max(r, g, b) - min(r, g, b)) / (max(r, g, b) + 1e-6)
     cx, cy, cz = np.mean(P[list(poly.vertices)], axis=0)
-    skin = r > 0.4 and r > g >= b * 0.95 and 0.12 < sat <= 0.62
+    skin = r > 0.4 and r > g >= b * 0.95 and 0.12 < sat <= 0.62 and (cz < 1.5 or cy < 0)  # (no capuz, só o rosto da frente é pele)
     sash = r > 0.15 and r > g >= b * 0.8 and sat > 0.62 and g < 0.5 * r
     boots = cz < 0.38  # botas e faixas das pernas
     gloves = abs(cx) > 0.52  # faixas, luvas e mãos (a partir do cotovelo)
-    sword = cy > 0.2 and abs(cx) < 0.22 and cz > 0.9  # a espada nas costas
+    sword = abs(cx) < 0.25 and cz > 0.9 and cy > back_surface(cz) + 0.022  # a espada e a alça, soltas atrás das costas
     # só o tecido azul (casaco, calça, capuz e mangas) muda de cor; o resto fica como é no modelo
     face_class.append(1 if (skin or sash or boots or gloves or sword) else 0)
 # slot de cada face (peso dominante dos vértices)
@@ -149,6 +176,21 @@ def material(name, image, rough=0.85):
     m.node_tree.links.new(t.outputs["Color"], b.inputs["Base Color"])
     return m
 mats = [material("Ninja_Cloth", gimg), material("Ninja_Skin", img, 0.7)]
+if debug:  # imagem de conferência: tingido em vermelho, o resto em azul, de frente e de costas
+    import math as _m
+    mesh.materials.clear()
+    for col in ((0.9, 0.1, 0.1, 1), (0.1, 0.2, 0.9, 1)):
+        dm = bpy.data.materials.new("dbg"); dm.diffuse_color = col; mesh.materials.append(dm)
+    for i, p in enumerate(mesh.polygons):
+        p.material_index = face_class[i]
+    sc = bpy.context.scene; sc.render.engine = 'BLENDER_WORKBENCH'; sc.display.shading.color_type = 'MATERIAL'; sc.display.shading.light = 'FLAT'
+    sc.render.resolution_x = 700; sc.render.resolution_y = 900
+    cam = bpy.data.cameras.new("c"); co = bpy.data.objects.new("c", cam); sc.collection.objects.link(co); sc.camera = co
+    cam.type = 'ORTHO'; cam.ortho_scale = 2.4
+    for nm, loc, rot in (("back", (0, 6, 0.9), (_m.pi / 2, 0, _m.pi)), ("front", (0, -6, 0.9), (_m.pi / 2, 0, 0)), ("side", (6, 0, 0.9), (_m.pi / 2, 0, _m.pi / 2))):
+        co.location = loc; co.rotation_euler = rot
+        sc.render.filepath = os.path.join(tmp, "dbg_" + nm + ".png"); bpy.ops.render.render(write_still=True)
+    sys.exit(0)
 mesh.materials.clear()
 for m in mats:
     mesh.materials.append(m)
