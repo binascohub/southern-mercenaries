@@ -2529,3 +2529,9 @@ msgstr "Dark Forest"
 
 msgid "PROP_TO_DARK_FOREST"
 msgstr "Path to the Dark Forest"
+
+msgid "ARENA_CAPITAL"
+msgstr "Royal Capital — Aurenhold"
+
+msgid "PROP_TO_CAPITAL"
+msgstr "Portal to the Royal Capital"

@@ -12,6 +12,8 @@ A **Capital Real** é a cidade do reino que **venceu a guerra** — o reino de D
 - As **novas missões principais** passam a ser entregues pelo **Bobo da Corte**, que vive no castelo e quer descobrir **onde a família real esconde seus tesouros**.
 - Depois de liberada, o grupo pode viajar entre **Tortuga e a Capital** pelos portais.
 
+> **No jogo hoje (primeira passada):** a Capital (`capital_01_aurenhold`) já existe como mapa-cidade (praça do portão, avenida e pátio do castelo) com os 10 guardas, e é o destino do **Forte** (o último mapa da cadeia atual). A ordem no jogo é Tortuga → Floresta → Ruínas → Cemitério → Floresta Escura → Forte → Capital; a ordem narrativa abaixo (depois do mapa 5) continua sendo a proposta final.
+
 ### Como o grupo chega à Capital
 - Depois do mapa 5 (Aves), as pistas da taverna acabam. É o **Cavaleiro** (Dorian ou Dália) quem conta que **sabe de um Bobo da Corte, no castelo da Capital, que sabe de coisas** — segredos da família real, ouro escondido, rumores que ninguém mais ouve.
   - **Dorian:** conheceu o Bobo nos tempos da guarda do castelo; ele era o único que sabia do romance com a princesa e nunca contou ao rei.
@@ -125,6 +127,7 @@ Seguindo o padrão de Tortuga: **área externa** com o comércio ao ar livre e *
 - Mesmo padrão de Tortuga: **uma cena externa** (Avenida Real + porto + pátio do castelo). O castelo em si é fachada (sem interior), o que mantém o desempenho.
 - Lojas abrem como janelas de interface ao interagir com a banca/balcão.
 - NPCs de ambientação: nobres, guardas, criados, comerciantes, músicos; poucos modelos base com variações de roupa.
+- **Segurança da Capital:** os **10 guardas que treinavam no pátio de Tortuga** saem de lá e passam a fazer a **segurança da Capital Real** (portões, castelo e campo de treino da Academia), com as mesmas armas e poses de combate (`data/capital_royal_guards.json`, guardado para quando o mapa existir). Em Tortuga o pátio de treinamento fica só com os bonecos.
 - Iluminação mais clara que Tortuga (dia, tochas e lanternas), ainda com poucas luzes dinâmicas.
 - Estado da cidade (estoques, missões do Bobo, Bobo sequestrado ou não) salvo no PC do host junto com a campanha.
 

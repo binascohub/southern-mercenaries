@@ -140,7 +140,7 @@
 
 ## 14. Mapas implementados depois do Esgoto (primeira passada)
 
-Ordem de expedição no jogo: **Tortuga → Floresta → Ruínas → Cemitério → Floresta Escura → Forte**. Os mapas saem de `tools/assets/build_maps.py` (sorteio com semente fixa) e ficam em `data/arenas.json`; cada um tem um portal para o próximo e outro de volta a Tortuga (entrada "Trilha para a Floresta", na ponta oeste da rua principal).
+Ordem de expedição no jogo: **Tortuga → Floresta → Ruínas → Cemitério → Floresta Escura → Forte → Capital Real (Aurenhold)**. O portal do Forte para a Capital aparece depois de derrotar o Comandante; a Capital é cidade-base (sem monstros) e tem portal de volta a Tortuga. Os mapas saem de `tools/assets/build_maps.py` (sorteio com semente fixa) e ficam em `data/arenas.json`; cada um tem um portal para o próximo e outro de volta a Tortuga (entrada "Trilha para a Floresta", na ponta oeste da rua principal).
 
 | # | id | Mapa | Cenário (pacote, licença) | Chefe (provisório) |
 |---|---|---|---|---|

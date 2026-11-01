@@ -1703,106 +1703,6 @@
         "pose": "dance_twirl"
       },
       {
-        "role": "soldier",
-        "position": [
-          -9,
-          13.7
-        ],
-        "rotation": 0,
-        "pose": "melee",
-        "weapon": "Weapon_Longsword"
-      },
-      {
-        "role": "soldier",
-        "position": [
-          -5,
-          13.7
-        ],
-        "rotation": 0,
-        "pose": "melee_b",
-        "weapon": "Weapon_Shortsword"
-      },
-      {
-        "role": "soldier",
-        "position": [
-          -1,
-          13.7
-        ],
-        "rotation": 0,
-        "pose": "melee_c",
-        "weapon": "Weapon_Axe"
-      },
-      {
-        "role": "soldier",
-        "position": [
-          3,
-          13.7
-        ],
-        "rotation": 0,
-        "pose": "melee",
-        "weapon": "Weapon_Hammer"
-      },
-      {
-        "role": "soldier",
-        "position": [
-          9,
-          11.7
-        ],
-        "rotation": 0,
-        "pose": "melee_c",
-        "weapon": "Weapon_Longsword"
-      },
-      {
-        "role": "soldier",
-        "position": [
-          9,
-          17.6
-        ],
-        "rotation": 0,
-        "pose": "melee_b",
-        "weapon": "Weapon_Polearm"
-      },
-      {
-        "role": "soldier",
-        "position": [
-          -8.0,
-          19.2
-        ],
-        "rotation": 0,
-        "pose": "melee",
-        "weapon": "Weapon_Shortsword"
-      },
-      {
-        "role": "soldier",
-        "position": [
-          -4.8,
-          19.2
-        ],
-        "rotation": 0,
-        "pose": "melee_b",
-        "weapon": "Weapon_Axe"
-      },
-      {
-        "role": "soldier",
-        "position": [
-          -1.6,
-          19.2
-        ],
-        "rotation": 0,
-        "pose": "melee_c",
-        "weapon": "Weapon_Longsword"
-      },
-      {
-        "role": "soldier",
-        "position": [
-          0,
-          10.4
-        ],
-        "rotation": 0,
-        "pose": "talk",
-        "weapon": "Weapon_Shortsword"
-      },
-      {
         "role": "cat",
         "position": [
           3,
@@ -17133,8 +17033,6 @@
     "player_class": "mage",
     "map_id": "map_fort",
     "area_level": 10,
-    "final": true,
-    "victory_key": "HUD_VICTORY_SEWERS",
     "wake_radius": 10.0,
     "alert_radius": 5.0,
     "rooms": [
@@ -17304,6 +17202,19 @@
         "to": "tortuga",
         "entry": "forest",
         "expedition_end": true
+      },
+      {
+        "id": "to_capital",
+        "kind": "exit",
+        "name_key": "PROP_TO_CAPITAL",
+        "position": [
+          -1.25,
+          -29.75
+        ],
+        "to": "capital_01_aurenhold",
+        "entry": "start",
+        "after_victory": true,
+        "group": true
       },
       {
         "id": "fort_chest_1",
@@ -24884,5 +24795,347 @@
       }
     ],
     "passive": true
+  },
+  "capital_01_aurenhold": {
+    "_comment": "Capital Real, Aurenhold (04-1-capital-real.md): a cidade do reino vencedor, rica e cheia de guardas; segunda cidade-base, depois do Forte. Primeira passada: praça do portão, avenida e pátio do castelo, com a segurança feita pelos 10 guardas que treinavam em Tortuga. Ainda sem lojas, Bobo da Corte nem missões. Gerado por tools/assets/build_maps.py.",
+    "name_key": "ARENA_CAPITAL",
+    "town": true,
+    "outdoor": true,
+    "player_class": "mage",
+    "area_level": 10,
+    "wake_radius": 10.0,
+    "alert_radius": 5.0,
+    "rooms": [
+      {
+        "id": "gate_plaza",
+        "center": [
+          0,
+          0
+        ],
+        "size": [
+          44,
+          14
+        ],
+        "doors": [
+          "north"
+        ],
+        "torch": true,
+        "roofs": false
+      },
+      {
+        "id": "avenue",
+        "center": [
+          0,
+          -15
+        ],
+        "size": [
+          56,
+          16
+        ],
+        "doors": [
+          "south",
+          "north"
+        ],
+        "torch": true,
+        "roofs": true
+      },
+      {
+        "id": "castle_court",
+        "center": [
+          0,
+          -31
+        ],
+        "size": [
+          34,
+          16
+        ],
+        "doors": [
+          "south"
+        ],
+        "torch": true,
+        "wall_height": 2.0
+      }
+    ],
+    "encounters": [],
+    "entries": {
+      "start": [
+        0,
+        3
+      ],
+      "capital": [
+        0,
+        3
+      ]
+    },
+    "props": [
+      {
+        "id": "return_portal",
+        "kind": "exit",
+        "name_key": "PROP_RETURN_PORTAL",
+        "position": [
+          -6,
+          3
+        ],
+        "to": "tortuga",
+        "entry": "forest"
+      }
+    ],
+    "style": {
+      "_comment": "Capital: casas de reboco e tijolo como Tortuga, mas piso de tijolo limpo e cerca baixa branca.",
+      "walls": [
+        "Wall_Plaster_Straight",
+        "Wall_Plaster_Window_Wide_Round",
+        "Wall_Plaster_WoodGrid",
+        "Wall_UnevenBrick_Straight",
+        "Wall_Plaster_Door_Round",
+        "Wall_Plaster_Window_Thin_Round"
+      ],
+      "floor": "Floor_Brick",
+      "low": "Prop_WoodenFence_Single",
+      "ground": [
+        0.16,
+        0.15,
+        0.13
+      ],
+      "roof": "Roof_RoundTiles_4x4",
+      "tint": [
+        1.1,
+        1.08,
+        1.0
+      ]
+    },
+    "decor": [
+      {
+        "piece": "Pr_CoveredWell",
+        "position": [
+          0,
+          -15
+        ],
+        "solid": [
+          1.8,
+          1.8
+        ]
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          -18,
+          -9.5
+        ],
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          -18,
+          -20.5
+        ],
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          -9,
+          -9.5
+        ],
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          -9,
+          -20.5
+        ],
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          9,
+          -9.5
+        ],
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          9,
+          -20.5
+        ],
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          18,
+          -9.5
+        ],
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          18,
+          -20.5
+        ],
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk3",
+        "position": [
+          -8,
+          -36
+        ],
+        "solid": [
+          1.4,
+          1.4
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk3",
+        "position": [
+          8,
+          -36
+        ],
+        "solid": [
+          1.4,
+          1.4
+        ]
+      },
+      {
+        "piece": "Pr_RoadSign",
+        "position": [
+          5,
+          2
+        ],
+        "rotation": 200
+      }
+    ],
+    "crowd": [
+      {
+        "role": "soldier",
+        "position": [
+          -6,
+          1
+        ],
+        "rotation": 0,
+        "pose": "idle",
+        "weapon": "Weapon_Polearm"
+      },
+      {
+        "role": "soldier",
+        "position": [
+          6,
+          1
+        ],
+        "rotation": 0,
+        "pose": "idle",
+        "weapon": "Weapon_Polearm"
+      },
+      {
+        "role": "soldier",
+        "position": [
+          -20,
+          -2
+        ],
+        "rotation": 90,
+        "pose": "idle",
+        "weapon": "Weapon_Axe"
+      },
+      {
+        "role": "soldier",
+        "position": [
+          20,
+          -2
+        ],
+        "rotation": 270,
+        "pose": "idle",
+        "weapon": "Weapon_Hammer"
+      },
+      {
+        "role": "soldier",
+        "position": [
+          -12,
+          -15
+        ],
+        "rotation": 90,
+        "pose": "idle",
+        "weapon": "Weapon_Longsword"
+      },
+      {
+        "role": "soldier",
+        "position": [
+          12,
+          -15
+        ],
+        "rotation": 270,
+        "pose": "idle",
+        "weapon": "Weapon_Polearm"
+      },
+      {
+        "role": "soldier",
+        "position": [
+          -5,
+          -26
+        ],
+        "rotation": 0,
+        "pose": "idle",
+        "weapon": "Weapon_Polearm"
+      },
+      {
+        "role": "soldier",
+        "position": [
+          5,
+          -26
+        ],
+        "rotation": 0,
+        "pose": "idle",
+        "weapon": "Weapon_Polearm"
+      },
+      {
+        "role": "soldier",
+        "position": [
+          -10,
+          -34
+        ],
+        "rotation": 0,
+        "pose": "idle",
+        "weapon": "Weapon_Longsword"
+      },
+      {
+        "role": "soldier",
+        "position": [
+          10,
+          -34
+        ],
+        "rotation": 0,
+        "pose": "idle",
+        "weapon": "Weapon_Shortsword"
+      }
+    ]
   }
 }

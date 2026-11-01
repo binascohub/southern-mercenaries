@@ -2529,3 +2529,9 @@ msgstr "Floresta Escura"
 
 msgid "PROP_TO_DARK_FOREST"
 msgstr "Trilha da Floresta Escura"
+
+msgid "ARENA_CAPITAL"
+msgstr "Capital Real — Aurenhold"
+
+msgid "PROP_TO_CAPITAL"
+msgstr "Portal da Capital Real"

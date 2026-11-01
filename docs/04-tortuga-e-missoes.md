@@ -58,7 +58,7 @@ Tortuga é uma **cidade portuária suja, barulhenta e perigosa**, de ruas estrei
 | `blacksmith` | Ferreiro | Forja ao ar livre na Rua Principal | Crafting: encaixar gemas/runas, desmontar itens; **refino** com pergaminhos de **Ferro e Aço** (vende os pergaminhos desses tiers) — `05-1-refino.md` |
 | `stash` | Baú | Na Rua Principal (baú acorrentado, guardado por um capanga de aluguel) | Baú compartilhado entre os personagens do jogador (guardar valiosos para vender quando o preço subir) |
 | `respec` | Altar / Mestre | Canto da Rua Principal | Redistribuir pontos, pagando ouro |
-| `training_yard` | **Área de treinamento** | Pátio nos fundos da Rua Principal | Bonecos para testar habilidades, elementos e equipamentos, sem risco (seção 5.2) |
+| `training_yard` | **Área de treinamento** | Pátio nos fundos da Rua Principal | Bonecos para testar habilidades, elementos e equipamentos, sem risco (seção 5.2) | Sem guardas: os soldados que treinavam aqui foram para a segurança da Capital Real (`04-1-capital-real.md`).
 | `voodoo_priest` | **Macumbeiro** | Tenda de velas, ervas e ossos num beco da Rua Principal | **Abre portais para os pontos salvos** (checkpoints) mediante ouro e **vende o Patuá de Retorno** (seção 5.1) |
 | `sewer_entrance` | **Bueiro** | Rua Principal | Entrada do **Esgoto** (mapa 1); trancado até a missão do velho bêbado |
 | `port` | **Porto** e Portal de Tortuga | Fim da Rua Principal, no cais | **Portal** para os demais mapas (seção 5) + Mercado Pirata |

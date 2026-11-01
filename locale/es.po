@@ -2529,3 +2529,9 @@ msgstr "Bosque Oscuro"
 
 msgid "PROP_TO_DARK_FOREST"
 msgstr "Sendero al Bosque Oscuro"
+
+msgid "ARENA_CAPITAL"
+msgstr "Capital Real — Aurenhold"
+
+msgid "PROP_TO_CAPITAL"
+msgstr "Portal de la Capital Real"

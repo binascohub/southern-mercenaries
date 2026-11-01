@@ -463,7 +463,7 @@ lab.append({"piece": "Lab_ShieldSword", "position": cell_pos(8, 5), "rotation": 
 fort_decor += lab
 arenas["fort_01_gate"] = {
     "_comment": "Forte (3D Dungeon Tileset, Skorpio, CC BY-SA 3.0): uma grade de 20 x 26 células de 2,5 m com pedra e piso do pacote (Fort_<máscara>, a máscara é o 8-vizinhança de pedra); a colisão é uma caixa por trecho de pedra. Pátio de entrada, duas celas, salão do meio e o salão do comandante no fundo. Gerado por tools/assets/build_maps.py.",
-    "name_key": "ARENA_FORT", "player_class": "mage", "map_id": "map_fort", "area_level": 10, "final": True, "victory_key": "HUD_VICTORY_SEWERS",
+    "name_key": "ARENA_FORT", "player_class": "mage", "map_id": "map_fort", "area_level": 10,
     "wake_radius": 10.0, "alert_radius": 5.0,
     "rooms": [room("fort", 0, 0, COLS * CELL, ROWS * CELL, [], wall_height=0.8, torch=False)],
     "encounters": [
@@ -481,6 +481,7 @@ arenas["fort_01_gate"] = {
     "hazards": [], "entries": {"start": cell_pos(9, 23)},
     "props": [
         {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [cell_pos(6, 23)[0], cell_pos(6, 23)[1]], "to": "tortuga", "entry": "forest", "expedition_end": True},
+        {"id": "to_capital", "kind": "exit", "name_key": "PROP_TO_CAPITAL", "position": [cell_pos(9, 1)[0], cell_pos(9, 1)[1] - 1.0], "to": "capital_01_aurenhold", "entry": "start", "after_victory": True, "group": True},
         {"id": "fort_chest_1", "kind": "chest", "position": cell_pos(2, 19), "loot": "chest"},
         {"id": "fort_chest_2", "kind": "chest", "position": cell_pos(17, 19), "loot": "chest"},
         {"id": "fort_potions_1", "kind": "chest", "position": cell_pos(1, 13), "loot": "potion_chest", "model": "Chest_Potion"},
@@ -490,6 +491,41 @@ arenas["fort_01_gate"] = {
     "quest_spots": [], "breakables": [],
     "style": {"_comment": "Forte: piso de pedra do pacote; a pedra vem das peças Fort_* em decor.", "walls": [""], "floor": "Fort_Floor", "low": "", "ground": [0.07, 0.07, 0.08]},
     "decor": fort_decor, "passive": True,
+}
+
+# --- Capital Real, Aurenhold (cidade-base; depois do Forte) ---------------------------------------------
+kr = rng("capital")
+cap_rooms = [
+    room("gate_plaza", 0, 0, 44, 14, ["north"], torch=True, roofs=False),
+    room("avenue", 0, -15, 56, 16, ["south", "north"], torch=True, roofs=True),
+    room("castle_court", 0, -31, 34, 16, ["south"], torch=True, wall_height=2.0),
+]
+cap_decor = [{"piece": "Pr_CoveredWell", "position": [0, -15], "solid": [1.8, 1.8]}]
+for x in (-18, -9, 9, 18):
+    cap_decor.append({"piece": "Pr_LampPost", "position": [x, -9.5], "solid": [0.6, 0.6]})
+    cap_decor.append({"piece": "Pr_LampPost", "position": [x, -20.5], "solid": [0.6, 0.6]})
+cap_decor += [{"piece": "Pr_Obelisk3", "position": [-8, -36], "solid": [1.4, 1.4]}, {"piece": "Pr_Obelisk3", "position": [8, -36], "solid": [1.4, 1.4]},
+              {"piece": "Pr_RoadSign", "position": [5, 2], "rotation": 200}]
+# Os guardas que treinavam em Tortuga agora fazem a segurança daqui (data/capital_royal_guards.json): portão, avenida e pátio do castelo.
+guards = json.load(open("data/capital_royal_guards.json"))["guards"]
+spots = [(-6, 1, 0), (6, 1, 0), (-20, -2, 90), (20, -2, 270), (-12, -15, 90), (12, -15, 270), (-5, -26, 0), (5, -26, 0), (-10, -34, 0), (10, -34, 0)]
+cap_crowd = []
+for g, (x, z, rot) in zip(guards, spots):
+    c = dict(g)
+    c.update({"position": [x, z], "rotation": rot, "pose": "idle", "weapon": "Weapon_Polearm" if abs(x) < 8 else g.get("weapon", "Weapon_Longsword")})
+    cap_crowd.append(c)
+arenas["capital_01_aurenhold"] = {
+    "_comment": "Capital Real, Aurenhold (04-1-capital-real.md): a cidade do reino vencedor, rica e cheia de guardas; segunda cidade-base, depois do Forte. Primeira passada: praça do portão, avenida e pátio do castelo, com a segurança feita pelos 10 guardas que treinavam em Tortuga. Ainda sem lojas, Bobo da Corte nem missões. Gerado por tools/assets/build_maps.py.",
+    "name_key": "ARENA_CAPITAL", "town": True, "outdoor": True, "player_class": "mage", "area_level": 10,
+    "wake_radius": 10.0, "alert_radius": 5.0, "rooms": cap_rooms, "encounters": [],
+    "entries": {"start": [0, 3], "capital": [0, 3]},
+    "props": [
+        {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-6, 3], "to": "tortuga", "entry": "forest"},
+    ],
+    "style": {"_comment": "Capital: casas de reboco e tijolo como Tortuga, mas piso de tijolo limpo e cerca baixa branca.",
+              "walls": ["Wall_Plaster_Straight", "Wall_Plaster_Window_Wide_Round", "Wall_Plaster_WoodGrid", "Wall_UnevenBrick_Straight", "Wall_Plaster_Door_Round", "Wall_Plaster_Window_Thin_Round"],
+              "floor": "Floor_Brick", "low": "Prop_WoodenFence_Single", "ground": [0.16, 0.15, 0.13], "roof": "Roof_RoundTiles_4x4", "tint": [1.1, 1.08, 1.0]},
+    "decor": cap_decor, "crowd": cap_crowd,
 }
 
 json.dump(arenas, open(ARENAS, "w"), indent=2, ensure_ascii=False); open(ARENAS, "a").write("\n")

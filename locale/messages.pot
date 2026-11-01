@@ -2528,3 +2528,9 @@ msgstr ""
 
 msgid "PROP_TO_DARK_FOREST"
 msgstr ""
+
+msgid "ARENA_CAPITAL"
+msgstr ""
+
+msgid "PROP_TO_CAPITAL"
+msgstr ""
