@@ -1,0 +1,2 @@
+Chest_Mini.glb — "Treasure Chest" by WeaponGuy (Supergeek), CC-BY 3.0: https://opengameart.org/content/treasure-chest
+Converted from the Blender file by tools/assets/build_chest_mini.py (textures at 512 px, 0.9 m wide). The chest a mini-boss leaves behind.

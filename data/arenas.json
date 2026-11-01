@@ -72363,7 +72363,7 @@
         "name_key": "PROP_TO_FORT",
         "position": [
           0,
-          -95
+          -82.5
         ],
         "to": "fort_01_gate",
         "entry": "start",
@@ -75602,123 +75602,6 @@
       {
         "piece": "Pl_Swirl",
         "position": [
-          -11.6,
-          -97.2
-        ],
-        "rotation": 240,
-        "scale": 1.72
-      },
-      {
-        "piece": "Pl_Bamboo",
-        "position": [
-          -9.9,
-          -97.2
-        ],
-        "rotation": 165,
-        "scale": 1.18
-      },
-      {
-        "piece": "Pl_Bamboo",
-        "position": [
-          -7.9,
-          -97.2
-        ],
-        "rotation": 180,
-        "scale": 1.51
-      },
-      {
-        "piece": "Pl_Bamboo",
-        "position": [
-          -6.3,
-          -97.2
-        ],
-        "rotation": 255,
-        "scale": 1.32
-      },
-      {
-        "piece": "Pl_Swirl",
-        "position": [
-          -4.5,
-          -97.2
-        ],
-        "rotation": 60,
-        "scale": 1.34
-      },
-      {
-        "piece": "Pl_Bamboo",
-        "position": [
-          -2.6,
-          -97.2
-        ],
-        "rotation": 105,
-        "scale": 1.64
-      },
-      {
-        "piece": "Pl_Bamboo",
-        "position": [
-          -0.6,
-          -97.2
-        ],
-        "rotation": 15,
-        "scale": 1.34
-      },
-      {
-        "piece": "Pl_Bamboo",
-        "position": [
-          0.6,
-          -97.2
-        ],
-        "rotation": 180,
-        "scale": 1.65
-      },
-      {
-        "piece": "Pl_Swirl",
-        "position": [
-          2.4,
-          -97.2
-        ],
-        "rotation": 45,
-        "scale": 1.12
-      },
-      {
-        "piece": "Pl_Bamboo",
-        "position": [
-          4.6,
-          -97.2
-        ],
-        "rotation": 300,
-        "scale": 1.35
-      },
-      {
-        "piece": "Pl_Bamboo",
-        "position": [
-          6.0,
-          -97.2
-        ],
-        "rotation": 15,
-        "scale": 1.3
-      },
-      {
-        "piece": "Pl_Bamboo",
-        "position": [
-          8.4,
-          -97.2
-        ],
-        "rotation": 75,
-        "scale": 1.21
-      },
-      {
-        "piece": "Pl_Bamboo",
-        "position": [
-          9.7,
-          -97.2
-        ],
-        "rotation": 195,
-        "scale": 1.59
-      },
-      {
-        "piece": "Pl_Swirl",
-        "position": [
           12.0,
           -97.2
         ],
@@ -76211,14 +76094,6 @@
         "rotation": 30
       },
       {
-        "piece": "Pl_Swirl",
-        "position": [
-          -9.7,
-          -88.4
-        ],
-        "rotation": 165
-      },
-      {
         "piece": "Pl_Bush",
         "position": [
           2.2,
@@ -76243,44 +76118,12 @@
         "rotation": 165
       },
       {
-        "piece": "Pl_Bush",
-        "position": [
-          -11.2,
-          -87.9
-        ],
-        "rotation": 120
-      },
-      {
-        "piece": "Pl_Bamboo",
-        "position": [
-          3.9,
-          -93.9
-        ],
-        "rotation": 315
-      },
-      {
-        "piece": "Pl_Bamboo",
-        "position": [
-          3.9,
-          -93.2
-        ],
-        "rotation": 285
-      },
-      {
         "piece": "Pl_Bamboo",
         "position": [
           -9.8,
           -69.2
         ],
         "rotation": 90
-      },
-      {
-        "piece": "Pl_Hemp",
-        "position": [
-          2.6,
-          -93.0
-        ],
-        "rotation": 180
       },
       {
         "piece": "Pl_Bush",
@@ -76297,30 +76140,6 @@
           -70.8
         ],
         "rotation": 165
-      },
-      {
-        "piece": "Pl_Swirl",
-        "position": [
-          5.4,
-          -91.7
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          -10.2,
-          -95.9
-        ],
-        "rotation": 75
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          -10.7,
-          -95.6
-        ],
-        "rotation": 30
       },
       {
         "piece": "Pl_Hemp",
@@ -76345,14 +76164,6 @@
           -69.0
         ],
         "rotation": 345
-      },
-      {
-        "piece": "Pl_Bamboo",
-        "position": [
-          -3.5,
-          -95.6
-        ],
-        "rotation": 15
       },
       {
         "piece": "Pl_Bush",
@@ -76409,46 +76220,6 @@
           -95.2
         ],
         "rotation": 240
-      },
-      {
-        "piece": "Pl_Bamboo",
-        "position": [
-          4.9,
-          -92.6
-        ],
-        "rotation": 345
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          -3.2,
-          -86.7
-        ],
-        "rotation": 75
-      },
-      {
-        "piece": "Pl_Bamboo",
-        "position": [
-          3.4,
-          -95.8
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          -6.1,
-          -95.7
-        ],
-        "rotation": 0
-      },
-      {
-        "piece": "Pl_Bamboo",
-        "position": [
-          9.5,
-          -88.6
-        ],
-        "rotation": 210
       },
       {
         "piece": "Pl_Swirl",
@@ -76517,14 +76288,6 @@
       {
         "piece": "Pl_Bamboo",
         "position": [
-          4.7,
-          -92.5
-        ],
-        "rotation": 315
-      },
-      {
-        "piece": "Pl_Bamboo",
-        "position": [
           -0.9,
           -78.7
         ],
@@ -76541,34 +76304,10 @@
       {
         "piece": "Pl_Hemp",
         "position": [
-          -6.1,
-          -89.5
-        ],
-        "rotation": 105
-      },
-      {
-        "piece": "Pl_Swirl",
-        "position": [
-          8.4,
-          -93.7
-        ],
-        "rotation": 45
-      },
-      {
-        "piece": "Pl_Hemp",
-        "position": [
           11.0,
           -69.6
         ],
         "rotation": 150
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          8.1,
-          -93.8
-        ],
-        "rotation": 165
       },
       {
         "piece": "Pl_Bamboo",
@@ -76577,14 +76316,6 @@
           -82.8
         ],
         "rotation": 135
-      },
-      {
-        "piece": "Pl_Bamboo",
-        "position": [
-          -5.8,
-          -87.1
-        ],
-        "rotation": 150
       },
       {
         "piece": "Pl_Swirl",
@@ -76603,28 +76334,12 @@
         "rotation": 225
       },
       {
-        "piece": "Pl_Bush",
-        "position": [
-          7.3,
-          -91.9
-        ],
-        "rotation": 330
-      },
-      {
         "piece": "Pl_Hemp",
         "position": [
           -13.8,
           -80.4
         ],
         "rotation": 45
-      },
-      {
-        "piece": "Pl_Swirl",
-        "position": [
-          -0.9,
-          -92.8
-        ],
-        "rotation": 285
       },
       {
         "piece": "Pl_Bamboo",
@@ -76657,22 +76372,6 @@
           -82.9
         ],
         "rotation": 120
-      },
-      {
-        "piece": "Pl_Bamboo",
-        "position": [
-          -2.6,
-          -89.1
-        ],
-        "rotation": 270
-      },
-      {
-        "piece": "Pl_Bush",
-        "position": [
-          -0.3,
-          -86.1
-        ],
-        "rotation": 165
       },
       {
         "piece": "Pl_Hemp",
@@ -76715,14 +76414,6 @@
         "rotation": 30
       },
       {
-        "piece": "Pl_Hemp",
-        "position": [
-          -9.7,
-          -91.5
-        ],
-        "rotation": 0
-      },
-      {
         "piece": "Pl_Bush",
         "position": [
           4.0,
@@ -76731,28 +76422,12 @@
         "rotation": 315
       },
       {
-        "piece": "Pl_Swirl",
-        "position": [
-          2.2,
-          -84.1
-        ],
-        "rotation": 330
-      },
-      {
         "piece": "Pl_Bamboo",
         "position": [
           -14.1,
           -71.3
         ],
         "rotation": 75
-      },
-      {
-        "piece": "Pl_Bamboo",
-        "position": [
-          -9.6,
-          -89.9
-        ],
-        "rotation": 135
       },
       {
         "piece": "Pl_Hemp",
@@ -76779,44 +76454,12 @@
         "rotation": 150
       },
       {
-        "piece": "Pl_Swirl",
-        "position": [
-          0.5,
-          -95.3
-        ],
-        "rotation": 210
-      },
-      {
         "piece": "Pl_Hemp",
         "position": [
           -11.6,
           -68.9
         ],
         "rotation": 90
-      },
-      {
-        "piece": "Pl_Hemp",
-        "position": [
-          2.5,
-          -88.4
-        ],
-        "rotation": 180
-      },
-      {
-        "piece": "Pl_Swirl",
-        "position": [
-          4.9,
-          -91.0
-        ],
-        "rotation": 255
-      },
-      {
-        "piece": "Pl_Swirl",
-        "position": [
-          7.3,
-          -93.4
-        ],
-        "rotation": 285
       },
       {
         "piece": "Pl_Hemp",
@@ -76843,14 +76486,6 @@
         "rotation": 105
       },
       {
-        "piece": "Pl_Bamboo",
-        "position": [
-          2.5,
-          -85.7
-        ],
-        "rotation": 240
-      },
-      {
         "piece": "Pl_Swirl",
         "position": [
           12.8,
@@ -76859,21 +76494,21 @@
         "rotation": 150
       },
       {
-        "piece": "Pr_Obelisk3",
+        "piece": "Gatehouse",
         "position": [
           0,
           -92
         ],
         "solid": [
-          1.4,
-          1.4
+          20.0,
+          11.5
         ]
       },
       {
         "piece": "Pr_Obelisk2",
         "position": [
-          -7,
-          -90
+          -5,
+          -80
         ],
         "solid": [
           1.0,
@@ -76883,8 +76518,8 @@
       {
         "piece": "Pr_Obelisk2",
         "position": [
-          7,
-          -90
+          5,
+          -80
         ],
         "solid": [
           1.0,
@@ -92712,16 +92347,72 @@
         "speed": 0.6
       },
       {
+        "role": "rooster",
+        "position": [
+          -2,
+          -4
+        ],
+        "rotation": 240,
+        "pose": "idle",
+        "path": [
+          -7.7,
+          -2.1
+        ],
+        "speed": 0.8
+      },
+      {
+        "role": "rooster",
+        "position": [
+          22,
+          -24
+        ],
+        "rotation": 90,
+        "pose": "idle",
+        "path": [
+          19.4,
+          -25.0
+        ],
+        "speed": 0.8
+      },
+      {
+        "role": "rooster",
+        "position": [
+          -20,
+          -14
+        ],
+        "rotation": 270,
+        "pose": "idle",
+        "path": [
+          -20.7,
+          -14.6
+        ],
+        "speed": 0.8
+      },
+      {
+        "role": "rooster",
+        "position": [
+          34,
+          -8
+        ],
+        "rotation": 345,
+        "pose": "idle",
+        "path": [
+          28.4,
+          -8.3
+        ],
+        "speed": 0.8
+      },
+      {
         "role": "rabbit",
         "position": [
           -24,
           -24
         ],
-        "rotation": 240,
+        "rotation": 30,
         "pose": "idle",
         "path": [
-          -27.8,
-          -22.7
+          -23.5,
+          -26.3
         ],
         "speed": 0.9
       },
@@ -92731,11 +92422,11 @@
           10,
           -20
         ],
-        "rotation": 90,
+        "rotation": 285,
         "pose": "idle",
         "path": [
-          8.3,
-          -20.7
+          11.1,
+          -21.2
         ],
         "speed": 0.9
       },
@@ -92745,11 +92436,11 @@
           4,
           -4
         ],
-        "rotation": 270,
+        "rotation": 135,
         "pose": "idle",
         "path": [
-          3.6,
-          -4.4
+          3.1,
+          -5.2
         ],
         "speed": 0.9
       },
@@ -92759,11 +92450,11 @@
           -6,
           -42
         ],
-        "rotation": 345,
+        "rotation": 75,
         "pose": "idle",
         "path": [
-          -9.7,
-          -42.2
+          -9.4,
+          -43.9
         ],
         "speed": 0.9
       },
@@ -92776,8 +92467,8 @@
         "rotation": 30,
         "pose": "idle",
         "path": [
-          30.5,
-          -12.3
+          28.4,
+          -7.1
         ],
         "speed": 0.9
       },
@@ -92787,11 +92478,11 @@
           31,
           -40
         ],
-        "rotation": 285,
+        "rotation": 120,
         "pose": "idle",
         "path": [
-          32.1,
-          -41.2
+          30.8,
+          -41.8
         ],
         "speed": 0.9
       },
@@ -92801,11 +92492,11 @@
           42,
           -14
         ],
-        "rotation": 135,
+        "rotation": 150,
         "pose": "idle",
         "path": [
-          41.1,
-          -15.2
+          43.2,
+          -15.8
         ],
         "speed": 0.9
       },
@@ -92815,11 +92506,11 @@
           -22,
           -6
         ],
-        "rotation": 75,
+        "rotation": 270,
         "pose": "idle",
         "path": [
-          -25.4,
-          -7.9
+          -22.6,
+          -5.1
         ],
         "speed": 0.9
       }

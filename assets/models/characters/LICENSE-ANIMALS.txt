@@ -12,3 +12,5 @@ sheep.glb — "Sheep (rigged, textured and animated)" by p0ss, CC BY-SA 3.0: htt
 Converted from the Blender file by tools/assets/build_sheep.sh (the "Sheep 2" mesh with idle, walking and eating animations).
 pig.glb, farm_horse.glb — "Farm Animals" (Pig and Horse) by Quaternius, CC0 1.0: https://opengameart.org/content/lowpoly-animated-farm-animal-pack
 Converted from the Blender files by tools/assets/build_farm_animals.sh (idle and walk animations).
+rooster.glb — "Rooster (animated)" by Čestmír Dammer (cdmir), collaborator TinyWorlds, CC0 1.0: https://opengameart.org/content/rooster-animated
+Converted from the Blender file by tools/assets/build_rooster.sh (idle, walk and eat animations).

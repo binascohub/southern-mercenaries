@@ -714,6 +714,9 @@ func travel(to: String, entry: String, expedition_end := false) -> void:
 func _add_dynamic_props(peer_id := 0) -> void:
 	var opened: Array = _campaign.get("opened", [])
 	var dynamic: Array = town.spot_props(area_id)
+	for saved: Dictionary in _campaign.get("mini_chests", []):
+		if saved.area == area_id and "%s:%s" % [area_id, saved.prop.id] not in opened:
+			dynamic.append(saved.prop)
 	for prop: Dictionary in arena.get("props", []):
 		if prop.kind == "chest" and "%s:%s" % [area_id, prop.id] in opened:
 			continue
@@ -1190,6 +1193,8 @@ func _on_enemy_died(enemy: Enemy) -> void:
 		_break(enemy)
 		return
 	_reward(enemy)
+	if enemy.category() == "miniboss":
+		_drop_miniboss_chest(enemy)
 	if enemy.is_boss() and enemy.data.has("drops_key") and String(enemy.data.drops_key) not in _campaign.get("keys", []):
 		# A chave do tesouro cai onde o chefe morreu.
 		_add_prop.rpc({"id": "boss_key", "kind": "key", "key": String(enemy.data.drops_key), "name_key": "PROP_BOSS_KEY",
@@ -1271,8 +1276,22 @@ func _reward(enemy: Enemy) -> void:
 	for p in present:
 		p.grant(xp, 0)
 		if not enemy.data.get("no_loot", false):
-			_drop_loot_for(p, enemy)
+			if enemy.category() != "miniboss":  # o mini-chefe deixa um baú (ver _drop_miniboss_chest)
+				_drop_loot_for(p, enemy)
 			_drop_quest_item(p, enemy)
+
+
+## Baú do mini-chefe (Treasure Chest, WeaponGuy, CC-BY 3.0): no lugar onde ele caiu; ao abrir (interagir), sai o loot de cada herói
+## (tabela "miniboss" de data/loot.json). Fica guardado na campanha até ser aberto, mesmo se o grupo sair da área.
+func _drop_miniboss_chest(enemy: Enemy) -> void:
+	var prop := {"id": "mbchest_%s" % enemy.monster_id, "kind": "chest", "name_key": "PROP_MINIBOSS_CHEST", "model": "Chest_Mini",
+		"loot": "miniboss", "position": [snappedf(enemy.global_position.x, 0.1), snappedf(enemy.global_position.z, 0.1)]}
+	var saved: Array = _campaign.get("mini_chests", []).filter(func(c: Variant) -> bool: return c.prop.id != prop.id or c.area != area_id)
+	saved.append({"area": area_id, "prop": prop})
+	_campaign.mini_chests = saved
+	_add_prop.rpc(prop)
+	_toast_all("TOAST_MINIBOSS_CHEST", {})
+	SaveSystem.save_campaign(_campaign, true)
 
 
 ## Relíquia de missão (data/quests.json "item"): o mini-chefe com "quest_drop" a deixa cair para cada herói que

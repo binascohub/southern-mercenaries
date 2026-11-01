@@ -1043,8 +1043,14 @@ d_decor = []
 for rd in d_rooms:
     d_decor += ring(dr, rd, ["Pl_Bamboo", "Pl_Bamboo", "Pl_Bamboo", "Pl_Swirl"], 1.8, scale=(1.1, 1.8))
     d_decor += scatter(dr, rd, ["Pl_Bush", "Pl_Swirl", "Pl_Hemp", "Pl_Bamboo"], int(rd["size"][0] * rd["size"][1] / 14), margin=2.0, avoid=[(0, 3, 3)])
-d_decor += [{"piece": "Pr_Obelisk3", "position": [0, -92], "solid": [1.4, 1.4]}, {"piece": "Pr_Obelisk2", "position": [-7, -90], "solid": [1.0, 1.0]},
-            {"piece": "Pr_Obelisk2", "position": [7, -90], "solid": [1.0, 1.0]}, {"piece": "Pr_Cross3", "position": [-26, -26], "solid": [1.0, 1.0]},
+# Entrada do Forte (Medieval Gatehouse, Daniel Andersson, CC0): o portão de ~20 x 12,6 m fecha o fundo do bosque (frente para +Z, a grade
+# voltada para quem chega) e o portal para o Forte fica à frente dele; os obeliscos o ladeiam. Nada sorteado dentro do portão ou no portal.
+D_GATE, D_PORTAL = (0, -92), (0, -82.5)
+d_decor = [d for d in d_decor if not (abs(d["position"][0] - D_GATE[0]) < 11.8 and abs(d["position"][1] - D_GATE[1]) < 7.5
+                                      or math.hypot(d["position"][0] - D_PORTAL[0], d["position"][1] - D_PORTAL[1]) < 3.5)]
+d_decor += [{"piece": "Gatehouse", "position": list(D_GATE), "solid": [20.0, 11.5]},
+            {"piece": "Pr_Obelisk2", "position": [-5, -80], "solid": [1.0, 1.0]}, {"piece": "Pr_Obelisk2", "position": [5, -80], "solid": [1.0, 1.0]},
+            {"piece": "Pr_Cross3", "position": [-26, -26], "solid": [1.0, 1.0]},
             {"piece": "Pr_Cross2", "position": [-24, -18], "solid": [1.0, 1.0]}, {"piece": "Pr_BrokenPillar1", "position": [-10, -60], "solid": [1.2, 1.2]},
             {"piece": "Pr_BrokenPillar2", "position": [10, -46], "solid": [1.2, 1.2]}, {"piece": "Pr_LampPost", "position": [-4, 3], "solid": [0.6, 0.6]}]
 arenas["dark_forest_01_woods"] = {
@@ -1054,7 +1060,7 @@ arenas["dark_forest_01_woods"] = {
     "entries": {"start": [0, 3], "dark_forest": [0, 3]},
     "props": [
         {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-6, 3], "to": "tortuga", "entry": "forest", "expedition_end": True},
-        {"id": "to_fort", "kind": "exit", "name_key": "PROP_TO_FORT", "position": [0, -95], "to": "fort_01_gate", "entry": "start", "group": True},
+        {"id": "to_fort", "kind": "exit", "name_key": "PROP_TO_FORT", "position": list(D_PORTAL), "to": "fort_01_gate", "entry": "start", "group": True},
     ],
     "quest_spots": [], "breakables": [],
     "style": {"_comment": "Floresta Escura: grama escura, cerca viva densa, tom azulado.", "walls": [""], "floor": "Ground_Grass", "low": "Pl_Bush",
@@ -1628,6 +1634,10 @@ for role, box, count, speed in (("pig", PIGPEN, 5, 0.5), ("farm_horse", PADDOCK,
 for i, (x, z) in enumerate(((-16, -8), (-6, -7), (-12, -23), (-20, -20), (4, -20), (12, -19), (20, -16), (-4, -25), (8, -8), (24, -24))):  # galinhas soltas
     farm_crowd.append({"role": "chicken", "position": [x, z], "rotation": fr.randrange(0, 360, 15), "pose": "idle",
                        "path": [round(x + fr.uniform(-3.5, 3.5), 1), round(z + fr.uniform(-3.0, 3.0), 1)], "speed": 0.6})
+# Galos (Rooster (animated), CDmir, CC0): caminham de ponta a ponta pela fazenda, em trechos mais longos que os das galinhas.
+for x, z in ((-2, -4), (22, -24), (-20, -14), (34, -8)):
+    farm_crowd.append({"role": "rooster", "position": [x, z], "rotation": fr.randrange(0, 360, 15), "pose": "idle",
+                       "path": [round(x + fr.uniform(-6.0, 6.0), 1), round(z + fr.uniform(-5.0, 5.0), 1)], "speed": 0.8})
 # Coelhos (Rabbit, cdmir, CC0; o mesmo de Tortuga): pulam pela grama fora dos cercados; o pulo de 1 s fica no lugar enquanto o Wanderer anda.
 for x, z in ((-24, -24), (10, -20), (4, -4), (-6, -42), (30, -10), (31, -40), (42, -14), (-22, -6)):
     farm_crowd.append({"role": "rabbit", "position": [x, z], "rotation": fr.randrange(0, 360, 15), "pose": "idle",

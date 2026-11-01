@@ -2853,3 +2853,9 @@ msgstr "La tierra se abre: ¡el Gólem de Piedra despierta!"
 
 msgid "TOAST_PYRE_AWAKENS"
 msgstr "Las brasas rugen: ¡el Gólem de Fuego despierta!"
+
+msgid "PROP_MINIBOSS_CHEST"
+msgstr "Cofre del minijefe"
+
+msgid "TOAST_MINIBOSS_CHEST"
+msgstr "¡El minijefe dejó un cofre!"

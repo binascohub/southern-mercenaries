@@ -2853,3 +2853,9 @@ msgstr "The ground splits: the Stone Golem awakens!"
 
 msgid "TOAST_PYRE_AWAKENS"
 msgstr "The embers roar: the Fire Golem awakens!"
+
+msgid "PROP_MINIBOSS_CHEST"
+msgstr "Mini-boss chest"
+
+msgid "TOAST_MINIBOSS_CHEST"
+msgstr "The mini-boss left a chest!"

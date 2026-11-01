@@ -2853,3 +2853,9 @@ msgstr "A terra se abre: o Golem de Pedra desperta!"
 
 msgid "TOAST_PYRE_AWAKENS"
 msgstr "As brasas rugem: o Golem de Fogo desperta!"
+
+msgid "PROP_MINIBOSS_CHEST"
+msgstr "Baú do mini-chefe"
+
+msgid "TOAST_MINIBOSS_CHEST"
+msgstr "O mini-chefe deixou um baú!"

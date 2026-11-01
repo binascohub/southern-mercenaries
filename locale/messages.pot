@@ -2840,3 +2840,9 @@ msgstr ""
 
 msgid "TOAST_PYRE_AWAKENS"
 msgstr ""
+
+msgid "PROP_MINIBOSS_CHEST"
+msgstr ""
+
+msgid "TOAST_MINIBOSS_CHEST"
+msgstr ""
