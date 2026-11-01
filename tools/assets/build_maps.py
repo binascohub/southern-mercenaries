@@ -120,6 +120,11 @@ for rd in f_rooms:
             side = round(ROCK_FOOTPRINT[rock["piece"]] * rock["scale"] * 0.85, 1)
             rock["solid"] = [side, side]
         f_decor.append(rock)
+# Arbustos tropicais (Tropical Shrubs, Nobiax, CC0): também com semente própria; só enfeite, sem colisão.
+shr = rng("forest_shrubs")
+for rd in f_rooms:
+    f_decor += scatter(shr, rd, ["Pl_Shrub%d" % i for i in range(1, 6)], int(rd["size"][0] * rd["size"][1] / 30), margin=2.5,
+                       scale=(0.8, 1.6), avoid=f_keep)
 f_decor += [{"piece": "Pr_RoadSign", "position": [4, 2], "rotation": 200}, {"piece": "Pr_LampPost", "position": [-6, 3], "rotation": 0, "solid": [0.6, 0.6]},
             {"piece": "Pr_Obelisk3", "position": [0, -80], "solid": [1.4, 1.4]}, {"piece": "Pr_Obelisk2", "position": [-6, -78], "solid": [1.0, 1.0]},
             {"piece": "Pr_Obelisk2", "position": [6, -78], "solid": [1.0, 1.0]}, {"piece": "Pr_BrokenPillar2", "position": [-12, -70], "solid": [1.2, 1.2]},

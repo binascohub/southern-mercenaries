@@ -8898,6 +8898,888 @@
         "scale": 0.65
       },
       {
+        "piece": "Pl_Shrub1",
+        "position": [
+          4.1,
+          3.4
+        ],
+        "rotation": 45,
+        "scale": 0.98
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          -1.9,
+          -1.3
+        ],
+        "rotation": 345,
+        "scale": 1.0
+      },
+      {
+        "piece": "Pl_Shrub4",
+        "position": [
+          3.0,
+          -1.8
+        ],
+        "rotation": 270,
+        "scale": 1.58
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          5.6,
+          2.8
+        ],
+        "rotation": 105,
+        "scale": 1.3
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          4.8,
+          4.4
+        ],
+        "rotation": 285,
+        "scale": 1.2
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          5.1,
+          4.5
+        ],
+        "rotation": 60,
+        "scale": 0.93
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          6.7,
+          -0.7
+        ],
+        "rotation": 150,
+        "scale": 0.85
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          4.2,
+          -0.7
+        ],
+        "rotation": 45,
+        "scale": 1.55
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          3.5,
+          -2.8
+        ],
+        "rotation": 285,
+        "scale": 1.41
+      },
+      {
+        "piece": "Pl_Shrub4",
+        "position": [
+          2.3,
+          -0.9
+        ],
+        "rotation": 165,
+        "scale": 0.95
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          1.6,
+          -3.7
+        ],
+        "rotation": 255,
+        "scale": 1.54
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          -12.9,
+          -13.5
+        ],
+        "rotation": 210,
+        "scale": 1.43
+      },
+      {
+        "piece": "Pl_Shrub4",
+        "position": [
+          1.4,
+          -22.5
+        ],
+        "rotation": 75,
+        "scale": 0.89
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          3.9,
+          -19.0
+        ],
+        "rotation": 345,
+        "scale": 0.89
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          14.0,
+          -21.1
+        ],
+        "rotation": 165,
+        "scale": 0.89
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          -3.4,
+          -21.1
+        ],
+        "rotation": 285,
+        "scale": 1.03
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          -11.5,
+          -22.8
+        ],
+        "rotation": 315,
+        "scale": 1.3
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          0.8,
+          -24.9
+        ],
+        "rotation": 315,
+        "scale": 1.25
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          -5.3,
+          -13.6
+        ],
+        "rotation": 195,
+        "scale": 1.04
+      },
+      {
+        "piece": "Pl_Shrub4",
+        "position": [
+          3.3,
+          -23.4
+        ],
+        "rotation": 90,
+        "scale": 1.56
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          -7.9,
+          -21.9
+        ],
+        "rotation": 60,
+        "scale": 0.83
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          9.1,
+          -14.4
+        ],
+        "rotation": 210,
+        "scale": 1.04
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          3.0,
+          -11.0
+        ],
+        "rotation": 75,
+        "scale": 0.98
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          12.3,
+          -21.5
+        ],
+        "rotation": 225,
+        "scale": 0.94
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          0.2,
+          -23.1
+        ],
+        "rotation": 180,
+        "scale": 1.03
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          6.6,
+          -13.9
+        ],
+        "rotation": 120,
+        "scale": 0.81
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          2.4,
+          -15.2
+        ],
+        "rotation": 195,
+        "scale": 1.1
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          -14.1,
+          -25.2
+        ],
+        "rotation": 210,
+        "scale": 1.26
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          -2.0,
+          -25.1
+        ],
+        "rotation": 165,
+        "scale": 0.8
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          6.4,
+          -13.9
+        ],
+        "rotation": 90,
+        "scale": 1.23
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          -0.5,
+          -16.6
+        ],
+        "rotation": 210,
+        "scale": 1.25
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -0.3,
+          -23.8
+        ],
+        "rotation": 30,
+        "scale": 0.94
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          -0.3,
+          -12.4
+        ],
+        "rotation": 135,
+        "scale": 1.54
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          8.5,
+          -13.6
+        ],
+        "rotation": 330,
+        "scale": 1.41
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          22.7,
+          -14.0
+        ],
+        "rotation": 330,
+        "scale": 0.97
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          22.9,
+          -13.3
+        ],
+        "rotation": 60,
+        "scale": 1.42
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          20.3,
+          -16.2
+        ],
+        "rotation": 60,
+        "scale": 1.13
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          22.4,
+          -11.9
+        ],
+        "rotation": 15,
+        "scale": 1.02
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          25.7,
+          -13.3
+        ],
+        "rotation": 0,
+        "scale": 1.38
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          23.5,
+          -10.8
+        ],
+        "rotation": 210,
+        "scale": 0.98
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          25.8,
+          -10.9
+        ],
+        "rotation": 75,
+        "scale": 1.51
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          19.7,
+          -12.7
+        ],
+        "rotation": 195,
+        "scale": 1.46
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          2.5,
+          -31.4
+        ],
+        "rotation": 60,
+        "scale": 1.25
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          -1.3,
+          -36.9
+        ],
+        "rotation": 165,
+        "scale": 1.36
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -2.4,
+          -32.0
+        ],
+        "rotation": 75,
+        "scale": 1.43
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          2.5,
+          -31.7
+        ],
+        "rotation": 180,
+        "scale": 1.14
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -2.9,
+          -51.8
+        ],
+        "rotation": 150,
+        "scale": 0.96
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          1.1,
+          -58.5
+        ],
+        "rotation": 120,
+        "scale": 1.4
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          0.3,
+          -44.3
+        ],
+        "rotation": 135,
+        "scale": 1.02
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          0.5,
+          -63.0
+        ],
+        "rotation": 15,
+        "scale": 1.17
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -8.4,
+          -70.7
+        ],
+        "rotation": 210,
+        "scale": 1.5
+      },
+      {
+        "piece": "Pl_Shrub4",
+        "position": [
+          -12.1,
+          -77.0
+        ],
+        "rotation": 210,
+        "scale": 1.57
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -9.1,
+          -67.5
+        ],
+        "rotation": 105,
+        "scale": 1.51
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          -2.7,
+          -51.2
+        ],
+        "rotation": 315,
+        "scale": 1.19
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          -13.3,
+          -47.7
+        ],
+        "rotation": 225,
+        "scale": 1.11
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          -10.2,
+          -73.1
+        ],
+        "rotation": 60,
+        "scale": 0.9
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          -1.7,
+          -71.0
+        ],
+        "rotation": 240,
+        "scale": 1.04
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          1.7,
+          -61.2
+        ],
+        "rotation": 330,
+        "scale": 1.48
+      },
+      {
+        "piece": "Pl_Shrub4",
+        "position": [
+          1.7,
+          -57.2
+        ],
+        "rotation": 105,
+        "scale": 1.46
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          9.0,
+          -48.3
+        ],
+        "rotation": 285,
+        "scale": 1.0
+      },
+      {
+        "piece": "Pl_Shrub4",
+        "position": [
+          5.7,
+          -53.8
+        ],
+        "rotation": 0,
+        "scale": 1.29
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -15.1,
+          -46.8
+        ],
+        "rotation": 90,
+        "scale": 1.34
+      },
+      {
+        "piece": "Pl_Shrub4",
+        "position": [
+          3.1,
+          -55.5
+        ],
+        "rotation": 195,
+        "scale": 1.07
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          12.6,
+          -65.9
+        ],
+        "rotation": 345,
+        "scale": 1.35
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          9.8,
+          -76.8
+        ],
+        "rotation": 75,
+        "scale": 1.0
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          -15.5,
+          -53.7
+        ],
+        "rotation": 240,
+        "scale": 1.05
+      },
+      {
+        "piece": "Pl_Shrub4",
+        "position": [
+          -8.3,
+          -63.2
+        ],
+        "rotation": 90,
+        "scale": 1.4
+      },
+      {
+        "piece": "Pl_Shrub4",
+        "position": [
+          -3.5,
+          -55.6
+        ],
+        "rotation": 45,
+        "scale": 0.87
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          -14.2,
+          -68.4
+        ],
+        "rotation": 315,
+        "scale": 1.35
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -5.1,
+          -58.5
+        ],
+        "rotation": 105,
+        "scale": 1.29
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          7.4,
+          -63.2
+        ],
+        "rotation": 195,
+        "scale": 0.86
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          1.9,
+          -52.2
+        ],
+        "rotation": 240,
+        "scale": 1.25
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          -6.8,
+          -70.0
+        ],
+        "rotation": 210,
+        "scale": 1.43
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -11.8,
+          -71.4
+        ],
+        "rotation": 120,
+        "scale": 1.26
+      },
+      {
+        "piece": "Pl_Shrub4",
+        "position": [
+          -14.7,
+          -65.8
+        ],
+        "rotation": 75,
+        "scale": 1.16
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -3.8,
+          -51.9
+        ],
+        "rotation": 210,
+        "scale": 1.06
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -9.9,
+          -67.8
+        ],
+        "rotation": 285,
+        "scale": 1.49
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          11.2,
+          -69.8
+        ],
+        "rotation": 330,
+        "scale": 0.97
+      },
+      {
+        "piece": "Pl_Shrub4",
+        "position": [
+          -13.4,
+          -61.9
+        ],
+        "rotation": 90,
+        "scale": 1.17
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          6.8,
+          -78.7
+        ],
+        "rotation": 315,
+        "scale": 1.03
+      },
+      {
+        "piece": "Pl_Shrub4",
+        "position": [
+          5.6,
+          -43.1
+        ],
+        "rotation": 270,
+        "scale": 1.14
+      },
+      {
+        "piece": "Pl_Shrub4",
+        "position": [
+          8.5,
+          -57.1
+        ],
+        "rotation": 225,
+        "scale": 1.34
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          9.2,
+          -74.4
+        ],
+        "rotation": 330,
+        "scale": 1.55
+      },
+      {
+        "piece": "Pl_Shrub4",
+        "position": [
+          -9.7,
+          -67.9
+        ],
+        "rotation": 240,
+        "scale": 1.03
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          -6.9,
+          -46.0
+        ],
+        "rotation": 255,
+        "scale": 1.51
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          0.7,
+          -55.6
+        ],
+        "rotation": 315,
+        "scale": 1.39
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          -2.3,
+          -66.0
+        ],
+        "rotation": 270,
+        "scale": 1.27
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -4.7,
+          -49.4
+        ],
+        "rotation": 180,
+        "scale": 1.04
+      },
+      {
+        "piece": "Pl_Shrub4",
+        "position": [
+          -3.7,
+          -58.5
+        ],
+        "rotation": 150,
+        "scale": 1.19
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          1.8,
+          -49.0
+        ],
+        "rotation": 0,
+        "scale": 1.57
+      },
+      {
+        "piece": "Pl_Shrub4",
+        "position": [
+          -6.5,
+          -59.1
+        ],
+        "rotation": 30,
+        "scale": 1.18
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -9.5,
+          -64.0
+        ],
+        "rotation": 225,
+        "scale": 1.07
+      },
+      {
+        "piece": "Pl_Shrub4",
+        "position": [
+          1.4,
+          -48.2
+        ],
+        "rotation": 300,
+        "scale": 1.39
+      },
+      {
+        "piece": "Pl_Shrub4",
+        "position": [
+          -1.2,
+          -49.8
+        ],
+        "rotation": 285,
+        "scale": 0.87
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          -5.1,
+          -71.4
+        ],
+        "rotation": 240,
+        "scale": 1.09
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          -4.8,
+          -69.0
+        ],
+        "rotation": 105,
+        "scale": 1.28
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          1.6,
+          -65.6
+        ],
+        "rotation": 240,
+        "scale": 1.08
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          -3.0,
+          -52.0
+        ],
+        "rotation": 315,
+        "scale": 1.22
+      },
+      {
         "piece": "Pr_RoadSign",
         "position": [
           4,

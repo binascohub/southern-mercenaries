@@ -36,11 +36,12 @@ for path in files:
         for name in names:
             key = "Claimedwall" if "wall" in name.lower() else "Claimed"
             o.data.materials.append(material(key))
-        if stem == "Claimed0":
-            o.scale = (0.8, 0.8, 1.0)  # 2,5 m -> 2 m
-            bpy.context.view_layer.objects.active = o
-            o.select_set(True)
-            bpy.ops.object.transform_apply(scale=True)
+        # O piso sai com 2 m (o lado do piso do kit); as pedras ficam com metade da altura (1,4 m): a câmera olha do sul
+        # e uma parede de 2,8 m na frente esconderia o herói.
+        o.scale = (0.8, 0.8, 1.0) if stem == "Claimed0" else (1.0, 1.0, 0.5)
+        bpy.context.view_layer.objects.active = o
+        o.select_set(True)
+        bpy.ops.object.transform_apply(scale=True)
     name = "Fort_Floor" if stem == "Claimed0" else "Fort_" + stem.split("_")[1]
     bpy.ops.export_scene.gltf(filepath=os.path.join(out, name + ".gltf"), export_format="GLTF_SEPARATE", export_image_format="JPEG")
 print("OK", len(files))

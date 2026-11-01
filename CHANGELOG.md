@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### The Forest
+- Tropical shrubs ("Tropical Shrubs", Nobiax, CC0): five leafy shrubs (`assets/models/maps/Pl_Shrub1.glb` … `Pl_Shrub5.glb`, converted by `tools/assets/build_shrubs.py`), 98 scattered through the Forest in random sizes, decoration only (no collision), with their own seed so everything already placed stays put.
+- Rocks ("Rocks", Nobiax, CC0) are scattered through the Forest: five low-poly stones (`assets/models/maps/Rock_1.glb` … `Rock_5.glb`, converted by `tools/assets/build_rocks.py`), 40 in all in random sizes; the big ones block the way, the small ones are only decoration. Placement comes from `tools/assets/build_maps.py` with its own seed, so the plants stay where they were.
+
 ### Tortuga's animals
 - Cats ("Simple Cat", drummyfish, CC0): three stroll along the streets and one naps by the Main Street (`assets/models/characters/cat.glb`, converted by `tools/assets/build_cat.py`; the walk is two shape keys, a still cat is the first frame). Added with the `cat` role in `data/arenas.json`.
 

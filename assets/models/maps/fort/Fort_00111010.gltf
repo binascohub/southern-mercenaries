@@ -15,13 +15,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Claimed_00111010",
-			"rotation":[
-				0.7071068286895752,
-				0,
-				0,
-				0.7071068286895752
-			]
+			"name":"Claimed_00111010"
 		}
 	],
 	"materials":[
@@ -82,29 +76,29 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":80,
+			"count":82,
 			"max":[
 				1.2500120401382446,
-				1.2500050067901611,
-				9.999999974752427e-07
+				3.321815013885498,
+				0.6250025033950806
 			],
 			"min":[
 				-1.2500020265579224,
-				-1.2500109672546387,
-				-3.321815013885498
+				-9.528136502012785e-07,
+				-0.6250057220458984
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":80,
+			"count":82,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":80,
+			"count":82,
 			"type":"VEC2"
 		},
 		{
@@ -117,26 +111,26 @@
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":960,
+			"byteLength":984,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":960,
-			"byteOffset":960,
+			"byteLength":984,
+			"byteOffset":984,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":640,
-			"byteOffset":1920,
+			"byteLength":656,
+			"byteOffset":1968,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":264,
-			"byteOffset":2560,
+			"byteOffset":2624,
 			"target":34963
 		}
 	],
@@ -148,7 +142,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":2824,
+			"byteLength":2888,
 			"uri":"Fort_00111010.bin"
 		}
 	]
