@@ -20,6 +20,10 @@ static func rank_of(material: String) -> String:
 
 
 static func apply(model: HeroModel, class_id: String, ranks: Dictionary) -> void:
+	if model.is_suit():  # corpo próprio (Ninja, Maga): a roupa só aparece com peça equipada, na cor do elemento
+		NinjaGear.clear(model)
+		model.dress_suit(ranks)
+		return
 	if class_id == "ninja":
 		NinjaGear.apply(model, ranks)
 	else:

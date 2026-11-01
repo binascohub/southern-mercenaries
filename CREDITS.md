@@ -184,3 +184,4 @@ The Sewer monsters are converted from the original .blend files by `tools/assets
 | `assets/ui/menu_cover.jpg` | Main menu cover art | Supplied by the project author | Author's own commission/generation; replace freely |
 | King — standing in the Capital throne room (`assets/models/props/King.glb`, by `tools/assets/build_king.py`; decimated user-supplied `king.glb`) | author to confirm | supplied by the project owner | license to confirm |
 | Phoenix — the Summoner's Fire companion (`assets/models/props/Phoenix.glb`, by `tools/assets/build_king.py`; decimated user-supplied `phoenix.glb`) | author to confirm | supplied by the project owner | license to confirm |
+| Witch — the female Mage's outfit (`assets/models/characters/hero_witch.glb`, by `tools/assets/build_witch_hero.py`; decimated user-supplied `witch.glb`) | author to confirm | supplied by the project owner | license to confirm |

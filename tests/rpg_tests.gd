@@ -1073,6 +1073,24 @@ func _test_ninja_gear() -> void:
 	_check(cloth[1].r > cloth[1].b and cloth[0].b > cloth[0].r and cloth[3].g > cloth[3].r, "ninja: fogo vermelho, água azul, terra verde")
 	_check(others_before == others.call(), "ninja: a pele e a faixa não são tingidas pelo rank")
 	suit.queue_free()
+	var witch := HeroModel.new()
+	add_child(witch)
+	witch.setup("female", {"hair": ["Hair_Long"], "hair_color": [0.2, 0.1, 0.1]}, "mage")
+	_check(witch.is_suit() and not witch.suit_worn() and witch.visible_parts().has("Peasant_Body") and not witch.visible_parts().has("Witch_Body"),
+		"maga: sem peça equipada aparece o Camponês (sem a roupa de bruxa)")
+	HeroGear.apply(witch, "mage", {"body": "D", "head": "", "hands": "", "feet": ""})
+	_check(witch.suit_worn() and witch.visible_parts() == ["Witch_Body"], "maga: com uma peça equipada veste a roupa de bruxa inteira")
+	var witch_colors := []
+	for element in Elements.ALL:
+		witch.set_suit_element(element)
+		witch_colors.append((witch.find_child("Witch_Body", true, false) as MeshInstance3D).get_surface_override_material(0).albedo_color)
+	_check(witch_colors[0] != witch_colors[1] and witch_colors[1] != witch_colors[2] and witch_colors[2] != witch_colors[3], "maga: o roxo vira a cor do elemento")
+	var male_mage := HeroModel.new()
+	add_child(male_mage)
+	male_mage.setup("male", {}, "mage")
+	_check(not male_mage.is_suit(), "mago masculino mantém o corpo e as roupas de antes")
+	male_mage.queue_free()
+	witch.queue_free()
 	for class_id in ClassGear.CLASSES:
 		for sex in ["male", "female"]:
 			var other := HeroModel.new()

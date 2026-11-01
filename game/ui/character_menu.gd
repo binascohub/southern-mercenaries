@@ -159,10 +159,14 @@ func _on_look_changed(_value: Variant = null) -> void:
 		_sex.select(0)
 	var sex := CharacterData.SEXES[_sex.selected]
 	var has_gear := HeroGear.has_gear(class_id, sex)
-	_gear.visible = has_gear  # no Ninja: sem peça aparece o Camponês; com qualquer rank, a roupa ninja (o rank não muda a cor)
+	var witch := class_id == "mage" and sex == "female"  # a Maga tem corpo, rosto e cabelo do modelo dela: sem escolha de cabelo, pele nem rank
+	_gear.visible = has_gear and not witch  # no Ninja: sem peça aparece o Camponês; com qualquer rank, a roupa ninja (o rank não muda a cor)
 	var rank: String = HeroGear.RANKS[_gear.selected - 1] if has_gear and _gear.selected > 0 else ""
-	for field: Control in [_sex, _hair, _hair_color, _skin]:
-		field.visible = class_id != "ninja"
+	if witch:
+		rank = "D"  # a prévia mostra a Maga vestida (qualquer rank: o rank não muda a roupa)
+	for field: Control in [_hair, _hair_color, _skin]:
+		field.visible = class_id != "ninja" and not witch
+	_sex.visible = class_id != "ninja"
 	_beard.visible = class_id != "ninja" and sex == "male"
 	_preview.show_hero(sex, _current_look(), rank, class_id, Elements.ALL[_element.selected])
 

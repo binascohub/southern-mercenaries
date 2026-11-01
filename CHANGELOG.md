@@ -3,6 +3,8 @@
 ## [Unreleased]
 
 ### Ninja body and element colors
+- The female Mage now uses the supplied `witch.glb` (`hero_witch.glb`, `tools/assets/build_witch_hero.py`): the purple parts (hat, bodice, sleeves, underskirt, stocking stripes) take the origin element's color, per pixel; everything else keeps its colors. Like the Ninja, she starts in the base Peasant clothes and only wears the witch outfit once any gear piece is equipped. The male Mage is unchanged.
+- The Ninja now starts in the base Peasant clothes and wears the ninja outfit (always hooded and masked, no sex/face/hair choice) once any gear piece is equipped.
 - The Ninja now uses its own model (`assets/models/characters/hero_ninja.glb`, from the supplied `ninja.glb`, built by `tools/assets/build_ninja_hero.py` on the hero skeleton and animations). Only the blue cloth changes color, by the hero's origin element: fire red, water blue, wind white, earth green. Boots, gloves, sword, sash, face and hands never change. The element ball on the dagger is gone.
 - Armor rank (D to S) no longer changes the look or refines: it only sets the glow (aura) around the hero, the average rank of the worn pieces (1 to 5). A refined weapon no longer lights the aura.
 - The Capital throne room has the king (`assets/models/props/King.glb`); the Summoner's Fire companion is now a Phoenix (`Phoenix.glb`).

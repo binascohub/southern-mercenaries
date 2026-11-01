@@ -46,7 +46,8 @@ const COMBO_WINDOW := 1.2
 ## Ninja: corpo próprio (ninja.glb ligado ao mesmo esqueleto e às mesmas animações, tools/assets/build_ninja_hero.py), em quatro
 ## peças (uma por slot de equipamento) cujo tecido é tingido com a cor do rank (dress_suit); pele e faixa vermelha não mudam.
 const NINJA_SCENE := "res://assets/models/characters/hero_ninja.glb"
-const SUIT_SLOTS := {"body": "Ninja_Body", "head": "Ninja_Head", "hands": "Ninja_Hands", "feet": "Ninja_Feet"}
+## A Maga (feminina) tem o corpo do witch.glb pelo mesmo caminho (tools/assets/build_witch_hero.py): o roxo vira a cor do elemento.
+const WITCH_SCENE := "res://assets/models/characters/hero_witch.glb"
 ## A cor da roupa do Ninja identifica o elemento de origem (fogo vermelho, água azul, vento branco, terra verde); o rank não muda a cor.
 const SUIT_COLORS := {
 	"fire": Color(0.8, 0.22, 0.2), "water": Color(0.27, 0.4, 0.8), "air": Color(0.92, 0.92, 0.9), "earth": Color(0.3, 0.55, 0.28),
@@ -90,6 +91,7 @@ var _combo := 0
 var _suit := false
 var suit_element := "fire"
 var _suit_worn := false
+var _suit_prefix := "Ninja_"
 var _suit_ranks := {}
 var _last_melee := -10.0
 
@@ -102,6 +104,11 @@ func setup(sex: String, look: Dictionary, class_id := "") -> void:
 	if class_id == "ninja" and ResourceLoader.exists(NINJA_SCENE):
 		path = NINJA_SCENE  # os dois sexos usam o mesmo corpo: o Ninja sempre aparece de capuz e máscara
 		_suit = true
+		_suit_prefix = "Ninja_"
+	elif class_id == "mage" and sex == "female" and ResourceLoader.exists(WITCH_SCENE):
+		path = WITCH_SCENE
+		_suit = true
+		_suit_prefix = "Witch_"
 	var scene: PackedScene = load(path) as PackedScene if ResourceLoader.exists(path) else null
 	if scene == null:
 		_build_capsule()
@@ -121,12 +128,18 @@ func setup(sex: String, look: Dictionary, class_id := "") -> void:
 			if source == null:
 				continue
 			var copy := source.duplicate() as StandardMaterial3D
+			if _suit_prefix == "Witch_" and String(mesh.name).begins_with("Witch_"):
+				copy.set_meta("scissor", true)  # tecido e resto dividem as faces por recorte de alfa na textura
 			if is_hair:
 				copy.albedo_color = Color(hair_color[0], hair_color[1], hair_color[2])
 			mesh.set_surface_override_material(i, copy)
 			_materials.append(copy)
 			_base_colors.append(copy.albedo_color)
 	_build_kit_hair(hair_color)
+	for material in _materials:
+		if material.has_meta("scissor"):
+			material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
+			material.alpha_scissor_threshold = 0.5
 	set_outfit({})
 	if look.has("skin"):
 		var skin: Array = look.skin
@@ -271,16 +284,16 @@ func dress_suit(ranks: Dictionary) -> void:
 	_suit_worn = ["body", "head", "hands", "feet"].any(func(slot: String) -> bool: return String(ranks.get(slot, "")) != "")
 	for part_name: String in _parts:
 		var piece: MeshInstance3D = _parts[part_name]
-		if part_name.begins_with("Ninja_"):
+		if part_name.begins_with(_suit_prefix):
 			piece.visible = _suit_worn
 		elif part_name.begins_with("Peasant_"):
 			piece.visible = not _suit_worn
 		else:  # rosto e cabelo: a roupa ninja tem capuz e máscara por cima
 			piece.visible = not _suit_worn and (part_name in ALWAYS or part_name in _hair)
 	var tint: Color = SUIT_COLORS.get(suit_element, SUIT_COLORS.fire)
-	for slot: String in SUIT_SLOTS:
-		var mesh := _parts.get(SUIT_SLOTS[slot]) as MeshInstance3D
-		if mesh == null:
+	for part_name: String in _parts:
+		var mesh: MeshInstance3D = _parts[part_name]
+		if not part_name.begins_with(_suit_prefix):
 			continue
 		for i in mesh.get_surface_override_material_count():
 			var material := mesh.get_surface_override_material(i) as StandardMaterial3D
@@ -405,7 +418,8 @@ func set_effects(flash: bool, alpha: float, glow: Color) -> void:
 		var color := _base_colors[i]
 		material.albedo_color = Color(color.r, color.g * 0.4, color.b * 0.4, alpha) if flash \
 			else Color(color.r, color.g, color.b, alpha)
-		material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA if alpha < 1.0 else BaseMaterial3D.TRANSPARENCY_DISABLED
+		material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA if alpha < 1.0 \
+			else (BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR if material.has_meta("scissor") else BaseMaterial3D.TRANSPARENCY_DISABLED)
 		material.emission_enabled = glow.a > 0.0
 		if glow.a > 0.0:
 			material.emission = glow
