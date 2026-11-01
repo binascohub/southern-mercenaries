@@ -5573,7 +5573,7 @@
     "passive": true
   },
   "forest_01_path": {
-    "_comment": "Floresta (04-tortuga-e-missoes.md, missão 3 na ordem do mapa: Tortuga -> Floresta -> Ruínas -> Cemitério -> Forte). Clareiras abertas com cerca viva de bambu e arbustos (Stylish Plants, Nobiax, CC0), obeliscos e pilares quebrados (Medieval Props Textured). O Leshy guarda o bosque do fundo. Gerado por tools/assets/build_maps.py.",
+    "_comment": "Floresta (04-tortuga-e-missoes.md, missão 3 na ordem do mapa: Tortuga -> Floresta -> Ruínas -> Cemitério -> Forte). Uma pista central de lajes do portão ao Leshy, com ramais (aldeia a oeste, beco do baú a leste) e duas pistas laterais no bosque, e quatro setores de monstros (A Clareira, B Passagem, C Bosque, D Covil do Leshy) separados por pares de marcos de pedra, como no Cemitério. Clareiras abertas com cerca viva de bambu e arbustos (Stylish Plants, Nobiax, CC0), obeliscos e pilares quebrados (Medieval Props Textured). O Leshy guarda o bosque do fundo. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_FOREST",
     "player_class": "mage",
     "map_id": "map_forest",
@@ -20035,6 +20035,159 @@
     "quest_spots": [],
     "breakables": [
       {
+        "id": "j1",
+        "monster": "mug",
+        "position": [
+          -10.5,
+          -35.0
+        ],
+        "table": "breakable_potion"
+      },
+      {
+        "id": "j2",
+        "monster": "mug",
+        "position": [
+          -2.0,
+          -35.0
+        ],
+        "table": "breakable_potion"
+      },
+      {
+        "id": "j3",
+        "monster": "mug",
+        "position": [
+          18.3,
+          -35.0
+        ],
+        "table": "breakable_potion"
+      },
+      {
+        "id": "j4",
+        "monster": "mug",
+        "position": [
+          -22.8,
+          -63.0
+        ],
+        "table": "breakable_potion"
+      },
+      {
+        "id": "j5",
+        "monster": "mug",
+        "position": [
+          5.3,
+          -63.0
+        ],
+        "table": "breakable_potion"
+      },
+      {
+        "id": "j6",
+        "monster": "mug",
+        "position": [
+          12.7,
+          -60.9
+        ],
+        "table": "breakable_potion"
+      },
+      {
+        "id": "j7",
+        "monster": "mug",
+        "position": [
+          -13.0,
+          -89.0
+        ],
+        "table": "breakable_potion"
+      },
+      {
+        "id": "j8",
+        "monster": "mug",
+        "position": [
+          -8.2,
+          -89.0
+        ],
+        "table": "breakable_potion"
+      },
+      {
+        "id": "j9",
+        "monster": "mug",
+        "position": [
+          23.1,
+          -89.0
+        ],
+        "table": "breakable_potion"
+      },
+      {
+        "id": "j10",
+        "monster": "mug",
+        "position": [
+          26.3,
+          -53.7
+        ],
+        "table": "breakable_potion"
+      },
+      {
+        "id": "j11",
+        "monster": "mug",
+        "position": [
+          26.0,
+          -58.2
+        ],
+        "table": "breakable_potion"
+      },
+      {
+        "id": "j12",
+        "monster": "mug",
+        "position": [
+          -24.6,
+          -101.7
+        ],
+        "table": "breakable_potion"
+      },
+      {
+        "id": "j13",
+        "monster": "mug",
+        "position": [
+          -9.2,
+          -3.2
+        ],
+        "table": "breakable_potion"
+      },
+      {
+        "id": "j14",
+        "monster": "mug",
+        "position": [
+          6.9,
+          -3.3
+        ],
+        "table": "breakable_potion"
+      },
+      {
+        "id": "j15",
+        "monster": "mug",
+        "position": [
+          -2.8,
+          -20.0
+        ],
+        "table": "breakable_potion"
+      },
+      {
+        "id": "j16",
+        "monster": "mug",
+        "position": [
+          -1.0,
+          -76.0
+        ],
+        "table": "breakable_potion"
+      },
+      {
+        "id": "j17",
+        "monster": "mug",
+        "position": [
+          -2.4,
+          -104.0
+        ],
+        "table": "breakable_potion"
+      },
+      {
         "id": "coin_bag",
         "monster": "coin_bag",
         "position": [
@@ -20045,7 +20198,7 @@
       }
     ],
     "style": {
-      "_comment": "Cemitério: chão de terra escura (Ground_Grave, feito por build_ground.py; mais escura que a Ground_Dirt das Ruínas e da Mina), sem piso do kit e sem cercas.",
+      "_comment": "Cemitério: chão de terra acinzentada e escura (Ground_Grave, feito por build_ground.py; mais escura e mais cinza que a Ground_Dirt das Ruínas e da Mina), sem piso do kit e sem cercas.",
       "walls": [
         ""
       ],
@@ -20053,8 +20206,8 @@
       "low": "",
       "ground": [
         0.09,
-        0.065,
-        0.045
+        0.085,
+        0.08
       ]
     },
     "decor": [
@@ -39767,7 +39920,8 @@
           "north"
         ],
         "torch": true,
-        "roofs": true
+        "roofs": false,
+        "wall_height": 0.8
       },
       {
         "id": "castle_court",
@@ -39901,7 +40055,7 @@
       }
     ],
     "style": {
-      "_comment": "Capital: casas de reboco e tijolo como Tortuga, mas piso de tijolo limpo e cerca baixa branca.",
+      "_comment": "Capital: casas de reboco e tijolo como Tortuga, mas piso de tijolo limpo e cerca baixa branca. Casas do lado norte da Avenida: House_Cap_1..8 (Modular Medieval House Pack 06, CC0), com a mureta baixa da avenida na frente.",
       "walls": [
         "Wall_Plaster_Straight",
         "Wall_Plaster_Window_Wide_Round",
@@ -40457,6 +40611,94 @@
         ],
         "y": 0.375,
         "rotation": 0
+      },
+      {
+        "piece": "House_Cap_1",
+        "position": [
+          -24.75,
+          -26.9
+        ],
+        "solid": [
+          5.9,
+          6.8
+        ]
+      },
+      {
+        "piece": "House_Cap_2",
+        "position": [
+          -18.25,
+          -26.9
+        ],
+        "solid": [
+          5.9,
+          6.8
+        ]
+      },
+      {
+        "piece": "House_Cap_3",
+        "position": [
+          -11.75,
+          -26.9
+        ],
+        "solid": [
+          5.9,
+          6.8
+        ]
+      },
+      {
+        "piece": "House_Cap_4",
+        "position": [
+          -5.25,
+          -26.9
+        ],
+        "solid": [
+          5.9,
+          6.8
+        ]
+      },
+      {
+        "piece": "House_Cap_5",
+        "position": [
+          5.25,
+          -26.9
+        ],
+        "solid": [
+          5.9,
+          6.8
+        ]
+      },
+      {
+        "piece": "House_Cap_6",
+        "position": [
+          11.75,
+          -26.9
+        ],
+        "solid": [
+          5.9,
+          6.8
+        ]
+      },
+      {
+        "piece": "House_Cap_7",
+        "position": [
+          18.25,
+          -26.9
+        ],
+        "solid": [
+          5.9,
+          6.8
+        ]
+      },
+      {
+        "piece": "House_Cap_8",
+        "position": [
+          24.75,
+          -26.9
+        ],
+        "solid": [
+          5.9,
+          6.8
+        ]
       }
     ],
     "crowd": [

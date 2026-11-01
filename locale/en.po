@@ -2452,6 +2452,9 @@ msgstr "Barrel"
 msgid "PROP_POT"
 msgstr "Clay Pot"
 
+msgid "PROP_MUG"
+msgstr "Ceramic Jar"
+
 msgid "PROP_DEER_BUCK"
 msgstr "Stag"
 

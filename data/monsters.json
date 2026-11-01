@@ -1116,5 +1116,33 @@
       1.0
     ],
     "_comment": "Besta Quitinosa da Floresta (Beast 02, Atmostatic, CC BY / CC BY-SA): corpo a corpo rápido e frágil; vaga até alguém chegar. Terra."
+  },
+  "mug": {
+    "name_key": "PROP_MUG",
+    "max_health": 8,
+    "move_speed": 0.0,
+    "damage": 0,
+    "attack_range": 0.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 1.0,
+    "aggro_range": 0.0,
+    "size": 0.8,
+    "category": "breakable",
+    "element": "",
+    "ai": "static",
+    "breakable": true,
+    "no_loot": true,
+    "look": "mug",
+    "pieces": [
+      "Mug_Jar",
+      "Mug_Bottle"
+    ],
+    "shards": true,
+    "color": [
+      0.9,
+      0.86,
+      0.78
+    ],
+    "_comment": "Jarro ou garrafa branca (Free Mug Pack 1, rubberduck, CC0): quebrável parado, como o pote do Esgoto; ao quebrar solta poção (tabela 'breakable_potion' no objeto). O modelo sai da posição."
   }
 }

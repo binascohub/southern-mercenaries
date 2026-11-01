@@ -2452,6 +2452,9 @@ msgstr "Barril"
 msgid "PROP_POT"
 msgstr "Vasija de Barro"
 
+msgid "PROP_MUG"
+msgstr "Jarra de Cerámica"
+
 msgid "PROP_DEER_BUCK"
 msgstr "Ciervo"
 

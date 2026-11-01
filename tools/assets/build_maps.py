@@ -113,6 +113,10 @@ monster("zombie", "skeleton", _comment="Zumbi Magro do Cemitério (Thin Zombie, 
 monster("troll", "skeleton", _comment="Troll Magro do Cemitério (Skinny Troll, piacenti, CC BY 3.0): elite corpo a corpo; lento, resistente e de pancada lenta e pesada com a clava. Terra (fraco a Fogo).",
         name_key="MONSTER_TROLL", max_health=320, damage=24, move_speed=2.4, attack_range=3.2, attack_windup=1.1, attack_cooldown=2.2,
         category="elite", size=1.0, look="troll", color=[1.0, 1.0, 1.0], patrol_radius=4.0)
+# Jarro e garrafa brancos (Free Mug Pack 1, rubberduck, CC0; build_mugs.py): quebráveis como o pote do Esgoto, com cacos;
+# no Cemitério soltam só poção (tabela "breakable_potion").
+monster("mug", "pot", _comment="Jarro ou garrafa branca (Free Mug Pack 1, rubberduck, CC0): quebrável parado, como o pote do Esgoto; ao quebrar solta poção (tabela 'breakable_potion' no objeto). O modelo sai da posição.",
+        name_key="PROP_MUG", max_health=8, size=0.8, look="mug", pieces=["Mug_Jar", "Mug_Bottle"], shards=True, color=[0.9, 0.86, 0.78])
 
 
 # Golens da Floresta (umask007, CC BY / CC BY-SA): três elites corpo a corpo lentos e resistentes; o de pedra investe.
@@ -608,15 +612,47 @@ for bush in scatter(cr, c_rooms[1], ["Pl_Hemp", "Pl_Bush"], 90, margin=2.0):
     x, z = bush["position"]
     if trail_dist(x, z) > 2.2 and not any(math.hypot(x - bx, z - bz) < br for bx, bz, br in blockers):
         c_decor.append(bush)
+# Jarros e garrafas brancos quebráveis (cada um solta uma poção): junto aos marcos de cada pista, perto dos baús dos becos,
+# no portão e ao longo da pista do centro. Cada um vai para um ponto livre de sólidos, de trilhas, de grupos e de baús.
+jr = random.Random("cemetery_jars")
+jar_solids = [(d["position"][0], d["position"][1], max(d["solid"]) / 2 + 0.9) for d in c_decor if d.get("solid")]
+c_jars = []
+
+
+def jar_spot(x0, z0):
+    for r in range(0, 8):
+        for k in range(max(8 * r, 1)):
+            a = k * math.tau / max(8 * r, 1) + jr.uniform(0, 0.3)
+            x, z = x0 + r * 0.7 * math.cos(a), z0 + r * 0.7 * math.sin(a)
+            if (abs(x) < 29 and -108 < z < 4 and 1.9 < trail_dist(x, z) < 4.0
+                    and all(math.hypot(x - sx, z - sz) > sr for sx, sz, sr in jar_solids)
+                    and all(math.hypot(x - e["position"][0], z - e["position"][1]) > 3.0 for e in c_enc)
+                    and all(math.hypot(x - q["position"][0], z - q["position"][1]) > 3.0 for q in c_props)
+                    and all(math.hypot(x - j["position"][0], z - j["position"][1]) > 2.0 for j in c_jars)):
+                return [round(x, 1), round(z, 1)]
+    return None
+
+
+jar_targets = []
+for i, z in enumerate(SECTOR_BORDERS):
+    for j, lane in enumerate("WME"):
+        jar_targets.append(on(lane, z + 3.0, 2.6 if (i + j) % 2 == 0 else -2.6))
+for chest in (c_props[2], c_props[3]):
+    jar_targets += [[chest["position"][0] - 2.4, chest["position"][1] + 1.6], [chest["position"][0] - 2.4, chest["position"][1] - 1.6]]
+jar_targets += [[-8, -1.5], [8, -1.5]] + [on("M", z, off) for z, off in ((-20, 3), (-76, 3), (-104, -3))]
+for t in jar_targets:
+    spot = jar_spot(*t)
+    if spot:
+        c_jars.append({"id": "j%d" % (len(c_jars) + 1), "monster": "mug", "position": spot, "table": "breakable_potion"})
 arenas["cemetery_01_yard"] = {
     "_comment": "Cemitério (Medieval Props Textured, Clint Bellanger, CC BY 3.0, modelos de Lamoot): mapa grande de terra escura cortado por uma rede de trilhas de lajes (três pistas que se separam, se cruzam e se reencontram; becos sem saída com baú) do portão à cripta, com quatro setores de monstros (A Campo de Covas, B Ossuário, C Cova dos Mortos, D Covil do Troll), marcos de pedra nas divisas, fileiras de lápides e cruzes, poço coberto, estátuas e túmulos de cavaleiro, e a cripta do Senhor da Cripta no fundo. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_CEMETERY", "player_class": "mage", "map_id": "map_cemetery", "area_level": 7, "outdoor": True,
     "wake_radius": 10.0, "alert_radius": 5.0, "rooms": c_rooms, "encounters": c_enc, "hazards": [],
     "entries": {"start": [0, 3], "cemetery": [0, 3]},
     "props": c_props,
-    "quest_spots": [], "breakables": [],
-    "style": {"_comment": "Cemitério: chão de terra escura (Ground_Grave, feito por build_ground.py; mais escura que a Ground_Dirt das Ruínas e da Mina), sem piso do kit e sem cercas.", "walls": [""], "floor": "Ground_Grave", "low": "",
-              "ground": [0.09, 0.065, 0.045]},
+    "quest_spots": [], "breakables": c_jars,
+    "style": {"_comment": "Cemitério: chão de terra acinzentada e escura (Ground_Grave, feito por build_ground.py; mais escura e mais cinza que a Ground_Dirt das Ruínas e da Mina), sem piso do kit e sem cercas.", "walls": [""], "floor": "Ground_Grave", "low": "",
+              "ground": [0.09, 0.085, 0.08]},
     "decor": c_decor, "passive": True,
 }
 
