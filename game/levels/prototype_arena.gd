@@ -1749,13 +1749,13 @@ func _build_prop(prop: Dictionary) -> void:
 					look = {"sex": "male" if h % 2 == 0 else "female", "hair": hairs[h % 2 * 2 + (h / 2) % 2],
 						"hair_color": colors[(h / 4) % colors.size()], "pose": "sit", "outfit": {"body": "cloth"} if h % 3 == 0 else {}}
 				var seated_woman: bool = prop.has("visitor_name") and look.get("sex", "") == "female" and _visitor_woman(node)
-				var own_model: Node3D = NpcModel.create(String(prop.npc)) if String(prop.npc) in ["voodoo_priest", "priest", "castle_guard", "elf_archer", "ruins_spartan"] else null
+				var own_model: Node3D = NpcModel.create(String(prop.npc)) if String(prop.npc) in ["voodoo_priest", "priest", "castle_guard", "court_jester", "elf_archer", "ruins_spartan"] else null
 				var statue_kit: String = prop.get("kit", "")
 				if statue_kit != "" and _kit(node, statue_kit, Transform3D(Basis(Vector3.UP, deg_to_rad(float(prop.get("rotation", 0.0)))), Vector3.ZERO)):
 					pass  # estátua do mapa: a peça do kit no lugar do corpo humano
 				elif own_model:
 					node.add_child(own_model)  # o Macumbeiro (mago de capuz) e o Padre (monge) têm modelo próprio
-				elif not seated_woman and _npc_body(node, look) == null:
+				elif not seated_woman and _npc_body_with_instrument(node, look) == null:
 					var body := CapsuleMesh.new()
 					body.radius = 0.35
 					body.height = 1.7
@@ -1858,6 +1858,14 @@ func _build_prop(prop: Dictionary) -> void:
 
 ## Corpo de NPC (o mesmo dos heróis): sexo, cabelo, pose e roupa por slot
 ## (data/npcs.json "body"). null se o modelo não existe.
+## Corpo do NPC; com "instrument": "guitar" no corpo (data/npcs.json), leva o alaúde no colo (o Bardo da Taverna).
+func _npc_body_with_instrument(parent: Node3D, look: Dictionary) -> HeroModel:
+	var model := _npc_body(parent, look)
+	if model and look.get("instrument", "") == "guitar":
+		_give_guitar(model)
+	return model
+
+
 func _npc_body(parent: Node3D, look: Dictionary) -> HeroModel:
 	if look.is_empty() or not ResourceLoader.exists(HeroModel.SCENES.get(String(look.get("sex", "male")), "")):
 		return null
@@ -2313,6 +2321,14 @@ var _deck: StandardMaterial3D
 ## balança de leve, como quem dedilha.
 func _give_guitar(model: HeroModel) -> void:
 	var guitar := Node3D.new()
+	# O alaúde de verdade (Lute, aerojockey / Snabisch, CC0), quando há; senão o violão de caixa e cilindros abaixo.
+	var lute := Kit.piece("Lute")
+	if lute:
+		lute.rotation.x = PI / 2.0  # as cordas para a frente (o arquivo deixa as cordas para cima)
+		lute.position = Vector3(0.28, 0, 0)
+		guitar.add_child(lute)
+		_place_guitar(model, guitar)
+		return
 	var wood := _wood_material()
 	var dark := StandardMaterial3D.new()
 	dark.albedo_color = Color(0.05, 0.03, 0.02)
@@ -2353,7 +2369,12 @@ func _give_guitar(model: HeroModel) -> void:
 	head.material_override = wood
 	head.position = Vector3(0.72, 0, 0)
 	guitar.add_child(head)
-	guitar.scale = Vector3.ONE * 0.7
+	_place_guitar(model, guitar)
+
+
+## Põe o instrumento no colo do músico e o balança de leve, como quem dedilha.
+func _place_guitar(model: HeroModel, guitar: Node3D) -> void:
+	guitar.scale = Vector3.ONE * (0.9 if guitar.get_child_count() == 1 else 0.7)
 	guitar.position = Vector3(0.0, 0.95, 0.22)
 	guitar.rotation = Vector3(0, deg_to_rad(-12), deg_to_rad(18))
 	model.add_child(guitar)
@@ -2921,6 +2942,19 @@ func _build_decor(decor: Dictionary) -> void:
 	node.position = Vector3(decor.position[0], float(decor.get("y", 0.0)), decor.position[1])
 	node.rotation.y = deg_to_rad(float(decor.get("rotation", 0.0)))
 	node.scale = Vector3.ONE * float(decor.get("scale", 1.0))
+	if decor.has("swim"):
+		# Peixe nadando em círculo (raio e velocidade em "swim"), de cabeça para a frente, na água do riacho ou do mar.
+		var radius := float(decor.swim.get("radius", 1.0))
+		var pivot := Node3D.new()
+		pivot.position = node.position
+		pivot.rotation.y = float(decor.swim.get("phase", 0.0))
+		node.position = Vector3(radius, node.position.y, 0.0)
+		node.rotation.y = PI
+		pivot.add_child(node)
+		_area_root.add_child(pivot)
+		var loop := pivot.create_tween().set_loops()
+		loop.tween_property(pivot, "rotation:y", TAU, TAU * radius / float(decor.swim.get("speed", 0.6))).as_relative()
+		return
 	_area_root.add_child(node)
 	# Peça animada (o aparelho de treino gira): toca a primeira animação em laço.
 	var animator := node.find_child("AnimationPlayer", true, false) as AnimationPlayer

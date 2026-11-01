@@ -1,0 +1,1 @@
+Gibbet.glb — "Gibbet" by bobjh (Snabisch), CC-BY 3.0 / CC-BY 4.0: https://opengameart.org/content/gibbet-0 (texture based on "rusted metal texture pack" by p0ss, GPL 2.0 / GPL 3.0 / CC-BY 3.0). Converted by tools/assets/build_gibbet.py; the wooden post and beam were added there.

@@ -1,0 +1,2 @@
+Bottle_Aqua / Blue / Green / Orange / Red / Violet / Yellow .glb — "Free Glass Bottles" by Rakshi Games (Snabisch), CC-BY 3.0: https://opengameart.org/content/free-glass-bottles
+Converted from the Blender file by tools/assets/build_bottles.py (the Cycles glass shader was replaced by a translucent colored glass material).

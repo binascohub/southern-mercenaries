@@ -2934,3 +2934,33 @@ msgstr "He is big and brutish, but only guards what he was told to. Bring the lu
 
 msgid "DLG_PRIEST_LUNGS_ACTIVE"
 msgstr "The Human Lungs are with the Crypt Ogre, in the Cemetery. Hand them to me when you have them."
+
+msgid "VALUABLE_ROYAL_SOUL"
+msgstr "King's Soul"
+
+msgid "QUEST_ROYAL_SOUL"
+msgstr "The Fallen King's Soul"
+
+msgid "QUEST_ROYAL_SOUL_DESC"
+msgstr "The Tomb Guardian has trapped the soul of Veldmark's last king. Defeat him, in the Mine or the Cemetery, and bring the King's Soul to the Priest."
+
+msgid "DLG_PRIEST_SOUL_1"
+msgstr "The body is whole, but the king still does not rest: his soul, a little ghost that laughs at its own bad luck, was trapped by the Tomb Guardian."
+
+msgid "DLG_PRIEST_SOUL_2"
+msgstr "He wanders between the Mine and the Cemetery, where the statue wakes him. Bring the soul and the Church pays its last fee."
+
+msgid "DLG_PRIEST_SOUL_ACTIVE"
+msgstr "The King's Soul is with the Tomb Guardian, in the Mine or the Cemetery. Hand it to me when you have it."
+
+msgid "ARENA_DESERT"
+msgstr "Desert — Canyon"
+
+msgid "PROP_TO_DESERT"
+msgstr "Path to the Desert"
+
+msgid "MONSTER_SAND_LAMASSU"
+msgstr "Sand Lamassu"
+
+msgid "MONSTER_QUEEN_SCORPION"
+msgstr "Scorpion Queen"

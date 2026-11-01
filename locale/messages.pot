@@ -2921,3 +2921,33 @@ msgstr ""
 
 msgid "DLG_PRIEST_LUNGS_ACTIVE"
 msgstr ""
+
+msgid "VALUABLE_ROYAL_SOUL"
+msgstr ""
+
+msgid "QUEST_ROYAL_SOUL"
+msgstr ""
+
+msgid "QUEST_ROYAL_SOUL_DESC"
+msgstr ""
+
+msgid "DLG_PRIEST_SOUL_1"
+msgstr ""
+
+msgid "DLG_PRIEST_SOUL_2"
+msgstr ""
+
+msgid "DLG_PRIEST_SOUL_ACTIVE"
+msgstr ""
+
+msgid "ARENA_DESERT"
+msgstr ""
+
+msgid "PROP_TO_DESERT"
+msgstr ""
+
+msgid "MONSTER_SAND_LAMASSU"
+msgstr ""
+
+msgid "MONSTER_QUEEN_SCORPION"
+msgstr ""

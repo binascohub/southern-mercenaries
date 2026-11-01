@@ -13,6 +13,7 @@ monsters = json.load(open(MONSTERS, encoding="utf-8"))
 def clone(name, base, **changes):
     m = json.loads(json.dumps(monsters[base]))
     m.pop("_comment", None)
+    m.pop("quest_drop", None)  # o clone não herda o drop de relíquia do original
     m.update(changes)
     monsters[name] = m
 
@@ -30,7 +31,12 @@ clone("troll_chief", "troll", _comment="Mini-chefe da Mina: o Chefe Troll.",
 # O mini-chefe da praça do Cemitério (id crypt_scorpion) agora é o Ogro da Cripta (build_maps.py ainda o define como escorpião).
 monsters["crypt_scorpion"].update({"look": "ogre", "size": 1.6, "color": [1.0, 1.0, 1.0],
                                    "_comment": "Mini-chefe do Cemitério (praça): o Ogro da Cripta (Ogre lowpoly, nubux / rudy85, CC BY 3.0); investidas. O id continua crypt_scorpion (saves e encontros)."})
+monsters["tomb_guardian"]["quest_drop"] = "royal_soul"  # o Guardião do Túmulo (Cemitério e Mina) guarda a alma do rei
 monsters["crypt_lord"]["quest_drop"] = "human_heart"
+clone("sand_lamassu", "tomb_guardian", _comment="Mini-chefe do Deserto (portão do cânion): o Lamassu da Areia, guardião de pedra do portão; investidas.",
+      name_key="MONSTER_SAND_LAMASSU", max_health=520, damage=30, size=2.4, element="air", look="golem_stone", color=[1.0, 0.85, 0.55])
+clone("queen_scorpion", "old_gator", _comment="Mini-chefe do Deserto (arena): a Rainha Escorpião, escorpião gigante e dourado; investidas.",
+      name_key="MONSTER_QUEEN_SCORPION", max_health=600, damage=32, size=3.4, element="earth", look="scorpion", color=[1.0, 0.75, 0.3])
 monsters["crypt_scorpion"]["quest_drop"] = "human_lungs"  # o Ogro da Cripta guarda os pulmões do rei
 monsters["fort_commander"]["quest_drop"] = "old_skull"
 monsters["ruin_alpha"]["quest_drop"] = "wild_meat"

@@ -1,0 +1,2 @@
+Canyon_*.glb and ../Ground_Canyon.glb — "Canyon Terrain Asset" by loafbrr / Ian87, CC0: https://opengameart.org/content/canyon-terrain-asset
+Split from CanyonPlantsRocksTiles.glb by tools/assets/build_canyon_pieces.py (the pack's textures at 256 px, 512 px for the ground; the Terrain3D / Proton Scatter parts of the original are not used).

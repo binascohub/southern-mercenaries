@@ -2934,3 +2934,33 @@ msgstr "Es grande y bruto, pero solo guarda lo que le ordenaron. Traigan los pul
 
 msgid "DLG_PRIEST_LUNGS_ACTIVE"
 msgstr "Los Pulmones Humanos están con el Ogro de la Cripta, en el Cementerio. Entréguenmelos cuando los tengan."
+
+msgid "VALUABLE_ROYAL_SOUL"
+msgstr "Alma del Rey"
+
+msgid "QUEST_ROYAL_SOUL"
+msgstr "El alma del rey caído"
+
+msgid "QUEST_ROYAL_SOUL_DESC"
+msgstr "El Guardián de la Tumba atrapó el alma del último rey de Veldmark. Derrótalo, en la Mina o en el Cementerio, y lleva el Alma del Rey al Padre."
+
+msgid "DLG_PRIEST_SOUL_1"
+msgstr "El cuerpo está entero, pero el rey aún no descansa: su alma, un fantasmita que se ríe de su mala suerte, fue atrapada por el Guardián de la Tumba."
+
+msgid "DLG_PRIEST_SOUL_2"
+msgstr "Vaga entre la Mina y el Cementerio, donde la estatua lo despierta. Traigan el alma y la Iglesia da el último pago."
+
+msgid "DLG_PRIEST_SOUL_ACTIVE"
+msgstr "El Alma del Rey está con el Guardián de la Tumba, en la Mina o en el Cementerio. Entréguenmela cuando la tengan."
+
+msgid "ARENA_DESERT"
+msgstr "Desierto — Cañón"
+
+msgid "PROP_TO_DESERT"
+msgstr "Camino al Desierto"
+
+msgid "MONSTER_SAND_LAMASSU"
+msgstr "Lamasu de la Arena"
+
+msgid "MONSTER_QUEEN_SCORPION"
+msgstr "Reina Escorpión"

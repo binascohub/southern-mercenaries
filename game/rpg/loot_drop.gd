@@ -30,7 +30,12 @@ func _ready() -> void:
 	var relic: String = GameData.valuables.get(item.get("id", ""), {}).get("model", "") if item.get("kind", "") == Items.VALUABLE else ""
 	if relic != "" and Kit.has(relic):
 		# Relíquia de missão (coração, crânio): o modelo girando no chão.
-		_mesh.add_child(Kit.piece(relic))
+		var relic_node := Kit.piece(relic)
+		_mesh.add_child(relic_node)
+		var relic_anim := relic_node.find_child("AnimationPlayer", true, false) as AnimationPlayer
+		if relic_anim and not relic_anim.get_animation_list().is_empty():
+			relic_anim.get_animation(relic_anim.get_animation_list()[0]).loop_mode = Animation.LOOP_LINEAR
+			relic_anim.play(relic_anim.get_animation_list()[0])  # o fantasma "respira" no chão
 	elif gold > 0:
 		# Moeda antiga em pé, girando (Old coin, yd, CC0).
 		var coin: Node3D = load(COIN_MODEL).instantiate()

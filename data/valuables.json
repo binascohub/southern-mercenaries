@@ -70,5 +70,12 @@
     "maps": [],
     "quest_item": true,
     "model": "Quest_Lungs"
+  },
+  "royal_soul": {
+    "name_key": "VALUABLE_ROYAL_SOUL",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Quest_Ghost"
   }
 }

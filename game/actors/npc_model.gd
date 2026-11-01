@@ -132,6 +132,9 @@ const MODELS := {
 	"ruins_spartan": {"scene": "res://assets/models/characters/ruins_spartan.glb", "scale": 1.0, "poses": {}},
 	"guard": {"scene": "res://assets/models/characters/brigand_guard.glb", "scale": 1.0, "poses": {}},
 	# Sentinela do castelo da Capital: o mesmo Brigand (anthonymyers, CC BY 3.0; a versão rigada "Brigand2" é o mesmo personagem), parado de guarda.
+	# Bobo da Corte (Cerimonial Guard, carlosjorgereis, CC0): figura cerimonial de gorro e saia de pele, sem esqueleto nem animação
+	# (parado na pose do arquivo); 1,7 m no arquivo -> ~1,8 m. É o Bobo da Corte da Sala do Rei.
+	"court_jester": {"scene": "res://assets/models/characters/court_jester/cerimonial_guard.dae", "scale": 1.05, "poses": {}},
 	"castle_guard": {"scene": "res://assets/models/characters/brigand_guard.glb", "scale": 1.0, "poses": {}},
 	# Aranhinha do esgoto (Spider animated, pantherone, CC BY 3.0): não ataca,
 	# só anda pelo chão. Arquivo de 1 m -> 40 cm, preta (decisão do autor).

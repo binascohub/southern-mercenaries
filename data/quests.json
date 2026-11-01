@@ -142,5 +142,18 @@
       "gold": 300,
       "xp": 600
     }
+  },
+  "royal_soul": {
+    "name_key": "QUEST_ROYAL_SOUL",
+    "desc_key": "QUEST_ROYAL_SOUL_DESC",
+    "type": "main",
+    "giver": "priest",
+    "area": "mine_01_crystal_vein",
+    "item": "royal_soul",
+    "target_element": "fire",
+    "reward": {
+      "gold": 600,
+      "xp": 1000
+    }
   }
 }
