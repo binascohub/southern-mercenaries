@@ -406,6 +406,17 @@ castle += [{"piece": "Castle_Mug", "position": cell_pos(c, r)} for c, r in ((3, 
 castle += [{"piece": "Castle_" + n, "position": cell_pos(c, r), "rotation": rot, "solid": [1.3, 0.5]} for n, c, r, rot in (
     ("WallTorch1", 6, 16, 0), ("WallTorch2", 13, 16, 0), ("WallWindow", 7, 10, 0), ("WallDeco", 12, 10, 0))]
 fort_decor += castle
+# Peças do Labirinto (3D Walls & Props, deadkir, CC0; build_labyrinth_kit.py): caixões, barris e caixotes nas celas, ruínas no salão
+# do meio, colunas partidas e o escudo com a espada caídos perto do comandante.
+lab = [{"piece": "Lab_" + n, "position": cell_pos(c, r), "rotation": rot, "solid": [w, d]} for n, c, r, rot, w, d in (
+    ("Coffin", 6, 6, 0, 2.0, 0.9), ("Coffin", 13, 6, 0, 2.0, 0.9), ("Coffin", 5, 20, 0, 2.0, 0.9), ("Coffin", 14, 20, 0, 2.0, 0.9),
+    ("Barrel", 1, 18, 0, 0.6, 0.6), ("Barrel", 1, 19, 0, 0.6, 0.6), ("Barrel", 18, 18, 0, 0.6, 0.6), ("Barrel", 18, 19, 0, 0.6, 0.6),
+    ("Barrel", 4, 23, 0, 0.6, 0.6), ("Barrel", 15, 23, 0, 0.6, 0.6),
+    ("Crate", 1, 20, 0, 0.6, 0.6), ("Crate", 18, 20, 0, 0.6, 0.6), ("Crate", 3, 24, 0, 0.6, 0.6), ("Crate", 16, 24, 0, 0.6, 0.6),
+    ("WallBroken", 11, 14, 0, 1.3, 0.32), ("WallLong", 7, 12, 0, 1.3, 0.32), ("ColumnBroken", 6, 14, 0, 0.32, 0.32),
+    ("ColumnBroken", 13, 12, 0, 0.32, 0.32), ("ColumnBig", 9, 11, 0, 0.63, 0.63), ("ColumnSmall", 10, 15, 0, 0.32, 0.32))]
+lab.append({"piece": "Lab_ShieldSword", "position": cell_pos(8, 5), "rotation": 25})
+fort_decor += lab
 arenas["fort_01_gate"] = {
     "_comment": "Forte (3D Dungeon Tileset, Skorpio, CC BY-SA 3.0): uma grade de 20 x 26 células de 2,5 m com pedra e piso do pacote (Fort_<máscara>, a máscara é o 8-vizinhança de pedra); a colisão é uma caixa por trecho de pedra. Pátio de entrada, duas celas, salão do meio e o salão do comandante no fundo. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_FORT", "player_class": "mage", "map_id": "map_fort", "area_level": 10, "final": True, "victory_key": "HUD_VICTORY_SEWERS",
