@@ -248,6 +248,13 @@ func _build_visual() -> void:
 	shape.shape = sphere
 	shape.position.y = 0.4 * size
 	add_child(shape)
+	# Modelo próprio (o Gorila Guardião, Micket, CC0), quando há; senão o corpo provisório abaixo.
+	var model_name: String = data.get("model", "")
+	if model_name != "" and Kit.has(model_name):
+		var model := Kit.piece(model_name)
+		model.scale = Vector3.ONE * (size / 1.4)
+		add_child(model)
+		return
 	var body := MeshInstance3D.new()
 	var mesh := CapsuleMesh.new()
 	mesh.radius = 0.28 * size

@@ -1366,10 +1366,10 @@ msgid "SKILL_SCATTER_ESCAPE_DESC"
 msgstr "You burst into a flock, pass through enemies and reappear up to 7 m ahead; your animals taunt nearby enemies for 2 s. Cooldown -1 s per rank."
 
 msgid "SKILL_GUARDIAN_BEAR_NAME"
-msgstr "Guardian Bear"
+msgstr "Guardian Gorilla"
 
 msgid "SKILL_GUARDIAN_BEAR_DESC"
-msgstr "A friendly bear with 150% of your health taunts and holds enemies for 15 s; only one at a time."
+msgstr "A friendly gorilla with 150% of your health taunts and holds enemies for 15 s; only one at a time."
 
 msgid "SKILL_STAMPEDE_NAME"
 msgstr "Stampede"
@@ -1486,7 +1486,7 @@ msgid "COMPANION_BOAR"
 msgstr "Boar"
 
 msgid "COMPANION_BEAR"
-msgstr "Guardian bear"
+msgstr "Guardian gorilla"
 
 msgid "SKILL_LANCE_THRUST_NAME"
 msgstr "Lance Thrust"
@@ -2643,3 +2643,6 @@ msgstr "Back to the port"
 
 msgid "MONSTER_CHITIN_BEAST"
 msgstr "Chitinous Beast"
+
+msgid "MONSTER_ANGLER"
+msgstr "Anglerman"

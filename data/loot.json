@@ -176,6 +176,18 @@
       "potion_resource": 40
     }
   },
+  "breakable_hp": {
+    "_comment": "Jarros brancos do Cemitério que soltam poção de vida (sempre). Escolhido por 'table' no objeto em arenas.json.",
+    "outcomes": {
+      "potion_health": 100
+    }
+  },
+  "breakable_mana": {
+    "_comment": "Jarros brancos do Cemitério que soltam poção de recurso (mana, sempre). Escolhido por 'table' no objeto em arenas.json.",
+    "outcomes": {
+      "potion_resource": 100
+    }
+  },
   "potion_chest": {
     "_comment": "Baú de poções do Forte (Chest, cdmir): 3 a 5 poções (vida ou recurso, 60/40) e pouco ouro, nada de equipamento. 'potions': [mín, máx] poções garantidas, além da chance de 'potion_chance'.",
     "gold": {

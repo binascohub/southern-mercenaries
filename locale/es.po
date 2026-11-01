@@ -1366,10 +1366,10 @@ msgid "SKILL_SCATTER_ESCAPE_DESC"
 msgstr "Te deshaces en una bandada, atraviesas enemigos y reapareces hasta 7 m adelante; tus animales provocan a los enemigos cercanos 2 s. Recarga -1 s por rango."
 
 msgid "SKILL_GUARDIAN_BEAR_NAME"
-msgstr "Oso Guardián"
+msgstr "Gorila Guardián"
 
 msgid "SKILL_GUARDIAN_BEAR_DESC"
-msgstr "Un oso amigo con el 150% de tu vida provoca y retiene a los enemigos durante 15 s; solo uno a la vez."
+msgstr "Un gorila amigo con el 150% de tu vida provoca y retiene a los enemigos durante 15 s; solo uno a la vez."
 
 msgid "SKILL_STAMPEDE_NAME"
 msgstr "Estampida"
@@ -1486,7 +1486,7 @@ msgid "COMPANION_BOAR"
 msgstr "Jabalí"
 
 msgid "COMPANION_BEAR"
-msgstr "Oso guardián"
+msgstr "Gorila guardián"
 
 msgid "SKILL_LANCE_THRUST_NAME"
 msgstr "Estocada"
@@ -2643,3 +2643,6 @@ msgstr "Volver al puerto"
 
 msgid "MONSTER_CHITIN_BEAST"
 msgstr "Bestia Quitinosa"
+
+msgid "MONSTER_ANGLER"
+msgstr "Anglerman"

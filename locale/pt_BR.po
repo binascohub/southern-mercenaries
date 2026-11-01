@@ -1366,10 +1366,10 @@ msgid "SKILL_SCATTER_ESCAPE_DESC"
 msgstr "Você se desfaz numa revoada, atravessa inimigos e reaparece até 7 m à frente; seus animais provocam os inimigos perto por 2 s. Recarga -1 s por rank."
 
 msgid "SKILL_GUARDIAN_BEAR_NAME"
-msgstr "Urso Guardião"
+msgstr "Gorila Guardião"
 
 msgid "SKILL_GUARDIAN_BEAR_DESC"
-msgstr "Urso amigo com 150% da sua vida provoca e segura os inimigos por 15 s; só um por vez."
+msgstr "Gorila amigo com 150% da sua vida provoca e segura os inimigos por 15 s; só um por vez."
 
 msgid "SKILL_STAMPEDE_NAME"
 msgstr "Estouro da Manada"
@@ -1486,7 +1486,7 @@ msgid "COMPANION_BOAR"
 msgstr "Javali"
 
 msgid "COMPANION_BEAR"
-msgstr "Urso guardião"
+msgstr "Gorila guardião"
 
 msgid "SKILL_LANCE_THRUST_NAME"
 msgstr "Estocada"
@@ -2643,3 +2643,6 @@ msgstr "Voltar ao porto"
 
 msgid "MONSTER_CHITIN_BEAST"
 msgstr "Besta Quitinosa"
+
+msgid "MONSTER_ANGLER"
+msgstr "Anglerman"

@@ -20038,154 +20038,217 @@
         "id": "j1",
         "monster": "mug",
         "position": [
-          -10.5,
-          -35.0
+          -11.5,
+          -24.2
         ],
-        "table": "breakable_potion"
+        "table": "breakable_hp"
       },
       {
         "id": "j2",
         "monster": "mug",
         "position": [
-          -2.0,
-          -35.0
+          -10.9,
+          -23.6
         ],
-        "table": "breakable_potion"
+        "table": "breakable_hp"
       },
       {
         "id": "j3",
         "monster": "mug",
         "position": [
-          18.3,
-          -35.0
+          -10.1,
+          -22.9
         ],
-        "table": "breakable_potion"
+        "table": "breakable_hp"
       },
       {
         "id": "j4",
         "monster": "mug",
         "position": [
-          -22.8,
-          -63.0
+          -12.5,
+          -24.8
         ],
-        "table": "breakable_potion"
+        "table": "breakable_mana"
       },
       {
         "id": "j5",
         "monster": "mug",
         "position": [
-          5.3,
-          -63.0
+          4.2,
+          -29.1
         ],
-        "table": "breakable_potion"
+        "table": "breakable_hp"
       },
       {
         "id": "j6",
         "monster": "mug",
         "position": [
-          12.7,
-          -60.9
+          5.6,
+          -30.1
         ],
-        "table": "breakable_potion"
+        "table": "breakable_mana"
       },
       {
         "id": "j7",
         "monster": "mug",
         "position": [
-          -13.0,
-          -89.0
+          6.7,
+          -29.0
         ],
-        "table": "breakable_potion"
+        "table": "breakable_mana"
       },
       {
         "id": "j8",
         "monster": "mug",
         "position": [
-          -8.2,
-          -89.0
+          7.3,
+          -29.7
         ],
-        "table": "breakable_potion"
+        "table": "breakable_hp"
       },
       {
         "id": "j9",
         "monster": "mug",
         "position": [
-          23.1,
-          -89.0
+          5.5,
+          -29.0
         ],
-        "table": "breakable_potion"
+        "table": "breakable_hp"
       },
       {
         "id": "j10",
         "monster": "mug",
         "position": [
-          26.3,
-          -53.7
+          -7.0,
+          -57.2
         ],
-        "table": "breakable_potion"
+        "table": "breakable_mana"
       },
       {
         "id": "j11",
         "monster": "mug",
         "position": [
-          26.0,
-          -58.2
+          -6.7,
+          -54.7
         ],
-        "table": "breakable_potion"
+        "table": "breakable_hp"
       },
       {
         "id": "j12",
         "monster": "mug",
         "position": [
-          -24.6,
-          -101.7
+          -8.2,
+          -54.5
         ],
-        "table": "breakable_potion"
+        "table": "breakable_hp"
       },
       {
         "id": "j13",
         "monster": "mug",
         "position": [
-          -9.2,
-          -3.2
+          -8.8,
+          -57.1
         ],
-        "table": "breakable_potion"
+        "table": "breakable_mana"
       },
       {
         "id": "j14",
         "monster": "mug",
         "position": [
-          6.9,
-          -3.3
+          7.3,
+          -82.7
         ],
-        "table": "breakable_potion"
+        "table": "breakable_mana"
       },
       {
         "id": "j15",
         "monster": "mug",
         "position": [
-          -2.8,
-          -20.0
+          5.8,
+          -82.8
         ],
-        "table": "breakable_potion"
+        "table": "breakable_mana"
       },
       {
         "id": "j16",
         "monster": "mug",
         "position": [
-          -1.0,
-          -76.0
+          4.8,
+          -81.0
         ],
-        "table": "breakable_potion"
+        "table": "breakable_hp"
       },
       {
         "id": "j17",
         "monster": "mug",
         "position": [
-          -2.4,
-          -104.0
+          5.1,
+          -83.7
         ],
-        "table": "breakable_potion"
+        "table": "breakable_hp"
+      },
+      {
+        "id": "j18",
+        "monster": "mug",
+        "position": [
+          5.8,
+          -80.3
+        ],
+        "table": "breakable_mana"
+      },
+      {
+        "id": "j19",
+        "monster": "mug",
+        "position": [
+          27.8,
+          -51.9
+        ],
+        "table": "breakable_mana"
+      },
+      {
+        "id": "j20",
+        "monster": "mug",
+        "position": [
+          25.4,
+          -51.5
+        ],
+        "table": "breakable_hp"
+      },
+      {
+        "id": "j21",
+        "monster": "mug",
+        "position": [
+          25.8,
+          -52.8
+        ],
+        "table": "breakable_mana"
+      },
+      {
+        "id": "j22",
+        "monster": "mug",
+        "position": [
+          27.1,
+          -53.2
+        ],
+        "table": "breakable_hp"
+      },
+      {
+        "id": "j23",
+        "monster": "mug",
+        "position": [
+          -17.8,
+          -99.9
+        ],
+        "table": "breakable_hp"
+      },
+      {
+        "id": "j24",
+        "monster": "mug",
+        "position": [
+          -19.1,
+          -102.1
+        ],
+        "table": "breakable_mana"
       },
       {
         "id": "coin_bag",
@@ -20452,6 +20515,820 @@
         "solid": [
           1.4,
           1.4
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -31,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -29,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -27,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -25,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -23,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -21,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -19,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -17,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -9,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -7,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -5,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -3,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -1,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          7,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          9,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          11,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          13,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          15,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          21,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          23,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          25,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          27,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          29,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          31,
+          -39.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -31,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -29,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -27,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -25,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -23,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -21,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -15,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -13,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -11,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -9,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -7,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -5,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -3,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          3,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          5,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          7,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          9,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          17,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          19,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          21,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          23,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          25,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          27,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          29,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          31,
+          -67.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -31,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -29,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -27,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -25,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -23,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -21,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -15,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -13,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -11,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -9,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -7,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          -1,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          1,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          3,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          5,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          7,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          9,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          11,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          13,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          15,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          17,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          25,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          27,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          29,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Fence_Iron",
+        "position": [
+          31,
+          -93.6
+        ],
+        "solid": [
+          2.0,
+          0.3
         ]
       },
       {
@@ -20981,8 +21858,8 @@
       {
         "piece": "Pr_Tombstone1",
         "position": [
-          -2.5,
-          -40.9
+          22.2,
+          -40.8
         ],
         "rotation": 0,
         "solid": [
@@ -20993,68 +21870,20 @@
       {
         "piece": "Pr_Tombstone2",
         "position": [
-          12.3,
-          -41.4
+          -28.1,
+          -46.3
         ],
-        "rotation": 180,
+        "rotation": 0,
         "solid": [
           0.8,
           0.5
         ]
       },
       {
-        "piece": "Pr_Tombstone1",
+        "piece": "Pr_Cross2",
         "position": [
-          22.3,
-          -41.5
-        ],
-        "rotation": 190,
-        "solid": [
-          0.8,
-          0.5
-        ]
-      },
-      {
-        "piece": "Pr_Cross1",
-        "position": [
-          26.7,
-          -41.5
-        ],
-        "rotation": 180,
-        "solid": [
-          0.8,
-          0.5
-        ]
-      },
-      {
-        "piece": "Pr_Tombstone2",
-        "position": [
-          -27.7,
+          -22.8,
           -46.4
-        ],
-        "rotation": 180,
-        "solid": [
-          0.8,
-          0.5
-        ]
-      },
-      {
-        "piece": "Pr_Cross3",
-        "position": [
-          -22.9,
-          -45.9
-        ],
-        "rotation": 0,
-        "solid": [
-          0.8,
-          0.5
-        ]
-      },
-      {
-        "piece": "Pr_Cross1",
-        "position": [
-          2.5,
-          -45.7
         ],
         "rotation": 10,
         "solid": [
@@ -21063,9 +21892,21 @@
         ]
       },
       {
+        "piece": "Pr_Cross1",
+        "position": [
+          2.4,
+          -46.1
+        ],
+        "rotation": 190,
+        "solid": [
+          0.8,
+          0.5
+        ]
+      },
+      {
         "piece": "Pr_Tombstone1",
         "position": [
-          12.2,
+          12.0,
           -46.1
         ],
         "rotation": -10,
@@ -31583,14 +32424,6 @@
         "rotation": 240
       },
       {
-        "piece": "Pl_Hemp",
-        "position": [
-          27.0,
-          -38.8
-        ],
-        "rotation": 345
-      },
-      {
         "piece": "Pl_Bush",
         "position": [
           27.6,
@@ -31685,14 +32518,6 @@
           -53.2
         ],
         "rotation": 285
-      },
-      {
-        "piece": "Pl_Hemp",
-        "position": [
-          8.7,
-          -68.5
-        ],
-        "rotation": 150
       },
       {
         "piece": "Pl_Hemp",
@@ -34983,6 +35808,246 @@
           0.8,
           1.5
         ]
+      },
+      {
+        "piece": "Wall_Torch",
+        "position": [
+          -19.98,
+          -21.25
+        ],
+        "rotation": 90
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          -18.55,
+          -21.25
+        ],
+        "y": 1.9,
+        "range": 5.5,
+        "energy": 0.9
+      },
+      {
+        "piece": "Wall_Torch",
+        "position": [
+          8.75,
+          -19.98
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Wall_Torch",
+        "position": [
+          -9.98,
+          -1.25
+        ],
+        "rotation": 90
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          -8.55,
+          -1.25
+        ],
+        "y": 1.9,
+        "range": 5.5,
+        "energy": 0.9
+      },
+      {
+        "piece": "Wall_Torch",
+        "position": [
+          21.25,
+          12.52
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Wall_Torch",
+        "position": [
+          -18.75,
+          12.52
+        ],
+        "rotation": 0
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          -18.75,
+          13.95
+        ],
+        "y": 1.9,
+        "range": 5.5,
+        "energy": 0.9
+      },
+      {
+        "piece": "Wall_Torch",
+        "position": [
+          -13.75,
+          -7.48
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Wall_Torch",
+        "position": [
+          -8.75,
+          12.52
+        ],
+        "rotation": 0
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          -8.75,
+          13.95
+        ],
+        "y": 1.9,
+        "range": 5.5,
+        "energy": 0.9
+      },
+      {
+        "piece": "Wall_Torch",
+        "position": [
+          -4.98,
+          -8.75
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Wall_Torch",
+        "position": [
+          17.48,
+          23.75
+        ],
+        "rotation": -90
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          16.05,
+          23.75
+        ],
+        "y": 1.9,
+        "range": 5.5,
+        "energy": 0.9
+      },
+      {
+        "piece": "Wall_Torch",
+        "position": [
+          12.52,
+          8.75
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Wall_Torch",
+        "position": [
+          19.98,
+          -18.75
+        ],
+        "rotation": -90
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          18.55,
+          -18.75
+        ],
+        "y": 1.9,
+        "range": 5.5,
+        "energy": 0.9
+      },
+      {
+        "piece": "Wall_Torch",
+        "position": [
+          -6.25,
+          22.52
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Wall_Torch",
+        "position": [
+          -7.48,
+          -21.25
+        ],
+        "rotation": 90
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          -6.05,
+          -21.25
+        ],
+        "y": 1.9,
+        "range": 5.5,
+        "energy": 0.9
+      },
+      {
+        "piece": "Wall_Torch",
+        "position": [
+          -17.48,
+          23.75
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Wall_Torch",
+        "position": [
+          11.25,
+          -7.48
+        ],
+        "rotation": 0
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          11.25,
+          -6.05
+        ],
+        "y": 1.9,
+        "range": 5.5,
+        "energy": 0.9
+      },
+      {
+        "piece": "Wall_Torch",
+        "position": [
+          -21.25,
+          -7.48
+        ],
+        "rotation": 0
       }
     ],
     "crowd": [
@@ -40698,6 +41763,174 @@
         "solid": [
           5.9,
           6.8
+        ]
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          -15.4,
+          -5.9
+        ],
+        "rotation": 0,
+        "solid": [
+          0.85,
+          0.85
+        ]
+      },
+      {
+        "piece": "Barrel_Oga_Damaged",
+        "position": [
+          -14.5,
+          -5.5
+        ],
+        "rotation": 47,
+        "solid": [
+          0.85,
+          0.85
+        ]
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          8.5,
+          -5.9
+        ],
+        "rotation": 94,
+        "solid": [
+          0.85,
+          0.85
+        ]
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          9.6,
+          -5.5
+        ],
+        "rotation": 141,
+        "solid": [
+          0.85,
+          0.85
+        ]
+      },
+      {
+        "piece": "Barrel_Oga_Damaged",
+        "position": [
+          20.8,
+          -5.9
+        ],
+        "rotation": 188,
+        "solid": [
+          0.85,
+          0.85
+        ]
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          -26.6,
+          -20.5
+        ],
+        "rotation": 235,
+        "solid": [
+          0.85,
+          0.85
+        ]
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          -25.6,
+          -19.8
+        ],
+        "rotation": 282,
+        "solid": [
+          0.85,
+          0.85
+        ]
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          26.6,
+          -20.5
+        ],
+        "rotation": 329,
+        "solid": [
+          0.85,
+          0.85
+        ]
+      },
+      {
+        "piece": "Barrel_Oga_Damaged",
+        "position": [
+          25.6,
+          -19.8
+        ],
+        "rotation": 16,
+        "solid": [
+          0.85,
+          0.85
+        ]
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          -3.6,
+          -21.6
+        ],
+        "rotation": 63,
+        "solid": [
+          0.85,
+          0.85
+        ]
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          3.6,
+          -21.6
+        ],
+        "rotation": 110,
+        "solid": [
+          0.85,
+          0.85
+        ]
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          11.2,
+          14.5
+        ],
+        "rotation": 157,
+        "solid": [
+          0.85,
+          0.85
+        ]
+      },
+      {
+        "piece": "Barrel_Oga_Damaged",
+        "position": [
+          12.0,
+          15.3
+        ],
+        "rotation": 204,
+        "solid": [
+          0.85,
+          0.85
+        ]
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          -11.8,
+          10.8
+        ],
+        "rotation": 251,
+        "solid": [
+          0.85,
+          0.85
         ]
       }
     ],
@@ -52560,8 +53793,8 @@
       {
         "id": "dk_toads",
         "position": [
-          -26,
-          -25
+          -24,
+          -23
         ],
         "monsters": [
           {
@@ -52592,7 +53825,24 @@
         "monsters": [
           {
             "monster": "mutant_rat",
-            "count": 5
+            "count": 3
+          },
+          {
+            "monster": "angler",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "dk_anglers",
+        "position": [
+          -26,
+          -25
+        ],
+        "monsters": [
+          {
+            "monster": "angler",
+            "count": 2
           }
         ]
       }

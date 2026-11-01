@@ -2633,3 +2633,6 @@ msgstr ""
 
 msgid "MONSTER_CHITIN_BEAST"
 msgstr ""
+
+msgid "MONSTER_ANGLER"
+msgstr ""

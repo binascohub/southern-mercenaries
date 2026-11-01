@@ -577,6 +577,17 @@ for z, (left, right) in zip(SECTOR_BORDERS, (("Pr_Obelisk3", "Pr_Obelisk2"), ("P
     for lane, half in (("W", 3.6), ("M", 4.5), ("E", 3.6)):
         put({"piece": left, "position": on(lane, z, -half), "solid": [1.4, 1.4]}, 2.4)
         put({"piece": right, "position": on(lane, z, half), "solid": [1.4, 1.4]}, 2.4)
+# Grades pretas de ferro (Fence_Iron, original do jogo; build_iron_fence.py) dividindo os setores: uma linha de ponta a ponta
+# do pátio 1,6 m depois de cada divisa (já dentro do setor seguinte), com uma abertura onde cada pista a atravessa. São sólidas:
+# só se passa pelas aberturas, e os monstros ficam no setor deles.
+FENCE_HALF_GAP = 1.6
+for border in SECTOR_BORDERS:
+    zf = border - 1.6
+    openings = [LANES[l](zf) for l in "WME"]
+    for fx in range(-31, 32, 2):
+        if any(abs(fx - g) < FENCE_HALF_GAP + 1.0 for g in openings):
+            continue
+        put({"piece": "Fence_Iron", "position": [fx, zf], "solid": [2.0, 0.3]}, 1.4)
 # Na entrada da cripta.
 put({"piece": "Pr_Cross4", "position": [-6, -109], "solid": [1.2, 1.2]}, 2.0)
 put({"piece": "Pr_Cross4", "position": [6, -109], "solid": [1.2, 1.2]}, 2.0)
@@ -612,38 +623,43 @@ for bush in scatter(cr, c_rooms[1], ["Pl_Hemp", "Pl_Bush"], 90, margin=2.0):
     x, z = bush["position"]
     if trail_dist(x, z) > 2.2 and not any(math.hypot(x - bx, z - bz) < br for bx, bz, br in blockers):
         c_decor.append(bush)
-# Jarros e garrafas brancos quebráveis (cada um solta uma poção): junto aos marcos de cada pista, perto dos baús dos becos,
-# no portão e ao longo da pista do centro. Cada um vai para um ponto livre de sólidos, de trilhas, de grupos e de baús.
+# Jarros e garrafas brancos quebráveis, em grupos de quatro ou cinco: metade solta poção de vida e metade de mana
+# (tabelas "breakable_hp" e "breakable_mana", sorteadas dentro do grupo). Cada jarro vai para um ponto livre de sólidos,
+# de trilhas, de grupos de monstros e de baús, e a pelo menos 0,9 m dos outros.
 jr = random.Random("cemetery_jars")
 jar_solids = [(d["position"][0], d["position"][1], max(d["solid"]) / 2 + 0.9) for d in c_decor if d.get("solid")]
 c_jars = []
 
 
-def jar_spot(x0, z0):
-    for r in range(0, 8):
-        for k in range(max(8 * r, 1)):
-            a = k * math.tau / max(8 * r, 1) + jr.uniform(0, 0.3)
-            x, z = x0 + r * 0.7 * math.cos(a), z0 + r * 0.7 * math.sin(a)
-            if (abs(x) < 29 and -108 < z < 4 and 1.9 < trail_dist(x, z) < 4.0
-                    and all(math.hypot(x - sx, z - sz) > sr for sx, sz, sr in jar_solids)
-                    and all(math.hypot(x - e["position"][0], z - e["position"][1]) > 3.0 for e in c_enc)
-                    and all(math.hypot(x - q["position"][0], z - q["position"][1]) > 3.0 for q in c_props)
-                    and all(math.hypot(x - j["position"][0], z - j["position"][1]) > 2.0 for j in c_jars)):
-                return [round(x, 1), round(z, 1)]
-    return None
+def jar_ok(x, z):
+    return (abs(x) < 29 and -108 < z < 4 and trail_dist(x, z) > 1.9
+            and all(math.hypot(x - sx, z - sz) > sr for sx, sz, sr in jar_solids)
+            and all(math.hypot(x - e["position"][0], z - e["position"][1]) > 3.0 for e in c_enc)
+            and all(math.hypot(x - q["position"][0], z - q["position"][1]) > 3.0 for q in c_props)
+            and all(math.hypot(x - j["position"][0], z - j["position"][1]) > 0.9 for j in c_jars))
 
 
-jar_targets = []
-for i, z in enumerate(SECTOR_BORDERS):
-    for j, lane in enumerate("WME"):
-        jar_targets.append(on(lane, z + 3.0, 2.6 if (i + j) % 2 == 0 else -2.6))
-for chest in (c_props[2], c_props[3]):
-    jar_targets += [[chest["position"][0] - 2.4, chest["position"][1] + 1.6], [chest["position"][0] - 2.4, chest["position"][1] - 1.6]]
-jar_targets += [[-8, -1.5], [8, -1.5]] + [on("M", z, off) for z, off in ((-20, 3), (-76, 3), (-104, -3))]
-for t in jar_targets:
-    spot = jar_spot(*t)
-    if spot:
-        c_jars.append({"id": "j%d" % (len(c_jars) + 1), "monster": "mug", "position": spot, "table": "breakable_potion"})
+def jar_cluster(cx, cz, count, spread=1.8):
+    spots = []
+    for _ in range(count):
+        for _try in range(80):
+            a = jr.uniform(0, math.tau)
+            r = spread * math.sqrt(jr.random())
+            x, z = cx + r * math.cos(a), cz + r * math.sin(a)
+            if jar_ok(x, z) and all(math.hypot(x - px, z - pz) > 0.9 for px, pz in spots):
+                spots.append((x, z))
+                break
+    tables = ["breakable_hp", "breakable_mana"] * 3
+    jr.shuffle(tables)
+    for (x, z), table in zip(spots, tables):
+        c_jars.append({"id": "j%d" % (len(c_jars) + 1), "monster": "mug", "position": [round(x, 1), round(z, 1)], "table": table})
+
+
+chest_e, chest_w = c_props[2]["position"], c_props[3]["position"]
+for cx, cz, count in (((lane_w(-24) + lane_m(-24)) / 2, -24, 4), ((lane_m(-30) + lane_e(-30)) / 2, -30, 5),
+                      ((lane_w(-56) + lane_m(-56)) / 2, -56, 4), ((lane_m(-82) + lane_e(-82)) / 2, -82, 5),
+                      (chest_e[0] - 2.5, chest_e[1] + 3.5, 4), (chest_w[0] + 2.5, chest_w[1] + 3.5, 4)):
+    jar_cluster(cx, cz, count)
 arenas["cemetery_01_yard"] = {
     "_comment": "Cemitério (Medieval Props Textured, Clint Bellanger, CC BY 3.0, modelos de Lamoot): mapa grande de terra escura cortado por uma rede de trilhas de lajes (três pistas que se separam, se cruzam e se reencontram; becos sem saída com baú) do portão à cripta, com quatro setores de monstros (A Campo de Covas, B Ossuário, C Cova dos Mortos, D Covil do Troll), marcos de pedra nas divisas, fileiras de lápides e cruzes, poço coberto, estátuas e túmulos de cavaleiro, e a cripta do Senhor da Cripta no fundo. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_CEMETERY", "player_class": "mage", "map_id": "map_cemetery", "area_level": 7, "outdoor": True,
@@ -885,6 +901,31 @@ fort_decor += lab
 # no salão do comandante apontados para a entrada.
 fort_decor += [{"piece": "Ship_Cannon", "position": cell_pos(c, r), "rotation": rot, "solid": [0.8, 1.5]}
                for c, r, rot in ((4, 24, 180), (15, 24, 180), (3, 1, 0), (16, 1, 0))]
+# Tochas de parede (Wall mounted torch, scribe, CC BY 3.0; build_wall_torch.py): presas na face da pedra voltada para o piso, com
+# pelo menos 6 m entre elas; metade tem uma luz própria de chama (as outras só enfeitam).
+wt_rng = rng("fort_wall_torches")
+wt_cells = []
+for r in range(ROWS):
+    for c in range(COLS):
+        if grid[r][c] == "#":
+            continue
+        for dx, dz in ((0, -1), (1, 0), (-1, 0)):  # N, E, W: lado onde está a pedra (sem o S: a tocha ficaria voltada para o norte, escondida pelo topo da parede, vista da câmera)
+            if is_rock(c + dx, r + dz) and 0 < c + dx < COLS - 1 and 0 < r + dz < ROWS - 1:
+                wt_cells.append((c, r, dx, dz))
+wt_rng.shuffle(wt_cells)
+wt_placed = []
+for c, r, dx, dz in wt_cells:
+    x, z = cell_pos(c, r)
+    if any(math.hypot(x - px, z - pz) < 6.0 for px, pz, _, _ in wt_placed):
+        continue
+    wt_placed.append((x, z, dx, dz))
+    if len(wt_placed) == 16:
+        break
+for i, (x, z, dx, dz) in enumerate(wt_placed):
+    face = [round(x + dx * (CELL / 2 - 0.02), 2), round(z + dz * (CELL / 2 - 0.02), 2)]
+    fort_decor.append({"piece": "Wall_Torch", "position": face, "rotation": round(math.degrees(math.atan2(-dx, -dz)))})
+    if i % 2 == 0:
+        fort_decor.append({"light": [1.0, 0.6, 0.25], "position": [round(x - dx * 0.2, 2), round(z - dz * 0.2, 2)], "y": 1.9, "range": 5.5, "energy": 0.9})
 # Ratos pequenos de cenário (papel "rat" do NpcModel): correm de um canto a outro pelas celas, pelo salão do meio e pelo pátio,
 # sempre entre duas células de piso a até 3 células de distância, com sorteio fixo.
 fr = rng("fort_rats")
@@ -1094,9 +1135,10 @@ dk_rooms = [
 ]
 dk_enc = [
     {"id": "dk_rats_a", "position": [0, -12], "monsters": [{"monster": "plague_rat", "count": 4}]},
-    {"id": "dk_toads", "position": [-26, -25], "monsters": [{"monster": "acid_toad", "count": 3}]},
+    {"id": "dk_toads", "position": [-24, -23], "monsters": [{"monster": "acid_toad", "count": 3}]},
     {"id": "dk_bats", "position": [26, -25], "monsters": [{"monster": "plague_bat", "count": 4}]},
-    {"id": "dk_rats_b", "position": [0, -40], "monsters": [{"monster": "mutant_rat", "count": 5}]},
+    {"id": "dk_rats_b", "position": [0, -40], "monsters": [{"monster": "mutant_rat", "count": 3}, {"monster": "angler", "count": 2}]},
+    {"id": "dk_anglers", "position": [-26, -25], "monsters": [{"monster": "angler", "count": 2}]},
 ]
 dk_decor = []
 for bx, bz, rot, piece in ((-12, -14, 20, "Dock_Boat_A_1"), (12, -15, -15, "Dock_Boat_B_1"), (-14, -33, 80, "Dock_Boat_A_2"), (14, -34, 100, "Dock_Boat_A_1"), (-8, 6, 0, "Dock_Boat_B_1")):

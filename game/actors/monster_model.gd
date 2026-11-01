@@ -26,6 +26,9 @@ const FAMILIES := {
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "die": "die"}},
 	# O Feiticeiro-aranha (Wizard, piacenti, CC BY-SA 3.0): malha única sem esqueleto, 1 m de altura no
 	# arquivo; o corpo todo balança, avança e cai por código (`static`). Chefe do Esgoto no lugar da Rainha.
+	# Anglerman (Angler Man 3D, piacenti, CC BY 3.0): peixe-pescador de pernas finas das Docas; malha única, movida por código.
+	"angler": {"scene": "res://assets/models/monsters/angler.glb", "scale": 0.75, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	"demon": {"scene": "res://assets/models/monsters/demon_wizard.glb", "scale": 0.8, "static": true,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Sapo (Frog Guy, CC0): malha única de pé sem animação (tools/assets/build_frog.py); balança, avança e cai

@@ -124,7 +124,7 @@ Todas são **imbuídas** do elemento atual.
 | 2 | `flock` | Revoada | Área | 18 | 4 s | 110% PI | +12% | Cone de 8 m | Uma revoada de pássaros sai do livro e ataca tudo à frente |
 | 4 | `bond` | Laço de Amizade | Passiva | — | — | +8% de vida e dano dos animais | por rank | — | — |
 | 8 | `scatter_escape` | Fuga em Bando | **Evasão** | 20 | 9 s (-1 s por rank) | — | — | Até 7 m à frente | O Invocador se desfaz numa revoada de pássaros, atravessa inimigos e reaparece à frente; os animais provocam os inimigos por 2 s |
-| 10 | `guardian_bear` | Urso Guardião | Invocação (tanque) | 40 | 25 s | Urso com 150% da vida do Invocador; golpes de 70% PI | +12% | Ao lado do Invocador, dura 15 s | Urso amigo que **provoca e segura os inimigos**; só 1 por vez |
+| 10 | `guardian_bear` | Gorila Guardião | Invocação (tanque) | 40 | 25 s | Gorila com 150% da vida do Invocador; golpes de 70% PI | +12% | Ao lado do Invocador, dura 15 s | Gorila amigo que **provoca e segura os inimigos**; só 1 por vez |
 | 14 | `stampede` | Estouro da Manada | Área (linha) | 35 | 14 s | 180% PI | +18% | Linha de 15 m | Uma manada de animais amigos atravessa o campo derrubando (`knocked_down`) |
 | 16 | `animal_rescue` | Resgate | Suporte (grupo) | 40 | 40 s | Reanima com 40% da vida | +5% | Aliado caído a até 20 m | Um animal amigo corre até o aliado caído e o reanima à distância |
 
@@ -173,7 +173,7 @@ O Invocador **não liberta criaturas corrompidas**. O que abre mais habilidades 
 
 ## 7. Estilo de jogo
 
-- **Solo:** a classe mais fácil para jogar sozinho: o Urso Guardião e os companheiros seguram os monstros enquanto o Invocador ataca de longe. Fuga em Bando quando cercado.
+- **Solo:** a classe mais fácil para jogar sozinho: o Gorila Guardião e os companheiros seguram os monstros enquanto o Invocador ataca de longe. Fuga em Bando quando cercado.
 - **Em grupo:** o "cuidador" do grupo: reanima à distância (`animal_rescue`), dá suporte e enche a tela de aliados.
 - **Pontos fortes:** muitos alvos para distrair os inimigos; ótimo contra matilhas (Mapa dos Lobos).
 - **Pontos fracos:** pouca vida; se os animais caírem todos, fica exposto; sofre contra criaturas que atacam em área (Kraken, Jörmungandr) e contra a Strix, que drena vida.
