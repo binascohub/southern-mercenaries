@@ -2846,3 +2846,60 @@ msgstr ""
 
 msgid "TOAST_MINIBOSS_CHEST"
 msgstr ""
+
+msgid "MONSTER_DARK_ELF_LORD"
+msgstr ""
+
+msgid "NPC_FORT_PENITENT"
+msgstr ""
+
+msgid "DLG_PENITENT_1"
+msgstr ""
+
+msgid "DLG_PENITENT_2"
+msgstr ""
+
+msgid "DLG_PENITENT_3"
+msgstr ""
+
+msgid "TOAST_PENITENT_AWAKENS"
+msgstr ""
+
+msgid "NPC_FORT_EXILE"
+msgstr ""
+
+msgid "DLG_EXILE_1"
+msgstr ""
+
+msgid "DLG_EXILE_2"
+msgstr ""
+
+msgid "DLG_EXILE_3"
+msgstr ""
+
+msgid "TOAST_EXILE_AWAKENS"
+msgstr ""
+
+msgid "QUEST_FOREST_STONE"
+msgstr ""
+
+msgid "QUEST_FOREST_STONE_DESC"
+msgstr ""
+
+msgid "QUEST_FOREST_FIRE"
+msgstr ""
+
+msgid "QUEST_FOREST_FIRE_DESC"
+msgstr ""
+
+msgid "DLG_HERMIT_ACTIVE"
+msgstr ""
+
+msgid "DLG_HERMIT_DONE"
+msgstr ""
+
+msgid "DLG_PYRE_ACTIVE"
+msgstr ""
+
+msgid "DLG_PYRE_DONE"
+msgstr ""

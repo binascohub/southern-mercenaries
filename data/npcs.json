@@ -265,28 +265,11 @@
     ],
     "dialogues": [
       {
-        "when": {
-          "quest_new": "forest_golems"
-        },
+        "when": {},
         "lines": [
           "DLG_WIFE_1",
           "DLG_WIFE_2",
           "DLG_WIFE_3"
-        ],
-        "offer": "forest_golems"
-      },
-      {
-        "when": {
-          "quest_active": "forest_golems"
-        },
-        "lines": [
-          "DLG_WIFE_ACTIVE"
-        ]
-      },
-      {
-        "when": {},
-        "lines": [
-          "DLG_WIFE_DONE"
         ]
       }
     ],
@@ -582,11 +565,28 @@
     ],
     "dialogues": [
       {
-        "when": {},
+        "when": {
+          "quest_new": "forest_stone_golem"
+        },
         "lines": [
           "DLG_HERMIT_1",
           "DLG_HERMIT_2",
           "DLG_HERMIT_3"
+        ],
+        "offer": "forest_stone_golem"
+      },
+      {
+        "when": {
+          "quest_active": "forest_stone_golem"
+        },
+        "lines": [
+          "DLG_HERMIT_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_HERMIT_DONE"
         ]
       }
     ],
@@ -617,11 +617,28 @@
     ],
     "dialogues": [
       {
-        "when": {},
+        "when": {
+          "quest_new": "forest_fire_golem"
+        },
         "lines": [
           "DLG_PYRE_1",
           "DLG_PYRE_2",
           "DLG_PYRE_3"
+        ],
+        "offer": "forest_fire_golem"
+      },
+      {
+        "when": {
+          "quest_active": "forest_fire_golem"
+        },
+        "lines": [
+          "DLG_PYRE_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_PYRE_DONE"
         ]
       }
     ],
@@ -634,6 +651,75 @@
         0.55,
         0.12,
         0.05
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "fort_penitent": {
+    "_comment": "Penitente (Forte, corredor leste): sacerdotisa que fala diante da sala do leste e, no fim da fala, desperta a Rainha das Súcubos como mini-chefe ('summon' no objeto em arenas.json).",
+    "name_key": "NPC_FORT_PENITENT",
+    "color": [
+      0.75,
+      0.55,
+      0.8
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_PENITENT_1",
+          "DLG_PENITENT_2",
+          "DLG_PENITENT_3"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "female",
+      "hair": [
+        "Hair_Long"
+      ],
+      "hair_color": [
+        0.2,
+        0.1,
+        0.25
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "fort_exile": {
+    "_comment": "Exilado (Forte, corredor do sul): cavaleiro caído que fala diante da sala do sudoeste e, no fim da fala, desperta o Senhor Elfo Sombrio como mini-chefe.",
+    "name_key": "NPC_FORT_EXILE",
+    "color": [
+      0.5,
+      0.55,
+      0.65
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_EXILE_1",
+          "DLG_EXILE_2",
+          "DLG_EXILE_3"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_SimpleParted",
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.3,
+        0.28,
+        0.25
       ],
       "pose": "idle",
       "outfit": {

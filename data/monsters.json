@@ -1393,5 +1393,37 @@
       0.3
     ],
     "_comment": "Cesto de vime da Fazenda (Willow Basket with Handle, ulf, CC BY-SA 3.0): quebra com qualquer golpe e sempre solta poção (data/loot.json 'breakable_potion'). Não dá XP."
+  },
+  "dark_elf_lord": {
+    "name_key": "MONSTER_DARK_ELF_LORD",
+    "max_health": 420,
+    "move_speed": 2.4,
+    "damage": 22,
+    "attack_range": 9.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 2.2,
+    "aggro_range": 40.0,
+    "size": 1.4,
+    "category": "miniboss",
+    "element": "air",
+    "ai": "ranged",
+    "keep_distance": 6.0,
+    "spit": {
+      "radius": 1.6,
+      "puddle_time": 2.5,
+      "puddle_dps": 5.0,
+      "glob": [
+        0.45,
+        0.2,
+        0.7
+      ]
+    },
+    "look": "dark_elf",
+    "color": [
+      0.8,
+      0.7,
+      1.0
+    ],
+    "_comment": "Mini-chefe do Forte (sudoeste): o Senhor Elfo Sombrio, líder dos besteiros; virote de sombra mais forte; despertado pelo Exilado."
   }
 }

@@ -2624,16 +2624,16 @@ msgid "DLG_HUNTER_ACTIVE"
 msgstr "Três deles, lá no bosque, depois das pedras. Fogo, lembrem. Fogo."
 
 msgid "DLG_HUNTER_DONE"
-msgstr "Silêncio, enfim! Os cervos estão voltando. A Elara tem mais trabalho para vocês, se aguentarem."
+msgstr "Silêncio, enfim! Os cervos estão voltando. Se querem mais, falem com o Eremita e a Guardiã, nas praças."
 
 msgid "DLG_WIFE_1"
 msgstr "Não liguem para o cheiro, são as peles. Sou a Elara. O Bertram diz que vocês enfrentam o que os caçadores não enfrentam."
 
 msgid "DLG_WIFE_2"
-msgstr "Pedras começaram a andar por esta mata — golens de pedra, de gelo e de fogo, pisoteando onde ficavam nossas trilhas. Meus varais, meus peixes… tudo. O de gelo vaga a leste; os outros dois só acordam se alguém conversar com o Eremita e com a Guardiã, nas praças."
+msgstr "Pedras começaram a andar por esta mata, pisoteando onde ficavam nossas trilhas. Meus varais, meus peixes… tudo. Quem sabe acordar e domar essas coisas são o Eremita da Pedra e a Guardiã da Pira, nas praças da trilha."
 
 msgid "DLG_WIFE_3"
-msgstr "Derrubem os três e eu entrego com gosto as nossas economias."
+msgstr "Falem com eles — e voltem inteiros. Os de dentro das grutas, sapos, morcegos, répteis e bestas, também não são de brincadeira."
 
 msgid "DLG_WIFE_ACTIVE"
 msgstr "Pedra e fogo dormem nas praças — falem com o Eremita e com a Guardiã. O de gelo, a leste."
@@ -2859,3 +2859,60 @@ msgstr "Baú do mini-chefe"
 
 msgid "TOAST_MINIBOSS_CHEST"
 msgstr "O mini-chefe deixou um baú!"
+
+msgid "MONSTER_DARK_ELF_LORD"
+msgstr "Senhor Elfo Sombrio"
+
+msgid "NPC_FORT_PENITENT"
+msgstr "A Penitente"
+
+msgid "DLG_PENITENT_1"
+msgstr "Servi a Rainha das Súcubos um dia. Agora me ajoelho neste corredor e pago por isso."
+
+msgid "DLG_PENITENT_2"
+msgstr "Ela dorme no salão depois daquele arco, e só acorda se alguém a chamar pelo nome. Eu o conheço."
+
+msgid "DLG_PENITENT_3"
+msgstr "Recuem… eu a chamo agora. O Fogo é o sangue dela: tragam Água, ou tragam sorte."
+
+msgid "TOAST_PENITENT_AWAKENS"
+msgstr "O arco brilha: a Rainha das Súcubos desperta!"
+
+msgid "NPC_FORT_EXILE"
+msgstr "O Exilado"
+
+msgid "DLG_EXILE_1"
+msgstr "Me expulsaram por questionar o Comandante. Espero neste corredor desde então."
+
+msgid "DLG_EXILE_2"
+msgstr "Adiante está o Senhor Elfo Sombrio, capitão dos besteiros. Ele guarda a estrada do sul e não deixa ninguém passar."
+
+msgid "DLG_EXILE_3"
+msgstr "Não parem enquanto ele recarrega, e não deixem nada entre vocês e a porta do Comandante. Eu o desperto para vocês."
+
+msgid "TOAST_EXILE_AWAKENS"
+msgstr "Uma trompa soa: o Senhor Elfo Sombrio desperta!"
+
+msgid "QUEST_FOREST_STONE"
+msgstr "O guarda de pedra"
+
+msgid "QUEST_FOREST_STONE_DESC"
+msgstr "O Eremita da Pedra pede que vocês derrotem o Golem de Pedra que ele desperta na praça. É de Terra — teme o Fogo."
+
+msgid "QUEST_FOREST_FIRE"
+msgstr "O coração da pira"
+
+msgid "QUEST_FOREST_FIRE_DESC"
+msgstr "A Guardiã da Pira pede que vocês derrotem o Golem de Fogo que ela desperta das brasas da praça."
+
+msgid "DLG_HERMIT_ACTIVE"
+msgstr "O velho guarda ainda caminha. Derrubem-no, forasteiros."
+
+msgid "DLG_HERMIT_DONE"
+msgstr "A pedra voltou a dormir. Levem a recompensa; as pedras agradecem."
+
+msgid "DLG_PYRE_ACTIVE"
+msgstr "As brasas ainda rugem. Acabem com ele, forasteiros."
+
+msgid "DLG_PYRE_DONE"
+msgstr "A pira queima mansa de novo. Levem o que lhes devo."

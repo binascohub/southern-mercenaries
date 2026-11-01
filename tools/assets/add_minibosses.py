@@ -46,7 +46,7 @@ def set_monsters(area, enc_id, mons):
 
 
 add_encounter("sewers_02_canals", {"id": "s2_frog_king", "position": [0, -58], "monsters": [{"monster": "frog_king", "count": 1}]})
-add_encounter("forest_01_path", {"id": "f_viper_queen", "position": [55, -25], "monsters": [{"monster": "viper_queen", "count": 1}]})
+add_encounter("forest_01_path", {"id": "f_viper_queen", "position": [-3, -78], "monsters": [{"monster": "viper_queen", "count": 1}]})
 add_encounter("ruins_01_city", {"id": "r_alpha", "position": [20, -40], "monsters": [{"monster": "ruin_alpha", "count": 1}]})
 set_monsters("fort_01_gate", "fo_succubi_court", [{"monster": "succubus_queen", "count": 1}, {"monster": "succubus", "count": 1}])
 set_monsters("mine_01_crystal_vein", "m_troll", [{"monster": "troll_chief", "count": 1}])

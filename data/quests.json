@@ -31,22 +31,6 @@
       "xp": 200
     }
   },
-  "forest_golems": {
-    "name_key": "QUEST_FOREST_GOLEMS",
-    "desc_key": "QUEST_FOREST_GOLEMS_DESC",
-    "type": "village",
-    "giver": "village_wife",
-    "area": "forest_01_path",
-    "clear": [
-      "f_golem_stone",
-      "f_golem_ice",
-      "f_golem_fire"
-    ],
-    "reward": {
-      "gold": 180,
-      "xp": 350
-    }
-  },
   "royal_heart": {
     "name_key": "QUEST_ROYAL_HEART",
     "desc_key": "QUEST_ROYAL_HEART_DESC",
@@ -115,6 +99,35 @@
     "reward": {
       "gold": 250,
       "xp": 500
+    }
+  },
+  "forest_stone_golem": {
+    "name_key": "QUEST_FOREST_STONE",
+    "desc_key": "QUEST_FOREST_STONE_DESC",
+    "type": "village",
+    "giver": "forest_hermit",
+    "area": "forest_01_path",
+    "clear": [
+      "f_golem_stone"
+    ],
+    "target_element": "fire",
+    "reward": {
+      "gold": 150,
+      "xp": 300
+    }
+  },
+  "forest_fire_golem": {
+    "name_key": "QUEST_FOREST_FIRE",
+    "desc_key": "QUEST_FOREST_FIRE_DESC",
+    "type": "village",
+    "giver": "forest_pyre_keeper",
+    "area": "forest_01_path",
+    "clear": [
+      "f_golem_fire"
+    ],
+    "reward": {
+      "gold": 200,
+      "xp": 400
     }
   }
 }

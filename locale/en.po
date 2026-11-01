@@ -2624,16 +2624,16 @@ msgid "DLG_HUNTER_ACTIVE"
 msgstr "Three of them, in the grove, past the stones. Fire, remember. Fire."
 
 msgid "DLG_HUNTER_DONE"
-msgstr "Quiet at last! The deer are coming back. Elara has more work for you, if you have the stomach."
+msgstr "Quiet at last! The deer are coming back. If you want more, talk to the Hermit and the Keeper in the squares."
 
 msgid "DLG_WIFE_1"
 msgstr "Don't mind the smell, it's the hides. I'm Elara. Bertram says you fight what hunters cannot."
 
 msgid "DLG_WIFE_2"
-msgstr "Stones have started to walk in these woods — golems of rock, ice and fire, trampling where our paths used to be. My racks, my fish… everything. The ice one roams to the east; the other two only wake if someone talks to the Hermit and the Keeper in the squares."
+msgstr "Stones have started to walk in these woods, trampling where our paths used to be. My racks, my fish… everything. The ones who know how to wake and tame such things are the Hermit of the Stone and the Keeper of the Pyre, in the squares along the trail."
 
 msgid "DLG_WIFE_3"
-msgstr "Put all three down and I'll gladly hand over our savings."
+msgstr "Talk to them — and come back in one piece. The things inside the caves — toads, bats, reptiles and beasts — are no joke either."
 
 msgid "DLG_WIFE_ACTIVE"
 msgstr "Stone and fire sleep in the squares — talk to the Hermit and the Keeper. The ice one is to the east."
@@ -2859,3 +2859,60 @@ msgstr "Mini-boss chest"
 
 msgid "TOAST_MINIBOSS_CHEST"
 msgstr "The mini-boss left a chest!"
+
+msgid "MONSTER_DARK_ELF_LORD"
+msgstr "Dark Elf Lord"
+
+msgid "NPC_FORT_PENITENT"
+msgstr "The Penitent"
+
+msgid "DLG_PENITENT_1"
+msgstr "I served the Queen of Succubi once. Now I kneel in this corridor and pay for it."
+
+msgid "DLG_PENITENT_2"
+msgstr "She sleeps in the hall beyond that arch, and she will not wake unless someone calls her by name. I know it."
+
+msgid "DLG_PENITENT_3"
+msgstr "Step back… I call her now. Fire is her blood: bring water, or bring luck."
+
+msgid "TOAST_PENITENT_AWAKENS"
+msgstr "The arch glows: the Succubus Queen awakens!"
+
+msgid "NPC_FORT_EXILE"
+msgstr "The Exile"
+
+msgid "DLG_EXILE_1"
+msgstr "They cast me out for questioning the Commander. I have waited in this corridor ever since."
+
+msgid "DLG_EXILE_2"
+msgstr "Beyond lies the Dark Elf Lord, captain of the crossbowmen. He keeps the south road and never lets anyone pass."
+
+msgid "DLG_EXILE_3"
+msgstr "Keep moving while he reloads, and let nothing get between you and the Commander's door. I will wake him for you."
+
+msgid "TOAST_EXILE_AWAKENS"
+msgstr "A horn sounds: the Dark Elf Lord awakens!"
+
+msgid "QUEST_FOREST_STONE"
+msgstr "The Stone Warden"
+
+msgid "QUEST_FOREST_STONE_DESC"
+msgstr "The Hermit of the Stone asks you to defeat the Stone Golem he awakens in the square. It is of Earth — it fears Fire."
+
+msgid "QUEST_FOREST_FIRE"
+msgstr "The Heart of the Pyre"
+
+msgid "QUEST_FOREST_FIRE_DESC"
+msgstr "The Keeper of the Pyre asks you to defeat the Fire Golem she awakens from the embers of the square."
+
+msgid "DLG_HERMIT_ACTIVE"
+msgstr "The old warden still walks. Bring him down, strangers."
+
+msgid "DLG_HERMIT_DONE"
+msgstr "The stone sleeps again. Take your reward; the stones are grateful."
+
+msgid "DLG_PYRE_ACTIVE"
+msgstr "The embers still roar. Put an end to him, strangers."
+
+msgid "DLG_PYRE_DONE"
+msgstr "The pyre burns gently again. Take what I owe you."

@@ -911,9 +911,9 @@ func _test_sewers() -> void:
 	for prop: Dictionary in GameData.arenas.forest_01_path.props:
 		if prop.has("summon"):
 			golems.append(prop.summon)
-	_check(golems.size() == 4 and golems.all(func(e: Dictionary) -> bool:
+	_check(golems.size() == 2 and golems.all(func(e: Dictionary) -> bool:
 		var m: Dictionary = GameData.monsters.get(e.monsters[0].monster, {})
-		return m.get("category", "") == "elite" and MonsterModel.FAMILIES.has(m.get("look", "")) and float(m.get("damage", 0)) > 0.0), "Floresta tem os golens (gelo x2 e os dois invocados)")
+		return m.get("category", "") == "elite" and MonsterModel.FAMILIES.has(m.get("look", "")) and float(m.get("damage", 0)) > 0.0), "Floresta tem os dois golens invocados (mini-chefes)")
 	# Floresta: o bando de répteis (corpo a corpo, com modelo).
 	var reptiles: Array = GameData.arenas.forest_01_path.encounters.filter(func(e: Dictionary) -> bool: return e.id == "f_reptiles")
 	_check(reptiles.size() == 1 and reptiles[0].monsters[0].monster == "forest_reptile" and reptiles[0].monsters[0].count == 3
@@ -933,10 +933,10 @@ func _test_sewers() -> void:
 	for prop: Dictionary in forest.props:
 		if prop.has("summon"):
 			forest_ids.append(prop.summon.id)    # os grupos invocados também contam como "limpos"
-	var village_npcs: Array = forest.props.filter(func(p: Dictionary) -> bool: return p.kind == "npc" and not p.has("summon"))
-	_check(village_npcs.size() == 3 and village_npcs.all(func(p: Dictionary) -> bool: return GameData.npcs.has(p.npc)), "Floresta tem o casal da aldeia")
+	var village_npcs: Array = forest.props.filter(func(p: Dictionary) -> bool: return p.kind == "npc")
+	_check(village_npcs.size() == 5 and village_npcs.all(func(p: Dictionary) -> bool: return GameData.npcs.has(p.npc)), "Floresta tem o casal da aldeia")
 	_check(forest.rooms.any(func(r: Dictionary) -> bool: return r.id == "village"), "Floresta tem a sala da aldeia")
-	for quest_id in ["forest_reptiles", "forest_golems", "forest_leshy"]:
+	for quest_id in ["forest_reptiles", "forest_stone_golem", "forest_fire_golem", "forest_leshy"]:
 		var mission: Dictionary = GameData.quests.get(quest_id, {})
 		_check(mission.get("area", "") == "forest_01_path" and mission.get("clear", []).all(func(id: String) -> bool: return id in forest_ids)
 			and village_npcs.any(func(p: Dictionary) -> bool: return p.npc == mission.get("giver", "")) and tr(mission.get("name_key", "")) != "",
@@ -950,7 +950,7 @@ func _test_sewers() -> void:
 	for e: Dictionary in forest.encounters:
 		if GameData.monsters[e.monsters[0].monster].get("category", "") in ["common", "elite"]:     # (os mini-chefes ficam de fora)
 			sectors[e.monsters[0].monster] = true
-	_check(sectors.size() == 6, "Floresta tem seis tipos de monstro, um por setor (%d)" % sectors.size())
+	_check(sectors.size() == 4, "Floresta tem quatro salas de monstros, um tipo em cada (%d)" % sectors.size())
 	var summoners: Array = forest.props.filter(func(p: Dictionary) -> bool: return p.has("summon"))
 	_check(summoners.size() == 2 and summoners.all(func(p: Dictionary) -> bool:
 		var group: Dictionary = p.summon

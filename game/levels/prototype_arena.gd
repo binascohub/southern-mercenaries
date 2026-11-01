@@ -2119,6 +2119,8 @@ func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3,
 				node.position = Vector3(c.x - half.x + tile.x * (ix + 0.5), 0.01, c.z - half.z + tile.y * (iz + 0.5))
 				_area_root.add_child(node)
 				_tint_piece(node)
+				if floor_piece == "Floor_WoodDark" and style.get("wood", false):
+					_deckify(node)
 	var low := height < 1.5
 	var walls: Array = room.get("walls", style.get("walls", []))
 	var fence: String = style.get("low", "")
@@ -2279,15 +2281,32 @@ func _woodify(node: Node3D) -> void:
 		if trim == null:
 			continue
 		if not _planks.has(trim):
-			var copy := trim.duplicate() as StandardMaterial3D
-			copy.albedo_color = copy.albedo_color * WOOD_PLANK
-			copy.uv1_scale = WOOD_UV_SCALE
-			copy.uv1_offset = WOOD_UV_OFFSET
+			var boards := _tiled_material("wood_wall_1", Vector3(0.5, 0.25, 0.5), Color(0.95, 0.8, 0.62))
+			var copy := boards if boards else trim.duplicate() as StandardMaterial3D
+			if boards == null:
+				copy.albedo_color = copy.albedo_color * WOOD_PLANK
+				copy.uv1_scale = WOOD_UV_SCALE
+				copy.uv1_offset = WOOD_UV_OFFSET
 			_planks[trim] = copy
 		for i in m.get_surface_override_material_count():
 			var material := m.get_active_material(i) as StandardMaterial3D
 			if material and WOOD_REPLACES.any(func(part: String) -> bool: return material.resource_name.contains(part)):
 				m.set_surface_override_material(i, _planks[trim])
+
+
+## Convés do porto e da doca: o piso de tábuas do kit troca a madeira pelas tábuas fotográficas.
+func _deckify(node: Node3D) -> void:
+	if _deck == null:
+		_deck = _tiled_material("wood_floor_2", Vector3.ONE * 0.5, Color(0.92, 0.8, 0.68))
+	if _deck == null:
+		return
+	for mesh in node.find_children("*", "MeshInstance3D", true, false):
+		var m := mesh as MeshInstance3D
+		for i in m.get_surface_override_material_count():
+			m.set_surface_override_material(i, _deck)
+
+
+var _deck: StandardMaterial3D
 
 
 ## Violão no colo do músico sentado (feito em código): caixa, boca escura e braço para a esquerda dele;
@@ -2343,6 +2362,28 @@ func _give_guitar(model: HeroModel) -> void:
 	strum.tween_property(guitar, "rotation:z", deg_to_rad(15), 0.35).set_trans(Tween.TRANS_SINE)
 
 
+## Biblioteca de texturas dos mapas (assets/textures/maps, Lattice, CC0): null se faltar o arquivo,
+## e quem usa mantém o visual gerado em código.
+func _map_texture(file: String) -> Texture2D:
+	var path := "res://assets/textures/maps/%s.webp" % file
+	return load(path) as Texture2D if ResourceLoader.exists(path) else null
+
+
+## Material de textura contínua projetada pelos três eixos (serve em qualquer peça, sem depender do UV);
+## `scale_` em repetições por metro (a textura de 480 px cobre ~1/scale m).
+func _tiled_material(file: String, scale_: Vector3, tint := Color.WHITE, rough := 0.95) -> StandardMaterial3D:
+	var texture := _map_texture(file)
+	if texture == null:
+		return null
+	var material := StandardMaterial3D.new()
+	material.albedo_texture = texture
+	material.albedo_color = tint
+	material.uv1_triplanar = true
+	material.uv1_scale = scale_
+	material.roughness = rough
+	return material
+
+
 ## Terra batida (rua de Tortuga) e palha (telhados): geradas por ruído, não há no kit.
 var _dirt: StandardMaterial3D
 var _thatch: StandardMaterial3D
@@ -2364,6 +2405,8 @@ func _noise_texture(dark: Color, light: Color, stretch: Vector2, frequency: floa
 
 func _dirt_material() -> StandardMaterial3D:
 	if _dirt == null:
+		_dirt = _tiled_material("dirt_1", Vector3.ONE * 0.22, Color(0.78, 0.62, 0.46), 1.0)
+	if _dirt == null:
 		_dirt = StandardMaterial3D.new()
 		_dirt.albedo_texture = _noise_texture(Color(0.25, 0.17, 0.1), Color(0.42, 0.31, 0.19), Vector2.ONE, 0.035, 11)
 		_dirt.uv1_triplanar = true
@@ -2374,6 +2417,8 @@ func _dirt_material() -> StandardMaterial3D:
 
 ## Telhado de palha: troca a telha do kit por palha amarelada, com fios no sentido da água.
 func _thatchify(node: Node3D) -> void:
+	if _thatch == null:
+		_thatch = _tiled_material("thatch_2", Vector3.ONE * 0.4, Color(1.2, 0.98, 0.62), 1.0)
 	if _thatch == null:
 		_thatch = StandardMaterial3D.new()
 		_thatch.albedo_texture = _noise_texture(Color(0.45, 0.33, 0.14), Color(0.86, 0.72, 0.38), Vector2(1.0, 0.07), 0.12, 23)
@@ -2393,6 +2438,8 @@ var _wood_flat: StandardMaterial3D
 
 
 func _wood_material() -> StandardMaterial3D:
+	if _wood_flat == null:
+		_wood_flat = _tiled_material("wood_3", Vector3.ONE * 0.9, Color(1.15, 0.82, 0.58), 0.9)
 	if _wood_flat == null:
 		_wood_flat = StandardMaterial3D.new()
 		_wood_flat.roughness = 0.9
@@ -2443,7 +2490,11 @@ func _build_statue(decor: Dictionary) -> void:
 	root.position = Vector3(decor.position[0], 0, decor.position[1])
 	root.rotation.y = deg_to_rad(float(decor.get("rotation", 0.0)))
 	_area_root.add_child(root)
-	var steps := [[Vector3(1.5, 0.16, 1.5), 0.08], [Vector3(1.1, 0.5, 1.1), 0.41]]
+	# O pedestal cresce com a estátua ("pedestal" = fator sobre 1,5 m de lado).
+	var base := float(decor.get("pedestal", 1.0))
+	var steps := [[Vector3(1.5, 0.16, 1.5) * base, 0.08], [Vector3(1.1, 0.5, 1.1) * base, 0.41]]
+	steps[0][0].y = 0.16
+	steps[1][0].y = 0.5
 	for step: Array in steps:
 		var mesh := MeshInstance3D.new()
 		var box := BoxMesh.new()
@@ -2453,24 +2504,34 @@ func _build_statue(decor: Dictionary) -> void:
 		mesh.position.y = step[1]
 		root.add_child(mesh)
 	var top := 0.66
-	var model := NpcModel.create(String(decor.statue)) if NpcModel.has_model(String(decor.statue)) else null
+	# Ou um papel de NPC ("statue"), ou um modelo qualquer ("statue_model", ex.: o Ogro como gigante).
+	var model: Node3D = null
+	if decor.has("statue_model"):
+		var packed := load(String(decor.statue_model)) as PackedScene
+		model = packed.instantiate() if packed else null
+	elif NpcModel.has_model(String(decor.get("statue", ""))):
+		model = NpcModel.create(String(decor.statue))
 	if model:
 		model.position.y = top
 		model.scale *= float(decor.get("scale", 1.15))
 		root.add_child(model)
-		model.set_pose(String(decor.get("pose", "idle")))
+		if model.has_method("set_pose"):
+			model.call("set_pose", String(decor.get("pose", "idle")))
 		for player in model.find_children("*", "AnimationPlayer", true, false):
 			(player as AnimationPlayer).speed_scale = 0.0
 		for mesh in model.find_children("*", "MeshInstance3D", true, false):
 			var m := mesh as MeshInstance3D
 			for i in m.get_surface_override_material_count():
 				m.set_surface_override_material(i, _wood_material())
+			if m.get_surface_override_material_count() == 0:
+				m.material_override = _wood_material()
 	var body := StaticBody3D.new()
 	body.collision_layer = 1
 	body.collision_mask = 0
 	var shape := CollisionShape3D.new()
 	var shape_box := BoxShape3D.new()
-	shape_box.size = Vector3(1.5, 1.0, 1.5)
+	shape_box.size = Vector3(1.5, 1.0, 1.5) * base
+	shape_box.size.y = 1.0
 	shape.shape = shape_box
 	body.add_child(shape)
 	body.position.y = 0.5
@@ -2828,7 +2889,7 @@ func _dress_side(face: Vector3, along: Vector3, inward: Vector3, length: float, 
 ## Objeto de cenário (data/arenas.json "decor"): mesa, banco, barril, carroça…
 ## Com "solid", uma caixa de colisão do tamanho dado.
 func _build_decor(decor: Dictionary) -> void:
-	if decor.has("statue"):
+	if decor.has("statue") or decor.has("statue_model"):
 		_build_statue(decor)
 		return
 	if decor.has("light"):
