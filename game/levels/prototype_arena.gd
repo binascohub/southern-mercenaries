@@ -2217,7 +2217,7 @@ func _pipe_mouth(on_wall: Vector3, inward: Vector3, rng: RandomNumberGenerator) 
 	root.position = on_wall + Vector3.UP * height
 	root.basis = Basis.looking_at(inward, Vector3.UP)  # -Z do nó = para dentro da sala
 	_area_root.add_child(root)
-	var rust := _grime_material("rust")
+	var rust := _grime_material("pipe")  # cano de cobre esverdeado (pátina)
 	var tube := MeshInstance3D.new()
 	var cylinder := CylinderMesh.new()
 	cylinder.top_radius = radius
@@ -2372,6 +2372,11 @@ func _grime_material(kind: String) -> StandardMaterial3D:
 		"band":
 			material.albedo_texture = _grime_texture(false)
 			material.roughness = 0.9
+		"pipe":
+			material.transparency = BaseMaterial3D.TRANSPARENCY_DISABLED
+			material.albedo_color = Color(0.2, 0.42, 0.28)
+			material.metallic = 0.4
+			material.roughness = 0.6
 		"rust":
 			material.transparency = BaseMaterial3D.TRANSPARENCY_DISABLED
 			material.albedo_color = Color(0.3, 0.17, 0.09)
