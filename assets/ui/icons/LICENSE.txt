@@ -10,3 +10,6 @@ Changes: one crystal upright and resized; icons rendered in each material's colo
 
 sword_D..S.png — 3D Swords Pack by mehrasaur (Inborn Ninja), CC0 1.0: https://opengameart.org/content/3d-swords-pack (tools/assets/sword_icons.py)
 dagger_D.png — Iron Knife by Clint Bellanger, CC0 1.0: https://opengameart.org/content/iron-knife (tools/assets/knife_icon.py)
+
+human_heart.png — render of Human Heart by Scribe / bart, CC0 1.0: https://opengameart.org/content/human-heart (tools/assets/build_quest_relics.py)
+old_skull.png — render of Old Skull by vrav / Snabisch, CC BY-SA 3.0: https://opengameart.org/content/old-skull (tools/assets/build_quest_relics.py)

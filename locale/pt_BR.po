@@ -1863,6 +1863,12 @@ msgstr "Que a luz do reino guie seus passos, mercenário. Aqui, na Capital, até
 msgid "DLG_PRIEST_2"
 msgstr "A guerra já passou, mas os mortos ainda pedem oração. Se voltar vivo da estrada, acenda uma vela por quem não voltou."
 
+msgid "NPC_CASTLE_GUARD"
+msgstr "Sentinela do Castelo"
+
+msgid "DLG_CASTLE_GUARD_1"
+msgstr "O castelo é só para quem tem assunto com a Coroa. Mercenário que bebeu demais pode esperar na praça."
+
 msgid "DLG_SERVICE_PORTALS"
 msgstr "Portais"
 

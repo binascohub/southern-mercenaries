@@ -1,0 +1,3 @@
+Quest_Heart.glb — "Human Heart" by Scribe / bart, CC0: https://opengameart.org/content/human-heart (mesh at rest pose, plain flesh color)
+Quest_Skull.glb — "Old Skull" by vrav / Snabisch, CC-BY-SA 3.0: https://opengameart.org/content/old-skull (diffuse + normal maps, 512 px)
+Converted by tools/assets/build_quest_relics.py. The inventory icons assets/ui/icons/human_heart.png and old_skull.png are renders of these two models.

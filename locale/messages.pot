@@ -1862,6 +1862,12 @@ msgstr ""
 msgid "DLG_PRIEST_2"
 msgstr ""
 
+msgid "NPC_CASTLE_GUARD"
+msgstr ""
+
+msgid "DLG_CASTLE_GUARD_1"
+msgstr ""
+
 msgid "DLG_SERVICE_PORTALS"
 msgstr ""
 

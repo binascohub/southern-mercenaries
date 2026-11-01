@@ -5575,7 +5575,8 @@
           0.6,
           -49.3
         ],
-        "rotation": 20
+        "rotation": 20,
+        "y": -0.4
       },
       {
         "piece": "Gold_Bed",
@@ -5584,7 +5585,8 @@
           -50.4
         ],
         "rotation": 200,
-        "scale": 0.7
+        "scale": 0.7,
+        "y": -0.4
       }
     ],
     "passive": true
@@ -44702,6 +44704,24 @@
         "position": [
           12,
           1
+        ]
+      },
+      {
+        "id": "castle_guard_w",
+        "kind": "npc",
+        "npc": "castle_guard",
+        "position": [
+          -3.4,
+          -19.2
+        ]
+      },
+      {
+        "id": "castle_guard_e",
+        "kind": "npc",
+        "npc": "castle_guard",
+        "position": [
+          3.4,
+          -19.2
         ]
       }
     ],

@@ -123,6 +123,8 @@ const MODELS := {
 	"defender": {"scene": "res://assets/models/characters/defender.glb", "scale": 1.07,
 		"poses": {"walk": "walk", "run": "run", "idle": "idle", "talk": "idle", "melee": "attack", "scared": "scared"}},
 	"guard": {"scene": "res://assets/models/characters/brigand_guard.glb", "scale": 1.0, "poses": {}},
+	# Sentinela do castelo da Capital: o mesmo Brigand (anthonymyers, CC BY 3.0; a versão rigada "Brigand2" é o mesmo personagem), parado de guarda.
+	"castle_guard": {"scene": "res://assets/models/characters/brigand_guard.glb", "scale": 1.0, "poses": {}},
 	# Aranhinha do esgoto (Spider animated, pantherone, CC BY 3.0): não ataca,
 	# só anda pelo chão. Arquivo de 1 m -> 40 cm, preta (decisão do autor).
 	"spider": {"scene": "res://assets/models/monsters/spider.glb", "scale": 0.4,

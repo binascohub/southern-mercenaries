@@ -356,5 +356,39 @@
         ]
       }
     ]
+  },
+  "castle_guard": {
+    "name_key": "NPC_CASTLE_GUARD",
+    "color": [
+      0.5,
+      0.5,
+      0.55
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_CASTLE_GUARD_1"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Buzzed"
+      ],
+      "hair_color": [
+        0.1,
+        0.08,
+        0.06
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "iron",
+        "hands": "iron",
+        "feet": "iron",
+        "head": "iron"
+      }
+    }
   }
 }

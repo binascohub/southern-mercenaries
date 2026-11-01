@@ -1863,6 +1863,12 @@ msgstr "May the kingdom's light guide your steps, mercenary. Here in the Capital
 msgid "DLG_PRIEST_2"
 msgstr "The war is over, but the dead still ask for prayer. If you come back alive from the road, light a candle for those who did not."
 
+msgid "NPC_CASTLE_GUARD"
+msgstr "Castle Sentinel"
+
+msgid "DLG_CASTLE_GUARD_1"
+msgstr "The castle is for those with business with the Crown. A mercenary who drank too much can wait in the square."
+
 msgid "DLG_SERVICE_PORTALS"
 msgstr "Portals"
 
