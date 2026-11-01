@@ -1041,7 +1041,15 @@ func _test_ninja_gear() -> void:
 	var suit := HeroModel.new()
 	add_child(suit)
 	suit.setup("male", {}, "ninja")
-	_check(suit.is_suit() and suit.visible_parts().size() == 4, "ninja: corpo próprio em 4 peças (uma por slot)")
+	var base_parts := suit.visible_parts()
+	_check(suit.is_suit() and not suit.suit_worn() and base_parts.has("Peasant_Body") and base_parts.has("Head") and not base_parts.has("Ninja_Body"),
+		"ninja: sem peça equipada aparece o Camponês, com rosto e cabelo (sem a roupa ninja)")
+	NinjaGear.apply(suit, {"body": "D", "head": "", "hands": "", "feet": ""})
+	var worn_parts := suit.visible_parts()
+	_check(suit.suit_worn() and worn_parts.size() == 4 and worn_parts.all(func(n: String) -> bool: return n.begins_with("Ninja_")),
+		"ninja: ao equipar uma peça veste a roupa ninja inteira em 4 peças, com capuz e máscara (sem rosto)")
+	NinjaGear.apply(suit, {"body": "", "head": "", "hands": "", "feet": ""})
+	_check(not suit.suit_worn(), "ninja: tirando as peças volta ao Camponês")
 	var cloth: Array[Color] = []
 	var others := func() -> Array:
 		var colors := []

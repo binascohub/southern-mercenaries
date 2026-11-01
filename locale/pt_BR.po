@@ -2988,6 +2988,3 @@ msgstr "O cais do Velho Lobo"
 
 msgid "QUEST_DOCKS_SMUGGLERS_DESC"
 msgstr "O Velho Lobo do Mar, na taverna, quer o cais das Docas livre de bichos: derrote todos os encontros do mapa das Docas."
-
-msgid "CHAR_NINJA_HOOD"
-msgstr "Capuz e máscara do Ninja"

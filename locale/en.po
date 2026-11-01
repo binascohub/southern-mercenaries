@@ -2988,6 +2988,3 @@ msgstr "The Old Sea Wolf's Pier"
 
 msgid "QUEST_DOCKS_SMUGGLERS_DESC"
 msgstr "The Old Sea Wolf, in the tavern, wants the Docks pier free of critters: defeat every encounter on the Docks map."
-
-msgid "CHAR_NINJA_HOOD"
-msgstr "Ninja hood and mask"

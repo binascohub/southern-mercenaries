@@ -22,7 +22,7 @@ arm = [o for o in bpy.data.objects if o.type == 'ARMATURE'][0]
 keep = []
 for o in list(bpy.data.objects):
     if o.type == 'MESH':
-        if o.name in ("Head", "Eyes", "Eyebrows") or o.name.startswith("Hair"):
+        if o.name in ("Head", "Eyes", "Eyebrows") or o.name.startswith(("Hair", "Peasant_")):
             keep.append(o)
         else:
             bpy.data.objects.remove(o, do_unlink=True)
@@ -137,11 +137,11 @@ for poly in mesh.polygons:
     r, g, b = px[min(2047, max(0, int(w * 2048))), min(2047, max(0, int(u * 2048)))]
     sat = (max(r, g, b) - min(r, g, b)) / (max(r, g, b) + 1e-6)
     cx, cy, cz = np.mean(P[list(poly.vertices)], axis=0)
-    skin = r > 0.4 and r > g >= b * 0.95 and 0.12 < sat <= 0.62 and (cz < 1.5 or cy < 0)  # (no capuz, só o rosto da frente é pele)
-    sash = r > 0.15 and r > g >= b * 0.8 and sat > 0.62 and g < 0.5 * r
+    skin = r > 0.4 and r > g >= b * 0.95 and 0.12 < sat <= 0.62 and cy < 0  # (só a frente: rosto e peito; as mãos já ficam pela regra das luvas)
+    sash = r > 0.15 and r > g >= b * 0.8 and sat > 0.62 and g < 0.5 * r and cz < 1.3
     boots = cz < 0.38  # botas e faixas das pernas
     gloves = abs(cx) > 0.52  # faixas, luvas e mãos (a partir do cotovelo)
-    sword = abs(cx) < 0.25 and cz > 0.9 and cy > back_surface(cz) + 0.022  # a espada e a alça, soltas atrás das costas
+    sword = abs(cx) < 0.25 and 1.1 < cz < 1.7 and (cz < 1.55 or abs(cx) > 0.06) and cy > back_surface(cz) + 0.03  # a espada e a alça, soltas atrás das costas
     # só o tecido azul (casaco, calça, capuz e mangas) muda de cor; o resto fica como é no modelo
     face_class.append(1 if (skin or sash or boots or gloves or sword) else 0)
 # slot de cada face (peso dominante dos vértices)
@@ -152,8 +152,8 @@ def slot_of(poly):
             acc[names[j]] = acc.get(names[j], 0) + W[vi, j]
     top = max(acc, key=acc.get)
     base = top.rsplit("_", 1)[0] if top.endswith(("_l", "_r")) else top
-    if base in ("Head", "neck_01"):
-        return "Head"
+    if base in ("Head", "neck_01") and float(np.mean(P[list(poly.vertices)][:, 2])) > 1.53:
+        return "Head"  # só o capuz e a máscara: a gola abaixo fica no corpo e cobre o pescoço quando o capuz sai
     if base in ("lowerarm", "hand"):
         return "Hands"
     if base in ("calf", "foot", "ball"):

@@ -16,7 +16,6 @@ var _class: OptionButton
 var _class_ids: Array[String] = []
 ## Elemento de origem (02-0-elementos.md, seção 1): escolhido na criação, não muda.
 var _element: OptionButton
-var _hood: CheckBox
 var _create_button: Button
 var _full: Label
 var _hair: OptionButton
@@ -51,6 +50,9 @@ func _ready() -> void:
 	fields.add_theme_constant_override("separation", 6)
 	body.add_child(fields)
 	_class.item_selected.connect(func(_i: int) -> void:
+		if _class_ids[_class.selected] == "ninja":
+			_sex.select(0)  # o Ninja tem corpo, rosto e capuz próprios: sem escolha de sexo, rosto nem cabelo
+			_refresh_hair_options()
 		_suggest_name()
 		_on_look_changed())
 	fields.add_child(_class)
@@ -82,11 +84,6 @@ func _ready() -> void:
 		_skin.add_item("CHAR_SKIN_%d" % i)
 	_skin.item_selected.connect(_on_look_changed)
 	fields.add_child(_skin)
-	# Ninja: ver o herói com e sem capuz e máscara (na cidade ele aparece sem).
-	_hood = CheckBox.new()
-	_hood.text = "CHAR_NINJA_HOOD"
-	_hood.toggled.connect(_on_look_changed)
-	fields.add_child(_hood)
 	# Prévia do equipamento por classificação (D a S).
 	_gear = OptionButton.new()
 	_gear.add_item("CHAR_GEAR_NONE")
@@ -157,13 +154,17 @@ func _refresh_hair_options() -> void:
 
 
 func _on_look_changed(_value: Variant = null) -> void:
-	var sex := CharacterData.SEXES[_sex.selected]
 	var class_id := _class_ids[_class.selected]
+	if class_id == "ninja" and _sex.selected != 0:
+		_sex.select(0)
+	var sex := CharacterData.SEXES[_sex.selected]
 	var has_gear := HeroGear.has_gear(class_id, sex)
-	_gear.visible = has_gear and class_id != "ninja"  # no Ninja o rank não muda a roupa (a cor é o elemento)
-	var rank: String = HeroGear.RANKS[_gear.selected - 1] if _gear.visible and _gear.selected > 0 else ""
-	_hood.visible = class_id == "ninja"
-	_preview.show_hero(sex, _current_look(), rank, class_id, Elements.ALL[_element.selected], _hood.visible and _hood.button_pressed)
+	_gear.visible = has_gear  # no Ninja: sem peça aparece o Camponês; com qualquer rank, a roupa ninja (o rank não muda a cor)
+	var rank: String = HeroGear.RANKS[_gear.selected - 1] if has_gear and _gear.selected > 0 else ""
+	for field: Control in [_sex, _hair, _hair_color, _skin]:
+		field.visible = class_id != "ninja"
+	_beard.visible = class_id != "ninja" and sex == "male"
+	_preview.show_hero(sex, _current_look(), rank, class_id, Elements.ALL[_element.selected])
 
 
 ## A escolha de aparência como a ficha guarda (índices).

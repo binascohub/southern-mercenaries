@@ -1294,8 +1294,6 @@ func _tick_visual(delta: float) -> void:
 		if action != "":
 			_model.play_action(action.get_slice(":", 0))
 	_model.update_state(speed, alive, mounted, charge_time > 0.15, blocking, jump_phase > 0.0)
-	var host_arena: Variant = get_parent().get("arena") if get_parent() else null
-	_model.set_hooded(not (host_arena is Dictionary and host_arena.get("town", false)))  # Ninja: rosto e cabelo à mostra na cidade
 	if _block_visual:
 		_block_visual.visible = blocking
 	# Aura: +1 brilho fraco nos pés … +5 aura máxima pulsando; amarelo (o elemento é a cor da roupa).

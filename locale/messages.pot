@@ -2975,6 +2975,3 @@ msgstr ""
 
 msgid "QUEST_DOCKS_SMUGGLERS_DESC"
 msgstr ""
-
-msgid "CHAR_NINJA_HOOD"
-msgstr ""

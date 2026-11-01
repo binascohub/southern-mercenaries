@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 
 ## Mostra o herói do sexo dado com a aparência (formato da ficha, ver Appearance) e, se `gear_rank`
 ## (D a S) vier, com o equipamento dessa classificação.
-func show_hero(sex: String, look: Dictionary, gear_rank := "", class_id := "ninja", element := "fire", hooded := false) -> void:
+func show_hero(sex: String, look: Dictionary, gear_rank := "", class_id := "ninja", element := "fire") -> void:
 	if _model:
 		_holder.remove_child(_model)
 		_model.queue_free()
@@ -53,7 +53,6 @@ func show_hero(sex: String, look: Dictionary, gear_rank := "", class_id := "ninj
 	_holder.add_child(_model)
 	_model.setup(sex, Appearance.model_look(sex, look, {}), class_id)
 	_model.set_suit_element(element)
-	_model.set_hooded(hooded)  # Ninja: com ou sem capuz e máscara (a caixa da criação); sem, o rosto e o cabelo aparecem
 	_model.set_outfit({})
 	if gear_rank != "":
 		# Prévia do equipamento da classe no rank escolhido (todas as peças do mesmo rank).

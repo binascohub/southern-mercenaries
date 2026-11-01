@@ -2,19 +2,19 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkaukkeui3xuf"
-path="res://.godot/imported/hero_ninja_female_T_Hair_2_Normal.jpg-563dce6daf7394a6d468506ca1ebc0db.ctex"
+uid="uid://bmr1po1hppjgf"
+path="res://.godot/imported/hero_ninja_T_Peasant_Normal.jpg-f5513cd8c9a9ef5e8f290b2171870a5e.ctex"
 metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "560e3650acc45f056ed4dce5ba1afcd9"
+"md5": "e5e4e1d5b122f94595b697b45c8d7215"
 }
 
 [deps]
 
-source_file="res://assets/models/characters/hero_ninja_female_T_Hair_2_Normal.jpg"
-dest_files=["res://.godot/imported/hero_ninja_female_T_Hair_2_Normal.jpg-563dce6daf7394a6d468506ca1ebc0db.ctex"]
+source_file="res://assets/models/characters/hero_ninja_T_Peasant_Normal.jpg"
+dest_files=["res://.godot/imported/hero_ninja_T_Peasant_Normal.jpg-f5513cd8c9a9ef5e8f290b2171870a5e.ctex"]
 
 [params]
 

@@ -45,7 +45,7 @@ const MELEE_COMBO := ["melee", "melee_b", "melee_c"]
 const COMBO_WINDOW := 1.2
 ## Ninja: corpo próprio (ninja.glb ligado ao mesmo esqueleto e às mesmas animações, tools/assets/build_ninja_hero.py), em quatro
 ## peças (uma por slot de equipamento) cujo tecido é tingido com a cor do rank (dress_suit); pele e faixa vermelha não mudam.
-const NINJA_SCENES := {"male": "res://assets/models/characters/hero_ninja.glb", "female": "res://assets/models/characters/hero_ninja_female.glb"}
+const NINJA_SCENE := "res://assets/models/characters/hero_ninja.glb"
 const SUIT_SLOTS := {"body": "Ninja_Body", "head": "Ninja_Head", "hands": "Ninja_Hands", "feet": "Ninja_Feet"}
 ## A cor da roupa do Ninja identifica o elemento de origem (fogo vermelho, água azul, vento branco, terra verde); o rank não muda a cor.
 const SUIT_COLORS := {
@@ -89,7 +89,8 @@ var _combo := 0
 ## Corpo do Ninja (uma peça por slot, tecido tingido pelo rank).
 var _suit := false
 var suit_element := "fire"
-var _hooded := false
+var _suit_worn := false
+var _suit_ranks := {}
 var _last_melee := -10.0
 
 
@@ -98,8 +99,8 @@ var _last_melee := -10.0
 func setup(sex: String, look: Dictionary, class_id := "") -> void:
 	self.sex = sex
 	var path: String = SCENES.get(sex, SCENES.male)
-	if class_id == "ninja" and ResourceLoader.exists(NINJA_SCENES.get(sex, NINJA_SCENES.male)):
-		path = NINJA_SCENES.get(sex, NINJA_SCENES.male)
+	if class_id == "ninja" and ResourceLoader.exists(NINJA_SCENE):
+		path = NINJA_SCENE  # os dois sexos usam o mesmo corpo: o Ninja sempre aparece de capuz e máscara
 		_suit = true
 	var scene: PackedScene = load(path) as PackedScene if ResourceLoader.exists(path) else null
 	if scene == null:
@@ -127,7 +128,6 @@ func setup(sex: String, look: Dictionary, class_id := "") -> void:
 			_base_colors.append(copy.albedo_color)
 	_build_kit_hair(hair_color)
 	set_outfit({})
-	set_hooded(true)
 	if look.has("skin"):
 		var skin: Array = look.skin
 		tint_skin(Color(skin[0], skin[1], skin[2]))
@@ -252,35 +252,36 @@ func is_suit() -> bool:
 	return _suit
 
 
-## Capuz e máscara do Ninja (campo de batalha) ou rosto e cabelo à mostra (cidade e criação de personagem).
-func set_hooded(on: bool) -> void:
-	if not _suit or on == _hooded:
-		return
-	_hooded = on
-	for part_name: String in _parts:
-		var mesh: MeshInstance3D = _parts[part_name]
-		if part_name == "Ninja_Head":
-			mesh.visible = on
-		elif part_name in ALWAYS or part_name in _hair:
-			mesh.visible = not on
+## O Ninja começa sem a roupa ninja (o Camponês de base, com rosto e cabelo) e só a veste ao equipar uma peça.
+func suit_worn() -> bool:
+	return _suit_worn
 
 
 ## Elemento de origem do Ninja: dá a cor do tecido.
 func set_suit_element(element: String) -> void:
 	suit_element = element
 	if _suit:
-		dress_suit({})
+		dress_suit(_suit_ranks)
 
 
 ## Veste o corpo do Ninja na cor do elemento (`_ranks` não muda a cor: o rank só dá brilho em torno do herói).
 ## Só o tecido azul de cada peça muda; botas, luvas, espada, faixa, rosto e mãos ficam como são.
-func dress_suit(_ranks: Dictionary) -> void:
+func dress_suit(ranks: Dictionary) -> void:
+	_suit_ranks = ranks
+	_suit_worn = ["body", "head", "hands", "feet"].any(func(slot: String) -> bool: return String(ranks.get(slot, "")) != "")
+	for part_name: String in _parts:
+		var piece: MeshInstance3D = _parts[part_name]
+		if part_name.begins_with("Ninja_"):
+			piece.visible = _suit_worn
+		elif part_name.begins_with("Peasant_"):
+			piece.visible = not _suit_worn
+		else:  # rosto e cabelo: a roupa ninja tem capuz e máscara por cima
+			piece.visible = not _suit_worn and (part_name in ALWAYS or part_name in _hair)
 	var tint: Color = SUIT_COLORS.get(suit_element, SUIT_COLORS.fire)
 	for slot: String in SUIT_SLOTS:
 		var mesh := _parts.get(SUIT_SLOTS[slot]) as MeshInstance3D
 		if mesh == null:
 			continue
-		mesh.visible = true
 		for i in mesh.get_surface_override_material_count():
 			var material := mesh.get_surface_override_material(i) as StandardMaterial3D
 			var index := _materials.find(material)
