@@ -50,7 +50,11 @@
         0.72,
         0.68
       ],
-      "pose": "sit"
+      "pose": "sit",
+      "outfit": {
+        "feet": "wood"
+      },
+      "mug": true
     }
   },
   "tavern_keeper": {
@@ -79,7 +83,10 @@
         0.18,
         0.1
       ],
-      "pose": "talk"
+      "pose": "talk",
+      "outfit": {
+        "body": "cloth"
+      }
     }
   },
   "bard": {
@@ -122,7 +129,11 @@
         0.65,
         0.3
       ],
-      "pose": "sit"
+      "pose": "sit",
+      "outfit": {
+        "body": "copper",
+        "head": "copper"
+      }
     }
   },
   "voodoo_priest": {

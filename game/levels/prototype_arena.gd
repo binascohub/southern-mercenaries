@@ -1787,6 +1787,8 @@ func _npc_body(parent: Node3D, look: Dictionary) -> HeroModel:
 	model.setup(String(look.get("sex", "male")), look)
 	model.set_outfit(look.get("outfit", {}))
 	model.set_pose(String(look.get("pose", "idle")))
+	if look.get("mug", false) and Kit.has("Mug_Wood"):
+		model.attach("hand_r", Kit.piece("Mug_Wood"), Player.HAND_GRIP, Vector3(0.4, 0.9, 0.1))
 	return model
 
 
