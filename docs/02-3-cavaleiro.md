@@ -83,10 +83,10 @@ Em Tortuga, pela primeira vez na vida, Dália soube o que era não ter nada. E *
 | Elemento | Água / Fogo / Ar / Terra |
 | Sexo | Masculino (história de Dorian) / feminino (história de Dália) |
 | Nome | Texto livre (padrão conforme o sexo) |
-| Rosto | 4 opções por sexo |
-| Cabelo | 6 estilos por sexo + cor |
-| Barba | Só masculino: 4 opções (incluindo sem barba) |
-| Pele | 6 tons |
+| Rosto | Planejado (4 opções por sexo): os modelos atuais têm uma cabeça só |
+| Cabelo | 3 estilos por sexo + sem cabelo, e 8 cores (implementado; mais estilos dependem de novos modelos) |
+| Barba | Só masculino: com ou sem barba (implementado; mais estilos dependem de novos modelos) |
+| Pele | 6 tons (implementado) |
 | Nome do cavalo | Texto livre (padrão: Corvo ou Aurora) |
 | Pelagem do cavalo | Negro, castanho, branco, malhado (padrão: negro para Dorian, branco para Dália) |
 

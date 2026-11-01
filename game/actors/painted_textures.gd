@@ -12,7 +12,7 @@ static var _cache := {}
 
 
 ## Material pintado: `color` é a cor base; `kind` um de skin, cloth, leather,
-## hair, wood; `tile` o tamanho (em unidades do modelo) de uma repetição.
+## hair, wood, chain (malha), metal (chapa); `tile` o tamanho (em unidades do modelo) de uma repetição.
 static func material(source: StandardMaterial3D, kind: String, color: Color, tile: float) -> StandardMaterial3D:
 	var out := source.duplicate() as StandardMaterial3D
 	var textures := _textures(kind)
@@ -22,7 +22,7 @@ static func material(source: StandardMaterial3D, kind: String, color: Color, til
 	out.normal_texture = textures.normal
 	out.normal_scale = float(textures.strength)
 	out.roughness = float(textures.roughness)
-	out.metallic = 0.0
+	out.metallic = float(textures.get("metallic", 0.0))
 	out.uv1_triplanar = true
 	out.uv1_scale = Vector3.ONE / tile
 	out.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
@@ -40,6 +40,7 @@ static func _textures(kind: String) -> Dictionary:
 	var coarse := _noise(0.09, 5)
 	var strength := 1.0
 	var roughness := 0.85
+	var metallic := 0.0
 	for y in SIZE:
 		for x in SIZE:
 			var b := blotch.get_pixel(x, y).r  # 0..1, manchas grandes
@@ -75,6 +76,25 @@ static func _textures(kind: String) -> Dictionary:
 					shade = 0.72 + grain_line * 0.2 + (b - 0.5) * 0.25
 					strength = 0.9
 					roughness = 0.88
+				"chain":
+					# Cota de malha: argolas entrelaçadas (anéis de 8 px, em fileiras alternadas).
+					var row := y / 4
+					var cx := (x + (4 if row % 2 == 0 else 0)) % 8 - 4
+					var cy := y % 4 - 2
+					var ring := absf(sqrt(float(cx * cx + cy * cy * 4)) - 3.0)
+					h = clampf(1.0 - ring * 0.6, 0.0, 1.0) * 0.8 + (g - 0.5) * 0.2
+					shade = 0.35 + clampf(1.0 - ring * 0.7, 0.0, 1.0) * 0.6 + (b - 0.5) * 0.1
+					strength = 1.8
+					roughness = 0.42
+					metallic = 0.75
+				"metal":
+					# Chapa escovada: riscos finos na horizontal e manchas de desgaste.
+					var streak := 0.5 + 0.5 * sin(TAU * (y * 2.0 + (g - 0.5) * 12.0) / SIZE * 3.0)
+					h = 0.5 + (streak - 0.5) * 0.25 + (c - 0.5) * 0.2
+					shade = 0.68 + streak * 0.14 + (b - 0.5) * 0.3
+					strength = 0.7
+					roughness = 0.38
+					metallic = 0.8
 				"hair":
 					# Fios compridos (na vertical da textura) com brilho fraco.
 					var strand := 0.5 + 0.5 * sin(TAU * (x * 2.0 + sin(TAU * y / SIZE) * 0.6) / 8.0 + g * 5.0)
@@ -100,6 +120,7 @@ static func _textures(kind: String) -> Dictionary:
 		"normal": ImageTexture.create_from_image(normal),
 		"strength": strength,
 		"roughness": roughness,
+		"metallic": metallic,
 	}
 	_cache[kind] = result
 	return result

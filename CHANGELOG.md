@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Tortuga's animals
+- Cats ("Simple Cat", drummyfish, CC0): three stroll along the streets and one naps by the Main Street (`assets/models/characters/cat.glb`, converted by `tools/assets/build_cat.py`; the walk is two shape keys, a still cat is the first frame). Added with the `cat` role in `data/arenas.json`.
+
 ### The Sewers
 - **Area 1 (Main Street Drains) is now a maze**: a 5 x 6 grid of 8 m rooms between the entrance hall and the outfall, with dead ends, a few loops, seven rat groups spread through it, extra puddles, barrels, crates and pots, two chests at the deepest dead ends and the secret chamber behind the east end (`tools/assets/build_sewer_maze.py` regenerates it).
 - Toxic puddles are now organic slimy green stains (glossy, with bubbles and a dark translucent rim) instead of flat green discs.
@@ -25,6 +28,8 @@
 - The courtesans and dancers (who wore a top and shorts) now wear long medieval gowns built in code from the author's references (`game/actors/clothing.gd`): royal blue with a yellow panel, crimson, wine with teal and gold lacing, orange with lime, black with purple and red linen, with bell, puff or cap sleeves and a contrasting centre panel. The gowns follow the bones, so they move with the dances. Everyone else keeps their own clothes; the code also knows vests, a wide-sleeved robe, a laced linen shirt and linen dresses (`"clothes"` in `data/crowd.json`) for later.
 
 ### Heroes
+- Ninja (male) gear by rank, **D** (simplest) to **S** (rarest and best): torn grey vest, grey hood with leather wraps, blue hood with chainmail sleeves and wrist blades, lamellar samurai-style armor, and black-and-purple horned armor with a cape and glowing lines. Each slot changes on its own; the rank comes from the item's material (cloth/iron D, steel C, copper B, silver A, gold S). New `chain` and `metal` painted textures. The creation screen has a "Gear" selector to preview every rank. Quality pass: the base clothes keep their stitching and wear (grayscale copy of the original texture, tinted per rank) instead of flat color; the tabard follows the body line by line with a trim and diamond; lamellar plates overlap with vertical cords; closed layered pauldrons; a draped, folded cape; a buckled belt; an open D vest. Female Ninja and the other classes follow.
+- Character creation now has hair style, hair color, beard (male only) and skin tone, with a rotating 3D preview of the hero. The choice is saved in the character sheet (`look`) and shown in game and for other players; old characters keep their class look. Face options are not available yet (the models have a single head). Data in `data/appearance.json`, code in `game/rpg/appearance.gd` and `game/ui/hero_preview.gd`.
 - **Jump** (key `X`, remappable; no default gamepad button): a 0.9 m hop in 0.6 s with the heroes' jump animation, synced in co-op. In the air you can walk and attack, and you pass over toxic puddles.
 
 ### Tavern

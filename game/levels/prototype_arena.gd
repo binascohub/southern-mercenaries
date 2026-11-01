@@ -557,6 +557,7 @@ func _spawn_player(peer_id: int, resume: Player = null) -> Player:
 		"peer_id": peer_id, "slot": slot, "class_id": character.data.class_id,
 		"position": position, "name": character.data.name, "level": character.data.level,
 		"sex": character.data.get("sex", "male"),
+		"look": character.data.get("look", {}),
 		"visual": character.equipment_visual(),
 		"element": character.current_element(),
 	})

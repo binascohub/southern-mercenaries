@@ -554,6 +554,87 @@ msgstr "Male"
 msgid "CHAR_SEX_FEMALE"
 msgstr "Female"
 
+msgid "CHAR_HAIR_Hair_SimpleParted"
+msgstr "Hair: parted"
+
+msgid "CHAR_HAIR_Hair_Buzzed"
+msgstr "Hair: short"
+
+msgid "CHAR_HAIR_Hair_Long"
+msgstr "Hair: long"
+
+msgid "CHAR_HAIR_Hair_Buns"
+msgstr "Hair: buns"
+
+msgid "CHAR_HAIR_Hair_BuzzedFemale"
+msgstr "Hair: buzzed"
+
+msgid "CHAR_HAIR_NONE"
+msgstr "Hair: none"
+
+msgid "CHAR_HAIR_COLOR_0"
+msgstr "Hair color: black"
+
+msgid "CHAR_HAIR_COLOR_1"
+msgstr "Hair color: dark brown"
+
+msgid "CHAR_HAIR_COLOR_2"
+msgstr "Hair color: brown"
+
+msgid "CHAR_HAIR_COLOR_3"
+msgstr "Hair color: auburn"
+
+msgid "CHAR_HAIR_COLOR_4"
+msgstr "Hair color: blond"
+
+msgid "CHAR_HAIR_COLOR_5"
+msgstr "Hair color: platinum"
+
+msgid "CHAR_HAIR_COLOR_6"
+msgstr "Hair color: gray"
+
+msgid "CHAR_HAIR_COLOR_7"
+msgstr "Hair color: white"
+
+msgid "CHAR_SKIN_0"
+msgstr "Skin: very fair"
+
+msgid "CHAR_SKIN_1"
+msgstr "Skin: fair"
+
+msgid "CHAR_SKIN_2"
+msgstr "Skin: tan"
+
+msgid "CHAR_SKIN_3"
+msgstr "Skin: brown"
+
+msgid "CHAR_SKIN_4"
+msgstr "Skin: dark"
+
+msgid "CHAR_SKIN_5"
+msgstr "Skin: very dark"
+
+msgid "CHAR_BEARD"
+msgstr "Beard"
+
+msgid "CHAR_GEAR_NONE"
+msgstr "Gear: starting"
+
+msgid "CHAR_GEAR_D"
+msgstr "Gear: rank D"
+
+msgid "CHAR_GEAR_C"
+msgstr "Gear: rank C"
+
+msgid "CHAR_GEAR_B"
+msgstr "Gear: rank B"
+
+msgid "CHAR_GEAR_A"
+msgstr "Gear: rank A"
+
+msgid "CHAR_GEAR_S"
+msgstr "Gear: rank S"
+
 msgid "CHAR_ENTRY"
 msgstr "{name} — {element} {class}, level {level}"
 

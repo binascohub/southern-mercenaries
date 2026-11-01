@@ -554,6 +554,87 @@ msgstr "Masculino"
 msgid "CHAR_SEX_FEMALE"
 msgstr "Femenino"
 
+msgid "CHAR_HAIR_Hair_SimpleParted"
+msgstr "Pelo: partido"
+
+msgid "CHAR_HAIR_Hair_Buzzed"
+msgstr "Pelo: corto"
+
+msgid "CHAR_HAIR_Hair_Long"
+msgstr "Pelo: largo"
+
+msgid "CHAR_HAIR_Hair_Buns"
+msgstr "Pelo: moños"
+
+msgid "CHAR_HAIR_Hair_BuzzedFemale"
+msgstr "Pelo: rapado"
+
+msgid "CHAR_HAIR_NONE"
+msgstr "Pelo: ninguno"
+
+msgid "CHAR_HAIR_COLOR_0"
+msgstr "Color de pelo: negro"
+
+msgid "CHAR_HAIR_COLOR_1"
+msgstr "Color de pelo: castaño oscuro"
+
+msgid "CHAR_HAIR_COLOR_2"
+msgstr "Color de pelo: castaño"
+
+msgid "CHAR_HAIR_COLOR_3"
+msgstr "Color de pelo: pelirrojo"
+
+msgid "CHAR_HAIR_COLOR_4"
+msgstr "Color de pelo: rubio"
+
+msgid "CHAR_HAIR_COLOR_5"
+msgstr "Color de pelo: platino"
+
+msgid "CHAR_HAIR_COLOR_6"
+msgstr "Color de pelo: canoso"
+
+msgid "CHAR_HAIR_COLOR_7"
+msgstr "Color de pelo: blanco"
+
+msgid "CHAR_SKIN_0"
+msgstr "Piel: muy clara"
+
+msgid "CHAR_SKIN_1"
+msgstr "Piel: clara"
+
+msgid "CHAR_SKIN_2"
+msgstr "Piel: morena clara"
+
+msgid "CHAR_SKIN_3"
+msgstr "Piel: morena"
+
+msgid "CHAR_SKIN_4"
+msgstr "Piel: oscura"
+
+msgid "CHAR_SKIN_5"
+msgstr "Piel: muy oscura"
+
+msgid "CHAR_BEARD"
+msgstr "Barba"
+
+msgid "CHAR_GEAR_NONE"
+msgstr "Equipo: inicial"
+
+msgid "CHAR_GEAR_D"
+msgstr "Equipo: rango D"
+
+msgid "CHAR_GEAR_C"
+msgstr "Equipo: rango C"
+
+msgid "CHAR_GEAR_B"
+msgstr "Equipo: rango B"
+
+msgid "CHAR_GEAR_A"
+msgstr "Equipo: rango A"
+
+msgid "CHAR_GEAR_S"
+msgstr "Equipo: rango S"
+
 msgid "CHAR_ENTRY"
 msgstr "{name} — {class} de {element}, nivel {level}"
 

@@ -77,7 +77,7 @@ var _last_melee := -10.0
 
 
 ## Monta o corpo do sexo dado, com o cabelo do visual da classe
-## ({hair: [nomes], hair_color: [r, g, b]}).
+## ({hair: [nomes], hair_color: [r, g, b], skin: [r, g, b] opcional}).
 func setup(sex: String, look: Dictionary) -> void:
 	var path: String = SCENES.get(sex, SCENES.male)
 	var scene: PackedScene = load(path) as PackedScene if ResourceLoader.exists(path) else null
@@ -105,6 +105,9 @@ func setup(sex: String, look: Dictionary) -> void:
 			_materials.append(copy)
 			_base_colors.append(copy.albedo_color)
 	set_outfit({})
+	if look.has("skin"):
+		var skin: Array = look.skin
+		tint_skin(Color(skin[0], skin[1], skin[2]))
 	if _anim:
 		if sex == "female":
 			_drop_finger_tracks()
@@ -141,6 +144,7 @@ func _on_animation_finished(_name: StringName) -> void:
 
 ## Mostra as peças conforme o equipamento ({slot: material}); tinge as de Ranger.
 func set_outfit(equip: Dictionary) -> void:
+	_restore_textures()
 	_shown_equip = equip.duplicate()
 	if _parts.is_empty():
 		return
@@ -161,6 +165,67 @@ func set_outfit(equip: Dictionary) -> void:
 					mesh.visible = true
 					if worn:
 						_tint(mesh, tint)
+
+
+## Esconde toda a roupa de base (o rosto e o cabelo ficam); NinjaGear mostra só o que precisa.
+func hide_clothes() -> void:
+	_restore_textures()
+	for part_name: String in _parts:
+		var mesh: MeshInstance3D = _parts[part_name]
+		if part_name in ALWAYS or part_name in _hair:
+			continue
+		mesh.visible = false
+
+
+## Mostra uma parte do corpo pelo nome, tingida de `tint`.
+## Com `flat`, troca a textura colorida (o conjunto de origem é verde) pela mesma em tons de cinza:
+## guarda costuras, dobras e desgaste, e a cor passa a vir só de `tint`.
+func show_part(part_name: String, tint: Color, flat := false) -> void:
+	if _parts.has(part_name):
+		var mesh: MeshInstance3D = _parts[part_name]
+		mesh.visible = true
+		_tint(mesh, tint)
+		if flat:
+			for i in mesh.get_surface_override_material_count():
+				var material := mesh.get_surface_override_material(i) as StandardMaterial3D
+				if material and material.albedo_texture and not String(material.resource_name).contains("Regular"):
+					material.set_meta("original_texture", material.albedo_texture)
+					material.albedo_texture = _grey_texture(material.albedo_texture)
+
+
+static var _grey_cache := {}
+
+
+static func _grey_texture(texture: Texture2D) -> Texture2D:
+	var key := texture.resource_path if texture.resource_path != "" else str(texture.get_rid())
+	if _grey_cache.has(key):
+		return _grey_cache[key]
+	var image := texture.get_image()
+	if image == null:
+		return texture
+	if image.is_compressed():
+		image.decompress()
+	image.convert(Image.FORMAT_L8)
+	image.convert(Image.FORMAT_RGB8)
+	image.generate_mipmaps()
+	var grey := ImageTexture.create_from_image(image)
+	_grey_cache[key] = grey
+	return grey
+
+
+## Devolve as texturas trocadas por show_part(flat).
+func _restore_textures() -> void:
+	for material in _materials:
+		if material.has_meta("original_texture"):
+			material.albedo_texture = material.get_meta("original_texture")
+			material.remove_meta("original_texture")
+
+
+## Cabelo e barba somem (capuz, máscara ou elmo por cima); `keep_beard` deixa a barba.
+func hide_hair(keep_beard := true) -> void:
+	for hair_name: String in _hair:
+		if _parts.has(hair_name) and not (keep_beard and hair_name == "Hair_Beard"):
+			_parts[hair_name].visible = false
 
 
 func outfit() -> Dictionary:

@@ -15,7 +15,7 @@ const CHECK_SALT := "southern-mercenaries/character"
 var data: Dictionary
 
 
-static func create(class_id: String, sex: String, hero_name: String, element := "fire") -> CharacterData:
+static func create(class_id: String, sex: String, hero_name: String, element := "fire", look := {}) -> CharacterData:
 	var c := CharacterData.new()
 	var cls := GameData.get_class_data(class_id)
 	var rng := RandomNumberGenerator.new()
@@ -31,6 +31,8 @@ static func create(class_id: String, sex: String, hero_name: String, element := 
 		"name": clean_name(hero_name),
 		"class_id": class_id,
 		"sex": sex if sex in SEXES else "male",
+		# Aparência escolhida na criação (índices; ver Appearance). Vazia = visual padrão da classe.
+		"look": Appearance.clean(sex if sex in SEXES else "male", look) if not look.is_empty() else {},
 		# Elemento de origem (não muda) e o da Poção Elemental ativa ("" = nenhuma).
 		"element": element if element in Elements.ALL else "fire",
 		"element_potion": "",

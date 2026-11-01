@@ -553,6 +553,87 @@ msgstr ""
 msgid "CHAR_SEX_FEMALE"
 msgstr ""
 
+msgid "CHAR_HAIR_Hair_SimpleParted"
+msgstr ""
+
+msgid "CHAR_HAIR_Hair_Buzzed"
+msgstr ""
+
+msgid "CHAR_HAIR_Hair_Long"
+msgstr ""
+
+msgid "CHAR_HAIR_Hair_Buns"
+msgstr ""
+
+msgid "CHAR_HAIR_Hair_BuzzedFemale"
+msgstr ""
+
+msgid "CHAR_HAIR_NONE"
+msgstr ""
+
+msgid "CHAR_HAIR_COLOR_0"
+msgstr ""
+
+msgid "CHAR_HAIR_COLOR_1"
+msgstr ""
+
+msgid "CHAR_HAIR_COLOR_2"
+msgstr ""
+
+msgid "CHAR_HAIR_COLOR_3"
+msgstr ""
+
+msgid "CHAR_HAIR_COLOR_4"
+msgstr ""
+
+msgid "CHAR_HAIR_COLOR_5"
+msgstr ""
+
+msgid "CHAR_HAIR_COLOR_6"
+msgstr ""
+
+msgid "CHAR_HAIR_COLOR_7"
+msgstr ""
+
+msgid "CHAR_SKIN_0"
+msgstr ""
+
+msgid "CHAR_SKIN_1"
+msgstr ""
+
+msgid "CHAR_SKIN_2"
+msgstr ""
+
+msgid "CHAR_SKIN_3"
+msgstr ""
+
+msgid "CHAR_SKIN_4"
+msgstr ""
+
+msgid "CHAR_SKIN_5"
+msgstr ""
+
+msgid "CHAR_BEARD"
+msgstr ""
+
+msgid "CHAR_GEAR_NONE"
+msgstr ""
+
+msgid "CHAR_GEAR_D"
+msgstr ""
+
+msgid "CHAR_GEAR_C"
+msgstr ""
+
+msgid "CHAR_GEAR_B"
+msgstr ""
+
+msgid "CHAR_GEAR_A"
+msgstr ""
+
+msgid "CHAR_GEAR_S"
+msgstr ""
+
 msgid "CHAR_ENTRY"
 msgstr ""
 

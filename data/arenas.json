@@ -1788,6 +1788,50 @@
         "weapon": "Weapon_Shortsword"
       },
       {
+        "role": "cat",
+        "position": [
+          3,
+          1.5
+        ],
+        "path": [
+          9,
+          2.5
+        ],
+        "speed": 0.7
+      },
+      {
+        "role": "cat",
+        "position": [
+          -18,
+          -3
+        ],
+        "path": [
+          -12,
+          -2
+        ],
+        "speed": 0.7
+      },
+      {
+        "role": "cat",
+        "position": [
+          15,
+          6
+        ],
+        "path": [
+          21,
+          5
+        ],
+        "speed": 0.6
+      },
+      {
+        "role": "cat",
+        "position": [
+          -3,
+          -5.5
+        ],
+        "rotation": 200
+      },
+      {
         "role": "rabbit",
         "position": [
           -8,

@@ -30,6 +30,8 @@ func _ready() -> void:
 	_test_states()
 	_test_combos()
 	_test_character_element()
+	_test_appearance()
+	_test_ninja_gear()
 	_test_skills()
 	_test_archer()
 	_test_ninja()
@@ -868,6 +870,50 @@ func _test_explore_map() -> void:
 	for room: Dictionary in area.rooms:
 		ExploreMap.reveal(mask, area, Vector2(room.center[0], room.center[1]))
 	_check(ExploreMap.explored_fraction(mask, area) > 0.95, "andando pela área toda, quase tudo aparece (%.2f)" % ExploreMap.explored_fraction(mask, area))
+
+
+## Aparência na criação (data/appearance.json): validação, ficha e visual do modelo.
+func _test_appearance() -> void:
+	var clean := Appearance.clean("male", {"hair": 99, "hair_color": -5, "skin": 40, "beard": true})
+	_check(clean.hair == Appearance.hair_styles("male").size() - 1 and clean.hair_color == 0 and clean.skin == Appearance.skin_count() - 1,
+		"aparência: valores fora da lista voltam para dentro dela")
+	_check(clean.beard, "aparência: barba só no masculino (masculino mantém)")
+	_check(not Appearance.clean("female", {"beard": true}).beard, "aparência: feminino não tem barba")
+	_check(Appearance.hair_styles("female").has("Hair_Long") and Appearance.hair_styles("male").has("Hair_Buzzed"),
+		"aparência: cada sexo tem os seus cabelos")
+	var c := CharacterData.create("knight", "male", "Teste", "fire", {"hair": 1, "hair_color": 3, "skin": 4, "beard": true})
+	var back := CharacterData.from_dict(c.to_dict())
+	_check(back != null and back.data.look == c.data.look and back.data.look.skin == 4 and back.data.look.beard,
+		"aparência: a escolha vai na ficha e volta igual do save")
+	_check(not back.is_edited(), "aparência: a ficha com aparência não conta como editada")
+	var legacy := CharacterData.create("mage", "female", "Antiga")
+	_check(legacy.data.look.is_empty(), "aparência: sem escolha, a ficha fica sem 'look' (visual da classe)")
+	var look := Appearance.model_look("male", c.data.look, {})
+	_check(look.hair == ["Hair_Buzzed", "Hair_Beard"] and look.skin.size() == 3 and look.hair_color.size() == 3,
+		"aparência: o visual do modelo junta cabelo, barba, cor e pele")
+	_check(Appearance.model_look("female", {}, {"hair": ["Hair_Long"]}).hair == ["Hair_Long"],
+		"aparência: personagem antigo mantém o visual padrão da classe")
+	var bald := Appearance.model_look("female", {"hair": 3}, {})
+	_check(bald.hair.is_empty(), "aparência: a opção 'sem cabelo' não põe malha")
+
+
+## Conjuntos do Ninja por rank (D a S): material -> rank, e cada rank veste e desveste sem sobras.
+func _test_ninja_gear() -> void:
+	_check(NinjaGear.rank_of("cloth") == "D" and NinjaGear.rank_of("iron") == "D" and NinjaGear.rank_of("steel") == "C"
+		and NinjaGear.rank_of("copper") == "B" and NinjaGear.rank_of("silver") == "A" and NinjaGear.rank_of("gold") == "S",
+		"ninja: material vira rank (pano/ferro D, aço C, cobre B, prata A, ouro S)")
+	_check(NinjaGear.has_gear("ninja", "male") and not NinjaGear.has_gear("mage", "male"), "ninja: só o Ninja masculino tem conjuntos por rank")
+	var hero := HeroModel.new()
+	add_child(hero)
+	hero.setup("male", {"hair": ["Hair_SimpleParted"], "hair_color": [0.2, 0.12, 0.07]})
+	var counts := {}
+	for rank in NinjaGear.RANKS:
+		NinjaGear.apply(hero, {"body": rank, "head": rank, "hands": rank, "feet": rank})
+		counts[rank] = (hero.get_meta(NinjaGear.META) as Array).size()
+	_check(counts.D >= 3 and counts.S > counts.D, "ninja: cada rank monta suas peças (D %d, C %d, B %d, A %d, S %d)" % [counts.D, counts.C, counts.B, counts.A, counts.S])
+	NinjaGear.apply(hero, {"body": "", "head": "", "hands": "", "feet": ""})
+	_check((hero.get_meta(NinjaGear.META) as Array).is_empty(), "ninja: sem peças equipadas não monta nada")
+	hero.queue_free()
 
 
 func _test_ui_theme() -> void:

@@ -62,10 +62,10 @@ Hoje vive em Tortuga contando cada moeda, como contava cada flecha. Não confia 
 | Elemento | Água / Fogo / Ar / Terra |
 | Sexo | Masculino / feminino |
 | Nome | Texto livre (padrão conforme o sexo) |
-| Rosto | 4 opções por sexo |
-| Cabelo | 6 estilos por sexo + cor |
-| Barba | Só masculino: 4 opções (incluindo sem barba) |
-| Pele | 6 tons |
+| Rosto | Planejado (4 opções por sexo): os modelos atuais têm uma cabeça só |
+| Cabelo | 3 estilos por sexo + sem cabelo, e 8 cores (implementado; mais estilos dependem de novos modelos) |
+| Barba | Só masculino: com ou sem barba (implementado; mais estilos dependem de novos modelos) |
+| Pele | 6 tons (implementado) |
 | Pinturas de caça no rosto | 4 opções (incluindo nenhuma) |
 
 - Sexo é só visual e de voz: **não muda atributos nem habilidades**.

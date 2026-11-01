@@ -78,6 +78,8 @@ var shield := 0.0
 var hidden := false
 ## Corpo masculino ou feminino (vem com o herói ao nascer; não muda).
 var sex := "male"
+## Aparência escolhida na criação (Appearance); vazia = o visual padrão da classe.
+var look := {}
 ## Última ação para a animação nos PCs ("tipo:número"): melee, cast, shoot, roll, hit.
 var action := ""
 ## Cavaleiro montado (02-3-cavaleiro.md, seção 3).
@@ -166,6 +168,7 @@ static func create(spawn: Dictionary) -> Player:
 	player.slot = spawn.slot
 	player.class_id = spawn.class_id
 	player.sex = spawn.get("sex", "male")
+	player.look = spawn.get("look", {})
 	player.position = spawn.position
 	player.net_position = spawn.position
 	player.hero_name = spawn.get("name", "")
@@ -1093,7 +1096,7 @@ func _build_visual() -> void:
 	add_child(_visual)
 	_model = HeroModel.new()
 	_visual.add_child(_model)
-	_model.setup(sex, data.get("look", {}).get(sex, {}))
+	_model.setup(sex, Appearance.model_look(sex, look, data.get("look", {}).get(sex, {})))
 
 	var archer := class_id == "archer"
 	var ninja := class_id == "ninja"
@@ -1361,7 +1364,14 @@ func _tick_visual(delta: float) -> void:
 ## aparece no herói), tingida pela cor do material; a arma também.
 func _update_gear() -> void:
 	_shown_visual = equip_visual.duplicate()
-	_model.set_outfit(equip_visual)
+	if NinjaGear.has_gear(class_id, sex):
+		# O Ninja usa os conjuntos por rank (D a S): o rank vem do material de cada peça.
+		var ranks := {}
+		for slot in NinjaGear.SLOTS:
+			ranks[slot] = NinjaGear.rank_of(String(equip_visual[slot])) if equip_visual.has(slot) else ""
+		NinjaGear.apply(_model, ranks)
+	else:
+		_model.set_outfit(equip_visual)
 	var weapon: String = equip_visual.get("weapon", "wood")
 	_staff_material.albedo_color = Color(GameData.materials.get(weapon, GameData.materials.wood).color)
 

@@ -130,6 +130,9 @@ const MODELS := {
 	"rabbit": {"scene": "res://assets/models/characters/rabbit.glb", "scale": 0.04,
 		"poses": {"walk": "jump", "run": "run", "idle": "idle", "talk": "sit"}},
 	# Galinha (cdmir, CC0): anda e cisca pelas cozinhas de Tortuga (12,6 unidades -> 0,4 m).
+	# Gato (Simple Cat, drummyfish, CC0): passeia pelas ruas de Tortuga; parado, fica no 1º quadro da caminhada.
+	"cat": {"scene": "res://assets/models/characters/cat.glb", "scale": 0.2,
+		"poses": {"walk": "walk"}},
 	"chicken": {"scene": "res://assets/models/characters/chicken.glb", "scale": 0.032,
 		"poses": {"walk": "walk", "idle": "eat", "talk": "idle"}},
 }

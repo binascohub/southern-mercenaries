@@ -1,0 +1,26 @@
+{
+  "_comment": "Aparência escolhida na criação do personagem (02-personagens.md, 'Personalização'): só visual, não muda atributos nem habilidades. 'hair' lista as malhas de cabelo de cada sexo ('' = sem cabelo); 'beard' é a malha de barba (só masculino); 'hair_color' e 'skin' são paletas (a escolha é o índice). Rosto fica fora: os modelos têm uma cabeça só.",
+  "hair": {
+    "male": ["Hair_SimpleParted", "Hair_Buzzed", ""],
+    "female": ["Hair_Long", "Hair_Buns", "Hair_BuzzedFemale", ""]
+  },
+  "beard": "Hair_Beard",
+  "hair_color": [
+    [0.07, 0.05, 0.04],
+    [0.2, 0.12, 0.07],
+    [0.32, 0.2, 0.1],
+    [0.45, 0.2, 0.1],
+    [0.75, 0.6, 0.28],
+    [0.9, 0.85, 0.7],
+    [0.55, 0.55, 0.55],
+    [0.92, 0.92, 0.92]
+  ],
+  "skin": [
+    [1.0, 0.9, 0.8],
+    [1.0, 0.82, 0.68],
+    [0.88, 0.68, 0.5],
+    [0.7, 0.5, 0.35],
+    [0.5, 0.34, 0.24],
+    [0.34, 0.22, 0.16]
+  ]
+}
