@@ -2964,3 +2964,27 @@ msgstr "Sand Lamassu"
 
 msgid "MONSTER_QUEEN_SCORPION"
 msgstr "Scorpion Queen"
+
+msgid "NPC_SEATED_PIRATE"
+msgstr "Old Sea Wolf"
+
+msgid "DLG_PIRATE_1"
+msgstr "Sit down, mercenary. See that pier out there, at the Docks? It used to be mine: now it's just frogs, bats and ugly anglerfish."
+
+msgid "DLG_PIRATE_2"
+msgstr "My ship docks there and I can't unload a barrel without losing a finger. Clear the pier for me."
+
+msgid "DLG_PIRATE_3"
+msgstr "Kill every critter on the Docks: frogs, ugly frogs, bats and the anglerfish. I pay in gold and rum… more in gold."
+
+msgid "DLG_PIRATE_ACTIVE"
+msgstr "There are still critters on the pier. Come back when the last one is floating."
+
+msgid "DLG_PIRATE_DONE"
+msgstr "The pier is clean! A toast to the mercenary who is not afraid to get their feet wet."
+
+msgid "QUEST_DOCKS_SMUGGLERS"
+msgstr "The Old Sea Wolf's Pier"
+
+msgid "QUEST_DOCKS_SMUGGLERS_DESC"
+msgstr "The Old Sea Wolf, in the tavern, wants the Docks pier free of critters: defeat every encounter on the Docks map."

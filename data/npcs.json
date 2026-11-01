@@ -765,5 +765,40 @@
         "body": "cloth"
       }
     }
+  },
+  "seated_pirate": {
+    "name_key": "NPC_SEATED_PIRATE",
+    "color": [
+      0.5,
+      0.3,
+      0.2
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "docks_smugglers"
+        },
+        "lines": [
+          "DLG_PIRATE_1",
+          "DLG_PIRATE_2",
+          "DLG_PIRATE_3"
+        ],
+        "offer": "docks_smugglers"
+      },
+      {
+        "when": {
+          "quest_active": "docks_smugglers"
+        },
+        "lines": [
+          "DLG_PIRATE_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_PIRATE_DONE"
+        ]
+      }
+    ]
   }
 }

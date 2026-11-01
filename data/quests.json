@@ -155,5 +155,24 @@
       "gold": 600,
       "xp": 1000
     }
+  },
+  "docks_smugglers": {
+    "name_key": "QUEST_DOCKS_SMUGGLERS",
+    "desc_key": "QUEST_DOCKS_SMUGGLERS_DESC",
+    "type": "village",
+    "giver": "seated_pirate",
+    "area": "docks_01_pier",
+    "clear": [
+      "dk_rats_a",
+      "dk_toads",
+      "dk_bats",
+      "dk_rats_b",
+      "dk_anglers"
+    ],
+    "target_element": "water",
+    "reward": {
+      "gold": 140,
+      "xp": 260
+    }
   }
 }

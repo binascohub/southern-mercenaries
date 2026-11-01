@@ -2964,3 +2964,27 @@ msgstr "Lamasu de la Arena"
 
 msgid "MONSTER_QUEEN_SCORPION"
 msgstr "Reina Escorpión"
+
+msgid "NPC_SEATED_PIRATE"
+msgstr "Viejo Lobo de Mar"
+
+msgid "DLG_PIRATE_1"
+msgstr "Siéntate, mercenario. ¿Ves ese muelle de afuera, en los Muelles? Antes era mío: ahora solo hay sapos, murciélagos y rapes feos."
+
+msgid "DLG_PIRATE_2"
+msgstr "Mi barco atraca ahí y no puedo descargar un barril sin perder un dedo. Limpia el muelle por mí."
+
+msgid "DLG_PIRATE_3"
+msgstr "Mata a todas las criaturas de los Muelles: sapos, sapos feos, murciélagos y los rapes. Pago en oro y en ron… más en oro."
+
+msgid "DLG_PIRATE_ACTIVE"
+msgstr "Aún quedan bichos en el muelle. Vuelve cuando el último esté flotando."
+
+msgid "DLG_PIRATE_DONE"
+msgstr "¡El muelle está limpio! Un brindis por el mercenario que no teme mojarse los pies."
+
+msgid "QUEST_DOCKS_SMUGGLERS"
+msgstr "El muelle del Viejo Lobo"
+
+msgid "QUEST_DOCKS_SMUGGLERS_DESC"
+msgstr "El Viejo Lobo de Mar, en la taberna, quiere el muelle de los Muelles libre de bichos: derrota todos los encuentros del mapa de los Muelles."

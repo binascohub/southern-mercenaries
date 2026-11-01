@@ -2964,3 +2964,27 @@ msgstr "Lamassu da Areia"
 
 msgid "MONSTER_QUEEN_SCORPION"
 msgstr "Rainha Escorpião"
+
+msgid "NPC_SEATED_PIRATE"
+msgstr "Velho Lobo do Mar"
+
+msgid "DLG_PIRATE_1"
+msgstr "Senta aí, mercenário. Vê esse cais lá fora, nas Docas? Antes era meu: hoje só tem sapo, morcego e peixe-pescador feio."
+
+msgid "DLG_PIRATE_2"
+msgstr "Meu navio atraca ali e não consigo descarregar um barril sem perder um dedo. Limpa o cais pra mim."
+
+msgid "DLG_PIRATE_3"
+msgstr "Mate todos os bichos das Docas: sapos, sapos feios, morcegos e os peixes-pescadores. Eu pago em ouro e em rum… mais em ouro."
+
+msgid "DLG_PIRATE_ACTIVE"
+msgstr "Ainda tem bicho no cais. Só volte quando o último estiver boiando."
+
+msgid "DLG_PIRATE_DONE"
+msgstr "O cais está limpo! Um brinde ao mercenário que não tem medo de molhar os pés."
+
+msgid "QUEST_DOCKS_SMUGGLERS"
+msgstr "O cais do Velho Lobo"
+
+msgid "QUEST_DOCKS_SMUGGLERS_DESC"
+msgstr "O Velho Lobo do Mar, na taverna, quer o cais das Docas livre de bichos: derrote todos os encontros do mapa das Docas."

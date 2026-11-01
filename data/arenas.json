@@ -1869,6 +1869,15 @@
         ],
         "to": "tortuga",
         "entry": "tavern"
+      },
+      {
+        "id": "seated_pirate",
+        "kind": "npc",
+        "npc": "seated_pirate",
+        "position": [
+          -7.5,
+          3.0
+        ]
       }
     ],
     "style": {
@@ -29548,6 +29557,523 @@
         ],
         "scale": 0.47,
         "y": 0.042
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          9.0,
+          -20.0
+        ],
+        "rotation": 345,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          45.0,
+          -24.5
+        ],
+        "rotation": 90,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          44.0,
+          -66.5
+        ],
+        "rotation": 45,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -37.0,
+          -12.7
+        ],
+        "rotation": 315,
+        "scale": 1.45,
+        "solid": [
+          3.2,
+          2.8
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -38.0,
+          -13.6
+        ],
+        "rotation": 270,
+        "scale": 1.3,
+        "solid": [
+          2.9,
+          2.5
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -25.3,
+          -48.2
+        ],
+        "rotation": 90,
+        "scale": 1.23,
+        "solid": [
+          2.7,
+          2.3
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -28.7,
+          -48.5
+        ],
+        "rotation": 195,
+        "scale": 0.73,
+        "solid": [
+          1.6,
+          1.4
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -28.0,
+          -47.2
+        ],
+        "rotation": 90,
+        "scale": 1.31,
+        "solid": [
+          2.9,
+          2.5
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          14.7,
+          -10.3
+        ],
+        "rotation": 240,
+        "scale": 1.35,
+        "solid": [
+          3.0,
+          2.6
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          10.0,
+          -10.7
+        ],
+        "rotation": 120,
+        "scale": 1.35,
+        "solid": [
+          3.0,
+          2.6
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          10.3,
+          -9.6
+        ],
+        "rotation": 225,
+        "scale": 1.29,
+        "solid": [
+          2.8,
+          2.5
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          17.4,
+          -45.5
+        ],
+        "rotation": 105,
+        "scale": 1.24,
+        "solid": [
+          2.7,
+          2.4
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -3.4,
+          -50.5
+        ],
+        "rotation": 60,
+        "scale": 1.23,
+        "solid": [
+          2.7,
+          2.3
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          3.7,
+          -52.8
+        ],
+        "rotation": 270,
+        "scale": 1.34,
+        "solid": [
+          2.9,
+          2.5
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          3.9,
+          -49.5
+        ],
+        "rotation": 90,
+        "scale": 1.31,
+        "solid": [
+          2.9,
+          2.5
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          46.0,
+          -14.4
+        ],
+        "rotation": 285,
+        "scale": 0.78,
+        "solid": [
+          1.7,
+          1.5
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          45.8,
+          -28.2
+        ],
+        "rotation": 225,
+        "scale": 1.48,
+        "solid": [
+          3.3,
+          2.8
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          53.0,
+          -36.7
+        ],
+        "rotation": 330,
+        "scale": 1.42,
+        "solid": [
+          3.1,
+          2.7
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          53.2,
+          -15.5
+        ],
+        "rotation": 165,
+        "scale": 1.46,
+        "solid": [
+          3.2,
+          2.8
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          45.8,
+          -11.0
+        ],
+        "rotation": 0,
+        "scale": 1.27,
+        "solid": [
+          2.8,
+          2.4
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          83.5,
+          -31.6
+        ],
+        "rotation": 300,
+        "scale": 1.27,
+        "solid": [
+          2.8,
+          2.4
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          85.6,
+          -25.5
+        ],
+        "rotation": 135,
+        "scale": 0.92,
+        "solid": [
+          2.0,
+          1.7
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          79.6,
+          -31.7
+        ],
+        "rotation": 240,
+        "scale": 1.23,
+        "solid": [
+          2.7,
+          2.3
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          90.5,
+          -32.1
+        ],
+        "rotation": 90,
+        "scale": 1.46,
+        "solid": [
+          3.2,
+          2.8
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          86.4,
+          -30.1
+        ],
+        "rotation": 315,
+        "scale": 0.9,
+        "solid": [
+          2.0,
+          1.7
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          58.5,
+          -75.3
+        ],
+        "rotation": 225,
+        "scale": 0.79,
+        "solid": [
+          1.7,
+          1.5
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          53.1,
+          -76.4
+        ],
+        "rotation": 195,
+        "scale": 1.48,
+        "solid": [
+          3.3,
+          2.8
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          35.8,
+          -61.1
+        ],
+        "rotation": 285,
+        "scale": 1.11,
+        "solid": [
+          2.4,
+          2.1
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          37.1,
+          -77.2
+        ],
+        "rotation": 30,
+        "scale": 1.48,
+        "solid": [
+          3.3,
+          2.8
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          41.2,
+          -74.9
+        ],
+        "rotation": 30,
+        "scale": 1.17,
+        "solid": [
+          2.6,
+          2.2
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          22.5,
+          -70.2
+        ],
+        "rotation": 285,
+        "scale": 0.73,
+        "solid": [
+          1.6,
+          1.4
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -0.3,
+          -68.6
+        ],
+        "rotation": 15,
+        "scale": 1.48,
+        "solid": [
+          3.3,
+          2.8
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          2.0,
+          -65.8
+        ],
+        "rotation": 285,
+        "scale": 1.05,
+        "solid": [
+          2.3,
+          2.0
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -6.6,
+          -72.4
+        ],
+        "rotation": 285,
+        "scale": 1.28,
+        "solid": [
+          2.8,
+          2.4
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -0.4,
+          -87.4
+        ],
+        "rotation": 195,
+        "scale": 1.2,
+        "solid": [
+          2.6,
+          2.3
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          58.2,
+          -100.4
+        ],
+        "rotation": 15,
+        "scale": 0.97,
+        "solid": [
+          2.1,
+          1.8
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          41.1,
+          -114.8
+        ],
+        "rotation": 45,
+        "scale": 1.0,
+        "solid": [
+          2.2,
+          1.9
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          52.9,
+          -97.0
+        ],
+        "rotation": 180,
+        "scale": 1.06,
+        "solid": [
+          2.3,
+          2.0
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          57.2,
+          -112.9
+        ],
+        "rotation": 345,
+        "scale": 0.93,
+        "solid": [
+          2.0,
+          1.8
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          55.2,
+          -107.0
+        ],
+        "rotation": 195,
+        "scale": 0.76,
+        "solid": [
+          1.7,
+          1.4
+        ]
       }
     ],
     "passive": true
@@ -31283,6 +31809,102 @@
         "solid": [
           1.2,
           1.2
+        ]
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          -20,
+          -3.5
+        ],
+        "rotation": 0,
+        "solid": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          20,
+          -3.5
+        ],
+        "rotation": 0,
+        "solid": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          -22,
+          -12
+        ],
+        "rotation": 10,
+        "solid": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          22,
+          -12
+        ],
+        "rotation": -10,
+        "solid": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          -24,
+          -36
+        ],
+        "rotation": 0,
+        "solid": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          24,
+          -30
+        ],
+        "rotation": 0,
+        "solid": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          -13,
+          -58
+        ],
+        "rotation": 0,
+        "solid": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          13,
+          -58
+        ],
+        "rotation": 0,
+        "solid": [
+          0.5,
+          0.5
         ]
       }
     ],
@@ -80001,6 +80623,1017 @@
         ],
         "scale": 3.0,
         "y": 0.0
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          -76.0,
+          -116.5
+        ],
+        "rotation": 255,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          -80.0,
+          -45.5
+        ],
+        "rotation": 270,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          -86.0,
+          2.5
+        ],
+        "rotation": 135,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          0.8,
+          2.0
+        ],
+        "rotation": 105,
+        "scale": 1.06,
+        "solid": [
+          2.3,
+          2.0
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          6.9,
+          -17.7
+        ],
+        "rotation": 345,
+        "scale": 0.9,
+        "solid": [
+          2.0,
+          1.7
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          4.7,
+          -15.2
+        ],
+        "rotation": 30,
+        "scale": 1.29,
+        "solid": [
+          2.8,
+          2.5
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -22.9,
+          -16.4
+        ],
+        "rotation": 270,
+        "scale": 0.89,
+        "solid": [
+          2.0,
+          1.7
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -19.5,
+          -7.8
+        ],
+        "rotation": 195,
+        "scale": 1.35,
+        "solid": [
+          3.0,
+          2.6
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -23.4,
+          -57.9
+        ],
+        "rotation": 195,
+        "scale": 0.82,
+        "solid": [
+          1.8,
+          1.6
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -17.8,
+          -116.9
+        ],
+        "rotation": 270,
+        "scale": 0.9,
+        "solid": [
+          2.0,
+          1.7
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          0.2,
+          -56.1
+        ],
+        "rotation": 180,
+        "scale": 1.05,
+        "solid": [
+          2.3,
+          2.0
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          7.0,
+          -60.7
+        ],
+        "rotation": 330,
+        "scale": 0.9,
+        "solid": [
+          2.0,
+          1.7
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -1.8,
+          -42.9
+        ],
+        "rotation": 135,
+        "scale": 0.85,
+        "solid": [
+          1.9,
+          1.6
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          6.4,
+          -57.8
+        ],
+        "rotation": 30,
+        "scale": 1.2,
+        "solid": [
+          2.6,
+          2.3
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -1.7,
+          -80.2
+        ],
+        "rotation": 225,
+        "scale": 1.04,
+        "solid": [
+          2.3,
+          2.0
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -106.5,
+          -115.2
+        ],
+        "rotation": 330,
+        "scale": 1.17,
+        "solid": [
+          2.6,
+          2.2
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -94.0,
+          -112.5
+        ],
+        "rotation": 30,
+        "scale": 1.44,
+        "solid": [
+          3.2,
+          2.7
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -52.2,
+          -113.2
+        ],
+        "rotation": 195,
+        "scale": 0.89,
+        "solid": [
+          2.0,
+          1.7
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -65.8,
+          -110.9
+        ],
+        "rotation": 210,
+        "scale": 1.37,
+        "solid": [
+          3.0,
+          2.6
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -65.5,
+          -112.3
+        ],
+        "rotation": 135,
+        "scale": 0.95,
+        "solid": [
+          2.1,
+          1.8
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -183.6,
+          -110.8
+        ],
+        "rotation": 150,
+        "scale": 0.98,
+        "solid": [
+          2.2,
+          1.9
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -186.9,
+          -128.5
+        ],
+        "rotation": 270,
+        "scale": 1.08,
+        "solid": [
+          2.4,
+          2.1
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -169.9,
+          -116.6
+        ],
+        "rotation": 0,
+        "scale": 0.87,
+        "solid": [
+          1.9,
+          1.7
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -195.3,
+          -130.1
+        ],
+        "rotation": 300,
+        "scale": 1.42,
+        "solid": [
+          3.1,
+          2.7
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -127.0,
+          -102.6
+        ],
+        "rotation": 270,
+        "scale": 1.29,
+        "solid": [
+          2.8,
+          2.5
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -165.3,
+          -120.4
+        ],
+        "rotation": 285,
+        "scale": 1.16,
+        "solid": [
+          2.6,
+          2.2
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -182.9,
+          -118.1
+        ],
+        "rotation": 240,
+        "scale": 1.0,
+        "solid": [
+          2.2,
+          1.9
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -161.1,
+          -94.5
+        ],
+        "rotation": 225,
+        "scale": 1.23,
+        "solid": [
+          2.7,
+          2.3
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -178.4,
+          -127.3
+        ],
+        "rotation": 270,
+        "scale": 0.73,
+        "solid": [
+          1.6,
+          1.4
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -181.0,
+          -99.4
+        ],
+        "rotation": 150,
+        "scale": 1.38,
+        "solid": [
+          3.0,
+          2.6
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -188.6,
+          -131.8
+        ],
+        "rotation": 90,
+        "scale": 1.12,
+        "solid": [
+          2.5,
+          2.1
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -197.1,
+          -117.6
+        ],
+        "rotation": 255,
+        "scale": 0.73,
+        "solid": [
+          1.6,
+          1.4
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -133.8,
+          -98.1
+        ],
+        "rotation": 105,
+        "scale": 1.19,
+        "solid": [
+          2.6,
+          2.3
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -123.1,
+          -91.5
+        ],
+        "rotation": 195,
+        "scale": 0.95,
+        "solid": [
+          2.1,
+          1.8
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -163.8,
+          -95.3
+        ],
+        "rotation": 120,
+        "scale": 1.15,
+        "solid": [
+          2.5,
+          2.2
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -131.5,
+          -124.4
+        ],
+        "rotation": 105,
+        "scale": 1.09,
+        "solid": [
+          2.4,
+          2.1
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -188.9,
+          -125.0
+        ],
+        "rotation": 225,
+        "scale": 1.02,
+        "solid": [
+          2.2,
+          1.9
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -188.5,
+          -102.6
+        ],
+        "rotation": 30,
+        "scale": 1.17,
+        "solid": [
+          2.6,
+          2.2
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -143.6,
+          -118.5
+        ],
+        "rotation": 330,
+        "scale": 1.14,
+        "solid": [
+          2.5,
+          2.2
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -77.1,
+          -127.9
+        ],
+        "rotation": 45,
+        "scale": 0.75,
+        "solid": [
+          1.7,
+          1.4
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -78.7,
+          -129.8
+        ],
+        "rotation": 270,
+        "scale": 0.74,
+        "solid": [
+          1.6,
+          1.4
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -86.3,
+          -175.1
+        ],
+        "rotation": 0,
+        "scale": 1.02,
+        "solid": [
+          2.2,
+          1.9
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -69.1,
+          -156.3
+        ],
+        "rotation": 30,
+        "scale": 0.79,
+        "solid": [
+          1.7,
+          1.5
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -93.8,
+          -174.9
+        ],
+        "rotation": 240,
+        "scale": 1.19,
+        "solid": [
+          2.6,
+          2.3
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -72.9,
+          -159.5
+        ],
+        "rotation": 240,
+        "scale": 1.22,
+        "solid": [
+          2.7,
+          2.3
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -71.4,
+          -168.8
+        ],
+        "rotation": 270,
+        "scale": 0.86,
+        "solid": [
+          1.9,
+          1.6
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -81.4,
+          -78.8
+        ],
+        "rotation": 210,
+        "scale": 1.02,
+        "solid": [
+          2.2,
+          1.9
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -81.3,
+          -95.2
+        ],
+        "rotation": 225,
+        "scale": 0.84,
+        "solid": [
+          1.8,
+          1.6
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -83.2,
+          -68.6
+        ],
+        "rotation": 240,
+        "scale": 1.49,
+        "solid": [
+          3.3,
+          2.8
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -92.2,
+          -55.4
+        ],
+        "rotation": 315,
+        "scale": 0.95,
+        "solid": [
+          2.1,
+          1.8
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -68.6,
+          -51.3
+        ],
+        "rotation": 45,
+        "scale": 1.48,
+        "solid": [
+          3.3,
+          2.8
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -95.8,
+          -34.7
+        ],
+        "rotation": 345,
+        "scale": 1.48,
+        "solid": [
+          3.3,
+          2.8
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -70.2,
+          -51.7
+        ],
+        "rotation": 240,
+        "scale": 1.14,
+        "solid": [
+          2.5,
+          2.2
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -70.2,
+          -51.9
+        ],
+        "rotation": 45,
+        "scale": 1.43,
+        "solid": [
+          3.1,
+          2.7
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -170.2,
+          -26.2
+        ],
+        "rotation": 240,
+        "scale": 1.15,
+        "solid": [
+          2.5,
+          2.2
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -167.3,
+          -25.6
+        ],
+        "rotation": 165,
+        "scale": 1.49,
+        "solid": [
+          3.3,
+          2.8
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -170.0,
+          -33.4
+        ],
+        "rotation": 105,
+        "scale": 1.48,
+        "solid": [
+          3.3,
+          2.8
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -166.0,
+          -55.1
+        ],
+        "rotation": 105,
+        "scale": 1.35,
+        "solid": [
+          3.0,
+          2.6
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -152.1,
+          -53.4
+        ],
+        "rotation": 0,
+        "scale": 1.0,
+        "solid": [
+          2.2,
+          1.9
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -185.6,
+          -51.5
+        ],
+        "rotation": 90,
+        "scale": 1.01,
+        "solid": [
+          2.2,
+          1.9
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -165.3,
+          -61.0
+        ],
+        "rotation": 120,
+        "scale": 1.26,
+        "solid": [
+          2.8,
+          2.4
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -189.6,
+          -34.0
+        ],
+        "rotation": 240,
+        "scale": 0.88,
+        "solid": [
+          1.9,
+          1.7
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -166.3,
+          -58.6
+        ],
+        "rotation": 135,
+        "scale": 0.73,
+        "solid": [
+          1.6,
+          1.4
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -150.2,
+          -29.2
+        ],
+        "rotation": 150,
+        "scale": 0.72,
+        "solid": [
+          1.6,
+          1.4
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -173.6,
+          -18.2
+        ],
+        "rotation": 90,
+        "scale": 1.4,
+        "solid": [
+          3.1,
+          2.7
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -177.7,
+          -35.8
+        ],
+        "rotation": 105,
+        "scale": 1.05,
+        "solid": [
+          2.3,
+          2.0
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -156.1,
+          -37.4
+        ],
+        "rotation": 285,
+        "scale": 0.94,
+        "solid": [
+          2.1,
+          1.8
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -174.9,
+          -34.3
+        ],
+        "rotation": 270,
+        "scale": 0.88,
+        "solid": [
+          1.9,
+          1.7
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -188.3,
+          -43.4
+        ],
+        "rotation": 15,
+        "scale": 0.81,
+        "solid": [
+          1.8,
+          1.5
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -85.1,
+          -19.0
+        ],
+        "rotation": 45,
+        "scale": 1.37,
+        "solid": [
+          3.0,
+          2.6
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -94.4,
+          1.8
+        ],
+        "rotation": 45,
+        "scale": 1.06,
+        "solid": [
+          2.3,
+          2.0
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -73.9,
+          2.2
+        ],
+        "rotation": 105,
+        "scale": 1.23,
+        "solid": [
+          2.7,
+          2.3
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -111.4,
+          4.3
+        ],
+        "rotation": 105,
+        "scale": 0.75,
+        "solid": [
+          1.7,
+          1.4
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -55.2,
+          -4.4
+        ],
+        "rotation": 15,
+        "scale": 1.1,
+        "solid": [
+          2.4,
+          2.1
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -93.8,
+          18.0
+        ],
+        "rotation": 240,
+        "scale": 1.3,
+        "solid": [
+          2.9,
+          2.5
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -77.7,
+          22.4
+        ],
+        "rotation": 315,
+        "scale": 1.44,
+        "solid": [
+          3.2,
+          2.7
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -75.1,
+          10.8
+        ],
+        "rotation": 75,
+        "scale": 0.72,
+        "solid": [
+          1.6,
+          1.4
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          -83.0,
+          22.5
+        ],
+        "rotation": 195,
+        "scale": 1.02,
+        "solid": [
+          2.2,
+          1.9
+        ]
       }
     ],
     "crowd": [
@@ -91596,6 +93229,18 @@
           0.6,
           0.6
         ]
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          3.0,
+          -19.5
+        ],
+        "rotation": 315,
+        "solid": [
+          0.6,
+          0.6
+        ]
       }
     ],
     "passive": true
@@ -93991,6 +95636,18 @@
         ],
         "y": 0.9,
         "rotation": 165
+      },
+      {
+        "piece": "Guillotine",
+        "position": [
+          17.0,
+          3.6
+        ],
+        "rotation": 200,
+        "solid": [
+          2.0,
+          2.0
+        ]
       }
     ],
     "crowd": [
@@ -118197,6 +119854,30 @@
         "range": 8.0,
         "energy": 1.2,
         "y": 2.2
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          -3.0,
+          -19.5
+        ],
+        "rotation": 330,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          -3.0,
+          -49.5
+        ],
+        "rotation": 210,
+        "solid": [
+          0.6,
+          0.6
+        ]
       }
     ],
     "passive": true
@@ -119135,6 +120816,18 @@
           "speed": 0.6789667327379036,
           "phase": 5.46
         }
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          3.0,
+          -22.5
+        ],
+        "rotation": 330,
+        "solid": [
+          0.6,
+          0.6
+        ]
       }
     ],
     "passive": true
@@ -125350,6 +127043,30 @@
         ],
         "rotation": 255,
         "scale": 1.25
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          3.0,
+          -19.5
+        ],
+        "rotation": 315,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          3.0,
+          -53.5
+        ],
+        "rotation": 300,
+        "solid": [
+          0.6,
+          0.6
+        ]
       }
     ],
     "passive": true

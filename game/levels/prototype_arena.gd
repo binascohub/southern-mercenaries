@@ -1749,7 +1749,7 @@ func _build_prop(prop: Dictionary) -> void:
 					look = {"sex": "male" if h % 2 == 0 else "female", "hair": hairs[h % 2 * 2 + (h / 2) % 2],
 						"hair_color": colors[(h / 4) % colors.size()], "pose": "sit", "outfit": {"body": "cloth"} if h % 3 == 0 else {}}
 				var seated_woman: bool = prop.has("visitor_name") and look.get("sex", "") == "female" and _visitor_woman(node)
-				var own_model: Node3D = NpcModel.create(String(prop.npc)) if String(prop.npc) in ["voodoo_priest", "priest", "castle_guard", "court_jester", "elf_archer", "ruins_spartan"] else null
+				var own_model: Node3D = NpcModel.create(String(prop.npc)) if String(prop.npc) in ["voodoo_priest", "priest", "castle_guard", "court_jester", "seated_pirate", "elf_archer", "ruins_spartan"] else null
 				var statue_kit: String = prop.get("kit", "")
 				if statue_kit != "" and _kit(node, statue_kit, Transform3D(Basis(Vector3.UP, deg_to_rad(float(prop.get("rotation", 0.0)))), Vector3.ZERO)):
 					pass  # estátua do mapa: a peça do kit no lugar do corpo humano
@@ -1775,6 +1775,8 @@ func _build_prop(prop: Dictionary) -> void:
 				# Portal do Patuá: círculo riscado no chão, redemoinho de sombra e brasas.
 				_prop_mesh(node, CylinderMesh.new(), Vector3(2.4, 0.04, 2.4), Vector3(0, 0.04, 0), Color(0.35, 0.1, 0.12))
 				_prop_mesh(node, CylinderMesh.new(), Vector3(1.4, 0.06, 1.4), Vector3(0, 0.06, 0), Color(1.0, 0.45, 0.15))
+			"exit" when Kit.has("Portal_Well") and Kit.has("Portal_Crystal"):
+				_portal_well(node)
 			"exit":
 				# Saída: moldura de porta / boca do bueiro / círculo do portal.
 				_prop_mesh(node, CylinderMesh.new(), Vector3(1.4, 0.06, 1.4), Vector3(0, 0.03, 0), Color(0.25, 0.22, 0.2))
@@ -2099,6 +2101,27 @@ func _build_area() -> void:
 			_build_decor(decor)
 		for person: Dictionary in arena.get("crowd", []):
 			_build_crowd(person)
+
+
+## Portal-poço (Well of Lost Souls, bobjh, e Light crystal, Pompei2): um cristal azul brilhante gira e flutua dentro do poço, com uma luz azul;
+## é o desenho das saídas dos mapas (return_portal e portões). Sem as peças, fica o círculo simples.
+func _portal_well(node: Node3D) -> void:
+	var well := Kit.piece("Portal_Well")
+	node.add_child(well)
+	var crystal := Kit.piece("Portal_Crystal")
+	crystal.position = Vector3(0, 0.62, 0)
+	node.add_child(crystal)
+	var glow := OmniLight3D.new()
+	glow.light_color = Color(0.45, 0.7, 1.0)
+	glow.omni_range = 4.5
+	glow.light_energy = 1.4
+	glow.position = Vector3(0, 1.0, 0)
+	node.add_child(glow)
+	var spin := crystal.create_tween().set_loops()
+	spin.tween_property(crystal, "rotation:y", TAU, 6.0).as_relative()
+	var bob := crystal.create_tween().set_loops()
+	bob.tween_property(crystal, "position:y", 0.74, 1.4).set_trans(Tween.TRANS_SINE)
+	bob.tween_property(crystal, "position:y", 0.62, 1.4).set_trans(Tween.TRANS_SINE)
 
 
 ## Reveste a sala com as peças do kit: piso em ladrilhos de 2 m, paredes de

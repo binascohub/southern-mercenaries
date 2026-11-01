@@ -135,6 +135,8 @@ const MODELS := {
 	# Bobo da Corte (Cerimonial Guard, carlosjorgereis, CC0): figura cerimonial de gorro e saia de pele, sem esqueleto nem animação
 	# (parado na pose do arquivo); 1,7 m no arquivo -> ~1,8 m. É o Bobo da Corte da Sala do Rei.
 	"court_jester": {"scene": "res://assets/models/characters/court_jester/cerimonial_guard.dae", "scale": 1.05, "poses": {}},
+	# Pirata sentado (Seated pirate with poor rig, pre, CC BY 3.0): malha parada na pose de sentado (sem animação); NPC da missão das Docas, na taverna.
+	"seated_pirate": {"scene": "res://assets/models/characters/pirate_seated.glb", "scale": 1.0, "poses": {}},
 	"castle_guard": {"scene": "res://assets/models/characters/brigand_guard.glb", "scale": 1.0, "poses": {}},
 	# Aranhinha do esgoto (Spider animated, pantherone, CC BY 3.0): não ataca,
 	# só anda pelo chão. Arquivo de 1 m -> 40 cm, preta (decisão do autor).

@@ -18,3 +18,4 @@ bow_D..S.png — renders of Vulture Bow by Mophs / genderfreak, CC BY 4.0: https
 human_lungs.png — render of Human Lungs by Scribe, CC0 1.0: https://opengameart.org/content/human-lungs
 book_D..S.png — renders of Old Tome 2 by bobjh / Varkalandar, CC BY 4.0: https://opengameart.org/content/old-tome-2 (tools/assets/book_icons.gd)
 royal_soul.png — render of Hapy ghoust by pracalic / GiggaWatt, CC0 1.0: https://opengameart.org/content/hapy-ghoust
+amulet_D..S.png — renders of Necklace by Paul Wortmann, CC0 1.0: https://opengameart.org/content/necklace (tools/assets/amulet_icons.gd)

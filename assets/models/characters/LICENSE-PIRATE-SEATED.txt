@@ -1,0 +1,1 @@
+pirate_seated.glb — "Seated pirate with poor rig" by pre, CC-BY 3.0 / GPL 2.0 / GPL 3.0: https://opengameart.org/content/seated-pirate-with-poor-rig (only the pirate, final seated pose, plain material colors; tools/assets/build_seated_pirate.py). Based on the pirate of https://opengameart.org/content/pirate.
