@@ -28,7 +28,7 @@ func _ready() -> void:
 	var color := Items.color(item) if not item.is_empty() else Color(1.0, 0.82, 0.25)
 	_mesh = Node3D.new()
 	if gold > 0:
-		# Moeda pirata em pé, girando (3d Pirate Coin, Acasas, CC-BY 3.0).
+		# Moeda antiga em pé, girando (Old coin, yd, CC0).
 		var coin: Node3D = load(COIN_MODEL).instantiate()
 		coin.rotation.x = deg_to_rad(90.0)
 		coin.position.y = 0.0

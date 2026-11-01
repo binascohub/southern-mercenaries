@@ -1,0 +1,2 @@
+Rail_Straight.glb — "Rails" by yd, GPL 2.0: https://opengameart.org/content/rails
+Converted from the Blender file by tools/assets/build_rails.py (single mesh scaled to 6 m, diffuse texture only).

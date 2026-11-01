@@ -337,5 +337,24 @@
         "body": "cloth"
       }
     }
+  },
+  "lightpost_statue": {
+    "_comment": "Estátua do poste de luz do Cemitério (Statue holding lightpost, Colorado Stark, CC0): fala com quem se aproxima e, no fim da fala, desperta o mini-chefe da praça ('summon' no objeto em arenas.json). Sem corpo humano: o objeto traz a peça ('kit').",
+    "name_key": "NPC_LIGHTPOST_STATUE",
+    "color": [
+      0.6,
+      0.6,
+      0.55
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_STATUE_1",
+          "DLG_STATUE_2",
+          "DLG_STATUE_3"
+        ]
+      }
+    ]
   }
 }

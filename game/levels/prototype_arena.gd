@@ -47,6 +47,8 @@ const CHECKPOINT_DELAY := 3.0
 const GOLD_AUTO_PICKUP := 1.6
 const LOOT_SCATTER := 1.2
 ## Miniatura da campanha: primeira captura logo depois de entrar, depois a cada minuto.
+## Segundos entre a fala da estátua e o surgimento do mini-chefe.
+const SUMMON_DELAY := 4.0
 const THUMB_FIRST := 3.0
 const THUMB_INTERVAL := 60.0
 
@@ -94,6 +96,8 @@ var _bestiary_menu: BestiaryMenu
 var _run := 0
 ## Grupos de encontro (servidor): id -> {position, awake, members}.
 var _groups := {}
+## Grupos de estátuas já invocados e ainda esperando surgir (ids).
+var _summoning: Array[String] = []
 ## Tabela de loot própria de alguns caixotes ("box:id" -> chave em loot.json).
 var _box_table := {}
 var _encounter_timer := 0.0
@@ -889,6 +893,25 @@ func request_interact(player: Player) -> void:
 		town.interact(player, prop)
 	else:
 		request_pickup(player, false)
+
+
+## A estátua falou (Town.interact): depois de uns segundos o grupo dela (`prop.summon`, igual a um encontro de
+## arenas.json) surge e já acorda. Uma vez só por vida do grupo: não repete enquanto ele existe nem depois de derrotado.
+func summon_encounter(player: Player, prop: Dictionary) -> void:
+	if not multiplayer.is_server():
+		return
+	var group: Dictionary = prop.summon
+	var id := String(group.id)
+	if id in _campaign.get("dead_groups", []) or _groups.has(id) or id in _summoning:
+		return
+	_summoning.append(id)
+	await get_tree().create_timer(SUMMON_DELAY).timeout
+	_summoning.erase(id)
+	if not is_inside_tree() or _groups.has(id):
+		return
+	_spawn_group(group)
+	_wake_group(id)
+	_toast_all("TOAST_STATUE_AWAKENS", {})
 
 
 ## Começa (ou continua) a área: os grupos vivos da campanha no lugar, dormindo.
@@ -1695,7 +1718,10 @@ func _build_prop(prop: Dictionary) -> void:
 						"hair_color": colors[(h / 4) % colors.size()], "pose": "sit", "outfit": {"body": "cloth"} if h % 3 == 0 else {}}
 				var seated_woman: bool = prop.has("visitor_name") and look.get("sex", "") == "female" and _visitor_woman(node)
 				var own_model: Node3D = NpcModel.create(String(prop.npc)) if String(prop.npc) in ["voodoo_priest", "priest"] else null
-				if own_model:
+				var statue_kit: String = prop.get("kit", "")
+				if statue_kit != "" and _kit(node, statue_kit, Transform3D(Basis(Vector3.UP, deg_to_rad(float(prop.get("rotation", 0.0)))), Vector3.ZERO)):
+					pass  # estátua do mapa: a peça do kit no lugar do corpo humano
+				elif own_model:
 					node.add_child(own_model)  # o Macumbeiro (mago de capuz) e o Padre (monge) têm modelo próprio
 				elif not seated_woman and _npc_body(node, look) == null:
 					var body := CapsuleMesh.new()

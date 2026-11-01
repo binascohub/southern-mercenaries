@@ -2545,6 +2545,24 @@ msgstr "Goblin"
 msgid "MONSTER_TROLL"
 msgstr "Skinny Troll"
 
+msgid "NPC_LIGHTPOST_STATUE"
+msgstr "Lamp Statue"
+
+msgid "DLG_STATUE_1"
+msgstr "Nobody has crossed this ground without trembling in a long time. I hold the light for those who sleep here."
+
+msgid "DLG_STATUE_2"
+msgstr "The lantern is not here to guide the living. It watches over those who lie down and do not want to get up."
+
+msgid "DLG_STATUE_3"
+msgstr "But you stepped into my plaza and looked into my eyes. Let the tomb guardian decide whether you deserve to pass."
+
+msgid "TOAST_STATUE_AWAKENS"
+msgstr "The ground shakes: the Tomb Guardian awakens!"
+
+msgid "MONSTER_TOMB_GUARDIAN"
+msgstr "Tomb Guardian"
+
 msgid "ARENA_DARK_FOREST"
 msgstr "Dark Forest"
 
@@ -2646,3 +2664,6 @@ msgstr "Chitinous Beast"
 
 msgid "MONSTER_ANGLER"
 msgstr "Anglerman"
+
+msgid "MONSTER_STALKER"
+msgstr "Stalker"

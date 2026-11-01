@@ -113,6 +113,10 @@ monster("zombie", "skeleton", _comment="Zumbi Magro do Cemitério (Thin Zombie, 
 monster("troll", "skeleton", _comment="Troll Magro do Cemitério (Skinny Troll, piacenti, CC BY 3.0): elite corpo a corpo; lento, resistente e de pancada lenta e pesada com a clava. Terra (fraco a Fogo).",
         name_key="MONSTER_TROLL", max_health=320, damage=24, move_speed=2.4, attack_range=3.2, attack_windup=1.1, attack_cooldown=2.2,
         category="elite", size=1.0, look="troll", color=[1.0, 1.0, 1.0], patrol_radius=4.0)
+# Guardião do Túmulo: mini-chefe de pedra que a estátua do poste de luz desperta (Praça da Estátua do Cemitério); usa o modelo do
+# golem de pedra, escurecido, e investe como o Escorpião da Cripta.
+monster("tomb_guardian", "crypt_scorpion", _comment="Guardião do Túmulo (mini-chefe do Cemitério): golem de pedra que a estátua do poste de luz desperta quando se fala com ela; investe como o Escorpião da Cripta. Terra (fraco a Fogo).",
+        name_key="MONSTER_TOMB_GUARDIAN", max_health=340, damage=24, size=2.2, element="earth", look="golem_stone", color=[0.78, 0.85, 0.75])
 # Jarro e garrafa brancos (Free Mug Pack 1, rubberduck, CC0; build_mugs.py): quebráveis como o pote do Esgoto, com cacos;
 # no Cemitério soltam só poção (tabela "breakable_potion").
 monster("mug", "pot", _comment="Jarro ou garrafa branca (Free Mug Pack 1, rubberduck, CC0): quebrável parado, como o pote do Esgoto; ao quebrar solta poção (tabela 'breakable_potion' no objeto). O modelo sai da posição.",
@@ -514,6 +518,9 @@ def trail_dist(x, z):
     return min(seg_dist(x, z, a, b) for line in trails for a, b in zip(line, line[1:]))
 
 
+# Praças de ruínas (mais abaixo): a das Pedras (setor B) e a da Estátua (setor C), cada uma com um mini-chefe.
+PLAZA_A = (round(lane_m(-52), 1), -52)
+PLAZA_B = (-3.0, -80)
 c_enc = [
     # A - Campo de Covas: a vermina, para aquecer.
     {"id": "c_a_rats_w", "position": on("W", -32), "monsters": [{"monster": "plague_rat", "count": 5}]},
@@ -522,13 +529,13 @@ c_enc = [
     # B - Ossuário: esqueletos em bando e escorpiões atirando de longe.
     {"id": "c_b_skel_w", "position": on("W", -46), "monsters": [{"monster": "skeleton", "count": 3}]},
     {"id": "c_b_scorp_w", "position": on("W", -60, -8), "monsters": [{"monster": "venom_scorpion", "count": 3}]},
-    {"id": "c_b_skel_m", "position": on("M", -54, 6), "monsters": [{"monster": "skeleton", "count": 4}]},
+    {"id": "c_plaza_a", "position": [PLAZA_A[0], PLAZA_A[1] + 4.2], "spread": 2.6,    # Praça das Pedras: o mini-chefe e dois esqueletos de guarda
+     "monsters": [{"monster": "crypt_scorpion", "count": 1}, {"monster": "skeleton", "count": 2}]},
     {"id": "c_b_skel_e1", "position": on("E", -44), "monsters": [{"monster": "skeleton", "count": 3}]},
     {"id": "c_b_skel_e2", "position": on("E", -62), "monsters": [{"monster": "skeleton", "count": 3}]},
     # C - Cova dos Mortos: zumbis lentos e resistentes.
     {"id": "c_c_zombie_w1", "position": on("W", -72), "monsters": [{"monster": "zombie", "count": 3}]},
     {"id": "c_c_zombie_w2", "position": on("W", -86), "monsters": [{"monster": "zombie", "count": 3}]},
-    {"id": "c_c_zombie_m", "position": on("M", -78, -6), "monsters": [{"monster": "zombie", "count": 3}]},
     {"id": "c_c_zombie_e1", "position": on("E", -74), "monsters": [{"monster": "zombie", "count": 3}]},
     {"id": "c_c_zombie_e2", "position": on("E", -88), "monsters": [{"monster": "zombie", "count": 3}]},
     # D - Covil do Troll: o elite no centro, esqueletos guardando o beco do oeste e a pista do leste.
@@ -588,6 +595,60 @@ for border in SECTOR_BORDERS:
         if any(abs(fx - g) < FENCE_HALF_GAP + 1.0 for g in openings):
             continue
         put({"piece": "Fence_Iron", "position": [fx, zf], "solid": [2.0, 0.3]}, 1.4)
+# Duas praças de ruínas (3D Fantasy Ruins Pack, Ron Kapaun, CC0; build_ruins.sh) no meio do pátio, cada uma com um mini-chefe:
+#   Praça das Pedras (setor B): o círculo de pedras em pé (Ruin_Stones); o mini-chefe (Escorpião da Cripta) e dois esqueletos já
+#   estão lá, dormindo, como qualquer grupo.
+#   Praça da Estátua (setor C): o coreto em ruínas (Ruin_Temple2) com a estátua do poste de luz (Statue_Lamp, Colorado Stark,
+#   CC0) no meio; falar com a estátua desperta o Guardião do Túmulo (mini-chefe) e dois esqueletos, 4 s depois.
+# Cada praça tem piso de lajes, colunas em volta e um arco sobre a trilha do centro, na entrada e na saída.
+PLAZA_R = 6.5
+plazas = []
+
+
+def plaza(cx, cz, centerpiece):
+    plazas.append((cx, cz, PLAZA_R))
+    blockers.append((cx, cz, PLAZA_R + 3.0))
+    pr = random.Random("plaza_%d_%d" % (cx, cz))
+    for gx in range(-8, 9, 2):
+        for gz in range(-8, 9, 2):
+            if math.hypot(gx, gz) < PLAZA_R + 0.8:
+                c_decor.append({"piece": "Floor_UnevenBrick", "position": [cx + gx, cz + gz], "rotation": pr.choice((0, 90, 180, 270)), "y": 0.03})
+    for k in range(10):                                        # colunas em volta, longe da trilha e dos arcos
+        a = math.tau * (k + 0.5) / 10
+        x, z = cx + (PLAZA_R + 1.0) * math.cos(a), cz + (PLAZA_R + 1.0) * math.sin(a)
+        if abs(math.sin(a)) > 0.85 or trail_dist(x, z) < 1.8:
+            continue
+        put({"piece": "Ruin_Column" if k % 3 else "Ruin_Pillar", "position": [round(x, 1), round(z, 1)],
+             "rotation": pr.randrange(0, 360, 15), "solid": [0.8, 0.8]}, 1.2)
+    for dz in (-(PLAZA_R + 2.4), PLAZA_R + 2.4):               # arco sobre a trilha do centro, na entrada e na saída
+        z = cz + dz
+        x = round(lane_m(z), 1)
+        c_decor.append({"piece": "Ruin_Arch", "position": [x, z], "rotation": 0})
+        for lx in (-3.07, 3.07):                               # só os pés do arco bloqueiam
+            put({"collider": [1.1, 1.1], "position": [round(x + lx, 2), round(z + 0.34, 2)]}, 1.6)
+    centerpiece()
+
+
+def stones_center():
+    c_decor.append({"piece": "Ruin_Stones", "position": list(PLAZA_A)})
+    put({"collider": [8.0, 3.6], "position": [PLAZA_A[0], PLAZA_A[1] - 1.46]}, 1.0)    # o arco de pedras em pé, no fundo
+
+
+def statue_center():
+    cx, cz = PLAZA_B
+    c_decor.append({"piece": "Ruin_Temple2", "position": [cx, cz]})
+    for dx, dz in ((0, -3.77), (0, 3.79), (-3.73, 0), (3.73, 0)):          # as quatro colunas do coreto
+        put({"collider": [1.1, 1.1], "position": [round(cx + dx, 2), round(cz + dz, 2)]}, 1.0)
+    put({"collider": [1.3, 1.3], "position": [cx, cz]}, 1.2)                # a estátua
+    c_decor.append({"light": [1.0, 0.82, 0.5], "position": [cx + 0.6, cz + 0.4], "y": 3.2, "range": 11.0, "energy": 1.4})
+    c_props.append({"id": "lamp_statue", "kind": "npc", "npc": "lightpost_statue", "kit": "Statue_Lamp", "rotation": 0,
+                    "position": [cx, cz],
+                    "summon": {"id": "c_plaza_b", "position": [cx, cz + 7.5], "spread": 3.0,
+                               "monsters": [{"monster": "tomb_guardian", "count": 1}, {"monster": "skeleton", "count": 2}]}})
+
+
+plaza(PLAZA_A[0], PLAZA_A[1], stones_center)
+plaza(PLAZA_B[0], PLAZA_B[1], statue_center)
 # Na entrada da cripta.
 put({"piece": "Pr_Cross4", "position": [-6, -109], "solid": [1.2, 1.2]}, 2.0)
 put({"piece": "Pr_Cross4", "position": [6, -109], "solid": [1.2, 1.2]}, 2.0)
@@ -614,10 +675,72 @@ for zz in range(-16, YARD_BOTTOM + 3, -5):
                         "rotation": cr.choice([0, 0, 10, -10, 180, 190]), "solid": [0.8, 0.5]})
 
 
+# Trilha do Cemitério com o solo e as pedras do Mossy Rock Environment Pack (rubberduck, CC0; build_mossy_trail.py): um leito de
+# manchas de terra e musgo, lajes de pedra musgosa achatadas por cima e pedras de formação rochosa nas margens (as margens vêm
+# mais abaixo, depois dos jarros). A Floresta continua com o stone_trail comum.
+SLAB_SCALE = {1: (0.8, 1.1), 2: (0.65, 0.9), 3: (0.8, 1.1), 4: (0.45, 0.62), 5: (0.55, 0.75)}
+
+
+def mossy_slabs(rng_, points, step=1.0, spread=0.5):
+    """Lajes da trilha: as cinco pedras achatadas (Mossy_Slab_1..5) em duas fileiras tortas ao longo da linha `points`, cada
+    uma girada ao acaso e a uma altura um pouco diferente (as que se sobrepõem não brigam no chão)."""
+    out = []
+    n = 0
+    for (x0, z0), (x1, z1) in zip(points, points[1:]):
+        length = math.hypot(x1 - x0, z1 - z0)
+        if length < 0.01:
+            continue
+        dx, dz = (x1 - x0) / length, (z1 - z0) / length
+        for i in range(max(int(length / step), 1)):
+            t = (i + 0.5) * step
+            for lane in (-1, 1):
+                off = lane * spread * 0.6 + rng_.uniform(-0.15, 0.15)
+                along = t + rng_.uniform(-0.2, 0.2) + (step / 2 if lane > 0 else 0)
+                kind = rng_.randint(1, 5)
+                out.append({"piece": "Mossy_Slab_%d" % kind, "rotation": rng_.randrange(0, 360, 15),
+                            "position": [round(x0 + dx * along - dz * off, 2), round(z0 + dz * along + dx * off, 2)],
+                            "scale": round(rng_.uniform(*SLAB_SCALE[kind]), 2), "y": round(-0.04 + 0.01 * (n % 6), 3)})
+                n += 1
+    return out
+
+
+def trail_bed(rng_, points, step=1.5):
+    """Leito da trilha: manchas de solo do pacote (Trail_Dirt: terra seca com pedrinhas; Trail_Moss: chão musgoso), de borda
+    irregular e transparente, sobrepostas ao longo da linha, por baixo das lajes."""
+    out = []
+    n = 0
+    for (x0, z0), (x1, z1) in zip(points, points[1:]):
+        length = math.hypot(x1 - x0, z1 - z0)
+        if length < 0.01:
+            continue
+        dx, dz = (x1 - x0) / length, (z1 - z0) / length
+        for i in range(max(int(length / step), 1)):
+            t = (i + 0.5) * step
+            off = rng_.uniform(-0.3, 0.3)
+            out.append({"piece": "Trail_Dirt" if rng_.random() < 0.65 else "Trail_Moss", "rotation": rng_.randrange(0, 360, 15),
+                        "position": [round(x0 + dx * t - dz * off, 2), round(z0 + dz * t + dx * off, 2)],
+                        "scale": round(rng_.uniform(0.85, 1.2), 2), "y": round(0.012 + 0.002 * (n % 5), 3)})
+            n += 1
+    return out
+
+
 # Sorteio próprio para as lajes (não mexe nos túmulos).
 tr = random.Random("cemetery_trails")
+# A trilha atravessa as praças: nada de laje ou leito dentro dos colisores nem sob as plataformas das ruínas.
+plaza_colliders = [(q["position"][0], q["position"][1], q["collider"][0] / 2 + 0.7, q["collider"][1] / 2 + 0.7) for q in c_decor if q.get("collider")]
+plaza_platforms = [(PLAZA_A[0], PLAZA_A[1], 4.6), (PLAZA_B[0], PLAZA_B[1], 5.8)]
+
+
+def trail_piece_ok(piece):
+    x, z = piece["position"]
+    return (all(abs(x - cx) > hw or abs(z - cz) > hd for cx, cz, hw, hd in plaza_colliders)
+            and all(math.hypot(x - px, z - pz) > pr for px, pz, pr in plaza_platforms))
+
+
 for line in trails:
-    c_decor += stone_trail(tr, line)
+    c_decor += [q for q in trail_bed(tr, line) if trail_piece_ok(q)]
+for line in trails:
+    c_decor += [q for q in mossy_slabs(tr, line) if trail_piece_ok(q)]
 
 for bush in scatter(cr, c_rooms[1], ["Pl_Hemp", "Pl_Bush"], 90, margin=2.0):
     x, z = bush["position"]
@@ -636,6 +759,7 @@ def jar_ok(x, z):
             and all(math.hypot(x - sx, z - sz) > sr for sx, sz, sr in jar_solids)
             and all(math.hypot(x - e["position"][0], z - e["position"][1]) > 3.0 for e in c_enc)
             and all(math.hypot(x - q["position"][0], z - q["position"][1]) > 3.0 for q in c_props)
+            and all(math.hypot(x - px, z - pz) > pr + 1.5 for px, pz, pr in plazas)
             and all(math.hypot(x - j["position"][0], z - j["position"][1]) > 0.9 for j in c_jars))
 
 
@@ -660,6 +784,32 @@ for cx, cz, count in (((lane_w(-24) + lane_m(-24)) / 2, -24, 4), ((lane_m(-30) +
                       ((lane_w(-56) + lane_m(-56)) / 2, -56, 4), ((lane_m(-82) + lane_e(-82)) / 2, -82, 5),
                       (chest_e[0] - 2.5, chest_e[1] + 3.5, 4), (chest_w[0] + 2.5, chest_w[1] + 3.5, 4)):
     jar_cluster(cx, cz, count)
+
+# Pedras das margens da trilha: as formações rochosas do pacote (Mossy_Formation_1..4), uma a cada 4 a 5 m, num lado ou no
+# outro, fora das lajes e de qualquer coisa sólida, jarro, grupo de monstros ou baú.
+er = random.Random("cemetery_edge_rocks")
+edge_solids = [(d["position"][0], d["position"][1], max(d["solid"]) / 2 + 0.9) for d in c_decor if d.get("solid")]
+edge_solids += [(j["position"][0], j["position"][1], 1.3) for j in c_jars]
+edge_solids += [(px, pz, pr + 1.2) for px, pz, pr in plazas]
+edge_solids += [(e["position"][0], e["position"][1], 2.0) for e in c_enc] + [(q["position"][0], q["position"][1], 3.0) for q in c_props]
+edge_rocks = []
+for line in trails:
+    for (x0, z0), (x1, z1) in zip(line, line[1:]):
+        length = math.hypot(x1 - x0, z1 - z0)
+        if length < 0.01:
+            continue
+        dx, dz = (x1 - x0) / length, (z1 - z0) / length
+        t = er.uniform(0.5, 2.0)
+        while t < length:
+            side = er.choice((-1, 1)) * er.uniform(1.9, 2.5)
+            x, z = x0 + dx * t - dz * side, z0 + dz * t + dx * side
+            if (abs(x) < 30 and -110 < z < 5 and trail_dist(x, z) > 1.7
+                    and all(math.hypot(x - sx, z - sz) > sr for sx, sz, sr in edge_solids)
+                    and all(math.hypot(x - r["position"][0], z - r["position"][1]) > 1.8 for r in edge_rocks)):
+                edge_rocks.append({"piece": "Mossy_Formation_%d" % er.randint(1, 4), "position": [round(x, 2), round(z, 2)],
+                                   "rotation": er.randrange(0, 360, 15), "scale": round(er.uniform(0.5, 0.9), 2), "y": -0.05})
+            t += er.uniform(4.0, 5.5)
+c_decor += edge_rocks
 arenas["cemetery_01_yard"] = {
     "_comment": "Cemitério (Medieval Props Textured, Clint Bellanger, CC BY 3.0, modelos de Lamoot): mapa grande de terra escura cortado por uma rede de trilhas de lajes (três pistas que se separam, se cruzam e se reencontram; becos sem saída com baú) do portão à cripta, com quatro setores de monstros (A Campo de Covas, B Ossuário, C Cova dos Mortos, D Covil do Troll), marcos de pedra nas divisas, fileiras de lápides e cruzes, poço coberto, estátuas e túmulos de cavaleiro, e a cripta do Senhor da Cripta no fundo. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_CEMETERY", "player_class": "mage", "map_id": "map_cemetery", "area_level": 7, "outdoor": True,
@@ -718,18 +868,21 @@ m_rooms = [
     room("heart", 0, -84, 38, 34, ["south"], wall_height=2.0),
 ]
 m_enc = [
-    {"id": "m_bats_a", "position": [-6, -16], "monsters": [{"monster": "plague_bat", "count": 4}]},
+    {"id": "m_bats_a", "position": [-6, -16], "monsters": [{"monster": "plague_bat", "count": 3}, {"monster": "stalker", "count": 1}]},
     {"id": "m_rats", "position": [7, -26], "monsters": [{"monster": "plague_rat", "count": 5}]},
     {"id": "m_gob_a", "position": [-5, -29], "monsters": [{"monster": "goblin", "count": 4}]},
     {"id": "m_vein", "position": [26, -22], "monsters": [{"monster": "venom_scorpion", "count": 3}]},
     {"id": "m_skel", "position": [-8, -46], "monsters": [{"monster": "skeleton", "count": 4}]},
-    {"id": "m_gob_b", "position": [8, -50], "monsters": [{"monster": "goblin", "count": 4}, {"monster": "plague_bat", "count": 2}]},
+    {"id": "m_gob_b", "position": [8, -50], "monsters": [{"monster": "goblin", "count": 3}, {"monster": "stalker", "count": 2}]},
     {"id": "m_troll", "position": [-27, -52], "monsters": [{"monster": "troll", "count": 1}]},
     {"id": "m_golem_stone", "position": [0, -62], "monsters": [{"monster": "golem_stone", "count": 1}]},
     {"id": "m_golem_a", "position": [-10, -78], "monsters": [{"monster": "golem_stone", "count": 1}, {"monster": "goblin", "count": 3}]},
-    {"id": "m_golem_b", "position": [10, -80], "monsters": [{"monster": "golem_ice", "count": 1}, {"monster": "golem_fire", "count": 1}]},
+    {"id": "m_golem_b", "position": [10, -80], "monsters": [{"monster": "golem_ice", "count": 1}, {"monster": "golem_fire", "count": 1}, {"monster": "stalker", "count": 2}]},
     {"id": "m_boss", "position": [0, -92], "monsters": [{"monster": "crystal_golem", "count": 1}]},
 ]
+monster("stalker", "plague_bat", _comment="Espreitador da Mina (Stalker 3D, GuieA_7, CC BY-SA 4.0): olho alado que voa em bando e ataca de perto.",
+        name_key="MONSTER_STALKER", max_health=110, damage=14, move_speed=3.6, attack_range=1.8, attack_windup=0.5, attack_cooldown=1.4,
+        size=1.0, element="earth", look="stalker", color=[1.0, 1.0, 1.0])
 monster("crystal_golem", "golem_stone", _comment="Chefe da Mina: o golem do coração de cristal (usa o modelo do Golem de Pedra até haver arte própria).",
         name_key="MONSTER_CRYSTAL_GOLEM", max_health=500, damage=24, size=2.6, color=[0.6, 0.75, 1.0])
 m_decor = []
@@ -766,8 +919,28 @@ m_decor += [{"piece": "Crystal_B_%d" % i, "position": p, "rotation": r, "scale":
     (4, [22, -26], 30, 3.2), (12, [28, -19], 100, 2.6), (16, [-6, -90], 0, 3.6), (21, [8, -92], 45, 3.0), (3, [-12, -96], 200, 3.4))]
 m_lights += [{"light": list(BLUE), "position": [24, -22], "range": 12.0, "energy": 2.4, "y": 1.5},
              {"light": list(PURPLE), "position": [0, -92], "range": 16.0, "energy": 3.0, "y": 2.0}]
+# Trilhos (Rails, yd, GPL 2.0; peças de 6 m): a linha principal do portão ao coração da mina e dois ramais, para a gruta dos veios e
+# para a gruta das carroças. Pedras e cristais pequenos saem de cima deles.
+RAIL_LINES = [(0, -1, 0, -91), (3, -22, 17, -22), (-3, -52, -19, -52)]
+rails = []
+for x0, z0, x1, z1 in RAIL_LINES:
+    horizontal = z0 == z1
+    n = max(round(abs((x1 - x0) if horizontal else (z1 - z0)) / 6.0), 1)
+    for i in range(n):
+        t = (i + 0.5) / n
+        rails.append({"piece": "Rail_Straight", "position": [round(x0 + (x1 - x0) * t, 2), round(z0 + (z1 - z0) * t, 2)],
+                      "rotation": 90 if horizontal else 0, "scale": round(abs((x1 - x0) if horizontal else (z1 - z0)) / n / 6.0, 3), "y": 0.02})
+
+
+def on_rail(d):
+    if "solid" in d or d.get("piece", "").startswith("Rail") or "light" in d or "position" not in d:
+        return False
+    x, z = d["position"]
+    return any(min(a, c) - 0.8 <= x <= max(a, c) + 0.8 and min(b, e) - 0.8 <= z <= max(b, e) + 0.8
+               for a, b, c, e in [(l[0], l[1], l[2], l[3]) for l in RAIL_LINES]) and d.get("scale", 1.0) < 1.6
+m_decor = [d for d in m_decor if not on_rail(d)] + rails
 # Equipamento dos mineiros.
-m_decor += [{"piece": "Cart_Wood", "position": [-29, -50], "rotation": 40, "solid": [2.0, 1.2]}, {"piece": "Cart_Wood", "position": [6, -12], "rotation": 100, "solid": [2.0, 1.2]},
+m_decor += [{"piece": "Cart_Wood", "position": [-14, -52], "rotation": 90, "y": 0.05, "solid": [2.0, 1.2]}, {"piece": "Cart_Wood", "position": [0, -10], "rotation": 0, "y": 0.05, "solid": [1.2, 2.0]}, {"piece": "Cart_Wood", "position": [-29, -50], "rotation": 40, "solid": [2.0, 1.2]},
             {"piece": "Barrel", "position": [-24, -57], "scale": 1.0, "solid": [0.9, 0.9]}, {"piece": "Beer_Barrel", "position": [-30, -56], "solid": [0.9, 0.9]},
             {"piece": "Bucket_Crate", "position": [-23, -47], "solid": [0.9, 0.9]}, {"piece": "Whetstone", "position": [-4, 4], "scale": 2.0},
             {"piece": "Pr_BrokenPillar1", "position": [-8, -36], "solid": [1.2, 1.2]}, {"piece": "Pr_BrokenPillar2", "position": [9, -36], "solid": [1.2, 1.2]},
@@ -809,15 +982,82 @@ def carve(c0, r0, c1, r1, ch="."):
             grid[r][c] = ch
 
 
-carve(2, 1, 17, 6)      # salão do comandante
-carve(8, 7, 11, 9)      # corredor
-carve(1, 10, 18, 15)    # salão do meio
-carve(3, 16, 4, 17); carve(15, 16, 16, 17)   # dois acessos
-carve(1, 18, 7, 20); carve(12, 18, 18, 20)   # celas laterais
-carve(3, 21, 4, 21); carve(15, 21, 16, 21)
-carve(3, 22, 16, 24)    # pátio de entrada
-for r, c in ((12, 5), (12, 14), (13, 5), (13, 14), (3, 6), (3, 13), (4, 6), (4, 13), (23, 9), (23, 10)):
+carve(2, 1, 17, 6)      # salão do comandante: a saída do labirinto dá para ele
+carve(3, 20, 16, 24)    # pátio de entrada
+for r, c in ((3, 6), (3, 13), (4, 6), (4, 13), (23, 9), (23, 10)):
     grid[r][c] = "#"
+
+# Labirinto entre o pátio e o salão do comandante: 6 x 4 salas de 2 x 2 células (corredores de 5 m) em uma grade de passo 3 (a
+# célula entre duas salas é a parede). Um labirinto perfeito (busca em profundidade a partir da sala de entrada, sorteio fixo): há um
+# único caminho da entrada até a saída, mais dois atalhos em laço, e o resto são becos sem saída. A saída é a sala da fileira de
+# cima mais longe da entrada; ela se abre para o salão do comandante.
+MZ_W, MZ_H = 6, 4
+def mz_cell(i, j):
+    return 1 + 3 * i, 8 + 3 * j
+
+
+def mz_nbrs(i, j):
+    return [(i + di, j + dj) for di, dj in ((1, 0), (-1, 0), (0, 1), (0, -1)) if 0 <= i + di < MZ_W and 0 <= j + dj < MZ_H]
+
+
+entry_node = (2, MZ_H - 1)
+
+
+def make_maze(seed):
+    mz = rng(seed)
+    links, seen, stack = set(), {entry_node}, [entry_node]
+    while stack:
+        cur = stack[-1]
+        opts = [n for n in mz_nbrs(*cur) if n not in seen]
+        if opts and mz.random() < 0.8:  # às vezes volta antes de acabar: mais bifurcações e becos curtos
+            nxt = mz.choice(opts)
+            links.add(frozenset((cur, nxt)))
+            seen.add(nxt)
+            stack.append(nxt)
+        elif opts and len(stack) == 1:
+            continue
+        else:
+            stack.pop()
+    for _ in range(1):  # um atalho em laço: o labirinto deixa de ser perfeito, mas os becos continuam
+        a = mz.choice(sorted(seen))
+        links.add(frozenset((a, mz.choice([m for m in mz_nbrs(*a) if m in seen]))))
+    adj = {n: [m for m in mz_nbrs(*n) if frozenset((n, m)) in links] for n in seen}
+    dist, parent, queue = {entry_node: 0}, {}, [entry_node]
+    for cur in queue:
+        for m in adj[cur]:
+            if m not in dist:
+                dist[m], parent[m] = dist[cur] + 1, cur
+                queue.append(m)
+    exit_node = max((n for n in dist if n[1] == 0), key=lambda n: dist[n])
+    solution = [exit_node]
+    while solution[-1] != entry_node:
+        solution.append(parent[solution[-1]])
+    solution.reverse()  # da sala de entrada até a sala de saída
+    deg = {n: len(adj[n]) + (n in (entry_node, exit_node)) for n in adj}
+    return links, seen, adj, dist, exit_node, solution, deg
+
+
+# Primeira semente com todas as salas ligadas, 7 ou mais becos sem saída e um caminho certo de 9 a 13 salas.
+for attempt in range(500):
+    links, seen, adj, dist, exit_node, solution, deg = make_maze("fort_maze_%d" % attempt)
+    if len(seen) == MZ_W * MZ_H and 9 <= len(solution) <= 13 and sum(1 for n in adj if deg[n] == 1) >= 7:
+        break
+else:
+    raise RuntimeError("nenhum labirinto do Forte serve")
+for i in range(MZ_W):
+    for j in range(MZ_H):
+        c, r = mz_cell(i, j)
+        carve(c, r, c + 1, r + 1)
+for link in links:
+    (i, j), (k, m) = sorted(link)
+    c, r = mz_cell(i, j)
+    if k > i:
+        carve(c + 2, r, c + 2, r + 1)
+    else:
+        carve(c, r + 2, c + 1, r + 2)
+carve(mz_cell(*entry_node)[0], mz_cell(*entry_node)[1] + 2, mz_cell(*entry_node)[0] + 1, mz_cell(*entry_node)[1] + 2)  # do pátio para o labirinto
+carve(mz_cell(*exit_node)[0], mz_cell(*exit_node)[1] - 1, mz_cell(*exit_node)[0] + 1, mz_cell(*exit_node)[1] - 1)      # do labirinto para o salão
+assert len(dist) == MZ_W * MZ_H  # todas as salas ligadas
 
 
 def is_rock(c, r):
@@ -868,34 +1108,53 @@ for r in range(ROWS):
             fort_decor.append({"collider": [round(x1 - x0 + CELL, 2), CELL], "position": [round((x0 + x1) / 2, 2), z]})
         else:
             c += 1
-fort_decor += [{"light": [1.0, 0.65, 0.3], "position": cell_pos(c, r), "y": 2.2, "range": 9.0, "energy": 1.4}
-               for c, r in ((4, 3), (15, 3), (9, 12), (3, 19), (16, 19), (9, 23))]
-fort_decor += [{"piece": "Pr_Cross4", "position": cell_pos(9, 2), "solid": [1.2, 1.2]}, {"piece": "Pr_BrokenPillar1", "position": cell_pos(5, 11), "solid": [1.2, 1.2]},
-               {"piece": "Pr_BrokenPillar2", "position": cell_pos(14, 11), "solid": [1.2, 1.2]}]
+def node_pos(n):
+    (c, r), (c2, r2) = cell_pos(*mz_cell(*n)), cell_pos(mz_cell(*n)[0] + 1, mz_cell(*n)[1] + 1)
+    return [round((c + c2) / 2, 2), round((r + r2) / 2, 2)]
+
+
+# Luzes: o salão do comandante e o pátio, e uma a cada duas salas do caminho certo (a luz quente leva até a saída; os becos ficam escuros).
+fort_decor += [{"light": [1.0, 0.65, 0.3], "position": cell_pos(c, r), "y": 2.2, "range": 9.0, "energy": 1.4} for c, r in ((4, 3), (15, 3), (9, 23))]
+fort_decor += [{"light": [1.0, 0.65, 0.3], "position": node_pos(n), "y": 2.2, "range": 8.0, "energy": 1.1} for n in solution[1::2]]
+fort_decor += [{"piece": "Pr_Cross4", "position": cell_pos(9, 2), "solid": [1.2, 1.2]}]
 # Peças do castelo (3D Castle Dungeon Tileset Extended, rubberduck, CC0; build_castle_kit.py), na mesma altura da pedra do Forte.
-# Os arcos ficam nas passagens norte-sul; colunas e pilares são sólidos, arcos e lajotas não.
-castle = [{"piece": "Castle_" + n, "position": cell_pos(c, r)} for n, c, r in (
-    ("GateBig", 9, 8), ("GateBig", 10, 8), ("GateNew", 4, 21), ("GateNew", 15, 21), ("GateSmall", 4, 16), ("GateSmall", 15, 16))]
+# Arcos nas duas passagens norte-sul (entrada e saída do labirinto); colunas e pilares são sólidos, arcos e lajotas não.
+(ec, er), (xc, xr) = mz_cell(*entry_node), mz_cell(*exit_node)
+castle = [{"piece": "Castle_GateBig", "position": cell_pos(ec + k, er + 2)} for k in (0, 1)]
+castle += [{"piece": "Castle_GateBig", "position": cell_pos(xc + k, xr - 1)} for k in (0, 1)]
 castle += [{"piece": "Castle_" + n, "position": cell_pos(c, r), "solid": [0.9, 0.9]} for n, c, r in (
-    ("ColumnB", 8, 8), ("ColumnB", 11, 8), ("Column", 4, 2), ("Column", 4, 5), ("Column", 15, 2), ("Column", 15, 5),
-    ("Column", 3, 12), ("Column", 16, 12), ("EdgeColumn", 5, 22), ("EdgeColumn", 14, 22))]
+    ("Column", 4, 2), ("Column", 4, 5), ("Column", 15, 2), ("Column", 15, 5), ("EdgeColumn", 5, 22), ("EdgeColumn", 14, 22))]
 castle += [{"piece": "Castle_Dais", "position": cell_pos(9, 1)}, {"piece": "Castle_Altar", "position": cell_pos(12, 2), "solid": [1.2, 1.2]}]
 castle += [{"piece": "Castle_Tiles", "position": [round(cell_pos(8, 4)[0] + i * 1.3, 2), round(cell_pos(8, 4)[1] + j * 1.3 + 1.5, 2)]}
            for i in range(4) for j in range(3)]
-castle += [{"piece": "Castle_Mug", "position": cell_pos(c, r)} for c, r in ((3, 19), (16, 19))]
-castle += [{"piece": "Castle_" + n, "position": cell_pos(c, r), "rotation": rot, "solid": [1.3, 0.5]} for n, c, r, rot in (
-    ("WallTorch1", 6, 16, 0), ("WallTorch2", 13, 16, 0), ("WallWindow", 7, 10, 0), ("WallDeco", 12, 10, 0))]
 fort_decor += castle
-# Peças do Labirinto (3D Walls & Props, deadkir, CC0; build_labyrinth_kit.py): caixões, barris e caixotes nas celas, ruínas no salão
-# do meio, colunas partidas e o escudo com a espada caídos perto do comandante.
+# Peças do Labirinto (3D Walls & Props, deadkir, CC0; build_labyrinth_kit.py): caixões no salão do comandante, barris e caixotes no pátio
+# e o escudo com a espada caídos perto do comandante; cada sala do labirinto ganha, no canto, barris, um caixote, um caixão, ruínas,
+# uma coluna ou nada (sorteio fixo).
 lab = [{"piece": "Lab_" + n, "position": cell_pos(c, r), "rotation": rot, "solid": [w, d]} for n, c, r, rot, w, d in (
-    ("Coffin", 6, 6, 0, 2.0, 0.9), ("Coffin", 13, 6, 0, 2.0, 0.9), ("Coffin", 5, 20, 0, 2.0, 0.9), ("Coffin", 14, 20, 0, 2.0, 0.9),
-    ("Barrel", 1, 18, 0, 0.6, 0.6), ("Barrel", 1, 19, 0, 0.6, 0.6), ("Barrel", 18, 18, 0, 0.6, 0.6), ("Barrel", 18, 19, 0, 0.6, 0.6),
-    ("Barrel", 4, 23, 0, 0.6, 0.6), ("Barrel", 15, 23, 0, 0.6, 0.6),
-    ("Crate", 1, 20, 0, 0.6, 0.6), ("Crate", 18, 20, 0, 0.6, 0.6), ("Crate", 3, 24, 0, 0.6, 0.6), ("Crate", 16, 24, 0, 0.6, 0.6),
-    ("WallBroken", 11, 14, 0, 1.3, 0.32), ("WallLong", 7, 12, 0, 1.3, 0.32), ("ColumnBroken", 6, 14, 0, 0.32, 0.32),
-    ("ColumnBroken", 13, 12, 0, 0.32, 0.32), ("ColumnBig", 9, 11, 0, 0.63, 0.63), ("ColumnSmall", 10, 15, 0, 0.32, 0.32))]
+    ("Coffin", 6, 6, 0, 2.0, 0.9), ("Coffin", 13, 6, 0, 2.0, 0.9),
+    ("Barrel", 4, 23, 0, 0.6, 0.6), ("Barrel", 15, 23, 0, 0.6, 0.6), ("Barrel", 3, 21, 0, 0.6, 0.6), ("Barrel", 16, 21, 0, 0.6, 0.6),
+    ("Crate", 3, 24, 0, 0.6, 0.6), ("Crate", 16, 24, 0, 0.6, 0.6), ("Crate", 3, 22, 0, 0.6, 0.6), ("Crate", 16, 22, 0, 0.6, 0.6))]
 lab.append({"piece": "Lab_ShieldSword", "position": cell_pos(8, 5), "rotation": 25})
+md = rng("fort_maze_decor")
+for n in sorted(seen):
+    if n == entry_node:
+        continue
+    cx, cz = node_pos(n)
+    sx, sz = md.choice((-1, 1)), md.choice((-1, 1))
+    bx, bz = round(cx + sx * 1.0, 2), round(cz + sz * 1.0, 2)
+    kind = md.choice(("barrels", "crate", "coffin", "ruin", "column", "none", "none"))
+    if kind == "barrels":
+        lab += [{"piece": "Lab_Barrel", "position": [bx, bz], "solid": [0.6, 0.6]}, {"piece": "Lab_Barrel", "position": [round(bx - sx * 0.7, 2), bz], "solid": [0.6, 0.6]}]
+    elif kind == "crate":
+        lab.append({"piece": "Lab_Crate", "position": [bx, bz], "rotation": md.randrange(0, 360, 15), "solid": [0.6, 0.6]})
+    elif kind == "coffin":
+        lab.append({"piece": "Lab_Coffin", "position": [bx, bz], "solid": [2.0, 0.9]})
+    elif kind == "ruin":
+        lab.append({"piece": md.choice(("Lab_WallBroken", "Lab_WallLong")), "position": [bx, bz], "solid": [1.3, 0.32]})
+        lab.append({"piece": "Lab_ColumnBroken", "position": [round(bx - sx * 1.2, 2), round(bz + sz * 0.3, 2)], "solid": [0.32, 0.32]})
+    elif kind == "column":
+        lab.append({"piece": "Lab_ColumnBig", "position": [bx, bz], "solid": [0.63, 0.63]})
 fort_decor += lab
 # Canhões de navio (Ship Cannon, jameswhite, CC0; build_cannon.py), a boca para +Z com rotação 0: dois no pátio apontados para o forte e dois
 # no salão do comandante apontados para a entrada.
@@ -941,32 +1200,51 @@ while len(fort_rats) < 14:
     a, b = cell_pos(c, r), cell_pos(c2, r2)
     fort_rats.append({"role": "rat", "position": [round(a[0] + fr.uniform(-0.8, 0.8), 2), round(a[1] + fr.uniform(-0.8, 0.8), 2)],
                       "path": b, "speed": round(fr.uniform(1.2, 2.2), 1), "pose": "walk"})
+# Encontros e baús nas salas do labirinto: os baús nos becos mais fundos, quatro encontros espalhados pelo caminho certo, o resto nos
+# outros becos e salas (os mais longe da entrada primeiro). O comandante e as súcubos do salão ficam no salão do comandante.
+used = {entry_node}
+deg = {n: len(adj[n]) + (n in (entry_node, exit_node)) for n in adj}
+leaves = sorted((n for n in adj if deg[n] == 1), key=lambda n: -dist[n])
+far = sorted(adj, key=lambda n: -dist[n])
+path_mid = [n for n in solution if n != entry_node]
+spaced = []
+for k in range(4):
+    n = path_mid[int((k + 0.5) * len(path_mid) / 4)]
+    if n not in spaced:
+        spaced.append(n)
+
+
+def take(cands):
+    for n in cands + far:
+        if n not in used:
+            used.add(n)
+            return n
+
+
+chest_spots = [take(leaves) for _ in range(5)]
+fort_chests = [{"id": i, "kind": "chest", "position": node_pos(n), **extra} for i, n, extra in zip(
+    ("fort_chest_1", "fort_chest_2", "fort_potions_1", "fort_potions_2", "fort_potions_3"), chest_spots,
+    ({"loot": "chest"}, {"loot": "chest"}, {"loot": "potion_chest", "model": "Chest_Potion"}, {"loot": "potion_chest", "model": "Chest_Potion"},
+     {"loot": "potion_chest", "model": "Chest_Potion"}))]
+fort_encounters = []
+for eid, cands, kind_id, count in (
+        ("fo_elves_gate", spaced, "dark_elf", 2), ("fo_succubi_hall", spaced, "succubus", 2), ("fo_elves_hall_w", spaced, "dark_elf", 2),
+        ("fo_elves_hall_e", spaced, "dark_elf", 2), ("fo_cell_w", leaves, "golden_lizard", 3), ("fo_cell_e", leaves, "venom_scorpion", 3),
+        ("fo_hall_a", far, "plague_bat", 4), ("fo_hall_b", far, "mutant_rat", 4)):
+    fort_encounters.append({"id": eid, "position": node_pos(take(cands)), "monsters": [{"monster": kind_id, "count": count}]})
+fort_encounters += [{"id": "fo_succubi_court", "position": cell_pos(9, 5), "monsters": [{"monster": "succubus", "count": 2}]},
+                    {"id": "fo_commander", "position": cell_pos(9, 3), "monsters": [{"monster": "fort_commander", "count": 1}]}]
 arenas["fort_01_gate"] = {
-    "_comment": "Forte (3D Dungeon Tileset, Skorpio, CC BY-SA 3.0): uma grade de 20 x 26 células de 2,5 m com pedra e piso do pacote (Fort_<máscara>, a máscara é o 8-vizinhança de pedra); a colisão é uma caixa por trecho de pedra. Pátio de entrada, duas celas, salão do meio e o salão do comandante no fundo. Gerado por tools/assets/build_maps.py.",
+    "_comment": "Forte (3D Dungeon Tileset, Skorpio, CC BY-SA 3.0): uma grade de 20 x 26 células de 2,5 m com pedra e piso do pacote (Fort_<máscara>, a máscara é o 8-vizinhança de pedra); a colisão é uma caixa por trecho de pedra. Do pátio de entrada, um labirinto de salas de 2 x 2 células com becos sem saída (um único caminho certo, mais dois atalhos) leva ao salão do comandante no fundo. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_FORT", "player_class": "mage", "map_id": "map_fort", "area_level": 10,
     "wake_radius": 10.0, "alert_radius": 5.0,
     "rooms": [room("fort", 0, 0, COLS * CELL, ROWS * CELL, [], wall_height=0.8, torch=False)],
-    "encounters": [
-        {"id": "fo_cell_w", "position": cell_pos(4, 19), "monsters": [{"monster": "golden_lizard", "count": 3}]},
-        {"id": "fo_cell_e", "position": cell_pos(15, 19), "monsters": [{"monster": "venom_scorpion", "count": 3}]},
-        {"id": "fo_hall_a", "position": cell_pos(9, 13), "monsters": [{"monster": "plague_bat", "count": 4}]},
-        {"id": "fo_hall_b", "position": cell_pos(14, 14), "monsters": [{"monster": "mutant_rat", "count": 4}]},
-        {"id": "fo_elves_gate", "position": cell_pos(9, 9), "monsters": [{"monster": "dark_elf", "count": 2}]},
-        {"id": "fo_elves_hall_w", "position": cell_pos(4, 13), "monsters": [{"monster": "dark_elf", "count": 2}]},
-        {"id": "fo_elves_hall_e", "position": cell_pos(16, 11), "monsters": [{"monster": "dark_elf", "count": 2}]},
-        {"id": "fo_succubi_hall", "position": cell_pos(7, 14), "monsters": [{"monster": "succubus", "count": 2}]},
-        {"id": "fo_succubi_court", "position": cell_pos(9, 5), "monsters": [{"monster": "succubus", "count": 2}]},
-        {"id": "fo_commander", "position": cell_pos(9, 3), "monsters": [{"monster": "fort_commander", "count": 1}]},
-    ],
+    "encounters": fort_encounters,
     "hazards": [], "entries": {"start": cell_pos(8, 24)},
     "props": [
         {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [cell_pos(5, 24)[0], cell_pos(5, 24)[1]], "to": "tortuga", "entry": "forest", "expedition_end": True},
         {"id": "to_capital", "kind": "exit", "name_key": "PROP_TO_CAPITAL", "position": [cell_pos(9, 1)[0], cell_pos(9, 1)[1] - 1.0], "to": "capital_01_aurenhold", "entry": "start", "after_victory": True, "group": True},
-        {"id": "fort_chest_1", "kind": "chest", "position": cell_pos(2, 19), "loot": "chest"},
-        {"id": "fort_chest_2", "kind": "chest", "position": cell_pos(17, 19), "loot": "chest"},
-        {"id": "fort_potions_1", "kind": "chest", "position": cell_pos(1, 13), "loot": "potion_chest", "model": "Chest_Potion"},
-        {"id": "fort_potions_2", "kind": "chest", "position": cell_pos(18, 13), "loot": "potion_chest", "model": "Chest_Potion"},
-        {"id": "fort_potions_3", "kind": "chest", "position": cell_pos(13, 23), "loot": "potion_chest", "model": "Chest_Potion"},
+        *fort_chests,
     ],
     "quest_spots": [], "breakables": [],
     "style": {"_comment": "Forte: piso de pedra do pacote; a pedra vem das peças Fort_* em decor.", "walls": [""], "floor": "Fort_Floor", "low": "", "ground": [0.07, 0.07, 0.08]},
@@ -1027,6 +1305,8 @@ farm_rooms = [
 farm_decor = [
     # Serraria movida a água (CC0) no fundo da clareira lateral; barricadas de toras (CC-BY) fechando o portão.
     {"piece": "Pr_Sawmill", "position": [29, -22], "rotation": 270, "solid": [8.0, 6.5]},
+    # Casa da Fazenda (Old Medieval Shack House, Spiral, CC0): 7 x 4,9 m, porta para o portão (+Z), ao lado da horta.
+    {"piece": "Pr_Farmhouse", "position": [-14, -12], "solid": [7.0, 4.9]},
     {"piece": "Pr_Barricade", "position": [-8.5, -5.0], "rotation": 15, "solid": [2.0, 1.2]},
     {"piece": "Pr_Barricade", "position": [8.5, -5.0], "rotation": 345, "solid": [2.0, 1.2]},
     {"piece": "Well_Covered", "position": [-12, -20], "solid": [1.6, 1.6]},
@@ -1052,7 +1332,7 @@ for z in range(-36, -7, 4):
                            "rotation": fr.randrange(0, 360, 15), "scale": round(fr.uniform(1.0, 1.6), 2)})
 for rd in farm_rooms:
     farm_decor += scatter(fr, rd, ["Pl_Grass1", "Pl_Grass2", "Pl_Grass3"], int(rd["size"][0] * rd["size"][1] / 10), margin=1.5,
-                          scale=(0.8, 1.6), avoid=[(0, 3, 3), (29, -22, 5)] + creek_avoid)
+                          scale=(0.8, 1.6), avoid=[(0, 3, 3), (29, -22, 5), (-14, -12, 5)] + creek_avoid)
     farm_decor += ring(fr, rd, ["Pl_Grass1", "Pl_Grass2", "Pl_Grass3", "Pl_Bush"], 2.4, scale=(1.0, 1.8))
 
 
@@ -1104,7 +1384,7 @@ for i in range(9):  # dentro do pasto cercado
     farm_crowd.append({"role": "sheep", "position": [round(x, 1), round(z, 1)], "rotation": fr.randrange(0, 360, 15), "pose": "idle",
                        "path": [round(tx, 1), round(tz, 1)], "speed": 0.5})
 arenas["farm_01_fields"] = {
-    "_comment": "Fazenda: campos abertos com capim (Grass Pack 01, Yughues / Nobiax, CC0), serraria movida a água (CC0) com a roda sobre um riacho, barricadas de toras (Sullivan, CC-BY), fazendeiros com ferramentas (Retextured Gnarly Tools, Mev Lyshkin, CC-BY) e ovelhas (p0ss, CC-BY-SA). Só o mapa por enquanto: sem monstros, lojas, baús nem missões; portal em Tortuga ao lado do da Floresta. Gerado por tools/assets/build_maps.py.",
+    "_comment": "Fazenda: campos abertos com capim (Grass Pack 01, Yughues / Nobiax, CC0), casa de fazenda (CC0), serraria movida a água (CC0) com a roda sobre um riacho, barricadas de toras (Sullivan, CC-BY), fazendeiros com ferramentas (Retextured Gnarly Tools, Mev Lyshkin, CC-BY) e ovelhas (p0ss, CC-BY-SA). Só o mapa por enquanto: sem monstros, lojas, baús nem missões; portal em Tortuga ao lado do da Floresta. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_FARM", "town": True, "outdoor": True, "player_class": "mage", "map_id": "map_farm", "area_level": 1,
     "wake_radius": 10.0, "alert_radius": 5.0, "rooms": farm_rooms, "encounters": [], "hazards": [],
     "entries": {"start": [0, 3], "farm": [0, 3]},

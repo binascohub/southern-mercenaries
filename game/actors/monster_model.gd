@@ -39,6 +39,10 @@ const FAMILIES := {
 	# nem animação (`static`); 1 m no arquivo -> ~2,2 m no tamanho 1.
 	"fungus": {"scene": "res://assets/models/monsters/fungus.glb", "scale": 1.1, "static": true,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Espreitador (Stalker 3D, GuieA_7, CC BY-SA 4.0; tools/assets/build_stalker.py): olho alado da Mina, malha única sem animação
+	# (`static`); 1 m no arquivo -> ~1,4 m no tamanho 1. Voa e balança por código.
+	"stalker": {"scene": "res://assets/models/monsters/stalker.glb", "scale": 1.4, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
 	"gator": {"scene": "res://assets/models/monsters/gator.glb", "scale": 0.75,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
 	# Monstro da Floresta (cdmir, CC0): gigante de casca e pedra com uma árvore nas

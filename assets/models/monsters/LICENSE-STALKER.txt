@@ -1,0 +1,2 @@
+stalker.glb — "Stalker (3D)" by GuieA_7, CC BY-SA 4.0: https://opengameart.org/content/stalker-3d
+Converted from the Blender file by tools/assets/build_stalker.py (single static mesh, rest pose, 1024 px texture). Derivative work: share-alike applies to this file.

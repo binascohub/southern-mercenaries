@@ -2545,6 +2545,24 @@ msgstr "Goblin"
 msgid "MONSTER_TROLL"
 msgstr "Troll Flaco"
 
+msgid "NPC_LIGHTPOST_STATUE"
+msgstr "Estatua del Farol"
+
+msgid "DLG_STATUE_1"
+msgstr "Hace mucho que nadie cruza este suelo sin temblar. Yo sostengo la luz de los que duermen aquí."
+
+msgid "DLG_STATUE_2"
+msgstr "El farol no está para guiar a los vivos. Vigila a quienes se acuestan y no quieren volver a levantarse."
+
+msgid "DLG_STATUE_3"
+msgstr "Pero pisaste mi plaza y me miraste a los ojos. Que el guardián de la tumba decida si mereces pasar."
+
+msgid "TOAST_STATUE_AWAKENS"
+msgstr "La tierra tiembla: ¡el Guardián de la Tumba despierta!"
+
+msgid "MONSTER_TOMB_GUARDIAN"
+msgstr "Guardián de la Tumba"
+
 msgid "ARENA_DARK_FOREST"
 msgstr "Bosque Oscuro"
 
@@ -2646,3 +2664,6 @@ msgstr "Bestia Quitinosa"
 
 msgid "MONSTER_ANGLER"
 msgstr "Anglerman"
+
+msgid "MONSTER_STALKER"
+msgstr "Acechador"

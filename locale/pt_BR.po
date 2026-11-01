@@ -2545,6 +2545,24 @@ msgstr "Goblin"
 msgid "MONSTER_TROLL"
 msgstr "Troll Magro"
 
+msgid "NPC_LIGHTPOST_STATUE"
+msgstr "Estátua do Lampião"
+
+msgid "DLG_STATUE_1"
+msgstr "Faz tempo que ninguém atravessa este chão sem tremer. Eu seguro a luz para os que dormem aqui."
+
+msgid "DLG_STATUE_2"
+msgstr "A lanterna não está aqui para guiar os vivos. Ela vigia quem se deita e não quer mais levantar."
+
+msgid "DLG_STATUE_3"
+msgstr "Mas você pisou na minha praça e olhou nos meus olhos. Que o guardião do túmulo decida se você merece passar."
+
+msgid "TOAST_STATUE_AWAKENS"
+msgstr "A terra treme: o Guardião do Túmulo desperta!"
+
+msgid "MONSTER_TOMB_GUARDIAN"
+msgstr "Guardião do Túmulo"
+
 msgid "ARENA_DARK_FOREST"
 msgstr "Floresta Escura"
 
@@ -2646,3 +2664,6 @@ msgstr "Besta Quitinosa"
 
 msgid "MONSTER_ANGLER"
 msgstr "Anglerman"
+
+msgid "MONSTER_STALKER"
+msgstr "Espreitador"

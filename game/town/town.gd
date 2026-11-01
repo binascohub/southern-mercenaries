@@ -154,6 +154,9 @@ func interact(player: Player, prop: Dictionary) -> void:
 			# Ouvir a história põe as criaturas no bestiário.
 			if index >= 0:
 				learn(GameData.npcs[prop.npc].dialogues[index].get("bestiary", []))
+			# Estátua que desperta um grupo (mini-chefe da praça) depois da fala.
+			if prop.has("summon"):
+				_arena().summon_encounter(player, prop)
 		"quest_spot":
 			resolve_spot(player, String(prop.quest))
 		"forge":
