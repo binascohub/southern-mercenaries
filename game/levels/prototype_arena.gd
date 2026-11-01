@@ -1954,6 +1954,8 @@ func _build_crowd(entry: Dictionary) -> void:
 		model.call("set_pose", String(entry.get("pose", "idle")))
 	else:
 		model = _npc_body(node, look)
+		if model and entry.get("instrument", "") == "guitar":
+			_give_guitar(model)
 		# Bêbados com o caneco de madeira na mão.
 		if model is HeroModel and String(entry.role) == "drunk" and Kit.has("Mug_Wood"):
 			(model as HeroModel).attach("hand_r", Kit.piece("Mug_Wood"), Player.HAND_GRIP, Vector3(0.4, 0.9, 0.1))
@@ -2140,6 +2142,8 @@ func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3,
 					var x := c.x + segment.x - segment.y / 2.0 + (segment.y - count * ROOF_WIDTH) / 2.0 + ROOF_WIDTH * (i + 0.5)
 					node.position = Vector3(x, 3.4, c.z - half.z - ROOF_WIDTH / 2.0 + 0.6)
 					_area_root.add_child(node)
+					if style.get("wood", false):
+						_woodify(node)
 	# Lampião na parede norte das salas com tocha.
 	if room.get("torch", false) and not low:
 		var lantern := Kit.piece("Lantern_Wall")
@@ -2222,6 +2226,181 @@ func _tint_piece(node: Node3D, extra := Color.WHITE) -> void:
 				copy.metallic = 0.0 if extra != Color.WHITE else copy.metallic
 				_tinted[key] = copy
 			m.set_surface_override_material(i, _tinted[key])
+
+
+## Casas de madeira (estilo "wood", Tortuga): troca o reboco e o tijolo da parede pela madeira do
+## próprio kit (a de MI_WoodTrim, a mesma das vigas), em tábuas mais escuras que as vigas (as paredes, a base de pedra e o telhado).
+const WOOD_PLANK := Color(0.72, 0.6, 0.5)
+## Só a faixa de madeira escura do atlas (o resto tem blocos e pedra): v de 0,33 a 0,61.
+const WOOD_UV_SCALE := Vector3(3, 0.27, 1)
+const WOOD_UV_OFFSET := Vector3(0, 0.34, 0)
+## Materiais do kit que viram madeira: reboco, tijolo, pedra da base e telha.
+const WOOD_REPLACES: Array[String] = ["Plaster", "Brick", "Rock", "Tiles"]
+var _planks := {}
+
+
+func _woodify(node: Node3D) -> void:
+	for mesh in node.find_children("*", "MeshInstance3D", true, false):
+		var m := mesh as MeshInstance3D
+		var trim: StandardMaterial3D = null
+		for i in m.get_surface_override_material_count():
+			var material := m.get_active_material(i) as StandardMaterial3D
+			if material and material.resource_name.contains("WoodTrim"):
+				trim = material
+				break
+		if trim == null:
+			continue
+		if not _planks.has(trim):
+			var copy := trim.duplicate() as StandardMaterial3D
+			copy.albedo_color = copy.albedo_color * WOOD_PLANK
+			copy.uv1_scale = WOOD_UV_SCALE
+			copy.uv1_offset = WOOD_UV_OFFSET
+			_planks[trim] = copy
+		for i in m.get_surface_override_material_count():
+			var material := m.get_active_material(i) as StandardMaterial3D
+			if material and WOOD_REPLACES.any(func(part: String) -> bool: return material.resource_name.contains(part)):
+				m.set_surface_override_material(i, _planks[trim])
+
+
+## Violão no colo do músico sentado (feito em código): caixa, boca escura e braço para a esquerda dele;
+## balança de leve, como quem dedilha.
+func _give_guitar(model: HeroModel) -> void:
+	var guitar := Node3D.new()
+	var wood := _wood_material()
+	var dark := StandardMaterial3D.new()
+	dark.albedo_color = Color(0.05, 0.03, 0.02)
+	for part: Array in [[0.0, 0.0, 0.2, 0.22], [0.2, 0.0, 0.16, 0.18]]:
+		var body := MeshInstance3D.new()
+		var cyl := CylinderMesh.new()
+		cyl.top_radius = part[3]
+		cyl.bottom_radius = part[3]
+		cyl.height = 0.09
+		body.mesh = cyl
+		body.material_override = wood
+		body.rotation.x = PI / 2.0
+		body.position = Vector3(part[0] * 0.0 - part[1], part[1], 0)
+		body.position = Vector3(-part[0] * 0.5, 0, 0)
+		guitar.add_child(body)
+	var hole := MeshInstance3D.new()
+	var disc := CylinderMesh.new()
+	disc.top_radius = 0.055
+	disc.bottom_radius = 0.055
+	disc.height = 0.01
+	hole.mesh = disc
+	hole.material_override = dark
+	hole.rotation.x = PI / 2.0
+	hole.position = Vector3(-0.02, 0, 0.047)
+	guitar.add_child(hole)
+	var neck := MeshInstance3D.new()
+	var neck_box := BoxMesh.new()
+	neck_box.size = Vector3(0.6, 0.05, 0.035)
+	neck.mesh = neck_box
+	neck.material_override = dark
+	neck.position = Vector3(0.38, 0, 0)
+	guitar.add_child(neck)
+	# Cabeça: onde ficam as tarraxas.
+	var head := MeshInstance3D.new()
+	var head_box := BoxMesh.new()
+	head_box.size = Vector3(0.12, 0.07, 0.03)
+	head.mesh = head_box
+	head.material_override = wood
+	head.position = Vector3(0.72, 0, 0)
+	guitar.add_child(head)
+	guitar.position = Vector3(0.0, 0.78, 0.26)
+	guitar.rotation = Vector3(0, deg_to_rad(-12), deg_to_rad(18))
+	model.add_child(guitar)
+	var strum := guitar.create_tween().set_loops()
+	strum.tween_property(guitar, "rotation:z", deg_to_rad(21), 0.35).set_trans(Tween.TRANS_SINE)
+	strum.tween_property(guitar, "rotation:z", deg_to_rad(15), 0.35).set_trans(Tween.TRANS_SINE)
+
+
+## Madeira escura lisa (a faixa de madeira do atlas do kit, recortada): tábuas e estátua.
+var _wood_flat: StandardMaterial3D
+
+
+func _wood_material() -> StandardMaterial3D:
+	if _wood_flat == null:
+		_wood_flat = StandardMaterial3D.new()
+		_wood_flat.roughness = 0.9
+		_wood_flat.albedo_color = Color(0.85, 0.75, 0.68)
+		var texture := load("res://assets/models/village/T_WoodTrim_BaseColor.webp") as Texture2D
+		if texture:
+			var image := texture.get_image()
+			if image.is_compressed():
+				image.decompress()
+			var scale_ := image.get_width() / 1024.0
+			_wood_flat.albedo_texture = ImageTexture.create_from_image(
+				image.get_region(Rect2i(0, int(335 * scale_), image.get_width(), int(280 * scale_))))
+			_wood_flat.uv1_triplanar = true
+			_wood_flat.uv1_scale = Vector3.ONE * 0.9
+	return _wood_flat
+
+
+## Janela quebrada: tábuas pregadas em X na abertura e, em algumas, a veneziana torta,
+## pendurada de um lado. Só visual, filho da peça da parede (acompanha o giro e a escala).
+func _break_window(wall: Node3D, wide: bool, seed_: int) -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = seed_
+	var half_len := 0.65 if wide else 0.4
+	for board in rng.randi_range(2, 3):
+		var mesh := MeshInstance3D.new()
+		var box := BoxMesh.new()
+		box.size = Vector3(half_len * 2.0 * rng.randf_range(0.85, 1.1), 0.15, 0.05)
+		mesh.mesh = box
+		mesh.material_override = _wood_material()
+		mesh.position = Vector3(rng.randf_range(-0.08, 0.08), 1.45 + 0.4 * board + rng.randf_range(-0.08, 0.08), 0.13 + 0.02 * board)
+		mesh.rotation.z = deg_to_rad(rng.randf_range(12.0, 32.0) * (1.0 if board % 2 == 0 else -1.0))
+		wall.add_child(mesh)
+	if wide and rng.randf() < 0.6 and Kit.has("WindowShutters_Wide_Round_Open"):
+		# Gira em volta do centro da janela (o pivô fica a 1,9 m do chão), não do pé da parede.
+		var pivot := Node3D.new()
+		pivot.position = Vector3(0, 1.9, 0.02)
+		pivot.rotation.z = deg_to_rad(rng.randf_range(5.0, 11.0) * (1.0 if rng.randf() < 0.5 else -1.0))
+		var shutters := Kit.piece("WindowShutters_Wide_Round_Open")
+		shutters.position = Vector3(0, -1.9, 0)
+		pivot.add_child(shutters)
+		wall.add_child(pivot)
+
+
+## Estátua de madeira (decor "statue": papel do NPC): o modelo parado numa pose, todo em
+## madeira escura, sobre um pedestal de tábuas; bloqueia a passagem.
+func _build_statue(decor: Dictionary) -> void:
+	var root := Node3D.new()
+	root.position = Vector3(decor.position[0], 0, decor.position[1])
+	root.rotation.y = deg_to_rad(float(decor.get("rotation", 0.0)))
+	_area_root.add_child(root)
+	var steps := [[Vector3(1.5, 0.16, 1.5), 0.08], [Vector3(1.1, 0.5, 1.1), 0.41]]
+	for step: Array in steps:
+		var mesh := MeshInstance3D.new()
+		var box := BoxMesh.new()
+		box.size = step[0]
+		mesh.mesh = box
+		mesh.material_override = _wood_material()
+		mesh.position.y = step[1]
+		root.add_child(mesh)
+	var top := 0.66
+	var model := NpcModel.create(String(decor.statue)) if NpcModel.has_model(String(decor.statue)) else null
+	if model:
+		model.position.y = top
+		model.scale *= float(decor.get("scale", 1.15))
+		root.add_child(model)
+		model.set_pose(String(decor.get("pose", "idle")))
+		for player in model.find_children("*", "AnimationPlayer", true, false):
+			(player as AnimationPlayer).speed_scale = 0.0
+		for mesh in model.find_children("*", "MeshInstance3D", true, false):
+			var m := mesh as MeshInstance3D
+			for i in m.get_surface_override_material_count():
+				m.set_surface_override_material(i, _wood_material())
+	var body := StaticBody3D.new()
+	body.collision_layer = 1
+	body.collision_mask = 0
+	var shape := CollisionShape3D.new()
+	var shape_box := BoxShape3D.new()
+	shape_box.size = Vector3(1.5, 1.0, 1.5)
+	shape.shape = shape_box
+	body.add_child(shape)
+	body.position.y = 0.5
+	root.add_child(body)
 
 
 ## Lixo jogado pelo chão do esgoto: garrafas e canecas caídas, cacos de pote,
@@ -2564,6 +2743,10 @@ func _dress_side(face: Vector3, along: Vector3, inward: Vector3, length: float, 
 			node.rotation.y = atan2(inward.x, inward.z)
 			_area_root.add_child(node)
 			_tint_piece(node)
+			if arena.get("style", {}).get("wood", false):
+				_woodify(node)
+			if arena.get("style", {}).get("broken_windows", false) and piece_name.contains("Window"):
+				_break_window(node, piece_name.contains("Wide"), hash(Vector2(node.position.x, node.position.z)))
 			if full and not arena.get("outdoor", false):
 				_cut_walls.append(node)
 
@@ -2571,6 +2754,9 @@ func _dress_side(face: Vector3, along: Vector3, inward: Vector3, length: float, 
 ## Objeto de cenário (data/arenas.json "decor"): mesa, banco, barril, carroça…
 ## Com "solid", uma caixa de colisão do tamanho dado.
 func _build_decor(decor: Dictionary) -> void:
+	if decor.has("statue"):
+		_build_statue(decor)
+		return
 	if decor.has("light"):
 		# Luz de cenário (lanterna vermelha da casa da Madame, fogo dos apostadores).
 		var c: Array = decor.light

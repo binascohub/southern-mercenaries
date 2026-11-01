@@ -29,7 +29,7 @@ bsdf.inputs["Roughness"].default_value = 0.9
 links.new(bsdf.outputs["BSDF"], out_node.inputs["Surface"])
 color = nodes.new("ShaderNodeTexImage")
 color.image = bpy.data.images["col.001"]
-unify_wood(color.image)  # tom único de madeira da Fazenda (farm_palette.py)
+color.image = unify_wood(color.image, sat_limit=0.9)  # tom único de madeira da Fazenda (farm_palette.py)
 links.new(color.outputs["Color"], bsdf.inputs["Base Color"])
 normal_tex = nodes.new("ShaderNodeTexImage")
 normal_tex.image = bpy.data.images["normals"]

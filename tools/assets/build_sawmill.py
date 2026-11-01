@@ -31,10 +31,9 @@ if thatch_dir:
     thatch = bpy.data.images.new("Thatch", crop.shape[1], crop.shape[0], alpha=False)
     thatch.pixels = crop.ravel().tolist()
     thatch.pack()
-for name in ("Wood.jpg", "TreeLogEdgeWeathered.jpg"):
-    unify_wood(bpy.data.images[name])  # tom único de madeira da Fazenda (farm_palette.py)
+fixed = {name: unify_wood(bpy.data.images[name], sat_limit=0.9) for name in ("Wood.jpg", "TreeLogEdgeWeathered.jpg")}  # tom único de madeira (farm_palette.py)
 for mat in bpy.data.materials:
-    img = thatch if (mat.name == "RoofTiles" and thatch) else bpy.data.images.get(IMAGES.get(mat.name, ""))
+    img = thatch if (mat.name == "RoofTiles" and thatch) else fixed.get(IMAGES.get(mat.name, ""), bpy.data.images.get(IMAGES.get(mat.name, "")))
     mat.use_nodes = True
     nodes, links = mat.node_tree.nodes, mat.node_tree.links
     nodes.clear()

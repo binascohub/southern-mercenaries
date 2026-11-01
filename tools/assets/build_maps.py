@@ -527,7 +527,7 @@ trails = [
 # leste-centro); nenhuma cruza as grades das divisas (1,6 m depois de cada marco) e nenhuma nasce em cima de uma praça.
 RUNG_PATTERN = (("W", "M", 1), ("M", "E", -1), ("M", "W", 1), ("E", "M", -1))
 for i, rung_z in enumerate(range(-44, -98 * ZS, -24)):
-    if any(border - 1.6 - 1.5 < rung_z - 4 and rung_z + 1.5 > border - 1.6 for border in SECTOR_BORDERS):
+    if any(rung_z - 8 < border - 1.6 + 2.0 and rung_z > border - 1.6 - 2.0 for border in SECTOR_BORDERS):   # o intervalo da travessia toca a grade
         continue
     if rung_z - 8 < -100 * ZS:
         continue
@@ -543,32 +543,34 @@ def trail_dist(x, z):
 PLAZA_A = (round(lane_m(-122), 1), -122)            # Praça das Pedras: meio do setor C
 PLAZA_B = (round(lane_m(-252) + 2.6, 1), -252)      # Praça da Estátua: meio do setor F (130 m da outra)
 # Grupos de monstros por setor, ao longo das pistas: em cada setor, posições z igualmente espaçadas, uma pista por vez (oeste, centro,
-# leste); no centro o grupo fica ao lado da trilha (os trolls, em cima dela); nada nasce dentro de uma praça.
+# leste); no centro o grupo fica ao lado da trilha (os de um só, em cima dela); nada nasce dentro de uma praça.
 er_enc = rng("cemetery_groups")
-SECTOR_PALETTES = [
-    [("plague_rat", 5), ("plague_bat", 4), ("plague_rat", 5), ("plague_rat", 5), ("plague_bat", 4)],                        # A Campo de Covas
-    [("skeleton", 3), ("skeleton", 4), ("skeleton", 3), ("skeleton", 3), ("skeleton", 4)],                                  # B Ossuário
-    [("venom_scorpion", 3), ("skeleton", 3), ("venom_scorpion", 3), ("skeleton", 3), ("venom_scorpion", 3)],                # C Terra dos Escorpiões
-    [("zombie", 3), ("zombie", 3), ("zombie", 4), ("zombie", 3), ("zombie", 3)],                                            # D Cova dos Mortos
-    [("zombie", 3), ("skeleton", 3), ("plague_bat", 4), ("zombie", 3), ("skeleton", 4)],                                    # E Catacumbas
-    [("skeleton", 3), ("zombie", 3), ("skeleton", 3), ("zombie", 4), ("skeleton", 3)],                                      # F Alameda da Estátua
-    [("skeleton", 3), ("troll", 1), ("skeleton", 3), ("skeleton", 3), ("troll", 1), ("skeleton", 3)],                       # G Covil do Troll
+# Um monstro só por setor (nome do monstro, quantos por grupo em cada grupo do setor).
+SECTOR_MONSTERS = [
+    ("plague_rat", (5, 5, 5, 5, 5)),            # A Campo de Covas: Rato Pestilento
+    ("skeleton", (3, 4, 3, 4, 3)),              # B Ossuário: Esqueleto
+    ("venom_scorpion", (3, 4, 3, 4, 3)),        # C Terra dos Escorpiões: Escorpião Venenoso (e a Praça das Pedras)
+    ("zombie", (3, 4, 3, 4, 3)),                # D Cova dos Mortos: Zumbi Magro
+    ("plague_bat", (4, 5, 4, 5, 4)),            # E Catacumbas: Morcego Pestilento
+    ("golem_stone", (2, 2, 2, 2, 2)),           # F Alameda da Estátua: Golem de Pedra (e a Praça da Estátua)
+    ("troll", (1, 2, 1, 2, 1)),                 # G Covil do Troll: Troll Magro
 ]
+SECTOR_PALETTES = [[(monster_id, n) for n in counts] for monster_id, counts in SECTOR_MONSTERS]
 c_enc = []
 for k, palette in enumerate(SECTOR_PALETTES):
     z_top = SECTOR_Z[k] - (16 if k == 0 else 5)
     z_bottom = SECTOR_Z[k + 1] + 3
     step = (z_top - z_bottom) / len(palette)
-    for i, (monster, count) in enumerate(palette):
+    for i, (kind, count) in enumerate(palette):
         lane = "WME"[i % 3]
         z = round(z_top - step * (i + 0.5))
-        off = 0.0 if lane != "M" or monster == "troll" else er_enc.choice((-1, 1)) * 6.0
+        off = 0.0 if lane != "M" or count == 1 else er_enc.choice((-1, 1)) * 6.0
         position = on(lane, z, off)
         if any(math.hypot(position[0] - px, position[1] - pz) < 14 for px, pz in (PLAZA_A, PLAZA_B)):
             continue
-        c_enc.append({"id": "c_%s_%d" % ("abcdefg"[k], i + 1), "position": position, "monsters": [{"monster": monster, "count": count}]})
-c_enc.append({"id": "c_plaza_a", "position": [PLAZA_A[0], PLAZA_A[1] + 4.2], "spread": 2.6,    # Praça das Pedras: o mini-chefe e dois esqueletos de guarda
-              "monsters": [{"monster": "crypt_scorpion", "count": 1}, {"monster": "skeleton", "count": 2}]})
+        c_enc.append({"id": "c_%s_%d" % ("abcdefg"[k], i + 1), "position": position, "monsters": [{"monster": kind, "count": count}]})
+c_enc.append({"id": "c_plaza_a", "position": [PLAZA_A[0], PLAZA_A[1] + 4.2], "spread": 2.6,    # Praça das Pedras: só o mini-chefe
+              "monsters": [{"monster": "crypt_scorpion", "count": 1}]})
 c_enc.append({"id": "c_boss", "position": [0, YARD_BOTTOM - 8], "monsters": [{"monster": "crypt_lord", "count": 1}]})
 c_props = [
     {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-6, 3], "to": "tortuga", "entry": "forest", "expedition_end": True},
@@ -671,7 +673,7 @@ def statue_center():
     c_props.append({"id": "lamp_statue", "kind": "npc", "npc": "lightpost_statue", "kit": "Statue_Lamp", "rotation": 0,
                     "position": [cx, cz],
                     "summon": {"id": "c_plaza_b", "position": [cx, cz + 7.5], "spread": 3.0,
-                               "monsters": [{"monster": "tomb_guardian", "count": 1}, {"monster": "skeleton", "count": 2}]}})
+                               "monsters": [{"monster": "tomb_guardian", "count": 1}]}})
 
 
 plaza(PLAZA_A[0], PLAZA_A[1], stones_center)
@@ -1376,7 +1378,7 @@ if "capital_01_aurenhold" not in arenas:  # depois de criada, a Capital (lojas, 
 # --- Fazenda (cidade-base campestre; só o mapa por enquanto, ligada a Tortuga por um portal) -----------------
 fr = rng("farm")
 farm_rooms = [
-    room("gate", 0, 0, 24, 14, ["north"], torch=True, wall_height=0.8),
+    room("gate", 0, 0, 56, 14, ["north"], torch=True, wall_height=0.8),  # da largura dos campos: sem chão liso nas pontas
     room("fields", 0, -26, 56, 38, ["south", "east"], wall_height=0.8),
     room("mill", 38, -26, 20, 38, ["west"], wall_height=0.8),
 ]

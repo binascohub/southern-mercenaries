@@ -2,19 +2,19 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsvtjnd2bwe2e"
-path="res://.godot/imported/Pr_Sawmill_RoofTiles.webp-39448b3acb8505f21a8d1ad07a72d94d.ctex"
+uid="uid://d01wrmussra88"
+path="res://.godot/imported/Pr_Barricade_col.webp-c9b321158b3f7e373b03713c380833cc.ctex"
 metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "b4aa34204c066c21dbfef107e9c8057c"
+"md5": "734498485dee663610b655fa188057d0"
 }
 
 [deps]
 
-source_file="res://assets/models/maps/Pr_Sawmill_RoofTiles.webp"
-dest_files=["res://.godot/imported/Pr_Sawmill_RoofTiles.webp-39448b3acb8505f21a8d1ad07a72d94d.ctex"]
+source_file="res://assets/models/maps/Pr_Barricade_col.webp"
+dest_files=["res://.godot/imported/Pr_Barricade_col.webp-c9b321158b3f7e373b03713c380833cc.ctex"]
 
 [params]
 

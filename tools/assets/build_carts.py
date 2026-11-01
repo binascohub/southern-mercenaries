@@ -15,7 +15,7 @@ bpy.ops.wm.open_mainfile(filepath=src)
 bpy.context.scene.frame_set(1)
 deps = bpy.context.evaluated_depsgraph_get()
 wood = bpy.data.images["wood tex2.png"]
-unify_wood(wood)  # tom único de madeira da Fazenda (farm_palette.py)
+wood = unify_wood(wood, sat_limit=1.01)  # tom único de madeira da Fazenda (farm_palette.py)
 for mat in bpy.data.materials:
     color = tuple(mat.diffuse_color)
     mat.use_nodes = True

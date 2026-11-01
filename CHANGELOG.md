@@ -19,6 +19,11 @@
 - Bunker: new map `bunker_01_entrance` ("Bunker", `ARENA_BUNKER`), entered from the Farm by a stone doorway at the north-east corner of the fields (`to_bunker`; the way back is the new `PROP_RETURN_FARM` portal). Built from "3D Dungeon Modular Wall Set 2" (Paul Wortmann, CC0; `assets/models/maps/Bk_*.glb`, `tools/assets/build_bunker_kit.py`) on a 2 m grid by `tools/assets/build_maps.py`: entrance hall, corridor, main room with two alcoves and a back chamber, with a wall and collider on every floor/rock edge and a pillar at every corner. For now only the map: no monsters, chests or quests.
 - Wall lanterns in the Bunker ("Lamp", Mev Lyshkin, CC BY 3.0; `Pr_WallLamp.glb`, `tools/assets/build_lamp.py`): eleven lanterns hung on the walls of the hall, corridor, main room, alcoves and back chamber, each with its own warm light (they replace the five plain lights).
 - Baskets ("Willow Basket with Handle", ulf, CC BY-SA 3.0; `assets/models/props/Pr_Basket.glb`, `tools/assets/build_basket.py`; new `basket` breakable in `data/monsters.json`): eight in the Farm (beside the house, the garden, the well, the pasture gate, the creek and the sawmill); any hit breaks them and they always drop a potion (`breakable_potion`), like the Forest deer.
+- Farm enlarged (fields 56 × 38 m, the gate yard as wide as the fields, the sawmill clearing 20 × 38 m) with three more fenced areas: a pig pen (five pigs) and a horse paddock (three horses), both with a gate facing the farm gate, plus the sheep pasture; ten chickens roam loose. Pigs and horses: "Farm Animals" (Quaternius, CC0; `pig.glb` and `farm_horse.glb`, `tools/assets/build_farm_animals.sh`, new `pig` and `farm_horse` models in `NpcModel`).
+- Farmers no longer fight: they just walk back and forth across the fields with their tools in hand (crowd entries with a `path`, no melee pose).
+- A plank bridge (`Pr_Bridge.glb`, made for the game by `tools/assets/build_bridge.py`, with rail colliders) crosses the creek.
+- One wood tone and one roof style: the wood of the farmhouse, sawmill, carts and barricade is recoloured to the tone of the kit's wooden fence (`tools/assets/farm_palette.py`), the bridge uses the fence texture, and the sawmill roof is now the thatch of the farmhouse instead of grey shingles.
+- Denser, more varied grass: three times as many tufts, scaled up to 2×, plus weeds (Tiny Weeds) and small flowers, fuller borders, and none of it growing on the garden, house, creek, bridge or bunker door. The mine portal (`mine_gate`, added by another session) moved to [26, -12] to stay inside the larger fields.
 - Carts ("Carts", cemkalyoncu, CC BY 3.0; `Pr_CartLarge.glb` and `Pr_CartSmall.glb`, `tools/assets/build_carts.py`): one large and two small carts in the Farm.
 
 ### The Fort
@@ -49,6 +54,10 @@
 - New map Docks (`docks_01_pier`) connected to Tortuga's port: wooden piers over the sea built from Modular Wooden Docks (CC0), with boats, fences, barrels and crates; light sewer enemies, two chests and a coin bag. Tortuga gets a gangway to the docks beside the pirate ship dock.
 
 - Inventory icons: Knight swords D–S (3D Swords Pack) and Ninja dagger D (Iron Knife) show in the bag; icons only, not on the hero. One breakable coin bag (Bag of Coins, CC0) per expedition map drops gold when hit (`data/loot.json` `coin_bag`). Capital guards are now the animated Defender (patrolling on the avenue, standing at the gate) and the Capital has weapon racks (Medieval Weapon Rack) with the Knight swords.
+### Tortuga, all wood
+- The two draught horses on Tortuga's streets are gone; four pigs (the Farm's `pig` model) wander there instead.
+- Tortuga is now entirely made of wood: plank floor on the street (port and dock already were), and the houses' plaster, brick, stone base and roof tiles swap to the kit's own dark wood at build time (new `wood` flag in the area `style`, `_woodify` in `game/levels/prototype_arena.gd`; no new assets).
+
 ### The Tavern
 - "Medieval Tavern Props Pack" (System G6, CC0): a stone fireplace with glowing embers, firewood and a warm light on the west wall; two round tables with stools, candle, tankards and lanterns; a basket, sacks and a bucket by the back barrels (`assets/models/props/Tv_*.glb`, converted by `tools/assets/build_tavern_props.py`; placed in `data/arenas.json`, `tavern`).
 

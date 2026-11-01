@@ -26,7 +26,7 @@ for mat in house.data.materials:
     if mat.name in IMAGES:
         tex = nodes.new("ShaderNodeTexImage")
         tex.image = bpy.data.images.load(os.path.join(src, IMAGES[mat.name]))
-        unify_wood(tex.image)  # madeira cinza -> o tom da cerca do kit (farm_palette.py); a palha fica como está
+        tex.image = unify_wood(tex.image)  # madeira cinza -> o tom da cerca do kit (farm_palette.py); a palha fica como está
         links.new(tex.outputs["Color"], bsdf.inputs["Base Color"])
         links.new(tex.outputs["Alpha"], bsdf.inputs["Alpha"])
         mat.blend_method = "CLIP"
