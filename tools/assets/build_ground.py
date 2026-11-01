@@ -1,11 +1,14 @@
 """Pisos de 2 x 2 m dos mapas ao ar livre (assets/models/maps/Ground_*.glb): quadrado com textura de ruído
-sem emenda, gerada aqui (grama, terra batida, terra do cemitério). Roda com o Python do Blender:
-blender -b -P tools/assets/build_ground.py -- <saída> """
+sem emenda, gerada aqui (grama, terra batida, terra escura do cemitério). Roda com o Python do Blender:
+blender -b -P tools/assets/build_ground.py -- <saída> [piso ...]
+(sem nomes, gera todos; com nomes, só esses, ex.: Ground_Grave)"""
 import bpy, sys, os, random, math
-out = sys.argv[sys.argv.index("--") + 1]
+_args = sys.argv[sys.argv.index("--") + 1:]
+out = _args[0]
+ONLY = _args[1:]
 SIZE = 256
 KINDS = {"Ground_Grass": ((0.16, 0.3, 0.1), (0.07, 0.14, 0.05), 11), "Ground_Dirt": ((0.36, 0.28, 0.18), (0.18, 0.13, 0.08), 23),
-         "Ground_Grave": ((0.17, 0.17, 0.16), (0.07, 0.08, 0.07), 37)}
+         "Ground_Grave": ((0.20, 0.14, 0.09), (0.08, 0.055, 0.035), 37)}
 
 
 def noise_grid(seed, cell):
@@ -24,6 +27,8 @@ def noise_grid(seed, cell):
 
 
 for name, (light, dark, seed) in KINDS.items():
+    if ONLY and name not in ONLY:
+        continue
     big, mid, fine = noise_grid(seed, 64), noise_grid(seed + 1, 16), noise_grid(seed + 2, 4)
     img = bpy.data.images.new(name, SIZE, SIZE)
     px = []

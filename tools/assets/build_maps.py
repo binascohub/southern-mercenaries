@@ -336,7 +336,6 @@ c_rooms = [
 c_enc = [
     {"id": "c_rats", "position": [-12, -18], "monsters": [{"monster": "plague_rat", "count": 5}]},
     {"id": "c_bats", "position": [12, -22], "monsters": [{"monster": "plague_bat", "count": 4}]},
-    {"id": "c_toads", "position": [-14, -34], "monsters": [{"monster": "acid_toad", "count": 3}]},
     {"id": "c_scorp", "position": [14, -36], "monsters": [{"monster": "venom_scorpion", "count": 3}]},
     {"id": "c_skel_gate", "position": [0, -17], "monsters": [{"monster": "skeleton", "count": 3}]},
     {"id": "c_skel_mid", "position": [0, -38], "monsters": [{"monster": "skeleton", "count": 4}]},
@@ -371,7 +370,8 @@ c_decor += [{"piece": "Statue_Knight", "position": [x, z], "rotation": rot, "sol
 c_decor += [{"piece": "Statue_Knight_Lying", "position": [x, z], "rotation": rot, "solid": [1.9, 1.9]}
             for x, z, rot in ((-18, -7, 0), (18, -7, 180))]
 for rd in c_rooms:
-    c_decor += ring(cr, rd, ["Pr_Fence1", "Pr_Fence2"], 2.7, inset=0.7)
+    # Sem cercas de madeira (pedido do autor): o anel é sorteado só para os arbustos abaixo continuarem onde estavam.
+    ring(cr, rd, ["Pr_Fence1", "Pr_Fence2"], 2.7, inset=0.7)
 c_decor += scatter(cr, c_rooms[1], ["Pl_Hemp", "Pl_Bush"], 14, margin=2.0)
 arenas["cemetery_01_yard"] = {
     "_comment": "Cemitério (Medieval Props Textured, Clint Bellanger, CC BY 3.0, modelos de Lamoot): fileiras de lápides e cruzes com corredores, poço coberto, obeliscos, cerca de madeira em volta e a cripta do escorpião no fundo. Gerado por tools/assets/build_maps.py.",
@@ -385,8 +385,8 @@ arenas["cemetery_01_yard"] = {
         {"id": "cemetery_chest_2", "kind": "chest", "position": [-22, -36], "loot": "chest"},
     ],
     "quest_spots": [], "breakables": [],
-    "style": {"_comment": "Cemitério: terra escura sem piso, cerca de madeira nas bordas (Pr_Fence1 vem de decor).", "walls": [""], "floor": "Ground_Grave", "low": "",
-              "ground": [0.09, 0.09, 0.1]},
+    "style": {"_comment": "Cemitério: chão de terra escura (Ground_Grave, feito por build_ground.py; mais escura que a Ground_Dirt das Ruínas e da Mina), sem piso do kit e sem cercas.", "walls": [""], "floor": "Ground_Grave", "low": "",
+              "ground": [0.09, 0.065, 0.045]},
     "decor": c_decor, "passive": True,
 }
 
@@ -718,13 +718,13 @@ farm_decor = [
     {"piece": "Pr_Barricade", "position": [-8.5, -5.0], "rotation": 15, "solid": [2.0, 1.2]},
     {"piece": "Pr_Barricade", "position": [8.5, -5.0], "rotation": 345, "solid": [2.0, 1.2]},
     {"piece": "Well_Covered", "position": [-12, -20], "solid": [1.6, 1.6]},
-    {"piece": "Cart_Wood", "position": [12, -30], "rotation": 40, "solid": [2.4, 1.4]},
+    {"piece": "Cart_Wood", "position": [16, -31], "rotation": 40, "solid": [2.4, 1.4]},
     # Carroças (Carts, cemkalyoncu, CC-BY 3.0): a grande no campo, a pequena (de mão) perto do portão e da serraria.
     {"piece": "Pr_CartLarge", "position": [-15, -31], "rotation": 20, "solid": [3.2, 2.6]},
     {"piece": "Pr_CartSmall", "position": [5, -12], "rotation": 100, "solid": [1.2, 2.4]},
     {"piece": "Pr_CartSmall", "position": [20, -33], "rotation": 300, "solid": [2.0, 1.8]},
     {"piece": "Bucket_Wooden_1", "position": [-10.4, -19.2]},
-    {"piece": "Bucket_Wooden_1", "position": [13.5, -28.6], "rotation": 90},
+    {"piece": "Bucket_Wooden_1", "position": [17.5, -29.4], "rotation": 90},
 ]
 # Riacho que passa debaixo da roda d'água da serraria (a roda fica no lado oeste do prédio, com o eixo de leste a oeste:
 # a água corre de norte a sul, em x = 26.9), de ponta a ponta da clareira, com pedras e capim nas margens.
@@ -742,6 +742,38 @@ for rd in farm_rooms:
     farm_decor += scatter(fr, rd, ["Pl_Grass1", "Pl_Grass2", "Pl_Grass3"], int(rd["size"][0] * rd["size"][1] / 10), margin=1.5,
                           scale=(0.8, 1.6), avoid=[(0, 3, 3), (29, -22, 5)] + creek_avoid)
     farm_decor += ring(fr, rd, ["Pl_Grass1", "Pl_Grass2", "Pl_Grass3", "Pl_Bush"], 2.4, scale=(1.0, 1.8))
+
+
+def fence_rect(x0, z0, x1, z1, gaps=(), piece="Prop_WoodenFence_Single", step=2.0):
+    """Cerca retangular de peças da cerca de madeira do kit (2,06 m, ao longo de x), com vãos de portão: `gaps` = (lado, posição
+    ao longo do lado, largura), lados "n"/"s" (z mínimo/máximo) e "w"/"e"."""
+    out = []
+    sides = {"n": ((x0, z0), (x1, z0)), "s": ((x0, z1), (x1, z1)), "w": ((x0, z0), (x0, z1)), "e": ((x1, z0), (x1, z1))}
+    for side, ((ax, az), (bx, bz)) in sides.items():
+        length = math.hypot(bx - ax, bz - az)
+        dx, dz = (bx - ax) / length, (bz - az) / length
+        n = max(1, round(length / step))
+        for i in range(n):
+            t = (i + 0.5) * length / n
+            px, pz = ax + dx * t, az + dz * t
+            along = px if side in "ns" else pz
+            if any(g[0] == side and abs(along - g[1]) < g[2] / 2 + 0.6 for g in gaps):
+                continue
+            horizontal = side in "ns"
+            out.append({"piece": piece, "position": [round(px, 1), round(pz, 1)], "rotation": 0 if horizontal else 90,
+                        "scale": round(length / n / 2.06 * 1.02, 2), "solid": [length / n, 0.3] if horizontal else [0.3, length / n]})
+    return out
+
+
+# Pasto das ovelhas (cerca com portão ao norte) e horta dos fazendeiros (portão ao sul, fileiras de cânhamo como plantação).
+PASTURE = (-2, -35, 12, -27)
+GARDEN = (-10, -17, 2, -10)
+farm_decor += fence_rect(*PASTURE, gaps=[("n", 5, 3.0)])
+farm_decor += fence_rect(*GARDEN, gaps=[("s", -4, 2.6)])
+for row_z in (-15.9, -12.2, -10.9):
+    for gx in range(-9, 2, 1):
+        farm_decor.append({"piece": "Pl_Hemp", "position": [gx + fr.uniform(-0.15, 0.15), round(row_z + fr.uniform(-0.1, 0.1), 1)],
+                           "rotation": fr.randrange(0, 360, 15), "scale": round(fr.uniform(0.8, 1.0), 2)})
 # Fazendeiros (data/crowd.json, papel "farmer") com as ferramentas do pacote Gnarly Tools na mão, e ovelhas que passeiam.
 farm_crowd = [
     {"role": "farmer", "position": [-6, -14], "rotation": 200, "pose": "melee", "weapon": "Tool_Hoe"},
@@ -753,10 +785,12 @@ farm_crowd = [
     {"role": "farmer", "position": [-12, -17.5], "rotation": 180, "pose": "talk"},
     {"role": "farmer", "position": [22, -14], "rotation": 270, "pose": "idle", "weapon": "Tool_Pitchfork"},
 ]
-for i in range(9):
-    x, z = fr.uniform(-16, 15), fr.uniform(-34, -10)
+for i in range(9):  # dentro do pasto cercado
+    x, z = fr.uniform(PASTURE[0] + 1.5, PASTURE[2] - 1.5), fr.uniform(PASTURE[1] + 1.5, PASTURE[3] - 1.5)
+    tx = min(max(x + fr.uniform(-2.5, 2.5), PASTURE[0] + 1.2), PASTURE[2] - 1.2)
+    tz = min(max(z + fr.uniform(-2.0, 2.0), PASTURE[1] + 1.2), PASTURE[3] - 1.2)
     farm_crowd.append({"role": "sheep", "position": [round(x, 1), round(z, 1)], "rotation": fr.randrange(0, 360, 15), "pose": "idle",
-                       "path": [round(x + fr.uniform(-4, 4), 1), round(z + fr.uniform(-4, 4), 1)], "speed": 0.5})
+                       "path": [round(tx, 1), round(tz, 1)], "speed": 0.5})
 arenas["farm_01_fields"] = {
     "_comment": "Fazenda: campos abertos com capim (Grass Pack 01, Yughues / Nobiax, CC0), serraria movida a água (CC0) com a roda sobre um riacho, barricadas de toras (Sullivan, CC-BY), fazendeiros com ferramentas (Retextured Gnarly Tools, Mev Lyshkin, CC-BY) e ovelhas (p0ss, CC-BY-SA). Só o mapa por enquanto: sem monstros, lojas, baús nem missões; portal em Tortuga ao lado do da Floresta. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_FARM", "town": True, "outdoor": True, "player_class": "mage", "map_id": "map_farm", "area_level": 1,

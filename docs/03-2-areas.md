@@ -151,3 +151,8 @@ Ordem de expedição no jogo: **Tortuga → Floresta → Ruínas → Cemitério 
 | 5 | `fort_01_gate` | Forte | 3D Dungeon Tileset (CC BY-SA 3.0), grade de 20 x 26 células de 2,5 m; paredes baixas (0,85 m) por causa da câmera | Comandante Amaldiçoado |
 
 Os monstros comuns reaproveitam os modelos do Esgoto e do Monstro da Floresta; os chefes são provisórios até haver arte e mecânica próprias. As seções 4 e 5 acima (Ruínas do Reino do Arqueiro, Floresta Escura) continuam sendo o desenho final das áreas; este quadro é o que existe hoje.
+
+### Docas (`docks_01_pier`) — ligada ao porto de Tortuga
+
+Mapa de píeres de madeira sobre o mar (Modular Wooden Docks, CC0): pátio de entrada, píer principal, um cruzamento com dois píeres laterais e o píer do fundo, com barcos, defensas, barris e caixotes. A entrada fica no porto de Tortuga (a "Passagem para as Docas" ao lado do cais do navio pirata) e o portal "Voltar ao porto" leva de volta. Tem inimigos leves do esgoto (ratos, sapos, morcegos), dois baús e uma bolsa de moedas; ainda sem chefe, missões ou lojas.
+

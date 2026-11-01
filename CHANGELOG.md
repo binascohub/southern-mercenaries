@@ -11,6 +11,7 @@
 - Farmers (new `farmer` role in `data/crowd.json`, hero bodies) with the tools from "Retextured Gnarly Tools" (Mev Lyshkin, CC BY 3.0): shovel, pitchfork, hoe, scythe and sickle (`assets/models/props/Tool_*.glb`, split from the single mesh by `tools/assets/build_farm_tools.py`), working the fields.
 - Grass tufts ("Grass Pack 01", Yughues / Nobiax, CC0; `Pl_Grass1..3.glb`, `tools/assets/build_grass.py`), the water-powered sawmill ("Medieval waterpowered sawmill", Daniel Andersson, CC0; `Pr_Sawmill.glb`, `tools/assets/build_sawmill.py`) and a log barricade ("Barricade", Sullivan, CC BY 3.0; `Pr_Barricade.glb`, `tools/assets/build_barricade.py`) as scenery.
 - A creek (`creek` water prop, light blue; the outdoor `water` prop now accepts an optional `color`) runs north–south through the sawmill clearing under the water wheel, with rocks and grass on its banks.
+- Fences: a sheep pasture (the nine sheep now wander inside it) and the farmers' vegetable garden (hemp rows as crops) are fenced with the kit's wooden fence, each with a 3 m gate gap; built by `fence_rect` in `tools/assets/build_maps.py`.
 - Carts ("Carts", cemkalyoncu, CC BY 3.0; `Pr_CartLarge.glb` and `Pr_CartSmall.glb`, `tools/assets/build_carts.py`): one large and two small carts in the Farm.
 
 ### The Fort
@@ -30,6 +31,7 @@
 - Tiny weeds ("Tiny Weeds", Nobiax, CC0): five small weeds and a thistle (`assets/models/maps/Pl_Weed1.glb` … `Pl_Weed5.glb`, converted by `tools/assets/build_weeds.py`), tufts scattered on the Forest floor, decoration only, with their own seed so everything already placed stays put.
 - Tropical shrubs ("Tropical Shrubs", Nobiax, CC0): five leafy shrubs (`assets/models/maps/Pl_Shrub1.glb` … `Pl_Shrub5.glb`, converted by `tools/assets/build_shrubs.py`), 98 scattered through the Forest in random sizes, decoration only (no collision), with their own seed so everything already placed stays put.
 - Rocks ("Rocks", Nobiax, CC0) are scattered through the Forest: five low-poly stones (`assets/models/maps/Rock_1.glb` … `Rock_5.glb`, converted by `tools/assets/build_rocks.py`), 40 in all in random sizes; the big ones block the way, the small ones are only decoration. Placement comes from `tools/assets/build_maps.py` with its own seed, so the plants stay where they were.
+- New map Docks (`docks_01_pier`) connected to Tortuga's port: wooden piers over the sea built from Modular Wooden Docks (CC0), with boats, fences, barrels and crates; light sewer enemies, two chests and a coin bag. Tortuga gets a gangway to the docks beside the pirate ship dock.
 
 - Inventory icons: Knight swords D–S (3D Swords Pack) and Ninja dagger D (Iron Knife) show in the bag; icons only, not on the hero. One breakable coin bag (Bag of Coins, CC0) per expedition map drops gold when hit (`data/loot.json` `coin_bag`). Capital guards are now the animated Defender (patrolling on the avenue, standing at the gate) and the Capital has weapon racks (Medieval Weapon Rack) with the Knight swords.
 ### The Tavern
@@ -47,6 +49,9 @@
 - New monster, the **Goblin** ("Goblin", CDmir, CC0; `assets/models/monsters/goblin.glb`, converted by `tools/assets/build_monsters.py`): small, fast, fragile melee pack monster (55 health, Earth; `goblin` in `data/monsters.json`, `goblin` family in `MonsterModel`) with the animations of the file (idle, walk, run, attack, hit, die). Two packs in the Ruins (4 and 5 goblins).
 
 ### The Cemetery
+- The Cemetery floor is now dark earth instead of grey gravel: `Ground_Grave` was recolored by `tools/assets/build_ground.py` (about 45% darker than the brown `Ground_Dirt` of the Ruins and the Mine, which are unchanged; the script can now regenerate a single floor by name).
+- The wooden fences around the Cemetery rooms are gone.
+- The Acid Toads no longer live in the Cemetery (the `c_toads` group of three is gone; the other maps keep theirs).
 - New monster, the **Skeleton** ("Skeleton with rig", rudy85, CC0): a melee undead of 90 health that wanders among the graves and attacks in groups (`skeleton` in `data/monsters.json`; Earth, weak to Fire). The Cemetery now has three groups of them (3 at the gate, 4 in the yard, 3 by the crypt). The file only had the rig, so the six animations (idle, walk, run, attack, hit, die) were made by hand on its IK controls: `tools/assets/build_skeleton.py` builds `assets/models/monsters/skeleton.glb` (1.8 m, bone material).
 - Four knight statues decorate the Cemetery ("Knight Statue", yd, CC0): a pair on the entrance path and a pair beside the crypt, turned slightly toward the middle path (`assets/models/maps/Statue_Knight.glb`, built by `tools/assets/build_knight_statue.py`; the pose is baked into one grey stone mesh, 2.4 m tall with the pedestal). The seated version in the same pack was left out: its sword and shield are misplaced in the file.
 - Two knight tombs ("Knight Lying", yd, CC0) stand on each side of the Cemetery yard, steps toward the middle path (`assets/models/maps/Statue_Knight_Lying.glb`, same script, 1.1 m tall; the stray shield and cube lost at the origin of the file are left out).

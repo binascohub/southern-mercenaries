@@ -16525,19 +16525,6 @@
         ]
       },
       {
-        "id": "c_toads",
-        "position": [
-          -14,
-          -34
-        ],
-        "monsters": [
-          {
-            "monster": "acid_toad",
-            "count": 3
-          }
-        ]
-      },
-      {
         "id": "c_scorp",
         "position": [
           14,
@@ -16710,7 +16697,7 @@
       }
     ],
     "style": {
-      "_comment": "Cemitério: terra escura sem piso, cerca de madeira nas bordas (Pr_Fence1 vem de decor).",
+      "_comment": "Cemitério: chão de terra escura (Ground_Grave, feito por build_ground.py; mais escura que a Ground_Dirt das Ruínas e da Mina), sem piso do kit e sem cercas.",
       "walls": [
         ""
       ],
@@ -16718,8 +16705,8 @@
       "low": "",
       "ground": [
         0.09,
-        0.09,
-        0.1
+        0.065,
+        0.045
       ]
     },
     "decor": [
@@ -17385,987 +17372,6 @@
           1.9,
           1.9
         ]
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -9.9,
-          -5.3
-        ],
-        "rotation": 330,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -6.7,
-          -5.3
-        ],
-        "rotation": 135,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -4.1,
-          -5.3
-        ],
-        "rotation": 60,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          3.6,
-          -5.3
-        ],
-        "rotation": 195,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          6.4,
-          -5.3
-        ],
-        "rotation": 15,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          9.0,
-          -5.3
-        ],
-        "rotation": 225,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -9.7,
-          5.3
-        ],
-        "rotation": 300,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -7.0,
-          5.3
-        ],
-        "rotation": 330,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -4.3,
-          5.3
-        ],
-        "rotation": 75,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -1.6,
-          5.3
-        ],
-        "rotation": 0,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          1.0,
-          5.3
-        ],
-        "rotation": 345,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          3.7,
-          5.3
-        ],
-        "rotation": 255,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          6.8,
-          5.3
-        ],
-        "rotation": 330,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          9.5,
-          5.3
-        ],
-        "rotation": 255,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -10.3,
-          -4.6
-        ],
-        "rotation": 105,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -10.3,
-          -1.9
-        ],
-        "rotation": 300,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -10.3,
-          0.8
-        ],
-        "rotation": 45,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -10.3,
-          3.6
-        ],
-        "rotation": 330,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          10.3,
-          -4.6
-        ],
-        "rotation": 345,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          10.3,
-          -2.2
-        ],
-        "rotation": 15,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          10.3,
-          0.6
-        ],
-        "rotation": 330,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          10.3,
-          3.6
-        ],
-        "rotation": 0,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -23.8,
-          -45.3
-        ],
-        "rotation": 195,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -21.0,
-          -45.3
-        ],
-        "rotation": 15,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -18.5,
-          -45.3
-        ],
-        "rotation": 270,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -15.3,
-          -45.3
-        ],
-        "rotation": 45,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -13.0,
-          -45.3
-        ],
-        "rotation": 345,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -10.2,
-          -45.3
-        ],
-        "rotation": 330,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -7.3,
-          -45.3
-        ],
-        "rotation": 300,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -4.9,
-          -45.3
-        ],
-        "rotation": 300,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          3.1,
-          -45.3
-        ],
-        "rotation": 105,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          6.3,
-          -45.3
-        ],
-        "rotation": 120,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          9.0,
-          -45.3
-        ],
-        "rotation": 315,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          11.7,
-          -45.3
-        ],
-        "rotation": 255,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          14.4,
-          -45.3
-        ],
-        "rotation": 0,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          16.9,
-          -45.3
-        ],
-        "rotation": 180,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          19.8,
-          -45.3
-        ],
-        "rotation": 210,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          22.4,
-          -45.3
-        ],
-        "rotation": 210,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -23.8,
-          -6.7
-        ],
-        "rotation": 165,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -20.8,
-          -6.7
-        ],
-        "rotation": 45,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -18.0,
-          -6.7
-        ],
-        "rotation": 90,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -15.8,
-          -6.7
-        ],
-        "rotation": 285,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -12.9,
-          -6.7
-        ],
-        "rotation": 75,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -10.1,
-          -6.7
-        ],
-        "rotation": 75,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -7.3,
-          -6.7
-        ],
-        "rotation": 210,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -4.8,
-          -6.7
-        ],
-        "rotation": 75,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          3.3,
-          -6.7
-        ],
-        "rotation": 0,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          6.2,
-          -6.7
-        ],
-        "rotation": 30,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          9.0,
-          -6.7
-        ],
-        "rotation": 120,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          11.7,
-          -6.7
-        ],
-        "rotation": 240,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          13.9,
-          -6.7
-        ],
-        "rotation": 255,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          16.7,
-          -6.7
-        ],
-        "rotation": 15,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          19.5,
-          -6.7
-        ],
-        "rotation": 45,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          22.5,
-          -6.7
-        ],
-        "rotation": 225,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -24.3,
-          -44.4
-        ],
-        "rotation": 135,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -24.3,
-          -42.0
-        ],
-        "rotation": 120,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -24.3,
-          -39.1
-        ],
-        "rotation": 315,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -24.3,
-          -36.7
-        ],
-        "rotation": 180,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -24.3,
-          -33.8
-        ],
-        "rotation": 165,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -24.3,
-          -31.4
-        ],
-        "rotation": 270,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -24.3,
-          -28.7
-        ],
-        "rotation": 105,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -24.3,
-          -25.6
-        ],
-        "rotation": 225,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -24.3,
-          -22.9
-        ],
-        "rotation": 30,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -24.3,
-          -20.6
-        ],
-        "rotation": 60,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -24.3,
-          -17.8
-        ],
-        "rotation": 345,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -24.3,
-          -15.2
-        ],
-        "rotation": 150,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -24.3,
-          -12.5
-        ],
-        "rotation": 315,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -24.3,
-          -9.7
-        ],
-        "rotation": 120,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          24.3,
-          -44.6
-        ],
-        "rotation": 105,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          24.3,
-          -41.7
-        ],
-        "rotation": 120,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          24.3,
-          -39.0
-        ],
-        "rotation": 345,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          24.3,
-          -36.6
-        ],
-        "rotation": 45,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          24.3,
-          -33.9
-        ],
-        "rotation": 345,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          24.3,
-          -31.1
-        ],
-        "rotation": 210,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          24.3,
-          -28.6
-        ],
-        "rotation": 345,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          24.3,
-          -26.0
-        ],
-        "rotation": 315,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          24.3,
-          -22.8
-        ],
-        "rotation": 195,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          24.3,
-          -20.5
-        ],
-        "rotation": 165,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          24.3,
-          -17.8
-        ],
-        "rotation": 345,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          24.3,
-          -15.2
-        ],
-        "rotation": 195,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          24.3,
-          -12.3
-        ],
-        "rotation": 270,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          24.3,
-          -9.8
-        ],
-        "rotation": 15,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -10.7,
-          -65.3
-        ],
-        "rotation": 315,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -8.0,
-          -65.3
-        ],
-        "rotation": 15,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -5.3,
-          -65.3
-        ],
-        "rotation": 225,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -2.7,
-          -65.3
-        ],
-        "rotation": 270,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          0.0,
-          -65.3
-        ],
-        "rotation": 30,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          2.7,
-          -65.3
-        ],
-        "rotation": 300,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          5.7,
-          -65.3
-        ],
-        "rotation": 270,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          8.2,
-          -65.3
-        ],
-        "rotation": 180,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -10.8,
-          -46.7
-        ],
-        "rotation": 345,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -7.8,
-          -46.7
-        ],
-        "rotation": 120,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -5.0,
-          -46.7
-        ],
-        "rotation": 135,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          5.3,
-          -46.7
-        ],
-        "rotation": 255,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          8.0,
-          -46.7
-        ],
-        "rotation": 210,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -11.3,
-          -64.7
-        ],
-        "rotation": 345,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -11.3,
-          -61.9
-        ],
-        "rotation": 60,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          -11.3,
-          -59.1
-        ],
-        "rotation": 240,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -11.3,
-          -56.6
-        ],
-        "rotation": 315,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -11.3,
-          -53.6
-        ],
-        "rotation": 0,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -11.3,
-          -51.2
-        ],
-        "rotation": 240,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          -11.3,
-          -48.4
-        ],
-        "rotation": 300,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          11.3,
-          -64.9
-        ],
-        "rotation": 300,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          11.3,
-          -62.0
-        ],
-        "rotation": 195,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          11.3,
-          -59.1
-        ],
-        "rotation": 240,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence2",
-        "position": [
-          11.3,
-          -56.3
-        ],
-        "rotation": 270,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          11.3,
-          -53.9
-        ],
-        "rotation": 0,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          11.3,
-          -51.1
-        ],
-        "rotation": 255,
-        "scale": 1.0
-      },
-      {
-        "piece": "Pr_Fence1",
-        "position": [
-          11.3,
-          -48.4
-        ],
-        "rotation": 285,
-        "scale": 1.0
       },
       {
         "piece": "Pl_Hemp",
@@ -27166,8 +26172,8 @@
       {
         "piece": "Cart_Wood",
         "position": [
-          12,
-          -30
+          16,
+          -31
         ],
         "rotation": 40,
         "solid": [
@@ -27221,8 +26227,8 @@
       {
         "piece": "Bucket_Wooden_1",
         "position": [
-          13.5,
-          -28.6
+          17.5,
+          -29.4
         ],
         "rotation": 90
       },
@@ -30321,6 +29327,784 @@
         ],
         "rotation": 195,
         "scale": 1.06
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          -1.0,
+          -35.0
+        ],
+        "rotation": 0,
+        "scale": 0.99,
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          1.0,
+          -35.0
+        ],
+        "rotation": 0,
+        "scale": 0.99,
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          9.0,
+          -35.0
+        ],
+        "rotation": 0,
+        "scale": 0.99,
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          11.0,
+          -35.0
+        ],
+        "rotation": 0,
+        "scale": 0.99,
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          -1.0,
+          -27.0
+        ],
+        "rotation": 0,
+        "scale": 0.99,
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          1.0,
+          -27.0
+        ],
+        "rotation": 0,
+        "scale": 0.99,
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          3.0,
+          -27.0
+        ],
+        "rotation": 0,
+        "scale": 0.99,
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          5.0,
+          -27.0
+        ],
+        "rotation": 0,
+        "scale": 0.99,
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          7.0,
+          -27.0
+        ],
+        "rotation": 0,
+        "scale": 0.99,
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          9.0,
+          -27.0
+        ],
+        "rotation": 0,
+        "scale": 0.99,
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          11.0,
+          -27.0
+        ],
+        "rotation": 0,
+        "scale": 0.99,
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          -2.0,
+          -34.0
+        ],
+        "rotation": 90,
+        "scale": 0.99,
+        "solid": [
+          0.3,
+          2.0
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          -2.0,
+          -32.0
+        ],
+        "rotation": 90,
+        "scale": 0.99,
+        "solid": [
+          0.3,
+          2.0
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          -2.0,
+          -30.0
+        ],
+        "rotation": 90,
+        "scale": 0.99,
+        "solid": [
+          0.3,
+          2.0
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          -2.0,
+          -28.0
+        ],
+        "rotation": 90,
+        "scale": 0.99,
+        "solid": [
+          0.3,
+          2.0
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          12.0,
+          -34.0
+        ],
+        "rotation": 90,
+        "scale": 0.99,
+        "solid": [
+          0.3,
+          2.0
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          12.0,
+          -32.0
+        ],
+        "rotation": 90,
+        "scale": 0.99,
+        "solid": [
+          0.3,
+          2.0
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          12.0,
+          -30.0
+        ],
+        "rotation": 90,
+        "scale": 0.99,
+        "solid": [
+          0.3,
+          2.0
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          12.0,
+          -28.0
+        ],
+        "rotation": 90,
+        "scale": 0.99,
+        "solid": [
+          0.3,
+          2.0
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          -9.0,
+          -17.0
+        ],
+        "rotation": 0,
+        "scale": 0.99,
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          -7.0,
+          -17.0
+        ],
+        "rotation": 0,
+        "scale": 0.99,
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          -5.0,
+          -17.0
+        ],
+        "rotation": 0,
+        "scale": 0.99,
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          -3.0,
+          -17.0
+        ],
+        "rotation": 0,
+        "scale": 0.99,
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          -1.0,
+          -17.0
+        ],
+        "rotation": 0,
+        "scale": 0.99,
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          1.0,
+          -17.0
+        ],
+        "rotation": 0,
+        "scale": 0.99,
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          -9.0,
+          -10.0
+        ],
+        "rotation": 0,
+        "scale": 0.99,
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          -7.0,
+          -10.0
+        ],
+        "rotation": 0,
+        "scale": 0.99,
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          -1.0,
+          -10.0
+        ],
+        "rotation": 0,
+        "scale": 0.99,
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          1.0,
+          -10.0
+        ],
+        "rotation": 0,
+        "scale": 0.99,
+        "solid": [
+          2.0,
+          0.3
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          -10.0,
+          -16.1
+        ],
+        "rotation": 90,
+        "scale": 0.87,
+        "solid": [
+          0.3,
+          1.75
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          -10.0,
+          -14.4
+        ],
+        "rotation": 90,
+        "scale": 0.87,
+        "solid": [
+          0.3,
+          1.75
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          -10.0,
+          -12.6
+        ],
+        "rotation": 90,
+        "scale": 0.87,
+        "solid": [
+          0.3,
+          1.75
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          -10.0,
+          -10.9
+        ],
+        "rotation": 90,
+        "scale": 0.87,
+        "solid": [
+          0.3,
+          1.75
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          2.0,
+          -16.1
+        ],
+        "rotation": 90,
+        "scale": 0.87,
+        "solid": [
+          0.3,
+          1.75
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          2.0,
+          -14.4
+        ],
+        "rotation": 90,
+        "scale": 0.87,
+        "solid": [
+          0.3,
+          1.75
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          2.0,
+          -12.6
+        ],
+        "rotation": 90,
+        "scale": 0.87,
+        "solid": [
+          0.3,
+          1.75
+        ]
+      },
+      {
+        "piece": "Prop_WoodenFence_Single",
+        "position": [
+          2.0,
+          -10.9
+        ],
+        "rotation": 90,
+        "scale": 0.87,
+        "solid": [
+          0.3,
+          1.75
+        ]
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -8.990226027928998,
+          -15.9
+        ],
+        "rotation": 15,
+        "scale": 0.95
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -8.041744298721222,
+          -16.0
+        ],
+        "rotation": 180,
+        "scale": 0.85
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -6.971192351882397,
+          -16.0
+        ],
+        "rotation": 135,
+        "scale": 0.96
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -5.931957410641669,
+          -15.9
+        ],
+        "rotation": 75,
+        "scale": 0.9
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -4.979002357073723,
+          -16.0
+        ],
+        "rotation": 345,
+        "scale": 0.9
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -3.9587881464108015,
+          -16.0
+        ],
+        "rotation": 225,
+        "scale": 0.83
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -3.0800968330724094,
+          -16.0
+        ],
+        "rotation": 225,
+        "scale": 0.96
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -2.011063614570171,
+          -16.0
+        ],
+        "rotation": 90,
+        "scale": 0.98
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -0.986222301654311,
+          -15.8
+        ],
+        "rotation": 345,
+        "scale": 0.81
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -0.010246594350692334,
+          -15.8
+        ],
+        "rotation": 210,
+        "scale": 0.8
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          1.114136253629727,
+          -15.9
+        ],
+        "rotation": 105,
+        "scale": 0.9
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -8.87401144196555,
+          -12.3
+        ],
+        "rotation": 330,
+        "scale": 0.97
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -7.979468935580355,
+          -12.1
+        ],
+        "rotation": 240,
+        "scale": 0.93
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -6.928867493311558,
+          -12.3
+        ],
+        "rotation": 315,
+        "scale": 0.85
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -5.995490456953548,
+          -12.3
+        ],
+        "rotation": 30,
+        "scale": 0.94
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -4.955664350319979,
+          -12.2
+        ],
+        "rotation": 240,
+        "scale": 0.86
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -4.0840859951958395,
+          -12.3
+        ],
+        "rotation": 105,
+        "scale": 0.85
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -3.1376925057360734,
+          -12.3
+        ],
+        "rotation": 45,
+        "scale": 0.83
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -1.9130528198115269,
+          -12.2
+        ],
+        "rotation": 105,
+        "scale": 0.96
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -1.0067799341329162,
+          -12.1
+        ],
+        "rotation": 300,
+        "scale": 0.88
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -0.06104087476087311,
+          -12.3
+        ],
+        "rotation": 300,
+        "scale": 0.97
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          0.8506517919011453,
+          -12.3
+        ],
+        "rotation": 300,
+        "scale": 1.0
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -9.033553391504887,
+          -10.8
+        ],
+        "rotation": 150,
+        "scale": 0.89
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -7.97003919415987,
+          -10.9
+        ],
+        "rotation": 210,
+        "scale": 0.92
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -7.086344881201836,
+          -10.9
+        ],
+        "rotation": 195,
+        "scale": 0.93
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -5.999549066584389,
+          -11.0
+        ],
+        "rotation": 30,
+        "scale": 0.94
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -4.8636380194351805,
+          -10.8
+        ],
+        "rotation": 210,
+        "scale": 0.88
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -3.869384935625554,
+          -10.8
+        ],
+        "rotation": 300,
+        "scale": 0.99
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -2.8710066761842885,
+          -10.9
+        ],
+        "rotation": 15,
+        "scale": 0.92
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -1.979390711965129,
+          -11.0
+        ],
+        "rotation": 180,
+        "scale": 0.97
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          -0.9971975074336328,
+          -10.9
+        ],
+        "rotation": 285,
+        "scale": 0.93
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          0.007289654347711311,
+          -10.8
+        ],
+        "rotation": 120,
+        "scale": 0.86
+      },
+      {
+        "piece": "Pl_Hemp",
+        "position": [
+          1.0066813240438264,
+          -10.8
+        ],
+        "rotation": 285,
+        "scale": 0.92
       }
     ],
     "crowd": [
@@ -30406,126 +30190,126 @@
       {
         "role": "sheep",
         "position": [
-          0.5,
-          -28.0
-        ],
-        "rotation": 15,
-        "pose": "idle",
-        "path": [
-          2.6,
-          -29.1
-        ],
-        "speed": 0.5
-      },
-      {
-        "role": "sheep",
-        "position": [
-          -14.6,
-          -24.9
-        ],
-        "rotation": 165,
-        "pose": "idle",
-        "path": [
-          -13.8,
-          -28.1
-        ],
-        "speed": 0.5
-      },
-      {
-        "role": "sheep",
-        "position": [
-          -7.1,
-          -32.1
-        ],
-        "rotation": 75,
-        "pose": "idle",
-        "path": [
-          -7.9,
-          -34.7
-        ],
-        "speed": 0.5
-      },
-      {
-        "role": "sheep",
-        "position": [
-          14.2,
-          -23.8
+          3.1,
+          -32.3
         ],
         "rotation": 30,
         "pose": "idle",
         "path": [
-          16.2,
-          -23.9
-        ],
-        "speed": 0.5
-      },
-      {
-        "role": "sheep",
-        "position": [
-          3.8,
+          5.4,
           -30.9
         ],
-        "rotation": 225,
+        "speed": 0.5
+      },
+      {
+        "role": "sheep",
+        "position": [
+          4.0,
+          -30.7
+        ],
+        "rotation": 30,
         "pose": "idle",
         "path": [
-          1.1,
-          -33.0
+          3.8,
+          -32.3
         ],
         "speed": 0.5
       },
       {
         "role": "sheep",
         "position": [
-          -12.1,
-          -22.6
+          4.2,
+          -30.0
         ],
-        "rotation": 210,
+        "rotation": 75,
         "pose": "idle",
         "path": [
-          -11.1,
-          -25.6
+          5.6,
+          -28.6
         ],
         "speed": 0.5
       },
       {
         "role": "sheep",
         "position": [
-          11.7,
-          -20.9
+          4.2,
+          -30.7
         ],
-        "rotation": 270,
+        "rotation": 120,
         "pose": "idle",
         "path": [
-          13.5,
-          -21.7
+          3.5,
+          -29.9
         ],
         "speed": 0.5
       },
       {
         "role": "sheep",
         "position": [
-          -7.1,
-          -23.6
+          8.2,
+          -28.9
         ],
-        "rotation": 0,
+        "rotation": 105,
         "pose": "idle",
         "path": [
-          -7.7,
-          -23.8
+          9.1,
+          -28.2
         ],
         "speed": 0.5
       },
       {
         "role": "sheep",
         "position": [
-          -7.5,
-          -22.1
+          2.0,
+          -31.6
         ],
-        "rotation": 330,
+        "rotation": 120,
         "pose": "idle",
         "path": [
-          -10.8,
-          -19.7
+          4.0,
+          -32.0
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "sheep",
+        "position": [
+          8.0,
+          -30.8
+        ],
+        "rotation": 120,
+        "pose": "idle",
+        "path": [
+          10.5,
+          -32.4
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "sheep",
+        "position": [
+          3.2,
+          -32.1
+        ],
+        "rotation": 150,
+        "pose": "idle",
+        "path": [
+          2.2,
+          -30.4
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "sheep",
+        "position": [
+          8.6,
+          -30.6
+        ],
+        "rotation": 195,
+        "pose": "idle",
+        "path": [
+          7.2,
+          -30.4
         ],
         "speed": 0.5
       }
