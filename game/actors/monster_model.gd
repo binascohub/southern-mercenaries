@@ -41,10 +41,28 @@ const FAMILIES := {
 	# Lagarto Dourado (Lizardman, skorpio, CC BY-SA 3.0): tingido de ouro no jogo.
 	"lizard": {"scene": "res://assets/models/monsters/golden_lizard.glb", "scale": 0.8,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
+	# Elfo Sombrio (Dark Elf, danimal, CC BY-SA 3.0; besta de Lamoot, CC BY): o corpo inteiro com chifres, cabelo e a besta,
+	# 8,1 unidades de altura -> ~1,8 m no tamanho 1. Atira de longe (animação "attack" = o tiro).
+	"dark_elf": {"scene": "res://assets/models/monsters/dark_elf.glb", "scale": 0.22,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "die": "die"}},
+	# Esqueleto (Skeleton with rig, rudy85, CC0): humanoide de 1,8 m no tamanho 1, com animações feitas à mão
+	# (tools/assets/build_skeleton.py). Morto-vivo comum do Cemitério.
+	"skeleton": {"scene": "res://assets/models/monsters/skeleton.glb", "scale": 1.0,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Súcubo (Goth Female "Fleur du Mal", tizeta, CC BY 3.0): corpo único em pose de repouso, sem animações
+	# (o Blender o traz com esqueleto, mas sem ações): flutua e inclina por código (`static`); 44,8 unidades de
+	# altura no arquivo (`unit`) -> ~1,8 m no tamanho 1. Ataque de magia à distância.
+	"succubus": {"scene": "res://assets/models/monsters/succubus.glb", "scale": 0.04, "static": true, "unit": 44.8,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Sapo Ácido (Triton, guiea7, CC BY-SA 4.0): sapo-homem pintado, 8,2 unidades
 	# de altura -> ~1,3 m no tamanho do sapo; tingido de verde pelos dados.
 	"toad": {"scene": "res://assets/models/monsters/toad.glb", "scale": 0.187,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
+	# Cervos da Floresta (CDmir e TinyWorlds, CC0; tools/assets/build_deer.sh): 1,6 m de comprimento no arquivo, "size" 1.4 nos dados.
+	"deer_buck": {"scene": "res://assets/models/monsters/deer_buck.glb", "scale": 0.714,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "die": "die"}},
+	"deer_doe": {"scene": "res://assets/models/monsters/deer_doe.glb", "scale": 0.714,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "die": "die"}},
 	# O morcego guarda o tamanho original do arquivo (envergadura ~10 unidades).
 	"bat": {"scene": "res://assets/models/monsters/bat.glb", "scale": 0.2,
 		"anims": {"idle": "fly", "walk": "fly", "run": "fly", "attack": "fly", "die": "die"}},
@@ -96,6 +114,8 @@ var _parts := {}
 var _action_time := 0.0
 ## Modelo sem esqueleto (o Feiticeiro-aranha): o corpo todo é movido por código.
 var _static_root: Node3D
+## Altura do modelo sem esqueleto, nas unidades do arquivo: os deslocamentos do `_animate_static` valem para 1 m.
+var _static_unit := 1.0
 
 
 static func has_family(look: String) -> bool:
@@ -130,6 +150,7 @@ func setup(look: String, size: float, tint: Color) -> bool:
 		for key: String in info.anims:
 			_names[key] = info.anims[key]
 		_static_root = model as Node3D
+		_static_unit = float(info.get("unit", 1.0))
 		_current = "idle"
 		return true
 	if info.get("procedural", false):
@@ -506,7 +527,7 @@ func _animate_static(delta: float) -> void:
 	elif _current == "die":
 		var fall := minf(_action_time / 0.9, 1.0)
 		pitch = -1.45 * ease(fall, 2.0)
-	_static_root.position.y = lift
+	_static_root.position.y = lift * _static_unit
 	_static_root.rotation = Vector3(pitch, 0.0, roll)
 
 

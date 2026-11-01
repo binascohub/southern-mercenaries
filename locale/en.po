@@ -1699,7 +1699,7 @@ msgid "DLG_OLD_DRUNK_3"
 msgstr "Years later, folk here poisoned and burned the rats down there... but they forgot the mother."
 
 msgid "DLG_OLD_DRUNK_4"
-msgstr "They say the Spider Sorcerer made a pact with a demon, grew eight legs, and now sleeps on top of the treasure, with the king's crown tucked in his cloak."
+msgstr "They say the king's alchemist, forgotten down there, made a pact with a demon, grew eight spider legs, and now sleeps on top of the treasure, with the king's crown tucked in his cloak."
 
 msgid "DLG_OLD_DRUNK_5"
 msgstr "If you're looking for treasure, you're standing on one! Just bring fire. She already knows what fire is — and she hates it."
@@ -1714,7 +1714,7 @@ msgid "DLG_KEEPER_1"
 msgstr "Sit down, rest. In Tortuga nobody asks where the gold comes from — only whether it pays."
 
 msgid "DLG_BARD_QUEEN_1"
-msgstr "The Spider Sorcerer was just a scholar once, reading forbidden books in the dark."
+msgstr "The Spider Sorcerer was the king's alchemist once, left in the dark to guard the treasure."
 
 msgid "DLG_BARD_QUEEN_2"
 msgstr "Earth runs in her veins now, and earth fears fire — remember the song."
@@ -2440,6 +2440,12 @@ msgstr "Barrel"
 msgid "PROP_POT"
 msgstr "Clay Pot"
 
+msgid "PROP_DEER_BUCK"
+msgstr "Stag"
+
+msgid "PROP_DEER_DOE"
+msgstr "Doe"
+
 msgid "PROP_CRATE"
 msgstr "Crate"
 
@@ -2487,6 +2493,15 @@ msgstr "Crypt Scorpion"
 
 msgid "MONSTER_FORT_COMMANDER"
 msgstr "Cursed Commander"
+
+msgid "MONSTER_DARK_ELF"
+msgstr "Dark Elf"
+
+msgid "MONSTER_SUCCUBUS"
+msgstr "Succubus"
+
+msgid "MONSTER_SKELETON"
+msgstr "Skeleton"
 
 msgid "ARENA_DARK_FOREST"
 msgstr "Dark Forest"

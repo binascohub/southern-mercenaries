@@ -85,6 +85,30 @@ monster("crypt_scorpion", "old_gator", _comment="Mini-chefe do Cemitério: escor
         name_key="MONSTER_CRYPT_SCORPION", max_health=300, damage=22, size=3.0, element="water", look="scorpion", color=[0.45, 0.5, 0.65])
 monster("fort_commander", "old_gator", _comment="Chefe do Forte: o comandante amaldiçoado (usa o modelo do Feiticeiro-Aranha até haver arte própria).",
         name_key="MONSTER_FORT_COMMANDER", max_health=400, damage=25, size=2.4, element="air", look="demon", color=[0.8, 0.9, 1.0])
+monster("succubus", "acid_toad", _comment="Súcubo (docs/03-1-bestiario.md, seção 10; Goth Female \"Fleur du Mal\", tizeta, CC BY 3.0): serva de Lúcifer, ataque de magia à distância: lança uma bola de fogo do inferno (marca no chão antes) que deixa chamas e recua. O encanto dela (mercenário atingido ataca os amigos) ainda não existe.",
+        name_key="MONSTER_SUCCUBUS", max_health=110, damage=18, move_speed=2.2, attack_range=10.0, attack_windup=1.2, attack_cooldown=2.6,
+        size=1.0, element="fire", look="succubus", color=[1.0, 1.0, 1.0], keep_distance=7.0,
+        spit={"radius": 1.8, "puddle_time": 3.0, "puddle_dps": 5.0, "glob": [1.0, 0.35, 0.1]})
+monster("dark_elf", "acid_toad", _comment="Elfo Sombrio (Dark Elf, danimal, CC BY-SA 3.0): besteiro do Forte; atira de longe um virote de sombra (marca no chão antes) e recua.",
+        name_key="MONSTER_DARK_ELF", max_health=90, damage=14, move_speed=2.4, attack_range=9.0, attack_windup=1.0, attack_cooldown=2.2,
+        size=1.0, element="air", look="dark_elf", color=[1.0, 1.0, 1.0], keep_distance=6.0,
+        spit={"radius": 1.2, "puddle_time": 1.5, "puddle_dps": 3.0, "glob": [0.45, 0.2, 0.7]})
+# Esqueleto (Skeleton with rig, rudy85, CC0; modelo e animações feitos por tools/assets/build_skeleton.py):
+# corpo a corpo comum do Cemitério, em grupos.
+monsters["skeleton"] = {
+    "_comment": "Esqueleto do Cemitério (Skeleton with rig, rudy85, CC0): corpo a corpo, vaga entre as covas até alguém chegar perto. Terra, como os mortos da lenda (fraco a Fogo).",
+    "name_key": "MONSTER_SKELETON", "max_health": 90, "move_speed": 3.0, "damage": 14, "attack_range": 2.2,
+    "attack_windup": 0.6, "attack_cooldown": 1.4, "aggro_range": 40.0, "size": 1.0, "category": "common", "element": "earth",
+    "patrol": True, "patrol_radius": 6.0, "patrol_speed": 0.8, "look": "skeleton", "color": [0.92, 0.86, 0.72],
+}
+
+
+# Cervos da Floresta (CDmir e TinyWorlds, CC0): quebráveis como os potes do Esgoto: não atacam, não perseguem, não voltam depois de mortos
+# (a campanha guarda os já quebrados) e, ao morrer, soltam só poção (tabela "breakable_potion").
+monster("deer_buck", "barrel", _comment="Cervo da Floresta (Old Deer Male, CDmir, CC0): quebrável parado, como o pote do Esgoto; ao morrer solta poção.",
+        name_key="PROP_DEER_BUCK", max_health=20, size=1.4, look="deer_buck", color=[1.0, 1.0, 1.0])
+monster("deer_doe", "barrel", _comment="Corça da Floresta (Deer Female, CDmir, CC0): igual ao cervo.",
+        name_key="PROP_DEER_DOE", max_health=20, size=1.4, look="deer_doe", color=[1.0, 1.0, 1.0])
 
 
 # --- Floresta ---------------------------------------------------------------------------------------
@@ -110,8 +134,9 @@ plants = ["Pl_Bush", "Pl_Swirl", "Pl_Hemp", "Pl_Flower"]
 for rd in f_rooms:
     f_decor += ring(fr, rd, ["Pl_Bamboo", "Pl_Bamboo", "Pl_Bush"], 2.4, scale=(0.9, 1.5))
     f_decor += scatter(fr, rd, plants, int(rd["size"][0] * rd["size"][1] / 22), margin=2.0, avoid=[(0, 3, 3)])
-# Pedras (Rocks, Nobiax, CC0): semente própria para não mexer no sorteio das plantas. As grandes bloqueiam, as pequenas são só enfeite.
-ROCK_FOOTPRINT = {"Rock_1": 0.9, "Rock_2": 0.75, "Rock_3": 1.2, "Rock_4": 1.0, "Rock_5": 0.75}
+# Pedras (Rocks, Nobiax, CC0 + Low Poly Rocks, para, CC0): semente própria para não mexer no sorteio das plantas. As grandes bloqueiam, as pequenas são só enfeite.
+ROCK_FOOTPRINT = {"Rock_1": 0.9, "Rock_2": 0.75, "Rock_3": 1.2, "Rock_4": 1.0, "Rock_5": 0.75,
+                  "RockP_1": 0.9, "RockP_2": 1.1, "RockP_3": 1.0, "RockP_4": 1.0, "RockP_5": 1.0, "RockP_6": 0.95}
 rkr = rng("forest_rocks")
 f_keep = [(0, 3, 4), (-6, 3, 3), (0, -82, 4), (24, -22, 3), (-14, -74, 3)] + [(e["position"][0], e["position"][1], 3) for e in f_enc]
 for rd in f_rooms:
@@ -125,10 +150,23 @@ shr = rng("forest_shrubs")
 for rd in f_rooms:
     f_decor += scatter(shr, rd, ["Pl_Shrub%d" % i for i in range(1, 6)], int(rd["size"][0] * rd["size"][1] / 30), margin=2.5,
                        scale=(0.8, 1.6), avoid=f_keep)
+# Ervas daninhas (Tiny Weeds, Nobiax, CC0): tufos pequenos pelo chão, semente própria, sem colisão.
+wdr = rng("forest_weeds")
+for rd in f_rooms:
+    f_decor += scatter(wdr, rd, ["Pl_Weed%d" % i for i in range(1, 6)], int(rd["size"][0] * rd["size"][1] / 8), margin=1.5,
+                       scale=(1.0, 2.0), avoid=f_keep)
 f_decor += [{"piece": "Pr_RoadSign", "position": [4, 2], "rotation": 200}, {"piece": "Pr_LampPost", "position": [-6, 3], "rotation": 0, "solid": [0.6, 0.6]},
             {"piece": "Pr_Obelisk3", "position": [0, -80], "solid": [1.4, 1.4]}, {"piece": "Pr_Obelisk2", "position": [-6, -78], "solid": [1.0, 1.0]},
             {"piece": "Pr_Obelisk2", "position": [6, -78], "solid": [1.0, 1.0]}, {"piece": "Pr_BrokenPillar2", "position": [-12, -70], "solid": [1.2, 1.2]},
             {"piece": "Pr_BrokenPillar1", "position": [12, -68], "solid": [1.2, 1.2]}, {"piece": "Pr_CoveredWell", "position": [-8, -4], "solid": [1.8, 1.8]}]
+# Poucos cervos: semente própria, longe das portas, do portal, dos baús, da saída, dos grupos de monstros, dos adereços fixos e uns dos outros.
+f_deer = []
+dr_ = rng("forest_deer")
+f_fixed = [(4, 2, 3), (-8, -4, 4), (0, -80, 5), (-6, -78, 3), (6, -78, 3), (-12, -70, 3), (12, -68, 3)]
+for rd, count in ((f_rooms[1], 2), (f_rooms[2], 1), (f_rooms[4], 2), (f_rooms[0], 1)):  # clareira, lateral, bosque, portão
+    for spot in scatter(dr_, rd, ["deer"], count, margin=4.0, avoid=f_keep + f_fixed + [(d["position"][0], d["position"][1], 10) for d in f_deer]):
+        f_deer.append({"id": "d%d" % (len(f_deer) + 1), "monster": "deer_buck" if len(f_deer) % 2 == 0 else "deer_doe",
+                       "position": spot["position"], "table": "breakable_potion"})
 arenas["forest_01_path"] = {
     "_comment": "Floresta (04-tortuga-e-missoes.md, missão 3 na ordem do mapa: Tortuga -> Floresta -> Ruínas -> Cemitério -> Forte). Clareiras abertas com cerca viva de bambu e arbustos (Stylish Plants, Nobiax, CC0), obeliscos e pilares quebrados (Medieval Props Textured). O Leshy guarda o bosque do fundo. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_FOREST", "player_class": "mage", "map_id": "map_forest", "area_level": 3, "outdoor": True,
@@ -140,7 +178,7 @@ arenas["forest_01_path"] = {
         {"id": "forest_chest_1", "kind": "chest", "position": [24, -22], "loot": "chest"},
         {"id": "forest_chest_2", "kind": "chest", "position": [-14, -74], "loot": "chest"},
     ],
-    "quest_spots": [], "breakables": [],
+    "quest_spots": [], "breakables": f_deer,
     "style": {"_comment": "Floresta: sem piso do kit (chão de grama), cerca viva de arbustos nas bordas.", "walls": [""], "floor": "Ground_Grass", "low": "Pl_Bush",
               "ground": [0.12, 0.2, 0.09]},
     "decor": f_decor, "passive": True,
@@ -167,6 +205,11 @@ for rd in r_rooms:
     r_decor += scatter(rr, rd, ["Pl_Bush", "Pl_Hemp"], int(rd["size"][0] * rd["size"][1] / 90), margin=2.0)
 r_decor += [{"piece": "Pr_BrokenPillar1", "position": [-8, -2], "solid": [1.2, 1.2]}, {"piece": "Pr_BrokenPillar2", "position": [9, -3], "solid": [1.2, 1.2]},
             {"piece": "Pr_Obelisk3", "position": [0, -72], "solid": [1.4, 1.4]}, {"piece": "Pr_Cross4", "position": [-10, -68], "solid": [1.2, 1.2]}]
+# Caixotes e barris das ruínas: só soltam poções (loot.json "breakable_potion").
+RUINS_BOXES = [{"id": "b%d" % (i + 1), "monster": m, "position": [x, y], "table": "breakable_potion"} for i, (x, y, m) in enumerate([
+    (0, -10, "crate"), (8, -15, "barrel"), (-8, -11, "crate"), (-12, -22, "barrel"), (-22, -18, "crate"), (11, -29, "crate"),
+    (-12, -33, "barrel"), (17, -40, "crate"), (-1, -42, "barrel"), (-19, -44, "crate"), (20, -52, "barrel"), (5, -55, "crate"),
+    (-14, -56, "barrel"), (10, -60, "crate")])]
 arenas["ruins_01_city"] = {
     "_comment": "Ruínas da cidade destruída na guerra (Destroyed Walls, LFA, CC BY 3.0): a cena de paredes inteira do pacote é o labirinto de ruas (Ruins_Layout, 1 unidade = 25 cm); a colisão vem dos recortes de cada parede (data/ruins_colliders.json). O guardião do cofre real espera no fundo. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_RUINS", "player_class": "mage", "map_id": "map_ruins", "area_level": 5, "outdoor": True,
@@ -178,7 +221,7 @@ arenas["ruins_01_city"] = {
         {"id": "ruins_chest_1", "kind": "chest", "position": [20, -50], "loot": "chest"},
         {"id": "ruins_chest_2", "kind": "chest", "position": [-22, -20], "loot": "chest"},
     ],
-    "quest_spots": [], "breakables": [],
+    "quest_spots": [], "breakables": RUINS_BOXES,
     "style": {"_comment": "Ruínas: sem muro de sala (a cena de paredes já fecha as ruas), chão de terra.", "walls": [""], "floor": "Ground_Dirt", "low": "",
               "ground": [0.2, 0.18, 0.14]},
     "decor": r_decor, "passive": True,
@@ -196,6 +239,9 @@ c_enc = [
     {"id": "c_bats", "position": [12, -22], "monsters": [{"monster": "plague_bat", "count": 4}]},
     {"id": "c_toads", "position": [-14, -34], "monsters": [{"monster": "acid_toad", "count": 3}]},
     {"id": "c_scorp", "position": [14, -36], "monsters": [{"monster": "venom_scorpion", "count": 3}]},
+    {"id": "c_skel_gate", "position": [0, -17], "monsters": [{"monster": "skeleton", "count": 3}]},
+    {"id": "c_skel_mid", "position": [0, -38], "monsters": [{"monster": "skeleton", "count": 4}]},
+    {"id": "c_skel_crypt", "position": [-6, -52], "monsters": [{"monster": "skeleton", "count": 3}]},
     {"id": "c_boss", "position": [0, -60], "monsters": [{"monster": "crypt_scorpion", "count": 1}]},
 ]
 c_decor = []
@@ -214,6 +260,10 @@ c_decor += [{"piece": "Pr_CoveredWell", "position": [0, -26], "solid": [1.8, 1.8
             {"piece": "Pr_Cross4", "position": [6, -48], "solid": [1.2, 1.2]}, {"piece": "Pr_BrokenPillar2", "position": [-9, -62], "solid": [1.2, 1.2]},
             {"piece": "Pr_BrokenPillar2", "position": [9, -62], "solid": [1.2, 1.2]}, {"piece": "Pr_LampPost", "position": [-3, 3], "solid": [0.6, 0.6]},
             {"piece": "Pr_LampPost", "position": [3, -8], "solid": [0.6, 0.6]}, {"piece": "Pr_Trough", "position": [-16, -26], "rotation": 90, "solid": [3.0, 1.2]}]
+# Estátuas do cavaleiro (Knight Statue, yd, CC0; build_knight_statue.py): um par no caminho de entrada e outro
+# ladeando a cripta, viradas um pouco para o corredor do meio (a peça olha para +Z, para quem chega do portão).
+c_decor += [{"piece": "Statue_Knight", "position": [x, z], "rotation": rot, "solid": [1.1, 1.2]}
+            for x, z, rot in ((-5.5, -9, 20), (5.5, -9, -20), (-11, -52, 25), (11, -52, -25))]
 for rd in c_rooms:
     c_decor += ring(cr, rd, ["Pr_Fence1", "Pr_Fence2"], 2.7, inset=0.7)
 c_decor += scatter(cr, c_rooms[1], ["Pl_Hemp", "Pl_Bush"], 14, margin=2.0)
@@ -342,6 +392,20 @@ fort_decor += [{"light": [1.0, 0.65, 0.3], "position": cell_pos(c, r), "y": 2.2,
                for c, r in ((4, 3), (15, 3), (9, 12), (3, 19), (16, 19), (9, 23))]
 fort_decor += [{"piece": "Pr_Cross4", "position": cell_pos(9, 2), "solid": [1.2, 1.2]}, {"piece": "Pr_BrokenPillar1", "position": cell_pos(5, 11), "solid": [1.2, 1.2]},
                {"piece": "Pr_BrokenPillar2", "position": cell_pos(14, 11), "solid": [1.2, 1.2]}]
+# Peças do castelo (3D Castle Dungeon Tileset Extended, rubberduck, CC0; build_castle_kit.py), na mesma altura da pedra do Forte.
+# Os arcos ficam nas passagens norte-sul; colunas e pilares são sólidos, arcos e lajotas não.
+castle = [{"piece": "Castle_" + n, "position": cell_pos(c, r)} for n, c, r in (
+    ("GateBig", 9, 8), ("GateBig", 10, 8), ("GateNew", 4, 21), ("GateNew", 15, 21), ("GateSmall", 4, 16), ("GateSmall", 15, 16))]
+castle += [{"piece": "Castle_" + n, "position": cell_pos(c, r), "solid": [0.9, 0.9]} for n, c, r in (
+    ("ColumnB", 8, 8), ("ColumnB", 11, 8), ("Column", 4, 2), ("Column", 4, 5), ("Column", 15, 2), ("Column", 15, 5),
+    ("Column", 3, 12), ("Column", 16, 12), ("EdgeColumn", 5, 22), ("EdgeColumn", 14, 22))]
+castle += [{"piece": "Castle_Dais", "position": cell_pos(9, 1)}, {"piece": "Castle_Altar", "position": cell_pos(12, 2), "solid": [1.2, 1.2]}]
+castle += [{"piece": "Castle_Tiles", "position": [round(cell_pos(8, 4)[0] + i * 1.3, 2), round(cell_pos(8, 4)[1] + j * 1.3 + 1.5, 2)]}
+           for i in range(4) for j in range(3)]
+castle += [{"piece": "Castle_Mug", "position": cell_pos(c, r)} for c, r in ((3, 19), (16, 19))]
+castle += [{"piece": "Castle_" + n, "position": cell_pos(c, r), "rotation": rot, "solid": [1.3, 0.5]} for n, c, r, rot in (
+    ("WallTorch1", 6, 16, 0), ("WallTorch2", 13, 16, 0), ("WallWindow", 7, 10, 0), ("WallDeco", 12, 10, 0))]
+fort_decor += castle
 arenas["fort_01_gate"] = {
     "_comment": "Forte (3D Dungeon Tileset, Skorpio, CC BY-SA 3.0): uma grade de 20 x 26 células de 2,5 m com pedra e piso do pacote (Fort_<máscara>, a máscara é o 8-vizinhança de pedra); a colisão é uma caixa por trecho de pedra. Pátio de entrada, duas celas, salão do meio e o salão do comandante no fundo. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_FORT", "player_class": "mage", "map_id": "map_fort", "area_level": 10, "final": True, "victory_key": "HUD_VICTORY_SEWERS",
@@ -352,6 +416,11 @@ arenas["fort_01_gate"] = {
         {"id": "fo_cell_e", "position": cell_pos(15, 19), "monsters": [{"monster": "venom_scorpion", "count": 3}]},
         {"id": "fo_hall_a", "position": cell_pos(9, 13), "monsters": [{"monster": "plague_bat", "count": 4}]},
         {"id": "fo_hall_b", "position": cell_pos(14, 14), "monsters": [{"monster": "mutant_rat", "count": 4}]},
+        {"id": "fo_elves_gate", "position": cell_pos(9, 9), "monsters": [{"monster": "dark_elf", "count": 2}]},
+        {"id": "fo_elves_hall_w", "position": cell_pos(4, 13), "monsters": [{"monster": "dark_elf", "count": 2}]},
+        {"id": "fo_elves_hall_e", "position": cell_pos(16, 11), "monsters": [{"monster": "dark_elf", "count": 2}]},
+        {"id": "fo_succubi_hall", "position": cell_pos(7, 14), "monsters": [{"monster": "succubus", "count": 2}]},
+        {"id": "fo_succubi_court", "position": cell_pos(9, 5), "monsters": [{"monster": "succubus", "count": 2}]},
         {"id": "fo_commander", "position": cell_pos(9, 3), "monsters": [{"monster": "fort_commander", "count": 1}]},
     ],
     "hazards": [], "entries": {"start": cell_pos(9, 23)},

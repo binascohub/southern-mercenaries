@@ -1,0 +1,5 @@
+Castle_*.gltf and their textures — "3D Castle Dungeon Tileset Extended" by rubberduck
+https://opengameart.org/content/3d-castle-dungeon-tileset-extended
+CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+Textures inside it come from CC0 packs (concrete01 from pietextureset, walls based on scouser's urban textures, tiles by BMacZero and yughues, torch from the Fantasy Torch Pack).
+Changes: the pieces are exported one by one by tools/assets/build_castle_kit.py (re-textured, scaled to 0.65, the doors of the gate opened).

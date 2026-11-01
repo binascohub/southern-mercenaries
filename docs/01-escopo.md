@@ -120,7 +120,7 @@
 ## 7. Conteúdo da v1.0
 
 - **10 mapas** em **41 áreas**, cada mapa com uma família de criaturas, um mini-chefe e um chefe que guarda um tesouro (ver `03-inimigos.md` e `03-2-areas.md`):
-  1. Esgoto de Tortuga — Rainha dos Ratos (Tesouro Perdido da Guerra)
+  1. Esgoto de Tortuga — Feiticeiro-Aranha (Tesouro Perdido da Guerra)
   2. Ruínas do Reino do Arqueiro — Cérbero (Cofre Real)
   3. Floresta Escura — Leshy
   4. Cavalos Míticos — Pégaso
@@ -162,7 +162,7 @@
 4. **Elementos:** ciclo de fraquezas, estados, combos, Poção Elemental.
 5. **Classes e habilidades:** as 5 classes com os 4 elementos. Ordem sugerida: Mago, Arqueiro, Ninja, Invocador, Cavaleiro (o cavalo e o desmontar são os mais trabalhosos).
 6. **Tortuga:** abertura na taverna, histórias e missões, Rua Principal com as lojas, porto com o Mercado Pirata, bueiro.
-7. **Esgoto de Tortuga completo (vertical slice):** as 4 áreas, da história do velho bêbado à Rainha dos Ratos e ao Tesouro Perdido da Guerra, solo e em grupo, nos 3 idiomas. **Primeira versão pública (v0.1) no GitHub.**
+7. **Esgoto de Tortuga completo (vertical slice):** as 4 áreas, da história do velho bêbado ao Feiticeiro-Aranha e ao Tesouro Perdido da Guerra, solo e em grupo, nos 3 idiomas. **Primeira versão pública (v0.1) no GitHub.**
 8. **Mapas 2 a 5**, depois **Capital Real** e o Bobo da Corte, depois **mapas 6 a 10**.
 9. **Polimento:** balanceamento, menus, áudio, testes com 4 jogadores, correções. **Lançamento v1.0.**
 

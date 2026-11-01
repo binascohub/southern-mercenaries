@@ -2,14 +2,29 @@
 
 ## [Unreleased]
 
+### The Fort
+- Castle kit ("3D Castle Dungeon Tileset Extended", rubberduck, CC0): columns, gate arches (the two at the corridor, the accesses and the courtyard have open doors), torch and window walls, altar, dais and floor tiles (`assets/models/maps/fort/Castle_*.gltf`, exported by `tools/assets/build_castle_kit.py`), at the same height as the Fort's stone and placed by `tools/assets/build_maps.py`.
+- Dark Elf ("Dark Elf - Game ready and animated", danimal, CC BY-SA 3.0): a crossbow archer (`assets/models/monsters/dark_elf.glb`, new `dark_elf` look in `MonsterModel`); six of them guard the corridor and the middle hall, firing shadow bolts from a distance (`dark_elf` in `data/monsters.json`, name in the three languages).
+- Succubus ("Goth Female (Fleur du Mal)", tizeta, CC BY 3.0): a magic-attack monster (`succubus` in `data/monsters.json`, fire; model `assets/models/monsters/succubus.glb`, new `succubus` look in `MonsterModel`, which floats and tilts the still body in code). Keeps her distance and hurls hellfire balls that leave flames; four of them in the middle hall and the commander's hall. Her charm from the bestiary is not implemented yet.
+
 ### The Forest
+- A few deer (six: stags and does, "Old Deer Male" and "Deer Female", CDmir, CC0; `assets/models/monsters/deer_buck.glb` and `deer_doe.glb`, converted by `tools/assets/build_deer.sh`) stand in the Forest. They are not monsters: they never attack, chase or come back once killed, and work like the Sewer pots (any hit kills them, the campaign remembers the broken ones); when one dies it always drops a potion (loot table `breakable_potion`, like the Ruins crates). Placed by `tools/assets/build_maps.py` with its own seed.
+- Tiny weeds ("Tiny Weeds", Nobiax, CC0): five small weeds and a thistle (`assets/models/maps/Pl_Weed1.glb` … `Pl_Weed5.glb`, converted by `tools/assets/build_weeds.py`), tufts scattered on the Forest floor, decoration only, with their own seed so everything already placed stays put.
 - Tropical shrubs ("Tropical Shrubs", Nobiax, CC0): five leafy shrubs (`assets/models/maps/Pl_Shrub1.glb` … `Pl_Shrub5.glb`, converted by `tools/assets/build_shrubs.py`), 98 scattered through the Forest in random sizes, decoration only (no collision), with their own seed so everything already placed stays put.
 - Rocks ("Rocks", Nobiax, CC0) are scattered through the Forest: five low-poly stones (`assets/models/maps/Rock_1.glb` … `Rock_5.glb`, converted by `tools/assets/build_rocks.py`), 40 in all in random sizes; the big ones block the way, the small ones are only decoration. Placement comes from `tools/assets/build_maps.py` with its own seed, so the plants stay where they were.
+
+### Tortuga's brawls
+- Street brawls now mix punches with kicks (a kick animation built in code by `HeroModel._build_kick`, since the animation libraries have none). After 3 to 5 blows one brawler falls: a drunk stays on the ground about 30 seconds (anyone else about 8), then gets up slowly (the fall played backwards at 0.3x speed) and the fight starts again (`game/levels/brawl.gd`).
 
 ### Tortuga's animals
 - Cats ("Simple Cat", drummyfish, CC0): three stroll along the streets and one naps by the Main Street (`assets/models/characters/cat.glb`, converted by `tools/assets/build_cat.py`; the walk is two shape keys, a still cat is the first frame). Added with the `cat` role in `data/arenas.json`.
 
+### The Cemetery
+- New monster, the **Skeleton** ("Skeleton with rig", rudy85, CC0): a melee undead of 90 health that wanders among the graves and attacks in groups (`skeleton` in `data/monsters.json`; Earth, weak to Fire). The Cemetery now has three groups of them (3 at the gate, 4 in the yard, 3 by the crypt). The file only had the rig, so the six animations (idle, walk, run, attack, hit, die) were made by hand on its IK controls: `tools/assets/build_skeleton.py` builds `assets/models/monsters/skeleton.glb` (1.8 m, bone material).
+- Four knight statues decorate the Cemetery ("Knight Statue", yd, CC0): a pair on the entrance path and a pair beside the crypt, turned slightly toward the middle path (`assets/models/maps/Statue_Knight.glb`, built by `tools/assets/build_knight_statue.py`; the pose is baked into one grey stone mesh, 2.4 m tall with the pedestal). The seated version in the same pack was left out: its sword and shield are misplaced in the file.
+
 ### The Sewers
+- Gold in the boss room ("Free Low Poly Gold", Nobiax, CC0): five piles of gold bars (`assets/models/props/Gold_Pile_1.glb` … `Gold_Pile_5.glb`, converted by `tools/assets/build_gold.py`) around the war treasure and the coin pile in the Rat Queen's nest, decoration only (`data/arenas.json`, `sewers_04_nest`).
 - **Area 1 (Main Street Drains) is now a maze**: a 5 x 6 grid of 8 m rooms between the entrance hall and the outfall, with dead ends, a few loops, seven rat groups spread through it, extra puddles, barrels, crates and pots, two chests at the deepest dead ends and the secret chamber behind the east end (`tools/assets/build_sewer_maze.py` regenerates it).
 - Toxic puddles are now organic slimy green stains (glossy, with bubbles and a dark translucent rim) instead of flat green discs.
 - The sewer rats are tougher: more health, 40% less damage taken, weaker bites. Monsters can now have a `damage_taken` multiplier.
@@ -29,6 +44,7 @@
 - The dancers now use the Universal Animation Library's own dance (`Dance`, the one the heroes have), retargeted to the courtesan skeleton (`game/actors/dance_retarget.gd`) in four variations: slow with swaying hips, mirrored with emphasized hips, a twirl and a faster party dance. The skirts hang from the root so they no longer tilt with the hips. The old hand-made dances stay only as a fallback.
 
 ### Clothes
+- Story fit: the Spider Sorcerer is now the king's alchemist of the defeated kingdom, left in the sewer by Tortuga's founders to guard the stolen treasure, who made a pact with a demon after they poisoned his rats (the rats are his familiars). Updated `docs/` (bestiary, enemies, Tortuga and missions, world/story, areas table of the new maps) and the in-game lore texts in pt-BR/en/es. Proposed how Forest, Ruins, Cemetery, Dark Forest and Fort fit the same thread of the defeated kingdom.
 - The courtesans and dancers (who wore a top and shorts) now wear long medieval gowns built in code from the author's references (`game/actors/clothing.gd`): royal blue with a yellow panel, crimson, wine with teal and gold lacing, orange with lime, black with purple and red linen, with bell, puff or cap sleeves and a contrasting centre panel. The gowns follow the bones, so they move with the dances. Everyone else keeps their own clothes; the code also knows vests, a wide-sleeved robe, a laced linen shirt and linen dresses (`"clothes"` in `data/crowd.json`) for later.
 
 ### Heroes

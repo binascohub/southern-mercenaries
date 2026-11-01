@@ -665,5 +665,138 @@
       1.0
     ],
     "_comment": "Chefe do Forte: o comandante amaldiçoado (usa o modelo do Feiticeiro-Aranha até haver arte própria)."
+  },
+  "dark_elf": {
+    "name_key": "MONSTER_DARK_ELF",
+    "max_health": 90,
+    "move_speed": 2.4,
+    "damage": 14,
+    "attack_range": 9.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 2.2,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "air",
+    "ai": "ranged",
+    "keep_distance": 6.0,
+    "spit": {
+      "radius": 1.2,
+      "puddle_time": 1.5,
+      "puddle_dps": 3.0,
+      "glob": [
+        0.45,
+        0.2,
+        0.7
+      ]
+    },
+    "look": "dark_elf",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Elfo Sombrio (Dark Elf, danimal, CC BY-SA 3.0): besteiro do Forte; atira de longe um virote de sombra (marca no chão antes) e recua."
+  },
+  "skeleton": {
+    "_comment": "Esqueleto do Cemitério (Skeleton with rig, rudy85, CC0): corpo a corpo, vaga entre as covas até alguém chegar perto. Terra, como os mortos da lenda (fraco a Fogo).",
+    "name_key": "MONSTER_SKELETON",
+    "max_health": 90,
+    "move_speed": 3.0,
+    "damage": 14,
+    "attack_range": 2.2,
+    "attack_windup": 0.6,
+    "attack_cooldown": 1.4,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 6.0,
+    "patrol_speed": 0.8,
+    "look": "skeleton",
+    "color": [
+      0.92,
+      0.86,
+      0.72
+    ]
+  },
+  "deer_buck": {
+    "name_key": "PROP_DEER_BUCK",
+    "max_health": 20,
+    "move_speed": 0.0,
+    "damage": 0,
+    "attack_range": 0.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 1.0,
+    "aggro_range": 0.0,
+    "size": 1.4,
+    "category": "breakable",
+    "element": "",
+    "ai": "static",
+    "breakable": true,
+    "no_loot": true,
+    "look": "deer_buck",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Cervo da Floresta (Old Deer Male, CDmir, CC0): quebrável parado, como o pote do Esgoto; ao morrer solta poção."
+  },
+  "deer_doe": {
+    "name_key": "PROP_DEER_DOE",
+    "max_health": 20,
+    "move_speed": 0.0,
+    "damage": 0,
+    "attack_range": 0.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 1.0,
+    "aggro_range": 0.0,
+    "size": 1.4,
+    "category": "breakable",
+    "element": "",
+    "ai": "static",
+    "breakable": true,
+    "no_loot": true,
+    "look": "deer_doe",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Corça da Floresta (Deer Female, CDmir, CC0): igual ao cervo."
+  },
+  "succubus": {
+    "name_key": "MONSTER_SUCCUBUS",
+    "max_health": 110,
+    "move_speed": 2.2,
+    "damage": 18,
+    "attack_range": 10.0,
+    "attack_windup": 1.2,
+    "attack_cooldown": 2.6,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "fire",
+    "ai": "ranged",
+    "keep_distance": 7.0,
+    "spit": {
+      "radius": 1.8,
+      "puddle_time": 3.0,
+      "puddle_dps": 5.0,
+      "glob": [
+        1.0,
+        0.35,
+        0.1
+      ]
+    },
+    "look": "succubus",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Súcubo (docs/03-1-bestiario.md, seção 10; Goth Female \"Fleur du Mal\", tizeta, CC BY 3.0): serva de Lúcifer, ataque de magia à distância: lança uma bola de fogo do inferno (marca no chão antes) que deixa chamas e recua. O encanto dela (mercenário atingido ataca os amigos) ainda não existe."
   }
 }

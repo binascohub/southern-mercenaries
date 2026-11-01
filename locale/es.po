@@ -1699,7 +1699,7 @@ msgid "DLG_OLD_DRUNK_3"
 msgstr "Años después, la gente de aquí envenenó y quemó a las ratas de allí... pero se olvidaron de la madre."
 
 msgid "DLG_OLD_DRUNK_4"
-msgstr "Dicen que el Hechicero Araña hizo un pacto con un demonio, le salieron ocho patas y ahora duerme sobre el tesoro, con la corona del rey guardada en la capa."
+msgstr "Dicen que el alquimista del rey, olvidado allá abajo, hizo un pacto con un demonio, le salieron ocho patas de araña y ahora duerme sobre el tesoro, con la corona del rey guardada en la capa."
 
 msgid "DLG_OLD_DRUNK_5"
 msgstr "¡Si buscáis tesoro, estáis encima de uno! Solo llevad fuego. Ella ya sabe lo que es el fuego, y lo odia."
@@ -1714,7 +1714,7 @@ msgid "DLG_KEEPER_1"
 msgstr "Sentaos, descansad. En Tortuga nadie pregunta de dónde viene el oro, solo si paga."
 
 msgid "DLG_BARD_QUEEN_1"
-msgstr "El Hechicero Araña fue solo un erudito, leyendo libros prohibidos en la oscuridad."
+msgstr "El Hechicero Araña fue el alquimista del rey, dejado en la oscuridad para guardar el tesoro."
 
 msgid "DLG_BARD_QUEEN_2"
 msgstr "Ahora la tierra corre por sus venas, y la tierra teme al fuego: recordad la canción."
@@ -2440,6 +2440,12 @@ msgstr "Barril"
 msgid "PROP_POT"
 msgstr "Vasija de Barro"
 
+msgid "PROP_DEER_BUCK"
+msgstr "Ciervo"
+
+msgid "PROP_DEER_DOE"
+msgstr "Cierva"
+
 msgid "PROP_CRATE"
 msgstr "Cajón"
 
@@ -2487,6 +2493,15 @@ msgstr "Escorpión de la Cripta"
 
 msgid "MONSTER_FORT_COMMANDER"
 msgstr "Comandante Maldito"
+
+msgid "MONSTER_DARK_ELF"
+msgstr "Elfo Oscuro"
+
+msgid "MONSTER_SUCCUBUS"
+msgstr "Súcubo"
+
+msgid "MONSTER_SKELETON"
+msgstr "Esqueleto"
 
 msgid "ARENA_DARK_FOREST"
 msgstr "Bosque Oscuro"

@@ -1699,7 +1699,7 @@ msgid "DLG_OLD_DRUNK_3"
 msgstr "Anos depois, o povo daqui envenenou e queimou os ratos de lá… mas esqueceram da mãe."
 
 msgid "DLG_OLD_DRUNK_4"
-msgstr "Dizem que o Feiticeiro-Aranha fez um pacto com um demônio, ganhou oito patas e agora dorme em cima do tesouro, com a coroa do rei guardada no manto."
+msgstr "Dizem que o alquimista do rei, esquecido lá embaixo, fez um pacto com um demônio, ganhou oito patas de aranha e agora dorme em cima do tesouro, com a coroa do rei guardada no manto."
 
 msgid "DLG_OLD_DRUNK_5"
 msgstr "Se vocês estão procurando tesouro, estão em cima de um! Só levem fogo. Ela já sabe o que é fogo — e odeia."
@@ -1714,7 +1714,7 @@ msgid "DLG_KEEPER_1"
 msgstr "Sentem, descansem. Em Tortuga ninguém pergunta de onde vem o ouro — só se ele paga."
 
 msgid "DLG_BARD_QUEEN_1"
-msgstr "O Feiticeiro-Aranha já foi só um estudioso, lendo livros proibidos no escuro."
+msgstr "O Feiticeiro-Aranha já foi o alquimista do rei, deixado no escuro para guardar o tesouro."
 
 msgid "DLG_BARD_QUEEN_2"
 msgstr "Agora a terra corre nas veias dela, e a terra teme o fogo — lembrem da canção."
@@ -2440,6 +2440,12 @@ msgstr "Barril"
 msgid "PROP_POT"
 msgstr "Pote de Barro"
 
+msgid "PROP_DEER_BUCK"
+msgstr "Cervo"
+
+msgid "PROP_DEER_DOE"
+msgstr "Corça"
+
 msgid "PROP_CRATE"
 msgstr "Caixote"
 
@@ -2487,6 +2493,15 @@ msgstr "Escorpião da Cripta"
 
 msgid "MONSTER_FORT_COMMANDER"
 msgstr "Comandante Amaldiçoado"
+
+msgid "MONSTER_DARK_ELF"
+msgstr "Elfo Sombrio"
+
+msgid "MONSTER_SUCCUBUS"
+msgstr "Súcubo"
+
+msgid "MONSTER_SKELETON"
+msgstr "Esqueleto"
 
 msgid "ARENA_DARK_FOREST"
 msgstr "Floresta Escura"

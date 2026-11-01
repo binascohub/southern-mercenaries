@@ -112,7 +112,7 @@ A taverna (nome proposto: **Taverna do Corvo Afogado**) é o coração de Tortug
 ### A primeira missão: o tesouro embaixo da cidade
 A campanha começa com os mercenários chegando à taverna sem nada. O **velho bêbado** puxa conversa e conta a primeira história:
 
-> **Velho bêbado:** "Vocês têm cara de quem está atrás de ouro… Escutem só. Quando fundaram Tortuga, trouxeram junto parte do tesouro do reino que perdeu a guerra e esconderam lá embaixo, no esgoto, longe dos vencedores. Anos depois, o povo daqui envenenou e queimou os ratos de lá… mas esqueceram da mãe. Dizem que a Rainha dos Ratos fez um pacto com um demônio, cresceu do tamanho de uma carroça e agora dorme em cima do tesouro, com a coroa do rei na cabeça. **Se vocês estão procurando tesouro, estão em cima de um!** Só levem fogo. Ela já sabe o que é fogo — e odeia."
+> **Velho bêbado:** "Vocês têm cara de quem está atrás de ouro… Escutem só. Quando fundaram Tortuga, trouxeram junto parte do tesouro do reino que perdeu a guerra e esconderam lá embaixo, no esgoto, com o alquimista do rei de guarda. Anos depois, o povo daqui envenenou e queimou os ratos de lá… mas esqueceram do homem. Dizem que o Feiticeiro-Aranha fez um pacto com um demônio, ganhou patas de aranha e agora dorme em cima do tesouro, com a coroa do rei no manto. **Se vocês estão procurando tesouro, estão em cima de um!** Só levem fogo. Ele já sabe o que é fogo — e odeia."
 
 - A missão libera o **Bueiro** da Rua Principal.
 - Recompensa: o **Tesouro Perdido da Guerra** (`05-itens-e-loot.md`), que liga o primeiro mapa à origem de Tortuga e ao reino do Arqueiro.
@@ -123,7 +123,7 @@ A campanha começa com os mercenários chegando à taverna sem nada. O **velho b
 
 | Ordem | Mapa | Quem conta | Resumo da história | Pista de fraqueza |
 |---|---|---|---|---|
-| 1 | Esgoto de Tortuga | Velho bêbado | A Rainha dos Ratos guarda o tesouro perdido da guerra | Fogo |
+| 1 | Esgoto de Tortuga | Velho bêbado | A Feiticeiro-Aranha guarda o tesouro perdido da guerra | Fogo |
 | 2 | Ruínas do Reino do Arqueiro | Taberneira (após achar o mapa antigo no baú do Esgoto) | O Cofre Real, tomado por lobos e cães demoníacos; Cérbero guarda a porta do inferno | Água, Ar e Fogo (uma por cabeça) |
 | 3 | Floresta Escura | Taberneira | Viajantes e caçadores nunca voltam; ouro nas raízes da árvore anciã, guardada pelo Leshy | Fogo |
 | 4 | Cavalos Míticos | Taberneira | Pégaso e as Rédeas de Ouro do Céu | Água |
@@ -146,7 +146,7 @@ A campanha começa com os mercenários chegando à taverna sem nada. O **velho b
 |---|---|---|
 | `tavern_keeper` | Taberneira(o) | Uma das fundadoras de Tortuga; conhece todo mundo e todos os segredos (inclusive o do tesouro roubado). Conta as **missões principais** dos mapas 2 a 5 |
 | `bard` | Bardo | Canta as lendas das criaturas e dos demônios; abre o **bestiário** (lenda, elemento, fraqueza) e pode repetir qualquer pista já ouvida |
-| `old_drunk` | Velho bêbado | Ex-soldado da guerra; conta a **primeira missão** (a Rainha dos Ratos e o tesouro do esgoto) e depois histórias exageradas de tesouros, às vezes verdadeiras (recompensa extra), às vezes não. **A pista de fraqueza dele é sempre verdadeira**, mesmo quando o tesouro é mentira |
+| `old_drunk` | Velho bêbado | Ex-soldado da guerra; conta a **primeira missão** (o Feiticeiro-Aranha e o tesouro do esgoto) e depois histórias exageradas de tesouros, às vezes verdadeiras (recompensa extra), às vezes não. **A pista de fraqueza dele é sempre verdadeira**, mesmo quando o tesouro é mentira |
 
 ### NPCs visitantes (tipos)
 | ID | Tipo | Histórias que contam |
@@ -224,7 +224,7 @@ Conteúdo detalhado dos tesouros em `05-itens-e-loot.md`, seção 3.
 
 ### Bueiro — Esgoto
 - O **Esgoto** (mapa 1) é acessado pelo **bueiro da Rua Principal**, sem barco: desce uma escada e já está no mapa.
-- Depois de derrotar a Rainha dos Ratos, o bueiro continua aberto para missões secundárias no Esgoto.
+- Depois de derrotar o Feiticeiro-Aranha, o bueiro continua aberto para missões secundárias no Esgoto.
 
 ### Portal de Tortuga — demais mapas
 - No fim do cais, no **porto**, fica o **Portal de Tortuga**: um círculo de pedra com runas antigas, de antes da guerra, que os piratas descobriram e usam para sumir com a carga (proposta de lenda). **A viagem entre mapas é feita por portais** (decisão do autor), sem barco jogável nem rota a pé.

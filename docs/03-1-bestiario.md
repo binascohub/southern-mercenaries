@@ -28,13 +28,13 @@ Formato de cada entrada:
 
 ### Rato Pestilento (`plague_rat`)
 - **Lenda real:** na Europa medieval, os ratos ficaram ligados à **Peste Negra**: as pulgas dos ratos espalharam a peste que matou boa parte da população no século XIV. Desde então, ratos são símbolo de doença e desgraça.
-- **No jogo:** os **filhotes da Rainha dos Ratos**, contaminados pelo pacto dela com o demônio; maiores, de olhos vermelhos, atacam em enxames.
+- **No jogo:** os **filhotes do Feiticeiro-Aranha**, contaminados pelo pacto dele com o demônio; maiores, de olhos vermelhos, atacam em enxames.
 - **Elemento:** Terra → **fraco a Fogo**.
 - **Pista:** "Rato é rato: tem medo de fogo. Leve uma tocha… ou um mago que saiba acender uma."
 
 ### Ratazana Mutante (`mutant_rat`)
 - **Lenda real:** a mesma superstição da peste; histórias de "ratos do tamanho de cães" nos porões são comuns em cidades portuárias.
-- **No jogo:** os filhotes mais velhos da Rainha, que cresceram até o tamanho de um cão de caça.
+- **No jogo:** os ratos mais velhos do Feiticeiro, que cresceram até o tamanho de um cão de caça.
 - **Elemento:** Terra → **fraco a Fogo**.
 - **Pista:** "Tem rato lá embaixo do tamanho de um cachorro. Queima que ele corre."
 
@@ -56,11 +56,11 @@ Formato de cada entrada:
 - **Elemento:** Água → **fraco a Ar**.
 - **Pista:** "Se a água borbulhar, saia de perto. Ele vive no fundo do canal. Raio na água e ele sobe de barriga pra cima."
 
-### Rainha dos Ratos (`demon_rat_queen`) — chefe
-- **Lenda real:** no folclore europeu (o *Rattenkönig* alemão), um "rei dos ratos" é um grupo de ratos com as caudas entrelaçadas num nó, presos uns aos outros; encontrá-lo era presságio de peste e desgraça.
-- **No jogo:** uma ratazana enorme, mãe de todos os ratos do esgoto. Quando os humanos de Tortuga **mataram seus filhotes** com veneno e fogo, ela **fez um pacto com um demônio** para se vingar. Virou um monstro do tamanho de uma carroça, contaminou todos os animais do esgoto e arrasta na cauda um "rei dos ratos" feito com os filhotes mortos, presos pelas caudas entrelaçadas. Fez o ninho sobre o **Tesouro Perdido da Guerra** (riquezas do reino derrotado) e usa a coroa do rei caído.
+### Feiticeiro-Aranha (`demon_rat_queen`) — chefe
+- **Lenda real:** o *Rattenkönig* alemão — um "rei dos ratos", nó de ratos presos pelas caudas, presságio de peste — e a **Aracne** da mitologia grega, a tecelã que virou aranha por desafiar os deuses. Aqui os dois se juntam num homem.
+- **No jogo:** o **alquimista da corte do reino derrotado**. Quando o reino caiu, os fundadores de Tortuga o obrigaram a guardar o tesouro roubado no esgoto, com seus ratos de laboratório como sentinelas. Anos depois, o povo de Tortuga **envenenou e queimou os ratos** e o esqueceu lá embaixo. Ele **fez um pacto com um demônio** para se vingar: ganhou **oito patas de aranha** saindo das costas, um olho vermelho no peito e o poder de contaminar os animais do esgoto, que agora são seus **familiares**. Dorme sobre o **Tesouro Perdido da Guerra** com a coroa do rei caído guardada no manto.
 - **Elemento:** Terra → **fraco a Fogo**.
-- **Pista (velho bêbado):** "Quando fundaram Tortuga, trouxeram junto parte do tesouro do reino que perdeu a guerra e esconderam lá embaixo, no esgoto, longe dos vencedores. Anos depois, o povo daqui envenenou e queimou os ratos de lá… mas esqueceram da mãe. Dizem que ela fez um pacto com um demônio, cresceu do tamanho de uma carroça e agora dorme em cima do tesouro, com a coroa do rei na cabeça. Se vocês estão procurando tesouro, estão em cima de um! Só levem fogo. Ela já sabe o que é fogo — e odeia."
+- **Pista (velho bêbado):** "Quando fundaram Tortuga, trouxeram junto parte do tesouro do reino que perdeu a guerra e esconderam lá embaixo, no esgoto, com o alquimista do rei de guarda. Anos depois, o povo daqui envenenou e queimou os ratos de lá… mas esqueceram do homem. Dizem que ele fez um pacto com um demônio, ganhou patas de aranha e agora dorme em cima do tesouro, com a coroa do rei no manto. Se vocês estão procurando tesouro, estão em cima de um! Só levem fogo. Ele já sabe o que é fogo — e odeia."
 
 ---
 

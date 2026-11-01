@@ -849,6 +849,20 @@ func _test_sewers() -> void:
 		var boxes: Array = GameData.arenas[area_id].get("breakables", [])
 		_check(boxes.size() >= 4 and boxes.all(func(b: Dictionary) -> bool: return GameData.monsters.get(b.monster, {}).get("breakable", false)),
 			"%s tem barris e caixotes" % area_id)
+	# Ruínas: caixotes que só soltam poção (tabela "breakable_potion").
+	var ruin_boxes: Array = GameData.arenas.ruins_01_city.get("breakables", [])
+	_check(ruin_boxes.size() >= 10 and ruin_boxes.all(func(b: Dictionary) -> bool:
+		return GameData.monsters.get(b.monster, {}).get("breakable", false) and GameData.loot.has(String(b.get("table", "")))), "Ruínas têm caixotes de poção")
+	var ruin_potions := true
+	for i in 200:
+		ruin_potions = ruin_potions and Breakables.roll(roll_rng, "breakable_potion") in ["potion_health", "potion_resource"]
+	_check(ruin_potions, "caixotes das Ruínas só soltam poção")
+	# Floresta: poucos cervos quebráveis, parados, que só soltam poção.
+	var deer: Array = GameData.arenas.forest_01_path.get("breakables", [])
+	_check(deer.size() >= 3 and deer.size() <= 10 and deer.all(func(b: Dictionary) -> bool:
+		var m: Dictionary = GameData.monsters.get(b.monster, {})
+		return m.get("breakable", false) and m.get("ai", "") == "static" and float(m.get("damage", 1)) == 0.0 \
+			and MonsterModel.FAMILIES.has(m.get("look", "")) and String(b.get("table", "")) == "breakable_potion"), "Floresta tem poucos cervos que só soltam poção")
 
 
 func _test_explore_map() -> void:

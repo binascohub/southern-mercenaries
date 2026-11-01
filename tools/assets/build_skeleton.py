@@ -40,7 +40,8 @@ f = HEIGHT / (mx.z - mn.z)
 T = Matrix.Scale(f, 4) @ Matrix.Translation(Vector(((mn.x + mx.x) / -2, (mn.y + mx.y) / -2, -mn.z)))
 arm.data.transform(T)
 for o in meshes:
-    o.data.transform(T)
+    o.data.transform(T @ o.matrix_world)   # a transformação do objeto vai junto para os vértices
+    o.matrix_world = Matrix.Identity(4)
     o.parent = arm
     o.matrix_parent_inverse = Matrix.Identity(4)
 bpy.context.view_layer.update()
@@ -72,13 +73,15 @@ for pb in pose:
     pb.rotation_mode = "QUATERNION"
 
 
-def place(bone, move=(0, 0, 0), rot=(0, 0, 0), pivot=None):
+def place(bone, move=(0, 0, 0), rot=(0, 0, 0), pivot=None, parent=None):
     """Põe o controle no repouso + deslocamento (x lado, y frente do Blender = -Y do modelo, z altura)
     e rotação (graus, em torno de x/y/z do esqueleto, em torno do `pivot` ou da base do osso)."""
     base = REST[bone]
     p = Vector(pivot) if pivot is not None else base.translation
     R = Euler([math.radians(a) for a in rot], "XYZ").to_matrix().to_4x4()
     M = Matrix.Translation(Vector(move)) @ Matrix.Translation(p) @ R @ Matrix.Translation(-p) @ base
+    if parent is not None:
+        M = parent @ M
     pose[bone].matrix = M
     bpy.context.view_layer.update()
 
@@ -119,8 +122,12 @@ def pose_at(frame, feet=None, hips=(0, 0, 0), hips_rot=(0, 0, 0), chest_rot=(0, 
     for side, (x, fw, z) in (("L", fl), ("R", fr)):
         place("CONTROL_FOOT." + side, (x, fw * FWD, z))
     place("CONTROL_HIPS", (hips[0], hips[1] * FWD, hips[2]), hips_rot)
-    place("CONTROL_CHEST", (0, 0, 0), chest_rot)
-    place("CONTROL_NECK", (0, 0, 0), neck_rot)
+    # peito e pescoço acompanham o quadril (a mesma transformação) e giram por cima dela
+    hp = REST["CONTROL_HIPS"].translation
+    Hm = (Matrix.Translation(Vector((hips[0], hips[1] * FWD, hips[2]))) @ Matrix.Translation(hp)
+          @ Euler([math.radians(a) for a in hips_rot], "XYZ").to_matrix().to_4x4() @ Matrix.Translation(-hp))
+    place("CONTROL_CHEST", (0, 0, 0), chest_rot, parent=Hm)
+    place("CONTROL_NECK", (0, 0, 0), neck_rot, parent=Hm @ Euler([math.radians(a) for a in chest_rot], "XYZ").to_matrix().to_4x4())
     hl, hr = hands or ((0, 0, 0), (0, 0, 0))
     for side, (x, fw, z) in (("L", hl), ("R", hr)):
         rot = (hands_rot or {}).get(side, (0, 0, 0))
@@ -178,10 +185,10 @@ pose_at(8, feet=((0, 0.1, 0), (0, -0.15, 0)), hips=(0, -0.08, -0.04), hips_rot=(
         chest_rot=(8, 0, 22), neck_rot=(0, 0, -10), hands=((0, 0.05, 0.05), (0.05, -0.25, 0.7)))
 pose_at(12, feet=((0, 0.15, 0), (0, -0.2, 0)), hips=(0, -0.1, -0.05), hips_rot=(12, 0, -18),
         chest_rot=(10, 0, 28), neck_rot=(0, 0, -12), hands=((0, 0.05, 0.05), (0.05, -0.3, 0.8)))
-pose_at(17, feet=((0, 0.3, 0), (0, -0.1, 0)), hips=(0, 0.22, -0.1), hips_rot=(-18, 0, 20),
-        chest_rot=(-22, 0, -24), neck_rot=(6, 0, 10), hands=((0, 0.1, 0.0), (-0.1, 0.55, -0.15)))
-pose_at(22, feet=((0, 0.3, 0), (0, -0.05, 0)), hips=(0, 0.2, -0.1), hips_rot=(-15, 0, 16),
-        chest_rot=(-18, 0, -20), neck_rot=(5, 0, 8), hands=((0, 0.1, 0.0), (-0.1, 0.5, -0.1)))
+pose_at(17, feet=((0, 0.3, 0), (0, -0.1, 0)), hips=(0, 0.2, -0.08), hips_rot=(-6, 0, 18),
+        chest_rot=(-10, 0, -22), neck_rot=(4, 0, 10), hands=((0, 0.1, 0.0), (-0.1, 0.55, -0.15)))
+pose_at(22, feet=((0, 0.3, 0), (0, -0.05, 0)), hips=(0, 0.18, -0.08), hips_rot=(-5, 0, 14),
+        chest_rot=(-8, 0, -18), neck_rot=(3, 0, 8), hands=((0, 0.1, 0.0), (-0.1, 0.5, -0.1)))
 pose_at(30)
 
 # Hit: o golpe joga o corpo para trás e ele se recompõe (16 quadros, uma vez).
@@ -193,17 +200,17 @@ pose_at(10, hips=(0, -0.07, -0.02), hips_rot=(6, 0, 3), chest_rot=(7, 0, 4), nec
         hands=((-0.05, -0.07, 0.1), (0.05, -0.07, 0.1)))
 pose_at(16)
 
-# Die: os joelhos cedem, cai de costas e os ossos ficam espalhados no chão (45 quadros, uma vez).
+# Die: os joelhos cedem, cai de costas e fica estendido no chão (45 quadros, uma vez).
 act = new_action("die", 45, False)
 pose_at(0)
-pose_at(10, feet=((0, 0.05, 0), (0, 0.0, 0)), hips=(0, -0.1, -0.35), hips_rot=(10, 0, 6),
-        chest_rot=(14, 0, 8), neck_rot=(22, 0, -12), hands=((-0.15, -0.1, 0.1), (0.15, -0.2, 0.2)))
-pose_at(24, feet=((0.05, 0.3, 0.0), (-0.05, 0.1, 0.0)), hips=(0, -0.55, -0.55), hips_rot=(-48, 0, 10),
-        chest_rot=(-10, 0, 8), neck_rot=(10, 0, -14), hands=((-0.35, -0.2, 0.0), (0.3, 0.1, 0.1)))
-pose_at(38, feet=((0.12, 0.65, 0.0), (-0.08, 0.5, 0.0)), hips=(0, -0.85, -0.74), hips_rot=(-86, 0, 8),
-        chest_rot=(-4, 0, 6), neck_rot=(4, 0, -18), hands=((-0.55, -0.35, -0.05), (0.45, 0.0, -0.05)))
-pose_at(45, feet=((0.14, 0.7, 0.0), (-0.1, 0.55, 0.0)), hips=(0, -0.88, -0.76), hips_rot=(-88, 0, 8),
-        chest_rot=(-3, 0, 6), neck_rot=(3, 0, -18), hands=((-0.58, -0.38, -0.06), (0.48, 0.02, -0.06)))
+pose_at(10, feet=((0, 0.05, 0), (0, 0.0, 0)), hips=(0, -0.12, -0.35), hips_rot=(10, 0, 6),
+        chest_rot=(10, 0, 8), neck_rot=(14, 0, -10), hands=((-0.12, -0.1, 0.1), (0.12, -0.2, 0.2)))
+pose_at(24, feet=((0.04, 0.25, 0.0), (-0.04, 0.1, 0.0)), hips=(0, -0.3, -0.5), hips_rot=(-40, 0, 8),
+        chest_rot=(-6, 0, 4), neck_rot=(6, 0, -12), hands=((-0.25, -0.3, 0.0), (0.2, -0.1, 0.1)))
+pose_at(36, feet=((0.06, 0.55, 0.0), (-0.05, 0.42, 0.0)), hips=(0, -0.4, -0.83), hips_rot=(-88, 0, 6),
+        chest_rot=(-2, 0, 4), neck_rot=(0, 0, -14), hands=((0.12, -0.6, -0.65), (-0.1, -0.55, -0.65)))
+pose_at(45, feet=((0.08, 0.6, 0.0), (-0.07, 0.47, 0.0)), hips=(0, -0.4, -0.83), hips_rot=(-88, 0, 6),
+        chest_rot=(-2, 0, 4), neck_rot=(0, 0, -14), hands=((0.14, -0.62, -0.65), (-0.12, -0.57, -0.65)))
 
 arm.animation_data.action = None
 rest_pose()
@@ -248,6 +255,6 @@ for a in bpy.data.actions:
     track.mute = True
 arm.animation_data.action = None
 bpy.ops.export_scene.gltf(filepath=OUT, export_format="GLB", export_animation_mode="ACTIONS",
-                          export_apply=True, export_force_sampling=True, export_optimize_animation_size=False,
+                          export_apply=True, export_force_sampling=True, export_optimize_animation_size=True,
                           export_def_bones=True)
 print("OK", OUT, [a.name for a in bpy.data.actions])

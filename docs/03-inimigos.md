@@ -22,7 +22,7 @@
 
 | Ordem | Ato | ID | Mapa | Ambiente | Família | Elemento predominante | Chefe | Elemento do chefe | Chefe é fraco a |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | 2 | `map_sewers` | **Esgoto de Tortuga** | Túneis, canais de lixo, câmaras alagadas sob a cidade | Animais contaminados | Terra | **Rainha dos Ratos** (pacto com um demônio) | Terra | Fogo |
+| 1 | 2 | `map_sewers` | **Esgoto de Tortuga** | Túneis, canais de lixo, câmaras alagadas sob a cidade | Animais contaminados | Terra | **Feiticeiro-Aranha** (pacto com um demônio) | Terra | Fogo |
 | 2 | 2 | `map_ruins` | **Ruínas do Reino do Arqueiro** | Capital em ruínas, vilas queimadas, campos de batalha, cemitérios, floresta nevada | Lobos e cães míticos | Terra | **Cérbero** | Fogo / Água / Terra (uma por cabeça) | Água / Ar / Fogo |
 | 3 | 2 | `map_forest` | **Floresta Escura** | Mata fechada sem luz do sol, árvores gigantes, teias, cachoeira, clareiras | Espíritos e feras da floresta | Terra | **Leshy** | Terra | Fogo |
 | 4 | 2 | `map_horses` | Cavalos Míticos | Planícies e ruínas no alto | Cavalos míticos | Misto | **Pégaso** | Fogo | Água |
@@ -95,7 +95,7 @@ Decisão do autor: **o jogo não é feito de ondas (waves)**. O jogador **explor
 
 ## 2. Esgoto de Tortuga (`map_sewers`)
 
-> Túneis escuros e estreitos sob a cidade, canais de lixo e água podre, câmaras alagadas e restos de uma passagem secreta da época da guerra. Os animais que viviam ali foram **contaminados** pelo pacto da Rainha dos Ratos com um demônio e viraram monstros.
+> Túneis escuros e estreitos sob a cidade, canais de lixo e água podre, câmaras alagadas e restos de uma passagem secreta da época da guerra. Os animais que viviam ali foram **contaminados** pelo pacto do Feiticeiro-Aranha com um demônio e viraram monstros.
 > **Mecânica do mapa:** poças de **lodo tóxico** que causam dano ao longo do tempo a quem pisar; algumas áreas alagadas deixam todos `soaked`.
 
 | ID | Monstro | Elemento | Fraco a | Comportamento | Vida | Dano | Velocidade | Mecânica |
@@ -106,19 +106,19 @@ Decisão do autor: **o jogo não é feito de ondas (waves)**. O jogador **explor
 | `acid_toad` | Sapo Ácido | Água | Ar | `ranged_kite` | 50 | 9 | Lenta | Cospe ácido à distância, que deixa poça tóxica no chão |
 | `sewer_gator` | Jacaré do Esgoto | Água | Ar | `ambush` | 150 | 16 | Média (rápida no bote) | Escondido na água; bote com aviso (bolhas); arrasta a vítima |
 
-### Fúria da Rainha (mecânica do mapa — proposta)
-- Cada **Rato Pestilento** morto no mapa deixa a Rainha mais furiosa: **+1% de dano** na luta final, até **+20%**.
+### Fúria do Feiticeiro (mecânica do mapa — proposta)
+- Cada **Rato Pestilento** (familiar dele) morto no mapa deixa o Feiticeiro mais furioso: **+1% de dano** na luta final, até **+20%**.
 - O jogador pode escolher limpar o mapa (mais experiência e loot) ou evitar enxames (luta final mais fácil).
 
-### Chefe: Rainha dos Ratos (`demon_rat_queen`)
-- **Conceito:** uma ratazana enorme, mãe de todos os ratos do esgoto. Quando os humanos de Tortuga **mataram seus filhotes**, ela **fez um pacto com um demônio** para se vingar. O demônio a transformou num monstro gigante e contaminou todos os animais do esgoto. Ela fez o ninho sobre o **Tesouro Perdido da Guerra** e usa a **coroa do rei perdido** na cabeça.
-- **Visual:** ratazana do tamanho de uma carroça, pelo caindo, olhos vermelhos, a coroa torta na cabeça; na cauda, um **"rei dos ratos"** — dezenas de filhotes mortos-vivos presos pelas caudas entrelaçadas, que ela arrasta e usa como arma.
+### Chefe: Feiticeiro-Aranha (`demon_rat_queen`)
+- **Conceito:** o **alquimista da corte do reino derrotado**, deixado no esgoto pelos fundadores de Tortuga para guardar o tesouro roubado. Quando o povo envenenou e queimou seus ratos, ele **fez um pacto com um demônio**: virou um homem de capuz com **oito patas de aranha** nas costas e contaminou todos os animais do esgoto, que passaram a servi-lo como familiares. Dorme sobre o **Tesouro Perdido da Guerra** com a **coroa do rei perdido** guardada no manto.
+- **Visual:** homem de capuz e manto escuro com barra vermelha, braços finos e pálidos, **oito patas de aranha** saindo das costas, olho vermelho brilhando no peito; ao redor, os ratos contaminados andam em bando (modelo: Wizard, piacenti, CC BY-SA 3.0).
 - **Arena:** câmara alagada e ampla no fundo do esgoto, onde está o ninho sobre o tesouro.
 - **Vida:** 1.000 (solo).
 - **Elemento:** Terra. **Fraco a:** Fogo.
-- **Fase 1 — Mãe Furiosa (100%–60%):** investidas e mordidas em área; chicoteia com a cauda de filhotes entrelaçados; a cada 20 s chama um enxame de Ratos Pestilentos.
-- **Fase 2 — A Ninhada (60%–25%):** sobe no ninho e protege 3 **ninhos de filhotes**; enquanto houver ninhos, ela regenera vida. O grupo precisa destruir os ninhos (Fogo causa dano dobrado).
-- **Fase 3 — O Pacto (25%–0%):** o demônio toma conta do corpo dela: olhos e boca em chamas negras, abre comportas e **alaga a arena** (todos `soaked`); gás tóxico sai dos canos (áreas de dano com aviso).
+- **Fase 1 — O Alquimista Furioso (100%–60%):** investidas e golpes em área; açoita com as patas; a cada 20 s chama um enxame de Ratos Pestilentos (seus familiares).
+- **Fase 2 — Os Familiares (60%–25%):** recua para o covil e protege 3 **ninhos de familiares**; enquanto houver ninhos, regenera vida. O grupo precisa destruí-los (Fogo causa dano dobrado).
+- **Fase 3 — O Pacto (25%–0%):** o demônio toma conta do corpo dele: olhos e boca em chamas negras, abre comportas e **alaga a arena** (todos `soaked`); gás tóxico sai dos canos (áreas de dano com aviso).
 - **Tesouro:** o **Tesouro Perdido da Guerra** — parte das riquezas do **reino do Arqueiro**, roubada pelos fundadores de Tortuga para salvá-la do saque dos vencedores e escondida no esgoto (`06-mundo-e-historia.md`). Relíquia proposta: **Coroa do Rei Caído**. Entre os papéis do baú, um **mapa** mostra onde ficou o resto do tesouro: nas ruínas do reino (libera o mapa 2).
 
 ## 3. Ruínas do Reino do Arqueiro (`map_ruins`)
@@ -349,13 +349,13 @@ Uma elite recebe 1 modificador nos mapas 1 a 4 e 2 modificadores a partir do map
 | Mini-chefe | Alto | 100% (2 a 3 itens) | Raro garantido |
 | Chefe | Tesouro do covil | Ver `05-itens-e-loot.md`, seção 3 | Lendário garantido |
 
-Materiais raros por família: cauda da Rainha dos Ratos, glândula de Sapo Ácido, couro de Jacaré do Esgoto, presa de Warg, olho em brasa do Cão Negro, seda de Jorōgumo, pelo do Mapinguari, freio da Mula sem Cabeça, chifre de Anggitay, pena de bronze Estinfália, pena negra de Pégaso, ferrão de Homem-Escorpião, espinho de Manticora, escama de Kelpie, pérola negra da Iara, prato do Kappa, musgo de Kikimora, dente de Bunyip, olho de Basilisco, escama de Hidra.
+Materiais raros por família: cauda do Feiticeiro-Aranha, glândula de Sapo Ácido, couro de Jacaré do Esgoto, presa de Warg, olho em brasa do Cão Negro, seda de Jorōgumo, pelo do Mapinguari, freio da Mula sem Cabeça, chifre de Anggitay, pena de bronze Estinfália, pena negra de Pégaso, ferrão de Homem-Escorpião, espinho de Manticora, escama de Kelpie, pérola negra da Iara, prato do Kappa, musgo de Kikimora, dente de Bunyip, olho de Basilisco, escama de Hidra.
 
 ## 14. Decisões em aberto
 
 - **Bakotsu:** confirmar a lenda (proposta: esqueleto de cavalo reanimado).
-- Qual demônio fez o pacto com a Rainha dos Ratos? Ele aparece? (ideia: **Mamon**, demônio da ganância, servo de Lúcifer, atraído pelo ouro da guerra; pode voltar como eco no Inferno)
-- "Fúria da Rainha" (cada rato morto deixa a chefe mais forte): manter?
+- Qual demônio fez o pacto com o Feiticeiro-Aranha? Ele aparece? (ideia: **Mamon**, demônio da ganância, servo de Lúcifer, atraído pelo ouro da guerra; pode voltar como eco no Inferno)
+- "Fúria do Feiticeiro" (cada rato morto deixa a chefe mais forte): manter?
 - Enigmas da Esfinge: lista de ~10 enigmas clássicos (ex.: "o que anda com quatro pés de manhã, dois à tarde e três à noite?") — escrever na fase de produção?
 - Grendel e a Mãe: luta em dupla (proposta) ou só a Mãe como chefe e Grendel como mini-chefe?
 - Ordem dos 10 mapas: manter a proposta?

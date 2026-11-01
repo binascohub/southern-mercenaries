@@ -2439,6 +2439,12 @@ msgstr ""
 msgid "PROP_POT"
 msgstr ""
 
+msgid "PROP_DEER_BUCK"
+msgstr ""
+
+msgid "PROP_DEER_DOE"
+msgstr ""
+
 msgid "PROP_CRATE"
 msgstr ""
 
@@ -2485,6 +2491,15 @@ msgid "MONSTER_CRYPT_SCORPION"
 msgstr ""
 
 msgid "MONSTER_FORT_COMMANDER"
+msgstr ""
+
+msgid "MONSTER_DARK_ELF"
+msgstr ""
+
+msgid "MONSTER_SUCCUBUS"
+msgstr ""
+
+msgid "MONSTER_SKELETON"
 msgstr ""
 
 msgid "ARENA_DARK_FOREST"

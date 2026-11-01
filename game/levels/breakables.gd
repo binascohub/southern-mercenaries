@@ -7,8 +7,10 @@ extends RefCounted
 ## nada, ouro, poção de vida ou de recurso, um valioso ou monstros escondidos.
 
 ## O que sai deste objeto.
-static func roll(rng: RandomNumberGenerator) -> String:
-	return Items.roll_rarity(GameData.loot.breakable.outcomes, rng)  # sorteio por peso
+## `table` é a chave em data/loot.json (por padrão "breakable"; as Ruínas usam
+## "breakable_potion", que só solta poção).
+static func roll(rng: RandomNumberGenerator, table: String = "breakable") -> String:
+	return Items.roll_rarity(GameData.loot[table].outcomes, rng)  # sorteio por peso
 
 
 ## Chave na campanha ("área:id") dos objetos já quebrados.

@@ -168,5 +168,12 @@
         3
       ]
     }
+  },
+  "breakable_potion": {
+    "_comment": "Caixotes e barris das Ruínas: sempre soltam poção (vida ou recurso). Escolhido por 'table' no objeto em arenas.json.",
+    "outcomes": {
+      "potion_health": 60,
+      "potion_resource": 40
+    }
   }
 }

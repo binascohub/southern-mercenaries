@@ -31,6 +31,7 @@ const ANIMS := {
 	"sit_talk": "Sitting_Talking_Loop",
 	# Briga de rua: socos e o golpe na cabeça.
 	"punch_jab": "Punch_Jab", "punch_cross": "Punch_Cross", "hit_head": "Hit_Head",
+	# O chute não existe nas bibliotecas: _build_kick() o monta por código (chave "kick").
 	# Universal Animation Library 2: combo de espada (o golpe corpo a corpo
 	# alterna A, B, C), beber poção, abrir baú, jogado para trás (Rajada das Asas),
 	# a Rainha dos Ratos (andar e arranhar de zumbi) e poses de NPC.
@@ -72,6 +73,8 @@ var _shown_equip := {}
 var _names := {}
 ## Pose fixa de NPC: volta a ela quando uma ação (soco, golpe sofrido) acaba.
 var _pose := ""
+## Caído no chão (lie_down): a queda fica parada no último quadro até get_up().
+var _held := false
 ## Sexo do corpo montado ("male"/"female"); as roupas femininas têm paleta própria.
 var sex := "male"
 var _combo := 0
@@ -124,6 +127,7 @@ func setup(sex: String, look: Dictionary) -> void:
 					if wanted.ends_with("_Loop"):
 						_anim.get_animation(candidate).loop_mode = Animation.LOOP_LINEAR
 					break
+		_build_kick()
 		_play("idle", 0.0)  # sem transição desde a pose de descanso
 
 
@@ -139,8 +143,49 @@ func _drop_finger_tracks() -> void:
 					animation.remove_track(track)
 					break
 
+const KICK := "Kick_Procedural"
+const KICK_LENGTH := 0.9
+## Quadros do chute (segundos, coxa, canela, em graus sobre o repouso; eixo X do osso, negativo na
+## coxa levanta a perna para a frente e positivo na canela dobra o joelho): recolhe o joelho,
+## estica a perna à altura da cintura e volta.
+const KICK_KEYS := [[0.0, 0.0, 0.0], [0.22, -72.0, 95.0], [0.38, -80.0, 0.0], [0.55, -78.0, 5.0], [0.9, 0.0, 0.0]]
+
+
+## Monta a animação "kick" (as bibliotecas só têm socos): o Idle com a perna direita trocada.
+func _build_kick() -> void:
+	if skeleton == null or not _names.has("idle"):
+		return
+	var library := _anim.get_animation_library("")
+	if library == null:
+		return
+	if not library.has_animation(KICK):
+		var kick := _anim.get_animation(_names.idle).duplicate() as Animation
+		var prefix := ""
+		for track in range(kick.get_track_count() - 1, -1, -1):
+			var path := String(kick.track_get_path(track))
+			if path.ends_with(":thigh_r") or path.ends_with(":calf_r"):
+				prefix = path.substr(0, path.rfind(":") + 1)
+				kick.remove_track(track)
+		if prefix == "":
+			return
+		kick.loop_mode = Animation.LOOP_NONE
+		kick.length = KICK_LENGTH
+		for bone_index in 2:
+			var bone := skeleton.find_bone(["thigh_r", "calf_r"][bone_index])
+			if bone < 0:
+				return
+			var rest := skeleton.get_bone_rest(bone).basis.get_rotation_quaternion()
+			var track := kick.add_track(Animation.TYPE_ROTATION_3D)
+			kick.track_set_path(track, NodePath(prefix + ["thigh_r", "calf_r"][bone_index]))
+			for key: Array in KICK_KEYS:
+				kick.rotation_track_insert_key(track, key[0], rest * Quaternion(Vector3.RIGHT, deg_to_rad(key[1 + bone_index])))
+		library.add_animation(KICK, kick)
+	_names["kick"] = KICK
+
 
 func _on_animation_finished(_name: StringName) -> void:
+	if _held:
+		return
 	_action = ""
 	if _pose != "" and is_inside_tree():
 		_play(_pose)
@@ -331,6 +376,25 @@ func play_action(kind: String) -> void:
 		_last_melee = now
 		anim_key = MELEE_COMBO[_combo] if _names.has(MELEE_COMBO[_combo]) else "melee"
 	_play(anim_key, 0.05)
+
+
+## Cai no chão e fica lá (a queda para no último quadro) até get_up().
+func lie_down() -> void:
+	if _anim == null or not _names.has("lie"):
+		return
+	_held = true
+	_action = "lie"
+	_anim.play(_names.lie, 0.05)
+
+
+## Levanta devagar: toca a queda de trás para a frente em câmera lenta. Devolve quanto tempo
+## leva (s); no fim volta à pose fixa.
+func get_up(speed := 0.3) -> float:
+	if _anim == null or not _names.has("lie"):
+		return 0.0
+	_held = false
+	_anim.play(_names.lie, 0.0, -speed, true)
+	return _anim.get_animation(_names.lie).length / speed
 
 
 ## Estado contínuo, a cada quadro.

@@ -92,7 +92,7 @@ O primeiro grande tesouro do jogo é **dividido em duas partes**, ambas riquezas
 
 | Parte | Onde | Guardião | Conteúdo temático | Relíquia (proposta) |
 |---|---|---|---|---|
-| **Tesouro Perdido da Guerra** | Esgoto de Tortuga | Rainha dos Ratos | A parte roubada pelos fundadores de Tortuga para salvá-la dos vencedores: moedas do reino, medalhas, joias da coroa, peças do arsenal real e um **mapa antigo** que aponta onde ficou o resto | **Coroa do Rei Caído** |
+| **Tesouro Perdido da Guerra** | Esgoto de Tortuga | Feiticeiro-Aranha | A parte roubada pelos fundadores de Tortuga para salvá-la dos vencedores: moedas do reino, medalhas, joias da coroa, peças do arsenal real e um **mapa antigo** que aponta onde ficou o resto | **Coroa do Rei Caído** |
 | **Cofre Real** | Ruínas do Reino do Arqueiro (cripta do castelo) | Cérbero | O resto das riquezas que não deu tempo de levar: o cofre do rei, cetro, joias, armas cerimoniais | **Coleira dos Portões** |
 
 - Os lendários desses dois tesouros são **peças do arsenal real** do reino do Arqueiro.

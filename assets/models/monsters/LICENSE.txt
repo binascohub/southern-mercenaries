@@ -44,3 +44,21 @@ toad.glb — "Triton 3D" by guiea7
             https://opengameart.org/content/triton-3d
             Creative Commons Attribution-ShareAlike 4.0: https://creativecommons.org/licenses/by-sa/4.0/
             Changes: the body without the trident; idle, walk, attack, die and sleep animations; texture reduced. Shared under CC BY-SA 4.0.
+
+dark_elf.glb — "Dark Elf - Game ready and animated" by danimal (the Dark Elf in the Fort)
+            https://opengameart.org/content/dark-elf-game-ready-and-animated
+            Creative Commons Attribution-ShareAlike 3.0: https://creativecommons.org/licenses/by-sa/3.0/
+            Original model by Contmike (CC BY-SA, http://www.blendswap.com/blends/view/66691); crossbow by Lamoot (CC BY, https://opengameart.org/content/low-poly-crossbow); hair by MajorNightmare (CC0).
+            Changes: whole body kept with the crossbow; idle, walk, run, shoot (attack) and death animations kept, textures reduced
+            (tools/assets/build_monsters.py). Shared under CC BY-SA 3.0.
+
+skeleton.glb — "Skeleton with rig" by rudy85
+            https://opengameart.org/content/skeleton-with-rig
+            CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+            Changes: scaled to 1.8 m, bone material, and idle, walk, run, attack, hit and die animations
+            made by hand on the rig's controls (tools/assets/build_skeleton.py).
+
+succubus.glb — "Goth Female (Fleur du Mal)" by tizeta
+            https://opengameart.org/content/goth-female-fleur-du-mal
+            Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/
+            Changes: body, skirt and hair kept in rest pose with the skeleton (no animations: the game floats and tilts it), textures re-linked (tools/assets/build_monsters.py).

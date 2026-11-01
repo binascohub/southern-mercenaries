@@ -11,13 +11,48 @@ SCALE = 0.65
 PIECES = {
     "Column": ["castle-column"], "ColumnB": ["column"], "EdgeColumn": ["edge-column-1"],
     "Wall": ["castle-wall"], "WallTorch1": ["caslte-wall-w-torch-1"], "WallTorch2": ["caslte-wall-w-torch-2"],
-    "WallWindow": ["castle-wall-w-window"], "WallWindowBig": ["castle-wall-w-window-big"], "WallDeco": ["castle-wall-w-deco-1"],
+    "WallWindow": ["castle-wall-w-window"], "WallDeco": ["castle-wall-w-deco-1"],
     "WallThing": ["caslte-wall-w-thing"],
-    "GateBig": ["caslte-wall-w-gate-big", "gate-big-part-1", "gate-big-part-2"],
-    "GateSmall": ["caslte-wall-w-gate-small", "gate-small-part-1", "gate-small-part-2"],
+    "GateBig": ["caslte-wall-w-gate-big"],
+    "GateSmall": ["caslte-wall-w-gate-small"],
     "GateNew": ["castle-wall-gate-new", "gate-new-left", "gate-new-right"],
     "Altar": ["decorative-1"], "Dais": ["decorative-2"], "Tiles": ["ground-tile-2-4"], "Mug": ["mug"],
 }
+# O .blend vem do Blender antigo e perdeu o vínculo material -> textura: religado aqui pelo nome (cor, normal).
+TEX = {
+    "wall-1": ("wall-tex-1.jpg", "wall-tex-1_norm.jpg"), "wall-1.001": ("wall-tex-1.jpg", "wall-tex-1_norm.jpg"),
+    "wall-2": ("wall-tex-2.jpg", "wall-tex-2_norm.jpg"), "wall-3": ("wall-tex-3.jpg", "wall-tex-3_norm.jpg"),
+    "dark_wall": ("wall-window.jpg", "wall-window_norm.jpg"),
+    "concrete": ("concrete01_diff.jpg", "concrete01_norm.jpg"), "concrete.001": ("concrete01_diff.jpg", "concrete01_norm.jpg"),
+    "tiles-non-ground": ("tile_tantiles.jpg", "tile_tantiles_norm.jpg"), "tiles-non-ground.001": ("tile_tantiles.jpg", "tile_tantiles_norm.jpg"),
+    "tiles-ground": ("tile-ground2.jpg", "tile-ground2-norm.jpg"), "wooden-gate": ("gate.JPG", "gate_norm.JPG"),
+    "wooden-gate-2": ("gate-2.png", "gate-2_norm.png"), "torch": ("torch.JPG", "torch_norm.JPG"),
+    "decorative": ("decorative.png", "decorative_norm.png"), "platform": ("platform.jpg", None), "Ground-1": ("ground-1.jpg", "ground-1_norm.jpg"),
+    "Mug_2": ("mug2.png", "mug2_norm.png"),
+}
+DONE = set()
+TEXDIR = os.path.dirname(bpy.data.filepath)
+
+
+def retexture(mat):
+    color, normal = TEX[mat.name]
+    mat.use_nodes = True
+    nodes, links = mat.node_tree.nodes, mat.node_tree.links
+    for n in [n for n in nodes if n.type in ("BSDF_DIFFUSE", "OUTPUT_MATERIAL") and n.name != "Material Output"]:
+        nodes.remove(n)  # o material antigo traz uma saída extra com um Diffuse: o exportador pegava a errada
+    nodes["Material Output"].target = "ALL"  # a saída vinha só para o EEVEE antigo; o exportador do glTF ignora assim
+    bsdf = nodes["Principled BSDF"]
+    c = nodes.new("ShaderNodeTexImage"); c.image = bpy.data.images.load(os.path.join(TEXDIR, color), check_existing=True)
+    links.new(c.outputs["Color"], bsdf.inputs["Base Color"])
+    if normal:
+        n = nodes.new("ShaderNodeTexImage"); n.image = bpy.data.images.load(os.path.join(TEXDIR, normal), check_existing=True)
+        n.image.colorspace_settings.name = "Non-Color"
+        nm = nodes.new("ShaderNodeNormalMap")
+        links.new(n.outputs["Color"], nm.inputs["Color"]); links.new(nm.outputs["Normal"], bsdf.inputs["Normal"])
+    bsdf.inputs["Roughness"].default_value = 0.9
+    bsdf.inputs["Metallic"].default_value = 0.0
+
+
 DOORS = {"gate-new-left": 1, "gate-new-right": -1}
 
 
@@ -53,6 +88,8 @@ for name, names in PIECES.items():
     obj.matrix_world = Matrix.Identity(4)
     for mat in obj.data.materials:
         if mat:
+            if mat.name in TEX and mat.name not in DONE:
+                DONE.add(mat.name); retexture(mat)
             mat.use_backface_culling = False
     bpy.ops.object.select_all(action="DESELECT")
     obj.select_set(True)

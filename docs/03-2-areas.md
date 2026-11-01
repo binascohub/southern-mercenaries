@@ -22,7 +22,7 @@
 
 | # | Mapa | Ato | Sai de | Áreas | Níveis | Mini-chefe | Chefe |
 |---|---|---|---|---|---|---|---|
-| 1 | Esgoto de Tortuga | 2 | Tortuga | 4 | 1–2 | Jacaré Velho | Rainha dos Ratos |
+| 1 | Esgoto de Tortuga | 2 | Tortuga | 4 | 1–2 | Jacaré Velho | Feiticeiro-Aranha |
 | 2 | Ruínas do Reino do Arqueiro | 2 | Tortuga | 5 | 3–4 | Alfa da Matilha (Amarok) | Cérbero |
 | 3 | Floresta Escura | 2 | Tortuga | 4 | 5–6 | Mapinguari Ancião | Leshy |
 | 4 | Cavalos Míticos | 2 | Tortuga | 4 | 7–8 | Arion, o Veloz | Pégaso |
@@ -41,7 +41,7 @@
 | 1 | `sewers_01_drains` | **Bueiros da Rua Principal** | Estreito | 1 | Tutorial de combate; enxames pequenos de Ratos Pestilentos; primeiras poças de lodo tóxico |
 | 2 | `sewers_02_canals` | **Canais de Lixo** | Estreito | 1 | Sapos Ácidos, Morcegos Pestilentos; pontes de madeira podre; segredo: depósito de contrabando dos piratas |
 | 3 | `sewers_03_war_passage` | **Passagem Secreta da Guerra** | Estreito | 2 | Túneis antigos dos fundadores de Tortuga, com marcas do reino do Arqueiro nas paredes (o Arqueiro reconhece o brasão); câmaras alagadas; **mini-chefe: Jacaré Velho** |
-| 4 | `sewers_04_nest` | **Ninho da Rainha** | Misto (arena ampla) | 2 | **Rainha dos Ratos**; Tesouro Perdido da Guerra e o mapa para as Ruínas |
+| 4 | `sewers_04_nest` | **Covil do Feiticeiro** | Misto (arena ampla) | 2 | **Feiticeiro-Aranha**; Tesouro Perdido da Guerra e o mapa para as Ruínas |
 
 ## 4. Ruínas do Reino do Arqueiro (`map_ruins`)
 
@@ -137,3 +137,17 @@
 - No co-op, todos precisam estar na saída para passar de área, ou basta o host?
 - A vila queimada das Ruínas é a vila do Arqueiro?
 - Nomes dos mini-chefes.
+
+## 14. Mapas implementados depois do Esgoto (primeira passada)
+
+Ordem de expedição no jogo: **Tortuga → Floresta → Ruínas → Cemitério → Floresta Escura → Forte**. Os mapas saem de `tools/assets/build_maps.py` (sorteio com semente fixa) e ficam em `data/arenas.json`; cada um tem um portal para o próximo e outro de volta a Tortuga (entrada "Trilha para a Floresta", na ponta oeste da rua principal).
+
+| # | id | Mapa | Cenário (pacote, licença) | Chefe (provisório) |
+|---|---|---|---|---|
+| 1 | `forest_01_path` | Floresta | Plantas Stylish Plants (CC0), obeliscos e pilares | Leshy |
+| 2 | `ruins_01_city` | Ruínas da Cidade | Cena inteira de Destroyed Walls (CC BY 3.0) com colisor por parede | Guardião do Cofre |
+| 3 | `cemetery_01_yard` | Cemitério | Medieval Props Textured (CC BY 3.0): lápides, cruzes, poço, cerca | Escorpião da Cripta |
+| 4 | `dark_forest_01_woods` | Floresta Escura | Mesma vegetação, mais densa e escura; **só o mapa** (sem monstros, chefe ou baús por enquanto) | — |
+| 5 | `fort_01_gate` | Forte | 3D Dungeon Tileset (CC BY-SA 3.0), grade de 20 x 26 células de 2,5 m; paredes baixas (0,85 m) por causa da câmera | Comandante Amaldiçoado |
+
+Os monstros comuns reaproveitam os modelos do Esgoto e do Monstro da Floresta; os chefes são provisórios até haver arte e mecânica próprias. As seções 4 e 5 acima (Ruínas do Reino do Arqueiro, Floresta Escura) continuam sendo o desenho final das áreas; este quadro é o que existe hoje.

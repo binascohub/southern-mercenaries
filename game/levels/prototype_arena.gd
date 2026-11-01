@@ -94,6 +94,8 @@ var _bestiary_menu: BestiaryMenu
 var _run := 0
 ## Grupos de encontro (servidor): id -> {position, awake, members}.
 var _groups := {}
+## Tabela de loot própria de alguns caixotes ("box:id" -> chave em loot.json).
+var _box_table := {}
 var _encounter_timer := 0.0
 ## Campanha deste host (11-saves.md): grupos mortos não voltam. Vazia nos
 ## clientes (mesmo depois de desconectados, quando o Godot os trata como servidor).
@@ -901,6 +903,7 @@ func _start_run() -> void:
 		if node is Projectile:
 			node.queue_free()
 	_groups.clear()
+	_box_table.clear()
 	var dead: Array = _campaign.get("dead_groups", [])
 	for encounter: Dictionary in arena.encounters:
 		if encounter.id not in dead:
@@ -909,6 +912,8 @@ func _start_run() -> void:
 	var broken: Array = _campaign.get("broken", [])
 	for box: Dictionary in arena.get("breakables", []):
 		if Breakables.key(area_id, box.id) not in broken:
+			if box.has("table"):
+				_box_table["box:" + String(box.id)] = box.table
 			_enemy_spawner.spawn({"monster_id": box.monster, "group": "box:" + String(box.id),
 				"level": arena.get("area_level", 1), "position": Vector3(box.position[0], 0, box.position[1]),
 				"yaw": _rng.randf() * TAU})
@@ -1197,7 +1202,7 @@ func _on_enemy_died(enemy: Enemy) -> void:
 func _break(box: Enemy) -> void:
 	_campaign.broken = _campaign.get("broken", []) + [Breakables.key(area_id, box.group.trim_prefix("box:"))]
 	var table: Dictionary = GameData.loot.breakable
-	var outcome := Breakables.roll(_rng)
+	var outcome := Breakables.roll(_rng, String(_box_table.get(box.group, "breakable")))
 	var at := box.global_position
 	var level := int(arena.get("area_level", 1))
 	if outcome == "monsters":
@@ -1859,7 +1864,7 @@ func _crowd_clothes(role: Dictionary, sex: String, h: int) -> Dictionary:
 	return NpcModel.clothing_style(styles[(h / 31) % styles.size()])
 
 
-## Briga de rua: dois brigões (papéis em "fighters") frente a frente, trocando socos.
+## Briga de rua: dois brigões (papéis em "fighters") frente a frente, trocando socos e chutes.
 func _build_brawl(entry: Dictionary, at: Vector3) -> void:
 	var brawl := Brawl.new()
 	brawl.position = at
@@ -1875,6 +1880,7 @@ func _build_brawl(entry: Dictionary, at: Vector3) -> void:
 		var model := _npc_body(holder, _crowd_look(String(roles[i]), spot, {"pose": "idle"}))
 		if model:
 			brawl.fighters.append(model)
+			brawl.roles.append(String(roles[i]))
 
 
 ## Gente da rua (data/crowd.json + "crowd" da área): o corpo vem do papel,
