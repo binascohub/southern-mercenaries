@@ -2396,6 +2396,27 @@
         ],
         "y": 0.78,
         "rotation": 240
+      },
+      {
+        "piece": "Mug_Wood",
+        "position": [
+          2.6,
+          -3.55
+        ],
+        "rotation": 25,
+        "y": 0.78
+      }
+    ],
+    "crowd": [
+      {
+        "role": "old_lady",
+        "position": [
+          2.9,
+          -3.05
+        ],
+        "rotation": 180,
+        "pose": "sit",
+        "seat": "Chair_1"
       }
     ]
   },

@@ -2,3 +2,5 @@ chicken.glb — "Chicken (animated)" by Čestmír Dammer (cdmir), CC0 1.0: https
 Converted by tools/assets/build_monsters.py (walk, eat and idle animations).
 rabbit.glb — "Rabbit" by Čestmír Dammer (cdmir), CC0 1.0: https://opengameart.org/content/rabbit-0
 Converted from the Blender file by tools/assets/build_rabbit.py (materials rebuilt; jump, run, idle and sit animations).
+old_lady.glb — "Old Lady" by Čestmír Dammer (cdmir), CC0 1.0: https://opengameart.org/content/old-lady
+Converted from the Blender file by tools/assets/build_old_lady.py (material rebuilt; first 10 s of the sitting animation).

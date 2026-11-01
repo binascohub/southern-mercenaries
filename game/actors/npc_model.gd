@@ -98,6 +98,10 @@ const MODELS := {
 	"spider": {"scene": "res://assets/models/monsters/spider.glb", "scale": 0.4,
 		"poses": {"walk": "walk", "idle": "idle", "talk": "idle"},
 		"colors": {"Spider": [0.55, 0.1, 0.06]}},
+	# Velha (Old Lady, cdmir, CC0): sentada à mesa da Taverna. Só tem a animação de sentada
+	# (um trecho de 10 s, tocado de ida e volta para não dar salto). Altura ~135 unidades -> 1,5 m.
+	"old_lady": {"scene": "res://assets/models/characters/old_lady.glb", "scale": 0.011, "pingpong": true,
+		"poses": {"sit": "sit", "idle": "sit", "talk": "sit", "walk": "sit"}},
 	# Coelho (Rabbit, cdmir, CC0): pula pelas ruas de Tortuga (o pulo de 1 s fica no lugar:
 	# o Wanderer anda enquanto ele pula) e senta alerta nas pontas. Arquivo de ~15 unidades -> 60 cm.
 	"rabbit": {"scene": "res://assets/models/characters/rabbit.glb", "scale": 0.04,
@@ -151,7 +155,7 @@ static func create(id: String) -> NpcModel:
 			for candidate in [anim_name, anim_name.trim_suffix("_Loop")]:
 				if npc._anim.has_animation(candidate):
 					npc._poses[key] = candidate
-					npc._anim.get_animation(candidate).loop_mode = Animation.LOOP_LINEAR
+					npc._anim.get_animation(candidate).loop_mode = Animation.LOOP_PINGPONG if info.get("pingpong", false) else Animation.LOOP_LINEAR
 					break
 	return npc
 

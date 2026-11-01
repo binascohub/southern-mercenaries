@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Tavern
+- An old lady (CC0) sits on a chair at a table in the Drowned Crow Tavern with wooden beer mugs in front of her (`tools/assets/build_old_lady.py`).
+
 ### Tortuga
 - Rabbits (CC0) hop along the streets and the port, sitting up alert at each end of their path (`tools/assets/build_rabbit.py` converts the Blender file).
 - Tortuga no longer has guards on the street and the port: soldiers (armored hero bodies with swords, axes, hammers and polearms) train in the training yard instead, swinging combos at the dummies out of step with each other, with a drill instructor talking at the back (`soldier` role in `data/crowd.json`).
