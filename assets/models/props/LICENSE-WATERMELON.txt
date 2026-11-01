@@ -1,0 +1,2 @@
+Food_Watermelon.glb, Food_Watermelon_Half.glb — "A watermelon" by nevak / Cough-E, CC0: https://opengameart.org/content/a-watermelon
+Converted from the Blender files by tools/assets/build_watermelon.py (hand painted texture at 512 px).

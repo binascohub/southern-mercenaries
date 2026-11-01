@@ -372,11 +372,37 @@ func _rpc_service(npc_id: String, service: String) -> void:
 		player.refresh_character()
 		_arena()._toast_to(player, "TOAST_RESPEC_DONE", {})
 		return
+	if service == "turn_in":
+		_turn_in(player, npc_id)
+		return
 	if service == "rest":
 		# Descansar na taverna: vida e recurso cheios, de graça.
 		player.health = player.max_health
 		player.resource = player.max_resource
 		_arena()._toast_to(player, "TOAST_RESTED", {})
+
+
+## Entrega a relíquia de uma missão ao NPC que a deu (quest "item"): tira um da bolsa do herói e conclui a missão.
+func _turn_in(player: Player, npc_id: String) -> void:
+	var c := _campaign()
+	for id: String in c.get("quests", {}):
+		var quest: Dictionary = GameData.quests.get(id, {})
+		if c.quests[id] != "active" or quest.get("giver", "") != npc_id or not quest.has("item"):
+			continue
+		var bag: Array = player.character.data.inventory
+		for i in bag.size():
+			var item: Variant = bag[i]
+			if item != null and item.kind == Items.VALUABLE and item.id == quest.item:
+				item.count = int(item.count) - 1
+				if int(item.count) <= 0:
+					bag[i] = null
+				player.refresh_character()
+				_finish_quest(c, id, quest)
+				SaveSystem.save_campaign(c, true)
+				sync()
+				return
+		_arena()._toast_to(player, "TOAST_NEED_QUEST_ITEM", {"item": GameData.valuables[quest.item].name_key})
+		return
 
 
 @rpc("any_peer", "reliable")
@@ -434,7 +460,7 @@ func complete_quests_in(area_id: String) -> void:
 	var c := _campaign()
 	for id: String in c.get("quests", {}):
 		var quest: Dictionary = GameData.quests.get(id, {})
-		if c.quests[id] != "active" or quest.get("area", "") != area_id or quest.has("clear"):
+		if c.quests[id] != "active" or quest.get("area", "") != area_id or quest.has("clear") or quest.has("item"):
 			continue
 		_finish_quest(c, id, quest)
 	SaveSystem.save_campaign(c, true)

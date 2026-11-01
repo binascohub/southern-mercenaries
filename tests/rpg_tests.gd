@@ -40,6 +40,7 @@ func _ready() -> void:
 	_test_shops()
 	_test_town_rules()
 	_test_side_quests()
+	_test_minibosses_and_relics()
 	_test_refine()
 	_test_opening()
 	_test_sewers()
@@ -657,6 +658,38 @@ func _test_town_rules() -> void:
 	_check(migrated.has("quests") and migrated.has("ship") and migrated.unlocked == [], "campanha antiga ganha missões e navio")
 
 
+## Dois mini-chefes por mapa de combate e as relíquias de missão do Padre da Capital.
+func _test_minibosses_and_relics() -> void:
+	var capital: Dictionary = GameData.arenas.capital_01_aurenhold
+	var maps := {"Esgoto": ["sewers_01_drains", "sewers_02_canals", "sewers_03_war_passage", "sewers_04_nest"], "Floresta": ["forest_01_path"],
+		"Ruínas": ["ruins_01_city"], "Cemitério": ["cemetery_01_yard"], "Forte": ["fort_01_gate"], "Mina": ["mine_01_crystal_vein"]}
+	for map_name: String in maps:
+		var found := {}
+		for area_id: String in maps[map_name]:
+			for e: Dictionary in GameData.arenas[area_id].encounters:
+				for m: Dictionary in e.monsters:
+					if GameData.monsters.get(m.monster, {}).get("category", "") == "miniboss":
+						found[m.monster] = true
+		_check(found.size() == 2, "%s tem 2 mini-chefes (%d)" % [map_name, found.size()])
+	for quest_id in ["royal_heart", "royal_skull", "royal_banquet"]:
+		var quest: Dictionary = GameData.quests[quest_id]
+		var relic: Dictionary = GameData.valuables.get(quest.item, {})
+		var droppers := GameData.monsters.values().filter(func(m: Variant) -> bool: return m is Dictionary and m.get("quest_drop", "") == quest.item and m.get("category", "") == "miniboss")
+		_check(relic.get("quest_item", false) and Items.is_valid(Items.stack(Items.VALUABLE, quest.item)) and droppers.size() == 1
+			and GameData.arenas.has(quest.area) and GameData.npcs.has(quest.giver) and tr(quest.name_key) != quest.name_key,
+			"relíquia de %s: item, mini-chefe que larga, mapa e quem pede" % quest_id)
+		_check(Shops.sell_price("blacksmith", Items.stack(Items.VALUABLE, quest.item), 1, {}) < 0, "a relíquia de %s não se vende" % quest_id)
+	_check(Town.dialogue_index("priest", {}) == 0 and Town.dialogue_index("priest", {"royal_heart": "active"}) == 1
+		and Town.dialogue_index("priest", {"royal_heart": "done"}) == 2 and Town.dialogue_index("priest", {"royal_heart": "done", "royal_skull": "active"}) == 3
+		and Town.dialogue_index("priest", {"royal_heart": "done", "royal_skull": "done"}) == 4, "o Padre oferece, lembra e agradece as duas relíquias")
+	_check(Town.dialogue_index("court_jester", {}) == 0 and Town.dialogue_index("court_jester", {"royal_banquet": "active"}) == 1
+		and Town.dialogue_index("court_jester", {"royal_banquet": "done"}) == 2, "o Bobo oferece, lembra e agradece a carne")
+	_check(capital.decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Food_Apple").size() >= 8, "mesa farta com maçãs na sala do rei")
+	_check(capital.rooms.any(func(r: Dictionary) -> bool: return r.id == "throne_room")
+		and capital.props.any(func(p: Dictionary) -> bool: return p.get("npc", "") == "court_jester" and p.position[1] < -39.0)
+		and capital.decor.any(func(d: Dictionary) -> bool: return d.get("piece", "") == "Sofa_Group"), "a sala do rei tem o Bobo da Corte e os sofás")
+
+
 func _test_side_quests() -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 11
@@ -857,6 +890,17 @@ func _test_sewers() -> void:
 	for i in 200:
 		ruin_potions = ruin_potions and Breakables.roll(roll_rng, "breakable_potion") in ["potion_health", "potion_resource"]
 	_check(ruin_potions, "caixotes das Ruínas só soltam poção")
+	# Ruínas: Leônidas dá a missão dos goblins (termina ao limpar os dois bandos).
+	var ruins: Dictionary = GameData.arenas.ruins_01_city
+	var ruin_ids: Array = ruins.encounters.map(func(e: Dictionary) -> String: return e.id)
+	var goblin_quest: Dictionary = GameData.quests.get("ruins_goblins", {})
+	_check(goblin_quest.get("area", "") == "ruins_01_city" and goblin_quest.get("clear", []).size() == 2
+		and goblin_quest.clear.all(func(id: String) -> bool: return id in ruin_ids)
+		and ruins.props.any(func(p: Dictionary) -> bool: return p.get("npc", "") == goblin_quest.get("giver", "")) and tr(goblin_quest.get("name_key", "")) != goblin_quest.get("name_key", ""),
+		"missão das Ruínas: encontros e quem a dá existem")
+	_check(Town.dialogue_index("ruins_spartan", {}) == 0 and Town.dialogue_index("ruins_spartan", {"ruins_goblins": "active"}) == 1
+		and Town.dialogue_index("ruins_spartan", {"ruins_goblins": "done"}) == 2 and NpcModel.has_model("ruins_spartan"),
+		"conversa de Leônidas: oferece, lembra e agradece; tem modelo próprio")
 	# Floresta: três golens (fogo, gelo, pedra), elites corpo a corpo com modelo.
 	var golems: Array = GameData.arenas.forest_01_path.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("f_golem_"))
 	_check(golems.size() == 3 and golems.all(func(e: Dictionary) -> bool:
@@ -879,9 +923,9 @@ func _test_sewers() -> void:
 	var forest: Dictionary = GameData.arenas.forest_01_path
 	var forest_ids: Array = forest.encounters.map(func(e: Dictionary) -> String: return e.id)
 	var village_npcs: Array = forest.props.filter(func(p: Dictionary) -> bool: return p.kind == "npc")
-	_check(village_npcs.size() == 2 and village_npcs.all(func(p: Dictionary) -> bool: return GameData.npcs.has(p.npc)), "Floresta tem o casal da aldeia")
+	_check(village_npcs.size() == 3 and village_npcs.all(func(p: Dictionary) -> bool: return GameData.npcs.has(p.npc)), "Floresta tem o casal da aldeia")
 	_check(forest.rooms.any(func(r: Dictionary) -> bool: return r.id == "village"), "Floresta tem a sala da aldeia")
-	for quest_id in ["forest_reptiles", "forest_golems"]:
+	for quest_id in ["forest_reptiles", "forest_golems", "forest_leshy"]:
 		var mission: Dictionary = GameData.quests.get(quest_id, {})
 		_check(mission.get("area", "") == "forest_01_path" and mission.get("clear", []).all(func(id: String) -> bool: return id in forest_ids)
 			and village_npcs.any(func(p: Dictionary) -> bool: return p.npc == mission.get("giver", "")) and tr(mission.get("name_key", "")) != "",

@@ -308,3 +308,12 @@ Decisão do autor: **cada cidade tem uma área de treinamento com bonecos**, par
 - Os capitães piratas podem contar rumores na taverna (proposta)?
 - Bebidas com bônus temporário: manter?
 - Mini-jogos na taverna (dados, cartas, queda de braço)?
+
+## Missões de relíquia (Padre da Capital)
+- **O coração do rei caído** (`royal_heart`): o **Senhor da Cripta** (mini-chefe do Cemitério) deixa cair o **Coração Humano**; entregar ao Padre rende 220 B$ e 450 XP.
+- **O crânio do rei caído** (`royal_skull`, depois da primeira): o **Comandante do Forte** deixa cair o **Crânio Antigo**; 420 B$ e 800 XP.
+- O item é um **valioso de missão** no inventário de cada herói (não se vende), cai só para quem tem a missão ativa, e a missão termina pelo botão **Entregar a relíquia** na conversa com o Padre.
+
+## Missão do Bobo da Corte (Sala do Rei)
+- **Banquete do rei** (`royal_banquet`): a mesa farta da sala do rei só tem frutas; o **Alfa da Matilha** (mini-chefe das Ruínas) deixa cair a **Carne Selvagem** (item de missão, no inventário, não se vende). Entregar ao Bobo rende 260 B$ e 500 XP.
+

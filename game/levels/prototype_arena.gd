@@ -1272,6 +1272,19 @@ func _reward(enemy: Enemy) -> void:
 		p.grant(xp, 0)
 		if not enemy.data.get("no_loot", false):
 			_drop_loot_for(p, enemy)
+			_drop_quest_item(p, enemy)
+
+
+## Relíquia de missão (data/quests.json "item"): o mini-chefe com "quest_drop" a deixa cair para cada herói que
+## tem a missão ativa e ainda não tem o item na bolsa.
+func _drop_quest_item(player: Player, enemy: Enemy) -> void:
+	var item_id: String = enemy.data.get("quest_drop", "")
+	if item_id == "" or player.character.count_of(item_id) > 0:
+		return
+	for quest_id: String in _campaign.get("quests", {}):
+		if _campaign.quests[quest_id] == "active" and GameData.quests.get(quest_id, {}).get("item", "") == item_id:
+			_add_loot(player, enemy.global_position, Items.stack(Items.VALUABLE, item_id), 0)
+			return
 
 
 func _drop_loot_for(player: Player, enemy: Enemy) -> void:
@@ -1717,7 +1730,7 @@ func _build_prop(prop: Dictionary) -> void:
 					look = {"sex": "male" if h % 2 == 0 else "female", "hair": hairs[h % 2 * 2 + (h / 2) % 2],
 						"hair_color": colors[(h / 4) % colors.size()], "pose": "sit", "outfit": {"body": "cloth"} if h % 3 == 0 else {}}
 				var seated_woman: bool = prop.has("visitor_name") and look.get("sex", "") == "female" and _visitor_woman(node)
-				var own_model: Node3D = NpcModel.create(String(prop.npc)) if String(prop.npc) in ["voodoo_priest", "priest", "castle_guard"] else null
+				var own_model: Node3D = NpcModel.create(String(prop.npc)) if String(prop.npc) in ["voodoo_priest", "priest", "castle_guard", "elf_archer", "ruins_spartan"] else null
 				var statue_kit: String = prop.get("kit", "")
 				if statue_kit != "" and _kit(node, statue_kit, Transform3D(Basis(Vector3.UP, deg_to_rad(float(prop.get("rotation", 0.0)))), Vector3.ZERO)):
 					pass  # estátua do mapa: a peça do kit no lugar do corpo humano
@@ -2588,6 +2601,12 @@ func _build_decor(decor: Dictionary) -> void:
 	node.rotation.y = deg_to_rad(float(decor.get("rotation", 0.0)))
 	node.scale = Vector3.ONE * float(decor.get("scale", 1.0))
 	_area_root.add_child(node)
+	# Peça animada (o aparelho de treino gira): toca a primeira animação em laço.
+	var animator := node.find_child("AnimationPlayer", true, false) as AnimationPlayer
+	if animator and not animator.get_animation_list().is_empty():
+		var clip := animator.get_animation_list()[0]
+		animator.get_animation(clip).loop_mode = Animation.LOOP_LINEAR
+		animator.play(clip)
 	if decor.has("solid"):
 		var size: Array = decor.solid
 		var body := StaticBody3D.new()

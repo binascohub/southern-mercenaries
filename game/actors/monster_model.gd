@@ -71,6 +71,10 @@ const FAMILIES := {
 	# braços baixados por tools/assets/build_night_demon.py): balança, avança e cai por código (`static`); 1 m no arquivo -> ~1,8 m no tamanho 1.
 	"night_demon": {"scene": "res://assets/models/monsters/night_demon.glb", "scale": 1.8, "static": true,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Diablous (Animated Diablous, Botanic / plankes-projects, CC BY 3.0): demônio de chifres e asas, 1,8 m no tamanho 1, com as
+	# animações do arquivo (tools/assets/build_diablous.py). Lúcifer, o chefe final.
+	"diablous": {"scene": "res://assets/models/monsters/diablous.glb", "scale": 0.0908,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	"succubus": {"scene": "res://assets/models/monsters/succubus.glb", "scale": 0.04, "static": true, "unit": 44.8,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Senhor da Cripta (Undead male, TiZeta, CC BY): nobre morto-vivo de casaco roxo, 1,8 m no tamanho 1, com animações

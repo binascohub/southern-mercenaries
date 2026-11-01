@@ -298,6 +298,13 @@ for rd in f_rooms:
                        scale=(1.0, 2.0), avoid=f_keep)
 # Nenhuma pedra (sólida) onde um golem nasce.
 f_decor = [d for d in f_decor if not (d["piece"].startswith("Rock_") and any(math.hypot(d["position"][0] - g["position"][0], d["position"][1] - g["position"][1]) < 3.5 for g in f_extra))]
+# Árvores mortas (Dead Tree, piacenti, CC BY 3.0): troncos secos com raízes à mostra, semente própria; o tronco bloqueia (colisor pequeno).
+dtr = rng("forest_dead_trees")
+for rd in f_rooms:
+    for tree in scatter(dtr, rd, ["Dead_Tree"], int(rd["size"][0] * rd["size"][1] / 110), margin=4.0, scale=(0.6, 1.1), avoid=f_keep):
+        side = round(0.9 * tree["scale"], 1)
+        tree["solid"] = [side, side]
+        f_decor.append(tree)
 f_decor += [{"piece": "Pr_RoadSign", "position": [4, 2], "rotation": 200}, {"piece": "Pr_LampPost", "position": [-6, 3], "rotation": 0, "solid": [0.6, 0.6]},
             {"piece": "Pr_Obelisk3", "position": [0, -80], "solid": [1.4, 1.4]}, {"piece": "Pr_Obelisk2", "position": [-6, -78], "solid": [1.0, 1.0]},
             {"piece": "Pr_Obelisk2", "position": [6, -78], "solid": [1.0, 1.0]}, {"piece": "Pr_BrokenPillar2", "position": [-12, -70], "solid": [1.2, 1.2]},
@@ -370,8 +377,8 @@ for z, (left, right), lanes in zip(F_BORDERS, (("Pr_Obelisk3", "Pr_Obelisk2"), (
         f_markers += [{"piece": left, "position": [round(x - half, 1), z], "solid": [1.4, 1.4]},
                       {"piece": right, "position": [round(x + half, 1), z], "solid": [1.4, 1.4]}]
 # Nada sorteado (plantas, pedras) em cima das trilhas ou dos marcos.
-f_decor = [d for d in f_decor if not (d["piece"].startswith(("Pl_", "Rock_")) and (
-    f_trail_dist(*d["position"]) < (2.6 if d["piece"].startswith("Rock_") else 1.9)
+f_decor = [d for d in f_decor if not (d["piece"].startswith(("Pl_", "Rock_", "Dead_")) and (
+    f_trail_dist(*d["position"]) < (2.6 if d["piece"].startswith(("Rock_", "Dead_")) else 1.9)
     or any(math.hypot(d["position"][0] - m["position"][0], d["position"][1] - m["position"][1]) < 2.2 for m in f_markers)))]
 f_decor += f_markers
 ft = random.Random("forest_trails")
@@ -380,6 +387,7 @@ for line in f_trails:
 v_props = [
     {"id": "village_hunter", "kind": "npc", "npc": "village_hunter", "position": [-34.5, -19.0]},
     {"id": "village_wife", "kind": "npc", "npc": "village_wife", "position": [-30.2, -21.2]},
+    {"id": "elf_archer", "kind": "npc", "npc": "elf_archer", "position": [-32.0, -16.6], "rotation": 200},
     {"id": "village_sign", "kind": "sign", "name_key": "PROP_VILLAGE_SIGN", "position": [-19.5, -14.6], "text_key": "PROP_VILLAGE_SIGN_TEXT"},
 ]
 arenas["forest_01_path"] = {
@@ -435,6 +443,7 @@ arenas["ruins_01_city"] = {
     "props": [
         {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-6, 3], "to": "tortuga", "entry": "forest", "expedition_end": True},
         {"id": "to_cemetery", "kind": "exit", "name_key": "PROP_TO_CEMETERY", "position": [0, -73], "to": "cemetery_01_yard", "entry": "start", "group": True},
+        {"id": "ruins_spartan", "kind": "npc", "npc": "ruins_spartan", "position": [5, 0]},
         {"id": "ruins_chest_1", "kind": "chest", "position": [20, -50], "loot": "chest"},
         {"id": "ruins_chest_2", "kind": "chest", "position": [-22, -20], "loot": "chest"},
     ],
@@ -810,6 +819,33 @@ for line in trails:
                                    "rotation": er.randrange(0, 360, 15), "scale": round(er.uniform(0.5, 0.9), 2), "y": -0.05})
             t += er.uniform(4.0, 5.5)
 c_decor += edge_rocks
+
+# Ossos e crânios espalhados (3D Dungeon Debris - Skull and Bones, Paul Wortmann, CC0; build_bone_debris.py): poucos e soltos no
+# setor A, mais e maiores a cada setor, e muitos na cripta. Baixos, sem colisão, fora da trilha, de sólidos, jarros, grupos de
+# monstros, praças e pedras das margens.
+BONES_SMALL = ["Dungeon_Skull_1", "Dungeon_Skull_2", "Dungeon_Bone"]
+BONES_MID = ["Dungeon_CrossBones", "Dungeon_BonePile_1", "Dungeon_Arm", "Dungeon_Leg", "Dungeon_Ribcage", "Dungeon_Pelvis", "Dungeon_Spine"]
+BONES_BIG = ["Dungeon_SkullPile", "Dungeon_BonePile_2", "Dungeon_BonePile_3", "Dungeon_BonePile_4", "Dungeon_BonePile_5", "Dungeon_BonePile_6"]
+# (nome, quantos, xmax, z de cima, z de baixo, pesos pequeno / médio / grande)
+BONE_AREAS = [("A", 8, 28, -12, -36, (0.8, 0.2, 0.0)), ("B", 14, 28, -41, -64, (0.4, 0.5, 0.1)), ("C", 16, 28, -69, -90, (0.25, 0.45, 0.3)),
+              ("D", 14, 28, -95, -108, (0.15, 0.35, 0.5)), ("crypt", 10, 10, -112, -129, (0.2, 0.3, 0.5))]
+bn = random.Random("cemetery_bones")
+bones = []
+for _name, count, xmax, z_top, z_bottom, weights in BONE_AREAS:
+    placed = 0
+    for _try in range(count * 60):
+        if placed >= count:
+            break
+        x, z = bn.uniform(-xmax, xmax), bn.uniform(z_bottom, z_top)
+        group = bn.choices((BONES_SMALL, BONES_MID, BONES_BIG), weights)[0]
+        if (trail_dist(x, z) > 1.5
+                and all(math.hypot(x - sx, z - sz) > sr for sx, sz, sr in edge_solids)
+                and all(math.hypot(x - r["position"][0], z - r["position"][1]) > 1.4 for r in edge_rocks)
+                and all(math.hypot(x - b["position"][0], z - b["position"][1]) > 2.2 for b in bones)):
+            bones.append({"piece": bn.choice(group), "position": [round(x, 2), round(z, 2)], "rotation": bn.randrange(0, 360, 15),
+                          "scale": round(bn.uniform(0.8, 1.25), 2), "y": -0.02})
+            placed += 1
+c_decor += bones
 arenas["cemetery_01_yard"] = {
     "_comment": "Cemitério (Medieval Props Textured, Clint Bellanger, CC BY 3.0, modelos de Lamoot): mapa grande de terra escura cortado por uma rede de trilhas de lajes (três pistas que se separam, se cruzam e se reencontram; becos sem saída com baú) do portão à cripta, com quatro setores de monstros (A Campo de Covas, B Ossuário, C Cova dos Mortos, D Covil do Troll), marcos de pedra nas divisas, fileiras de lápides e cruzes, poço coberto, estátuas e túmulos de cavaleiro, e a cripta do Senhor da Cripta no fundo. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_CEMETERY", "player_class": "mage", "map_id": "map_cemetery", "area_level": 7, "outdoor": True,
@@ -950,6 +986,22 @@ m_decor += [{"piece": "Cart_Wood", "position": [-14, -52], "rotation": 90, "y": 
 m_lights += [{"light": [1.0, 0.7, 0.35], "position": [-3, 3], "range": 8.0, "energy": 1.2, "y": 2.2},
              {"light": [1.0, 0.7, 0.35], "position": [3, -34], "range": 8.0, "energy": 1.2, "y": 2.2},
              {"light": [1.0, 0.7, 0.35], "position": [-3, -66], "range": 8.0, "energy": 1.2, "y": 2.2}]
+# Teias (Spider Webs, p0ss, CC BY 3.0): de pé nos cantos das salas e atravessando as bocas das grutas laterais, deitadas no chão das grutas.
+wr = rng("mine_webs")
+for rd in m_rooms:
+    cx, cz = rd["center"]
+    w, h = rd["size"]
+    for sx, sz in ((-1, -1), (1, -1), (-1, 1), (1, 1)):
+        if wr.random() < 0.55 and rd["id"] != "entry":
+            x, z = cx + sx * (w / 2 - 2.2), cz + sz * (h / 2 - 2.2)
+            m_decor.append({"piece": wr.choice(["Web_Round_Up", "Web_Square_Up"]), "position": [round(x, 1), round(z, 1)],
+                            "rotation": wr.choice([0, 90, 180, 270]) + wr.randrange(-15, 16, 5), "scale": round(wr.uniform(2.2, 3.6), 2), "y": round(wr.uniform(0.0, 0.6), 2)})
+for x, z, rot in ((-17.8, -52, 90), (15.8, -22, 90), (0.0, -66.5, 0)):   # bocas da gruta das carroças, da gruta dos veios e do coração
+    m_decor.append({"piece": "Web_Square_Up", "position": [x, z], "rotation": rot, "scale": 3.4, "y": 0.2})
+for rd, n in zip(m_rooms[2:5], (3, 2, 4)):
+    for d in scatter(wr, rd, ["Web_Round_Flat", "Web_Square_Flat"], n, margin=2.5, scale=(1.6, 2.8)):
+        d.pop("solid", None)
+        m_decor.append(d)
 m_decor += m_lights
 arenas["mine_01_crystal_vein"] = {
     "_comment": "Mina de Cristais (Lowpoly Crystals Pack, iPoly3D, CC0; Rocks, Nobiax, CC0; Low Poly Rocks, para, CC0): galerias entre paredes de pedra (todas as pedras do jogo) com cristais azuis e roxos que brilham no escuro, uma gruta lateral de veios, a gruta das carroças e o coração da mina, onde o golem de cristal espera. Gerado por tools/assets/build_maps.py.",
@@ -1307,6 +1359,10 @@ farm_decor = [
     {"piece": "Pr_Sawmill", "position": [29, -22], "rotation": 270, "solid": [8.0, 6.5]},
     # Casa da Fazenda (Old Medieval Shack House, Spiral, CC0): 7 x 4,9 m, porta para o portão (+Z), ao lado da horta.
     {"piece": "Pr_Farmhouse", "position": [-14, -12], "solid": [7.0, 4.9]},
+    # Entrada do Bunker (peças Bk_*, CC0): batente de pedra com duas paredes laterais, no canto nordeste dos campos.
+    {"piece": "Bk_Pillar", "position": [15.9, -10.0], "solid": [0.9, 0.9]}, {"piece": "Bk_Pillar", "position": [18.1, -10.0], "solid": [0.9, 0.9]},
+    {"piece": "Bk_Lintel", "position": [17.0, -10.0], "rotation": 90},
+    {"piece": "Bk_Wall", "position": [14.7, -10.0], "rotation": 90, "solid": [2.0, 0.5]}, {"piece": "Bk_Wall", "position": [19.3, -10.0], "rotation": 90, "solid": [2.0, 0.5]},
     {"piece": "Pr_Barricade", "position": [-8.5, -5.0], "rotation": 15, "solid": [2.0, 1.2]},
     {"piece": "Pr_Barricade", "position": [8.5, -5.0], "rotation": 345, "solid": [2.0, 1.2]},
     {"piece": "Well_Covered", "position": [-12, -20], "solid": [1.6, 1.6]},
@@ -1383,17 +1439,23 @@ for i in range(9):  # dentro do pasto cercado
     tz = min(max(z + fr.uniform(-2.0, 2.0), PASTURE[1] + 1.2), PASTURE[3] - 1.2)
     farm_crowd.append({"role": "sheep", "position": [round(x, 1), round(z, 1)], "rotation": fr.randrange(0, 360, 15), "pose": "idle",
                        "path": [round(tx, 1), round(tz, 1)], "speed": 0.5})
+# Cestos de vime (Willow Basket with Handle, ulf, CC-BY-SA 3.0; Pr_Basket): quebráveis que sempre soltam poção (tabela breakable_potion).
+monster("basket", "pot", _comment="Cesto de vime da Fazenda (Willow Basket with Handle, ulf, CC BY-SA 3.0): quebra com qualquer golpe e sempre solta poção (data/loot.json 'breakable_potion'). Não dá XP.",
+        name_key="PROP_BASKET", max_health=8, size=0.8, look="basket", pieces=["Pr_Basket"], shards=False, color=[0.75, 0.6, 0.3])
+farm_baskets = [{"id": "bk%d" % (i + 1), "monster": "basket", "position": pos, "table": "breakable_potion"} for i, pos in enumerate(
+    ([-16.6, -8.3], [-11.6, -8.3], [-6.4, -8.7], [-10.0, -21.2], [7.6, -25.6], [14.2, -28.4], [24.4, -13.6], [23.2, -29.0]))]
 arenas["farm_01_fields"] = {
-    "_comment": "Fazenda: campos abertos com capim (Grass Pack 01, Yughues / Nobiax, CC0), casa de fazenda (CC0), serraria movida a água (CC0) com a roda sobre um riacho, barricadas de toras (Sullivan, CC-BY), fazendeiros com ferramentas (Retextured Gnarly Tools, Mev Lyshkin, CC-BY) e ovelhas (p0ss, CC-BY-SA). Só o mapa por enquanto: sem monstros, lojas, baús nem missões; portal em Tortuga ao lado do da Floresta. Gerado por tools/assets/build_maps.py.",
+    "_comment": "Fazenda: campos abertos com capim (Grass Pack 01, Yughues / Nobiax, CC0), casa de fazenda (CC0), serraria movida a água (CC0) com a roda sobre um riacho, barricadas de toras (Sullivan, CC-BY), fazendeiros com ferramentas (Retextured Gnarly Tools, Mev Lyshkin, CC-BY) e ovelhas (p0ss, CC-BY-SA). Só o mapa por enquanto: sem monstros, lojas, baús nem missões (só cestos quebráveis que soltam poção); portal em Tortuga ao lado do da Floresta e entrada do Bunker no canto nordeste dos campos. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_FARM", "town": True, "outdoor": True, "player_class": "mage", "map_id": "map_farm", "area_level": 1,
     "wake_radius": 10.0, "alert_radius": 5.0, "rooms": farm_rooms, "encounters": [], "hazards": [],
-    "entries": {"start": [0, 3], "farm": [0, 3]},
+    "entries": {"start": [0, 3], "farm": [0, 3], "bunker": [17.0, -7.6]},
     "props": [
         {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-6, 3], "to": "tortuga", "entry": "forest"},
+        {"id": "to_bunker", "kind": "exit", "name_key": "PROP_TO_BUNKER", "position": [17.0, -9.0], "to": "bunker_01_entrance", "entry": "start", "group": True},
         {"id": "creek", "kind": "water", "position": [CREEK_X, -22], "size": [CREEK_W, 31], "color": [0.18, 0.36, 0.45]},
         {"id": "mine_gate", "kind": "exit", "name_key": "PROP_TO_MINE", "position": [28, -31], "to": "mine_01_crystal_vein", "entry": "start"},
     ],
-    "quest_spots": [], "breakables": [],
+    "quest_spots": [], "breakables": farm_baskets,
     "style": {"_comment": "Fazenda: chão de grama, cerca baixa de madeira nas bordas.", "walls": [""], "floor": "Ground_Grass",
               "low": "Prop_WoodenFence_Single", "ground": [0.2, 0.28, 0.12]},
     "decor": farm_decor, "crowd": farm_crowd, "passive": True,
@@ -1470,6 +1532,93 @@ for key in ("docks_01_pier", "sewers_01_drains", "sewers_02_canals", "sewers_03_
 monster("coin_bag", "pot", _comment="Bolsa de moedas (Bag of Coins, yd, CC0): uma por mapa; quebra com qualquer golpe e solta ouro (data/loot.json 'coin_bag'). Não dá XP.",
         name_key="PROP_COIN_BAG", max_health=6, size=0.8, look="coin_bag", pieces=["Coin_Bag"], shards=False, color=[0.8, 0.6, 0.2])
 
+# --- Bunker (3D Dungeon Modular Wall Set 2, Paul Wortmann, CC0; entrada pela Fazenda) --------------------
+# Grade de células de 2 m (o módulo das peças Bk_*): salão de entrada, corredor, sala principal com dois nichos e uma câmara ao
+# fundo. Uma parede em cada divisa entre célula aberta e pedra, e um pilar onde as paredes viram, terminam ou se cruzam.
+BK_COLS, BK_ROWS, BK_CELL = 16, 20, 2.0
+bk_grid = [["#"] * BK_COLS for _ in range(BK_ROWS)]
+
+
+def bk_carve(c0, r0, c1, r1):
+    for r in range(r0, r1 + 1):
+        for c in range(c0, c1 + 1):
+            bk_grid[r][c] = "."
+
+
+bk_carve(6, 15, 9, 17)    # salão de entrada
+bk_carve(7, 10, 8, 14)    # corredor
+bk_carve(3, 3, 12, 9)     # sala principal
+bk_carve(1, 5, 2, 6)      # nicho oeste
+bk_carve(13, 5, 14, 6)    # nicho leste
+bk_carve(7, 1, 8, 2)      # câmara do fundo
+
+
+def bk_open(c, r):
+    return 0 <= c < BK_COLS and 0 <= r < BK_ROWS and bk_grid[r][c] == "."
+
+
+def bk_pos(c, r):
+    return [round((c - BK_COLS / 2 + 0.5) * BK_CELL, 2), round((r - BK_ROWS / 2 + 0.5) * BK_CELL, 2)]
+
+
+bk_h, bk_v = set(), set()  # h[(i, j)]: parede do vértice (i, j) ao (i+1, j); v[(i, j)]: do vértice (i, j) ao (i, j+1)
+for r in range(BK_ROWS):
+    for c in range(BK_COLS):
+        if bk_open(c, r):
+            if not bk_open(c, r - 1):
+                bk_h.add((c, r))
+            if not bk_open(c, r + 1):
+                bk_h.add((c, r + 1))
+            if not bk_open(c - 1, r):
+                bk_v.add((c, r))
+            if not bk_open(c + 1, r):
+                bk_v.add((c + 1, r))
+bk_decor = []
+for r in range(BK_ROWS):
+    for c in range(BK_COLS):
+        if not bk_open(c, r):  # o piso do estilo cobre a sala toda: blocos de rocha tapam o que fica fora das paredes
+            bk_decor.append({"piece": "Bk_Rock", "position": bk_pos(c, r)})
+half_w, half_h = BK_COLS * BK_CELL / 2, BK_ROWS * BK_CELL / 2
+for i, j in sorted(bk_h):
+    x, z = (i + 0.5) * BK_CELL - half_w, j * BK_CELL - half_h
+    bk_decor.append({"piece": "Bk_Wall", "position": [round(x, 2), round(z, 2)], "rotation": 90})
+    bk_decor.append({"collider": [BK_CELL, 0.5], "position": [round(x, 2), round(z, 2)]})
+for i, j in sorted(bk_v):
+    x, z = i * BK_CELL - half_w, (j + 0.5) * BK_CELL - half_h
+    bk_decor.append({"piece": "Bk_Wall", "position": [round(x, 2), round(z, 2)]})
+    bk_decor.append({"collider": [0.5, BK_CELL], "position": [round(x, 2), round(z, 2)]})
+for i in range(BK_COLS + 1):
+    for j in range(BK_ROWS + 1):
+        edges = ((i - 1, j) in bk_h, (i, j) in bk_h, (i, j - 1) in bk_v, (i, j) in bk_v)  # oeste, leste, norte, sul
+        if not any(edges) or edges in ((True, True, False, False), (False, False, True, True)):
+            continue  # sem parede, ou parede reta passando
+        x, z = i * BK_CELL - half_w, j * BK_CELL - half_h
+        bk_decor.append({"piece": "Bk_Pillar", "position": [round(x, 2), round(z, 2)]})
+        bk_decor.append({"collider": [0.9, 0.9], "position": [round(x, 2), round(z, 2)]})
+# Lampiões de parede (Lamp, Mev Lyshkin, CC-BY 3.0; Pr_WallLamp), cada um com a sua luz: (coluna, linha, lado da parede), na célula aberta.
+BK_SIDES = {"W": (-1, 0, 90), "E": (1, 0, 270), "N": (0, -1, 0), "S": (0, 1, 180)}  # direção da parede e giro do braço (para dentro da sala)
+for lc, lr, side in ((6, 16, "W"), (9, 16, "E"), (7, 12, "W"), (8, 12, "E"), (5, 3, "N"), (10, 3, "N"), (3, 8, "W"), (12, 8, "E"),
+                     (1, 5, "W"), (14, 5, "E"), (7, 1, "N")):
+    cx, cz = bk_pos(lc, lr)
+    dx, dz, turn = BK_SIDES[side]
+    bk_decor.append({"piece": "Pr_WallLamp", "position": [round(cx + dx * 0.75, 2), round(cz + dz * 0.75, 2)], "y": 2.3, "rotation": turn})
+    bk_decor.append({"light": [1.0, 0.65, 0.3], "position": [round(cx + dx * 0.2, 2), round(cz + dz * 0.2, 2)], "y": 1.9, "range": 7.0, "energy": 1.2})
+arenas["bunker_01_entrance"] = {
+    "_comment": "Bunker (3D Dungeon Modular Wall Set 2, Paul Wortmann, CC0): grade de células de 2 m com paredes e pilares do pacote (Bk_*) e lampiões de parede (Lamp, Mev Lyshkin, CC-BY), uma parede em cada divisa entre piso e pedra, colisão por parede e pilar. Salão de entrada, corredor, sala principal com dois nichos e câmara ao fundo; por enquanto só o mapa (sem monstros, baús nem missões). Entrada pela Fazenda. Gerado por tools/assets/build_maps.py.",
+    "name_key": "ARENA_BUNKER", "player_class": "mage", "map_id": "map_bunker", "area_level": 2,
+    "wake_radius": 10.0, "alert_radius": 5.0,
+    "rooms": [room("bunker", 0, 0, BK_COLS * BK_CELL, BK_ROWS * BK_CELL, [], wall_height=0.8, torch=False)],
+    "encounters": [], "hazards": [], "entries": {"start": bk_pos(8, 16)},
+    "props": [
+        {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_FARM", "position": bk_pos(6, 16), "to": "farm_01_fields", "entry": "bunker"},
+    ],
+    "quest_spots": [], "breakables": [],
+    "style": {"_comment": "Bunker: piso de lajotas do kit; paredes, pilares e blocos de rocha do pacote em decor.", "walls": [""], "floor": "Floor_Brick", "low": "", "ground": [0.05, 0.05, 0.06]},
+    "decor": bk_decor, "passive": True,
+}
+
 json.dump(arenas, open(ARENAS, "w"), indent=2, ensure_ascii=False); open(ARENAS, "a").write("\n")
 json.dump(monsters, open(MONSTERS, "w"), indent=2, ensure_ascii=False); open(MONSTERS, "a").write("\n")
+import subprocess, sys
+subprocess.run([sys.executable, "tools/assets/add_minibosses.py"], check=True)  # 2 mini-chefes por mapa + drops das relíquias
 print("OK", [k for k in arenas if k.split("_")[0] in ("forest", "ruins", "cemetery", "fort", "farm", "mine")])

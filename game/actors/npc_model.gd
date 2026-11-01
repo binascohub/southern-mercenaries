@@ -122,6 +122,14 @@ const MODELS := {
 	# Capital Real, com alabarda; anda em ronda (walk) ou fica de guarda (idle). Criado por tools/assets/build_defender.py.
 	"defender": {"scene": "res://assets/models/characters/defender.glb", "scale": 1.07,
 		"poses": {"walk": "walk", "run": "run", "idle": "idle", "talk": "idle", "melee": "attack", "scared": "scared"}},
+	# Arqueira élfica da Floresta (Elven Archer - lower poly edition, Julius sobre a malha de theclubber, CC BY-SA 3.0): capuz e
+	# capa verdes, arco e aljava nas costas, parada na pose do arquivo (sem animação); 1,85 m. Dá a missão do Leshy.
+	# Criada por tools/assets/build_elf_archer.py.
+	"elf_archer": {"scene": "res://assets/models/characters/elf_archer.glb", "scale": 1.0, "poses": {}},
+	# Leônidas, o Veterano das Ruínas (Achilles Spartan Greek Warrior, gamekorp, CC0): guerreiro espartano de elmo, couraça e
+	# capa vermelha, 1,9 m com a crista; a malha vinha em T-pose e sem esqueleto, então os braços foram baixados
+	# (tools/assets/build_achilles.py) e ele fica parado nessa pose. Dá a missão dos goblins.
+	"ruins_spartan": {"scene": "res://assets/models/characters/ruins_spartan.glb", "scale": 1.0, "poses": {}},
 	"guard": {"scene": "res://assets/models/characters/brigand_guard.glb", "scale": 1.0, "poses": {}},
 	# Sentinela do castelo da Capital: o mesmo Brigand (anthonymyers, CC BY 3.0; a versão rigada "Brigand2" é o mesmo personagem), parado de guarda.
 	"castle_guard": {"scene": "res://assets/models/characters/brigand_guard.glb", "scale": 1.0, "poses": {}},

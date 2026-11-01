@@ -1,0 +1,2 @@
+Bed_1.glb ... Bed_4.glb — "Beds, mattresses" by Q_x (Sirren, made for PARPG), CC-BY-SA 3.0: https://opengameart.org/content/beds-mattresses
+Converted from the OBJ by tools/assets/build_beds.py (one file per bed with its pillows, textures at 512 px, 0.5 scale).

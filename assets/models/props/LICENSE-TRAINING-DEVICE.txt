@@ -1,0 +1,2 @@
+Training_Device.glb — "Training Device" by Danimal, CC-BY-SA 3.0 (metal texture CC0 by yughues): https://opengameart.org/content/training-device
+Converted from the Blender file by tools/assets/build_training_device.py (looping "spin" animation, texture at 512 px).

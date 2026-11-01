@@ -2593,6 +2593,30 @@ msgstr "Bertram el Cazador"
 msgid "NPC_VILLAGE_WIFE"
 msgstr "Elara la Curtidora"
 
+msgid "NPC_ELF_ARCHER"
+msgstr "Aeliana la Exploradora"
+
+msgid "DLG_ARCHER_1"
+msgstr "Alto. Pisad con cuidado: hacéis demasiado ruido para quien quiere seguir vivo. Soy Aeliana; vigilo este bosque desde antes de que Ferncroft tuviera nombre."
+
+msgid "DLG_ARCHER_2"
+msgstr "El Leshy duerme al fondo de la arboleda, bajo el árbol anciano. Corteza, piedra y furia. Cada flecha mía solo alimenta su musgo."
+
+msgid "DLG_ARCHER_3"
+msgstr "Abatidlo y el bosque volverá a respirar. El Fuego es lo único que teme esa corteza vieja. Hacedlo y os lo pagaré bien."
+
+msgid "DLG_ARCHER_ACTIVE"
+msgstr "Seguid el sendero de piedras hasta el final de la arboleda. El Leshy embiste desde lejos: no os quedéis quietos. Quemadlo."
+
+msgid "DLG_ARCHER_DONE"
+msgstr "La arboleda está en silencio. Sentí suspirar al árbol anciano. Gracias, viajeros: el bosque recuerda a sus amigos."
+
+msgid "QUEST_FOREST_LESHY"
+msgstr "El Anciano de la Arboleda"
+
+msgid "QUEST_FOREST_LESHY_DESC"
+msgstr "Aeliana la Exploradora te pide que mates al Leshy, el gigante de corteza y piedra que guarda el árbol anciano. Es de Tierra: teme al Fuego."
+
 msgid "DLG_HUNTER_1"
 msgstr "¡Forasteros! Cuidado con el seto al salir: el bosque ya no es el de antes. Soy Bertram. Elara y yo somos lo que queda de Ferncroft."
 
@@ -2673,3 +2697,135 @@ msgstr "Anglerman"
 
 msgid "MONSTER_STALKER"
 msgstr "Acechador"
+
+msgid "VALUABLE_HUMAN_HEART"
+msgstr "Corazón Humano"
+
+msgid "VALUABLE_OLD_SKULL"
+msgstr "Cráneo Antiguo"
+
+msgid "QUEST_ROYAL_HEART"
+msgstr "El corazón del rey caído"
+
+msgid "QUEST_ROYAL_HEART_DESC"
+msgstr "El Padre de la Capital quiere dar descanso al último rey de Veldmark. El Señor de la Cripta, en el Cementerio, guarda su corazón: derrótalo y lleva el Corazón Humano al Padre."
+
+msgid "QUEST_ROYAL_SKULL"
+msgstr "El cráneo del rey caído"
+
+msgid "QUEST_ROYAL_SKULL_DESC"
+msgstr "El Comandante del Fuerte lleva el cráneo del último rey de Veldmark. Derrótalo y entrega el Cráneo Antiguo al Padre."
+
+msgid "DLG_PRIEST_HEART_1"
+msgstr "Han andado por las tierras de Veldmark, ¿verdad? Allí desenterraron al último rey del reino derrotado: los demonios de Lucifer se llevaron el cuerpo pieza a pieza."
+
+msgid "DLG_PRIEST_HEART_2"
+msgstr "Lo combatí en vida, pero ningún hombre merece eso. El Señor de la Cripta guarda su corazón en el Cementerio. Tráiganme el corazón y la Iglesia paga en oro."
+
+msgid "DLG_PRIEST_HEART_ACTIVE"
+msgstr "Traigan el Corazón Humano que guarda el Señor de la Cripta en el Cementerio. Cuando lo tengan, solo entréguenlo."
+
+msgid "DLG_PRIEST_SKULL_1"
+msgstr "El corazón ya descansa. Falta el cráneo: el Comandante maldito del Fuerte lo lleva como trofeo para Lucifer."
+
+msgid "DLG_PRIEST_SKULL_2"
+msgstr "Traigan el Cráneo Antiguo y el rey tendrá una tumba completa. La Iglesia paga bien por ello."
+
+msgid "DLG_PRIEST_SKULL_ACTIVE"
+msgstr "El Cráneo Antiguo está con el Comandante del Fuerte. Entréguenmelo cuando lo tengan."
+
+msgid "DLG_PRIEST_DONE"
+msgstr "El rey de Veldmark descansa, entero, gracias a ustedes. Que la luz guíe sus pasos, mercenarios."
+
+msgid "DLG_SERVICE_TURN_IN"
+msgstr "Entregar la reliquia"
+
+msgid "TOAST_NEED_QUEST_ITEM"
+msgstr "Falta: {item}"
+
+msgid "MONSTER_RAT_KING"
+msgstr "Rey de las Ratas"
+
+msgid "MONSTER_VIPER_QUEEN"
+msgstr "Reina de las Víboras"
+
+msgid "MONSTER_RUIN_ALPHA"
+msgstr "Alfa de la Manada"
+
+msgid "MONSTER_SUCCUBUS_QUEEN"
+msgstr "Reina de las Súcubos"
+
+msgid "MONSTER_TROLL_CHIEF"
+msgstr "Jefe Troll"
+
+msgid "NPC_COURT_JESTER"
+msgstr "Bufón de la Corte"
+
+msgid "DLG_JESTER_1"
+msgstr "¡Ah, los famosos mercenarios de Tortuga! Qué honor, qué honor…"
+
+msgid "DLG_JESTER_2"
+msgstr "(baja la voz) Nadie presta atención a un bufón — y por eso lo oigo todo."
+
+msgid "DLG_JESTER_3"
+msgstr "El oro del rey desaparece de las arcas y nadie en el castillo lo nota. Vuelvan cuando estén listos: sé dónde mirar."
+
+msgid "ARENA_BUNKER"
+msgstr "Búnker"
+
+msgid "PROP_TO_BUNKER"
+msgstr "Entrada del búnker"
+
+msgid "PROP_RETURN_FARM"
+msgstr "Volver a la granja"
+
+msgid "VALUABLE_WILD_MEAT"
+msgstr "Carne Salvaje"
+
+msgid "QUEST_ROYAL_BANQUET"
+msgstr "El banquete del rey"
+
+msgid "QUEST_ROYAL_BANQUET_DESC"
+msgstr "El Bufón de la Corte quiere carne en la mesa del rey. El Alfa de la Manada, en las Ruinas, tiene la mejor: derrótalo y lleva la Carne Salvaje al Bufón."
+
+msgid "DLG_JESTER_BANQUET_1"
+msgstr "Miren esta mesa: manzanas, bananas… ¡y ni un trozo de carne! El rey anda tan distraído con el oro que desaparece de las arcas que olvidó comer como un rey."
+
+msgid "DLG_JESTER_BANQUET_2"
+msgstr "El Alfa de la Manada, en las Ruinas, tiene la carne más famosa del reino. Tráiganla y les cuento lo que sé, de bufón a mercenario."
+
+msgid "DLG_JESTER_BANQUET_ACTIVE"
+msgstr "La Carne Salvaje está con el Alfa de la Manada, en las Ruinas. ¡La mesa del rey espera, y yo también!"
+
+msgid "DLG_JESTER_BANQUET_DONE"
+msgstr "¡Qué banquete, qué banquete! El rey comió como nunca. Tienen un amigo en el castillo."
+
+msgid "MONSTER_LUCIFER"
+msgstr "Lucifer"
+
+msgid "NPC_RUINS_SPARTAN"
+msgstr "Leónidas, el Veterano"
+
+msgid "DLG_SPARTAN_1"
+msgstr "Alto, forasteros. Soy Leónidas. Guardo esta entrada desde que la guerra derribó las murallas, y nadie pasa sin que yo sepa por qué."
+
+msgid "DLG_SPARTAN_2"
+msgstr "Los goblins llegaron después del fuego, como ratas tras las sobras. Merodean en dos bandas: una por las calles del este y otra al fondo, cerca de la cámara."
+
+msgid "DLG_SPARTAN_3"
+msgstr "Son rápidos y frágiles, pero atacan en masa. Nacen de la tierra: el Fuego los derriba. Limpien las calles y pagaré en oro."
+
+msgid "DLG_SPARTAN_ACTIVE"
+msgstr "Los goblins aún merodean por las calles: una banda al este, otra cerca de la cámara. Manténganse juntos y usen Fuego."
+
+msgid "DLG_SPARTAN_DONE"
+msgstr "Silencio en las calles por primera vez en años. Tienen el agradecimiento de un viejo soldado. Que los dioses guarden sus escudos."
+
+msgid "QUEST_RUINS_GOBLINS"
+msgstr "Plaga de Goblins"
+
+msgid "QUEST_RUINS_GOBLINS_DESC"
+msgstr "Leónidas, el Veterano, te pide que derrotes a las dos bandas de goblins que infestan las calles de las Ruinas. Son de Tierra: temen el Fuego."
+
+msgid "PROP_BASKET"
+msgstr "Cesta"

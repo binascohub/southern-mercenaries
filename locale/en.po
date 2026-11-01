@@ -2593,6 +2593,30 @@ msgstr "Bertram the Hunter"
 msgid "NPC_VILLAGE_WIFE"
 msgstr "Elara the Tanner"
 
+msgid "NPC_ELF_ARCHER"
+msgstr "Aeliana the Ranger"
+
+msgid "DLG_ARCHER_1"
+msgstr "Hold. Walk softly — you are loud for people who mean to live. I am Aeliana; I have watched this wood since before Ferncroft had a name."
+
+msgid "DLG_ARCHER_2"
+msgstr "The Leshy sleeps at the far end of the grove, under the elder tree. Bark, stone and rage. Every arrow I loose just feeds the moss."
+
+msgid "DLG_ARCHER_3"
+msgstr "Put it down and the forest will breathe again. Fire is the one thing the old bark fears. Do this, and I'll make it worth your while."
+
+msgid "DLG_ARCHER_ACTIVE"
+msgstr "Follow the stone path to the end of the grove. The Leshy charges from afar — do not stand your ground. Burn it."
+
+msgid "DLG_ARCHER_DONE"
+msgstr "The grove is quiet. I felt the elder tree sigh. My thanks, travelers — the wood remembers its friends."
+
+msgid "QUEST_FOREST_LESHY"
+msgstr "The Elder of the Grove"
+
+msgid "QUEST_FOREST_LESHY_DESC"
+msgstr "Aeliana the Ranger asks you to slay the Leshy, the bark-and-stone giant that guards the elder tree. It is Earth — it fears Fire."
+
 msgid "DLG_HUNTER_1"
 msgstr "Strangers! Mind the hedge when you leave — the grove is not what it was. I'm Bertram. Elara and I are all that's left of Ferncroft."
 
@@ -2673,3 +2697,135 @@ msgstr "Anglerman"
 
 msgid "MONSTER_STALKER"
 msgstr "Stalker"
+
+msgid "VALUABLE_HUMAN_HEART"
+msgstr "Human Heart"
+
+msgid "VALUABLE_OLD_SKULL"
+msgstr "Old Skull"
+
+msgid "QUEST_ROYAL_HEART"
+msgstr "The Fallen King's Heart"
+
+msgid "QUEST_ROYAL_HEART_DESC"
+msgstr "The Capital's Priest wants to lay Veldmark's last king to rest. The Crypt Lord, in the Cemetery, keeps his heart: defeat him and bring the Human Heart to the Priest."
+
+msgid "QUEST_ROYAL_SKULL"
+msgstr "The Fallen King's Skull"
+
+msgid "QUEST_ROYAL_SKULL_DESC"
+msgstr "The Fort Commander carries the skull of Veldmark's last king. Defeat him and hand the Old Skull to the Priest."
+
+msgid "DLG_PRIEST_HEART_1"
+msgstr "You have walked the lands of Veldmark, haven't you? There, the last king of the defeated realm was dug up: Lucifer's demons took the body piece by piece."
+
+msgid "DLG_PRIEST_HEART_2"
+msgstr "I fought him in life, but no man deserves that. The Crypt Lord keeps his heart in the Cemetery. Bring me the heart and the Church pays in gold."
+
+msgid "DLG_PRIEST_HEART_ACTIVE"
+msgstr "Bring the Human Heart the Crypt Lord keeps in the Cemetery. When you have it, just hand it over."
+
+msgid "DLG_PRIEST_SKULL_1"
+msgstr "The heart now rests. The skull is missing: the cursed Commander of the Fort carries it as a trophy for Lucifer."
+
+msgid "DLG_PRIEST_SKULL_2"
+msgstr "Bring the Old Skull and the king will have a whole grave. The Church pays well for it."
+
+msgid "DLG_PRIEST_SKULL_ACTIVE"
+msgstr "The Old Skull is with the Fort Commander. Hand it to me when you have it."
+
+msgid "DLG_PRIEST_DONE"
+msgstr "Veldmark's king rests, whole, thanks to you. May the light guide your steps, mercenaries."
+
+msgid "DLG_SERVICE_TURN_IN"
+msgstr "Hand over the relic"
+
+msgid "TOAST_NEED_QUEST_ITEM"
+msgstr "Missing: {item}"
+
+msgid "MONSTER_RAT_KING"
+msgstr "Rat King"
+
+msgid "MONSTER_VIPER_QUEEN"
+msgstr "Viper Queen"
+
+msgid "MONSTER_RUIN_ALPHA"
+msgstr "Pack Alpha"
+
+msgid "MONSTER_SUCCUBUS_QUEEN"
+msgstr "Succubus Queen"
+
+msgid "MONSTER_TROLL_CHIEF"
+msgstr "Troll Chief"
+
+msgid "NPC_COURT_JESTER"
+msgstr "Court Jester"
+
+msgid "DLG_JESTER_1"
+msgstr "Ah, the famous mercenaries of Tortuga! What an honor, what an honor…"
+
+msgid "DLG_JESTER_2"
+msgstr "(lowering his voice) Nobody pays attention to a fool — which is why I hear everything."
+
+msgid "DLG_JESTER_3"
+msgstr "The king's gold is vanishing from the vaults, and nobody in the castle notices. Come back when you're ready: I know where to look."
+
+msgid "ARENA_BUNKER"
+msgstr "Bunker"
+
+msgid "PROP_TO_BUNKER"
+msgstr "Bunker Hatch"
+
+msgid "PROP_RETURN_FARM"
+msgstr "Back to the Farm"
+
+msgid "VALUABLE_WILD_MEAT"
+msgstr "Wild Meat"
+
+msgid "QUEST_ROYAL_BANQUET"
+msgstr "The King's Banquet"
+
+msgid "QUEST_ROYAL_BANQUET_DESC"
+msgstr "The Court Jester wants meat on the king's table. The Pack Alpha, in the Ruins, has the best: defeat him and bring the Wild Meat to the Jester."
+
+msgid "DLG_JESTER_BANQUET_1"
+msgstr "Look at this table: apples, bananas… and not a piece of meat! The king is so distracted by the gold vanishing from the vaults that he forgot to eat like a king."
+
+msgid "DLG_JESTER_BANQUET_2"
+msgstr "The Pack Alpha, in the Ruins, has the most famous meat in the realm. Bring it and I will tell you what I know, fool to mercenary."
+
+msgid "DLG_JESTER_BANQUET_ACTIVE"
+msgstr "The Wild Meat is with the Pack Alpha, in the Ruins. The king's table is waiting, and so am I!"
+
+msgid "DLG_JESTER_BANQUET_DONE"
+msgstr "What a feast, what a feast! The king ate like never before. You have a friend in the castle."
+
+msgid "MONSTER_LUCIFER"
+msgstr "Lucifer"
+
+msgid "NPC_RUINS_SPARTAN"
+msgstr "Leonidas, the Veteran"
+
+msgid "DLG_SPARTAN_1"
+msgstr "Halt, strangers. I am Leonidas. I have held this entrance since the war brought down the walls, and nobody passes without telling me why."
+
+msgid "DLG_SPARTAN_2"
+msgstr "The goblins came after the fire, like rats after scraps. They roam in two packs: one in the eastern streets and one deep in the city, near the vault."
+
+msgid "DLG_SPARTAN_3"
+msgstr "They are quick and frail, but they come in numbers. They are creatures of the earth — Fire brings them down. Clear the streets and I will pay in gold."
+
+msgid "DLG_SPARTAN_ACTIVE"
+msgstr "The goblins still roam the streets: one pack to the east, another near the vault. Stay together and use Fire."
+
+msgid "DLG_SPARTAN_DONE"
+msgstr "Quiet in the streets for the first time in years. You have an old soldier's thanks. May the gods guard your shields."
+
+msgid "QUEST_RUINS_GOBLINS"
+msgstr "Goblin Plague"
+
+msgid "QUEST_RUINS_GOBLINS_DESC"
+msgstr "Leonidas, the Veteran, asks you to defeat the two goblin packs infesting the streets of the Ruins. They are Earth — they fear Fire."
+
+msgid "PROP_BASKET"
+msgstr "Basket"

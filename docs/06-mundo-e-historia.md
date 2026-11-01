@@ -20,6 +20,7 @@
 - **O Bobo da Corte** é o único que percebe e passa as informações aos mercenários.
 - **Final:** Lúcifer **sequestra o Bobo** por estar atrapalhando seus planos. Os mercenários **vão ao Inferno libertá-lo** — não por heroísmo, mas porque **o Bobo é quem sabe onde há mais tesouros**. Sem ele, acabam as pistas.
 - **O tesouro de Lúcifer:** todo o ouro que ele acumulou — **o maior tesouro do mundo**.
+- **No jogo:** Lúcifer é o chefe final (`lucifer` em `data/monsters.json`), com o modelo animado **Diablous** (demônio de chifres e asas; idle, andar, correr, atacar, apanhar e morrer). O mapa do Inferno ainda não existe, então ele não está em nenhum encontro.
 
 ## 3. A guerra
 
@@ -51,6 +52,13 @@ Antes do jogo, houve uma **grande guerra entre dois reinos**:
 - **As riquezas do reino vencedor** estão sendo levadas em segredo por Lúcifer para os covis dos demônios — é o que o **Bobo da Corte** descobre (`04-1-capital-real.md`) → **mapas 6 a 9**.
 - Tensão dentro do grupo: o Arqueiro vem do reino derrotado; Dorian e Dália, do reino que venceu (**proposta** de falas e cenas entre eles).
 - **Proposta:** Lúcifer aproveitou a guerra: tantos mortos abriram as primeiras fendas do inferno, por onde os demônios começaram a tomar o mundo e o ouro.
+
+### As relíquias do último rei de Veldmark (missões do Padre da Capital)
+- Quando Lúcifer aproveitou a guerra, os demônios dele **desenterraram o último rei de Veldmark** e levaram o corpo, peça por peça, para serem guardadas por criaturas dos covis.
+- O **Padre da Capital** (Aurenhold) lutou contra esse rei em vida, mas acha que **nenhum homem merece isso**: paga em ouro da Igreja a quem trouxer as peças de volta para uma sepultura inteira.
+- **O Coração Humano** (missão `royal_heart`): guardado pelo **Senhor da Cripta**, mini-chefe do Cemitério (mapa 2, Ruínas do Reino do Arqueiro). Item de missão no inventário; entregue ao Padre.
+- **O Crânio Antigo** (missão `royal_skull`): carregado como troféu para Lúcifer pelo **Comandante do Forte**, mini-chefe do Forte. Só aparece depois do coração.
+- Os itens **não se vendem** e só caem para quem tem a missão ativa; cada herói precisa do seu.
 
 ## 4. Estrutura da campanha
 

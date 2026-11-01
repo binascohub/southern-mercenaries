@@ -3,3 +3,5 @@ Pr_Sawmill.glb — "Medieval waterpowered sawmill" by Daniel Andersson (submitte
 Pr_Barricade.glb — "Barricade" by Sullivan, used under CC BY 3.0 (also offered under CC BY-SA 3.0, GPL 2.0/3.0): https://opengameart.org/content/barricade (tools/assets/build_barricade.py)
 Pr_CartLarge.glb, Pr_CartSmall.glb — "Carts" by cemkalyoncu, CC BY 3.0: https://opengameart.org/content/carts (tools/assets/build_carts.py; wheels in the first animation frame, one mesh per cart)
 Pr_Farmhouse.glb — "Old Medieval Shack House" by Spiral, CC0 1.0: https://opengameart.org/content/old-medieval-house (tools/assets/build_farmhouse.py; the thatch cut-out comes from the diffuse alpha)
+Bk_*.glb — "3D Dungeon Modular Wall Set 2" by Paul Wortmann, CC0 1.0: https://opengameart.org/content/3d-dungeon-modular-wall-set-2 (tools/assets/build_bunker_kit.py; one piece per OBJ, texture atlas reduced to 1024 px, no normal map; Bk_Rock is a block made for the game from the same atlas)
+Pr_WallLamp.glb — "Lamp" by Mev Lyshkin, CC BY 3.0: https://opengameart.org/content/lamp (tools/assets/build_lamp.py; the single untextured mesh is split in iron and emissive lantern glass)

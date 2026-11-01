@@ -27,7 +27,11 @@ func _ready() -> void:
 	add_to_group(&"loot")
 	var color := Items.color(item) if not item.is_empty() else Color(1.0, 0.82, 0.25)
 	_mesh = Node3D.new()
-	if gold > 0:
+	var relic: String = GameData.valuables.get(item.get("id", ""), {}).get("model", "") if item.get("kind", "") == Items.VALUABLE else ""
+	if relic != "" and Kit.has(relic):
+		# Relíquia de missão (coração, crânio): o modelo girando no chão.
+		_mesh.add_child(Kit.piece(relic))
+	elif gold > 0:
 		# Moeda antiga em pé, girando (Old coin, yd, CC0).
 		var coin: Node3D = load(COIN_MODEL).instantiate()
 		coin.rotation.x = deg_to_rad(90.0)

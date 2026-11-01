@@ -315,10 +315,49 @@
     ],
     "dialogues": [
       {
-        "when": {},
+        "when": {
+          "quest_new": "royal_heart"
+        },
         "lines": [
           "DLG_PRIEST_1",
-          "DLG_PRIEST_2"
+          "DLG_PRIEST_2",
+          "DLG_PRIEST_HEART_1",
+          "DLG_PRIEST_HEART_2"
+        ],
+        "offer": "royal_heart"
+      },
+      {
+        "when": {
+          "quest_active": "royal_heart"
+        },
+        "lines": [
+          "DLG_PRIEST_HEART_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {
+          "quest_new": "royal_skull"
+        },
+        "lines": [
+          "DLG_PRIEST_SKULL_1",
+          "DLG_PRIEST_SKULL_2"
+        ],
+        "offer": "royal_skull"
+      },
+      {
+        "when": {
+          "quest_active": "royal_skull"
+        },
+        "lines": [
+          "DLG_PRIEST_SKULL_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_PRIEST_DONE"
         ]
       }
     ],
@@ -390,5 +429,147 @@
         "head": "iron"
       }
     }
+  },
+  "court_jester": {
+    "name_key": "NPC_COURT_JESTER",
+    "color": [
+      0.8,
+      0.2,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "royal_banquet"
+        },
+        "lines": [
+          "DLG_JESTER_1",
+          "DLG_JESTER_2",
+          "DLG_JESTER_BANQUET_1",
+          "DLG_JESTER_BANQUET_2"
+        ],
+        "offer": "royal_banquet"
+      },
+      {
+        "when": {
+          "quest_active": "royal_banquet"
+        },
+        "lines": [
+          "DLG_JESTER_BANQUET_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_JESTER_BANQUET_DONE",
+          "DLG_JESTER_3"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_SimpleParted"
+      ],
+      "hair_color": [
+        0.3,
+        0.2,
+        0.12
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth",
+        "hands": "cloth",
+        "feet": "cloth",
+        "head": "cloth"
+      }
+    }
+  },
+  "elf_archer": {
+    "name_key": "NPC_ELF_ARCHER",
+    "color": [
+      0.25,
+      0.5,
+      0.25
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "forest_leshy"
+        },
+        "lines": [
+          "DLG_ARCHER_1",
+          "DLG_ARCHER_2",
+          "DLG_ARCHER_3"
+        ],
+        "offer": "forest_leshy"
+      },
+      {
+        "when": {
+          "quest_active": "forest_leshy"
+        },
+        "lines": [
+          "DLG_ARCHER_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_ARCHER_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "female",
+      "hair": [
+        "Hair_Long"
+      ],
+      "hair_color": [
+        0.1,
+        0.07,
+        0.05
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "ruins_spartan": {
+    "_comment": "Leônidas, o Veterano (Achilles Spartan Greek Warrior, gamekorp, CC0): guarda a entrada das Ruínas e dá a missão dos goblins. Modelo próprio (NpcModel), sem corpo humano.",
+    "name_key": "NPC_RUINS_SPARTAN",
+    "color": [
+      0.5,
+      0.15,
+      0.12
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "ruins_goblins"
+        },
+        "lines": [
+          "DLG_SPARTAN_1",
+          "DLG_SPARTAN_2",
+          "DLG_SPARTAN_3"
+        ],
+        "offer": "ruins_goblins"
+      },
+      {
+        "when": {
+          "quest_active": "ruins_goblins"
+        },
+        "lines": [
+          "DLG_SPARTAN_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_SPARTAN_DONE"
+        ]
+      }
+    ]
   }
 }

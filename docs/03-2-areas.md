@@ -18,6 +18,21 @@
 - **Elites:** 1 a 3 por área; a **penúltima área** de cada mapa tem um **mini-chefe** (elite forte com nome).
 - **Nível das áreas** sobe aos poucos dentro do mapa (tabela de cada mapa). Nível máximo 20.
 
+## 1.1. Mini-chefes: dois por mapa de combate
+
+Cada mapa de combate tem **2 mini-chefes** (elites fortes com nome, categoria `miniboss`), incluindo o do mapa 1 (Esgoto) com o Gator Velho e o Rei dos Ratos:
+
+| Mapa | Mini-chefes |
+|---|---|
+| Esgoto | Gator Velho (Passagem da Guerra) · **Rei dos Ratos** (Canais) |
+| Floresta | Leshy · **Rainha das Víboras** |
+| Ruínas | Guardião do Cofre · **Alfa da Matilha** |
+| Cemitério | Escorpião da Cripta · Senhor da Cripta (larga o **Coração Humano**) |
+| Forte | Comandante (larga o **Crânio Antigo**) · **Rainha das Súcubos** |
+| Mina | **Chefe Troll** · Guardião do Túmulo |
+
+Em negrito, os criados nesta rodada (`tools/assets/add_minibosses.py`). A Floresta Sombria ainda não tem encontros.
+
 ## 2. Resumo
 
 | # | Mapa | Ato | Sai de | Áreas | Níveis | Mini-chefe | Chefe |

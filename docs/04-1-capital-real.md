@@ -85,6 +85,10 @@ Seguindo o padrão de Tortuga: **área externa** com o comércio ao ar livre e *
 | Objetivo | **Descobrir onde a família real esconde seus tesouros** |
 | Ligação com o Cavaleiro | Velho conhecido de Dorian (guarda do castelo) e de Dália (princesa) |
 
+### Onde ele fica (como está no jogo)
+- O Bobo vive na **Sala do Rei** (`throne_room`), atrás do pátio do castelo: sala de madeira com o trono ao fundo, estandartes, uma mesa de centro com velas e **dois conjuntos de sofás** (Sofa-group 5, CC-BY-SA 3.0). Ele tem a missão do **Banquete do rei** (Carne Selvagem do Alfa da Matilha, `04-tortuga-e-missoes.md`); as missões principais dele entram com o Ato 3. Duas **mesas fartas** (maçãs, bananas e carne, Food Props, CC-BY 3.0) ocupam o centro da sala. Um **lustre** (Chandelier, CC0) pende sobre elas. A leste fica o **quarto do rei** (`king_bedroom`), com quatro camas (Beds, mattresses, CC-BY-SA 3.0) e baús. No **pátio de treino** há dois **aparelhos de treino** giratórios (Training Device, CC-BY-SA 3.0) junto dos bonecos.
+- A Capital tem ainda: o **Padre** (praça de entrada), que dá as missões das relíquias do último rei de Veldmark (`06-mundo-e-historia.md`); as **sentinelas do castelo** (Brigand, parado de guarda) na porta do pátio; as **casas** (Modular Medieval House Pack 06) ao norte da Avenida; a **mesa de fartura** (frutas, melancias e carne) e a **carroça de melancias** (A watermelon, CC0) na Avenida; o **pátio de treino** e as **barracas de comércio** (movidas de Tortuga).
+
 ### Papel no jogo
 - A partir da Capital, o Bobo **substitui a taberneira** como quem conta as **missões principais**.
 - Ele finge ser só um palhaço, mas ouve tudo nos salões do castelo. Descobre que os tesouros da família real estão **sumindo**: estão sendo levados para lugares que **só os demônios guardam** — e a família real não sabe de nada.
