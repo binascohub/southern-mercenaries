@@ -27,7 +27,7 @@ Cada mapa de combate tem **2 mini-chefes** (elites fortes com nome, categoria `m
 | Esgoto | Gator Velho (Passagem da Guerra) · **Rei dos Ratos** (Canais) |
 | Floresta | Leshy · **Rainha das Víboras** |
 | Ruínas | Guardião do Cofre · **Alfa da Matilha** |
-| Cemitério | Escorpião da Cripta · Senhor da Cripta (larga o **Coração Humano**) |
+| Cemitério | Ogro da Cripta (era o Escorpião) · Senhor da Cripta (larga o **Coração Humano**) |
 | Forte | Comandante (larga o **Crânio Antigo**) · **Rainha das Súcubos** |
 | Mina | **Chefe Troll** · Guardião do Túmulo |
 
@@ -161,7 +161,7 @@ Ordem de expedição no jogo: **Tortuga → Floresta → Ruínas → Cemitério 
 |---|---|---|---|---|
 | 1 | `forest_01_path` | Floresta | Plantas Stylish Plants (CC0), obeliscos e pilares | Leshy |
 | 2 | `ruins_01_city` | Ruínas da Cidade | Cena inteira de Destroyed Walls (CC BY 3.0) com colisor por parede | Guardião do Cofre |
-| 3 | `cemetery_01_yard` | Cemitério | Medieval Props Textured (CC BY 3.0): lápides, cruzes, poço, marcos de pedra; chão de terra escura e rede de trilhas de lajes do portão à cripta (três pistas que se separam e se cruzam, dois becos com baú); mapa de 64 x 104 m em quatro setores separados por grades pretas de ferro, com duas praças de ruínas e mini-chefe (Praça das Pedras e Praça da Estátua, onde a estátua do lampião desperta o Guardião do Túmulo ao falar com ela) com abertura nas pistas, e jarros brancos quebráveis em grupos (vida e mana) (A Campo de Covas, B Ossuário, C Cova dos Mortos, D Covil do Troll) | Senhor da Cripta |
+| 3 | `cemetery_01_yard` | Cemitério | Medieval Props Textured (CC BY 3.0): lápides, cruzes, marcos de pedra; chão de terra acinzentada e escura; trilhas de lajes musgosas; grades pretas; mapa de salas e corredores no desenho de calabouço da referência do autor, ~17,6 mil m2, em 7 setores de um monstro cada (1 Campo de Covas: ratos de esgoto; 2 Terra dos Escorpiões: escorpiões venenosos; 3 Ossuário: esqueletos; 4 Cova dos Mortos: zumbis; 5 Alameda da Estátua: golens de pedra; 6 Catacumbas: morcegos; 7 Covil do Troll: trolls), corredores em anéis (mais de um caminho) e duas praças de ruínas a 171 m uma da outra com mini-chefe (Praça das Pedras: Escorpião da Cripta; Praça da Estátua: a estátua do lampião desperta o Guardião do Túmulo ao falar com ela) | Senhor da Cripta |
 | 4 | `dark_forest_01_woods` | Floresta Escura | Mesma vegetação, mais densa e escura; **só o mapa** (sem monstros, chefe ou baús por enquanto) | — |
 | 5 | `fort_01_gate` | Forte | 3D Dungeon Tileset (CC BY-SA 3.0), grade de 20 x 26 células de 2,5 m; paredes baixas (0,85 m) por causa da câmera | Comandante Amaldiçoado |
 

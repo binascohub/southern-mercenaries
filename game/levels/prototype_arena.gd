@@ -911,7 +911,7 @@ func summon_encounter(player: Player, prop: Dictionary) -> void:
 		return
 	_spawn_group(group)
 	_wake_group(id)
-	_toast_all("TOAST_STATUE_AWAKENS", {})
+	_toast_all(String(group.get("toast", "TOAST_STATUE_AWAKENS")), {})
 
 
 ## Começa (ou continua) a área: os grupos vivos da campanha no lugar, dormindo.
@@ -2080,12 +2080,21 @@ func _build_area() -> void:
 ## a parede de baixo fica cortada para o herói aparecer (09-interface.md, seção 2).
 func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3, doors: Dictionary, height: float) -> void:
 	var floor_piece: String = room.get("floor", style.floor)
+	if floor_piece == "Dirt":
+		var dirt := MeshInstance3D.new()
+		var plane := PlaneMesh.new()
+		plane.size = Vector2(half.x * 2.0, half.z * 2.0)
+		dirt.mesh = plane
+		dirt.material_override = _dirt_material()
+		dirt.position = Vector3(c.x, 0.01, c.z)
+		_area_root.add_child(dirt)
+		floor_piece = ""
 	var nx := maxi(ceili(half.x * 2.0 / Kit.FLOOR_SIZE), 1)
 	var nz := maxi(ceili(half.z * 2.0 / Kit.FLOOR_SIZE), 1)
 	var tile := Vector2(half.x * 2.0 / nx, half.z * 2.0 / nz)
 	for ix in nx:
 		for iz in nz:
-			var node := Kit.piece(floor_piece)
+			var node := Kit.piece(floor_piece) if floor_piece != "" else null
 			if node:
 				node.scale = Vector3(tile.x / Kit.FLOOR_SIZE, 1, tile.y / Kit.FLOOR_SIZE)
 				node.position = Vector3(c.x - half.x + tile.x * (ix + 0.5), 0.01, c.z - half.z + tile.y * (iz + 0.5))
@@ -2142,8 +2151,8 @@ func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3,
 					var x := c.x + segment.x - segment.y / 2.0 + (segment.y - count * ROOF_WIDTH) / 2.0 + ROOF_WIDTH * (i + 0.5)
 					node.position = Vector3(x, 3.4, c.z - half.z - ROOF_WIDTH / 2.0 + 0.6)
 					_area_root.add_child(node)
-					if style.get("wood", false):
-						_woodify(node)
+					if style.get("thatch", false):
+						_thatchify(node)
 	# Lampião na parede norte das salas com tocha.
 	if room.get("torch", false) and not low:
 		var lantern := Kit.piece("Lantern_Wall")
@@ -2234,8 +2243,8 @@ const WOOD_PLANK := Color(0.72, 0.6, 0.5)
 ## Só a faixa de madeira escura do atlas (o resto tem blocos e pedra): v de 0,33 a 0,61.
 const WOOD_UV_SCALE := Vector3(3, 0.27, 1)
 const WOOD_UV_OFFSET := Vector3(0, 0.34, 0)
-## Materiais do kit que viram madeira: reboco, tijolo, pedra da base e telha.
-const WOOD_REPLACES: Array[String] = ["Plaster", "Brick", "Rock", "Tiles"]
+## Materiais do kit que viram madeira: reboco, tijolo e pedra da base.
+const WOOD_REPLACES: Array[String] = ["Plaster", "Brick", "Rock"]
 var _planks := {}
 
 
@@ -2306,12 +2315,58 @@ func _give_guitar(model: HeroModel) -> void:
 	head.material_override = wood
 	head.position = Vector3(0.72, 0, 0)
 	guitar.add_child(head)
-	guitar.position = Vector3(0.0, 0.78, 0.26)
+	guitar.scale = Vector3.ONE * 0.7
+	guitar.position = Vector3(0.0, 0.95, 0.22)
 	guitar.rotation = Vector3(0, deg_to_rad(-12), deg_to_rad(18))
 	model.add_child(guitar)
 	var strum := guitar.create_tween().set_loops()
 	strum.tween_property(guitar, "rotation:z", deg_to_rad(21), 0.35).set_trans(Tween.TRANS_SINE)
 	strum.tween_property(guitar, "rotation:z", deg_to_rad(15), 0.35).set_trans(Tween.TRANS_SINE)
+
+
+## Terra batida (rua de Tortuga) e palha (telhados): geradas por ruído, não há no kit.
+var _dirt: StandardMaterial3D
+var _thatch: StandardMaterial3D
+
+
+func _noise_texture(dark: Color, light: Color, stretch: Vector2, frequency: float, seed_: int) -> ImageTexture:
+	var noise := FastNoiseLite.new()
+	noise.seed = seed_
+	noise.frequency = frequency
+	noise.fractal_octaves = 4
+	var size := 256
+	var image := Image.create(size, size, false, Image.FORMAT_RGB8)
+	for y in size:
+		for x in size:
+			var v := noise.get_noise_2d(x * stretch.x, y * stretch.y) * 0.5 + 0.5
+			image.set_pixel(x, y, dark.lerp(light, clampf(v * 1.3 - 0.15, 0.0, 1.0)))
+	return ImageTexture.create_from_image(image)
+
+
+func _dirt_material() -> StandardMaterial3D:
+	if _dirt == null:
+		_dirt = StandardMaterial3D.new()
+		_dirt.albedo_texture = _noise_texture(Color(0.25, 0.17, 0.1), Color(0.42, 0.31, 0.19), Vector2.ONE, 0.035, 11)
+		_dirt.uv1_triplanar = true
+		_dirt.uv1_scale = Vector3.ONE * 0.12
+		_dirt.roughness = 1.0
+	return _dirt
+
+
+## Telhado de palha: troca a telha do kit por palha amarelada, com fios no sentido da água.
+func _thatchify(node: Node3D) -> void:
+	if _thatch == null:
+		_thatch = StandardMaterial3D.new()
+		_thatch.albedo_texture = _noise_texture(Color(0.45, 0.33, 0.14), Color(0.86, 0.72, 0.38), Vector2(1.0, 0.07), 0.12, 23)
+		_thatch.uv1_triplanar = true
+		_thatch.uv1_scale = Vector3.ONE * 0.45
+		_thatch.roughness = 1.0
+	for mesh in node.find_children("*", "MeshInstance3D", true, false):
+		var m := mesh as MeshInstance3D
+		for i in m.get_surface_override_material_count():
+			var material := m.get_active_material(i) as StandardMaterial3D
+			if material and material.resource_name.contains("Tiles"):
+				m.set_surface_override_material(i, _thatch)
 
 
 ## Madeira escura lisa (a faixa de madeira do atlas do kit, recortada): tábuas e estátua.

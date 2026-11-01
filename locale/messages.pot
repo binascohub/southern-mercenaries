@@ -208,12 +208,6 @@ msgstr ""
 msgid "POWER_MAGIC"
 msgstr ""
 
-msgid "MONSTER_SEWER_RAT_NAME"
-msgstr ""
-
-msgid "MONSTER_SEWER_RAT_BIG_NAME"
-msgstr ""
-
 msgid "ARENA_PROTOTYPE_NAME"
 msgstr ""
 
@@ -2730,7 +2724,7 @@ msgstr ""
 msgid "TOAST_NEED_QUEST_ITEM"
 msgstr ""
 
-msgid "MONSTER_RAT_KING"
+msgid "MONSTER_FROG_KING"
 msgstr ""
 
 msgid "MONSTER_VIPER_QUEEN"
@@ -2815,4 +2809,34 @@ msgid "QUEST_RUINS_GOBLINS_DESC"
 msgstr ""
 
 msgid "PROP_BASKET"
+msgstr ""
+
+msgid "NPC_FOREST_HERMIT"
+msgstr ""
+
+msgid "NPC_FOREST_PYRE_KEEPER"
+msgstr ""
+
+msgid "DLG_HERMIT_1"
+msgstr ""
+
+msgid "DLG_HERMIT_2"
+msgstr ""
+
+msgid "DLG_HERMIT_3"
+msgstr ""
+
+msgid "DLG_PYRE_1"
+msgstr ""
+
+msgid "DLG_PYRE_2"
+msgstr ""
+
+msgid "DLG_PYRE_3"
+msgstr ""
+
+msgid "TOAST_HERMIT_AWAKENS"
+msgstr ""
+
+msgid "TOAST_PYRE_AWAKENS"
 msgstr ""

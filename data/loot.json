@@ -162,7 +162,7 @@
       "per_level": 1.0
     },
     "monsters": {
-      "monster": "plague_rat",
+      "monster": "plague_frog",
       "count": [
         1,
         3

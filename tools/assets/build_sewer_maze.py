@@ -92,13 +92,13 @@ def at(index_fraction):
 dead_ends = [c for c in order if len(doors_of(c)) == 1 and c != SECRET_CELL]
 dead_ends.sort(key=lambda k: -depth[k])
 groups = [
-    ("s1_lone", at(0.08), [("plague_rat", 1)]),
-    ("s1_trio", at(0.2), [("plague_rat", 3)]),
-    ("m_pair_a", at(0.35), [("plague_rat", 2)]),
-    ("m_pair_b", at(0.5), [("plague_rat", 2)]),
-    ("m_trio_b", at(0.65), [("plague_rat", 3)]),
-    ("m_mutant", dead_ends[1] if len(dead_ends) > 1 else at(0.8), [("mutant_rat", 1)]),
-    ("m_pair_c", at(0.9), [("plague_rat", 2)]),
+    ("s1_lone", at(0.08), [("plague_frog", 1)]),
+    ("s1_trio", at(0.2), [("plague_frog", 3)]),
+    ("m_pair_a", at(0.35), [("plague_frog", 2)]),
+    ("m_pair_b", at(0.5), [("plague_frog", 2)]),
+    ("m_trio_b", at(0.65), [("plague_frog", 3)]),
+    ("m_mutant", dead_ends[1] if len(dead_ends) > 1 else at(0.8), [("mutant_frog", 1)]),
+    ("m_pair_c", at(0.9), [("plague_frog", 2)]),
 ]
 used = set()
 encounters = []
@@ -110,7 +110,7 @@ for gid, cell, monsters in groups:
     encounters.append({"id": gid, "position": [x, z], "monsters": [{"monster": m, "count": n} for m, n in monsters]})
 keep = [e for e in area["encounters"] if e["id"] in ("s1_swarm", "s1_mutant")]
 secret = {"id": "s1_secret", "position": [37, ROWS[SECRET_CELL[1]]], "monsters": [
-    {"monster": "plague_rat", "count": 1, "rank": "elite", "modifier": "toxic"}, {"monster": "plague_rat", "count": 1}]}
+    {"monster": "plague_frog", "count": 1, "rank": "elite", "modifier": "toxic"}, {"monster": "plague_frog", "count": 1}]}
 area["encounters"] = encounters + keep + [secret]
 
 # Poças: a do meio do labirinto (que o teste usa) e as do fundo ficam; mais três nas células.

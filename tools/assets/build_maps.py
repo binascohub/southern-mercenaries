@@ -192,68 +192,114 @@ def stone_trail(rng_, points, step=0.9, spread=0.5, scale=(0.42, 0.62)):
 
 
 # --- Floresta ---------------------------------------------------------------------------------------
+# Mapa de salas e trilhas no desenho da referência do autor (~/Downloads/map-forest.jpg): a aldeia no canto sudoeste (a partida), seis setores
+# de monstros, cada um com um só tipo, e a sala do Leshy no canto nordeste (a saída). Dois setores têm uma praça no centro, com um NPC que
+# conversa e, no fim da fala, invoca um mini-chefe (como a estátua do Cemitério):
+#   1 Clareira dos Sapos (norte da aldeia: sapos ácidos) · 2 Ninho dos Ratos (salão oeste: ratos mutantes e a Praça da Pedra, com o Eremita)
+#   3 Gruta dos Morcegos (noroeste: morcegos da peste) · 4 Toca dos Répteis (coluna leste: répteis) · 5 Covil das Bestas (sul: bestas
+#   quitinosas e a Praça da Pira, com a Guardiã) · 6 Gruta do Gelo (leste: golens de gelo) · Covil do Leshy (nordeste: o Leshy e a saída).
+# Dois caminhos levam ao Leshy: o do oeste (1 -> 2 -> 3) e o do leste (5 -> 4 -> 6), ligados por um corredor entre o Ninho e a Gruta do Gelo.
 fr = rng("forest")
-f_rooms = [
-    room("gate", 0, 0, 24, 14, ["north"], torch=True, wall_height=0.8),
-    room("glade", 0, -17.5, 34, 21, ["south", "north", "east"], wall_height=0.8),
-    room("side", 23, -17.5, 12, 21, ["west"], wall_height=0.8),
-    room("path", 0, -34, 10, 12, ["south", "north"], wall_height=0.8),
-    room("grove", 0, -62, 36, 44, ["south"], wall_height=0.8),
-]
+
+# id: (x0, x1, z0, z1, {lado: coordenada da porta}). Salas vizinhas no leste-oeste ficam a 1 m uma da outra e as do norte-sul se tocam
+# (como no Cemitério); cada lado tem no máximo uma porta, de 6 m.
+FOR_ROOMS = {
+    "village": (-41, -17, -28, -7, {"north": -30, "east": -17.5}),
+    "toads": (-41, -15, -50, -28, {"south": -30, "north": -26}),                         # 1
+    "c1": (-32, -20, -58, -50, {"south": -26, "north": -26}),
+    "rats": (-48, 0, -86, -58, {"south": -26, "north": -14, "east": -72}),               # 2 (Praça da Pedra)
+    "c2": (-20, -8, -98, -86, {"south": -14, "north": -14}),
+    "bats": (-34, 8, -120, -98, {"south": -14, "east": -109}),                           # 3
+    "c3": (9, 31, -115, -103, {"west": -109, "east": -109}),
+    "lair": (32, 62, -122, -92, {"west": -109, "south": 46}),                            # Covil do Leshy
+    "c4": (40, 52, -92, -82, {"north": 46, "south": 46}),
+    "golems": (32, 62, -82, -56, {"north": 46, "south": 46, "west": -72}),               # 6
+    "c5": (1, 31, -78, -66, {"west": -72, "east": -72}),
+    "c6": (40, 52, -56, -46, {"north": 46, "south": 46}),
+    "reptiles": (36, 60, -46, -8, {"north": 46, "west": -17.5}),                         # 4
+    "c7": (25, 35, -21.5, -13.5, {"west": -17.5, "east": -17.5}),
+    "beasts": (0, 24, -28, -7, {"west": -17.5, "east": -17.5}),                          # 5 (Praça da Pira)
+    "c8": (-16, -1, -21.5, -13.5, {"west": -17.5, "east": -17.5}),
+}
+FOR_SECTORS = {"toads": "Pr_Obelisk2", "rats": "Pr_Cross4", "bats": "Pr_BrokenPillar2", "reptiles": "Pr_Obelisk1", "beasts": "Pr_Cross3",
+               "golems": "Pr_Obelisk3", "lair": "Pr_Obelisk3"}
+
+
+def fr_doors(rid):
+    x0, x1, z0, z1, doors = FOR_ROOMS[rid]
+    cx, cz = (x0 + x1) / 2, (z0 + z1) / 2
+    out = []
+    for side, coord in doors.items():
+        off = coord - (cx if side in ("north", "south") else cz)
+        out.append(side if abs(off) < 1e-6 else "%s:%g" % (side, off))
+    return out
+
+
+f_rooms_out = [room(rid, (x0 + x1) / 2, (z0 + z1) / 2, x1 - x0, z1 - z0, fr_doors(rid), wall_height=0.8)
+               for rid, (x0, x1, z0, z1, _) in FOR_ROOMS.items()]
+village_room = f_rooms_out[0]
+f_rooms = f_rooms_out[1:]
+_FOUT = {"north": (0, -1), "south": (0, 1), "west": (-1, 0), "east": (1, 0)}
+_FFACE = {"north": "south", "south": "north", "west": "east", "east": "west"}
+for _rid, (_x0, _x1, _z0, _z1, _doors) in FOR_ROOMS.items():    # conferência: do outro lado de cada porta há uma sala com a porta no mesmo lugar
+    for _side, _coord in _doors.items():
+        _pt = {"north": (_coord, _z0), "south": (_coord, _z1), "west": (_x0, _coord), "east": (_x1, _coord)}[_side]
+        _probe = (_pt[0] + _FOUT[_side][0] * 1.4, _pt[1] + _FOUT[_side][1] * 1.4)
+        _hits = [o for o, r in FOR_ROOMS.items() if o != _rid and r[0] <= _probe[0] <= r[1] and r[2] <= _probe[1] <= r[3]]
+        assert len(_hits) == 1 and FOR_ROOMS[_hits[0]][4].get(_FFACE[_side]) == _coord, ("porta sem par", _rid, _side, _coord, _hits)
+for _a in FOR_ROOMS:                                           # e nenhuma sala sobre outra
+    for _b in FOR_ROOMS:
+        if _a < _b:
+            _ra, _rb = FOR_ROOMS[_a], FOR_ROOMS[_b]
+            assert _ra[1] <= _rb[0] or _rb[1] <= _ra[0] or _ra[3] <= _rb[2] or _rb[3] <= _ra[2], ("salas sobrepostas", _a, _b)
+
+
+def f_rect_in(x, z, rid, margin=0.0):
+    x0, x1, z0, z1, _ = FOR_ROOMS[rid]
+    return x0 + margin <= x <= x1 - margin and z0 + margin <= z <= z1 - margin
+
+
+# Seis setores, um monstro em cada (os golens de gelo são elites). Os dois golens invocados nas praças entram como mini-chefes (`rank`).
 f_enc = [
-    {"id": "f_toads", "position": [-8, -17], "monsters": [{"monster": "acid_toad", "count": 2}]},
-    {"id": "f_rats", "position": [8, -22], "monsters": [{"monster": "mutant_rat", "count": 3}]},
-    {"id": "f_side", "position": [23, -18], "monsters": [{"monster": "golden_lizard", "count": 2}]},
-    {"id": "f_path", "position": [0, -34], "monsters": [{"monster": "plague_bat", "count": 3}]},
-    {"id": "f_grove_a", "position": [-9, -52], "monsters": [{"monster": "acid_toad", "count": 3}]},
-    {"id": "f_grove_b", "position": [9, -54], "monsters": [{"monster": "mutant_rat", "count": 4}]},
-    {"id": "f_leshy", "position": [0, -76], "monsters": [{"monster": "leshy", "count": 1}]},
+    {"id": "f_toads_a", "position": [-36, -38], "monsters": [{"monster": "acid_toad", "count": 2}]},
+    {"id": "f_toads_b", "position": [-20, -43], "monsters": [{"monster": "acid_toad", "count": 3}]},
+    {"id": "f_toads_c", "position": [-36, -46], "monsters": [{"monster": "acid_toad", "count": 2}]},
+    {"id": "f_rats_a", "position": [-42, -64], "monsters": [{"monster": "mutant_frog", "count": 3}]},
+    {"id": "f_rats_b", "position": [-40, -80], "monsters": [{"monster": "mutant_frog", "count": 4}]},
+    {"id": "f_rats_c", "position": [-6, -64], "monsters": [{"monster": "mutant_frog", "count": 3}]},
+    {"id": "f_rats_d", "position": [-6, -82], "monsters": [{"monster": "mutant_frog", "count": 3}]},
+    {"id": "f_bats_a", "position": [-28, -106], "monsters": [{"monster": "plague_bat", "count": 3}]},
+    {"id": "f_bats_b", "position": [-4, -116], "monsters": [{"monster": "plague_bat", "count": 3}]},
+    {"id": "f_bats_c", "position": [-26, -116], "monsters": [{"monster": "plague_bat", "count": 3}]},
+    {"id": "f_reptiles", "position": [53, -36], "monsters": [{"monster": "forest_reptile", "count": 3}]},
+    {"id": "f_reptiles_b", "position": [52, -14], "monsters": [{"monster": "forest_reptile", "count": 3}]},
+    {"id": "f_reptiles_c", "position": [41, -40], "monsters": [{"monster": "forest_reptile", "count": 3}]},
+    {"id": "f_beasts", "position": [4, -25], "monsters": [{"monster": "chitin_beast", "count": 2}]},
+    {"id": "f_beasts_b", "position": [20, -25], "monsters": [{"monster": "chitin_beast", "count": 2}]},
+    {"id": "f_beasts_c", "position": [4, -10], "monsters": [{"monster": "chitin_beast", "count": 2}]},
+    {"id": "f_golem_ice", "position": [54, -62], "monsters": [{"monster": "golem_ice", "count": 1}]},
+    {"id": "f_golem_ice_b", "position": [40, -76], "monsters": [{"monster": "golem_ice", "count": 1}]},
+    {"id": "f_leshy", "position": [47, -111], "monsters": [{"monster": "leshy", "count": 1}]},
 ]
-# Um golem de cada: Pedra na clareira, Gelo na sala lateral, Fogo no bosque; e o bando de répteis no bosque. Entram depois de f_keep para não mudar o sorteio das plantas.
-f_extra = [{"id": "f_golem_stone", "position": [-2, -23], "monsters": [{"monster": "golem_stone", "count": 1}]},
-            {"id": "f_golem_ice", "position": [22, -12], "monsters": [{"monster": "golem_ice", "count": 1}]},
-            {"id": "f_golem_fire", "position": [0, -62], "monsters": [{"monster": "golem_fire", "count": 1}]},
-            {"id": "f_reptiles", "position": [-13, -58], "monsters": [{"monster": "forest_reptile", "count": 3}]},
-            {"id": "f_beasts", "position": [9, -14.5], "monsters": [{"monster": "chitin_beast", "count": 2}]}]
-# --- Trilhas e setores da Floresta (a mesma lógica do Cemitério) ----------------------------------------------------
-# Uma pista central de lajes serpenteia do portão ao Leshy (reta nas portas) e se ramifica: a oeste leva à aldeia, a leste a um beco
-# sem saída com baú; no bosque duas pistas laterais (oeste, com baú no fim; leste) se separam e se reencontram perto do Leshy, ligadas
-# ao centro por travessias. Os monstros ficam em setores, separados por pares de marcos de pedra em cada pista:
-#   portão (seguro) -> A Clareira (sapos, ratos, bestas, o golem de pedra; ramais: aldeia e beco do leste com o golem de gelo)
-#   -> B Passagem (morcegos) -> C Bosque (sapos, ratos, répteis, o golem de fogo) -> D Covil do Leshy (o Leshy, o baú do fundo).
-F_BORDERS = (-26, -38, -64)    # z dos marcos entre os setores A|B, B|C e C|D
+F_PLAZA_R = 6.5
+F_PLAZAS = {"stone": (-24, -72), "fire": (12, -17.5)}       # a Praça da Pedra (Ninho dos Ratos) e a Praça da Pira (Covil das Bestas)
+f_summons = {
+    "stone": {"id": "f_golem_stone", "position": [-24, -64.5], "spread": 3.0, "toast": "TOAST_HERMIT_AWAKENS",
+              "monsters": [{"monster": "golem_stone", "count": 1, "rank": "miniboss"}]},
+    "fire": {"id": "f_golem_fire", "position": [12, -10.0], "spread": 3.0, "toast": "TOAST_PYRE_AWAKENS",
+             "monsters": [{"monster": "golem_fire", "count": 1, "rank": "miniboss"}]},
+}
+f_extra = []
 
-
-def f_m(z):
-    """Pista do centro: reta no portão e na passagem, serpenteia na clareira (meio período) e no bosque (um período), e volta ao centro nas portas."""
-    if -28 < z < -7:
-        return 3.0 * math.sin(math.pi * (z + 7) / 21.0)
-    if -76 < z < -40:
-        return 5.0 * math.sin(math.pi * (z + 40) / 18.0)
-    return 0.0
-
-
-def f_pts(f, za, zb, step=3):
-    zs = list(range(za, zb, -step)) + [zb]
-    return [(round(f(z), 2), z) for z in zs]
-
-
-def f_at(line, z):
-    """x da pista `line` (pontos com z decrescente) em z."""
-    for (x0, z0), (x1, z1) in zip(line, line[1:]):
-        if z1 <= z <= z0 and z0 != z1:
-            return x0 + (x1 - x0) * (z - z0) / (z1 - z0)
-    return line[-1][0]
-
-
-F_M = f_pts(f_m, 1, -79) + [(0.0, -82)]
-F_W_VILLAGE = [(round(f_m(-12), 2), -12), (-8, -14.5), (-14, -16.6), (-17, -17.5), (-23, -18.4), (-29.5, -18.8), (-34.5, -19.8)]   # ramal até a aldeia
-F_E_ALLEY = [(round(f_m(-14), 2), -14), (7, -15.2), (13, -17), (17, -17.5), (21, -18.2), (24.5, -20.5)]                           # beco do leste (baú)
-F_W_LANE = [(round(f_m(-42), 2), -42), (-6, -46.5), (-12, -52), (-14.5, -58), (-13, -65), (-14, -70), (-14, -73.5)]               # oeste: acaba num beco (baú)
-F_E_LANE = [(round(f_m(-42), 2), -42), (5, -46), (11, -52.5), (14, -60), (13, -67), (9, -73), (4, -77.5), (0.0, -79)]            # leste: volta ao centro
-f_trails = [F_M, F_W_VILLAGE, F_E_ALLEY, F_W_LANE, F_E_LANE,
-            [(-6, 3), (-2.5, 2.4), (0.0, 1.0)],                                                                                    # do portal de volta à pista
-            [(-14.5, -58), (-7, -58.5), (0.0, -58)], [(13, -67), (9, -66.6), (round(f_m(-67), 2), -67)]]                          # travessias do bosque
+# --- Trilhas de lajes: ligam as portas e os centros dos setores (param na borda das praças, que têm piso próprio) --------------------
+f_trails = [
+    [(-22.5, -10.5), (-19, -15), (-16, -17.5), (-8, -17.5), (0, -17.5), (5.6, -17.5)],                           # da partida até a Praça da Pira
+    [(18.4, -17.5), (24, -17.5), (35, -17.5), (38, -17.5), (43, -23), (49, -29), (51, -36), (48, -42), (46, -46),
+     (46, -56), (45, -62), (47, -69), (46, -76), (46, -92), (47, -103)],                                         # a espinha do leste: répteis, gelo, Leshy
+    [(-30, -28), (-31, -34), (-28, -40), (-26, -46), (-26, -50), (-26, -58), (-25, -65.5)],                      # da aldeia até a Praça da Pedra
+    [(-22, -78), (-18, -82), (-14, -86), (-14, -98), (-12, -101), (-6, -105), (2, -108), (8, -109), (32, -109), (40, -109), (45, -106), (47, -104)],
+    [(-17.5, -72), (-8, -72), (0, -72), (32, -72), (38, -70.5), (46, -69)],                                      # o corredor que liga o Ninho à Gruta do Gelo
+]
 
 
 def f_trail_dist(x, z):
@@ -272,14 +318,16 @@ def f_samples(step=2.5, radius=2.2):
 
 f_decor = []
 plants = ["Pl_Bush", "Pl_Swirl", "Pl_Hemp", "Pl_Flower"]
+F_START = (-22.5, -10.5)
+f_fixed = [(F_START[0], F_START[1], 3), (-26.5, -9.0, 2), (47, -119, 4), (41, -117, 3), (53, -117, 3), (57, -12, 3), (-44, -62, 3), (-30, -116, 3)]
+f_keep = [(e["position"][0], e["position"][1], 3) for e in f_enc] + [(cx, cz, F_PLAZA_R + 3.0) for cx, cz in F_PLAZAS.values()] + f_fixed
 for rd in f_rooms:
     f_decor += ring(fr, rd, ["Pl_Bamboo", "Pl_Bamboo", "Pl_Bush"], 2.4, scale=(0.9, 1.5))
-    f_decor += scatter(fr, rd, plants, int(rd["size"][0] * rd["size"][1] / 22), margin=2.0, avoid=[(0, 3, 3)])
-# Pedras (Rocks, Nobiax, CC0 + Low Poly Rocks, para, CC0): semente própria para não mexer no sorteio das plantas. As grandes bloqueiam, as pequenas são só enfeite.
+    f_decor += scatter(fr, rd, plants, int(rd["size"][0] * rd["size"][1] / 22), margin=2.0, avoid=f_keep)
+# Pedras (Rocks, Nobiax, CC0 + Low Poly Rocks, para, CC0): semente própria. As grandes bloqueiam, as pequenas são só enfeite.
 ROCK_FOOTPRINT = {"Rock_1": 0.9, "Rock_2": 0.75, "Rock_3": 1.2, "Rock_4": 1.0, "Rock_5": 0.75,
                   "RockP_1": 0.9, "RockP_2": 1.1, "RockP_3": 1.0, "RockP_4": 1.0, "RockP_5": 1.0, "RockP_6": 0.95}
 rkr = rng("forest_rocks")
-f_keep = [(0, 3, 4), (-6, 3, 3), (0, -82, 4), (24, -22, 3), (-14, -74, 3)] + [(e["position"][0], e["position"][1], 3) for e in f_enc]
 for rd in f_rooms:
     for rock in scatter(rkr, rd, list(ROCK_FOOTPRINT), int(rd["size"][0] * rd["size"][1] / 70), margin=3.0, scale=(0.6, 2.2), avoid=f_keep):
         if rock["scale"] >= 1.2:
@@ -296,8 +344,6 @@ wdr = rng("forest_weeds")
 for rd in f_rooms:
     f_decor += scatter(wdr, rd, ["Pl_Weed%d" % i for i in range(1, 6)], int(rd["size"][0] * rd["size"][1] / 8), margin=1.5,
                        scale=(1.0, 2.0), avoid=f_keep)
-# Nenhuma pedra (sólida) onde um golem nasce.
-f_decor = [d for d in f_decor if not (d["piece"].startswith("Rock_") and any(math.hypot(d["position"][0] - g["position"][0], d["position"][1] - g["position"][1]) < 3.5 for g in f_extra))]
 # Árvores mortas (Dead Tree, piacenti, CC BY 3.0): troncos secos com raízes à mostra, semente própria; o tronco bloqueia (colisor pequeno).
 dtr = rng("forest_dead_trees")
 for rd in f_rooms:
@@ -305,24 +351,21 @@ for rd in f_rooms:
         side = round(0.9 * tree["scale"], 1)
         tree["solid"] = [side, side]
         f_decor.append(tree)
-f_decor += [{"piece": "Pr_RoadSign", "position": [4, 2], "rotation": 200}, {"piece": "Pr_LampPost", "position": [-6, 3], "rotation": 0, "solid": [0.6, 0.6]},
-            {"piece": "Pr_Obelisk3", "position": [0, -80], "solid": [1.4, 1.4]}, {"piece": "Pr_Obelisk2", "position": [-6, -78], "solid": [1.0, 1.0]},
-            {"piece": "Pr_Obelisk2", "position": [6, -78], "solid": [1.0, 1.0]}, {"piece": "Pr_BrokenPillar2", "position": [-12, -70], "solid": [1.2, 1.2]},
-            {"piece": "Pr_BrokenPillar1", "position": [12, -68], "solid": [1.2, 1.2]}, {"piece": "Pr_CoveredWell", "position": [-8, -4], "solid": [1.8, 1.8]}]
-# Poucos cervos: semente própria, longe das portas, do portal, dos baús, da saída, dos grupos de monstros, dos adereços fixos e uns dos outros.
+# Peças postas à mão: placa e poste na partida, obeliscos e pilares no Covil do Leshy.
+f_decor += [{"piece": "Pr_RoadSign", "position": [-19.0, -9.5], "rotation": 200}, {"piece": "Pr_LampPost", "position": [-24.0, -8.2], "rotation": 0, "solid": [0.6, 0.6]},
+            {"piece": "Pr_Obelisk3", "position": [47, -119], "solid": [1.4, 1.4]}, {"piece": "Pr_Obelisk2", "position": [41, -117], "solid": [1.0, 1.0]},
+            {"piece": "Pr_Obelisk2", "position": [53, -117], "solid": [1.0, 1.0]}, {"piece": "Pr_BrokenPillar2", "position": [36, -100], "solid": [1.2, 1.2]},
+            {"piece": "Pr_BrokenPillar1", "position": [58, -100], "solid": [1.2, 1.2]}]
+# Poucos cervos: semente própria, longe das portas, dos baús, dos grupos de monstros, das praças, das trilhas e uns dos outros.
 f_deer = []
 dr_ = rng("forest_deer")
-f_fixed = [(4, 2, 3), (-8, -4, 4), (0, -80, 5), (-6, -78, 3), (6, -78, 3), (-12, -70, 3), (12, -68, 3)]
-for rd, count in ((f_rooms[1], 2), (f_rooms[2], 1), (f_rooms[4], 2), (f_rooms[0], 1)):  # clareira, lateral, bosque, portão
-    for spot in scatter(dr_, rd, ["deer"], count, margin=4.0, avoid=f_keep + f_fixed + [(g["position"][0], g["position"][1], 5) for g in f_extra] + f_samples() + [(d["position"][0], d["position"][1], 10) for d in f_deer]):
+for rid, count in (("toads", 1), ("rats", 1), ("bats", 1), ("reptiles", 2), ("golems", 1)):
+    rd = f_rooms_out[list(FOR_ROOMS).index(rid)]
+    for spot in scatter(dr_, rd, ["deer"], count, margin=4.0, avoid=f_keep + f_samples() + [(d["position"][0], d["position"][1], 10) for d in f_deer]):
         f_deer.append({"id": "d%d" % (len(f_deer) + 1), "monster": "deer_buck" if len(f_deer) % 2 == 0 else "deer_doe",
                        "position": spot["position"], "table": "breakable_potion"})
 # --- Aldeia de Ferncroft (Medieval Props Pack 3, Daniel Andersson, CC0; casas do kit de Tortuga) ---------------------------------------------
-# Sala nova a oeste da clareira (porta no meio da parede). Os encontros e o sorteio das outras salas ficam como estavam: a porta nova da
-# clareira só entra na lista final de salas, e o que o sorteio pôs na passagem é tirado depois.
-village_room = room("village", -29, -17.5, 24, 21, ["east"], wall_height=0.8)
-f_rooms_out = [dict(r, doors=r["doors"] + ["west"]) if r["id"] == "glade" else r for r in f_rooms] + [village_room]
-f_decor = [d for d in f_decor if not (-20.5 < d["position"][0] < -13.5 and abs(d["position"][1] + 17.5) < 3.6)]
+# A aldeia é a sala da partida (canto sudoeste): portas ao norte (Clareira dos Sapos) e a leste (corredor até o Covil das Bestas).
 
 
 def cabin(cx, cz, windows_first=True):
@@ -345,15 +388,15 @@ v_decor += [
     {"piece": "Vl_Outhouse", "position": [-38.3, -14.6], "solid": [1.4, 1.5]},
     {"piece": "Vl_Logs", "position": [-38.5, -19.9], "rotation": 90, "solid": [2.2, 0.8]},
     {"piece": "Vl_ChoppingBlock", "position": [-37.0, -17.4], "rotation": 30, "solid": [0.5, 0.5]},
-    {"piece": "Vl_TanningStand", "position": [-30.2, -24.4], "solid": [2.2, 0.5]},
+    {"piece": "Vl_TanningStand", "position": [-23.0, -27.0], "solid": [2.2, 0.5]},
     {"piece": "Vl_FishRack", "position": [-21.0, -22.0], "solid": [2.1, 0.4]},
     {"piece": "Vl_Ladder", "position": [-33.2, -25.2], "rotation": 0, "y": 0.0},
     {"piece": "Well_Covered", "position": [-27.5, -15.5], "solid": [1.8, 1.8]},
     {"piece": "Cart_Wood", "position": [-30.0, -9.6], "rotation": 15, "solid": [2.4, 1.3]},
     {"piece": "Wheelbarrow", "position": [-34.5, -12.3], "rotation": 340, "solid": [1.0, 0.8]},
-    {"piece": "Barrel", "position": [-32.0, -26.3], "solid": [0.9, 0.9]},
-    {"piece": "Barrel", "position": [-22.0, -26.2], "solid": [0.9, 0.9]},
-    {"piece": "Crate_Wooden", "position": [-31.0, -26.4], "rotation": 20, "solid": [0.9, 0.9]},
+    {"piece": "Barrel", "position": [-37.6, -26.3], "solid": [0.9, 0.9]},
+    {"piece": "Barrel", "position": [-19.6, -26.0], "solid": [0.9, 0.9]},
+    {"piece": "Crate_Wooden", "position": [-38.8, -26.4], "rotation": 20, "solid": [0.9, 0.9]},
     {"piece": "Bucket_Wooden_1", "position": [-26.2, -16.9]},
     {"piece": "Stool_Wood", "position": [-35.9, -17.2]},
     {"piece": "Bench_Wood", "position": [-22.6, -19.4], "rotation": 0},
@@ -362,28 +405,51 @@ v_decor += [
 ]
 vr = rng("forest_village")
 v_keep = [(-35, -23, 4.6), (-26, -23.5, 4.6), (-36.5, -10.6, 2.2), (-38.3, -14.6, 1.6), (-27.5, -15.5, 2.0), (-30, -9.6, 2.2),
-          (-19, -17.5, 4.0), (-34.5, -19, 2.0), (-30.2, -21.2, 2.0), (-30.2, -24.4, 2.0), (-21, -22, 2.0), (-38.5, -19.9, 2.0), (-37.0, -17.4, 1.5)]
+          (-19, -17.5, 4.0), (-34.5, -19, 2.0), (-30.2, -21.2, 2.0), (-23, -27, 2.0), (-24, -10, 3.0), (-26.5, -9, 2.0), (-21, -22, 2.0), (-38.5, -19.9, 2.0), (-37.0, -17.4, 1.5)]
 v_decor += ring(vr, village_room, ["Pl_Bamboo", "Pl_Bamboo", "Pl_Bush"], 2.4, scale=(0.9, 1.5))
 v_decor += scatter(vr, village_room, ["Pl_Bush", "Pl_Flower", "Pl_Swirl", "Pl_Shrub1", "Pl_Shrub3"], 10, margin=2.5, scale=(0.8, 1.4), avoid=v_keep)
 v_decor += scatter(vr, village_room, ["Pl_Weed1", "Pl_Weed2", "Pl_Weed3", "Pl_Weed4", "Pl_Weed5"], 60, margin=1.5, scale=(1.0, 2.0), avoid=v_keep)
 f_decor += v_decor
 
-# Marcos de pedra nas divisas dos setores: um par de cada lado de cada pista, de um tipo por divisa (como no Cemitério).
+# Praças (centro dos setores 2 e 5): piso de lajes em disco, anel de peças em volta (sem tapar as trilhas) e o NPC no meio.
+def f_plaza(kind, cx, cz):
+    pr = random.Random("forest_plaza_%s" % kind)
+    out = []
+    for gx in range(-8, 9, 2):
+        for gz in range(-8, 9, 2):
+            if math.hypot(gx, gz) < F_PLAZA_R + 0.8:
+                out.append({"piece": "Floor_UnevenBrick", "position": [cx + gx, cz + gz], "rotation": pr.choice((0, 90, 180, 270)), "y": 0.03})
+    pieces = ["Pr_Obelisk2", "Pr_BrokenPillar1"] if kind == "stone" else ["Pr_LampPost", "Pr_BrokenPillar2"]
+    for k in range(12):
+        a = math.tau * (k + 0.5) / 12
+        x, z = cx + (F_PLAZA_R + 1.0) * math.cos(a), cz + (F_PLAZA_R + 1.0) * math.sin(a)
+        if f_trail_dist(x, z) < 2.4 or not any(f_rect_in(x, z, r, 1.0) for r in ("rats", "beasts")):
+            continue
+        out.append({"piece": pieces[k % 2], "position": [round(x, 1), round(z, 1)], "rotation": pr.randrange(0, 360, 15), "solid": [0.8, 0.8]})
+    if kind == "fire":
+        out.append({"light": [1.0, 0.55, 0.22], "position": [cx, cz + 0.5], "y": 2.4, "range": 12.0, "energy": 1.6})
+    return out
+
+
+f_plaza_decor = f_plaza("stone", *F_PLAZAS["stone"]) + f_plaza("fire", *F_PLAZAS["fire"])
+
+# Marcos de pedra em cada porta de cada setor: um par, um de cada lado da abertura (um tipo por setor, como as divisas do Cemitério).
 f_markers = []
-for z, (left, right), lanes in zip(F_BORDERS, (("Pr_Obelisk3", "Pr_Obelisk2"), ("Pr_Cross4", "Pr_Cross4"), ("Pr_BrokenPillar2", "Pr_BrokenPillar2")),
-                                   ((("M", F_M, 3.6),), (("M", F_M, 3.4),), (("W", F_W_LANE, 3.6), ("M", F_M, 4.5), ("E", F_E_LANE, 3.6)))):
-    for _, line, half in lanes:
-        x = f_at(line, z)
-        f_markers += [{"piece": left, "position": [round(x - half, 1), z], "solid": [1.4, 1.4]},
-                      {"piece": right, "position": [round(x + half, 1), z], "solid": [1.4, 1.4]}]
-# Nada sorteado (plantas, pedras) em cima das trilhas ou dos marcos.
-f_decor = [d for d in f_decor if not (d["piece"].startswith(("Pl_", "Rock_", "Dead_")) and (
-    f_trail_dist(*d["position"]) < (2.6 if d["piece"].startswith(("Rock_", "Dead_")) else 1.9)
+for rid, piece in FOR_SECTORS.items():
+    x0, x1, z0, z1, doors = FOR_ROOMS[rid]
+    for side, coord in doors.items():
+        for off in (-3.6, 3.6):
+            x, z = {"north": (coord + off, z0 + 1.2), "south": (coord + off, z1 - 1.2), "west": (x0 + 1.2, coord + off), "east": (x1 - 1.2, coord + off)}[side]
+            f_markers.append({"piece": piece, "position": [round(x, 1), round(z, 1)], "solid": [1.4, 1.4]})
+# Nada sorteado (plantas, pedras, árvores) em cima das trilhas, das praças e dos marcos.
+f_decor = [d for d in f_decor if not (d["piece"].startswith(("Pl_", "Rock", "Dead_")) and (
+    f_trail_dist(*d["position"]) < (2.6 if d["piece"].startswith(("Rock", "Dead_")) else 1.9)
+    or any(math.hypot(d["position"][0] - cx, d["position"][1] - cz) < F_PLAZA_R + 1.5 for cx, cz in F_PLAZAS.values())
     or any(math.hypot(d["position"][0] - m["position"][0], d["position"][1] - m["position"][1]) < 2.2 for m in f_markers)))]
-f_decor += f_markers
+f_decor += f_plaza_decor + f_markers
 ft = random.Random("forest_trails")
 for line in f_trails:
-    f_decor += stone_trail(ft, line)
+    f_decor += [s for s in stone_trail(ft, line) if all(math.hypot(s["position"][0] - cx, s["position"][1] - cz) > F_PLAZA_R + 0.6 for cx, cz in F_PLAZAS.values())]
 v_props = [
     {"id": "village_hunter", "kind": "npc", "npc": "village_hunter", "position": [-34.5, -19.0]},
     {"id": "village_wife", "kind": "npc", "npc": "village_wife", "position": [-30.2, -21.2]},
@@ -391,15 +457,18 @@ v_props = [
     {"id": "village_sign", "kind": "sign", "name_key": "PROP_VILLAGE_SIGN", "position": [-19.5, -14.6], "text_key": "PROP_VILLAGE_SIGN_TEXT"},
 ]
 arenas["forest_01_path"] = {
-    "_comment": "Floresta (04-tortuga-e-missoes.md, missão 3 na ordem do mapa: Tortuga -> Floresta -> Ruínas -> Cemitério -> Forte). Uma pista central de lajes do portão ao Leshy, com ramais (aldeia a oeste, beco do baú a leste) e duas pistas laterais no bosque, e quatro setores de monstros (A Clareira, B Passagem, C Bosque, D Covil do Leshy) separados por pares de marcos de pedra, como no Cemitério. Clareiras abertas com cerca viva de bambu e arbustos (Stylish Plants, Nobiax, CC0), obeliscos e pilares quebrados (Medieval Props Textured). O Leshy guarda o bosque do fundo. Gerado por tools/assets/build_maps.py.",
+    "_comment": "Floresta (04-tortuga-e-missoes.md, missão 3 na ordem do mapa: Tortuga -> Floresta -> Ruínas -> Cemitério -> Forte). Mapa de salas e trilhas no desenho de ~/Downloads/map-forest.jpg: a aldeia na partida (sudoeste), seis setores de monstros (Clareira dos Sapos, Ninho dos Ratos, Gruta dos Morcegos, Toca dos Répteis, Covil das Bestas, Gruta do Gelo), marcos de pedra nas portas dos setores e trilhas de lajes ligando as portas; o Ninho (Praça da Pedra, o Eremita) e o Covil das Bestas (Praça da Pira, a Guardiã) têm uma praça no centro com um NPC que invoca um mini-chefe golem; o Leshy guarda o canto nordeste, com a saída. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_FOREST", "player_class": "mage", "map_id": "map_forest", "area_level": 3, "outdoor": True,
     "wake_radius": 10.0, "alert_radius": 5.0, "rooms": f_rooms_out, "encounters": f_enc + f_extra, "hazards": [],
-    "entries": {"start": [0, 3], "forest": [0, 3]},
+    "entries": {"start": [F_START[0], -12.0], "forest": [F_START[0], -12.0]},
     "props": [
-        {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-6, 3], "to": "tortuga", "entry": "forest", "expedition_end": True},
-        {"id": "to_ruins", "kind": "exit", "name_key": "PROP_TO_RUINS", "position": [0, -82], "to": "ruins_01_city", "entry": "start", "group": True},
-        {"id": "forest_chest_1", "kind": "chest", "position": [24, -22], "loot": "chest"},
-        {"id": "forest_chest_2", "kind": "chest", "position": [-14, -74], "loot": "chest"},
+        {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-26.5, -9.0], "to": "tortuga", "entry": "forest", "expedition_end": True},
+        {"id": "to_ruins", "kind": "exit", "name_key": "PROP_TO_RUINS", "position": [47, -119.5], "to": "ruins_01_city", "entry": "start", "group": True},
+        {"id": "forest_chest_1", "kind": "chest", "position": [57, -12], "loot": "chest"},
+        {"id": "forest_chest_2", "kind": "chest", "position": [-44, -62], "loot": "chest"},
+        {"id": "forest_chest_3", "kind": "chest", "position": [-30, -116], "loot": "chest"},
+        {"id": "forest_hermit", "kind": "npc", "npc": "forest_hermit", "position": list(F_PLAZAS["stone"]), "rotation": 0, "summon": f_summons["stone"]},
+        {"id": "forest_pyre_keeper", "kind": "npc", "npc": "forest_pyre_keeper", "position": list(F_PLAZAS["fire"]), "rotation": 0, "summon": f_summons["fire"]},
     ] + v_props,
     "quest_spots": [], "breakables": f_deer,
     "style": {"_comment": "Floresta: sem piso do kit (chão de grama), cerca viva de arbustos nas bordas.", "walls": [""], "floor": "Ground_Grass", "low": "Pl_Bush",
@@ -454,129 +523,181 @@ arenas["ruins_01_city"] = {
 }
 
 # --- Cemitério --------------------------------------------------------------------------------------
-# Mapa grande (64 x 312 m de pátio + cripta: o comprimento é 3x o da primeira versão, a largura é a mesma, então a área é 3x) cortado por
-# uma rede de trilhas de pedra, para confundir os heróis: três pistas (oeste, centro, leste) saem do portão, se separam e se ligam por
-# travessias; as laterais passam por mais grupos de monstros, a do oeste e um ramal do leste terminam em becos sem saída com baú, e só
-# o centro e o leste chegam à cripta. Sete setores, separados por pares de marcos de pedra em cada pista e por grades pretas:
-#   portão (seguro) -> A Campo de Covas (ratos e morcegos) -> B Ossuário (esqueletos) -> C Terra dos Escorpiões (escorpiões e esqueletos;
-#   Praça das Pedras, com mini-chefe) -> D Cova dos Mortos (zumbis) -> E Catacumbas (zumbis, esqueletos e morcegos) -> F Alameda da Estátua
-#   (esqueletos e zumbis; Praça da Estátua, com mini-chefe invocado) -> G Covil do Troll (os trolls e esqueletos) -> cripta (o Senhor da Cripta).
+# Mapa de salas e corredores no desenho de calabouço da referência do autor (~/Downloads/map-cemitery.jpeg), cercado de vazio, com
+# ~18 mil m2 (3x o da primeira versão) e sete áreas numeradas, uma por setor, cada uma com um só tipo de monstro:
+#   1 Campo de Covas (entrada, sudeste: ratos) · 2 Terra dos Escorpiões (sala leste: escorpiões e a Praça das Pedras, com mini-chefe)
+#   3 Ossuário (salão grande de pilares a noroeste: esqueletos) · 4 Cova dos Mortos (salão central em cruz e a sala do sul: zumbis)
+#   5 Alameda da Estátua (sala grande a oeste: golens de pedra e a Praça da Estátua, com mini-chefe invocado)
+#   6 Catacumbas (os corredores: morcegos) · 7 Covil do Troll (sala do topo: trolls e o Senhor da Cripta, no fundo, com a saída).
+# Os corredores formam anéis (o corredor leste, o de cima e o salão central; o salão central, o do sul e o corredor leste), então há mais
+# de um caminho. Uma trilha de pedras musgosas liga as portas; todas as salas têm grades pretas nas paredes, com abertura nas portas.
 cr = rng("cemetery")
-ZS = 3                                  # o pátio é ZS vezes mais comprido que o da primeira versão (104 m -> 312 m)
-YARD_W, YARD_TOP, YARD_BOTTOM = 64, -6, -6 - 104 * ZS
-c_rooms = [
-    room("gate", 0, 0, 22, 12, ["north"], wall_height=0.8, torch=True),
-    room("yard", 0, (YARD_TOP + YARD_BOTTOM) / 2, YARD_W, YARD_TOP - YARD_BOTTOM, ["south", "north"], wall_height=0.8),
-    room("crypt", 0, YARD_BOTTOM - 10, 24, 20, ["south"], wall_height=0.8),
-]
-SECTOR_BORDERS = (-56, -100, -144, -188, -230, -274)     # z dos marcos entre os sete setores (A|B ... F|G)
-SECTOR_Z = (-12,) + SECTOR_BORDERS + (YARD_BOTTOM,)     # z de cima e de baixo de cada setor (A a G)
+
+# id: (centro x, centro z, largura, altura, {lado: coordenada da porta}). Salas vizinhas no leste-oeste ficam a 1 m uma da outra e as do
+# norte-sul se tocam (como no labirinto do Esgoto); cada lado tem no máximo uma porta, de 6 m.
+CEM_ROOMS = {
+    "gate": (0, 0, 14, 12, {"north": 0}),
+    "r1": (0, -14, 26, 16, {"south": 0, "west": -14}),                                  # 1 Campo de Covas
+    "e0": (-20, -11, 12, 30, {"north": -20, "east": -14, "west": 0}),                   # corredor leste, em trechos
+    "e1": (-20, -38, 12, 24, {"north": -20, "south": -20, "west": -43}),
+    "e2": (-20, -63, 12, 26, {"north": -20, "south": -20, "east": -57.5}),
+    "e3": (-20, -89, 12, 26, {"north": -20, "south": -20, "east": -84}),
+    "e4": (-20, -111, 12, 18, {"south": -20, "west": -114}),
+    "r2": (5, -52, 36, 26, {"west": -57.5}),                                            # 2 Terra dos Escorpiões
+    "alcove": (-2, -84, 22, 14, {"west": -84}),
+    "ct": (-73, -114, 92, 12, {"east": -114, "west": -114, "north": -80, "south": -80}),  # corredor de cima
+    "room3": (-163, -111, 86, 48, {"east": -114}),                                      # 3 Ossuário
+    "cv": (-80, -136, 12, 32, {"south": -80, "north": -80}),
+    "top": (-80, -166, 38, 28, {"south": -80}),                                         # 7 Covil do Troll
+    "hn": (-80, -83.5, 12, 49, {"north": -80, "south": -80}),
+    "hub": (-83, -43, 36, 32, {"north": -80, "east": -43, "west": -43, "south": -83}),  # 4 Cova dos Mortos (salão central em cruz)
+    "he": (-45.5, -43, 37, 8, {"west": -43, "east": -43}),
+    "hw": (-119, -43, 34, 8, {"west": -43, "east": -43}),
+    "room5": (-166, -43, 58, 56, {"east": -43}),                                        # 5 Alameda da Estátua
+    "hs": (-83, -16, 12, 22, {"north": -83, "south": -83}),
+    "j": (-83, 0, 40, 10, {"north": -83, "south": -83, "west": 0, "east": 0}),
+    "sw": (-111, 0, 14, 14, {"east": 0}),
+    "se": (-55, 0, 14, 14, {"west": 0, "east": 0}),
+    "je": (-37, 0, 20, 8, {"west": 0, "east": 0}),
+    "bottom": (-83, 16, 40, 22, {"north": -83}),                                        # sala do sul (zumbis)
+}
+SECTOR_ROOMS = ("r1", "r2", "room3", "hub", "room5", "top", "bottom", "alcove", "sw", "se")     # salas com túmulos, jarros e ossos
 
 
-def lane_m(z):
-    """Pista do centro: serpenteia pelo pátio (meio período a cada 34 m), nasce reta no portão e volta ao centro
-    antes da cripta."""
-    start = min(1.0, max(0.0, (2 - z) / 12.0))
-    end = min(1.0, max(0.0, (z - (YARD_BOTTOM - 2)) / 14.0))
-    return 6.0 * math.sin(z * math.pi / 34.0) * start * end
+def _door_list(cx, cz, doors):
+    out = []
+    for side, coord in doors.items():
+        off = coord - (cx if side in ("north", "south") else cz)
+        out.append(side if abs(off) < 1e-6 else "%s:%g" % (side, off))
+    return out
 
 
-def lane_w(z):
-    return -17 + 4.0 * math.sin(z * math.pi / 22.0 + 0.5)
+def _rect(rid):
+    cx, cz, w, h, _ = CEM_ROOMS[rid]
+    return cx - w / 2, cx + w / 2, cz - h / 2, cz + h / 2
 
 
-def lane_e(z):
-    return 17 + 4.0 * math.sin(z * math.pi / 22.0 + 2.2)
+c_rooms = [room(rid, cx, cz, w, h, _door_list(cx, cz, doors), wall_height=0.8, **({"torch": True} if rid == "gate" else {}))
+           for rid, (cx, cz, w, h, doors) in CEM_ROOMS.items()]
+ROOM_DEF = {r["id"]: r for r in c_rooms}
+# Pontos das portas no chão (x, z) e conferência: do outro lado da parede tem de haver uma sala com a porta no mesmo lugar.
+DOOR_PTS = []
+_OUT = {"north": (0, -1), "south": (0, 1), "west": (-1, 0), "east": (1, 0)}
+_FACE = {"north": "south", "south": "north", "west": "east", "east": "west"}
+for _rid, (_cx, _cz, _w, _h, _doors) in CEM_ROOMS.items():
+    _x0, _x1, _z0, _z1 = _rect(_rid)
+    for _side, _coord in _doors.items():
+        _pt = {"north": (_coord, _z0), "south": (_coord, _z1), "west": (_x0, _coord), "east": (_x1, _coord)}[_side]
+        DOOR_PTS.append((_pt[0], _pt[1], _rid, _side))
+        _probe = (_pt[0] + _OUT[_side][0] * 1.4, _pt[1] + _OUT[_side][1] * 1.4)
+        _hits = [o for o in CEM_ROOMS if o != _rid and _rect(o)[0] <= _probe[0] <= _rect(o)[1] and _rect(o)[2] <= _probe[1] <= _rect(o)[3]]
+        assert len(_hits) == 1 and CEM_ROOMS[_hits[0]][4].get(_FACE[_side]) == _coord, ("porta sem par", _rid, _side, _coord, _hits)
 
 
-LANES = {"W": lane_w, "M": lane_m, "E": lane_e}
+def in_rooms(x, z, margin=0.0, only=None):
+    """O ponto está dentro de alguma sala (ou das `only`), a `margin` m das paredes."""
+    for rid in (only or CEM_ROOMS):
+        x0, x1, z0, z1 = _rect(rid)
+        if x0 + margin <= x <= x1 - margin and z0 + margin <= z <= z1 - margin:
+            return True
+    return False
 
 
-def on(lane, z, off=0.0):
-    """Ponto da pista `lane` em z, `off` metros ao lado."""
-    return [round(LANES[lane](z) + off, 1), z]
+def near_door(x, z, r=6.0):
+    return any(math.hypot(x - dx, z - dz) < r for dx, dz, _, _ in DOOR_PTS)
 
 
-def curve(f, za, zb, step=3):
-    zs = list(range(za, zb, -step)) + [zb]
-    return [(round(f(z), 2), z) for z in zs]
+# --- Trilhas: pontos fixos nas portas e nos cruzamentos, com meandro suave no meio dos trechos longos ---------------
+def meander(points, amp=1.6, wave=26.0, step=2.0, seed="m", taper=7.0):
+    mr = random.Random(seed)
+    phase = mr.uniform(0, math.tau)
+    out, walked = [], 0.0
+    for (x0, z0), (x1, z1) in zip(points, points[1:]):
+        length = math.hypot(x1 - x0, z1 - z0)
+        if length < 0.01:
+            continue
+        dx, dz = (x1 - x0) / length, (z1 - z0) / length
+        n = max(int(length / step), 1)
+        for i in range(n):
+            t = i * length / n
+            off = amp * min(1.0, min(t, length - t) / taper) * math.sin(math.tau * (walked + t) / wave + phase)
+            out.append((round(x0 + dx * t - dz * off, 2), round(z0 + dz * t + dx * off, 2)))
+        walked += length
+    out.append(points[-1])
+    return out
 
 
-def connect(a, b, wobble=1.2):
-    """Travessia de a até b (pontos x, z), com uma curva leve no meio."""
-    return [a, ((a[0] + b[0]) / 2 + wobble, (a[1] + b[1]) / 2), b]
-
-
-# As trilhas (linhas de pontos): pistas, saídas do portão, travessias e becos.
-def P(lane, z):
-    return (round(LANES[lane](z), 2), z)
-
-
-trails = [
-    curve(lane_m, 2, YARD_BOTTOM - 2) + [(0.0, YARD_BOTTOM - 12)],        # centro: do portão à porta da cripta
-    curve(lane_w, -26, -102 * ZS),                                         # oeste: acaba num beco (baú)
-    curve(lane_e, -26, -100 * ZS),                                         # leste: segue até a cripta
-    connect(P("M", -14), P("W", -26)),                                     # o centro se abre para o oeste...
-    connect(P("M", -14), P("E", -26), -1.2),                               # ...e para o leste
-    [P("E", -56 * ZS), (27.0, -56 * ZS)],                                  # beco do leste (baú)
-    [P("M", -7), (-16.0, -7)], [P("M", -7), (16.0, -7)],                   # ramais até os túmulos do cavaleiro
-    [(0.0, YARD_BOTTOM - 3.5), (-8.5, YARD_BOTTOM - 3.5)], [(0.0, YARD_BOTTOM - 3.5), (8.5, YARD_BOTTOM - 3.5)],   # ramais até as estátuas da cripta
-    connect(P("E", -100 * ZS), P("M", YARD_BOTTOM + 2), -1.2),             # o leste volta ao centro antes da cripta
-]
-# Travessias entre as pistas, uma a cada 24 m, em quatro desenhos que se repetem (oeste-centro, centro-leste, centro-oeste,
-# leste-centro); nenhuma cruza as grades das divisas (1,6 m depois de cada marco) e nenhuma nasce em cima de uma praça.
-RUNG_PATTERN = (("W", "M", 1), ("M", "E", -1), ("M", "W", 1), ("E", "M", -1))
-for i, rung_z in enumerate(range(-44, -98 * ZS, -24)):
-    if any(rung_z - 8 < border - 1.6 + 2.0 and rung_z > border - 1.6 - 2.0 for border in SECTOR_BORDERS):   # o intervalo da travessia toca a grade
-        continue
-    if rung_z - 8 < -100 * ZS:
-        continue
-    lane_a, lane_b, wob = RUNG_PATTERN[i % 4]
-    trails.append(connect(P(lane_a, rung_z), P(lane_b, rung_z - 8), 1.2 * wob))
+TRAIL_WAYPOINTS = {
+    "spine": [(0, 2), (0, -9), (-5, -14), (-14, -14), (-20, -16), (-20, -30), (-20, -60), (-20, -90), (-20, -110), (-27, -114), (-60, -114),
+              (-90, -114), (-119, -114), (-130, -113), (-163, -111), (-185, -104), (-195, -99)],     # do portão ao salão dos pilares
+    "r2": [(-20, -57.5), (-14, -57.5), (-6, -57.5), (-3, -52), (5, -52), (14, -50), (19, -46)],                  # até a Praça das Pedras
+    "alcove": [(-20, -84), (-14, -84), (-6, -84), (1, -84)],
+    "he": [(-20, -43), (-27, -43), (-45, -43), (-64, -43), (-83, -43)],                             # corredor leste -> salão central
+    "hn": [(-83, -43), (-80, -52), (-80, -70), (-80, -100), (-80, -114)],                           # salão central -> corredor de cima
+    "hw": [(-83, -43), (-101, -43), (-119, -43), (-137, -43), (-150, -43), (-166, -43), (-182, -41), (-190, -38)],   # -> Praça da Estátua
+    "hs": [(-83, -43), (-83, -27), (-83, -12), (-83, 0)],
+    "j": [(-111, 0), (-104, 0), (-83, 0), (-62, 0), (-55, 0), (-47, 0), (-37, 0), (-27, 0), (-20, 0), (-20, -14)],  # laço do sul
+    "jb": [(-83, 0), (-83, 5), (-83, 16)],
+    "top": [(-80, -114), (-80, -130), (-80, -152), (-80, -160), (-80, -168)],                       # até o Covil do Troll
+}
+STRAIGHT = ("r2", "hw")      # perto das praças a trilha passa reta entre os arcos
+trails = [meander(pts, amp=0.5 if name in STRAIGHT else 1.6, seed="trail_" + name) for name, pts in TRAIL_WAYPOINTS.items()]
 
 
 def trail_dist(x, z):
     return min(seg_dist(x, z, a, b) for line in trails for a, b in zip(line, line[1:]))
 
 
-# Praças de ruínas (mais abaixo): a das Pedras (setor B) e a da Estátua (setor C), cada uma com um mini-chefe.
-PLAZA_A = (round(lane_m(-122), 1), -122)            # Praça das Pedras: meio do setor C
-PLAZA_B = (round(lane_m(-252) + 2.6, 1), -252)      # Praça da Estátua: meio do setor F (130 m da outra)
-# Grupos de monstros por setor, ao longo das pistas: em cada setor, posições z igualmente espaçadas, uma pista por vez (oeste, centro,
-# leste); no centro o grupo fica ao lado da trilha (os de um só, em cima dela); nada nasce dentro de uma praça.
+# Praças de ruínas (mais abaixo): a das Pedras (sala 2) e a da Estátua (sala 5), a 170 m uma da outra, cada uma com um mini-chefe.
+PLAZA_A = (5.0, -52.0)
+PLAZA_B = (-166.0, -43.0)
 er_enc = rng("cemetery_groups")
-# Um monstro só por setor (nome do monstro, quantos por grupo em cada grupo do setor).
-SECTOR_MONSTERS = [
-    ("plague_rat", (5, 5, 5, 5, 5)),            # A Campo de Covas: Rato Pestilento
-    ("skeleton", (3, 4, 3, 4, 3)),              # B Ossuário: Esqueleto
-    ("venom_scorpion", (3, 4, 3, 4, 3)),        # C Terra dos Escorpiões: Escorpião Venenoso (e a Praça das Pedras)
-    ("zombie", (3, 4, 3, 4, 3)),                # D Cova dos Mortos: Zumbi Magro
-    ("plague_bat", (4, 5, 4, 5, 4)),            # E Catacumbas: Morcego Pestilento
-    ("golem_stone", (2, 2, 2, 2, 2)),           # F Alameda da Estátua: Golem de Pedra (e a Praça da Estátua)
-    ("troll", (1, 2, 1, 2, 1)),                 # G Covil do Troll: Troll Magro
-]
-SECTOR_PALETTES = [[(monster_id, n) for n in counts] for monster_id, counts in SECTOR_MONSTERS]
+# Peças sólidas postas à mão mais abaixo (x, z, raio de folga): os grupos de monstros não nascem junto delas.
+HALL_COLUMNS = [(x, z) for x in (-196, -174, -152, -130) for z in (-121, -101)]
+KNIGHT_STATUES = [(-125, -121, 90), (-125, -107, 90), (-87, -157, 0), (-73, -157, 0)]
+KNIGHT_TOMBS = [(-6.5, -17.5, 0), (6.5, -17.5, 180)]
+TOP_DECOR = [(-90, -176, "Pr_Cross4"), (-70, -176, "Pr_Cross4"), (-96, -157, "Pr_BrokenPillar2"), (-64, -157, "Pr_BrokenPillar2")]
+HAND_SOLIDS = ([(x, z, 3.5) for x, z in HALL_COLUMNS] + [(-185, -129, 5.5), (-141, -93, 5.5)] + [(x, z, 3.0) for x, z, _ in KNIGHT_STATUES]
+               + [(x, z, 3.5) for x, z, _ in KNIGHT_TOMBS] + [(x, z, 3.0) for x, z, _ in TOP_DECOR])
 c_enc = []
-for k, palette in enumerate(SECTOR_PALETTES):
-    z_top = SECTOR_Z[k] - (16 if k == 0 else 5)
-    z_bottom = SECTOR_Z[k + 1] + 3
-    step = (z_top - z_bottom) / len(palette)
-    for i, (kind, count) in enumerate(palette):
-        lane = "WME"[i % 3]
-        z = round(z_top - step * (i + 0.5))
-        off = 0.0 if lane != "M" or count == 1 else er_enc.choice((-1, 1)) * 6.0
-        position = on(lane, z, off)
-        if any(math.hypot(position[0] - px, position[1] - pz) < 14 for px, pz in (PLAZA_A, PLAZA_B)):
-            continue
-        c_enc.append({"id": "c_%s_%d" % ("abcdefg"[k], i + 1), "position": position, "monsters": [{"monster": kind, "count": count}]})
+group_pts = []          # posições dos grupos já postos (afastar os próximos)
+
+
+def put_groups(tag, kind, counts, rid, inset=4.0, min_sep=12.0, tries=300, avoid=()):
+    avoid = tuple(avoid) + tuple(HAND_SOLIDS)
+    """Um grupo de `kind` para cada número de `counts`, em pontos sorteados da sala: longe das paredes, das portas, das praças, da
+    trilha (pelo menos 2,5 m) e dos outros grupos."""
+    x0, x1, z0, z1 = _rect(rid)
+    for i, count in enumerate(counts):
+        for _ in range(tries):
+            x, z = er_enc.uniform(x0 + inset, x1 - inset), er_enc.uniform(z0 + inset, z1 - inset)
+            if (trail_dist(x, z) > 2.5 and not near_door(x, z, 7.0)
+                    and all(math.hypot(x - px, z - pz) > min_sep for px, pz in group_pts)
+                    and all(math.hypot(x - px, z - pz) > 14.0 for px, pz in (PLAZA_A, PLAZA_B))
+                    and all(math.hypot(x - ax, z - az) > ar for ax, az, ar in avoid)):
+                group_pts.append((x, z))
+                c_enc.append({"id": "c_%s_%d" % (tag, len(c_enc) + 1), "position": [round(x, 1), round(z, 1)], "monsters": [{"monster": kind, "count": count}]})
+                break
+
+
+# Um monstro por setor (nome em pt-BR no locale): 1 ratos de esgoto, 2 escorpiões, 3 esqueletos, 4 zumbis, 5 golens de pedra, 6 morcegos, 7 trolls.
+put_groups("s1", "plague_frog", (3, 3), "r1", inset=3.5, avoid=((0, 3, 14),))      # ratos de esgoto (os "ratos pestilentos" agora são sapos)
+put_groups("s2", "venom_scorpion", (3, 4, 3), "r2", inset=4.0, min_sep=10.0)
+put_groups("s3", "skeleton", (3, 4, 3, 4, 3, 4), "room3", inset=5.0, min_sep=15.0, avoid=((-163, -111, 8),))
+put_groups("s4", "zombie", (3, 4, 3, 4), "hub", inset=5.0, min_sep=11.0)
+put_groups("s4", "zombie", (3,), "bottom", inset=5.0)
+put_groups("s5", "golem_stone", (2, 2, 2), "room5", inset=6.0, min_sep=16.0)
+BAT_SPOTS = [(-20, -38), (-20, -63), (-20, -89), (-45, -114), (-73, -114), (-100, -114), (-80, -136), (-80, -85), (-119, -43)]   # corredores
+for i, (bx, bz) in enumerate(BAT_SPOTS):
+    group_pts.append((bx, bz))
+    c_enc.append({"id": "c_s6_%d" % (len(c_enc) + 1), "position": [bx, bz], "monsters": [{"monster": "plague_bat", "count": 4 + i % 2}]})
+put_groups("s7", "troll", (1, 1, 1), "top", inset=5.0, min_sep=9.0, avoid=((-80, -170, 9),))
 c_enc.append({"id": "c_plaza_a", "position": [PLAZA_A[0], PLAZA_A[1] + 4.2], "spread": 2.6,    # Praça das Pedras: só o mini-chefe
               "monsters": [{"monster": "crypt_scorpion", "count": 1}]})
-c_enc.append({"id": "c_boss", "position": [0, YARD_BOTTOM - 8], "monsters": [{"monster": "crypt_lord", "count": 1}]})
+c_enc.append({"id": "c_boss", "position": [-80, -170], "monsters": [{"monster": "crypt_lord", "count": 1}]})
 c_props = [
     {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-6, 3], "to": "tortuga", "entry": "forest", "expedition_end": True},
-    {"id": "to_fort", "kind": "exit", "name_key": "PROP_TO_DARK_FOREST", "position": [0, YARD_BOTTOM - 14], "to": "dark_forest_01_woods", "entry": "start", "group": True},
-    {"id": "cemetery_chest_1", "kind": "chest", "position": [28.8, -56 * ZS], "loot": "chest"},     # fim do beco do leste
-    {"id": "cemetery_chest_2", "kind": "chest", "position": [round(lane_w(-102 * ZS) - 1.0, 1), -102 * ZS - 2], "loot": "chest"},   # fim da pista do oeste
+    {"id": "to_fort", "kind": "exit", "name_key": "PROP_TO_DARK_FOREST", "position": [-80, -177], "to": "dark_forest_01_woods", "entry": "start", "group": True},
 ]
 
 c_decor = []
@@ -589,47 +710,38 @@ def put(entry, radius):
     blockers.append((entry["position"][0], entry["position"][1], radius))
 
 
-
-
-def free_spot(x0, z0, clear=4.0, avoid=None):
-    """Ponto livre das trilhas (e a 4,5 m de `avoid`, se dado) mais perto de (x0, z0); procura em espiral de 1 m."""
-    for r in range(0, 30):
-        for k in range(max(8 * r, 1)):
-            x, z = x0 + r * math.cos(k * math.tau / max(8 * r, 1)), z0 + r * math.sin(k * math.tau / max(8 * r, 1))
-            if trail_dist(x, z) > clear and abs(x) < 26 and (avoid is None or math.hypot(x - avoid[0], z - avoid[1]) > 4.5):
-                return [round(x, 1), round(z, 1)]
-    return [x0, z0]
-
-
-well_at = free_spot(-9, -30)
-put({"piece": "Pr_CoveredWell", "position": well_at, "solid": [1.8, 1.8]}, 2.2)
-put({"piece": "Pr_Trough", "position": free_spot(well_at[0] - 4, well_at[1] + 1, 4.5, avoid=well_at), "rotation": 90, "solid": [3.0, 1.2]}, 2.4)
 put({"piece": "Pr_LampPost", "position": [-3, 3], "solid": [0.6, 0.6]}, 1.0)
 put({"piece": "Pr_LampPost", "position": [4, -3], "solid": [0.6, 0.6]}, 1.0)
-# Marcos de pedra nas divisas dos setores: um par de cada lado de cada pista, de um tipo por divisa (obelisco, cruz, pilar, e de novo).
+# Grades pretas de ferro (Fence_Iron, original do jogo; build_iron_fence.py) em todas as paredes das salas dos setores, com uma abertura
+# de 6 m em cada porta; e, ao lado de cada porta de sala, um par de marcos de pedra (obelisco, cruz, pilar, e de novo).
 BORDER_MARKS = (("Pr_Obelisk3", "Pr_Obelisk2"), ("Pr_Cross4", "Pr_Cross4"), ("Pr_BrokenPillar2", "Pr_BrokenPillar2"))
-for k, z in enumerate(SECTOR_BORDERS):
-    left, right = BORDER_MARKS[k % 3]
-    for lane, half in (("W", 3.6), ("M", 4.5), ("E", 3.6)):
-        put({"piece": left, "position": on(lane, z, -half), "solid": [1.4, 1.4]}, 2.4)
-        put({"piece": right, "position": on(lane, z, half), "solid": [1.4, 1.4]}, 2.4)
-# Grades pretas de ferro (Fence_Iron, original do jogo; build_iron_fence.py) dividindo os setores: uma linha de ponta a ponta
-# do pátio 1,6 m depois de cada divisa (já dentro do setor seguinte), com uma abertura onde cada pista a atravessa. São sólidas:
-# só se passa pelas aberturas, e os monstros ficam no setor deles.
-FENCE_HALF_GAP = 1.6
-for border in SECTOR_BORDERS:
-    zf = border - 1.6
-    openings = [LANES[l](zf) for l in "WME"]
-    for fx in range(-31, 32, 2):
-        if any(abs(fx - g) < FENCE_HALF_GAP + 1.0 for g in openings):
-            continue
-        put({"piece": "Fence_Iron", "position": [fx, zf], "solid": [2.0, 0.3]}, 1.4)
-# Duas praças de ruínas (3D Fantasy Ruins Pack, Ron Kapaun, CC0; build_ruins.sh) no meio do pátio, cada uma com um mini-chefe:
-#   Praça das Pedras (setor B): o círculo de pedras em pé (Ruin_Stones); o mini-chefe (Escorpião da Cripta) e dois esqueletos já
-#   estão lá, dormindo, como qualquer grupo.
-#   Praça da Estátua (setor C): o coreto em ruínas (Ruin_Temple2) com a estátua do poste de luz (Statue_Lamp, Colorado Stark,
-#   CC0) no meio; falar com a estátua desperta o Guardião do Túmulo (mini-chefe) e dois esqueletos, 4 s depois.
-# Cada praça tem piso de lajes, colunas em volta e um arco sobre a trilha do centro, na entrada e na saída.
+mark_n = 0
+for rid in SECTOR_ROOMS:
+    x0, x1, z0, z1 = _rect(rid)
+    doors_here = [(dx, dz, side) for dx, dz, r_, side in DOOR_PTS if r_ == rid]
+    walls = (("north", x0 + 1.0, x1 - 1.0, z0 + 0.9, 0, True), ("south", x0 + 1.0, x1 - 1.0, z1 - 0.9, 0, True),
+             ("west", z0 + 1.0, z1 - 1.0, x0 + 0.9, 90, False), ("east", z0 + 1.0, z1 - 1.0, x1 - 0.9, 90, False))
+    for side, a, b, fixed, rot, along_x in walls:
+        door = next(((dx if along_x else dz) for dx, dz, s_ in doors_here if s_ == side), None)
+        t = a + 1.0
+        while t <= b:
+            if door is None or abs(t - door) > 4.0:
+                c_decor.append({"piece": "Fence_Iron", "position": [round(t, 1), fixed] if along_x else [fixed, round(t, 1)], "rotation": rot})
+            t += 2.0
+    for dx, dz, side in doors_here:
+        left, right = BORDER_MARKS[mark_n % 3]
+        mark_n += 1
+        inward = {"north": (0, 1), "south": (0, -1), "west": (1, 0), "east": (-1, 0)}[side]
+        tangent = (1, 0) if side in ("north", "south") else (0, 1)
+        for sign, piece in ((-1, left), (1, right)):
+            put({"piece": piece, "position": [round(dx + inward[0] * 2.4 + tangent[0] * sign * 4.8, 1), round(dz + inward[1] * 2.4 + tangent[1] * sign * 4.8, 1)],
+                 "solid": [1.4, 1.4]}, 2.4)
+
+# Duas praças de ruínas (3D Fantasy Ruins Pack, Ron Kapaun, CC0; build_ruins.sh), cada uma com um mini-chefe:
+#   Praça das Pedras (sala 2): o círculo de pedras em pé (Ruin_Stones); o mini-chefe (Escorpião da Cripta) já está lá, dormindo.
+#   Praça da Estátua (sala 5): o coreto em ruínas (Ruin_Temple2) com a estátua do poste de luz (Statue_Lamp, Colorado Stark, CC0) no meio;
+#   falar com a estátua desperta o Guardião do Túmulo (mini-chefe), 4 s depois.
+# Cada praça tem piso de lajes, colunas em volta e um arco de cada lado, no eixo da trilha (leste-oeste).
 PLAZA_R = 6.5
 plazas = []
 
@@ -645,16 +757,15 @@ def plaza(cx, cz, centerpiece):
     for k in range(10):                                        # colunas em volta, longe da trilha e dos arcos
         a = math.tau * (k + 0.5) / 10
         x, z = cx + (PLAZA_R + 1.0) * math.cos(a), cz + (PLAZA_R + 1.0) * math.sin(a)
-        if abs(math.sin(a)) > 0.85 or trail_dist(x, z) < 1.8:
+        if abs(math.cos(a)) > 0.85 or trail_dist(x, z) < 1.8:
             continue
         put({"piece": "Ruin_Column" if k % 3 else "Ruin_Pillar", "position": [round(x, 1), round(z, 1)],
              "rotation": pr.randrange(0, 360, 15), "solid": [0.8, 0.8]}, 1.2)
-    for dz in (-(PLAZA_R + 2.4), PLAZA_R + 2.4):               # arco sobre a trilha do centro, na entrada e na saída
-        z = cz + dz
-        x = round(lane_m(z), 1)
-        c_decor.append({"piece": "Ruin_Arch", "position": [x, z], "rotation": 0})
-        for lx in (-3.07, 3.07):                               # só os pés do arco bloqueiam
-            put({"collider": [1.1, 1.1], "position": [round(x + lx, 2), round(z + 0.34, 2)]}, 1.6)
+    for dx in (-(PLAZA_R + 2.4), PLAZA_R + 2.4):               # um arco de cada lado, virado para a trilha leste-oeste
+        x = cx + dx
+        c_decor.append({"piece": "Ruin_Arch", "position": [round(x, 1), cz], "rotation": 90})
+        for lz in (-3.07, 3.07):                               # só os pés do arco bloqueiam
+            put({"collider": [1.1, 1.1], "position": [round(x + 0.34, 2), round(cz + lz, 2)]}, 1.6)
     centerpiece()
 
 
@@ -678,35 +789,39 @@ def statue_center():
 
 plaza(PLAZA_A[0], PLAZA_A[1], stones_center)
 plaza(PLAZA_B[0], PLAZA_B[1], statue_center)
-# Na entrada da cripta.
-put({"piece": "Pr_Cross4", "position": [-6, YARD_BOTTOM + 1], "solid": [1.2, 1.2]}, 2.0)
-put({"piece": "Pr_Cross4", "position": [6, YARD_BOTTOM + 1], "solid": [1.2, 1.2]}, 2.0)
-put({"piece": "Pr_BrokenPillar2", "position": [-9, YARD_BOTTOM - 17], "solid": [1.2, 1.2]}, 2.0)
-put({"piece": "Pr_BrokenPillar2", "position": [9, YARD_BOTTOM - 17], "solid": [1.2, 1.2]}, 2.0)
-# Estátuas do cavaleiro (Knight Statue, yd, CC0; build_knight_statue.py): um par na entrada do pátio e outro na
-# entrada da cripta, viradas um pouco para a trilha (a peça olha para +Z, para quem chega do portão).
-for x, z, rot in ((on("M", -10, -4.5)[0], -10, 20), (on("M", -10, 4.5)[0], -10, -20), (-11, YARD_BOTTOM - 4, 25), (11, YARD_BOTTOM - 4, -25)):
+# Salão dos pilares (sala 3): duas fileiras de quatro colunas e dois muros em ruínas, como na referência.
+for x, z in HALL_COLUMNS:
+    put({"piece": "Ruin_Column", "position": [x, z], "solid": [0.8, 0.8]}, 1.6)
+put({"piece": "Ruin_Wall", "position": [-185, -129], "solid": [5.8, 0.6]}, 3.5)
+put({"piece": "Ruin_Wall", "position": [-141, -93], "solid": [5.8, 0.6]}, 3.5)
+# Estátuas do cavaleiro (Knight Statue, yd, CC0; build_knight_statue.py): um par na entrada do salão dos pilares (viradas para a porta)
+# e um na entrada do Covil do Troll (viradas para o corredor); a peça olha para +Z.
+for x, z, rot in KNIGHT_STATUES:
     put({"piece": "Statue_Knight", "position": [x, z], "rotation": rot, "solid": [1.1, 1.2]}, 2.0)
-# Túmulos do cavaleiro deitado (Knight Lying, yd, CC0): um de cada lado do pátio, perto do portão, com os degraus
-# (lado +X da peça) voltados para a trilha.
-for x, z, rot in ((-19, -7, 0), (19, -7, 180)):
+# Túmulos do cavaleiro deitado (Knight Lying, yd, CC0): dois na entrada, com os degraus (lado +X da peça) voltados para o meio.
+for x, z, rot in KNIGHT_TOMBS:
     put({"piece": "Statue_Knight_Lying", "position": [x, z], "rotation": rot, "solid": [1.9, 1.9]}, 2.6)
+# No fundo do Covil do Troll, em volta do Senhor da Cripta: cruzes e pilares quebrados.
+for x, z, piece in TOP_DECOR:
+    put({"piece": piece, "position": [x, z], "solid": [1.2, 1.2]}, 2.0)
 
-# Fileiras de túmulos (cruzes e lápides) por todo o pátio, deixando as trilhas livres.
-for zz in range(-16, YARD_BOTTOM + 3, -5):
-    for xx in range(-28, 29, 5):
-        x = xx + cr.uniform(-0.6, 0.6)
-        z = zz + cr.uniform(-0.5, 0.5)
-        if cr.random() < 0.18 or trail_dist(x, z) < 2.6 or any(math.hypot(x - bx, z - bz) < br for bx, bz, br in blockers):
-            continue
-        piece = cr.choice(["Pr_Tombstone1", "Pr_Tombstone2", "Pr_Tombstone3", "Pr_Cross1", "Pr_Cross2", "Pr_Cross3"])
-        c_decor.append({"piece": piece, "position": [round(x, 1), round(z, 1)],
-                        "rotation": cr.choice([0, 0, 10, -10, 180, 190]), "solid": [0.8, 0.5]})
+# Fileiras de túmulos (cruzes e lápides) nas salas dos setores, deixando de fora portas, trilhas, praças e peças postas à mão.
+for rid in SECTOR_ROOMS:
+    x0, x1, z0, z1 = _rect(rid)
+    gz = z0 + 3.0
+    while gz < z1 - 2.5:
+        gx = x0 + 3.0
+        while gx < x1 - 2.5:
+            x, z = gx + cr.uniform(-0.6, 0.6), gz + cr.uniform(-0.5, 0.5)
+            if not (cr.random() < 0.18 or near_door(x, z, 6.0) or trail_dist(x, z) < 2.6 or any(math.hypot(x - bx, z - bz) < br for bx, bz, br in blockers)):
+                c_decor.append({"piece": cr.choice(["Pr_Tombstone1", "Pr_Tombstone2", "Pr_Tombstone3", "Pr_Cross1", "Pr_Cross2", "Pr_Cross3"]),
+                                "position": [round(x, 1), round(z, 1)], "rotation": cr.choice([0, 0, 10, -10, 180, 190]), "solid": [0.8, 0.5]})
+            gx += 5.0
+        gz += 5.0
 
 
-# Trilha do Cemitério com o solo e as pedras do Mossy Rock Environment Pack (rubberduck, CC0; build_mossy_trail.py): um leito de
-# manchas de terra e musgo, lajes de pedra musgosa achatadas por cima e pedras de formação rochosa nas margens (as margens vêm
-# mais abaixo, depois dos jarros). A Floresta continua com o stone_trail comum.
+# Trilha com o solo e as pedras do Mossy Rock Environment Pack (rubberduck, CC0; build_mossy_trail.py): um leito de manchas de terra
+# e musgo e lajes de pedra musgosa achatadas por cima (as pedras das margens vêm mais abaixo). A Floresta continua com o stone_trail comum.
 SLAB_SCALE = {1: (0.8, 1.1), 2: (0.65, 0.9), 3: (0.8, 1.1), 4: (0.45, 0.62), 5: (0.55, 0.75)}
 
 
@@ -763,7 +878,8 @@ plaza_platforms = [(PLAZA_A[0], PLAZA_A[1], 4.6), (PLAZA_B[0], PLAZA_B[1], 5.8)]
 def trail_piece_ok(piece):
     x, z = piece["position"]
     return (all(abs(x - cx) > hw or abs(z - cz) > hd for cx, cz, hw, hd in plaza_colliders)
-            and all(math.hypot(x - px, z - pz) > pr for px, pz, pr in plaza_platforms))
+            and all(math.hypot(x - px, z - pz) > pr for px, pz, pr in plaza_platforms)
+            and (in_rooms(x, z, 0.6) or near_door(x, z, 3.4)))      # (o vão de 1 m entre salas, na porta, também vale)
 
 
 for line in trails:
@@ -771,20 +887,23 @@ for line in trails:
 for line in trails:
     c_decor += [q for q in mossy_slabs(tr, line) if trail_piece_ok(q)]
 
-for bush in scatter(cr, c_rooms[1], ["Pl_Hemp", "Pl_Bush"], 90 * ZS, margin=2.0):
-    x, z = bush["position"]
-    if trail_dist(x, z) > 2.2 and not any(math.hypot(x - bx, z - bz) < br for bx, bz, br in blockers):
-        c_decor.append(bush)
+for rid in SECTOR_ROOMS:
+    area = CEM_ROOMS[rid][2] * CEM_ROOMS[rid][3]
+    for bush in scatter(cr, ROOM_DEF[rid], ["Pl_Hemp", "Pl_Bush"], int(area / 28), margin=2.5):
+        x, z = bush["position"]
+        if trail_dist(x, z) > 2.2 and not near_door(x, z, 5.0) and not any(math.hypot(x - bx, z - bz) < br for bx, bz, br in blockers):
+            c_decor.append(bush)
+
 # Jarros e garrafas brancos quebráveis, em grupos de quatro ou cinco: metade solta poção de vida e metade de mana
 # (tabelas "breakable_hp" e "breakable_mana", sorteadas dentro do grupo). Cada jarro vai para um ponto livre de sólidos,
-# de trilhas, de grupos de monstros e de baús, e a pelo menos 0,9 m dos outros.
+# de portas, de trilhas, de grupos de monstros, de baús e de praças, e a pelo menos 0,9 m dos outros.
 jr = random.Random("cemetery_jars")
 jar_solids = [(d["position"][0], d["position"][1], max(d["solid"]) / 2 + 0.9) for d in c_decor if d.get("solid")]
 c_jars = []
 
 
 def jar_ok(x, z):
-    return (abs(x) < 29 and YARD_BOTTOM + 2 < z < 4 and trail_dist(x, z) > 1.9
+    return (in_rooms(x, z, 1.8, SECTOR_ROOMS) and not near_door(x, z, 5.5) and trail_dist(x, z) > 1.9
             and all(math.hypot(x - sx, z - sz) > sr for sx, sz, sr in jar_solids)
             and all(math.hypot(x - e["position"][0], z - e["position"][1]) > 3.0 for e in c_enc)
             and all(math.hypot(x - q["position"][0], z - q["position"][1]) > 3.0 for q in c_props)
@@ -808,16 +927,8 @@ def jar_cluster(cx, cz, count, spread=1.8):
         c_jars.append({"id": "j%d" % (len(c_jars) + 1), "monster": "mug", "position": [round(x, 1), round(z, 1)], "table": table})
 
 
-chest_e, chest_w = c_props[2]["position"], c_props[3]["position"]
-JAR_CLUSTERS = []
-for k in range(7):                                    # um grupo por setor, alternando oeste-centro e centro-leste
-    mid = (SECTOR_Z[k] + SECTOR_Z[k + 1]) / 2 + (-14 if k in (2, 5) else 0)     # nos setores das praças, longe delas
-    JAR_CLUSTERS.append(((("W", "M"), ("M", "E"))[k % 2], round(mid), 4 + k % 2))
-JAR_CLUSTERS += [(("M", "E"), -86, 5), (("W", "M"), -166, 4), (("M", "E"), -210, 5)]       # três a mais entre os grupos
-for (lane_a, lane_b), cz, count in JAR_CLUSTERS:
-    jar_cluster((LANES[lane_a](cz) + LANES[lane_b](cz)) / 2, cz, count)
-for cx, cz, count in ((chest_e[0] - 2.5, chest_e[1] + 3.5, 4), (chest_w[0] + 2.5, chest_w[1] + 3.5, 4)):
-    jar_cluster(cx, cz, count)
+for cx, cz, count in ((-6, -80, 4), (-109, 3, 4), (-53, -3, 4), (-75, 20, 5), (-92, 12, 4), (-5, -45, 4), (19, -60, 4),
+                      (-190, -92, 5), (-140, -128, 4), (-185, -62, 5), (-150, -25, 4), (-92, -172, 4), (-95, -30, 4), (-8, -17, 4)):
     jar_cluster(cx, cz, count)
 
 # Pedras das margens da trilha: as formações rochosas do pacote (Mossy_Formation_1..4), uma a cada 4 a 5 m, num lado ou no
@@ -838,7 +949,7 @@ for line in trails:
         while t < length:
             side = er.choice((-1, 1)) * er.uniform(1.9, 2.5)
             x, z = x0 + dx * t - dz * side, z0 + dz * t + dx * side
-            if (abs(x) < 30 and YARD_BOTTOM < z < 5 and trail_dist(x, z) > 1.7
+            if (in_rooms(x, z, 1.6) and trail_dist(x, z) > 1.7 and not near_door(x, z, 4.5)
                     and all(math.hypot(x - sx, z - sz) > sr for sx, sz, sr in edge_solids)
                     and all(math.hypot(x - r["position"][0], z - r["position"][1]) > 1.8 for r in edge_rocks)):
                 edge_rocks.append({"piece": "Mossy_Formation_%d" % er.randint(1, 4), "position": [round(x, 2), round(z, 2)],
@@ -846,27 +957,27 @@ for line in trails:
             t += er.uniform(4.0, 5.5)
 c_decor += edge_rocks
 
-# Ossos e crânios espalhados (3D Dungeon Debris - Skull and Bones, Paul Wortmann, CC0; build_bone_debris.py): poucos e soltos no
-# setor A, mais e maiores a cada setor, e muitos na cripta. Baixos, sem colisão, fora da trilha, de sólidos, jarros, grupos de
+# Ossos e crânios espalhados (3D Dungeon Debris - Skull and Bones, Paul Wortmann, CC0; build_bone_debris.py): poucos e soltos na entrada,
+# mais e maiores a cada setor, e muitos no covil do troll. Baixos, sem colisão, fora da trilha, de portas, de sólidos, jarros, grupos de
 # monstros, praças e pedras das margens.
 BONES_SMALL = ["Dungeon_Skull_1", "Dungeon_Skull_2", "Dungeon_Bone"]
 BONES_MID = ["Dungeon_CrossBones", "Dungeon_BonePile_1", "Dungeon_Arm", "Dungeon_Leg", "Dungeon_Ribcage", "Dungeon_Pelvis", "Dungeon_Spine"]
 BONES_BIG = ["Dungeon_SkullPile", "Dungeon_BonePile_2", "Dungeon_BonePile_3", "Dungeon_BonePile_4", "Dungeon_BonePile_5", "Dungeon_BonePile_6"]
-# (nome, quantos, xmax, z de cima, z de baixo, pesos pequeno / médio / grande)
-BONE_AREAS = [(name, count, 28, SECTOR_Z[k] - 3, SECTOR_Z[k + 1] + 3, weights) for k, (name, count, weights) in enumerate((
-    ("A", 20, (0.8, 0.2, 0.0)), ("B", 24, (0.6, 0.35, 0.05)), ("C", 28, (0.45, 0.45, 0.1)), ("D", 32, (0.3, 0.5, 0.2)),
-    ("E", 36, (0.25, 0.45, 0.3)), ("F", 36, (0.2, 0.4, 0.4)), ("G", 36, (0.15, 0.35, 0.5))))]
-BONE_AREAS.append(("crypt", 10, 10, YARD_BOTTOM - 2, YARD_BOTTOM - 19, (0.2, 0.3, 0.5)))
+# (sala, quantos, pesos pequeno / médio / grande)
+BONE_AREAS = [("r1", 6, (0.8, 0.2, 0.0)), ("r2", 10, (0.5, 0.4, 0.1)), ("room3", 40, (0.3, 0.5, 0.2)), ("hub", 14, (0.3, 0.45, 0.25)),
+              ("room5", 32, (0.2, 0.4, 0.4)), ("top", 16, (0.15, 0.35, 0.5)), ("bottom", 12, (0.3, 0.4, 0.3)), ("alcove", 5, (0.5, 0.4, 0.1)),
+              ("sw", 4, (0.5, 0.4, 0.1)), ("se", 4, (0.5, 0.4, 0.1))]
 bn = random.Random("cemetery_bones")
 bones = []
-for _name, count, xmax, z_top, z_bottom, weights in BONE_AREAS:
+for rid, count, weights in BONE_AREAS:
+    x0, x1, z0, z1 = _rect(rid)
     placed = 0
     for _try in range(count * 60):
         if placed >= count:
             break
-        x, z = bn.uniform(-xmax, xmax), bn.uniform(z_bottom, z_top)
+        x, z = bn.uniform(x0 + 2.0, x1 - 2.0), bn.uniform(z0 + 2.0, z1 - 2.0)
         group = bn.choices((BONES_SMALL, BONES_MID, BONES_BIG), weights)[0]
-        if (trail_dist(x, z) > 1.5
+        if (trail_dist(x, z) > 1.5 and not near_door(x, z, 4.5)
                 and all(math.hypot(x - sx, z - sz) > sr for sx, sz, sr in edge_solids)
                 and all(math.hypot(x - r["position"][0], z - r["position"][1]) > 1.4 for r in edge_rocks)
                 and all(math.hypot(x - b["position"][0], z - b["position"][1]) > 2.2 for b in bones)):
@@ -874,16 +985,41 @@ for _name, count, xmax, z_top, z_bottom, weights in BONE_AREAS:
                           "scale": round(bn.uniform(0.8, 1.25), 2), "y": -0.02})
             placed += 1
 c_decor += bones
+
+# Ratinhos de cenário (só enfeite, não são monstros: não atacam nem têm vida): o papel "rat" do crowd, o mesmo ratinho do Esgoto e do
+# Forte. Cada um vai e volta entre dois pontos da mesma sala ou corredor, num trajeto reto livre de peças sólidas, um para cada ~300 m2
+# das salas dos setores e ~220 m2 dos corredores, longe do ponto onde o herói começa.
+rtr = random.Random("cemetery_rats")
+rat_solids = [(d["position"][0], d["position"][1], max(sz_) / 2 + 0.9) for d in c_decor for sz_ in [d.get("solid") or d.get("collider")] if sz_]
+c_rats = []
+for rid, (rcx, rcz, rw, rh, _doors) in CEM_ROOMS.items():
+    if rid == "gate":
+        continue
+    x0, x1, z0, z1 = _rect(rid)
+    want = round(rw * rh / (300.0 if rid in SECTOR_ROOMS else 220.0))
+    for _ in range(want):
+        for _try in range(60):
+            ax, az = rtr.uniform(x0 + 1.5, x1 - 1.5), rtr.uniform(z0 + 1.5, z1 - 1.5)
+            ang, dist = rtr.uniform(0, math.tau), rtr.uniform(5.0, 12.0)
+            bx, bz = ax + dist * math.cos(ang), az + dist * math.sin(ang)
+            if not (x0 + 1.2 <= bx <= x1 - 1.2 and z0 + 1.2 <= bz <= z1 - 1.2) or math.hypot(ax, az - 3) < 8:
+                continue
+            steps = max(int(math.hypot(bx - ax, bz - az) / 0.8), 1)
+            if any(math.hypot(ax + (bx - ax) * t / steps - sx, az + (bz - az) * t / steps - sz) < sr for t in range(steps + 1) for sx, sz, sr in rat_solids):
+                continue
+            c_rats.append({"role": "rat", "position": [round(ax, 2), round(az, 2)], "path": [round(bx, 2), round(bz, 2)],
+                           "speed": round(rtr.uniform(0.6, 1.6), 1), "pose": "walk"})
+            break
 arenas["cemetery_01_yard"] = {
-    "_comment": "Cemitério (Medieval Props Textured, Clint Bellanger, CC BY 3.0, modelos de Lamoot): mapa grande de terra escura cortado por uma rede de trilhas de lajes (três pistas que se separam, se cruzam e se reencontram; becos sem saída com baú) do portão à cripta, com sete setores de monstros (A Campo de Covas, B Ossuário, C Terra dos Escorpiões, D Cova dos Mortos, E Catacumbas, F Alameda da Estátua, G Covil do Troll), duas praças de ruínas com mini-chefe bem afastadas, marcos de pedra nas divisas, fileiras de lápides e cruzes, poço coberto, estátuas e túmulos de cavaleiro, e a cripta do Senhor da Cripta no fundo. Gerado por tools/assets/build_maps.py.",
+    "_comment": "Cemitério (Medieval Props Textured, Clint Bellanger, CC BY 3.0, modelos de Lamoot): mapa de salas e corredores no desenho de calabouço da referência do autor, cercado de vazio, com sete setores de um monstro cada (1 Campo de Covas, 2 Terra dos Escorpiões, 3 Ossuário, 4 Cova dos Mortos, 5 Alameda da Estátua, 6 Catacumbas, 7 Covil do Troll), duas praças de ruínas com mini-chefe a 170 m uma da outra, corredores em anéis e uma rede de trilhas de lajes musgosas, grades pretas nas salas, jarros que soltam poção, ossos e a cripta do Senhor da Cripta no fundo. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_CEMETERY", "player_class": "mage", "map_id": "map_cemetery", "area_level": 7, "outdoor": True,
     "wake_radius": 10.0, "alert_radius": 5.0, "rooms": c_rooms, "encounters": c_enc, "hazards": [],
     "entries": {"start": [0, 3], "cemetery": [0, 3]},
     "props": c_props,
     "quest_spots": [], "breakables": c_jars,
-    "style": {"_comment": "Cemitério: chão de terra acinzentada e escura (Ground_Grave, feito por build_ground.py; mais escura e mais cinza que a Ground_Dirt das Ruínas e da Mina), sem piso do kit e sem cercas.", "walls": [""], "floor": "Ground_Grave", "low": "",
+    "style": {"_comment": "Cemitério: chão de terra acinzentada e escura (Ground_Grave, feito por build_ground.py; mais escura e mais cinza que a Ground_Dirt das Ruínas e da Mina), sem piso do kit e sem cercas de madeira.", "walls": [""], "floor": "Ground_Grave", "low": "",
               "ground": [0.09, 0.085, 0.08]},
-    "decor": c_decor, "passive": True,
+    "decor": c_decor, "crowd": c_rats, "passive": True,
 }
 
 # --- Floresta Escura (entre o Cemitério e o Forte) -----------------------------------------------------
@@ -933,7 +1069,7 @@ m_rooms = [
 ]
 m_enc = [
     {"id": "m_bats_a", "position": [-6, -16], "monsters": [{"monster": "plague_bat", "count": 3}, {"monster": "stalker", "count": 1}]},
-    {"id": "m_rats", "position": [7, -26], "monsters": [{"monster": "plague_rat", "count": 5}]},
+    {"id": "m_rats", "position": [7, -26], "monsters": [{"monster": "plague_frog", "count": 5}]},
     {"id": "m_gob_a", "position": [-5, -29], "monsters": [{"monster": "goblin", "count": 4}]},
     {"id": "m_vein", "position": [26, -22], "monsters": [{"monster": "venom_scorpion", "count": 3}]},
     {"id": "m_skel", "position": [-8, -46], "monsters": [{"monster": "skeleton", "count": 4}]},
@@ -1310,7 +1446,7 @@ fort_encounters = []
 for eid, cands, kind_id, count in (
         ("fo_elves_gate", spaced, "dark_elf", 2), ("fo_succubi_hall", spaced, "succubus", 2), ("fo_elves_hall_w", spaced, "dark_elf", 2),
         ("fo_elves_hall_e", spaced, "dark_elf", 2), ("fo_cell_w", leaves, "golden_lizard", 3), ("fo_cell_e", leaves, "venom_scorpion", 3),
-        ("fo_hall_a", far, "plague_bat", 4), ("fo_hall_b", far, "mutant_rat", 4)):
+        ("fo_hall_a", far, "plague_bat", 4), ("fo_hall_b", far, "mutant_frog", 4)):
     fort_encounters.append({"id": eid, "position": node_pos(take(cands)), "monsters": [{"monster": kind_id, "count": count}]})
 fort_encounters += [{"id": "fo_succubi_court", "position": cell_pos(9, 5), "monsters": [{"monster": "succubus", "count": 2}]},
                     {"id": "fo_commander", "position": cell_pos(9, 3), "monsters": [{"monster": "fort_commander", "count": 1}]}]
@@ -1485,6 +1621,10 @@ for role, box, count, speed in (("pig", PIGPEN, 5, 0.5), ("farm_horse", PADDOCK,
 for i, (x, z) in enumerate(((-16, -8), (-6, -7), (-12, -23), (-20, -20), (4, -20), (12, -19), (20, -16), (-4, -25), (8, -8), (24, -24))):  # galinhas soltas
     farm_crowd.append({"role": "chicken", "position": [x, z], "rotation": fr.randrange(0, 360, 15), "pose": "idle",
                        "path": [round(x + fr.uniform(-3.5, 3.5), 1), round(z + fr.uniform(-3.0, 3.0), 1)], "speed": 0.6})
+# Coelhos (Rabbit, cdmir, CC0; o mesmo de Tortuga): pulam pela grama fora dos cercados; o pulo de 1 s fica no lugar enquanto o Wanderer anda.
+for x, z in ((-24, -24), (10, -20), (4, -4), (-6, -42), (30, -10), (31, -40), (42, -14), (-22, -6)):
+    farm_crowd.append({"role": "rabbit", "position": [x, z], "rotation": fr.randrange(0, 360, 15), "pose": "idle",
+                       "path": [round(x + fr.uniform(-4.0, 4.0), 1), round(z + fr.uniform(-3.5, 3.5), 1)], "speed": 0.9})
 # Cestos de vime (Willow Basket with Handle, ulf, CC-BY-SA 3.0; Pr_Basket): quebráveis que sempre soltam poção (tabela breakable_potion).
 monster("basket", "pot", _comment="Cesto de vime da Fazenda (Willow Basket with Handle, ulf, CC BY-SA 3.0): quebra com qualquer golpe e sempre solta poção (data/loot.json 'breakable_potion'). Não dá XP.",
         name_key="PROP_BASKET", max_health=8, size=0.8, look="basket", pieces=["Pr_Basket"], shards=False, color=[0.75, 0.6, 0.3])
@@ -1522,10 +1662,10 @@ dk_rooms = [
     room("end_pier", 0, -37, 10, 16, ["south"], wall_height=0.8),
 ]
 dk_enc = [
-    {"id": "dk_rats_a", "position": [0, -12], "monsters": [{"monster": "plague_rat", "count": 4}]},
+    {"id": "dk_rats_a", "position": [0, -12], "monsters": [{"monster": "plague_frog", "count": 4}]},
     {"id": "dk_toads", "position": [-24, -23], "monsters": [{"monster": "acid_toad", "count": 3}]},
     {"id": "dk_bats", "position": [26, -25], "monsters": [{"monster": "plague_bat", "count": 4}]},
-    {"id": "dk_rats_b", "position": [0, -40], "monsters": [{"monster": "mutant_rat", "count": 3}, {"monster": "angler", "count": 2}]},
+    {"id": "dk_rats_b", "position": [0, -40], "monsters": [{"monster": "mutant_frog", "count": 3}, {"monster": "angler", "count": 2}]},
     {"id": "dk_anglers", "position": [-26, -25], "monsters": [{"monster": "angler", "count": 2}]},
 ]
 dk_decor = []

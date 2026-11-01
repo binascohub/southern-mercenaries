@@ -106,8 +106,8 @@
           "DLG_BARD_QUEEN_2"
         ],
         "bestiary": [
-          "plague_rat",
-          "mutant_rat"
+          "plague_frog",
+          "mutant_frog"
         ],
         "service": "bestiary"
       },
@@ -571,5 +571,74 @@
         ]
       }
     ]
+  },
+  "forest_hermit": {
+    "_comment": "Eremita da Pedra (Floresta, Ninho dos Ratos): fala na praça do centro e, no fim da fala, desperta o Golem de Pedra como mini-chefe ('summon' no objeto em arenas.json).",
+    "name_key": "NPC_FOREST_HERMIT",
+    "color": [
+      0.55,
+      0.55,
+      0.5
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_HERMIT_1",
+          "DLG_HERMIT_2",
+          "DLG_HERMIT_3"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_SimpleParted",
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.75,
+        0.75,
+        0.72
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "forest_pyre_keeper": {
+    "_comment": "Guardiã da Pira (Floresta, Covil das Bestas): fala na praça do centro e, no fim da fala, desperta o Golem de Fogo como mini-chefe.",
+    "name_key": "NPC_FOREST_PYRE_KEEPER",
+    "color": [
+      0.8,
+      0.35,
+      0.15
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_PYRE_1",
+          "DLG_PYRE_2",
+          "DLG_PYRE_3"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "female",
+      "hair": [
+        "Hair_Long"
+      ],
+      "hair_color": [
+        0.55,
+        0.12,
+        0.05
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
   }
 }

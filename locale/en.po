@@ -209,12 +209,6 @@ msgstr "Mana"
 msgid "POWER_MAGIC"
 msgstr "Magic Power"
 
-msgid "MONSTER_SEWER_RAT_NAME"
-msgstr "Sewer rat"
-
-msgid "MONSTER_SEWER_RAT_BIG_NAME"
-msgstr "Bloated sewer rat"
-
 msgid "ARENA_PROTOTYPE_NAME"
 msgstr "Training cellar"
 
@@ -2522,7 +2516,7 @@ msgid "MONSTER_RUIN_WARDEN"
 msgstr "Vault Warden"
 
 msgid "MONSTER_CRYPT_SCORPION"
-msgstr "Crypt Scorpion"
+msgstr "Crypt Ogre"
 
 msgid "MONSTER_CRYPT_LORD"
 msgstr "Crypt Lord"
@@ -2636,13 +2630,13 @@ msgid "DLG_WIFE_1"
 msgstr "Don't mind the smell, it's the hides. I'm Elara. Bertram says you fight what hunters cannot."
 
 msgid "DLG_WIFE_2"
-msgstr "Stones have started to walk in these woods — a golem of rock, one of ice, one of fire, wandering where our paths used to be. They trample my racks, my fish… everything."
+msgstr "Stones have started to walk in these woods — golems of rock, ice and fire, trampling where our paths used to be. My racks, my fish… everything. The ice one roams to the east; the other two only wake if someone talks to the Hermit and the Keeper in the squares."
 
 msgid "DLG_WIFE_3"
 msgstr "Put all three down and I'll gladly hand over our savings."
 
 msgid "DLG_WIFE_ACTIVE"
-msgstr "Stone, ice and fire. Three of them. Each has a weakness — look for it."
+msgstr "Stone and fire sleep in the squares — talk to the Hermit and the Keeper. The ice one is to the east."
 
 msgid "DLG_WIFE_DONE"
 msgstr "The woods are breathing again. Ferncroft thanks you — take what we saved."
@@ -2657,7 +2651,7 @@ msgid "QUEST_FOREST_GOLEMS"
 msgstr "Walking Stones"
 
 msgid "QUEST_FOREST_GOLEMS_DESC"
-msgstr "Elara the Tanner asks you to defeat the Stone, Ice and Fire Golems that wander the Forest."
+msgstr "Elara the Tanner asks you to defeat the Stone, Ice and Fire Golems of the Forest: the stone and fire ones sleep in the squares and only wake when the Hermit and the Keeper call them."
 
 msgid "PROP_VILLAGE_SIGN"
 msgstr "Ferncroft"
@@ -2743,8 +2737,8 @@ msgstr "Hand over the relic"
 msgid "TOAST_NEED_QUEST_ITEM"
 msgstr "Missing: {item}"
 
-msgid "MONSTER_RAT_KING"
-msgstr "Rat King"
+msgid "MONSTER_FROG_KING"
+msgstr "Frog King"
 
 msgid "MONSTER_VIPER_QUEEN"
 msgstr "Viper Queen"
@@ -2829,3 +2823,33 @@ msgstr "Leonidas, the Veteran, asks you to defeat the two goblin packs infesting
 
 msgid "PROP_BASKET"
 msgstr "Basket"
+
+msgid "NPC_FOREST_HERMIT"
+msgstr "Hermit of the Stone"
+
+msgid "NPC_FOREST_PYRE_KEEPER"
+msgstr "Keeper of the Pyre"
+
+msgid "DLG_HERMIT_1"
+msgstr "I have kept this square for decades. The stones tell me everything, and today they speak of you: strangers itching for a fight."
+
+msgid "DLG_HERMIT_2"
+msgstr "Beneath these flagstones sleeps the Stone Golem, the old warden of the woods. He wakes only when someone asks, and I know the way to ask."
+
+msgid "DLG_HERMIT_3"
+msgstr "Step back to the edge of the square… I call him now. He is of Earth — he fears Fire."
+
+msgid "DLG_PYRE_1"
+msgstr "The pyre never dies, strangers. I have fed it since the Forest was truly green."
+
+msgid "DLG_PYRE_2"
+msgstr "In the heart of the embers sleeps the Fire Golem. He listens when I sing, and sings back with fists of lava."
+
+msgid "DLG_PYRE_3"
+msgstr "If you want to face him, get ready: the embers are already stirring…"
+
+msgid "TOAST_HERMIT_AWAKENS"
+msgstr "The ground splits: the Stone Golem awakens!"
+
+msgid "TOAST_PYRE_AWAKENS"
+msgstr "The embers roar: the Fire Golem awakens!"

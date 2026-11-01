@@ -67,6 +67,25 @@ func _ready() -> void:
 	_help.add_theme_color_override(&"font_outline_color", Color(0, 0, 0, 1))
 	_help.add_theme_constant_override(&"outline_size", 6)
 	layer.add_child(_help)
+	_label_bosses()
+
+
+## Nome flutuando sobre cada mini-chefe e chefe (o espectador não tem a interface do jogo).
+func _label_bosses() -> void:
+	for node in get_tree().get_nodes_in_group(&"enemies"):
+		var enemy := node as Enemy
+		if enemy == null or not enemy.data.get("category", "") in ["miniboss", "boss"]:
+			continue
+		var label := Label3D.new()
+		label.text = "%s  (%s)" % [TranslationServer.translate(enemy.data.get("name_key", "")), enemy.monster_id]
+		label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		label.no_depth_test = true
+		label.font_size = 64
+		label.outline_size = 14
+		label.modulate = Color(1.0, 0.85, 0.3)
+		label.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+		label.position = Vector3(0, 5.5 * float(enemy.data.get("size", 1.0)) / 2.0 + 1.5, 0)
+		enemy.add_child(label)
 
 
 func _unhandled_input(event: InputEvent) -> void:

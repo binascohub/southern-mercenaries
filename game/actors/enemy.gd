@@ -30,7 +30,7 @@ enum State { CHASE, WINDUP, RECOVER, SLEEP, HIDDEN, CHARGE }
 const HITBOX_HEIGHT := 1.6
 
 # Sincronizados.
-var monster_id := "sewer_rat"
+var monster_id := "plague_frog"
 var health := 1.0
 var max_health := 1.0
 var yaw := 0.0

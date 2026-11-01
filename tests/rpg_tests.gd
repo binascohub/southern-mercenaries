@@ -718,7 +718,7 @@ func _test_side_quests() -> void:
 				_check(q.outcome in ["treasure", "ambush", "nothing"], "rumor: tesouro, emboscada ou nada")
 	_check(templates.size() == 3, "os três modelos aparecem: %s" % [templates.keys()])
 	_check(SideQuests.creatures_in("prototype_arena").size() == 2, "criaturas do bestiário que existem na área de teste")
-	var title := SideQuests.title({"template": "hunt", "target": "plague_rat", "area": "prototype_arena", "count": 5, "progress": 2, "status": "active"})
+	var title := SideQuests.title({"template": "hunt", "target": "plague_frog", "area": "prototype_arena", "count": 5, "progress": 2, "status": "active"})
 	_check(title.contains("2/5"), "título da caçada com progresso: %s" % title)
 
 
@@ -821,8 +821,8 @@ func _test_sewers() -> void:
 	var grate: Array = GameData.arenas.tortuga.props.filter(func(p: Dictionary) -> bool: return p.get("id", "") == "sewer_entrance")
 	_check(grate[0].to == "sewers_01_drains", "o bueiro desce para os Bueiros da Rua Principal")
 	# Categorias (03-inimigos.md): elite vida x3 e dano x1,5; mini-chefe x6/x1,8; chefe com fator 4,3.
-	var rat := Enemy.create({"monster_id": "plague_rat", "position": Vector3.ZERO, "level": 1})
-	var elite := Enemy.create({"monster_id": "plague_rat", "position": Vector3.ZERO, "level": 1, "rank": "elite", "modifier": "toxic"})
+	var rat := Enemy.create({"monster_id": "plague_frog", "position": Vector3.ZERO, "level": 1})
+	var elite := Enemy.create({"monster_id": "plague_frog", "position": Vector3.ZERO, "level": 1, "rank": "elite", "modifier": "toxic"})
 	_near(elite.max_health, rat.max_health * 3.0, "elite: vida x3")
 	_near(elite.attack_damage(), rat.attack_damage() * 1.5, "elite: dano x1,5")
 	_check(elite.category() == "elite" and elite.modifier == "toxic" and elite.xp_value() == 25.0, "elite: categoria, modificador e XP 25 x nível")
@@ -870,7 +870,7 @@ func _test_sewers() -> void:
 	for kind in ["weapon", "armor"]:
 		_check(GameData.consumables.has("scroll_refine_%s_iron" % kind) and GameData.consumables.has("blessed_scroll_refine_%s_iron" % kind),
 			"pergaminhos de ferro do tesouro existem (%s)" % kind)
-	_check(GameData.monsters.rat_nest.ai == "static" and GameData.monsters.rat_nest.fire_mult == 2.0, "ninho parado, Fogo em dobro")
+	_check(GameData.monsters.spawn_nest.ai == "static" and GameData.monsters.spawn_nest.fire_mult == 2.0, "ninho parado, Fogo em dobro")
 	# Barris e caixotes (decisão do autor): sorteio por peso; monstros ~10%, poções ~25%.
 	var outcomes := {}
 	var roll_rng := RandomNumberGenerator.new()
@@ -906,19 +906,23 @@ func _test_sewers() -> void:
 		and Town.dialogue_index("ruins_spartan", {"ruins_goblins": "done"}) == 2 and NpcModel.has_model("ruins_spartan"),
 		"conversa de Leônidas: oferece, lembra e agradece; tem modelo próprio")
 	# Floresta: três golens (fogo, gelo, pedra), elites corpo a corpo com modelo.
+	# (o de gelo é um encontro comum; os de pedra e de fogo são mini-chefes invocados pelos NPCs das praças, em `summon`.)
 	var golems: Array = GameData.arenas.forest_01_path.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("f_golem_"))
-	_check(golems.size() == 3 and golems.all(func(e: Dictionary) -> bool:
+	for prop: Dictionary in GameData.arenas.forest_01_path.props:
+		if prop.has("summon"):
+			golems.append(prop.summon)
+	_check(golems.size() == 4 and golems.all(func(e: Dictionary) -> bool:
 		var m: Dictionary = GameData.monsters.get(e.monsters[0].monster, {})
-		return m.get("category", "") == "elite" and MonsterModel.FAMILIES.has(m.get("look", "")) and float(m.get("damage", 0)) > 0.0), "Floresta tem os três golens")
+		return m.get("category", "") == "elite" and MonsterModel.FAMILIES.has(m.get("look", "")) and float(m.get("damage", 0)) > 0.0), "Floresta tem os golens (gelo x2 e os dois invocados)")
 	# Floresta: o bando de répteis (corpo a corpo, com modelo).
 	var reptiles: Array = GameData.arenas.forest_01_path.encounters.filter(func(e: Dictionary) -> bool: return e.id == "f_reptiles")
 	_check(reptiles.size() == 1 and reptiles[0].monsters[0].monster == "forest_reptile" and reptiles[0].monsters[0].count == 3
 		and MonsterModel.FAMILIES.has(GameData.monsters.forest_reptile.look), "Floresta tem o bando de répteis")
 	# Floresta: trilhas de lajes e marcos de pedra nas divisas dos setores (como no Cemitério).
 	var forest_decor: Array = GameData.arenas.forest_01_path.decor
-	_check(forest_decor.filter(func(d: Dictionary) -> bool: return d.piece == "Floor_UnevenBrick").size() > 300
-		and forest_decor.filter(func(d: Dictionary) -> bool: return d.piece in ["Pr_Obelisk3", "Pr_Obelisk2", "Pr_Cross4", "Pr_BrokenPillar2"] and d.position[1] in [-26, -38, -64]).size() >= 10,
-		"Floresta tem trilhas de lajes e marcos nas divisas dos setores")
+	_check(forest_decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Floor_UnevenBrick").size() > 300
+		and forest_decor.filter(func(d: Dictionary) -> bool: return String(d.get("piece", "")).begins_with("Pr_") and d.get("solid", []) == [1.4, 1.4]).size() >= 20,
+		"Floresta tem trilhas de lajes e marcos nas portas dos setores")
 	# Floresta: a Besta Quitinosa (corpo a corpo, modelo estático animado por código).
 	var beasts: Array = GameData.arenas.forest_01_path.encounters.filter(func(e: Dictionary) -> bool: return e.id == "f_beasts")
 	_check(beasts.size() == 1 and beasts[0].monsters[0].monster == "chitin_beast" and MonsterModel.FAMILIES.get(GameData.monsters.chitin_beast.look, {}).get("static", false),
@@ -926,7 +930,10 @@ func _test_sewers() -> void:
 	# Floresta: a aldeia de Ferncroft, com o casal que dá duas missões que terminam ao limpar encontros da área.
 	var forest: Dictionary = GameData.arenas.forest_01_path
 	var forest_ids: Array = forest.encounters.map(func(e: Dictionary) -> String: return e.id)
-	var village_npcs: Array = forest.props.filter(func(p: Dictionary) -> bool: return p.kind == "npc")
+	for prop: Dictionary in forest.props:
+		if prop.has("summon"):
+			forest_ids.append(prop.summon.id)    # os grupos invocados também contam como "limpos"
+	var village_npcs: Array = forest.props.filter(func(p: Dictionary) -> bool: return p.kind == "npc" and not p.has("summon"))
 	_check(village_npcs.size() == 3 and village_npcs.all(func(p: Dictionary) -> bool: return GameData.npcs.has(p.npc)), "Floresta tem o casal da aldeia")
 	_check(forest.rooms.any(func(r: Dictionary) -> bool: return r.id == "village"), "Floresta tem a sala da aldeia")
 	for quest_id in ["forest_reptiles", "forest_golems", "forest_leshy"]:
@@ -938,6 +945,18 @@ func _test_sewers() -> void:
 		_check(Town.dialogue_index(mission.giver, {}) == 0 and Town.dialogue_index(mission.giver, {quest_id: "active"}) == 1
 			and Town.dialogue_index(mission.giver, {quest_id: "done"}) == 2 and giver.dialogues[0].get("offer", "") == quest_id,
 			"conversa de %s: oferece, lembra e agradece" % quest_id)
+	# Floresta: seis setores, um monstro em cada, e duas praças com NPC que invoca um mini-chefe.
+	var sectors := {}
+	for e: Dictionary in forest.encounters:
+		if GameData.monsters[e.monsters[0].monster].get("category", "") in ["common", "elite"]:     # (os mini-chefes ficam de fora)
+			sectors[e.monsters[0].monster] = true
+	_check(sectors.size() == 6, "Floresta tem seis tipos de monstro, um por setor (%d)" % sectors.size())
+	var summoners: Array = forest.props.filter(func(p: Dictionary) -> bool: return p.has("summon"))
+	_check(summoners.size() == 2 and summoners.all(func(p: Dictionary) -> bool:
+		var group: Dictionary = p.summon
+		return (GameData.npcs.has(p.npc) and GameData.npcs[p.npc].dialogues[0].lines.size() > 0 and group.monsters[0].get("rank", "") == "miniboss"
+			and tr(group.get("toast", "")) != group.get("toast", "") and GameData.monsters.has(group.monsters[0].monster))),
+		"Floresta tem duas praças com NPC que invoca um mini-chefe")
 	# Floresta: poucos cervos quebráveis, parados, que só soltam poção.
 	var deer: Array = GameData.arenas.forest_01_path.get("breakables", []).filter(func(b: Dictionary) -> bool: return b.monster != "coin_bag")  # a bolsa de moedas é outro objeto
 	_check(deer.size() >= 3 and deer.size() <= 10 and deer.all(func(b: Dictionary) -> bool:

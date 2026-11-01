@@ -209,12 +209,6 @@ msgstr "Maná"
 msgid "POWER_MAGIC"
 msgstr "Poder Mágico"
 
-msgid "MONSTER_SEWER_RAT_NAME"
-msgstr "Rata de cloaca"
-
-msgid "MONSTER_SEWER_RAT_BIG_NAME"
-msgstr "Rata de cloaca hinchada"
-
 msgid "ARENA_PROTOTYPE_NAME"
 msgstr "Sótano de entrenamiento"
 
@@ -2522,7 +2516,7 @@ msgid "MONSTER_RUIN_WARDEN"
 msgstr "Guardián de la Cámara"
 
 msgid "MONSTER_CRYPT_SCORPION"
-msgstr "Escorpión de la Cripta"
+msgstr "Ogro de la Cripta"
 
 msgid "MONSTER_CRYPT_LORD"
 msgstr "Señor de la Cripta"
@@ -2636,13 +2630,13 @@ msgid "DLG_WIFE_1"
 msgstr "No se fijen en el olor, son las pieles. Soy Elara. Bertram dice que ustedes se enfrentan a lo que los cazadores no pueden."
 
 msgid "DLG_WIFE_2"
-msgstr "En este bosque han empezado a caminar las piedras: un gólem de roca, uno de hielo y uno de fuego, vagando donde estaban nuestros senderos. Pisotean mis tendederos, mis peces… todo."
+msgstr "En este bosque han empezado a caminar las piedras: gólems de roca, hielo y fuego, pisoteando donde estaban nuestros senderos. Mis tendederos, mis peces… todo. El de hielo ronda al este; los otros dos solo despiertan si alguien habla con el Ermitaño y con la Guardiana, en las plazas."
 
 msgid "DLG_WIFE_3"
 msgstr "Derríbenlos a los tres y entregaré con gusto nuestros ahorros."
 
 msgid "DLG_WIFE_ACTIVE"
-msgstr "Piedra, hielo y fuego. Tres. Cada uno tiene un punto débil: búsquenlo."
+msgstr "Piedra y fuego duermen en las plazas: hablen con el Ermitaño y con la Guardiana. El de hielo, al este."
 
 msgid "DLG_WIFE_DONE"
 msgstr "El bosque vuelve a respirar. Ferncroft se lo agradece: llévense lo que ahorramos."
@@ -2657,7 +2651,7 @@ msgid "QUEST_FOREST_GOLEMS"
 msgstr "Piedras que caminan"
 
 msgid "QUEST_FOREST_GOLEMS_DESC"
-msgstr "Elara la Curtidora pide que derroten a los Gólems de Piedra, Hielo y Fuego que vagan por el Bosque."
+msgstr "Elara la Curtidora pide que derroten a los Gólems de Piedra, Hielo y Fuego del Bosque: los de piedra y fuego duermen en las plazas y solo despiertan cuando el Ermitaño y la Guardiana los llaman."
 
 msgid "PROP_VILLAGE_SIGN"
 msgstr "Ferncroft"
@@ -2743,8 +2737,8 @@ msgstr "Entregar la reliquia"
 msgid "TOAST_NEED_QUEST_ITEM"
 msgstr "Falta: {item}"
 
-msgid "MONSTER_RAT_KING"
-msgstr "Rey de las Ratas"
+msgid "MONSTER_FROG_KING"
+msgstr "Rey de los Sapos"
 
 msgid "MONSTER_VIPER_QUEEN"
 msgstr "Reina de las Víboras"
@@ -2829,3 +2823,33 @@ msgstr "Leónidas, el Veterano, te pide que derrotes a las dos bandas de goblins
 
 msgid "PROP_BASKET"
 msgstr "Cesta"
+
+msgid "NPC_FOREST_HERMIT"
+msgstr "Ermitaño de la Piedra"
+
+msgid "NPC_FOREST_PYRE_KEEPER"
+msgstr "Guardiana de la Pira"
+
+msgid "DLG_HERMIT_1"
+msgstr "Llevo décadas cuidando esta plaza. Las piedras me lo cuentan todo, y hoy hablan de ustedes: forasteros con ganas de pelea."
+
+msgid "DLG_HERMIT_2"
+msgstr "Bajo estas losas duerme el Gólem de Piedra, el viejo guardián del bosque. Solo despierta cuando alguien lo pide, y yo sé cómo pedirlo."
+
+msgid "DLG_HERMIT_3"
+msgstr "Retrocedan al borde de la plaza… lo llamo ahora. Es de Tierra: teme al Fuego."
+
+msgid "DLG_PYRE_1"
+msgstr "La pira nunca se apaga, forasteros. La alimento desde que el Bosque era verde de verdad."
+
+msgid "DLG_PYRE_2"
+msgstr "En el corazón de las brasas duerme el Gólem de Fuego. Me escucha cuando canto, y responde con puños de lava."
+
+msgid "DLG_PYRE_3"
+msgstr "Si quieren enfrentarlo, prepárense: las brasas ya se mueven…"
+
+msgid "TOAST_HERMIT_AWAKENS"
+msgstr "La tierra se abre: ¡el Gólem de Piedra despierta!"
+
+msgid "TOAST_PYRE_AWAKENS"
+msgstr "Las brasas rugen: ¡el Gólem de Fuego despierta!"

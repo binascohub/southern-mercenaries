@@ -69,6 +69,10 @@ const FAMILIES := {
 	# altura no arquivo (`unit`) -> ~1,8 m no tamanho 1. Ataque de magia à distância.
 	# Demônio da Noite (Night Demon, nubux / morgan strauss, CC BY 3.0): corpo único sem animações (o pacote só tem a malha;
 	# braços baixados por tools/assets/build_night_demon.py): balança, avança e cai por código (`static`); 1 m no arquivo -> ~1,8 m no tamanho 1.
+	# Ogro (Ogre lowpoly, nubux / rudy85, CC BY 3.0): malha única sem esqueleto, braços baixados por tools/assets/build_ogre.py; balança,
+	# avança e cai por código (`static`); 1 m no arquivo -> ~1,8 m no tamanho 1. Mini-chefe do Cemitério (o Ogro da Cripta).
+	"ogre": {"scene": "res://assets/models/monsters/ogre.glb", "scale": 1.8, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	"night_demon": {"scene": "res://assets/models/monsters/night_demon.glb", "scale": 1.8, "static": true,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Diablous (Animated Diablous, Botanic / plankes-projects, CC BY 3.0): demônio de chifres e asas, 1,8 m no tamanho 1, com as
@@ -79,7 +83,8 @@ const FAMILIES := {
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Senhor da Cripta (Undead male, TiZeta, CC BY): nobre morto-vivo de casaco roxo, 1,8 m no tamanho 1, com animações
 	# feitas à mão (tools/assets/build_undead.py). Chefe do Cemitério.
-	"undead": {"scene": "res://assets/models/monsters/undead_lord.glb", "scale": 1.0,
+	# Asas pretas de morcego nas costas (osso "schiena"): feitas em código, como as da Rainha dos Ratos.
+	"undead": {"scene": "res://assets/models/monsters/undead_lord.glb", "scale": 1.0, "wings": "schiena",
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Zumbi Magro (Thin Zombie, Rosswet Mobile, CC BY 3.0): humanoide com animações próprias (andar, correr, atacar,
 	# apanhar, morrer). Morto-vivo comum do Cemitério.
@@ -216,6 +221,8 @@ func setup(look: String, size: float, tint: Color) -> bool:
 				_parts[String(part.name)] = [part, part.transform]
 		_current = "idle"
 		return true
+	if info.has("wings"):
+		_add_back_wings(model, String(info.wings))
 	_anim = model.find_child("AnimationPlayer", true, false) as AnimationPlayer
 	if _anim:
 		for key: String in info.anims:
@@ -497,6 +504,24 @@ func _add_wings(parent: Node3D, at: Vector3) -> void:
 		_wings.append(pivot)
 
 
+## Asas pretas de morcego nas costas de um modelo com esqueleto (o Senhor da Cripta): acompanham o osso `bone`, brotam
+## ao surgir e batem devagar parado, mais rápido correndo e no golpe (o mesmo código da Rainha); somem quando ele morre.
+## Em unidades do modelo (1,8 m, a frente é +Z).
+func _add_back_wings(model: Node3D, bone: String) -> void:
+	_skeleton = model.find_child("Skeleton3D", true, false) as Skeleton3D
+	var back := Node3D.new()
+	add_child(back)
+	if _skeleton and _skeleton.find_bone(bone) >= 0:
+		_follow_bone(back, bone, Transform3D(Basis(), _rest_in_model(bone).origin + Vector3(0, 0.05, -0.1)))
+	else:
+		back.position = Vector3(0, 1.4, -0.1)
+	_wing_color = Color(0.03, 0.03, 0.035)
+	_wing_size = 1.35
+	_wing_raise = 0.3
+	_add_wings(back, Vector3(0.07, 0, 0))
+	show_wings(true)
+
+
 func _process(delta: float) -> void:
 	if _static_root:
 		_animate_static(delta)
@@ -612,6 +637,8 @@ func play(key: String, blend := BLEND) -> void:
 		return
 	_current = key
 	_anim.play(_names[key], blend)
+	if key == "die" and _skeleton and not _wings.is_empty():
+		show_wings(false)      # asas pretas do Senhor da Cripta: somem com a morte
 
 
 func current() -> String:

@@ -1,25 +1,25 @@
 {
   "_comment": "Bestiário (03-1-bestiario.md): lenda, elemento, fraqueza e pista de cada criatura; entra no bestiário do jogo quando alguém conta a história. monsters: ids em monsters.json que contam como essa criatura (a área de teste usa ratos provisórios no lugar dos do Esgoto). Fase 7: 'monsters' são os IDs de data/monsters.json da criatura (os ratos de teste da área de desenvolvimento contam como Rato Pestilento e Ratazana); as missões secundárias procuram criaturas nos encontros de cada área.",
-  "plague_rat": {
+  "plague_frog": {
     "name_key": "BEAST_PLAGUE_RAT",
     "legend_key": "BEAST_PLAGUE_RAT_LEGEND",
     "hint_key": "BEAST_PLAGUE_RAT_HINT",
     "element": "earth",
     "map": "map_sewers",
     "monsters": [
-      "plague_rat",
-      "sewer_rat"
+      "plague_frog",
+      "plague_frog"
     ]
   },
-  "mutant_rat": {
+  "mutant_frog": {
     "name_key": "BEAST_MUTANT_RAT",
     "legend_key": "BEAST_MUTANT_RAT_LEGEND",
     "hint_key": "BEAST_MUTANT_RAT_HINT",
     "element": "earth",
     "map": "map_sewers",
     "monsters": [
-      "mutant_rat",
-      "sewer_rat_big"
+      "mutant_frog",
+      "mutant_frog"
     ]
   },
   "plague_bat": {

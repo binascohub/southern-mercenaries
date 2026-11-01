@@ -1,0 +1,2 @@
+Bow_Vulture.glb — "Vulture Bow" by Mophs / genderfreak, CC-BY 4.0 (also offered under GPL 2.0 / GPL 3.0): https://opengameart.org/content/vulture-bow
+Converted from the OBJ by tools/assets/build_vulture_bow.py (color map at 512 px, 1.2 m tall). The inventory icons assets/ui/icons/bow_D..S.png are renders of it (tools/assets/bow_icons.gd).

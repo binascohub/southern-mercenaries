@@ -1,41 +1,5 @@
 {
-  "sewer_rat": {
-    "_comment": "Monstro de teste da Fase 1. ID e números provisórios até a família do Esgoto (03-inimigos.md) entrar. Terra, como os ratos do Esgoto (fracos a Fogo).",
-    "name_key": "MONSTER_SEWER_RAT_NAME",
-    "max_health": 150,
-    "move_speed": 3.6,
-    "damage": 4,
-    "attack_range": 2.95,
-    "attack_windup": 0.35,
-    "attack_cooldown": 1.1,
-    "aggro_range": 40.0,
-    "size": 3.75,
-    "category": "common",
-    "element": "earth",
-    "damage_taken": 0.6,
-    "patrol": true,
-    "patrol_radius": 8.0,
-    "patrol_speed": 0.8
-  },
-  "sewer_rat_big": {
-    "_comment": "Variante maior e mais lenta, para testar padrões legíveis.",
-    "name_key": "MONSTER_SEWER_RAT_BIG_NAME",
-    "max_health": 400,
-    "move_speed": 2.6,
-    "damage": 10,
-    "attack_range": 4.4,
-    "attack_windup": 0.7,
-    "attack_cooldown": 1.8,
-    "aggro_range": 40.0,
-    "size": 6.0,
-    "category": "common",
-    "element": "earth",
-    "damage_taken": 0.6,
-    "patrol": true,
-    "patrol_radius": 8.0,
-    "patrol_speed": 0.8
-  },
-  "plague_rat": {
+  "plague_frog": {
     "_comment": "Esgoto (03-inimigos.md, seção 2): filhotes da Rainha, em enxames. Vida 20, dano 4, rápido.",
     "name_key": "MONSTER_PLAGUE_RAT",
     "max_health": 100,
@@ -84,7 +48,7 @@
       1.0
     ]
   },
-  "mutant_rat": {
+  "mutant_frog": {
     "_comment": "Do tamanho de um cão; investida curta com aviso (charger). Costuma ser elite.",
     "name_key": "MONSTER_MUTANT_RAT",
     "max_health": 450,
@@ -261,7 +225,7 @@
     ],
     "swarm": {
       "interval": 20.0,
-      "monster": "plague_rat",
+      "monster": "plague_frog",
       "count": 4
     },
     "slam": {
@@ -271,7 +235,7 @@
       "damage_mult": 1.2
     },
     "nests": {
-      "monster": "rat_nest",
+      "monster": "spawn_nest",
       "count": 3,
       "radius": 7.0,
       "regen": 0.012
@@ -472,7 +436,7 @@
       0.25
     ]
   },
-  "rat_nest": {
+  "spawn_nest": {
     "_comment": "Ninho de filhotes da fase 2 da Rainha: não anda nem ataca; enquanto existir, ela regenera. Fogo causa dano dobrado (03-inimigos.md).",
     "name_key": "MONSTER_RAT_NEST",
     "max_health": 150,
@@ -639,7 +603,7 @@
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
     "aggro_range": 40.0,
-    "size": 3.0,
+    "size": 1.6,
     "category": "miniboss",
     "element": "water",
     "ai": "charger",
@@ -652,13 +616,13 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "scorpion",
+    "look": "ogre",
     "color": [
-      0.45,
-      0.5,
-      0.65
+      1.0,
+      1.0,
+      1.0
     ],
-    "_comment": "Mini-chefe do Cemitério: escorpião da cripta, gigante e escuro."
+    "_comment": "Mini-chefe do Cemitério (praça): o Ogro da Cripta (Ogre lowpoly, nubux / rudy85, CC BY 3.0); investidas. O id continua crypt_scorpion (saves e encontros)."
   },
   "fort_commander": {
     "name_key": "MONSTER_FORT_COMMANDER",
@@ -1220,8 +1184,8 @@
     ],
     "_comment": "Guardião do Túmulo (mini-chefe do Cemitério): golem de pedra que a estátua do poste de luz desperta quando se fala com ela; investe como o Escorpião da Cripta. Terra (fraco a Fogo)."
   },
-  "rat_king": {
-    "name_key": "MONSTER_RAT_KING",
+  "frog_king": {
+    "name_key": "MONSTER_FROG_KING",
     "max_health": 130,
     "move_speed": 2.8,
     "damage": 14,
@@ -1248,7 +1212,7 @@
       0.25,
       0.2
     ],
-    "_comment": "Mini-chefe do Esgoto (canais): o Rei dos Ratos, um rato do tamanho de um boi; investidas."
+    "_comment": "Mini-chefe do Esgoto (canais): o Rei dos Sapos, um sapo do tamanho de um boi; investidas (os ratos não são mais monstros: só cenário)."
   },
   "viper_queen": {
     "name_key": "MONSTER_VIPER_QUEEN",

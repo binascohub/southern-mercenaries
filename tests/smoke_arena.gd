@@ -596,7 +596,7 @@ func _sewers_test() -> void:
 	await _wait_frames(45)
 	check.call(player.health < player.max_health, "poça de lodo tira vida")
 	# Esgoto pacífico: chegar perto não acorda; o golpe acorda só aquele grupo.
-	var calm := _first_enemy("mutant_rat")
+	var calm := _first_enemy("mutant_frog")
 	player.teleport_to(calm.global_position + Vector3(0, 0, 2))
 	await _wait_frames(10)
 	check.call(calm.state == Enemy.State.SLEEP, "bichos do esgoto não atacam quem chega perto")
@@ -604,7 +604,7 @@ func _sewers_test() -> void:
 	await _wait_frames(2)
 	check.call(calm.state != Enemy.State.SLEEP, "golpeado, o bicho revida")
 	# Ratazana: investida com aviso.
-	var mutant := _first_enemy("mutant_rat")
+	var mutant := _first_enemy("mutant_frog")
 	_arena._wake_group(mutant.group)
 	player.teleport_to(mutant.global_position + Vector3(0, 0, 6))
 	player.health = player.max_health
@@ -678,7 +678,7 @@ func _sewers_test() -> void:
 	check.call(queen.phase == 1 and _arena.hud.boss_visible(), "Rainha acorda na fase 1, com a barra do chefe")
 	queen.health = queen.max_health * 0.55
 	await _wait_frames(2)
-	var nests := get_tree().get_nodes_in_group(&"enemies").filter(func(e: Enemy) -> bool: return e.monster_id == "rat_nest")
+	var nests := get_tree().get_nodes_in_group(&"enemies").filter(func(e: Enemy) -> bool: return e.monster_id == "spawn_nest")
 	check.call(queen.phase == 2 and nests.size() == 3, "abaixo de 60%%: A Ninhada, com 3 ninhos (%d)" % nests.size())
 	var before := queen.health
 	await _wait_frames(30)
@@ -788,7 +788,7 @@ func _town_test() -> void:
 	check.call(model._anim != null and model._anim.is_playing(), "herói animado ao nascer")
 	check.call("Peasant_Body" in model.visible_parts() and "Head" in model.visible_parts(), "roupa de Camponês e rosto à mostra (%s)" % [model.visible_parts()])
 	# Monstros do Esgoto com modelo animado (rato, morcego, jacaré, a Rainha).
-	for monster_id: String in ["plague_rat", "plague_bat", "sewer_gator", "demon_rat_queen"]:
+	for monster_id: String in ["plague_frog", "plague_bat", "sewer_gator", "demon_rat_queen"]:
 		var probe := Enemy.create({"monster_id": monster_id, "position": Vector3(0, -50, 0)})
 		add_child(probe)
 		check.call(probe.model_family() != "", "%s com modelo animado" % monster_id)
@@ -798,7 +798,7 @@ func _town_test() -> void:
 			probe.health = probe.max_health * 0.4
 			probe._tick_visual(0.016)
 			check.call(probe.has_wings(), "Rainha ganha asas de morcego na metade da vida")
-		if monster_id == "plague_rat":
+		if monster_id == "plague_frog":
 			# Morte: o corpo fica na área tocando a animação de morrer.
 			var corpse := probe._model
 			probe.take_damage(1e9)
@@ -1014,7 +1014,7 @@ func _town_test() -> void:
 	check.call("demon_rat_queen" in town.bestiary, "a história do Velho Bêbado pôs a Rainha dos Ratos no bestiário")
 	check.call(town.visitors.size() >= 2, "voltar a Tortuga trouxe visitantes (%d)" % town.visitors.size())
 	var hunt := {"type": "hunter", "name": "Teste", "quest": SideQuests.make_quest("sq_test_hunt", "hunt", "prototype_arena", RandomNumberGenerator.new())}
-	hunt.quest.target = "plague_rat"
+	hunt.quest.target = "plague_frog"
 	hunt.quest.count = 2
 	var cargo := {"type": "merchant", "name": "Teste 2", "quest": SideQuests.make_quest("sq_test_cargo", "retrieve", "prototype_arena", RandomNumberGenerator.new())}
 	_arena._campaign.visitors = [hunt, cargo]
@@ -1025,7 +1025,7 @@ func _town_test() -> void:
 		player.teleport_to(Vector3(GameData.visitors.seats[0][0], 0, GameData.visitors.seats[0][1] + 0.8))
 		town._rpc_accept_side(0)
 	check.call(SideQuests.active(town.side_quests).size() == 2 and town.visitors.is_empty(), "aceitou as duas histórias")
-	check.call("plague_rat" in town.bestiary, "a criatura da caçada entrou no bestiário")
+	check.call("plague_frog" in town.bestiary, "a criatura da caçada entrou no bestiário")
 	# Caçada: matar 2 ratos no Esgoto; carga: achar o caixote. (O Esgoto já foi
 	# limpo neste teste e mortos continuam mortos: os grupos voltam só para a caçada.)
 	_arena._campaign.dead_groups = []
@@ -1034,7 +1034,7 @@ func _town_test() -> void:
 	check.call(not _arena.prop_near(player, "quest_spot", "", 300.0).is_empty(), "carga perdida aparece no mapa")
 	var killed := 0
 	for e: Enemy in get_tree().get_nodes_in_group(&"enemies"):
-		if e.monster_id == "sewer_rat" and killed < 2:
+		if e.monster_id == "plague_frog" and killed < 2:
 			e.take_damage(1e9)
 			killed += 1
 	await get_tree().physics_frame
