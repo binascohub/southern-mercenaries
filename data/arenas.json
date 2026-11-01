@@ -5895,6 +5895,45 @@
             "count": 1
           }
         ]
+      },
+      {
+        "id": "f_golem_stone",
+        "position": [
+          -12,
+          -23
+        ],
+        "monsters": [
+          {
+            "monster": "golem_stone",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_golem_ice",
+        "position": [
+          22,
+          -12
+        ],
+        "monsters": [
+          {
+            "monster": "golem_ice",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_golem_fire",
+        "position": [
+          0,
+          -62
+        ],
+        "monsters": [
+          {
+            "monster": "golem_fire",
+            "count": 1
+          }
+        ]
       }
     ],
     "hazards": [],
@@ -5976,8 +6015,8 @@
         "id": "d3",
         "monster": "deer_buck",
         "position": [
-          23.6,
-          -11.3
+          7.8,
+          -47.6
         ],
         "table": "breakable_potion"
       },
@@ -5985,8 +6024,8 @@
         "id": "d4",
         "monster": "deer_doe",
         "position": [
-          13.6,
-          -63.8
+          -11.9,
+          -64.2
         ],
         "table": "breakable_potion"
       },
@@ -5994,17 +6033,8 @@
         "id": "d5",
         "monster": "deer_buck",
         "position": [
-          13.6,
-          -56.5
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "d6",
-        "monster": "deer_doe",
-        "position": [
-          6.9,
-          -1.8
+          -2.1,
+          -1.4
         ],
         "table": "breakable_potion"
       }
@@ -8771,15 +8801,6 @@
           1.4,
           1.4
         ]
-      },
-      {
-        "piece": "Rock_2",
-        "position": [
-          21.7,
-          -13.3
-        ],
-        "rotation": 345,
-        "scale": 0.94
       },
       {
         "piece": "RockP_5",
@@ -15231,7 +15252,7 @@
         ],
         "monsters": [
           {
-            "monster": "crypt_scorpion",
+            "monster": "crypt_lord",
             "count": 1
           }
         ]
@@ -15945,6 +15966,30 @@
         "solid": [
           1.1,
           1.2
+        ]
+      },
+      {
+        "piece": "Statue_Knight_Lying",
+        "position": [
+          -18,
+          -7
+        ],
+        "rotation": 0,
+        "solid": [
+          1.9,
+          1.9
+        ]
+      },
+      {
+        "piece": "Statue_Knight_Lying",
+        "position": [
+          18,
+          -7
+        ],
+        "rotation": 180,
+        "solid": [
+          1.9,
+          1.9
         ]
       },
       {
@@ -17238,6 +17283,36 @@
           16.25
         ],
         "loot": "chest"
+      },
+      {
+        "id": "fort_potions_1",
+        "kind": "chest",
+        "position": [
+          -21.25,
+          1.25
+        ],
+        "loot": "potion_chest",
+        "model": "Chest_Potion"
+      },
+      {
+        "id": "fort_potions_2",
+        "kind": "chest",
+        "position": [
+          21.25,
+          1.25
+        ],
+        "loot": "potion_chest",
+        "model": "Chest_Potion"
+      },
+      {
+        "id": "fort_potions_3",
+        "kind": "chest",
+        "position": [
+          8.75,
+          26.25
+        ],
+        "loot": "potion_chest",
+        "model": "Chest_Potion"
       }
     ],
     "quest_spots": [],

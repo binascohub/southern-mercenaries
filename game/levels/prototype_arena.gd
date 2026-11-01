@@ -1256,7 +1256,7 @@ func _drop_loot_for(player: Player, enemy: Enemy) -> void:
 
 ## Sorteia uma tabela de loot (data/loot.json) para um jogador: ouro, itens
 ## (chance ou "items" garantidos, o primeiro com a raridade "guaranteed"),
-## poções e valiosos.
+## poções (chance ou "potions" garantidas) e valiosos.
 func _drop_table(player: Player, origin: Vector3, table: Dictionary, level: int) -> void:
 	if _rng.randf() < table.gold.chance:
 		var amount := roundi(_rng.randi_range(table.gold.min, table.gold.max) + table.gold.per_level * level)
@@ -1276,6 +1276,10 @@ func _drop_table(player: Player, origin: Vector3, table: Dictionary, level: int)
 		if _rng.randf() < float(table.get("elemental_potion_share", 0.0)):
 			potion = "elemental_potion_" + Elements.ALL[_rng.randi_range(0, Elements.ALL.size() - 1)]
 		_add_loot(player, origin, Items.stack(Items.CONSUMABLE, potion), 0)
+	# Baú de poções: um número garantido de poções (vida ou recurso).
+	if table.has("potions"):
+		for i in _rng.randi_range(int(table.potions[0]), int(table.potions[1])):
+			_add_loot(player, origin, Items.stack(Items.CONSUMABLE, "potion_health" if _rng.randf() < 0.6 else "potion_resource"), 0)
 	var valuables := 1 if _rng.randf() < table.valuable_chance else 0
 	if table.has("valuables"):
 		valuables = _rng.randi_range(int(table.valuables[0]), int(table.valuables[1]))

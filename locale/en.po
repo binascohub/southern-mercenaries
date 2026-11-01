@@ -2485,11 +2485,23 @@ msgstr "Road to the Fort"
 msgid "MONSTER_LESHY"
 msgstr "Leshy"
 
+msgid "MONSTER_GOLEM_FIRE"
+msgstr "Fire Golem"
+
+msgid "MONSTER_GOLEM_ICE"
+msgstr "Ice Golem"
+
+msgid "MONSTER_GOLEM_STONE"
+msgstr "Stone Golem"
+
 msgid "MONSTER_RUIN_WARDEN"
 msgstr "Vault Warden"
 
 msgid "MONSTER_CRYPT_SCORPION"
 msgstr "Crypt Scorpion"
+
+msgid "MONSTER_CRYPT_LORD"
+msgstr "Crypt Lord"
 
 msgid "MONSTER_FORT_COMMANDER"
 msgstr "Cursed Commander"

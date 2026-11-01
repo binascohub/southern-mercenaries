@@ -2485,11 +2485,23 @@ msgstr "Estrada do Forte"
 msgid "MONSTER_LESHY"
 msgstr "Leshy"
 
+msgid "MONSTER_GOLEM_FIRE"
+msgstr "Golem de Fogo"
+
+msgid "MONSTER_GOLEM_ICE"
+msgstr "Golem de Gelo"
+
+msgid "MONSTER_GOLEM_STONE"
+msgstr "Golem de Pedra"
+
 msgid "MONSTER_RUIN_WARDEN"
 msgstr "Guardião do Cofre"
 
 msgid "MONSTER_CRYPT_SCORPION"
 msgstr "Escorpião da Cripta"
+
+msgid "MONSTER_CRYPT_LORD"
+msgstr "Senhor da Cripta"
 
 msgid "MONSTER_FORT_COMMANDER"
 msgstr "Comandante Amaldiçoado"

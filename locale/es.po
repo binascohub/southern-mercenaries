@@ -2485,11 +2485,23 @@ msgstr "Camino al Fuerte"
 msgid "MONSTER_LESHY"
 msgstr "Leshy"
 
+msgid "MONSTER_GOLEM_FIRE"
+msgstr "Gólem de Fuego"
+
+msgid "MONSTER_GOLEM_ICE"
+msgstr "Gólem de Hielo"
+
+msgid "MONSTER_GOLEM_STONE"
+msgstr "Gólem de Piedra"
+
 msgid "MONSTER_RUIN_WARDEN"
 msgstr "Guardián de la Cámara"
 
 msgid "MONSTER_CRYPT_SCORPION"
 msgstr "Escorpión de la Cripta"
+
+msgid "MONSTER_CRYPT_LORD"
+msgstr "Señor de la Cripta"
 
 msgid "MONSTER_FORT_COMMANDER"
 msgstr "Comandante Maldito"

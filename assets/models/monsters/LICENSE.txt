@@ -62,3 +62,11 @@ succubus.glb — "Goth Female (Fleur du Mal)" by tizeta
             https://opengameart.org/content/goth-female-fleur-du-mal
             Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/
             Changes: body, skirt and hair kept in rest pose with the skeleton (no animations: the game floats and tilts it), textures re-linked (tools/assets/build_monsters.py).
+
+undead_lord.glb — "Undead male" by TiZeta (Tiziana)
+            https://opengameart.org/content/undead-male
+            Creative Commons Attribution 3.0 (OpenGameArt page): https://creativecommons.org/licenses/by/3.0/
+            The archive's own text file (testo.txt) says Attribution 2.0: https://creativecommons.org/licenses/by/2.0/
+            Changes: scaled to 1.8 m, textures re-linked to the materials (512 px WebP), mirrored mesh fixed,
+            and idle, walk, run, attack, hit and die animations made by hand on the original skeleton
+            (tools/assets/build_undead.py).

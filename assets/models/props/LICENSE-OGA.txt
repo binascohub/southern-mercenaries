@@ -13,3 +13,8 @@ Weapon_Dagger — "Simple 3D Dagger" by danilomattos: https://opengameart.org/co
 Weapon_Stiletto — "Stiletto Dagger" by tigeruppercut: https://opengameart.org/content/stiletto-dagger (plain colors)
 
 Gold_Pile_1..5 — "Free Low Poly Gold" by Nobiax: https://opengameart.org/content/free-lowpoly-golds
+
+Chest_Potion.glb — "Chest (animated)" by cdmir (Čestmír Dammer)
+            https://opengameart.org/content/chest-animated
+            CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+            Changes: mesh and skeleton with the open and close animations, color texture reduced (tools/assets/build_monsters.py).

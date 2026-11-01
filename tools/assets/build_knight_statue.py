@@ -2,15 +2,20 @@
 O .blend traz um cavaleiro ajoelhado (malha com esqueleto), a espada, o escudo, a coroa do elmo e o pedestal;
 aqui a pose é assada na malha, tudo vira uma peça só em pedra cinza, em pé, base em y = 0, centrada em x/z.
 (A versão sentada do mesmo pacote tem a espada e o escudo fora do lugar no arquivo e não foi usada.)
-uso: blender -b knight_statue.blend --python tools/assets/build_knight_statue.py -- assets/models/maps/Statue_Knight.glb"""
+Também serve para "Knight Lying" (knight_statue_lying.blend, yd, CC0): o cavaleiro deitado numa laje; lá o escudo e
+um cubo solto ficam perdidos na origem, então são excluídos.
+uso: blender -b knight_statue.blend --python tools/assets/build_knight_statue.py -- <saida.glb> [altura_m] [objetos,excluídos]
+     (Statue_Knight.glb: 2.4;  Statue_Knight_Lying.glb: 1.4 shield.001,Cube.001)"""
 import bpy, sys
 from mathutils import Vector, Matrix
 
 out = sys.argv[sys.argv.index("--") + 1]
-HEIGHT = 2.4
+_args = sys.argv[sys.argv.index("--") + 1:]
+HEIGHT = float(_args[1]) if len(_args) > 1 else 2.4
+EXCLUDE = _args[2].split(",") if len(_args) > 2 else []
 deps = bpy.context.evaluated_depsgraph_get()
 parts = []
-for o in [o for o in bpy.data.objects if o.type == "MESH"]:
+for o in [o for o in bpy.data.objects if o.type == "MESH" and o.name not in EXCLUDE]:
     ev = o.evaluated_get(deps)
     mesh = bpy.data.meshes.new_from_object(ev)       # com o esqueleto na pose do arquivo
     mesh.transform(ev.matrix_world)

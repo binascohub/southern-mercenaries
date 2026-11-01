@@ -857,6 +857,11 @@ func _test_sewers() -> void:
 	for i in 200:
 		ruin_potions = ruin_potions and Breakables.roll(roll_rng, "breakable_potion") in ["potion_health", "potion_resource"]
 	_check(ruin_potions, "caixotes das Ruínas só soltam poção")
+	# Floresta: três golens (fogo, gelo, pedra), elites corpo a corpo com modelo.
+	var golems: Array = GameData.arenas.forest_01_path.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("f_golem_"))
+	_check(golems.size() == 3 and golems.all(func(e: Dictionary) -> bool:
+		var m: Dictionary = GameData.monsters.get(e.monsters[0].monster, {})
+		return m.get("category", "") == "elite" and MonsterModel.FAMILIES.has(m.get("look", "")) and float(m.get("damage", 0)) > 0.0), "Floresta tem os três golens")
 	# Floresta: poucos cervos quebráveis, parados, que só soltam poção.
 	var deer: Array = GameData.arenas.forest_01_path.get("breakables", [])
 	_check(deer.size() >= 3 and deer.size() <= 10 and deer.all(func(b: Dictionary) -> bool:

@@ -2484,10 +2484,22 @@ msgstr ""
 msgid "MONSTER_LESHY"
 msgstr ""
 
+msgid "MONSTER_GOLEM_FIRE"
+msgstr ""
+
+msgid "MONSTER_GOLEM_ICE"
+msgstr ""
+
+msgid "MONSTER_GOLEM_STONE"
+msgstr ""
+
 msgid "MONSTER_RUIN_WARDEN"
 msgstr ""
 
 msgid "MONSTER_CRYPT_SCORPION"
+msgstr ""
+
+msgid "MONSTER_CRYPT_LORD"
 msgstr ""
 
 msgid "MONSTER_FORT_COMMANDER"

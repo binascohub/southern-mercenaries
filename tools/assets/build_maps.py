@@ -83,6 +83,8 @@ monster("ruin_warden", "old_gator", _comment="Mini-chefe das Ruínas: o guardiã
         name_key="MONSTER_RUIN_WARDEN", max_health=260, damage=20, size=2.2, element="fire", look="lizard", color=[1.0, 0.55, 0.3])
 monster("crypt_scorpion", "old_gator", _comment="Mini-chefe do Cemitério: escorpião da cripta, gigante e escuro.",
         name_key="MONSTER_CRYPT_SCORPION", max_health=300, damage=22, size=3.0, element="water", look="scorpion", color=[0.45, 0.5, 0.65])
+monster("crypt_lord", "crypt_scorpion", _comment="Chefe do Cemitério: o Senhor da Cripta (Undead male, TiZeta, CC BY), nobre morto-vivo; "
+        "investidas como o escorpião que ele substitui.", name_key="MONSTER_CRYPT_LORD", size=1.5, look="undead", color=[1.0, 1.0, 1.0])
 monster("fort_commander", "old_gator", _comment="Chefe do Forte: o comandante amaldiçoado (usa o modelo do Feiticeiro-Aranha até haver arte própria).",
         name_key="MONSTER_FORT_COMMANDER", max_health=400, damage=25, size=2.4, element="air", look="demon", color=[0.8, 0.9, 1.0])
 monster("succubus", "acid_toad", _comment="Súcubo (docs/03-1-bestiario.md, seção 10; Goth Female \"Fleur du Mal\", tizeta, CC BY 3.0): serva de Lúcifer, ataque de magia à distância: lança uma bola de fogo do inferno (marca no chão antes) que deixa chamas e recua. O encanto dela (mercenário atingido ataca os amigos) ainda não existe.",
@@ -101,6 +103,23 @@ monsters["skeleton"] = {
     "attack_windup": 0.6, "attack_cooldown": 1.4, "aggro_range": 40.0, "size": 1.0, "category": "common", "element": "earth",
     "patrol": True, "patrol_radius": 6.0, "patrol_speed": 0.8, "look": "skeleton", "color": [0.92, 0.86, 0.72],
 }
+
+
+# Golens da Floresta (umask007, CC BY / CC BY-SA): três elites corpo a corpo lentos e resistentes; o de pedra investe.
+GOLEM = dict(move_speed=1.8, attack_range=2.6, aggro_range=40.0, size=1.6, category="elite", color=[1.0, 1.0, 1.0])
+monster("golem_fire", "skeleton", _comment="Golem de Fogo da Floresta (Fire/Ice/Stone Golem, umask007, CC BY 3.0 / CC BY-SA 3.0): elite corpo a corpo, rápido e de dano alto.",
+        name_key="MONSTER_GOLEM_FIRE", max_health=180, damage=16, attack_windup=0.8, attack_cooldown=1.8, element="fire", look="golem_fire",
+        patrol=False, **{**GOLEM, "move_speed": 2.3})
+monster("golem_ice", "skeleton", _comment="Golem de Gelo da Floresta (umask007): elite corpo a corpo, o mais lento; Água.",
+        name_key="MONSTER_GOLEM_ICE", max_health=220, damage=14, attack_windup=1.0, attack_cooldown=2.2, element="water", look="golem_ice",
+        patrol=False, **{**GOLEM, "move_speed": 1.6})
+monster("golem_stone", "old_gator", _comment="Golem de Pedra da Floresta (umask007): elite que investe como o Leshy; Terra.",
+        name_key="MONSTER_GOLEM_STONE", max_health=260, damage=18, attack_windup=0.9, attack_cooldown=2.0, element="earth", look="golem_stone",
+        **{**GOLEM, "move_speed": 1.8})
+monsters["golem_stone"].update({"ai": "charger", "charge": {"min": 4.0, "max": 9.0, "windup": 1.0, "speed": 10.0, "time": 0.6, "damage_mult": 1.3, "cooldown": 5.0}})
+for _g in ("golem_stone", "golem_ice", "golem_fire"):
+    for _k in ("rare_spawn", "no_loot", "flee", "patrol_radius", "patrol_speed"):
+        monsters[_g].pop(_k, None)
 
 
 # Cervos da Floresta (CDmir e TinyWorlds, CC0): quebráveis como os potes do Esgoto: não atacam, não perseguem, não voltam depois de mortos
@@ -129,6 +148,10 @@ f_enc = [
     {"id": "f_grove_b", "position": [9, -54], "monsters": [{"monster": "mutant_rat", "count": 4}]},
     {"id": "f_leshy", "position": [0, -76], "monsters": [{"monster": "leshy", "count": 1}]},
 ]
+# Um golem de cada: Pedra na clareira, Gelo na sala lateral, Fogo no bosque. Entram depois de f_keep para não mudar o sorteio das plantas.
+f_golems = [{"id": "f_golem_stone", "position": [-12, -23], "monsters": [{"monster": "golem_stone", "count": 1}]},
+            {"id": "f_golem_ice", "position": [22, -12], "monsters": [{"monster": "golem_ice", "count": 1}]},
+            {"id": "f_golem_fire", "position": [0, -62], "monsters": [{"monster": "golem_fire", "count": 1}]}]
 f_decor = []
 plants = ["Pl_Bush", "Pl_Swirl", "Pl_Hemp", "Pl_Flower"]
 for rd in f_rooms:
@@ -155,6 +178,8 @@ wdr = rng("forest_weeds")
 for rd in f_rooms:
     f_decor += scatter(wdr, rd, ["Pl_Weed%d" % i for i in range(1, 6)], int(rd["size"][0] * rd["size"][1] / 8), margin=1.5,
                        scale=(1.0, 2.0), avoid=f_keep)
+# Nenhuma pedra (sólida) onde um golem nasce.
+f_decor = [d for d in f_decor if not (d["piece"].startswith("Rock_") and any(math.hypot(d["position"][0] - g["position"][0], d["position"][1] - g["position"][1]) < 3.5 for g in f_golems))]
 f_decor += [{"piece": "Pr_RoadSign", "position": [4, 2], "rotation": 200}, {"piece": "Pr_LampPost", "position": [-6, 3], "rotation": 0, "solid": [0.6, 0.6]},
             {"piece": "Pr_Obelisk3", "position": [0, -80], "solid": [1.4, 1.4]}, {"piece": "Pr_Obelisk2", "position": [-6, -78], "solid": [1.0, 1.0]},
             {"piece": "Pr_Obelisk2", "position": [6, -78], "solid": [1.0, 1.0]}, {"piece": "Pr_BrokenPillar2", "position": [-12, -70], "solid": [1.2, 1.2]},
@@ -164,13 +189,13 @@ f_deer = []
 dr_ = rng("forest_deer")
 f_fixed = [(4, 2, 3), (-8, -4, 4), (0, -80, 5), (-6, -78, 3), (6, -78, 3), (-12, -70, 3), (12, -68, 3)]
 for rd, count in ((f_rooms[1], 2), (f_rooms[2], 1), (f_rooms[4], 2), (f_rooms[0], 1)):  # clareira, lateral, bosque, portão
-    for spot in scatter(dr_, rd, ["deer"], count, margin=4.0, avoid=f_keep + f_fixed + [(d["position"][0], d["position"][1], 10) for d in f_deer]):
+    for spot in scatter(dr_, rd, ["deer"], count, margin=4.0, avoid=f_keep + f_fixed + [(g["position"][0], g["position"][1], 5) for g in f_golems] + [(d["position"][0], d["position"][1], 10) for d in f_deer]):
         f_deer.append({"id": "d%d" % (len(f_deer) + 1), "monster": "deer_buck" if len(f_deer) % 2 == 0 else "deer_doe",
                        "position": spot["position"], "table": "breakable_potion"})
 arenas["forest_01_path"] = {
     "_comment": "Floresta (04-tortuga-e-missoes.md, missão 3 na ordem do mapa: Tortuga -> Floresta -> Ruínas -> Cemitério -> Forte). Clareiras abertas com cerca viva de bambu e arbustos (Stylish Plants, Nobiax, CC0), obeliscos e pilares quebrados (Medieval Props Textured). O Leshy guarda o bosque do fundo. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_FOREST", "player_class": "mage", "map_id": "map_forest", "area_level": 3, "outdoor": True,
-    "wake_radius": 10.0, "alert_radius": 5.0, "rooms": f_rooms, "encounters": f_enc, "hazards": [],
+    "wake_radius": 10.0, "alert_radius": 5.0, "rooms": f_rooms, "encounters": f_enc + f_golems, "hazards": [],
     "entries": {"start": [0, 3], "forest": [0, 3]},
     "props": [
         {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-6, 3], "to": "tortuga", "entry": "forest", "expedition_end": True},
@@ -242,7 +267,7 @@ c_enc = [
     {"id": "c_skel_gate", "position": [0, -17], "monsters": [{"monster": "skeleton", "count": 3}]},
     {"id": "c_skel_mid", "position": [0, -38], "monsters": [{"monster": "skeleton", "count": 4}]},
     {"id": "c_skel_crypt", "position": [-6, -52], "monsters": [{"monster": "skeleton", "count": 3}]},
-    {"id": "c_boss", "position": [0, -60], "monsters": [{"monster": "crypt_scorpion", "count": 1}]},
+    {"id": "c_boss", "position": [0, -60], "monsters": [{"monster": "crypt_lord", "count": 1}]},
 ]
 c_decor = []
 # Fileiras de túmulos (cruzes e lápides) com corredores no meio.
@@ -264,6 +289,10 @@ c_decor += [{"piece": "Pr_CoveredWell", "position": [0, -26], "solid": [1.8, 1.8
 # ladeando a cripta, viradas um pouco para o corredor do meio (a peça olha para +Z, para quem chega do portão).
 c_decor += [{"piece": "Statue_Knight", "position": [x, z], "rotation": rot, "solid": [1.1, 1.2]}
             for x, z, rot in ((-5.5, -9, 20), (5.5, -9, -20), (-11, -52, 25), (11, -52, -25))]
+# Túmulos do cavaleiro deitado (Knight Lying, yd, CC0): um de cada lado do pátio, com os degraus (lado +X da peça)
+# voltados para o corredor do meio.
+c_decor += [{"piece": "Statue_Knight_Lying", "position": [x, z], "rotation": rot, "solid": [1.9, 1.9]}
+            for x, z, rot in ((-18, -7, 0), (18, -7, 180))]
 for rd in c_rooms:
     c_decor += ring(cr, rd, ["Pr_Fence1", "Pr_Fence2"], 2.7, inset=0.7)
 c_decor += scatter(cr, c_rooms[1], ["Pl_Hemp", "Pl_Bush"], 14, margin=2.0)
@@ -439,6 +468,9 @@ arenas["fort_01_gate"] = {
         {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [cell_pos(6, 23)[0], cell_pos(6, 23)[1]], "to": "tortuga", "entry": "forest", "expedition_end": True},
         {"id": "fort_chest_1", "kind": "chest", "position": cell_pos(2, 19), "loot": "chest"},
         {"id": "fort_chest_2", "kind": "chest", "position": cell_pos(17, 19), "loot": "chest"},
+        {"id": "fort_potions_1", "kind": "chest", "position": cell_pos(1, 13), "loot": "potion_chest", "model": "Chest_Potion"},
+        {"id": "fort_potions_2", "kind": "chest", "position": cell_pos(18, 13), "loot": "potion_chest", "model": "Chest_Potion"},
+        {"id": "fort_potions_3", "kind": "chest", "position": cell_pos(13, 23), "loot": "potion_chest", "model": "Chest_Potion"},
     ],
     "quest_spots": [], "breakables": [],
     "style": {"_comment": "Forte: piso de pedra do pacote; a pedra vem das peças Fort_* em decor.", "walls": [""], "floor": "Fort_Floor", "low": "", "ground": [0.07, 0.07, 0.08]},

@@ -175,5 +175,25 @@
       "potion_health": 60,
       "potion_resource": 40
     }
+  },
+  "potion_chest": {
+    "_comment": "Baú de poções do Forte (Chest, cdmir): 3 a 5 poções (vida ou recurso, 60/40) e pouco ouro, nada de equipamento. 'potions': [mín, máx] poções garantidas, além da chance de 'potion_chance'.",
+    "gold": {
+      "chance": 1.0,
+      "per_level": 2.0,
+      "min": 5,
+      "max": 15
+    },
+    "item_chance": 0.0,
+    "rarity_weights": {
+      "common": 100
+    },
+    "potion_chance": 0.0,
+    "potions": [
+      3,
+      5
+    ],
+    "elemental_potion_share": 0.0,
+    "valuable_chance": 0.0
   }
 }

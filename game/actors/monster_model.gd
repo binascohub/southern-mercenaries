@@ -54,10 +54,22 @@ const FAMILIES := {
 	# altura no arquivo (`unit`) -> ~1,8 m no tamanho 1. Ataque de magia à distância.
 	"succubus": {"scene": "res://assets/models/monsters/succubus.glb", "scale": 0.04, "static": true, "unit": 44.8,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Senhor da Cripta (Undead male, TiZeta, CC BY): nobre morto-vivo de casaco roxo, 1,8 m no tamanho 1, com animações
+	# feitas à mão (tools/assets/build_undead.py). Chefe do Cemitério.
+	"undead": {"scene": "res://assets/models/monsters/undead_lord.glb", "scale": 1.0,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Sapo Ácido (Triton, guiea7, CC BY-SA 4.0): sapo-homem pintado, 8,2 unidades
 	# de altura -> ~1,3 m no tamanho do sapo; tingido de verde pelos dados.
 	"toad": {"scene": "res://assets/models/monsters/toad.glb", "scale": 0.187,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
+	# Golens da Floresta (umask007, CC BY 3.0 / CC BY-SA 3.0; tools/assets/build_golems.sh): 2,3 m de largura no arquivo, "size" 1.6 nos dados.
+	# O "hit" é o flinch; o modelo é o mesmo nas três variantes, só a textura muda (fogo, gelo, pedra).
+	"golem_fire": {"scene": "res://assets/models/monsters/golem_fire.glb", "scale": 0.62,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	"golem_ice": {"scene": "res://assets/models/monsters/golem_ice.glb", "scale": 0.62,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	"golem_stone": {"scene": "res://assets/models/monsters/golem_stone.glb", "scale": 0.62,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Cervos da Floresta (CDmir e TinyWorlds, CC0; tools/assets/build_deer.sh): 1,6 m de comprimento no arquivo, "size" 1.4 nos dados.
 	"deer_buck": {"scene": "res://assets/models/monsters/deer_buck.glb", "scale": 0.714,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "die": "die"}},
