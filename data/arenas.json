@@ -1783,6 +1783,90 @@
         "weapon": "Weapon_Shortsword"
       },
       {
+        "role": "rabbit",
+        "position": [
+          -8,
+          3.5
+        ],
+        "path": [
+          -2,
+          4.5
+        ],
+        "speed": 1.5
+      },
+      {
+        "role": "rabbit",
+        "position": [
+          12,
+          -2.5
+        ],
+        "path": [
+          18,
+          -1
+        ],
+        "speed": 1.5
+      },
+      {
+        "role": "rabbit",
+        "position": [
+          -20,
+          5.5
+        ],
+        "path": [
+          -24,
+          2.5
+        ],
+        "speed": 1.5
+      },
+      {
+        "role": "rabbit",
+        "position": [
+          4,
+          2
+        ],
+        "path": [
+          9,
+          1
+        ],
+        "speed": 1.5
+      },
+      {
+        "role": "rabbit",
+        "position": [
+          -4,
+          -12
+        ],
+        "path": [
+          -9,
+          -10
+        ],
+        "speed": 1.5
+      },
+      {
+        "role": "rabbit",
+        "position": [
+          6,
+          -12
+        ],
+        "path": [
+          10,
+          -15
+        ],
+        "speed": 1.5
+      },
+      {
+        "role": "rabbit",
+        "position": [
+          24,
+          -3
+        ],
+        "path": [
+          21,
+          3
+        ],
+        "speed": 1.5
+      },
+      {
         "role": "courtesan_red",
         "position": [
           -6,

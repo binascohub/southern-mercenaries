@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Tortuga
+- Rabbits (CC0) hop along the streets and the port, sitting up alert at each end of their path (`tools/assets/build_rabbit.py` converts the Blender file).
 - Tortuga no longer has guards on the street and the port: soldiers (armored hero bodies with swords, axes, hammers and polearms) train in the training yard instead, swinging combos at the dummies out of step with each other, with a drill instructor talking at the back (`soldier` role in `data/crowd.json`).
 - More women dancing through Tortuga's chaos: four procedural dances for the courtesan model (a slow sensual sway, hip rolls with a hand in the hair, a twirl with open arms, a wild jumping party) and five new courtesan looks (emerald, black with blonde hair, gold, linen, plus the red one), dancing in groups with a crowd cheering around them in the street and at the port.
 - Courtesans now use generated painted materials (skin, cloth, leather and hair with normal maps and an earthy palette) to match the heroes and the town (`game/actors/painted_textures.gd`).

@@ -98,6 +98,10 @@ const MODELS := {
 	"spider": {"scene": "res://assets/models/monsters/spider.glb", "scale": 0.4,
 		"poses": {"walk": "walk", "idle": "idle", "talk": "idle"},
 		"colors": {"Spider": [0.55, 0.1, 0.06]}},
+	# Coelho (Rabbit, cdmir, CC0): pula pelas ruas de Tortuga (o pulo de 1 s fica no lugar:
+	# o Wanderer anda enquanto ele pula) e senta alerta nas pontas. Arquivo de ~15 unidades -> 60 cm.
+	"rabbit": {"scene": "res://assets/models/characters/rabbit.glb", "scale": 0.04,
+		"poses": {"walk": "jump", "run": "run", "idle": "idle", "talk": "sit"}},
 	# Galinha (cdmir, CC0): anda e cisca pelas cozinhas de Tortuga (12,6 unidades -> 0,4 m).
 	"chicken": {"scene": "res://assets/models/characters/chicken.glb", "scale": 0.032,
 		"poses": {"walk": "walk", "idle": "eat", "talk": "idle"}},
