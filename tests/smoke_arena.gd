@@ -943,10 +943,11 @@ func _town_test() -> void:
 	check.call(player.element == player.character.data.element and player.character.data.element_potion == "", "voltar a Tortuga encerra a Poção Elemental")
 	check.call(int(town.ship.day) == 1, "chegou um navio novo")
 	check.call(Session.campaign.area == "tortuga", "a campanha lembra onde o grupo está")
-	# Pátio de treino: bonecos que não morrem, painel do grupo, recursos livres.
+	# Pátio de treino (agora na Capital): bonecos que não morrem, painel do grupo, recursos livres.
+	_arena.travel("capital_01_aurenhold", "start")
 	var dummies := get_tree().get_nodes_in_group(&"enemies").filter(func(e: Enemy) -> bool: return e.data.get("dummy", false))
 	check.call(dummies.size() == 11, "11 bonecos no pátio (%d)" % dummies.size())
-	player.teleport_to(Vector3(-9, 0, 12))
+	player.teleport_to(Vector3(-9, 0, 11))
 	check.call(_arena.in_training(player.global_position), "herói dentro do pátio")
 	var xp := int(player.character.data.xp)
 	var fire_dummy: Enemy = dummies.filter(func(e: Enemy) -> bool: return e.monster_id == "training_dummy_fire")[0]
@@ -974,12 +975,13 @@ func _town_test() -> void:
 	_arena.request_training("toggle_free")
 	# Macumbeiro: Patuá de Retorno e portal para o ponto salvo do Esgoto.
 	player.character.data.gold = 1000
-	player.teleport_to(Vector3(16, 0, -4.5))
+	player.teleport_to(Vector3(16, 0, -3.5))
 	town._rpc_buy("voodoo", 0)
 	check.call(player.character.count_of("return_charm") == 1 and int(player.character.data.gold) == 850, "compra o Patuá por 150")
 	player._drink("return_charm")
 	check.call(player.character.count_of("return_charm") == 1, "Patuá não funciona na cidade")
 	check.call("sewers_01_drains:start" in town.reached, "ponto salvo do Esgoto na lista")
+	_arena.travel("tortuga", "start")
 	player.teleport_to(Vector3(12, 0, -4.5))
 	var price := Town.portal_price("sewers_01_drains:start")
 	town._rpc_portal("sewers_01_drains:start")
@@ -1042,10 +1044,10 @@ func _town_test() -> void:
 	_arena.request_interact(player)
 	check.call(town.side_quests.sq_test_cargo.status == "done" and int(player.character.data.gold) > gold_cargo, "carga entregue: recompensa")
 	# Ferreiro: comprar pergaminhos, refinar até +3, aura, cristalizar.
-	_arena.travel("tortuga", "start")
+	_arena.travel("capital_01_aurenhold", "start")
 	player.character.data.gold = 2000
 	player.character.add_item(Items.equipment("staff", "iron", "common", 2))
-	player.teleport_to(Vector3(4, 0, -4.5))
+	player.teleport_to(Vector3(4, 0, -3.5))
 	for i in 3:
 		town._rpc_buy("blacksmith", 0)
 	check.call(player.character.count_of("scroll_refine_weapon_iron") == 3, "compra 3 pergaminhos de arma de Ferro")

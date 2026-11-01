@@ -211,8 +211,7 @@
           16
         ],
         "doors": [
-          "north",
-          "south"
+          "north"
         ],
         "torch": true,
         "roofs": true
@@ -250,23 +249,6 @@
         ],
         "wall_height": 0.6,
         "floor": "Floor_WoodDark"
-      },
-      {
-        "id": "training_yard",
-        "center": [
-          0,
-          16
-        ],
-        "size": [
-          26,
-          16
-        ],
-        "doors": [
-          "north"
-        ],
-        "training": true,
-        "torch": true,
-        "floor": "Floor_UnevenBrick"
       }
     ],
     "encounters": [],
@@ -307,39 +289,6 @@
         ],
         "to": "tavern",
         "entry": "door"
-      },
-      {
-        "id": "shop_potions",
-        "kind": "shop",
-        "shop": "potions",
-        "name_key": "SHOP_POTIONS",
-        "position": [
-          -20,
-          -5.5
-        ],
-        "stall": "awning_yellow"
-      },
-      {
-        "id": "shop_weapons",
-        "kind": "shop",
-        "shop": "weapons",
-        "name_key": "SHOP_WEAPONS",
-        "position": [
-          -12,
-          -5.5
-        ],
-        "stall": "shingle_blue"
-      },
-      {
-        "id": "shop_armor",
-        "kind": "shop",
-        "shop": "armor",
-        "name_key": "SHOP_ARMOR",
-        "position": [
-          -4,
-          -5.5
-        ],
-        "stall": "awning_blue"
       },
       {
         "id": "sewer_entrance",
@@ -400,15 +349,6 @@
         ]
       },
       {
-        "id": "training_board",
-        "kind": "training",
-        "name_key": "PROP_TRAINING_BOARD",
-        "position": [
-          -10,
-          10.5
-        ]
-      },
-      {
         "id": "voodoo_priest",
         "kind": "npc",
         "npc": "voodoo_priest",
@@ -416,17 +356,6 @@
           12,
           -5.5
         ]
-      },
-      {
-        "id": "shop_voodoo",
-        "kind": "shop",
-        "shop": "voodoo",
-        "name_key": "SHOP_VOODOO",
-        "position": [
-          16,
-          -5.5
-        ],
-        "stall": "tent_teal"
       },
       {
         "id": "master",
@@ -445,17 +374,6 @@
           -5,
           5.5
         ]
-      },
-      {
-        "id": "blacksmith",
-        "kind": "forge",
-        "shop": "blacksmith",
-        "name_key": "SHOP_BLACKSMITH",
-        "position": [
-          4,
-          -5.5
-        ],
-        "stall": "patch"
       },
       {
         "id": "forest_gate",
@@ -489,85 +407,6 @@
         ],
         "to": "mine_01_crystal_vein",
         "entry": "start"
-      }
-    ],
-    "dummies": [
-      {
-        "monster": "training_dummy_water",
-        "position": [
-          -9,
-          15
-        ]
-      },
-      {
-        "monster": "training_dummy_fire",
-        "position": [
-          -5,
-          15
-        ]
-      },
-      {
-        "monster": "training_dummy_air",
-        "position": [
-          -1,
-          15
-        ]
-      },
-      {
-        "monster": "training_dummy_earth",
-        "position": [
-          3,
-          15
-        ]
-      },
-      {
-        "monster": "training_dummy_armored",
-        "position": [
-          9,
-          13
-        ]
-      },
-      {
-        "monster": "training_dummy_giant",
-        "position": [
-          9,
-          19.5
-        ]
-      },
-      {
-        "monster": "training_dummy_small",
-        "position": [
-          -8.0,
-          20.5
-        ]
-      },
-      {
-        "monster": "training_dummy_small",
-        "position": [
-          -6.4,
-          20.5
-        ]
-      },
-      {
-        "monster": "training_dummy_small",
-        "position": [
-          -4.8,
-          20.5
-        ]
-      },
-      {
-        "monster": "training_dummy_small",
-        "position": [
-          -3.1999999999999993,
-          20.5
-        ]
-      },
-      {
-        "monster": "training_dummy_small",
-        "position": [
-          -1.5999999999999996,
-          20.5
-        ]
       }
     ],
     "style": {
@@ -604,52 +443,10 @@
         ]
       },
       {
-        "piece": "Barrel",
-        "position": [
-          -17.6,
-          -6.6
-        ]
-      },
-      {
         "piece": "Barrel_Apples",
         "position": [
           -22.4,
           -6.4
-        ]
-      },
-      {
-        "piece": "FarmCrate_Apple",
-        "position": [
-          -9.6,
-          -6.6
-        ]
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          -6.4,
-          -6.6
-        ]
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          -1.6,
-          -6.8
-        ]
-      },
-      {
-        "piece": "Pouch_Large",
-        "position": [
-          13.8,
-          -6.6
-        ]
-      },
-      {
-        "piece": "Cauldron",
-        "position": [
-          18.4,
-          -6.2
         ]
       },
       {
@@ -775,43 +572,6 @@
         ]
       },
       {
-        "piece": "WeaponStand",
-        "position": [
-          -12,
-          10.4
-        ]
-      },
-      {
-        "piece": "Beer_Barrel",
-        "position": [
-          12,
-          9.5
-        ]
-      },
-      {
-        "piece": "Shield_Wooden",
-        "position": [
-          11.6,
-          10.2
-        ],
-        "y": 0.6
-      },
-      {
-        "piece": "Bottle_1",
-        "position": [
-          -7.4,
-          -6.2
-        ]
-      },
-      {
-        "piece": "Bottle_1",
-        "position": [
-          -8.9,
-          -5.9
-        ],
-        "rotation": 70
-      },
-      {
         "piece": "Mug",
         "position": [
           25.5,
@@ -882,13 +642,6 @@
         "position": [
           23.6,
           -6.4
-        ]
-      },
-      {
-        "piece": "FarmCrate_Apple",
-        "position": [
-          -19.6,
-          -6.6
         ]
       },
       {
@@ -996,54 +749,6 @@
         ]
       },
       {
-        "piece": "Archery_Target",
-        "position": [
-          -11,
-          23.2
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Archery_Target",
-        "position": [
-          -8,
-          23.2
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Bench_Wood",
-        "position": [
-          4,
-          22.6
-        ],
-        "rotation": 0
-      },
-      {
-        "piece": "Barricade_Stakes",
-        "position": [
-          12,
-          21.5
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Barricade_Stakes",
-        "position": [
-          12,
-          11
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Stool_Wood",
-        "position": [
-          5.6,
-          21.6
-        ],
-        "rotation": 0
-      },
-      {
         "piece": "Watch_Tower",
         "position": [
           13.5,
@@ -1074,105 +779,6 @@
           -20.6
         ],
         "rotation": 40
-      },
-      {
-        "piece": "Weapon_FM_Long_Sword",
-        "position": [
-          -13.4,
-          -7.0
-        ],
-        "y": 0.5,
-        "rotation": 0
-      },
-      {
-        "piece": "Weapon_FM_Great_Sword",
-        "position": [
-          -12.9,
-          -7.1
-        ],
-        "y": 0.7,
-        "rotation": 0
-      },
-      {
-        "piece": "Weapon_FM_War_Axe",
-        "position": [
-          -11.2,
-          -7.0
-        ],
-        "y": 0.4,
-        "rotation": 0
-      },
-      {
-        "piece": "Weapon_FM_Spiked_Mace",
-        "position": [
-          -10.7,
-          -7.1
-        ],
-        "y": 0.425,
-        "rotation": 0
-      },
-      {
-        "piece": "Weapon_FM_Great_Axe",
-        "position": [
-          2.6,
-          -7.1
-        ],
-        "y": 0.65,
-        "rotation": 0
-      },
-      {
-        "piece": "Weapon_FM_Hammer",
-        "position": [
-          3.2,
-          -7.0
-        ],
-        "y": 0.4,
-        "rotation": 0
-      },
-      {
-        "piece": "Weapon_FM_Mace",
-        "position": [
-          5.1,
-          -7.1
-        ],
-        "y": 0.375,
-        "rotation": 0
-      },
-      {
-        "piece": "Weapon_FM_Spear",
-        "position": [
-          -14.5,
-          14.5
-        ],
-        "y": 1.05,
-        "rotation": 0
-      },
-      {
-        "piece": "Weapon_FM_Polearm",
-        "position": [
-          -13.8,
-          14.6
-        ],
-        "y": 1.1,
-        "rotation": 0
-      },
-      {
-        "piece": "Weapon_FM_Quarterstaff",
-        "position": [
-          -13.1,
-          14.5
-        ],
-        "y": 0.85,
-        "rotation": 0
-      },
-      {
-        "piece": "Weapon_FM_Club",
-        "position": [
-          -6.0,
-          22.4
-        ],
-        "y": 0.375,
-        "rotation": 0
       }
     ],
     "crowd": [
@@ -26855,7 +26461,8 @@
           14
         ],
         "doors": [
-          "north"
+          "north",
+          "south"
         ],
         "torch": true,
         "roofs": false
@@ -26892,6 +26499,23 @@
         ],
         "torch": true,
         "wall_height": 2.0
+      },
+      {
+        "id": "training_yard",
+        "center": [
+          0,
+          15
+        ],
+        "size": [
+          26,
+          16
+        ],
+        "doors": [
+          "north"
+        ],
+        "training": true,
+        "torch": true,
+        "floor": "Floor_UnevenBrick"
       }
     ],
     "encounters": [],
@@ -26916,6 +26540,70 @@
         ],
         "to": "tortuga",
         "entry": "forest"
+      },
+      {
+        "id": "shop_potions",
+        "kind": "shop",
+        "shop": "potions",
+        "name_key": "SHOP_POTIONS",
+        "position": [
+          -19,
+          -4.5
+        ],
+        "stall": "awning_yellow"
+      },
+      {
+        "id": "shop_weapons",
+        "kind": "shop",
+        "shop": "weapons",
+        "name_key": "SHOP_WEAPONS",
+        "position": [
+          -12,
+          -4.5
+        ],
+        "stall": "shingle_blue"
+      },
+      {
+        "id": "shop_armor",
+        "kind": "shop",
+        "shop": "armor",
+        "name_key": "SHOP_ARMOR",
+        "position": [
+          -4,
+          -4.5
+        ],
+        "stall": "awning_blue"
+      },
+      {
+        "id": "training_board",
+        "kind": "training",
+        "name_key": "PROP_TRAINING_BOARD",
+        "position": [
+          -10,
+          9.5
+        ]
+      },
+      {
+        "id": "shop_voodoo",
+        "kind": "shop",
+        "shop": "voodoo",
+        "name_key": "SHOP_VOODOO",
+        "position": [
+          16,
+          -4.5
+        ],
+        "stall": "tent_teal"
+      },
+      {
+        "id": "blacksmith",
+        "kind": "forge",
+        "shop": "blacksmith",
+        "name_key": "SHOP_BLACKSMITH",
+        "position": [
+          4,
+          -4.5
+        ],
+        "stall": "patch"
       }
     ],
     "style": {
@@ -27242,6 +26930,239 @@
           2
         ],
         "rotation": 200
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -17.6,
+          -5.6
+        ]
+      },
+      {
+        "piece": "FarmCrate_Apple",
+        "position": [
+          -9.6,
+          -5.6
+        ]
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -6.4,
+          -5.6
+        ]
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -1.6,
+          -5.8
+        ]
+      },
+      {
+        "piece": "Pouch_Large",
+        "position": [
+          13.8,
+          -5.6
+        ]
+      },
+      {
+        "piece": "Cauldron",
+        "position": [
+          18.4,
+          -5.2
+        ]
+      },
+      {
+        "piece": "WeaponStand",
+        "position": [
+          -12,
+          9.4
+        ]
+      },
+      {
+        "piece": "Beer_Barrel",
+        "position": [
+          12,
+          8.5
+        ]
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          11.6,
+          9.2
+        ],
+        "y": 0.6
+      },
+      {
+        "piece": "Bottle_1",
+        "position": [
+          -7.4,
+          -5.2
+        ]
+      },
+      {
+        "piece": "Bottle_1",
+        "position": [
+          -8.9,
+          -4.9
+        ],
+        "rotation": 70
+      },
+      {
+        "piece": "FarmCrate_Apple",
+        "position": [
+          -20.6,
+          -5.6
+        ]
+      },
+      {
+        "piece": "Archery_Target",
+        "position": [
+          -11,
+          22.2
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Archery_Target",
+        "position": [
+          -8,
+          22.2
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Bench_Wood",
+        "position": [
+          4,
+          21.6
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Barricade_Stakes",
+        "position": [
+          12,
+          20.5
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Barricade_Stakes",
+        "position": [
+          12,
+          10
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Stool_Wood",
+        "position": [
+          5.6,
+          20.6
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Weapon_FM_Long_Sword",
+        "position": [
+          -13.4,
+          -6.0
+        ],
+        "y": 0.5,
+        "rotation": 0
+      },
+      {
+        "piece": "Weapon_FM_Great_Sword",
+        "position": [
+          -12.9,
+          -6.1
+        ],
+        "y": 0.7,
+        "rotation": 0
+      },
+      {
+        "piece": "Weapon_FM_War_Axe",
+        "position": [
+          -11.2,
+          -6.0
+        ],
+        "y": 0.4,
+        "rotation": 0
+      },
+      {
+        "piece": "Weapon_FM_Spiked_Mace",
+        "position": [
+          -10.7,
+          -6.1
+        ],
+        "y": 0.425,
+        "rotation": 0
+      },
+      {
+        "piece": "Weapon_FM_Great_Axe",
+        "position": [
+          2.6,
+          -6.1
+        ],
+        "y": 0.65,
+        "rotation": 0
+      },
+      {
+        "piece": "Weapon_FM_Hammer",
+        "position": [
+          3.2,
+          -6.0
+        ],
+        "y": 0.4,
+        "rotation": 0
+      },
+      {
+        "piece": "Weapon_FM_Mace",
+        "position": [
+          5.1,
+          -6.1
+        ],
+        "y": 0.375,
+        "rotation": 0
+      },
+      {
+        "piece": "Weapon_FM_Spear",
+        "position": [
+          -14.5,
+          13.5
+        ],
+        "y": 1.05,
+        "rotation": 0
+      },
+      {
+        "piece": "Weapon_FM_Polearm",
+        "position": [
+          -13.8,
+          13.6
+        ],
+        "y": 1.1,
+        "rotation": 0
+      },
+      {
+        "piece": "Weapon_FM_Quarterstaff",
+        "position": [
+          -13.1,
+          13.5
+        ],
+        "y": 0.85,
+        "rotation": 0
+      },
+      {
+        "piece": "Weapon_FM_Club",
+        "position": [
+          -6.0,
+          21.4
+        ],
+        "y": 0.375,
+        "rotation": 0
       }
     ],
     "crowd": [
@@ -27365,6 +27286,85 @@
         ],
         "speed": 0.9
       }
+    ],
+    "dummies": [
+      {
+        "monster": "training_dummy_water",
+        "position": [
+          -9,
+          14
+        ]
+      },
+      {
+        "monster": "training_dummy_fire",
+        "position": [
+          -5,
+          14
+        ]
+      },
+      {
+        "monster": "training_dummy_air",
+        "position": [
+          -1,
+          14
+        ]
+      },
+      {
+        "monster": "training_dummy_earth",
+        "position": [
+          3,
+          14
+        ]
+      },
+      {
+        "monster": "training_dummy_armored",
+        "position": [
+          9,
+          12
+        ]
+      },
+      {
+        "monster": "training_dummy_giant",
+        "position": [
+          9,
+          18.5
+        ]
+      },
+      {
+        "monster": "training_dummy_small",
+        "position": [
+          -8.0,
+          19.5
+        ]
+      },
+      {
+        "monster": "training_dummy_small",
+        "position": [
+          -6.4,
+          19.5
+        ]
+      },
+      {
+        "monster": "training_dummy_small",
+        "position": [
+          -4.8,
+          19.5
+        ]
+      },
+      {
+        "monster": "training_dummy_small",
+        "position": [
+          -3.2,
+          19.5
+        ]
+      },
+      {
+        "monster": "training_dummy_small",
+        "position": [
+          -1.6,
+          19.5
+        ]
+      }
     ]
   },
   "farm_01_fields": {
@@ -27449,6 +27449,17 @@
         ],
         "to": "tortuga",
         "entry": "forest"
+      },
+      {
+        "id": "mine_gate",
+        "kind": "exit",
+        "name_key": "PROP_TO_MINE",
+        "position": [
+          28,
+          -31
+        ],
+        "to": "mine_01_crystal_vein",
+        "entry": "start"
       }
     ],
     "quest_spots": [],
