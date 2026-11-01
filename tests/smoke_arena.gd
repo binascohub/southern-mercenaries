@@ -548,6 +548,10 @@ func _sewers_test() -> void:
 	_arena.hud.minimap.toggle_large()
 	check.call(_arena.hud.minimap.large, "mapa grande")
 	_arena.hud.minimap.toggle_large()
+	# Paredes ao sul do herói (entre ele e a câmera) somem.
+	player.teleport_to(Vector3(0, 0, -45))
+	await _wait_frames(8)
+	check.call(_arena.hidden_walls() > 0, "paredes entre a câmera e o herói somem")
 	# Área 1: poça de lodo fere quem está dentro.
 	player.teleport_to(Vector3(0, 0, -43))
 	player.health = player.max_health

@@ -128,6 +128,10 @@ var _tinted := {}
 var _sludge: StandardMaterial3D
 ## Cristal de save do checkpoint (flutua; acende quando o jogo salva).
 var _crystal_material: StandardMaterial3D
+## Paredes altas do kit (com o cano e a sujeira presos a elas): as que ficam
+## entre a câmera (ao sul) e o herói somem para não tapar a visão.
+var _cut_walls: Array[Node3D] = []
+var _cut_timer := 0.0
 ## Bocas de cano do esgoto desta área: [boca, direção para fora da parede].
 var _pipes: Array = []
 ## Sujeira do esgoto: materiais das poças, da faixa de umidade e dos escorridos.
@@ -277,6 +281,7 @@ func _physics_process(delta: float) -> void:
 	_update_minimap_marks()
 	if multiplayer.is_server():
 		_update_explored(delta)
+	_update_cutaway(delta)
 	if local_player and is_instance_valid(local_player):
 		hud.set_training(training if in_training(local_player.global_position) else {})
 		var near := prop_near(local_player)
@@ -285,6 +290,26 @@ func _physics_process(delta: float) -> void:
 	if not _campaign.is_empty():
 		_campaign.played_seconds = float(_campaign.get("played_seconds", 0)) + delta
 		_update_thumbnail(delta)
+
+
+## Corte das paredes: a câmera olha do sul, então paredes ao sul do herói (até
+## onde a câmera alcança, e perto dele de lado) somem; voltam quando ele passa.
+func _update_cutaway(delta: float) -> void:
+	_cut_timer -= delta
+	if _cut_timer > 0.0 or _cut_walls.is_empty() or local_player == null or not is_instance_valid(local_player):
+		return
+	_cut_timer = 0.1
+	var at := local_player.global_position
+	for wall in _cut_walls:
+		if not is_instance_valid(wall):
+			continue
+		var p := wall.global_position
+		wall.visible = not (p.z > at.z + 1.0 and p.z < at.z + 14.0 and absf(p.x - at.x) < 9.0)
+
+
+## Paredes escondidas agora pelo corte (testes).
+func hidden_walls() -> int:
+	return _cut_walls.filter(func(w: Node3D) -> bool: return is_instance_valid(w) and not w.visible).size()
 
 
 # --- Spawners -----------------------------------------------------------------
@@ -1920,6 +1945,7 @@ func _build_area() -> void:
 	_style_tint = Color(t[0], t[1], t[2])
 	_tinted.clear()
 	_pipes.clear()
+	_cut_walls.clear()
 	var bounds := AABB()
 	for i in arena.rooms.size():
 		var room: Dictionary = arena.rooms[i]
@@ -2217,6 +2243,7 @@ func _pipe_mouth(on_wall: Vector3, inward: Vector3, rng: RandomNumberGenerator) 
 	root.position = on_wall + Vector3.UP * height
 	root.basis = Basis.looking_at(inward, Vector3.UP)  # -Z do nó = para dentro da sala
 	_area_root.add_child(root)
+	_cut_walls.append(root)
 	var rust := _grime_material("pipe")  # cano de cobre esverdeado (pátina)
 	var tube := MeshInstance3D.new()
 	var cylinder := CylinderMesh.new()
@@ -2327,6 +2354,7 @@ func _grime_quad(at: Vector3, width: float, height: float, inward: Vector3, kind
 	quad.position = at
 	quad.rotation.y = atan2(inward.x, inward.z)
 	_area_root.add_child(quad)
+	_cut_walls.append(quad)
 
 
 ## Poça de água suja: mancha irregular, lisa e brilhante (só visual; o lodo
@@ -2437,6 +2465,8 @@ func _dress_side(face: Vector3, along: Vector3, inward: Vector3, length: float, 
 			node.rotation.y = atan2(inward.x, inward.z)
 			_area_root.add_child(node)
 			_tint_piece(node)
+			if full and not arena.get("outdoor", false):
+				_cut_walls.append(node)
 
 
 ## Objeto de cenário (data/arenas.json "decor"): mesa, banco, barril, carroça…
