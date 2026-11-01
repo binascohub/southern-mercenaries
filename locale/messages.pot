@@ -2606,3 +2606,12 @@ msgstr ""
 
 msgid "PROP_COIN_BAG"
 msgstr ""
+
+msgid "ARENA_DOCKS"
+msgstr ""
+
+msgid "PROP_TO_DOCKS"
+msgstr ""
+
+msgid "PROP_TO_PORT"
+msgstr ""

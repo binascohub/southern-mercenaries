@@ -2616,3 +2616,12 @@ msgstr "Path to the Mine"
 
 msgid "MONSTER_CRYSTAL_GOLEM"
 msgstr "Crystal Golem"
+
+msgid "ARENA_DOCKS"
+msgstr "Docks"
+
+msgid "PROP_TO_DOCKS"
+msgstr "Gangway to the Docks"
+
+msgid "PROP_TO_PORT"
+msgstr "Back to the port"

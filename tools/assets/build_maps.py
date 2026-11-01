@@ -763,8 +763,63 @@ tortuga_props = arenas["tortuga"]["props"]
 if not any(p["id"] == "farm_gate" for p in tortuga_props):
     tortuga_props.append({"id": "farm_gate", "kind": "exit", "name_key": "PROP_TO_FARM", "position": [-27.5, 3.2], "to": "farm_01_fields", "entry": "start"})
 
+# --- Docas (ligadas ao porto de Tortuga; Modular Wooden Docks, loafbrr, CC0) ---------------------------------
+dr2 = rng("docks")
+dk_rooms = [
+    room("landing", 0, 0, 20, 10, ["north"], torch=True, wall_height=0.8),
+    room("pier_main", 0, -12, 8, 14, ["south", "north"], wall_height=0.8),
+    room("crossing", 0, -25, 40, 8, ["south", "west", "east", "north"], wall_height=0.8),
+    room("west_pier", -26, -25, 12, 8, ["east"], wall_height=0.8),
+    room("east_pier", 26, -25, 12, 8, ["west"], wall_height=0.8),
+    room("end_pier", 0, -37, 10, 16, ["south"], wall_height=0.8),
+]
+dk_enc = [
+    {"id": "dk_rats_a", "position": [0, -12], "monsters": [{"monster": "plague_rat", "count": 4}]},
+    {"id": "dk_toads", "position": [-26, -25], "monsters": [{"monster": "acid_toad", "count": 3}]},
+    {"id": "dk_bats", "position": [26, -25], "monsters": [{"monster": "plague_bat", "count": 4}]},
+    {"id": "dk_rats_b", "position": [0, -40], "monsters": [{"monster": "mutant_rat", "count": 5}]},
+]
+dk_decor = []
+for bx, bz, rot, piece in ((-12, -14, 20, "Dock_Boat_A_1"), (12, -15, -15, "Dock_Boat_B_1"), (-14, -33, 80, "Dock_Boat_A_2"), (14, -34, 100, "Dock_Boat_A_1"), (-8, 6, 0, "Dock_Boat_B_1")):
+    dk_decor.append({"piece": piece, "position": [bx, bz], "y": -0.2, "rotation": rot})
+dk_decor.append({"piece": "Dock_Boat_Stand", "position": [10, 8], "rotation": 90})
+for x in (-9, 9):
+    for z in (3, -4):
+        dk_decor.append({"piece": "Dock_Dock_Bollard_1", "position": [x, z], "y": 0.12, "solid": [0.4, 0.4]})
+for z in (-8, -16):
+    for x in (-3, 3):
+        dk_decor.append({"piece": "Dock_Dock_Bollard_1", "position": [x, z], "y": 0.12, "solid": [0.4, 0.4]})
+crates = ["Dock_Props_Barrel", "Dock_Props_Crate", "Dock_Props_Box"]
+for cx, cz in ((-7, 2), (7, 1), (-18, -26), (-30, -23), (22, -27), (30, -23), (-3, -33), (3, -42), (-3, -29), (7, -24)):
+    for k in range(dr2.randint(2, 3)):
+        dk_decor.append({"piece": dr2.choice(crates), "position": [round(cx + dr2.uniform(-0.8, 0.8), 1), round(cz + dr2.uniform(-0.8, 0.8), 1)],
+                         "y": 0.12, "rotation": dr2.randrange(0, 360, 15)})
+dk_decor += [{"piece": "Dock_Props_Rack_Fish", "position": [-24, -28], "y": 0.12, "solid": [2.4, 1.1]}, {"piece": "Dock_Props_Rack", "position": [24, -28], "y": 0.12, "solid": [2.4, 1.1]},
+             {"piece": "Dock_Props_Table_1", "position": [-8, -29.5], "y": 0.12, "solid": [1.8, 1.1]}, {"piece": "Dock_Props_Bench", "position": [-8, -27.8], "y": 0.12},
+             {"piece": "Pr_LampPost", "position": [-5, -3], "y": 0.12, "solid": [0.6, 0.6]}, {"piece": "Pr_LampPost", "position": [5, -22], "y": 0.12, "solid": [0.6, 0.6]},
+             {"piece": "Pr_LampPost", "position": [0, -43], "y": 0.12, "solid": [0.6, 0.6]}]
+arenas["docks_01_pier"] = {
+    "_comment": "Docas, ligadas ao porto de Tortuga (Modular Wooden Docks, loafbrr, CC0): píeres de madeira sobre o mar, com barcos, defensas, barris e caixotes; saída para o porto no sul. Gerado por tools/assets/build_maps.py.",
+    "name_key": "ARENA_DOCKS", "player_class": "mage", "map_id": "map_docks", "area_level": 2, "outdoor": True,
+    "wake_radius": 10.0, "alert_radius": 5.0, "rooms": dk_rooms, "encounters": dk_enc, "hazards": [],
+    "entries": {"start": [0, 3], "docks": [0, 3]},
+    "props": [
+        {"id": "sea", "kind": "water", "position": [0, -22], "size": [110, 90]},
+        {"id": "return_portal", "kind": "exit", "name_key": "PROP_TO_PORT", "position": [-4, 3], "to": "tortuga", "entry": "docks"},
+        {"id": "dock_chest_1", "kind": "chest", "position": [-30, -27], "loot": "chest"},
+        {"id": "dock_chest_2", "kind": "chest", "position": [0, -44], "loot": "chest"},
+    ],
+    "quest_spots": [], "breakables": [],
+    "style": {"_comment": "Docas: tábuas de píer do pacote, cerca de madeira nas bordas; o mar é o objeto 'sea'.", "walls": [""], "floor": "Dock_Floor_Dock_Half",
+              "low": "Dock_Fence_Plane_Half", "ground": [0.03, 0.1, 0.16]},
+    "decor": dk_decor, "passive": True,
+}
+arenas["tortuga"]["entries"]["docks"] = [0, -26]
+arenas["tortuga"]["props"] = [p for p in arenas["tortuga"]["props"] if p["id"] != "docks_gate"] + [
+    {"id": "docks_gate", "kind": "exit", "name_key": "PROP_TO_DOCKS", "position": [3, -26.8], "to": "docks_01_pier", "entry": "start"}]
+
 # --- Bolsa de moedas: uma por mapa de expedição; ao bater nela, cai ouro (data/loot.json "coin_bag") --------
-for key in ("sewers_01_drains", "sewers_02_canals", "sewers_03_war_passage", "sewers_04_nest", "forest_01_path", "ruins_01_city",
+for key in ("docks_01_pier", "sewers_01_drains", "sewers_02_canals", "sewers_03_war_passage", "sewers_04_nest", "forest_01_path", "ruins_01_city",
             "cemetery_01_yard", "dark_forest_01_woods", "fort_01_gate", "mine_01_crystal_vein"):
     area = arenas[key]
     start = area["entries"]["start"]

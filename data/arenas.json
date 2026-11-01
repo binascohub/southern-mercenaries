@@ -276,6 +276,10 @@
       "forest": [
         -24,
         1
+      ],
+      "docks": [
+        0,
+        -26
       ]
     },
     "props": [
@@ -406,6 +410,17 @@
           5.9
         ],
         "to": "mine_01_crystal_vein",
+        "entry": "start"
+      },
+      {
+        "id": "docks_gate",
+        "kind": "exit",
+        "name_key": "PROP_TO_DOCKS",
+        "position": [
+          3,
+          -26.8
+        ],
+        "to": "docks_01_pier",
         "entry": "start"
       }
     ],
@@ -26461,8 +26476,7 @@
           14
         ],
         "doors": [
-          "north",
-          "south"
+          "north"
         ],
         "torch": true,
         "roofs": false
@@ -26499,23 +26513,6 @@
         ],
         "torch": true,
         "wall_height": 2.0
-      },
-      {
-        "id": "training_yard",
-        "center": [
-          0,
-          15
-        ],
-        "size": [
-          26,
-          16
-        ],
-        "doors": [
-          "north"
-        ],
-        "training": true,
-        "torch": true,
-        "floor": "Floor_UnevenBrick"
       }
     ],
     "encounters": [],
@@ -26540,70 +26537,6 @@
         ],
         "to": "tortuga",
         "entry": "forest"
-      },
-      {
-        "id": "shop_potions",
-        "kind": "shop",
-        "shop": "potions",
-        "name_key": "SHOP_POTIONS",
-        "position": [
-          -19,
-          -4.5
-        ],
-        "stall": "awning_yellow"
-      },
-      {
-        "id": "shop_weapons",
-        "kind": "shop",
-        "shop": "weapons",
-        "name_key": "SHOP_WEAPONS",
-        "position": [
-          -12,
-          -4.5
-        ],
-        "stall": "shingle_blue"
-      },
-      {
-        "id": "shop_armor",
-        "kind": "shop",
-        "shop": "armor",
-        "name_key": "SHOP_ARMOR",
-        "position": [
-          -4,
-          -4.5
-        ],
-        "stall": "awning_blue"
-      },
-      {
-        "id": "training_board",
-        "kind": "training",
-        "name_key": "PROP_TRAINING_BOARD",
-        "position": [
-          -10,
-          9.5
-        ]
-      },
-      {
-        "id": "shop_voodoo",
-        "kind": "shop",
-        "shop": "voodoo",
-        "name_key": "SHOP_VOODOO",
-        "position": [
-          16,
-          -4.5
-        ],
-        "stall": "tent_teal"
-      },
-      {
-        "id": "blacksmith",
-        "kind": "forge",
-        "shop": "blacksmith",
-        "name_key": "SHOP_BLACKSMITH",
-        "position": [
-          4,
-          -4.5
-        ],
-        "stall": "patch"
       }
     ],
     "style": {
@@ -26930,239 +26863,6 @@
           2
         ],
         "rotation": 200
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          -17.6,
-          -5.6
-        ]
-      },
-      {
-        "piece": "FarmCrate_Apple",
-        "position": [
-          -9.6,
-          -5.6
-        ]
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          -6.4,
-          -5.6
-        ]
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          -1.6,
-          -5.8
-        ]
-      },
-      {
-        "piece": "Pouch_Large",
-        "position": [
-          13.8,
-          -5.6
-        ]
-      },
-      {
-        "piece": "Cauldron",
-        "position": [
-          18.4,
-          -5.2
-        ]
-      },
-      {
-        "piece": "WeaponStand",
-        "position": [
-          -12,
-          9.4
-        ]
-      },
-      {
-        "piece": "Beer_Barrel",
-        "position": [
-          12,
-          8.5
-        ]
-      },
-      {
-        "piece": "Shield_Wooden",
-        "position": [
-          11.6,
-          9.2
-        ],
-        "y": 0.6
-      },
-      {
-        "piece": "Bottle_1",
-        "position": [
-          -7.4,
-          -5.2
-        ]
-      },
-      {
-        "piece": "Bottle_1",
-        "position": [
-          -8.9,
-          -4.9
-        ],
-        "rotation": 70
-      },
-      {
-        "piece": "FarmCrate_Apple",
-        "position": [
-          -20.6,
-          -5.6
-        ]
-      },
-      {
-        "piece": "Archery_Target",
-        "position": [
-          -11,
-          22.2
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Archery_Target",
-        "position": [
-          -8,
-          22.2
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Bench_Wood",
-        "position": [
-          4,
-          21.6
-        ],
-        "rotation": 0
-      },
-      {
-        "piece": "Barricade_Stakes",
-        "position": [
-          12,
-          20.5
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Barricade_Stakes",
-        "position": [
-          12,
-          10
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Stool_Wood",
-        "position": [
-          5.6,
-          20.6
-        ],
-        "rotation": 0
-      },
-      {
-        "piece": "Weapon_FM_Long_Sword",
-        "position": [
-          -13.4,
-          -6.0
-        ],
-        "y": 0.5,
-        "rotation": 0
-      },
-      {
-        "piece": "Weapon_FM_Great_Sword",
-        "position": [
-          -12.9,
-          -6.1
-        ],
-        "y": 0.7,
-        "rotation": 0
-      },
-      {
-        "piece": "Weapon_FM_War_Axe",
-        "position": [
-          -11.2,
-          -6.0
-        ],
-        "y": 0.4,
-        "rotation": 0
-      },
-      {
-        "piece": "Weapon_FM_Spiked_Mace",
-        "position": [
-          -10.7,
-          -6.1
-        ],
-        "y": 0.425,
-        "rotation": 0
-      },
-      {
-        "piece": "Weapon_FM_Great_Axe",
-        "position": [
-          2.6,
-          -6.1
-        ],
-        "y": 0.65,
-        "rotation": 0
-      },
-      {
-        "piece": "Weapon_FM_Hammer",
-        "position": [
-          3.2,
-          -6.0
-        ],
-        "y": 0.4,
-        "rotation": 0
-      },
-      {
-        "piece": "Weapon_FM_Mace",
-        "position": [
-          5.1,
-          -6.1
-        ],
-        "y": 0.375,
-        "rotation": 0
-      },
-      {
-        "piece": "Weapon_FM_Spear",
-        "position": [
-          -14.5,
-          13.5
-        ],
-        "y": 1.05,
-        "rotation": 0
-      },
-      {
-        "piece": "Weapon_FM_Polearm",
-        "position": [
-          -13.8,
-          13.6
-        ],
-        "y": 1.1,
-        "rotation": 0
-      },
-      {
-        "piece": "Weapon_FM_Quarterstaff",
-        "position": [
-          -13.1,
-          13.5
-        ],
-        "y": 0.85,
-        "rotation": 0
-      },
-      {
-        "piece": "Weapon_FM_Club",
-        "position": [
-          -6.0,
-          21.4
-        ],
-        "y": 0.375,
-        "rotation": 0
       }
     ],
     "crowd": [
@@ -27286,85 +26986,6 @@
         ],
         "speed": 0.9
       }
-    ],
-    "dummies": [
-      {
-        "monster": "training_dummy_water",
-        "position": [
-          -9,
-          14
-        ]
-      },
-      {
-        "monster": "training_dummy_fire",
-        "position": [
-          -5,
-          14
-        ]
-      },
-      {
-        "monster": "training_dummy_air",
-        "position": [
-          -1,
-          14
-        ]
-      },
-      {
-        "monster": "training_dummy_earth",
-        "position": [
-          3,
-          14
-        ]
-      },
-      {
-        "monster": "training_dummy_armored",
-        "position": [
-          9,
-          12
-        ]
-      },
-      {
-        "monster": "training_dummy_giant",
-        "position": [
-          9,
-          18.5
-        ]
-      },
-      {
-        "monster": "training_dummy_small",
-        "position": [
-          -8.0,
-          19.5
-        ]
-      },
-      {
-        "monster": "training_dummy_small",
-        "position": [
-          -6.4,
-          19.5
-        ]
-      },
-      {
-        "monster": "training_dummy_small",
-        "position": [
-          -4.8,
-          19.5
-        ]
-      },
-      {
-        "monster": "training_dummy_small",
-        "position": [
-          -3.2,
-          19.5
-        ]
-      },
-      {
-        "monster": "training_dummy_small",
-        "position": [
-          -1.6,
-          19.5
-        ]
-      }
     ]
   },
   "farm_01_fields": {
@@ -27449,17 +27070,6 @@
         ],
         "to": "tortuga",
         "entry": "forest"
-      },
-      {
-        "id": "mine_gate",
-        "kind": "exit",
-        "name_key": "PROP_TO_MINE",
-        "position": [
-          28,
-          -31
-        ],
-        "to": "mine_01_crystal_vein",
-        "entry": "start"
       }
     ],
     "quest_spots": [],
@@ -37823,6 +37433,703 @@
         "range": 8.0,
         "energy": 1.2,
         "y": 2.2
+      }
+    ],
+    "passive": true
+  },
+  "docks_01_pier": {
+    "_comment": "Docas, ligadas ao porto de Tortuga (Modular Wooden Docks, loafbrr, CC0): píeres de madeira sobre o mar, com barcos, defensas, barris e caixotes; saída para o porto no sul. Gerado por tools/assets/build_maps.py.",
+    "name_key": "ARENA_DOCKS",
+    "player_class": "mage",
+    "map_id": "map_docks",
+    "area_level": 2,
+    "outdoor": true,
+    "wake_radius": 10.0,
+    "alert_radius": 5.0,
+    "rooms": [
+      {
+        "id": "landing",
+        "center": [
+          0,
+          0
+        ],
+        "size": [
+          20,
+          10
+        ],
+        "doors": [
+          "north"
+        ],
+        "torch": true,
+        "wall_height": 0.8
+      },
+      {
+        "id": "pier_main",
+        "center": [
+          0,
+          -12
+        ],
+        "size": [
+          8,
+          14
+        ],
+        "doors": [
+          "south",
+          "north"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "crossing",
+        "center": [
+          0,
+          -25
+        ],
+        "size": [
+          40,
+          8
+        ],
+        "doors": [
+          "south",
+          "west",
+          "east",
+          "north"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "west_pier",
+        "center": [
+          -26,
+          -25
+        ],
+        "size": [
+          12,
+          8
+        ],
+        "doors": [
+          "east"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "east_pier",
+        "center": [
+          26,
+          -25
+        ],
+        "size": [
+          12,
+          8
+        ],
+        "doors": [
+          "west"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "end_pier",
+        "center": [
+          0,
+          -37
+        ],
+        "size": [
+          10,
+          16
+        ],
+        "doors": [
+          "south"
+        ],
+        "wall_height": 0.8
+      }
+    ],
+    "encounters": [
+      {
+        "id": "dk_rats_a",
+        "position": [
+          0,
+          -12
+        ],
+        "monsters": [
+          {
+            "monster": "plague_rat",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "dk_toads",
+        "position": [
+          -26,
+          -25
+        ],
+        "monsters": [
+          {
+            "monster": "acid_toad",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "dk_bats",
+        "position": [
+          26,
+          -25
+        ],
+        "monsters": [
+          {
+            "monster": "plague_bat",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "dk_rats_b",
+        "position": [
+          0,
+          -40
+        ],
+        "monsters": [
+          {
+            "monster": "mutant_rat",
+            "count": 5
+          }
+        ]
+      }
+    ],
+    "hazards": [],
+    "entries": {
+      "start": [
+        0,
+        3
+      ],
+      "docks": [
+        0,
+        3
+      ]
+    },
+    "props": [
+      {
+        "id": "sea",
+        "kind": "water",
+        "position": [
+          0,
+          -22
+        ],
+        "size": [
+          110,
+          90
+        ]
+      },
+      {
+        "id": "return_portal",
+        "kind": "exit",
+        "name_key": "PROP_TO_PORT",
+        "position": [
+          -4,
+          3
+        ],
+        "to": "tortuga",
+        "entry": "docks"
+      },
+      {
+        "id": "dock_chest_1",
+        "kind": "chest",
+        "position": [
+          -30,
+          -27
+        ],
+        "loot": "chest"
+      },
+      {
+        "id": "dock_chest_2",
+        "kind": "chest",
+        "position": [
+          0,
+          -44
+        ],
+        "loot": "chest"
+      }
+    ],
+    "quest_spots": [],
+    "breakables": [
+      {
+        "id": "coin_bag",
+        "monster": "coin_bag",
+        "position": [
+          4.0,
+          1.5
+        ],
+        "table": "coin_bag"
+      }
+    ],
+    "style": {
+      "_comment": "Docas: tábuas de píer do pacote, cerca de madeira nas bordas; o mar é o objeto 'sea'.",
+      "walls": [
+        ""
+      ],
+      "floor": "Dock_Floor_Dock_Half",
+      "low": "Dock_Fence_Plane_Half",
+      "ground": [
+        0.03,
+        0.1,
+        0.16
+      ]
+    },
+    "decor": [
+      {
+        "piece": "Dock_Boat_A_1",
+        "position": [
+          -12,
+          -14
+        ],
+        "y": -0.2,
+        "rotation": 20
+      },
+      {
+        "piece": "Dock_Boat_B_1",
+        "position": [
+          12,
+          -15
+        ],
+        "y": -0.2,
+        "rotation": -15
+      },
+      {
+        "piece": "Dock_Boat_A_2",
+        "position": [
+          -14,
+          -33
+        ],
+        "y": -0.2,
+        "rotation": 80
+      },
+      {
+        "piece": "Dock_Boat_A_1",
+        "position": [
+          14,
+          -34
+        ],
+        "y": -0.2,
+        "rotation": 100
+      },
+      {
+        "piece": "Dock_Boat_B_1",
+        "position": [
+          -8,
+          6
+        ],
+        "y": -0.2,
+        "rotation": 0
+      },
+      {
+        "piece": "Dock_Boat_Stand",
+        "position": [
+          10,
+          8
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          -9,
+          3
+        ],
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          -9,
+          -4
+        ],
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          9,
+          3
+        ],
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          9,
+          -4
+        ],
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          -3,
+          -8
+        ],
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          3,
+          -8
+        ],
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          -3,
+          -16
+        ],
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          3,
+          -16
+        ],
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          -7.8,
+          1.4
+        ],
+        "y": 0.12,
+        "rotation": 225
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          -7.0,
+          1.3
+        ],
+        "y": 0.12,
+        "rotation": 240
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          6.6,
+          1.3
+        ],
+        "y": 0.12,
+        "rotation": 270
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          7.4,
+          0.7
+        ],
+        "y": 0.12,
+        "rotation": 0
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          -17.8,
+          -26.3
+        ],
+        "y": 0.12,
+        "rotation": 330
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          -17.7,
+          -25.9
+        ],
+        "y": 0.12,
+        "rotation": 225
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          -17.5,
+          -25.3
+        ],
+        "y": 0.12,
+        "rotation": 330
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          -29.4,
+          -23.0
+        ],
+        "y": 0.12,
+        "rotation": 150
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          -30.5,
+          -22.9
+        ],
+        "y": 0.12,
+        "rotation": 210
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          -30.3,
+          -22.5
+        ],
+        "y": 0.12,
+        "rotation": 210
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          21.5,
+          -27.1
+        ],
+        "y": 0.12,
+        "rotation": 285
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          21.5,
+          -26.3
+        ],
+        "y": 0.12,
+        "rotation": 255
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          22.4,
+          -27.1
+        ],
+        "y": 0.12,
+        "rotation": 195
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          30.3,
+          -22.6
+        ],
+        "y": 0.12,
+        "rotation": 30
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          30.6,
+          -23.4
+        ],
+        "y": 0.12,
+        "rotation": 150
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          -2.4,
+          -33.4
+        ],
+        "y": 0.12,
+        "rotation": 15
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          -3.4,
+          -32.4
+        ],
+        "y": 0.12,
+        "rotation": 270
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          3.2,
+          -41.8
+        ],
+        "y": 0.12,
+        "rotation": 315
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          3.6,
+          -42.6
+        ],
+        "y": 0.12,
+        "rotation": 165
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          -2.8,
+          -28.7
+        ],
+        "y": 0.12,
+        "rotation": 90
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          -3.2,
+          -28.3
+        ],
+        "y": 0.12,
+        "rotation": 165
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          -2.4,
+          -28.6
+        ],
+        "y": 0.12,
+        "rotation": 300
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          6.3,
+          -23.3
+        ],
+        "y": 0.12,
+        "rotation": 270
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          6.9,
+          -24.0
+        ],
+        "y": 0.12,
+        "rotation": 75
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          7.4,
+          -24.0
+        ],
+        "y": 0.12,
+        "rotation": 120
+      },
+      {
+        "piece": "Dock_Props_Rack_Fish",
+        "position": [
+          -24,
+          -28
+        ],
+        "y": 0.12,
+        "solid": [
+          2.4,
+          1.1
+        ]
+      },
+      {
+        "piece": "Dock_Props_Rack",
+        "position": [
+          24,
+          -28
+        ],
+        "y": 0.12,
+        "solid": [
+          2.4,
+          1.1
+        ]
+      },
+      {
+        "piece": "Dock_Props_Table_1",
+        "position": [
+          -8,
+          -29.5
+        ],
+        "y": 0.12,
+        "solid": [
+          1.8,
+          1.1
+        ]
+      },
+      {
+        "piece": "Dock_Props_Bench",
+        "position": [
+          -8,
+          -27.8
+        ],
+        "y": 0.12
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          -5,
+          -3
+        ],
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          5,
+          -22
+        ],
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          0,
+          -43
+        ],
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
       }
     ],
     "passive": true
