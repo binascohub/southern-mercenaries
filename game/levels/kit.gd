@@ -8,7 +8,7 @@ extends RefCounted
 ## pisos de 2×2 m, móveis, barracas, barris. Sem a peça (testes sem
 ## importação), quem chama mantém o visual simples.
 
-const DIRS: Array[String] = ["res://assets/models/village/", "res://assets/models/props/", "res://assets/models/ships/", "res://assets/models/maps/"]
+const DIRS: Array[String] = ["res://assets/models/village/", "res://assets/models/props/", "res://assets/models/ships/", "res://assets/models/maps/", "res://assets/models/maps/fort/"]
 ## Largura de uma parede e lado de um piso do kit (metros).
 const WALL_WIDTH := 2.0
 const FLOOR_SIZE := 2.0

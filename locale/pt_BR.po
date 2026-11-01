@@ -2453,7 +2453,7 @@ msgid "TIP_MAP"
 msgstr "O mapa se revela conforme você explora. {button} amplia o mapa."
 
 msgid "ARENA_FOREST"
-msgstr "Floresta Escura"
+msgstr "Floresta"
 
 msgid "ARENA_RUINS"
 msgstr "Ruínas da Cidade"
@@ -2487,3 +2487,9 @@ msgstr "Escorpião da Cripta"
 
 msgid "MONSTER_FORT_COMMANDER"
 msgstr "Comandante Amaldiçoado"
+
+msgid "ARENA_DARK_FOREST"
+msgstr "Floresta Escura"
+
+msgid "PROP_TO_DARK_FOREST"
+msgstr "Trilha da Floresta Escura"

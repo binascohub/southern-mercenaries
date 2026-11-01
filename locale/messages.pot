@@ -2486,3 +2486,9 @@ msgstr ""
 
 msgid "MONSTER_FORT_COMMANDER"
 msgstr ""
+
+msgid "ARENA_DARK_FOREST"
+msgstr ""
+
+msgid "PROP_TO_DARK_FOREST"
+msgstr ""
