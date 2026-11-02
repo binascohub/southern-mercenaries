@@ -1242,8 +1242,8 @@ func _update_encounters() -> void:
 		if group.awake or group.members.is_empty():
 			continue
 		# Áreas pacíficas (o Esgoto): os bichos só revidam — quem chega perto não
-		# os acorda; só o chefe ataca por conta própria.
-		if arena.get("passive", false) and not _group_has_boss(group):
+		# os acorda; só atacam por conta própria os chefes e os "aggressive" (o Baú Monstro, o único monstro comum do Esgoto que ataca sem ser atacado).
+		if arena.get("passive", false) and not _group_has_boss(group) and not _group_is_aggressive(group):
 			continue
 		for p: Player in players:
 			if p.alive and p.connected \
@@ -1271,6 +1271,14 @@ func _wake_group(id: String) -> void:
 		if other.awake or _groups_distance(group, other) > arena.alert_radius:
 			continue
 		_wake_group(other_id)
+
+
+## O grupo tem um monstro "aggressive" (data/monsters.json): acorda por proximidade mesmo na área pacífica.
+func _group_is_aggressive(group: Dictionary) -> bool:
+	for enemy: Enemy in group.members:
+		if is_instance_valid(enemy) and enemy.data.get("aggressive", false):
+			return true
+	return false
 
 
 func _group_has_boss(group: Dictionary) -> bool:
@@ -3268,12 +3276,32 @@ func _dress_side(face: Vector3, along: Vector3, inward: Vector3, length: float, 
 			_area_root.add_child(node)
 			_tint_piece(node)
 			_tone_wood(node, piece_name)
+			if arena.get("style", {}).get("stone_trim", false):
+				_stone_trim(node)
 			if arena.get("style", {}).get("wood", false):
 				_woodify(node)
 			if arena.get("style", {}).get("broken_windows", false) and piece_name.contains("Window"):
 				_break_window(node, piece_name.contains("Wide"), hash(Vector2(node.position.x, node.position.z)))
 			if full and not arena.get("outdoor", false):
 				_cut_walls.append(node)
+
+
+var _stone_trim_material: StandardMaterial3D
+
+
+## Estilo "stone_trim" (o Esgoto): a viga de madeira marrom do topo das paredes e dos batentes (material MI_WoodTrim) vira pedra escura. De cima, as vigas marrons
+## formavam linhas que cruzavam as passagens e faziam o mapa parecer fechado.
+func _stone_trim(node: Node3D) -> void:
+	if _stone_trim_material == null:
+		_stone_trim_material = StandardMaterial3D.new()
+		_stone_trim_material.albedo_color = Color(0.2, 0.2, 0.18)
+		_stone_trim_material.roughness = 0.95
+	for mesh in node.find_children("*", "MeshInstance3D", true, false):
+		var m := mesh as MeshInstance3D
+		for i in m.get_surface_override_material_count():
+			var material := m.get_active_material(i)
+			if material and String(material.resource_name).begins_with("MI_WoodTrim"):
+				m.set_surface_override_material(i, _stone_trim_material)
 
 
 ## Objeto de cenário (data/arenas.json "decor"): mesa, banco, barril, carroça…

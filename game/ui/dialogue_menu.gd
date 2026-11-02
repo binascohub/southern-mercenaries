@@ -73,6 +73,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _show_line() -> void:
 	var lines: Array = _dialogue.get("lines", [])
 	_text.text = _line_text(lines[_line]) if _line < lines.size() else ""
+	Sfx.voice(_name.text)  # o NPC fala numa língua que ninguém entende
 	var last := _line >= lines.size() - 1
 	var offer: String = _dialogue.get("offer", "")
 	var service: String = _dialogue.get("service", "")

@@ -100,6 +100,14 @@ func _ready() -> void:
 		get_tree().create_timer(2.5).timeout.connect(func() -> void:
 			arena.local_player.facing = Vector2(0, -1)
 			print("STAMPEDE cast=", arena.skills.cast(arena.local_player, "stampede", 3), " bull=", Kit.has("Bull")))
+	if "rhino" in args:  # lança a Investida do Rinoceronte no boneco de treino mais perto, ao norte (a captura sai no meio da corrida)
+		get_tree().create_timer(2.5).timeout.connect(func() -> void:
+			arena.local_player.facing = Vector2(0, -1)
+			print("RHINO cast=", arena.skills.cast(arena.local_player, "rhino_charge", 3), " model=", Kit.has("Rhino")))
+	if "mammoth" in args:  # lança a Pisada do Mamute (a captura sai na primeira pisada)
+		get_tree().create_timer(2.5).timeout.connect(func() -> void:
+			arena.local_player.facing = Vector2(0, -1)
+			print("MAMMOTH cast=", arena.skills.cast(arena.local_player, "mammoth_stomp", 3), " model=", Kit.has("Elephant")))
 	if "airskills" in args:  # lança o Mergulho da Águia e a Tempestade de Asas no pátio de treino (a captura sai logo depois)
 		get_tree().create_timer(2.5).timeout.connect(func() -> void:
 			arena.local_player.facing = Vector2(0, -1)
@@ -124,7 +132,7 @@ func _ready() -> void:
 	if kill != "":
 		_kill_and_open(arena, kill, open_chest)
 	if shot != "":
-		await get_tree().create_timer(4.2 if "airskills" in args else 2.72 if "stampede" in args else 5.5 if "callskill" in args else 3.6 if "feathers" in args else 7.0 if ("shell" in args or "skillmenu" in args or "cdbar" in args or "feathers" in args or "callskill" in args) else (12.0 if (kill != "" or "givekeys" in args or "summon" in args or "summongator" in args or "invpopup" in args) else 5.0)).timeout
+		await get_tree().create_timer(4.2 if "airskills" in args else 2.72 if "stampede" in args else 3.3 if "mammoth" in args else 2.62 if "rhino" in args else 5.5 if "callskill" in args else 3.6 if "feathers" in args else 7.0 if ("shell" in args or "skillmenu" in args or "cdbar" in args or "feathers" in args or "callskill" in args) else (12.0 if (kill != "" or "givekeys" in args or "summon" in args or "summongator" in args or "invpopup" in args) else 5.0)).timeout
 		await RenderingServer.frame_post_draw
 		get_viewport().get_texture().get_image().save_png(shot)
 		get_tree().quit()

@@ -304,6 +304,10 @@ func refresh_character() -> void:
 func grant(xp: int, gold: int, items: Array = []) -> Array:
 	var leftover := []
 	var levels := character.add_xp(xp) if xp > 0 else 0
+	if levels > 0:
+		_sfx.rpc("level_up")
+	elif gold > 0:
+		_sfx.rpc("coin")
 	character.data.gold = int(character.data.gold) + maxi(gold, 0)
 	for item: Dictionary in items:
 		if not character.add_item(item):
@@ -386,6 +390,7 @@ func _drink(id: String) -> void:
 	if not alive or character == null or not GameData.consumables.has(id):
 		return
 	var def: Dictionary = GameData.consumables[id]
+	_sfx.rpc("drink")
 	if def.restore == "return_portal":
 		# Patuá de Retorno: abre o portal no chão (só nos mapas).
 		if character.count_of(id) > 0 and get_parent().open_return_charm(self) and character.take_one(id):
@@ -561,6 +566,7 @@ func _server_step(delta: float) -> void:
 	if evade_pressed and evade_cooldown <= 0.0:
 		_evade_dir = input.move.normalized() if input.move.length() > 0.2 else facing
 		_evade_time = data.evade.duration
+		_sfx.rpc("evade")
 		evade_cooldown = data.evade.cooldown
 		charge_time = 0.0
 		act("roll")
@@ -599,6 +605,7 @@ func _update_jump(delta: float, pressed: bool) -> void:
 			jump_phase = 0.0
 	elif pressed and _knock_time <= 0.0 and _evade_time <= 0.0 and not blocking:
 		jump_phase = 0.001
+		_sfx.rpc("jump")
 
 
 ## Altura do salto agora (m): parábola de 0 a JUMP_HEIGHT.
@@ -679,6 +686,7 @@ func take_damage(amount: float, monster_level := 1, attacker: Node3D = null) -> 
 	health = maxf(health - amount, 0.0)
 	if amount > 0.0:
 		act("hit")
+		_sfx.rpc("hurt")
 	hurt.emit()
 	if amount >= max_health * GameData.balance.heavy_hit_fraction:
 		if peer_id == multiplayer.get_unique_id():
@@ -689,11 +697,13 @@ func take_damage(amount: float, monster_level := 1, attacker: Node3D = null) -> 
 		alive = false
 		charge_time = 0.0
 		revive_progress = 0.0
+		_sfx.rpc("death")
 		downed.emit()
 
 
 func revive(fraction: float) -> void:
 	alive = true
+	_sfx.rpc("revive")
 	health = max_health * fraction
 	revive_progress = 0.0
 
@@ -711,8 +721,15 @@ func reset_at(spot: Vector3) -> void:
 	evade_cooldown = 0.0
 
 
+## Som de ação do herói, ouvido por todos perto dele (assets/audio/sfx).
+@rpc("authority", "call_local", "unreliable")
+func _sfx(sound: String) -> void:
+	Sfx.play(sound, global_position)
+
+
 func _show_dodge() -> void:
 	_float_text.rpc("HUD_DODGED")
+	_sfx.rpc("dodge")
 
 
 @rpc("authority", "call_local", "unreliable")
@@ -738,6 +755,13 @@ func _heavy_hit() -> void:
 
 func _fire(attack: Dictionary) -> void:
 	act("melee" if attack.get("melee", false) else ("shoot" if class_id == "archer" else "cast"))
+	var strong: bool = attack.get("applies_state", false)
+	if attack.get("melee", false):
+		Sfx.play("swing_heavy" if strong else "swing", global_position)
+	elif class_id == "archer":
+		Sfx.play("bow", global_position)
+	else:
+		Sfx.play("shot_magic", global_position, 0.0, 0.8 if strong else 1.0)
 	if attack.get("melee", false):
 		_melee(attack)
 		return
@@ -779,6 +803,7 @@ func _cast_slot(index: int) -> void:
 	if resource < cost or not get_parent().skills.cast(self, id, rank):
 		return
 	resource -= cost
+	get_parent().skills.play_cast_sound.rpc(id, global_position, element)
 	act("melee" if class_id in ["ninja", "knight"] else ("shoot" if class_id == "archer" else "cast"))
 	# Sem recarga (as básicas) ainda respeitam o ritmo do ataque básico; no pátio
 	# de treino com recargas livres, todas ficam assim.
@@ -970,6 +995,7 @@ func _try_parry(attacker: Node3D) -> bool:
 	}
 	get_parent().skills._strike(self, attacker, hit)
 	_float_text.rpc("HUD_PARRIED")
+	_sfx.rpc("block")
 	return true
 
 

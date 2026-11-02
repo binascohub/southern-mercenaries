@@ -116,6 +116,7 @@
   },
   "souls_bottle": {
     "name_key": "VALUABLE_SOULS_BOTTLE",
+    "desc_key": "VALUABLE_SOULS_BOTTLE_DESC",
     "value": 0,
     "maps": [],
     "quest_item": true,
@@ -139,6 +140,7 @@
   },
   "torment_bottle": {
     "name_key": "VALUABLE_TORMENT_BOTTLE",
+    "desc_key": "VALUABLE_TORMENT_BOTTLE_DESC",
     "value": 0,
     "maps": [],
     "quest_item": true,
@@ -146,6 +148,7 @@
   },
   "storm_bottle": {
     "name_key": "VALUABLE_STORM_BOTTLE",
+    "desc_key": "VALUABLE_STORM_BOTTLE_DESC",
     "value": 0,
     "maps": [],
     "quest_item": true,

@@ -80,6 +80,27 @@ func _k(kind: String, skill: Variant) -> String:
 	return kind if id == "" else "%s:%s" % [kind, id]
 
 
+## Som da habilidade (ouvido por todos): vale o som próprio do id; senão, o do tipo de efeito, e por fim o do elemento.
+const CAST_SOUNDS := {
+	"mammoth_stomp": "stomp", "stampede": "charge", "rhino_charge": "charge", "falcon_wings": "flap", "wing_storm": "flap", "flock": "flap", "eagle_dive": "teleport",
+	"animal_rescue": "heal", "scatter_escape": "flap", "gorilla_guardian": "roar",
+}
+const EFFECT_SOUNDS := {
+	"buff": "buff", "shield": "shield", "rescue": "heal", "iron_body": "shield", "teleport": "teleport", "blink": "teleport", "blink_strike": "teleport", "shadow_step": "teleport",
+	"leap": "jump", "dash_strike": "slash", "melee": "slash", "summon": "summon", "trap": "trap", "smoke": "smoke", "taunt": "roar", "charge": "charge", "mark": "buff",
+	"line": "beam", "chain": "beam", "instant": "beam", "delayed": "explosion", "nova": "explosion",
+}
+const ELEMENT_SOUNDS := {"fire": "cast_fire", "water": "cast_water", "air": "cast_air", "earth": "cast_earth"}
+
+
+@rpc("authority", "call_local", "unreliable")
+func play_cast_sound(skill_id: String, at: Vector3, element: String) -> void:
+	var def := Skills.def(skill_id)
+	var sound: String = CAST_SOUNDS.get(skill_id, EFFECT_SOUNDS.get(String(def.get("effect", "")), ELEMENT_SOUNDS.get(element, "cast_arcane")))
+	var big := String(def.get("type", "")) == "final"
+	Sfx.play(sound, at, 3.0 if big else 0.0, 0.85 if big else 1.0)
+
+
 ## Usa a habilidade. Retorna false se não houve efeito (ex.: Relâmpago sem alvo),
 ## e aí o herói não gasta mana nem recarga.
 func cast(player: Player, skill_id: String, rank: int) -> bool:
@@ -133,6 +154,14 @@ func cast(player: Player, skill_id: String, rank: int) -> bool:
 			var target := target_in_aim(player, skill.range)
 			if target == null:
 				return false
+			if skill_id == "rhino_charge":  # o rinoceronte corre até o alvo e o golpe cai quando ele chega
+				var run := origin.distance_to(target.global_position) / RHINO_SPEED
+				var rhino_hit := hit_for(player, skill, rank)
+				_fx.rpc(_k("beam", skill), origin, target.global_position, 1.0, color, run)
+				get_tree().create_timer(run, false).timeout.connect(func() -> void:
+					if is_instance_valid(target):
+						target.take_hit(rhino_hit))
+				return true
 			target.take_hit(hit_for(player, skill, rank))
 			_fx.rpc(_k("beam", skill), origin + Vector3.UP, target.global_position + Vector3.UP * 0.5, 0.25, color, 0.25)
 		"chain":
@@ -499,7 +528,7 @@ func _start_area(player: Player, skill: Dictionary, rank: int) -> void:
 		var side := Vector3(-aim.z, 0, aim.x) * float(skill.length) / 2.0
 		_fx.rpc(_k("beam", skill), center - side, center + side, skill.width, color, skill.duration)
 	elif at != "moving":
-		_fx.rpc(_k("disc", skill), center, Vector3.ZERO, skill.area, color, skill.duration)
+		_fx.rpc(_k("disc", skill), center, aim if String(skill.get("id", "")) == "mammoth_stomp" else Vector3.ZERO, skill.area, color, skill.duration)  # a Pisada do Mamute leva a direção em b
 	else:
 		_fx.rpc(_k("disc", skill), center, aim * float(skill.travel), skill.area, color, skill.duration)  # o redemoinho acompanha o caminho (b = deslocamento)
 
@@ -734,6 +763,45 @@ func _flock_hit(enemy: Enemy, hit: Dictionary, player: Player, push: float) -> v
 const SHELL_BIRDS := 3
 
 
+## Marca no chão: o disco da área (translúcido) com a borda mais forte, na cor do elemento, enquanto durar `time` (mín. 1 s); some no fim.
+func _mark_ground(holder: Node3D, radius: float, time: float, color: Color) -> void:
+	var mark_material := StandardMaterial3D.new()
+	mark_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mark_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	mark_material.albedo_color = Color(color.r, color.g, color.b, 0.14)
+	mark_material.cull_mode = BaseMaterial3D.CULL_DISABLED
+	var disc := MeshInstance3D.new()
+	var disc_mesh := CylinderMesh.new()
+	disc_mesh.top_radius = radius
+	disc_mesh.bottom_radius = radius
+	disc_mesh.height = 0.02
+	disc_mesh.radial_segments = 48
+	disc.mesh = disc_mesh
+	disc.material_override = mark_material
+	disc.position.y = 0.04
+	disc.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	holder.add_child(disc)
+	var edge_material := StandardMaterial3D.new()
+	edge_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	edge_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	edge_material.albedo_color = Color(color.lightened(0.2), 0.8)
+	var edge := MeshInstance3D.new()
+	var edge_mesh := TorusMesh.new()
+	edge_mesh.inner_radius = radius - 0.12
+	edge_mesh.outer_radius = radius
+	edge_mesh.rings = 48
+	edge.mesh = edge_mesh
+	edge.material_override = edge_material
+	edge.scale = Vector3(1, 0.1, 1)
+	edge.position.y = 0.05
+	edge.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	holder.add_child(edge)
+	for mark_mat: StandardMaterial3D in [mark_material, edge_material]:
+		var fade := holder.create_tween()
+		fade.tween_interval(maxf(time, 1.0) - 0.4)
+		fade.tween_property(mark_mat, "albedo_color:a", 0.0, 0.8)
+
+
 func _shell_fx(at: Vector3, radius: float, time: float, color: Color) -> void:
 	var holder := Node3D.new()
 	holder.position = Vector3(at.x, 0.0, at.z)
@@ -780,42 +848,7 @@ func _shell_fx(at: Vector3, radius: float, time: float, color: Color) -> void:
 	ramp.add_point(0.7, Color(0.68, 0.56, 0.4, 0.2))
 	dust.color_ramp = ramp
 	holder.add_child(dust)
-	# Marca no chão: o disco da área (translúcido) com a borda mais forte, na cor do elemento, enquanto durar; some no fim.
-	var mark_material := StandardMaterial3D.new()
-	mark_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	mark_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	mark_material.albedo_color = Color(color.r, color.g, color.b, 0.14)
-	mark_material.cull_mode = BaseMaterial3D.CULL_DISABLED
-	var disc := MeshInstance3D.new()
-	var disc_mesh := CylinderMesh.new()
-	disc_mesh.top_radius = radius
-	disc_mesh.bottom_radius = radius
-	disc_mesh.height = 0.02
-	disc_mesh.radial_segments = 48
-	disc.mesh = disc_mesh
-	disc.material_override = mark_material
-	disc.position.y = 0.04
-	disc.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-	holder.add_child(disc)
-	var edge_material := StandardMaterial3D.new()
-	edge_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	edge_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	edge_material.albedo_color = Color(color.lightened(0.2), 0.8)
-	var edge := MeshInstance3D.new()
-	var edge_mesh := TorusMesh.new()
-	edge_mesh.inner_radius = radius - 0.12
-	edge_mesh.outer_radius = radius
-	edge_mesh.rings = 48
-	edge.mesh = edge_mesh
-	edge.material_override = edge_material
-	edge.scale = Vector3(1, 0.1, 1)
-	edge.position.y = 0.05
-	edge.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-	holder.add_child(edge)
-	for mark_mat: StandardMaterial3D in [mark_material, edge_material]:
-		var fade := holder.create_tween()
-		fade.tween_interval(maxf(time, 1.0) - 0.4)
-		fade.tween_property(mark_mat, "albedo_color:a", 0.0, 0.8)
+	_mark_ground(holder, radius, time, color)
 	# As aves: voam em círculo no raio da área, a ~2,4 m do chão, de frente para a volta.
 	if Kit.has(FLOCK_MODEL):
 		var orbit := Node3D.new()
@@ -891,8 +924,11 @@ func _feather_at(start: Vector3) -> void:
 
 ## Estouro da Manada: 5 touros (Bull.glb) correm da mão do herói até o fim da linha, em V (um na frente, dois ao lado e dois atrás), deixando poeira. Cada inimigo na linha leva o golpe
 ## quando o primeiro touro passa por ele (o tempo vem da distância e da velocidade da manada), em vez de tudo de uma vez.
-const STAMPEDE_SPEED := 22.0
+const STAMPEDE_SPEED := 9.0
 const BULL_MODEL := "Bull"
+const RHINO_MODEL := "Rhino"
+const ELEPHANT_MODEL := "Elephant"
+const RHINO_SPEED := 7.0
 
 
 func _stampede(player: Player, skill: Dictionary, hit: Dictionary, aim: Vector3, origin: Vector3, end: Vector3) -> void:
@@ -942,6 +978,62 @@ func _bull_run(a: Vector3, b: Vector3, width: float, duration: float) -> void:
 		var pitch := bull.create_tween().set_loops()
 		pitch.tween_property(bull, "rotation:x", -0.08, 0.11)
 		pitch.tween_property(bull, "rotation:x", 0.08, 0.11)
+
+
+## Investida do Rinoceronte: um rinoceronte corre de `a` até `b` em `duration`, de frente para o alvo, com galope e poeira.
+func _rhino_run(a: Vector3, b: Vector3, duration: float) -> void:
+	if not Kit.has(RHINO_MODEL):
+		return
+	var flat := Vector3(b.x - a.x, 0, b.z - a.z)
+	if flat.length() < 0.1:
+		return
+	var holder := Node3D.new()
+	holder.position = Vector3(a.x, 0.0, a.z)
+	holder.rotation.y = atan2(flat.x, flat.z)
+	add_child(holder)
+	var rhino := Kit.piece(RHINO_MODEL)
+	rhino.scale = Vector3.ONE * 0.9
+	holder.add_child(rhino)
+	var dust_point := Node3D.new()
+	dust_point.position = Vector3(0, 0.25, -1.4)
+	holder.add_child(dust_point)
+	var dust := Fx.trail(dust_point, Color(0.62, 0.5, 0.36), "earth", 0.35)
+	dust.amount = 32
+	dust.lifetime = 0.8
+	var run := holder.create_tween()
+	run.tween_property(holder, "position", Vector3(b.x, 0.0, b.z), maxf(duration, 0.2))
+	run.tween_callback(holder.queue_free)
+	var gallop := rhino.create_tween().set_loops()
+	gallop.tween_property(rhino, "position:y", 0.18, 0.12).set_trans(Tween.TRANS_SINE)
+	gallop.tween_property(rhino, "position:y", 0.0, 0.12).set_trans(Tween.TRANS_SINE)
+
+
+## Pisada do Mamute: um elefante cai do céu a 3,2 m do herói (na direção da mira) e pisa duas vezes no tempo da habilidade, erguendo as patas da frente e batendo no chão; depois some.
+func _elephant_stomp(at: Vector3, aim: Vector3, duration: float) -> void:
+	if not Kit.has(ELEPHANT_MODEL):
+		return
+	var dir := Vector3(aim.x, 0, aim.z)
+	dir = dir.normalized() if dir.length() > 0.1 else Vector3.FORWARD
+	var holder := Node3D.new()
+	holder.position = Vector3(at.x, 0.0, at.z) + dir * 3.2
+	holder.rotation.y = atan2(dir.x, dir.z)
+	add_child(holder)
+	var elephant := Kit.piece(ELEPHANT_MODEL)
+	elephant.scale = Vector3.ONE * 0.8
+	elephant.position.y = 6.0
+	holder.add_child(elephant)
+	var beat := maxf(duration, 1.0) / 2.0
+	var t := elephant.create_tween()
+	t.tween_property(elephant, "position:y", 0.0, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	for i in 2:
+		t.tween_property(elephant, "rotation:x", -0.3, beat * 0.5).set_trans(Tween.TRANS_SINE)
+		t.parallel().tween_property(elephant, "position:y", 0.35, beat * 0.5).set_trans(Tween.TRANS_SINE)
+		t.tween_property(elephant, "rotation:x", 0.0, beat * 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+		t.parallel().tween_property(elephant, "position:y", 0.0, beat * 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+		t.tween_callback(Fx.burst.bind(self, holder.position, 3.0, Color(0.62, 0.5, 0.36), "earth", 0.4))
+		t.tween_interval(beat * 0.3)
+	t.tween_property(elephant, "scale", Vector3.ONE * 0.01, 0.3)
+	t.tween_callback(holder.queue_free)
 
 
 ## Tempestade de Asas: durante a habilidade, penas chovem de cima por toda a área (raio `radius`, centro `at`), ~14 por segundo, com um leque de penas no começo.
@@ -995,12 +1087,23 @@ func _fx(kind: String, a: Vector3, b: Vector3, size: float, color: Color, durati
 	# "tipo:habilidade": a magia tem efeito próprio em data/spell_fx.json (SpellFx); sem ele, valem os efeitos genéricos por elemento.
 	var parts := kind.split(":")
 	var base := parts[0]
+	if (base == "disc" or base == "warn") and size >= 2.0 and not (parts.size() > 1 and parts[1] == "falcon_wings"):
+		var mark := Node3D.new()  # toda habilidade de área marca o chão no tamanho em que acerta
+		mark.position = Vector3(a.x, 0.0, a.z)
+		add_child(mark)
+		_mark_ground(mark, size, maxf(duration, 1.0), color)
+		get_tree().create_timer(maxf(duration, 1.0) + 1.0, false).timeout.connect(mark.queue_free)
 	if base == "disc" and parts.size() > 1 and parts[1] == "falcon_wings":
 		_shell_fx(a, size, float(Skills.def("falcon_wings").get("duration", 8.0)), color)  # Asas do Falcão (Ar): 3 aves no limite da área e poeira subindo do chão enquanto o buff dura
 	if base == "disc" and parts.size() > 1 and parts[1] == "wing_storm":
 		_feather_storm(a, size, duration)  # Tempestade de Asas: chuva de penas sobre a área enquanto ela dura
 	if base == "beam" and parts.size() > 1 and parts[1] == "eagle_dive":
 		_eagle_feathers(a, b)  # Mergulho da Águia: penas soltas ao longo do mergulho e uma explosão delas no alvo
+	if base == "beam" and parts.size() > 1 and parts[1] == "rhino_charge":
+		_rhino_run(a, b, duration)
+		return
+	if base == "disc" and parts.size() > 1 and parts[1] == "mammoth_stomp":
+		_elephant_stomp(a, b, duration)
 	if base == "falcon":
 		_falcon_flight(a, b, duration, color)
 		return

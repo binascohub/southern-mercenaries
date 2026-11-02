@@ -102,6 +102,23 @@ CAPITAL REAL ─ cidade do Cavaleiro; comércio mais elevado; Bobo da Corte
 - O grupo atravessa o **Portal de Tortuga** até as **Ruínas do Reino do Arqueiro** (Cérbero, Cofre Real).
 - Com a fama dos mercenários crescendo, a taberneira passa novas missões: **Floresta Escura** (Leshy — viajantes que nunca voltam e ouro nas raízes da árvore anciã; era o terreno de caça do Arqueiro), **Cavalos Míticos** (Pégaso) e **Aves** (Fênix).
 
+### A história do Esgoto (revisada, tom macabro)
+
+**A verdade sob Tortuga.** Os fundadores da cidade trouxeram o ouro do reino derrotado e o esconderam no esgoto. Para escondê-lo, jogaram ali também os mortos da guerra, e muitos vivos, e murou-se tudo (a **Vala dos Mortos da Guerra**, setor 4). O alquimista do rei, deixado no escuro para guardar o ouro, vendeu a alma a Lúcifer e virou o **Necromante** (chefe final, id `demon_rat_queen`): costura os mortos em servos, veste a coroa do rei caído e é o **coletor da adega de Lúcifer**, onde o diabo guarda almas engarrafadas. O esgoto inteiro é essa adega.
+
+**Três garrafas, três perdas** (cada quest pede uma garrafa, que um monstro solta e o NPC recebe):
+
+| Quest (NPC) | Garrafa | Quem a tem | O que o NPC faz |
+|---|---|---|---|
+| **A Família na Garrafa** (Velho Bêbado, Tortuga) | Garrafa da Tempestade de Almas | O Necromante (chefe final) | Rico e poderoso, assinou bêbado um contrato com Lúcifer, que arrancou as almas da família dele; paga tudo o que lhe resta (400 de ouro, 450 de XP) |
+| **A Garrafa do Tormento Eterno** (Ossael, o Anjo Caveira) | Garrafa do Tormento Eterno | O Empalado (mini-chefe 1, despertado no altar do centro com o Livro do Altar) | Guardião dos afogados, despojado da carne e das penas; entrega a **chave de copas** |
+| **A Garrafa das Almas Condenadas** (Azazel, o Anjo Flamejante) | Garrafa das Almas Condenadas | O Carniceiro Chifrudo (mini-chefe 2, despertado no mesmo altar com o Grimório das Brasas) | Mandado por Lúcifer; entrega a **chave de espadas** |
+
+- **Portão da Adega** (corredor do Ninho): só abre com as duas chaves (espadas e copas), as que os dois anjos entregam.
+- **Chefes:** o **Empalado** (carne, ossos e tábuas das passarelas; cada prego prende a alma de um afogado) e o **Carniceiro Chifrudo** (demônio açougueiro que trincha almas a cutelo; os Espíritos Sombrios delas o seguem) são invocados no **altar do centro**, conforme o livro que o grupo tem.
+- **Tom:** macabro, de corpos, almas presas e perda; sem tesouro de graça: o ouro é cama do Necromante e o que importa são as garrafas.
+- **Textos:** todos em `tools/assets/build_sewer_map.py` (blocos `T.update`, o último vence); itens de missão com `desc_key` em `data/valuables.json`.
+
 ### Ato 3 — A Capital Real e o ouro do rei
 - Depois do mapa 5, as pistas da taverna acabam. O **Cavaleiro** (Dorian ou Dália) conta que **sabe de um Bobo da Corte, no castelo da Capital, que sabe de coisas** — Dorian o conheceu na guarda do castelo; Dália cresceu ouvindo os segredos dele. No solo, ou se ninguém joga com o Cavaleiro, ele aparece como NPC em Tortuga e conta o mesmo (`04-1-capital-real.md`).
 - O grupo vai à **cidade do Cavaleiro**: **comércio mais elevado**, itens melhores e mais caros.

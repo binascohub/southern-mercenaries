@@ -34,6 +34,7 @@ func _ready() -> void:
 	_test_ninja_gear()
 	_test_skills()
 	_test_spell_fx()
+	_test_sewer_aggression()
 	_test_archer()
 	_test_ninja()
 	_test_summoner()
@@ -505,6 +506,16 @@ func _test_skills() -> void:
 
 
 ## Cada habilidade ativa tem o seu efeito visual (data/spell_fx.json): motivos que existem, cores válidas, e os momentos que o servidor dispara (projétil, feixe, área, impacto).
+func _test_sewer_aggression() -> void:
+	# No Esgoto pacífico, o Baú Monstro é o único monstro comum que ataca sem ser atacado ("aggressive"); os chefes continuam agressivos.
+	var aggressive: Array[String] = []
+	for id: String in GameData.monsters:
+		if GameData.monsters[id] is Dictionary and GameData.monsters[id].get("aggressive", false):
+			aggressive.append(id)
+	_check(aggressive == ["chest_mimic"] and GameData.arenas.sewers_01_drains.get("passive", false) and float(GameData.monsters.chest_mimic.size) <= 0.65,
+		"o Baú Monstro é pequeno (%s) e o único monstro \"aggressive\" do Esgoto pacífico (%s)" % [GameData.monsters.chest_mimic.size, aggressive])
+
+
 func _test_spell_fx() -> void:
 	var missing: Array[String] = []
 	var wrong: Array[String] = []
@@ -869,7 +880,7 @@ func _test_sewers() -> void:
 	var sewer_ids: Array = area.encounters.map(func(e: Dictionary) -> String: return String(e.id))
 	sewer_ids.sort()
 	var fixed_ids: Array = sewer_ids.filter(func(id: String) -> bool: return not id.begins_with("sw_mimic_"))
-	_check(sewer_ids.filter(func(id: String) -> bool: return id.begins_with("sw_mimic_")).size() >= 10 and fixed_ids.size() == fixed_ids.filter(func(id: String) -> bool: return id.begins_with("sw1_") or id.begins_with("sw2_") or id.begins_with("sw3_") or id.begins_with("sw5_") or id in ["sw_old_gator", "sw_queen"]).size(),
+	_check(sewer_ids.filter(func(id: String) -> bool: return id.begins_with("sw_mimic_")).size() >= 10 and fixed_ids.size() == fixed_ids.filter(func(id: String) -> bool: return id.begins_with("sw1_") or id.begins_with("sw2_") or id.begins_with("sw3_") or id.begins_with("sw4_") or id.begins_with("sw5_") or id in ["sw_old_gator", "sw_queen"]).size(),
 		"esgoto: os encontros fixos de cada setor, os chefes do mapa e 10 ou mais Baús Monstro espalhados (%s); o Rei dos Sapos vem do altar" % [sewer_ids])
 	var altar: Array = area.props.filter(func(p: Dictionary) -> bool: return p.get("id", "") == "sewer_frog_altar")
 	_check(altar.size() == 1 and altar[0].position == [0.0, -84.0] and altar[0].summon.id == "sw_frog_king" and altar[0].summon.monsters[0].monster == "frog_king",

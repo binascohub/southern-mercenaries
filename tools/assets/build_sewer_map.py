@@ -215,13 +215,13 @@ encounters.append({"id": "sw_queen", "position": [0, nest_z + (-42 - -36)], "lev
 
 # Troll Mauler (piacenti, CC BY 3.0): o monstro do Setor 1 (Bueiros), um por terço do setor, em células sem sorteio (não mexe nos outros sorteios do mapa).
 troll_cells = sorted(by_sector[1], key=lambda c: depth[c])
-for i, q in enumerate((0.15, 0.3, 0.45, 0.6, 0.75, 0.9)):
+for i, q in enumerate((0.2, 0.45, 0.7, 0.9)):
     c = troll_cells[min(int(len(troll_cells) * q), len(troll_cells) - 1)]
     encounters.append({"id": "sw1_troll_%d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 1, "monsters": [{"monster": "troll_mauler", "count": 1}]})
 
 # Mutante (thecubber, CC-BY-SA 3.0): o monstro do Setor 5 (Câmaras dos Cogumelos, canto inferior esquerdo), em bandos de 1 a 2 espalhados pelas células do setor, sem sorteio.
 mutant_cells = sorted(by_sector[5], key=lambda c: depth[c])
-for i, q in enumerate((0.05, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85, 0.95)):
+for i, q in enumerate((0.05, 0.15, 0.35, 0.55, 0.75, 0.85, 0.95)):
     c = mutant_cells[min(int(len(mutant_cells) * q), len(mutant_cells) - 1)]
     encounters.append({"id": "sw5_mutant_%d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 2, "monsters": [{"monster": "mutant", "count": 1 + i % 2}]})
 
@@ -237,20 +237,39 @@ for i, c in enumerate(corner_cells[:2]):
 
 # Espírito Sombrio (shadow-spirit.glb do autor): o monstro do canto superior direito (Setor 1, colunas do lado leste), em bandos de 1 a 2, sem sorteio.
 spirit_cells = sorted((c for c in by_sector[1] if c[0] >= NC - 4), key=lambda c: depth[c])
-for i, q in enumerate((0.1, 0.4, 0.7, 0.95)):
+for i, q in enumerate((0.1, 0.4, 0.95)):
     c = spirit_cells[min(int(len(spirit_cells) * q), len(spirit_cells) - 1)]
     encounters.append({"id": "sw1_spirit_%d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 1, "monsters": [{"monster": "shadow_spirit", "count": 1 + i % 2}]})
 
 # Demônio Doze (demon-twelve.glb do autor): o monstro do meio do lado direito (Setor 3, células do leste), em bandos de 1 a 2, sem sorteio.
-twelve_cells = sorted((c for c in by_sector[3] if c[0] >= NC - 4), key=lambda c: depth[c])
-for i, q in enumerate((0.15, 0.5, 0.85)):
+twelve_cells = sorted((c for c in by_sector[3] if c[0] >= NC - 4 and -108 < cz(c[1]) < -62 and cx(c[0]) > 22), key=lambda c: depth[c])  # só na zona do meio do lado direito
+for i, q in enumerate((0.1, 0.3, 0.5, 0.7, 0.9)):
     c = twelve_cells[min(int(len(twelve_cells) * q), len(twelve_cells) - 1)]
     encounters.append({"id": "sw3_twelve_%d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 1, "monsters": [{"monster": "demon_twelve", "count": 1 + i % 2}]})
+
+# Equilíbrio dos setores (~10 monstros e ~2.000 de vida em cada; o Setor 5, perto do chefe, um pouco mais): grupos extras, sem sorteio, longe (7 m) dos que já existem.
+#   Setor 2 (Canais dos Afogados): Espíritos Sombrios (os afogados). Setor 3: 2 Mutantes. Setor 4 (Vala dos Mortos da Guerra, antes vazio): Espíritos (os mortos), Trolls e 2 Mutantes.
+def add_spread(prefix, monster, sector, counts, level, min_dist=7.0):
+    cells = sorted(by_sector[sector], key=lambda c: depth[c])
+    for i, count in enumerate(counts):
+        pool = [c for c in cells if c not in (ALTAR_CELL, ANGEL_CELL)
+                and all(math.hypot(cx(c[0]) - e["position"][0], cz(c[1]) - e["position"][1]) > min_dist for e in encounters)]
+        if not pool:
+            break
+        c = pool[min(int(len(pool) * (i + 0.5) / len(counts)), len(pool) - 1)]
+        encounters.append({"id": "%s_%d" % (prefix, i + 1), "position": [cx(c[0]), cz(c[1])], "level": level, "monsters": [{"monster": monster, "count": count}]})
+
+
+add_spread("sw2_spirit", "shadow_spirit", 2, (2, 1, 2, 1), 1)
+add_spread("sw3_mutant", "mutant", 3, (1, 1), 1)
+add_spread("sw4_spirit", "shadow_spirit", 4, (2, 1, 2), 2)
+add_spread("sw4_troll", "troll_mauler", 4, (1, 1, 1), 2)
+add_spread("sw4_mutant", "mutant", 4, (1, 1), 2)
 
 # Baú Monstro (chest_monster.glb do autor): agressivo, espalhado por todo o mapa — um a cada ~10 células, em células sorteadas por posição (sem usar o rng do resto), longe de encontros, do altar e da sala da Ossael.
 _mimic_cells = [c for c in sorted(depth) if c not in special_cells and c not in (ALTAR_CELL, ANGEL_CELL) and depth[c] > 1
                 and all(math.hypot(cx(c[0]) - e["position"][0], cz(c[1]) - e["position"][1]) > 9.0 for e in encounters)]
-_mimic_cells = [c for i, c in enumerate(sorted(_mimic_cells, key=lambda c: (c[0] * 7 + c[1] * 13) % 11)) if i % 4 == 0][:14]
+_mimic_cells = [c for i, c in enumerate(sorted(_mimic_cells, key=lambda c: (c[0] * 7 + c[1] * 13) % 11)) if i % 4 == 0][:10]
 for i, c in enumerate(sorted(_mimic_cells, key=lambda c: (c[1], c[0]))):
     encounters.append({"id": "sw_mimic_%02d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 1, "monsters": [{"monster": "chest_mimic", "count": 1}]})
 
@@ -312,7 +331,7 @@ props.append(FROG_ALTAR)
 
 # --- poças de lodo, objetos quebráveis e decoração -------------------------------------------------------------------------------------------------
 hazards = []
-quotas = {1: 4, 2: 6, 3: 4, 4: 6, 5: 9}  # poças verdes de lodo por setor (dobradas a pedido do autor)
+quotas = {1: 8, 2: 12, 3: 8, 4: 12, 5: 18}  # poças verdes de lodo por setor (dobradas duas vezes a pedido do autor: "tem poucas")
 for s, n in quotas.items():
     cells = [c for c in depth if sector(*c) == s and c not in special_cells]
     rng.shuffle(cells)
@@ -407,7 +426,7 @@ area = {
     "props": props,
     "quest_spots": quest_spots,
     "breakables": breakables,
-    "style": dict(legacy["style"], puddles=False, bats=True, trash_density=0.6, trash_no_bottles=True, wood_tone=[0.192, 0.145, 0.11]),  # madeira na cor da mesa redonda da Taverna
+    "style": dict(legacy["style"], puddles=False, bats=True, stone_trim=True, trash_density=0.6, trash_no_bottles=True, wood_tone=[0.192, 0.145, 0.11]),  # madeira na cor da mesa redonda da Taverna
     "decor": decor,
     "passive": True,
 }
@@ -716,6 +735,197 @@ T.update({
         'He charges head down: step aside when he roars and strike when his cleaver gets stuck. Water hurts him more.',
         'Embiste con la cabeza baja: apártate cuando ruja y golpea cuando el cuchillo se le quede atascado. El agua lo hiere más.'),
 })
+# === História do Esgoto, revisão macabra: uma história só, do Esgoto sob Tortuga (cova em massa do reino derrotado e adega de Lúcifer, onde o Necromante guarda almas em garrafas).
+# Estes textos substituem os anteriores das mesmas chaves (placas, áreas, abertura, bardo, as 3 quests, altar, itens de missão e lendas do bestiário).
+T.update({
+    "ARENA_SEWERS_NEST": ('Esgoto — Câmara do Necromante',
+        "Sewer — The Necromancer's Chamber",
+        'Alcantarilla — Cámara del Nigromante'),
+    "ARENA_SEWERS_WAR_PASSAGE": ('Esgoto — Vala dos Mortos da Guerra',
+        "Sewer — The War Dead's Pit",
+        'Alcantarilla — Fosa de los Muertos de la Guerra'),
+    "PROP_SEWER_NEST": ('Câmara do Necromante',
+        "The Necromancer's Chamber",
+        'Cámara del Nigromante'),
+    "PROP_NEST_GATE": ('Portão da Adega — só abre com as chaves de Espadas e de Copas',
+        'The Cellar Gate — it only opens with the Spade and Heart keys',
+        'Portón de la Bodega — solo se abre con las llaves de Picas y de Corazones'),
+    "PROP_SEWER_SECTOR_2": ('Canais dos Afogados',
+        'Canals of the Drowned',
+        'Canales de los Ahogados'),
+    "PROP_SEWER_SECTOR_4": ('Vala dos Mortos da Guerra',
+        "The War Dead's Pit",
+        'Fosa de los Muertos de la Guerra'),
+    "SIGN_SEWER_SECTOR_1": ('Setor 1 — Bueiros da Rua Principal. Alguém roeu as grades por dentro. Os sapos daqui engordaram com o que a cidade joga fora… e com o que ela esquece.',
+        'Sector 1 — Main Street Drains. Someone gnawed the grates from the inside. The toads here grew fat on what the city throws away… and on what it forgets.',
+        'Sector 1 — Alcantarillas de la Calle Mayor. Alguien royó las rejas desde dentro. Los sapos de aquí engordaron con lo que la ciudad tira… y con lo que olvida.'),
+    "SIGN_SEWER_SECTOR_2": ('Setor 2 — Canais dos Afogados. A água sobe sem chuva e tem gosto de sal e de sangue. Ao oeste, a praça das tábuas; no centro do mapa, uma pedra negra espera quem saiba ler as preces dos mortos.',
+        'Sector 2 — Canals of the Drowned. The water rises without rain and tastes of salt and blood. To the west, the plaza of planks; in the center of the map, a black stone waits for whoever can read the prayers of the dead.',
+        'Sector 2 — Canales de los Ahogados. El agua sube sin lluvia y sabe a sal y a sangre. Al oeste, la plaza de las tablas; en el centro del mapa, una piedra negra espera a quien sepa leer las oraciones de los muertos.'),
+    "SIGN_SEWER_SECTOR_3": ('Setor 3 — Galerias dos Morcegos. Eles dormem pendurados nas costelas do teto e acordam com cheiro de carne. A leste, uma chama que não apaga: o posto de um anjo que ardeu.',
+        "Sector 3 — Bat Galleries. They sleep hanging from the ceiling's ribs and wake at the smell of meat. To the east, a flame that never dies: the post of an angel who burned.",
+        'Sector 3 — Galerías de los Murciélagos. Duermen colgados de las costillas del techo y despiertan con olor a carne. Al este, una llama que no se apaga: el puesto de un ángel que ardió.'),
+    "SIGN_SEWER_SECTOR_4": ('Setor 4 — Vala dos Mortos da Guerra. O reino derrotado foi jogado aqui, vivos e mortos juntos, e murado. Ainda se ouvem as marchas. A leste, uma praça riscada de cutelo.',
+        "Sector 4 — The War Dead's Pit. The defeated kingdom was thrown in here, living and dead together, and walled in. You can still hear the marching. To the east, a plaza scored by cleaver.",
+        'Sector 4 — Fosa de los Muertos de la Guerra. El reino derrotado fue arrojado aquí, vivos y muertos juntos, y emparedado. Aún se oyen las marchas. Al este, una plaza marcada a cuchillo.'),
+    "SIGN_SEWER_SECTOR_5": ('Setor 5 — Câmaras dos Cogumelos. O que brota nestas paredes cresce de carne enterrada. Cuidado com os escorpiões. O túnel da Câmara do Necromante sai pelo sul.',
+        "Sector 5 — Mushroom Chambers. What sprouts from these walls grows out of buried flesh. Beware the scorpions. The tunnel to the Necromancer's Chamber leaves to the south.",
+        'Sector 5 — Cámaras de los Hongos. Lo que brota de estas paredes crece de carne enterrada. Cuidado con los escorpiones. El túnel a la Cámara del Nigromante sale por el sur.'),
+    "SIGN_SEWER_NEST": ('Câmara do Necromante. A coroa do rei caído balança numa cabeça que não é a dele. Aqui se coleciona almas em vidro, e o ouro da guerra serve de cama. Voltem equipados.',
+        "The Necromancer's Chamber. The fallen king's crown sways on a head that is not his. Souls are collected in glass here, and the war's gold serves as a bed. Come back equipped.",
+        'Cámara del Nigromante. La corona del rey caído se mece en una cabeza que no es la suya. Aquí se coleccionan almas en vidrio, y el oro de la guerra sirve de cama. Vuelvan equipados.'),
+    "SIGN_WAR_CREST": ('Um brasão gasto na parede: uma águia sobre três flechas. Alguém murou este túnel com pressa, e com gente ainda dentro.',
+        'A worn crest on the wall: an eagle over three arrows. Someone walled up this tunnel in a hurry, with people still inside.',
+        'Un escudo gastado en la pared: un águila sobre tres flechas. Alguien emparedó este túnel con prisa, y con gente todavía dentro.'),
+    "SIGN_WAR_CREST_ARCHER": ('O brasão do meu reino. Então foi aqui que enterraram os meus: o tesouro não fugiu da guerra, desceu com os mortos.',
+        'The crest of my kingdom. So this is where they buried mine: the treasure did not flee the war, it went down with the dead.',
+        'El escudo de mi reino. Así que aquí enterraron a los míos: el tesoro no huyó de la guerra, bajó con los muertos.'),
+    "HUD_VICTORY_SEWERS": ('O Necromante caiu. Nas garrafas, os gritos finalmente se calam.',
+        'The Necromancer has fallen. In the bottles, the screaming finally falls silent.',
+        'El Nigromante cayó. En las botellas, los gritos por fin se callan.'),
+    "HUD_VICTORY_TREASURE": ('A adega do Necromante está aberta para o grupo.',
+        "The Necromancer's cellar is open to the party.",
+        'La bodega del Nigromante está abierta para el grupo.'),
+    "OPENING_DRUNK_CALL": ('Do canto, um velho bêbado ergue a caneca vazia: "Ei, mercenários! Sentem aqui. Se estão atrás de tesouro, eu tenho uma história… e uma garrafa para vocês trazerem." Fale com ele.',
+        'From the corner, an old drunk raises an empty mug: "Hey, mercenaries! Sit down. If you are after treasure, I have a story… and a bottle for you to bring back." Talk to him.',
+        'Desde la esquina, un viejo borracho alza la jarra vacía: "¡Eh, mercenarios! Siéntense. Si buscan tesoro, tengo una historia… y una botella para que me traigan." Hablen con él.'),
+    "RELIC_FALLEN_KING_CROWN_DESC": ('A coroa torta que o Necromante usava, arrancada de um crânio que já não era o do rei. Pesa mais do que deveria.',
+        "The crooked crown the Necromancer wore, torn from a skull that was no longer the king's. It weighs more than it should.",
+        'La corona torcida que usaba el Nigromante, arrancada de un cráneo que ya no era el del rey. Pesa más de lo que debería.'),
+    "QUEST_SEWER_TREASURE_DESC": ('O Velho Bêbado perdeu a família para Lúcifer, que arrancou as almas dela e as engarrafou numa tempestade de vidro. Desça pelo bueiro até a adega do Necromante, o alquimista que costura os mortos, derrote-o e traga a Garrafa da Tempestade de Almas ao velho, que promete tudo o que lhe resta. Os ratos são de Terra: temem o Fogo.',
+        'The Old Drunk lost his family to Lucifer, who tore out their souls and bottled them in a storm of glass. Go down the manhole to the cellar of the Necromancer, the alchemist who stitches the dead, defeat him and bring the Bottle of the Soul Storm to the old man, who promises everything he has left. The rats are Earth: they fear Fire.',
+        'El Viejo Borracho perdió a su familia ante Lucifer, que les arrancó las almas y las embotelló en una tormenta de vidrio. Baja por la alcantarilla hasta la bodega del Nigromante, el alquimista que cose a los muertos, derrótalo y trae la Botella de la Tormenta de Almas al viejo, que promete todo lo que le queda. Las ratas son de Tierra: temen el Fuego.'),
+    "DLG_OLD_DRUNK_1": ('Vocês têm cara de quem já enterrou alguém. Sentem. E não olhem para o meu copo: está vazio desde o dia em que parei de ouvi-los rir. Eu fui rico, sabem? Poderoso. Tinha nome, terras e uma casa cheia de filhos.',
+        'You look like people who have buried someone. Sit. And do not look at my cup: it has been empty since the day I stopped hearing them laugh. I was rich, you know? Powerful. I had a name, lands and a house full of children.',
+        'Tienen cara de quien ya enterró a alguien. Siéntense. Y no miren mi vaso: está vacío desde el día en que dejé de oírlos reír. Fui rico, ¿saben? Poderoso. Tenía nombre, tierras y una casa llena de hijos.'),
+    "DLG_OLD_DRUNK_2": ('Lúcifer veio numa noite de chuva cobrar uma dívida que eu assinei bêbado, anos antes, sem ler. Não quis o ouro. Quis as almas: minha mulher, meus filhos, até o cachorro. Arrancou uma por uma, na minha frente, e as trancou numa tempestade de vidro. Eu fiquei com os corpos. Frios, nas camas, ainda com os olhos abertos.',
+        'Lucifer came on a rainy night to collect a debt I signed drunk, years before, without reading. He did not want the gold. He wanted the souls: my wife, my children, even the dog. He tore them out one by one, in front of me, and locked them in a storm of glass. I was left with the bodies. Cold, in their beds, eyes still open.',
+        'Lucifer vino una noche de lluvia a cobrar una deuda que firmé borracho, años antes, sin leer. No quiso el oro. Quiso las almas: mi mujer, mis hijos, hasta el perro. Las arrancó una por una, delante de mí, y las encerró en una tormenta de vidrio. Yo me quedé con los cuerpos. Fríos, en las camas, con los ojos aún abiertos.'),
+    "DLG_OLD_DRUNK_3": ('A garrafa está aqui embaixo, na adega do Necromante: o alquimista do rei, esquecido no escuro para guardar o ouro, que vendeu a alma ao diabo e agora costura os mortos para servi-lo. Ele dorme sobre o tesouro que os fundadores de Tortuga esconderam, e sobre os ossos de todo o reino que perdeu a guerra.',
+        "The bottle is down here, in the cellar of the Necromancer: the king's alchemist, forgotten in the dark to guard the gold, who sold his soul to the devil and now stitches the dead to serve him. He sleeps on the treasure the founders of Tortuga hid, and on the bones of the whole kingdom that lost the war.",
+        'La botella está aquí abajo, en la bodega del Nigromante: el alquimista del rey, olvidado en la oscuridad para guardar el oro, que vendió el alma al diablo y ahora cose a los muertos para servirle. Duerme sobre el tesoro que escondieron los fundadores de Tortuga, y sobre los huesos de todo el reino que perdió la guerra.'),
+    "DLG_OLD_DRUNK_4": ('Os ratos de lá o povo daqui envenenou e queimou. Mas o Necromante os costurou de volta, um por um, e agora servem mortos. A terra e a podridão correm nas veias dele, e a terra teme o fogo. Levem fogo.',
+        'The people here poisoned and burned the rats down there. But the Necromancer stitched them back together, one by one, and now they serve dead. Earth and rot run in his veins, and earth fears fire. Bring fire.',
+        'La gente de aquí envenenó y quemó las ratas de allá abajo. Pero el Nigromante las cosió de nuevo, una por una, y ahora sirven muertas. La tierra y la podredumbre corren por sus venas, y la tierra teme el fuego. Lleven fuego.'),
+    "DLG_OLD_DRUNK_5": ('Fiquem com todo o ouro: ouro não ri, não chama pelo pai, não grita de madrugada. Eu só quero a garrafa. Tragam-na e eu pago tudo o que me resta, para ouvi-los rir mais uma vez… ou, pelo menos, para ouvi-los descansar.',
+        'Keep all the gold: gold does not laugh, does not call for its father, does not scream at dawn. I only want the bottle. Bring it and I will pay everything I have left, to hear them laugh one more time… or at least to hear them rest.',
+        'Quédense con todo el oro: el oro no ríe, no llama a su padre, no grita de madrugada. Solo quiero la botella. Tráiganla y pagaré todo lo que me queda, por oírlos reír una vez más… o, al menos, por oírlos descansar.'),
+    "DLG_OLD_DRUNK_ACTIVE": ('O bueiro fica na Rua Principal. Fogo, eu disse. Fogo! E a garrafa: uma tempestade de gritos presa no vidro. Tragam-na para mim antes que o silêncio da casa me leve também.',
+        'The manhole is on Main Street. Fire, I said. Fire! And the bottle: a storm of screams trapped in glass. Bring it to me before the silence of the house takes me too.',
+        'La alcantarilla está en la Calle Mayor. Fuego, dije. ¡Fuego! Y la botella: una tormenta de gritos atrapada en el vidrio. Tráiganmela antes de que el silencio de la casa me lleve a mí también.'),
+    "DLG_OLD_DRUNK_DONE": ('Eu… eu os ouço. Riem. E depois se calam, finalmente, em paz. Obrigado. Tomem o que prometi e me paguem uma bebida: a primeira, em anos, que não é para esquecer.',
+        'I… I hear them. They laugh. And then they fall silent, at last, at peace. Thank you. Take what I promised and buy me a drink: the first in years that is not to forget.',
+        'Yo… los oigo. Ríen. Y luego se callan, por fin, en paz. Gracias. Tomen lo prometido y págueme una copa: la primera, en años, que no es para olvidar.'),
+    "DLG_BARD_QUEEN_1": ('O Necromante já foi o alquimista do rei: deixado no escuro para guardar o ouro, vendeu a alma e passou a costurar os mortos.',
+        "The Necromancer was once the king's alchemist: left in the dark to guard the gold, he sold his soul and began to stitch the dead.",
+        'El Nigromante fue el alquimista del rey: dejado en la oscuridad para guardar el oro, vendió el alma y empezó a coser a los muertos.'),
+    "DLG_BARD_QUEEN_2": ('Agora a terra e a podridão correm nas veias dele, e a terra teme o fogo — lembrem da canção.',
+        'Now earth and rot run in his veins, and earth fears fire — remember the song.',
+        'Ahora la tierra y la podredumbre corren por sus venas, y la tierra teme el fuego — recuerden la canción.'),
+    "BEAST_DEMON_RAT_QUEEN_LEGEND": ("Na Europa medieval, um 'rei dos ratos' era um nó de ratos presos pelas caudas, presságio de peste. Aqui, o alquimista do rei, esquecido no escuro para guardar o ouro da guerra, vendeu a alma a Lúcifer e virou o coletor da adega dele: costura os mortos em servos, veste a coroa do rei caído e guarda, entre o ouro e os ossos, as garrafas onde o diabo prende almas.",
+        "In medieval Europe, a 'rat king' was a knot of rats bound by their tails, an omen of plague. Here, the king's alchemist, forgotten in the dark to guard the war's gold, sold his soul to Lucifer and became the collector of his cellar: he stitches the dead into servants, wears the fallen king's crown and keeps, between the gold and the bones, the bottles where the devil traps souls.",
+        "En la Europa medieval, un 'rey de ratas' era un nudo de ratas atadas por las colas, presagio de peste. Aquí, el alquimista del rey, olvidado en la oscuridad para guardar el oro de la guerra, vendió el alma a Lucifer y se volvió el coleccionista de su bodega: cose a los muertos en sirvientes, viste la corona del rey caído y guarda, entre el oro y los huesos, las botellas donde el diablo encierra almas."),
+    "BEAST_DEMON_RAT_QUEEN_HINT": ('Só levem fogo. A terra corre nas veias dele, e ele sabe o que é fogo — e odeia.',
+        'Only bring fire. Earth runs in his veins, and he knows what fire is — and hates it.',
+        'Solo lleven fuego. La tierra corre por sus venas, y él sabe lo que es el fuego — y lo odia.'),
+    "BEAST_PLAGUE_RAT_LEGEND": ('No folclore europeu, sapos andavam com bruxas e com a peste. Estes engordaram com os afogados: incham, coaxam em coro e atacam em bando, com os olhos leitosos de quem morreu na água.',
+        'In European folklore, toads walked with witches and with the plague. These grew fat on the drowned: they swell, croak in chorus and attack in packs, with the milky eyes of those who died in the water.',
+        'En el folclore europeo, los sapos andaban con brujas y con la peste. Estos engordaron con los ahogados: se hinchan, croan en coro y atacan en manada, con los ojos lechosos de quien murió en el agua.'),
+    "BEAST_PLAGUE_RAT_HINT": ('Sapo é sapo: tem medo de fogo. Leve uma tocha… ou um mago que saiba acender uma.',
+        'A toad is a toad: it fears fire. Bring a torch… or a mage who can light one.',
+        'Un sapo es un sapo: le teme al fuego. Lleven una antorcha… o un mago que sepa encender una.'),
+    "BEAST_MUTANT_RAT_LEGEND": ('Histórias de bichos grandes demais nos porões são comuns em cidades de porto. Este é um sapo velho que engoliu o que não devia: cresceu torto, com um braço humano ainda se mexendo por baixo da pele.',
+        'Stories of oversized creatures in cellars are common in port cities. This is an old toad that swallowed what it should not have: it grew crooked, with a human arm still twitching beneath its skin.',
+        'Las historias de bichos enormes en los sótanos son comunes en las ciudades portuarias. Este es un sapo viejo que se tragó lo que no debía: creció torcido, con un brazo humano aún moviéndose bajo la piel.'),
+    "BEAST_MUTANT_RAT_HINT": ('Maior que um cachorro e cheio de membros que não são dele. Queima que ele corre.',
+        'Bigger than a dog and full of limbs that are not his. Burn it and it runs.',
+        'Más grande que un perro y lleno de miembros que no son suyos. Quémalo y huye.'),
+    "BEAST_PLAGUE_BAT_LEGEND": ('No folclore europeu, morcegos são mau agouro. Estes dormem pendurados nas costelas do teto e caem sobre quem passa, atraídos pelo cheiro de carne fresca.',
+        "In European folklore, bats are a bad omen. These sleep hanging from the ceiling's ribs and fall on whoever passes, drawn by the smell of fresh meat.",
+        'En el folclore europeo, los murciélagos son mal agüero. Estos duermen colgados de las costillas del techo y caen sobre quien pasa, atraídos por el olor a carne fresca.'),
+    "BEAST_ACID_TOAD_LEGEND": ('Sapos eram ligados à bruxaria e ao veneno, e alguns têm toxinas na pele. Aqui, sapos inchados cospem um ácido que corrói o chão e a carne, e deixam os ossos limpos.',
+        'Toads were tied to witchcraft and poison, and some have toxins in their skin. Here, swollen toads spit an acid that eats floors and flesh, leaving the bones clean.',
+        'Los sapos se ligaban a la brujería y al veneno, y algunos tienen toxinas en la piel. Aquí, sapos hinchados escupen un ácido que corroe el suelo y la carne, y deja los huesos limpios.'),
+    "BEAST_TROLL_MAULER_LEGEND": ('Um bruto curvado sob os próprios braços, de pele grossa e cheia de cicatrizes. Rondava as docas até o esgoto virar a casa dele. Dizem que come o que a maré traz, inclusive o que ainda se mexe.',
+        'A brute stooped under its own arms, with thick, scarred skin. It prowled the docks until the sewer became its home. They say it eats what the tide brings in, even what still moves.',
+        'Un bruto encorvado bajo sus propios brazos, de piel gruesa y llena de cicatrices. Rondaba los muelles hasta que la alcantarilla se volvió su casa. Dicen que come lo que trae la marea, incluso lo que aún se mueve.'),
+    "BEAST_BARBARIAN_MONSTER_LEGEND": ('Um guerreiro orc de chifres, expulso do próprio bando. Desceu aos canais do oeste e fez deles o seu território, decorado com os crânios de quem desceu sem convite.',
+        'A horned orc warrior, cast out of his own band. He went down to the western canals and made them his territory, decorated with the skulls of those who came down uninvited.',
+        'Un guerrero orco cornudo, expulsado de su propia banda. Bajó a los canales del oeste y los hizo su territorio, decorado con los cráneos de quienes bajaron sin invitación.'),
+    "BEAST_CHAMP_WARRIOR_LEGEND": ('Um guerreiro-cogumelo de armadura, nascido da carne enterrada nas paredes úmidas do noroeste. Guarda os primeiros canais com uma espada que é um osso do próprio reino.',
+        'A mushroom warrior in armor, born of the flesh buried in the damp walls of the northwest. He guards the first canals with a sword that is a bone of the kingdom itself.',
+        'Un guerrero hongo con armadura, nacido de la carne enterrada en las húmedas paredes del noroeste. Guarda los primeros canales con una espada que es un hueso del propio reino.'),
+    "BEAST_CHEST_MIMIC_LEGEND": ('Um baú que perdeu a tampa e ganhou dentes. Se você abrir, ele abre você: engoliu os últimos mercenários que quiseram o tesouro do Esgoto, e dizem que ainda se ouve alguém pedindo ajuda lá dentro.',
+        "A chest that lost its lid and grew teeth. If you open it, it opens you: it swallowed the last mercenaries who wanted the Sewer's treasure, and they say you can still hear someone calling for help inside.",
+        'Un cofre que perdió la tapa y le salieron dientes. Si lo abres, te abre a ti: se tragó a los últimos mercenarios que quisieron el tesoro de la Alcantarilla, y dicen que aún se oye a alguien pidiendo ayuda dentro.'),
+    "QUEST_SEWER_FROG_KING_DESC": ('Ossael, o Anjo Caveira, quer a Garrafa do Tormento Eterno, que o Empalado lhe arrancou junto com a carne: leve o Livro do Altar ao altar do centro do esgoto, leia as preces dos afogados para despertar o monstro, derrote-o e leve a garrafa à Ossael para receber a chave de copas.',
+        'Ossael, the Skull Angel, wants the Bottle of Eternal Torment, which the Impaled One tore from him along with his flesh: take the Altar Book to the altar in the center of the sewer, read the prayers of the drowned to wake the monster, defeat it and bring the bottle to Ossael to receive the heart key.',
+        'Ossael, el Ángel Calavera, quiere la Botella del Tormento Eterno, que el Empalado le arrancó junto con la carne: lleva el Libro del Altar al altar del centro de la alcantarilla, lee las oraciones de los ahogados para despertar al monstruo, derrótalo y llévale la botella a Ossael para recibir la llave de corazones.'),
+    "DLG_SEWER_FROG_1": ('Estes ossos já foram um anjo, guardião dos afogados deste esgoto, e vim buscar a Garrafa do Tormento Eterno, onde se guarda o sofrimento deles para que possam descansar. Falhei: uma coisa de carne e tábuas me arrancou a carne, as penas brancas e a garrafa, e pregou as almas dos meus afogados na própria madeira. Escuto cada uma gritar dentro de cada prego. Só restaram ossos e estas asas negras.',
+        'These bones were once an angel, guardian of the drowned of this sewer, and I came to fetch the Bottle of Eternal Torment, where their suffering is kept so they can rest. I failed: a thing of flesh and planks tore off my flesh, my white feathers and the bottle, and nailed the souls of my drowned into its own wood. I hear each one scream inside each nail. Only bones and these black wings remain.',
+        'Estos huesos fueron un ángel, guardián de los ahogados de esta alcantarilla, y vine a buscar la Botella del Tormento Eterno, donde se guarda su sufrimiento para que puedan descansar. Fallé: una cosa de carne y tablas me arrancó la carne, las plumas blancas y la botella, y clavó las almas de mis ahogados en su propia madera. Oigo a cada una gritar dentro de cada clavo. Solo quedan huesos y estas alas negras.'),
+    "DLG_SEWER_FROG_2": ('O povo o chama de Empalado: foi montado com os ossos e as tábuas das passarelas, pregado a pregado, e crava os próprios espinhos em quem chega perto. Cada prego é uma alma. Ele leva a minha garrafa pregada no peito e dorme sob o altar de pedra, no centro do esgoto; só acorda quando alguém lê o livro certo. O choro dele chama os outros mortos.',
+        'Folks call it the Impaled One: it was assembled from bones and the planks of the walkways, nail by nail, and it drives its own spikes into whoever comes close. Every nail is a soul. It carries my bottle nailed to its chest and sleeps under the stone altar in the center of the sewer; it only wakes when someone reads the right book. Its weeping calls the other dead.',
+        'La gente lo llama el Empalado: lo armaron con huesos y las tablas de las pasarelas, clavo a clavo, y clava sus propias púas en quien se acerca. Cada clavo es un alma. Lleva mi botella clavada en el pecho y duerme bajo el altar de piedra, en el centro de la alcantarilla; solo despierta cuando alguien lee el libro correcto. Su llanto llama a los demás muertos.'),
+    "DLG_SEWER_FROG_3": ('Levem o Livro do Altar, as preces dos afogados, escritas com as unhas deles. Apoiem-no na pedra e leiam em voz alta. Derrubem o Empalado e tragam-me a Garrafa do Tormento Eterno; em troca, a chave de copas que eu guardo é de vocês.',
+        'Take the Altar Book, the prayers of the drowned, written with their own fingernails. Rest it on the stone and read it aloud. Bring the Impaled One down and bring me the Bottle of Eternal Torment; in return, the heart key I keep is yours.',
+        'Llévense el Libro del Altar, las oraciones de los ahogados, escritas con sus propias uñas. Apóyenlo en la piedra y léanlo en voz alta. Derriben al Empalado y tráiganme la Botella del Tormento Eterno; a cambio, la llave de corazones que guardo es suya.'),
+    "DLG_SEWER_FROG_ACTIVE": ('Ainda sem a garrafa? O Empalado só desperta quando as preces são lidas no altar, no centro do esgoto. Cada tábua que cai solta uma alma gritando… Tragam-me a Garrafa do Tormento Eterno, pregada no peito dele.',
+        'Still no bottle? The Impaled One only wakes when the prayers are read at the altar in the center of the sewer. Every plank that falls frees a screaming soul… Bring me the Bottle of Eternal Torment, nailed to its chest.',
+        '¿Aún sin la botella? El Empalado solo despierta cuando se leen las oraciones en el altar, en el centro de la alcantarilla. Cada tabla que cae suelta un alma gritando… Tráiganme la Botella del Tormento Eterno, clavada en su pecho.'),
+    "DLG_SEWER_FROG_DONE": ('A garrafa… o tormento deles termina aqui, e as almas sobem. Cada uma passou por entre as minhas asas negras antes de partir, e eu senti o frio de todas. Obrigado. Levem a chave de copas: ela é de vocês. Eu fico, de guarda, enquanto houver afogados.',
+        'The bottle… their torment ends here, and the souls rise. Each one passed between my black wings before leaving, and I felt the cold of all of them. Thank you. Take the heart key: it is yours. I will stay on guard as long as there are drowned.',
+        'La botella… su tormento termina aquí, y las almas suben. Cada una pasó entre mis alas negras antes de partir, y sentí el frío de todas. Gracias. Lleven la llave de corazones: es suya. Yo me quedo de guardia mientras haya ahogados.'),
+    "DLG_FROG_ALTAR_1": ('Um altar de pedra negra, manchado de lodo e de coisas piores, no coração do esgoto. Há um vão no centro, do tamanho de um livro, preces dos afogados riscadas na pedra com unhas, e marcas de garras e de pregos ao redor.',
+        'A black stone altar, stained with sludge and worse things, in the heart of the sewer. There is a gap in the center, the size of a book, prayers of the drowned scratched into the stone with fingernails, and claw and nail marks around it.',
+        'Un altar de piedra negra, manchado de lodo y de cosas peores, en el corazón de la alcantarilla. Hay un hueco en el centro, del tamaño de un libro, oraciones de los ahogados rayadas en la piedra con uñas, y marcas de garras y de clavos alrededor.'),
+    "DLG_FROG_ALTAR_2": ('Você apoia o Livro do Altar na pedra e lê as preces em voz alta: o chão estremece, as tábuas rangem como ossos e o Empalado acorda na sala do altar, com a garrafa pregada no peito e mil pregos chorando.',
+        'You rest the Altar Book on the stone and read the prayers aloud: the floor trembles, the planks creak like bones and the Impaled One wakes in the altar room, the bottle nailed to its chest and a thousand nails weeping.',
+        'Apoyas el Libro del Altar en la piedra y lees las oraciones en voz alta: el suelo tiembla, las tablas crujen como huesos y el Empalado despierta en la sala del altar, con la botella clavada en el pecho y mil clavos llorando.'),
+    "VALUABLE_ALTAR_BOOK_DESC": ('Dado por Ossael. As preces dos afogados, escritas com as unhas deles: fazem o altar do centro do Esgoto reagir. Leve o grupo até ele e fale com a pedra para despertar o Empalado. Não se vende nem se perde.',
+        'Given by Ossael. The prayers of the drowned, written with their own fingernails: they make the altar in the center of the Sewer react. Bring the group to it and speak to the stone to wake the Impaled One. It cannot be sold or lost.',
+        'Dado por Ossael. Las oraciones de los ahogados, escritas con sus propias uñas: hacen reaccionar el altar del centro de la Alcantarilla. Lleva al grupo hasta él y habla con la piedra para despertar al Empalado. No se vende ni se pierde.'),
+    "BEAST_IMPALED_ONE_LEGEND": ('Monstro de carne, ossos e tábuas das passarelas, pregado a pregado: cada prego prende a alma de um afogado, que grita lá dentro. Leva a Garrafa do Tormento Eterno pregada no peito, dorme sob o altar do centro do esgoto e crava os próprios espinhos em quem chega perto.',
+        'A monster of flesh, bone and walkway planks, nailed together: each nail traps the soul of a drowned person, who screams inside. It carries the Bottle of Eternal Torment nailed to its chest, sleeps under the altar in the center of the sewer and drives its own spikes into whoever comes close.',
+        'Un monstruo de carne, huesos y tablas de las pasarelas, clavado clavo a clavo: cada clavo atrapa el alma de un ahogado, que grita dentro. Lleva la Botella del Tormento Eterno clavada en el pecho, duerme bajo el altar del centro de la alcantarilla y clava sus propias púas en quien se acerca.'),
+    "QUEST_SEWER_OLD_GATOR_DESC": ('Azazel quer a Garrafa das Almas Condenadas, que Lúcifer o mandou buscar e que o Carniceiro Chifrudo roubou: leve o Grimório das Brasas ao altar queimado do centro do esgoto para chamar o demônio, derrote-o e leve a garrafa ao Azazel para receber a chave de espadas.',
+        'Azazel wants the Bottle of Condemned Souls, which Lucifer sent him to fetch and the Horned Butcher stole: take the Grimoire of Embers to the scorched altar in the center of the sewer to call the demon, defeat him, and bring the bottle to Azazel to receive the spade key.',
+        'Azazel quiere la Botella de las Almas Condenadas, que Lucifer le mandó a buscar y que el Carnicero Cornudo robó: lleva el Grimorio de las Brasas al altar quemado del centro de la alcantarilla para llamar al demonio, derrótalo y llévale la botella a Azazel para recibir la llave de picas.'),
+    "DLG_SEWER_GATOR_1": ('Eu ardo desde que o céu me expulsou, e ardo mais fundo quando Lúcifer chama. Ele me mandou buscar a Garrafa das Almas Condenadas, a joia da adega dele, e um açougueiro do próprio inferno a roubou: o Carniceiro Chifrudo, que trincha almas a cutelo e as bebe ainda quentes. Fugiu para estes esgotos.',
+        'I have burned since the sky cast me out, and I burn deeper when Lucifer calls. He sent me to fetch the Bottle of Condemned Souls, the jewel of his cellar, and a butcher from hell itself stole it: the Horned Butcher, who carves souls with a cleaver and drinks them still warm. He fled to these sewers.',
+        'Ardo desde que el cielo me expulsó, y ardo más hondo cuando Lucifer llama. Me mandó a buscar la Botella de las Almas Condenadas, la joya de su bodega, y un carnicero del propio infierno la robó: el Carnicero Cornudo, que trincha almas a cuchillo y las bebe aún calientes. Huyó a estas alcantarillas.'),
+    "DLG_SEWER_GATOR_2": ('Ele não sai do esconderijo por vontade própria, e não anda só: os Espíritos Sombrios das almas que ele trinchou o seguem, ainda gritando pelos pedaços que perderam. A garrafa ele leva presa ao cinto; escuto as almas lá dentro a cada passo dele.',
+        'He does not leave his hideout on his own, and never walks alone: the Shadow Spirits of the souls he carved follow him, still screaming for the pieces they lost. He wears the bottle on his belt; I hear the souls inside at every step he takes.',
+        'No sale de su escondite por voluntad propia, y no anda solo: los Espíritus Sombríos de las almas que trinchó lo siguen, aún gritando por los pedazos que perdieron. Lleva la botella en el cinto; oigo las almas dentro a cada paso suyo.'),
+    "DLG_SEWER_GATOR_3": ('Levem este grimório, escrito com as minhas brasas e a minha cinza. Apoiem-no no altar queimado, no centro do esgoto, e leiam: ele chama o Carniceiro pelo nome. Derrubem-no e tragam-me a garrafa; em troca, a chave de espadas que eu guardo é de vocês.',
+        'Take this grimoire, written with my embers and my ash. Rest it on the scorched altar in the center of the sewer and read it aloud: it calls the Butcher by name. Bring him down and bring me the bottle; in return, the spade key I keep is yours.',
+        'Llévense este grimorio, escrito con mis brasas y mi ceniza. Apóyenlo en el altar quemado, en el centro de la alcantarilla, y léanlo: llama al Carnicero por su nombre. Derríbenlo y tráiganme la botella; a cambio, la llave de picas que guardo es suya.'),
+    "DLG_SEWER_GATOR_ACTIVE": ('Ainda sem a garrafa? Leiam o grimório no altar queimado, no centro do esgoto, e chamem o Carniceiro. Tragam-me a Garrafa das Almas Condenadas e deixem o fogo, o meu, fazer o resto.',
+        'Still no bottle? Read the grimoire at the scorched altar in the center of the sewer and call the Butcher. Bring me the Bottle of Condemned Souls and let the fire, mine, do the rest.',
+        '¿Aún sin la botella? Lean el grimorio en el altar quemado, en el centro de la alcantarilla, y llamen al Carnicero. Tráiganme la Botella de las Almas Condenadas y dejen que el fuego, el mío, haga el resto.'),
+    "DLG_SEWER_GATOR_DONE": ('A garrafa… as almas cantam lá dentro, a salvo do cutelo dele, por ora. Lúcifer ficará satisfeito. Levem a chave de espadas: ela é de vocês. Eu levo as almas, e as cinzas.',
+        'The bottle… the souls sing inside, safe from his cleaver, for now. Lucifer will be pleased. Take the spade key: it is yours. I take the souls, and the ashes.',
+        'La botella… las almas cantan dentro, a salvo de su cuchillo, por ahora. Lucifer quedará satisfecho. Lleven la llave de picas: es suya. Yo me llevo las almas, y las cenizas.'),
+    "DLG_GATOR_ALTAR_2": ('Você apoia o Grimório das Brasas no vão da pedra e lê em voz alta: a pedra queima a sua mão, o ar fede a enxofre e a carne assada, e o Carniceiro Chifrudo surge das brasas, de cutelo em punho, com as almas gritando atrás dele.',
+        'You rest the Grimoire of Embers in the gap of the stone and read aloud: the stone burns your hand, the air reeks of sulfur and roasting flesh, and the Horned Butcher steps out of the embers, cleaver in hand, the souls screaming behind him.',
+        'Apoyas el Grimorio de las Brasas en el hueco de la piedra y lees en voz alta: la piedra te quema la mano, el aire apesta a azufre y a carne asada, y el Carnicero Cornudo sale de las brasas, cuchillo en mano, con las almas gritando tras él.'),
+    "VALUABLE_GATOR_BOOK_DESC": ('Dado por Azazel, escrito com as brasas e a cinza dele. Faz o altar do centro do Esgoto reagir: leve o grupo até ele e fale com a pedra para chamar o Carniceiro Chifrudo. Não se vende nem se perde.',
+        'Given by Azazel, written with his embers and ash. Makes the altar in the center of the Sewer react: bring the group to it and speak to the stone to call the Horned Butcher. It cannot be sold or lost.',
+        'Dado por Azazel, escrito con sus brasas y su ceniza. Hace reaccionar el altar del centro de la Alcantarilla: lleva al grupo hasta él y habla con la piedra para llamar al Carnicero Cornudo. No se vende ni se pierde.'),
+    "BEAST_HORNED_BUTCHER_LEGEND": ('Açougueiro do inferno que fugiu para o esgoto com a Garrafa das Almas Condenadas. Trincha almas a cutelo e as bebe ainda quentes; os Espíritos Sombrios delas o seguem, gritando pelos pedaços que perderam.',
+        'A butcher from hell who fled to the sewer with the Bottle of Condemned Souls. He carves souls with a cleaver and drinks them still warm; their Shadow Spirits follow him, screaming for the pieces they lost.',
+        'Carnicero del infierno que huyó a la alcantarilla con la Botella de las Almas Condenadas. Trincha almas a cuchillo y las bebe aún calientes; los Espíritus Sombríos de ellas lo siguen, gritando por los pedazos que perdieron.'),
+    "VALUABLE_SOULS_BOTTLE_DESC": ('Almas condenadas gritando em coro dentro do vidro. A joia da adega de Lúcifer: Azazel a quer de volta antes que alguém a abra. Não se vende nem se perde.',
+        "Condemned souls screaming in chorus inside the glass. The jewel of Lucifer's cellar: Azazel wants it back before anyone opens it. It cannot be sold or lost.",
+        'Almas condenadas gritando a coro dentro del vidrio. La joya de la bodega de Lucifer: Azazel la quiere de vuelta antes de que alguien la abra. No se vende ni se pierde.'),
+    "VALUABLE_TORMENT_BOTTLE_DESC": ('O sofrimento dos afogados, preso em vidro e correntes, até que alguém o liberte. Ossael a procura: só assim os mortos descansam. Não se vende nem se perde.',
+        'The suffering of the drowned, held in glass and chains until someone frees it. Ossael seeks it: only then will the dead rest. It cannot be sold or lost.',
+        'El sufrimiento de los ahogados, preso en vidrio y cadenas hasta que alguien lo libere. Ossael la busca: solo así descansan los muertos. No se vende ni se pierde.'),
+    "VALUABLE_STORM_BOTTLE_DESC": ('Uma tempestade de almas presa no vidro: lá dentro, uma família inteira ri… e depois grita. É tudo o que o Velho Bêbado ainda quer. Não se vende nem se perde.',
+        'A storm of souls trapped in glass: inside, a whole family laughs… and then screams. It is all the Old Drunk still wants. It cannot be sold or lost.',
+        'Una tormenta de almas atrapada en el vidrio: dentro, una familia entera ríe… y luego grita. Es todo lo que el Viejo Borracho aún quiere. No se vende ni se pierde.'),
+})
+
 for _k in list(T):
     T[_k] = tuple(t.replace("Itachi", "Azazel") for t in T[_k])
 for lang, i in (("pt_BR", 0), ("en", 1), ("es", 2)):

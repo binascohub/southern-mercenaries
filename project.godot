@@ -24,6 +24,7 @@ NetworkManager="*res://game/autoload/network_manager.gd"
 SaveSystem="*res://game/autoload/save_system.gd"
 Session="*res://game/autoload/session.gd"
 TipManager="*res://game/autoload/tip_manager.gd"
+Sfx="*res://game/autoload/sfx.gd"
 
 [display]
 

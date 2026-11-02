@@ -1708,34 +1708,34 @@ msgid "NPC_BARD"
 msgstr "Bard"
 
 msgid "DLG_OLD_DRUNK_1"
-msgstr "You look like people who have lost something. Sit… and don't look at my cup like that. I was rich, you know? Powerful. I had a name, lands, and a family that filled my house with noise."
+msgstr "You look like people who have buried someone. Sit. And do not look at my cup: it has been empty since the day I stopped hearing them laugh. I was rich, you know? Powerful. I had a name, lands and a house full of children."
 
 msgid "DLG_OLD_DRUNK_2"
-msgstr "Then Lucifer came to collect a debt I did not even know I had. He took the souls of my whole family for his collection and locked them in a bottle: a storm of souls trapped in glass. I was left with the silence of the house. And with this, which helps me bear it."
+msgstr "Lucifer came on a rainy night to collect a debt I signed drunk, years before, without reading. He did not want the gold. He wanted the souls: my wife, my children, even the dog. He tore them out one by one, in front of me, and locked them in a storm of glass. I was left with the bodies. Cold, in their beds, eyes still open."
 
 msgid "DLG_OLD_DRUNK_3"
-msgstr "They say the bottle is kept down here, in the sewer, next to the treasure the founders of Tortuga hid when they brought part of the gold of the kingdom that lost the war. Its keeper is the king's alchemist, forgotten down in the deep: he made a pact with a demon, became the Necromancer, and sleeps on top of the treasure."
+msgstr "The bottle is down here, in the cellar of the Necromancer: the king's alchemist, forgotten in the dark to guard the gold, who sold his soul to the devil and now stitches the dead to serve him. He sleeps on the treasure the founders of Tortuga hid, and on the bones of the whole kingdom that lost the war."
 
 msgid "DLG_OLD_DRUNK_4"
-msgstr "The people here poisoned and burned the rats down there, but they forgot their mother, who still rules the deep. Bring fire: she is Earth and fears fire."
+msgstr "The people here poisoned and burned the rats down there. But the Necromancer stitched them back together, one by one, and now they serve dead. Earth and rot run in his veins, and earth fears fire. Bring fire."
 
 msgid "DLG_OLD_DRUNK_5"
-msgstr "Keep all the gold, it is no use to me without them. I only want the bottle. Bring it and I will pay what is left of my fortune to have my family back. If you are looking for treasure, you are standing on top of some… but the one that matters to me is another."
+msgstr "Keep all the gold: gold does not laugh, does not call for its father, does not scream at dawn. I only want the bottle. Bring it and I will pay everything I have left, to hear them laugh one more time… or at least to hear them rest."
 
 msgid "DLG_OLD_DRUNK_ACTIVE"
-msgstr "The manhole is on Main Street. Fire, I said. Fire! And the bottle: a storm of souls trapped in glass. Bring it to me."
+msgstr "The manhole is on Main Street. Fire, I said. Fire! And the bottle: a storm of screams trapped in glass. Bring it to me before the silence of the house takes me too."
 
 msgid "DLG_OLD_DRUNK_DONE"
-msgstr "My family… I hear them! That laughter, I heard it so many nights… Thank you. Take what I promised and buy me a drink: the first in a long time that I drink out of joy."
+msgstr "I… I hear them. They laugh. And then they fall silent, at last, at peace. Thank you. Take what I promised and buy me a drink: the first in years that is not to forget."
 
 msgid "DLG_KEEPER_1"
 msgstr "Sit down, rest. In Tortuga nobody asks where the gold comes from — only whether it pays."
 
 msgid "DLG_BARD_QUEEN_1"
-msgstr "The Necromancer was the king's alchemist once, left in the dark to guard the treasure."
+msgstr "The Necromancer was once the king's alchemist: left in the dark to guard the gold, he sold his soul and began to stitch the dead."
 
 msgid "DLG_BARD_QUEEN_2"
-msgstr "Earth runs in her veins now, and earth fears fire — remember the song."
+msgstr "Now earth and rot run in his veins, and earth fears fire — remember the song."
 
 msgid "DLG_BARD_1"
 msgstr "Every monster was something else once. Come back and I'll sing you its story."
@@ -1759,7 +1759,7 @@ msgid "QUEST_SEWER_TREASURE"
 msgstr "The Family in the Bottle"
 
 msgid "QUEST_SEWER_TREASURE_DESC"
-msgstr "The Old Drunk lost his family to Lucifer, who trapped their souls in a bottle of his collection. Go down the manhole, defeat the Necromancer, who keeps the bottle over the lost war treasure, and bring the Bottle of the Soul Storm to the old man, who promises a reward. The rats are Earth: they fear Fire."
+msgstr "The Old Drunk lost his family to Lucifer, who tore out their souls and bottled them in a storm of glass. Go down the manhole to the cellar of the Necromancer, the alchemist who stitches the dead, defeat him and bring the Bottle of the Soul Storm to the old man, who promises everything he has left. The rats are Earth: they fear Fire."
 
 msgid "AREA_TORTUGA"
 msgstr "Tortuga"
@@ -2029,25 +2029,25 @@ msgid "BEAST_PLAGUE_RAT"
 msgstr "Plague Frog"
 
 msgid "BEAST_PLAGUE_RAT_LEGEND"
-msgstr "In medieval Europe rats were tied to the Black Death: their fleas spread the plague that killed much of the population. Here they are the Necromancer's familiars, tainted by his pact with the demon — bigger, red-eyed, attacking in swarms."
+msgstr "In European folklore, toads walked with witches and with the plague. These grew fat on the drowned: they swell, croak in chorus and attack in packs, with the milky eyes of those who died in the water."
 
 msgid "BEAST_PLAGUE_RAT_HINT"
-msgstr "A rat's a rat: it fears fire. Bring a torch... or a mage who knows how to light one."
+msgstr "A toad is a toad: it fears fire. Bring a torch… or a mage who can light one."
 
 msgid "BEAST_MUTANT_RAT"
 msgstr "Mutant Frog"
 
 msgid "BEAST_MUTANT_RAT_LEGEND"
-msgstr "The same plague superstition; tales of rats as big as dogs in the cellars are common in port towns. These are the Queen's older young, grown to the size of a hunting dog."
+msgstr "Stories of oversized creatures in cellars are common in port cities. This is an old toad that swallowed what it should not have: it grew crooked, with a human arm still twitching beneath its skin."
 
 msgid "BEAST_MUTANT_RAT_HINT"
-msgstr "There's a rat down there the size of a dog. Burn it and it runs."
+msgstr "Bigger than a dog and full of limbs that are not his. Burn it and it runs."
 
 msgid "BEAST_PLAGUE_BAT"
 msgstr "Plague Bat"
 
 msgid "BEAST_PLAGUE_BAT_LEGEND"
-msgstr "In European folklore bats are an ill omen, tied to witches and vampires. Here they sleep on the tunnel ceilings and drop on whoever passes."
+msgstr "In European folklore, bats are a bad omen. These sleep hanging from the ceiling's ribs and fall on whoever passes, drawn by the smell of fresh meat."
 
 msgid "BEAST_PLAGUE_BAT_HINT"
 msgstr "Look up in the tunnels. If the ceiling moves, it's them. Stones at them and they drop."
@@ -2056,7 +2056,7 @@ msgid "BEAST_ACID_TOAD"
 msgstr "Acid Toad"
 
 msgid "BEAST_ACID_TOAD_LEGEND"
-msgstr "In European folklore toads were tied to witchcraft and poison — and some real toads have toxic skin. Here swollen toads spit acid that eats the floor."
+msgstr "Toads were tied to witchcraft and poison, and some have toxins in their skin. Here, swollen toads spit an acid that eats floors and flesh, leaving the bones clean."
 
 msgid "BEAST_ACID_TOAD_HINT"
 msgstr "Their spit melts boots. They're creatures of foul water: one lightning bolt and they burst."
@@ -2065,10 +2065,10 @@ msgid "BEAST_DEMON_RAT_QUEEN"
 msgstr "Necromancer"
 
 msgid "BEAST_DEMON_RAT_QUEEN_LEGEND"
-msgstr "In German folklore a 'rat king' is a knot of rats bound by their tails, an omen of plague. Here she was the mother of all the sewer's rats; when Tortuga poisoned and burned her young, she made a pact with a demon, grew as big as a cart and nests on the lost war treasure, wearing the fallen king's crown."
+msgstr "In medieval Europe, a 'rat king' was a knot of rats bound by their tails, an omen of plague. Here, the king's alchemist, forgotten in the dark to guard the war's gold, sold his soul to Lucifer and became the collector of his cellar: he stitches the dead into servants, wears the fallen king's crown and keeps, between the gold and the bones, the bottles where the devil traps souls."
 
 msgid "BEAST_DEMON_RAT_QUEEN_HINT"
-msgstr "Just bring fire. She already knows what fire is — and she hates it."
+msgstr "Only bring fire. Earth runs in his veins, and he knows what fire is — and hates it."
 
 msgid "ITEM_SCROLL_REFINE_WEAPON"
 msgstr "Weapon Refining Scroll ({material})"
@@ -2152,7 +2152,7 @@ msgid "OPENING_TOAST"
 msgstr "The cups meet in the middle of the table. Nobody here trusts anybody — but gold is a fine reason to start. A mercenary company is born."
 
 msgid "OPENING_DRUNK_CALL"
-msgstr "From the corner, an old drunk raises his empty mug: \"Hey, mercenaries! If you're looking for treasure, you're standing on one!\" Talk to him."
+msgstr "From the corner, an old drunk raises an empty mug: \"Hey, mercenaries! Sit down. If you are after treasure, I have a story… and a bottle for you to bring back.\" Talk to him."
 
 msgid "OPENING_SCENE_KNIGHT_MALE"
 msgstr "{name} is slumped over the bar, surrounded by empty cups. Outside, a black horse waits, tied up."
@@ -2348,10 +2348,10 @@ msgid "ARENA_SEWERS_DRAINS"
 msgstr "Tortuga Sewers"
 
 msgid "ARENA_SEWERS_WAR_PASSAGE"
-msgstr "Sewers — Secret War Passage"
+msgstr "Sewer — The War Dead's Pit"
 
 msgid "ARENA_SEWERS_NEST"
-msgstr "Sewers — The Queen's Nest"
+msgstr "Sewer — The Necromancer's Chamber"
 
 msgid "PROP_SEWER_DEEPER"
 msgstr "Go deeper"
@@ -2363,16 +2363,16 @@ msgid "PROP_WAR_TREASURE"
 msgstr "Lost Treasure of the War"
 
 msgid "SIGN_WAR_CREST"
-msgstr "A worn crest on the wall: an eagle over three arrows. Someone dug this tunnel in a hurry."
+msgstr "A worn crest on the wall: an eagle over three arrows. Someone walled up this tunnel in a hurry, with people still inside."
 
 msgid "SIGN_WAR_CREST_ARCHER"
-msgstr "My kingdom's crest. So this is where the treasure fled the war."
+msgstr "The crest of my kingdom. So this is where they buried mine: the treasure did not flee the war, it went down with the dead."
 
 msgid "HUD_VICTORY_SEWERS"
-msgstr "The Necromancer has fallen."
+msgstr "The Necromancer has fallen. In the bottles, the screaming finally falls silent."
 
 msgid "HUD_VICTORY_TREASURE"
-msgstr "The Lost Treasure of the War is open to the group."
+msgstr "The Necromancer's cellar is open to the party."
 
 msgid "TOAST_SECRET_FOUND"
 msgstr "{name} found a secret!"
@@ -2444,7 +2444,7 @@ msgid "RELIC_FALLEN_KING_CROWN"
 msgstr "Crown of the Fallen King"
 
 msgid "RELIC_FALLEN_KING_CROWN_DESC"
-msgstr "The crooked crown the Necromancer wore. It weighs more than it should."
+msgstr "The crooked crown the Necromancer wore, torn from a skull that was no longer the king's. It weighs more than it should."
 
 msgid "TOAST_RELIC_FOUND"
 msgstr "Relic: {relic}"
@@ -2708,7 +2708,7 @@ msgid "VALUABLE_ALTAR_BOOK"
 msgstr "Altar Book"
 
 msgid "VALUABLE_ALTAR_BOOK_DESC"
-msgstr "Given by Ossael. The prayers of the drowned: they make the altar in the center of the Sewer react. Bring the group to it and speak to the stone to wake the Impaled One. It cannot be sold or lost."
+msgstr "Given by Ossael. The prayers of the drowned, written with their own fingernails: they make the altar in the center of the Sewer react. Bring the group to it and speak to the stone to wake the Impaled One. It cannot be sold or lost."
 
 msgid "VALUABLE_CURSED_SKULL_DESC"
 msgstr "Morvak's cursed skull, kept in the Fire Golem's chest. Hand it to the elf Aelindra, in the Forest, to purify the curse."
@@ -3018,70 +3018,70 @@ msgid "QUEST_SEWER_OLD_GATOR_DESC"
 msgstr "Azazel wants the Bottle of Condemned Souls, which Lucifer sent him to fetch and the Horned Butcher stole: take the Grimoire of Embers to the scorched altar in the center of the sewer to call the demon, defeat him, and bring the bottle to Azazel to receive the spade key."
 
 msgid "DLG_SEWER_GATOR_1"
-msgstr "I have burned since the sky cast me out. Lucifer sent me to fetch the Bottle of Condemned Souls, the jewel of his cellar, and a butcher from hell itself stole it: the Horned Butcher, who carves souls with a cleaver and fled to these sewers."
+msgstr "I have burned since the sky cast me out, and I burn deeper when Lucifer calls. He sent me to fetch the Bottle of Condemned Souls, the jewel of his cellar, and a butcher from hell itself stole it: the Horned Butcher, who carves souls with a cleaver and drinks them still warm. He fled to these sewers."
 
 msgid "DLG_SEWER_GATOR_2"
-msgstr "He does not leave his hideout on his own, and never walks alone: the Shadow Spirits of the souls he carved follow him, screaming. He wears the bottle on his belt; I hear the souls inside at every step he takes."
+msgstr "He does not leave his hideout on his own, and never walks alone: the Shadow Spirits of the souls he carved follow him, still screaming for the pieces they lost. He wears the bottle on his belt; I hear the souls inside at every step he takes."
 
 msgid "DLG_SEWER_GATOR_3"
-msgstr "Take this grimoire, written in my embers. Rest it on the scorched altar in the center of the sewer and read it aloud: it calls the Butcher by name. Bring him down and bring me the bottle; in return, the key I keep is yours."
+msgstr "Take this grimoire, written with my embers and my ash. Rest it on the scorched altar in the center of the sewer and read it aloud: it calls the Butcher by name. Bring him down and bring me the bottle; in return, the spade key I keep is yours."
 
 msgid "DLG_SEWER_GATOR_ACTIVE"
 msgstr "Still no bottle? Read the grimoire at the scorched altar in the center of the sewer and call the Butcher. Bring me the Bottle of Condemned Souls and let the fire, mine, do the rest."
 
 msgid "DLG_SEWER_GATOR_DONE"
-msgstr "The bottle… the souls sing inside, safe from his cleaver. Lucifer will be pleased. Take the key: it is yours. I take the souls, and the ashes."
+msgstr "The bottle… the souls sing inside, safe from his cleaver, for now. Lucifer will be pleased. Take the spade key: it is yours. I take the souls, and the ashes."
 
 msgid "QUEST_SEWER_FROG_KING"
 msgstr "The Bottle of Eternal Torment"
 
 msgid "QUEST_SEWER_FROG_KING_DESC"
-msgstr "Ossael, the Skull Angel, wants the Bottle of Eternal Torment, which the Impaled One took from him: take the Altar Book to the altar in the center of the sewer, read it to wake the monster, defeat it, and bring the bottle to Ossael to receive the heart key."
+msgstr "Ossael, the Skull Angel, wants the Bottle of Eternal Torment, which the Impaled One tore from him along with his flesh: take the Altar Book to the altar in the center of the sewer, read the prayers of the drowned to wake the monster, defeat it and bring the bottle to Ossael to receive the heart key."
 
 msgid "DLG_SEWER_FROG_1"
-msgstr "These bones were once an angel, guardian of the drowned of this sewer, and I came to fetch the Bottle of Eternal Torment, where their suffering is kept so they can rest. I failed: a thing of flesh and planks took my flesh, my white feathers and the bottle, and nailed the souls of my drowned into its own wood. Only bones and these black wings remain."
+msgstr "These bones were once an angel, guardian of the drowned of this sewer, and I came to fetch the Bottle of Eternal Torment, where their suffering is kept so they can rest. I failed: a thing of flesh and planks tore off my flesh, my white feathers and the bottle, and nailed the souls of my drowned into its own wood. I hear each one scream inside each nail. Only bones and these black wings remain."
 
 msgid "DLG_SEWER_FROG_2"
-msgstr "Folks call it the Impaled One: it was assembled from bones and the planks of the walkways, nail by nail, and it drives its own spikes into whoever comes close. It carries my bottle nailed to its chest and sleeps under the stone altar in the center of the sewer; it only wakes when someone reads the right book. Its weeping calls the other dead."
+msgstr "Folks call it the Impaled One: it was assembled from bones and the planks of the walkways, nail by nail, and it drives its own spikes into whoever comes close. Every nail is a soul. It carries my bottle nailed to its chest and sleeps under the stone altar in the center of the sewer; it only wakes when someone reads the right book. Its weeping calls the other dead."
 
 msgid "DLG_SEWER_FROG_3"
-msgstr "Take the Altar Book, the prayers of the drowned. Rest it on the stone and read it aloud. Bring the Impaled One down and bring me the Bottle of Eternal Torment; in return, the heart key I keep is yours."
+msgstr "Take the Altar Book, the prayers of the drowned, written with their own fingernails. Rest it on the stone and read it aloud. Bring the Impaled One down and bring me the Bottle of Eternal Torment; in return, the heart key I keep is yours."
 
 msgid "DLG_SEWER_FROG_ACTIVE"
-msgstr "Still no bottle? The Impaled One only wakes when the prayers are read at the altar in the center of the sewer. Every plank that falls frees a soul… Bring me the Bottle of Eternal Torment, nailed to its chest."
+msgstr "Still no bottle? The Impaled One only wakes when the prayers are read at the altar in the center of the sewer. Every plank that falls frees a screaming soul… Bring me the Bottle of Eternal Torment, nailed to its chest."
 
 msgid "DLG_SEWER_FROG_DONE"
-msgstr "The bottle… their torment ends here, and the souls rise. Each one passed between my black wings before leaving. Thank you. Take the heart key: it is yours. I will stay here, on guard, as long as there are drowned."
+msgstr "The bottle… their torment ends here, and the souls rise. Each one passed between my black wings before leaving, and I felt the cold of all of them. Thank you. Take the heart key: it is yours. I will stay on guard as long as there are drowned."
 
 msgid "PROP_SEWER_SECTOR_1"
 msgstr "Main Street Drains"
 
 msgid "SIGN_SEWER_SECTOR_1"
-msgstr "Sector 1 — Main Street Drains. Plague frogs in packs; watch the dead ends."
+msgstr "Sector 1 — Main Street Drains. Someone gnawed the grates from the inside. The toads here grew fat on what the city throws away… and on what it forgets."
 
 msgid "PROP_SEWER_SECTOR_3"
 msgstr "Bat Galleries"
 
 msgid "SIGN_SEWER_SECTOR_3"
-msgstr "Sector 3 — Bat Galleries. Flocks of plague bats; Azazel's post is to the east."
+msgstr "Sector 3 — Bat Galleries. They sleep hanging from the ceiling's ribs and wake at the smell of meat. To the east, a flame that never dies: the post of an angel who burned."
 
 msgid "PROP_SEWER_SECTOR_4"
-msgstr "Secret War Passage"
+msgstr "The War Dead's Pit"
 
 msgid "SIGN_SEWER_SECTOR_4"
-msgstr "Sector 4 — Secret War Passage. Gators lurk in the water; the Horned Butcher's plaza is to the east."
+msgstr "Sector 4 — The War Dead's Pit. The defeated kingdom was thrown in here, living and dead together, and walled in. You can still hear the marching. To the east, a plaza scored by cleaver."
 
 msgid "PROP_SEWER_SECTOR_5"
 msgstr "Mushroom Chambers"
 
 msgid "SIGN_SEWER_SECTOR_5"
-msgstr "Sector 5 — Mushroom Chambers. Heavy Fungus Uncles and scorpions; the tunnel to the Nest leaves to the south."
+msgstr "Sector 5 — Mushroom Chambers. What sprouts from these walls grows out of buried flesh. Beware the scorpions. The tunnel to the Necromancer's Chamber leaves to the south."
 
 msgid "PROP_SEWER_NEST"
-msgstr "The Queen's Nest"
+msgstr "The Necromancer's Chamber"
 
 msgid "SIGN_SEWER_NEST"
-msgstr "The Rat Queen's Nest. The War's Lost Treasure sleeps with her. Come back prepared."
+msgstr "The Necromancer's Chamber. The fallen king's crown sways on a head that is not his. Souls are collected in glass here, and the war's gold serves as a bed. Come back equipped."
 
 msgid "OPTIONS_QUEST_TRAIL"
 msgstr "Quest objective footprints"
@@ -3090,10 +3090,10 @@ msgid "NPC_SEWER_FROG_ALTAR"
 msgstr "The Impaled One's Altar"
 
 msgid "DLG_FROG_ALTAR_1"
-msgstr "A stone altar stained with sludge, in the heart of the sewer. There is a gap in the center, the size of a book, with the prayers of the drowned scratched into the stone, and claw and nail marks around it."
+msgstr "A black stone altar, stained with sludge and worse things, in the heart of the sewer. There is a gap in the center, the size of a book, prayers of the drowned scratched into the stone with fingernails, and claw and nail marks around it."
 
 msgid "DLG_FROG_ALTAR_2"
-msgstr "You rest the Altar Book on the stone and read the prayers aloud: the floor trembles, the planks creak and the Impaled One wakes in the altar room, the bottle nailed to its chest."
+msgstr "You rest the Altar Book on the stone and read the prayers aloud: the floor trembles, the planks creak like bones and the Impaled One wakes in the altar room, the bottle nailed to its chest and a thousand nails weeping."
 
 msgid "TOAST_FROG_ALTAR_AWAKENS"
 msgstr "The altar trembles: the Impaled One awakens!"
@@ -3111,7 +3111,7 @@ msgid "BEAST_TROLL_MAULER"
 msgstr "Troll Mauler"
 
 msgid "BEAST_TROLL_MAULER_LEGEND"
-msgstr "A brute hunched under its own arms, thick-skinned and covered in scars. It used to roam the docks until the sewer became its home."
+msgstr "A brute stooped under its own arms, with thick, scarred skin. It prowled the docks until the sewer became its home. They say it eats what the tide brings in, even what still moves."
 
 msgid "BEAST_TROLL_MAULER_HINT"
 msgstr "Slow and heavy: wait for the blow's warning and dodge. Fire hurts it more."
@@ -3126,7 +3126,7 @@ msgid "BEAST_BARBARIAN_MONSTER"
 msgstr "Barbarian Monster"
 
 msgid "BEAST_BARBARIAN_MONSTER_LEGEND"
-msgstr "A horned orc warrior cast out from his own warband. He went down to the canals on the west side and made them his territory."
+msgstr "A horned orc warrior, cast out of his own band. He went down to the western canals and made them his territory, decorated with the skulls of those who came down uninvited."
 
 msgid "BEAST_BARBARIAN_MONSTER_HINT"
 msgstr "He hits fast and takes a lot: back off when his arm pulls back. Fire hurts him more."
@@ -3138,7 +3138,7 @@ msgid "BEAST_CHAMP_WARRIOR"
 msgstr "Mushroom Warrior"
 
 msgid "BEAST_CHAMP_WARRIOR_LEGEND"
-msgstr "An armored mushroom warrior sprouted from the damp walls of the northwest corner. He guards the first canals with his bone sword."
+msgstr "A mushroom warrior in armor, born of the flesh buried in the damp walls of the northwest. He guards the first canals with a sword that is a bone of the kingdom itself."
 
 msgid "BEAST_CHAMP_WARRIOR_HINT"
 msgstr "Agile with average health: dodge when he lifts the sword. Fire hurts him more."
@@ -3150,16 +3150,16 @@ msgid "BEAST_CHEST_MIMIC"
 msgstr "Chest Monster"
 
 msgid "BEAST_CHEST_MIMIC_LEGEND"
-msgstr "A chest that lost its lid and grew teeth. If you open it, it opens you: it swallowed the last mercenaries who wanted the Sewer treasure."
+msgstr "A chest that lost its lid and grew teeth. If you open it, it opens you: it swallowed the last mercenaries who wanted the Sewer's treasure, and they say you can still hear someone calling for help inside."
 
 msgid "BEAST_CHEST_MIMIC_HINT"
 msgstr "Fast and stubborn: running is no use. Fire burns it more."
 
 msgid "PROP_SEWER_SECTOR_2"
-msgstr "Garbage Canals"
+msgstr "Canals of the Drowned"
 
 msgid "SIGN_SEWER_SECTOR_2"
-msgstr "Sector 2 — Garbage Canals. The Impaled One's plaza is to the west; his altar, in the center of the map."
+msgstr "Sector 2 — Canals of the Drowned. The water rises without rain and tastes of salt and blood. To the west, the plaza of planks; in the center of the map, a black stone waits for whoever can read the prayers of the dead."
 
 msgid "MONSTER_SHADOW_SPIRIT"
 msgstr "Shadow Spirit"
@@ -3197,7 +3197,7 @@ msgstr "Back to the Forest"
 
 
 msgid "PROP_NEST_GATE"
-msgstr "Nest Gate — opens only with the Spades and Hearts keys"
+msgstr "The Cellar Gate — it only opens with the Spade and Heart keys"
 
 msgid "PROP_SEWER_KEY_SPADES"
 msgstr "Key of Spades"
@@ -3289,10 +3289,10 @@ msgid "VALUABLE_GATOR_BOOK"
 msgstr "Grimoire of Embers"
 
 msgid "VALUABLE_GATOR_BOOK_DESC"
-msgstr "Given by Azazel. Makes the altar in the center of the Sewer react: bring the group to it and speak to the stone to call the Horned Butcher. It cannot be sold or lost."
+msgstr "Given by Azazel, written with his embers and ash. Makes the altar in the center of the Sewer react: bring the group to it and speak to the stone to call the Horned Butcher. It cannot be sold or lost."
 
 msgid "DLG_GATOR_ALTAR_2"
-msgstr "You rest the Grimoire of Embers in the gap of the stone and read aloud: the stone heats up, the air reeks of sulfur and the Horned Butcher steps out of the embers, cleaver in hand, the souls screaming behind him."
+msgstr "You rest the Grimoire of Embers in the gap of the stone and read aloud: the stone burns your hand, the air reeks of sulfur and roasting flesh, and the Horned Butcher steps out of the embers, cleaver in hand, the souls screaming behind him."
 
 msgid "TOAST_GATOR_ALTAR_AWAKENS"
 msgstr "The altar boils: the Horned Butcher steps out of the embers!"
@@ -3304,7 +3304,7 @@ msgid "BEAST_HORNED_BUTCHER"
 msgstr "Horned Butcher"
 
 msgid "BEAST_HORNED_BUTCHER_LEGEND"
-msgstr "A butcher from hell who fled to the sewer with the Bottle of Condemned Souls. He carves souls with a cleaver, and their Shadow Spirits follow him, screaming."
+msgstr "A butcher from hell who fled to the sewer with the Bottle of Condemned Souls. He carves souls with a cleaver and drinks them still warm; their Shadow Spirits follow him, screaming for the pieces they lost."
 
 msgid "BEAST_HORNED_BUTCHER_HINT"
 msgstr "He charges head down: step aside when he roars and strike when his cleaver gets stuck. Water hurts him more."
@@ -3313,7 +3313,7 @@ msgid "BEAST_IMPALED_ONE"
 msgstr "Impaled One"
 
 msgid "BEAST_IMPALED_ONE_LEGEND"
-msgstr "A monster of flesh, bone and walkway planks, nailed together with the souls of the drowned inside and the Bottle of Eternal Torment on its chest. It sleeps under the altar in the center of the sewer and drives its own spikes into whoever comes close."
+msgstr "A monster of flesh, bone and walkway planks, nailed together: each nail traps the soul of a drowned person, who screams inside. It carries the Bottle of Eternal Torment nailed to its chest, sleeps under the altar in the center of the sewer and drives its own spikes into whoever comes close."
 
 msgid "BEAST_IMPALED_ONE_HINT"
 msgstr "It charges in a straight line: dodge the charge and strike when it stops, stuck fast. Old wood burns: fire hurts it more."
@@ -3323,3 +3323,12 @@ msgstr "Bottle of Eternal Torment"
 
 msgid "VALUABLE_STORM_BOTTLE"
 msgstr "Bottle of the Soul Storm"
+
+msgid "VALUABLE_SOULS_BOTTLE_DESC"
+msgstr "Condemned souls screaming in chorus inside the glass. The jewel of Lucifer's cellar: Azazel wants it back before anyone opens it. It cannot be sold or lost."
+
+msgid "VALUABLE_TORMENT_BOTTLE_DESC"
+msgstr "The suffering of the drowned, held in glass and chains until someone frees it. Ossael seeks it: only then will the dead rest. It cannot be sold or lost."
+
+msgid "VALUABLE_STORM_BOTTLE_DESC"
+msgstr "A storm of souls trapped in glass: inside, a whole family laughs… and then screams. It is all the Old Drunk still wants. It cannot be sold or lost."

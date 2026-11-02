@@ -5343,8 +5343,8 @@
       {
         "id": "sw1_troll_1",
         "position": [
-          0,
-          -36
+          -39,
+          -12
         ],
         "level": 1,
         "monsters": [
@@ -5358,7 +5358,7 @@
         "id": "sw1_troll_2",
         "position": [
           -52,
-          -12
+          -24
         ],
         "level": 1,
         "monsters": [
@@ -5371,8 +5371,8 @@
       {
         "id": "sw1_troll_3",
         "position": [
-          -52,
-          -24
+          26,
+          -36
         ],
         "level": 1,
         "monsters": [
@@ -5384,34 +5384,6 @@
       },
       {
         "id": "sw1_troll_4",
-        "position": [
-          -13,
-          -24
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "troll_mauler",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw1_troll_5",
-        "position": [
-          -52,
-          -48
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "troll_mauler",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw1_troll_6",
         "position": [
           -65,
           -48
@@ -5455,7 +5427,7 @@
       {
         "id": "sw5_mutant_3",
         "position": [
-          -52,
+          -39,
           -132
         ],
         "level": 2,
@@ -5470,7 +5442,7 @@
         "id": "sw5_mutant_4",
         "position": [
           -39,
-          -132
+          -108
         ],
         "level": 2,
         "monsters": [
@@ -5483,8 +5455,8 @@
       {
         "id": "sw5_mutant_5",
         "position": [
-          -65,
-          -144
+          -52,
+          -156
         ],
         "level": 2,
         "monsters": [
@@ -5497,8 +5469,8 @@
       {
         "id": "sw5_mutant_6",
         "position": [
-          -39,
-          -108
+          -65,
+          -156
         ],
         "level": 2,
         "monsters": [
@@ -5511,48 +5483,6 @@
       {
         "id": "sw5_mutant_7",
         "position": [
-          -52,
-          -144
-        ],
-        "level": 2,
-        "monsters": [
-          {
-            "monster": "mutant",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw5_mutant_8",
-        "position": [
-          -52,
-          -156
-        ],
-        "level": 2,
-        "monsters": [
-          {
-            "monster": "mutant",
-            "count": 2
-          }
-        ]
-      },
-      {
-        "id": "sw5_mutant_9",
-        "position": [
-          -65,
-          -156
-        ],
-        "level": 2,
-        "monsters": [
-          {
-            "monster": "mutant",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw5_mutant_10",
-        "position": [
           -26,
           -156
         ],
@@ -5560,7 +5490,7 @@
         "monsters": [
           {
             "monster": "mutant",
-            "count": 2
+            "count": 1
           }
         ]
       },
@@ -5693,8 +5623,8 @@
       {
         "id": "sw1_spirit_3",
         "position": [
-          65,
-          -36
+          39,
+          -48
         ],
         "level": 1,
         "monsters": [
@@ -5705,23 +5635,9 @@
         ]
       },
       {
-        "id": "sw1_spirit_4",
-        "position": [
-          39,
-          -48
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "shadow_spirit",
-            "count": 2
-          }
-        ]
-      },
-      {
         "id": "sw3_twelve_1",
         "position": [
-          26,
+          39,
           -72
         ],
         "level": 1,
@@ -5749,13 +5665,237 @@
       {
         "id": "sw3_twelve_3",
         "position": [
-          26,
+          65,
+          -84
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "demon_twelve",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw3_twelve_4",
+        "position": [
+          52,
           -96
         ],
         "level": 1,
         "monsters": [
           {
             "monster": "demon_twelve",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw3_twelve_5",
+        "position": [
+          65,
+          -96
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "demon_twelve",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw2_spirit_1",
+        "position": [
+          -39,
+          -60
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "shadow_spirit",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw2_spirit_2",
+        "position": [
+          -26,
+          -72
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "shadow_spirit",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw2_spirit_3",
+        "position": [
+          -26,
+          -96
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "shadow_spirit",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw2_spirit_4",
+        "position": [
+          -13,
+          -96
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "shadow_spirit",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw3_mutant_1",
+        "position": [
+          65,
+          -60
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "mutant",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw3_mutant_2",
+        "position": [
+          39,
+          -84
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "mutant",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw4_spirit_1",
+        "position": [
+          52,
+          -120
+        ],
+        "level": 2,
+        "monsters": [
+          {
+            "monster": "shadow_spirit",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw4_spirit_2",
+        "position": [
+          26,
+          -132
+        ],
+        "level": 2,
+        "monsters": [
+          {
+            "monster": "shadow_spirit",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw4_spirit_3",
+        "position": [
+          65,
+          -120
+        ],
+        "level": 2,
+        "monsters": [
+          {
+            "monster": "shadow_spirit",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw4_troll_1",
+        "position": [
+          39,
+          -108
+        ],
+        "level": 2,
+        "monsters": [
+          {
+            "monster": "troll_mauler",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw4_troll_2",
+        "position": [
+          52,
+          -132
+        ],
+        "level": 2,
+        "monsters": [
+          {
+            "monster": "troll_mauler",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw4_troll_3",
+        "position": [
+          65,
+          -144
+        ],
+        "level": 2,
+        "monsters": [
+          {
+            "monster": "troll_mauler",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw4_mutant_1",
+        "position": [
+          39,
+          -120
+        ],
+        "level": 2,
+        "monsters": [
+          {
+            "monster": "mutant",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw4_mutant_2",
+        "position": [
+          13,
+          -144
+        ],
+        "level": 2,
+        "monsters": [
+          {
+            "monster": "mutant",
             "count": 1
           }
         ]
@@ -5777,8 +5917,8 @@
       {
         "id": "sw_mimic_02",
         "position": [
-          -65,
-          -60
+          -26,
+          -36
         ],
         "level": 1,
         "monsters": [
@@ -5791,8 +5931,8 @@
       {
         "id": "sw_mimic_03",
         "position": [
-          -39,
-          -60
+          -13,
+          -48
         ],
         "level": 1,
         "monsters": [
@@ -5804,48 +5944,6 @@
       },
       {
         "id": "sw_mimic_04",
-        "position": [
-          -26,
-          -60
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "chest_mimic",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw_mimic_05",
-        "position": [
-          -13,
-          -60
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "chest_mimic",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw_mimic_06",
-        "position": [
-          39,
-          -72
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "chest_mimic",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw_mimic_07",
         "position": [
           26,
           -84
@@ -5859,9 +5957,9 @@
         ]
       },
       {
-        "id": "sw_mimic_08",
+        "id": "sw_mimic_05",
         "position": [
-          -39,
+          39,
           -96
         ],
         "level": 1,
@@ -5873,35 +5971,7 @@
         ]
       },
       {
-        "id": "sw_mimic_09",
-        "position": [
-          -26,
-          -96
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "chest_mimic",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw_mimic_10",
-        "position": [
-          13,
-          -96
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "chest_mimic",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw_mimic_11",
+        "id": "sw_mimic_06",
         "position": [
           -26,
           -108
@@ -5915,7 +5985,35 @@
         ]
       },
       {
-        "id": "sw_mimic_12",
+        "id": "sw_mimic_07",
+        "position": [
+          -13,
+          -108
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw_mimic_08",
+        "position": [
+          -26,
+          -120
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw_mimic_09",
         "position": [
           13,
           -120
@@ -5929,24 +6027,10 @@
         ]
       },
       {
-        "id": "sw_mimic_13",
+        "id": "sw_mimic_10",
         "position": [
-          52,
-          -120
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "chest_mimic",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw_mimic_14",
-        "position": [
-          65,
-          -132
+          0,
+          -144
         ],
         "level": 1,
         "monsters": [
@@ -5989,42 +6073,126 @@
       {
         "position": [
           -16,
-          -93
-        ],
-        "radius": 1.5
-      },
-      {
-        "position": [
-          -10,
-          -63
+          -27
         ],
         "radius": 1.3
       },
       {
         "position": [
-          -36,
-          -93
+          -42,
+          -51
+        ],
+        "radius": 1.5
+      },
+      {
+        "position": [
+          36,
+          -39
+        ],
+        "radius": 1.5
+      },
+      {
+        "position": [
+          -68,
+          -15
         ],
         "radius": 1.3
       },
       {
         "position": [
           -62,
-          -69
+          -75
         ],
         "radius": 1.3
       },
       {
         "position": [
-          -3,
+          3,
+          -99
+        ],
+        "radius": 1.5
+      },
+      {
+        "position": [
+          -10,
+          -87
+        ],
+        "radius": 1.8
+      },
+      {
+        "position": [
+          -49,
+          -99
+        ],
+        "radius": 1.8
+      },
+      {
+        "position": [
+          -16,
+          -99
+        ],
+        "radius": 1.8
+      },
+      {
+        "position": [
+          -42,
+          -57
+        ],
+        "radius": 1.8
+      },
+      {
+        "position": [
+          -29,
+          -63
+        ],
+        "radius": 1.8
+      },
+      {
+        "position": [
+          -68,
+          -93
+        ],
+        "radius": 1.3
+      },
+      {
+        "position": [
+          -23,
+          -81
+        ],
+        "radius": 1.8
+      },
+      {
+        "position": [
+          -62,
+          -57
+        ],
+        "radius": 1.5
+      },
+      {
+        "position": [
+          -49,
+          -63
+        ],
+        "radius": 1.8
+      },
+      {
+        "position": [
+          -36,
+          -87
+        ],
+        "radius": 1.5
+      },
+      {
+        "position": [
+          49,
           -69
         ],
         "radius": 1.5
       },
       {
         "position": [
-          -16,
-          -87
+          55,
+          -81
         ],
         "radius": 1.8
       },
@@ -6033,133 +6201,252 @@
           49,
           -57
         ],
-        "radius": 1.3
-      },
-      {
-        "position": [
-          68,
-          -57
-        ],
-        "radius": 1.8
-      },
-      {
-        "position": [
-          42,
-          -69
-        ],
         "radius": 1.5
-      },
-      {
-        "position": [
-          55,
-          -87
-        ],
-        "radius": 1.8
       },
       {
         "position": [
           23,
-          -153
+          -57
         ],
         "radius": 1.5
       },
       {
         "position": [
-          55,
-          -117
+          42,
+          -81
+        ],
+        "radius": 1.3
+      },
+      {
+        "position": [
+          16,
+          -75
         ],
         "radius": 1.8
-      },
-      {
-        "position": [
-          62,
-          -117
-        ],
-        "radius": 1.5
       },
       {
         "position": [
           36,
-          -153
+          -99
         ],
-        "radius": 1.5
+        "radius": 1.3
       },
       {
         "position": [
-          68,
-          -105
+          36,
+          -57
         ],
-        "radius": 1.3
+        "radius": 1.5
       },
       {
         "position": [
           29,
-          -147
-        ],
-        "radius": 1.8
-      },
-      {
-        "position": [
-          3,
-          -129
-        ],
-        "radius": 1.8
-      },
-      {
-        "position": [
-          -62,
           -153
-        ],
-        "radius": 1.8
-      },
-      {
-        "position": [
-          -16,
-          -105
-        ],
-        "radius": 1.3
-      },
-      {
-        "position": [
-          -29,
-          -105
         ],
         "radius": 1.5
       },
       {
         "position": [
-          -62,
-          -123
+          49,
+          -129
         ],
-        "radius": 1.8
+        "radius": 1.3
       },
       {
         "position": [
-          -36,
+          36,
           -141
         ],
         "radius": 1.5
       },
       {
         "position": [
-          -10,
-          -159
+          29,
+          -135
+        ],
+        "radius": 1.8
+      },
+      {
+        "position": [
+          42,
+          -117
+        ],
+        "radius": 1.5
+      },
+      {
+        "position": [
+          16,
+          -111
         ],
         "radius": 1.3
       },
       {
         "position": [
-          -23,
+          68,
           -129
         ],
         "radius": 1.5
       },
       {
         "position": [
+          68,
+          -105
+        ],
+        "radius": 1.8
+      },
+      {
+        "position": [
+          62,
+          -141
+        ],
+        "radius": 1.8
+      },
+      {
+        "position": [
+          36,
+          -159
+        ],
+        "radius": 1.3
+      },
+      {
+        "position": [
+          23,
+          -141
+        ],
+        "radius": 1.8
+      },
+      {
+        "position": [
+          49,
+          -111
+        ],
+        "radius": 1.8
+      },
+      {
+        "position": [
+          -23,
+          -159
+        ],
+        "radius": 1.8
+      },
+      {
+        "position": [
+          -42,
+          -123
+        ],
+        "radius": 1.3
+      },
+      {
+        "position": [
+          -3,
+          -105
+        ],
+        "radius": 1.3
+      },
+      {
+        "position": [
+          -3,
+          -129
+        ],
+        "radius": 1.8
+      },
+      {
+        "position": [
+          3,
+          -141
+        ],
+        "radius": 1.8
+      },
+      {
+        "position": [
+          -62,
+          -105
+        ],
+        "radius": 1.3
+      },
+      {
+        "position": [
           -49,
+          -147
+        ],
+        "radius": 1.8
+      },
+      {
+        "position": [
+          -23,
+          -123
+        ],
+        "radius": 1.5
+      },
+      {
+        "position": [
+          -62,
+          -135
+        ],
+        "radius": 1.5
+      },
+      {
+        "position": [
+          -68,
+          -153
+        ],
+        "radius": 1.5
+      },
+      {
+        "position": [
+          -23,
+          -105
+        ],
+        "radius": 1.5
+      },
+      {
+        "position": [
+          -49,
+          -135
+        ],
+        "radius": 1.5
+      },
+      {
+        "position": [
+          -55,
+          -123
+        ],
+        "radius": 1.8
+      },
+      {
+        "position": [
+          -62,
+          -147
+        ],
+        "radius": 1.5
+      },
+      {
+        "position": [
+          -62,
           -117
         ],
         "radius": 1.8
+      },
+      {
+        "position": [
+          -23,
+          -135
+        ],
+        "radius": 1.8
+      },
+      {
+        "position": [
+          -23,
+          -141
+        ],
+        "radius": 1.5
+      },
+      {
+        "position": [
+          -16,
+          -141
+        ],
+        "radius": 1.5
       },
       {
         "position": [
@@ -6452,87 +6739,87 @@
         "id": "mb0",
         "monster": "barrel",
         "position": [
-          36.2,
-          -26.8
+          28.8,
+          -93.2
         ]
       },
       {
         "id": "mc1",
         "monster": "crate",
         "position": [
-          10.2,
-          -57.2
+          -15.8,
+          -146.8
         ]
       },
       {
         "id": "mp2",
         "monster": "pot",
         "position": [
-          -62.2,
-          -50.8
+          36.2,
+          -141.2
         ]
       },
       {
         "id": "mp3",
         "monster": "pot",
         "position": [
-          -62.2,
-          -69.2
+          2.8,
+          -38.8
         ]
       },
       {
         "id": "mb4",
         "monster": "barrel",
         "position": [
-          41.8,
-          -74.8
+          67.8,
+          -26.8
         ]
       },
       {
         "id": "mc5",
         "monster": "crate",
         "position": [
-          -15.8,
-          -26.8
+          36.2,
+          -81.2
         ]
       },
       {
         "id": "mp6",
         "monster": "pot",
         "position": [
-          -28.8,
-          -110.8
+          -67.8,
+          -14.8
         ]
       },
       {
         "id": "mb7",
         "monster": "barrel",
         "position": [
-          15.8,
-          -86.8
+          23.2,
+          -62.8
         ]
       },
       {
         "id": "mc8",
         "monster": "crate",
         "position": [
-          -15.8,
-          -45.2
+          10.2,
+          -141.2
         ]
       },
       {
         "id": "mp9",
         "monster": "pot",
         "position": [
-          -23.2,
-          -57.2
+          15.8,
+          -134.8
         ]
       },
       {
         "id": "mp10",
         "monster": "pot",
         "position": [
-          -23.2,
+          -54.8,
           -93.2
         ]
       },
@@ -6540,48 +6827,48 @@
         "id": "mb11",
         "monster": "barrel",
         "position": [
-          49.2,
-          -21.2
+          -23.2,
+          -134.8
         ]
       },
       {
         "id": "mc12",
         "monster": "crate",
         "position": [
-          -41.8,
-          -9.2
+          67.8,
+          -110.8
         ]
       },
       {
         "id": "mp13",
         "monster": "pot",
         "position": [
-          -41.8,
-          -21.2
+          23.2,
+          -105.2
         ]
       },
       {
         "id": "mb14",
         "monster": "barrel",
         "position": [
-          -23.2,
-          -134.8
+          54.8,
+          -33.2
         ]
       },
       {
         "id": "mc15",
         "monster": "crate",
         "position": [
-          -23.2,
-          -86.8
+          15.8,
+          -62.8
         ]
       },
       {
         "id": "mp16",
         "monster": "pot",
         "position": [
-          -10.2,
-          -69.2
+          -49.2,
+          -45.2
         ]
       },
       {
@@ -6589,39 +6876,39 @@
         "monster": "pot",
         "position": [
           28.8,
-          -117.2
+          -26.8
         ]
       },
       {
         "id": "mb18",
         "monster": "barrel",
         "position": [
-          2.8,
-          -105.2
+          36.2,
+          -122.8
         ]
       },
       {
         "id": "mc19",
         "monster": "crate",
         "position": [
-          23.2,
-          -93.2
+          62.2,
+          -117.2
         ]
       },
       {
         "id": "mp20",
         "monster": "pot",
         "position": [
-          62.2,
-          -98.8
+          67.8,
+          -153.2
         ]
       },
       {
         "id": "mb21",
         "monster": "barrel",
         "position": [
-          67.8,
-          -26.8
+          28.8,
+          -50.8
         ]
       },
       {
@@ -6629,31 +6916,31 @@
         "monster": "crate",
         "position": [
           67.8,
-          -117.2
+          -86.8
         ]
       },
       {
         "id": "mp23",
         "monster": "pot",
         "position": [
-          -36.2,
-          -57.2
+          -10.2,
+          -117.2
         ]
       },
       {
         "id": "mp24",
         "monster": "pot",
         "position": [
-          36.2,
-          -45.2
+          54.8,
+          -146.8
         ]
       },
       {
         "id": "mb25",
         "monster": "barrel",
         "position": [
-          54.8,
-          -141.2
+          -54.8,
+          -38.8
         ]
       },
       {
@@ -6661,31 +6948,31 @@
         "monster": "crate",
         "position": [
           36.2,
-          -57.2
+          -74.8
         ]
       },
       {
         "id": "mp27",
         "monster": "pot",
         "position": [
-          15.8,
-          -153.2
+          -23.2,
+          -98.8
         ]
       },
       {
         "id": "mb28",
         "monster": "barrel",
         "position": [
-          41.8,
-          -117.2
+          -62.2,
+          -62.8
         ]
       },
       {
         "id": "mc29",
         "monster": "crate",
         "position": [
-          10.2,
-          -26.8
+          -54.8,
+          -158.8
         ]
       },
       {
@@ -6780,6 +7067,7 @@
       "spiders": true,
       "grates": true,
       "bats": true,
+      "stone_trim": true,
       "trash_density": 0.6,
       "trash_no_bottles": true,
       "wood_tone": [
@@ -7100,257 +7388,129 @@
         "scale": 0.6
       },
       {
-        "piece": "Barrel",
+        "piece": "Cage_Small",
         "position": [
           8.0,
           -7.0
         ],
-        "rotation": 300
+        "rotation": 180
       },
       {
         "piece": "Rope_1",
         "position": [
-          -8.0,
-          -7.0
-        ],
-        "rotation": 105
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          -5.0,
-          -29.0
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Bucket_Wooden_1",
-        "position": [
-          5.0,
-          -19.0
-        ],
-        "rotation": 225
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          21.0,
-          -7.0
-        ],
-        "rotation": 330
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          -31.0,
-          -17.0
-        ],
-        "rotation": 120
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          -31.0,
-          -17.0
-        ],
-        "rotation": 300
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
           18.0,
-          -29.0
-        ],
-        "rotation": 270
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          18.0,
-          -19.0
+          -7.0
         ],
         "rotation": 30
       },
       {
-        "piece": "Barrel",
+        "piece": "Bucket_Wooden_1",
         "position": [
-          -5.0,
-          -31.0
+          -18.0,
+          -7.0
         ],
-        "rotation": 180
+        "rotation": 90
       },
       {
-        "piece": "Rope_1",
+        "piece": "Cage_Small",
         "position": [
-          44.0,
-          -17.0
+          5.0,
+          -29.0
         ],
         "rotation": 0
       },
       {
-        "piece": "Crate_Metal",
-        "position": [
-          34.0,
-          -17.0
-        ],
-        "rotation": 225
-      },
-      {
         "piece": "Bucket_Wooden_1",
-        "position": [
-          -34.0,
-          -17.0
-        ],
-        "rotation": 270
-      },
-      {
-        "piece": "Cage_Small",
         "position": [
           21.0,
-          -19.0
+          -17.0
         ],
-        "rotation": 345
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          8.0,
-          -41.0
-        ],
-        "rotation": 270
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          18.0,
-          -41.0
-        ],
-        "rotation": 180
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          47.0,
-          -7.0
-        ],
-        "rotation": 195
-      },
-      {
-        "piece": "Cage_Small",
-        "position": [
-          47.0,
-          -7.0
-        ],
-        "rotation": 180
+        "rotation": 75
       },
       {
         "piece": "Bucket_Wooden_1",
         "position": [
-          -57.0,
-          -7.0
+          21.0,
+          -17.0
         ],
         "rotation": 300
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          -34.0,
-          -29.0
-        ],
-        "rotation": 0
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          -34.0,
-          -19.0
-        ],
-        "rotation": 270
       },
       {
         "piece": "Rope_1",
         "position": [
-          44.0,
-          -29.0
-        ],
-        "rotation": 60
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          8.0,
-          -43.0
-        ],
-        "rotation": 300
-      },
-      {
-        "piece": "Bucket_Wooden_1",
-        "position": [
-          70.0,
-          -7.0
-        ],
-        "rotation": 15
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          60.0,
-          -7.0
-        ],
-        "rotation": 135
-      },
-      {
-        "piece": "Bucket_Wooden_1",
-        "position": [
-          -60.0,
-          -7.0
+          -31.0,
+          -17.0
         ],
         "rotation": 165
       },
       {
         "piece": "Crate_Wooden",
         "position": [
-          -47.0,
-          -29.0
-        ],
-        "rotation": 120
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          -21.0,
-          -29.0
-        ],
-        "rotation": 300
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          -21.0,
+          8.0,
           -19.0
         ],
-        "rotation": 60
+        "rotation": 135
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          18.0,
+          -19.0
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          -5.0,
+          -31.0
+        ],
+        "rotation": 255
       },
       {
         "piece": "Barrel",
         "position": [
-          -44.0,
-          -31.0
+          5.0,
+          -41.0
         ],
-        "rotation": 75
+        "rotation": 240
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          34.0,
+          -7.0
+        ],
+        "rotation": 150
       },
       {
         "piece": "Crate_Metal",
         "position": [
-          47.0,
+          -44.0,
+          -17.0
+        ],
+        "rotation": 210
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -34.0,
+          -7.0
+        ],
+        "rotation": 210
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          31.0,
           -19.0
         ],
-        "rotation": 195
+        "rotation": 315
       },
       {
         "piece": "Cage_Small",
         "position": [
-          47.0,
+          21.0,
           -29.0
         ],
         "rotation": 240
@@ -7358,13 +7518,157 @@
       {
         "piece": "Barrel",
         "position": [
-          31.0,
-          -43.0
+          18.0,
+          -31.0
         ],
         "rotation": 45
       },
       {
         "piece": "Rope_1",
+        "position": [
+          57.0,
+          -7.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -47.0,
+          -17.0
+        ],
+        "rotation": 135
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          -57.0,
+          -17.0
+        ],
+        "rotation": 150
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -34.0,
+          -29.0
+        ],
+        "rotation": 330
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          34.0,
+          -29.0
+        ],
+        "rotation": 285
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          44.0,
+          -29.0
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          18.0,
+          -43.0
+        ],
+        "rotation": 255
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          18.0,
+          -43.0
+        ],
+        "rotation": 30
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          60.0,
+          -17.0
+        ],
+        "rotation": 150
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          70.0,
+          -7.0
+        ],
+        "rotation": 285
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -60.0,
+          -7.0
+        ],
+        "rotation": 210
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -70.0,
+          -17.0
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          -57.0,
+          -19.0
+        ],
+        "rotation": 75
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -31.0,
+          -19.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          -31.0,
+          -29.0
+        ],
+        "rotation": 225
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -44.0,
+          -41.0
+        ],
+        "rotation": 15
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          47.0,
+          -29.0
+        ],
+        "rotation": 135
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          21.0,
+          -43.0
+        ],
+        "rotation": 75
+      },
+      {
+        "piece": "Barrel",
         "position": [
           70.0,
           -19.0
@@ -7372,217 +7676,73 @@
         "rotation": 195
       },
       {
-        "piece": "Barrel",
-        "position": [
-          -60.0,
-          -29.0
-        ],
-        "rotation": 135
-      },
-      {
         "piece": "Rope_1",
         "position": [
           -70.0,
           -29.0
         ],
-        "rotation": 150
+        "rotation": 60
       },
       {
-        "piece": "Bucket_Wooden_1",
+        "piece": "Cage_Small",
         "position": [
           -47.0,
           -41.0
         ],
-        "rotation": 330
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          -18.0,
-          -29.0
-        ],
-        "rotation": 285
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          -8.0,
-          -29.0
-        ],
-        "rotation": 180
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          -21.0,
-          -31.0
-        ],
-        "rotation": 255
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          -21.0,
-          -31.0
-        ],
-        "rotation": 30
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          -44.0,
-          -53.0
-        ],
-        "rotation": 150
-      },
-      {
-        "piece": "Bucket_Wooden_1",
-        "position": [
-          -34.0,
-          -43.0
-        ],
-        "rotation": 285
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          57.0,
-          -31.0
-        ],
-        "rotation": 210
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          47.0,
-          -41.0
-        ],
-        "rotation": 0
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          21.0,
-          -55.0
-        ],
-        "rotation": 75
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          21.0,
-          -31.0
-        ],
-        "rotation": 195
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          21.0,
-          -41.0
-        ],
-        "rotation": 225
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          -70.0,
-          -41.0
-        ],
-        "rotation": 15
-      },
-      {
-        "piece": "Bucket_Wooden_1",
-        "position": [
-          -57.0,
-          -53.0
-        ],
-        "rotation": 135
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          -18.0,
-          -31.0
-        ],
-        "rotation": 75
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          -21.0,
-          -43.0
-        ],
-        "rotation": 195
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          60.0,
-          -41.0
-        ],
-        "rotation": 60
-      },
-      {
-        "piece": "Cage_Small",
-        "position": [
-          57.0,
-          -53.0
-        ],
         "rotation": 135
       },
       {
         "piece": "Cage_Small",
         "position": [
-          57.0,
-          -43.0
+          -47.0,
+          -31.0
         ],
         "rotation": 330
       },
       {
-        "piece": "Mushroom_Flat",
+        "piece": "Crate_Metal",
         "position": [
-          34.0,
-          -55.0
+          -18.0,
+          -19.0
         ],
         "rotation": 105
       },
       {
-        "piece": "Cage_Small",
+        "piece": "Barrel",
         "position": [
-          31.0,
-          -77.0
+          -21.0,
+          -41.0
         ],
         "rotation": 60
       },
       {
         "piece": "Barrel",
         "position": [
-          34.0,
-          -31.0
+          -44.0,
+          -43.0
         ],
         "rotation": 165
       },
       {
         "piece": "Crate_Wooden",
         "position": [
-          -60.0,
-          -53.0
+          57.0,
+          -41.0
         ],
         "rotation": 90
       },
       {
         "piece": "Crate_Wooden",
         "position": [
-          -70.0,
-          -53.0
+          47.0,
+          -41.0
         ],
         "rotation": 210
       },
       {
-        "piece": "Rope_1",
+        "piece": "Barrel",
         "position": [
-          -57.0,
+          21.0,
           -55.0
         ],
         "rotation": 210
@@ -7590,31 +7750,31 @@
       {
         "piece": "Barrel",
         "position": [
-          -8.0,
-          -53.0
+          31.0,
+          -41.0
         ],
         "rotation": 195
       },
       {
         "piece": "Barrel",
         "position": [
-          -8.0,
-          -43.0
+          31.0,
+          -31.0
         ],
         "rotation": 300
       },
       {
         "piece": "Barrel",
         "position": [
-          -31.0,
-          -55.0
+          -70.0,
+          -31.0
         ],
         "rotation": 105
       },
       {
         "piece": "Bucket_Wooden_1",
         "position": [
-          60.0,
+          -57.0,
           -43.0
         ],
         "rotation": 135
@@ -7622,159 +7782,167 @@
       {
         "piece": "Barrel",
         "position": [
-          70.0,
+          -47.0,
           -53.0
         ],
         "rotation": 195
       },
       {
-        "piece": "Mushroom_Flat",
+        "piece": "Crate_Metal",
         "position": [
-          57.0,
-          -65.0
+          -8.0,
+          -41.0
         ],
         "rotation": 300
       },
       {
-        "piece": "Crate_Metal",
+        "piece": "Bucket_Wooden_1",
         "position": [
-          57.0,
-          -65.0
+          -8.0,
+          -41.0
         ],
         "rotation": 180
       },
       {
-        "piece": "Rope_1",
+        "piece": "Cage_Small",
         "position": [
-          34.0,
-          -77.0
+          -31.0,
+          -53.0
         ],
-        "rotation": 210
+        "rotation": 30
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          70.0,
+          -41.0
+        ],
+        "rotation": 270
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          60.0,
+          -31.0
+        ],
+        "rotation": 90
       },
       {
         "piece": "Barrel",
         "position": [
-          44.0,
+          47.0,
           -53.0
-        ],
-        "rotation": 120
-      },
-      {
-        "piece": "Cage_Small",
-        "position": [
-          21.0,
-          -89.0
         ],
         "rotation": 0
       },
       {
-        "piece": "Barrel",
+        "piece": "Cage_Small",
         "position": [
-          -34.0,
+          44.0,
           -65.0
         ],
         "rotation": 255
       },
       {
-        "piece": "Crate_Metal",
+        "piece": "Mushroom_Flat",
         "position": [
-          -70.0,
-          -65.0
+          21.0,
+          -77.0
         ],
         "rotation": 135
       },
       {
         "piece": "Rope_1",
         "position": [
-          -5.0,
-          -43.0
+          34.0,
+          -31.0
         ],
         "rotation": 345
       },
       {
         "piece": "Rope_1",
         "position": [
-          -18.0,
-          -55.0
+          -70.0,
+          -43.0
         ],
         "rotation": 0
       },
       {
         "piece": "Crate_Metal",
         "position": [
-          -21.0,
-          -77.0
+          -47.0,
+          -65.0
         ],
         "rotation": 210
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -18.0,
+          -53.0
+        ],
+        "rotation": 60
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -8.0,
+          -53.0
+        ],
+        "rotation": 270
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -31.0,
+          -65.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          70.0,
+          -53.0
+        ],
+        "rotation": 165
       },
       {
         "piece": "Rope_1",
         "position": [
           60.0,
-          -65.0
-        ],
-        "rotation": 60
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          70.0,
-          -65.0
-        ],
-        "rotation": 270
-      },
-      {
-        "piece": "Cage_Small",
-        "position": [
-          47.0,
-          -77.0
-        ],
-        "rotation": 195
-      },
-      {
-        "piece": "Cage_Small",
-        "position": [
-          18.0,
-          -89.0
-        ],
-        "rotation": 165
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          8.0,
-          -79.0
+          -43.0
         ],
         "rotation": 75
       },
       {
-        "piece": "Barrel",
+        "piece": "Cage_Small",
         "position": [
-          -34.0,
-          -77.0
+          57.0,
+          -65.0
         ],
         "rotation": 240
       },
       {
-        "piece": "Bucket_Wooden_1",
+        "piece": "Rope_1",
         "position": [
-          -44.0,
-          -77.0
+          47.0,
+          -65.0
         ],
         "rotation": 135
       },
       {
-        "piece": "Crate_Metal",
+        "piece": "Mushroom_Flat",
         "position": [
-          -70.0,
+          34.0,
           -77.0
         ],
         "rotation": 255
       },
       {
-        "piece": "Crate_Wooden",
+        "piece": "Crate_Metal",
         "position": [
-          -60.0,
+          44.0,
           -67.0
         ],
         "rotation": 345
@@ -7782,13 +7950,165 @@
       {
         "piece": "Crate_Metal",
         "position": [
-          5.0,
-          -55.0
+          44.0,
+          -43.0
         ],
         "rotation": 165
       },
       {
         "piece": "Barrel",
+        "position": [
+          44.0,
+          -53.0
+        ],
+        "rotation": 150
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          31.0,
+          -79.0
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -44.0,
+          -65.0
+        ],
+        "rotation": 30
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -34.0,
+          -55.0
+        ],
+        "rotation": 300
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          -60.0,
+          -55.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -70.0,
+          -65.0
+        ],
+        "rotation": 270
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -5.0,
+          -43.0
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -18.0,
+          -55.0
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -21.0,
+          -67.0
+        ],
+        "rotation": 60
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -31.0,
+          -67.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          60.0,
+          -65.0
+        ],
+        "rotation": 45
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          70.0,
+          -65.0
+        ],
+        "rotation": 30
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          47.0,
+          -67.0
+        ],
+        "rotation": 75
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          47.0,
+          -77.0
+        ],
+        "rotation": 45
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          18.0,
+          -89.0
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          -34.0,
+          -67.0
+        ],
+        "rotation": 330
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          -34.0,
+          -67.0
+        ],
+        "rotation": 255
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          -60.0,
+          -67.0
+        ],
+        "rotation": 120
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          5.0,
+          -65.0
+        ],
+        "rotation": 60
+      },
+      {
+        "piece": "Bucket_Wooden_1",
         "position": [
           5.0,
           -65.0
@@ -7796,15 +8116,23 @@
         "rotation": 150
       },
       {
-        "piece": "Rope_1",
+        "piece": "Crate_Metal",
         "position": [
-          -8.0,
-          -67.0
+          -18.0,
+          -77.0
         ],
-        "rotation": 180
+        "rotation": 255
       },
       {
-        "piece": "Cage_Small",
+        "piece": "Rope_1",
+        "position": [
+          -18.0,
+          -67.0
+        ],
+        "rotation": 225
+      },
+      {
+        "piece": "Mushroom_Flat",
         "position": [
           47.0,
           -89.0
@@ -7812,10 +8140,10 @@
         "rotation": 30
       },
       {
-        "piece": "Cage_Small",
+        "piece": "Barrel",
         "position": [
-          57.0,
-          -79.0
+          8.0,
+          -101.0
         ],
         "rotation": 300
       },
@@ -7825,324 +8153,204 @@
           18.0,
           -91.0
         ],
-        "rotation": 195
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          8.0,
-          -101.0
-        ],
         "rotation": 270
       },
       {
-        "piece": "Cage_Small",
+        "piece": "Barrel",
         "position": [
           8.0,
-          -67.0
-        ],
-        "rotation": 165
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          -57.0,
-          -67.0
-        ],
-        "rotation": 105
-      },
-      {
-        "piece": "Bucket_Wooden_1",
-        "position": [
-          -34.0,
-          -79.0
-        ],
-        "rotation": 60
-      },
-      {
-        "piece": "Bucket_Wooden_1",
-        "position": [
-          -44.0,
-          -79.0
-        ],
-        "rotation": 195
-      },
-      {
-        "piece": "Mushroom_Flat",
-        "position": [
-          8.0,
-          -65.0
-        ],
-        "rotation": 45
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          18.0,
-          -65.0
-        ],
-        "rotation": 30
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          -5.0,
-          -67.0
-        ],
-        "rotation": 75
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          -5.0,
           -77.0
         ],
-        "rotation": 45
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          70.0,
-          -89.0
-        ],
-        "rotation": 105
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          44.0,
-          -79.0
-        ],
-        "rotation": 330
-      },
-      {
-        "piece": "Mushroom_Flat",
-        "position": [
-          44.0,
-          -79.0
-        ],
-        "rotation": 255
-      },
-      {
-        "piece": "Mushroom_Flat",
-        "position": [
-          57.0,
-          -91.0
-        ],
         "rotation": 120
       },
       {
         "piece": "Mushroom_Flat",
         "position": [
-          31.0,
-          -101.0
-        ],
-        "rotation": 60
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          31.0,
-          -101.0
-        ],
-        "rotation": 150
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          -57.0,
-          -89.0
-        ],
-        "rotation": 255
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          -57.0,
-          -79.0
-        ],
-        "rotation": 225
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          -44.0,
-          -101.0
-        ],
-        "rotation": 30
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          -5.0,
-          -89.0
-        ],
-        "rotation": 300
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          5.0,
-          -79.0
-        ],
-        "rotation": 270
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          60.0,
-          -101.0
-        ],
-        "rotation": 120
-      },
-      {
-        "piece": "Mushroom_Flat",
-        "position": [
-          70.0,
-          -101.0
+          18.0,
+          -77.0
         ],
         "rotation": 180
       },
       {
-        "piece": "Crate_Metal",
+        "piece": "Crate_Wooden",
         "position": [
-          60.0,
+          -57.0,
           -77.0
         ],
         "rotation": 15
       },
       {
-        "piece": "Rope_1",
+        "piece": "Bucket_Wooden_1",
         "position": [
-          60.0,
+          -57.0,
           -77.0
         ],
         "rotation": 90
       },
       {
-        "piece": "Cage_Small",
+        "piece": "Barrel",
         "position": [
-          34.0,
-          -91.0
+          -44.0,
+          -79.0
         ],
         "rotation": 120
       },
       {
-        "piece": "Barrel",
+        "piece": "Cage_Small",
         "position": [
-          -70.0,
-          -79.0
+          8.0,
+          -55.0
         ],
         "rotation": 330
       },
       {
         "piece": "Crate_Metal",
         "position": [
-          -31.0,
-          -91.0
+          -5.0,
+          -67.0
         ],
         "rotation": 195
       },
       {
-        "piece": "Bucket_Wooden_1",
+        "piece": "Rope_1",
         "position": [
-          -47.0,
-          -101.0
+          70.0,
+          -89.0
         ],
         "rotation": 300
       },
       {
-        "piece": "Rope_1",
+        "piece": "Barrel",
         "position": [
-          -57.0,
-          -101.0
+          60.0,
+          -89.0
         ],
         "rotation": 255
       },
       {
-        "piece": "Barrel",
+        "piece": "Cage_Small",
         "position": [
-          -8.0,
+          44.0,
           -89.0
         ],
         "rotation": 45
       },
       {
-        "piece": "Rope_1",
+        "piece": "Barrel",
         "position": [
-          -18.0,
+          34.0,
           -89.0
         ],
         "rotation": 180
       },
       {
-        "piece": "Bucket_Wooden_1",
+        "piece": "Rope_1",
         "position": [
-          5.0,
+          57.0,
           -91.0
         ],
         "rotation": 120
       },
       {
-        "piece": "Shield_Wooden",
+        "piece": "Mushroom_Flat",
         "position": [
-          60.0,
-          -103.0
+          21.0,
+          -101.0
         ],
-        "rotation": 135
+        "rotation": 195
       },
       {
-        "piece": "Rope_1",
+        "piece": "Crate_Metal",
         "position": [
-          60.0,
-          -103.0
+          31.0,
+          -101.0
         ],
-        "rotation": 285
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          -21.0,
-          -113.0
-        ],
-        "rotation": 165
+        "rotation": 195
       },
       {
         "piece": "Barrel",
         "position": [
-          -21.0,
-          -103.0
+          -47.0,
+          -89.0
+        ],
+        "rotation": 345
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -34.0,
+          -91.0
         ],
         "rotation": 300
       },
       {
         "piece": "Rope_1",
         "position": [
-          -21.0,
+          5.0,
           -89.0
         ],
         "rotation": 15
       },
       {
-        "piece": "Mushroom_Cluster",
+        "piece": "Cage_Small",
         "position": [
-          -47.0,
-          -113.0
+          70.0,
+          -101.0
         ],
         "rotation": 345
       },
       {
-        "piece": "Mushroom_Cluster",
+        "piece": "Cage_Small",
         "position": [
-          -47.0,
-          -103.0
+          70.0,
+          -91.0
         ],
         "rotation": 30
       },
       {
+        "piece": "Rope_1",
+        "position": [
+          70.0,
+          -77.0
+        ],
+        "rotation": 75
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          60.0,
+          -77.0
+        ],
+        "rotation": 75
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          34.0,
+          -101.0
+        ],
+        "rotation": 315
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          -60.0,
+          -89.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          -60.0,
+          -89.0
+        ],
+        "rotation": 90
+      },
+      {
         "piece": "Bucket_Wooden_1",
         "position": [
-          -8.0,
+          -31.0,
           -101.0
         ],
         "rotation": 75
@@ -8150,160 +8358,120 @@
       {
         "piece": "Crate_Wooden",
         "position": [
-          -18.0,
+          -21.0,
           -101.0
         ],
-        "rotation": 75
+        "rotation": 210
       },
       {
-        "piece": "Shield_Wooden",
+        "piece": "Bucket_Wooden_1",
         "position": [
-          47.0,
+          -47.0,
+          -91.0
+        ],
+        "rotation": 120
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          -47.0,
+          -101.0
+        ],
+        "rotation": 270
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -18.0,
+          -79.0
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          5.0,
+          -91.0
+        ],
+        "rotation": 150
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          60.0,
+          -103.0
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -31.0,
           -113.0
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -31.0,
+          -113.0
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          -31.0,
+          -89.0
+        ],
+        "rotation": 300
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -47.0,
+          -103.0
+        ],
+        "rotation": 15
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          -18.0,
+          -91.0
         ],
         "rotation": 315
       },
       {
         "piece": "Barrel",
         "position": [
-          -8.0,
+          57.0,
           -113.0
-        ],
-        "rotation": 195
-      },
-      {
-        "piece": "Mushroom_Cluster",
-        "position": [
-          -8.0,
-          -113.0
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Mushroom_Tall",
-        "position": [
-          -70.0,
-          -113.0
-        ],
-        "rotation": 75
-      },
-      {
-        "piece": "Mushroom_Flat",
-        "position": [
-          -60.0,
-          -113.0
-        ],
-        "rotation": 210
-      },
-      {
-        "piece": "Mushroom_Tall",
-        "position": [
-          -47.0,
-          -115.0
-        ],
-        "rotation": 120
-      },
-      {
-        "piece": "Mushroom_Cluster",
-        "position": [
-          -47.0,
-          -125.0
         ],
         "rotation": 270
       },
       {
-        "piece": "Crate_Metal",
-        "position": [
-          34.0,
-          -103.0
-        ],
-        "rotation": 165
-      },
-      {
         "piece": "Rope_1",
         "position": [
-          57.0,
-          -115.0
+          47.0,
+          -113.0
         ],
-        "rotation": 60
+        "rotation": 270
       },
       {
-        "piece": "Barrel",
+        "piece": "Mushroom_Flat",
         "position": [
           -18.0,
-          -125.0
+          -103.0
         ],
-        "rotation": 150
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          -70.0,
-          -101.0
-        ],
-        "rotation": 105
+        "rotation": 255
       },
       {
         "piece": "Mushroom_Cluster",
         "position": [
           -70.0,
-          -125.0
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Mushroom_Tall",
-        "position": [
-          -57.0,
-          -127.0
-        ],
-        "rotation": 180
-      },
-      {
-        "piece": "Mushroom_Tall",
-        "position": [
-          -47.0,
-          -127.0
-        ],
-        "rotation": 15
-      },
-      {
-        "piece": "Shield_Wooden",
-        "position": [
-          31.0,
           -103.0
-        ],
-        "rotation": 120
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          34.0,
-          -115.0
-        ],
-        "rotation": 45
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          -21.0,
-          -125.0
-        ],
-        "rotation": 210
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          -21.0,
-          -125.0
-        ],
-        "rotation": 300
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          -70.0,
-          -127.0
         ],
         "rotation": 330
       },
@@ -8311,22 +8479,22 @@
         "piece": "Mushroom_Tall",
         "position": [
           -60.0,
-          -127.0
+          -103.0
         ],
         "rotation": 270
       },
       {
         "piece": "Barrel",
         "position": [
-          -34.0,
-          -137.0
+          -47.0,
+          -125.0
         ],
         "rotation": 195
       },
       {
         "piece": "Shield_Wooden",
         "position": [
-          8.0,
+          34.0,
           -103.0
         ],
         "rotation": 120
@@ -8334,7 +8502,7 @@
       {
         "piece": "Shield_Wooden",
         "position": [
-          21.0,
+          47.0,
           -125.0
         ],
         "rotation": 30
@@ -8342,112 +8510,112 @@
       {
         "piece": "Rope_1",
         "position": [
-          21.0,
+          47.0,
           -115.0
         ],
         "rotation": 75
       },
       {
-        "piece": "Crate_Metal",
+        "piece": "Mushroom_Flat",
         "position": [
-          34.0,
-          -137.0
+          -18.0,
+          -125.0
         ],
         "rotation": 75
       },
       {
-        "piece": "Shield_Wooden",
+        "piece": "Mushroom_Cluster",
         "position": [
-          44.0,
-          -127.0
+          -8.0,
+          -115.0
         ],
         "rotation": 330
       },
       {
-        "piece": "Mushroom_Cluster",
+        "piece": "Rope_1",
         "position": [
-          -34.0,
-          -125.0
+          -60.0,
+          -101.0
         ],
         "rotation": 45
       },
       {
         "piece": "Mushroom_Flat",
         "position": [
-          -31.0,
-          -127.0
+          -70.0,
+          -115.0
         ],
         "rotation": 225
       },
       {
         "piece": "Mushroom_Flat",
         "position": [
-          -21.0,
-          -137.0
+          -60.0,
+          -125.0
         ],
         "rotation": 345
       },
       {
         "piece": "Barrel",
         "position": [
-          -70.0,
-          -139.0
+          -57.0,
+          -127.0
         ],
         "rotation": 30
       },
       {
-        "piece": "Barrel",
+        "piece": "Rope_1",
         "position": [
-          5.0,
+          21.0,
           -113.0
         ],
-        "rotation": 60
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          18.0,
-          -125.0
-        ],
-        "rotation": 210
+        "rotation": 150
       },
       {
         "piece": "Shield_Wooden",
         "position": [
-          57.0,
-          -127.0
+          44.0,
+          -115.0
+        ],
+        "rotation": 135
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          44.0,
+          -115.0
         ],
         "rotation": 195
       },
       {
-        "piece": "Barrel",
+        "piece": "Mushroom_Tall",
         "position": [
-          31.0,
-          -127.0
+          -21.0,
+          -115.0
         ],
         "rotation": 225
       },
       {
-        "piece": "Shield_Wooden",
+        "piece": "Mushroom_Cluster",
         "position": [
-          21.0,
-          -137.0
+          -31.0,
+          -125.0
         ],
         "rotation": 90
       },
       {
-        "piece": "Rope_1",
+        "piece": "Mushroom_Cluster",
         "position": [
-          44.0,
-          -149.0
+          -60.0,
+          -137.0
         ],
         "rotation": 300
       },
       {
-        "piece": "Shield_Wooden",
+        "piece": "Mushroom_Cluster",
         "position": [
-          44.0,
-          -149.0
+          -60.0,
+          -137.0
         ],
         "rotation": 240
       },
@@ -8455,25 +8623,161 @@
         "piece": "Barrel",
         "position": [
           -44.0,
-          -113.0
+          -137.0
         ],
         "rotation": 30
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          18.0,
+          -103.0
+        ],
+        "rotation": 60
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          8.0,
+          -113.0
+        ],
+        "rotation": 225
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          31.0,
+          -125.0
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          31.0,
+          -125.0
+        ],
+        "rotation": 240
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          44.0,
+          -137.0
+        ],
+        "rotation": 135
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -44.0,
+          -115.0
+        ],
+        "rotation": 285
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -34.0,
+          -115.0
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -31.0,
+          -127.0
+        ],
+        "rotation": 150
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -31.0,
+          -127.0
+        ],
+        "rotation": 45
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -70.0,
+          -139.0
+        ],
+        "rotation": 315
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -5.0,
+          -113.0
+        ],
+        "rotation": 120
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          8.0,
+          -115.0
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          47.0,
+          -137.0
+        ],
+        "rotation": 45
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          31.0,
+          -127.0
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          21.0,
+          -137.0
+        ],
+        "rotation": 255
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          44.0,
+          -139.0
+        ],
+        "rotation": 120
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -34.0,
+          -113.0
+        ],
+        "rotation": 315
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -34.0,
+          -103.0
+        ],
+        "rotation": 135
       },
       {
         "piece": "Mushroom_Flat",
         "position": [
           -8.0,
-          -127.0
-        ],
-        "rotation": 60
-      },
-      {
-        "piece": "Mushroom_Tall",
-        "position": [
-          -18.0,
           -137.0
         ],
-        "rotation": 225
+        "rotation": 240
       },
       {
         "piece": "Mushroom_Cluster",
@@ -8481,199 +8785,159 @@
           -21.0,
           -149.0
         ],
-        "rotation": 165
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          -31.0,
-          -139.0
-        ],
-        "rotation": 30
-      },
-      {
-        "piece": "Mushroom_Tall",
-        "position": [
-          -47.0,
-          -139.0
-        ],
-        "rotation": 0
+        "rotation": 210
       },
       {
         "piece": "Mushroom_Flat",
         "position": [
           -47.0,
           -139.0
-        ],
-        "rotation": 15
-      },
-      {
-        "piece": "Mushroom_Tall",
-        "position": [
-          5.0,
-          -115.0
-        ],
-        "rotation": 105
-      },
-      {
-        "piece": "Mushroom_Tall",
-        "position": [
-          5.0,
-          -115.0
-        ],
-        "rotation": 165
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          18.0,
-          -137.0
-        ],
-        "rotation": 180
-      },
-      {
-        "piece": "Shield_Wooden",
-        "position": [
-          18.0,
-          -137.0
-        ],
-        "rotation": 180
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          60.0,
-          -137.0
-        ],
-        "rotation": 120
-      },
-      {
-        "piece": "Shield_Wooden",
-        "position": [
-          70.0,
-          -137.0
-        ],
-        "rotation": 165
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          31.0,
-          -149.0
-        ],
-        "rotation": 15
-      },
-      {
-        "piece": "Shield_Wooden",
-        "position": [
-          47.0,
-          -139.0
-        ],
-        "rotation": 135
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          47.0,
-          -149.0
-        ],
-        "rotation": 255
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          -44.0,
-          -149.0
-        ],
-        "rotation": 180
-      },
-      {
-        "piece": "Mushroom_Flat",
-        "position": [
-          -34.0,
-          -149.0
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Mushroom_Tall",
-        "position": [
-          -57.0,
-          -151.0
-        ],
-        "rotation": 165
-      },
-      {
-        "piece": "Mushroom_Flat",
-        "position": [
-          -57.0,
-          -151.0
-        ],
-        "rotation": 165
-      },
-      {
-        "piece": "Mushroom_Tall",
-        "position": [
-          -5.0,
-          -127.0
         ],
         "rotation": 315
       },
       {
-        "piece": "Rope_1",
+        "piece": "Mushroom_Cluster",
         "position": [
-          8.0,
-          -149.0
-        ],
-        "rotation": 150
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          18.0,
-          -139.0
+          5.0,
+          -115.0
         ],
         "rotation": 270
       },
       {
-        "piece": "Crate_Metal",
-        "position": [
-          70.0,
-          -139.0
-        ],
-        "rotation": 255
-      },
-      {
         "piece": "Rope_1",
         "position": [
-          70.0,
-          -149.0
+          18.0,
+          -127.0
         ],
-        "rotation": 15
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          60.0,
-          -115.0
-        ],
-        "rotation": 225
+        "rotation": 60
       },
       {
         "piece": "Shield_Wooden",
         "position": [
           60.0,
-          -125.0
+          -137.0
         ],
-        "rotation": 300
+        "rotation": 195
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          21.0,
+          -139.0
+        ],
+        "rotation": 75
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          31.0,
+          -139.0
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          57.0,
+          -139.0
+        ],
+        "rotation": 285
       },
       {
         "piece": "Barrel",
         "position": [
           57.0,
+          -139.0
+        ],
+        "rotation": 45
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -34.0,
+          -149.0
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -47.0,
           -161.0
         ],
-        "rotation": 30
+        "rotation": 210
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -47.0,
+          -161.0
+        ],
+        "rotation": 300
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -5.0,
+          -137.0
+        ],
+        "rotation": 120
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          8.0,
+          -139.0
+        ],
+        "rotation": 75
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          70.0,
+          -149.0
+        ],
+        "rotation": 120
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          60.0,
+          -149.0
+        ],
+        "rotation": 45
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          60.0,
+          -115.0
+        ],
+        "rotation": 135
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          60.0,
+          -115.0
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          57.0,
+          -161.0
+        ],
+        "rotation": 240
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -44.0,
+          -161.0
+        ],
+        "rotation": 45
       },
       {
         "piece": "Mushroom_Flat",
@@ -8681,39 +8945,15 @@
           -34.0,
           -161.0
         ],
-        "rotation": 120
+        "rotation": 225
       },
       {
         "piece": "Barrel",
         "position": [
-          -34.0,
+          -70.0,
           -161.0
         ],
-        "rotation": 270
-      },
-      {
-        "piece": "Mushroom_Cluster",
-        "position": [
-          -70.0,
-          -151.0
-        ],
-        "rotation": 225
-      },
-      {
-        "piece": "Mushroom_Cluster",
-        "position": [
-          -70.0,
-          -151.0
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Mushroom_Cluster",
-        "position": [
-          5.0,
-          -139.0
-        ],
-        "rotation": 30
+        "rotation": 255
       },
       {
         "piece": "Mushroom_Tall",
@@ -8721,47 +8961,55 @@
           5.0,
           -149.0
         ],
-        "rotation": 30
+        "rotation": 255
       },
       {
         "piece": "Shield_Wooden",
         "position": [
-          70.0,
-          -161.0
-        ],
-        "rotation": 120
-      },
-      {
-        "piece": "Barrel",
-        "position": [
           60.0,
           -151.0
         ],
-        "rotation": 0
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          34.0,
-          -151.0
-        ],
-        "rotation": 15
+        "rotation": 285
       },
       {
         "piece": "Barrel",
         "position": [
-          34.0,
+          70.0,
           -161.0
         ],
-        "rotation": 15
+        "rotation": 315
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          44.0,
+          -151.0
+        ],
+        "rotation": 240
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          21.0,
+          -151.0
+        ],
+        "rotation": 165
       },
       {
         "piece": "Shield_Wooden",
         "position": [
           31.0,
-          -151.0
+          -161.0
         ],
-        "rotation": 330
+        "rotation": 45
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          8.0,
+          -161.0
+        ],
+        "rotation": 45
       },
       {
         "piece": "Crate_Metal",
@@ -8769,23 +9017,31 @@
           8.0,
           -151.0
         ],
-        "rotation": 195
+        "rotation": 60
       },
       {
-        "piece": "Mushroom_Cluster",
+        "piece": "Mushroom_Flat",
         "position": [
-          -8.0,
+          -18.0,
           -151.0
         ],
-        "rotation": 0
+        "rotation": 180
       },
       {
-        "piece": "Barrel",
+        "piece": "Mushroom_Tall",
         "position": [
           -31.0,
           -161.0
         ],
-        "rotation": 120
+        "rotation": 15
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -31.0,
+          -151.0
+        ],
+        "rotation": 105
       },
       {
         "piece": "Mushroom_Cluster",
@@ -8793,15 +9049,15 @@
           -8.0,
           -149.0
         ],
-        "rotation": 30
+        "rotation": 90
       },
       {
-        "piece": "Barrel",
+        "piece": "Mushroom_Cluster",
         "position": [
           -18.0,
-          -149.0
+          -139.0
         ],
-        "rotation": 180
+        "rotation": 345
       },
       {
         "piece": "Banner_1",
@@ -8860,7 +9116,7 @@
           -91.6,
           -91.4
         ],
-        "rotation": 210
+        "rotation": 285
       },
       {
         "piece": "Mushroom_Tall",
@@ -8868,7 +9124,7 @@
           -74.6,
           -76.8
         ],
-        "rotation": 300
+        "rotation": 255
       },
       {
         "piece": "Barrel",
@@ -8876,7 +9132,7 @@
           -92.2,
           -76.4
         ],
-        "rotation": 15
+        "rotation": 255
       },
       {
         "piece": "Crate_Wooden",
@@ -8884,7 +9140,7 @@
           -74.0,
           -91.6
         ],
-        "rotation": 105
+        "rotation": 345
       },
       {
         "piece": "Barrel",
@@ -8892,7 +9148,7 @@
           80.2,
           -26.6
         ],
-        "rotation": 45
+        "rotation": 0
       },
       {
         "piece": "Crate_Wooden",
@@ -8900,7 +9156,7 @@
           80.3,
           -21.4
         ],
-        "rotation": 240
+        "rotation": 330
       },
       {
         "piece": "Bucket_Wooden_1",
@@ -8908,7 +9164,7 @@
           73.4,
           -26.6
         ],
-        "rotation": 255
+        "rotation": 165
       }
     ],
     "passive": true
