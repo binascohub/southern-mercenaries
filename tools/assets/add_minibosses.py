@@ -54,7 +54,7 @@ def set_monsters(area, enc_id, mons):
             e["monsters"] = mons
 
 
-add_encounter("sewers_02_canals", {"id": "s2_frog_king", "position": [0, -58], "monsters": [{"monster": "frog_king", "count": 1}]})
+# (o Rei dos Sapos do Esgoto agora vem de tools/assets/build_sewer_map.py: o Esgoto é um mapa só)
 add_encounter("forest_01_path", {"id": "f_viper_queen", "position": [-3, -78], "monsters": [{"monster": "viper_queen", "count": 1}]})
 set_monsters("forest_01_path", "f_viper_queen", [{"monster": "viper_queen", "count": 1}, {"monster": "forest_tomb_guardian", "count": 1}])
 # A Toca dos Répteis fica só com o Rei Golem e o Guardião: os bandos de répteis saíram do mapa.

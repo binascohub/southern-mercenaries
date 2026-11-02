@@ -1,0 +1,522 @@
+{
+  "_comment": "Retrato dos dados antigos do Esgoto (4 áreas) tirado antes de fundi-las em um mapa só (tools/assets/build_sewer_map.py): estilo, decoração da entrada, e a decoração, os objetos e as poças do Ninho (a sala do chefe), mais o brasão da Passagem da Guerra. O gerador lê daqui para poder rodar de novo.",
+  "style": {
+    "_comment": "Esgoto: tijolos irregulares do kit cobertos de limo (tinta verde-escura), piso de tijolos; a parede sul fica aberta para a câmera. Água em lodo verde (prototype_arena.gd). Sujeira escorrendo nas paredes e poças de água suja (só visual) no chão.",
+    "walls": [
+      "Wall_UnevenBrick_Straight",
+      "Wall_UnevenBrick_Straight",
+      "Wall_UnevenBrick_Window_Wide_Round",
+      "Wall_UnevenBrick_Straight",
+      "Wall_UnevenBrick_Door_Round"
+    ],
+    "floor": "Floor_UnevenBrick",
+    "low": "",
+    "ground": [
+      0.04,
+      0.05,
+      0.035
+    ],
+    "tint": [
+      0.5,
+      0.58,
+      0.42
+    ],
+    "grime": true,
+    "puddles": true,
+    "trash": true,
+    "spiders": true,
+    "grates": true
+  },
+  "entry_decor": [
+    {
+      "piece": "Barrel",
+      "position": [
+        -5.5,
+        -4.5
+      ],
+      "rotation": 20
+    },
+    {
+      "piece": "Bucket_Wooden_1",
+      "position": [
+        -4.6,
+        -5.2
+      ]
+    },
+    {
+      "piece": "Crate_Wooden",
+      "position": [
+        5.5,
+        -4.3
+      ],
+      "rotation": 10
+    },
+    {
+      "piece": "Rope_1",
+      "position": [
+        4.4,
+        -5.0
+      ]
+    },
+    {
+      "piece": "Mushroom_Cluster",
+      "position": [
+        -6.4,
+        -5.4
+      ],
+      "rotation": 0
+    }
+  ],
+  "entry_breakables": [
+    {
+      "id": "b1",
+      "monster": "barrel",
+      "position": [
+        5,
+        -3
+      ]
+    },
+    {
+      "id": "b2",
+      "monster": "crate",
+      "position": [
+        -5,
+        -2
+      ]
+    },
+    {
+      "id": "pot1",
+      "monster": "pot",
+      "position": [
+        -6,
+        -5
+      ]
+    },
+    {
+      "id": "pot2",
+      "monster": "pot",
+      "position": [
+        6.2,
+        -5.2
+      ]
+    }
+  ],
+  "nest_decor": [
+    {
+      "piece": "Cage_Small",
+      "position": [
+        -14.5,
+        -21.0
+      ]
+    },
+    {
+      "piece": "Cage_Small",
+      "position": [
+        14.3,
+        -22.0
+      ],
+      "rotation": 30
+    },
+    {
+      "piece": "Bag",
+      "position": [
+        -13.6,
+        -24.0
+      ]
+    },
+    {
+      "piece": "Coin_Pile",
+      "position": [
+        13.2,
+        -50.5
+      ]
+    },
+    {
+      "piece": "Bucket_Wooden_1",
+      "position": [
+        -14.6,
+        -50.0
+      ]
+    },
+    {
+      "piece": "Barrel",
+      "position": [
+        14.6,
+        -30.0
+      ],
+      "rotation": 60
+    },
+    {
+      "piece": "Crate_Wooden",
+      "position": [
+        -14.6,
+        -36.0
+      ],
+      "rotation": 10
+    },
+    {
+      "light": [
+        0.4,
+        0.7,
+        0.35
+      ],
+      "position": [
+        -9,
+        -46
+      ],
+      "range": 9,
+      "energy": 0.8,
+      "y": 0.6
+    },
+    {
+      "light": [
+        0.85,
+        0.25,
+        0.15
+      ],
+      "position": [
+        0,
+        -36
+      ],
+      "range": 14,
+      "energy": 0.6,
+      "y": 3.0
+    },
+    {
+      "piece": "Mushroom_Cluster",
+      "position": [
+        -15.3,
+        -20
+      ],
+      "rotation": 0
+    },
+    {
+      "piece": "Mushroom_Tall",
+      "position": [
+        15.3,
+        -50.5
+      ],
+      "rotation": 67
+    },
+    {
+      "piece": "Mushroom_Flat",
+      "position": [
+        -15.2,
+        -32
+      ],
+      "rotation": 134
+    },
+    {
+      "piece": "Mushroom_Cluster",
+      "position": [
+        14.8,
+        -21
+      ],
+      "rotation": 201
+    },
+    {
+      "piece": "Gold_Pile_4",
+      "position": [
+        -2.4,
+        -49.8
+      ],
+      "rotation": 15
+    },
+    {
+      "piece": "Gold_Pile_3",
+      "position": [
+        2.5,
+        -48.4
+      ],
+      "rotation": -20
+    },
+    {
+      "piece": "Gold_Pile_2",
+      "position": [
+        -1.2,
+        -47.3
+      ],
+      "rotation": 40
+    },
+    {
+      "piece": "Gold_Pile_5",
+      "position": [
+        1.9,
+        -50.6
+      ],
+      "rotation": 200
+    },
+    {
+      "piece": "Gold_Pile_1",
+      "position": [
+        3.6,
+        -49.9
+      ],
+      "rotation": 75
+    },
+    {
+      "piece": "Gold_Pile_4",
+      "position": [
+        12.0,
+        -48.8
+      ],
+      "rotation": 330
+    },
+    {
+      "piece": "Gold_Pile_2",
+      "position": [
+        14.3,
+        -49.0
+      ],
+      "rotation": 110
+    },
+    {
+      "piece": "Gold_Pile_3",
+      "position": [
+        11.4,
+        -51.2
+      ],
+      "rotation": 260
+    },
+    {
+      "piece": "Gold_Pile_1",
+      "position": [
+        13.6,
+        -52.0
+      ],
+      "rotation": 20
+    },
+    {
+      "piece": "Gold_Pile_5",
+      "position": [
+        8.6,
+        -52.0
+      ],
+      "rotation": 300
+    },
+    {
+      "piece": "Gold_Pile_2",
+      "position": [
+        -5.6,
+        -52.0
+      ],
+      "rotation": 150
+    },
+    {
+      "piece": "Gold_Bed",
+      "position": [
+        0.6,
+        -49.3
+      ],
+      "rotation": 20,
+      "y": -0.4
+    },
+    {
+      "piece": "Gold_Bed",
+      "position": [
+        12.6,
+        -50.4
+      ],
+      "rotation": 200,
+      "scale": 0.7,
+      "y": -0.4
+    }
+  ],
+  "nest_breakables": [
+    {
+      "id": "b3",
+      "monster": "barrel",
+      "position": [
+        13,
+        -22
+      ]
+    },
+    {
+      "id": "b4",
+      "monster": "crate",
+      "position": [
+        -13,
+        -22
+      ]
+    },
+    {
+      "id": "pot2",
+      "monster": "pot",
+      "position": [
+        -15,
+        -25
+      ]
+    },
+    {
+      "id": "pot3",
+      "monster": "pot",
+      "position": [
+        15,
+        -25
+      ]
+    },
+    {
+      "id": "pot4",
+      "monster": "pot",
+      "position": [
+        -15,
+        -45
+      ]
+    },
+    {
+      "id": "pot5",
+      "monster": "pot",
+      "position": [
+        15,
+        -45
+      ]
+    },
+    {
+      "id": "pot6",
+      "monster": "pot",
+      "position": [
+        -12,
+        -52
+      ]
+    }
+  ],
+  "nest_hazards": [
+    {
+      "position": [
+        -10,
+        -30
+      ],
+      "radius": 2.0
+    },
+    {
+      "position": [
+        11,
+        -44
+      ],
+      "radius": 1.8
+    }
+  ],
+  "nest_props": [
+    {
+      "id": "nest_water",
+      "kind": "water",
+      "position": [
+        -9,
+        -46
+      ],
+      "size": [
+        12,
+        10
+      ]
+    },
+    {
+      "id": "war_treasure",
+      "kind": "chest",
+      "name_key": "PROP_WAR_TREASURE",
+      "position": [
+        0,
+        -49
+      ],
+      "loot": "treasure_sewers",
+      "key": "key_rat_queen",
+      "model": "Treasure_Chest"
+    },
+    {
+      "id": "return_portal",
+      "kind": "exit",
+      "name_key": "PROP_RETURN_PORTAL",
+      "position": [
+        8,
+        -48
+      ],
+      "to": "tortuga",
+      "entry": "sewer",
+      "expedition_end": true,
+      "after_victory": true
+    }
+  ],
+  "war_crest": {
+    "id": "war_crest",
+    "kind": "sign",
+    "look": "crest",
+    "name_key": "PROP_WAR_CREST",
+    "position": [
+      0,
+      -40
+    ],
+    "text_key": "SIGN_WAR_CREST",
+    "archer_key": "SIGN_WAR_CREST_ARCHER"
+  },
+  "war_decor": [
+    {
+      "piece": "Banner_1",
+      "position": [
+        -7.6,
+        -40.6
+      ],
+      "y": 0.2
+    },
+    {
+      "piece": "Banner_1",
+      "position": [
+        7.6,
+        -40.6
+      ],
+      "y": 0.2
+    },
+    {
+      "piece": "WeaponStand",
+      "position": [
+        -7.4,
+        -26.5
+      ],
+      "rotation": 90
+    },
+    {
+      "piece": "Shield_Wooden",
+      "position": [
+        7.6,
+        -26.6
+      ],
+      "rotation": -90,
+      "y": 0.3
+    },
+    {
+      "piece": "Sword_Bronze",
+      "position": [
+        3.0,
+        -39.0
+      ],
+      "rotation": 60,
+      "y": 0.05
+    },
+    {
+      "piece": "Axe_Bronze",
+      "position": [
+        -3.2,
+        -28.0
+      ],
+      "rotation": -40,
+      "y": 0.05
+    }
+  ],
+  "secret_elite": {
+    "id": "s1_secret",
+    "position": [
+      37,
+      -26
+    ],
+    "monsters": [
+      {
+        "monster": "plague_frog",
+        "count": 1,
+        "rank": "elite",
+        "modifier": "toxic"
+      },
+      {
+        "monster": "plague_frog",
+        "count": 1
+      }
+    ]
+  }
+}

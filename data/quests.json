@@ -5,7 +5,7 @@
     "desc_key": "QUEST_SEWER_TREASURE_DESC",
     "type": "main",
     "giver": "old_drunk",
-    "area": "sewers_04_nest",
+    "area": "sewers_01_drains",
     "target_element": "earth",
     "unlocks": "sewer_entrance",
     "reward": {
@@ -143,6 +143,36 @@
     "reward": {
       "gold": 140,
       "xp": 260
+    }
+  },
+  "sewer_old_gator": {
+    "name_key": "QUEST_SEWER_OLD_GATOR",
+    "desc_key": "QUEST_SEWER_OLD_GATOR_DESC",
+    "type": "village",
+    "giver": "sewer_scavenger",
+    "area": "sewers_01_drains",
+    "clear": [
+      "sw_old_gator"
+    ],
+    "target_element": "fire",
+    "reward": {
+      "gold": 220,
+      "xp": 380
+    }
+  },
+  "sewer_frog_king": {
+    "name_key": "QUEST_SEWER_FROG_KING",
+    "desc_key": "QUEST_SEWER_FROG_KING_DESC",
+    "type": "village",
+    "giver": "sewer_ratcatcher",
+    "area": "sewers_01_drains",
+    "clear": [
+      "sw_frog_king"
+    ],
+    "target_element": "air",
+    "reward": {
+      "gold": 140,
+      "xp": 220
     }
   }
 }

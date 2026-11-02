@@ -1026,10 +1026,17 @@ func _update_thumbnail(delta: float) -> void:
 	SaveSystem.save_thumbnail(_campaign.id, image)
 
 
-## Vitória: todos os encontros da área final vencidos (as outras áreas só
-## contam o progresso; a saída leva adiante).
+## Vitória: todos os encontros da área final vencidos, ou só os de "victory_groups"
+## quando a área os lista (as outras áreas só contam o progresso; a saída leva adiante).
 func _is_won(done: int) -> bool:
-	return arena.get("final", false) and total_encounters > 0 and done >= total_encounters
+	if not arena.get("final", false) or total_encounters == 0:
+		return false
+	# victory_groups: a vitória é vencer só estes grupos (o chefe do mapa), sem precisar limpar o resto do mapa.
+	var need: Array = arena.get("victory_groups", [])
+	if not need.is_empty():
+		var dead: Array = _campaign.get("dead_groups", [])
+		return need.all(func(id: String) -> bool: return id in dead)
+	return done >= total_encounters
 
 
 ## Depois da vitória, a área de teste pode ser jogada de novo do zero.
@@ -1054,7 +1061,7 @@ func _spawn_group(encounter: Dictionary) -> void:
 		var angle := TAU * i / entries.size()
 		var offset := Vector3(cos(angle), 0, sin(angle)) * (spread if entries.size() > 1 else 0.0)
 		var enemy: Enemy = _enemy_spawner.spawn({
-			"monster_id": entries[i].monster, "group": encounter.id, "level": arena.get("area_level", 1),
+			"monster_id": entries[i].monster, "group": encounter.id, "level": int(encounter.get("level", arena.get("area_level", 1))),
 			"position": center + offset, "yaw": randf() * TAU,
 			"rank": entries[i].get("rank", ""), "modifier": entries[i].get("modifier", ""),
 		})
@@ -1696,13 +1703,15 @@ func _build_props() -> void:
 	_refresh_visitors()
 
 
-func _build_prop(prop: Dictionary) -> void:
+func _build_prop(prop_data: Dictionary) -> void:
+	# "route": o objeto anda (o mercador pirata); a cópia guarda a posição de agora e os dados ficam intactos.
+	var prop := prop_data.duplicate(true) if prop_data.has("route") else prop_data
 	# Cenário (navio, mar, pontes) não é interagível.
 	if prop.kind not in ["ship", "water", "bridge"]:
 		_props.append(prop)
 	if true:
 		var at := Vector3(prop.position[0], 0, prop.position[1])
-		var node := Node3D.new()
+		var node: Node3D = Wanderer.new() if prop.has("route") else Node3D.new()
 		node.name = String(prop.id)
 		_area_root.add_child(node)
 		node.position = at
@@ -1712,8 +1721,19 @@ func _build_prop(prop: Dictionary) -> void:
 			"shop" when prop.get("look", "") == "vendor":
 				# Vendedor em pé (o pirata na frente do navio): corpo e lenço na cabeça.
 				var c: Array = prop.get("color", [0.6, 0.2, 0.15])
-				if _npc_body(node, {"sex": "male", "hair": ["Hair_Buzzed", "Hair_Beard"], "hair_color": [0.08, 0.06, 0.05],
-						"pose": "talk", "outfit": {"body": "copper", "feet": "iron", "head": "cloth"}}) == null:
+				var vendor := _npc_body(node, {"sex": "male", "hair": ["Hair_Buzzed", "Hair_Beard"], "hair_color": [0.08, 0.06, 0.05],
+						"pose": "talk", "outfit": {"body": "copper", "feet": "iron", "head": "cloth"}})
+				if node is Wanderer:
+					# Mercador ambulante: vai e volta pela rota; a loja abre onde ele estiver.
+					var walker := node as Wanderer
+					var route: Array = prop.route
+					walker.from = Vector3(route[0][0], 0, route[0][1])
+					walker.to = Vector3(route[1][0], 0, route[1][1])
+					walker.speed = float(prop.get("speed", 1.0))
+					walker.synced = true
+					walker.tracked = prop
+					walker.model = vendor
+				if vendor == null:
 					var body := CapsuleMesh.new()
 					body.radius = 0.35
 					body.height = 1.7
@@ -1780,13 +1800,13 @@ func _build_prop(prop: Dictionary) -> void:
 					look = {"sex": "male" if h % 2 == 0 else "female", "hair": hairs[h % 2 * 2 + (h / 2) % 2],
 						"hair_color": colors[(h / 4) % colors.size()], "pose": "sit", "outfit": {"body": "cloth"} if h % 3 == 0 else {}}
 				var seated_woman: bool = prop.has("visitor_name") and look.get("sex", "") == "female" and _visitor_woman(node)
-				var own_model: Node3D = NpcModel.create(String(prop.npc)) if String(prop.npc) in ["voodoo_priest", "priest", "castle_guard", "court_jester", "seated_pirate", "elf_archer", "ruins_spartan", "old_lady", "forest_pyre_keeper"] else null
+				var own_model: Node3D = NpcModel.create(String(prop.npc)) if String(prop.npc) in ["voodoo_priest", "priest", "castle_guard", "court_jester", "seated_pirate", "elf_archer", "ruins_spartan", "old_lady", "forest_pyre_keeper", "sewer_scavenger"] else null
 				var statue_kit: String = prop.get("kit", "")
 				if statue_kit != "" and _kit(node, statue_kit, Transform3D(Basis(Vector3.UP, deg_to_rad(float(prop.get("rotation", 0.0)))), Vector3.ZERO)):
 					pass  # estátua do mapa: a peça do kit no lugar do corpo humano
 				elif own_model:
 					node.add_child(own_model)
-					if own_model.has_method("set_pose") and String(prop.npc) in ["seated_pirate", "old_lady"]:
+					if own_model.has_method("set_pose") and String(prop.npc) in ["seated_pirate", "old_lady", "sewer_scavenger"]:
 						own_model.call("set_pose", "sit" if String(prop.npc) == "old_lady" else "idle")  # o Macumbeiro (mago de capuz) e o Padre (monge) têm modelo próprio
 				elif not seated_woman and _npc_body_with_instrument(node, look) == null:
 					var body := CapsuleMesh.new()

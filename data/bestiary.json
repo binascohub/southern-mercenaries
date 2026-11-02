@@ -49,7 +49,6 @@
     "element": "water",
     "map": "map_sewers",
     "monsters": [
-      "sewer_gator",
       "old_gator"
     ]
   },

@@ -15,7 +15,8 @@ static func open_maps(unlocked: Array) -> Array[String]:
 	var maps: Array[String] = []
 	for id: String in GameData.arenas:
 		var unlock: String = GameData.arenas[id].get("side_quests_unlock", "")
-		if unlock != "" and unlock in unlocked:
+		# Mapa sem criatura comum para caçar (só chefes, como o Esgoto) não recebe missões de visitantes.
+		if unlock != "" and unlock in unlocked and not creatures_in(id).is_empty():
 			maps.append(id)
 	return maps
 
@@ -26,6 +27,9 @@ static func creatures_in(area_id: String) -> Array[String]:
 	var present := {}
 	for encounter: Dictionary in GameData.arenas.get(area_id, {}).get("encounters", []):
 		for entry: Dictionary in encounter.monsters:
+			# Chefes e mini-chefes (mapa único com chefe dentro) não entram em caçadas nem em histórias de visitantes.
+			if GameData.monsters.get(entry.monster, {}).get("category", "") in ["boss", "miniboss"]:
+				continue
 			present[entry.monster] = true
 	var found: Array[String] = []
 	for id: String in GameData.bestiary:

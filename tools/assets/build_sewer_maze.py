@@ -1,3 +1,8 @@
+"""OBSOLETO: o Esgoto agora é um mapa só e maior; use tools/assets/build_sewer_map.py (este script refazia só a Área 1 e quebraria o mapa novo)."""
+import sys
+sys.exit("obsoleto: rode tools/assets/build_sewer_map.py")
+
+# --- script antigo, só para consulta ---
 """Gera o labirinto do Esgoto, área 1 (Bueiros da Rua Principal), em data/arenas.json.
 Uma grade de 5 x 6 células de 8 m entre a sala de entrada e o fundo (o resto do mapa
 fica como está); as salas vizinhas na horizontal têm 1 m de vão, as da vertical se

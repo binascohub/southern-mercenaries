@@ -2,19 +2,19 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yryc3ggsxk0p"
-path="res://.godot/imported/diablous_diablous_texture.jpg-fa1f8ea90e6980bce6ae336e037434e1.ctex"
+uid="uid://wk1t6ls3tugj"
+path="res://.godot/imported/spiderman_spider_atlas.webp-93a246ae4f27b46e00d8b2519bb9a8e8.ctex"
 metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "a3004e619fa6a410b014921ac146ed42"
+"md5": "efdca0329da3c9189dc07f78ea64af2c"
 }
 
 [deps]
 
-source_file="res://assets/models/monsters/diablous_diablous_texture.jpg"
-dest_files=["res://.godot/imported/diablous_diablous_texture.jpg-fa1f8ea90e6980bce6ae336e037434e1.ctex"]
+source_file="res://assets/models/characters/spiderman_spider_atlas.webp"
+dest_files=["res://.godot/imported/spiderman_spider_atlas.webp-93a246ae4f27b46e00d8b2519bb9a8e8.ctex"]
 
 [params]
 

@@ -107,6 +107,10 @@ const MODELS := {
 			"shoe": [0.35, 0.24, 0.15], "hair": [0.50, 0.22, 0.09], "hair.001": [0.50, 0.22, 0.09]}},
 	# Capitão pirata (Clint Bellanger, CC BY 3.0): preso ao esqueleto dos heróis
 	# por tools/assets/rig_to_ual.py, com as animações deles; texturas geradas.
+	# Catador do Esgoto (The Amazing Spider-Man 2 suit, Ugo9p1, modelo comprado, crédito pedido pelo autor): malha em T-pose presa ao
+	# esqueleto dos heróis por tools/assets/rig_to_ual.py (ver tools/assets/build_spiderman.py), com as animações deles.
+	"sewer_scavenger": {"scene": "res://assets/models/characters/spiderman.glb", "scale": 1.0,
+		"poses": {"idle": "Dance_Loop", "talk": "Dance_Loop", "stand": "Dance_Loop"}},  # o Catador vive dançando (a dança dos heróis), até quando conversa
 	"pirate_captain": {"scene": "res://assets/models/characters/pirate_captain.glb", "scale": 1.0,
 		"poses": {"walk": "Walk_Loop", "idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "drink": "Consume"}},
 	# Guarda (Brigand, anthonymyers, CC BY 3.0): parado na pose do modelo, de

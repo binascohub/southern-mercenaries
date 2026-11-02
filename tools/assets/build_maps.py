@@ -1771,7 +1771,7 @@ arenas["tortuga"]["props"] = [p for p in arenas["tortuga"]["props"] if p["id"] !
     {"id": "docks_gate", "kind": "exit", "name_key": "PROP_TO_DOCKS", "position": [3, -26.8], "to": "docks_01_pier", "entry": "start"}]
 
 # --- Bolsa de moedas: uma por mapa de expedição; ao bater nela, cai ouro (data/loot.json "coin_bag") --------
-for key in ("docks_01_pier", "sewers_01_drains", "sewers_02_canals", "sewers_03_war_passage", "sewers_04_nest", "forest_01_path", "ruins_01_city",
+for key in ("docks_01_pier", "sewers_01_drains", "forest_01_path", "ruins_01_city",
             "cemetery_01_yard", "dark_forest_01_woods", "fort_01_gate", "mine_01_crystal_vein"):
     area = arenas[key]
     start = area["entries"]["start"]

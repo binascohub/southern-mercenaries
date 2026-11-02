@@ -2344,9 +2344,6 @@ msgstr "Dragãozinho Dourado"
 msgid "MONSTER_ACID_TOAD"
 msgstr "Sapo Ácido"
 
-msgid "MONSTER_SEWER_GATOR"
-msgstr "Jacaré do Esgoto"
-
 msgid "MONSTER_OLD_GATOR"
 msgstr "Jacaré Velho"
 
@@ -2354,7 +2351,7 @@ msgid "MONSTER_RAT_QUEEN"
 msgstr "Feiticeiro-Aranha"
 
 msgid "ARENA_SEWERS_DRAINS"
-msgstr "Esgoto — Bueiros da Rua Principal"
+msgstr "Esgoto de Tortuga"
 
 msgid "ARENA_SEWERS_CANALS"
 msgstr "Esgoto — Canais de Lixo"
@@ -2815,9 +2812,6 @@ msgstr "A Carne Selvagem está com o Alfa da Matilha, nas Ruínas. A mesa do rei
 msgid "DLG_JESTER_BANQUET_DONE"
 msgstr "Que banquete, que banquete! O rei comeu como nunca. Vocês têm um amigo no castelo."
 
-msgid "MONSTER_LUCIFER"
-msgstr "Lúcifer"
-
 msgid "NPC_RUINS_SPARTAN"
 msgstr "Leônidas, o Veterano"
 
@@ -3000,3 +2994,87 @@ msgstr "O Leshy dorme no fundo do bosque. Levem Fogo, meus queridos."
 
 msgid "DLG_OLD_LADY_DONE"
 msgstr "Então o bosque respira de novo. Que bom ter vocês por aqui."
+
+msgid "NPC_SEWER_SCAVENGER"
+msgstr "Catador do Esgoto"
+
+msgid "NPC_SEWER_RATCATCHER"
+msgstr "Caçador de Pragas"
+
+msgid "QUEST_SEWER_OLD_GATOR"
+msgstr "O Gator Velho"
+
+msgid "QUEST_SEWER_OLD_GATOR_DESC"
+msgstr "O Catador do Esgoto quer a Passagem Secreta da Guerra de volta: derrote o Gator Velho, na praça do lado leste do esgoto."
+
+msgid "DLG_SEWER_GATOR_1"
+msgstr "Psiu! Eu catava tralha por aqui, até o Gator Velho tomar a Passagem da Guerra."
+
+msgid "DLG_SEWER_GATOR_2"
+msgstr "Ele só sai da água quando alguém chega perto, e anda sempre com os jacarés menores."
+
+msgid "DLG_SEWER_GATOR_3"
+msgstr "A praça dele fica no lado leste do fundo do labirinto. Derrubem o bicho e a passagem volta a ser nossa."
+
+msgid "DLG_SEWER_GATOR_ACTIVE"
+msgstr "O Gator Velho ainda manda na Passagem da Guerra. Sigam pelo leste, rumo ao fundo."
+
+msgid "DLG_SEWER_GATOR_DONE"
+msgstr "O Velho caiu? Então a Passagem é nossa. Obrigado, de coração."
+
+msgid "QUEST_SEWER_FROG_KING"
+msgstr "O Rei dos Sapos"
+
+msgid "QUEST_SEWER_FROG_KING_DESC"
+msgstr "O Caçador de Pragas quer acabar com a praga de sapos: derrote o Rei dos Sapos, na praça do lado oeste do esgoto."
+
+msgid "DLG_SEWER_FROG_1"
+msgstr "Pragas eu conheço bem. Mas esta é diferente: um sapo coroado que manda em todos os outros."
+
+msgid "DLG_SEWER_FROG_2"
+msgstr "O Rei dos Sapos reina numa praça do lado oeste, entre as poças, cercado de sapos."
+
+msgid "DLG_SEWER_FROG_3"
+msgstr "Derrubem ele e a praga acaba. Eu pago bem, não precisam nem pedir duas vezes."
+
+msgid "DLG_SEWER_FROG_ACTIVE"
+msgstr "O Rei dos Sapos ainda reina no oeste. Sigam o coaxar: ele está perto das poças grandes."
+
+msgid "DLG_SEWER_FROG_DONE"
+msgstr "Silêncio! Que paz. O esgoto respira de novo."
+
+msgid "PROP_SEWER_SECTOR_1"
+msgstr "Bueiros da Rua Principal"
+
+msgid "SIGN_SEWER_SECTOR_1"
+msgstr "Setor 1 — Bueiros da Rua Principal. Sapos Pestilentos em bandos; fique de olho nos becos."
+
+msgid "PROP_SEWER_SECTOR_2"
+msgstr "Canais de Lixo"
+
+msgid "SIGN_SEWER_SECTOR_2"
+msgstr "Setor 2 — Canais de Lixo. Sapos Ácidos cospem de longe; a praça do Rei dos Sapos fica ao oeste."
+
+msgid "PROP_SEWER_SECTOR_3"
+msgstr "Galerias dos Morcegos"
+
+msgid "SIGN_SEWER_SECTOR_3"
+msgstr "Setor 3 — Galerias dos Morcegos. Bandos de morcegos pestilentos; o posto do Caçador de Pragas fica a leste."
+
+msgid "PROP_SEWER_SECTOR_4"
+msgstr "Passagem Secreta da Guerra"
+
+msgid "SIGN_SEWER_SECTOR_4"
+msgstr "Setor 4 — Passagem Secreta da Guerra. Jacarés à espreita na água; a praça do Gator Velho fica ao leste."
+
+msgid "PROP_SEWER_SECTOR_5"
+msgstr "Câmaras dos Cogumelos"
+
+msgid "SIGN_SEWER_SECTOR_5"
+msgstr "Setor 5 — Câmaras dos Cogumelos. Tios-Cogumelo pesados e escorpiões; o túnel do Ninho sai pelo sul."
+
+msgid "PROP_SEWER_NEST"
+msgstr "Ninho da Rainha"
+
+msgid "SIGN_SEWER_NEST"
+msgstr "Ninho da Rainha dos Ratos. O Tesouro Perdido da Guerra dorme com ela. Voltem equipados."

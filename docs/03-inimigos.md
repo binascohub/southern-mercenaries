@@ -104,7 +104,6 @@ Decisão do autor: **o jogo não é feito de ondas (waves)**. O jogador **explor
 | `mutant_rat` | Ratazana Mutante | Terra | Fogo | `melee_rush` | 110 | 12 | Média | Do tamanho de um cão; investida curta; costuma ser elite |
 | `plague_bat` | Morcego Pestilento | Ar | Terra | `flyer` + `swarm` | 25 | 5 | Rápida | Bandos que saem do teto; guinchos que deixam lento |
 | `acid_toad` | Sapo Ácido | Água | Ar | `ranged_kite` | 50 | 9 | Lenta | Cospe ácido à distância, que deixa poça tóxica no chão |
-| `sewer_gator` | Jacaré do Esgoto | Água | Ar | `ambush` | 150 | 16 | Média (rápida no bote) | Escondido na água; bote com aviso (bolhas); arrasta a vítima |
 
 ### Fúria do Feiticeiro (mecânica do mapa — proposta)
 - Cada **Rato Pestilento** (familiar dele) morto no mapa deixa o Feiticeiro mais furioso: **+1% de dano** na luta final, até **+20%**.

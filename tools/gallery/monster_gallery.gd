@@ -3,6 +3,7 @@ extends Node3D
 ## Galeria de monstros: todos os monstros de data/monsters.json em grade, cada um com nome e id.
 ##
 ##   XDG_DATA_HOME=$(mktemp -d) godot --path . res://tools/gallery/monster_gallery.tscn
+##   ... res://tools/gallery/monster_gallery.tscn -- unused   (só os monstros que nenhum mapa usa ainda)
 ## Controles: W A S D andam, Q / E descem e sobem, Shift acelera; botão direito + arrastar olha; Esc fecha.
 
 const COLUMNS := 8
@@ -26,6 +27,8 @@ func _ready() -> void:
 	sun.rotation_degrees = Vector3(-55, 30, 0)
 	add_child(sun)
 	var ids: Array = GameData.monsters.keys()
+	if "unused" in OS.get_cmdline_user_args():
+		ids = _unused_ids()
 	var rows := ceili(ids.size() / float(COLUMNS))
 	for i in ids.size():
 		var id: String = ids[i]
@@ -48,6 +51,30 @@ func _ready() -> void:
 	_cam.global_position = Vector3((COLUMNS - 1) * CELL / 2.0, 40, rows * CELL + 20)
 	_cam.rotation = Vector3(_pitch, 0, 0)
 	_cam.make_current()
+
+
+## Monstros que nenhuma área usa: não aparecem nas áreas (encontros, quebráveis, ondas) nem nos
+## dados dos outros monstros (invocações), e não têm "guaranteed_spawn" (aparecem em todo mapa).
+func _unused_ids() -> Array:
+	var arenas_text := JSON.stringify(GameData.arenas)
+	var others := {}
+	for id: String in GameData.monsters:
+		if GameData.monsters[id].has("guaranteed_spawn"):
+			continue
+		others[id] = true
+	var result: Array = []
+	for id: String in others:
+		var quoted := '"%s"' % id
+		if arenas_text.contains(quoted):
+			continue
+		var referenced := false
+		for other: String in GameData.monsters:
+			if other != id and JSON.stringify(GameData.monsters[other]).contains(quoted):
+				referenced = true
+				break
+		if not referenced:
+			result.append(id)
+	return result
 
 
 func _unhandled_input(event: InputEvent) -> void:

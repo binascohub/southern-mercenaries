@@ -146,8 +146,9 @@ for o in bpy.context.view_layer.objects:
     o.select_set(False)
 body.select_set(True)
 bpy.context.view_layer.objects.active = body
-with bpy.context.temp_override(active_object=body, object=body, selected_objects=[body], selected_editable_objects=[body]):
-    bpy.ops.object.bake(type="DIFFUSE", pass_filter={"COLOR"}, margin=4)
+if any(m and m.name in KINDS and m.name in colors for m in mesh.materials):  # sem materiais procedurais, não há o que gravar
+    with bpy.context.temp_override(active_object=body, object=body, selected_objects=[body], selected_editable_objects=[body]):
+        bpy.ops.object.bake(type="DIFFUSE", pass_filter={"COLOR"}, margin=4)
 for mat in mesh.materials:
     if mat and mat.name in KINDS and mat.name in colors:
         nodes, links = mat.node_tree.nodes, mat.node_tree.links

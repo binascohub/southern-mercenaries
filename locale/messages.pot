@@ -2343,9 +2343,6 @@ msgstr ""
 msgid "MONSTER_ACID_TOAD"
 msgstr ""
 
-msgid "MONSTER_SEWER_GATOR"
-msgstr ""
-
 msgid "MONSTER_OLD_GATOR"
 msgstr ""
 
@@ -2800,9 +2797,6 @@ msgid "DLG_JESTER_BANQUET_ACTIVE"
 msgstr ""
 
 msgid "DLG_JESTER_BANQUET_DONE"
-msgstr ""
-
-msgid "MONSTER_LUCIFER"
 msgstr ""
 
 msgid "NPC_RUINS_SPARTAN"

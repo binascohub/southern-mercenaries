@@ -2344,9 +2344,6 @@ msgstr "Golden Baby Dragon"
 msgid "MONSTER_ACID_TOAD"
 msgstr "Acid Toad"
 
-msgid "MONSTER_SEWER_GATOR"
-msgstr "Sewer Gator"
-
 msgid "MONSTER_OLD_GATOR"
 msgstr "Old Gator"
 
@@ -2354,7 +2351,7 @@ msgid "MONSTER_RAT_QUEEN"
 msgstr "Spider Sorcerer"
 
 msgid "ARENA_SEWERS_DRAINS"
-msgstr "Sewers — Main Street Drains"
+msgstr "Tortuga Sewers"
 
 msgid "ARENA_SEWERS_CANALS"
 msgstr "Sewers — Refuse Canals"
@@ -2815,9 +2812,6 @@ msgstr "The Wild Meat is with the Pack Alpha, in the Ruins. The king's table is 
 msgid "DLG_JESTER_BANQUET_DONE"
 msgstr "What a feast, what a feast! The king ate like never before. You have a friend in the castle."
 
-msgid "MONSTER_LUCIFER"
-msgstr "Lucifer"
-
 msgid "NPC_RUINS_SPARTAN"
 msgstr "Leonidas, the Veteran"
 
@@ -3000,3 +2994,87 @@ msgstr "The Leshy sleeps deep in the woods. Take Fire with you, dears."
 
 msgid "DLG_OLD_LADY_DONE"
 msgstr "So the woods breathe again. How good to have you around."
+
+msgid "NPC_SEWER_SCAVENGER"
+msgstr "Sewer Scavenger"
+
+msgid "NPC_SEWER_RATCATCHER"
+msgstr "Pest Hunter"
+
+msgid "QUEST_SEWER_OLD_GATOR"
+msgstr "The Old Gator"
+
+msgid "QUEST_SEWER_OLD_GATOR_DESC"
+msgstr "The Sewer Scavenger wants the Secret War Passage back: defeat the Old Gator in the plaza on the east side of the sewer."
+
+msgid "DLG_SEWER_GATOR_1"
+msgstr "Psst! I used to scavenge around here, until the Old Gator took over the War Passage."
+
+msgid "DLG_SEWER_GATOR_2"
+msgstr "He only leaves the water when someone gets close, and he always brings the smaller gators."
+
+msgid "DLG_SEWER_GATOR_3"
+msgstr "His plaza is on the east side, deep in the maze. Bring him down and the passage is ours again."
+
+msgid "DLG_SEWER_GATOR_ACTIVE"
+msgstr "The Old Gator still rules the War Passage. Head east, toward the back."
+
+msgid "DLG_SEWER_GATOR_DONE"
+msgstr "The Old One fell? Then the Passage is ours. Thank you, truly."
+
+msgid "QUEST_SEWER_FROG_KING"
+msgstr "The Frog King"
+
+msgid "QUEST_SEWER_FROG_KING_DESC"
+msgstr "The Pest Hunter wants to end the frog plague: defeat the Frog King in the plaza on the west side of the sewer."
+
+msgid "DLG_SEWER_FROG_1"
+msgstr "I know pests well. But this one is different: a crowned frog that commands all the others."
+
+msgid "DLG_SEWER_FROG_2"
+msgstr "The Frog King reigns in a plaza on the west side, among the puddles, surrounded by frogs."
+
+msgid "DLG_SEWER_FROG_3"
+msgstr "Bring him down and the plague ends. I pay well, you won't need to ask twice."
+
+msgid "DLG_SEWER_FROG_ACTIVE"
+msgstr "The Frog King still reigns in the west. Follow the croaking: he is near the big puddles."
+
+msgid "DLG_SEWER_FROG_DONE"
+msgstr "Silence! What peace. The sewer breathes again."
+
+msgid "PROP_SEWER_SECTOR_1"
+msgstr "Main Street Drains"
+
+msgid "SIGN_SEWER_SECTOR_1"
+msgstr "Sector 1 — Main Street Drains. Plague frogs in packs; watch the dead ends."
+
+msgid "PROP_SEWER_SECTOR_2"
+msgstr "Garbage Canals"
+
+msgid "SIGN_SEWER_SECTOR_2"
+msgstr "Sector 2 — Garbage Canals. Acid toads spit from afar; the Frog King's plaza is to the west."
+
+msgid "PROP_SEWER_SECTOR_3"
+msgstr "Bat Galleries"
+
+msgid "SIGN_SEWER_SECTOR_3"
+msgstr "Sector 3 — Bat Galleries. Flocks of plague bats; the Pest Hunter's post is to the east."
+
+msgid "PROP_SEWER_SECTOR_4"
+msgstr "Secret War Passage"
+
+msgid "SIGN_SEWER_SECTOR_4"
+msgstr "Sector 4 — Secret War Passage. Gators lurk in the water; the Old Gator's plaza is to the east."
+
+msgid "PROP_SEWER_SECTOR_5"
+msgstr "Mushroom Chambers"
+
+msgid "SIGN_SEWER_SECTOR_5"
+msgstr "Sector 5 — Mushroom Chambers. Heavy Fungus Uncles and scorpions; the tunnel to the Nest leaves to the south."
+
+msgid "PROP_SEWER_NEST"
+msgstr "The Queen's Nest"
+
+msgid "SIGN_SEWER_NEST"
+msgstr "The Rat Queen's Nest. The War's Lost Treasure sleeps with her. Come back prepared."

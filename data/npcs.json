@@ -715,5 +715,108 @@
         ]
       }
     ]
+  },
+  "sewer_scavenger": {
+    "_comment": "Catador do Esgoto (Esgoto, sala de entrada): pede a cabeça do Gator Velho, que domina a Passagem da Guerra, no leste do fundo.",
+    "name_key": "NPC_SEWER_SCAVENGER",
+    "color": [
+      0.4,
+      0.4,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "sewer_old_gator"
+        },
+        "lines": [
+          "DLG_SEWER_GATOR_1",
+          "DLG_SEWER_GATOR_2",
+          "DLG_SEWER_GATOR_3"
+        ],
+        "offer": "sewer_old_gator"
+      },
+      {
+        "when": {
+          "quest_active": "sewer_old_gator"
+        },
+        "lines": [
+          "DLG_SEWER_GATOR_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_SEWER_GATOR_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Buzzed",
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.22,
+        0.16,
+        0.1
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "sewer_ratcatcher": {
+    "_comment": "Caçador de Pragas (Esgoto, posto do lado leste): pede o fim do Rei dos Sapos, que reina na praça oeste.",
+    "name_key": "NPC_SEWER_RATCATCHER",
+    "color": [
+      0.45,
+      0.35,
+      0.25
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "sewer_frog_king"
+        },
+        "lines": [
+          "DLG_SEWER_FROG_1",
+          "DLG_SEWER_FROG_2",
+          "DLG_SEWER_FROG_3"
+        ],
+        "offer": "sewer_frog_king"
+      },
+      {
+        "when": {
+          "quest_active": "sewer_frog_king"
+        },
+        "lines": [
+          "DLG_SEWER_FROG_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_SEWER_FROG_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "female",
+      "hair": [
+        "Hair_Buns"
+      ],
+      "hair_color": [
+        0.3,
+        0.2,
+        0.12
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
   }
 }

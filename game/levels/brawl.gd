@@ -1,16 +1,16 @@
 # Southern Mercenaries — GPL-3.0-or-later
 class_name Brawl
 extends Node3D
-## Briga de rua em Tortuga: dois brigões frente a frente trocando socos e chutes. Quem
-## ataca dá um jab, um direto ou um chute; o outro acusa o golpe (na cabeça ou no peito) e
+## Briga de rua em Tortuga: dois brigões frente a frente trocando só socos. Quem
+## ataca dá um jab ou um direto; o outro acusa o golpe (na cabeça ou no peito) e
 ## recua meio passo; depois os papéis se invertem. Depois de alguns golpes um deles cambaleia
 ## e a briga faz uma pausa e recomeça; ninguém cai no chão.
 ## Só cenário: cada PC anima o seu, sem rede (a rodinha em volta vem de "crowd" na área).
 
 const GAP := 1.0
 const EXCHANGE := 1.1
-## Chance de o golpe ser um chute.
-const KICK_CHANCE := 0.4
+## Chance de o golpe ser um chute (0: só socos).
+const KICK_CHANCE := 0.0
 ## Golpes sofridos até cambalear e a briga parar (sorteado nesta faixa a cada rodada).
 const HITS_TO_FALL := Vector2i(3, 5)
 ## Pausa (s) depois do golpe decisivo, antes de a briga recomeçar.

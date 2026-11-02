@@ -661,7 +661,7 @@ func _test_town_rules() -> void:
 ## Dois mini-chefes por mapa de combate e as relíquias de missão do Padre da Capital.
 func _test_minibosses_and_relics() -> void:
 	var capital: Dictionary = GameData.arenas.capital_01_aurenhold
-	var maps := {"Esgoto": ["sewers_01_drains", "sewers_02_canals", "sewers_03_war_passage", "sewers_04_nest"], "Floresta": ["forest_01_path"],
+	var maps := {"Esgoto": ["sewers_01_drains"], "Floresta": ["forest_01_path"],
 		"Ruínas": ["ruins_01_city"], "Cemitério": ["cemetery_01_yard"], "Forte": ["fort_01_gate"], "Mina": ["mine_01_crystal_vein"], "Deserto": ["desert_01_canyon"]}
 	for map_name: String in maps:
 		var found := {}
@@ -710,24 +710,9 @@ func _test_side_quests() -> void:
 	rng.seed = 11
 	var campaign := SaveSystem.new_campaign()
 	_check(SideQuests.generate_visitors(campaign, rng).is_empty(), "sem mapa liberado, sem visitantes")
+	# O Esgoto (único mapa que libera visitantes) só tem chefes: sem criatura comum para caçar, ninguém chega com missão.
 	campaign.unlocked = ["sewer_entrance"]
-	var templates := {}
-	for i in 30:
-		var visitors := SideQuests.generate_visitors(campaign, rng)
-		_check(visitors.size() >= 2 and visitors.size() <= 4, "2 a 4 visitantes por volta")
-		for v: Dictionary in visitors:
-			var q: Dictionary = v.quest
-			templates[q.template] = true
-			_check(q.template in GameData.visitors.types[v.type].templates, "o visitante conta o tipo de história dele")
-			_check(GameData.bestiary.has(q.target) and String(q.area).begins_with("sewers_") and q.area != "sewers_04_nest",
-				"história de uma criatura do Esgoto (fora do Ninho): %s em %s" % [q.target, q.area])
-			_check(q.target in SideQuests.creatures_in(q.area), "a criatura existe na área da missão")
-			_check(SideQuests.visitor_lines(v).size() == 3, "roteiro: o que é, lenda e pista")
-			if q.template == "hunt":
-				_check(int(q.count) >= 4 and int(q.count) <= 8 and int(q.progress) == 0, "caçada de 4 a 8")
-			if q.template == "rumor":
-				_check(q.outcome in ["treasure", "ambush", "nothing"], "rumor: tesouro, emboscada ou nada")
-	_check(templates.size() == 3, "os três modelos aparecem: %s" % [templates.keys()])
+	_check(SideQuests.generate_visitors(campaign, rng).is_empty(), "Esgoto só com chefes: sem visitantes com missão")
 	_check(SideQuests.creatures_in("prototype_arena").size() == 2, "criaturas do bestiário que existem na área de teste")
 	var title := SideQuests.title({"template": "hunt", "target": "plague_frog", "area": "prototype_arena", "count": 5, "progress": 2, "status": "active"})
 	_check(title.contains("2/5"), "título da caçada com progresso: %s" % title)
@@ -805,34 +790,58 @@ func _test_opening() -> void:
 
 
 func _test_sewers() -> void:
-	var areas := ["sewers_01_drains", "sewers_02_canals", "sewers_03_war_passage", "sewers_04_nest"]
+	# O Esgoto é um mapa só, de um andar: labirinto em 5 setores, 2 praças de mini-chefe com NPC, posto do caçador, segredo e a sala do chefe.
+	var area: Dictionary = GameData.arenas.sewers_01_drains
+	for gone: String in ["sewers_02_canals", "sewers_03_war_passage", "sewers_04_nest"]:
+		_check(not GameData.arenas.has(gone), "o Esgoto é um mapa só (sem %s)" % gone)
+	_check(area.map_id == "map_sewers" and area.entries.has("start") and int(area.area_level) == 1, "Esgoto: mapa, entrada e nível 1")
 	var ids := {}
-	for i in areas.size():
-		var area: Dictionary = GameData.arenas[areas[i]]
-		_check(area.map_id == "map_sewers" and area.has("entries") and area.entries.has("start"), "%s: mapa e entrada" % areas[i])
-		_check(int(area.area_level) == (1 if i < 2 else 2), "%s: nível da área (1, 1, 2, 2)" % areas[i])
-		for encounter: Dictionary in area.encounters:
-			_check(not ids.has(encounter.id), "encontro com ID único: " + String(encounter.id))
-			ids[encounter.id] = true
-			for entry: Dictionary in encounter.monsters:
-				_check(GameData.monsters.has(entry.monster), "monstro existe: " + String(entry.monster))
-		var exits: Array = area.props.filter(func(p: Dictionary) -> bool: return p.get("id", "") == "deeper")
-		if i < 3:
-			_check(exits.size() == 1 and exits[0].to == areas[i + 1] and exits[0].get("group", false), "%s leva à área seguinte, em grupo" % areas[i])
-			_check(area.props.any(func(p: Dictionary) -> bool: return p.kind == "chest" and p.get("secret", false)), "%s tem um segredo" % areas[i])
-			_check(not area.get("final", false), "%s não é a área final" % areas[i])
-		for room: Dictionary in area.rooms:
-			for door: String in room.doors:
-				_check(door.get_slice(":", 0) in ["north", "south", "east", "west"], "porta válida: " + door)
-	var nest: Dictionary = GameData.arenas.sewers_04_nest
-	_check(nest.final and nest.encounters.any(func(e: Dictionary) -> bool: return e.monsters[0].monster == "demon_rat_queen"), "o Ninho é a área final, com a Rainha")
-	_check(nest.props.filter(func(p: Dictionary) -> bool: return p.get("after_victory", false)).size() == 1, "portal só depois da vitória")
-	_check(nest.props.any(func(p: Dictionary) -> bool: return p.kind == "chest" and p.get("key", "") == GameData.monsters.demon_rat_queen.get("drops_key", "-")),
+	for encounter: Dictionary in area.encounters:
+		_check(not ids.has(encounter.id), "encontro com ID único: " + String(encounter.id))
+		ids[encounter.id] = encounter
+		_check(int(encounter.get("level", 1)) in [1, 2], "nível do encontro %s" % encounter.id)
+		for entry: Dictionary in encounter.monsters:
+			_check(GameData.monsters.has(entry.monster), "monstro existe: " + String(entry.monster))
+	for room: Dictionary in area.rooms:
+		for door: String in room.doors:
+			_check(door.get_slice(":", 0) in ["north", "south", "east", "west"], "porta válida: " + door)
+	var maze: Array = area.rooms.filter(func(r: Dictionary) -> bool: return String(r.id).begins_with("maze_"))
+	_check(maze.size() == 63 and not area.has("deeper"), "labirinto de 7 x 9 = 63 salas (dobro do antigo), sem saída para outra área")
+	# Só os chefes do esgoto (Rei dos Sapos, Gator Velho e a Rainha) revidam, cada um sozinho.
+	var sewer_ids: Array = area.encounters.map(func(e: Dictionary) -> String: return String(e.id))
+	sewer_ids.sort()
+	_check(sewer_ids == ["sw_frog_king", "sw_old_gator", "sw_queen"], "esgoto: só os 3 encontros de chefe (%s)" % [sewer_ids])
+	_check(area.encounters.all(func(e: Dictionary) -> bool: return e.monsters.size() == 1 and GameData.monsters[e.monsters[0].monster].category in ["boss", "miniboss"]),
+		"esgoto: cada encontro é um chefe sozinho")
+	_check(not area.props.any(func(p: Dictionary) -> bool: return p.kind == "water") and area.hazards.is_empty(), "esgoto: piso de pedra, sem água nem poças")
+	# Chefes: as duas praças dos mini-chefes (missões dos NPCs) e a Rainha no Ninho, longe uns dos outros.
+	var gator_group: Dictionary = ids.get("sw_old_gator", {})
+	var frog_group: Dictionary = ids.get("sw_frog_king", {})
+	var queen_group: Dictionary = ids.get("sw_queen", {})
+	_check(not gator_group.is_empty() and gator_group.monsters.any(func(m: Dictionary) -> bool: return m.monster == "old_gator"), "praça do Gator Velho")
+	_check(not frog_group.is_empty() and frog_group.monsters.any(func(m: Dictionary) -> bool: return m.monster == "frog_king"), "praça do Rei dos Sapos")
+	_check(not queen_group.is_empty() and queen_group.monsters[0].monster == "demon_rat_queen" and int(queen_group.level) == 2, "a Rainha, nível 2")
+	var nest: Dictionary = area.rooms.filter(func(r: Dictionary) -> bool: return r.id == "nest")[0]
+	_check(nest.size[0] >= 30 and nest.size[1] >= 30 and absf(queen_group.position[0] - nest.center[0]) < nest.size[0] / 2.0 and absf(queen_group.position[1] - nest.center[1]) < nest.size[1] / 2.0,
+		"sala do chefe grande, com a Rainha dentro")
+	_check(area.final and area.victory_groups == ["sw_queen"], "a vitória é só vencer a Rainha")
+	_check(area.props.filter(func(p: Dictionary) -> bool: return p.get("after_victory", false)).size() == 1, "portal só depois da vitória")
+	_check(area.props.any(func(p: Dictionary) -> bool: return p.kind == "chest" and p.get("key", "") == GameData.monsters.demon_rat_queen.get("drops_key", "-")),
 		"tesouro trancado com a chave que a Rainha deixa cair")
-	_check(GameData.quests.sewer_treasure.area == "sewers_04_nest", "o tesouro do esgoto termina no Ninho")
-	_check(GameData.arenas.sewers_01_drains.props.any(func(p: Dictionary) -> bool: return p.get("id", "") == "return_portal"), "portal de retorno na entrada do mapa")
+	_check(area.props.any(func(p: Dictionary) -> bool: return p.kind == "chest" and p.get("secret", false)), "tem um segredo")
+	# Os 2 NPCs das missões de mini-chefe: cada missão limpa o grupo do chefe, e o NPC fica longe dele.
+	for pair: Array in [["sewer_scavenger", "sewer_old_gator", "sw_old_gator"], ["sewer_ratcatcher", "sewer_frog_king", "sw_frog_king"]]:
+		var npc_prop: Array = area.props.filter(func(p: Dictionary) -> bool: return p.get("npc", "") == pair[0])
+		var quest: Dictionary = GameData.quests.get(pair[1], {})
+		_check(npc_prop.size() == 1 and GameData.npcs.has(pair[0]) and quest.get("giver", "") == pair[0] and quest.get("area", "") == "sewers_01_drains"
+			and quest.get("clear", []) == [pair[2]], "NPC %s dá a missão %s (limpar %s)" % [pair[0], pair[1], pair[2]])
+		if npc_prop.size() == 1 and ids.has(pair[2]):
+			var d := Vector2(npc_prop[0].position[0], npc_prop[0].position[1]).distance_to(Vector2(ids[pair[2]].position[0], ids[pair[2]].position[1]))
+			_check(d > 40.0, "%s longe do chefe (%.0f m)" % [pair[0], d])
+	_check(GameData.quests.sewer_treasure.area == "sewers_01_drains", "o tesouro do esgoto termina na Rainha")
+	_check(area.props.any(func(p: Dictionary) -> bool: return p.get("id", "") == "return_portal"), "portal de retorno na entrada do mapa")
 	var grate: Array = GameData.arenas.tortuga.props.filter(func(p: Dictionary) -> bool: return p.get("id", "") == "sewer_entrance")
-	_check(grate[0].to == "sewers_01_drains", "o bueiro desce para os Bueiros da Rua Principal")
+	_check(grate[0].to == "sewers_01_drains", "o bueiro desce para o Esgoto")
 	# Categorias (03-inimigos.md): elite vida x3 e dano x1,5; mini-chefe x6/x1,8; chefe com fator 4,3.
 	var rat := Enemy.create({"monster_id": "plague_frog", "position": Vector3.ZERO, "level": 1})
 	var elite := Enemy.create({"monster_id": "plague_frog", "position": Vector3.ZERO, "level": 1, "rank": "elite", "modifier": "toxic"})
@@ -848,16 +857,15 @@ func _test_sewers() -> void:
 		e.free()
 	_check(GameData.loot.elite.items[0] >= 1 and GameData.loot.miniboss.guaranteed == "rare", "elite sempre deixa item; mini-chefe garante raro")
 	# Caçada: o bando aparece num ponto da área, com uma elite, só o que falta matar.
-	var quest := {"id": "h1", "template": "hunt", "target": "acid_toad", "area": "sewers_02_canals", "count": 5, "progress": 2, "spot": 1, "status": "active"}
+	var quest := {"id": "h1", "template": "hunt", "target": "acid_toad", "area": "sewers_01_drains", "count": 5, "progress": 2, "spot": 1, "status": "active"}
 	var hunt := SideQuests.hunt_encounter(quest)
 	_check(hunt.id == "hunt_h1" and hunt.monsters[0].rank == "elite" and hunt.monsters[0].monster == "acid_toad", "bando da caçada com uma elite")
 	_check(int(hunt.monsters[0].count) + int(hunt.monsters[1].count) == 3, "só os 3 que faltam")
-	_check(hunt.position == GameData.arenas.sewers_02_canals.quest_spots[1], "no ponto da missão")
+	_check(hunt.position == GameData.arenas.sewers_01_drains.quest_spots[1], "no ponto da missão")
 	quest.progress = 5
 	_check(SideQuests.hunt_encounter(quest).is_empty(), "caçada completa não traz bando")
-	_check(", ".join(SideQuests.open_maps(["sewer_entrance"])) == "sewers_01_drains, sewers_02_canals, sewers_03_war_passage",
-		"missões secundárias nas áreas 1 a 3 do Esgoto")
-	_check(SideQuests.creatures_in("sewers_03_war_passage").has("sewer_gator"), "o Jacaré mora na Passagem da Guerra")
+	_check(SideQuests.creatures_in("sewers_01_drains").is_empty() and SideQuests.open_maps(["sewer_entrance"]).is_empty(),
+		"o Esgoto só tem chefes: sem criaturas para caçar, sem missões secundárias de visitante")
 	# A Rainha: fases pela vida (60% e 25%).
 	var thresholds: Array = GameData.monsters.demon_rat_queen.phases
 	_check(RatQueen.phase_for(1.0, thresholds) == 1 and RatQueen.phase_for(0.61, thresholds) == 1, "fase 1 até 60%")
@@ -895,7 +903,7 @@ func _test_sewers() -> void:
 	_check(int(outcomes.get("monsters", 0)) > 300 and int(outcomes.get("monsters", 0)) < 500, "monstros em ~10%% (%d de 4000)" % int(outcomes.get("monsters", 0)))
 	var potions := int(outcomes.get("potion_health", 0)) + int(outcomes.get("potion_resource", 0))
 	_check(potions > 850 and potions < 1150, "poções em ~25%% (%d de 4000)" % potions)
-	for area_id in ["sewers_01_drains", "sewers_02_canals", "sewers_03_war_passage", "sewers_04_nest"]:
+	for area_id in ["sewers_01_drains"]:
 		var boxes: Array = GameData.arenas[area_id].get("breakables", [])
 		_check(boxes.size() >= 4 and boxes.all(func(b: Dictionary) -> bool: return GameData.monsters.get(b.monster, {}).get("breakable", false)),
 			"%s tem barris e caixotes" % area_id)
@@ -1030,13 +1038,17 @@ func _test_explore_map() -> void:
 	_check(not ExploreMap.is_seen(mask, area, Vector2(0, -63)), "o fundo da área continua em névoa")
 	_check(ExploreMap.reveal(mask, area, Vector2(0, 3)).is_empty(), "o que já foi visto não conta de novo")
 	var fraction := ExploreMap.explored_fraction(mask, area)
-	_check(fraction > 0.05 and fraction < 0.6, "fração explorada no começo: %.2f" % fraction)
+	_check(fraction > 0.01 and fraction < 0.6, "fração explorada no começo: %.2f" % fraction)
 	var copy := ExploreMap.decode(ExploreMap.encode(mask), area)
 	_check(copy == mask, "máscara volta igual do save")
 	_check(ExploreMap.decode("", area) == ExploreMap.empty(area) and ExploreMap.decode("lixo:3", area).count(1) == 0, "save sem máscara (ou de outra área) começa em névoa")
 	# Andando de sala em sala (o centro de cada uma), a área toda aparece.
 	for room: Dictionary in area.rooms:
 		ExploreMap.reveal(mask, area, Vector2(room.center[0], room.center[1]))
+		if room.size[0] > 12 or room.size[1] > 12:  # praças e Ninho: o centro não alcança os cantos
+			for sx: int in [-1, 1]:
+				for sz: int in [-1, 1]:
+					ExploreMap.reveal(mask, area, Vector2(room.center[0] + sx * (room.size[0] / 2.0 - 4.0), room.center[1] + sz * (room.size[1] / 2.0 - 4.0)))
 	_check(ExploreMap.explored_fraction(mask, area) > 0.95, "andando pela área toda, quase tudo aparece (%.2f)" % ExploreMap.explored_fraction(mask, area))
 
 

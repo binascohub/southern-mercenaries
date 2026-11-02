@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cqp1bu07qp7qb"
-path="res://.godot/imported/diablous.glb-1397f6e6c7002c8800fb5cd6d8299441.scn"
+uid="uid://b5147wsfoctin"
+path="res://.godot/imported/itachi.glb-9124304937b373347ec2a8b7d8f9f279.scn"
 
 [deps]
 
-source_file="res://assets/models/monsters/diablous.glb"
-dest_files=["res://.godot/imported/diablous.glb-1397f6e6c7002c8800fb5cd6d8299441.scn"]
+source_file="res://assets/models/characters/itachi.glb"
+dest_files=["res://.godot/imported/itachi.glb-9124304937b373347ec2a8b7d8f9f279.scn"]
 
 [params]
 
