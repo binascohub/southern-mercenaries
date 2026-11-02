@@ -540,7 +540,8 @@
       0.7
     ],
     "_comment": "Mini-chefe da Floresta (04-tortuga-e-missoes.md: o Leshy guarda a árvore anciã): gigante de casca, investidas e pisões; modelo do Monstro da Floresta (cdmir, CC0).",
-    "quest_drop": "bone_dagger"
+    "chest_loot": "treasure_forest",
+    "quest_drop": "travelers_bag"
   },
   "ruin_warden": {
     "name_key": "MONSTER_RUIN_WARDEN",
@@ -1263,7 +1264,8 @@
           }
         ]
       ]
-    }
+    },
+    "quest_drop": "bone_dagger"
   },
   "ruin_alpha": {
     "name_key": "MONSTER_RUIN_ALPHA",

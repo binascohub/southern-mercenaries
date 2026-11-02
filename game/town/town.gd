@@ -110,6 +110,9 @@ static func dialogue_index(npc_id: String, quest_states: Dictionary) -> int:
 			continue
 		if when.has("quest_active") and quest_states.get(when.quest_active, "") != "active":
 			continue
+		# Missão que só aparece depois de outra terminada (a taberneira passa a da Floresta depois do Esgoto).
+		if when.has("after") and quest_states.get(when.after, "") != "done":
+			continue
 		# Troca do mapa: o NPC só oferece quando a missão da cidade que pede o item dele está ativa.
 		if when.has("requires") and quest_states.get(when.requires, "") != "active":
 			continue
@@ -386,6 +389,9 @@ func _rpc_service(npc_id: String, service: String) -> void:
 	if service == "turn_in":
 		_turn_in(player, npc_id)
 		return
+	if service == "rest_turn_in":
+		_turn_in(player, npc_id, true)  # entrega o item da missão, se estiver na bolsa (sem aviso se não estiver), e descansa
+		service = "rest"
 	if service == "rest":
 		# Descansar na taverna: vida e recurso cheios, de graça.
 		player.health = player.max_health
@@ -395,7 +401,7 @@ func _rpc_service(npc_id: String, service: String) -> void:
 
 ## Entrega a relíquia de uma missão ao NPC que a deu (quest "item" ou "items"): tira os itens da bolsa do herói e conclui a missão. Se a missão tem "gives" (troca do
 ## mapa), o NPC devolve o item que o NPC da cidade pediu.
-func _turn_in(player: Player, npc_id: String) -> void:
+func _turn_in(player: Player, npc_id: String, silent := false) -> void:
 	var c := _campaign()
 	for id: String in c.get("quests", {}):
 		var quest: Dictionary = GameData.quests.get(id, {})
@@ -404,7 +410,8 @@ func _turn_in(player: Player, npc_id: String) -> void:
 		var needed: Array = quest.get("items", [quest.get("item", "")])
 		for item_id: String in needed:
 			if player.character.count_of(item_id) < 1:
-				_arena()._toast_to(player, "TOAST_NEED_QUEST_ITEM", {"item": GameData.valuables[item_id].name_key})
+				if not silent:
+					_arena()._toast_to(player, "TOAST_NEED_QUEST_ITEM", {"item": GameData.valuables[item_id].name_key})
 				return
 		for item_id: String in needed:
 			var bag: Array = player.character.data.inventory
@@ -417,8 +424,11 @@ func _turn_in(player: Player, npc_id: String) -> void:
 					break
 		if quest.has("gives"):
 			player.character.add_item(Items.stack(Items.VALUABLE, String(quest.gives)))
+			_arena()._toast_to(player, "TOAST_ITEM_RECEIVED", {"item": GameData.valuables[String(quest.gives)].name_key})
 		player.refresh_character()
 		_finish_quest(c, id, quest)
+		if quest.has("opens_gate"):  # entregou as chaves ao guardião: o portão cai
+			_arena().open_gate(String(quest.opens_gate))
 		SaveSystem.save_campaign(c, true)
 		sync()
 		return

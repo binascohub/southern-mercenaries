@@ -66,6 +66,29 @@
     ],
     "dialogues": [
       {
+        "when": {
+          "quest_new": "forest_treasure",
+          "after": "sewer_treasure"
+        },
+        "lines": [
+          "DLG_KEEPER_FOREST_1",
+          "DLG_KEEPER_FOREST_2",
+          "DLG_KEEPER_FOREST_3",
+          "DLG_KEEPER_FOREST_4"
+        ],
+        "offer": "forest_treasure",
+        "service": "rest"
+      },
+      {
+        "when": {
+          "quest_active": "forest_treasure"
+        },
+        "lines": [
+          "DLG_KEEPER_FOREST_ACTIVE"
+        ],
+        "service": "rest_turn_in"
+      },
+      {
         "when": {},
         "lines": [
           "DLG_KEEPER_1"
@@ -842,6 +865,77 @@
         "when": {},
         "lines": [
           "DLG_FROG_ALTAR_LOCKED"
+        ]
+      }
+    ]
+  },
+  "restaurant_cook": {
+    "_comment": "Mestre-Cuca do Restaurante da Capital (pátio ao sul do campo de treino; prédio do medieval_restaurant.glb, tools/assets/build_restaurant.py): serve uma refeição quente (descanso: vida e recurso cheios, como na Taverna).",
+    "name_key": "NPC_RESTAURANT_COOK",
+    "color": [
+      0.85,
+      0.8,
+      0.7
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_COOK_1"
+        ],
+        "service": "rest"
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Buzzed",
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.2,
+        0.12,
+        0.07
+      ],
+      "pose": "talk",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "forest_reptile": {
+    "_comment": "O Réptil da Floresta (monstro forest_reptile, o mesmo modelo dos répteis do bosque), guardião do portão do covil do Leshy: fica na frente do portão e pede as duas chaves das missões da Floresta (Espadas e Copas); ao receber as duas, o portão cai e abre a passagem.",
+    "name_key": "NPC_FOREST_REPTILE",
+    "color": [
+      0.35,
+      0.55,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "forest_gate"
+        },
+        "lines": [
+          "DLG_REPTILE_1",
+          "DLG_REPTILE_2",
+          "DLG_REPTILE_3"
+        ],
+        "offer": "forest_gate"
+      },
+      {
+        "when": {
+          "quest_active": "forest_gate"
+        },
+        "lines": [
+          "DLG_REPTILE_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_REPTILE_DONE"
         ]
       }
     ]

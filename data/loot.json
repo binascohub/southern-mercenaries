@@ -265,5 +265,38 @@
       "min": 1,
       "max": 2
     }
+  },
+  "treasure_forest": {
+    "_comment": "Tesouro da árvore anciã (baú épico do Leshy; 06-mundo-e-historia.md, seção 6): o ouro dos viajantes perdidos, por jogador (ouro alto, 2 a 3 raros/únicos, valiosos e pergaminhos de refino). Por grupo (uma vez): a relíquia Coroa de Galhos.",
+    "gold": {
+      "chance": 1.0,
+      "per_level": 100.0,
+      "min": 200,
+      "max": 320
+    },
+    "item_chance": 0.0,
+    "items": [
+      2,
+      3
+    ],
+    "guaranteed": "unique",
+    "rarity_weights": {
+      "magic": 30,
+      "rare": 50,
+      "unique": 20
+    },
+    "potion_chance": 1.0,
+    "elemental_potion_share": 0.0,
+    "valuable_chance": 0.0,
+    "valuables": [
+      4,
+      8
+    ],
+    "scrolls": [
+      1,
+      2
+    ],
+    "blessed_chance": 0.2,
+    "relic": "branch_crown"
   }
 }

@@ -98,5 +98,19 @@
     "maps": [],
     "quest_item": true,
     "model": "Key_Spades"
+  },
+  "key_hearts": {
+    "name_key": "VALUABLE_KEY_HEARTS",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Hearts"
+  },
+  "travelers_bag": {
+    "name_key": "VALUABLE_TRAVELERS_BAG",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Bag"
   }
 }

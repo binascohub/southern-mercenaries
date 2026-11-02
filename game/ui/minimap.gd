@@ -1,8 +1,8 @@
 # Southern Mercenaries — GPL-3.0-or-later
 class_name Minimap
 extends Control
-## Minimapa (09-interface.md, seção 3): a área atual vista de cima, com névoa
-## sobre o que ainda não foi explorado; o herói deste PC (dourado), os aliados
+## Minimapa (09-interface.md, seção 3): a área atual vista de cima, só com o que já foi
+## explorado (o resto fica em branco, sem a sombra da planta); o herói deste PC (dourado), os aliados
 ## (azul), as saídas e os lugares de missão já vistos. Nas cidades não há névoa.
 ## A ação `map` alterna para o mapa grande, no meio da tela. Desenhado com
 ## _draw() (sem câmera extra), redesenhado poucas vezes por segundo.
@@ -10,7 +10,6 @@ extends Control
 const SMALL := Vector2(190, 190)
 const LARGE := Vector2(560, 560)
 const FLOOR_COLOR := Color(0.55, 0.5, 0.42, 0.9)
-const FOG_COLOR := Color(0.05, 0.05, 0.07, 0.75)
 const REDRAW := 0.2
 
 var large := false
@@ -108,7 +107,9 @@ func _draw() -> void:
 				continue
 			var at := _to_map(_bounds.position + Vector2(x, y) * ExploreMap.CELL)
 			var seen := _town or (index < _mask.size() and _mask[index] != 0)
-			draw_rect(Rect2(at, cell + Vector2(0.5, 0.5)), FLOOR_COLOR if seen else FOG_COLOR)
+			if not seen:
+				continue  # o que ainda não foi explorado não aparece, nem como sombra do mapa
+			draw_rect(Rect2(at, cell + Vector2(0.5, 0.5)), FLOOR_COLOR)
 	for mark in _marks:
 		if not is_seen(mark.position):
 			continue

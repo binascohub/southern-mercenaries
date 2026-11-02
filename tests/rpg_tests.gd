@@ -698,9 +698,23 @@ func _test_minibosses_and_relics() -> void:
 		and Town.dialogue_index("court_jester", {"royal_banquet": "done"}) == 2, "o Bobo oferece, lembra e agradece a carne")
 	_check(capital.decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Food_Apple").size() >= 8, "mesa farta com maçãs na sala do rei")
 	_check(capital.rooms.any(func(r: Dictionary) -> bool: return r.id == "church") and capital.rooms.any(func(r: Dictionary) -> bool: return r.id == "king_bedroom")
-		and capital.props.any(func(p: Dictionary) -> bool: return p.get("npc", "") == "priest" and p.position[0] < -15.0 and p.position[1] < -39.0)
+		and capital.props.any(func(p: Dictionary) -> bool: return p.get("npc", "") == "priest" and p.position[0] < -15.0 and p.position[1] < -23.0 and p.position[1] > -39.0)
 		and capital.decor.any(func(d: Dictionary) -> bool: return d.get("piece", "") == "Podium")
-		and capital.decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Chair_1" and d.position[0] < -15.0).size() >= 6, "igreja com o Padre, o altar e as cadeiras; quarto do rei ao lado")
+		and capital.decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Chair_1" and d.position[0] < -15.0).size() >= 6, "igreja (a oeste da Avenida Norte) com o Padre, o altar e as cadeiras; quarto do rei")
+	# Avenida principal (norte-sul): a praça das mesas redondas e o centro de treinamento saem dela para os lados, a igreja sai da Avenida Norte, e ela leva à Sala do Castelo, à Sala do Rei e ao Quarto do Rei.
+	var cap_rooms := {}
+	for r: Dictionary in capital.rooms:
+		cap_rooms[r.id] = r
+	var door_pairs := [["avenue", "west", "restaurant", "east"], ["avenue", "east", "training_yard", "west"], ["avenue_north", "west", "church", "east"],
+		["avenue", "north", "avenue_north", "south"], ["avenue_north", "north", "castle_court", "south"], ["castle_court", "north", "throne_room", "south"], ["throne_room", "east", "king_bedroom", "west"]]
+	var doors_ok := true
+	for pair: Array in door_pairs:
+		doors_ok = doors_ok and cap_rooms.has(pair[0]) and cap_rooms.has(pair[2]) and pair[1] in cap_rooms[pair[0]].doors.map(func(x: String) -> String: return x.get_slice(":", 0)) \
+			and pair[3] in cap_rooms[pair[2]].doors.map(func(x: String) -> String: return x.get_slice(":", 0))
+	_check(doors_ok, "a Capital tem a Avenida Principal com entradas para a praça das mesas, o treino, a igreja, o castelo, a Sala do Rei e o Quarto do Rei")
+	_check(capital.decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Tv_Table_Round" and d.position[0] < -14.0 and d.position[1] > -23.0 and d.position[1] < -7.0).size() == 6
+		and capital.decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Tv_Stool_Round" and d.position[0] < -14.0 and d.position[1] > -23.0 and d.position[1] < -7.0).size() == 18,
+		"praça com 6 mesas redondas e 18 cadeiras, junto da avenida")
 	_check(capital.rooms.any(func(r: Dictionary) -> bool: return r.id == "throne_room")
 		and capital.props.any(func(p: Dictionary) -> bool: return p.get("npc", "") == "court_jester" and p.position[1] < -39.0)
 		and capital.decor.any(func(d: Dictionary) -> bool: return d.get("piece", "") == "Sofa_Group"), "a sala do rei tem o Bobo da Corte e os sofás")
@@ -1021,11 +1035,11 @@ func _test_sewers() -> void:
 		if prop.has("summon"):
 			forest_ids.append(prop.summon.id)    # os grupos invocados também contam como "limpos"
 	var village_npcs: Array = forest.props.filter(func(p: Dictionary) -> bool: return p.kind == "npc")
-	_check(village_npcs.size() == 3 and village_npcs.all(func(p: Dictionary) -> bool: return GameData.npcs.has(p.npc)), "Floresta tem a elfa, a Guardiã da Pira e o templo")
+	_check(village_npcs.size() == 4 and village_npcs.all(func(p: Dictionary) -> bool: return GameData.npcs.has(p.npc)), "Floresta tem a exploradora, a Guardiã da Pira, o templo e o Guardião do Portão")
 	_check(forest.crowd.any(func(c: Dictionary) -> bool: return c.role == "hunter" and c.has("path")) and forest.crowd.any(func(c: Dictionary) -> bool: return c.role == "tanner" and c.has("path"))
 		and GameData.crowd.roles.has("hunter") and GameData.crowd.roles.has("tanner") and not GameData.quests.has("forest_reptiles"), "Bertram e Elara andam pelo mapa, sem missão")
 	_check(forest.rooms.any(func(r: Dictionary) -> bool: return r.id == "village"), "Floresta tem a sala da aldeia")
-	for quest_id in ["forest_fire_golem", "forest_leshy"]:
+	for quest_id in ["forest_fire_golem", "forest_leshy", "forest_gate"]:
 		var mission: Dictionary = GameData.quests.get(quest_id, {})
 		_check(mission.get("area", "") == "forest_01_path" and mission.get("clear", []).all(func(id: String) -> bool: return id in forest_ids)
 			and (village_npcs.any(func(p: Dictionary) -> bool: return p.npc == mission.get("giver", "")) or GameData.arenas.tavern.props.any(func(p: Dictionary) -> bool: return p.get("npc", "") == mission.get("giver", ""))) and tr(mission.get("name_key", "")) != "",
@@ -1041,14 +1055,33 @@ func _test_sewers() -> void:
 		and GameData.npcs.forest_pyre_keeper.dialogues[1].get("service", "") == "turn_in" and tr("VALUABLE_CURSED_SKULL") != "VALUABLE_CURSED_SKULL",
 		"Aelindra pede a Caveira de Morvak (modelo Quest_Skull), que o Golem de Fogo larga")
 	_check(Shops.sell_price("blacksmith", Items.stack(Items.VALUABLE, "cursed_skull"), 1, {}) < 0, "a Caveira de Morvak não se vende")
+	# O portão do chefe fecha o corredor c4, antes do covil do Leshy, e abre com as duas chaves das missões do mapa: Espadas (Exploradora; a adaga vem da Rainha das Víboras) e Copas (Guardiã da Pira).
+	var gate: Dictionary = {}
+	for forest_prop: Dictionary in GameData.arenas.forest_01_path.props:
+		if forest_prop.kind == "gate":
+			gate = forest_prop
+	_check(not gate.is_empty() and gate.get("opened_by", "") == "forest_gate" and GameData.quests.forest_gate.items == ["key_spades", "key_hearts"] and GameData.quests.forest_gate.get("opens_gate", "") == "boss_gate" and GameData.quests.forest_gate.giver == "forest_reptile" and NpcModel.has_model("forest_reptile") and GameData.quests.forest_leshy.gives == "key_spades" and GameData.quests.forest_fire_golem.gives == "key_hearts"
+		and GameData.valuables.key_hearts.get("quest_item", false) and Kit.has("Boss_Gate") and Kit.has("Key_Hearts") and not GameData.arenas.has("forest_boss_01_lair") and not GameData.arenas.has("forest_pass_01_gate")
+		and absf(float(gate.position[0]) - 70.0) < 6.0 and gate.position[1] > -116.0 and gate.position[1] < -94.0 and GameData.monsters.viper_queen.get("quest_drop", "") == "bone_dagger"
+		and GameData.monsters.leshy.get("quest_drop", "") == "travelers_bag" and GameData.monsters.leshy.get("chest_loot", "") == "treasure_forest",
+		"Portão do chefe da Floresta: no corredor c4 (Espadas + Copas); a adaga de osso vem da Rainha das Víboras, fora do portão")
+	# A taberneira passa a missão da Floresta depois do Esgoto (e ela libera a trilha); o Leshy deixa o baú épico com o tesouro e a bolsa que a taberneira recebe.
+	var treasure_quest: Dictionary = GameData.quests.forest_treasure
+	_check(treasure_quest.giver == "tavern_keeper" and treasure_quest.item == "travelers_bag" and treasure_quest.unlocks == "forest_trail" and GameData.loot.treasure_forest.relic == "branch_crown"
+		and GameData.relics.has("branch_crown") and GameData.valuables.travelers_bag.get("quest_item", false) and Kit.has("Bag")
+		and Town.dialogue_index("tavern_keeper", {}) == 2 and Town.dialogue_index("tavern_keeper", {"sewer_treasure": "done"}) == 0
+		and Town.dialogue_index("tavern_keeper", {"sewer_treasure": "done", "forest_treasure": "active"}) == 1 and Town.dialogue_index("tavern_keeper", {"sewer_treasure": "done", "forest_treasure": "done"}) == 2
+		and GameData.npcs.tavern_keeper.dialogues[0].offer == "forest_treasure" and GameData.npcs.tavern_keeper.dialogues[1].service == "rest_turn_in"
+		and GameData.arenas.tortuga.props.any(func(p: Dictionary) -> bool: return p.id == "forest_gate" and p.get("requires", "") == "forest_trail"),
+		"A taberneira passa a missão da Floresta (depois do Esgoto): libera a trilha, o Leshy larga a bolsa e o baú com a Coroa de Galhos")
 	# A Exploradora (elf_archer) quer a Adaga de Osso, que o Leshy larga; ela a troca por uma Chave de Espadas ("gives") com "turn_in".
 	var dagger_quest: Dictionary = GameData.quests.forest_leshy
 	_check(dagger_quest.get("giver", "") == "elf_archer" and dagger_quest.get("item", "") == "bone_dagger" and dagger_quest.get("gives", "") == "key_spades" and not dagger_quest.has("clear")
-		and GameData.monsters.leshy.get("quest_drop", "") == "bone_dagger" and GameData.valuables.bone_dagger.get("quest_item", false) and GameData.valuables.key_spades.get("quest_item", false)
+		and GameData.monsters.viper_queen.get("quest_drop", "") == "bone_dagger" and GameData.valuables.bone_dagger.get("quest_item", false) and GameData.valuables.key_spades.get("quest_item", false)
 		and Items.is_valid(Items.stack(Items.VALUABLE, "bone_dagger")) and Items.is_valid(Items.stack(Items.VALUABLE, "key_spades"))
 		and GameData.npcs.elf_archer.dialogues[1].get("service", "") == "turn_in" and tr("NPC_ELF_ARCHER") != "NPC_ELF_ARCHER" and tr("VALUABLE_BONE_DAGGER") != "VALUABLE_BONE_DAGGER"
 		and Kit.has(GameData.valuables.bone_dagger.model) and Kit.has(GameData.valuables.key_spades.model),
-		"A Exploradora pede a Adaga de Osso (que o Leshy larga) e dá a Chave de Espadas")
+		"A Exploradora pede a Adaga de Osso (que a Rainha das Víboras larga) e dá a Chave de Espadas")
 	# Floresta: seis setores, um monstro em cada, e duas praças com NPC que invoca um mini-chefe.
 	var sectors := {}
 	for e: Dictionary in forest.encounters:

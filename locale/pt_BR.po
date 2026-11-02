@@ -396,13 +396,13 @@ msgid "NPC_FOREST_TEMPLE"
 msgstr "Templo em ruínas"
 
 msgid "DLG_TEMPLE_1"
-msgstr "As pedras do templo vibram sob a sua mão. Um símbolo antigo se acende no centro."
+msgstr "As pedras do templo vibram sob a sua mão. Um símbolo antigo se acende no centro, e algo se enrosca nas sombras do altar."
 
 msgid "DLG_TEMPLE_2"
-msgstr "O chão treme: o Rei Golem de Pedra desperta, e com ele virão ondas de golens dos elementos."
+msgstr "O chão treme: a Rainha das Víboras desperta, e o Guardião do Túmulo se levanta ao lado dela."
 
 msgid "TOAST_TEMPLE_AWAKENS"
-msgstr "O templo estremece: o Rei Golem desperta!"
+msgstr "O templo estremece: a Rainha das Víboras desperta!"
 
 msgid "TOAST_VIPER_WAVE"
 msgstr "O Rei Golem convoca a onda {n} de golens!"
@@ -2609,22 +2609,22 @@ msgid "DLG_ARCHER_1"
 msgstr "Boa tarde, viajantes. Cuidado onde pisam: estas trilhas guardam coisas muito antigas. Sou exploradora e corro o mundo atrás de raridades para a minha coleção."
 
 msgid "DLG_ARCHER_2"
-msgstr "Faz meses que procuro a adaga de osso de dinossauro. Dizem que o Leshy, o gigante de casca e pedra que dorme no fundo do bosque, está com ela."
+msgstr "Faz meses que procuro a adaga de osso de dinossauro. Dizem que a Rainha das Víboras, que guarda o templo no leste da floresta, está com ela."
 
 msgid "DLG_ARCHER_3"
-msgstr "Derrubem-no e tragam a adaga para mim. Em troca, eu entrego uma das chaves que abrem o mapa do chefe final."
+msgstr "Derrubem-na e tragam a adaga para mim. Em troca, eu entrego uma das duas chaves que abrem o portão do covil do Leshy, no fundo da floresta."
 
 msgid "DLG_ARCHER_ACTIVE"
-msgstr "Sigam a trilha de pedras até o fim do bosque: o Leshy está lá. A adaga é inconfundível, curva e branca, do tamanho de um antebraço. Tragam-na e a chave é de vocês."
+msgstr "O templo fica no extremo leste do bosque. A adaga é inconfundível, curva e branca, do tamanho de um antebraço. Tragam-na e a chave é de vocês."
 
 msgid "DLG_ARCHER_DONE"
-msgstr "Magnífica! Esta lâmina vai brilhar na minha coleção. A chave é sua, como combinado. Guardem-na bem: ela abre o caminho até o chefe final."
+msgstr "Magnífica! Esta lâmina vai brilhar na minha coleção. A chave é sua, como combinado. Guardem-na bem: junto com a de Aelindra, ela abre o portão do covil do Leshy. Falem com o guardião diante dele."
 
 msgid "QUEST_FOREST_LESHY"
 msgstr "A Adaga de Osso"
 
 msgid "QUEST_FOREST_LESHY_DESC"
-msgstr "A Exploradora quer a adaga de osso de dinossauro para a sua coleção de raridades. Quem a guarda é o Leshy, o gigante de casca e pedra do fundo do bosque. Derrote-o e entregue a adaga a ela: em troca, ela dá uma das chaves do mapa do chefe final."
+msgstr "A Exploradora quer a adaga de osso de dinossauro para a sua coleção de raridades. Quem a guarda é a Rainha das Víboras, no templo do leste da floresta. Derrote-a e entregue a adaga: em troca, ela dá uma das duas chaves do portão do covil do Leshy."
 
 msgid "DLG_HUNTER_1"
 msgstr "Forasteiros! Cuidado com a cerca viva ao sair — o bosque não é mais o mesmo. Sou Bertram. Eu e Elara somos o que restou de Ferncroft."
@@ -2909,7 +2909,7 @@ msgid "DLG_PYRE_ACTIVE"
 msgstr "Tragam a caveira de Morvak, forasteiros, antes que a maldição alcance as árvores."
 
 msgid "DLG_PYRE_DONE"
-msgstr "A maldição se desfez em cinzas. Os animais da Floresta agradecem. Levem o que lhes devo."
+msgstr "A maldição se desfez em cinzas. Os animais da Floresta agradecem. Levem a Chave de Copas, que ganhei de presente: ela abre o portão do covil do Leshy. O guardião os espera."
 
 msgid "VALUABLE_HUMAN_LUNGS"
 msgstr "Pulmões Humanos"
@@ -3156,3 +3156,93 @@ msgstr "Adaga de Osso de Dinossauro"
 
 msgid "VALUABLE_KEY_SPADES"
 msgstr "Chave de Espadas"
+
+msgid "NPC_RESTAURANT_COOK"
+msgstr "Mestre-Cuca"
+
+msgid "DLG_COOK_1"
+msgstr "Sentem-se, sentem-se! O assado acabou de sair do forno. Comam à vontade: nenhum viajante sai da minha mesa com fome."
+
+msgid "PROP_RESTAURANT"
+msgstr "Restaurante"
+
+msgid "PROP_RESTAURANT_TEXT"
+msgstr "Restaurante da Capital: refeição quente para quem vem do campo de batalha."
+
+msgid "VALUABLE_KEY_HEARTS"
+msgstr "Chave de Copas"
+
+
+
+
+
+msgid "PROP_RETURN_FOREST"
+msgstr "Voltar à Floresta"
+
+
+msgid "PROP_BOSS_GATE"
+msgstr "Portão do Chefe"
+
+
+msgid "TOAST_GATE_OPENED"
+msgstr "As chaves giram e o portão se abre!"
+
+msgid "NPC_FOREST_REPTILE"
+msgstr "Guardião do Portão"
+
+msgid "DLG_REPTILE_1"
+msgstr "Ssss... parem, viajantes. Este portão é mais velho que a floresta, e eu o guardo desde antes de vocês nascerem."
+
+msgid "DLG_REPTILE_2"
+msgstr "Atrás dele dorme o Leshy, o gigante de casca e pedra. O portão só cai para quem trouxer DUAS chaves: a de Espadas e a de Copas. As duas estão com as elfas da floresta."
+
+msgid "DLG_REPTILE_3"
+msgstr "A Exploradora e Aelindra, a Guardiã da Pira, guardam uma cada, mas cobram um preço: uma quer uma adaga de osso, a outra, uma caveira maldita. Tragam as duas chaves a mim e eu derrubo o portão."
+
+msgid "DLG_REPTILE_ACTIVE"
+msgstr "Sssó abro com as duas chaves: Espadas e Copas, na mesma bolsa. Estão com as elfas: a Exploradora e a Guardiã da Pira. Tragam-nas e o portão cai."
+
+msgid "DLG_REPTILE_DONE"
+msgstr "As duas chaves! Sssigam, o portão caiu. Cuidado com o que dorme lá dentro."
+
+msgid "QUEST_FOREST_GATE"
+msgstr "O Portão do Leshy"
+
+msgid "QUEST_FOREST_GATE_DESC"
+msgstr "O Guardião do Portão, um réptil da floresta, só derruba o portão do covil do Leshy para quem trouxer as duas chaves, que estão com as elfas: a Chave de Espadas (da Exploradora) e a Chave de Copas (de Aelindra, a Guardiã da Pira). Entregue as duas a ele."
+
+msgid "DLG_KEEPER_FOREST_1"
+msgstr "Viajantes e caçadores entram na floresta e não voltam. Já são tantos que parei de contar."
+
+msgid "DLG_KEEPER_FOREST_2"
+msgstr "Dizem que há ouro nas raízes da árvore anciã, as moedas dos que se perderam, guardado pelo Leshy, o senhor da mata. Ele fez pacto com um demônio e agora faz quem entra andar em círculos até morrer."
+
+msgid "DLG_KEEPER_FOREST_3"
+msgstr "Na minha aldeia, os velhos diziam: se o Leshy te fizer andar em círculos, vire a roupa do avesso e acenda uma fogueira. Esqueçam a roupa. Levem o fogo. Ele cresce do tamanho das árvores… e árvore queima. E se aparecerem vários dele, olhem a sombra: o verdadeiro tem a sombra do lado certo."
+
+msgid "DLG_KEEPER_FOREST_4"
+msgstr "Há duas elfas na mata e um guardião diante do portão do covil. Falem com ele primeiro. Tragam-me a bolsa de um dos viajantes perdidos e eu pago bem."
+
+msgid "DLG_KEEPER_FOREST_ACTIVE"
+msgstr "Ainda de pé? Falem com o guardião diante do portão da floresta. Quando o Leshy cair, tragam a bolsa de um dos viajantes perdidos: é só me entregar, o ouro é de vocês."
+
+msgid "QUEST_FOREST_TREASURE"
+msgstr "O Ouro dos Viajantes Perdidos"
+
+msgid "QUEST_FOREST_TREASURE_DESC"
+msgstr "Viajantes e caçadores entram na floresta e não voltam. Há ouro nas raízes da árvore anciã, guardado pelo Leshy, que faz quem entra andar em círculos. Ele é de Terra e teme o Fogo. O portão do covil só se abre pelo guardião, com as chaves das duas elfas. Derrote o Leshy e leve a bolsa de um viajante perdido à Taberneira."
+
+msgid "VALUABLE_TRAVELERS_BAG"
+msgstr "Bolsa do Viajante Perdido"
+
+msgid "RELIC_BRANCH_CROWN"
+msgstr "Coroa de Galhos"
+
+msgid "RELIC_BRANCH_CROWN_DESC"
+msgstr "Galhos retorcidos, ainda vivos, que cresceram na cabeça do Leshy. Cheiram a terra molhada."
+
+msgid "DLG_SERVICE_REST_TURN_IN"
+msgstr "Descansar / entregar o item"
+
+msgid "TOAST_ITEM_RECEIVED"
+msgstr "Recebido: {item}"

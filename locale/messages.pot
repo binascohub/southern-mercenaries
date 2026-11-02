@@ -3011,3 +3011,93 @@ msgstr ""
 
 msgid "VALUABLE_KEY_SPADES"
 msgstr ""
+
+msgid "NPC_RESTAURANT_COOK"
+msgstr ""
+
+msgid "DLG_COOK_1"
+msgstr ""
+
+msgid "PROP_RESTAURANT"
+msgstr ""
+
+msgid "PROP_RESTAURANT_TEXT"
+msgstr ""
+
+msgid "VALUABLE_KEY_HEARTS"
+msgstr ""
+
+
+
+
+
+msgid "PROP_RETURN_FOREST"
+msgstr ""
+
+
+msgid "PROP_BOSS_GATE"
+msgstr ""
+
+
+msgid "TOAST_GATE_OPENED"
+msgstr ""
+
+msgid "NPC_FOREST_REPTILE"
+msgstr ""
+
+msgid "DLG_REPTILE_1"
+msgstr ""
+
+msgid "DLG_REPTILE_2"
+msgstr ""
+
+msgid "DLG_REPTILE_3"
+msgstr ""
+
+msgid "DLG_REPTILE_ACTIVE"
+msgstr ""
+
+msgid "DLG_REPTILE_DONE"
+msgstr ""
+
+msgid "QUEST_FOREST_GATE"
+msgstr ""
+
+msgid "QUEST_FOREST_GATE_DESC"
+msgstr ""
+
+msgid "DLG_KEEPER_FOREST_1"
+msgstr ""
+
+msgid "DLG_KEEPER_FOREST_2"
+msgstr ""
+
+msgid "DLG_KEEPER_FOREST_3"
+msgstr ""
+
+msgid "DLG_KEEPER_FOREST_4"
+msgstr ""
+
+msgid "DLG_KEEPER_FOREST_ACTIVE"
+msgstr ""
+
+msgid "QUEST_FOREST_TREASURE"
+msgstr ""
+
+msgid "QUEST_FOREST_TREASURE_DESC"
+msgstr ""
+
+msgid "VALUABLE_TRAVELERS_BAG"
+msgstr ""
+
+msgid "RELIC_BRANCH_CROWN"
+msgstr ""
+
+msgid "RELIC_BRANCH_CROWN_DESC"
+msgstr ""
+
+msgid "DLG_SERVICE_REST_TURN_IN"
+msgstr ""
+
+msgid "TOAST_ITEM_RECEIVED"
+msgstr ""

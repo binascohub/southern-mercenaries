@@ -96,7 +96,8 @@
       "gold": 200,
       "xp": 400
     },
-    "target_element": "fire"
+    "target_element": "fire",
+    "gives": "key_hearts"
   },
   "royal_lungs": {
     "name_key": "QUEST_ROYAL_LUNGS",
@@ -172,6 +173,37 @@
     "reward": {
       "gold": 140,
       "xp": 220
+    }
+  },
+  "forest_gate": {
+    "name_key": "QUEST_FOREST_GATE",
+    "desc_key": "QUEST_FOREST_GATE_DESC",
+    "type": "village",
+    "giver": "forest_reptile",
+    "area": "forest_01_path",
+    "items": [
+      "key_spades",
+      "key_hearts"
+    ],
+    "opens_gate": "boss_gate",
+    "target_element": "earth",
+    "reward": {
+      "gold": 400,
+      "xp": 700
+    }
+  },
+  "forest_treasure": {
+    "name_key": "QUEST_FOREST_TREASURE",
+    "desc_key": "QUEST_FOREST_TREASURE_DESC",
+    "type": "main",
+    "giver": "tavern_keeper",
+    "area": "forest_01_path",
+    "item": "travelers_bag",
+    "unlocks": "forest_trail",
+    "target_element": "fire",
+    "reward": {
+      "gold": 350,
+      "xp": 700
     }
   }
 }

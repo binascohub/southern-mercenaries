@@ -105,6 +105,8 @@ const MODELS := {
 	# parado (499 quadros, "Scene", em laço); 1,8 m. Fica de guarda (idle), sem andar.
 	"warrior_guard": {"scene": "res://assets/models/characters/warrior_guard.glb", "scale": 1.0,
 		"poses": {"idle": "Scene", "talk": "Scene", "stand": "Scene"}},
+	# Guardião do Portão da Floresta: o mesmo modelo do monstro Réptil da Floresta (thecubber, CC BY-SA 3.0; tools/assets/build_reptile.sh), como NPC parado diante do portão do Leshy.
+	"forest_reptile": {"scene": "res://assets/models/monsters/reptile.glb", "scale": 1.0, "poses": {"idle": "idle", "talk": "idle", "stand": "idle", "walk": "walk"}},
 	# Capitão pirata (Clint Bellanger, CC BY 3.0): preso ao esqueleto dos heróis
 	# por tools/assets/rig_to_ual.py, com as animações deles; texturas geradas.
 	# Catador do Esgoto (The Amazing Spider-Man 2 suit, Ugo9p1, modelo comprado, crédito pedido pelo autor): malha em T-pose presa ao

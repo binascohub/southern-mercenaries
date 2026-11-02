@@ -30,6 +30,8 @@ extends Node3D
 const ARENA_ID := "prototype_arena"
 ## Distância para interagir com um objeto da área (loja, NPC, porta).
 const PROP_REACH := 2.8
+## Portão do chefe (Boss_Gate): o arquivo tem 2,0 m de largura; com 3,0 fecha o vão de uma porta (DOOR_WIDTH 6 m).
+const GATE_SCALE := 3.0
 const MAIN_SCENE := "res://game/main/main.tscn"
 const WALL_HEIGHT := 2.5
 const DOOR_WIDTH := 6.0
@@ -733,12 +735,12 @@ func _add_dynamic_props(peer_id := 0) -> void:
 		if saved.area == area_id and "%s:%s" % [area_id, saved.prop.id] not in opened:
 			dynamic.append(saved.prop)
 	for prop: Dictionary in arena.get("props", []):
-		if prop.kind == "chest" and "%s:%s" % [area_id, prop.id] in opened:
+		if prop.kind in ["chest", "gate"] and "%s:%s" % [area_id, prop.id] in opened:
 			continue
 		if prop.get("after_victory", false):
 			if result == Result.VICTORY:
 				dynamic.append(prop)
-		elif prop.kind == "chest":
+		elif prop.kind in ["chest", "gate"]:
 			dynamic.append(prop)
 	for prop in dynamic:
 		if peer_id == 0:
@@ -1146,6 +1148,31 @@ func pick_key(player: Player, prop: Dictionary) -> void:
 	SaveSystem.save_campaign(_campaign, true)
 
 
+## Portão do chefe (prop "gate"): só cai quando o Guardião do Portão recebe as duas chaves (missão "opens_gate", entregue em Town._turn_in); fica aberto para sempre na campanha.
+func open_gate(gate_id: String) -> void:
+	var key := "%s:%s" % [area_id, gate_id]
+	if key in _campaign.get("opened", []):
+		return
+	_campaign.opened = _campaign.get("opened", []) + [key]
+	_open_gate.rpc(gate_id)
+	_toast_all("TOAST_GATE_OPENED", {})
+	SaveSystem.save_campaign(_campaign, true)
+
+
+@rpc("authority", "call_local", "reliable")
+func _open_gate(id: String) -> void:
+	_props = _props.filter(func(p: Dictionary) -> bool: return p.id != id)
+	var node := _area_root.get_node_or_null(id) as Node3D
+	if node == null:
+		return
+	var body := node.get_node_or_null("gate_body")
+	if body:
+		body.queue_free()  # a passagem já libera
+	var sink := node.create_tween()
+	sink.tween_property(node, "position:y", -5.0, 2.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	sink.tween_callback(node.queue_free)
+
+
 ## Saída para a próxima área (03-2-areas.md, seção 1): só quando todos os
 ## heróis de pé estão perto; senão avisa quem falta. O host pode forçar: o
 ## segundo aperto dele começa uma contagem de 10 s.
@@ -1344,10 +1371,11 @@ func _reward(enemy: Enemy) -> void:
 ## (tabela "miniboss" de data/loot.json). Fica guardado na campanha até ser aberto, mesmo se o grupo sair da área.
 func _drop_miniboss_chest(enemy: Enemy) -> void:
 	# O mini-chefe deixa o baú médio ou o grande; o chefão do mapa, o épico (tabela "boss_chest").
-	var boss := enemy.category() == "boss"
+	# "chest_loot" no monstro: o mini-chefe que é o chefe do mapa (o Leshy) deixa o baú épico com a tabela própria (tesouro e relíquia).
+	var boss := enemy.category() == "boss" or enemy.data.has("chest_loot")
 	var prop := {"id": "mbchest_%s" % enemy.monster_id, "kind": "chest", "name_key": "PROP_BOSS_CHEST" if boss else "PROP_MINIBOSS_CHEST",
 		"model": "Chest_Epic" if boss else ("Chest_Large" if _rng.randf() < 0.5 else "Chest_Medium"),
-		"loot": "boss_chest" if boss else "miniboss", "position": [snappedf(enemy.global_position.x, 0.1), snappedf(enemy.global_position.z, 0.1)]}
+		"loot": String(enemy.data.get("chest_loot", "boss_chest")) if boss else "miniboss", "position": [snappedf(enemy.global_position.x, 0.1), snappedf(enemy.global_position.z, 0.1)]}
 	var saved: Array = _campaign.get("mini_chests", []).filter(func(c: Variant) -> bool: return c.prop.id != prop.id or c.area != area_id)
 	saved.append({"area": area_id, "prop": prop})
 	_campaign.mini_chests = saved
@@ -1729,7 +1757,7 @@ func _build_props() -> void:
 	_props.clear()
 	_prop_markers.clear()
 	for prop: Dictionary in arena.get("props", []):
-		if prop.kind != "chest" and not prop.get("after_victory", false):
+		if prop.kind not in ["chest", "gate"] and not prop.get("after_victory", false):
 			_build_prop(prop)
 	_refresh_markers()
 	_refresh_visitors()
@@ -1739,7 +1767,7 @@ func _build_prop(prop_data: Dictionary) -> void:
 	# "route": o objeto anda (o mercador pirata); a cópia guarda a posição de agora e os dados ficam intactos.
 	var prop := prop_data.duplicate(true) if prop_data.has("route") else prop_data
 	# Cenário (navio, mar, pontes) não é interagível.
-	if prop.kind not in ["ship", "water", "bridge"]:
+	if prop.kind not in ["ship", "water", "bridge", "gate"]:
 		_props.append(prop)
 	if true:
 		var at := Vector3(prop.position[0], 0, prop.position[1])
@@ -1832,7 +1860,7 @@ func _build_prop(prop_data: Dictionary) -> void:
 					look = {"sex": "male" if h % 2 == 0 else "female", "hair": hairs[h % 2 * 2 + (h / 2) % 2],
 						"hair_color": colors[(h / 4) % colors.size()], "pose": "sit", "outfit": {"body": "cloth"} if h % 3 == 0 else {}}
 				var seated_woman: bool = prop.has("visitor_name") and look.get("sex", "") == "female" and _visitor_woman(node)
-				var own_model: Node3D = NpcModel.create(String(prop.npc)) if String(prop.npc) in ["voodoo_priest", "priest", "castle_guard", "court_jester", "seated_pirate", "elf_archer", "ruins_spartan", "old_lady", "forest_pyre_keeper", "sewer_scavenger", "sewer_ratcatcher"] else null
+				var own_model: Node3D = NpcModel.create(String(prop.npc)) if String(prop.npc) in ["voodoo_priest", "priest", "castle_guard", "court_jester", "seated_pirate", "elf_archer", "forest_reptile", "ruins_spartan", "old_lady", "forest_pyre_keeper", "sewer_scavenger", "sewer_ratcatcher"] else null
 				var statue_kit: String = prop.get("kit", "")
 				if statue_kit != "" and _kit(node, statue_kit, Transform3D(Basis(Vector3.UP, deg_to_rad(float(prop.get("rotation", 0.0)))), Vector3.ZERO)):
 					# Estátua do mapa: a peça do kit no lugar do corpo humano; com "solid" ([largura, fundo]), o herói não atravessa (o altar do Esgoto).
@@ -1849,7 +1877,7 @@ func _build_prop(prop_data: Dictionary) -> void:
 						node.add_child(blocker)
 				elif own_model:
 					node.add_child(own_model)
-					if own_model.has_method("set_pose") and String(prop.npc) in ["seated_pirate", "old_lady", "sewer_scavenger", "sewer_ratcatcher", "elf_archer"]:  # a Aeliana (elf_archer) respira e se mexe parada no lugar (idle)
+					if own_model.has_method("set_pose") and String(prop.npc) in ["seated_pirate", "old_lady", "sewer_scavenger", "sewer_ratcatcher", "elf_archer", "forest_reptile"]:  # a Aeliana (elf_archer) respira e se mexe parada no lugar (idle)
 						own_model.call("set_pose", "sit" if String(prop.npc) == "old_lady" else "idle")  # o Macumbeiro (mago de capuz) e o Padre (monge) têm modelo próprio
 				elif not seated_woman and _npc_body_with_instrument(node, look) == null:
 					var body := CapsuleMesh.new()
@@ -1906,6 +1934,26 @@ func _build_prop(prop_data: Dictionary) -> void:
 				_prop_mesh(node, BoxMesh.new(), Vector3(0.9, 0.7, 0.5), Vector3(-0.7, 0.35, 0), Color(0.25, 0.25, 0.27))
 				_prop_mesh(node, BoxMesh.new(), Vector3(1.4, 1.2, 1.2), Vector3(0.9, 0.6, 0), Color(0.35, 0.25, 0.2))
 				_prop_mesh(node, BoxMesh.new(), Vector3(0.6, 0.3, 0.05), Vector3(0.9, 0.7, 0.61), Color(1.0, 0.45, 0.1))
+			"gate" when Kit.has("Boss_Gate"):
+				# Portão do chefe: vários arcos de pedra com portão de ferro lado a lado ("count") fecham a passagem inteira; a colisão ("block": largura) bloqueia até as chaves das missões abrirem.
+				var gate_scale := float(prop.get("scale", GATE_SCALE))
+				var gate_count := int(prop.get("count", 1))
+				var gate_yaw := deg_to_rad(float(prop.get("rotation", 0.0)))
+				for g in gate_count:
+					var piece_at := (g - (gate_count - 1) / 2.0) * 2.0 * gate_scale
+					_kit(node, "Boss_Gate", Transform3D(Basis(Vector3.UP, gate_yaw).scaled(Vector3.ONE * gate_scale), Vector3(piece_at, 0, 0).rotated(Vector3.UP, gate_yaw)))
+				var gate_body := StaticBody3D.new()
+				gate_body.name = "gate_body"
+				gate_body.collision_layer = 1
+				gate_body.collision_mask = 0
+				var gate_shape := CollisionShape3D.new()
+				var gate_box := BoxShape3D.new()
+				gate_box.size = Vector3(float(prop.get("block", 2.0 * gate_scale * gate_count + 0.2)), 6.0, 0.47 * gate_scale)
+				gate_shape.shape = gate_box
+				gate_body.add_child(gate_shape)
+				gate_body.position.y = 2.0
+				gate_body.rotation.y = gate_yaw
+				node.add_child(gate_body)
 			"chest" when prop.has("model") and _kit(node, String(prop.model), Transform3D(Basis(Vector3.UP, PI).scaled(Vector3.ONE * CHEST_SCALE), Vector3.ZERO)):
 				pass  # baú do tesouro do chefe (de ferro, com cravos)
 			"key" when _kit(node, String(prop.get("model", "Key_Gold")), Transform3D(Basis(Vector3.RIGHT,
