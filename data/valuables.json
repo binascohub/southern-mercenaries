@@ -42,5 +42,40 @@
     "maps": [
       "map_sewers"
     ]
+  },
+  "human_heart": {
+    "name_key": "VALUABLE_HUMAN_HEART",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Quest_Heart"
+  },
+  "old_skull": {
+    "name_key": "VALUABLE_OLD_SKULL",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Quest_Skull"
+  },
+  "wild_meat": {
+    "name_key": "VALUABLE_WILD_MEAT",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Food_Meat"
+  },
+  "human_lungs": {
+    "name_key": "VALUABLE_HUMAN_LUNGS",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Quest_Lungs"
+  },
+  "royal_soul": {
+    "name_key": "VALUABLE_ROYAL_SOUL",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Quest_Ghost"
   }
 }

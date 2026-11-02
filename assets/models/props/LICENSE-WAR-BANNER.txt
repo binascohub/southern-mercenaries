@@ -1,0 +1,1 @@
+War_Banner.glb — "War Banner" by Danimal, CC-BY-SA 3.0: https://opengameart.org/content/war-banner (textures CC0 by Yughues; skull "Atmostatic Skull", CC-BY: https://opengameart.org/content/skull-1; icons from game-icons.net, CC-BY). Converted by tools/assets/build_war_banner.py (looping swing animation kept).

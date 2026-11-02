@@ -1,0 +1,1 @@
+Fish_Catfish.glb — "3d low poly catfish" by gfroad / Snabisch, CC0: https://opengameart.org/content/3d-low-poly-catfish (tools/assets/build_catfish.py; the pack's swim/jump animations are .max only, so the fish swims by code)

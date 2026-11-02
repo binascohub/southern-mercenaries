@@ -1,0 +1,1 @@
+Butterfly_Anim.glb — "Butterfly (animated)" by Čestmír Dammer (cdmir), CC0: https://opengameart.org/content/butterfly-animated (124 triangles, rigged; the diffuse texture was derived from photo documentation by Rick Hoppmann; tools/assets/build_butterfly_anim.py).

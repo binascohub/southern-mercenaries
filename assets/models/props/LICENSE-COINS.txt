@@ -1,0 +1,3 @@
+Coin_Bag.glb — "Bag of Coins" by yd, CC0 1.0: https://opengameart.org/content/bag-of-coins (tools/assets/build_coin_bag.py)
+Weapon_Rack.glb — "Medieval Weapon Rack" by WeaponGuy, CC BY 3.0: https://opengameart.org/content/medieval-weapon-rack (tools/assets/build_weapon_rack.py)
+Coin_Gold.glb — "Old coin" by yd / Gtoknu, CC0 1.0: https://opengameart.org/content/old-coin (tools/assets/build_coin.py)

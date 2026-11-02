@@ -1,0 +1,3 @@
+Portal_Well.glb — "Well of Lost Souls" by bobjh, CC-BY 4.0 (textures CC0, modified): https://opengameart.org/content/well-of-lost-souls
+Portal_Crystal.glb — "Light crystal" by U.R.U. project / Pompei2, CC-BY 3.0: https://opengameart.org/content/light-crystal
+Converted by tools/assets/build_portal_well.py; the crystal spins and floats inside the well in game, with a blue light.

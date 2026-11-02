@@ -20,6 +20,7 @@
 - **O Bobo da Corte** é o único que percebe e passa as informações aos mercenários.
 - **Final:** Lúcifer **sequestra o Bobo** por estar atrapalhando seus planos. Os mercenários **vão ao Inferno libertá-lo** — não por heroísmo, mas porque **o Bobo é quem sabe onde há mais tesouros**. Sem ele, acabam as pistas.
 - **O tesouro de Lúcifer:** todo o ouro que ele acumulou — **o maior tesouro do mundo**.
+- **No jogo:** Lúcifer é o chefe final (`lucifer` em `data/monsters.json`), com o modelo animado **Diablous** (demônio de chifres e asas; idle, andar, correr, atacar, apanhar e morrer). O mapa do Inferno ainda não existe, então ele não está em nenhum encontro.
 
 ## 3. A guerra
 
@@ -52,6 +53,14 @@ Antes do jogo, houve uma **grande guerra entre dois reinos**:
 - Tensão dentro do grupo: o Arqueiro vem do reino derrotado; Dorian e Dália, do reino que venceu (**proposta** de falas e cenas entre eles).
 - **Proposta:** Lúcifer aproveitou a guerra: tantos mortos abriram as primeiras fendas do inferno, por onde os demônios começaram a tomar o mundo e o ouro.
 
+### As relíquias do último rei de Veldmark (missões do Padre da Capital)
+- Quando Lúcifer aproveitou a guerra, os demônios dele **desenterraram o último rei de Veldmark** e levaram o corpo, peça por peça, para serem guardadas por criaturas dos covis.
+- O **Padre da Capital** (Aurenhold) lutou contra esse rei em vida, mas acha que **nenhum homem merece isso**: paga em ouro da Igreja a quem trouxer as peças de volta para uma sepultura inteira.
+- **O Coração Humano** (missão `royal_heart`): guardado pelo **Senhor da Cripta**, mini-chefe do Cemitério (mapa 2, Ruínas do Reino do Arqueiro). Item de missão no inventário; entregue ao Padre.
+- **Os Pulmões Humanos** (missão `royal_lungs`, depois do coração): guardados pelo **Ogro da Cripta**, o outro mini-chefe do Cemitério.
+- **O Crânio Antigo** (missão `royal_skull`): carregado como troféu para Lúcifer pelo **Comandante do Forte**, mini-chefe do Forte. Só aparece depois do coração.
+- Os itens **não se vendem** e só caem para quem tem a missão ativa; cada herói precisa do seu.
+
 ## 4. Estrutura da campanha
 
 **10 mapas** em 4 atos (as áreas de cada mapa estão em `03-2-areas.md`):
@@ -59,7 +68,7 @@ Antes do jogo, houve uma **grande guerra entre dois reinos**:
 ```
 TORTUGA ─ abertura na taverna (os heróis se conhecem)
    │
-   ├─ 1. Esgoto de Tortuga ─ Rainha dos Ratos (tesouro do reino derrotado, parte 1)
+   ├─ 1. Esgoto de Tortuga ─ Feiticeiro-Aranha (tesouro do reino derrotado, parte 1)
    │
    ├─ portal de Tortuga (viagem entre mapas por portais)
    ├─ 2. Ruínas do Reino do Arqueiro ─ Cérbero (Cofre Real, parte 2)
@@ -89,7 +98,7 @@ CAPITAL REAL ─ cidade do Cavaleiro; comércio mais elevado; Bobo da Corte
 - Em seguida, o **velho bêbado** conta do tesouro embaixo da cidade: "**Se vocês estão procurando tesouro, estão em cima de um!**" (`04-tortuga-e-missoes.md`).
 
 ### Ato 2 — O tesouro do reino derrotado e as terras selvagens
-- **Esgoto de Tortuga** (Rainha dos Ratos): no baú, um **mapa antigo** mostra onde ficou o resto do tesouro.
+- **Esgoto de Tortuga** (Feiticeiro-Aranha): no baú, um **mapa antigo** mostra onde ficou o resto do tesouro.
 - O grupo atravessa o **Portal de Tortuga** até as **Ruínas do Reino do Arqueiro** (Cérbero, Cofre Real).
 - Com a fama dos mercenários crescendo, a taberneira passa novas missões: **Floresta Escura** (Leshy — viajantes que nunca voltam e ouro nas raízes da árvore anciã; era o terreno de caça do Arqueiro), **Cavalos Míticos** (Pégaso) e **Aves** (Fênix).
 
@@ -124,7 +133,7 @@ CAPITAL REAL ─ cidade do Cavaleiro; comércio mais elevado; Bobo da Corte
 
 | Ordem | Mapa | Chefe | Tesouro / relíquia guardada (proposta) | Fraqueza do chefe |
 |---|---|---|---|---|
-| 1 | Esgoto de Tortuga | Rainha dos Ratos (pacto com um demônio) | **Tesouro Perdido da Guerra** — parte das riquezas do reino do Arqueiro; relíquia: **Coroa do Rei Caído** | Fogo |
+| 1 | Esgoto de Tortuga | Feiticeiro-Aranha (alquimista do reino derrotado, pacto com um demônio) | **Tesouro Perdido da Guerra** — parte das riquezas do reino do Arqueiro; relíquia: **Coroa do Rei Caído** | Fogo |
 | 2 | Ruínas do Reino do Arqueiro | Cérbero | **Cofre Real** — o resto das riquezas do reino; relíquia: **Coleira dos Portões** | Água / Ar / Fogo (uma por cabeça) |
 | 3 | Floresta Escura | Leshy | **Ouro dos viajantes perdidos**; relíquia: **Coroa de Galhos** | Fogo |
 | 4 | Cavalos Míticos | Pégaso | **Rédeas de Ouro do Céu** — domam todos os cavalos míticos | Água |
@@ -177,5 +186,17 @@ Cada herói tem um motivo pessoal para virar mercenário, além do ouro:
 
 - No solo, os outros heróis ficam em Tortuga e dão missões pessoais (proposta)?
 - O final mostra a volta do Cavaleiro ao reino? Quem é o verdadeiro pai de Dália?
-- Qual demônio fez o pacto com a Rainha dos Ratos?
+- Qual demônio fez o pacto com o Feiticeiro-Aranha?
 - Nome do reino de Dorian e Dália no texto do jogo: manter "Aurenval" e "Aurenhold"? (Os nomes da seção 3 foram criados por Claude a pedido do autor, para revisão.)
+
+## Como os mapas novos se encaixam (proposta)
+
+A expedição segue as pistas do **mapa antigo** achado no baú do Esgoto, do Feiticeiro-Aranha até o fim do tesouro do reino:
+
+1. **Floresta** (Leshy) — o caminho que os fundadores de Tortuga abriram para levar o tesouro; as árvores já engoliram a trilha.
+2. **Ruínas da Cidade** (Guardião do Cofre) — a cidade que foi destruída na guerra; o cofre real ainda tem um guardião do reino caído.
+3. **Cemitério** (Escorpião da Cripta) — onde ficaram os mortos da batalha final; a cripta do reino guarda parte do tesouro.
+4. **Floresta Escura** — a mata fechada entre o campo santo e o forte; ainda sem moradores definidos (só o mapa por enquanto).
+5. **Forte** (Comandante Amaldiçoado) — o último posto do exército vencido, onde o comandante do reino ficou preso a um juramento sobre o que restou do tesouro.
+
+O fio é o mesmo do Esgoto: gente do reino derrotado presa a um tesouro que Tortuga roubou, cada um amaldiçoado por um pacto ou por um juramento. Quem fez o pacto do Feiticeiro-Aranha (e o do Comandante) segue em aberto na seção de perguntas.

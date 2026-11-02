@@ -143,6 +143,9 @@ msgstr "Final skill"
 msgid "ACTION_EVADE"
 msgstr "Dodge"
 
+msgid "ACTION_JUMP"
+msgstr "Jump"
+
 msgid "ACTION_MOUNT"
 msgstr "Mount / dismount"
 
@@ -205,12 +208,6 @@ msgstr "Mana"
 
 msgid "POWER_MAGIC"
 msgstr "Magic Power"
-
-msgid "MONSTER_SEWER_RAT_NAME"
-msgstr "Sewer rat"
-
-msgid "MONSTER_SEWER_RAT_BIG_NAME"
-msgstr "Bloated sewer rat"
 
 msgid "ARENA_PROTOTYPE_NAME"
 msgstr "Training cellar"
@@ -550,6 +547,123 @@ msgstr "Male"
 
 msgid "CHAR_SEX_FEMALE"
 msgstr "Female"
+
+msgid "CHAR_HAIR_Hair_SimpleParted"
+msgstr "Hair: parted"
+
+msgid "CHAR_HAIR_Hair_Buzzed"
+msgstr "Hair: short"
+
+msgid "CHAR_HAIR_Hair_Long"
+msgstr "Hair: long"
+
+msgid "CHAR_HAIR_Hair_Buns"
+msgstr "Hair: buns"
+
+msgid "CHAR_HAIR_Hair_BuzzedFemale"
+msgstr "Hair: buzzed"
+
+msgid "CHAR_HAIR_Kit_Pixie"
+msgstr "Hair: pixie cut"
+
+msgid "CHAR_HAIR_Kit_Bob"
+msgstr "Hair: chin-length bob"
+
+msgid "CHAR_HAIR_Kit_BobBangs"
+msgstr "Hair: bob with bangs"
+
+msgid "CHAR_HAIR_Kit_Wavy"
+msgstr "Hair: long and wavy"
+
+msgid "CHAR_HAIR_Kit_Ponytail"
+msgstr "Hair: high ponytail"
+
+msgid "CHAR_HAIR_Kit_DoubleBun"
+msgstr "Hair: double bun"
+
+msgid "CHAR_HAIR_Kit_AfroPuffs"
+msgstr "Hair: afro puffs"
+
+msgid "CHAR_HAIR_Kit_MessyBun"
+msgstr "Hair: messy bun"
+
+msgid "CHAR_HAIR_Kit_SpaceBuns"
+msgstr "Hair: space buns"
+
+msgid "CHAR_HAIR_Kit_Braids"
+msgstr "Hair: double braids"
+
+msgid "CHAR_HAIR_Kit_Shag"
+msgstr "Hair: shag with bangs"
+
+msgid "CHAR_HAIR_Kit_LongStraight"
+msgstr "Hair: long straight"
+
+msgid "CHAR_HAIR_NONE"
+msgstr "Hair: none"
+
+msgid "CHAR_HAIR_COLOR_0"
+msgstr "Hair color: black"
+
+msgid "CHAR_HAIR_COLOR_1"
+msgstr "Hair color: dark brown"
+
+msgid "CHAR_HAIR_COLOR_2"
+msgstr "Hair color: brown"
+
+msgid "CHAR_HAIR_COLOR_3"
+msgstr "Hair color: auburn"
+
+msgid "CHAR_HAIR_COLOR_4"
+msgstr "Hair color: blond"
+
+msgid "CHAR_HAIR_COLOR_5"
+msgstr "Hair color: platinum"
+
+msgid "CHAR_HAIR_COLOR_6"
+msgstr "Hair color: gray"
+
+msgid "CHAR_HAIR_COLOR_7"
+msgstr "Hair color: white"
+
+msgid "CHAR_SKIN_0"
+msgstr "Skin: very fair"
+
+msgid "CHAR_SKIN_1"
+msgstr "Skin: fair"
+
+msgid "CHAR_SKIN_2"
+msgstr "Skin: tan"
+
+msgid "CHAR_SKIN_3"
+msgstr "Skin: brown"
+
+msgid "CHAR_SKIN_4"
+msgstr "Skin: dark"
+
+msgid "CHAR_SKIN_5"
+msgstr "Skin: very dark"
+
+msgid "CHAR_BEARD"
+msgstr "Beard"
+
+msgid "CHAR_GEAR_NONE"
+msgstr "Gear: starting"
+
+msgid "CHAR_GEAR_D"
+msgstr "Gear: rank D"
+
+msgid "CHAR_GEAR_C"
+msgstr "Gear: rank C"
+
+msgid "CHAR_GEAR_B"
+msgstr "Gear: rank B"
+
+msgid "CHAR_GEAR_A"
+msgstr "Gear: rank A"
+
+msgid "CHAR_GEAR_S"
+msgstr "Gear: rank S"
 
 msgid "CHAR_ENTRY"
 msgstr "{name} — {element} {class}, level {level}"
@@ -1246,10 +1360,10 @@ msgid "SKILL_SCATTER_ESCAPE_DESC"
 msgstr "You burst into a flock, pass through enemies and reappear up to 7 m ahead; your animals taunt nearby enemies for 2 s. Cooldown -1 s per rank."
 
 msgid "SKILL_GUARDIAN_BEAR_NAME"
-msgstr "Guardian Bear"
+msgstr "Guardian Gorilla"
 
 msgid "SKILL_GUARDIAN_BEAR_DESC"
-msgstr "A friendly bear with 150% of your health taunts and holds enemies for 15 s; only one at a time."
+msgstr "A friendly gorilla with 150% of your health taunts and holds enemies for 15 s; only one at a time."
 
 msgid "SKILL_STAMPEDE_NAME"
 msgstr "Stampede"
@@ -1354,19 +1468,19 @@ msgid "ITEM_TYPE_BOOK"
 msgstr "Book"
 
 msgid "COMPANION_FOX"
-msgstr "Fire fox"
+msgstr "Phoenix"
 
 msgid "COMPANION_OTTER"
-msgstr "Otter"
+msgstr "Water crocodile"
 
 msgid "COMPANION_FALCON"
-msgstr "Falcon"
+msgstr "Air eagle"
 
 msgid "COMPANION_BOAR"
 msgstr "Boar"
 
 msgid "COMPANION_BEAR"
-msgstr "Guardian bear"
+msgstr "Guardian gorilla"
 
 msgid "SKILL_LANCE_THRUST_NAME"
 msgstr "Lance Thrust"
@@ -1579,7 +1693,7 @@ msgid "DLG_OLD_DRUNK_3"
 msgstr "Years later, folk here poisoned and burned the rats down there... but they forgot the mother."
 
 msgid "DLG_OLD_DRUNK_4"
-msgstr "They say the Rat Queen made a pact with a demon, grew as big as a cart, and now sleeps on top of the treasure, with the king's crown on her head."
+msgstr "They say the king's alchemist, forgotten down there, made a pact with a demon, grew eight spider legs, and now sleeps on top of the treasure, with the king's crown tucked in his cloak."
 
 msgid "DLG_OLD_DRUNK_5"
 msgstr "If you're looking for treasure, you're standing on one! Just bring fire. She already knows what fire is — and she hates it."
@@ -1594,7 +1708,7 @@ msgid "DLG_KEEPER_1"
 msgstr "Sit down, rest. In Tortuga nobody asks where the gold comes from — only whether it pays."
 
 msgid "DLG_BARD_QUEEN_1"
-msgstr "The Rat Queen was just a mother once, guarding her young in the dark."
+msgstr "The Spider Sorcerer was the king's alchemist once, left in the dark to guard the treasure."
 
 msgid "DLG_BARD_QUEEN_2"
 msgstr "Earth runs in her veins now, and earth fears fire — remember the song."
@@ -1621,7 +1735,7 @@ msgid "QUEST_SEWER_TREASURE"
 msgstr "The treasure under the town"
 
 msgid "QUEST_SEWER_TREASURE_DESC"
-msgstr "Go down the sewer grate, defeat the Rat Queen and take the lost war treasure. The rats are Earth — they fear Fire."
+msgstr "Go down the sewer grate, defeat the Spider Sorcerer and take the lost war treasure. The rats are Earth — they fear Fire."
 
 msgid "AREA_TORTUGA"
 msgstr "Tortuga"
@@ -1733,6 +1847,21 @@ msgstr "Witch Doctor"
 
 msgid "DLG_VOODOO_1"
 msgstr "The other side also has a price, friend. Tell me where you stopped, and I'll draw the way back."
+
+msgid "NPC_PRIEST"
+msgstr "Priest"
+
+msgid "DLG_PRIEST_1"
+msgstr "May the kingdom's light guide your steps, mercenary. Here in the Capital, even sinners have a pew in the church."
+
+msgid "DLG_PRIEST_2"
+msgstr "The war is over, but the dead still ask for prayer. If you come back alive from the road, light a candle for those who did not."
+
+msgid "NPC_CASTLE_GUARD"
+msgstr "Castle Sentinel"
+
+msgid "DLG_CASTLE_GUARD_1"
+msgstr "The castle is for those with business with the Crown. A mercenary who drank too much can wait in the square."
 
 msgid "DLG_SERVICE_PORTALS"
 msgstr "Portals"
@@ -1873,16 +2002,16 @@ msgid "DLG_SERVICE_BESTIARY"
 msgstr "Bestiary"
 
 msgid "BEAST_PLAGUE_RAT"
-msgstr "Plague Rat"
+msgstr "Plague Frog"
 
 msgid "BEAST_PLAGUE_RAT_LEGEND"
-msgstr "In medieval Europe rats were tied to the Black Death: their fleas spread the plague that killed much of the population. Here they are the Rat Queen's young, tainted by her pact with the demon — bigger, red-eyed, attacking in swarms."
+msgstr "In medieval Europe rats were tied to the Black Death: their fleas spread the plague that killed much of the population. Here they are the Spider Sorcerer's familiars, tainted by his pact with the demon — bigger, red-eyed, attacking in swarms."
 
 msgid "BEAST_PLAGUE_RAT_HINT"
 msgstr "A rat's a rat: it fears fire. Bring a torch... or a mage who knows how to light one."
 
 msgid "BEAST_MUTANT_RAT"
-msgstr "Mutant Rat"
+msgstr "Mutant Frog"
 
 msgid "BEAST_MUTANT_RAT_LEGEND"
 msgstr "The same plague superstition; tales of rats as big as dogs in the cellars are common in port towns. These are the Queen's older young, grown to the size of a hunting dog."
@@ -1918,7 +2047,7 @@ msgid "BEAST_SEWER_GATOR_HINT"
 msgstr "If the water bubbles, get away. It lives at the bottom of the channel. Lightning in the water and it comes up belly-up."
 
 msgid "BEAST_DEMON_RAT_QUEEN"
-msgstr "Rat Queen"
+msgstr "Spider Sorcerer"
 
 msgid "BEAST_DEMON_RAT_QUEEN_LEGEND"
 msgstr "In German folklore a 'rat king' is a knot of rats bound by their tails, an omen of plague. Here she was the mother of all the sewer's rats; when Tortuga poisoned and burned her young, she made a pact with a demon, grew as big as a cart and nests on the lost war treasure, wearing the fallen king's crown."
@@ -2174,10 +2303,13 @@ msgid "TIP_MOVE_PAD"
 msgstr "Move with the left stick and aim with the right one."
 
 msgid "MONSTER_PLAGUE_RAT"
-msgstr "Plague Rat"
+msgstr "Plague Frog"
 
 msgid "MONSTER_MUTANT_RAT"
-msgstr "Mutant Rat"
+msgstr "Mutant Frog"
+
+msgid "MONSTER_FUNGUS_UNCLE"
+msgstr "Uncle Fungus"
 
 msgid "MONSTER_PLAGUE_BAT"
 msgstr "Plague Bat"
@@ -2185,8 +2317,8 @@ msgstr "Plague Bat"
 msgid "MONSTER_VENOM_SCORPION"
 msgstr "Venom Scorpion"
 
-msgid "MONSTER_GOLDEN_LIZARD"
-msgstr "Golden Lizard"
+msgid "MONSTER_GOLDEN_RABBIT"
+msgstr "Golden Rabbit"
 
 msgid "MONSTER_ACID_TOAD"
 msgstr "Acid Toad"
@@ -2198,7 +2330,7 @@ msgid "MONSTER_OLD_GATOR"
 msgstr "Old Gator"
 
 msgid "MONSTER_RAT_QUEEN"
-msgstr "Rat Queen"
+msgstr "Spider Sorcerer"
 
 msgid "ARENA_SEWERS_DRAINS"
 msgstr "Sewers — Main Street Drains"
@@ -2228,7 +2360,7 @@ msgid "SIGN_WAR_CREST_ARCHER"
 msgstr "My kingdom's crest. So this is where the treasure fled the war."
 
 msgid "HUD_VICTORY_SEWERS"
-msgstr "The Rat Queen has fallen."
+msgstr "The Spider Sorcerer has fallen."
 
 msgid "HUD_VICTORY_TREASURE"
 msgstr "The Lost Treasure of the War is open to the group."
@@ -2303,7 +2435,7 @@ msgid "RELIC_FALLEN_KING_CROWN"
 msgstr "Crown of the Fallen King"
 
 msgid "RELIC_FALLEN_KING_CROWN_DESC"
-msgstr "The crooked crown the Rat Queen wore. It weighs more than it should."
+msgstr "The crooked crown the Spider Sorcerer wore. It weighs more than it should."
 
 msgid "TOAST_RELIC_FOUND"
 msgstr "Relic: {relic}"
@@ -2320,6 +2452,15 @@ msgstr "Barrel"
 msgid "PROP_POT"
 msgstr "Clay Pot"
 
+msgid "PROP_MUG"
+msgstr "Ceramic Jar"
+
+msgid "PROP_DEER_BUCK"
+msgstr "Stag"
+
+msgid "PROP_DEER_DOE"
+msgstr "Doe"
+
 msgid "PROP_CRATE"
 msgstr "Crate"
 
@@ -2331,3 +2472,537 @@ msgstr "Barrels and crates break with {button}: they may hold potions, gold... o
 
 msgid "TIP_MAP"
 msgstr "The map reveals itself as you explore. {button} enlarges it."
+
+msgid "ARENA_FOREST"
+msgstr "Forest"
+
+msgid "ARENA_RUINS"
+msgstr "City Ruins"
+
+msgid "ARENA_CEMETERY"
+msgstr "Graveyard"
+
+msgid "ARENA_FORT"
+msgstr "Fort"
+
+msgid "PROP_TO_FOREST"
+msgstr "Path to the Forest"
+
+msgid "PROP_TO_RUINS"
+msgstr "Road to the Ruins"
+
+msgid "PROP_TO_CEMETERY"
+msgstr "Graveyard Gate"
+
+msgid "PROP_TO_FORT"
+msgstr "Road to the Fort"
+
+msgid "MONSTER_LESHY"
+msgstr "Leshy"
+
+msgid "MONSTER_GOLEM_FIRE"
+msgstr "Fire Golem"
+
+msgid "MONSTER_GOLEM_ICE"
+msgstr "Ice Golem"
+
+msgid "MONSTER_GOLEM_STONE"
+msgstr "Stone Golem"
+
+msgid "MONSTER_FOREST_REPTILE"
+msgstr "Forest Reptile"
+
+msgid "MONSTER_RUIN_WARDEN"
+msgstr "Vault Warden"
+
+msgid "MONSTER_CRYPT_SCORPION"
+msgstr "Crypt Ogre"
+
+msgid "MONSTER_CRYPT_LORD"
+msgstr "Crypt Lord"
+
+msgid "MONSTER_FORT_COMMANDER"
+msgstr "Cursed Commander"
+
+msgid "MONSTER_DARK_ELF"
+msgstr "Dark Elf"
+
+msgid "MONSTER_NIGHT_DEMON"
+msgstr "Night Demon"
+
+msgid "MONSTER_SUCCUBUS"
+msgstr "Succubus"
+
+msgid "MONSTER_SKELETON"
+msgstr "Skeleton"
+
+msgid "MONSTER_ZOMBIE"
+msgstr "Thin Zombie"
+
+msgid "MONSTER_GOBLIN"
+msgstr "Goblin"
+
+msgid "MONSTER_TROLL"
+msgstr "Skinny Troll"
+
+msgid "NPC_LIGHTPOST_STATUE"
+msgstr "Lamp Statue"
+
+msgid "DLG_STATUE_1"
+msgstr "Nobody has crossed this ground without trembling in a long time. I hold the light for those who sleep here."
+
+msgid "DLG_STATUE_2"
+msgstr "The lantern is not here to guide the living. It watches over those who lie down and do not want to get up."
+
+msgid "DLG_STATUE_3"
+msgstr "But you stepped into my plaza and looked into my eyes. Let the tomb guardian decide whether you deserve to pass."
+
+msgid "TOAST_STATUE_AWAKENS"
+msgstr "The ground shakes: the Tomb Guardian awakens!"
+
+msgid "MONSTER_TOMB_GUARDIAN"
+msgstr "Tomb Guardian"
+
+msgid "ARENA_DARK_FOREST"
+msgstr "Dark Forest"
+
+msgid "PROP_TO_DARK_FOREST"
+msgstr "Path to the Dark Forest"
+
+msgid "ARENA_CAPITAL"
+msgstr "Royal Capital — Aurenhold"
+
+msgid "PROP_TO_CAPITAL"
+msgstr "Portal to the Royal Capital"
+
+msgid "ARENA_FARM"
+msgstr "Farm"
+
+msgid "PROP_TO_FARM"
+msgstr "Path to the Farm"
+
+msgid "NPC_VILLAGE_HUNTER"
+msgstr "Bertram the Hunter"
+
+msgid "NPC_VILLAGE_WIFE"
+msgstr "Elara the Tanner"
+
+msgid "NPC_ELF_ARCHER"
+msgstr "Aeliana the Ranger"
+
+msgid "DLG_ARCHER_1"
+msgstr "Hold. Walk softly — you are loud for people who mean to live. I am Aeliana; I have watched this wood since before Ferncroft had a name."
+
+msgid "DLG_ARCHER_2"
+msgstr "The Leshy sleeps at the far end of the grove, under the elder tree. Bark, stone and rage. Every arrow I loose just feeds the moss."
+
+msgid "DLG_ARCHER_3"
+msgstr "Put it down and the forest will breathe again. Fire is the one thing the old bark fears. Do this, and I'll make it worth your while."
+
+msgid "DLG_ARCHER_ACTIVE"
+msgstr "Follow the stone path to the end of the grove. The Leshy charges from afar — do not stand your ground. Burn it."
+
+msgid "DLG_ARCHER_DONE"
+msgstr "The grove is quiet. I felt the elder tree sigh. My thanks, travelers — the wood remembers its friends."
+
+msgid "QUEST_FOREST_LESHY"
+msgstr "The Elder of the Grove"
+
+msgid "QUEST_FOREST_LESHY_DESC"
+msgstr "Aeliana the Ranger asks you to slay the Leshy, the bark-and-stone giant that guards the elder tree. It is Earth — it fears Fire."
+
+msgid "DLG_HUNTER_1"
+msgstr "Strangers! Mind the hedge when you leave — the grove is not what it was. I'm Bertram. Elara and I are all that's left of Ferncroft."
+
+msgid "DLG_HUNTER_2"
+msgstr "Something crawls out of the dark in the grove: lean, green, all claws. Three of them took my last deer and the rest of my patience."
+
+msgid "DLG_HUNTER_3"
+msgstr "Clear them out and I'll pay what I can. They're Earth-blooded things — they hate Fire."
+
+msgid "DLG_HUNTER_ACTIVE"
+msgstr "Three of them, in the grove, past the stones. Fire, remember. Fire."
+
+msgid "DLG_HUNTER_DONE"
+msgstr "Quiet at last! The deer are coming back. If you want more, talk to the Hermit and the Keeper in the squares."
+
+msgid "DLG_WIFE_1"
+msgstr "Don't mind the smell, it's the hides. I'm Elara. Bertram says you fight what hunters cannot."
+
+msgid "DLG_WIFE_2"
+msgstr "Stones have started to walk in these woods, trampling where our paths used to be. My racks, my fish… everything. The ones who know how to wake and tame such things are the Hermit of the Stone and the Keeper of the Pyre, in the squares along the trail."
+
+msgid "DLG_WIFE_3"
+msgstr "Talk to them — and come back in one piece. The things inside the caves — toads, bats, reptiles and beasts — are no joke either."
+
+msgid "DLG_WIFE_ACTIVE"
+msgstr "Stone and fire sleep in the squares — talk to the Hermit and the Keeper. The ice one is to the east."
+
+msgid "DLG_WIFE_DONE"
+msgstr "The woods are breathing again. Ferncroft thanks you — take what we saved."
+
+msgid "QUEST_FOREST_REPTILES"
+msgstr "Lurkers in the Grove"
+
+msgid "QUEST_FOREST_REPTILES_DESC"
+msgstr "Bertram the Hunter asks you to clear the pack of Forest Reptiles from the grove. They are Earth — they fear Fire."
+
+msgid "QUEST_FOREST_GOLEMS"
+msgstr "Walking Stones"
+
+msgid "QUEST_FOREST_GOLEMS_DESC"
+msgstr "Elara the Tanner asks you to defeat the Stone, Ice and Fire Golems of the Forest: the stone and fire ones sleep in the squares and only wake when the Hermit and the Keeper call them."
+
+msgid "PROP_VILLAGE_SIGN"
+msgstr "Ferncroft"
+
+msgid "PROP_VILLAGE_SIGN_TEXT"
+msgstr "Ferncroft — half a dozen houses, one hunter and one tanner. Strangers welcome."
+
+msgid "HUD_QUEST_PLAIN"
+msgstr "Quest: {quest}"
+
+msgid "PROP_COIN_BAG"
+msgstr "Coin bag"
+
+msgid "ARENA_MINE"
+msgstr "Crystal Mine"
+
+msgid "PROP_TO_MINE"
+msgstr "Path to the Mine"
+
+msgid "MONSTER_CRYSTAL_GOLEM"
+msgstr "Crystal Golem"
+
+msgid "ARENA_DOCKS"
+msgstr "Docks"
+
+msgid "PROP_TO_DOCKS"
+msgstr "Gangway to the Docks"
+
+msgid "PROP_TO_PORT"
+msgstr "Back to the port"
+
+msgid "MONSTER_CHITIN_BEAST"
+msgstr "Chitinous Beast"
+
+msgid "MONSTER_ANGLER"
+msgstr "Anglerman"
+
+msgid "MONSTER_STALKER"
+msgstr "Stalker"
+
+msgid "VALUABLE_HUMAN_HEART"
+msgstr "Human Heart"
+
+msgid "VALUABLE_OLD_SKULL"
+msgstr "Old Skull"
+
+msgid "QUEST_ROYAL_HEART"
+msgstr "The Fallen King's Heart"
+
+msgid "QUEST_ROYAL_HEART_DESC"
+msgstr "The Capital's Priest wants to lay Veldmark's last king to rest. The Crypt Lord, in the Cemetery, keeps his heart: defeat him and bring the Human Heart to the Priest."
+
+msgid "QUEST_ROYAL_SKULL"
+msgstr "The Fallen King's Skull"
+
+msgid "QUEST_ROYAL_SKULL_DESC"
+msgstr "The Fort Commander carries the skull of Veldmark's last king. Defeat him and hand the Old Skull to the Priest."
+
+msgid "DLG_PRIEST_HEART_1"
+msgstr "You have walked the lands of Veldmark, haven't you? There, the last king of the defeated realm was dug up: Lucifer's demons took the body piece by piece."
+
+msgid "DLG_PRIEST_HEART_2"
+msgstr "I fought him in life, but no man deserves that. The Crypt Lord keeps his heart in the Cemetery. Bring me the heart and the Church pays in gold."
+
+msgid "DLG_PRIEST_HEART_ACTIVE"
+msgstr "Bring the Human Heart the Crypt Lord keeps in the Cemetery. When you have it, just hand it over."
+
+msgid "DLG_PRIEST_SKULL_1"
+msgstr "The heart and the lungs now rest. The skull is missing: the cursed Commander of the Fort carries it as a trophy for Lucifer."
+
+msgid "DLG_PRIEST_SKULL_2"
+msgstr "Bring the Old Skull and the king will have a whole grave. The Church pays well for it."
+
+msgid "DLG_PRIEST_SKULL_ACTIVE"
+msgstr "The Old Skull is with the Fort Commander. Hand it to me when you have it."
+
+msgid "DLG_PRIEST_DONE"
+msgstr "Veldmark's king rests, whole, thanks to you. May the light guide your steps, mercenaries."
+
+msgid "DLG_SERVICE_TURN_IN"
+msgstr "Hand over the relic"
+
+msgid "TOAST_NEED_QUEST_ITEM"
+msgstr "Missing: {item}"
+
+msgid "MONSTER_FROG_KING"
+msgstr "Frog King"
+
+msgid "MONSTER_VIPER_QUEEN"
+msgstr "Viper Queen"
+
+msgid "MONSTER_RUIN_ALPHA"
+msgstr "Pack Alpha"
+
+msgid "MONSTER_SUCCUBUS_QUEEN"
+msgstr "Succubus Queen"
+
+msgid "MONSTER_TROLL_CHIEF"
+msgstr "Troll Chief"
+
+msgid "NPC_COURT_JESTER"
+msgstr "Court Jester"
+
+msgid "DLG_JESTER_1"
+msgstr "Ah, the famous mercenaries of Tortuga! What an honor, what an honor…"
+
+msgid "DLG_JESTER_2"
+msgstr "(lowering his voice) Nobody pays attention to a fool — which is why I hear everything."
+
+msgid "DLG_JESTER_3"
+msgstr "The king's gold is vanishing from the vaults, and nobody in the castle notices. Come back when you're ready: I know where to look."
+
+msgid "ARENA_BUNKER"
+msgstr "Bunker"
+
+msgid "PROP_TO_BUNKER"
+msgstr "Bunker Hatch"
+
+msgid "PROP_RETURN_FARM"
+msgstr "Back to the Farm"
+
+msgid "VALUABLE_WILD_MEAT"
+msgstr "Wild Meat"
+
+msgid "QUEST_ROYAL_BANQUET"
+msgstr "The King's Banquet"
+
+msgid "QUEST_ROYAL_BANQUET_DESC"
+msgstr "The Court Jester wants meat on the king's table. The Pack Alpha, in the Ruins, has the best: defeat him and bring the Wild Meat to the Jester."
+
+msgid "DLG_JESTER_BANQUET_1"
+msgstr "Look at this table: apples, bananas… and not a piece of meat! The king is so distracted by the gold vanishing from the vaults that he forgot to eat like a king."
+
+msgid "DLG_JESTER_BANQUET_2"
+msgstr "The Pack Alpha, in the Ruins, has the most famous meat in the realm. Bring it and I will tell you what I know, fool to mercenary."
+
+msgid "DLG_JESTER_BANQUET_ACTIVE"
+msgstr "The Wild Meat is with the Pack Alpha, in the Ruins. The king's table is waiting, and so am I!"
+
+msgid "DLG_JESTER_BANQUET_DONE"
+msgstr "What a feast, what a feast! The king ate like never before. You have a friend in the castle."
+
+msgid "MONSTER_LUCIFER"
+msgstr "Lucifer"
+
+msgid "NPC_RUINS_SPARTAN"
+msgstr "Leonidas, the Veteran"
+
+msgid "DLG_SPARTAN_1"
+msgstr "Halt, strangers. I am Leonidas. I have held this entrance since the war brought down the walls, and nobody passes without telling me why."
+
+msgid "DLG_SPARTAN_2"
+msgstr "The goblins came after the fire, like rats after scraps. They roam in two packs: one in the eastern streets and one deep in the city, near the vault."
+
+msgid "DLG_SPARTAN_3"
+msgstr "They are quick and frail, but they come in numbers. They are creatures of the earth — Fire brings them down. Clear the streets and I will pay in gold."
+
+msgid "DLG_SPARTAN_ACTIVE"
+msgstr "The goblins still roam the streets: one pack to the east, another near the vault. Stay together and use Fire."
+
+msgid "DLG_SPARTAN_DONE"
+msgstr "Quiet in the streets for the first time in years. You have an old soldier's thanks. May the gods guard your shields."
+
+msgid "QUEST_RUINS_GOBLINS"
+msgstr "Goblin Plague"
+
+msgid "QUEST_RUINS_GOBLINS_DESC"
+msgstr "Leonidas, the Veteran, asks you to defeat the two goblin packs infesting the streets of the Ruins. They are Earth — they fear Fire."
+
+msgid "PROP_BASKET"
+msgstr "Basket"
+
+msgid "NPC_FOREST_HERMIT"
+msgstr "Hermit of the Stone"
+
+msgid "NPC_FOREST_PYRE_KEEPER"
+msgstr "Keeper of the Pyre"
+
+msgid "DLG_HERMIT_1"
+msgstr "I have kept this square for decades. The stones tell me everything, and today they speak of you: strangers itching for a fight."
+
+msgid "DLG_HERMIT_2"
+msgstr "Beneath these flagstones sleeps the Stone Golem, the old warden of the woods. He wakes only when someone asks, and I know the way to ask."
+
+msgid "DLG_HERMIT_3"
+msgstr "Step back to the edge of the square… I call him now. He is of Earth — he fears Fire."
+
+msgid "DLG_PYRE_1"
+msgstr "The pyre never dies, strangers. I have fed it since the Forest was truly green."
+
+msgid "DLG_PYRE_2"
+msgstr "In the heart of the embers sleeps the Fire Golem. He listens when I sing, and sings back with fists of lava."
+
+msgid "DLG_PYRE_3"
+msgstr "If you want to face him, get ready: the embers are already stirring…"
+
+msgid "TOAST_HERMIT_AWAKENS"
+msgstr "The ground splits: the Stone Golem awakens!"
+
+msgid "TOAST_PYRE_AWAKENS"
+msgstr "The embers roar: the Fire Golem awakens!"
+
+msgid "PROP_MINIBOSS_CHEST"
+msgstr "Mini-boss chest"
+
+msgid "TOAST_MINIBOSS_CHEST"
+msgstr "The mini-boss left a chest!"
+
+msgid "MONSTER_DARK_ELF_LORD"
+msgstr "Dark Elf Lord"
+
+msgid "NPC_FORT_PENITENT"
+msgstr "The Penitent"
+
+msgid "DLG_PENITENT_1"
+msgstr "I served the Queen of Succubi once. Now I kneel in this corridor and pay for it."
+
+msgid "DLG_PENITENT_2"
+msgstr "She sleeps in the hall beyond that arch, and she will not wake unless someone calls her by name. I know it."
+
+msgid "DLG_PENITENT_3"
+msgstr "Step back… I call her now. Fire is her blood: bring water, or bring luck."
+
+msgid "TOAST_PENITENT_AWAKENS"
+msgstr "The arch glows: the Succubus Queen awakens!"
+
+msgid "NPC_FORT_EXILE"
+msgstr "The Exile"
+
+msgid "DLG_EXILE_1"
+msgstr "They cast me out for questioning the Commander. I have waited in this corridor ever since."
+
+msgid "DLG_EXILE_2"
+msgstr "Beyond lies the Dark Elf Lord, captain of the crossbowmen. He keeps the south road and never lets anyone pass."
+
+msgid "DLG_EXILE_3"
+msgstr "Keep moving while he reloads, and let nothing get between you and the Commander's door. I will wake him for you."
+
+msgid "TOAST_EXILE_AWAKENS"
+msgstr "A horn sounds: the Dark Elf Lord awakens!"
+
+msgid "QUEST_FOREST_STONE"
+msgstr "The Stone Warden"
+
+msgid "QUEST_FOREST_STONE_DESC"
+msgstr "The Hermit of the Stone asks you to defeat the Stone Golem he awakens in the square. It is of Earth — it fears Fire."
+
+msgid "QUEST_FOREST_FIRE"
+msgstr "The Heart of the Pyre"
+
+msgid "QUEST_FOREST_FIRE_DESC"
+msgstr "The Keeper of the Pyre asks you to defeat the Fire Golem she awakens from the embers of the square."
+
+msgid "DLG_HERMIT_ACTIVE"
+msgstr "The old warden still walks. Bring him down, strangers."
+
+msgid "DLG_HERMIT_DONE"
+msgstr "The stone sleeps again. Take your reward; the stones are grateful."
+
+msgid "DLG_PYRE_ACTIVE"
+msgstr "The embers still roar. Put an end to him, strangers."
+
+msgid "DLG_PYRE_DONE"
+msgstr "The pyre burns gently again. Take what I owe you."
+
+msgid "VALUABLE_HUMAN_LUNGS"
+msgstr "Human Lungs"
+
+msgid "QUEST_ROYAL_LUNGS"
+msgstr "The Fallen King's Lungs"
+
+msgid "QUEST_ROYAL_LUNGS_DESC"
+msgstr "The Crypt Ogre, in the Cemetery, keeps the lungs of Veldmark's last king: defeat him and bring the Human Lungs to the Priest."
+
+msgid "DLG_PRIEST_LUNGS_1"
+msgstr "The heart now rests, but the king still does not breathe in peace: the lungs ended up with the Crypt Ogre, in the same Cemetery."
+
+msgid "DLG_PRIEST_LUNGS_2"
+msgstr "He is big and brutish, but only guards what he was told to. Bring the lungs and the Church pays again."
+
+msgid "DLG_PRIEST_LUNGS_ACTIVE"
+msgstr "The Human Lungs are with the Crypt Ogre, in the Cemetery. Hand them to me when you have them."
+
+msgid "VALUABLE_ROYAL_SOUL"
+msgstr "King's Soul"
+
+msgid "QUEST_ROYAL_SOUL"
+msgstr "The Fallen King's Soul"
+
+msgid "QUEST_ROYAL_SOUL_DESC"
+msgstr "The Tomb Guardian has trapped the soul of Veldmark's last king. Defeat him, in the Mine or the Cemetery, and bring the King's Soul to the Priest."
+
+msgid "DLG_PRIEST_SOUL_1"
+msgstr "The body is whole, but the king still does not rest: his soul, a little ghost that laughs at its own bad luck, was trapped by the Tomb Guardian."
+
+msgid "DLG_PRIEST_SOUL_2"
+msgstr "He wanders between the Mine and the Cemetery, where the statue wakes him. Bring the soul and the Church pays its last fee."
+
+msgid "DLG_PRIEST_SOUL_ACTIVE"
+msgstr "The King's Soul is with the Tomb Guardian, in the Mine or the Cemetery. Hand it to me when you have it."
+
+msgid "ARENA_DESERT"
+msgstr "Desert — Canyon"
+
+msgid "PROP_TO_DESERT"
+msgstr "Path to the Desert"
+
+msgid "MONSTER_SAND_LAMASSU"
+msgstr "Sand Lamassu"
+
+msgid "MONSTER_QUEEN_SCORPION"
+msgstr "Scorpion Queen"
+
+msgid "NPC_SEATED_PIRATE"
+msgstr "Pirate Captain"
+
+msgid "DLG_PIRATE_1"
+msgstr "Sit down, mercenary. See that pier out there, at the Docks? It used to be mine: now it's just frogs, bats and ugly anglerfish."
+
+msgid "DLG_PIRATE_2"
+msgstr "My ship docks there and I can't unload a barrel without losing a finger. Clear the pier for me."
+
+msgid "DLG_PIRATE_3"
+msgstr "Kill every critter on the Docks: frogs, ugly frogs, bats and the anglerfish. I pay in gold and rum… more in gold."
+
+msgid "DLG_PIRATE_ACTIVE"
+msgstr "There are still critters on the pier. Come back when the last one is floating."
+
+msgid "DLG_PIRATE_DONE"
+msgstr "The pier is clean! A toast to the mercenary who is not afraid to get their feet wet."
+
+msgid "QUEST_DOCKS_SMUGGLERS"
+msgstr "The Old Sea Wolf's Pier"
+
+msgid "QUEST_DOCKS_SMUGGLERS_DESC"
+msgstr "The Old Sea Wolf, in the tavern, wants the Docks pier free of critters: defeat every encounter on the Docks map."
+
+msgid "NPC_OLD_LADY"
+msgstr "Tavern Old Lady"
+
+msgid "DLG_OLD_LADY_1"
+msgstr "Sit, sit. This old woman has seen many people walk through that door, and few return from the woods."
+
+msgid "DLG_OLD_LADY_2"
+msgstr "The Leshy lives in the Forest, a giant of bark and stone. He is Earth — Fire is what the old bark fears."
+
+msgid "DLG_OLD_LADY_3"
+msgstr "Bring him down and I will reward you. The ranger Aeliana waits on the trail."
+
+msgid "DLG_OLD_LADY_ACTIVE"
+msgstr "The Leshy sleeps deep in the woods. Take Fire with you, dears."
+
+msgid "DLG_OLD_LADY_DONE"
+msgstr "So the woods breathe again. How good to have you around."

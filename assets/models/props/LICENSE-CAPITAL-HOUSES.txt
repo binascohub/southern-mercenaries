@@ -1,0 +1,3 @@
+House_Cap_1.glb ... House_Cap_8.glb — "Modular Medieval House Pack 06" by hreikin (parts by Daniel Andersson, "Modular Medieval Building Pack"), CC0:
+https://opengameart.org/content/modular-medieval-house-pack-06
+Converted from thouse17.blend ... thouse24.blend by tools/assets/build_capital_houses.py (one mesh per house, textures from the files, 256 px).

@@ -1,0 +1,1 @@
+Signpost_Medieval.glb — "Medieval Signs" by AnyRPG, CC0: https://opengameart.org/content/medieval-signs (derivative of "survival wood shack/shelter and objects" and "wooden sign", also CC0). Converted by tools/assets/build_signposts.py.

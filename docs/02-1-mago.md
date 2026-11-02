@@ -63,10 +63,10 @@ Usado na arte do herói, no menu e como meta visual dos equipamentos de Mago:
 | Elemento | Água / Fogo / Ar / Terra |
 | Sexo | Masculino / feminino |
 | Nome | Texto livre (padrão conforme o sexo) |
-| Rosto | 4 opções por sexo |
-| Cabelo | 6 estilos por sexo + cor |
-| Barba | Só masculino: 4 opções (incluindo sem barba) |
-| Pele | 6 tons |
+| Rosto | Planejado (4 opções por sexo): os modelos atuais têm uma cabeça só |
+| Cabelo | 3 estilos por sexo + sem cabelo, e 8 cores (implementado; mais estilos dependem de novos modelos) |
+| Barba | Só masculino: com ou sem barba (implementado; mais estilos dependem de novos modelos) |
+| Pele | 6 tons (implementado) |
 
 - Sexo é só visual e de voz: **não muda atributos nem habilidades**.
 - Elemento **muda as habilidades** (seção 6).
@@ -228,3 +228,9 @@ Falas neutras, servindo para os dois sexos. Algumas mudam com o elemento.
 ## 11. Decisões em aberto
 
 - Os tesouros dos demônios trazem "conhecimento" como item (ex.: grimórios que dão pontos de habilidade ou desbloqueiam lendas no bestiário)?
+
+## Visual do equipamento por rank (implementado)
+
+O Mago troca de roupa por **rank**, de **D** (a mais simples) a **S** (a mais rara e melhor), seguindo a referência do autor (`clothes.jpeg`, níveis 1 a 5). Cada peça (corpo, cabeça, mãos, pés) troca separadamente; o rank sai do material da peça (pano e ferro = D, aço = C, cobre = B, prata = A, ouro = S). Vale para os dois sexos. Código em `game/actors/class_gear.gd` e `game/actors/gear_kit.gd`; dá para ver cada rank na tela de criação do personagem ("Equipamento").
+
+D túnica de estopa rasgada com corda; C manto bege com capuz, bolsas e bandoleira; B manto verde-acinzentado com cintos, bolsas e pergaminhos; A veludo carmesim com gola dourada, ombreiras prateadas e gema; S azul e ouro com ombreiras douradas, cristais azuis e aro na testa.

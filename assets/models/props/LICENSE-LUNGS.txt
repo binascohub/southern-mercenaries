@@ -1,0 +1,1 @@
+Quest_Lungs.glb — "Human Lungs" by Scribe, CC0: https://opengameart.org/content/human-lungs (rest pose, plain flesh colors; tools/assets/build_lungs.py). The inventory icon assets/ui/icons/human_lungs.png is a render of it.

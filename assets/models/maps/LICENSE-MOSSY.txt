@@ -1,0 +1,5 @@
+Mossy_Slab_1..5, Mossy_Formation_1..4, Trail_Dirt, Trail_Moss - "Mossy Rock Environment Pack" by rubberduck
+            https://opengameart.org/content/mossy-rock-environment-pack
+            CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+            Changes: LOD 1 meshes (rocks flattened into slabs), textures reduced to 512 px, and two ground textures
+            (mossy_03, mossy_06) cut into soil patches with irregular transparent edges (tools/assets/build_mossy_trail.py).

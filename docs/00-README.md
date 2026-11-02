@@ -24,7 +24,7 @@ Documentação de design do jogo **Southern Mercenaries**, RPG de ação co-op e
 | `06-mundo-e-historia.md` | Premissa, a guerra, estrutura da campanha em atos, abertura, tesouros e motivos dos heróis |
 | `07-rede.md` | Servidor autoritativo, descoberta na LAN, sincronização, loot individual, entrada e saída no meio da partida |
 | `08-controles.md` | Teclado/mouse e controle USB, mapeamento padrão, remapeamento, opções |
-| `09-interface.md` | Direção visual (estilo 0 A.D., câmera próxima como Dark Alliance), HUD, menus, telas e opções |
+| `09-interface.md` | **Identidade visual do jogo (regra para todo o visual)**, câmera próxima como Dark Alliance, HUD, menus, telas e opções |
 | `14-tutorial.md` | Primeiros minutos, dicas contextuais, equipamento inicial e tutorial no Esgoto |
 | `13-balanceamento.md` | Fórmulas e tabelas de dano, vida, armadura, XP, ouro, preços e metas de equilíbrio |
 | `12-audio.md` | Trilha por mapa e chefe, efeitos, ambiente, sons de interface, vozes dos heróis e licenças de áudio |

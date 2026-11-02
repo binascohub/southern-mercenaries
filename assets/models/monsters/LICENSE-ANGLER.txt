@@ -1,0 +1,2 @@
+angler.glb — "Angler Man 3D" by piacenti (3D model based on "The Angler Man" by 5hiroi), CC BY 3.0: https://opengameart.org/content/angler-man-3d
+Converted by tools/assets/build_angler.py (static mesh, subdivision level 1, 1024 px color and normal maps; moved by code in MonsterModel).

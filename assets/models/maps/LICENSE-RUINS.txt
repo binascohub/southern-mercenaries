@@ -1,0 +1,11 @@
+Ruin_*.glb - "3D Fantasy Ruins Pack" by Ron Kapaun (3 Tier Digital Studios)
+            https://opengameart.org/content/3td-fantasy-ruins-pack
+            CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+            Changes: converted from Collada, collision meshes and duplicate levels of detail removed, rescaled,
+            textures reduced to 512 px (tools/assets/dae_to_glb.py, tools/assets/build_ruins.sh).
+
+Statue_Lamp.glb - "Statue holding lightpost" by Colorado Stark
+            https://opengameart.org/content/statue-holding-lightpost
+            CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+            Changes: textures reduced to 1024 px, emissive lamp enabled, rescaled to 3.4 m
+            (tools/assets/build_lamp_statue.py).

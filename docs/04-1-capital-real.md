@@ -12,6 +12,8 @@ A **Capital Real** é a cidade do reino que **venceu a guerra** — o reino de D
 - As **novas missões principais** passam a ser entregues pelo **Bobo da Corte**, que vive no castelo e quer descobrir **onde a família real esconde seus tesouros**.
 - Depois de liberada, o grupo pode viajar entre **Tortuga e a Capital** pelos portais.
 
+> **No jogo hoje (primeira passada):** a Capital (`capital_01_aurenhold`) já existe como mapa-cidade (praça do portão, avenida e pátio do castelo) com os 10 guardas, e é o destino do **Forte** (o último mapa da cadeia atual). A ordem no jogo é Tortuga → Floresta → Ruínas → Cemitério → Floresta Escura → Forte → Capital; a ordem narrativa abaixo (depois do mapa 5) continua sendo a proposta final.
+
 ### Como o grupo chega à Capital
 - Depois do mapa 5 (Aves), as pistas da taverna acabam. É o **Cavaleiro** (Dorian ou Dália) quem conta que **sabe de um Bobo da Corte, no castelo da Capital, que sabe de coisas** — segredos da família real, ouro escondido, rumores que ninguém mais ouve.
   - **Dorian:** conheceu o Bobo nos tempos da guarda do castelo; ele era o único que sabia do romance com a princesa e nunca contou ao rei.
@@ -83,6 +85,10 @@ Seguindo o padrão de Tortuga: **área externa** com o comércio ao ar livre e *
 | Objetivo | **Descobrir onde a família real esconde seus tesouros** |
 | Ligação com o Cavaleiro | Velho conhecido de Dorian (guarda do castelo) e de Dália (princesa) |
 
+### Onde ele fica (como está no jogo)
+- O Bobo vive na **Sala do Rei** (`throne_room`), atrás do pátio do castelo: sala de madeira com o trono ao fundo, estandartes, uma mesa de centro com velas e **dois conjuntos de sofás** (Sofa-group 5, CC-BY-SA 3.0). Ele tem a missão do **Banquete do rei** (Carne Selvagem do Alfa da Matilha, `04-tortuga-e-missoes.md`); as missões principais dele entram com o Ato 3. Duas **mesas fartas** (maçãs, bananas e carne, Food Props, CC-BY 3.0) ocupam o centro da sala. Um **lustre** (Chandelier, CC0) pende sobre elas. A leste fica o **quarto do rei** (`king_bedroom`), com quatro camas (Beds, mattresses, CC-BY-SA 3.0) e baús. No **pátio de treino** há dois **aparelhos de treino** giratórios (Training Device, CC-BY-SA 3.0) junto dos bonecos.
+- A Capital tem ainda: a **igreja** (`church`, a oeste da sala do rei), com o **altar** (Podium, CC-BY-SA 3.0), a cruz, 18 cadeiras em fileiras e o **Padre** atrás do altar, que dá as missões das relíquias do último rei de Veldmark (`06-mundo-e-historia.md`); as **sentinelas do castelo** (Brigand, parado de guarda) na porta do pátio; as **casas** (Modular Medieval House Pack 06) ao norte da Avenida; a **mesa de fartura** (frutas, melancias e carne) e a **carroça de melancias** (A watermelon, CC0) na Avenida; o **pátio de treino** e as **barracas de comércio** (movidas de Tortuga).
+
 ### Papel no jogo
 - A partir da Capital, o Bobo **substitui a taberneira** como quem conta as **missões principais**.
 - Ele finge ser só um palhaço, mas ouve tudo nos salões do castelo. Descobre que os tesouros da família real estão **sumindo**: estão sendo levados para lugares que **só os demônios guardam** — e a família real não sabe de nada.
@@ -125,6 +131,7 @@ Seguindo o padrão de Tortuga: **área externa** com o comércio ao ar livre e *
 - Mesmo padrão de Tortuga: **uma cena externa** (Avenida Real + porto + pátio do castelo). O castelo em si é fachada (sem interior), o que mantém o desempenho.
 - Lojas abrem como janelas de interface ao interagir com a banca/balcão.
 - NPCs de ambientação: nobres, guardas, criados, comerciantes, músicos; poucos modelos base com variações de roupa.
+- **Segurança da Capital:** os **10 guardas que treinavam no pátio de Tortuga** saem de lá e passam a fazer a **segurança da Capital Real** (portões, castelo e campo de treino da Academia), com as mesmas armas e poses de combate (`data/capital_royal_guards.json`, guardado para quando o mapa existir). Em Tortuga o pátio de treinamento fica só com os bonecos.
 - Iluminação mais clara que Tortuga (dia, tochas e lanternas), ainda com poucas luzes dinâmicas.
 - Estado da cidade (estoques, missões do Bobo, Bobo sequestrado ou não) salvo no PC do host junto com a campanha.
 

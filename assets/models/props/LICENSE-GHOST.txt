@@ -1,0 +1,1 @@
+Quest_Ghost.glb — "Hapy ghoust" by pracalic / GiggaWatt, CC0: https://opengameart.org/content/hapy-ghoust (idle animation; tools/assets/build_ghost.py). The inventory icon assets/ui/icons/royal_soul.png is a render of it.

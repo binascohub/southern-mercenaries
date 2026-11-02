@@ -30,7 +30,7 @@ enum State { CHASE, WINDUP, RECOVER, SLEEP, HIDDEN, CHARGE }
 const HITBOX_HEIGHT := 1.6
 
 # Sincronizados.
-var monster_id := "sewer_rat"
+var monster_id := "plague_frog"
 var health := 1.0
 var max_health := 1.0
 var yaw := 0.0
@@ -155,8 +155,10 @@ func _build_nest(size: float) -> void:
 			pup.play("walk" if i % 2 == 0 else "idle", 0.0)
 
 
-## Fuga (Lagarto Dourado): tempo correndo depois do golpe e o ponto de passeio.
+## Fuga (Coelho Dourado): tempo correndo depois do golpe e o ponto de passeio.
 var _flee_time := 0.0
+var _patrol_pause := 0.0
+var _stuck_time := 0.0
 var _wander_to := Vector3.INF
 ## Peça do kit deste objeto (pote: os cacos são "<peça>_Shards").
 var _kit_piece := ""
@@ -187,12 +189,18 @@ static func create(spawn: Dictionary) -> Enemy:
 func _ready() -> void:
 	add_to_group(&"enemies")
 	collision_layer = 4
-	collision_mask = 1 | 2 | 4
+	_set_crowd_collision(false)
 	motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
 	_snapshots.delay = GameData.balance.net.interpolation_delay
 	data = GameData.get_monster(monster_id)
 	_rng.randomize()
 	_build_visual(data.size)
+
+
+## Quem patrulha dormindo atravessa os outros bichos (ratos de 3 a 6 m de comprimento se
+## travariam uns nos outros); acordado, volta a esbarrar neles.
+func _set_crowd_collision(awake_now: bool) -> void:
+	collision_mask = 1 | 2 | (4 if awake_now or not data.get("patrol", false) else 0)
 
 
 func _physics_process(delta: float) -> void:
@@ -227,6 +235,7 @@ func wake(health_scale: float, damage: float) -> void:
 	health = max_health
 	damage_mult = damage
 	state = State.HIDDEN if data.get("ai", "") == "ambush" else State.CHASE
+	_set_crowd_collision(true)
 	if data.has("boss_ai"):
 		phase = 1
 		boss_timers = {"swarm": 8.0, "slam": 4.0}
@@ -264,6 +273,8 @@ func return_home() -> void:
 	net_position = home
 	velocity = Vector3.ZERO
 	state = State.SLEEP
+	_set_crowd_collision(false)
+	_wander_to = Vector3.INF
 	status.clear()
 	states_mask = 0
 	health_mult = 1.0
@@ -275,7 +286,11 @@ func return_home() -> void:
 
 func _think(delta: float) -> void:
 	if state == State.SLEEP:
-		return  # Dormindo: sem IA nem movimento (03-inimigos.md, "Desempenho").
+		# Dormindo: sem IA nem movimento (03-inimigos.md, "Desempenho"), a não ser quem
+		# "patrulha" (os ratos do Esgoto): anda por perto enquanto há um herói na área.
+		if data.get("patrol", false):
+			_think_patrol(delta)
+		return
 	_charge_cd = maxf(_charge_cd - delta, 0.0)
 	_update_pending(delta)
 	if data.get("ai", "") == "static":
@@ -364,6 +379,43 @@ func _think(delta: float) -> void:
 			if _timer <= 0.0:
 				state = State.CHASE
 	global_position.y = 0.0
+
+
+## Patrulha de quem ainda não foi perturbado: vai a pontos sorteados em volta de
+## onde nasceu (raio "patrol_radius"), para um pouco em cada um e troca de ponto se
+## esbarra numa parede. Só mexe com um herói a menos de PATROL_RANGE (desempenho).
+const PATROL_RANGE := 50.0
+
+
+func _think_patrol(delta: float) -> void:
+	var target := _nearest_player()
+	if target == null or target.global_position.distance_to(global_position) > PATROL_RANGE:
+		velocity = Vector3.ZERO
+		return
+	_patrol_pause = maxf(_patrol_pause - delta, 0.0)
+	if _patrol_pause > 0.0:
+		velocity = Vector3.ZERO
+		return
+	var radius := float(data.get("patrol_radius", 8.0))
+	if _wander_to == Vector3.INF or global_position.distance_to(_wander_to) < 0.8:
+		if _wander_to != Vector3.INF:
+			_patrol_pause = _rng.randf_range(0.5, 2.5)  # chegou: descansa um pouco
+		_wander_to = home + Vector3(_rng.randf_range(-radius, radius), 0, _rng.randf_range(-radius, radius))
+		_stuck_time = 0.0
+		velocity = Vector3.ZERO
+		return
+	var to := _wander_to - global_position
+	to.y = 0.0
+	var speed := float(data.move_speed) * float(data.get("patrol_speed", 0.6)) * status.move_mult()
+	velocity = to.normalized() * speed
+	move_and_slide()
+	global_position.y = 0.0
+	yaw = atan2(velocity.x, velocity.z)
+	# Preso numa parede ou em outro bicho: escolhe outro ponto.
+	_stuck_time = _stuck_time + delta if get_real_velocity().length() < speed * 0.25 else 0.0
+	if _stuck_time > 0.4:
+		_wander_to = Vector3.INF
+		_patrol_pause = 0.1
 
 
 ## Não ataca: passeia devagar perto de onde nasceu; golpeado, corre para longe
@@ -533,14 +585,17 @@ func _hurt(amount: float, effect: String, hit_element: String, crit: bool, combo
 		_show_damage.rpc(amount, effect, hit_element, crit, combo)
 		get_tree().call_group(&"arena", &"on_dummy_hit", amount, crit)
 		return
+	# Defesa do monstro ("damage_taken" < 1 = resistente): vale também para a vida, não só para os bonecos.
+	amount *= float(data.get("damage_taken", 1.0))
 	if data.get("ai", "") == "flee":
 		# Levou golpe: dispara a correr e solta moedas (no fim, o resto delas).
 		var flee: Dictionary = data.get("flee", {})
 		_flee_time = float(flee.get("time", 3.0))
 		var coins: Array = flee.get("coins_per_hit", [3, 6])
-		get_tree().call_group(&"arena", &"drop_coins", global_position, _rng.randi_range(int(coins[0]), int(coins[1])))
+		var pieces := int(flee.get("coin_pieces", 1))
+		get_tree().call_group(&"arena", &"drop_coins", global_position, _rng.randi_range(int(coins[0]), int(coins[1])), pieces)
 		if health - amount <= 0.0:
-			get_tree().call_group(&"arena", &"drop_coins", global_position, int(flee.get("coins_on_death", 30)))
+			get_tree().call_group(&"arena", &"drop_coins", global_position, int(flee.get("coins_on_death", 30)), pieces * 2)
 	if state == State.SLEEP:
 		disturbed.emit(self)
 	elif state == State.HIDDEN:
@@ -910,7 +965,7 @@ func _tick_model(delta: float, tint: Color) -> void:
 		State.CHARGE:
 			key = "run"
 		State.SLEEP, State.HIDDEN:
-			key = "idle"
+			key = "walk" if state == State.SLEEP and _visual_speed > 0.3 else "idle"
 		_:
 			if _visual_speed > 2.5:
 				key = "run"
@@ -919,8 +974,8 @@ func _tick_model(delta: float, tint: Color) -> void:
 	if _model.current() == "attack" and state == State.RECOVER:
 		key = "attack"  # deixa o golpe terminar
 	_model.play(key)
-	# A Rainha ganha asas de morcego na metade da vida (e as mantém).
-	if data.get("look", "") == "queen" and health > 0.0 and health <= max_health * 0.5:
+	# O chefe entra na fase de metade da vida (a Rainha ganhava asas de morcego; o Feiticeiro-Aranha só marca o estado).
+	if data.get("look", "") in ["queen", "demon"] and health > 0.0 and health <= max_health * 0.5:
 		_model.show_wings(true)
 	var color := Color.WHITE
 	if _flash > 0.0:

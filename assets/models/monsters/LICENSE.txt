@@ -44,3 +44,53 @@ toad.glb — "Triton 3D" by guiea7
             https://opengameart.org/content/triton-3d
             Creative Commons Attribution-ShareAlike 4.0: https://creativecommons.org/licenses/by-sa/4.0/
             Changes: the body without the trident; idle, walk, attack, die and sleep animations; texture reduced. Shared under CC BY-SA 4.0.
+
+dark_elf.glb — "Dark Elf - Game ready and animated" by danimal (the Dark Elf in the Fort)
+            https://opengameart.org/content/dark-elf-game-ready-and-animated
+            Creative Commons Attribution-ShareAlike 3.0: https://creativecommons.org/licenses/by-sa/3.0/
+            Original model by Contmike (CC BY-SA, http://www.blendswap.com/blends/view/66691); crossbow by Lamoot (CC BY, https://opengameart.org/content/low-poly-crossbow); hair by MajorNightmare (CC0).
+            Changes: whole body kept with the crossbow; idle, walk, run, shoot (attack) and death animations kept, textures reduced
+            (tools/assets/build_monsters.py). Shared under CC BY-SA 3.0.
+
+skeleton.glb — "Skeleton with rig" by rudy85
+            https://opengameart.org/content/skeleton-with-rig
+            CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+            Changes: scaled to 1.8 m, bone material, and idle, walk, run, attack, hit and die animations
+            made by hand on the rig's controls (tools/assets/build_skeleton.py).
+
+night_demon.glb — "Night Demon" by nubux (morgan strauss)
+            https://opengameart.org/content/night-demon
+            Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/
+            Changes: arms lowered from the T-pose, scaled to 1 m, textures (colour, normal) re-linked at 1024 px, no animations: the game sways and tilts it (tools/assets/build_night_demon.py).
+
+succubus.glb — "Goth Female (Fleur du Mal)" by tizeta
+            https://opengameart.org/content/goth-female-fleur-du-mal
+            Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/
+            Changes: body, skirt and hair kept in rest pose with the skeleton (no animations: the game floats and tilts it), textures re-linked (tools/assets/build_monsters.py).
+
+undead_lord.glb — "Undead male" by TiZeta (Tiziana)
+            https://opengameart.org/content/undead-male
+            Creative Commons Attribution 3.0 (OpenGameArt page): https://creativecommons.org/licenses/by/3.0/
+            The archive's own text file (testo.txt) says Attribution 2.0: https://creativecommons.org/licenses/by/2.0/
+            Changes: scaled to 1.8 m, textures re-linked to the materials (512 px WebP), mirrored mesh fixed,
+            and idle, walk, run, attack, hit and die animations made by hand on the original skeleton
+            (tools/assets/build_undead.py).
+
+zombie.glb — "Thin Zombie / awake zombie asset" by Rosswet Mobile
+            https://opengameart.org/content/thin-zombie-awake-zombie-asset
+            Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/
+            Changes: only the mesh, skeleton and the idle, walk, run, attack (attack1_r), hurt and death (dead1)
+            animations kept, texture re-linked to the material and exported to glTF (tools/assets/build_monsters.py).
+
+troll.glb — "Skinny Troll" by piacenti
+            https://opengameart.org/content/skinny-troll
+            Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/
+            Changes: body, club and skirt joined on the skeleton (club on a hand bone, skirt on the hip bone),
+            scaled to 2.4 m, textures re-linked and reduced, and idle, walk, run, attack, hit and die animations made
+            by hand on the original skeleton (tools/assets/build_troll.py).
+
+goblin.glb — "Goblin" by CDmir (collaborator: TinyWorlds)
+            https://opengameart.org/content/goblin-1
+            CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+            Changes: mesh and skeleton kept with the idle, walk, run, attack, hit and die animations, textures re-linked
+            and reduced to 512 px, exported to glTF (tools/assets/build_monsters.py).

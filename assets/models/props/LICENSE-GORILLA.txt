@@ -1,0 +1,2 @@
+Gorilla.glb — "Gorilla (male)" by Micket, CC0: https://opengameart.org/content/gorilla-male
+Converted from the Blender file by tools/assets/build_gorilla.py (mirror applied, plain dark fur material, static pose; the file has no rig or texture).

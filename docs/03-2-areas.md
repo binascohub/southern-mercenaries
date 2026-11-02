@@ -18,11 +18,26 @@
 - **Elites:** 1 a 3 por área; a **penúltima área** de cada mapa tem um **mini-chefe** (elite forte com nome).
 - **Nível das áreas** sobe aos poucos dentro do mapa (tabela de cada mapa). Nível máximo 20.
 
+## 1.1. Mini-chefes: dois por mapa de combate
+
+Cada mapa de combate tem **2 mini-chefes** (elites fortes com nome, categoria `miniboss`), incluindo o do mapa 1 (Esgoto) com o Gator Velho e o Rei dos Ratos:
+
+| Mapa | Mini-chefes |
+|---|---|
+| Esgoto | Gator Velho (Passagem da Guerra) · **Rei dos Ratos** (Canais) |
+| Floresta | Leshy · **Rainha das Víboras** |
+| Ruínas | Guardião do Cofre · **Alfa da Matilha** |
+| Cemitério | Ogro da Cripta (era o Escorpião; larga os **Pulmões Humanos**) · Senhor da Cripta (larga o **Coração Humano**) |
+| Forte | Comandante (larga o **Crânio Antigo**) · **Rainha das Súcubos** |
+| Mina | **Chefe Troll** · Guardião do Túmulo |
+
+Em negrito, os criados nesta rodada (`tools/assets/add_minibosses.py`). A Floresta Sombria ainda não tem encontros.
+
 ## 2. Resumo
 
 | # | Mapa | Ato | Sai de | Áreas | Níveis | Mini-chefe | Chefe |
 |---|---|---|---|---|---|---|---|
-| 1 | Esgoto de Tortuga | 2 | Tortuga | 4 | 1–2 | Jacaré Velho | Rainha dos Ratos |
+| 1 | Esgoto de Tortuga | 2 | Tortuga | 4 | 1–2 | Jacaré Velho | Feiticeiro-Aranha |
 | 2 | Ruínas do Reino do Arqueiro | 2 | Tortuga | 5 | 3–4 | Alfa da Matilha (Amarok) | Cérbero |
 | 3 | Floresta Escura | 2 | Tortuga | 4 | 5–6 | Mapinguari Ancião | Leshy |
 | 4 | Cavalos Míticos | 2 | Tortuga | 4 | 7–8 | Arion, o Veloz | Pégaso |
@@ -41,7 +56,7 @@
 | 1 | `sewers_01_drains` | **Bueiros da Rua Principal** | Estreito | 1 | Tutorial de combate; enxames pequenos de Ratos Pestilentos; primeiras poças de lodo tóxico |
 | 2 | `sewers_02_canals` | **Canais de Lixo** | Estreito | 1 | Sapos Ácidos, Morcegos Pestilentos; pontes de madeira podre; segredo: depósito de contrabando dos piratas |
 | 3 | `sewers_03_war_passage` | **Passagem Secreta da Guerra** | Estreito | 2 | Túneis antigos dos fundadores de Tortuga, com marcas do reino do Arqueiro nas paredes (o Arqueiro reconhece o brasão); câmaras alagadas; **mini-chefe: Jacaré Velho** |
-| 4 | `sewers_04_nest` | **Ninho da Rainha** | Misto (arena ampla) | 2 | **Rainha dos Ratos**; Tesouro Perdido da Guerra e o mapa para as Ruínas |
+| 4 | `sewers_04_nest` | **Covil do Feiticeiro** | Misto (arena ampla) | 2 | **Feiticeiro-Aranha**; Tesouro Perdido da Guerra e o mapa para as Ruínas |
 
 ## 4. Ruínas do Reino do Arqueiro (`map_ruins`)
 
@@ -137,3 +152,22 @@
 - No co-op, todos precisam estar na saída para passar de área, ou basta o host?
 - A vila queimada das Ruínas é a vila do Arqueiro?
 - Nomes dos mini-chefes.
+
+## 14. Mapas implementados depois do Esgoto (primeira passada)
+
+Ordem de expedição no jogo: **Tortuga → Floresta → Ruínas → Cemitério → Floresta Escura → Forte → Capital Real (Aurenhold)**. O portal do Forte para a Capital aparece depois de derrotar o Comandante; a Capital é cidade-base (sem monstros) e tem portal de volta a Tortuga. Os mapas saem de `tools/assets/build_maps.py` (sorteio com semente fixa) e ficam em `data/arenas.json`; cada um tem um portal para o próximo e outro de volta a Tortuga (entrada "Trilha para a Floresta", na ponta oeste da rua principal).
+
+| # | id | Mapa | Cenário (pacote, licença) | Chefe (provisório) |
+|---|---|---|---|---|
+| 1 | `forest_01_path` | Floresta | Plantas Stylish Plants (CC0), obeliscos e pilares | Leshy |
+| 2 | `ruins_01_city` | Ruínas da Cidade | Cena inteira de Destroyed Walls (CC BY 3.0) com colisor por parede | Guardião do Cofre |
+| 3 | `cemetery_01_yard` | Cemitério | Medieval Props Textured (CC BY 3.0): lápides, cruzes, marcos de pedra; chão de terra acinzentada e escura; trilhas de lajes musgosas; grades pretas; mapa de salas e corredores no desenho de calabouço da referência do autor, ~17,6 mil m2, em 7 setores de um monstro cada (1 Campo de Covas: ratos de esgoto; 2 Terra dos Escorpiões: escorpiões venenosos; 3 Ossuário: esqueletos; 4 Cova dos Mortos: zumbis; 5 Alameda da Estátua: golens de pedra; 6 Catacumbas: morcegos; 7 Covil do Troll: trolls), corredores em anéis (mais de um caminho) e duas praças de ruínas a 171 m uma da outra com mini-chefe (Praça das Pedras: Escorpião da Cripta; Praça da Estátua: a estátua do lampião desperta o Guardião do Túmulo ao falar com ela) | Senhor da Cripta |
+| 4 | `dark_forest_01_woods` | Floresta Escura | Mesma vegetação, mais densa e escura; **só o mapa** (sem monstros, chefe ou baús por enquanto) | — |
+| 5 | `fort_01_gate` | Forte | 3D Dungeon Tileset (CC BY-SA 3.0), grade de 20 x 26 células de 2,5 m; paredes baixas (0,85 m) por causa da câmera | Comandante Amaldiçoado |
+
+Os monstros comuns reaproveitam os modelos do Esgoto e do Monstro da Floresta; os chefes são provisórios até haver arte e mecânica próprias. As seções 4 e 5 acima (Ruínas do Reino do Arqueiro, Floresta Escura) continuam sendo o desenho final das áreas; este quadro é o que existe hoje.
+
+### Docas (`docks_01_pier`) — ligada ao porto de Tortuga
+
+Mapa de píeres de madeira sobre o mar (Modular Wooden Docks, CC0): pátio de entrada, píer principal, um cruzamento com dois píeres laterais e o píer do fundo, com barcos, defensas, barris e caixotes. A entrada fica no porto de Tortuga (a "Passagem para as Docas" ao lado do cais do navio pirata) e o portal "Voltar ao porto" leva de volta. Tem inimigos leves do esgoto (ratos, sapos, morcegos), dois baús e uma bolsa de moedas; ainda sem chefe, missões ou lojas.
+

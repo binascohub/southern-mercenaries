@@ -2,9 +2,9 @@
 class_name UiTheme
 extends RefCounted
 ## Tema medieval da interface (09-interface.md, seção 7), num único Theme
-## aplicado à janela principal: molduras de madeira escura com cantoneiras de
-## ferro e fundo de couro; botões de tábua entalhada que clareiam no foco e
-## afundam ao apertar; pergaminho com tinta escura nas conversas e dicas;
+## aplicado à janela principal: molduras de couro escuro com filete e cantoneiras de
+## ouro (a identidade do brasão: ouro, noite azul-marinho e lacre vermelho); botões de
+## couro com aro de latão que acende em ouro no foco; pergaminho com tinta escura nas conversas e dicas;
 ## barras como tubos de vidro. Fontes: Cinzel (títulos, maiúsculas entalhadas)
 ## e Alegreya (texto legível, com acentos), SIL OFL 1.1 (CREDITS.md).
 ##
@@ -15,7 +15,6 @@ extends RefCounted
 const INK := Color(0.2, 0.13, 0.08)
 const CREAM := Color(0.93, 0.87, 0.74)
 const GOLD := Color(0.92, 0.76, 0.4)
-const WOOD := Color(0.27, 0.17, 0.1)
 const IRON := Color(0.36, 0.36, 0.38)
 const LEATHER := Color(0.11, 0.085, 0.07)
 const PARCHMENT := Color(0.85, 0.76, 0.58)
@@ -25,6 +24,12 @@ const FRAME := 14
 const SHADOW := 4
 const BODY_FONT := "res://assets/fonts/Alegreya.ttf"
 const TITLE_FONT := "res://assets/fonts/Cinzel.ttf"
+## Título do jogo (gótica de pirata) e texto dos menus (tipografia de livro antigo).
+const GAME_FONT := "res://assets/fonts/PirataOne.ttf"
+const BOOK_FONT := "res://assets/fonts/IMFellEnglish.ttf"
+const PAPER_MARGIN := 24
+const WAX := Color(0.55, 0.11, 0.09)
+const BRASS := Color(0.55, 0.43, 0.2)
 
 static var _theme: Theme
 
@@ -58,19 +63,19 @@ static func build() -> Theme:
 	theme.default_font_size = 17
 
 	# Janelas: madeira com cantoneiras de ferro, fundo de couro.
-	var window := _texture_box(_frame_image(LEATHER, 0.97), FRAME + SHADOW, 18)
+	var window := _tiled_box(_paper_image(PARCHMENT), PAPER_MARGIN, 26)
 	for type in ["PanelContainer", "Panel", "PopupPanel", "PopupMenu"]:
 		theme.set_stylebox("panel", type, window)
 	# Pergaminho: conversas, abertura, dicas, diário.
 	theme.set_type_variation("ParchmentPanel", "PanelContainer")
-	theme.set_stylebox("panel", "ParchmentPanel", _texture_box(_parchment_image(), 14, 18))
+	theme.set_stylebox("panel", "ParchmentPanel", _tiled_box(_paper_image(PARCHMENT.lightened(0.04)), PAPER_MARGIN, 26))
 	theme.set_type_variation("ParchmentLabel", "Label")
 	theme.set_color("font_color", "ParchmentLabel", INK)
 	theme.set_constant("outline_size", "ParchmentLabel", 0)
 	# HUD: painéis pequenos e discretos nas bordas.
 	theme.set_type_variation("HudPanel", "PanelContainer")
 	theme.set_stylebox("panel", "HudPanel", _texture_box(_frame_image(Color(0.08, 0.06, 0.05), 0.82, 6), 6 + SHADOW, 6))
-	theme.set_stylebox("panel", "TooltipPanel", _texture_box(_parchment_image(), 14, 10))
+	theme.set_stylebox("panel", "TooltipPanel", _tiled_box(_paper_image(PARCHMENT), PAPER_MARGIN, 14))
 	theme.set_color("font_color", "TooltipLabel", INK)
 
 	# Textos.
@@ -78,17 +83,20 @@ static func build() -> Theme:
 	theme.set_type_variation("TitleLabel", "Label")
 	if title:
 		theme.set_font("font", "TitleLabel", title)
-	theme.set_font_size("font_size", "TitleLabel", 30)
+	if _font(GAME_FONT):
+		theme.set_font("font", "TitleLabel", _font(GAME_FONT))
+	theme.set_font_size("font_size", "TitleLabel", 40)
 	theme.set_color("font_color", "TitleLabel", GOLD)
 	theme.set_color("font_outline_color", "TitleLabel", Color(0.08, 0.05, 0.03))
 	theme.set_constant("outline_size", "TitleLabel", 6)
 
-	# Botões: tábuas entalhadas.
-	theme.set_stylebox("normal", "Button", _texture_box(_plank_image(1.0, false, false), 8, 10))
-	theme.set_stylebox("hover", "Button", _texture_box(_plank_image(1.2, true, false), 8, 10))
-	theme.set_stylebox("pressed", "Button", _texture_box(_plank_image(0.8, true, true), 8, 10))
-	theme.set_stylebox("disabled", "Button", _texture_box(_plank_image(0.55, false, false), 8, 10))
-	theme.set_stylebox("hover_pressed", "Button", _texture_box(_plank_image(0.9, true, true), 8, 10))
+	# Botões: couro escuro com aro de latão, que acende em ouro no foco.
+	theme.set_font_size("font_size", "Button", 17)
+	theme.set_stylebox("normal", "Button", _button_box(Color(0.13, 0.1, 0.08), BRASS.darkened(0.15)))
+	theme.set_stylebox("hover", "Button", _button_box(Color(0.2, 0.15, 0.1), GOLD))
+	theme.set_stylebox("pressed", "Button", _button_box(Color(0.08, 0.06, 0.05), GOLD.darkened(0.2)))
+	theme.set_stylebox("disabled", "Button", _button_box(Color(0.1, 0.085, 0.075), Color(0.3, 0.27, 0.22)))
+	theme.set_stylebox("hover_pressed", "Button", _button_box(Color(0.12, 0.09, 0.07), GOLD.darkened(0.2)))
 	var focus := StyleBoxFlat.new()
 	focus.draw_center = false
 	focus.border_color = GOLD
@@ -103,6 +111,16 @@ static func build() -> Theme:
 	theme.set_color("font_disabled_color", "Button", Color(0.6, 0.55, 0.48, 0.7))
 	theme.set_color("font_outline_color", "Button", Color(0.06, 0.04, 0.02))
 	theme.set_constant("outline_size", "Button", 3)
+
+	# Campos de seleção: o mesmo couro dos botões.
+	for state in ["normal", "hover", "pressed", "disabled"]:
+		theme.set_stylebox(state, "OptionButton", theme.get_stylebox(state, "Button"))
+	theme.set_stylebox("focus", "OptionButton", focus)
+	for color_name in ["font_color", "font_hover_color", "font_focus_color", "font_pressed_color", "font_disabled_color", "font_outline_color"]:
+		theme.set_color(color_name, "OptionButton", theme.get_color(color_name, "Button"))
+	theme.set_constant("outline_size", "OptionButton", 3)
+
+	_add_menu_styles(theme)
 
 	# Campos de texto e listas: couro afundado com borda de ferro.
 	var inset := StyleBoxFlat.new()
@@ -137,7 +155,7 @@ static func build() -> Theme:
 	scroll.bg_color = Color(0.05, 0.04, 0.03, 0.6)
 	scroll.set_corner_radius_all(4)
 	var grab := StyleBoxFlat.new()
-	grab.bg_color = WOOD.lightened(0.15)
+	grab.bg_color = BRASS.darkened(0.2)
 	grab.set_corner_radius_all(4)
 	for type in ["VScrollBar", "HScrollBar"]:
 		theme.set_stylebox("scroll", type, scroll)
@@ -150,6 +168,103 @@ static func build() -> Theme:
 	line.thickness = 2
 	theme.set_stylebox("separator", "HSeparator", line)
 	return theme
+
+
+## Estilos do menu principal: o título gótico, as entradas de livro-razão (texto sobre
+## a noite, com uma barra de ouro no lado quando em foco) e o lacre de cera da entrada
+## principal. O painel "BareMenu" não desenha moldura: o menu fica solto sobre o fundo.
+static func _add_menu_styles(theme: Theme) -> void:
+	var fell := _font(BOOK_FONT)
+	var pirata := _font(GAME_FONT)
+	theme.set_type_variation("GameTitle", "Label")
+	if pirata:
+		theme.set_font("font", "GameTitle", pirata)
+	theme.set_font_size("font_size", "GameTitle", 76)
+	theme.set_color("font_color", "GameTitle", Color(0.96, 0.82, 0.46))
+	theme.set_color("font_outline_color", "GameTitle", Color(0.05, 0.03, 0.02))
+	theme.set_constant("outline_size", "GameTitle", 9)
+	theme.set_color("font_shadow_color", "GameTitle", Color(0, 0, 0, 0.7))
+	theme.set_constant("shadow_offset_x", "GameTitle", 3)
+	theme.set_constant("shadow_offset_y", "GameTitle", 5)
+	theme.set_type_variation("BareMenu", "PanelContainer")
+	theme.set_stylebox("panel", "BareMenu", StyleBoxEmpty.new())
+
+	theme.set_type_variation("MenuEntry", "Button")
+	if fell:
+		theme.set_font("font", "MenuEntry", fell)
+	theme.set_font_size("font_size", "MenuEntry", 25)
+	theme.set_constant("outline_size", "MenuEntry", 4)
+	theme.set_color("font_outline_color", "MenuEntry", Color(0.03, 0.02, 0.02, 0.9))
+	theme.set_color("font_color", "MenuEntry", Color(0.86, 0.8, 0.66))
+	theme.set_color("font_hover_color", "MenuEntry", Color(1.0, 0.9, 0.6))
+	theme.set_color("font_focus_color", "MenuEntry", Color(1.0, 0.9, 0.6))
+	theme.set_color("font_pressed_color", "MenuEntry", GOLD)
+	var idle := _entry_box(Color(0, 0, 0, 0), Color(0, 0, 0, 0))
+	var lit := _entry_box(Color(0.78, 0.62, 0.26, 0.14), GOLD)
+	var pressed := _entry_box(Color(0.78, 0.62, 0.26, 0.26), GOLD)
+	theme.set_stylebox("normal", "MenuEntry", idle)
+	theme.set_stylebox("hover", "MenuEntry", lit)
+	theme.set_stylebox("focus", "MenuEntry", lit)
+	theme.set_stylebox("pressed", "MenuEntry", pressed)
+	theme.set_stylebox("hover_pressed", "MenuEntry", pressed)
+	theme.set_stylebox("disabled", "MenuEntry", idle)
+	theme.set_color("font_disabled_color", "MenuEntry", Color(0.5, 0.46, 0.4, 0.6))
+
+	theme.set_type_variation("SealEntry", "Button")
+	if fell:
+		theme.set_font("font", "SealEntry", fell)
+	theme.set_font_size("font_size", "SealEntry", 31)
+	theme.set_constant("outline_size", "SealEntry", 5)
+	theme.set_color("font_outline_color", "SealEntry", Color(0.12, 0.02, 0.02))
+	theme.set_color("font_color", "SealEntry", Color(0.99, 0.93, 0.8))
+	theme.set_color("font_hover_color", "SealEntry", Color(1, 1, 0.9))
+	theme.set_color("font_focus_color", "SealEntry", Color(1, 1, 0.9))
+	theme.set_stylebox("normal", "SealEntry", _seal_box(Color(0.5, 0.08, 0.06)))
+	theme.set_stylebox("hover", "SealEntry", _seal_box(Color(0.7, 0.13, 0.09)))
+	theme.set_stylebox("focus", "SealEntry", _seal_box(Color(0.7, 0.13, 0.09)))
+	theme.set_stylebox("pressed", "SealEntry", _seal_box(Color(0.36, 0.05, 0.04)))
+	theme.set_stylebox("hover_pressed", "SealEntry", _seal_box(Color(0.36, 0.05, 0.04)))
+
+
+## Botão comum: couro escuro texturizado, com pesponto e aro de latão (ouro quando aceso).
+static func _button_box(fill: Color, rim: Color) -> StyleBox:
+	var box := _tiled_box(_leather_image(fill, rim), 8, 6)
+	box.content_margin_left = 12
+	box.content_margin_right = 12
+	box.content_margin_top = 6
+	box.content_margin_bottom = 6
+	return box
+
+
+## Entrada do livro-razão: uma barra de ouro à esquerda só quando acesa.
+static func _entry_box(fill: Color, bar: Color) -> StyleBoxFlat:
+	var box := StyleBoxFlat.new()
+	box.bg_color = fill
+	box.border_color = bar
+	box.border_width_left = 4
+	box.set_corner_radius_all(2)
+	box.content_margin_left = 22
+	box.content_margin_right = 12
+	box.content_margin_top = 7
+	box.content_margin_bottom = 7
+	return box
+
+
+## Lacre de cera: vermelho-sangue com aro de ouro e sombra funda.
+static func _seal_box(color: Color) -> StyleBoxFlat:
+	var box := StyleBoxFlat.new()
+	box.bg_color = color
+	box.border_color = Color(0.86, 0.68, 0.3)
+	box.set_border_width_all(3)
+	box.set_corner_radius_all(12)
+	box.shadow_color = Color(0, 0, 0, 0.6)
+	box.shadow_size = 10
+	box.shadow_offset = Vector2(0, 4)
+	box.content_margin_left = 24
+	box.content_margin_right = 16
+	box.content_margin_top = 11
+	box.content_margin_bottom = 11
+	return box
 
 
 ## Fundo das barras: vidro escuro com aro de metal.
@@ -201,94 +316,141 @@ static func _noise(seed_: int, frequency: float) -> FastNoiseLite:
 	return noise
 
 
-## Moldura: madeira com veios, bisel, cantoneiras de ferro com rebites e o fundo.
+## Moldura das janelas: couro escuro com um filete de ouro (o do brasão), uma segunda
+## linha fina de latão por dentro e cantoneiras de ouro com um losango. Sem madeira.
 static func _frame_image(fill: Color, fill_alpha: float, frame := FRAME) -> Image:
 	var size := frame * 4
 	var image := Image.create(size, size, false, Image.FORMAT_RGBA8)
 	var grain := _noise(7, 0.08)
-	var spots := _noise(11, 0.3)
+	var gold := Color(0.83, 0.67, 0.29)
+	var gold_dark := Color(0.45, 0.33, 0.12)
+	var gold_light := Color(0.97, 0.85, 0.52)
+	var band_start := 1
+	var band := maxi(2, frame / 5)  # largura do filete de ouro
 	for y in size:
 		for x in size:
 			var edge := mini(mini(x, y), mini(size - 1 - x, size - 1 - y))
 			var color: Color
 			if edge < frame:
-				# Veios correm ao longo de cada lado.
-				var along := x if (y < frame or y >= size - frame) else y
-				var across := y if (y < frame or y >= size - frame) else x
-				var v := grain.get_noise_2d(along * 0.35, across * 3.0)
-				color = WOOD.lightened(0.12 * v) if v > 0 else WOOD.darkened(-0.25 * v)
-				if edge < 2 or edge >= frame - 2:
-					color = color.darkened(0.45)  # bisel escuro por fora e por dentro
-				elif edge == 2:
-					color = color.lightened(0.15)
+				# Couro da borda, com leve ruído, e o filete de ouro com brilho no centro.
+				var v := grain.get_noise_2d(x * 0.9, y * 0.9)
+				color = Color(0.1, 0.08, 0.07).lightened(0.08 * v) if v > 0 else Color(0.1, 0.08, 0.07).darkened(-0.2 * v)
+				if edge >= band_start and edge < band_start + band:
+					var t := float(edge - band_start) / maxf(band - 1, 1)
+					color = gold_dark.lerp(gold_light, 1.0 - absf(t - 0.35) * 1.8) if t < 0.7 else gold_dark
+				elif edge == band_start + band:
+					color = Color(0.03, 0.025, 0.02)
+				elif edge == frame - 2 and frame >= 12:
+					color = gold_dark.lerp(gold, 0.5)  # fio de latão interno
 			else:
 				color = fill
 				color.a = fill_alpha
-				# Sombra interna junto à moldura.
+				# Sombra interna junto à moldura, com um fio de latão logo dentro dela.
 				if edge < frame + SHADOW:
 					color = color.darkened(0.35 * (1.0 - float(edge - frame) / SHADOW))
 			image.set_pixel(x, y, color)
-	# Cantoneiras de ferro com dois rebites.
+	# Cantoneiras de ouro: placa quadrada com um losango em relevo.
 	for corner in [Vector2i(0, 0), Vector2i(size - frame, 0), Vector2i(0, size - frame), Vector2i(size - frame, size - frame)]:
+		var middle := (frame - 1) * 0.5
 		for y in frame:
 			for x in frame:
-				var n := spots.get_noise_2d(corner.x + x, corner.y + y)
-				var c := IRON.lightened(0.1 * n) if n > 0 else IRON.darkened(-0.2 * n)
+				var c := gold_dark
+				var d := absf(x - middle) + absf(y - middle)
+				if x >= 1 and y >= 1 and x < frame - 1 and y < frame - 1:
+					c = gold.lerp(gold_dark, 0.35)
+				if d < frame * 0.36:
+					c = gold_light if (x + y) % 2 == 0 else gold
+				if d < frame * 0.14:
+					c = Color(0.5, 0.08, 0.06)
 				if x < 1 or y < 1 or x >= frame - 1 or y >= frame - 1:
-					c = c.darkened(0.5)
+					c = Color(0.03, 0.025, 0.02)
 				image.set_pixel(corner.x + x, corner.y + y, c)
-		# Rebites só cabem nas molduras largas (as do HUD são finas).
-		for rivet in ([Vector2i(frame / 3, frame / 3), Vector2i(frame * 2 / 3, frame * 2 / 3)] if frame >= 12 else []):
-			for dy in range(-2, 3):
-				for dx in range(-2, 3):
-					var d := Vector2(dx, dy).length()
-					if d <= 2.2:
-						var c := Color(0.7, 0.7, 0.72) if (dx < 0 and dy < 0) else (Color(0.15, 0.15, 0.16) if d > 1.5 else Color(0.5, 0.5, 0.52))
-						image.set_pixel(corner.x + rivet.x + dx, corner.y + rivet.y + dy, c)
 	return image
 
 
-## Tábua de botão: madeira mais clara, bisel (afundado quando apertado), pregos.
-static func _plank_image(brightness: float, rim: bool, sunken: bool) -> Image:
-	var w := 64
-	var h := 32
-	var image := Image.create(w, h, false, Image.FORMAT_RGBA8)
-	var grain := _noise(23, 0.09)
-	var base := Color(0.36, 0.24, 0.14) * brightness
-	base.a = 1.0
-	for y in h:
-		for x in w:
-			var v := grain.get_noise_2d(x * 0.4, y * 2.5)
-			var color := base.lightened(0.12 * v) if v > 0 else base.darkened(-0.25 * v)
-			var top := y < 2
-			var bottom := y >= h - 2
-			if (top and not sunken) or (bottom and sunken):
-				color = color.lightened(0.25)
-			elif (bottom and not sunken) or (top and sunken):
-				color = color.darkened(0.45)
-			if x < 1 or x >= w - 1 or y < 1 or y >= h - 1:
-				color = IRON.lightened(0.2) if rim else color.darkened(0.6)
-			image.set_pixel(x, y, color)
-	for nail in [Vector2i(4, h / 2), Vector2i(w - 5, h / 2)]:
-		for dy in range(-1, 2):
-			for dx in range(-1, 2):
-				image.set_pixel(nail.x + dx, nail.y + dy, Color(0.55, 0.55, 0.57) if dx + dy < 0 else Color(0.2, 0.2, 0.22))
-	return image
+## Papel antigo: fibras, manchas de umidade, pintas de ferrugem, bordas rasgadas e queimadas.
+## Os ruídos se repetem a cada PAPER_PERIOD pixels, para o centro e as bordas poderem ser
+## ladrilhados (a caixa estica por repetição, sem emenda).
+const PAPER_PERIOD := 64
 
-
-## Pergaminho: manchas suaves e bordas queimadas.
-static func _parchment_image() -> Image:
-	var size := 64
+static func _paper_image(tint: Color) -> Image:
+	var period := PAPER_PERIOD
+	var margin := PAPER_MARGIN
+	var size := period + margin * 2
 	var image := Image.create(size, size, false, Image.FORMAT_RGBA8)
-	var blotch := _noise(5, 0.06)
-	var fiber := _noise(9, 0.5)
+	var blotch := _noise(5, 0.03).get_seamless_image(period, period)
+	var fiber := _noise(11, 0.45).get_seamless_image(period, period)
+	var rag := _noise(23, 0.14).get_seamless_image(period, period)
+	var fox := _noise(31, 0.2).get_seamless_image(period, period)
+	var rust := Color(0.45, 0.26, 0.1)
+	var burnt := Color(0.2, 0.1, 0.04)
 	for y in size:
 		for x in size:
+			var u := posmod(x - margin, period)
+			var v := posmod(y - margin, period)
 			var edge := mini(mini(x, y), mini(size - 1 - x, size - 1 - y))
-			var color := PARCHMENT.darkened(0.12 * (blotch.get_noise_2d(x, y) + 1.0) / 2.0)
-			color = color.darkened(0.05 * fiber.get_noise_2d(x, y))
-			if edge < 6:
-				color = color.darkened(0.55 * (1.0 - edge / 6.0))
-			color.a = 0.97 if edge > 0 else 0.0
+			var cut := 2.0 + 8.0 * rag.get_pixel(u, v).r
+			var color := tint.darkened(0.28 * blotch.get_pixel(u, v).r)
+			color = color * (0.9 + 0.2 * fiber.get_pixel(u, v).r)
+			var spot := fox.get_pixel(u, v).r
+			if spot > 0.72:
+				color = color.lerp(rust, 0.45 * (spot - 0.72) / 0.28)
+			var burn := clampf(1.0 - (edge - cut) / 12.0, 0.0, 1.0)
+			color = color.lerp(burnt, 0.85 * burn * burn)
+			color.a = clampf((edge - cut) / 1.5, 0.0, 1.0)
 			image.set_pixel(x, y, color)
 	return image
+
+
+## Couro: grão, pesponto e aro de metal; as pontas são arredondadas.
+static func _leather_image(fill: Color, rim: Color) -> Image:
+	var period := 24
+	var margin := 8
+	var size := period + margin * 2
+	var image := Image.create(size, size, false, Image.FORMAT_RGBA8)
+	var grain := _noise(3, 0.5).get_seamless_image(period, period)
+	var blotch := _noise(8, 0.08).get_seamless_image(period, period)
+	for y in size:
+		for x in size:
+			var u := posmod(x - margin, period)
+			var v := posmod(y - margin, period)
+			var edge := mini(mini(x, y), mini(size - 1 - x, size - 1 - y))
+			var color := fill * (0.78 + 0.3 * grain.get_pixel(u, v).r + 0.18 * blotch.get_pixel(u, v).r)
+			color.a = 1.0
+			if edge == 0:
+				color = Color(0.03, 0.02, 0.02)
+			elif edge <= 2:
+				color = rim.lerp(rim.lightened(0.35), 0.5 if edge == 1 else 0.0)
+			elif edge == 3:
+				color = Color(0.04, 0.03, 0.02)
+			elif edge == 5 and (x + y) % 5 < 3:
+				color = color.lightened(0.25)  # o pesponto
+			# Cantos arredondados.
+			var corner_x := mini(x, size - 1 - x)
+			var corner_y := mini(y, size - 1 - y)
+			if corner_x < 3 and corner_y < 3 and corner_x + corner_y < 2:
+				color.a = 0.0
+			image.set_pixel(x, y, color)
+	return image
+
+
+## Caixa que repete o miolo e as bordas (em vez de esticar a textura).
+static func _tiled_box(image: Image, margin: int, content: int) -> StyleBoxTexture:
+	var box := _texture_box(image, margin, content)
+	box.axis_stretch_horizontal = StyleBoxTexture.AXIS_STRETCH_MODE_TILE_FIT
+	box.axis_stretch_vertical = StyleBoxTexture.AXIS_STRETCH_MODE_TILE_FIT
+	return box
+
+
+## Tema das janelas de papel: a tinta escura no lugar do creme (o resto herda do tema do jogo).
+static func paper_theme() -> Theme:
+	var theme := Theme.new()
+	for type in ["Label", "CheckBox", "CheckButton", "RichTextLabel"]:
+		theme.set_color("font_color", type, INK)
+	theme.set_color("default_color", "RichTextLabel", INK)
+	theme.set_constant("outline_size", "Label", 0)
+	theme.set_type_variation("TitleLabel", "Label")
+	theme.set_color("font_color", "TitleLabel", Color(0.45, 0.09, 0.07))
+	theme.set_color("font_outline_color", "TitleLabel", Color(0.9, 0.8, 0.6, 0.6))
+	theme.set_constant("outline_size", "TitleLabel", 2)
+	return theme

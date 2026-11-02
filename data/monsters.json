@@ -1,66 +1,70 @@
 {
-  "sewer_rat": {
-    "_comment": "Monstro de teste da Fase 1. ID e números provisórios até a família do Esgoto (03-inimigos.md) entrar. Terra, como os ratos do Esgoto (fracos a Fogo).",
-    "name_key": "MONSTER_SEWER_RAT_NAME",
-    "max_health": 30,
-    "move_speed": 3.6,
-    "damage": 6,
-    "attack_range": 1.3,
-    "attack_windup": 0.35,
-    "attack_cooldown": 1.1,
-    "aggro_range": 40.0,
-    "size": 0.75,
-    "category": "common",
-    "element": "earth"
-  },
-  "sewer_rat_big": {
-    "_comment": "Variante maior e mais lenta, para testar padrões legíveis.",
-    "name_key": "MONSTER_SEWER_RAT_BIG_NAME",
-    "max_health": 90,
-    "move_speed": 2.6,
-    "damage": 14,
-    "attack_range": 1.8,
-    "attack_windup": 0.7,
-    "attack_cooldown": 1.8,
-    "aggro_range": 40.0,
-    "size": 1.2,
-    "category": "common",
-    "element": "earth"
-  },
-  "plague_rat": {
+  "plague_frog": {
     "_comment": "Esgoto (03-inimigos.md, seção 2): filhotes da Rainha, em enxames. Vida 20, dano 4, rápido.",
     "name_key": "MONSTER_PLAGUE_RAT",
-    "max_health": 20,
+    "max_health": 100,
     "move_speed": 4.2,
-    "damage": 4,
-    "attack_range": 1.2,
+    "damage": 3,
+    "attack_range": 2.5,
     "attack_windup": 0.3,
     "attack_cooldown": 1.0,
     "aggro_range": 40.0,
-    "size": 0.6,
+    "size": 3.0,
     "category": "common",
     "element": "earth",
+    "damage_taken": 0.6,
+    "patrol": true,
+    "patrol_radius": 8.0,
+    "patrol_speed": 0.8,
     "ai": "melee",
-    "look": "rat",
+    "look": "frog",
     "color": [
       0.32,
       0.25,
       0.2
     ]
   },
-  "mutant_rat": {
+  "fungus_uncle": {
+    "_comment": "Tio Fungo (Uncle Fungus, piacenti, CC BY-SA 3.0): fera de fungo, lenta e pesada, corpo a corpo; investe com aviso. Esgoto, 3ª área (Passagem da Guerra).",
+    "name_key": "MONSTER_FUNGUS_UNCLE",
+    "max_health": 700,
+    "move_speed": 2.6,
+    "damage": 14,
+    "attack_range": 3.4,
+    "attack_windup": 0.7,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 2.2,
+    "category": "common",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 5.0,
+    "patrol_speed": 0.6,
+    "ai": "melee",
+    "look": "fungus",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "mutant_frog": {
     "_comment": "Do tamanho de um cão; investida curta com aviso (charger). Costuma ser elite.",
     "name_key": "MONSTER_MUTANT_RAT",
-    "max_health": 110,
+    "max_health": 450,
     "move_speed": 3.0,
-    "damage": 12,
-    "attack_range": 1.6,
+    "damage": 8,
+    "attack_range": 4.1,
     "attack_windup": 0.6,
     "attack_cooldown": 1.6,
     "aggro_range": 40.0,
-    "size": 1.15,
+    "size": 5.75,
     "category": "common",
     "element": "earth",
+    "damage_taken": 0.6,
+    "patrol": true,
+    "patrol_radius": 8.0,
+    "patrol_speed": 0.8,
     "ai": "charger",
     "charge": {
       "min": 3.5,
@@ -71,7 +75,7 @@
       "damage_mult": 1.4,
       "cooldown": 4.0
     },
-    "look": "rat",
+    "look": "frog",
     "color": [
       0.42,
       0.3,
@@ -180,7 +184,7 @@
     ]
   },
   "demon_rat_queen": {
-    "_comment": "Chefe do Esgoto (03-inimigos.md, seção 2): vida 1.000 x fator de chefe 4,3 (13-balanceamento.md 2.4). Fases por vida: 1 Mãe Furiosa (investidas, pisão em área, enxame a cada 20 s), 2 A Ninhada (abaixo de 60%: volta ao ninho e protege 3 ninhos de filhotes; regenera enquanto houver ninho), 3 O Pacto (abaixo de 25%: alaga a arena e o gás tóxico sai dos canos em lugares marcados).",
+    "_comment": "Chefe do Esgoto — o Feiticeiro-Aranha (no lugar da Rainha dos Ratos; o id e a mecânica ficam, a aparência e o nome mudam) (03-inimigos.md, seção 2): vida 1.000 x fator de chefe 4,3 (13-balanceamento.md 2.4). Fases por vida: 1 Mãe Furiosa (investidas, pisão em área, enxame a cada 20 s), 2 A Ninhada (abaixo de 60%: volta ao ninho e protege 3 ninhos de filhotes; regenera enquanto houver ninho), 3 O Pacto (abaixo de 25%: alaga a arena e o gás tóxico sai dos canos em lugares marcados).",
     "name_key": "MONSTER_RAT_QUEEN",
     "max_health": 1000,
     "boss_factor": 4.3,
@@ -203,11 +207,11 @@
       "damage_mult": 1.5,
       "cooldown": 6.0
     },
-    "look": "queen",
+    "look": "demon",
     "color": [
-      0.3,
-      0.22,
-      0.18
+      1.0,
+      1.0,
+      1.0
     ],
     "boss_ai": "rat_queen",
     "phases": [
@@ -221,7 +225,7 @@
     ],
     "swarm": {
       "interval": 20.0,
-      "monster": "plague_rat",
+      "monster": "plague_frog",
       "count": 4
     },
     "slam": {
@@ -231,7 +235,7 @@
       "damage_mult": 1.2
     },
     "nests": {
-      "monster": "rat_nest",
+      "monster": "spawn_nest",
       "count": 3,
       "radius": 7.0,
       "regen": 0.012
@@ -245,20 +249,20 @@
       "puddle_dps": 5.0
     },
     "pact_speed": 1.25,
-  "drops_key": "key_rat_queen",
-  "key_model": "Key_Hearts",
-  "gust": {
-   "_comment": "Rajada das Asas: da metade da vida em diante ela tem asas de morcego e, a cada intervalo, bate as asas com aviso no chão; quem está dentro leva dano e é empurrado para longe (a esquiva escapa).",
-   "from": 0.5,
-   "interval": 9.0,
-   "first": 1.0,
-   "windup": 1.2,
-   "radius": 7.0,
-   "damage_mult": 0.8,
-   "push": 7.0,
-   "push_time": 0.45,
-   "wind": true
-  }
+    "drops_key": "key_rat_queen",
+    "key_model": "Key_Hearts",
+    "gust": {
+      "_comment": "Rajada das Asas: da metade da vida em diante ela tem asas de morcego e, a cada intervalo, bate as asas com aviso no chão; quem está dentro leva dano e é empurrado para longe (a esquiva escapa).",
+      "from": 0.5,
+      "interval": 9.0,
+      "first": 1.0,
+      "windup": 1.2,
+      "radius": 7.0,
+      "damage_mult": 0.8,
+      "push": 7.0,
+      "push_time": 0.45,
+      "wind": true
+    }
   },
   "training_dummy_fire": {
     "_comment": "Boneco do pátio de treino (04-tortuga-e-missoes.md, seção 5.2): não anda, não ataca, não morre e não dá XP nem loot.",
@@ -399,10 +403,10 @@
       0.2
     ]
   },
-  "golden_lizard": {
-    "_comment": "Lagarto Dourado (pedido do autor; Lizardman, skorpio, CC BY-SA 3.0): aparece às vezes numa sala do mapa (rare_spawn = chance por área, nunca na área final). Não ataca: passeia; golpeado, corre para longe e solta moedas a cada golpe, e um punhado ao morrer.",
-    "name_key": "MONSTER_GOLDEN_LIZARD",
-    "max_health": 90,
+  "golden_rabbit": {
+    "_comment": "Coelho Dourado (pedido do autor; Rabbit, cdmir, CC0): aparece às vezes numa sala do mapa (rare_spawn = chance por área, nunca na área final). Não ataca: passeia; golpeado, corre para longe e solta moedas (em 4 peças) a cada golpe, e um punhado ao morrer; aguenta uns 5 golpes. Era o Lagarto Dourado.",
+    "name_key": "MONSTER_GOLDEN_RABBIT",
+    "max_health": 400,
     "move_speed": 1.4,
     "damage": 0,
     "attack_range": 0.0,
@@ -419,19 +423,20 @@
       "time": 3.0,
       "speed": 7.5,
       "coins_per_hit": [
-        3,
-        7
+        10,
+        25
       ],
-      "coins_on_death": 35
+      "coin_pieces": 4,
+      "coins_on_death": 150
     },
-    "look": "lizard",
+    "look": "rabbit",
     "color": [
       1.0,
-      0.8,
-      0.25
+      0.72,
+      0.12
     ]
   },
-  "rat_nest": {
+  "spawn_nest": {
     "_comment": "Ninho de filhotes da fase 2 da Rainha: não anda nem ataca; enquanto existir, ela regenera. Fogo causa dano dobrado (03-inimigos.md).",
     "name_key": "MONSTER_RAT_NEST",
     "max_health": 150,
@@ -528,5 +533,989 @@
       0.32,
       0.2
     ]
+  },
+  "leshy": {
+    "name_key": "MONSTER_LESHY",
+    "max_health": 220,
+    "move_speed": 2.8,
+    "damage": 18,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 2.0,
+    "category": "miniboss",
+    "element": "earth",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 10.0,
+      "windup": 1.0,
+      "speed": 12.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "forest",
+    "color": [
+      0.8,
+      0.85,
+      0.7
+    ],
+    "_comment": "Mini-chefe da Floresta (04-tortuga-e-missoes.md: o Leshy guarda a árvore anciã): gigante de casca, investidas e pisões; modelo do Monstro da Floresta (cdmir, CC0)."
+  },
+  "ruin_warden": {
+    "name_key": "MONSTER_RUIN_WARDEN",
+    "max_health": 260,
+    "move_speed": 2.8,
+    "damage": 20,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 2.2,
+    "category": "miniboss",
+    "element": "fire",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 10.0,
+      "windup": 1.0,
+      "speed": 12.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "lizard",
+    "color": [
+      1.0,
+      0.55,
+      0.3
+    ],
+    "_comment": "Mini-chefe das Ruínas: o guardião do cofre real (substitui Cérbero até haver modelo). Investidas rápidas."
+  },
+  "crypt_scorpion": {
+    "name_key": "MONSTER_CRYPT_SCORPION",
+    "max_health": 300,
+    "move_speed": 2.8,
+    "damage": 22,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 1.6,
+    "category": "miniboss",
+    "element": "water",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 10.0,
+      "windup": 1.0,
+      "speed": 12.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "ogre",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Mini-chefe do Cemitério (praça): o Ogro da Cripta (Ogre lowpoly, nubux / rudy85, CC BY 3.0); investidas. O id continua crypt_scorpion (saves e encontros).",
+    "quest_drop": "human_lungs"
+  },
+  "fort_commander": {
+    "name_key": "MONSTER_FORT_COMMANDER",
+    "max_health": 400,
+    "move_speed": 2.8,
+    "damage": 25,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 2.4,
+    "category": "miniboss",
+    "element": "air",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 10.0,
+      "windup": 1.0,
+      "speed": 12.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "demon",
+    "color": [
+      0.8,
+      0.9,
+      1.0
+    ],
+    "_comment": "Chefe do Forte: o comandante amaldiçoado (usa o modelo do Feiticeiro-Aranha até haver arte própria).",
+    "quest_drop": "old_skull"
+  },
+  "dark_elf": {
+    "name_key": "MONSTER_DARK_ELF",
+    "max_health": 90,
+    "move_speed": 2.4,
+    "damage": 14,
+    "attack_range": 9.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 2.2,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "air",
+    "ai": "ranged",
+    "keep_distance": 6.0,
+    "spit": {
+      "radius": 1.2,
+      "puddle_time": 1.5,
+      "puddle_dps": 3.0,
+      "glob": [
+        0.45,
+        0.2,
+        0.7
+      ]
+    },
+    "look": "dark_elf",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Elfo Sombrio (Dark Elf, danimal, CC BY-SA 3.0): besteiro do Forte; atira de longe um virote de sombra (marca no chão antes) e recua."
+  },
+  "skeleton": {
+    "_comment": "Esqueleto do Cemitério (Skeleton with rig, rudy85, CC0): corpo a corpo, vaga entre as covas até alguém chegar perto. Terra, como os mortos da lenda (fraco a Fogo).",
+    "name_key": "MONSTER_SKELETON",
+    "max_health": 90,
+    "move_speed": 3.0,
+    "damage": 14,
+    "attack_range": 2.2,
+    "attack_windup": 0.6,
+    "attack_cooldown": 1.4,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 6.0,
+    "patrol_speed": 0.8,
+    "look": "skeleton",
+    "color": [
+      0.92,
+      0.86,
+      0.72
+    ]
+  },
+  "deer_buck": {
+    "name_key": "PROP_DEER_BUCK",
+    "max_health": 20,
+    "move_speed": 0.0,
+    "damage": 0,
+    "attack_range": 0.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 1.0,
+    "aggro_range": 0.0,
+    "size": 1.4,
+    "category": "breakable",
+    "element": "",
+    "ai": "static",
+    "breakable": true,
+    "no_loot": true,
+    "look": "deer_buck",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Cervo da Floresta (Old Deer Male, CDmir, CC0): quebrável parado, como o pote do Esgoto; ao morrer solta poção."
+  },
+  "deer_doe": {
+    "name_key": "PROP_DEER_DOE",
+    "max_health": 20,
+    "move_speed": 0.0,
+    "damage": 0,
+    "attack_range": 0.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 1.0,
+    "aggro_range": 0.0,
+    "size": 1.4,
+    "category": "breakable",
+    "element": "",
+    "ai": "static",
+    "breakable": true,
+    "no_loot": true,
+    "look": "deer_doe",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Corça da Floresta (Deer Female, CDmir, CC0): igual ao cervo."
+  },
+  "succubus": {
+    "name_key": "MONSTER_SUCCUBUS",
+    "max_health": 110,
+    "move_speed": 2.2,
+    "damage": 18,
+    "attack_range": 10.0,
+    "attack_windup": 1.2,
+    "attack_cooldown": 2.6,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "fire",
+    "ai": "ranged",
+    "keep_distance": 7.0,
+    "spit": {
+      "radius": 1.8,
+      "puddle_time": 3.0,
+      "puddle_dps": 5.0,
+      "glob": [
+        1.0,
+        0.35,
+        0.1
+      ]
+    },
+    "look": "succubus",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Súcubo (docs/03-1-bestiario.md, seção 10; Goth Female \"Fleur du Mal\", tizeta, CC BY 3.0): serva de Lúcifer, ataque de magia à distância: lança uma bola de fogo do inferno (marca no chão antes) que deixa chamas e recua. O encanto dela (mercenário atingido ataca os amigos) ainda não existe."
+  },
+  "crypt_lord": {
+    "name_key": "MONSTER_CRYPT_LORD",
+    "max_health": 300,
+    "move_speed": 2.8,
+    "damage": 22,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 1.5,
+    "category": "miniboss",
+    "element": "water",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 10.0,
+      "windup": 1.0,
+      "speed": 12.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "undead",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Chefe do Cemitério: o Senhor da Cripta (Undead male, TiZeta, CC BY), nobre morto-vivo; investidas como o escorpião que ele substitui.",
+    "quest_drop": "human_heart"
+  },
+  "golem_fire": {
+    "name_key": "MONSTER_GOLEM_FIRE",
+    "max_health": 180,
+    "move_speed": 2.3,
+    "damage": 16,
+    "attack_range": 2.6,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 1.6,
+    "category": "elite",
+    "element": "fire",
+    "patrol": false,
+    "look": "golem_fire",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Golem de Fogo da Floresta (Fire/Ice/Stone Golem, umask007, CC BY 3.0 / CC BY-SA 3.0): elite corpo a corpo, rápido e de dano alto."
+  },
+  "golem_ice": {
+    "name_key": "MONSTER_GOLEM_ICE",
+    "max_health": 220,
+    "move_speed": 1.6,
+    "damage": 14,
+    "attack_range": 2.6,
+    "attack_windup": 1.0,
+    "attack_cooldown": 2.2,
+    "aggro_range": 40.0,
+    "size": 1.6,
+    "category": "elite",
+    "element": "water",
+    "patrol": false,
+    "look": "golem_ice",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Golem de Gelo da Floresta (umask007): elite corpo a corpo, o mais lento; Água."
+  },
+  "golem_stone": {
+    "name_key": "MONSTER_GOLEM_STONE",
+    "max_health": 260,
+    "move_speed": 1.8,
+    "damage": 18,
+    "attack_range": 2.6,
+    "attack_windup": 0.9,
+    "attack_cooldown": 2.0,
+    "aggro_range": 40.0,
+    "size": 1.6,
+    "category": "elite",
+    "element": "earth",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 9.0,
+      "windup": 1.0,
+      "speed": 10.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "golem_stone",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Golem de Pedra da Floresta (umask007): elite que investe como o Leshy; Terra."
+  },
+  "night_demon": {
+    "name_key": "MONSTER_NIGHT_DEMON",
+    "max_health": 140,
+    "move_speed": 3.4,
+    "damage": 20,
+    "attack_range": 2.2,
+    "attack_windup": 0.6,
+    "attack_cooldown": 1.4,
+    "aggro_range": 40.0,
+    "size": 1.3,
+    "category": "common",
+    "element": "air",
+    "patrol": true,
+    "patrol_radius": 6.0,
+    "patrol_speed": 0.8,
+    "look": "night_demon",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Demônio da Noite (Night Demon, nubux / morgan strauss, CC BY 3.0): demônio magro de garras longas, corpo a corpo e rápido; ainda não está em nenhum mapa (pode entrar em qualquer um, é só pôr em um encontro)."
+  },
+  "zombie": {
+    "name_key": "MONSTER_ZOMBIE",
+    "max_health": 130,
+    "move_speed": 2.2,
+    "damage": 12,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.7,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 6.0,
+    "patrol_speed": 0.8,
+    "look": "zombie",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Zumbi Magro do Cemitério (Thin Zombie, Rosswet Mobile, CC BY 3.0): corpo a corpo, lento e resistente; vaga entre as covas. Terra (fraco a Fogo)."
+  },
+  "forest_reptile": {
+    "name_key": "MONSTER_FOREST_REPTILE",
+    "max_health": 70,
+    "move_speed": 3.2,
+    "damage": 10,
+    "attack_range": 2.0,
+    "attack_windup": 0.5,
+    "attack_cooldown": 1.3,
+    "aggro_range": 40.0,
+    "size": 1.1,
+    "category": "common",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 6.0,
+    "patrol_speed": 0.8,
+    "look": "reptile",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Réptil da Floresta (thecubber, CC BY-SA 3.0): garras rápidas, em bando de três; vaga entre as árvores até alguém chegar perto."
+  },
+  "troll": {
+    "name_key": "MONSTER_TROLL",
+    "max_health": 320,
+    "move_speed": 2.4,
+    "damage": 24,
+    "attack_range": 3.2,
+    "attack_windup": 1.1,
+    "attack_cooldown": 2.2,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "elite",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 4.0,
+    "patrol_speed": 0.8,
+    "look": "troll",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Troll Magro do Cemitério (Skinny Troll, piacenti, CC BY 3.0): elite corpo a corpo; lento, resistente e de pancada lenta e pesada com a clava. Terra (fraco a Fogo)."
+  },
+  "goblin": {
+    "_comment": "Goblin das Ruínas (Goblin, CDmir, CC0): pequeno, rápido e frágil; ataca em bando, corpo a corpo. Terra.",
+    "name_key": "MONSTER_GOBLIN",
+    "max_health": 55,
+    "move_speed": 3.6,
+    "damage": 10,
+    "attack_range": 1.8,
+    "attack_windup": 0.5,
+    "attack_cooldown": 1.2,
+    "aggro_range": 40.0,
+    "size": 0.9,
+    "category": "common",
+    "element": "earth",
+    "look": "goblin",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "coin_bag": {
+    "name_key": "PROP_COIN_BAG",
+    "max_health": 6,
+    "move_speed": 0.0,
+    "damage": 0,
+    "attack_range": 0.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 1.0,
+    "aggro_range": 0.0,
+    "size": 0.8,
+    "category": "breakable",
+    "element": "",
+    "ai": "static",
+    "breakable": true,
+    "no_loot": true,
+    "look": "coin_bag",
+    "pieces": [
+      "Coin_Bag"
+    ],
+    "shards": false,
+    "color": [
+      0.8,
+      0.6,
+      0.2
+    ],
+    "_comment": "Bolsa de moedas (Bag of Coins, yd, CC0): uma por mapa; quebra com qualquer golpe e solta ouro (data/loot.json 'coin_bag'). Não dá XP."
+  },
+  "crystal_golem": {
+    "name_key": "MONSTER_CRYSTAL_GOLEM",
+    "max_health": 500,
+    "move_speed": 1.8,
+    "damage": 24,
+    "attack_range": 2.6,
+    "attack_windup": 0.9,
+    "attack_cooldown": 2.0,
+    "aggro_range": 40.0,
+    "size": 2.6,
+    "category": "elite",
+    "element": "earth",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 9.0,
+      "windup": 1.0,
+      "speed": 10.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "golem_stone",
+    "color": [
+      0.6,
+      0.75,
+      1.0
+    ],
+    "_comment": "Chefe da Mina: o golem do coração de cristal (usa o modelo do Golem de Pedra até haver arte própria)."
+  },
+  "chitin_beast": {
+    "name_key": "MONSTER_CHITIN_BEAST",
+    "max_health": 80,
+    "move_speed": 3.4,
+    "damage": 12,
+    "attack_range": 2.2,
+    "attack_windup": 0.5,
+    "attack_cooldown": 1.3,
+    "aggro_range": 40.0,
+    "size": 1.1,
+    "category": "common",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 6.0,
+    "patrol_speed": 0.8,
+    "look": "chitin_beast",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Besta Quitinosa da Floresta (Beast 02, Atmostatic, CC BY / CC BY-SA): corpo a corpo rápido e frágil; vaga até alguém chegar. Terra."
+  },
+  "mug": {
+    "name_key": "PROP_MUG",
+    "max_health": 8,
+    "move_speed": 0.0,
+    "damage": 0,
+    "attack_range": 0.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 1.0,
+    "aggro_range": 0.0,
+    "size": 0.8,
+    "category": "breakable",
+    "element": "",
+    "ai": "static",
+    "breakable": true,
+    "no_loot": true,
+    "look": "mug",
+    "pieces": [
+      "Mug_Jar",
+      "Mug_Bottle"
+    ],
+    "shards": true,
+    "color": [
+      0.9,
+      0.86,
+      0.78
+    ],
+    "_comment": "Jarro ou garrafa branca (Free Mug Pack 1, rubberduck, CC0): quebrável parado, como o pote do Esgoto; ao quebrar solta poção (tabela 'breakable_potion' no objeto). O modelo sai da posição."
+  },
+  "angler": {
+    "_comment": "Anglerman das Docas (Angler Man 3D, piacenti, CC BY 3.0): corre até o alvo e morde; vida e dano acima do sapo. Malha estática movida por código.",
+    "name_key": "MONSTER_ANGLER",
+    "max_health": 70,
+    "move_speed": 3.2,
+    "damage": 11,
+    "attack_range": 2.0,
+    "attack_windup": 0.7,
+    "attack_cooldown": 1.6,
+    "aggro_range": 40.0,
+    "size": 1.6,
+    "category": "common",
+    "element": "water",
+    "ai": "melee",
+    "look": "angler",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "stalker": {
+    "name_key": "MONSTER_STALKER",
+    "max_health": 110,
+    "move_speed": 3.6,
+    "damage": 14,
+    "attack_range": 1.8,
+    "attack_windup": 0.5,
+    "attack_cooldown": 1.4,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "ai": "melee",
+    "flyer": true,
+    "look": "stalker",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Espreitador da Mina (Stalker 3D, GuieA_7, CC BY-SA 4.0): olho alado que voa em bando e ataca de perto."
+  },
+  "tomb_guardian": {
+    "name_key": "MONSTER_TOMB_GUARDIAN",
+    "max_health": 340,
+    "move_speed": 2.8,
+    "damage": 24,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 2.2,
+    "category": "miniboss",
+    "element": "earth",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 10.0,
+      "windup": 1.0,
+      "speed": 12.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "golem_stone",
+    "color": [
+      0.78,
+      0.85,
+      0.75
+    ],
+    "_comment": "Guardião do Túmulo (mini-chefe do Cemitério): golem de pedra que a estátua do poste de luz desperta quando se fala com ela; investe como o Escorpião da Cripta. Terra (fraco a Fogo).",
+    "quest_drop": "royal_soul"
+  },
+  "frog_king": {
+    "name_key": "MONSTER_FROG_KING",
+    "max_health": 130,
+    "move_speed": 2.8,
+    "damage": 14,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 4.5,
+    "category": "miniboss",
+    "element": "earth",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 10.0,
+      "windup": 1.0,
+      "speed": 12.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "frog",
+    "color": [
+      0.32,
+      0.25,
+      0.2
+    ],
+    "_comment": "Mini-chefe do Esgoto (canais): o Rei dos Sapos, um sapo do tamanho de um boi; investidas (os ratos não são mais monstros: só cenário)."
+  },
+  "viper_queen": {
+    "name_key": "MONSTER_VIPER_QUEEN",
+    "max_health": 240,
+    "move_speed": 2.8,
+    "damage": 17,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 3.4,
+    "category": "miniboss",
+    "element": "earth",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 10.0,
+      "windup": 1.0,
+      "speed": 12.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "golem_king",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Mini-chefe da Floresta (Toca dos Répteis): usa o modelo do Rei Golem de Pedra (golem_king.glb, tools/assets/build_stone_golem_king.py); o Guardião do Túmulo o acompanha."
+  },
+  "ruin_alpha": {
+    "name_key": "MONSTER_RUIN_ALPHA",
+    "max_health": 300,
+    "move_speed": 2.8,
+    "damage": 22,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 2.0,
+    "category": "miniboss",
+    "element": "air",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 10.0,
+      "windup": 1.0,
+      "speed": 12.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "stalker",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Mini-chefe das Ruínas: o Alfa da Matilha (docs/03-2-areas.md); investidas rápidas.",
+    "quest_drop": "wild_meat"
+  },
+  "succubus_queen": {
+    "name_key": "MONSTER_SUCCUBUS_QUEEN",
+    "max_health": 480,
+    "move_speed": 2.2,
+    "damage": 24,
+    "attack_range": 10.0,
+    "attack_windup": 1.2,
+    "attack_cooldown": 2.6,
+    "aggro_range": 40.0,
+    "size": 1.5,
+    "category": "miniboss",
+    "element": "fire",
+    "ai": "ranged",
+    "keep_distance": 7.0,
+    "spit": {
+      "radius": 1.8,
+      "puddle_time": 3.0,
+      "puddle_dps": 5.0,
+      "glob": [
+        1.0,
+        0.35,
+        0.1
+      ]
+    },
+    "look": "succubus",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Mini-chefe do Forte: a Rainha das Súcubos; magia à distância como as súcubas, bem mais forte."
+  },
+  "troll_chief": {
+    "name_key": "MONSTER_TROLL_CHIEF",
+    "max_health": 420,
+    "move_speed": 2.4,
+    "damage": 28,
+    "attack_range": 3.2,
+    "attack_windup": 1.1,
+    "attack_cooldown": 2.2,
+    "aggro_range": 40.0,
+    "size": 1.5,
+    "category": "miniboss",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 4.0,
+    "patrol_speed": 0.8,
+    "look": "troll",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Mini-chefe da Mina: o Chefe Troll."
+  },
+  "lucifer": {
+    "_comment": "Chefe final (docs/06-mundo-e-historia.md, seção 2: Lúcifer, ganancioso, dono do maior tesouro do mundo): usa o modelo animado Diablous (Botanic, CC-BY 3.0). Ainda não está em nenhum mapa — o Inferno (mapa 10) não foi feito; é só pôr o monstro num encontro. Base: o Feiticeiro-Aranha.",
+    "boss_factor": 4.3,
+    "move_speed": 2.6,
+    "attack_range": 2.6,
+    "attack_windup": 0.9,
+    "attack_cooldown": 1.8,
+    "aggro_range": 60.0,
+    "category": "boss",
+    "ai": "charger",
+    "charge": {
+      "min": 5.0,
+      "max": 14.0,
+      "windup": 1.2,
+      "speed": 12.0,
+      "time": 0.8,
+      "damage_mult": 1.5,
+      "cooldown": 6.0
+    },
+    "slam": {
+      "interval": 7.0,
+      "radius": 4.0,
+      "windup": 1.0,
+      "damage_mult": 1.2
+    },
+    "name_key": "MONSTER_LUCIFER",
+    "max_health": 2400,
+    "damage": 34,
+    "size": 2.6,
+    "element": "fire",
+    "look": "diablous",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "basket": {
+    "name_key": "PROP_BASKET",
+    "max_health": 8,
+    "move_speed": 0.0,
+    "damage": 0,
+    "attack_range": 0.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 1.0,
+    "aggro_range": 0.0,
+    "size": 0.8,
+    "category": "breakable",
+    "element": "",
+    "ai": "static",
+    "breakable": true,
+    "no_loot": true,
+    "look": "basket",
+    "pieces": [
+      "Pr_Basket"
+    ],
+    "shards": false,
+    "color": [
+      0.75,
+      0.6,
+      0.3
+    ],
+    "_comment": "Cesto de vime da Fazenda (Willow Basket with Handle, ulf, CC BY-SA 3.0): quebra com qualquer golpe e sempre solta poção (data/loot.json 'breakable_potion'). Não dá XP."
+  },
+  "dark_elf_lord": {
+    "name_key": "MONSTER_DARK_ELF_LORD",
+    "max_health": 420,
+    "move_speed": 2.4,
+    "damage": 22,
+    "attack_range": 9.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 2.2,
+    "aggro_range": 40.0,
+    "size": 1.4,
+    "category": "miniboss",
+    "element": "air",
+    "ai": "ranged",
+    "keep_distance": 6.0,
+    "spit": {
+      "radius": 1.6,
+      "puddle_time": 2.5,
+      "puddle_dps": 5.0,
+      "glob": [
+        0.45,
+        0.2,
+        0.7
+      ]
+    },
+    "look": "dark_elf",
+    "color": [
+      0.8,
+      0.7,
+      1.0
+    ],
+    "_comment": "Mini-chefe do Forte (sudoeste): o Senhor Elfo Sombrio, líder dos besteiros; virote de sombra mais forte; despertado pelo Exilado."
+  },
+  "sand_lamassu": {
+    "name_key": "MONSTER_SAND_LAMASSU",
+    "max_health": 520,
+    "move_speed": 2.8,
+    "damage": 30,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 2.4,
+    "category": "miniboss",
+    "element": "air",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 10.0,
+      "windup": 1.0,
+      "speed": 12.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "golem_stone",
+    "color": [
+      1.0,
+      0.85,
+      0.55
+    ],
+    "_comment": "Mini-chefe do Deserto (portão do cânion): o Lamassu da Areia, guardião de pedra do portão; investidas."
+  },
+  "queen_scorpion": {
+    "name_key": "MONSTER_QUEEN_SCORPION",
+    "max_health": 600,
+    "move_speed": 2.8,
+    "damage": 32,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 3.4,
+    "category": "miniboss",
+    "element": "earth",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 10.0,
+      "windup": 1.0,
+      "speed": 12.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "scorpion",
+    "color": [
+      1.0,
+      0.75,
+      0.3
+    ],
+    "_comment": "Mini-chefe do Deserto (arena): a Rainha Escorpião, escorpião gigante e dourado; investidas."
+  },
+  "forest_tomb_guardian": {
+    "name_key": "MONSTER_TOMB_GUARDIAN",
+    "max_health": 340,
+    "move_speed": 2.8,
+    "damage": 24,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 1.4,
+    "category": "elite",
+    "element": "earth",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 10.0,
+      "windup": 1.0,
+      "speed": 12.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "golem_stone",
+    "color": [
+      0.78,
+      0.85,
+      0.75
+    ],
+    "_comment": "Escolta do Rei Golem de Pedra na Toca dos Répteis (Floresta): o Guardião do Túmulo em tamanho menor e sem a alma do rei (que é do Cemitério e da Mina)."
   }
 }

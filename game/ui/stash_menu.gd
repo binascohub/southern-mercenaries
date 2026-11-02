@@ -90,6 +90,7 @@ func _row(item: Dictionary, callback: Callable) -> Button:
 
 func _build() -> void:
 	_panel = PanelContainer.new()
+	_panel.theme = UiTheme.paper_theme()
 	_panel.set_anchors_preset(Control.PRESET_CENTER)
 	_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	_panel.grow_vertical = Control.GROW_DIRECTION_BOTH

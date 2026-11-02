@@ -1,0 +1,5 @@
+ruins_spartan.glb — "Achilles Spartan Greek Warrior" by gamekorp
+            https://opengameart.org/content/achilles-spartan-greek-warrior
+            CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+            Changes: mesh and texture only (the package has no rig): arms lowered from the T-pose, scaled to 1.9 m, texture
+            reduced to 1024 px, exported to glTF (tools/assets/build_achilles.py). Original site: www.gamekorp.com

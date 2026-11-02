@@ -26,7 +26,7 @@ Design documentation for **Southern Mercenaries**, a LAN co-op action RPG, writt
 | `06-mundo-e-historia.md` | Premise, the war, campaign structure in acts, opening, treasures and heroes' motives |
 | `07-rede.md` | Authoritative server, LAN discovery, synchronization, individual loot, joining and leaving mid-match |
 | `08-controles.md` | Keyboard/mouse and USB controller, default mapping, remapping, options |
-| `09-interface.md` | Visual direction (0 A.D. style, closer camera like Dark Alliance), HUD, menus, screens and options |
+| `09-interface.md` | **Visual identity of the game (the rule for everything visual)**, closer camera like Dark Alliance, HUD, menus, screens and options |
 | `14-tutorial.md` | First minutes, contextual tips, starting equipment and the tutorial in the Sewers |
 | `13-balanceamento.md` | Formulas and tables for damage, health, armor, XP, gold, prices and balance goals |
 | `12-audio.md` | Soundtrack per map and boss, effects, ambience, interface sounds, hero voices and audio licenses |

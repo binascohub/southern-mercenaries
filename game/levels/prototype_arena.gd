@@ -47,6 +47,8 @@ const CHECKPOINT_DELAY := 3.0
 const GOLD_AUTO_PICKUP := 1.6
 const LOOT_SCATTER := 1.2
 ## Miniatura da campanha: primeira captura logo depois de entrar, depois a cada minuto.
+## Segundos entre a fala da estátua e o surgimento do mini-chefe.
+const SUMMON_DELAY := 4.0
 const THUMB_FIRST := 3.0
 const THUMB_INTERVAL := 60.0
 
@@ -94,6 +96,10 @@ var _bestiary_menu: BestiaryMenu
 var _run := 0
 ## Grupos de encontro (servidor): id -> {position, awake, members}.
 var _groups := {}
+## Grupos de estátuas já invocados e ainda esperando surgir (ids).
+var _summoning: Array[String] = []
+## Tabela de loot própria de alguns caixotes ("box:id" -> chave em loot.json).
+var _box_table := {}
 var _encounter_timer := 0.0
 ## Campanha deste host (11-saves.md): grupos mortos não voltam. Vazia nos
 ## clientes (mesmo depois de desconectados, quando o Godot os trata como servidor).
@@ -557,6 +563,7 @@ func _spawn_player(peer_id: int, resume: Player = null) -> Player:
 		"peer_id": peer_id, "slot": slot, "class_id": character.data.class_id,
 		"position": position, "name": character.data.name, "level": character.data.level,
 		"sex": character.data.get("sex", "male"),
+		"look": character.data.get("look", {}),
 		"visual": character.equipment_visual(),
 		"element": character.current_element(),
 	})
@@ -707,6 +714,9 @@ func travel(to: String, entry: String, expedition_end := false) -> void:
 func _add_dynamic_props(peer_id := 0) -> void:
 	var opened: Array = _campaign.get("opened", [])
 	var dynamic: Array = town.spot_props(area_id)
+	for saved: Dictionary in _campaign.get("mini_chests", []):
+		if saved.area == area_id and "%s:%s" % [area_id, saved.prop.id] not in opened:
+			dynamic.append(saved.prop)
 	for prop: Dictionary in arena.get("props", []):
 		if prop.kind == "chest" and "%s:%s" % [area_id, prop.id] in opened:
 			continue
@@ -757,13 +767,17 @@ func _maybe_spawn_rare() -> void:
 		spawn_adds(Vector3(room.center[0], 0, room.center[1]), monster_id, 1, 0.0)
 
 
-## Moedas que caem de um monstro (o Lagarto Dourado, a cada golpe): para cada herói.
-func drop_coins(at: Vector3, amount: int) -> void:
+## Moedas que caem de um monstro (o Coelho Dourado, a cada golpe): para cada herói.
+## Moedas no chão (cada herói vê as dele); `pieces` as espalha em várias moedas.
+func drop_coins(at: Vector3, amount: int, pieces := 1) -> void:
 	if not multiplayer.is_server():
 		return
 	for p: Player in get_tree().get_nodes_in_group(&"players"):
 		if p.connected and p.character:
-			_add_loot(p, at, {}, maxi(roundi(amount * (1.0 + p.character.gold_find_bonus())), 1))
+			var total := maxi(roundi(amount * (1.0 + p.character.gold_find_bonus())), 1)
+			var count := clampi(pieces, 1, total)
+			for i in count:
+				_add_loot(p, at, {}, total / count + (1 if i < total % count else 0))
 
 
 # --- Mapa que se revela (09-interface.md, seção 8) ----------------------------
@@ -884,6 +898,25 @@ func request_interact(player: Player) -> void:
 		request_pickup(player, false)
 
 
+## A estátua falou (Town.interact): depois de uns segundos o grupo dela (`prop.summon`, igual a um encontro de
+## arenas.json) surge e já acorda. Uma vez só por vida do grupo: não repete enquanto ele existe nem depois de derrotado.
+func summon_encounter(player: Player, prop: Dictionary) -> void:
+	if not multiplayer.is_server():
+		return
+	var group: Dictionary = prop.summon
+	var id := String(group.id)
+	if id in _campaign.get("dead_groups", []) or _groups.has(id) or id in _summoning:
+		return
+	_summoning.append(id)
+	await get_tree().create_timer(SUMMON_DELAY).timeout
+	_summoning.erase(id)
+	if not is_inside_tree() or _groups.has(id):
+		return
+	_spawn_group(group)
+	_wake_group(id)
+	_toast_all(String(group.get("toast", "TOAST_STATUE_AWAKENS")), {})
+
+
 ## Começa (ou continua) a área: os grupos vivos da campanha no lugar, dormindo.
 func _start_run() -> void:
 	_run += 1
@@ -896,6 +929,7 @@ func _start_run() -> void:
 		if node is Projectile:
 			node.queue_free()
 	_groups.clear()
+	_box_table.clear()
 	var dead: Array = _campaign.get("dead_groups", [])
 	for encounter: Dictionary in arena.encounters:
 		if encounter.id not in dead:
@@ -904,10 +938,12 @@ func _start_run() -> void:
 	var broken: Array = _campaign.get("broken", [])
 	for box: Dictionary in arena.get("breakables", []):
 		if Breakables.key(area_id, box.id) not in broken:
+			if box.has("table"):
+				_box_table["box:" + String(box.id)] = box.table
 			_enemy_spawner.spawn({"monster_id": box.monster, "group": "box:" + String(box.id),
 				"level": arena.get("area_level", 1), "position": Vector3(box.position[0], 0, box.position[1]),
 				"yaw": _rng.randf() * TAU})
-	# Lagarto Dourado: às vezes aparece numa sala do mapa (não na área final).
+	# Coelho Dourado: às vezes aparece numa sala do mapa (não na área final).
 	_maybe_spawn_rare()
 	# Bandos das caçadas ativas nesta área (SideQuests.hunt_encounter).
 	for quest: Dictionary in SideQuests.active(_campaign.get("side_quests", {})):
@@ -1157,6 +1193,8 @@ func _on_enemy_died(enemy: Enemy) -> void:
 		_break(enemy)
 		return
 	_reward(enemy)
+	if enemy.category() == "miniboss":
+		_drop_miniboss_chest(enemy)
 	if enemy.is_boss() and enemy.data.has("drops_key") and String(enemy.data.drops_key) not in _campaign.get("keys", []):
 		# A chave do tesouro cai onde o chefe morreu.
 		_add_prop.rpc({"id": "boss_key", "kind": "key", "key": String(enemy.data.drops_key), "name_key": "PROP_BOSS_KEY",
@@ -1177,6 +1215,7 @@ func _on_enemy_died(enemy: Enemy) -> void:
 	if group.members.is_empty() and not enemy.group.begins_with("hunt_"):
 		_campaign.dead_groups = _campaign.get("dead_groups", []) + [enemy.group]
 		SaveSystem.save_campaign(_campaign, true)
+		town.complete_cleared(area_id)  # missões da aldeia que pedem limpar este bando
 		var done := cleared + 1
 		var won := _is_won(done)
 		_broadcast(done, Result.VICTORY if won else Result.NONE)
@@ -1192,7 +1231,7 @@ func _on_enemy_died(enemy: Enemy) -> void:
 func _break(box: Enemy) -> void:
 	_campaign.broken = _campaign.get("broken", []) + [Breakables.key(area_id, box.group.trim_prefix("box:"))]
 	var table: Dictionary = GameData.loot.breakable
-	var outcome := Breakables.roll(_rng)
+	var outcome := Breakables.roll(_rng, String(_box_table.get(box.group, "breakable")))
 	var at := box.global_position
 	var level := int(arena.get("area_level", 1))
 	if outcome == "monsters":
@@ -1237,7 +1276,34 @@ func _reward(enemy: Enemy) -> void:
 	for p in present:
 		p.grant(xp, 0)
 		if not enemy.data.get("no_loot", false):
-			_drop_loot_for(p, enemy)
+			if enemy.category() != "miniboss":  # o mini-chefe deixa um baú (ver _drop_miniboss_chest)
+				_drop_loot_for(p, enemy)
+			_drop_quest_item(p, enemy)
+
+
+## Baú do mini-chefe (Treasure Chest, WeaponGuy, CC-BY 3.0): no lugar onde ele caiu; ao abrir (interagir), sai o loot de cada herói
+## (tabela "miniboss" de data/loot.json). Fica guardado na campanha até ser aberto, mesmo se o grupo sair da área.
+func _drop_miniboss_chest(enemy: Enemy) -> void:
+	var prop := {"id": "mbchest_%s" % enemy.monster_id, "kind": "chest", "name_key": "PROP_MINIBOSS_CHEST", "model": "Chest_Mini",
+		"loot": "miniboss", "position": [snappedf(enemy.global_position.x, 0.1), snappedf(enemy.global_position.z, 0.1)]}
+	var saved: Array = _campaign.get("mini_chests", []).filter(func(c: Variant) -> bool: return c.prop.id != prop.id or c.area != area_id)
+	saved.append({"area": area_id, "prop": prop})
+	_campaign.mini_chests = saved
+	_add_prop.rpc(prop)
+	_toast_all("TOAST_MINIBOSS_CHEST", {})
+	SaveSystem.save_campaign(_campaign, true)
+
+
+## Relíquia de missão (data/quests.json "item"): o mini-chefe com "quest_drop" a deixa cair para cada herói que
+## tem a missão ativa e ainda não tem o item na bolsa.
+func _drop_quest_item(player: Player, enemy: Enemy) -> void:
+	var item_id: String = enemy.data.get("quest_drop", "")
+	if item_id == "" or player.character.count_of(item_id) > 0:
+		return
+	for quest_id: String in _campaign.get("quests", {}):
+		if _campaign.quests[quest_id] == "active" and GameData.quests.get(quest_id, {}).get("item", "") == item_id:
+			_add_loot(player, enemy.global_position, Items.stack(Items.VALUABLE, item_id), 0)
+			return
 
 
 func _drop_loot_for(player: Player, enemy: Enemy) -> void:
@@ -1246,7 +1312,7 @@ func _drop_loot_for(player: Player, enemy: Enemy) -> void:
 
 ## Sorteia uma tabela de loot (data/loot.json) para um jogador: ouro, itens
 ## (chance ou "items" garantidos, o primeiro com a raridade "guaranteed"),
-## poções e valiosos.
+## poções (chance ou "potions" garantidas) e valiosos.
 func _drop_table(player: Player, origin: Vector3, table: Dictionary, level: int) -> void:
 	if _rng.randf() < table.gold.chance:
 		var amount := roundi(_rng.randi_range(table.gold.min, table.gold.max) + table.gold.per_level * level)
@@ -1266,6 +1332,10 @@ func _drop_table(player: Player, origin: Vector3, table: Dictionary, level: int)
 		if _rng.randf() < float(table.get("elemental_potion_share", 0.0)):
 			potion = "elemental_potion_" + Elements.ALL[_rng.randi_range(0, Elements.ALL.size() - 1)]
 		_add_loot(player, origin, Items.stack(Items.CONSUMABLE, potion), 0)
+	# Baú de poções: um número garantido de poções (vida ou recurso).
+	if table.has("potions"):
+		for i in _rng.randi_range(int(table.potions[0]), int(table.potions[1])):
+			_add_loot(player, origin, Items.stack(Items.CONSUMABLE, "potion_health" if _rng.randf() < 0.6 else "potion_resource"), 0)
 	var valuables := 1 if _rng.randf() < table.valuable_chance else 0
 	if table.has("valuables"):
 		valuables = _rng.randi_range(int(table.valuables[0]), int(table.valuables[1]))
@@ -1623,6 +1693,8 @@ func _build_prop(prop: Dictionary) -> void:
 					body.height = 1.7
 					_prop_mesh(node, body, Vector3.ONE, Vector3(0, 0.85, 0), Color(0.55, 0.45, 0.35))
 				_prop_mesh(node, SphereMesh.new(), Vector3(0.42, 0.2, 0.42), Vector3(0, 1.72, 0), Color(c[0], c[1], c[2]))
+			"shop" when prop.has("stall"):
+				node.add_child(MarketStall.build(String(prop.stall)))  # barraca de feira, de frente para a rua
 			"shop" when _kit(node, "Stall_Empty", Transform3D(Basis(Vector3.UP, PI), Vector3.ZERO)):
 				pass  # barraca de feira com toldo, de frente para a rua
 			"shop":
@@ -1656,7 +1728,12 @@ func _build_prop(prop: Dictionary) -> void:
 			"water":
 				# Mar do porto: um plano simples (04-tortuga-e-missoes.md, seção 6).
 				var size: Array = prop.get("size", [40, 20])
-				_prop_mesh(node, BoxMesh.new(), Vector3(size[0], 0.1, size[1]), Vector3(0, 0.02, 0), Color(0.07, 0.16, 0.24))
+				var tint: Array = prop.get("color", [0.07, 0.16, 0.24])  # riacho da Fazenda: água mais clara
+				if prop.get("round", false):
+					# Lagoa: elipse (o "size" é o diâmetro em x e em z).
+					_prop_mesh(node, CylinderMesh.new(), Vector3(size[0], 0.05, size[1]), Vector3(0, 0.02, 0), Color(tint[0], tint[1], tint[2]))
+				else:
+					_prop_mesh(node, BoxMesh.new(), Vector3(size[0], 0.1, size[1]), Vector3(0, 0.02, 0), Color(tint[0], tint[1], tint[2]))
 			"npc":
 				var npc: Dictionary = GameData.npcs.get(prop.npc, {})
 				label_key = npc.get("name_key", "")
@@ -1676,7 +1753,15 @@ func _build_prop(prop: Dictionary) -> void:
 					look = {"sex": "male" if h % 2 == 0 else "female", "hair": hairs[h % 2 * 2 + (h / 2) % 2],
 						"hair_color": colors[(h / 4) % colors.size()], "pose": "sit", "outfit": {"body": "cloth"} if h % 3 == 0 else {}}
 				var seated_woman: bool = prop.has("visitor_name") and look.get("sex", "") == "female" and _visitor_woman(node)
-				if not seated_woman and _npc_body(node, look) == null:
+				var own_model: Node3D = NpcModel.create(String(prop.npc)) if String(prop.npc) in ["voodoo_priest", "priest", "castle_guard", "court_jester", "seated_pirate", "elf_archer", "ruins_spartan", "old_lady"] else null
+				var statue_kit: String = prop.get("kit", "")
+				if statue_kit != "" and _kit(node, statue_kit, Transform3D(Basis(Vector3.UP, deg_to_rad(float(prop.get("rotation", 0.0)))), Vector3.ZERO)):
+					pass  # estátua do mapa: a peça do kit no lugar do corpo humano
+				elif own_model:
+					node.add_child(own_model)
+					if own_model.has_method("set_pose") and String(prop.npc) in ["seated_pirate", "old_lady"]:
+						own_model.call("set_pose", "sit" if String(prop.npc) == "old_lady" else "idle")  # o Macumbeiro (mago de capuz) e o Padre (monge) têm modelo próprio
+				elif not seated_woman and _npc_body_with_instrument(node, look) == null:
 					var body := CapsuleMesh.new()
 					body.radius = 0.35
 					body.height = 1.7
@@ -1696,6 +1781,8 @@ func _build_prop(prop: Dictionary) -> void:
 				# Portal do Patuá: círculo riscado no chão, redemoinho de sombra e brasas.
 				_prop_mesh(node, CylinderMesh.new(), Vector3(2.4, 0.04, 2.4), Vector3(0, 0.04, 0), Color(0.35, 0.1, 0.12))
 				_prop_mesh(node, CylinderMesh.new(), Vector3(1.4, 0.06, 1.4), Vector3(0, 0.06, 0), Color(1.0, 0.45, 0.15))
+			"exit" when Kit.has("Portal_Well") and Kit.has("Portal_Crystal"):
+				_portal_well(node)
 			"exit":
 				# Saída: moldura de porta / boca do bueiro / círculo do portal.
 				_prop_mesh(node, CylinderMesh.new(), Vector3(1.4, 0.06, 1.4), Vector3(0, 0.03, 0), Color(0.25, 0.22, 0.2))
@@ -1711,7 +1798,7 @@ func _build_prop(prop: Dictionary) -> void:
 				# Lugar do rumor / carga perdida: caixote marcado.
 				_prop_mesh(node, BoxMesh.new(), Vector3(0.9, 0.7, 0.9), Vector3(0, 0.35, 0), Color(0.55, 0.42, 0.25))
 				_prop_mesh(node, CylinderMesh.new(), Vector3(1.6, 0.03, 1.6), Vector3(0, 0.02, 0), Color(0.9, 0.75, 0.3))
-			"forge" when _kit(node, "Anvil", Transform3D(Basis(), Vector3(-0.7, 0, 0))):
+			"forge" when _forge_shed(node, prop) and _kit(node, "Anvil", Transform3D(Basis(), Vector3(-0.7, 0, 0))):
 				_kit(node, "Workbench", Transform3D(Basis(), Vector3(1.0, 0, -0.3)))
 				_kit(node, "Whetstone", Transform3D(Basis(), Vector3(-1.8, 0, 0)))
 			"forge":
@@ -1779,6 +1866,14 @@ func _build_prop(prop: Dictionary) -> void:
 
 ## Corpo de NPC (o mesmo dos heróis): sexo, cabelo, pose e roupa por slot
 ## (data/npcs.json "body"). null se o modelo não existe.
+## Corpo do NPC; com "instrument": "guitar" no corpo (data/npcs.json), leva o alaúde no colo (o Bardo da Taverna).
+func _npc_body_with_instrument(parent: Node3D, look: Dictionary) -> HeroModel:
+	var model := _npc_body(parent, look)
+	if model and look.get("instrument", "") == "guitar":
+		_give_guitar(model)
+	return model
+
+
 func _npc_body(parent: Node3D, look: Dictionary) -> HeroModel:
 	if look.is_empty() or not ResourceLoader.exists(HeroModel.SCENES.get(String(look.get("sex", "male")), "")):
 		return null
@@ -1789,6 +1884,8 @@ func _npc_body(parent: Node3D, look: Dictionary) -> HeroModel:
 	model.set_pose(String(look.get("pose", "idle")))
 	if look.get("mug", false) and Kit.has("Mug_Wood"):
 		model.attach("hand_r", Kit.piece("Mug_Wood"), Player.HAND_GRIP, Vector3(0.4, 0.9, 0.1))
+	if not look.get("clothes", {}).is_empty():
+		Clothing.dress(model, Clothing.HERO_BONES, look.clothes)
 	# Arma na mão direita (soldados treinando): cada golpe começa num ponto diferente do ciclo.
 	var weapon := String(look.get("weapon", ""))
 	if weapon != "" and Kit.has(weapon):
@@ -1834,10 +1931,20 @@ func _crowd_look(role_name: String, at: Vector3, entry: Dictionary) -> Dictionar
 	var outfits: Array = role.get("outfit", [{}])
 	return {"sex": sex, "hair": hairs[(h / 7) % hairs.size()], "hair_color": colors[(h / 13) % colors.size()],
 		"outfit": outfits[(h / 29) % outfits.size()], "pose": entry.get("pose", "idle"),
-		"weapon": entry.get("weapon", role.get("weapon", "")) if String(entry.get("pose", "idle")).begins_with("melee") or entry.has("weapon") else ""}
+		"weapon": entry.get("weapon", role.get("weapon", "")) if String(entry.get("pose", "idle")).begins_with("melee") or entry.has("weapon") else "",
+		"clothes": _crowd_clothes(role, sex, h)}
 
 
-## Briga de rua: dois brigões (papéis em "fighters") frente a frente, trocando socos.
+## Roupa por cima do corpo (colete, túnica, camisa de cadarço, vestido de linho), sorteada
+## pela posição: o papel lista os estilos de cada sexo em data/crowd.json ("clothes").
+func _crowd_clothes(role: Dictionary, sex: String, h: int) -> Dictionary:
+	var styles: Array = role.get("clothes", {}).get(sex, [])
+	if styles.is_empty():
+		return {}
+	return NpcModel.clothing_style(styles[(h / 31) % styles.size()])
+
+
+## Briga de rua: dois brigões (papéis em "fighters") frente a frente, trocando socos e chutes.
 func _build_brawl(entry: Dictionary, at: Vector3) -> void:
 	var brawl := Brawl.new()
 	brawl.position = at
@@ -1853,6 +1960,7 @@ func _build_brawl(entry: Dictionary, at: Vector3) -> void:
 		var model := _npc_body(holder, _crowd_look(String(roles[i]), spot, {"pose": "idle"}))
 		if model:
 			brawl.fighters.append(model)
+			brawl.roles.append(String(roles[i]))
 
 
 ## Gente da rua (data/crowd.json + "crowd" da área): o corpo vem do papel,
@@ -1881,6 +1989,8 @@ func _build_crowd(entry: Dictionary) -> void:
 		model.call("set_pose", String(entry.get("pose", "idle")))
 	else:
 		model = _npc_body(node, look)
+		if model and entry.get("instrument", "") == "guitar":
+			_give_guitar(model)
 		# Bêbados com o caneco de madeira na mão.
 		if model is HeroModel and String(entry.role) == "drunk" and Kit.has("Mug_Wood"):
 			(model as HeroModel).attach("hand_r", Kit.piece("Mug_Wood"), Player.HAND_GRIP, Vector3(0.4, 0.9, 0.1))
@@ -1892,6 +2002,14 @@ func _build_crowd(entry: Dictionary) -> void:
 		walker.speed = float(entry.get("speed", 1.2))
 		walker.model = model
 		model.call("set_pose", "walk")
+
+
+## Cobertura da forja (o telhado de pano xadrez da barraca "patch"); sempre verdadeiro,
+## para encaixar na condição de quem monta a forja.
+func _forge_shed(node: Node3D, prop: Dictionary) -> bool:
+	if prop.has("stall"):
+		node.add_child(MarketStall.build(String(prop.stall)))
+	return true
 
 
 ## Põe uma peça do kit dentro do objeto; false se a peça não existe (o objeto
@@ -1991,23 +2109,55 @@ func _build_area() -> void:
 			_build_crowd(person)
 
 
+## Portal-poço (Well of Lost Souls, bobjh, e Light crystal, Pompei2): um cristal azul brilhante gira e flutua dentro do poço, com uma luz azul;
+## é o desenho das saídas dos mapas (return_portal e portões). Sem as peças, fica o círculo simples.
+func _portal_well(node: Node3D) -> void:
+	var well := Kit.piece("Portal_Well")
+	node.add_child(well)
+	var crystal := Kit.piece("Portal_Crystal")
+	crystal.position = Vector3(0, 0.62, 0)
+	node.add_child(crystal)
+	var glow := OmniLight3D.new()
+	glow.light_color = Color(0.45, 0.7, 1.0)
+	glow.omni_range = 4.5
+	glow.light_energy = 1.4
+	glow.position = Vector3(0, 1.0, 0)
+	node.add_child(glow)
+	var spin := crystal.create_tween().set_loops()
+	spin.tween_property(crystal, "rotation:y", TAU, 6.0).as_relative()
+	var bob := crystal.create_tween().set_loops()
+	bob.tween_property(crystal, "position:y", 0.74, 1.4).set_trans(Tween.TRANS_SINE)
+	bob.tween_property(crystal, "position:y", 0.62, 1.4).set_trans(Tween.TRANS_SINE)
+
+
 ## Reveste a sala com as peças do kit: piso em ladrilhos de 2 m, paredes de
 ## 2 m viradas para dentro (o padrão do estilo varia janelas e portas falsas)
 ## e, na parede sul e nas muretas, a cerca baixa — a câmera olha do sul, então
 ## a parede de baixo fica cortada para o herói aparecer (09-interface.md, seção 2).
 func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3, doors: Dictionary, height: float) -> void:
 	var floor_piece: String = room.get("floor", style.floor)
+	if floor_piece == "Dirt":
+		var dirt := MeshInstance3D.new()
+		var plane := PlaneMesh.new()
+		plane.size = Vector2(half.x * 2.0, half.z * 2.0)
+		dirt.mesh = plane
+		dirt.material_override = _dirt_material()
+		dirt.position = Vector3(c.x, 0.01, c.z)
+		_area_root.add_child(dirt)
+		floor_piece = ""
 	var nx := maxi(ceili(half.x * 2.0 / Kit.FLOOR_SIZE), 1)
 	var nz := maxi(ceili(half.z * 2.0 / Kit.FLOOR_SIZE), 1)
 	var tile := Vector2(half.x * 2.0 / nx, half.z * 2.0 / nz)
 	for ix in nx:
 		for iz in nz:
-			var node := Kit.piece(floor_piece)
+			var node := Kit.piece(floor_piece) if floor_piece != "" else null
 			if node:
 				node.scale = Vector3(tile.x / Kit.FLOOR_SIZE, 1, tile.y / Kit.FLOOR_SIZE)
 				node.position = Vector3(c.x - half.x + tile.x * (ix + 0.5), 0.01, c.z - half.z + tile.y * (iz + 0.5))
 				_area_root.add_child(node)
 				_tint_piece(node)
+				if floor_piece == "Floor_WoodDark" and style.get("wood", false):
+					_deckify(node)
 	var low := height < 1.5
 	var walls: Array = room.get("walls", style.get("walls", []))
 	var fence: String = style.get("low", "")
@@ -2035,6 +2185,7 @@ func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3,
 		_scatter_trash(room, c, half)
 	if style.get("spiders", false):
 		_scatter_spiders(room, c, half)
+		_scatter_critters(room, c, half, "rat", 0.7, 3)
 	if style.get("grates", false):
 		var grng := RandomNumberGenerator.new()
 		grng.seed = hash(str(room.get("id", ""), c, "grates"))
@@ -2058,6 +2209,8 @@ func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3,
 					var x := c.x + segment.x - segment.y / 2.0 + (segment.y - count * ROOF_WIDTH) / 2.0 + ROOF_WIDTH * (i + 0.5)
 					node.position = Vector3(x, 3.4, c.z - half.z - ROOF_WIDTH / 2.0 + 0.6)
 					_area_root.add_child(node)
+					if style.get("thatch", false):
+						_thatchify(node)
 	# Lampião na parede norte das salas com tocha.
 	if room.get("torch", false) and not low:
 		var lantern := Kit.piece("Lantern_Wall")
@@ -2142,6 +2295,299 @@ func _tint_piece(node: Node3D, extra := Color.WHITE) -> void:
 			m.set_surface_override_material(i, _tinted[key])
 
 
+## Casas de madeira (estilo "wood", Tortuga): troca o reboco e o tijolo da parede pela madeira do
+## próprio kit (a de MI_WoodTrim, a mesma das vigas), em tábuas mais escuras que as vigas (as paredes, a base de pedra e o telhado).
+const WOOD_PLANK := Color(0.72, 0.6, 0.5)
+## Só a faixa de madeira escura do atlas (o resto tem blocos e pedra): v de 0,33 a 0,61.
+const WOOD_UV_SCALE := Vector3(3, 0.27, 1)
+const WOOD_UV_OFFSET := Vector3(0, 0.34, 0)
+## Materiais do kit que viram madeira: reboco, tijolo e pedra da base.
+const WOOD_REPLACES: Array[String] = ["Plaster", "Brick", "Rock"]
+var _planks := {}
+
+
+func _woodify(node: Node3D) -> void:
+	for mesh in node.find_children("*", "MeshInstance3D", true, false):
+		var m := mesh as MeshInstance3D
+		var trim: StandardMaterial3D = null
+		for i in m.get_surface_override_material_count():
+			var material := m.get_active_material(i) as StandardMaterial3D
+			if material and material.resource_name.contains("WoodTrim"):
+				trim = material
+				break
+		if trim == null:
+			continue
+		if not _planks.has(trim):
+			var boards := _tiled_material("wood_wall_1", Vector3(0.5, 0.25, 0.5), Color(0.95, 0.8, 0.62))
+			var copy := boards if boards else trim.duplicate() as StandardMaterial3D
+			if boards == null:
+				copy.albedo_color = copy.albedo_color * WOOD_PLANK
+				copy.uv1_scale = WOOD_UV_SCALE
+				copy.uv1_offset = WOOD_UV_OFFSET
+			_planks[trim] = copy
+		for i in m.get_surface_override_material_count():
+			var material := m.get_active_material(i) as StandardMaterial3D
+			if material and WOOD_REPLACES.any(func(part: String) -> bool: return material.resource_name.contains(part)):
+				m.set_surface_override_material(i, _planks[trim])
+
+
+## Convés do porto e da doca: o piso de tábuas do kit troca a madeira pelas tábuas fotográficas.
+func _deckify(node: Node3D) -> void:
+	if _deck == null:
+		_deck = _tiled_material("wood_floor_2", Vector3.ONE * 0.5, Color(0.92, 0.8, 0.68))
+	if _deck == null:
+		return
+	for mesh in node.find_children("*", "MeshInstance3D", true, false):
+		var m := mesh as MeshInstance3D
+		for i in m.get_surface_override_material_count():
+			m.set_surface_override_material(i, _deck)
+
+
+var _deck: StandardMaterial3D
+
+
+## Violão no colo do músico sentado (feito em código): caixa, boca escura e braço para a esquerda dele;
+## balança de leve, como quem dedilha.
+func _give_guitar(model: HeroModel) -> void:
+	var guitar := Node3D.new()
+	# O alaúde de verdade (Lute, aerojockey / Snabisch, CC0), quando há; senão o violão de caixa e cilindros abaixo.
+	var lute := Kit.piece("Lute")
+	if lute:
+		lute.rotation.x = PI / 2.0  # as cordas para a frente (o arquivo deixa as cordas para cima)
+		lute.position = Vector3(0.28, 0, 0)
+		guitar.add_child(lute)
+		_place_guitar(model, guitar)
+		return
+	var wood := _wood_material()
+	var dark := StandardMaterial3D.new()
+	dark.albedo_color = Color(0.05, 0.03, 0.02)
+	for part: Array in [[0.0, 0.0, 0.2, 0.22], [0.2, 0.0, 0.16, 0.18]]:
+		var body := MeshInstance3D.new()
+		var cyl := CylinderMesh.new()
+		cyl.top_radius = part[3]
+		cyl.bottom_radius = part[3]
+		cyl.height = 0.09
+		body.mesh = cyl
+		body.material_override = wood
+		body.rotation.x = PI / 2.0
+		body.position = Vector3(part[0] * 0.0 - part[1], part[1], 0)
+		body.position = Vector3(-part[0] * 0.5, 0, 0)
+		guitar.add_child(body)
+	var hole := MeshInstance3D.new()
+	var disc := CylinderMesh.new()
+	disc.top_radius = 0.055
+	disc.bottom_radius = 0.055
+	disc.height = 0.01
+	hole.mesh = disc
+	hole.material_override = dark
+	hole.rotation.x = PI / 2.0
+	hole.position = Vector3(-0.02, 0, 0.047)
+	guitar.add_child(hole)
+	var neck := MeshInstance3D.new()
+	var neck_box := BoxMesh.new()
+	neck_box.size = Vector3(0.6, 0.05, 0.035)
+	neck.mesh = neck_box
+	neck.material_override = dark
+	neck.position = Vector3(0.38, 0, 0)
+	guitar.add_child(neck)
+	# Cabeça: onde ficam as tarraxas.
+	var head := MeshInstance3D.new()
+	var head_box := BoxMesh.new()
+	head_box.size = Vector3(0.12, 0.07, 0.03)
+	head.mesh = head_box
+	head.material_override = wood
+	head.position = Vector3(0.72, 0, 0)
+	guitar.add_child(head)
+	_place_guitar(model, guitar)
+
+
+## Põe o instrumento no colo do músico e o balança de leve, como quem dedilha.
+func _place_guitar(model: HeroModel, guitar: Node3D) -> void:
+	guitar.scale = Vector3.ONE * (0.9 if guitar.get_child_count() == 1 else 0.7)
+	guitar.position = Vector3(0.0, 0.95, 0.22)
+	guitar.rotation = Vector3(0, deg_to_rad(-12), deg_to_rad(18))
+	model.add_child(guitar)
+	var strum := guitar.create_tween().set_loops()
+	strum.tween_property(guitar, "rotation:z", deg_to_rad(21), 0.35).set_trans(Tween.TRANS_SINE)
+	strum.tween_property(guitar, "rotation:z", deg_to_rad(15), 0.35).set_trans(Tween.TRANS_SINE)
+
+
+## Biblioteca de texturas dos mapas (assets/textures/maps, Lattice, CC0): null se faltar o arquivo,
+## e quem usa mantém o visual gerado em código.
+func _map_texture(file: String) -> Texture2D:
+	var path := "res://assets/textures/maps/%s.webp" % file
+	return load(path) as Texture2D if ResourceLoader.exists(path) else null
+
+
+## Material de textura contínua projetada pelos três eixos (serve em qualquer peça, sem depender do UV);
+## `scale_` em repetições por metro (a textura de 480 px cobre ~1/scale m).
+func _tiled_material(file: String, scale_: Vector3, tint := Color.WHITE, rough := 0.95) -> StandardMaterial3D:
+	var texture := _map_texture(file)
+	if texture == null:
+		return null
+	var material := StandardMaterial3D.new()
+	material.albedo_texture = texture
+	material.albedo_color = tint
+	material.uv1_triplanar = true
+	material.uv1_scale = scale_
+	material.roughness = rough
+	return material
+
+
+## Terra batida (rua de Tortuga) e palha (telhados): geradas por ruído, não há no kit.
+var _dirt: StandardMaterial3D
+var _thatch: StandardMaterial3D
+
+
+func _noise_texture(dark: Color, light: Color, stretch: Vector2, frequency: float, seed_: int) -> ImageTexture:
+	var noise := FastNoiseLite.new()
+	noise.seed = seed_
+	noise.frequency = frequency
+	noise.fractal_octaves = 4
+	var size := 256
+	var image := Image.create(size, size, false, Image.FORMAT_RGB8)
+	for y in size:
+		for x in size:
+			var v := noise.get_noise_2d(x * stretch.x, y * stretch.y) * 0.5 + 0.5
+			image.set_pixel(x, y, dark.lerp(light, clampf(v * 1.3 - 0.15, 0.0, 1.0)))
+	return ImageTexture.create_from_image(image)
+
+
+func _dirt_material() -> StandardMaterial3D:
+	if _dirt == null:
+		_dirt = _tiled_material("dirt_1", Vector3.ONE * 0.22, Color(0.78, 0.62, 0.46), 1.0)
+	if _dirt == null:
+		_dirt = StandardMaterial3D.new()
+		_dirt.albedo_texture = _noise_texture(Color(0.25, 0.17, 0.1), Color(0.42, 0.31, 0.19), Vector2.ONE, 0.035, 11)
+		_dirt.uv1_triplanar = true
+		_dirt.uv1_scale = Vector3.ONE * 0.12
+		_dirt.roughness = 1.0
+	return _dirt
+
+
+## Telhado de palha: troca a telha do kit por palha amarelada, com fios no sentido da água.
+func _thatchify(node: Node3D) -> void:
+	if _thatch == null:
+		_thatch = _tiled_material("thatch_2", Vector3.ONE * 0.4, Color(1.2, 0.98, 0.62), 1.0)
+	if _thatch == null:
+		_thatch = StandardMaterial3D.new()
+		_thatch.albedo_texture = _noise_texture(Color(0.45, 0.33, 0.14), Color(0.86, 0.72, 0.38), Vector2(1.0, 0.07), 0.12, 23)
+		_thatch.uv1_triplanar = true
+		_thatch.uv1_scale = Vector3.ONE * 0.45
+		_thatch.roughness = 1.0
+	for mesh in node.find_children("*", "MeshInstance3D", true, false):
+		var m := mesh as MeshInstance3D
+		for i in m.get_surface_override_material_count():
+			var material := m.get_active_material(i) as StandardMaterial3D
+			if material and material.resource_name.contains("Tiles"):
+				m.set_surface_override_material(i, _thatch)
+
+
+## Madeira escura lisa (a faixa de madeira do atlas do kit, recortada): tábuas e estátua.
+var _wood_flat: StandardMaterial3D
+
+
+func _wood_material() -> StandardMaterial3D:
+	if _wood_flat == null:
+		_wood_flat = _tiled_material("wood_3", Vector3.ONE * 0.9, Color(1.15, 0.82, 0.58), 0.9)
+	if _wood_flat == null:
+		_wood_flat = StandardMaterial3D.new()
+		_wood_flat.roughness = 0.9
+		_wood_flat.albedo_color = Color(0.85, 0.75, 0.68)
+		var texture := load("res://assets/models/village/T_WoodTrim_BaseColor.webp") as Texture2D
+		if texture:
+			var image := texture.get_image()
+			if image.is_compressed():
+				image.decompress()
+			var scale_ := image.get_width() / 1024.0
+			_wood_flat.albedo_texture = ImageTexture.create_from_image(
+				image.get_region(Rect2i(0, int(335 * scale_), image.get_width(), int(280 * scale_))))
+			_wood_flat.uv1_triplanar = true
+			_wood_flat.uv1_scale = Vector3.ONE * 0.9
+	return _wood_flat
+
+
+## Janela quebrada: tábuas pregadas em X na abertura e, em algumas, a veneziana torta,
+## pendurada de um lado. Só visual, filho da peça da parede (acompanha o giro e a escala).
+func _break_window(wall: Node3D, wide: bool, seed_: int) -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = seed_
+	var half_len := 0.65 if wide else 0.4
+	for board in rng.randi_range(2, 3):
+		var mesh := MeshInstance3D.new()
+		var box := BoxMesh.new()
+		box.size = Vector3(half_len * 2.0 * rng.randf_range(0.85, 1.1), 0.15, 0.05)
+		mesh.mesh = box
+		mesh.material_override = _wood_material()
+		mesh.position = Vector3(rng.randf_range(-0.08, 0.08), 1.45 + 0.4 * board + rng.randf_range(-0.08, 0.08), 0.13 + 0.02 * board)
+		mesh.rotation.z = deg_to_rad(rng.randf_range(12.0, 32.0) * (1.0 if board % 2 == 0 else -1.0))
+		wall.add_child(mesh)
+	if wide and rng.randf() < 0.6 and Kit.has("WindowShutters_Wide_Round_Open"):
+		# Gira em volta do centro da janela (o pivô fica a 1,9 m do chão), não do pé da parede.
+		var pivot := Node3D.new()
+		pivot.position = Vector3(0, 1.9, 0.02)
+		pivot.rotation.z = deg_to_rad(rng.randf_range(5.0, 11.0) * (1.0 if rng.randf() < 0.5 else -1.0))
+		var shutters := Kit.piece("WindowShutters_Wide_Round_Open")
+		shutters.position = Vector3(0, -1.9, 0)
+		pivot.add_child(shutters)
+		wall.add_child(pivot)
+
+
+## Estátua de madeira (decor "statue": papel do NPC): o modelo parado numa pose, todo em
+## madeira escura, sobre um pedestal de tábuas; bloqueia a passagem.
+func _build_statue(decor: Dictionary) -> void:
+	var root := Node3D.new()
+	root.position = Vector3(decor.position[0], 0, decor.position[1])
+	root.rotation.y = deg_to_rad(float(decor.get("rotation", 0.0)))
+	_area_root.add_child(root)
+	# O pedestal cresce com a estátua ("pedestal" = fator sobre 1,5 m de lado).
+	var base := float(decor.get("pedestal", 1.0))
+	var steps := [[Vector3(1.5, 0.16, 1.5) * base, 0.08], [Vector3(1.1, 0.5, 1.1) * base, 0.41]]
+	steps[0][0].y = 0.16
+	steps[1][0].y = 0.5
+	for step: Array in steps:
+		var mesh := MeshInstance3D.new()
+		var box := BoxMesh.new()
+		box.size = step[0]
+		mesh.mesh = box
+		mesh.material_override = _wood_material()
+		mesh.position.y = step[1]
+		root.add_child(mesh)
+	var top := 0.66
+	# Ou um papel de NPC ("statue"), ou um modelo qualquer ("statue_model", ex.: o Ogro como gigante).
+	var model: Node3D = null
+	if decor.has("statue_model"):
+		var packed := load(String(decor.statue_model)) as PackedScene
+		model = packed.instantiate() if packed else null
+	elif NpcModel.has_model(String(decor.get("statue", ""))):
+		model = NpcModel.create(String(decor.statue))
+	if model:
+		model.position.y = top
+		model.scale *= float(decor.get("scale", 1.15))
+		root.add_child(model)
+		if model.has_method("set_pose"):
+			model.call("set_pose", String(decor.get("pose", "idle")))
+		for player in model.find_children("*", "AnimationPlayer", true, false):
+			(player as AnimationPlayer).speed_scale = 0.0
+		for mesh in model.find_children("*", "MeshInstance3D", true, false):
+			var m := mesh as MeshInstance3D
+			for i in m.get_surface_override_material_count():
+				m.set_surface_override_material(i, _wood_material())
+			if m.get_surface_override_material_count() == 0:
+				m.material_override = _wood_material()
+	var body := StaticBody3D.new()
+	body.collision_layer = 1
+	body.collision_mask = 0
+	var shape := CollisionShape3D.new()
+	var shape_box := BoxShape3D.new()
+	shape_box.size = Vector3(1.5, 1.0, 1.5) * base
+	shape_box.size.y = 1.0
+	shape.shape = shape_box
+	body.add_child(shape)
+	body.position.y = 0.5
+	root.add_child(body)
+
+
 ## Lixo jogado pelo chão do esgoto: garrafas e canecas caídas, cacos de pote,
 ## sacos, cordas, baldes virados, tábuas quebradas e trapos/papéis. Só visual;
 ## espalhado pela posição da sala (igual em todos os PCs), mais perto das paredes.
@@ -2186,11 +2632,16 @@ func _scatter_trash(room: Dictionary, c: Vector3, half: Vector3) -> void:
 
 ## Aranhinhas que andam pelo chão do esgoto (não atacam; só cenário, em cada PC).
 func _scatter_spiders(room: Dictionary, c: Vector3, half: Vector3) -> void:
-	if not NpcModel.has_model("spider"):
+	_scatter_critters(room, c, half, "spider", 1.0, 6)
+
+
+## Bichinhos de cenário (aranhas, ratos): andam entre dois pontos do chão da sala; `density` escala a quantidade.
+func _scatter_critters(room: Dictionary, c: Vector3, half: Vector3, kind: String, density: float, max_count: int) -> void:
+	if not NpcModel.has_model(kind):
 		return
 	var rng := RandomNumberGenerator.new()
-	rng.seed = hash(str(room.get("id", ""), c, "spiders"))
-	var count := clampi(roundi(half.x * half.z / 25.0), 1, 6)
+	rng.seed = hash(str(room.get("id", ""), c, kind + "s"))
+	var count := clampi(roundi(half.x * half.z / 25.0 * density), 1, max_count)
 	for i in count:
 		var walker := Wanderer.new()
 		var a := Vector3(c.x + rng.randf_range(-half.x + 0.8, half.x - 0.8), 0, c.z + rng.randf_range(-half.z + 0.8, half.z - 0.8))
@@ -2200,7 +2651,7 @@ func _scatter_spiders(room: Dictionary, c: Vector3, half: Vector3) -> void:
 		walker.to = b
 		walker.speed = rng.randf_range(0.6, 1.4)
 		_area_root.add_child(walker)
-		var model := NpcModel.create("spider")
+		var model := NpcModel.create(kind)
 		walker.add_child(model)
 		walker.model = model
 		model.call("set_pose", "walk")
@@ -2477,6 +2928,10 @@ func _dress_side(face: Vector3, along: Vector3, inward: Vector3, length: float, 
 			node.rotation.y = atan2(inward.x, inward.z)
 			_area_root.add_child(node)
 			_tint_piece(node)
+			if arena.get("style", {}).get("wood", false):
+				_woodify(node)
+			if arena.get("style", {}).get("broken_windows", false) and piece_name.contains("Window"):
+				_break_window(node, piece_name.contains("Wide"), hash(Vector2(node.position.x, node.position.z)))
 			if full and not arena.get("outdoor", false):
 				_cut_walls.append(node)
 
@@ -2484,6 +2939,9 @@ func _dress_side(face: Vector3, along: Vector3, inward: Vector3, length: float, 
 ## Objeto de cenário (data/arenas.json "decor"): mesa, banco, barril, carroça…
 ## Com "solid", uma caixa de colisão do tamanho dado.
 func _build_decor(decor: Dictionary) -> void:
+	if decor.has("statue") or decor.has("statue_model"):
+		_build_statue(decor)
+		return
 	if decor.has("light"):
 		# Luz de cenário (lanterna vermelha da casa da Madame, fogo dos apostadores).
 		var c: Array = decor.light
@@ -2493,6 +2951,24 @@ func _build_decor(decor: Dictionary) -> void:
 		light.light_energy = float(decor.get("energy", 1.0))
 		light.position = Vector3(decor.position[0], float(decor.get("y", 2.0)), decor.position[1])
 		_area_root.add_child(light)
+		if decor.get("flicker", false):
+			var glow := light.create_tween().set_loops()
+			glow.tween_property(light, "light_energy", light.light_energy * 1.25, 0.17).set_trans(Tween.TRANS_SINE)
+			glow.tween_property(light, "light_energy", light.light_energy * 0.8, 0.23).set_trans(Tween.TRANS_SINE)
+			glow.tween_property(light, "light_energy", light.light_energy * 1.1, 0.12).set_trans(Tween.TRANS_SINE)
+		return
+	if decor.has("collider"):
+		# Só colisão (as paredes das Ruínas já estão desenhadas na peça Ruins_Layout).
+		var wall := StaticBody3D.new()
+		wall.collision_layer = 1
+		wall.collision_mask = 0
+		var wall_shape := CollisionShape3D.new()
+		var wall_box := BoxShape3D.new()
+		wall_box.size = Vector3(decor.collider[0], 3.0, decor.collider[1])
+		wall_shape.shape = wall_box
+		wall.add_child(wall_shape)
+		wall.position = Vector3(decor.position[0], 1.5, decor.position[1])
+		_area_root.add_child(wall)
 		return
 	var node := Kit.piece(String(decor.piece))
 	if node == null:
@@ -2500,7 +2976,47 @@ func _build_decor(decor: Dictionary) -> void:
 	node.position = Vector3(decor.position[0], float(decor.get("y", 0.0)), decor.position[1])
 	node.rotation.y = deg_to_rad(float(decor.get("rotation", 0.0)))
 	node.scale = Vector3.ONE * float(decor.get("scale", 1.0))
+	if decor.has("swim"):
+		# Peixe nadando em círculo (raio e velocidade em "swim"), de cabeça para a frente, na água do riacho ou do mar.
+		var radius := float(decor.swim.get("radius", 1.0))
+		var pivot := Node3D.new()
+		pivot.position = node.position
+		pivot.rotation.y = float(decor.swim.get("phase", 0.0))
+		node.position = Vector3(radius, node.position.y, 0.0)
+		node.rotation.y = PI
+		pivot.add_child(node)
+		_area_root.add_child(pivot)
+		var flyer := node.find_child("AnimationPlayer", true, false) as AnimationPlayer
+		if flyer and flyer.has_animation("Flying"):
+			# Borboleta com esqueleto (Butterfly_Anim): toca a batida de asas do próprio modelo.
+			flyer.get_animation("Flying").loop_mode = Animation.LOOP_LINEAR
+			flyer.play("Flying")
+		var loop := pivot.create_tween().set_loops()
+		loop.tween_property(pivot, "rotation:y", TAU, TAU * radius / float(decor.swim.get("speed", 0.6))).as_relative()
+		if decor.get("flap", false):
+			# Borboleta: bate as asas (o modelo é parado) e sobe e desce de leve enquanto voa em círculo.
+			var wings := node.create_tween().set_loops()
+			wings.tween_property(node, "scale:x", node.scale.x * 0.4, 0.09)
+			wings.tween_property(node, "scale:x", node.scale.x, 0.09)
+			var bob := node.create_tween().set_loops()
+			bob.tween_property(node, "position:y", node.position.y + 0.35, 1.1).set_trans(Tween.TRANS_SINE)
+			bob.tween_property(node, "position:y", node.position.y, 1.1).set_trans(Tween.TRANS_SINE)
+		return
 	_area_root.add_child(node)
+	if decor.get("flicker", false):
+		# Chama: o fogo estica e encolhe sem parar (a fogueira do acampamento).
+		var base := node.scale
+		var flame := node.create_tween().set_loops()
+		flame.tween_property(node, "scale", base * Vector3(1.0, 1.2, 1.0), 0.17).set_trans(Tween.TRANS_SINE)
+		flame.tween_property(node, "scale", base * Vector3(0.92, 0.88, 0.92), 0.23).set_trans(Tween.TRANS_SINE)
+		flame.tween_property(node, "scale", base * Vector3(1.04, 1.1, 1.04), 0.12).set_trans(Tween.TRANS_SINE)
+		flame.tween_property(node, "scale", base, 0.2).set_trans(Tween.TRANS_SINE)
+	# Peça animada (o aparelho de treino gira): toca a primeira animação em laço.
+	var animator := node.find_child("AnimationPlayer", true, false) as AnimationPlayer
+	if animator and not animator.get_animation_list().is_empty():
+		var clip := animator.get_animation_list()[0]
+		animator.get_animation(clip).loop_mode = Animation.LOOP_LINEAR
+		animator.play(clip)
 	if decor.has("solid"):
 		var size: Array = decor.solid
 		var body := StaticBody3D.new()

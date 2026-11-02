@@ -1,0 +1,2 @@
+Sword_D.glb ... Sword_S.glb — "Low Poly Swords" by Lamoot, CC BY 3.0: https://opengameart.org/content/low-poly-swords
+Converted by tools/assets/build_knight_swords.py (D Sword, C Dha, B Falcata, A Sword 2, S Weird Sword; the original is untextured, so blade and grip get plain rank colors).

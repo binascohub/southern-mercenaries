@@ -62,10 +62,10 @@ Hoje vive em Tortuga contando cada moeda, como contava cada flecha. Não confia 
 | Elemento | Água / Fogo / Ar / Terra |
 | Sexo | Masculino / feminino |
 | Nome | Texto livre (padrão conforme o sexo) |
-| Rosto | 4 opções por sexo |
-| Cabelo | 6 estilos por sexo + cor |
-| Barba | Só masculino: 4 opções (incluindo sem barba) |
-| Pele | 6 tons |
+| Rosto | Planejado (4 opções por sexo): os modelos atuais têm uma cabeça só |
+| Cabelo | 3 estilos por sexo + sem cabelo, e 8 cores (implementado; mais estilos dependem de novos modelos) |
+| Barba | Só masculino: com ou sem barba (implementado; mais estilos dependem de novos modelos) |
+| Pele | 6 tons (implementado) |
 | Pinturas de caça no rosto | 4 opções (incluindo nenhuma) |
 
 - Sexo é só visual e de voz: **não muda atributos nem habilidades**.
@@ -210,3 +210,9 @@ Falas neutras, servindo para os dois sexos.
 
 - Arcos curtos e longos como dois tipos de arma, ou um tipo só?
 - A vila do Arqueiro aparece dentro do mapa das Ruínas (com uma cena ou missão pessoal)?
+
+## Visual do equipamento por rank (implementado)
+
+O Arqueiro troca de roupa por **rank**, de **D** (a mais simples) a **S** (a mais rara e melhor), seguindo a referência do autor (`clothes.jpeg`, níveis 1 a 5). Cada peça (corpo, cabeça, mãos, pés) troca separadamente; o rank sai do material da peça (pano e ferro = D, aço = C, cobre = B, prata = A, ouro = S). Vale para os dois sexos. Código em `game/actors/class_gear.gd` e `game/actors/gear_kit.gd`; dá para ver cada rank na tela de criação do personagem ("Equipamento").
+
+D túnica verde esfarrapada com corda; C jaqueta de couro marrom com capuz e bandoleira; B túnica verde com capa, colete de tiras e cinto; A escamas e malha verdes, ombreiras de couro e gola de malha; S armadura élfica verde e dourada, capa, folhas nos ombros e gema esmeralda.

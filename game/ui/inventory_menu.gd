@@ -40,10 +40,13 @@ func _ready() -> void:
 
 func bind_player(player: Player) -> void:
 	_player = player
-	player.character_changed.connect(func(_levels: int) -> void:
-		if visible:
-			_refresh())
+	player.character_changed.connect(_on_character_changed)
 
+
+## Ligado por método (não lambda): some junto com o menu quando a cena é desmontada.
+func _on_character_changed(_levels: int) -> void:
+	if visible:
+		_refresh()
 
 func toggle() -> void:
 	if visible:
@@ -112,7 +115,7 @@ func _refresh() -> void:
 		# Poções com ícone: o frasco em cima, só a quantidade embaixo.
 		var icon := Items.icon(item)
 		button.icon = icon
-		if icon:
+		if icon and item.kind != Items.EQUIPMENT:
 			button.text = "x%d" % int(item.count) if int(item.get("count", 1)) > 1 else ""
 		button.add_theme_color_override("font_color", Items.color(item) if item else Color.WHITE)
 		button.add_theme_color_override("font_focus_color", Items.color(item) if item else Color.WHITE)
@@ -160,6 +163,7 @@ func _show_details() -> void:
 
 func _build() -> void:
 	_panel = PanelContainer.new()
+	_panel.theme = UiTheme.paper_theme()
 	_panel.set_anchors_preset(Control.PRESET_CENTER)
 	_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	_panel.grow_vertical = Control.GROW_DIRECTION_BOTH

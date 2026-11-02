@@ -145,3 +145,7 @@ Todo dano das habilidades é uma porcentagem do "poder" da classe:
 ## 6. Decisões em aberto
 
 - Dois jogadores podem escolher a mesma classe na mesma partida?
+
+## Aparência na criação (implementada)
+
+A tela de criação (menu principal → Personagens) tem, além de classe, elemento, sexo e nome, **estilo de cabelo, cor do cabelo, barba (só masculino) e tom de pele**, com uma prévia 3D do herói girando. A escolha é só visual e fica na ficha (`look`, índices de `data/appearance.json`); personagens antigos, sem `look`, mantêm o visual padrão da classe. O **rosto** do documento original ainda não existe: os modelos têm uma cabeça só.

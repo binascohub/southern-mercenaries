@@ -59,10 +59,10 @@ Um dia, ouvindo seus amigos, Ari descobriu algo terrível: **muitos deles eram �
 | Elemento | Água / Fogo / Ar / Terra |
 | Sexo | Masculino / feminino |
 | Nome | Texto livre (padrão conforme o sexo) |
-| Rosto | 4 opções por sexo |
-| Cabelo | 6 estilos por sexo + cor |
-| Barba | Só masculino: 4 opções (incluindo sem barba) |
-| Pele | 6 tons |
+| Rosto | Planejado (4 opções por sexo): os modelos atuais têm uma cabeça só |
+| Cabelo | 3 estilos por sexo + sem cabelo, e 8 cores (implementado; mais estilos dependem de novos modelos) |
+| Barba | Só masculino: com ou sem barba (implementado; mais estilos dependem de novos modelos) |
+| Pele | 6 tons (implementado) |
 | Nome do pássaro do ombro | Texto livre (padrão: "Pip") |
 
 - Sexo é só visual e de voz: **não muda atributos nem habilidades**.
@@ -74,9 +74,9 @@ O elemento define **quais animais amigos** respondem ao chamado.
 
 | Elemento | Companheiro principal | Papel do Invocador | Suporte | Dificuldade |
 |---|---|---|---|---|
-| Fogo | **Raposa de fogo** (rápida, ataques que queimam) | Mais dano dos companheiros | Aumenta o dano dos aliados e dos animais | Fácil |
-| Água | **Lontra** (ataca à distância com jatos d'água) | Controle e cura | Cura | Fácil |
-| Ar | **Falcão** (voa, ataques rápidos e elétricos) | Velocidade e dano em cadeia | Velocidade para o grupo | Média |
+| Fogo | **Fênix** (rápido, ataques que queimam) | Mais dano dos companheiros | Aumenta o dano dos aliados e dos animais | Fácil |
+| Água | **Crocodilo** (ataca à distância com jatos d'água) | Controle e cura | Cura | Fácil |
+| Ar | **Águia** (voa, ataques rápidos e elétricos) | Velocidade e dano em cadeia | Velocidade para o grupo | Média |
 | Terra | **Javali** (resistente, chance de atordoar) | O Invocador mais seguro | Escudo nos aliados | Fácil |
 
 ## 4. Recurso e Poder de Invocação
@@ -124,7 +124,7 @@ Todas são **imbuídas** do elemento atual.
 | 2 | `flock` | Revoada | Área | 18 | 4 s | 110% PI | +12% | Cone de 8 m | Uma revoada de pássaros sai do livro e ataca tudo à frente |
 | 4 | `bond` | Laço de Amizade | Passiva | — | — | +8% de vida e dano dos animais | por rank | — | — |
 | 8 | `scatter_escape` | Fuga em Bando | **Evasão** | 20 | 9 s (-1 s por rank) | — | — | Até 7 m à frente | O Invocador se desfaz numa revoada de pássaros, atravessa inimigos e reaparece à frente; os animais provocam os inimigos por 2 s |
-| 10 | `guardian_bear` | Urso Guardião | Invocação (tanque) | 40 | 25 s | Urso com 150% da vida do Invocador; golpes de 70% PI | +12% | Ao lado do Invocador, dura 15 s | Urso amigo que **provoca e segura os inimigos**; só 1 por vez |
+| 10 | `guardian_bear` | Gorila Guardião | Invocação (tanque) | 40 | 25 s | Gorila com 150% da vida do Invocador; golpes de 70% PI | +12% | Ao lado do Invocador, dura 15 s | Gorila amigo que **provoca e segura os inimigos**; só 1 por vez |
 | 14 | `stampede` | Estouro da Manada | Área (linha) | 35 | 14 s | 180% PI | +18% | Linha de 15 m | Uma manada de animais amigos atravessa o campo derrubando (`knocked_down`) |
 | 16 | `animal_rescue` | Resgate | Suporte (grupo) | 40 | 40 s | Reanima com 40% da vida | +5% | Aliado caído a até 20 m | Um animal amigo corre até o aliado caído e o reanima à distância |
 
@@ -173,7 +173,7 @@ O Invocador **não liberta criaturas corrompidas**. O que abre mais habilidades 
 
 ## 7. Estilo de jogo
 
-- **Solo:** a classe mais fácil para jogar sozinho: o Urso Guardião e os companheiros seguram os monstros enquanto o Invocador ataca de longe. Fuga em Bando quando cercado.
+- **Solo:** a classe mais fácil para jogar sozinho: o Gorila Guardião e os companheiros seguram os monstros enquanto o Invocador ataca de longe. Fuga em Bando quando cercado.
 - **Em grupo:** o "cuidador" do grupo: reanima à distância (`animal_rescue`), dá suporte e enche a tela de aliados.
 - **Pontos fortes:** muitos alvos para distrair os inimigos; ótimo contra matilhas (Mapa dos Lobos).
 - **Pontos fracos:** pouca vida; se os animais caírem todos, fica exposto; sofre contra criaturas que atacam em área (Kraken, Jörmungandr) e contra a Strix, que drena vida.
@@ -223,3 +223,9 @@ Falas neutras, servindo para os dois sexos.
 
 - Detalhar as habilidades e o papel de cada um dos 10 animais novos (seção 6.6).
 - O pássaro do ombro tem algum efeito de jogo (ex.: avisa armadilhas e emboscadas) ou é só visual?
+
+## Visual do equipamento por rank (implementado)
+
+O Invocador troca de roupa por **rank**, de **D** (a mais simples) a **S** (a mais rara e melhor), seguindo a referência do autor (`clothes.jpeg`, níveis 1 a 5). Cada peça (corpo, cabeça, mãos, pés) troca separadamente; o rank sai do material da peça (pano e ferro = D, aço = C, cobre = B, prata = A, ouro = S). Vale para os dois sexos. Código em `game/actors/class_gear.gd` e `game/actors/gear_kit.gd`; dá para ver cada rank na tela de criação do personagem ("Equipamento").
+
+D retalhos de couro com colar de ossos e corda; C poncho escuro com barra rasgada, penas e contas; B túnica tribal com faixas turquesa, colar de contas e penas; A manto de pele, bordado e pingente turquesa; S túnica cósmica azul e roxa com cristais nos ombros, luzes e coroa de chifres.

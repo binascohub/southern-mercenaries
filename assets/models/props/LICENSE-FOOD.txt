@@ -1,0 +1,2 @@
+Food_Meat.glb, Food_Banana.glb, Food_Apple.glb — "Food Props for Games" by Vinrax, CC-BY 3.0: https://opengameart.org/content/food-props
+Converted from the OBJ files by tools/assets/build_food.py (color and normal maps at 512 px). The inventory icon assets/ui/icons/wild_meat.png is a render of Food_Meat.

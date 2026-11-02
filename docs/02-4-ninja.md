@@ -71,10 +71,10 @@ Roubar bolsas em Tortuga logo ficou pequeno. Ao ouvir falar dos **tesouros guard
 | Elemento | Água / Fogo / Ar / Terra |
 | Sexo | Masculino (Ren) / feminino (Rin) |
 | Nome | Texto livre (padrão conforme o sexo) |
-| Rosto | 4 opções por sexo |
-| Cabelo | 6 estilos por sexo + cor |
-| Barba | Só masculino: 4 opções (incluindo sem barba) |
-| Pele | 6 tons |
+| Rosto | Planejado (4 opções por sexo): os modelos atuais têm uma cabeça só |
+| Cabelo | 3 estilos por sexo + sem cabelo, e 8 cores (implementado; mais estilos dependem de novos modelos) |
+| Barba | Só masculino: com ou sem barba (implementado; mais estilos dependem de novos modelos) |
+| Pele | 6 tons (implementado) |
 | Cicatriz no rosto | 4 opções (incluindo nenhuma) |
 
 - Sexo muda visual, voz, parte da história e algumas falas; **não muda atributos nem habilidades**.
@@ -227,3 +227,17 @@ A maioria das falas é igual; algumas mudam conforme a versão.
 ## 12. Decisões em aberto
 
 - Traço de classe "Ladrão" (+ouro, valioso extra, abrir baús trancados): manter?
+
+## Visual do equipamento por rank (masculino, implementado)
+
+As peças do Ninja trocam de visual por **rank**, de **D** (a mais simples) a **S** (a mais rara e melhor); a referência do autor é `assassino-homem.png`. Cada slot (corpo, cabeça, mãos, pés) tem o seu visual e troca separadamente. Hoje o rank sai do material da peça (pano e ferro = D, aço = C, cobre = B, prata = A, ouro = S; ver `05-itens-e-loot.md`). Código em `game/actors/ninja_gear.gd`; dá para ver cada rank na tela de criação do personagem ("Equipamento").
+
+| Rank | Visual |
+|---|---|
+| **D** | Colete de pano cinza rasgado sobre a camisa, corda na cintura, barra em tiras |
+| **C** | Capuz e roupa cinza-escuro, faixas de couro nos antebraços e nas pernas, cinto marrom |
+| **B** | Capuz e tabardo azuis, gola e mangas de malha de aço, lâminas nos antebraços |
+| **A** | Armadura de lâminas escura (estilo samurai): ombreiras em camadas, placas no peito e na cintura, braçadeiras e caneleiras de chapa, máscara |
+| **S** | Armadura negra e roxa: elmo com chifres e olhos de luz roxa, ombreiras e braçadeiras com espinhos, capa, fios de luz no peito |
+
+Falta: o visual feminino do Ninja e as outras quatro classes.

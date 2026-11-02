@@ -1,0 +1,1 @@
+Fire_Flame.glb — "Fire" by janexx, CC BY-SA 3.0: https://opengameart.org/content/fire (the flame preview image, 200 px, on three crossed planes; tools/assets/build_fire_flame.py). Derivative works of this asset stay under CC BY-SA 3.0.

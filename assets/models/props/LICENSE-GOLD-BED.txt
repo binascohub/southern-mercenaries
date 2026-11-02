@@ -1,0 +1,2 @@
+Gold_Bed.glb — "GoldPile" (Dragon's Bed) by Dm3d, CC-BY-SA 3.0 (also offered under GPL 2.0 / GPL 3.0): https://opengameart.org/content/goldpile
+Converted from the OBJ by tools/assets/build_gold_bed.py (color + alpha textures merged into one 1024 px RGBA map, 5 m wide).

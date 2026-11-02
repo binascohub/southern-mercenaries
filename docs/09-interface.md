@@ -124,27 +124,32 @@ Abrem sobre o jogo no estilo medieval de pergaminho, madeira e ferro do 0 A.D. (
 - **Daltonismo (proposta):** além da cor, cada elemento tem um **símbolo** próprio nos ícones.
 - Limite de entidades e partículas na tela (`01-escopo.md`, seção 5).
 
-## 7. Estilo gráfico da interface (menus medievais, como no 0 A.D.)
+## 7. Identidade visual do jogo (regra para todo o visual)
 
-Decisão do autor: **menus no estilo medieval do 0 A.D.** — a interface parece feita de materiais do mundo do jogo, não de um painel moderno.
+**Regra do autor:** tudo o que for implementado na parte visual do jogo — menus, janelas, HUD, personagens, roupas, cenário, objetos, efeitos, ícones, telas novas — **segue a mesma identidade visual**. Antes de fazer qualquer coisa visual nova, confira esta seção; se algo novo não se encaixa, **mude o novo** (ou proponha, aqui, uma mudança na identidade para o jogo todo). Nada de peça de um estilo ao lado de peça de outro: um visual de cada tipo vira bagunça.
 
-| Elemento | Estilo |
+**A identidade em uma frase:** *Tortuga à noite* — porto pirata medieval, sujo e vivo, visto em baixa luz com **ouro**, **azul-marinho de noite** e **vermelho de lacre** como cores de marca, sobre couro escuro, pergaminho e ferro velho.
+
+| Item | Regra |
 |---|---|
-| **Painéis e janelas** | Moldura de **madeira escura** com cantoneiras e rebites de **ferro gasto**; fundo de **pergaminho** ou couro; cantos reforçados; sombra suave |
-| **Botões** | Placas de **pedra ou madeira entalhada**, com realce metálico ao passar o cursor/foco e leve afundar ao apertar; abas como tiras de couro |
-| **Títulos e divisores** | Faixas de pano ou fitas com **brasão heráldico**; divisores de corda ou ferro forjado; letra capitular nos diálogos longos |
-| **Fonte** | Serifada de estilo medieval **legível** (acentos do espanhol e português), em tinta escura sobre pergaminho; títulos em letra maiúscula entalhada. Nada de fonte gótica difícil de ler |
-| **Ícones** | Pintados à mão, com contorno escuro (estilo 0 A.D.); elementos com cores próprias (`02-0-elementos.md`) e símbolos gravados em medalhão |
-| **Barras de vida e recurso** | Tubos de vidro/metal com líquido colorido; a vida em vermelho, cada recurso na sua cor |
-| **Menu principal** | Fundo com Tortuga à noite; título "Southern Mercenaries" em letras de ferro e madeira; botões numa **tábua** pendurada; estandartes dos cinco heróis nas laterais |
-| **Caixas de diálogo** | Pergaminho com **selo de cera** nas confirmações; balões de fala com retrato do NPC na moldura |
-| **Inventário** | Grade de **espaços de couro**, boneco do herói ao centro; raridade como borda colorida (comum branco, mágico azul, raro amarelo, único dourado/laranja, lendário vermelho — `05-itens-e-loot.md`, seção 3) |
-| **Mapa e diário** | Papel envelhecido, desenho de tinta, marcas de cera; checkpoints como pequenas bandeiras |
-| **Sons de interface** | Madeira, couro, metal e papel (cliques, abrir pergaminho, selo de cera); sem bipes sintéticos |
+| **Paleta de marca** | Ouro (`#D4AB4A` com sombra `#735420` e brilho `#F7D985`), noite azul-marinho (`#12292F`/`#0A1519`), vermelho de lacre (`#8C1A10`), couro escuro (`#1C1511`), pergaminho (`#D9C294`), latão (`#8C6E33`), aço (`#B8C2C7`). Cores fora disso só para dar informação (elementos, raridades, vida/mana) |
+| **Madeira, não** | Moldura de **madeira não é mais usada** em janelas e botões (era o estilo anterior). Madeira só como material do mundo (mesas, barracas, casco do navio) |
+| **Janelas** | Couro escuro com **filete de ouro**, linha fina de latão por dentro e **cantoneiras de ouro com losango**; sombra suave. Pergaminho para conversas, diário, dicas e etiquetas |
+| **Botões** | Couro escuro com aro de latão que **acende em ouro** no foco (nunca só pela cor: o foco também muda o aro); a ação principal de uma tela é um **lacre de cera vermelho** com aro de ouro; no menu principal, entradas soltas como linhas de um livro-razão, com uma barra de ouro ao lado da que está em foco |
+| **Títulos** | **Pirata One** (gótica de pirata), em ouro com contorno escuro, sempre com o **divisor ornamental** (losango de ouro entre fios de latão) logo abaixo. Só títulos: texto corrido nunca usa gótica |
+| **Texto** | **Alegreya** nas janelas e **IM Fell English** nas entradas do menu principal; tinta escura sobre pergaminho, creme sobre couro. Legível, com acentos do espanhol e do português |
+| **Capa do menu** | O menu principal usa uma **imagem de capa sem texto** (`assets/ui/menu_cover.jpg`): os mercenários descansando sobre um monte de ouro, ruínas e céu de fim de tarde. O título é uma imagem em ouro com relevo e rosa dos ventos (`assets/ui/title.png`, gerada por `tools/ui/make_title.py` com a fonte Cinzel), e a coluna de botões do jogo (couro e latão) ficam por cima, à esquerda, sobre um véu escuro leve. A capa é arte pronta, não cena montada em código; para trocar, basta substituir o arquivo (16:9, sem texto) |
+| **Janelas e diálogos** | **Pedaços de papel antigo**: fibras, manchas de umidade, pintas de ferrugem e bordas rasgadas e queimadas (gerado em código, `UiTheme._paper_image`), com texto em tinta escura e títulos em vermelho-lacre. Botões e campos são **couro texturizado** com pesponto e aro de latão. Submenus abrem sobre a mesma cena |
+| **Mundo 3D** | Luz quente de tocha e lanterna em ambientes escuros, tons terrosos e dessaturados, madeira e pano **gastos** (nada de cor chapada e vibrante); materiais pintados com relevo (`PaintedTextures`) e peças dos kits livres. Personagens novos vestem **roupa medieval** (linho, couro, lã); cores vivas só em peças de gala |
+| **Ícones** | Pintados, com contorno escuro; elementos com cores próprias (`02-0-elementos.md`) e símbolos gravados em medalhão |
+| **Barras de vida e recurso** | Tubos de vidro com aro de latão; a vida em vermelho, cada recurso na sua cor |
+| **Movimento** | Pouco e com propósito: um balanço lento, uma luz que pisca. Nada de animações vistosas de interface |
+| **Sons de interface** | Madeira, couro, metal e papel; sem bipes sintéticos |
 
-- **Diferença de tom entre cidades:** em **Tortuga** a interface parece mais suja e remendada (madeira de barco, cordas, manchas); na **Capital Real** passa a ser **mais rica** (madeira polida, dourado, tecido nobre). A troca é só de tema (cores e texturas), automática ao entrar na cidade — mesmo `Theme` com duas variações (proposta).
+- **Diferença de tom entre cidades:** em **Tortuga** tudo parece mais sujo e remendado (madeira de barco, cordas, manchas); na **Capital Real** a mesma identidade fica **mais rica** (dourado mais presente, tecido nobre, madeira polida). A troca é só de tema (cores e texturas), automática ao entrar na cidade — mesmo `Theme` com duas variações (proposta).
+- **Como aplicar:** o tema da interface fica em **um único arquivo** (`game/ui/ui_theme.gd`); telas novas usam as variações dele (`TitleLabel`, `GameTitle`, `MenuEntry`, `SealEntry`, `ParchmentPanel`, `HudPanel`) e `MenuPanel`/`OrnamentDivider`, nunca estilos soltos. A capa é `assets/ui/menu_cover.jpg`, carregada por `menu_scene.gd`; título e botões ficam em `main_menu.gd`. Janela de papel: `MenuPanel` ou, em menus próprios, `panel.theme = UiTheme.paper_theme()`. O divisor é `ornament_divider.gd`. Roupas e barracas: `clothing.gd` e `market_stall.gd`.
+- **Revisão:** todo pedido de arte ou de interface é conferido em captura de tela do jogo, **ao lado das telas existentes**, antes de ser dado como pronto.
 - Tudo feito com assets próprios ou livres (CC0, CC BY, CC BY-SA), registrados em `CREDITS.md`. As molduras são **9-patch** reaproveitadas em todas as janelas (poucas texturas, leve para vídeo integrado).
-- Tema em **um único arquivo de tema do Godot** (`Theme`), para trocar o visual sem mexer nas telas.
 - **Escala da interface** ajustável (80% a 150%) para telas pequenas e grandes.
 - No HUD em jogo (seção 3) o estilo é mais discreto: painéis pequenos nas bordas, com pouca moldura, para não cobrir a ação.
 

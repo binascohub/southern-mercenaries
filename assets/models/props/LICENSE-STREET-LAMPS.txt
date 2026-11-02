@@ -1,0 +1,7 @@
+Lamp_Street_1.glb ... Lamp_Street_4.glb — "Textured Medieval Street Lamps" by bobjh, CC-BY 4.0: https://opengameart.org/content/textured-medieval-street-lamps
+Based on the "Medieval Street Lamp" models by PolygonDan. Converted from the Blender files by tools/assets/build_street_lamps.py (textures at 512 px).
+Textures used by the original pack (from its TEXTURES.txt):
+ - "rusted metal texture pack" by p0ss — GPL 2.0 / GPL 3.0 / CC-BY 3.0: https://opengameart.org/content/rusted-metal-texture-pack
+ - "More Wood Panels - Batch of 16 Seamless Textures with normalmaps" by Keith333 — CC-BY 3.0: https://opengameart.org/content/more-wood-panels-batch-of-16-seamless-textures-with-normalmaps
+ - "Repeating Mini Windows - Largish - Seamless texture with normalmap" by Keith333 — CC-BY 3.0: https://opengameart.org/content/repeating-mini-windows-largish-seamless-texture-with-normalmap
+ - a photograph by Rocsilas Moscas (Wikimedia Commons) — CC-BY 2.0

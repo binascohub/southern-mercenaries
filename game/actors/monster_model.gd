@@ -24,6 +24,25 @@ const FAMILIES := {
 		"body_scene": "res://assets/models/monsters/rat_queen_body.glb", "body_scale": 0.254,
 		"bones": {"head": "Head", "chest": "Spine1", "hips": "Hips"},
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "die": "die"}},
+	# O Feiticeiro-aranha (Wizard, piacenti, CC BY-SA 3.0): malha única sem esqueleto, 1 m de altura no
+	# arquivo; o corpo todo balança, avança e cai por código (`static`). Chefe do Esgoto no lugar da Rainha.
+	# Anglerman (Angler Man 3D, piacenti, CC BY 3.0): peixe-pescador de pernas finas das Docas; malha única, movida por código.
+	"angler": {"scene": "res://assets/models/monsters/angler.glb", "scale": 0.75, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	"demon": {"scene": "res://assets/models/monsters/demon_wizard.glb", "scale": 0.8, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Sapo (Frog Guy, CC0): malha única de pé sem animação (tools/assets/build_frog.py); balança, avança e cai
+	# por código (`static`); 1 m no arquivo. Toma o lugar dos ratos do Esgoto (os ratos viraram cenário).
+	"frog": {"scene": "res://assets/models/monsters/frog.glb", "scale": 0.4, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Tio Fungo (Uncle Fungus, piacenti, CC BY-SA 3.0; tools/assets/build_fungus.py): fera de fungo sem esqueleto
+	# nem animação (`static`); 1 m no arquivo -> ~2,2 m no tamanho 1.
+	"fungus": {"scene": "res://assets/models/monsters/fungus.glb", "scale": 1.1, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Espreitador (Stalker 3D, GuieA_7, CC BY-SA 4.0; tools/assets/build_stalker.py): olho alado da Mina, malha única sem animação
+	# (`static`); 1 m no arquivo -> ~1,4 m no tamanho 1. Voa e balança por código.
+	"stalker": {"scene": "res://assets/models/monsters/stalker.glb", "scale": 1.4, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
 	"gator": {"scene": "res://assets/models/monsters/gator.glb", "scale": 0.75,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
 	# Monstro da Floresta (cdmir, CC0): gigante de casca e pedra com uma árvore nas
@@ -34,13 +53,83 @@ const FAMILIES := {
 	# patas) são animadas aqui ("procedural"). ~1 m por unidade de size.
 	"scorpion": {"scene": "res://assets/models/monsters/scorpion.glb", "scale": 1.5, "procedural": true,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
-	# Lagarto Dourado (Lizardman, skorpio, CC BY-SA 3.0): tingido de ouro no jogo.
+	# Coelho (Rabbit, cdmir, CC0): o Coelho Dourado que solta moedas (tingido de ouro no jogo); ~15 unidades -> ~0,75 m no tamanho 1.
+	# Só tem idle, pulo, corrida e sentado: o pulo faz de andar e de ataque, e a sentada faz de queda.
+	"rabbit": {"scene": "res://assets/models/characters/rabbit.glb", "scale": 0.05,
+		"anims": {"idle": "idle", "walk": "jump", "run": "run", "attack": "jump", "hit": "sit", "die": "sit"}},
+	# Lagarto Dourado (Lizardman, skorpio, CC BY-SA 3.0): tingido de ouro no jogo (agora só o Guardião do Cofre usa este corpo).
 	"lizard": {"scene": "res://assets/models/monsters/golden_lizard.glb", "scale": 0.8,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
+	# Elfo Sombrio (Dark Elf, danimal, CC BY-SA 3.0; besta de Lamoot, CC BY): o corpo inteiro com chifres, cabelo e a besta,
+	# 8,1 unidades de altura -> ~1,8 m no tamanho 1. Atira de longe (animação "attack" = o tiro).
+	"dark_elf": {"scene": "res://assets/models/monsters/dark_elf.glb", "scale": 0.22,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "die": "die"}},
+	# Esqueleto (Skeleton with rig, rudy85, CC0): humanoide de 1,8 m no tamanho 1, com animações feitas à mão
+	# (tools/assets/build_skeleton.py). Morto-vivo comum do Cemitério.
+	"skeleton": {"scene": "res://assets/models/monsters/skeleton.glb", "scale": 1.0,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Súcubo (Goth Female "Fleur du Mal", tizeta, CC BY 3.0): corpo único em pose de repouso, sem animações
+	# (o Blender o traz com esqueleto, mas sem ações): flutua e inclina por código (`static`); 44,8 unidades de
+	# altura no arquivo (`unit`) -> ~1,8 m no tamanho 1. Ataque de magia à distância.
+	# Demônio da Noite (Night Demon, nubux / morgan strauss, CC BY 3.0): corpo único sem animações (o pacote só tem a malha;
+	# braços baixados por tools/assets/build_night_demon.py): balança, avança e cai por código (`static`); 1 m no arquivo -> ~1,8 m no tamanho 1.
+	# Ogro (Ogre lowpoly, nubux / rudy85, CC BY 3.0): malha única sem esqueleto, braços baixados por tools/assets/build_ogre.py; balança,
+	# avança e cai por código (`static`); 1 m no arquivo -> ~1,8 m no tamanho 1. Mini-chefe do Cemitério (o Ogro da Cripta).
+	"ogre": {"scene": "res://assets/models/monsters/ogre.glb", "scale": 1.8, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	"night_demon": {"scene": "res://assets/models/monsters/night_demon.glb", "scale": 1.8, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Diablous (Animated Diablous, Botanic / plankes-projects, CC BY 3.0): demônio de chifres e asas, 1,8 m no tamanho 1, com as
+	# animações do arquivo (tools/assets/build_diablous.py). Lúcifer, o chefe final.
+	"diablous": {"scene": "res://assets/models/monsters/diablous.glb", "scale": 0.0908,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	"succubus": {"scene": "res://assets/models/monsters/succubus.glb", "scale": 0.04, "static": true, "unit": 44.8,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Senhor da Cripta (Undead male, TiZeta, CC BY): nobre morto-vivo de casaco roxo, 1,8 m no tamanho 1, com animações
+	# feitas à mão (tools/assets/build_undead.py). Chefe do Cemitério.
+	# Asas pretas de morcego nas costas (osso "schiena"): feitas em código, como as da Rainha dos Ratos.
+	"undead": {"scene": "res://assets/models/monsters/undead_lord.glb", "scale": 1.0, "wings": "schiena",
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Zumbi Magro (Thin Zombie, Rosswet Mobile, CC BY 3.0): humanoide com animações próprias (andar, correr, atacar,
+	# apanhar, morrer). Morto-vivo comum do Cemitério.
+	"zombie": {"scene": "res://assets/models/monsters/zombie.glb", "scale": 0.9,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Troll Magro (Skinny Troll, piacenti, CC BY 3.0): troll de 2,4 m com clava de espinhos na mão esquerda e saia de
+	# couro com caveiras; animações feitas à mão (tools/assets/build_troll.py). Elite do Cemitério.
+	"troll": {"scene": "res://assets/models/monsters/troll.glb", "scale": 1.0,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Goblin (Goblin, CDmir, CC0): pequeno e ágil, ~12 unidades de altura no arquivo -> ~1,2 m no tamanho 1;
+	# animações do arquivo (idle, walk, run, attack, hit, die; tools/assets/build_monsters.py). Bando das Ruínas.
+	"goblin": {"scene": "res://assets/models/monsters/goblin.glb", "scale": 0.1,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Sapo Ácido (Triton, guiea7, CC BY-SA 4.0): sapo-homem pintado, 8,2 unidades
 	# de altura -> ~1,3 m no tamanho do sapo; tingido de verde pelos dados.
 	"toad": {"scene": "res://assets/models/monsters/toad.glb", "scale": 0.187,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
+	# Golens da Floresta (umask007, CC BY 3.0 / CC BY-SA 3.0; tools/assets/build_golems.sh): 2,3 m de largura no arquivo, "size" 1.6 nos dados.
+	# O "hit" é o flinch; o modelo é o mesmo nas três variantes, só a textura muda (fogo, gelo, pedra).
+	"golem_fire": {"scene": "res://assets/models/monsters/golem_fire.glb", "scale": 0.62,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	"golem_ice": {"scene": "res://assets/models/monsters/golem_ice.glb", "scale": 0.62,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	"golem_stone": {"scene": "res://assets/models/monsters/golem_stone.glb", "scale": 0.62,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Réptil da Floresta (thecubber, CC BY-SA 3.0; tools/assets/build_reptile.sh): ~1,6 m de altura curvado, de garras; animações feitas para o jogo.
+	"reptile": {"scene": "res://assets/models/monsters/reptile.glb", "scale": 1.0,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Besta Quitinosa (Beast 02, Atmostatic, CC BY 3.0 / CC BY-SA 3.0; tools/assets/build_beast.py): malha única sem esqueleto, 1 m de comprimento
+	# no arquivo (1,4 m de altura); o corpo todo balança, avança, investe e tomba (de barriga para cima) por código (`static`).
+	"chitin_beast": {"scene": "res://assets/models/monsters/chitin_beast.glb", "scale": 1.0, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Rei Golem de Pedra (stone-golem.glb; tools/assets/build_stone_golem_king.py): malha única sem esqueleto, 1 m de altura no arquivo
+	# (o "size" dos dados dá a altura); o corpo todo balança, avança, investe e tomba por código (`static`).
+	"golem_king": {"scene": "res://assets/models/monsters/golem_king.glb", "scale": 1.0, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Cervos da Floresta (CDmir e TinyWorlds, CC0; tools/assets/build_deer.sh): 1,6 m de comprimento no arquivo, "size" 1.4 nos dados.
+	"deer_buck": {"scene": "res://assets/models/monsters/deer_buck.glb", "scale": 0.714,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "die": "die"}},
+	"deer_doe": {"scene": "res://assets/models/monsters/deer_doe.glb", "scale": 0.714,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "die": "die"}},
 	# O morcego guarda o tamanho original do arquivo (envergadura ~10 unidades).
 	"bat": {"scene": "res://assets/models/monsters/bat.glb", "scale": 0.2,
 		"anims": {"idle": "fly", "walk": "fly", "run": "fly", "attack": "fly", "die": "die"}},
@@ -90,6 +179,10 @@ var _tail: Node3D
 ## Peças animadas à mão (escorpião): nome -> [nó, transformação de repouso].
 var _parts := {}
 var _action_time := 0.0
+## Modelo sem esqueleto (o Feiticeiro-aranha): o corpo todo é movido por código.
+var _static_root: Node3D
+## Altura do modelo sem esqueleto, nas unidades do arquivo: os deslocamentos do `_animate_static` valem para 1 m.
+var _static_unit := 1.0
 
 
 static func has_family(look: String) -> bool:
@@ -120,6 +213,13 @@ func setup(look: String, size: float, tint: Color) -> bool:
 			copy.cull_mode = BaseMaterial3D.CULL_DISABLED
 			mesh.set_surface_override_material(i, copy)
 			_materials.append(copy)
+	if info.get("static", false):
+		for key: String in info.anims:
+			_names[key] = info.anims[key]
+		_static_root = model as Node3D
+		_static_unit = float(info.get("unit", 1.0))
+		_current = "idle"
+		return true
 	if info.get("procedural", false):
 		for key: String in info.anims:
 			_names[key] = info.anims[key]
@@ -129,6 +229,8 @@ func setup(look: String, size: float, tint: Color) -> bool:
 				_parts[String(part.name)] = [part, part.transform]
 		_current = "idle"
 		return true
+	if info.has("wings"):
+		_add_back_wings(model, String(info.wings))
 	_anim = model.find_child("AnimationPlayer", true, false) as AnimationPlayer
 	if _anim:
 		for key: String in info.anims:
@@ -410,7 +512,27 @@ func _add_wings(parent: Node3D, at: Vector3) -> void:
 		_wings.append(pivot)
 
 
+## Asas pretas de morcego nas costas de um modelo com esqueleto (o Senhor da Cripta): acompanham o osso `bone`, brotam
+## ao surgir e batem devagar parado, mais rápido correndo e no golpe (o mesmo código da Rainha); somem quando ele morre.
+## Em unidades do modelo (1,8 m, a frente é +Z).
+func _add_back_wings(model: Node3D, bone: String) -> void:
+	_skeleton = model.find_child("Skeleton3D", true, false) as Skeleton3D
+	var back := Node3D.new()
+	add_child(back)
+	if _skeleton and _skeleton.find_bone(bone) >= 0:
+		_follow_bone(back, bone, Transform3D(Basis(), _rest_in_model(bone).origin + Vector3(0, 0.05, -0.1)))
+	else:
+		back.position = Vector3(0, 1.4, -0.1)
+	_wing_color = Color(0.03, 0.03, 0.035)
+	_wing_size = 1.35
+	_wing_raise = 0.3
+	_add_wings(back, Vector3(0.07, 0, 0))
+	show_wings(true)
+
+
 func _process(delta: float) -> void:
+	if _static_root:
+		_animate_static(delta)
 	if not _parts.is_empty():
 		_animate_parts(delta)
 	if not _follows.is_empty() and _skeleton:
@@ -471,6 +593,31 @@ func _animate_parts(delta: float) -> void:
 		rotation.z = lerpf(rotation.z, PI * 0.9, minf(delta * 4.0, 1.0))
 
 
+## Feiticeiro-aranha: flutua e balança parado, anda inclinado para a frente, investe no golpe e tomba na morte.
+func _animate_static(delta: float) -> void:
+	_time += delta
+	_action_time += delta
+	var lift := sin(_time * 1.6) * 0.015
+	var pitch := 0.0
+	var roll := sin(_time * 0.9) * 0.02
+	if _current in ["walk", "run"]:
+		var rate := 9.0 if _current == "run" else 6.0
+		lift = absf(sin(_time * rate)) * 0.04
+		pitch = 0.12
+		roll = sin(_time * rate * 0.5) * 0.07
+	elif _current == "attack":
+		var swing := sin(minf(_action_time / 0.7, 1.0) * PI)
+		pitch = 0.55 * swing
+		lift = 0.05 * swing
+	elif _current == "hit":
+		pitch = -0.15 * sin(minf(_action_time / 0.3, 1.0) * PI)
+	elif _current == "die":
+		var fall := minf(_action_time / 0.9, 1.0)
+		pitch = -1.45 * ease(fall, 2.0)
+	_static_root.position.y = lift * _static_unit
+	_static_root.rotation = Vector3(pitch, 0.0, roll)
+
+
 ## As asas de morcego brotam das costas (a Rainha na metade da vida).
 func show_wings(out: bool) -> void:
 	_wings_out = out
@@ -490,7 +637,7 @@ func play(key: String, blend := BLEND) -> void:
 		_current = key
 		_hero.play_key(_names[key], blend)
 		return
-	if not _parts.is_empty():
+	if not _parts.is_empty() or _static_root:
 		_current = key
 		_action_time = 0.0
 		return
@@ -498,6 +645,8 @@ func play(key: String, blend := BLEND) -> void:
 		return
 	_current = key
 	_anim.play(_names[key], blend)
+	if key == "die" and _skeleton and not _wings.is_empty():
+		show_wings(false)      # asas pretas do Senhor da Cripta: somem com a morte
 
 
 func current() -> String:

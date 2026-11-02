@@ -1,0 +1,2 @@
+diablous.glb — "Animated Diablous" by Botanic / plankes-projects, CC-BY 3.0 (also offered under CC-BY-SA 3.0 / GPL 2.0 / GPL 3.0): https://opengameart.org/content/animated-diablous
+Converted from the Blender file by tools/assets/build_diablous.py (animations idle, walk, run, attack, hit, die; texture at 512 px).

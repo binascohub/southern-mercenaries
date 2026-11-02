@@ -1,0 +1,2 @@
+Eagle.glb — bald eagle model supplied by the project author (~/Downloads/assets/eagle.glb, 800k triangles, 29 MB originally). AUTHOR AND LICENSE TO CONFIRM before release.
+Reduced by tools/assets/build_eagle.py (about 14k triangles, textures at 512 px).

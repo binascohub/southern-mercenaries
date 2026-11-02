@@ -537,6 +537,44 @@ func _sewers_test() -> void:
 	_arena.travel("sewers_01_drains", "start")
 	await _wait_frames(20)
 	check.call(_arena.hud.minimap.is_seen(Vector2(0, 3)) and not _arena.hud.minimap.is_seen(Vector2(0, -63)), "minimapa: começo visto, fundo em névoa")
+	# Labirinto da área 1: passagens abertas livres, paredes fechadas barram, e dá para chegar ao fundo.
+	var maze_rooms: Array = GameData.arenas.sewers_01_drains.rooms
+	var by_center := {}
+	for room: Dictionary in maze_rooms:
+		by_center[Vector2(room.center[0], room.center[1])] = room
+	var space: PhysicsDirectSpaceState3D = _arena.get_world_3d().direct_space_state
+	var wrong := 0
+	var pairs := 0
+	var links := {}
+	for room: Dictionary in maze_rooms:
+		var from := Vector2(room.center[0], room.center[1])
+		for side: String in ["east", "south"]:
+			var step := Vector2(9, 0) if side == "east" else Vector2(0, 8)
+			if not by_center.has(from + step) or not String(room.id).begins_with("maze_"):
+				continue
+			var other: Dictionary = by_center[from + step]
+			var open: bool = side in room.doors
+			pairs += 1
+			var query := PhysicsRayQueryParameters3D.create(Vector3(from.x, 0.6, from.y), Vector3(from.x + step.x, 0.6, from.y + step.y), 1)
+			if open == not space.intersect_ray(query).is_empty():
+				wrong += 1
+			if open:
+				links[room.id] = links.get(room.id, []) + [other.id]
+				links[other.id] = links.get(other.id, []) + [room.id]
+	check.call(pairs >= 40 and wrong == 0, "labirinto: %d passagens, %d com a colisão errada" % [pairs, wrong])
+	var reached := {"maze_2_0": true}
+	var frontier := ["maze_2_0"]
+	while not frontier.is_empty():
+		for next_id: String in links.get(frontier.pop_back(), []):
+			if not reached.has(next_id):
+				reached[next_id] = true
+				frontier.append(next_id)
+	var from_entry := PhysicsRayQueryParameters3D.create(Vector3(0, 0.6, 0), Vector3(0, 0.6, -10), 1)
+	var to_outfall := PhysicsRayQueryParameters3D.create(Vector3(0, 0.6, -50), Vector3(0, 0.6, -63), 1)
+	check.call(space.intersect_ray(from_entry).is_empty() and space.intersect_ray(to_outfall).is_empty(), "labirinto: ligado à entrada e ao fundo")
+	var to_secret := PhysicsRayQueryParameters3D.create(Vector3(18, 0.6, -26), Vector3(35, 0.6, -26), 1)
+	check.call(reached.has("maze_2_5") and reached.size() >= 30 and space.intersect_ray(to_secret).is_empty(),
+		"labirinto: do começo dá para chegar ao fundo (%d salas) e a passagem ao segredo está livre" % reached.size())
 	player.teleport_to(Vector3(0, 0, -63))
 	await _wait_frames(20)
 	check.call(_arena.hud.minimap.is_seen(Vector2(0, -63)), "andar revela o fundo da área")
@@ -558,7 +596,7 @@ func _sewers_test() -> void:
 	await _wait_frames(45)
 	check.call(player.health < player.max_health, "poça de lodo tira vida")
 	# Esgoto pacífico: chegar perto não acorda; o golpe acorda só aquele grupo.
-	var calm := _first_enemy("mutant_rat")
+	var calm := _first_enemy("mutant_frog")
 	player.teleport_to(calm.global_position + Vector3(0, 0, 2))
 	await _wait_frames(10)
 	check.call(calm.state == Enemy.State.SLEEP, "bichos do esgoto não atacam quem chega perto")
@@ -566,7 +604,7 @@ func _sewers_test() -> void:
 	await _wait_frames(2)
 	check.call(calm.state != Enemy.State.SLEEP, "golpeado, o bicho revida")
 	# Ratazana: investida com aviso.
-	var mutant := _first_enemy("mutant_rat")
+	var mutant := _first_enemy("mutant_frog")
 	_arena._wake_group(mutant.group)
 	player.teleport_to(mutant.global_position + Vector3(0, 0, 6))
 	player.health = player.max_health
@@ -591,7 +629,8 @@ func _sewers_test() -> void:
 	for e in get_tree().get_nodes_in_group(&"enemies"):
 		e.take_damage(1e9)
 	await get_tree().physics_frame
-	player.teleport_to(Vector3(29, 0, -31))
+	var chest_at: Array = GameData.arenas.sewers_01_drains.props.filter(func(p: Dictionary) -> bool: return p.id == "secret_chest")[0].position
+	player.teleport_to(Vector3(chest_at[0], 0, chest_at[1] + 1.0))
 	var loot_before: int = _arena._loot.size()
 	_arena.request_interact(player)
 	check.call("sewers_01_drains:secret_chest" in _arena._campaign.opened and _arena._loot.size() > loot_before, "baú secreto dá loot")
@@ -639,7 +678,7 @@ func _sewers_test() -> void:
 	check.call(queen.phase == 1 and _arena.hud.boss_visible(), "Rainha acorda na fase 1, com a barra do chefe")
 	queen.health = queen.max_health * 0.55
 	await _wait_frames(2)
-	var nests := get_tree().get_nodes_in_group(&"enemies").filter(func(e: Enemy) -> bool: return e.monster_id == "rat_nest")
+	var nests := get_tree().get_nodes_in_group(&"enemies").filter(func(e: Enemy) -> bool: return e.monster_id == "spawn_nest")
 	check.call(queen.phase == 2 and nests.size() == 3, "abaixo de 60%%: A Ninhada, com 3 ninhos (%d)" % nests.size())
 	var before := queen.health
 	await _wait_frames(30)
@@ -702,7 +741,8 @@ func _sewers_test() -> void:
 	check.call("fallen_king_crown" in _arena.town.relics and "map_ruins" in _arena.town.unlocked, "Coroa do Rei Caído e o mapa das Ruínas")
 	# O baú aberto continua aberto ao voltar.
 	_arena.travel("sewers_01_drains", "start")
-	check.call(_arena.prop_near(player, "chest", "", 300.0).is_empty(), "baú aberto não volta")
+	var chest_left: Dictionary = _arena.prop_near(player, "chest", "", 300.0)
+	check.call(chest_left.is_empty() or chest_left.id != "secret_chest", "baú aberto não volta")
 	check.call(not get_tree().get_nodes_in_group(&"enemies").any(func(e: Enemy) -> bool: return e.data.get("breakable", false) and not e.is_queued_for_deletion()),
 		"barris quebrados não voltam")
 	_report(checks.is_empty(), "esgoto: " + ("tudo certo" if checks.is_empty() else "; ".join(PackedStringArray(checks))))
@@ -733,13 +773,22 @@ func _town_test() -> void:
 	var town: Town = _arena.town
 	var c := player.character
 	check.call(_arena.area_id == "tavern", "campanha nova começa na Taverna (%s)" % _arena.area_id)
+	# Pulo: sai do chão, passa por cima de poças no pico e volta ao chão.
+	player._update_jump(0.0, true)
+	check.call(player.jump_phase > 0.0, "pular: sai do chão")
+	for i in 19:
+		player._update_jump(0.016, false)
+	check.call(player.is_airborne() and absf(player.jump_height() - Player.JUMP_HEIGHT) < 0.1, "pular: no pico chega perto da altura máxima (%.2f)" % player.jump_height())
+	for i in 25:
+		player._update_jump(0.016, false)
+	check.call(player.jump_phase == 0.0 and not player.is_airborne(), "pular: volta ao chão")
 	# Herói montado das peças da Quaternius: todas as animações e a roupa de Camponês.
 	var model: HeroModel = player._model
 	check.call(model.animations().size() == HeroModel.ANIMS.size(), "herói com todas as animações (%s)" % [model.animations()])
 	check.call(model._anim != null and model._anim.is_playing(), "herói animado ao nascer")
 	check.call("Peasant_Body" in model.visible_parts() and "Head" in model.visible_parts(), "roupa de Camponês e rosto à mostra (%s)" % [model.visible_parts()])
 	# Monstros do Esgoto com modelo animado (rato, morcego, jacaré, a Rainha).
-	for monster_id: String in ["plague_rat", "plague_bat", "sewer_gator", "demon_rat_queen"]:
+	for monster_id: String in ["plague_frog", "plague_bat", "sewer_gator", "demon_rat_queen"]:
 		var probe := Enemy.create({"monster_id": monster_id, "position": Vector3(0, -50, 0)})
 		add_child(probe)
 		check.call(probe.model_family() != "", "%s com modelo animado" % monster_id)
@@ -749,7 +798,7 @@ func _town_test() -> void:
 			probe.health = probe.max_health * 0.4
 			probe._tick_visual(0.016)
 			check.call(probe.has_wings(), "Rainha ganha asas de morcego na metade da vida")
-		if monster_id == "plague_rat":
+		if monster_id == "plague_frog":
 			# Morte: o corpo fica na área tocando a animação de morrer.
 			var corpse := probe._model
 			probe.take_damage(1e9)
@@ -757,12 +806,12 @@ func _town_test() -> void:
 				"rato morto deixa o corpo tocando a morte (%s)" % [corpse.current() if is_instance_valid(corpse) else "sumiu"])
 			continue
 		probe.queue_free()
-	# Lagarto Dourado: não ataca; golpeado, corre e solta moedas.
-	var lizard := Enemy.create({"monster_id": "golden_lizard", "position": Vector3(3, -50, 3)})
+	# Coelho Dourado: não ataca; golpeado, corre e solta moedas.
+	var lizard := Enemy.create({"monster_id": "golden_rabbit", "position": Vector3(3, -50, 3)})
 	add_child(lizard)
 	var coins_before: int = _arena._loot.size()
 	lizard.take_damage(5.0)
-	check.call(lizard._flee_time > 0.0 and _arena._loot.size() > coins_before, "Lagarto Dourado foge e solta moedas ao levar golpe")
+	check.call(lizard._flee_time > 0.0 and _arena._loot.size() > coins_before, "Coelho Dourado foge e solta moedas ao levar golpe")
 	lizard.queue_free()
 	# Pote de barro: modelo do kit pela posição; quebrado, os cacos voam.
 	var pot := Enemy.create({"monster_id": "pot", "position": Vector3(1.3, -50, 0.7)})
@@ -894,10 +943,11 @@ func _town_test() -> void:
 	check.call(player.element == player.character.data.element and player.character.data.element_potion == "", "voltar a Tortuga encerra a Poção Elemental")
 	check.call(int(town.ship.day) == 1, "chegou um navio novo")
 	check.call(Session.campaign.area == "tortuga", "a campanha lembra onde o grupo está")
-	# Pátio de treino: bonecos que não morrem, painel do grupo, recursos livres.
+	# Pátio de treino (agora na Capital): bonecos que não morrem, painel do grupo, recursos livres.
+	_arena.travel("capital_01_aurenhold", "start")
 	var dummies := get_tree().get_nodes_in_group(&"enemies").filter(func(e: Enemy) -> bool: return e.data.get("dummy", false))
 	check.call(dummies.size() == 11, "11 bonecos no pátio (%d)" % dummies.size())
-	player.teleport_to(Vector3(-9, 0, 12))
+	player.teleport_to(Vector3(-9, 0, 11))
 	check.call(_arena.in_training(player.global_position), "herói dentro do pátio")
 	var xp := int(player.character.data.xp)
 	var fire_dummy: Enemy = dummies.filter(func(e: Enemy) -> bool: return e.monster_id == "training_dummy_fire")[0]
@@ -925,12 +975,13 @@ func _town_test() -> void:
 	_arena.request_training("toggle_free")
 	# Macumbeiro: Patuá de Retorno e portal para o ponto salvo do Esgoto.
 	player.character.data.gold = 1000
-	player.teleport_to(Vector3(16, 0, -4.5))
+	player.teleport_to(Vector3(16, 0, -3.5))
 	town._rpc_buy("voodoo", 0)
 	check.call(player.character.count_of("return_charm") == 1 and int(player.character.data.gold) == 850, "compra o Patuá por 150")
 	player._drink("return_charm")
 	check.call(player.character.count_of("return_charm") == 1, "Patuá não funciona na cidade")
 	check.call("sewers_01_drains:start" in town.reached, "ponto salvo do Esgoto na lista")
+	_arena.travel("tortuga", "start")
 	player.teleport_to(Vector3(12, 0, -4.5))
 	var price := Town.portal_price("sewers_01_drains:start")
 	town._rpc_portal("sewers_01_drains:start")
@@ -963,7 +1014,7 @@ func _town_test() -> void:
 	check.call("demon_rat_queen" in town.bestiary, "a história do Velho Bêbado pôs a Rainha dos Ratos no bestiário")
 	check.call(town.visitors.size() >= 2, "voltar a Tortuga trouxe visitantes (%d)" % town.visitors.size())
 	var hunt := {"type": "hunter", "name": "Teste", "quest": SideQuests.make_quest("sq_test_hunt", "hunt", "prototype_arena", RandomNumberGenerator.new())}
-	hunt.quest.target = "plague_rat"
+	hunt.quest.target = "plague_frog"
 	hunt.quest.count = 2
 	var cargo := {"type": "merchant", "name": "Teste 2", "quest": SideQuests.make_quest("sq_test_cargo", "retrieve", "prototype_arena", RandomNumberGenerator.new())}
 	_arena._campaign.visitors = [hunt, cargo]
@@ -974,7 +1025,7 @@ func _town_test() -> void:
 		player.teleport_to(Vector3(GameData.visitors.seats[0][0], 0, GameData.visitors.seats[0][1] + 0.8))
 		town._rpc_accept_side(0)
 	check.call(SideQuests.active(town.side_quests).size() == 2 and town.visitors.is_empty(), "aceitou as duas histórias")
-	check.call("plague_rat" in town.bestiary, "a criatura da caçada entrou no bestiário")
+	check.call("plague_frog" in town.bestiary, "a criatura da caçada entrou no bestiário")
 	# Caçada: matar 2 ratos no Esgoto; carga: achar o caixote. (O Esgoto já foi
 	# limpo neste teste e mortos continuam mortos: os grupos voltam só para a caçada.)
 	_arena._campaign.dead_groups = []
@@ -983,7 +1034,7 @@ func _town_test() -> void:
 	check.call(not _arena.prop_near(player, "quest_spot", "", 300.0).is_empty(), "carga perdida aparece no mapa")
 	var killed := 0
 	for e: Enemy in get_tree().get_nodes_in_group(&"enemies"):
-		if e.monster_id == "sewer_rat" and killed < 2:
+		if e.monster_id == "plague_frog" and killed < 2:
 			e.take_damage(1e9)
 			killed += 1
 	await get_tree().physics_frame
@@ -993,10 +1044,10 @@ func _town_test() -> void:
 	_arena.request_interact(player)
 	check.call(town.side_quests.sq_test_cargo.status == "done" and int(player.character.data.gold) > gold_cargo, "carga entregue: recompensa")
 	# Ferreiro: comprar pergaminhos, refinar até +3, aura, cristalizar.
-	_arena.travel("tortuga", "start")
+	_arena.travel("capital_01_aurenhold", "start")
 	player.character.data.gold = 2000
 	player.character.add_item(Items.equipment("staff", "iron", "common", 2))
-	player.teleport_to(Vector3(4, 0, -4.5))
+	player.teleport_to(Vector3(4, 0, -3.5))
 	for i in 3:
 		town._rpc_buy("blacksmith", 0)
 	check.call(player.character.count_of("scroll_refine_weapon_iron") == 3, "compra 3 pergaminhos de arma de Ferro")
@@ -1011,7 +1062,7 @@ func _town_test() -> void:
 	check.call(int(refined.refine) == 3 and player.character.count_of("scroll_refine_weapon_iron") == 0, "refina até +3 (seguro)")
 	player.request_equip(int(staff_ref.get_slice(":", 1)))
 	await get_tree().physics_frame
-	check.call(player.aura_level == 3, "arma +3 acende a aura (%d)" % player.aura_level)
+	check.call(player.aura_level == 0, "arma refinada não acende o brilho (%d)" % player.aura_level)
 	player.character.add_item(Items.equipment("hood", "iron", "common", 2))
 	var hood_index := -1
 	for i in player.character.data.inventory.size():

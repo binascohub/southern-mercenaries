@@ -31,10 +31,13 @@ func bind(town: Town) -> void:
 
 func bind_player(player: Player) -> void:
 	_player = player
-	player.character_changed.connect(func(_levels: int) -> void:
-		if visible:
-			_refresh())
+	player.character_changed.connect(_on_character_changed)
 
+
+## Ligado por método (não lambda): some junto com o menu quando a cena é desmontada.
+func _on_character_changed(_levels: int) -> void:
+	if visible:
+		_refresh()
 
 func close() -> void:
 	visible = false
@@ -137,6 +140,7 @@ func _focus_first() -> void:
 
 func _build() -> void:
 	_panel = PanelContainer.new()
+	_panel.theme = UiTheme.paper_theme()
 	_panel.set_anchors_preset(Control.PRESET_CENTER)
 	_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	_panel.grow_vertical = Control.GROW_DIRECTION_BOTH

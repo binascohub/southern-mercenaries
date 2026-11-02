@@ -1,0 +1,1 @@
+Necklace.glb — "Necklace" by Paul Wortmann, CC0: https://opengameart.org/content/necklace (tools/assets/build_necklace.py). The amulet inventory icons assets/ui/icons/amulet_D..S.png are renders of it (tools/assets/amulet_icons.gd).

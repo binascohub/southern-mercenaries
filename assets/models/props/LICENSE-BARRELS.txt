@@ -1,0 +1,2 @@
+Barrel_Oga_1.glb, Barrel_Oga_2.glb, Barrel_Oga_Damaged.glb — "Three Barrels" by yd (Tozan), CC0: https://opengameart.org/content/three-barrels
+Converted from the Blender file by tools/assets/build_barrels.py (diffuse and normal maps embedded at 512 px, 0.95 m tall).

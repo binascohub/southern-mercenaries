@@ -1,0 +1,3 @@
+Book_Tome.glb — "Old Tome 2" by bobjh / Varkalandar, CC-BY 4.0: https://opengameart.org/content/old-tome-2 (tools/assets/build_old_tome.py).
+The book textures are made from Wikimedia Commons images (Wellcome Collection "Vessel and furnace" CC-BY 4.0; the lower cover of "Digesta. Infortiatum" CC0; "Four Books of Dialogues" public domain).
+The inventory icons assets/ui/icons/book_D..S.png are renders of it (tools/assets/book_icons.gd).

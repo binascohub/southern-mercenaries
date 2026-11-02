@@ -8,8 +8,10 @@ var loot_id := 0
 var item: Dictionary = {}
 var gold := 0
 
+const COIN_MODEL := "res://assets/models/props/Coin_Gold.glb"
+
 var _time := 0.0
-var _mesh: MeshInstance3D
+var _mesh: Node3D
 
 
 static func create(id: int, at: Vector3, drop_item: Dictionary, drop_gold: int) -> LootDrop:
@@ -24,23 +26,34 @@ static func create(id: int, at: Vector3, drop_item: Dictionary, drop_gold: int) 
 func _ready() -> void:
 	add_to_group(&"loot")
 	var color := Items.color(item) if not item.is_empty() else Color(1.0, 0.82, 0.25)
-	_mesh = MeshInstance3D.new()
-	var material := StandardMaterial3D.new()
-	material.albedo_color = color
-	material.emission_enabled = true
-	material.emission = color
-	material.emission_energy_multiplier = 0.8
-	if gold > 0:
-		var coin := CylinderMesh.new()
-		coin.top_radius = 0.18
-		coin.bottom_radius = 0.18
-		coin.height = 0.06
-		_mesh.mesh = coin
+	_mesh = Node3D.new()
+	var relic: String = GameData.valuables.get(item.get("id", ""), {}).get("model", "") if item.get("kind", "") == Items.VALUABLE else ""
+	if relic != "" and Kit.has(relic):
+		# Relíquia de missão (coração, crânio): o modelo girando no chão.
+		var relic_node := Kit.piece(relic)
+		_mesh.add_child(relic_node)
+		var relic_anim := relic_node.find_child("AnimationPlayer", true, false) as AnimationPlayer
+		if relic_anim and not relic_anim.get_animation_list().is_empty():
+			relic_anim.get_animation(relic_anim.get_animation_list()[0]).loop_mode = Animation.LOOP_LINEAR
+			relic_anim.play(relic_anim.get_animation_list()[0])  # o fantasma "respira" no chão
+	elif gold > 0:
+		# Moeda antiga em pé, girando (Old coin, yd, CC0).
+		var coin: Node3D = load(COIN_MODEL).instantiate()
+		coin.rotation.x = deg_to_rad(90.0)
+		coin.position.y = 0.0
+		_mesh.add_child(coin)
 	else:
-		var bag := BoxMesh.new()
-		bag.size = Vector3(0.35, 0.3, 0.35)
-		_mesh.mesh = bag
-	_mesh.material_override = material
+		var material := StandardMaterial3D.new()
+		material.albedo_color = color
+		material.emission_enabled = true
+		material.emission = color
+		material.emission_energy_multiplier = 0.8
+		var bag := MeshInstance3D.new()
+		var box := BoxMesh.new()
+		box.size = Vector3(0.35, 0.3, 0.35)
+		bag.mesh = box
+		bag.material_override = material
+		_mesh.add_child(bag)
 	_mesh.position.y = 0.3
 	add_child(_mesh)
 

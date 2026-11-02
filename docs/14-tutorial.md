@@ -79,7 +79,7 @@ Cada dica tem um ID, uma condição para aparecer e é mostrada **uma vez**.
 | `tip_revive` | Primeiro aliado caído (co-op) | Reanimar |
 | `tip_ally_arrow` | Aliado fora da tela (co-op) | Seta na borda |
 | `tip_elite` | Primeira elite | Elite e loot melhor |
-| `tip_boss` | Entrando na arena da Rainha dos Ratos | Barra do chefe e fases |
+| `tip_boss` | Entrando na arena do Feiticeiro-Aranha | Barra do chefe e fases |
 | `tip_return` | Primeira vez perto de um portal de retorno | Voltar à cidade |
 | `tip_shop` | Primeira loja aberta | Comprar e vender |
 | `tip_refine` | Primeiro pergaminho de refino | Refino (`05-1-refino.md`) |

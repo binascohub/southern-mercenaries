@@ -44,10 +44,13 @@ func bind(trade: Trade, hud: Hud) -> void:
 
 func bind_player(player: Player) -> void:
 	_player = player
-	player.character_changed.connect(func(_levels: int) -> void:
-		if _panel.visible:
-			_refresh())
+	player.character_changed.connect(_on_character_changed)
 
+
+## Ligado por método (não lambda): some junto com o menu quando a cena é desmontada.
+func _on_character_changed(_levels: int) -> void:
+	if _panel.visible:
+		_refresh()
 
 func is_open() -> bool:
 	return _invite.visible or _panel.visible
@@ -248,6 +251,7 @@ func _build() -> void:
 
 func _box() -> PanelContainer:
 	var box := PanelContainer.new()
+	box.theme = UiTheme.paper_theme()
 	box.set_anchors_preset(Control.PRESET_CENTER)
 	box.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	box.grow_vertical = Control.GROW_DIRECTION_BOTH

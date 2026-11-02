@@ -1,0 +1,1 @@
+Rock_Mossy.glb — "Mossy Rock" by hooded_kian, CC0: https://opengameart.org/content/mossy-rock (photogrammetry; textures at 512 px; tools/assets/build_mossy_rock.py).

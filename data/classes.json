@@ -395,13 +395,7 @@
     "max_health": 150,
     "max_resource": 100,
     "resource_regen": 0.0,
-    "move_speed_pct": 120,
-    "foot_speed_pct": 95,
-    "foot_damage_mult": 0.75,
-    "mount": {
-      "acceleration": 14.0,
-      "remount_delay": 1.0
-    },
+    "move_speed_pct": 105,
     "momentum": {
       "gallop": 10.0,
       "idle": -5.0,
@@ -479,6 +473,7 @@
           0.4
         ]
       }
-    }
+    },
+    "_comment_mount": "O Cavaleiro não usa mais cavalo (decisão do autor): sem 'mount' não há montaria nem barda; anda a 105% e usa escudo."
   }
 }

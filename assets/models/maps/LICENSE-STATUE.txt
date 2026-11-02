@@ -1,0 +1,11 @@
+Statue_Knight.glb - "Knight Statue" by yd
+            https://opengameart.org/content/knight-statue
+            CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+            Changes: pose baked into the mesh, parts joined into one, plain grey stone material,
+            scaled to 2.4 m (tools/assets/build_knight_statue.py).
+
+Statue_Knight_Lying.glb - "Knight Lying" by yd
+            https://opengameart.org/content/knight-lying
+            CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+            Changes: pose baked in, stray shield and cube removed, parts joined, plain grey stone material,
+            scaled to 1.1 m (tools/assets/build_knight_statue.py).

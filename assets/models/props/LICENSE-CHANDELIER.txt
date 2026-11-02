@@ -1,0 +1,2 @@
+Chandelier_Royal.glb — "Chandelier" by Teh_Bucket, CC0: https://opengameart.org/content/chandelier-0
+Converted from the Blender file by tools/assets/build_chandelier.py (modifiers applied, plain gold metal and glowing flames).

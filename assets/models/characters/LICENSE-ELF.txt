@@ -1,0 +1,6 @@
+elf_archer.glb — "Elven Archer - lower poly edition" by Julius, based on "Rigged Textured Elven Archer" by theclubber
+            https://opengameart.org/content/elven-archer-lower-poly-edition
+            https://opengameart.org/content/rigged-textured-elven-archer
+            Creative Commons Attribution-ShareAlike 3.0: https://creativecommons.org/licenses/by-sa/3.0/
+            Changes: OBJ parts joined and scaled to 1.85 m in the file's pose (no rig, no animations), colour textures (body, head, hair, bow) taken from the original .blend,
+            brightened and re-linked at 1024-2048 px JPEG (tools/assets/build_elf_archer.py).

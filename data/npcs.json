@@ -1,5 +1,5 @@
 {
-  "_comment": "NPCs fixos da Taverna (04-tortuga-e-missoes.md, seção 3). dialogues: o primeiro cujo \"when\" bate é o usado; offer = missão oferecida no fim; service = serviço (rest: descansar). bestiary: criaturas que entram no bestiário ao ouvir a conversa. 'body': corpo do NPC (o mesmo dos heróis, hero_model.gd): sexo, cabelo, cor do cabelo, pose (sit, talk, torch, idle) e roupa por slot (material).",
+  "_comment": "NPCs fixos da Taverna (04-tortuga-e-missoes.md, seção 3). dialogues: o primeiro cujo \"when\" bate é o usado; offer = missão oferecida no fim; service = serviço (rest: descansar). bestiary: criaturas que entram no bestiário ao ouvir a conversa. 'body': corpo do NPC (o mesmo dos heróis, hero_model.gd): sexo, cabelo, cor do cabelo, pose (sit, talk, torch, idle) e roupa por slot (material). A Floresta (aldeia de Ferncroft): o casal Bertram (caçador) e Elara (curtidora) dá duas missões; terminam ao limpar os encontros listados em 'clear' de data/quests.json.",
   "old_drunk": {
     "name_key": "NPC_OLD_DRUNK",
     "color": [
@@ -106,8 +106,8 @@
           "DLG_BARD_QUEEN_2"
         ],
         "bestiary": [
-          "plague_rat",
-          "mutant_rat"
+          "plague_frog",
+          "mutant_frog"
         ],
         "service": "bestiary"
       },
@@ -133,7 +133,8 @@
       "outfit": {
         "body": "copper",
         "head": "copper"
-      }
+      },
+      "instrument": "guitar"
     }
   },
   "voodoo_priest": {
@@ -203,5 +204,550 @@
         "feet": "steel"
       }
     }
+  },
+  "priest": {
+    "name_key": "NPC_PRIEST",
+    "color": [
+      0.6,
+      0.5,
+      0.35
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "royal_heart"
+        },
+        "lines": [
+          "DLG_PRIEST_1",
+          "DLG_PRIEST_2",
+          "DLG_PRIEST_HEART_1",
+          "DLG_PRIEST_HEART_2"
+        ],
+        "offer": "royal_heart"
+      },
+      {
+        "when": {
+          "quest_active": "royal_heart"
+        },
+        "lines": [
+          "DLG_PRIEST_HEART_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {
+          "quest_new": "royal_lungs"
+        },
+        "lines": [
+          "DLG_PRIEST_LUNGS_1",
+          "DLG_PRIEST_LUNGS_2"
+        ],
+        "offer": "royal_lungs"
+      },
+      {
+        "when": {
+          "quest_active": "royal_lungs"
+        },
+        "lines": [
+          "DLG_PRIEST_LUNGS_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {
+          "quest_new": "royal_skull"
+        },
+        "lines": [
+          "DLG_PRIEST_SKULL_1",
+          "DLG_PRIEST_SKULL_2"
+        ],
+        "offer": "royal_skull"
+      },
+      {
+        "when": {
+          "quest_active": "royal_skull"
+        },
+        "lines": [
+          "DLG_PRIEST_SKULL_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {
+          "quest_new": "royal_soul"
+        },
+        "lines": [
+          "DLG_PRIEST_SOUL_1",
+          "DLG_PRIEST_SOUL_2"
+        ],
+        "offer": "royal_soul"
+      },
+      {
+        "when": {
+          "quest_active": "royal_soul"
+        },
+        "lines": [
+          "DLG_PRIEST_SOUL_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_PRIEST_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Buzzed"
+      ],
+      "hair_color": [
+        0.1,
+        0.08,
+        0.06
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "lightpost_statue": {
+    "_comment": "Estátua do poste de luz do Cemitério (Statue holding lightpost, Colorado Stark, CC0): fala com quem se aproxima e, no fim da fala, desperta o mini-chefe da praça ('summon' no objeto em arenas.json). Sem corpo humano: o objeto traz a peça ('kit').",
+    "name_key": "NPC_LIGHTPOST_STATUE",
+    "color": [
+      0.6,
+      0.6,
+      0.55
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_STATUE_1",
+          "DLG_STATUE_2",
+          "DLG_STATUE_3"
+        ]
+      }
+    ]
+  },
+  "castle_guard": {
+    "name_key": "NPC_CASTLE_GUARD",
+    "color": [
+      0.5,
+      0.5,
+      0.55
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_CASTLE_GUARD_1"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Buzzed"
+      ],
+      "hair_color": [
+        0.1,
+        0.08,
+        0.06
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "iron",
+        "hands": "iron",
+        "feet": "iron",
+        "head": "iron"
+      }
+    }
+  },
+  "court_jester": {
+    "name_key": "NPC_COURT_JESTER",
+    "color": [
+      0.8,
+      0.2,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "royal_banquet"
+        },
+        "lines": [
+          "DLG_JESTER_1",
+          "DLG_JESTER_2",
+          "DLG_JESTER_BANQUET_1",
+          "DLG_JESTER_BANQUET_2"
+        ],
+        "offer": "royal_banquet"
+      },
+      {
+        "when": {
+          "quest_active": "royal_banquet"
+        },
+        "lines": [
+          "DLG_JESTER_BANQUET_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_JESTER_BANQUET_DONE",
+          "DLG_JESTER_3"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_SimpleParted"
+      ],
+      "hair_color": [
+        0.3,
+        0.2,
+        0.12
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth",
+        "hands": "cloth",
+        "feet": "cloth",
+        "head": "cloth"
+      }
+    }
+  },
+  "elf_archer": {
+    "name_key": "NPC_ELF_ARCHER",
+    "color": [
+      0.25,
+      0.5,
+      0.25
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "forest_leshy"
+        },
+        "lines": [
+          "DLG_ARCHER_1",
+          "DLG_ARCHER_2",
+          "DLG_ARCHER_3"
+        ]
+      },
+      {
+        "when": {
+          "quest_active": "forest_leshy"
+        },
+        "lines": [
+          "DLG_ARCHER_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_ARCHER_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "female",
+      "hair": [
+        "Hair_Long"
+      ],
+      "hair_color": [
+        0.1,
+        0.07,
+        0.05
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "ruins_spartan": {
+    "_comment": "Leônidas, o Veterano (Achilles Spartan Greek Warrior, gamekorp, CC0): guarda a entrada das Ruínas e dá a missão dos goblins. Modelo próprio (NpcModel), sem corpo humano.",
+    "name_key": "NPC_RUINS_SPARTAN",
+    "color": [
+      0.5,
+      0.15,
+      0.12
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "ruins_goblins"
+        },
+        "lines": [
+          "DLG_SPARTAN_1",
+          "DLG_SPARTAN_2",
+          "DLG_SPARTAN_3"
+        ],
+        "offer": "ruins_goblins"
+      },
+      {
+        "when": {
+          "quest_active": "ruins_goblins"
+        },
+        "lines": [
+          "DLG_SPARTAN_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_SPARTAN_DONE"
+        ]
+      }
+    ]
+  },
+  "forest_hermit": {
+    "_comment": "Eremita da Pedra (Floresta, Ninho dos Ratos): fala na praça do centro e, no fim da fala, desperta o Golem de Pedra como mini-chefe ('summon' no objeto em arenas.json).",
+    "name_key": "NPC_FOREST_HERMIT",
+    "color": [
+      0.55,
+      0.55,
+      0.5
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "forest_stone_golem"
+        },
+        "lines": [
+          "DLG_HERMIT_1",
+          "DLG_HERMIT_2",
+          "DLG_HERMIT_3"
+        ],
+        "offer": "forest_stone_golem"
+      },
+      {
+        "when": {
+          "quest_active": "forest_stone_golem"
+        },
+        "lines": [
+          "DLG_HERMIT_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_HERMIT_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_SimpleParted",
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.75,
+        0.75,
+        0.72
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "forest_pyre_keeper": {
+    "_comment": "Guardiã da Pira (Floresta, Covil das Bestas): fala na praça do centro e, no fim da fala, desperta o Golem de Fogo como mini-chefe.",
+    "name_key": "NPC_FOREST_PYRE_KEEPER",
+    "color": [
+      0.8,
+      0.35,
+      0.15
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "forest_fire_golem"
+        },
+        "lines": [
+          "DLG_PYRE_1",
+          "DLG_PYRE_2",
+          "DLG_PYRE_3"
+        ],
+        "offer": "forest_fire_golem"
+      },
+      {
+        "when": {
+          "quest_active": "forest_fire_golem"
+        },
+        "lines": [
+          "DLG_PYRE_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_PYRE_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "female",
+      "hair": [
+        "Hair_Long"
+      ],
+      "hair_color": [
+        0.55,
+        0.12,
+        0.05
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "fort_penitent": {
+    "_comment": "Penitente (Forte, corredor leste): sacerdotisa que fala diante da sala do leste e, no fim da fala, desperta a Rainha das Súcubos como mini-chefe ('summon' no objeto em arenas.json).",
+    "name_key": "NPC_FORT_PENITENT",
+    "color": [
+      0.75,
+      0.55,
+      0.8
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_PENITENT_1",
+          "DLG_PENITENT_2",
+          "DLG_PENITENT_3"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "female",
+      "hair": [
+        "Hair_Long"
+      ],
+      "hair_color": [
+        0.2,
+        0.1,
+        0.25
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "fort_exile": {
+    "_comment": "Exilado (Forte, corredor do sul): cavaleiro caído que fala diante da sala do sudoeste e, no fim da fala, desperta o Senhor Elfo Sombrio como mini-chefe.",
+    "name_key": "NPC_FORT_EXILE",
+    "color": [
+      0.5,
+      0.55,
+      0.65
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_EXILE_1",
+          "DLG_EXILE_2",
+          "DLG_EXILE_3"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_SimpleParted",
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.3,
+        0.28,
+        0.25
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "seated_pirate": {
+    "name_key": "NPC_SEATED_PIRATE",
+    "color": [
+      0.5,
+      0.3,
+      0.2
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "docks_smugglers"
+        },
+        "lines": [
+          "DLG_PIRATE_1",
+          "DLG_PIRATE_2",
+          "DLG_PIRATE_3"
+        ],
+        "offer": "docks_smugglers"
+      },
+      {
+        "when": {
+          "quest_active": "docks_smugglers"
+        },
+        "lines": [
+          "DLG_PIRATE_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_PIRATE_DONE"
+        ]
+      }
+    ]
+  },
+  "old_lady": {
+    "name_key": "NPC_OLD_LADY",
+    "color": [
+      0.6,
+      0.5,
+      0.55
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "forest_leshy"
+        },
+        "lines": [
+          "DLG_OLD_LADY_1",
+          "DLG_OLD_LADY_2",
+          "DLG_OLD_LADY_3"
+        ],
+        "offer": "forest_leshy"
+      },
+      {
+        "when": {
+          "quest_active": "forest_leshy"
+        },
+        "lines": [
+          "DLG_OLD_LADY_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_OLD_LADY_DONE"
+        ]
+      }
+    ]
   }
 }

@@ -58,7 +58,7 @@ Tortuga é uma **cidade portuária suja, barulhenta e perigosa**, de ruas estrei
 | `blacksmith` | Ferreiro | Forja ao ar livre na Rua Principal | Crafting: encaixar gemas/runas, desmontar itens; **refino** com pergaminhos de **Ferro e Aço** (vende os pergaminhos desses tiers) — `05-1-refino.md` |
 | `stash` | Baú | Na Rua Principal (baú acorrentado, guardado por um capanga de aluguel) | Baú compartilhado entre os personagens do jogador (guardar valiosos para vender quando o preço subir) |
 | `respec` | Altar / Mestre | Canto da Rua Principal | Redistribuir pontos, pagando ouro |
-| `training_yard` | **Área de treinamento** | Pátio nos fundos da Rua Principal | Bonecos para testar habilidades, elementos e equipamentos, sem risco (seção 5.2) |
+| `training_yard` | **Área de treinamento** | Pátio nos fundos da Rua Principal | Bonecos para testar habilidades, elementos e equipamentos, sem risco (seção 5.2) | Sem guardas: os soldados que treinavam aqui foram para a segurança da Capital Real (`04-1-capital-real.md`).
 | `voodoo_priest` | **Macumbeiro** | Tenda de velas, ervas e ossos num beco da Rua Principal | **Abre portais para os pontos salvos** (checkpoints) mediante ouro e **vende o Patuá de Retorno** (seção 5.1) |
 | `sewer_entrance` | **Bueiro** | Rua Principal | Entrada do **Esgoto** (mapa 1); trancado até a missão do velho bêbado |
 | `port` | **Porto** e Portal de Tortuga | Fim da Rua Principal, no cais | **Portal** para os demais mapas (seção 5) + Mercado Pirata |
@@ -112,7 +112,7 @@ A taverna (nome proposto: **Taverna do Corvo Afogado**) é o coração de Tortug
 ### A primeira missão: o tesouro embaixo da cidade
 A campanha começa com os mercenários chegando à taverna sem nada. O **velho bêbado** puxa conversa e conta a primeira história:
 
-> **Velho bêbado:** "Vocês têm cara de quem está atrás de ouro… Escutem só. Quando fundaram Tortuga, trouxeram junto parte do tesouro do reino que perdeu a guerra e esconderam lá embaixo, no esgoto, longe dos vencedores. Anos depois, o povo daqui envenenou e queimou os ratos de lá… mas esqueceram da mãe. Dizem que a Rainha dos Ratos fez um pacto com um demônio, cresceu do tamanho de uma carroça e agora dorme em cima do tesouro, com a coroa do rei na cabeça. **Se vocês estão procurando tesouro, estão em cima de um!** Só levem fogo. Ela já sabe o que é fogo — e odeia."
+> **Velho bêbado:** "Vocês têm cara de quem está atrás de ouro… Escutem só. Quando fundaram Tortuga, trouxeram junto parte do tesouro do reino que perdeu a guerra e esconderam lá embaixo, no esgoto, com o alquimista do rei de guarda. Anos depois, o povo daqui envenenou e queimou os ratos de lá… mas esqueceram do homem. Dizem que o Feiticeiro-Aranha fez um pacto com um demônio, ganhou patas de aranha e agora dorme em cima do tesouro, com a coroa do rei no manto. **Se vocês estão procurando tesouro, estão em cima de um!** Só levem fogo. Ele já sabe o que é fogo — e odeia."
 
 - A missão libera o **Bueiro** da Rua Principal.
 - Recompensa: o **Tesouro Perdido da Guerra** (`05-itens-e-loot.md`), que liga o primeiro mapa à origem de Tortuga e ao reino do Arqueiro.
@@ -123,7 +123,7 @@ A campanha começa com os mercenários chegando à taverna sem nada. O **velho b
 
 | Ordem | Mapa | Quem conta | Resumo da história | Pista de fraqueza |
 |---|---|---|---|---|
-| 1 | Esgoto de Tortuga | Velho bêbado | A Rainha dos Ratos guarda o tesouro perdido da guerra | Fogo |
+| 1 | Esgoto de Tortuga | Velho bêbado | A Feiticeiro-Aranha guarda o tesouro perdido da guerra | Fogo |
 | 2 | Ruínas do Reino do Arqueiro | Taberneira (após achar o mapa antigo no baú do Esgoto) | O Cofre Real, tomado por lobos e cães demoníacos; Cérbero guarda a porta do inferno | Água, Ar e Fogo (uma por cabeça) |
 | 3 | Floresta Escura | Taberneira | Viajantes e caçadores nunca voltam; ouro nas raízes da árvore anciã, guardada pelo Leshy | Fogo |
 | 4 | Cavalos Míticos | Taberneira | Pégaso e as Rédeas de Ouro do Céu | Água |
@@ -146,7 +146,7 @@ A campanha começa com os mercenários chegando à taverna sem nada. O **velho b
 |---|---|---|
 | `tavern_keeper` | Taberneira(o) | Uma das fundadoras de Tortuga; conhece todo mundo e todos os segredos (inclusive o do tesouro roubado). Conta as **missões principais** dos mapas 2 a 5 |
 | `bard` | Bardo | Canta as lendas das criaturas e dos demônios; abre o **bestiário** (lenda, elemento, fraqueza) e pode repetir qualquer pista já ouvida |
-| `old_drunk` | Velho bêbado | Ex-soldado da guerra; conta a **primeira missão** (a Rainha dos Ratos e o tesouro do esgoto) e depois histórias exageradas de tesouros, às vezes verdadeiras (recompensa extra), às vezes não. **A pista de fraqueza dele é sempre verdadeira**, mesmo quando o tesouro é mentira |
+| `old_drunk` | Velho bêbado | Ex-soldado da guerra; conta a **primeira missão** (o Feiticeiro-Aranha e o tesouro do esgoto) e depois histórias exageradas de tesouros, às vezes verdadeiras (recompensa extra), às vezes não. **A pista de fraqueza dele é sempre verdadeira**, mesmo quando o tesouro é mentira |
 
 ### NPCs visitantes (tipos)
 | ID | Tipo | Histórias que contam |
@@ -224,7 +224,7 @@ Conteúdo detalhado dos tesouros em `05-itens-e-loot.md`, seção 3.
 
 ### Bueiro — Esgoto
 - O **Esgoto** (mapa 1) é acessado pelo **bueiro da Rua Principal**, sem barco: desce uma escada e já está no mapa.
-- Depois de derrotar a Rainha dos Ratos, o bueiro continua aberto para missões secundárias no Esgoto.
+- Depois de derrotar o Feiticeiro-Aranha, o bueiro continua aberto para missões secundárias no Esgoto.
 
 ### Portal de Tortuga — demais mapas
 - No fim do cais, no **porto**, fica o **Portal de Tortuga**: um círculo de pedra com runas antigas, de antes da guerra, que os piratas descobriram e usam para sumir com a carga (proposta de lenda). **A viagem entre mapas é feita por portais** (decisão do autor), sem barco jogável nem rota a pé.
@@ -308,3 +308,13 @@ Decisão do autor: **cada cidade tem uma área de treinamento com bonecos**, par
 - Os capitães piratas podem contar rumores na taverna (proposta)?
 - Bebidas com bônus temporário: manter?
 - Mini-jogos na taverna (dados, cartas, queda de braço)?
+
+## Missões de relíquia (Padre da Capital)
+- **O coração do rei caído** (`royal_heart`): o **Senhor da Cripta** (mini-chefe do Cemitério) deixa cair o **Coração Humano**; entregar ao Padre rende 220 B$ e 450 XP.
+- **Os pulmões do rei caído** (`royal_lungs`, depois do coração): o **Ogro da Cripta** (mini-chefe da praça do Cemitério) deixa cair os **Pulmões Humanos**; 300 B$ e 600 XP.
+- **O crânio do rei caído** (`royal_skull`, depois dos pulmões): o **Comandante do Forte** deixa cair o **Crânio Antigo**; 420 B$ e 800 XP.
+- O item é um **valioso de missão** no inventário de cada herói (não se vende), cai só para quem tem a missão ativa, e a missão termina pelo botão **Entregar a relíquia** na conversa com o Padre.
+
+## Missão do Bobo da Corte (Sala do Rei)
+- **Banquete do rei** (`royal_banquet`): a mesa farta da sala do rei só tem frutas; o **Alfa da Matilha** (mini-chefe das Ruínas) deixa cair a **Carne Selvagem** (item de missão, no inventário, não se vende). Entregar ao Bobo rende 260 B$ e 500 XP.
+

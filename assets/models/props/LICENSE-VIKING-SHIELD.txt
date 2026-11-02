@@ -1,0 +1,2 @@
+Shield_Viking.glb — "Shield" by Mev Lyshkin, CC-BY 3.0: https://opengameart.org/content/shield-1
+Converted from the Blender file by tools/assets/build_viking_shield.py (the intact shield mesh, wood texture embedded at 512 px, upright, 0.7 m).

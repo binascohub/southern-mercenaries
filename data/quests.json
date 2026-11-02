@@ -1,5 +1,5 @@
 {
-  "_comment": "Missões (04-tortuga-e-missoes.md, seção 4). area: onde a missão termina (vencer todos os encontros da área); unlocks: o que abre ao aceitar. Fase 7: o tesouro do esgoto termina ao vencer a Rainha no Ninho (área final do Esgoto). Recompensa provisória até o Tesouro Perdido da Guerra. bestiary: criaturas que entram no bestiário ao aceitar (a história já foi ouvida).",
+  "_comment": "Missões (04-tortuga-e-missoes.md, seção 4). area: onde a missão termina (vencer todos os encontros da área); unlocks: o que abre ao aceitar. Fase 7: o tesouro do esgoto termina ao vencer a Rainha no Ninho (área final do Esgoto). Recompensa provisória até o Tesouro Perdido da Guerra. bestiary: criaturas que entram no bestiário ao aceitar (a história já foi ouvida). clear: lista de encontros da área; a missão termina quando todos estão vencidos (aldeia da Floresta). item: missões de relíquia (o Padre da Capital): um mini-chefe da área deixa cair o item de missão (valioso com quest_item, no inventário de cada herói) e a missão termina ao entregá-lo a quem a deu (serviço turn_in).",
   "sewer_treasure": {
     "name_key": "QUEST_SEWER_TREASURE",
     "desc_key": "QUEST_SEWER_TREASURE_DESC",
@@ -15,5 +15,149 @@
     "bestiary": [
       "demon_rat_queen"
     ]
+  },
+  "royal_heart": {
+    "name_key": "QUEST_ROYAL_HEART",
+    "desc_key": "QUEST_ROYAL_HEART_DESC",
+    "type": "main",
+    "giver": "priest",
+    "area": "cemetery_01_yard",
+    "item": "human_heart",
+    "target_element": "fire",
+    "reward": {
+      "gold": 220,
+      "xp": 450
+    }
+  },
+  "royal_skull": {
+    "name_key": "QUEST_ROYAL_SKULL",
+    "desc_key": "QUEST_ROYAL_SKULL_DESC",
+    "type": "main",
+    "giver": "priest",
+    "area": "fort_01_gate",
+    "item": "old_skull",
+    "target_element": "water",
+    "reward": {
+      "gold": 420,
+      "xp": 800
+    }
+  },
+  "forest_leshy": {
+    "name_key": "QUEST_FOREST_LESHY",
+    "desc_key": "QUEST_FOREST_LESHY_DESC",
+    "type": "village",
+    "giver": "old_lady",
+    "area": "forest_01_path",
+    "clear": [
+      "f_leshy"
+    ],
+    "target_element": "fire",
+    "reward": {
+      "gold": 300,
+      "xp": 550
+    }
+  },
+  "royal_banquet": {
+    "name_key": "QUEST_ROYAL_BANQUET",
+    "desc_key": "QUEST_ROYAL_BANQUET_DESC",
+    "type": "main",
+    "giver": "court_jester",
+    "area": "ruins_01_city",
+    "item": "wild_meat",
+    "target_element": "earth",
+    "reward": {
+      "gold": 260,
+      "xp": 500
+    }
+  },
+  "ruins_goblins": {
+    "name_key": "QUEST_RUINS_GOBLINS",
+    "desc_key": "QUEST_RUINS_GOBLINS_DESC",
+    "type": "village",
+    "giver": "ruins_spartan",
+    "area": "ruins_01_city",
+    "clear": [
+      "r_goblins_a",
+      "r_goblins_b"
+    ],
+    "target_element": "fire",
+    "reward": {
+      "gold": 250,
+      "xp": 500
+    }
+  },
+  "forest_stone_golem": {
+    "name_key": "QUEST_FOREST_STONE",
+    "desc_key": "QUEST_FOREST_STONE_DESC",
+    "type": "village",
+    "giver": "forest_hermit",
+    "area": "forest_01_path",
+    "clear": [
+      "f_golem_stone"
+    ],
+    "target_element": "fire",
+    "reward": {
+      "gold": 150,
+      "xp": 300
+    }
+  },
+  "forest_fire_golem": {
+    "name_key": "QUEST_FOREST_FIRE",
+    "desc_key": "QUEST_FOREST_FIRE_DESC",
+    "type": "village",
+    "giver": "forest_pyre_keeper",
+    "area": "forest_01_path",
+    "clear": [
+      "f_golem_fire"
+    ],
+    "reward": {
+      "gold": 200,
+      "xp": 400
+    }
+  },
+  "royal_lungs": {
+    "name_key": "QUEST_ROYAL_LUNGS",
+    "desc_key": "QUEST_ROYAL_LUNGS_DESC",
+    "type": "main",
+    "giver": "priest",
+    "area": "cemetery_01_yard",
+    "item": "human_lungs",
+    "target_element": "earth",
+    "reward": {
+      "gold": 300,
+      "xp": 600
+    }
+  },
+  "royal_soul": {
+    "name_key": "QUEST_ROYAL_SOUL",
+    "desc_key": "QUEST_ROYAL_SOUL_DESC",
+    "type": "main",
+    "giver": "priest",
+    "area": "mine_01_crystal_vein",
+    "item": "royal_soul",
+    "target_element": "fire",
+    "reward": {
+      "gold": 600,
+      "xp": 1000
+    }
+  },
+  "docks_smugglers": {
+    "name_key": "QUEST_DOCKS_SMUGGLERS",
+    "desc_key": "QUEST_DOCKS_SMUGGLERS_DESC",
+    "type": "village",
+    "giver": "seated_pirate",
+    "area": "docks_01_pier",
+    "clear": [
+      "dk_rats_a",
+      "dk_toads",
+      "dk_bats",
+      "dk_rats_b",
+      "dk_anglers"
+    ],
+    "target_element": "water",
+    "reward": {
+      "gold": 140,
+      "xp": 260
+    }
   }
 }

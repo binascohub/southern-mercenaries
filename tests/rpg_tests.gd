@@ -30,6 +30,8 @@ func _ready() -> void:
 	_test_states()
 	_test_combos()
 	_test_character_element()
+	_test_appearance()
+	_test_ninja_gear()
 	_test_skills()
 	_test_archer()
 	_test_ninja()
@@ -38,6 +40,7 @@ func _ready() -> void:
 	_test_shops()
 	_test_town_rules()
 	_test_side_quests()
+	_test_minibosses_and_relics()
 	_test_refine()
 	_test_opening()
 	_test_sewers()
@@ -655,6 +658,49 @@ func _test_town_rules() -> void:
 	_check(migrated.has("quests") and migrated.has("ship") and migrated.unlocked == [], "campanha antiga ganha missões e navio")
 
 
+## Dois mini-chefes por mapa de combate e as relíquias de missão do Padre da Capital.
+func _test_minibosses_and_relics() -> void:
+	var capital: Dictionary = GameData.arenas.capital_01_aurenhold
+	var maps := {"Esgoto": ["sewers_01_drains", "sewers_02_canals", "sewers_03_war_passage", "sewers_04_nest"], "Floresta": ["forest_01_path"],
+		"Ruínas": ["ruins_01_city"], "Cemitério": ["cemetery_01_yard"], "Forte": ["fort_01_gate"], "Mina": ["mine_01_crystal_vein"], "Deserto": ["desert_01_canyon"]}
+	for map_name: String in maps:
+		var found := {}
+		for area_id: String in maps[map_name]:
+			for e: Dictionary in GameData.arenas[area_id].encounters:
+				for m: Dictionary in e.monsters:
+					if GameData.monsters.get(m.monster, {}).get("category", "") == "miniboss":
+						found[m.monster] = true
+		_check(found.size() == 2, "%s tem 2 mini-chefes (%d)" % [map_name, found.size()])
+	for quest_id in ["royal_heart", "royal_lungs", "royal_skull", "royal_soul", "royal_banquet"]:
+		var quest: Dictionary = GameData.quests[quest_id]
+		var relic: Dictionary = GameData.valuables.get(quest.item, {})
+		var droppers := GameData.monsters.values().filter(func(m: Variant) -> bool: return m is Dictionary and m.get("quest_drop", "") == quest.item and m.get("category", "") == "miniboss")
+		_check(relic.get("quest_item", false) and Items.is_valid(Items.stack(Items.VALUABLE, quest.item)) and droppers.size() == 1
+			and GameData.arenas.has(quest.area) and GameData.npcs.has(quest.giver) and tr(quest.name_key) != quest.name_key,
+			"relíquia de %s: item, mini-chefe que larga, mapa e quem pede" % quest_id)
+		_check(Shops.sell_price("blacksmith", Items.stack(Items.VALUABLE, quest.item), 1, {}) < 0, "a relíquia de %s não se vende" % quest_id)
+	var chain := ["royal_heart", "royal_lungs", "royal_skull", "royal_soul"]
+	var priest_ok := Town.dialogue_index("priest", {}) == 0
+	var states := {}
+	for i in chain.size():
+		priest_ok = priest_ok and Town.dialogue_index("priest", states) == 2 * i
+		states[chain[i]] = "active"
+		priest_ok = priest_ok and Town.dialogue_index("priest", states) == 2 * i + 1
+		states[chain[i]] = "done"
+	priest_ok = priest_ok and Town.dialogue_index("priest", states) == 2 * chain.size()
+	_check(priest_ok, "o Padre oferece, lembra e agradece as quatro relíquias")
+	_check(Town.dialogue_index("court_jester", {}) == 0 and Town.dialogue_index("court_jester", {"royal_banquet": "active"}) == 1
+		and Town.dialogue_index("court_jester", {"royal_banquet": "done"}) == 2, "o Bobo oferece, lembra e agradece a carne")
+	_check(capital.decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Food_Apple").size() >= 8, "mesa farta com maçãs na sala do rei")
+	_check(capital.rooms.any(func(r: Dictionary) -> bool: return r.id == "church") and capital.rooms.any(func(r: Dictionary) -> bool: return r.id == "king_bedroom")
+		and capital.props.any(func(p: Dictionary) -> bool: return p.get("npc", "") == "priest" and p.position[0] < -15.0 and p.position[1] < -39.0)
+		and capital.decor.any(func(d: Dictionary) -> bool: return d.get("piece", "") == "Podium")
+		and capital.decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Chair_1" and d.position[0] < -15.0).size() >= 6, "igreja com o Padre, o altar e as cadeiras; quarto do rei ao lado")
+	_check(capital.rooms.any(func(r: Dictionary) -> bool: return r.id == "throne_room")
+		and capital.props.any(func(p: Dictionary) -> bool: return p.get("npc", "") == "court_jester" and p.position[1] < -39.0)
+		and capital.decor.any(func(d: Dictionary) -> bool: return d.get("piece", "") == "Sofa_Group"), "a sala do rei tem o Bobo da Corte e os sofás")
+
+
 func _test_side_quests() -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 11
@@ -679,7 +725,7 @@ func _test_side_quests() -> void:
 				_check(q.outcome in ["treasure", "ambush", "nothing"], "rumor: tesouro, emboscada ou nada")
 	_check(templates.size() == 3, "os três modelos aparecem: %s" % [templates.keys()])
 	_check(SideQuests.creatures_in("prototype_arena").size() == 2, "criaturas do bestiário que existem na área de teste")
-	var title := SideQuests.title({"template": "hunt", "target": "plague_rat", "area": "prototype_arena", "count": 5, "progress": 2, "status": "active"})
+	var title := SideQuests.title({"template": "hunt", "target": "plague_frog", "area": "prototype_arena", "count": 5, "progress": 2, "status": "active"})
 	_check(title.contains("2/5"), "título da caçada com progresso: %s" % title)
 
 
@@ -726,7 +772,9 @@ func _test_refine() -> void:
 	_check(c.armor_set_refined(), "conjunto todo em +4")
 	_near(c.max_health(), health * 1.05, "conjunto +4: +5% de vida")
 	c.data.equipment.weapon = staff
-	_check(c.aura_level() == 3, "aura no nível do refino da arma")
+	_check(c.aura_level() == 1, "brilho no nível do rank das roupas (ferro = D = 1), não do refino da arma")
+	c.data.equipment.body = Items.equipment("tunic", "gold")
+	_check(c.aura_level() == 2, "brilho: média dos ranks vestidos (3 D e 1 S = 2)")
 
 
 func _test_opening() -> void:
@@ -782,8 +830,8 @@ func _test_sewers() -> void:
 	var grate: Array = GameData.arenas.tortuga.props.filter(func(p: Dictionary) -> bool: return p.get("id", "") == "sewer_entrance")
 	_check(grate[0].to == "sewers_01_drains", "o bueiro desce para os Bueiros da Rua Principal")
 	# Categorias (03-inimigos.md): elite vida x3 e dano x1,5; mini-chefe x6/x1,8; chefe com fator 4,3.
-	var rat := Enemy.create({"monster_id": "plague_rat", "position": Vector3.ZERO, "level": 1})
-	var elite := Enemy.create({"monster_id": "plague_rat", "position": Vector3.ZERO, "level": 1, "rank": "elite", "modifier": "toxic"})
+	var rat := Enemy.create({"monster_id": "plague_frog", "position": Vector3.ZERO, "level": 1})
+	var elite := Enemy.create({"monster_id": "plague_frog", "position": Vector3.ZERO, "level": 1, "rank": "elite", "modifier": "toxic"})
 	_near(elite.max_health, rat.max_health * 3.0, "elite: vida x3")
 	_near(elite.attack_damage(), rat.attack_damage() * 1.5, "elite: dano x1,5")
 	_check(elite.category() == "elite" and elite.modifier == "toxic" and elite.xp_value() == 25.0, "elite: categoria, modificador e XP 25 x nível")
@@ -831,7 +879,7 @@ func _test_sewers() -> void:
 	for kind in ["weapon", "armor"]:
 		_check(GameData.consumables.has("scroll_refine_%s_iron" % kind) and GameData.consumables.has("blessed_scroll_refine_%s_iron" % kind),
 			"pergaminhos de ferro do tesouro existem (%s)" % kind)
-	_check(GameData.monsters.rat_nest.ai == "static" and GameData.monsters.rat_nest.fire_mult == 2.0, "ninho parado, Fogo em dobro")
+	_check(GameData.monsters.spawn_nest.ai == "static" and GameData.monsters.spawn_nest.fire_mult == 2.0, "ninho parado, Fogo em dobro")
 	# Barris e caixotes (decisão do autor): sorteio por peso; monstros ~10%, poções ~25%.
 	var outcomes := {}
 	var roll_rng := RandomNumberGenerator.new()
@@ -847,6 +895,107 @@ func _test_sewers() -> void:
 		var boxes: Array = GameData.arenas[area_id].get("breakables", [])
 		_check(boxes.size() >= 4 and boxes.all(func(b: Dictionary) -> bool: return GameData.monsters.get(b.monster, {}).get("breakable", false)),
 			"%s tem barris e caixotes" % area_id)
+	# Ruínas: caixotes que só soltam poção (tabela "breakable_potion").
+	var ruin_boxes: Array = GameData.arenas.ruins_01_city.get("breakables", [])
+	_check(ruin_boxes.size() >= 10 and ruin_boxes.all(func(b: Dictionary) -> bool:
+		return GameData.monsters.get(b.monster, {}).get("breakable", false) and GameData.loot.has(String(b.get("table", "")))), "Ruínas têm caixotes de poção")
+	var ruin_potions := true
+	for i in 200:
+		ruin_potions = ruin_potions and Breakables.roll(roll_rng, "breakable_potion") in ["potion_health", "potion_resource"]
+	_check(ruin_potions, "caixotes das Ruínas só soltam poção")
+	# Ruínas: Leônidas dá a missão dos goblins (termina ao limpar os dois bandos).
+	var ruins: Dictionary = GameData.arenas.ruins_01_city
+	var ruin_ids: Array = ruins.encounters.map(func(e: Dictionary) -> String: return e.id)
+	var goblin_quest: Dictionary = GameData.quests.get("ruins_goblins", {})
+	_check(goblin_quest.get("area", "") == "ruins_01_city" and goblin_quest.get("clear", []).size() == 2
+		and goblin_quest.clear.all(func(id: String) -> bool: return id in ruin_ids)
+		and ruins.props.any(func(p: Dictionary) -> bool: return p.get("npc", "") == goblin_quest.get("giver", "")) and tr(goblin_quest.get("name_key", "")) != goblin_quest.get("name_key", ""),
+		"missão das Ruínas: encontros e quem a dá existem")
+	_check(Town.dialogue_index("ruins_spartan", {}) == 0 and Town.dialogue_index("ruins_spartan", {"ruins_goblins": "active"}) == 1
+		and Town.dialogue_index("ruins_spartan", {"ruins_goblins": "done"}) == 2 and NpcModel.has_model("ruins_spartan"),
+		"conversa de Leônidas: oferece, lembra e agradece; tem modelo próprio")
+	# Floresta: três golens (fogo, gelo, pedra), elites corpo a corpo com modelo.
+	# (o de gelo é um encontro comum; os de pedra e de fogo são mini-chefes invocados pelos NPCs das praças, em `summon`.)
+	var golems: Array = GameData.arenas.forest_01_path.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("f_golem_"))
+	for prop: Dictionary in GameData.arenas.forest_01_path.props:
+		if prop.has("summon"):
+			golems.append(prop.summon)
+	_check(golems.size() == 2 and golems.all(func(e: Dictionary) -> bool:
+		var m: Dictionary = GameData.monsters.get(e.monsters[0].monster, {})
+		return m.get("category", "") == "elite" and MonsterModel.FAMILIES.has(m.get("look", "")) and float(m.get("damage", 0)) > 0.0), "Floresta tem os dois golens invocados (mini-chefes)")
+	# Floresta: a Toca dos Répteis só tem o Rei Golem de Pedra (maior) e o Guardião (menor); sem bandos de répteis.
+	var den: Array = GameData.arenas.forest_01_path.encounters.filter(func(e: Dictionary) -> bool: return e.id == "f_viper_queen")
+	var no_reptiles: bool = GameData.arenas.forest_01_path.encounters.all(func(e: Dictionary) -> bool: return not e.id.begins_with("f_reptiles"))
+	_check(den.size() == 1 and den[0].monsters.size() == 2 and den[0].monsters[0].monster == "viper_queen" and den[0].monsters[1].monster == "forest_tomb_guardian"
+		and MonsterModel.FAMILIES.has(GameData.monsters.viper_queen.look) and MonsterModel.FAMILIES.has(GameData.monsters.forest_tomb_guardian.look)
+		and GameData.monsters.viper_queen.size > GameData.monsters.forest_tomb_guardian.size and no_reptiles, "Floresta: Rei Golem maior que o Guardião e sem répteis")
+	# Floresta: trilhas de lajes e marcos de pedra nas divisas dos setores (como no Cemitério).
+	var forest_decor: Array = GameData.arenas.forest_01_path.decor
+	_check(forest_decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Trail_Mud").size() > 100 and Kit.has("Trail_Mud")
+		and forest_decor.filter(func(d: Dictionary) -> bool: return String(d.get("piece", "")).begins_with("Pr_") and d.get("piece", "") != "Pr_RoadSign").is_empty(),
+		"Floresta tem trilhas de barro e nenhum asset de cemitério (cruz, lápide, obelisco, pilar, poste)")
+	_check(forest_decor.all(func(d: Dictionary) -> bool: return d.get("piece", "") != "Floor_UnevenBrick"), "Floresta: sem chão de pedra")
+	_check(forest_decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") in ["Dead_Tree", "Oak_Tree", "Vl_Logs"]).is_empty()
+		and forest_decor.filter(func(d: Dictionary) -> bool: return String(d.get("piece", "")).begins_with("Pl_")).size() > 100, "Floresta sem troncos, só plantas")
+	_check(forest_decor.filter(func(d: Dictionary) -> bool: return String(d.get("piece", "")).begins_with("Wall_") or String(d.get("piece", "")).begins_with("Roof_")).is_empty(), "Floresta sem casas")
+	_check(forest_decor.all(func(d: Dictionary) -> bool: return not d.get("piece", "") in ["Well_Covered", "Wheelbarrow", "Vl_Cellar", "Vl_Ladder", "Cart_Wood", "Vl_Outhouse"] and not String(d.get("piece", "")).begins_with("Mushroom_")), "Floresta sem o poço, o carrinho de mão, o porão, a escada, a carroça, a casinha e os cogumelos")
+	_check(forest_decor.any(func(d: Dictionary) -> bool: return d.get("piece", "") == "Tv_Fire") and forest_decor.any(func(d: Dictionary) -> bool: return d.has("light") and d.get("camp", false))
+		and forest_decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Rock_MossyStone").size() >= 8 and Kit.has("Rock_MossyStone")
+		and forest_decor.any(func(d: Dictionary) -> bool: return d.get("piece", "") == "Fire_Flame" and d.get("flicker", false)) and Kit.has("Fire_Flame"),
+		"Floresta tem a fogueira (fogo, luz e círculo de pedras musgosas) no acampamento")
+	_check(forest_decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Butterfly_Anim" and d.has("swim")).size() >= 6 and Kit.has("Butterfly_Anim"), "Floresta tem as borboletas animadas")
+	var forest_now: Dictionary = GameData.arenas.forest_01_path
+	var keeper: Dictionary = forest_now.props.filter(func(p: Dictionary) -> bool: return p.id == "forest_pyre_keeper")[0]
+	var pira_toads: Array = forest_now.encounters.filter(func(e: Dictionary) -> bool: return e.id.begins_with("f_toads") and e.position[0] >= 0 and e.position[0] <= 24 and e.position[1] <= -7 and e.position[1] >= -28)
+	_check(keeper.position[1] < -40 and keeper.summon.position[1] < -38 and pira_toads.size() == 4, "A Guardiã da Pira fica na sala da lagoa e os sapos na Praça da Pira")
+	var forest_map: Dictionary = GameData.arenas.forest_01_path
+	var toad_room: Dictionary = forest_map.rooms.filter(func(r: Dictionary) -> bool: return r.id == "pira")[0]
+	_check(forest_map.props.any(func(p: Dictionary) -> bool: return p.id == "toad_pond" and p.kind == "water" and p.get("round", false))
+		and forest_decor.all(func(d: Dictionary) -> bool: return not (String(d.get("piece", "")).begins_with("Rock")
+			and absf(d.position[0] - toad_room.center[0]) <= toad_room.size[0] / 2 and absf(d.position[1] - toad_room.center[1]) <= toad_room.size[1] / 2)),
+		"Floresta: lagoa e sem pedras na sala dos sapos (Praça da Pira)")
+	# Floresta: a Besta Quitinosa (corpo a corpo, modelo estático animado por código).
+	var beasts: Array = GameData.arenas.forest_01_path.encounters.filter(func(e: Dictionary) -> bool: return e.id == "f_beasts")
+	_check(beasts.size() == 1 and beasts[0].monsters[0].monster == "chitin_beast" and MonsterModel.FAMILIES.get(GameData.monsters.chitin_beast.look, {}).get("static", false),
+		"Floresta tem as Bestas Quitinosas")
+	# Floresta: a aldeia de Ferncroft, com o casal que dá duas missões que terminam ao limpar encontros da área.
+	var forest: Dictionary = GameData.arenas.forest_01_path
+	var forest_ids: Array = forest.encounters.map(func(e: Dictionary) -> String: return e.id)
+	for prop: Dictionary in forest.props:
+		if prop.has("summon"):
+			forest_ids.append(prop.summon.id)    # os grupos invocados também contam como "limpos"
+	var village_npcs: Array = forest.props.filter(func(p: Dictionary) -> bool: return p.kind == "npc")
+	_check(village_npcs.size() == 3 and village_npcs.all(func(p: Dictionary) -> bool: return GameData.npcs.has(p.npc)), "Floresta tem a elfa e os NPCs das duas praças")
+	_check(forest.crowd.any(func(c: Dictionary) -> bool: return c.role == "hunter" and c.has("path")) and forest.crowd.any(func(c: Dictionary) -> bool: return c.role == "tanner" and c.has("path"))
+		and GameData.crowd.roles.has("hunter") and GameData.crowd.roles.has("tanner") and not GameData.quests.has("forest_reptiles"), "Bertram e Elara andam pelo mapa, sem missão")
+	_check(forest.rooms.any(func(r: Dictionary) -> bool: return r.id == "village"), "Floresta tem a sala da aldeia")
+	for quest_id in ["forest_stone_golem", "forest_fire_golem", "forest_leshy"]:
+		var mission: Dictionary = GameData.quests.get(quest_id, {})
+		_check(mission.get("area", "") == "forest_01_path" and mission.get("clear", []).all(func(id: String) -> bool: return id in forest_ids)
+			and (village_npcs.any(func(p: Dictionary) -> bool: return p.npc == mission.get("giver", "")) or GameData.arenas.tavern.props.any(func(p: Dictionary) -> bool: return p.get("npc", "") == mission.get("giver", ""))) and tr(mission.get("name_key", "")) != "",
+			"missão da aldeia %s: encontros e quem a dá existem" % quest_id)
+		var giver: Dictionary = GameData.npcs[mission.giver]
+		_check(Town.dialogue_index(mission.giver, {}) == 0 and Town.dialogue_index(mission.giver, {quest_id: "active"}) == 1
+			and Town.dialogue_index(mission.giver, {quest_id: "done"}) == 2 and giver.dialogues[0].get("offer", "") == quest_id,
+			"conversa de %s: oferece, lembra e agradece" % quest_id)
+	# Floresta: seis setores, um monstro em cada, e duas praças com NPC que invoca um mini-chefe.
+	var sectors := {}
+	for e: Dictionary in forest.encounters:
+		if e.id != "f_viper_queen" and GameData.monsters[e.monsters[0].monster].get("category", "") in ["common", "elite"]:     # (os mini-chefes e a Toca do Rei Golem ficam de fora)
+			sectors[e.monsters[0].monster] = true
+	_check(sectors.size() == 2, "Floresta tem duas salas de monstros (sapos e bestas), um tipo em cada (%d)" % sectors.size())
+	var summoners: Array = forest.props.filter(func(p: Dictionary) -> bool: return p.has("summon"))
+	_check(summoners.size() == 2 and summoners.all(func(p: Dictionary) -> bool:
+		var group: Dictionary = p.summon
+		return (GameData.npcs.has(p.npc) and GameData.npcs[p.npc].dialogues[0].lines.size() > 0 and group.monsters[0].get("rank", "") == "miniboss"
+			and tr(group.get("toast", "")) != group.get("toast", "") and GameData.monsters.has(group.monsters[0].monster))),
+		"Floresta tem duas praças com NPC que invoca um mini-chefe")
+	# Floresta: poucos cervos quebráveis, parados, que só soltam poção.
+	var deer: Array = GameData.arenas.forest_01_path.get("breakables", []).filter(func(b: Dictionary) -> bool: return b.monster != "coin_bag")  # a bolsa de moedas é outro objeto
+	_check(deer.size() >= 3 and deer.size() <= 10 and deer.all(func(b: Dictionary) -> bool:
+		var m: Dictionary = GameData.monsters.get(b.monster, {})
+		return m.get("breakable", false) and m.get("ai", "") == "static" and float(m.get("damage", 1)) == 0.0 \
+			and MonsterModel.FAMILIES.has(m.get("look", "")) and String(b.get("table", "")) == "breakable_potion"), "Floresta tem poucos cervos que só soltam poção")
 
 
 func _test_explore_map() -> void:
@@ -864,10 +1013,192 @@ func _test_explore_map() -> void:
 	var copy := ExploreMap.decode(ExploreMap.encode(mask), area)
 	_check(copy == mask, "máscara volta igual do save")
 	_check(ExploreMap.decode("", area) == ExploreMap.empty(area) and ExploreMap.decode("lixo:3", area).count(1) == 0, "save sem máscara (ou de outra área) começa em névoa")
-	for spot in [Vector2(0, -14), Vector2(0, -30), Vector2(0, -46), Vector2(-6, -58), Vector2(6, -58), Vector2(-6, -68),
-			Vector2(6, -68), Vector2(16, -30), Vector2(27, -30)]:
-		ExploreMap.reveal(mask, area, spot)
+	# Andando de sala em sala (o centro de cada uma), a área toda aparece.
+	for room: Dictionary in area.rooms:
+		ExploreMap.reveal(mask, area, Vector2(room.center[0], room.center[1]))
 	_check(ExploreMap.explored_fraction(mask, area) > 0.95, "andando pela área toda, quase tudo aparece (%.2f)" % ExploreMap.explored_fraction(mask, area))
+
+
+## Aparência na criação (data/appearance.json): validação, ficha e visual do modelo.
+func _test_appearance() -> void:
+	var clean := Appearance.clean("male", {"hair": 99, "hair_color": -5, "skin": 40, "beard": true})
+	_check(clean.hair == Appearance.hair_styles("male").size() - 1 and clean.hair_color == 0 and clean.skin == Appearance.skin_count() - 1,
+		"aparência: valores fora da lista voltam para dentro dela")
+	_check(clean.beard, "aparência: barba só no masculino (masculino mantém)")
+	_check(not Appearance.clean("female", {"beard": true}).beard, "aparência: feminino não tem barba")
+	_check(Appearance.hair_styles("female").has("Hair_Long") and Appearance.hair_styles("male").has("Hair_Buzzed"),
+		"aparência: cada sexo tem os seus cabelos")
+	for kit in HairKit.STYLES:
+		_check(Appearance.hair_styles("female").has(kit) and tr("CHAR_HAIR_" + kit) != "CHAR_HAIR_" + kit, "cabelo %s: está na lista feminina e tem tradução" % kit)
+	var hair_model := HeroModel.new()
+	add_child(hair_model)
+	hair_model.setup("female", {"hair": HairKit.STYLES.duplicate(), "hair_color": [0.2, 0.1, 0.1]})
+	var made := 0
+	for kit in HairKit.STYLES:
+		made += 1 if hair_model.get_node_or_null("**/" + kit) != null or hair_model.find_child(kit, true, false) != null else 0
+	_check(made == HairKit.STYLES.size(), "cabelo: todos os penteados feitos por código geram malha na cabeça")
+	hair_model.queue_free()
+	var c := CharacterData.create("knight", "male", "Teste", "fire", {"hair": 1, "hair_color": 3, "skin": 4, "beard": true})
+	var back := CharacterData.from_dict(c.to_dict())
+	_check(back != null and back.data.look == c.data.look and back.data.look.skin == 4 and back.data.look.beard,
+		"aparência: a escolha vai na ficha e volta igual do save")
+	_check(not back.is_edited(), "aparência: a ficha com aparência não conta como editada")
+	var legacy := CharacterData.create("mage", "female", "Antiga")
+	_check(legacy.data.look.is_empty(), "aparência: sem escolha, a ficha fica sem 'look' (visual da classe)")
+	var look := Appearance.model_look("male", c.data.look, {})
+	_check(look.hair == ["Hair_Buzzed", "Hair_Beard"] and look.skin.size() == 3 and look.hair_color.size() == 3,
+		"aparência: o visual do modelo junta cabelo, barba, cor e pele")
+	_check(Appearance.model_look("female", {}, {"hair": ["Hair_Long"]}).hair == ["Hair_Long"],
+		"aparência: personagem antigo mantém o visual padrão da classe")
+	var bald := Appearance.model_look("female", {"hair": 3}, {})
+	_check(bald.hair.is_empty(), "aparência: a opção 'sem cabelo' não põe malha")
+
+
+## Conjuntos do Ninja por rank (D a S): material -> rank, e cada rank veste e desveste sem sobras.
+func _test_ninja_gear() -> void:
+	_check(NinjaGear.rank_of("cloth") == "D" and NinjaGear.rank_of("iron") == "D" and NinjaGear.rank_of("steel") == "C"
+		and NinjaGear.rank_of("copper") == "B" and NinjaGear.rank_of("silver") == "A" and NinjaGear.rank_of("gold") == "S",
+		"ninja: material vira rank (pano/ferro D, aço C, cobre B, prata A, ouro S)")
+	_check(NinjaGear.has_gear("ninja", "male") and NinjaGear.has_gear("ninja", "female") and not NinjaGear.has_gear("mage", "male"), "ninja: o Ninja (os dois sexos) tem conjuntos por rank")
+	_check(HeroGear.has_gear("mage", "female") and HeroGear.has_gear("knight", "male") and HeroGear.has_gear("ninja", "male") and HeroGear.has_gear("ninja", "female"),
+		"conjuntos por rank: todas as classes nos dois sexos")
+	var suit := HeroModel.new()
+	add_child(suit)
+	suit.setup("male", {}, "ninja")
+	var base_parts := suit.visible_parts()
+	_check(suit.is_suit() and not suit.suit_worn() and base_parts.has("Peasant_Body") and base_parts.has("Head") and not base_parts.has("Ninja_Body"),
+		"ninja: sem peça equipada aparece o Camponês, com rosto e cabelo (sem a roupa ninja)")
+	NinjaGear.apply(suit, {"body": "D", "head": "", "hands": "", "feet": ""})
+	var worn_parts := suit.visible_parts()
+	_check(suit.suit_worn() and worn_parts.size() == 4 and worn_parts.all(func(n: String) -> bool: return n.begins_with("Ninja_")),
+		"ninja: ao equipar uma peça veste a roupa ninja inteira em 4 peças, com capuz e máscara (sem rosto)")
+	NinjaGear.apply(suit, {"body": "", "head": "", "hands": "", "feet": ""})
+	_check(not suit.suit_worn(), "ninja: tirando as peças volta ao Camponês")
+	var cloth: Array[Color] = []
+	var others := func() -> Array:
+		var colors := []
+		for part: MeshInstance3D in suit.find_children("Ninja_*", "MeshInstance3D", true, false):
+			for k in part.get_surface_override_material_count():
+				var m := part.get_surface_override_material(k) as StandardMaterial3D
+				if m and not String(m.resource_name).contains("Cloth"):
+					colors.append(m.albedo_color)
+		return colors
+	var others_before: Array = others.call()
+	var by_rank := []
+	for rank in NinjaGear.RANKS:
+		NinjaGear.apply(suit, {"body": rank, "head": rank, "hands": rank, "feet": rank})
+		by_rank.append((suit.find_child("Ninja_Body", true, false) as MeshInstance3D).get_surface_override_material(0).albedo_color)
+	_check(by_rank.all(func(c: Color) -> bool: return c == by_rank[0]), "ninja: o rank não muda a cor da roupa")
+	for element in Elements.ALL:
+		suit.set_suit_element(element)
+		cloth.append((suit.find_child("Ninja_Body", true, false) as MeshInstance3D).get_surface_override_material(0).albedo_color)
+	_check(cloth.size() == 4 and cloth[0] != cloth[1] and cloth[1] != cloth[2] and cloth[2] != cloth[3], "ninja: a cor da roupa é a do elemento (água, fogo, vento, terra)")
+	suit.set_suit_element("fire")
+	_check(cloth[1].r > cloth[1].b and cloth[0].b > cloth[0].r and cloth[3].g > cloth[3].r, "ninja: fogo vermelho, água azul, terra verde")
+	_check(others_before == others.call(), "ninja: a pele e a faixa não são tingidas pelo rank")
+	suit.queue_free()
+	var witch := HeroModel.new()
+	add_child(witch)
+	witch.setup("female", {"hair": ["Hair_Long"], "hair_color": [0.2, 0.1, 0.1]}, "mage")
+	_check(witch.is_suit() and not witch.suit_worn() and witch.visible_parts().has("Peasant_Body") and not witch.visible_parts().has("Witch_Body"),
+		"maga: sem peça equipada aparece o Camponês (sem a roupa de bruxa)")
+	HeroGear.apply(witch, "mage", {"body": "D", "head": "", "hands": "", "feet": ""})
+	_check(witch.suit_worn() and witch.visible_parts() == ["Witch_Body"], "maga: com uma peça equipada veste a roupa de bruxa inteira")
+	var witch_colors := []
+	for element in Elements.ALL:
+		witch.set_suit_element(element)
+		witch_colors.append((witch.find_child("Witch_Body", true, false) as MeshInstance3D).get_surface_override_material(0).albedo_color)
+	_check(witch_colors[0] != witch_colors[1] and witch_colors[1] != witch_colors[2] and witch_colors[2] != witch_colors[3], "maga: o roxo vira a cor do elemento")
+	var other_mage := HeroModel.new()
+	add_child(other_mage)
+	other_mage.setup("male", {}, "ninja_unknown")
+	_check(not other_mage.is_suit(), "classe sem corpo próprio mantém o corpo e as roupas de antes")
+	other_mage.queue_free()
+	witch.queue_free()
+	var elf := HeroModel.new()
+	add_child(elf)
+	elf.setup("female", {}, "archer")
+	_check(elf.is_suit() and not elf.suit_worn() and elf.visible_parts().has("Peasant_Body"), "arqueira: sem peça equipada aparece o Camponês")
+	HeroGear.apply(elf, "archer", {"body": "D", "head": "", "hands": "", "feet": ""})
+	_check(elf.suit_worn() and elf.visible_parts() == ["Elf_Body"], "arqueira: com uma peça equipada veste a roupa da Elfa inteira")
+	var elf_colors := []
+	for element in Elements.ALL:
+		elf.set_suit_element(element)
+		elf_colors.append((elf.find_child("Elf_Body", true, false) as MeshInstance3D).get_surface_override_material(0).albedo_color)
+	_check(elf_colors[0] != elf_colors[1] and elf_colors[1] != elf_colors[2] and elf_colors[2] != elf_colors[3], "arqueira: o verde da roupa vira a cor do elemento")
+	elf.queue_free()
+	var dwarf := HeroModel.new()
+	add_child(dwarf)
+	dwarf.setup("male", {}, "archer")
+	_check(dwarf.is_suit() and not dwarf.suit_worn() and dwarf.visible_parts().has("Peasant_Body"), "arqueiro: sem peça equipada aparece o Camponês")
+	HeroGear.apply(dwarf, "archer", {"body": "D", "head": "", "hands": "", "feet": ""})
+	_check(dwarf.suit_worn() and dwarf.visible_parts() == ["Dwarf_Body"], "arqueiro: com uma peça equipada veste o anão inteiro")
+	var dwarf_colors := []
+	for element in Elements.ALL:
+		dwarf.set_suit_element(element)
+		dwarf_colors.append((dwarf.find_child("Dwarf_Body", true, false) as MeshInstance3D).get_surface_override_material(0).albedo_color)
+	_check(dwarf_colors[0] != dwarf_colors[1] and dwarf_colors[1] != dwarf_colors[2] and dwarf_colors[2] != dwarf_colors[3], "arqueiro: o azul da camisa vira a cor do elemento")
+	dwarf.queue_free()
+	var goblin := HeroModel.new()
+	add_child(goblin)
+	goblin.setup("female", {}, "summoner")
+	_check(goblin.is_suit() and not goblin.suit_worn() and goblin.visible_parts().has("Peasant_Body"), "invocador: sem peça equipada aparece o Camponês (qualquer sexo)")
+	HeroGear.apply(goblin, "summoner", {"body": "D", "head": "", "hands": "", "feet": ""})
+	_check(goblin.suit_worn() and goblin.visible_parts() == ["Goblin_Body"], "invocador: com uma peça equipada veste o goblin inteiro")
+	var goblin_colors := []
+	for element in Elements.ALL:
+		goblin.set_suit_element(element)
+		goblin_colors.append((goblin.find_child("Goblin_Body", true, false) as MeshInstance3D).get_surface_override_material(0).albedo_color)
+	_check(goblin_colors[0] != goblin_colors[1] and goblin_colors[1] != goblin_colors[2] and goblin_colors[2] != goblin_colors[3], "invocador: o casaco amarelo vira a cor do elemento")
+	goblin.queue_free()
+	var knight := HeroModel.new()
+	add_child(knight)
+	knight.setup("male", {}, "knight")
+	_check(knight.is_suit() and not knight.suit_worn() and knight.visible_parts().has("Peasant_Body"), "cavaleiro: sem peça equipada aparece o Camponês")
+	HeroGear.apply(knight, "knight", {"body": "D", "head": "", "hands": "", "feet": ""})
+	_check(knight.suit_worn() and knight.visible_parts() == ["Knight_Body"], "cavaleiro: com uma peça equipada veste a armadura inteira")
+	var knight_colors := []
+	for element in Elements.ALL:
+		knight.set_suit_element(element)
+		knight_colors.append((knight.find_child("Knight_Body", true, false) as MeshInstance3D).get_surface_override_material(0).albedo_color)
+	_check(knight_colors[0] != knight_colors[1] and knight_colors[1] != knight_colors[2] and knight_colors[2] != knight_colors[3], "cavaleiro: o azul vira a cor do elemento")
+	knight.queue_free()
+	var wizard := HeroModel.new()
+	add_child(wizard)
+	wizard.setup("male", {}, "mage")
+	_check(wizard.is_suit() and not wizard.suit_worn() and wizard.visible_parts().has("Peasant_Body"), "mago: sem peça equipada aparece o Camponês")
+	HeroGear.apply(wizard, "mage", {"body": "D", "head": "", "hands": "", "feet": ""})
+	_check(wizard.suit_worn() and wizard.visible_parts() == ["Mage_Body"], "mago: com uma peça equipada veste o manto inteiro")
+	var wizard_colors := []
+	for element in Elements.ALL:
+		wizard.set_suit_element(element)
+		wizard_colors.append((wizard.find_child("Mage_Body", true, false) as MeshInstance3D).get_surface_override_material(0).albedo_color)
+	_check(wizard_colors[0] != wizard_colors[1] and wizard_colors[1] != wizard_colors[2] and wizard_colors[2] != wizard_colors[3], "mago: o azul do manto vira a cor do elemento")
+	wizard.queue_free()
+	for class_id in ClassGear.CLASSES:
+		for sex in ["male", "female"]:
+			var other := HeroModel.new()
+			add_child(other)
+			other.setup(sex, {})
+			var made := []
+			for rank in HeroGear.RANKS:
+				HeroGear.apply(other, class_id, {"body": rank, "head": rank, "hands": rank, "feet": rank})
+				made.append((other.get_meta(NinjaGear.META) as Array).size())
+			_check(made.min() >= 2 and made[4] > made[0], "%s (%s): cada rank monta peças e o S tem mais que o D %s" % [class_id, sex, str(made)])
+			HeroGear.apply(other, class_id, {"body": "", "head": "", "hands": "", "feet": ""})
+			_check((other.get_meta(NinjaGear.META) as Array).is_empty(), "%s (%s): sem peças equipadas não monta nada" % [class_id, sex])
+			other.queue_free()
+	var hero := HeroModel.new()
+	add_child(hero)
+	hero.setup("male", {"hair": ["Hair_SimpleParted"], "hair_color": [0.2, 0.12, 0.07]})
+	var counts := {}
+	for rank in NinjaGear.RANKS:
+		NinjaGear.apply(hero, {"body": rank, "head": rank, "hands": rank, "feet": rank})
+		counts[rank] = (hero.get_meta(NinjaGear.META) as Array).size()
+	_check(counts.D >= 3 and counts.S > counts.D, "ninja: cada rank monta suas peças (D %d, C %d, B %d, A %d, S %d)" % [counts.D, counts.C, counts.B, counts.A, counts.S])
+	NinjaGear.apply(hero, {"body": "", "head": "", "hands": "", "feet": ""})
+	_check((hero.get_meta(NinjaGear.META) as Array).is_empty(), "ninja: sem peças equipadas não monta nada")
+	hero.queue_free()
 
 
 func _test_ui_theme() -> void:
@@ -877,7 +1208,7 @@ func _test_ui_theme() -> void:
 	for item in [["panel", "PanelContainer"], ["panel", "ParchmentPanel"], ["panel", "HudPanel"], ["normal", "Button"], ["hover", "Button"], ["pressed", "Button"], ["focus", "Button"], ["background", "ProgressBar"]]:
 		_check(theme.has_stylebox(item[0], item[1]), "tema: %s de %s" % item)
 	var frame := theme.get_stylebox("panel", "PanelContainer") as StyleBoxTexture
-	_check(frame != null and frame.texture != null and frame.texture.get_width() == UiTheme.FRAME * 4, "moldura de madeira gerada (9-patch)")
+	_check(frame != null and frame.texture != null and frame.texture.get_width() == UiTheme.PAPER_PERIOD + UiTheme.PAPER_MARGIN * 2, "janela de papel antigo gerada (9-patch)")
 	var default := ThemeDB.get_default_theme()
 	_check(default.get_stylebox("panel", "PanelContainer") == theme.get_stylebox("panel", "PanelContainer")
 		and default.default_font == theme.default_font, "o tema vale para todos os controles (tema padrão)")

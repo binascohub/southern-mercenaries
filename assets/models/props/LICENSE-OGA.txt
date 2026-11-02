@@ -11,3 +11,23 @@ Watch_Tower, Bench_Wood, Stool_Wood, Cart_Wood, Wheelbarrow — "Medieval Props 
 Save_Crystal — "3D Mese Crystal" by rubberduck: https://opengameart.org/content/3d-mese-crystal
 Weapon_Dagger — "Simple 3D Dagger" by danilomattos: https://opengameart.org/content/simple-3d-dagger
 Weapon_Stiletto — "Stiletto Dagger" by tigeruppercut: https://opengameart.org/content/stiletto-dagger (plain colors)
+
+Gold_Pile_1..5 — "Free Low Poly Gold" by Nobiax: https://opengameart.org/content/free-lowpoly-golds
+
+Chest_Potion.glb — "Chest (animated)" by cdmir (Čestmír Dammer)
+            https://opengameart.org/content/chest-animated
+            CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+            Changes: mesh and skeleton with the open and close animations, color texture reduced (tools/assets/build_monsters.py).
+Tv_* (Fireplace, Fire, Firewood, Table, Table_Round, Stool_Wood, Stool_Round, Bench, Barrel, Basket, Bucket, Sack, Sack_2, Lamp, Candle, Tankard, Plate, Counter, Torch) — "Medieval Tavern Props Pack" by System G6: https://opengameart.org/content/medieval-tavern-props-pack (textures from the pack, 512 px WebP)
+
+Ship_Cannon.glb — "Ship Cannon" by jameswhite: https://opengameart.org/content/ship-cannon (CC0 1.0; 1.5 m long, texture as WebP, tools/assets/build_cannon.py)
+
+Mug_Jar.glb, Mug_Bottle.glb (+ _Shards) - "Free Mug Pack 1" by rubberduck
+            https://opengameart.org/content/free-mug-pack-1
+            CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+            Changes: only the white jar (mug_1) and the white marble bottle (mug_3) kept, scaled, textures reduced,
+            and broken into shards (tools/assets/build_mugs.py).
+
+Wall_Torch.glb — "Wall mounted torch" by scribe: https://opengameart.org/content/wall-mounted-torch
+            Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/ (texture from pdtextures.blogspot.co.uk)
+            Changes: scaled to 0.9 m and raised to 1.3 m, backing plate on the wall plane, texture and alpha map re-linked (tools/assets/build_wall_torch.py).

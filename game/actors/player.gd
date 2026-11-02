@@ -28,6 +28,9 @@ signal hurt
 signal character_changed(levels: int)
 
 const AIM_ASSIST_ANGLE := deg_to_rad(15.0)
+## Salto: altura máxima (m) e duração (s).
+const JUMP_HEIGHT := 0.9
+const JUMP_TIME := 0.6
 const PROJECTILE_HEIGHT := 1.0
 const TURN_SPEED := 18.0
 ## Cor do anel de cada jogador (1 a 4), para se reconhecerem no co-op.
@@ -55,6 +58,8 @@ var alive := true
 var charge_time := 0.0
 var revive_progress := 0.0
 var evade_cooldown := 0.0
+## Pulo: 0 = no chão; 0..1 = quanto do salto já passou (replicado, o visual sobe e desce).
+var jump_phase := 0.0
 ## false enquanto o dono caiu da rede: o herói espera parado e invulnerável.
 var connected := true
 ## Posição no servidor; os clientes mostram com interpolação.
@@ -73,6 +78,8 @@ var shield := 0.0
 var hidden := false
 ## Corpo masculino ou feminino (vem com o herói ao nascer; não muda).
 var sex := "male"
+## Aparência escolhida na criação (Appearance); vazia = o visual padrão da classe.
+var look := {}
 ## Última ação para a animação nos PCs ("tipo:número"): melee, cast, shoot, roll, hit.
 var action := ""
 ## Cavaleiro montado (02-3-cavaleiro.md, seção 3).
@@ -146,6 +153,14 @@ var _crystal_material: StandardMaterial3D
 var _revive_bar: MeshInstance3D
 var _ring_material: StandardMaterial3D
 var _staff_material: StandardMaterial3D
+var _backpack: MeshInstance3D  ## caderno / aljava nas costas
+var _weapon_holder: MeshInstance3D  ## onde a arma (ou o livro do Invocador) está presa
+var _book_rank := ""
+var _second_holder: MeshInstance3D  ## adaga da mão esquerda do Ninja
+var _dagger_rank := ""
+var _shield_rank := ""
+var _sword_rank := ""
+var _shield_node: Node3D
 ## Peças equipadas no corpo (placeholder até os modelos modulares).
 var _shown_visual := {}
 var _flash := 0.0
@@ -161,6 +176,7 @@ static func create(spawn: Dictionary) -> Player:
 	player.slot = spawn.slot
 	player.class_id = spawn.class_id
 	player.sex = spawn.get("sex", "male")
+	player.look = spawn.get("look", {})
 	player.position = spawn.position
 	player.net_position = spawn.position
 	player.hero_name = spawn.get("name", "")
@@ -446,6 +462,7 @@ func _send_local_input(delta: float) -> void:
 		or _local_input.evade_presses != _sent_input.evade_presses \
 		or _local_input.interact_held != _sent_input.interact_held \
 		or _local_input.skill_presses != _sent_input.skill_presses \
+		or _local_input.jump_presses != _sent_input.jump_presses \
 		or _local_input.block_held != _sent_input.block_held
 	if buttons_changed or _input_timer <= 0.0:
 		_input_timer = 1.0 / GameData.balance.net.input_rate_hz
@@ -488,6 +505,7 @@ func _server_step(delta: float) -> void:
 		_drink("potion_resource")
 	if input.potion_elemental_presses != _seen_extra.potion_elemental_presses:
 		_drink_next_elemental()
+	var jump_pressed := input.jump_presses != _seen_extra.jump_presses
 	var mount_pressed := input.mount_presses != _seen_extra.mount_presses
 	var block_pressed := input.block_presses != _seen_extra.block_presses
 	var skill_pressed: Array[int] = []
@@ -499,6 +517,7 @@ func _server_step(delta: float) -> void:
 	if input.pickup_all_presses != _seen_extra.pickup_all_presses:
 		get_tree().call_group(&"arena", &"request_pickup", self, true)
 	_seen_extra = input
+	_update_jump(delta, jump_pressed)
 
 	if _knock_time > 0.0:
 		_knock_time -= delta
@@ -561,6 +580,27 @@ func _server_step(delta: float) -> void:
 		if charge_time >= data.strong_attack.charge_time:
 			_fire(data.strong_attack)
 		charge_time = 0.0
+
+
+## Salto (servidor): sobe e desce em JUMP_TIME s; só do chão e sem estar sendo
+## empurrado, esquivando ou bloqueando. No ar anda e ataca normalmente.
+func _update_jump(delta: float, pressed: bool) -> void:
+	if jump_phase > 0.0:
+		jump_phase += delta / JUMP_TIME
+		if jump_phase >= 1.0:
+			jump_phase = 0.0
+	elif pressed and _knock_time <= 0.0 and _evade_time <= 0.0 and not blocking:
+		jump_phase = 0.001
+
+
+## Altura do salto agora (m): parábola de 0 a JUMP_HEIGHT.
+func jump_height() -> float:
+	return 4.0 * JUMP_HEIGHT * jump_phase * (1.0 - jump_phase) if jump_phase > 0.0 else 0.0
+
+
+## No ar o bastante para passar por cima de poças no chão.
+func is_airborne() -> bool:
+	return jump_height() > 0.25
 
 
 ## O dono caiu: o herói fica parado, sem entrada, e não leva dano.
@@ -819,6 +859,7 @@ func _dress_weapon(holder: MeshInstance3D, piece_name: String, offset := Vector3
 		return
 	holder.mesh = null
 	holder.add_child(weapon)
+	holder.set_meta("weapon_node", weapon)
 	weapon.position = offset
 	for node in weapon.find_children("*", "MeshInstance3D", true, false):
 		var mesh := node as MeshInstance3D
@@ -1028,7 +1069,7 @@ func _assisted_aim(aim: Vector2, attack_range: float) -> Vector2:
 
 func _add_synchronizer() -> void:
 	var config := SceneReplicationConfig.new()
-	var always := [":net_position", ":facing", ":charge_time", ":revive_progress", ":evade_cooldown"]
+	var always := [":net_position", ":facing", ":charge_time", ":revive_progress", ":evade_cooldown", ":jump_phase"]
 	var on_change := [":health", ":max_health", ":resource", ":max_resource", ":alive", ":connected",
 		":hero_name", ":level", ":equip_visual", ":potion_cooldown", ":armor_value", ":element", ":shield", ":hidden", ":mounted", ":blocking", ":action",
 		":aura_level", ":origin_element", ":aura_set"]
@@ -1064,7 +1105,7 @@ func _build_visual() -> void:
 	add_child(_visual)
 	_model = HeroModel.new()
 	_visual.add_child(_model)
-	_model.setup(sex, data.get("look", {}).get(sex, {}))
+	_model.setup(sex, Appearance.model_look(sex, look, data.get("look", {}).get(sex, {})), class_id)
 
 	var archer := class_id == "archer"
 	var ninja := class_id == "ninja"
@@ -1090,16 +1131,10 @@ func _build_visual() -> void:
 		staff_mesh.height = 2.4
 		staff.position = Vector3(0.4, 1.05, 0.7)
 		staff.rotation.x = PI / 2.0
-		var shield_node := MeshInstance3D.new()
-		var shield_mesh := BoxMesh.new()
-		shield_mesh.size = Vector3(0.08, 0.7, 0.5)
-		shield_node.mesh = shield_mesh
-		shield_node.material_override = _material(Color(0.45, 0.32, 0.2))
-		# No antebraço esquerdo, alinhado ao corpo na pose de descanso.
-		_model.attach("lowerarm_l", shield_node, Transform3D(Basis(Vector3(0, 1, 0), Vector3(-1, 0, 0), Vector3(0, 0, 1)),
-			Vector3(0.0, 0.15, 0.08)), Vector3(-0.42, 1.0, 0.15))
-		_horse = _build_horse()
-		_visual.add_child(_horse)
+		# O escudo (Cethiel's Weapons 3D, CC0) vem de _update_shield, conforme o rank do material da arma.
+		if data.has("mount"):
+			_horse = _build_horse()
+			_visual.add_child(_horse)
 	if summoner:
 		# Livro dos Amigos aberto na mão (a capa na cor do material).
 		staff.mesh = BoxMesh.new()
@@ -1115,6 +1150,7 @@ func _build_visual() -> void:
 		second.rotation = Vector3.ZERO
 		second.position = Vector3(0, 0.15, 0)
 		_dress_weapon(second, "Weapon_Stiletto")  # estilete na mão esquerda (tigeruppercut, CC0)
+		_second_holder = second
 		var left_hand := Node3D.new()
 		left_hand.add_child(second)
 		_model.attach("hand_l", left_hand, POINT_GRIP, Vector3(-0.42, 0.9, 0.35))
@@ -1131,6 +1167,7 @@ func _build_visual() -> void:
 		_dress_weapon(staff, "Weapon_Dagger")  # adaga do assassino (danilomattos, CC0)
 	elif archer:
 		_dress_weapon(staff, "Bow_Long")  # arco longo (Archery Set, yd, CC0)
+	_weapon_holder = staff
 	var right_hand := Node3D.new()
 	right_hand.add_child(staff)
 	_model.attach("hand_r", right_hand, POINT_GRIP if knight or ninja else HAND_GRIP, Vector3(0.45, 0.9, 0.15))
@@ -1152,7 +1189,10 @@ func _build_visual() -> void:
 			gem.free()
 	crystal.material_override = _crystal_material
 	# Na ponta da arma (cajado, flecha, lança, adaga) ou na página do livro.
-	crystal.position = Vector3(0, 0.08, 0) if summoner else Vector3(0, staff_mesh.height / 2.0, 0)
+	crystal.position = Vector3(0, 0.32, 0) if summoner else Vector3(0, staff_mesh.height / 2.0, 0)
+	if summoner:
+		crystal.scale = Vector3.ONE * 0.5  # brilho do elemento flutua acima do livro
+	crystal.visible = not ninja  # a bola do elemento não aparece na mão do Ninja: o elemento é a cor da roupa
 	staff.add_child(crystal)
 
 	# Mago: caderno de anotações; Arqueiro: aljava nas costas.
@@ -1179,6 +1219,7 @@ func _build_visual() -> void:
 		_dress_weapon(notebook, "Quiver", Vector3(0, -0.45, 0))
 	# Preso ao peito (acompanha o corpo nas animações).
 	_model.attach("spine_03", notebook, Transform3D(Basis(), notebook.position - CHEST), notebook.position)
+	_backpack = notebook
 
 
 	# Aura do refino: cilindro transparente em volta do herói (sem luz extra).
@@ -1254,17 +1295,16 @@ func _tick_visual(delta: float) -> void:
 		_shown_action = action
 		if action != "":
 			_model.play_action(action.get_slice(":", 0))
-	_model.update_state(speed, alive, mounted, charge_time > 0.15, blocking)
+	_model.update_state(speed, alive, mounted, charge_time > 0.15, blocking, jump_phase > 0.0)
 	if _block_visual:
 		_block_visual.visible = blocking
-	# Aura: +1 brilho fraco nos pés … +5 aura máxima pulsando; cor do elemento de origem.
+	# Aura: +1 brilho fraco nos pés … +5 aura máxima pulsando; amarelo (o elemento é a cor da roupa).
 	_aura.visible = aura_level > 0
 	if aura_level > 0:
 		var pulse := 1.0
 		if aura_level >= 4:
 			pulse = 0.75 + 0.25 * sin(Time.get_ticks_msec() / (180.0 if aura_level == 5 else 320.0))
-		var c := Elements.color(origin_element)
-		_aura_material.albedo_color = Color(c.r, c.g, c.b, 0.07 * aura_level * pulse)
+		_aura_material.albedo_color = Color(1.0, 0.85, 0.2, 0.07 * aura_level * pulse)  # o brilho do rank é amarelo (o elemento é a cor da roupa)
 		var height := 0.2 + 0.4 * aura_level
 		_aura.scale = Vector3(1.0, height / 2.0, 1.0)
 		_aura.position.y = height / 2.0
@@ -1300,6 +1340,7 @@ func _tick_visual(delta: float) -> void:
 	else:
 		_visual.rotation.x = -PI / 2.0
 		_visual.position.y = 0.3
+	_visual.position.y += jump_height()
 	if health < _shown_health:
 		_flash = 0.15
 	if health != _shown_health:
@@ -1331,9 +1372,88 @@ func _tick_visual(delta: float) -> void:
 ## aparece no herói), tingida pela cor do material; a arma também.
 func _update_gear() -> void:
 	_shown_visual = equip_visual.duplicate()
-	_model.set_outfit(equip_visual)
+	_model.suit_element = origin_element
+	if HeroGear.has_gear(class_id, sex):
+		# Os heróis usam os conjuntos por rank (D a S): o rank vem do material de cada peça.
+		var ranks := {}
+		for slot in HeroGear.SLOTS:
+			ranks[slot] = HeroGear.rank_of(String(equip_visual[slot])) if equip_visual.has(slot) else ""
+		HeroGear.apply(_model, class_id, ranks)
+		if ((class_id == "archer" and sex == "female") or (class_id == "mage" and sex == "male")) and _backpack:
+			_backpack.visible = not _model.suit_worn()  # a roupa da Elfa já tem a aljava dela; a do Mago, o livro
+	else:
+		_model.set_outfit(equip_visual)
 	var weapon: String = equip_visual.get("weapon", "wood")
+	_update_book(HeroGear.rank_of(weapon))
+	_update_daggers(HeroGear.rank_of(weapon))
+	_update_shield(HeroGear.rank_of(weapon))
+	_update_sword(HeroGear.rank_of(weapon))
 	_staff_material.albedo_color = Color(GameData.materials.get(weapon, GameData.materials.wood).color)
+
+
+## Livro de feitiço do Invocador (Spell Book Pack, CC BY-SA 3.0): a capa muda com o rank do material
+## da arma, de D a S. Os outros heróis não usam livro.
+func _update_book(rank: String) -> void:
+	if class_id != "summoner" or _weapon_holder == null or rank == _book_rank:
+		return
+	var book := Kit.piece("Book_" + rank)
+	if book == null:
+		return
+	_book_rank = rank
+	var old := _weapon_holder.get_node_or_null("Book")
+	if old:
+		old.free()
+	_weapon_holder.mesh = null
+	book.name = "Book"
+	book.scale = Vector3.ONE * 1.15
+	book.rotation_degrees = Vector3(-70.0, 0.0, 0.0)  # em pé, a capa para a frente
+	_weapon_holder.add_child(book)
+
+
+## Adagas do Ninja (Cethiel's Weapons 3D, CC0): as duas mãos levam a adaga do rank do material da arma, de D a S.
+func _update_daggers(rank: String) -> void:
+	if class_id != "ninja" or _weapon_holder == null or _second_holder == null or rank == _dagger_rank:
+		return
+	if not Kit.has("Dagger_" + rank):
+		return
+	_dagger_rank = rank
+	for holder: MeshInstance3D in [_weapon_holder, _second_holder]:
+		var old: Variant = holder.get_meta("weapon_node", null)
+		if old is Node:
+			(old as Node).free()
+		var dagger := Kit.piece("Dagger_" + rank)
+		holder.mesh = null
+		holder.add_child(dagger)
+		holder.set_meta("weapon_node", dagger)
+
+
+## Escudo do Cavaleiro (sem cavalo): no antebraço esquerdo, com a capa do rank do material da arma (D a S).
+func _update_shield(rank: String) -> void:
+	if class_id != "knight" or rank == _shield_rank or not Kit.has("Shield_" + rank):
+		return
+	_shield_rank = rank
+	if _shield_node:
+		_shield_node.get_parent().free()  # a peça e o BoneAttachment3D que a segurava
+	_shield_node = Kit.piece("Shield_" + rank)
+	# No antebraço esquerdo: a frente do escudo para fora do braço (ajustado a olho na pose de repouso).
+	_model.attach("lowerarm_l", _shield_node, Transform3D(Basis(Vector3.UP, -PI / 2.0).scaled(Vector3.ONE * 1.2), Vector3(0.0, 0.15, 0.08)), Vector3(-0.42, 1.0, 0.15))
+
+
+## Espada do Cavaleiro (Low Poly Swords, Lamoot, CC BY 3.0): uma espada por rank do material da arma, de D a S, no lugar da lança.
+func _update_sword(rank: String) -> void:
+	if class_id != "knight" or _weapon_holder == null or rank == _sword_rank or not Kit.has("Sword_" + rank):
+		return
+	_sword_rank = rank
+	var old: Variant = _weapon_holder.get_meta("weapon_node", null)
+	if old is Node:
+		(old as Node).free()
+	var sword := Kit.piece("Sword_" + rank)
+	_weapon_holder.mesh = null
+	sword.rotation_degrees = Vector3(55.0, 0.0, 0.0)  # a ponta para cima e para a frente, não deitada como a lança
+	# O meio da espada fica na origem: sobe meio comprimento ao longo da lâmina para o punho ficar na mão.
+	sword.position = Vector3(0, -_weapon_holder.position.y + 0.05, 0) + sword.basis * Vector3(0, 0.45, 0)
+	_weapon_holder.add_child(sword)
+	_weapon_holder.set_meta("weapon_node", sword)
 
 
 ## Cavalo placeholder: corpo, pescoço, cabeça e quatro patas.

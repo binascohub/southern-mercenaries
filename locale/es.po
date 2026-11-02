@@ -143,6 +143,9 @@ msgstr "Habilidad final"
 msgid "ACTION_EVADE"
 msgstr "Esquivar"
 
+msgid "ACTION_JUMP"
+msgstr "Saltar"
+
 msgid "ACTION_MOUNT"
 msgstr "Montar / desmontar"
 
@@ -205,12 +208,6 @@ msgstr "Maná"
 
 msgid "POWER_MAGIC"
 msgstr "Poder Mágico"
-
-msgid "MONSTER_SEWER_RAT_NAME"
-msgstr "Rata de cloaca"
-
-msgid "MONSTER_SEWER_RAT_BIG_NAME"
-msgstr "Rata de cloaca hinchada"
 
 msgid "ARENA_PROTOTYPE_NAME"
 msgstr "Sótano de entrenamiento"
@@ -550,6 +547,123 @@ msgstr "Masculino"
 
 msgid "CHAR_SEX_FEMALE"
 msgstr "Femenino"
+
+msgid "CHAR_HAIR_Hair_SimpleParted"
+msgstr "Pelo: partido"
+
+msgid "CHAR_HAIR_Hair_Buzzed"
+msgstr "Pelo: corto"
+
+msgid "CHAR_HAIR_Hair_Long"
+msgstr "Pelo: largo"
+
+msgid "CHAR_HAIR_Hair_Buns"
+msgstr "Pelo: moños"
+
+msgid "CHAR_HAIR_Hair_BuzzedFemale"
+msgstr "Pelo: rapado"
+
+msgid "CHAR_HAIR_Kit_Pixie"
+msgstr "Pelo: pixie"
+
+msgid "CHAR_HAIR_Kit_Bob"
+msgstr "Pelo: bob"
+
+msgid "CHAR_HAIR_Kit_BobBangs"
+msgstr "Pelo: bob con flequillo"
+
+msgid "CHAR_HAIR_Kit_Wavy"
+msgstr "Pelo: largo ondulado"
+
+msgid "CHAR_HAIR_Kit_Ponytail"
+msgstr "Pelo: cola alta"
+
+msgid "CHAR_HAIR_Kit_DoubleBun"
+msgstr "Pelo: moño doble"
+
+msgid "CHAR_HAIR_Kit_AfroPuffs"
+msgstr "Pelo: puffs afro"
+
+msgid "CHAR_HAIR_Kit_MessyBun"
+msgstr "Pelo: moño desordenado"
+
+msgid "CHAR_HAIR_Kit_SpaceBuns"
+msgstr "Pelo: moños laterales"
+
+msgid "CHAR_HAIR_Kit_Braids"
+msgstr "Pelo: trenzas dobles"
+
+msgid "CHAR_HAIR_Kit_Shag"
+msgstr "Pelo: capas con flequillo"
+
+msgid "CHAR_HAIR_Kit_LongStraight"
+msgstr "Pelo: largo liso"
+
+msgid "CHAR_HAIR_NONE"
+msgstr "Pelo: ninguno"
+
+msgid "CHAR_HAIR_COLOR_0"
+msgstr "Color de pelo: negro"
+
+msgid "CHAR_HAIR_COLOR_1"
+msgstr "Color de pelo: castaño oscuro"
+
+msgid "CHAR_HAIR_COLOR_2"
+msgstr "Color de pelo: castaño"
+
+msgid "CHAR_HAIR_COLOR_3"
+msgstr "Color de pelo: pelirrojo"
+
+msgid "CHAR_HAIR_COLOR_4"
+msgstr "Color de pelo: rubio"
+
+msgid "CHAR_HAIR_COLOR_5"
+msgstr "Color de pelo: platino"
+
+msgid "CHAR_HAIR_COLOR_6"
+msgstr "Color de pelo: canoso"
+
+msgid "CHAR_HAIR_COLOR_7"
+msgstr "Color de pelo: blanco"
+
+msgid "CHAR_SKIN_0"
+msgstr "Piel: muy clara"
+
+msgid "CHAR_SKIN_1"
+msgstr "Piel: clara"
+
+msgid "CHAR_SKIN_2"
+msgstr "Piel: morena clara"
+
+msgid "CHAR_SKIN_3"
+msgstr "Piel: morena"
+
+msgid "CHAR_SKIN_4"
+msgstr "Piel: oscura"
+
+msgid "CHAR_SKIN_5"
+msgstr "Piel: muy oscura"
+
+msgid "CHAR_BEARD"
+msgstr "Barba"
+
+msgid "CHAR_GEAR_NONE"
+msgstr "Equipo: inicial"
+
+msgid "CHAR_GEAR_D"
+msgstr "Equipo: rango D"
+
+msgid "CHAR_GEAR_C"
+msgstr "Equipo: rango C"
+
+msgid "CHAR_GEAR_B"
+msgstr "Equipo: rango B"
+
+msgid "CHAR_GEAR_A"
+msgstr "Equipo: rango A"
+
+msgid "CHAR_GEAR_S"
+msgstr "Equipo: rango S"
 
 msgid "CHAR_ENTRY"
 msgstr "{name} — {class} de {element}, nivel {level}"
@@ -1246,10 +1360,10 @@ msgid "SKILL_SCATTER_ESCAPE_DESC"
 msgstr "Te deshaces en una bandada, atraviesas enemigos y reapareces hasta 7 m adelante; tus animales provocan a los enemigos cercanos 2 s. Recarga -1 s por rango."
 
 msgid "SKILL_GUARDIAN_BEAR_NAME"
-msgstr "Oso Guardián"
+msgstr "Gorila Guardián"
 
 msgid "SKILL_GUARDIAN_BEAR_DESC"
-msgstr "Un oso amigo con el 150% de tu vida provoca y retiene a los enemigos durante 15 s; solo uno a la vez."
+msgstr "Un gorila amigo con el 150% de tu vida provoca y retiene a los enemigos durante 15 s; solo uno a la vez."
 
 msgid "SKILL_STAMPEDE_NAME"
 msgstr "Estampida"
@@ -1354,19 +1468,19 @@ msgid "ITEM_TYPE_BOOK"
 msgstr "Libro"
 
 msgid "COMPANION_FOX"
-msgstr "Zorro de fuego"
+msgstr "Fénix"
 
 msgid "COMPANION_OTTER"
-msgstr "Nutria"
+msgstr "Cocodrilo de agua"
 
 msgid "COMPANION_FALCON"
-msgstr "Halcón"
+msgstr "Águila del aire"
 
 msgid "COMPANION_BOAR"
 msgstr "Jabalí"
 
 msgid "COMPANION_BEAR"
-msgstr "Oso guardián"
+msgstr "Gorila guardián"
 
 msgid "SKILL_LANCE_THRUST_NAME"
 msgstr "Estocada"
@@ -1579,7 +1693,7 @@ msgid "DLG_OLD_DRUNK_3"
 msgstr "Años después, la gente de aquí envenenó y quemó a las ratas de allí... pero se olvidaron de la madre."
 
 msgid "DLG_OLD_DRUNK_4"
-msgstr "Dicen que la Reina de las Ratas hizo un pacto con un demonio, creció como una carreta y ahora duerme sobre el tesoro, con la corona del rey en la cabeza."
+msgstr "Dicen que el alquimista del rey, olvidado allá abajo, hizo un pacto con un demonio, le salieron ocho patas de araña y ahora duerme sobre el tesoro, con la corona del rey guardada en la capa."
 
 msgid "DLG_OLD_DRUNK_5"
 msgstr "¡Si buscáis tesoro, estáis encima de uno! Solo llevad fuego. Ella ya sabe lo que es el fuego, y lo odia."
@@ -1594,7 +1708,7 @@ msgid "DLG_KEEPER_1"
 msgstr "Sentaos, descansad. En Tortuga nadie pregunta de dónde viene el oro, solo si paga."
 
 msgid "DLG_BARD_QUEEN_1"
-msgstr "La Reina de las Ratas fue solo una madre, cuidando de sus crías en la oscuridad."
+msgstr "El Hechicero Araña fue el alquimista del rey, dejado en la oscuridad para guardar el tesoro."
 
 msgid "DLG_BARD_QUEEN_2"
 msgstr "Ahora la tierra corre por sus venas, y la tierra teme al fuego: recordad la canción."
@@ -1621,7 +1735,7 @@ msgid "QUEST_SEWER_TREASURE"
 msgstr "El tesoro bajo la ciudad"
 
 msgid "QUEST_SEWER_TREASURE_DESC"
-msgstr "Baja por la rejilla de la cloaca, derrota a la Reina de las Ratas y toma el tesoro perdido de la guerra. Las ratas son de Tierra: temen al Fuego."
+msgstr "Baja por la rejilla de la cloaca, derrota al Hechicero Araña y toma el tesoro perdido de la guerra. Las ratas son de Tierra: temen al Fuego."
 
 msgid "AREA_TORTUGA"
 msgstr "Tortuga"
@@ -1733,6 +1847,21 @@ msgstr "Brujo"
 
 msgid "DLG_VOODOO_1"
 msgstr "El otro lado también tiene precio, amigo. Dime dónde te quedaste y te dibujo el camino de vuelta."
+
+msgid "NPC_PRIEST"
+msgstr "Padre"
+
+msgid "DLG_PRIEST_1"
+msgstr "Que la luz del reino guíe tus pasos, mercenario. Aquí, en la Capital, hasta los pecadores tienen un banco en la iglesia."
+
+msgid "DLG_PRIEST_2"
+msgstr "La guerra pasó, pero los muertos aún piden oración. Si vuelves vivo del camino, enciende una vela por quienes no volvieron."
+
+msgid "NPC_CASTLE_GUARD"
+msgstr "Centinela del Castillo"
+
+msgid "DLG_CASTLE_GUARD_1"
+msgstr "El castillo es solo para quien tiene asuntos con la Corona. Un mercenario que bebió de más puede esperar en la plaza."
 
 msgid "DLG_SERVICE_PORTALS"
 msgstr "Portales"
@@ -1873,19 +2002,19 @@ msgid "DLG_SERVICE_BESTIARY"
 msgstr "Bestiario"
 
 msgid "BEAST_PLAGUE_RAT"
-msgstr "Rata Pestilente"
+msgstr "Sapo Pestilente"
 
 msgid "BEAST_PLAGUE_RAT_LEGEND"
-msgstr "En la Europa medieval las ratas quedaron ligadas a la Peste Negra: sus pulgas propagaron la peste que mató a buena parte de la población. Aquí son las crías de la Reina de las Ratas, contaminadas por su pacto con el demonio: más grandes, de ojos rojos, atacan en enjambres."
+msgstr "En la Europa medieval las ratas quedaron ligadas a la Peste Negra: sus pulgas propagaron la peste que mató a buena parte de la población. Aquí son los familiares del Hechicero Araña, contaminados por su pacto con el demonio: más grandes, de ojos rojos, atacan en enjambres."
 
 msgid "BEAST_PLAGUE_RAT_HINT"
 msgstr "Una rata es una rata: le teme al fuego. Llevad una antorcha... o un mago que sepa encenderla."
 
 msgid "BEAST_MUTANT_RAT"
-msgstr "Rata Mutante"
+msgstr "Sapo Mutante"
 
 msgid "BEAST_MUTANT_RAT_LEGEND"
-msgstr "La misma superstición de la peste; en las ciudades portuarias abundan historias de ratas del tamaño de perros en los sótanos. Son las crías mayores de la Reina, del tamaño de un perro de caza."
+msgstr "La misma superstición de la peste; en las ciudades portuarias abundan historias de ratas del tamaño de perros en los sótanos. Son las ratas mayores del Hechicero, del tamaño de un perro de caza."
 
 msgid "BEAST_MUTANT_RAT_HINT"
 msgstr "Hay ratas allá abajo del tamaño de un perro. Quémalas y huyen."
@@ -1918,7 +2047,7 @@ msgid "BEAST_SEWER_GATOR_HINT"
 msgstr "Si el agua burbujea, aléjate. Vive en el fondo del canal. Un rayo en el agua y sube panza arriba."
 
 msgid "BEAST_DEMON_RAT_QUEEN"
-msgstr "Reina de las Ratas"
+msgstr "Hechicero Araña"
 
 msgid "BEAST_DEMON_RAT_QUEEN_LEGEND"
 msgstr "En el folclore alemán, un 'rey de las ratas' es un nudo de ratas atadas por la cola, presagio de peste. Aquí era la madre de todas las ratas de la cloaca; cuando Tortuga envenenó y quemó a sus crías, pactó con un demonio, creció como una carreta y anida sobre el tesoro perdido de la guerra, con la corona del rey caído."
@@ -2174,10 +2303,13 @@ msgid "TIP_MOVE_PAD"
 msgstr "Muévete con el stick izquierdo y apunta con el derecho."
 
 msgid "MONSTER_PLAGUE_RAT"
-msgstr "Rata Pestilente"
+msgstr "Sapo Pestilente"
 
 msgid "MONSTER_MUTANT_RAT"
-msgstr "Rata Mutante"
+msgstr "Sapo Mutante"
+
+msgid "MONSTER_FUNGUS_UNCLE"
+msgstr "Tío Hongo"
 
 msgid "MONSTER_PLAGUE_BAT"
 msgstr "Murciélago Pestilente"
@@ -2185,8 +2317,8 @@ msgstr "Murciélago Pestilente"
 msgid "MONSTER_VENOM_SCORPION"
 msgstr "Escorpión Venenoso"
 
-msgid "MONSTER_GOLDEN_LIZARD"
-msgstr "Lagarto Dorado"
+msgid "MONSTER_GOLDEN_RABBIT"
+msgstr "Conejo Dorado"
 
 msgid "MONSTER_ACID_TOAD"
 msgstr "Sapo Ácido"
@@ -2198,7 +2330,7 @@ msgid "MONSTER_OLD_GATOR"
 msgstr "Caimán Viejo"
 
 msgid "MONSTER_RAT_QUEEN"
-msgstr "Reina de las Ratas"
+msgstr "Hechicero Araña"
 
 msgid "ARENA_SEWERS_DRAINS"
 msgstr "Cloacas — Desagües de la Calle Principal"
@@ -2210,7 +2342,7 @@ msgid "ARENA_SEWERS_WAR_PASSAGE"
 msgstr "Cloacas — Pasaje Secreto de la Guerra"
 
 msgid "ARENA_SEWERS_NEST"
-msgstr "Cloacas — Nido de la Reina"
+msgstr "Cloacas — Guarida del Hechicero"
 
 msgid "PROP_SEWER_DEEPER"
 msgstr "Bajar más hondo"
@@ -2228,7 +2360,7 @@ msgid "SIGN_WAR_CREST_ARCHER"
 msgstr "El escudo de mi reino. Así que por aquí huyó el tesoro de la guerra."
 
 msgid "HUD_VICTORY_SEWERS"
-msgstr "La Reina de las Ratas ha caído."
+msgstr "El Hechicero Araña ha caído."
 
 msgid "HUD_VICTORY_TREASURE"
 msgstr "El Tesoro Perdido de la Guerra está abierto para el grupo."
@@ -2303,7 +2435,7 @@ msgid "RELIC_FALLEN_KING_CROWN"
 msgstr "Corona del Rey Caído"
 
 msgid "RELIC_FALLEN_KING_CROWN_DESC"
-msgstr "La corona torcida que llevaba la Reina de las Ratas. Pesa más de lo que debería."
+msgstr "La corona torcida que llevaba el Hechicero Araña. Pesa más de lo que debería."
 
 msgid "TOAST_RELIC_FOUND"
 msgstr "Reliquia: {relic}"
@@ -2320,6 +2452,15 @@ msgstr "Barril"
 msgid "PROP_POT"
 msgstr "Vasija de Barro"
 
+msgid "PROP_MUG"
+msgstr "Jarra de Cerámica"
+
+msgid "PROP_DEER_BUCK"
+msgstr "Ciervo"
+
+msgid "PROP_DEER_DOE"
+msgstr "Cierva"
+
 msgid "PROP_CRATE"
 msgstr "Cajón"
 
@@ -2331,3 +2472,537 @@ msgstr "Barriles y cajones se rompen con {button}: pueden tener pociones, oro...
 
 msgid "TIP_MAP"
 msgstr "El mapa se revela a medida que exploras. {button} lo amplía."
+
+msgid "ARENA_FOREST"
+msgstr "Bosque"
+
+msgid "ARENA_RUINS"
+msgstr "Ruinas de la Ciudad"
+
+msgid "ARENA_CEMETERY"
+msgstr "Cementerio"
+
+msgid "ARENA_FORT"
+msgstr "Fuerte"
+
+msgid "PROP_TO_FOREST"
+msgstr "Sendero al Bosque"
+
+msgid "PROP_TO_RUINS"
+msgstr "Camino a las Ruinas"
+
+msgid "PROP_TO_CEMETERY"
+msgstr "Portón del Cementerio"
+
+msgid "PROP_TO_FORT"
+msgstr "Camino al Fuerte"
+
+msgid "MONSTER_LESHY"
+msgstr "Leshy"
+
+msgid "MONSTER_GOLEM_FIRE"
+msgstr "Gólem de Fuego"
+
+msgid "MONSTER_GOLEM_ICE"
+msgstr "Gólem de Hielo"
+
+msgid "MONSTER_GOLEM_STONE"
+msgstr "Gólem de Piedra"
+
+msgid "MONSTER_FOREST_REPTILE"
+msgstr "Reptil del Bosque"
+
+msgid "MONSTER_RUIN_WARDEN"
+msgstr "Guardián de la Cámara"
+
+msgid "MONSTER_CRYPT_SCORPION"
+msgstr "Ogro de la Cripta"
+
+msgid "MONSTER_CRYPT_LORD"
+msgstr "Señor de la Cripta"
+
+msgid "MONSTER_FORT_COMMANDER"
+msgstr "Comandante Maldito"
+
+msgid "MONSTER_DARK_ELF"
+msgstr "Elfo Oscuro"
+
+msgid "MONSTER_NIGHT_DEMON"
+msgstr "Demonio de la Noche"
+
+msgid "MONSTER_SUCCUBUS"
+msgstr "Súcubo"
+
+msgid "MONSTER_SKELETON"
+msgstr "Esqueleto"
+
+msgid "MONSTER_ZOMBIE"
+msgstr "Zombi Delgado"
+
+msgid "MONSTER_GOBLIN"
+msgstr "Goblin"
+
+msgid "MONSTER_TROLL"
+msgstr "Troll Flaco"
+
+msgid "NPC_LIGHTPOST_STATUE"
+msgstr "Estatua del Farol"
+
+msgid "DLG_STATUE_1"
+msgstr "Hace mucho que nadie cruza este suelo sin temblar. Yo sostengo la luz de los que duermen aquí."
+
+msgid "DLG_STATUE_2"
+msgstr "El farol no está para guiar a los vivos. Vigila a quienes se acuestan y no quieren volver a levantarse."
+
+msgid "DLG_STATUE_3"
+msgstr "Pero pisaste mi plaza y me miraste a los ojos. Que el guardián de la tumba decida si mereces pasar."
+
+msgid "TOAST_STATUE_AWAKENS"
+msgstr "La tierra tiembla: ¡el Guardián de la Tumba despierta!"
+
+msgid "MONSTER_TOMB_GUARDIAN"
+msgstr "Guardián de la Tumba"
+
+msgid "ARENA_DARK_FOREST"
+msgstr "Bosque Oscuro"
+
+msgid "PROP_TO_DARK_FOREST"
+msgstr "Sendero al Bosque Oscuro"
+
+msgid "ARENA_CAPITAL"
+msgstr "Capital Real — Aurenhold"
+
+msgid "PROP_TO_CAPITAL"
+msgstr "Portal de la Capital Real"
+
+msgid "ARENA_FARM"
+msgstr "Granja"
+
+msgid "PROP_TO_FARM"
+msgstr "Camino a la granja"
+
+msgid "NPC_VILLAGE_HUNTER"
+msgstr "Bertram el Cazador"
+
+msgid "NPC_VILLAGE_WIFE"
+msgstr "Elara la Curtidora"
+
+msgid "NPC_ELF_ARCHER"
+msgstr "Aeliana la Exploradora"
+
+msgid "DLG_ARCHER_1"
+msgstr "Alto. Pisad con cuidado: hacéis demasiado ruido para quien quiere seguir vivo. Soy Aeliana; vigilo este bosque desde antes de que Ferncroft tuviera nombre."
+
+msgid "DLG_ARCHER_2"
+msgstr "El Leshy duerme al fondo de la arboleda, bajo el árbol anciano. Corteza, piedra y furia. Cada flecha mía solo alimenta su musgo."
+
+msgid "DLG_ARCHER_3"
+msgstr "Abatidlo y el bosque volverá a respirar. El Fuego es lo único que teme esa corteza vieja. Hacedlo y os lo pagaré bien."
+
+msgid "DLG_ARCHER_ACTIVE"
+msgstr "Seguid el sendero de piedras hasta el final de la arboleda. El Leshy embiste desde lejos: no os quedéis quietos. Quemadlo."
+
+msgid "DLG_ARCHER_DONE"
+msgstr "La arboleda está en silencio. Sentí suspirar al árbol anciano. Gracias, viajeros: el bosque recuerda a sus amigos."
+
+msgid "QUEST_FOREST_LESHY"
+msgstr "El Anciano de la Arboleda"
+
+msgid "QUEST_FOREST_LESHY_DESC"
+msgstr "Aeliana la Exploradora te pide que mates al Leshy, el gigante de corteza y piedra que guarda el árbol anciano. Es de Tierra: teme al Fuego."
+
+msgid "DLG_HUNTER_1"
+msgstr "¡Forasteros! Cuidado con el seto al salir: el bosque ya no es el de antes. Soy Bertram. Elara y yo somos lo que queda de Ferncroft."
+
+msgid "DLG_HUNTER_2"
+msgstr "Algo se arrastra desde la oscuridad del bosque: flaco, verde, todo garras. Tres de ellos se llevaron mi último ciervo y el resto de mi paciencia."
+
+msgid "DLG_HUNTER_3"
+msgstr "Acaben con ellos y pagaré lo que pueda. Son criaturas de Tierra: odian el Fuego."
+
+msgid "DLG_HUNTER_ACTIVE"
+msgstr "Tres de ellos, en el bosque, más allá de las piedras. Fuego, recuerden. Fuego."
+
+msgid "DLG_HUNTER_DONE"
+msgstr "¡Silencio, por fin! Los ciervos están volviendo. Si quieren más, hablen con el Ermitaño y la Guardiana, en las plazas."
+
+msgid "DLG_WIFE_1"
+msgstr "No se fijen en el olor, son las pieles. Soy Elara. Bertram dice que ustedes se enfrentan a lo que los cazadores no pueden."
+
+msgid "DLG_WIFE_2"
+msgstr "En este bosque han empezado a caminar las piedras, pisoteando donde estaban nuestros senderos. Mis tendederos, mis peces… todo. Quienes saben despertar y domar esas cosas son el Ermitaño de la Piedra y la Guardiana de la Pira, en las plazas del sendero."
+
+msgid "DLG_WIFE_3"
+msgstr "Hablen con ellos, y vuelvan enteros. Lo que hay dentro de las grutas (sapos, murciélagos, reptiles y bestias) tampoco es de broma."
+
+msgid "DLG_WIFE_ACTIVE"
+msgstr "Piedra y fuego duermen en las plazas: hablen con el Ermitaño y con la Guardiana. El de hielo, al este."
+
+msgid "DLG_WIFE_DONE"
+msgstr "El bosque vuelve a respirar. Ferncroft se lo agradece: llévense lo que ahorramos."
+
+msgid "QUEST_FOREST_REPTILES"
+msgstr "Acechadores del bosque"
+
+msgid "QUEST_FOREST_REPTILES_DESC"
+msgstr "Bertram el Cazador pide que acaben con la manada de Reptiles del Bosque. Son de Tierra: temen el Fuego."
+
+msgid "QUEST_FOREST_GOLEMS"
+msgstr "Piedras que caminan"
+
+msgid "QUEST_FOREST_GOLEMS_DESC"
+msgstr "Elara la Curtidora pide que derroten a los Gólems de Piedra, Hielo y Fuego del Bosque: los de piedra y fuego duermen en las plazas y solo despiertan cuando el Ermitaño y la Guardiana los llaman."
+
+msgid "PROP_VILLAGE_SIGN"
+msgstr "Ferncroft"
+
+msgid "PROP_VILLAGE_SIGN_TEXT"
+msgstr "Ferncroft: media docena de casas, un cazador y una curtidora. Los forasteros son bienvenidos."
+
+msgid "HUD_QUEST_PLAIN"
+msgstr "Misión: {quest}"
+
+msgid "PROP_COIN_BAG"
+msgstr "Bolsa de monedas"
+
+msgid "ARENA_MINE"
+msgstr "Mina de Cristales"
+
+msgid "PROP_TO_MINE"
+msgstr "Camino a la mina"
+
+msgid "MONSTER_CRYSTAL_GOLEM"
+msgstr "Gólem de Cristal"
+
+msgid "ARENA_DOCKS"
+msgstr "Muelles"
+
+msgid "PROP_TO_DOCKS"
+msgstr "Pasarela a los Muelles"
+
+msgid "PROP_TO_PORT"
+msgstr "Volver al puerto"
+
+msgid "MONSTER_CHITIN_BEAST"
+msgstr "Bestia Quitinosa"
+
+msgid "MONSTER_ANGLER"
+msgstr "Anglerman"
+
+msgid "MONSTER_STALKER"
+msgstr "Acechador"
+
+msgid "VALUABLE_HUMAN_HEART"
+msgstr "Corazón Humano"
+
+msgid "VALUABLE_OLD_SKULL"
+msgstr "Cráneo Antiguo"
+
+msgid "QUEST_ROYAL_HEART"
+msgstr "El corazón del rey caído"
+
+msgid "QUEST_ROYAL_HEART_DESC"
+msgstr "El Padre de la Capital quiere dar descanso al último rey de Veldmark. El Señor de la Cripta, en el Cementerio, guarda su corazón: derrótalo y lleva el Corazón Humano al Padre."
+
+msgid "QUEST_ROYAL_SKULL"
+msgstr "El cráneo del rey caído"
+
+msgid "QUEST_ROYAL_SKULL_DESC"
+msgstr "El Comandante del Fuerte lleva el cráneo del último rey de Veldmark. Derrótalo y entrega el Cráneo Antiguo al Padre."
+
+msgid "DLG_PRIEST_HEART_1"
+msgstr "Han andado por las tierras de Veldmark, ¿verdad? Allí desenterraron al último rey del reino derrotado: los demonios de Lucifer se llevaron el cuerpo pieza a pieza."
+
+msgid "DLG_PRIEST_HEART_2"
+msgstr "Lo combatí en vida, pero ningún hombre merece eso. El Señor de la Cripta guarda su corazón en el Cementerio. Tráiganme el corazón y la Iglesia paga en oro."
+
+msgid "DLG_PRIEST_HEART_ACTIVE"
+msgstr "Traigan el Corazón Humano que guarda el Señor de la Cripta en el Cementerio. Cuando lo tengan, solo entréguenlo."
+
+msgid "DLG_PRIEST_SKULL_1"
+msgstr "El corazón y los pulmones ya descansan. Falta el cráneo: el Comandante maldito del Fuerte lo lleva como trofeo para Lucifer."
+
+msgid "DLG_PRIEST_SKULL_2"
+msgstr "Traigan el Cráneo Antiguo y el rey tendrá una tumba completa. La Iglesia paga bien por ello."
+
+msgid "DLG_PRIEST_SKULL_ACTIVE"
+msgstr "El Cráneo Antiguo está con el Comandante del Fuerte. Entréguenmelo cuando lo tengan."
+
+msgid "DLG_PRIEST_DONE"
+msgstr "El rey de Veldmark descansa, entero, gracias a ustedes. Que la luz guíe sus pasos, mercenarios."
+
+msgid "DLG_SERVICE_TURN_IN"
+msgstr "Entregar la reliquia"
+
+msgid "TOAST_NEED_QUEST_ITEM"
+msgstr "Falta: {item}"
+
+msgid "MONSTER_FROG_KING"
+msgstr "Rey de los Sapos"
+
+msgid "MONSTER_VIPER_QUEEN"
+msgstr "Reina de las Víboras"
+
+msgid "MONSTER_RUIN_ALPHA"
+msgstr "Alfa de la Manada"
+
+msgid "MONSTER_SUCCUBUS_QUEEN"
+msgstr "Reina de las Súcubos"
+
+msgid "MONSTER_TROLL_CHIEF"
+msgstr "Jefe Troll"
+
+msgid "NPC_COURT_JESTER"
+msgstr "Bufón de la Corte"
+
+msgid "DLG_JESTER_1"
+msgstr "¡Ah, los famosos mercenarios de Tortuga! Qué honor, qué honor…"
+
+msgid "DLG_JESTER_2"
+msgstr "(baja la voz) Nadie presta atención a un bufón — y por eso lo oigo todo."
+
+msgid "DLG_JESTER_3"
+msgstr "El oro del rey desaparece de las arcas y nadie en el castillo lo nota. Vuelvan cuando estén listos: sé dónde mirar."
+
+msgid "ARENA_BUNKER"
+msgstr "Búnker"
+
+msgid "PROP_TO_BUNKER"
+msgstr "Entrada del búnker"
+
+msgid "PROP_RETURN_FARM"
+msgstr "Volver a la granja"
+
+msgid "VALUABLE_WILD_MEAT"
+msgstr "Carne Salvaje"
+
+msgid "QUEST_ROYAL_BANQUET"
+msgstr "El banquete del rey"
+
+msgid "QUEST_ROYAL_BANQUET_DESC"
+msgstr "El Bufón de la Corte quiere carne en la mesa del rey. El Alfa de la Manada, en las Ruinas, tiene la mejor: derrótalo y lleva la Carne Salvaje al Bufón."
+
+msgid "DLG_JESTER_BANQUET_1"
+msgstr "Miren esta mesa: manzanas, bananas… ¡y ni un trozo de carne! El rey anda tan distraído con el oro que desaparece de las arcas que olvidó comer como un rey."
+
+msgid "DLG_JESTER_BANQUET_2"
+msgstr "El Alfa de la Manada, en las Ruinas, tiene la carne más famosa del reino. Tráiganla y les cuento lo que sé, de bufón a mercenario."
+
+msgid "DLG_JESTER_BANQUET_ACTIVE"
+msgstr "La Carne Salvaje está con el Alfa de la Manada, en las Ruinas. ¡La mesa del rey espera, y yo también!"
+
+msgid "DLG_JESTER_BANQUET_DONE"
+msgstr "¡Qué banquete, qué banquete! El rey comió como nunca. Tienen un amigo en el castillo."
+
+msgid "MONSTER_LUCIFER"
+msgstr "Lucifer"
+
+msgid "NPC_RUINS_SPARTAN"
+msgstr "Leónidas, el Veterano"
+
+msgid "DLG_SPARTAN_1"
+msgstr "Alto, forasteros. Soy Leónidas. Guardo esta entrada desde que la guerra derribó las murallas, y nadie pasa sin que yo sepa por qué."
+
+msgid "DLG_SPARTAN_2"
+msgstr "Los goblins llegaron después del fuego, como ratas tras las sobras. Merodean en dos bandas: una por las calles del este y otra al fondo, cerca de la cámara."
+
+msgid "DLG_SPARTAN_3"
+msgstr "Son rápidos y frágiles, pero atacan en masa. Nacen de la tierra: el Fuego los derriba. Limpien las calles y pagaré en oro."
+
+msgid "DLG_SPARTAN_ACTIVE"
+msgstr "Los goblins aún merodean por las calles: una banda al este, otra cerca de la cámara. Manténganse juntos y usen Fuego."
+
+msgid "DLG_SPARTAN_DONE"
+msgstr "Silencio en las calles por primera vez en años. Tienen el agradecimiento de un viejo soldado. Que los dioses guarden sus escudos."
+
+msgid "QUEST_RUINS_GOBLINS"
+msgstr "Plaga de Goblins"
+
+msgid "QUEST_RUINS_GOBLINS_DESC"
+msgstr "Leónidas, el Veterano, te pide que derrotes a las dos bandas de goblins que infestan las calles de las Ruinas. Son de Tierra: temen el Fuego."
+
+msgid "PROP_BASKET"
+msgstr "Cesta"
+
+msgid "NPC_FOREST_HERMIT"
+msgstr "Ermitaño de la Piedra"
+
+msgid "NPC_FOREST_PYRE_KEEPER"
+msgstr "Guardiana de la Pira"
+
+msgid "DLG_HERMIT_1"
+msgstr "Llevo décadas cuidando esta plaza. Las piedras me lo cuentan todo, y hoy hablan de ustedes: forasteros con ganas de pelea."
+
+msgid "DLG_HERMIT_2"
+msgstr "Bajo estas losas duerme el Gólem de Piedra, el viejo guardián del bosque. Solo despierta cuando alguien lo pide, y yo sé cómo pedirlo."
+
+msgid "DLG_HERMIT_3"
+msgstr "Retrocedan al borde de la plaza… lo llamo ahora. Es de Tierra: teme al Fuego."
+
+msgid "DLG_PYRE_1"
+msgstr "La pira nunca se apaga, forasteros. La alimento desde que el Bosque era verde de verdad."
+
+msgid "DLG_PYRE_2"
+msgstr "En el corazón de las brasas duerme el Gólem de Fuego. Me escucha cuando canto, y responde con puños de lava."
+
+msgid "DLG_PYRE_3"
+msgstr "Si quieren enfrentarlo, prepárense: las brasas ya se mueven…"
+
+msgid "TOAST_HERMIT_AWAKENS"
+msgstr "La tierra se abre: ¡el Gólem de Piedra despierta!"
+
+msgid "TOAST_PYRE_AWAKENS"
+msgstr "Las brasas rugen: ¡el Gólem de Fuego despierta!"
+
+msgid "PROP_MINIBOSS_CHEST"
+msgstr "Cofre del minijefe"
+
+msgid "TOAST_MINIBOSS_CHEST"
+msgstr "¡El minijefe dejó un cofre!"
+
+msgid "MONSTER_DARK_ELF_LORD"
+msgstr "Señor Elfo Oscuro"
+
+msgid "NPC_FORT_PENITENT"
+msgstr "La Penitente"
+
+msgid "DLG_PENITENT_1"
+msgstr "Serví a la Reina de las Súcubos un día. Ahora me arrodillo en este pasillo y lo pago."
+
+msgid "DLG_PENITENT_2"
+msgstr "Ella duerme en el salón tras ese arco y no despierta si nadie la llama por su nombre. Yo lo conozco."
+
+msgid "DLG_PENITENT_3"
+msgstr "Atrás… la llamo ahora. El Fuego es su sangre: traigan Agua, o traigan suerte."
+
+msgid "TOAST_PENITENT_AWAKENS"
+msgstr "El arco brilla: ¡la Reina de las Súcubos despierta!"
+
+msgid "NPC_FORT_EXILE"
+msgstr "El Exiliado"
+
+msgid "DLG_EXILE_1"
+msgstr "Me expulsaron por cuestionar al Comandante. Espero en este pasillo desde entonces."
+
+msgid "DLG_EXILE_2"
+msgstr "Más allá está el Señor Elfo Oscuro, capitán de los ballesteros. Guarda el camino del sur y no deja pasar a nadie."
+
+msgid "DLG_EXILE_3"
+msgstr "No se detengan mientras recarga, y que nada se interponga entre ustedes y la puerta del Comandante. Yo lo despierto."
+
+msgid "TOAST_EXILE_AWAKENS"
+msgstr "Suena un cuerno: ¡el Señor Elfo Oscuro despierta!"
+
+msgid "QUEST_FOREST_STONE"
+msgstr "El guardián de piedra"
+
+msgid "QUEST_FOREST_STONE_DESC"
+msgstr "El Ermitaño de la Piedra pide que derroten al Gólem de Piedra que despierta en la plaza. Es de Tierra: teme al Fuego."
+
+msgid "QUEST_FOREST_FIRE"
+msgstr "El corazón de la pira"
+
+msgid "QUEST_FOREST_FIRE_DESC"
+msgstr "La Guardiana de la Pira pide que derroten al Gólem de Fuego que despierta de las brasas de la plaza."
+
+msgid "DLG_HERMIT_ACTIVE"
+msgstr "El viejo guardián aún camina. Derríbenlo, forasteros."
+
+msgid "DLG_HERMIT_DONE"
+msgstr "La piedra volvió a dormir. Lleven su recompensa; las piedras lo agradecen."
+
+msgid "DLG_PYRE_ACTIVE"
+msgstr "Las brasas aún rugen. Acaben con él, forasteros."
+
+msgid "DLG_PYRE_DONE"
+msgstr "La pira arde mansa otra vez. Lleven lo que les debo."
+
+msgid "VALUABLE_HUMAN_LUNGS"
+msgstr "Pulmones Humanos"
+
+msgid "QUEST_ROYAL_LUNGS"
+msgstr "Los pulmones del rey caído"
+
+msgid "QUEST_ROYAL_LUNGS_DESC"
+msgstr "El Ogro de la Cripta, en el Cementerio, guarda los pulmones del último rey de Veldmark: derrótalo y lleva los Pulmones Humanos al Padre."
+
+msgid "DLG_PRIEST_LUNGS_1"
+msgstr "El corazón ya descansa, pero el rey aún no respira en paz: los pulmones terminaron con el Ogro de la Cripta, en el mismo Cementerio."
+
+msgid "DLG_PRIEST_LUNGS_2"
+msgstr "Es grande y bruto, pero solo guarda lo que le ordenaron. Traigan los pulmones y la Iglesia vuelve a pagar."
+
+msgid "DLG_PRIEST_LUNGS_ACTIVE"
+msgstr "Los Pulmones Humanos están con el Ogro de la Cripta, en el Cementerio. Entréguenmelos cuando los tengan."
+
+msgid "VALUABLE_ROYAL_SOUL"
+msgstr "Alma del Rey"
+
+msgid "QUEST_ROYAL_SOUL"
+msgstr "El alma del rey caído"
+
+msgid "QUEST_ROYAL_SOUL_DESC"
+msgstr "El Guardián de la Tumba atrapó el alma del último rey de Veldmark. Derrótalo, en la Mina o en el Cementerio, y lleva el Alma del Rey al Padre."
+
+msgid "DLG_PRIEST_SOUL_1"
+msgstr "El cuerpo está entero, pero el rey aún no descansa: su alma, un fantasmita que se ríe de su mala suerte, fue atrapada por el Guardián de la Tumba."
+
+msgid "DLG_PRIEST_SOUL_2"
+msgstr "Vaga entre la Mina y el Cementerio, donde la estatua lo despierta. Traigan el alma y la Iglesia da el último pago."
+
+msgid "DLG_PRIEST_SOUL_ACTIVE"
+msgstr "El Alma del Rey está con el Guardián de la Tumba, en la Mina o en el Cementerio. Entréguenmela cuando la tengan."
+
+msgid "ARENA_DESERT"
+msgstr "Desierto — Cañón"
+
+msgid "PROP_TO_DESERT"
+msgstr "Camino al Desierto"
+
+msgid "MONSTER_SAND_LAMASSU"
+msgstr "Lamasu de la Arena"
+
+msgid "MONSTER_QUEEN_SCORPION"
+msgstr "Reina Escorpión"
+
+msgid "NPC_SEATED_PIRATE"
+msgstr "Capitán Pirata"
+
+msgid "DLG_PIRATE_1"
+msgstr "Siéntate, mercenario. ¿Ves ese muelle de afuera, en los Muelles? Antes era mío: ahora solo hay sapos, murciélagos y rapes feos."
+
+msgid "DLG_PIRATE_2"
+msgstr "Mi barco atraca ahí y no puedo descargar un barril sin perder un dedo. Limpia el muelle por mí."
+
+msgid "DLG_PIRATE_3"
+msgstr "Mata a todas las criaturas de los Muelles: sapos, sapos feos, murciélagos y los rapes. Pago en oro y en ron… más en oro."
+
+msgid "DLG_PIRATE_ACTIVE"
+msgstr "Aún quedan bichos en el muelle. Vuelve cuando el último esté flotando."
+
+msgid "DLG_PIRATE_DONE"
+msgstr "¡El muelle está limpio! Un brindis por el mercenario que no teme mojarse los pies."
+
+msgid "QUEST_DOCKS_SMUGGLERS"
+msgstr "El muelle del Viejo Lobo"
+
+msgid "QUEST_DOCKS_SMUGGLERS_DESC"
+msgstr "El Viejo Lobo de Mar, en la taberna, quiere el muelle de los Muelles libre de bichos: derrota todos los encuentros del mapa de los Muelles."
+
+msgid "NPC_OLD_LADY"
+msgstr "Vieja de la Taberna"
+
+msgid "DLG_OLD_LADY_1"
+msgstr "Siéntense, siéntense. Esta vieja ha visto pasar a mucha gente por esa puerta, y a pocos volver del bosque."
+
+msgid "DLG_OLD_LADY_2"
+msgstr "En el Bosque vive el Leshy, un gigante de corteza y piedra. Es de Tierra: al Fuego es a lo que teme la corteza vieja."
+
+msgid "DLG_OLD_LADY_3"
+msgstr "Derríbenlo y los recompensaré. La guardabosques Aeliana espera en el sendero."
+
+msgid "DLG_OLD_LADY_ACTIVE"
+msgstr "El Leshy duerme en lo hondo del bosque. Lleven Fuego, queridos."
+
+msgid "DLG_OLD_LADY_DONE"
+msgstr "Así que el bosque respira de nuevo. Qué bueno tenerlos aquí."

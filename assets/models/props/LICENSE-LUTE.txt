@@ -1,0 +1,1 @@
+Lute.glb — "Lute" by aerojockey (Snabisch), CC0: https://opengameart.org/content/lute (wood texture adapted from "free 3d platformer houses", also CC0). Converted by tools/assets/build_lute.py.

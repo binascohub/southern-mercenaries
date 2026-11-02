@@ -1,0 +1,2 @@
+Podium.glb — "Podium" by Dm3d / Skorpio, CC-BY-SA 3.0 (also offered under GPL 2.0 / GPL 3.0): https://opengameart.org/content/podium
+Converted from the OBJ by tools/assets/build_podium.py (color map at 512 px, 1.3 m tall).

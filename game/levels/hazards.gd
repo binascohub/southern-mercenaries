@@ -7,7 +7,12 @@ extends Node
 ## poças e tira vida de quem está dentro a cada `hazard_tick`; os visuais vão
 ## para a raiz da área (somem ao trocar de área).
 
-const SLUDGE_COLOR := Color(0.35, 0.6, 0.15, 0.45)
+## Cores da mancha de lodo (centro brilhante, miolo, borda escura) e das bolhas.
+const SLIME_CORE := Color(0.55, 0.78, 0.2, 0.9)
+const SLIME_MID := Color(0.3, 0.52, 0.12, 0.85)
+const SLIME_RIM := Color(0.12, 0.22, 0.06, 0.5)
+const SLIME_BUBBLE := Color(0.72, 0.9, 0.4, 0.75)
+const SLIME_SEGMENTS := 40
 const WARNING_COLOR := Color(0.95, 0.2, 0.1, 0.4)
 
 ## Onde ficam os discos (a raiz da área atual).
@@ -30,7 +35,7 @@ func reset(area: Dictionary) -> void:
 ## Visuais das poças fixas (todos os PCs, ao montar a área).
 func build_static(area: Dictionary) -> void:
 	for hazard: Dictionary in area.get("hazards", []):
-		_disc(Vector3(hazard.position[0], 0, hazard.position[1]), float(hazard.radius), SLUDGE_COLOR, -1.0)
+		_slime(Vector3(hazard.position[0], 0, hazard.position[1]), float(hazard.radius), -1.0)
 
 
 ## Poça temporária (servidor), vista em todos os PCs.
@@ -88,8 +93,8 @@ func _physics_process(delta: float) -> void:
 	var tick: float = GameData.balance.get("hazard_tick", 0.5)
 	_tick = tick
 	for p: Player in get_tree().get_nodes_in_group(&"players"):
-		if not p.alive:
-			continue
+		if not p.alive or p.is_airborne():
+			continue  # no ar, passa por cima das poças
 		for hazard in _list:
 			if _inside(p.global_position, hazard.position, hazard.radius):
 				p.take_damage(hazard.dps * tick, hazard.level, null)
@@ -102,7 +107,7 @@ static func _inside(point: Vector3, center: Vector3, radius: float) -> bool:
 
 @rpc("authority", "call_local", "reliable")
 func _show_sludge(at: Vector3, radius: float, duration: float) -> void:
-	_disc(at, radius, SLUDGE_COLOR, duration)
+	_slime(at, radius, duration)
 
 
 ## Rajada de vento (asas da Rainha): anéis claros que se abrem e somem, e
@@ -161,6 +166,107 @@ func _show_warning(at: Vector3, radius: float, time: float) -> void:
 		# Cresce do centro até o tamanho do golpe: dá para ver quanto tempo falta.
 		disc.scale = Vector3(0.2, 1, 0.2)
 		disc.create_tween().tween_property(disc, "scale", Vector3.ONE, time)
+
+
+## Mancha de lodo mucoso: contorno irregular (sempre dentro do raio do dano), centro
+## brilhante, borda escura e translúcida e algumas bolhas. Cada mancha tem a sua
+## forma (sorteada pela posição, igual em todos os PCs) e "respira" devagar.
+func _slime(at: Vector3, radius: float, duration: float) -> Node3D:
+	if root == null or not is_instance_valid(root):
+		return null
+	var rng := RandomNumberGenerator.new()
+	rng.seed = hash(Vector2i(roundi(at.x * 10.0), roundi(at.z * 10.0)))
+	var phase := [rng.randf() * TAU, rng.randf() * TAU, rng.randf() * TAU]
+	var amount := [rng.randf_range(0.08, 0.14), rng.randf_range(0.04, 0.09), rng.randf_range(0.02, 0.05)]
+	var tool := SurfaceTool.new()
+	tool.begin(Mesh.PRIMITIVE_TRIANGLES)
+	tool.set_normal(Vector3.UP)
+	# Aneis: centro, miolo e borda; o contorno ondula com o ângulo.
+	var ring_scale := [0.0, 0.62, 1.0]
+	var ring_color := [SLIME_CORE, SLIME_MID, SLIME_RIM]
+	var rings: Array[PackedVector3Array] = []
+	for r in 3:
+		var ring := PackedVector3Array()
+		for i in SLIME_SEGMENTS:
+			var angle := TAU * i / SLIME_SEGMENTS
+			var wobble := 1.0 - 0.12 + float(amount[0]) * sin(3.0 * angle + float(phase[0])) \
+				+ float(amount[1]) * sin(5.0 * angle + float(phase[1])) + float(amount[2]) * sin(9.0 * angle + float(phase[2]))
+			var reach := radius * float(ring_scale[r]) * clampf(wobble, 0.6, 1.0)
+			ring.append(Vector3(cos(angle) * reach, 0, sin(angle) * reach))
+		rings.append(ring)
+	for i in SLIME_SEGMENTS:
+		var j := (i + 1) % SLIME_SEGMENTS
+		# Centro -> miolo.
+		tool.set_color(ring_color[0])
+		tool.add_vertex(Vector3.ZERO)
+		tool.set_color(ring_color[1])
+		tool.add_vertex(rings[1][j])
+		tool.add_vertex(rings[1][i])
+		# Miolo -> borda (dois triângulos por fatia).
+		tool.set_color(ring_color[1])
+		tool.add_vertex(rings[1][i])
+		tool.add_vertex(rings[1][j])
+		tool.set_color(ring_color[2])
+		tool.add_vertex(rings[2][j])
+		tool.set_color(ring_color[1])
+		tool.add_vertex(rings[1][i])
+		tool.set_color(ring_color[2])
+		tool.add_vertex(rings[2][j])
+		tool.add_vertex(rings[2][i])
+	var holder := Node3D.new()
+	var stain := MeshInstance3D.new()
+	stain.mesh = tool.commit()
+	var material := StandardMaterial3D.new()
+	material.vertex_color_use_as_albedo = true
+	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	material.cull_mode = BaseMaterial3D.CULL_DISABLED
+	material.roughness = 0.12
+	material.metallic_specular = 0.9
+	material.emission_enabled = true
+	material.emission = Color(0.18, 0.32, 0.05)
+	material.emission_energy_multiplier = 0.5
+	stain.material_override = material
+	stain.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	holder.add_child(stain)
+	# Bolhas brilhantes dentro da mancha.
+	var bubble_material := StandardMaterial3D.new()
+	bubble_material.albedo_color = SLIME_BUBBLE
+	bubble_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	bubble_material.roughness = 0.05
+	bubble_material.metallic_specular = 1.0
+	bubble_material.emission_enabled = true
+	bubble_material.emission = Color(0.3, 0.5, 0.1)
+	bubble_material.emission_energy_multiplier = 0.4
+	var bubble_count := clampi(roundi(radius * 2.2), 3, 9)
+	for i in bubble_count:
+		var bubble := MeshInstance3D.new()
+		var sphere := SphereMesh.new()
+		var size := radius * rng.randf_range(0.05, 0.13)
+		sphere.radius = size
+		sphere.height = size * 1.4
+		sphere.radial_segments = 10
+		sphere.rings = 6
+		bubble.mesh = sphere
+		bubble.material_override = bubble_material
+		bubble.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		var angle := rng.randf() * TAU
+		var reach := radius * sqrt(rng.randf()) * 0.6
+		bubble.position = Vector3(cos(angle) * reach, size * 0.3, sin(angle) * reach)
+		holder.add_child(bubble)
+	root.add_child(holder)
+	holder.position = Vector3(at.x, 0.04, at.z)
+	holder.rotation.y = rng.randf() * TAU
+	# Respira devagar (a borda parece escorrer).
+	var breathe := holder.create_tween().set_loops()
+	breathe.tween_property(stain, "scale", Vector3(1.03, 1.0, 1.03), 1.6 + rng.randf()).set_trans(Tween.TRANS_SINE)
+	breathe.tween_property(stain, "scale", Vector3(0.97, 1.0, 0.97), 1.6 + rng.randf()).set_trans(Tween.TRANS_SINE)
+	if duration > 0.0:
+		var fade := holder.create_tween()
+		fade.tween_interval(maxf(duration - 0.6, 0.0))
+		fade.tween_property(material, "albedo_color:a", 0.0, 0.6)
+		fade.parallel().tween_property(bubble_material, "albedo_color:a", 0.0, 0.6)
+		get_tree().create_timer(duration, false).timeout.connect(holder.queue_free)
+	return holder
 
 
 func _disc(at: Vector3, radius: float, color: Color, duration: float) -> MeshInstance3D:

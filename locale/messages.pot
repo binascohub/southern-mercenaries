@@ -142,6 +142,9 @@ msgstr ""
 msgid "ACTION_EVADE"
 msgstr ""
 
+msgid "ACTION_JUMP"
+msgstr ""
+
 msgid "ACTION_MOUNT"
 msgstr ""
 
@@ -203,12 +206,6 @@ msgid "RESOURCE_MANA"
 msgstr ""
 
 msgid "POWER_MAGIC"
-msgstr ""
-
-msgid "MONSTER_SEWER_RAT_NAME"
-msgstr ""
-
-msgid "MONSTER_SEWER_RAT_BIG_NAME"
 msgstr ""
 
 msgid "ARENA_PROTOTYPE_NAME"
@@ -548,6 +545,123 @@ msgid "CHAR_SEX_MALE"
 msgstr ""
 
 msgid "CHAR_SEX_FEMALE"
+msgstr ""
+
+msgid "CHAR_HAIR_Hair_SimpleParted"
+msgstr ""
+
+msgid "CHAR_HAIR_Hair_Buzzed"
+msgstr ""
+
+msgid "CHAR_HAIR_Hair_Long"
+msgstr ""
+
+msgid "CHAR_HAIR_Hair_Buns"
+msgstr ""
+
+msgid "CHAR_HAIR_Hair_BuzzedFemale"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_Pixie"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_Bob"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_BobBangs"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_Wavy"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_Ponytail"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_DoubleBun"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_AfroPuffs"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_MessyBun"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_SpaceBuns"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_Braids"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_Shag"
+msgstr ""
+
+msgid "CHAR_HAIR_Kit_LongStraight"
+msgstr ""
+
+msgid "CHAR_HAIR_NONE"
+msgstr ""
+
+msgid "CHAR_HAIR_COLOR_0"
+msgstr ""
+
+msgid "CHAR_HAIR_COLOR_1"
+msgstr ""
+
+msgid "CHAR_HAIR_COLOR_2"
+msgstr ""
+
+msgid "CHAR_HAIR_COLOR_3"
+msgstr ""
+
+msgid "CHAR_HAIR_COLOR_4"
+msgstr ""
+
+msgid "CHAR_HAIR_COLOR_5"
+msgstr ""
+
+msgid "CHAR_HAIR_COLOR_6"
+msgstr ""
+
+msgid "CHAR_HAIR_COLOR_7"
+msgstr ""
+
+msgid "CHAR_SKIN_0"
+msgstr ""
+
+msgid "CHAR_SKIN_1"
+msgstr ""
+
+msgid "CHAR_SKIN_2"
+msgstr ""
+
+msgid "CHAR_SKIN_3"
+msgstr ""
+
+msgid "CHAR_SKIN_4"
+msgstr ""
+
+msgid "CHAR_SKIN_5"
+msgstr ""
+
+msgid "CHAR_BEARD"
+msgstr ""
+
+msgid "CHAR_GEAR_NONE"
+msgstr ""
+
+msgid "CHAR_GEAR_D"
+msgstr ""
+
+msgid "CHAR_GEAR_C"
+msgstr ""
+
+msgid "CHAR_GEAR_B"
+msgstr ""
+
+msgid "CHAR_GEAR_A"
+msgstr ""
+
+msgid "CHAR_GEAR_S"
 msgstr ""
 
 msgid "CHAR_ENTRY"
@@ -1733,6 +1847,21 @@ msgstr ""
 msgid "DLG_VOODOO_1"
 msgstr ""
 
+msgid "NPC_PRIEST"
+msgstr ""
+
+msgid "DLG_PRIEST_1"
+msgstr ""
+
+msgid "DLG_PRIEST_2"
+msgstr ""
+
+msgid "NPC_CASTLE_GUARD"
+msgstr ""
+
+msgid "DLG_CASTLE_GUARD_1"
+msgstr ""
+
 msgid "DLG_SERVICE_PORTALS"
 msgstr ""
 
@@ -2178,13 +2307,16 @@ msgstr ""
 msgid "MONSTER_MUTANT_RAT"
 msgstr ""
 
+msgid "MONSTER_FUNGUS_UNCLE"
+msgstr ""
+
 msgid "MONSTER_PLAGUE_BAT"
 msgstr ""
 
 msgid "MONSTER_VENOM_SCORPION"
 msgstr ""
 
-msgid "MONSTER_GOLDEN_LIZARD"
+msgid "MONSTER_GOLDEN_RABBIT"
 msgstr ""
 
 msgid "MONSTER_ACID_TOAD"
@@ -2319,6 +2451,15 @@ msgstr ""
 msgid "PROP_POT"
 msgstr ""
 
+msgid "PROP_MUG"
+msgstr ""
+
+msgid "PROP_DEER_BUCK"
+msgstr ""
+
+msgid "PROP_DEER_DOE"
+msgstr ""
+
 msgid "PROP_CRATE"
 msgstr ""
 
@@ -2329,4 +2470,526 @@ msgid "TIP_BREAKABLE"
 msgstr ""
 
 msgid "TIP_MAP"
+msgstr ""
+
+msgid "ARENA_FOREST"
+msgstr ""
+
+msgid "ARENA_RUINS"
+msgstr ""
+
+msgid "ARENA_CEMETERY"
+msgstr ""
+
+msgid "ARENA_FORT"
+msgstr ""
+
+msgid "PROP_TO_FOREST"
+msgstr ""
+
+msgid "PROP_TO_RUINS"
+msgstr ""
+
+msgid "PROP_TO_CEMETERY"
+msgstr ""
+
+msgid "PROP_TO_FORT"
+msgstr ""
+
+msgid "MONSTER_LESHY"
+msgstr ""
+
+msgid "MONSTER_GOLEM_FIRE"
+msgstr ""
+
+msgid "MONSTER_GOLEM_ICE"
+msgstr ""
+
+msgid "MONSTER_GOLEM_STONE"
+msgstr ""
+
+msgid "MONSTER_FOREST_REPTILE"
+msgstr ""
+
+msgid "MONSTER_RUIN_WARDEN"
+msgstr ""
+
+msgid "MONSTER_CRYPT_SCORPION"
+msgstr ""
+
+msgid "MONSTER_CRYPT_LORD"
+msgstr ""
+
+msgid "MONSTER_FORT_COMMANDER"
+msgstr ""
+
+msgid "MONSTER_DARK_ELF"
+msgstr ""
+
+msgid "MONSTER_NIGHT_DEMON"
+msgstr ""
+
+msgid "MONSTER_SUCCUBUS"
+msgstr ""
+
+msgid "MONSTER_SKELETON"
+msgstr ""
+
+msgid "MONSTER_ZOMBIE"
+msgstr ""
+
+msgid "MONSTER_GOBLIN"
+msgstr ""
+
+msgid "MONSTER_TROLL"
+msgstr ""
+
+msgid "NPC_LIGHTPOST_STATUE"
+msgstr ""
+
+msgid "DLG_STATUE_1"
+msgstr ""
+
+msgid "DLG_STATUE_2"
+msgstr ""
+
+msgid "DLG_STATUE_3"
+msgstr ""
+
+msgid "TOAST_STATUE_AWAKENS"
+msgstr ""
+
+msgid "MONSTER_TOMB_GUARDIAN"
+msgstr ""
+
+msgid "ARENA_DARK_FOREST"
+msgstr ""
+
+msgid "PROP_TO_DARK_FOREST"
+msgstr ""
+
+msgid "ARENA_CAPITAL"
+msgstr ""
+
+msgid "PROP_TO_CAPITAL"
+msgstr ""
+
+msgid "ARENA_FARM"
+msgstr ""
+
+msgid "PROP_TO_FARM"
+msgstr ""
+
+msgid "NPC_VILLAGE_HUNTER"
+msgstr ""
+
+msgid "NPC_VILLAGE_WIFE"
+msgstr ""
+
+msgid "NPC_ELF_ARCHER"
+msgstr ""
+
+msgid "DLG_ARCHER_1"
+msgstr ""
+
+msgid "DLG_ARCHER_2"
+msgstr ""
+
+msgid "DLG_ARCHER_3"
+msgstr ""
+
+msgid "DLG_ARCHER_ACTIVE"
+msgstr ""
+
+msgid "DLG_ARCHER_DONE"
+msgstr ""
+
+msgid "QUEST_FOREST_LESHY"
+msgstr ""
+
+msgid "QUEST_FOREST_LESHY_DESC"
+msgstr ""
+
+msgid "DLG_HUNTER_1"
+msgstr ""
+
+msgid "DLG_HUNTER_2"
+msgstr ""
+
+msgid "DLG_HUNTER_3"
+msgstr ""
+
+msgid "DLG_HUNTER_ACTIVE"
+msgstr ""
+
+msgid "DLG_HUNTER_DONE"
+msgstr ""
+
+msgid "DLG_WIFE_1"
+msgstr ""
+
+msgid "DLG_WIFE_2"
+msgstr ""
+
+msgid "DLG_WIFE_3"
+msgstr ""
+
+msgid "DLG_WIFE_ACTIVE"
+msgstr ""
+
+msgid "DLG_WIFE_DONE"
+msgstr ""
+
+msgid "QUEST_FOREST_REPTILES"
+msgstr ""
+
+msgid "QUEST_FOREST_REPTILES_DESC"
+msgstr ""
+
+msgid "QUEST_FOREST_GOLEMS"
+msgstr ""
+
+msgid "QUEST_FOREST_GOLEMS_DESC"
+msgstr ""
+
+msgid "PROP_VILLAGE_SIGN"
+msgstr ""
+
+msgid "PROP_VILLAGE_SIGN_TEXT"
+msgstr ""
+
+msgid "HUD_QUEST_PLAIN"
+msgstr ""
+
+msgid "PROP_COIN_BAG"
+msgstr ""
+
+msgid "ARENA_DOCKS"
+msgstr ""
+
+msgid "PROP_TO_DOCKS"
+msgstr ""
+
+msgid "PROP_TO_PORT"
+msgstr ""
+
+msgid "MONSTER_CHITIN_BEAST"
+msgstr ""
+
+msgid "MONSTER_ANGLER"
+msgstr ""
+
+msgid "VALUABLE_HUMAN_HEART"
+msgstr ""
+
+msgid "VALUABLE_OLD_SKULL"
+msgstr ""
+
+msgid "QUEST_ROYAL_HEART"
+msgstr ""
+
+msgid "QUEST_ROYAL_HEART_DESC"
+msgstr ""
+
+msgid "QUEST_ROYAL_SKULL"
+msgstr ""
+
+msgid "QUEST_ROYAL_SKULL_DESC"
+msgstr ""
+
+msgid "DLG_PRIEST_HEART_1"
+msgstr ""
+
+msgid "DLG_PRIEST_HEART_2"
+msgstr ""
+
+msgid "DLG_PRIEST_HEART_ACTIVE"
+msgstr ""
+
+msgid "DLG_PRIEST_SKULL_1"
+msgstr ""
+
+msgid "DLG_PRIEST_SKULL_2"
+msgstr ""
+
+msgid "DLG_PRIEST_SKULL_ACTIVE"
+msgstr ""
+
+msgid "DLG_PRIEST_DONE"
+msgstr ""
+
+msgid "DLG_SERVICE_TURN_IN"
+msgstr ""
+
+msgid "TOAST_NEED_QUEST_ITEM"
+msgstr ""
+
+msgid "MONSTER_FROG_KING"
+msgstr ""
+
+msgid "MONSTER_VIPER_QUEEN"
+msgstr ""
+
+msgid "MONSTER_RUIN_ALPHA"
+msgstr ""
+
+msgid "MONSTER_SUCCUBUS_QUEEN"
+msgstr ""
+
+msgid "MONSTER_TROLL_CHIEF"
+msgstr ""
+
+msgid "NPC_COURT_JESTER"
+msgstr ""
+
+msgid "DLG_JESTER_1"
+msgstr ""
+
+msgid "DLG_JESTER_2"
+msgstr ""
+
+msgid "DLG_JESTER_3"
+msgstr ""
+
+msgid "ARENA_BUNKER"
+msgstr ""
+
+msgid "PROP_TO_BUNKER"
+msgstr ""
+
+msgid "PROP_RETURN_FARM"
+msgstr ""
+
+msgid "VALUABLE_WILD_MEAT"
+msgstr ""
+
+msgid "QUEST_ROYAL_BANQUET"
+msgstr ""
+
+msgid "QUEST_ROYAL_BANQUET_DESC"
+msgstr ""
+
+msgid "DLG_JESTER_BANQUET_1"
+msgstr ""
+
+msgid "DLG_JESTER_BANQUET_2"
+msgstr ""
+
+msgid "DLG_JESTER_BANQUET_ACTIVE"
+msgstr ""
+
+msgid "DLG_JESTER_BANQUET_DONE"
+msgstr ""
+
+msgid "MONSTER_LUCIFER"
+msgstr ""
+
+msgid "NPC_RUINS_SPARTAN"
+msgstr ""
+
+msgid "DLG_SPARTAN_1"
+msgstr ""
+
+msgid "DLG_SPARTAN_2"
+msgstr ""
+
+msgid "DLG_SPARTAN_3"
+msgstr ""
+
+msgid "DLG_SPARTAN_ACTIVE"
+msgstr ""
+
+msgid "DLG_SPARTAN_DONE"
+msgstr ""
+
+msgid "QUEST_RUINS_GOBLINS"
+msgstr ""
+
+msgid "QUEST_RUINS_GOBLINS_DESC"
+msgstr ""
+
+msgid "PROP_BASKET"
+msgstr ""
+
+msgid "NPC_FOREST_HERMIT"
+msgstr ""
+
+msgid "NPC_FOREST_PYRE_KEEPER"
+msgstr ""
+
+msgid "DLG_HERMIT_1"
+msgstr ""
+
+msgid "DLG_HERMIT_2"
+msgstr ""
+
+msgid "DLG_HERMIT_3"
+msgstr ""
+
+msgid "DLG_PYRE_1"
+msgstr ""
+
+msgid "DLG_PYRE_2"
+msgstr ""
+
+msgid "DLG_PYRE_3"
+msgstr ""
+
+msgid "TOAST_HERMIT_AWAKENS"
+msgstr ""
+
+msgid "TOAST_PYRE_AWAKENS"
+msgstr ""
+
+msgid "PROP_MINIBOSS_CHEST"
+msgstr ""
+
+msgid "TOAST_MINIBOSS_CHEST"
+msgstr ""
+
+msgid "MONSTER_DARK_ELF_LORD"
+msgstr ""
+
+msgid "NPC_FORT_PENITENT"
+msgstr ""
+
+msgid "DLG_PENITENT_1"
+msgstr ""
+
+msgid "DLG_PENITENT_2"
+msgstr ""
+
+msgid "DLG_PENITENT_3"
+msgstr ""
+
+msgid "TOAST_PENITENT_AWAKENS"
+msgstr ""
+
+msgid "NPC_FORT_EXILE"
+msgstr ""
+
+msgid "DLG_EXILE_1"
+msgstr ""
+
+msgid "DLG_EXILE_2"
+msgstr ""
+
+msgid "DLG_EXILE_3"
+msgstr ""
+
+msgid "TOAST_EXILE_AWAKENS"
+msgstr ""
+
+msgid "QUEST_FOREST_STONE"
+msgstr ""
+
+msgid "QUEST_FOREST_STONE_DESC"
+msgstr ""
+
+msgid "QUEST_FOREST_FIRE"
+msgstr ""
+
+msgid "QUEST_FOREST_FIRE_DESC"
+msgstr ""
+
+msgid "DLG_HERMIT_ACTIVE"
+msgstr ""
+
+msgid "DLG_HERMIT_DONE"
+msgstr ""
+
+msgid "DLG_PYRE_ACTIVE"
+msgstr ""
+
+msgid "DLG_PYRE_DONE"
+msgstr ""
+
+msgid "VALUABLE_HUMAN_LUNGS"
+msgstr ""
+
+msgid "QUEST_ROYAL_LUNGS"
+msgstr ""
+
+msgid "QUEST_ROYAL_LUNGS_DESC"
+msgstr ""
+
+msgid "DLG_PRIEST_LUNGS_1"
+msgstr ""
+
+msgid "DLG_PRIEST_LUNGS_2"
+msgstr ""
+
+msgid "DLG_PRIEST_LUNGS_ACTIVE"
+msgstr ""
+
+msgid "VALUABLE_ROYAL_SOUL"
+msgstr ""
+
+msgid "QUEST_ROYAL_SOUL"
+msgstr ""
+
+msgid "QUEST_ROYAL_SOUL_DESC"
+msgstr ""
+
+msgid "DLG_PRIEST_SOUL_1"
+msgstr ""
+
+msgid "DLG_PRIEST_SOUL_2"
+msgstr ""
+
+msgid "DLG_PRIEST_SOUL_ACTIVE"
+msgstr ""
+
+msgid "ARENA_DESERT"
+msgstr ""
+
+msgid "PROP_TO_DESERT"
+msgstr ""
+
+msgid "MONSTER_SAND_LAMASSU"
+msgstr ""
+
+msgid "MONSTER_QUEEN_SCORPION"
+msgstr ""
+
+msgid "NPC_SEATED_PIRATE"
+msgstr ""
+
+msgid "DLG_PIRATE_1"
+msgstr ""
+
+msgid "DLG_PIRATE_2"
+msgstr ""
+
+msgid "DLG_PIRATE_3"
+msgstr ""
+
+msgid "DLG_PIRATE_ACTIVE"
+msgstr ""
+
+msgid "DLG_PIRATE_DONE"
+msgstr ""
+
+msgid "QUEST_DOCKS_SMUGGLERS"
+msgstr ""
+
+msgid "QUEST_DOCKS_SMUGGLERS_DESC"
+msgstr ""
+
+msgid "NPC_OLD_LADY"
+msgstr ""
+
+msgid "DLG_OLD_LADY_1"
+msgstr ""
+
+msgid "DLG_OLD_LADY_2"
+msgstr ""
+
+msgid "DLG_OLD_LADY_3"
+msgstr ""
+
+msgid "DLG_OLD_LADY_ACTIVE"
+msgstr ""
+
+msgid "DLG_OLD_LADY_DONE"
 msgstr ""

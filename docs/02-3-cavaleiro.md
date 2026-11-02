@@ -1,6 +1,9 @@
 # Personagem — Cavaleiro (`knight`)
 
 > Versão 3 · 2026-10-30 · Detalha a classe Cavaleiro de `02-personagens.md`
+
+> **Atualização (decisão do autor): o Cavaleiro não usa mais cavalo.** No jogo, `data/classes.json` não tem mais `mount`: não há montaria, nem barda, nem tecla de montar, e ele anda a 105% sempre a pé. Ele usa **escudo** no braço esquerdo (Cethiel's Weapons 3D, CC0), com a capa pelo rank do material da arma (D broquel de madeira, C leão verde, B caveira, A leão azul e dourado, S dragão roxo). A arma visual agora é uma **espada** por rank do material (Low Poly Swords, CC BY 3.0: D reta, C dha, B falcata, A espada longa fina, S espada "estranha" dourada); o item continua chamado de lança nos dados até a reescrita. Os trechos abaixo sobre montaria, galope e barda ficam como histórico até a reescrita da classe (o momentum só cresce com golpes).
+
 > Modelo de personagem: **misto** — herói fixo (nome, história, visual de referência); o jogador pode mudar o nome, a aparência e **escolher o sexo (masculino ou feminino)**.
 > **Exceção:** no Cavaleiro, **cada sexo tem uma história diferente** (seção 1). Atributos e habilidades continuam iguais.
 > **Elemento:** escolhido na criação (Água, Fogo, Ar ou Terra); troca temporária com Poção Elemental. Regras em `02-0-elementos.md`.
@@ -83,10 +86,10 @@ Em Tortuga, pela primeira vez na vida, Dália soube o que era não ter nada. E *
 | Elemento | Água / Fogo / Ar / Terra |
 | Sexo | Masculino (história de Dorian) / feminino (história de Dália) |
 | Nome | Texto livre (padrão conforme o sexo) |
-| Rosto | 4 opções por sexo |
-| Cabelo | 6 estilos por sexo + cor |
-| Barba | Só masculino: 4 opções (incluindo sem barba) |
-| Pele | 6 tons |
+| Rosto | Planejado (4 opções por sexo): os modelos atuais têm uma cabeça só |
+| Cabelo | 3 estilos por sexo + sem cabelo, e 8 cores (implementado; mais estilos dependem de novos modelos) |
+| Barba | Só masculino: com ou sem barba (implementado; mais estilos dependem de novos modelos) |
+| Pele | 6 tons (implementado) |
 | Nome do cavalo | Texto livre (padrão: Corvo ou Aurora) |
 | Pelagem do cavalo | Negro, castanho, branco, malhado (padrão: negro para Dorian, branco para Dália) |
 
@@ -250,3 +253,9 @@ As falas mudam conforme a versão.
 - Quem é o verdadeiro pai da Dália? (Gancho possível para a história.)
 - O final da campanha mostra a volta do Cavaleiro (Dorian ou Dália) ao reino?
 - O rei, a princesa ou a Academia aparecem em Tortuga (NPCs, missões)?
+
+## Visual do equipamento por rank (implementado)
+
+O Cavaleiro troca de roupa por **rank**, de **D** (a mais simples) a **S** (a mais rara e melhor), seguindo a referência do autor (`clothes.jpeg`, níveis 1 a 5). Cada peça (corpo, cabeça, mãos, pés) troca separadamente; o rank sai do material da peça (pano e ferro = D, aço = C, cobre = B, prata = A, ouro = S). Vale para os dois sexos. Código em `game/actors/class_gear.gd` e `game/actors/gear_kit.gd`; dá para ver cada rank na tela de criação do personagem ("Equipamento").
+
+D gibão acolchoado com cordas cruzadas e saiote remendado; C peitoral de aço, saia de malha e elmo; B placas, tabardo azul com losango e elmo com protetor de nariz; A armadura dourada, ombreiras largas e tabardo longo azul-marinho; S armadura negra e dourada com chifres, espinhos, capa e luzes âmbar.

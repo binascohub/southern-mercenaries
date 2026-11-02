@@ -7,3 +7,15 @@ crystal_iron/steel/copper/silver/gold.png (and assets/models/props/Crystal_Gem.g
 https://opengameart.org/content/fantasy-crystals
 Creative Commons Attribution-ShareAlike 4.0: https://creativecommons.org/licenses/by-sa/4.0/
 Changes: one crystal upright and resized; icons rendered in each material's color. Shared under CC BY-SA 4.0.
+
+sword_D..S.png — 3D Swords Pack by mehrasaur (Inborn Ninja), CC0 1.0: https://opengameart.org/content/3d-swords-pack (tools/assets/sword_icons.py)
+dagger_D.png — Iron Knife by Clint Bellanger, CC0 1.0: https://opengameart.org/content/iron-knife (tools/assets/knife_icon.py)
+
+human_heart.png — render of Human Heart by Scribe / bart, CC0 1.0: https://opengameart.org/content/human-heart (tools/assets/build_quest_relics.py)
+old_skull.png — render of Old Skull by vrav / Snabisch, CC BY-SA 3.0: https://opengameart.org/content/old-skull (tools/assets/build_quest_relics.py)
+wild_meat.png — render of Food Props (meat) by Vinrax, CC BY 3.0: https://opengameart.org/content/food-props (tools/assets/build_food.py)
+bow_D..S.png — renders of Vulture Bow by Mophs / genderfreak, CC BY 4.0: https://opengameart.org/content/vulture-bow (tools/assets/bow_icons.gd)
+human_lungs.png — render of Human Lungs by Scribe, CC0 1.0: https://opengameart.org/content/human-lungs
+book_D..S.png — renders of Old Tome 2 by bobjh / Varkalandar, CC BY 4.0: https://opengameart.org/content/old-tome-2 (tools/assets/book_icons.gd)
+royal_soul.png — render of Hapy ghoust by pracalic / GiggaWatt, CC0 1.0: https://opengameart.org/content/hapy-ghoust
+amulet_D..S.png — renders of Necklace by Paul Wortmann, CC0 1.0: https://opengameart.org/content/necklace (tools/assets/amulet_icons.gd)

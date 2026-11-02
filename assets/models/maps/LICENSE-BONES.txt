@@ -1,0 +1,5 @@
+Dungeon_*.glb - "3D Dungeon Debris - Skull and Bones" by Paul Wortmann
+            https://opengameart.org/content/3d-dungeon-debris-skull-and-bones
+            CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+            Changes: OBJ pieces joined to one mesh each, one material with the pack's skull or bone texture and normal map
+            (512 px), scaled by 0.5, base on the ground (tools/assets/build_bone_debris.py).

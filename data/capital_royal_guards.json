@@ -1,0 +1,105 @@
+{
+  "_comment": "Guardas do campo de treino de Tortuga, transferidos para a segurança da Capital Real (Aurenhold) por decisão do autor. Ainda não há mapa da Capital: quando houver, estas entradas vão para o \"crowd\" dela (mesmo formato de data/arenas.json), distribuídas pelo castelo, pelos portões e pelo campo de treino da Academia.",
+  "guards": [
+    {
+      "role": "soldier",
+      "position": [
+        -9,
+        13.7
+      ],
+      "rotation": 0,
+      "pose": "melee",
+      "weapon": "Weapon_Longsword"
+    },
+    {
+      "role": "soldier",
+      "position": [
+        -5,
+        13.7
+      ],
+      "rotation": 0,
+      "pose": "melee_b",
+      "weapon": "Weapon_Shortsword"
+    },
+    {
+      "role": "soldier",
+      "position": [
+        -1,
+        13.7
+      ],
+      "rotation": 0,
+      "pose": "melee_c",
+      "weapon": "Weapon_Axe"
+    },
+    {
+      "role": "soldier",
+      "position": [
+        3,
+        13.7
+      ],
+      "rotation": 0,
+      "pose": "melee",
+      "weapon": "Weapon_Hammer"
+    },
+    {
+      "role": "soldier",
+      "position": [
+        9,
+        11.7
+      ],
+      "rotation": 0,
+      "pose": "melee_c",
+      "weapon": "Weapon_Longsword"
+    },
+    {
+      "role": "soldier",
+      "position": [
+        9,
+        17.6
+      ],
+      "rotation": 0,
+      "pose": "melee_b",
+      "weapon": "Weapon_Polearm"
+    },
+    {
+      "role": "soldier",
+      "position": [
+        -8.0,
+        19.2
+      ],
+      "rotation": 0,
+      "pose": "melee",
+      "weapon": "Weapon_Shortsword"
+    },
+    {
+      "role": "soldier",
+      "position": [
+        -4.8,
+        19.2
+      ],
+      "rotation": 0,
+      "pose": "melee_b",
+      "weapon": "Weapon_Axe"
+    },
+    {
+      "role": "soldier",
+      "position": [
+        -1.6,
+        19.2
+      ],
+      "rotation": 0,
+      "pose": "melee_c",
+      "weapon": "Weapon_Longsword"
+    },
+    {
+      "role": "soldier",
+      "position": [
+        0,
+        10.4
+      ],
+      "rotation": 0,
+      "pose": "talk",
+      "weapon": "Weapon_Shortsword"
+    }
+  ]
+}

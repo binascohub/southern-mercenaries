@@ -1,0 +1,2 @@
+fungus.glb — "Uncle Fungus" by piacenti, CC BY-SA 3.0: https://opengameart.org/content/uncle-fungus
+Converted from the Blender file by tools/assets/build_fungus.py (low-poly version, single static mesh; 1024 px color and normal maps).

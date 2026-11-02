@@ -86,7 +86,7 @@ static func sell_price(shop_id: String, item: Dictionary, level: int, ship: Dict
 	var count := int(item.get("count", 1))
 	match item.kind:
 		Items.VALUABLE:
-			if not shop(shop_id).get("buys_valuables", false):
+			if not shop(shop_id).get("buys_valuables", false) or GameData.valuables[item.id].get("quest_item", false):
 				return -1
 			return roundi(Items.value(item) * valuable_mult(ship, item.id)) * count
 		Items.CONSUMABLE:

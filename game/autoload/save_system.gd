@@ -264,7 +264,29 @@ func migrate_campaign(d: Dictionary) -> Dictionary:
 		d.quests = {}
 		d.unlocked = []
 		d.ship = {"day": 0, "seed": hash(d.get("id", "")), "bought": {}}
+	_rename_rat_ids(d)
 	return d
+
+
+## Os ratos deixaram de ser monstros (só cenário): os bichos do Esgoto que ainda tinham "rato" no id (sapos de verdade)
+## foram renomeados; bestiário, caçadas e visitantes de saves antigos ganham os ids novos.
+const RAT_IDS := {"plague_rat": "plague_frog", "mutant_rat": "mutant_frog", "sewer_rat": "plague_frog", "sewer_rat_big": "mutant_frog",
+	"rat_nest": "spawn_nest", "rat_king": "frog_king", "golden_lizard": "golden_rabbit"}
+
+
+static func _rename_rat_ids(d: Dictionary) -> void:
+	var seen := {}
+	var bestiary: Array = []
+	for id: Variant in d.get("bestiary", []):
+		var fixed: String = RAT_IDS.get(id, id)
+		if not seen.has(fixed):
+			seen[fixed] = true
+			bestiary.append(fixed)
+	d["bestiary"] = bestiary
+	var quests: Array = d.get("side_quests", {}).values() if d.get("side_quests", {}) is Dictionary else []
+	for quest: Variant in quests + d.get("visitors", []).map(func(v: Variant) -> Variant: return v.get("quest", {}) if v is Dictionary else {}):
+		if quest is Dictionary and RAT_IDS.has(quest.get("target", "")):
+			quest["target"] = RAT_IDS[quest.target]
 
 
 # --- Escrita segura -------------------------------------------------------------
