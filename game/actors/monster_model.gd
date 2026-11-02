@@ -15,6 +15,9 @@ extends Node3D
 ## à metade da vida: elas brotam das costas e batem, mais rápido no ataque.
 
 const FAMILIES := {
+	# Baú Monstro (chest_monster.glb do autor; tools/assets/build_chest_mimic.py): mímico com esqueleto e animações próprias (Idle, Run, Attack; sem acerto nem morte: o resto fica por código). ~2 m no arquivo.
+	"chest_mimic": {"scene": "res://assets/models/monsters/chest_mimic.glb", "scale": 0.8,
+		"anims": {"idle": "Idle", "walk": "Run", "run": "Run", "attack": "Attack"}},
 	# Necromante (necromanser.rar do autor; tools/assets/build_necromancer.py): chefe do Esgoto no lugar do Feiticeiro-Aranha. Já vem com esqueleto e animações próprias (sem texturas: materiais
 	# lisos pintados por peça). 2,2 m com o cajado; no tamanho 2,6 da Rainha com escala 0.55 -> ~3,1 m.
 	"necromancer": {"scene": "res://assets/models/monsters/necromancer.glb", "scale": 0.55, "vertex_colors": true,
@@ -173,7 +176,7 @@ const FAMILIES := {
 	"deer_doe": {"scene": "res://assets/models/monsters/deer_doe.glb", "scale": 0.714,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "die": "die"}},
 	# O morcego guarda o tamanho original do arquivo (envergadura ~10 unidades).
-	"bat": {"scene": "res://assets/models/monsters/bat.glb", "scale": 0.2,
+	"bat": {"scene": "res://assets/models/monsters/bat.glb", "scale": 0.16, "bat_wings": true,
 		"anims": {"idle": "fly", "walk": "fly", "run": "fly", "attack": "fly", "die": "die"}},
 }
 ## Animações que não repetem.
@@ -241,6 +244,8 @@ func setup(look: String, size: float, tint: Color) -> bool:
 		return _setup_humanoid(info, size, tint)
 	var model := (load(info.scene) as PackedScene).instantiate()
 	add_child(model)
+	if info.get("bat_wings", false):
+		BatWings.attach(model as Node3D)  # vira o morcego para a frente e bate as asas (a animação do arquivo não mexe nelas)
 	scale = Vector3.ONE * size * float(info.scale)
 	_tint = Color.WHITE.lerp(tint, 0.35)
 	for node in model.find_children("*", "MeshInstance3D", true, false):

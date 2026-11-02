@@ -1630,6 +1630,15 @@
         ],
         "rotation": 10,
         "pose": "dance_sway"
+      },
+      {
+        "role": "spiderman",
+        "position": [
+          3.6,
+          2.4
+        ],
+        "rotation": 215,
+        "pose": "idle"
       }
     ]
   },
@@ -3878,7 +3887,8 @@
         ],
         "doors": [
           "east",
-          "west"
+          "west",
+          "north"
         ],
         "narrow": true
       },
@@ -4230,9 +4240,12 @@
         ],
         "doors": [
           "east",
-          "west"
+          "west",
+          "north",
+          "south"
         ],
-        "narrow": true
+        "narrow": true,
+        "torch": true
       },
       {
         "id": "maze_5_7",
@@ -4327,7 +4340,8 @@
         ],
         "doors": [
           "east",
-          "north"
+          "north",
+          "south"
         ],
         "narrow": true
       },
@@ -5344,6 +5358,20 @@
       {
         "id": "sw1_troll_1",
         "position": [
+          0,
+          -36
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "troll_mauler",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw1_troll_2",
+        "position": [
           -52,
           -12
         ],
@@ -5356,7 +5384,21 @@
         ]
       },
       {
-        "id": "sw1_troll_2",
+        "id": "sw1_troll_3",
+        "position": [
+          -52,
+          -24
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "troll_mauler",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw1_troll_4",
         "position": [
           -13,
           -24
@@ -5370,7 +5412,21 @@
         ]
       },
       {
-        "id": "sw1_troll_3",
+        "id": "sw1_troll_5",
+        "position": [
+          -52,
+          -48
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "troll_mauler",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw1_troll_6",
         "position": [
           -65,
           -48
@@ -5387,7 +5443,7 @@
         "id": "sw5_mutant_1",
         "position": [
           -52,
-          -120
+          -108
         ],
         "level": 2,
         "monsters": [
@@ -5399,6 +5455,34 @@
       },
       {
         "id": "sw5_mutant_2",
+        "position": [
+          -52,
+          -120
+        ],
+        "level": 2,
+        "monsters": [
+          {
+            "monster": "mutant",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw5_mutant_3",
+        "position": [
+          -52,
+          -132
+        ],
+        "level": 2,
+        "monsters": [
+          {
+            "monster": "mutant",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw5_mutant_4",
         "position": [
           -39,
           -132
@@ -5412,10 +5496,10 @@
         ]
       },
       {
-        "id": "sw5_mutant_3",
+        "id": "sw5_mutant_5",
         "position": [
-          -39,
-          -108
+          -65,
+          -144
         ],
         "level": 2,
         "monsters": [
@@ -5426,7 +5510,35 @@
         ]
       },
       {
-        "id": "sw5_mutant_4",
+        "id": "sw5_mutant_6",
+        "position": [
+          -39,
+          -108
+        ],
+        "level": 2,
+        "monsters": [
+          {
+            "monster": "mutant",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw5_mutant_7",
+        "position": [
+          -52,
+          -144
+        ],
+        "level": 2,
+        "monsters": [
+          {
+            "monster": "mutant",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw5_mutant_8",
         "position": [
           -52,
           -156
@@ -5440,7 +5552,21 @@
         ]
       },
       {
-        "id": "sw5_mutant_5",
+        "id": "sw5_mutant_9",
+        "position": [
+          -65,
+          -156
+        ],
+        "level": 2,
+        "monsters": [
+          {
+            "monster": "mutant",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw5_mutant_10",
         "position": [
           -26,
           -156
@@ -5449,7 +5575,7 @@
         "monsters": [
           {
             "monster": "mutant",
-            "count": 1
+            "count": 2
           }
         ]
       },
@@ -5472,6 +5598,48 @@
         "position": [
           -39,
           -84
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "barbarian_monster",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw2_barbarian_3",
+        "position": [
+          -65,
+          -72
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "barbarian_monster",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw2_barbarian_4",
+        "position": [
+          -65,
+          -96
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "barbarian_monster",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw2_barbarian_5",
+        "position": [
+          -52,
+          -72
         ],
         "level": 1,
         "monsters": [
@@ -5603,6 +5771,202 @@
         "monsters": [
           {
             "monster": "demon_twelve",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw_mimic_01",
+        "position": [
+          -39,
+          -36
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw_mimic_02",
+        "position": [
+          -26,
+          -36
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw_mimic_03",
+        "position": [
+          -13,
+          -48
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw_mimic_04",
+        "position": [
+          26,
+          -48
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw_mimic_05",
+        "position": [
+          52,
+          -48
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw_mimic_06",
+        "position": [
+          -39,
+          -60
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw_mimic_07",
+        "position": [
+          13,
+          -60
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw_mimic_08",
+        "position": [
+          65,
+          -60
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw_mimic_09",
+        "position": [
+          -13,
+          -72
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw_mimic_10",
+        "position": [
+          65,
+          -84
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw_mimic_11",
+        "position": [
+          39,
+          -96
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw_mimic_12",
+        "position": [
+          -65,
+          -108
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw_mimic_13",
+        "position": [
+          52,
+          -108
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw_mimic_14",
+        "position": [
+          26,
+          -156
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
             "count": 1
           }
         ]
@@ -5864,8 +6228,8 @@
         "kind": "npc",
         "npc": "sewer_scavenger",
         "position": [
-          -63.0,
-          -157.5
+          -13,
+          -82.5
         ],
         "rotation": 0
       },
@@ -99988,10 +100352,19 @@
         ],
         "rotation": 0,
         "solid": [
-          2.1,
-          2.9
+          2.7,
+          3.73
         ],
-        "scale": 1.4
+        "scale": 1.8
+      },
+      {
+        "piece": "Girl_Bed",
+        "position": [
+          23.5,
+          -68.0
+        ],
+        "rotation": 0,
+        "y": 0.57
       },
       {
         "piece": "Bed_3",

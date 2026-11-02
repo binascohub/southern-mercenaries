@@ -3000,37 +3000,37 @@ msgid "DLG_OLD_LADY_DONE"
 msgstr "So the woods breathe again. How good to have you around."
 
 msgid "NPC_SEWER_SCAVENGER"
-msgstr "Seraphina, the Fallen Angel"
+msgstr "Ossael, the Skull Angel"
 
 msgid "NPC_SEWER_RATCATCHER"
-msgstr "Itachi"
+msgstr "Azazel, the Flaming Angel"
 
 msgid "QUEST_SEWER_OLD_GATOR"
 msgstr "The Old Gator"
 
 msgid "QUEST_SEWER_OLD_GATOR_DESC"
-msgstr "Itachi wants the Secret War Passage cleared: defeat the Old Gator in the plaza on the east side of the sewer."
+msgstr "Azazel wants the Secret War Passage cleared: defeat the Old Gator in the plaza on the east side of the sewer."
 
 msgid "DLG_SEWER_GATOR_1"
-msgstr "There is an ancient gator in the Secret War Passage. No one gets through unless he allows it."
+msgstr "I have burned since the sky cast me out. The Old Gator swallowed my brothers who fell in this War Passage, and still keeps their bones in his belly."
 
 msgid "DLG_SEWER_GATOR_2"
-msgstr "The Old Gator only leaves the water when someone gets close, and he never comes alone."
+msgstr "He only leaves the water when someone gets close, and never comes alone. I hear the bones cracking inside him at every step."
 
 msgid "DLG_SEWER_GATOR_3"
-msgstr "His plaza is on the east side, deep in the maze. Bring him down and I will reward you."
+msgstr "His plaza is on the east side, deep in the maze. Tear his belly open for me, and the key he keeps is yours."
 
 msgid "DLG_SEWER_GATOR_ACTIVE"
-msgstr "The Old Gator still rules the Passage. Head east, toward the back."
+msgstr "The Old One still rules the Passage. Head east, deep down, and let his fire… I mean, mine, do the rest."
 
 msgid "DLG_SEWER_GATOR_DONE"
-msgstr "The Passage is free. Good work."
+msgstr "His belly burst open and my brothers could finally be burned in peace. Take the key. I keep the ashes."
 
 msgid "QUEST_SEWER_FROG_KING"
 msgstr "The Frog King"
 
 msgid "QUEST_SEWER_FROG_KING_DESC"
-msgstr "Seraphina wants the Frog King out of the way: take his book to the altar in the center of the sewer to wake the monster, then defeat it."
+msgstr "Ossael wants the Frog King out of the way: take his book to the altar in the center of the sewer to wake the monster, then defeat it."
 
 msgid "DLG_SEWER_FROG_1"
 msgstr "I was an angel, once. I fell through these grates, and my wings stayed caught in what the sewer devours. I hear the whispers of a thing of flesh and planks, out west."
@@ -3057,7 +3057,7 @@ msgid "PROP_SEWER_SECTOR_3"
 msgstr "Bat Galleries"
 
 msgid "SIGN_SEWER_SECTOR_3"
-msgstr "Sector 3 — Bat Galleries. Flocks of plague bats; Itachi's post is to the east."
+msgstr "Sector 3 — Bat Galleries. Flocks of plague bats; Azazel's post is to the east."
 
 msgid "PROP_SEWER_SECTOR_4"
 msgstr "Secret War Passage"
@@ -3093,10 +3093,10 @@ msgid "TOAST_FROG_ALTAR_AWAKENS"
 msgstr "The altar trembles: the Frog King awakens!"
 
 msgid "TOAST_BOOK_RECEIVED"
-msgstr "Seraphina handed over the Altar Book!"
+msgstr "Ossael handed over the Altar Book!"
 
 msgid "DLG_FROG_ALTAR_LOCKED"
-msgstr "The altar does not react. There is an empty gap in the middle of the stone, the size of a book. Seraphina must have what is missing."
+msgstr "The altar does not react. There is an empty gap in the middle of the stone, the size of a book. Ossael must have what is missing."
 
 msgid "MONSTER_TROLL_MAULER"
 msgstr "Troll Mauler"
@@ -3136,6 +3136,18 @@ msgstr "An armored mushroom warrior sprouted from the damp walls of the northwes
 
 msgid "BEAST_CHAMP_WARRIOR_HINT"
 msgstr "Agile with average health: dodge when he lifts the sword. Fire hurts him more."
+
+msgid "MONSTER_CHEST_MIMIC"
+msgstr "Chest Monster"
+
+msgid "BEAST_CHEST_MIMIC"
+msgstr "Chest Monster"
+
+msgid "BEAST_CHEST_MIMIC_LEGEND"
+msgstr "A chest that lost its lid and grew teeth. If you open it, it opens you: it swallowed the last mercenaries who wanted the Sewer treasure."
+
+msgid "BEAST_CHEST_MIMIC_HINT"
+msgstr "Fast and stubborn: running is no use. Fire burns it more."
 
 msgid "PROP_SEWER_SECTOR_2"
 msgstr "Garbage Canals"

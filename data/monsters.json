@@ -1657,5 +1657,26 @@
       1.0
     ],
     "_comment": "Demônio Doze (demon-twelve.glb do autor; tools/assets/build_demon_twelve.py; autor/licença a confirmar): demônio de 2,2 m, sem animações próprias (movido por código). Monstro do meio do lado direito do Esgoto (Setor 3): em bandos de 1 a 2. Fogo (fraco a Água)."
+  },
+  "chest_mimic": {
+    "name_key": "MONSTER_CHEST_MIMIC",
+    "max_health": 170,
+    "move_speed": 3.9,
+    "damage": 15,
+    "attack_range": 2.0,
+    "attack_windup": 0.6,
+    "attack_cooldown": 1.4,
+    "aggro_range": 60.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "patrol": true,
+    "look": "chest_mimic",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Baú Monstro (chest_monster.glb do autor; tools/assets/build_chest_mimic.py): mímico de ferro e madeira com dentes e língua. Agressivo e rápido, espalhado por todo o Esgoto: fareja de longe (aggro 60 m) e persegue sem parar. Terra (fraco a Fogo)."
   }
 }

@@ -3000,37 +3000,37 @@ msgid "DLG_OLD_LADY_DONE"
 msgstr "Así que el bosque respira de nuevo. Qué bueno tenerlos aquí."
 
 msgid "NPC_SEWER_SCAVENGER"
-msgstr "Serafina, la Ángel Caída"
+msgstr "Ossael, el Ángel Calavera"
 
 msgid "NPC_SEWER_RATCATCHER"
-msgstr "Itachi"
+msgstr "Azazel, el Ángel Flamígero"
 
 msgid "QUEST_SEWER_OLD_GATOR"
 msgstr "El Caimán Viejo"
 
 msgid "QUEST_SEWER_OLD_GATOR_DESC"
-msgstr "Itachi quiere el Pasaje Secreto de la Guerra libre: derrota al Caimán Viejo en la plaza del lado este de la alcantarilla."
+msgstr "Azazel quiere el Pasaje Secreto de la Guerra libre: derrota al Caimán Viejo en la plaza del lado este de la alcantarilla."
 
 msgid "DLG_SEWER_GATOR_1"
-msgstr "Hay un caimán antiguo en el Pasaje Secreto de la Guerra. Nadie pasa si él no quiere."
+msgstr "Ardo desde que el cielo me expulsó. El Caimán Viejo se tragó a mis hermanos caídos en este Pasaje de la Guerra, y aún guarda sus huesos en el vientre."
 
 msgid "DLG_SEWER_GATOR_2"
-msgstr "El Caimán Viejo solo sale del agua cuando alguien se acerca, y nunca viene solo."
+msgstr "Solo sale del agua cuando alguien se acerca, y nunca viene solo. Oigo los huesos crujir dentro de él a cada paso."
 
 msgid "DLG_SEWER_GATOR_3"
-msgstr "Su plaza está en el lado este, al fondo del laberinto. Derríbenlo y los recompenso."
+msgstr "Su plaza está en el lado este, en el fondo del laberinto. Ábranle el vientre por mí, y la llave que guarda es suya."
 
 msgid "DLG_SEWER_GATOR_ACTIVE"
-msgstr "El Caimán Viejo aún domina el Pasaje. Sigan hacia el este, hacia el fondo."
+msgstr "El Viejo aún domina el Pasaje. Vayan al este, hacia el fondo, y dejen que su fuego… quiero decir, el mío, haga el resto."
 
 msgid "DLG_SEWER_GATOR_DONE"
-msgstr "El Pasaje está libre. Buen trabajo."
+msgstr "Su vientre se abrió y mis hermanos por fin pudieron arder en paz. Lleven la llave. Yo me quedo con las cenizas."
 
 msgid "QUEST_SEWER_FROG_KING"
 msgstr "El Rey de los Sapos"
 
 msgid "QUEST_SEWER_FROG_KING_DESC"
-msgstr "Serafina quiere al Rey de los Sapos fuera del camino: lleva su libro al altar en el centro de la alcantarilla para despertar al monstruo y derrótalo."
+msgstr "Ossael quiere al Rey de los Sapos fuera del camino: lleva su libro al altar en el centro de la alcantarilla para despertar al monstruo y derrótalo."
 
 msgid "DLG_SEWER_FROG_1"
 msgstr "Fui ángel, una vez. Caí por estas rejas, y mis alas quedaron atrapadas en lo que la cloaca devora. Oigo los susurros de una cosa de carne y tablas, al oeste."
@@ -3057,7 +3057,7 @@ msgid "PROP_SEWER_SECTOR_3"
 msgstr "Galerías de los Murciélagos"
 
 msgid "SIGN_SEWER_SECTOR_3"
-msgstr "Sector 3 — Galerías de los Murciélagos. Bandadas de murciélagos pestilentes; el puesto de Itachi está al este."
+msgstr "Sector 3 — Galerías de los Murciélagos. Bandadas de murciélagos pestilentes; el puesto de Azazel está al este."
 
 msgid "PROP_SEWER_SECTOR_4"
 msgstr "Pasaje Secreto de la Guerra"
@@ -3093,10 +3093,10 @@ msgid "TOAST_FROG_ALTAR_AWAKENS"
 msgstr "El altar tiembla: ¡el Rey de los Sapos despierta!"
 
 msgid "TOAST_BOOK_RECEIVED"
-msgstr "¡Serafina entregó el Libro del Altar!"
+msgstr "¡Ossael entregó el Libro del Altar!"
 
 msgid "DLG_FROG_ALTAR_LOCKED"
-msgstr "El altar no reacciona. Hay un hueco vacío en el centro de la piedra, del tamaño de un libro. Serafina debe tener lo que falta."
+msgstr "El altar no reacciona. Hay un hueco vacío en el centro de la piedra, del tamaño de un libro. Ossael debe tener lo que falta."
 
 msgid "MONSTER_TROLL_MAULER"
 msgstr "Troll Aplastador"
@@ -3136,6 +3136,18 @@ msgstr "Un guerrero hongo con armadura, nacido en las paredes húmedas de la esq
 
 msgid "BEAST_CHAMP_WARRIOR_HINT"
 msgstr "Ágil y de vida media: esquiva cuando levante la espada. El Fuego le hace más daño."
+
+msgid "MONSTER_CHEST_MIMIC"
+msgstr "Cofre Monstruo"
+
+msgid "BEAST_CHEST_MIMIC"
+msgstr "Cofre Monstruo"
+
+msgid "BEAST_CHEST_MIMIC_LEGEND"
+msgstr "Un cofre que perdió la tapa y le salieron dientes. Si lo abres, te abre a ti: se tragó a los últimos mercenarios que quisieron el tesoro de la cloaca."
+
+msgid "BEAST_CHEST_MIMIC_HINT"
+msgstr "Rápido y terco: huir no sirve. El Fuego lo quema más."
 
 msgid "PROP_SEWER_SECTOR_2"
 msgstr "Canales de Basura"

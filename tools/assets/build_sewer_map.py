@@ -101,6 +101,10 @@ while queue:
             queue.append(n)
 assert len(depth) == NC * NR, "labirinto desconexo"
 
+# Sala da Ossael, no meio do mapa (a célula a oeste do altar): abre as quatro passagens (depois da profundidade, para não mexer nos sorteios do resto) e fica com tocha.
+ANGEL_CELL = (NC // 2 - 1, NR // 2)
+for _n in neighbors(ANGEL_CELL):
+    open_edges.add(frozenset((ANGEL_CELL, _n)))
 rooms = [{"id": "entry", "center": [0, 0], "size": [14, 12], "doors": ["north"], "torch": True, "narrow": True}]
 for c in sorted(depth, key=lambda k: depth[k]):
     doors = doors_of(c)
@@ -113,7 +117,7 @@ for c in sorted(depth, key=lambda k: depth[k]):
     if c in (ATTACH_E, POST, SECRET):
         doors.append("east")
     room = {"id": "maze_%d_%d" % c, "center": [cx(c[0]), cz(c[1])], "size": [RS, RS], "doors": doors, "narrow": True}
-    if depth[c] % 4 == 0 and c != START:
+    if (depth[c] % 4 == 0 and c != START) or c == ANGEL_CELL:
         room["torch"] = True
     rooms.append(room)
 
@@ -209,19 +213,19 @@ encounters.append({"id": "sw_queen", "position": [0, nest_z + (-42 - -36)], "lev
 
 # Troll Mauler (piacenti, CC BY 3.0): o monstro do Setor 1 (Bueiros), um por terço do setor, em células sem sorteio (não mexe nos outros sorteios do mapa).
 troll_cells = sorted(by_sector[1], key=lambda c: depth[c])
-for i, q in enumerate((0.3, 0.6, 0.9)):
+for i, q in enumerate((0.15, 0.3, 0.45, 0.6, 0.75, 0.9)):
     c = troll_cells[min(int(len(troll_cells) * q), len(troll_cells) - 1)]
     encounters.append({"id": "sw1_troll_%d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 1, "monsters": [{"monster": "troll_mauler", "count": 1}]})
 
 # Mutante (thecubber, CC-BY-SA 3.0): o monstro do Setor 5 (Câmaras dos Cogumelos, canto inferior esquerdo), em bandos de 1 a 2 espalhados pelas células do setor, sem sorteio.
 mutant_cells = sorted(by_sector[5], key=lambda c: depth[c])
-for i, q in enumerate((0.15, 0.35, 0.55, 0.75, 0.95)):
+for i, q in enumerate((0.05, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85, 0.95)):
     c = mutant_cells[min(int(len(mutant_cells) * q), len(mutant_cells) - 1)]
     encounters.append({"id": "sw5_mutant_%d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 2, "monsters": [{"monster": "mutant", "count": 1 + i % 2}]})
 
 # Monstro Bárbaro (barbarian-monster.glb do autor): o monstro do lado esquerdo do meio do mapa (Setor 2, colunas do oeste, linhas do meio do setor); dois, sem sorteio.
 west_middle = sorted([c for c in by_sector[2] if c[0] <= NC // 4], key=lambda c: (abs(c[1] - (NR / 2.0 - 0.5)), c[0]))
-for i, c in enumerate(west_middle[:2]):
+for i, c in enumerate(west_middle[:5]):
     encounters.append({"id": "sw2_barbarian_%d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 1, "monsters": [{"monster": "barbarian_monster", "count": 1}]})
 
 # Guerreiro Cogumelo (champ-warrior.glb do autor): o monstro do canto superior esquerdo do mapa (Setor 1, as duas células mais perto do canto), sem sorteio.
@@ -241,18 +245,21 @@ for i, q in enumerate((0.15, 0.5, 0.85)):
     c = twelve_cells[min(int(len(twelve_cells) * q), len(twelve_cells) - 1)]
     encounters.append({"id": "sw3_twelve_%d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 1, "monsters": [{"monster": "demon_twelve", "count": 1 + i % 2}]})
 
+# Baú Monstro (chest_monster.glb do autor): agressivo, espalhado por todo o mapa — um a cada ~10 células, em células sorteadas por posição (sem usar o rng do resto), longe de encontros, do altar e da sala da Ossael.
+_mimic_cells = [c for c in sorted(depth) if c not in special_cells and c not in (ALTAR_CELL, ANGEL_CELL) and depth[c] > 1
+                and all(math.hypot(cx(c[0]) - e["position"][0], cz(c[1]) - e["position"][1]) > 9.0 for e in encounters)]
+_mimic_cells = [c for i, c in enumerate(sorted(_mimic_cells, key=lambda c: (c[0] * 7 + c[1] * 13) % 11)) if i % 4 == 0][:14]
+for i, c in enumerate(sorted(_mimic_cells, key=lambda c: (c[1], c[0]))):
+    encounters.append({"id": "sw_mimic_%02d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 1, "monsters": [{"monster": "chest_mimic", "count": 1}]})
+
 # Só os chefes do esgoto (Rei dos Sapos, Gator Velho e a Rainha), o Troll Mauler do Setor 1, o Monstro Bárbaro do Setor 2 e o Mutante do Setor 5 ficam; nenhum outro monstro revida.
-SEWER_BOSSES = ("frog_king", "old_gator", "demon_rat_queen", "troll_mauler", "barbarian_monster", "champ_warrior", "mutant", "shadow_spirit", "demon_twelve")
+SEWER_BOSSES = ("frog_king", "old_gator", "demon_rat_queen", "troll_mauler", "barbarian_monster", "champ_warrior", "mutant", "shadow_spirit", "demon_twelve", "chest_mimic")
 encounters = [dict(e, monsters=[m for m in e["monsters"] if m["monster"] in SEWER_BOSSES]) for e in encounters]
 encounters = [e for e in encounters if e["monsters"]]
 
 # --- props -------------------------------------------------------------------------------------------------------------------------------------------
-# O Anjo (NPC do Catador): no canto inferior esquerdo do mapa (a coluna mais a oeste, a linha mais ao fundo), numa célula livre de encontros e das salas especiais.
-_angel_cells = [c for c in depth if c not in special_cells and c != ALTAR_CELL
-                and all(math.hypot(cx(c[0]) - e["position"][0], cz(c[1]) - e["position"][1]) > 8.0 for e in encounters)]
-_angel_cell = min(_angel_cells, key=lambda c: (c[0] + (NR - 1 - c[1]), c[0]))
-ANGEL_AT = [round(cx(_angel_cell[0]) + 2.0, 1), round(cz(_angel_cell[1]) - 1.5, 1)]
-print("Anjo no canto inferior esquerdo: célula", _angel_cell, "posição", ANGEL_AT)
+# Ossael (o anjo, NPC do Catador): na sala aberta no meio do mapa (ANGEL_CELL).
+ANGEL_AT = [round(cx(ANGEL_CELL[0]), 1), round(cz(ANGEL_CELL[1]) + 1.5, 1)]
 props = [{"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-4, 3], "to": "tortuga", "entry": "sewer", "expedition_end": True},
          {"id": "sewer_scavenger", "kind": "npc", "npc": "sewer_scavenger", "position": ANGEL_AT, "rotation": 0},
          {"id": "sewer_ratcatcher", "kind": "npc", "npc": "sewer_ratcatcher", "position": [post_c[0] + 1.5, post_c[1]], "rotation": 270},
@@ -412,14 +419,14 @@ print("limites: x", min(r["center"][0] - r["size"][0] / 2 for r in rooms), max(r
 npcs = json.load(open(NPCS, encoding="utf-8"))
 quests = json.load(open(QUESTS, encoding="utf-8"))
 npcs["sewer_scavenger"] = {
-    "_comment": "Serafina, a Anja Caída (modelo angel_1.glb; canto inferior esquerdo do mapa): dá a missão do primeiro mini-chefe, o Rei dos Sapos (agora o Monstro de Tábuas), na praça oeste; ela fica parada, de asas abertas.",
+    "_comment": "Ossael, o Anjo Caveira (modelo angel_1.glb; sala aberta no meio do mapa): dá a missão do primeiro mini-chefe, o Rei dos Sapos (agora o Monstro de Tábuas), na praça oeste; ela fica parada, de asas abertas.",
     "name_key": "NPC_SEWER_SCAVENGER", "color": [0.4, 0.4, 0.3],
     "dialogues": [{"when": {"quest_new": "sewer_frog_king"}, "lines": ["DLG_SEWER_FROG_1", "DLG_SEWER_FROG_2", "DLG_SEWER_FROG_3"], "offer": "sewer_frog_king"},
                   {"when": {"quest_active": "sewer_frog_king"}, "lines": ["DLG_SEWER_FROG_ACTIVE"]},
                   {"when": {}, "lines": ["DLG_SEWER_FROG_DONE"]}],
     "body": {"sex": "male", "hair": ["Hair_Buzzed", "Hair_Beard"], "hair_color": [0.22, 0.16, 0.1], "pose": "idle", "outfit": {"body": "cloth"}}}
 npcs["sewer_ratcatcher"] = {
-    "_comment": "Itachi, o Caçador de Pragas do Esgoto (posto do lado leste; modelo próprio em NpcModel): dá a missão do segundo mini-chefe, o Gator Velho, que domina a Passagem da Guerra, na praça leste.",
+    "_comment": "Azazel, o Anjo Flamejante (posto do lado leste; modelo angel_2.glb em NpcModel; antes Itachi): dá a missão do segundo mini-chefe, o Gator Velho, que domina a Passagem da Guerra, na praça leste.",
     "name_key": "NPC_SEWER_RATCATCHER", "color": [0.45, 0.35, 0.25],
     "dialogues": [{"when": {"quest_new": "sewer_old_gator"}, "lines": ["DLG_SEWER_GATOR_1", "DLG_SEWER_GATOR_2", "DLG_SEWER_GATOR_3"], "offer": "sewer_old_gator"},
                   {"when": {"quest_active": "sewer_old_gator"}, "lines": ["DLG_SEWER_GATOR_ACTIVE"]},
@@ -441,7 +448,7 @@ open(QUESTS, "w", encoding="utf-8").write(json.dumps(quests, indent=2, ensure_as
 T = {
     "ARENA_SEWERS_DRAINS": ("Esgoto de Tortuga", "Tortuga Sewers", "Cloacas de Tortuga"),
     "NPC_SEWER_SCAVENGER": ("Catador do Esgoto", "Sewer Scavenger", "Rebuscador de la Alcantarilla"),
-    "NPC_SEWER_RATCATCHER": ("Itachi", "Itachi", "Itachi"),
+    "NPC_SEWER_RATCATCHER": ("Azazel, o Anjo Flamejante", "Azazel, the Flaming Angel", "Azazel, el Ángel Flamígero"),
     "QUEST_SEWER_OLD_GATOR": ("O Gator Velho", "The Old Gator", "El Caimán Viejo"),
     "QUEST_SEWER_OLD_GATOR_DESC": ("O Catador do Esgoto quer a Passagem Secreta da Guerra de volta: derrote o Gator Velho, na praça do lado leste do esgoto.",
                                    "The Sewer Scavenger wants the Secret War Passage back: defeat the Old Gator in the plaza on the east side of the sewer.",
@@ -555,15 +562,34 @@ T.update({
     "DLG_SEWER_FROG_ACTIVE": ("Ainda ouço o choro dele no oeste. Cada tábua que cai solta uma alma… e eu a vejo subir. Não me deixem esperando no escuro.",
                               "I can still hear it weeping in the west. Every plank that falls frees a soul… and I watch it rise. Do not leave me waiting in the dark.",
                               "Todavía oigo su llanto en el oeste. Cada tabla que cae suelta un alma… y la veo subir. No me dejen esperando en la oscuridad."),
-    "DLG_SEWER_FROG_DONE": ("Silêncio, finalmente. As almas subiram e eu senti cada uma passar por entre as minhas asas quebradas. Obrigada. Levem a chave: ela já pesa menos.",
+    "DLG_SEWER_FROG_DONE": ("Silêncio, finalmente. As almas subiram e eu senti cada uma passar por entre as minhas asas quebradas. Obrigado. Levem a chave: ela já pesa menos.",
                             "Silence, at last. The souls rose and I felt each one pass through my broken wings. Thank you. Take the key: it weighs less now.",
                             "Silencio, por fin. Las almas subieron y sentí cada una pasar entre mis alas rotas. Gracias. Lleven la llave: ya pesa menos."),
-    "NPC_SEWER_SCAVENGER": ("Serafina, a Anja Caída", "Seraphina, the Fallen Angel", "Serafina, la Ángel Caída"),
+    "NPC_SEWER_SCAVENGER": ("Ossael, o Anjo Caveira", "Ossael, the Skull Angel", "Ossael, el Ángel Calavera"),
 })
-# o Catador virou a anja Serafina: o nome dele some dos outros textos (missão, aviso do livro, altar)
+# o Catador virou o anjo Ossael: o nome dele some dos outros textos (missão, aviso do livro, altar)
 for _k in list(T):
-    T[_k] = tuple(t.replace("O Catador do Esgoto", "Serafina").replace("Catador do Esgoto", "Serafina").replace("The Sewer Scavenger", "Seraphina").replace("El Rebuscador de la Alcantarilla", "Serafina")
-                  .replace("Rebuscador de la Alcantarilla", "Serafina") for t in T[_k])
+    T[_k] = tuple(t.replace("O Catador do Esgoto", "Ossael").replace("Catador do Esgoto", "Ossael").replace("The Sewer Scavenger", "Ossael").replace("El Rebuscador de la Alcantarilla", "Ossael")
+                  .replace("Rebuscador de la Alcantarilla", "Ossael") for t in T[_k])
+T.update({
+    "DLG_SEWER_GATOR_1": ("Eu ardo desde que o céu me expulsou. O Gator Velho engoliu os meus irmãos que caíram nesta Passagem da Guerra, e ainda guarda os ossos deles na barriga.",
+                          "I have burned since the sky cast me out. The Old Gator swallowed my brothers who fell in this War Passage, and still keeps their bones in his belly.",
+                          "Ardo desde que el cielo me expulsó. El Caimán Viejo se tragó a mis hermanos caídos en este Pasaje de la Guerra, y aún guarda sus huesos en el vientre."),
+    "DLG_SEWER_GATOR_2": ("Ele só sai da água quando alguém chega perto, e nunca vem sozinho. Escuto os ossos estalando dentro dele a cada passo.",
+                          "He only leaves the water when someone gets close, and never comes alone. I hear the bones cracking inside him at every step.",
+                          "Solo sale del agua cuando alguien se acerca, y nunca viene solo. Oigo los huesos crujir dentro de él a cada paso."),
+    "DLG_SEWER_GATOR_3": ("A praça dele fica no lado leste, no fundo do labirinto. Rasguem a barriga dele por mim, e a chave que ele guarda é de vocês.",
+                          "His plaza is on the east side, deep in the maze. Tear his belly open for me, and the key he keeps is yours.",
+                          "Su plaza está en el lado este, en el fondo del laberinto. Ábranle el vientre por mí, y la llave que guarda es suya."),
+    "DLG_SEWER_GATOR_ACTIVE": ("O Velho ainda domina a Passagem. Sigam para o leste, rumo ao fundo, e deixem o fogo dele… quer dizer, o meu, fazer o resto.",
+                               "The Old One still rules the Passage. Head east, deep down, and let his fire… I mean, mine, do the rest.",
+                               "El Viejo aún domina el Pasaje. Vayan al este, hacia el fondo, y dejen que su fuego… quiero decir, el mío, haga el resto."),
+    "DLG_SEWER_GATOR_DONE": ("A barriga dele se abriu e meus irmãos puderam finalmente ser queimados em paz. Levem a chave. Eu fico com as cinzas.",
+                             "His belly burst open and my brothers could finally be burned in peace. Take the key. I keep the ashes.",
+                             "Su vientre se abrió y mis hermanos por fin pudieron arder en paz. Lleven la llave. Yo me quedo con las cenizas."),
+})
+for _k in list(T):
+    T[_k] = tuple(t.replace("Itachi", "Azazel") for t in T[_k])
 for lang, i in (("pt_BR", 0), ("en", 1), ("es", 2)):
     path = "locale/%s.po" % lang
     po = open(path, encoding="utf-8").read()

@@ -3000,37 +3000,37 @@ msgid "DLG_OLD_LADY_DONE"
 msgstr "Então o bosque respira de novo. Que bom ter vocês por aqui."
 
 msgid "NPC_SEWER_SCAVENGER"
-msgstr "Serafina, a Anja Caída"
+msgstr "Ossael, o Anjo Caveira"
 
 msgid "NPC_SEWER_RATCATCHER"
-msgstr "Itachi"
+msgstr "Azazel, o Anjo Flamejante"
 
 msgid "QUEST_SEWER_OLD_GATOR"
 msgstr "O Gator Velho"
 
 msgid "QUEST_SEWER_OLD_GATOR_DESC"
-msgstr "Itachi quer a Passagem Secreta da Guerra livre: derrote o Gator Velho, na praça do lado leste do esgoto."
+msgstr "Azazel quer a Passagem Secreta da Guerra livre: derrote o Gator Velho, na praça do lado leste do esgoto."
 
 msgid "DLG_SEWER_GATOR_1"
-msgstr "Há um jacaré antigo na Passagem Secreta da Guerra. Ninguém passa por lá sem que ele queira."
+msgstr "Eu ardo desde que o céu me expulsou. O Gator Velho engoliu os meus irmãos que caíram nesta Passagem da Guerra, e ainda guarda os ossos deles na barriga."
 
 msgid "DLG_SEWER_GATOR_2"
-msgstr "O Gator Velho só sai da água quando alguém chega perto, e nunca vem sozinho."
+msgstr "Ele só sai da água quando alguém chega perto, e nunca vem sozinho. Escuto os ossos estalando dentro dele a cada passo."
 
 msgid "DLG_SEWER_GATOR_3"
-msgstr "A praça dele fica no lado leste, no fundo do labirinto. Derrubem-no e eu recompenso vocês."
+msgstr "A praça dele fica no lado leste, no fundo do labirinto. Rasguem a barriga dele por mim, e a chave que ele guarda é de vocês."
 
 msgid "DLG_SEWER_GATOR_ACTIVE"
-msgstr "O Gator Velho ainda domina a Passagem. Sigam para o leste, rumo ao fundo."
+msgstr "O Velho ainda domina a Passagem. Sigam para o leste, rumo ao fundo, e deixem o fogo dele… quer dizer, o meu, fazer o resto."
 
 msgid "DLG_SEWER_GATOR_DONE"
-msgstr "A Passagem está livre. Bom trabalho."
+msgstr "A barriga dele se abriu e meus irmãos puderam finalmente ser queimados em paz. Levem a chave. Eu fico com as cinzas."
 
 msgid "QUEST_SEWER_FROG_KING"
 msgstr "O Rei dos Sapos"
 
 msgid "QUEST_SEWER_FROG_KING_DESC"
-msgstr "Serafina quer o Rei dos Sapos fora do caminho: leve o livro dele ao altar no centro do esgoto para despertar o monstro e derrote-o."
+msgstr "Ossael quer o Rei dos Sapos fora do caminho: leve o livro dele ao altar no centro do esgoto para despertar o monstro e derrote-o."
 
 msgid "DLG_SEWER_FROG_1"
 msgstr "Fui anjo, um dia. Caí por estas grades, e as asas ficaram presas no que o esgoto devora. Escuto os sussurros de uma coisa de carne e tábuas, no oeste."
@@ -3045,7 +3045,7 @@ msgid "DLG_SEWER_FROG_ACTIVE"
 msgstr "Ainda ouço o choro dele no oeste. Cada tábua que cai solta uma alma… e eu a vejo subir. Não me deixem esperando no escuro."
 
 msgid "DLG_SEWER_FROG_DONE"
-msgstr "Silêncio, finalmente. As almas subiram e eu senti cada uma passar por entre as minhas asas quebradas. Obrigada. Levem a chave: ela já pesa menos."
+msgstr "Silêncio, finalmente. As almas subiram e eu senti cada uma passar por entre as minhas asas quebradas. Obrigado. Levem a chave: ela já pesa menos."
 
 msgid "PROP_SEWER_SECTOR_1"
 msgstr "Bueiros da Rua Principal"
@@ -3057,7 +3057,7 @@ msgid "PROP_SEWER_SECTOR_3"
 msgstr "Galerias dos Morcegos"
 
 msgid "SIGN_SEWER_SECTOR_3"
-msgstr "Setor 3 — Galerias dos Morcegos. Bandos de morcegos pestilentos; o posto do Itachi fica a leste."
+msgstr "Setor 3 — Galerias dos Morcegos. Bandos de morcegos pestilentos; o posto do Azazel fica a leste."
 
 msgid "PROP_SEWER_SECTOR_4"
 msgstr "Passagem Secreta da Guerra"
@@ -3093,10 +3093,10 @@ msgid "TOAST_FROG_ALTAR_AWAKENS"
 msgstr "O altar estremece: o Rei dos Sapos desperta!"
 
 msgid "TOAST_BOOK_RECEIVED"
-msgstr "Serafina entregou o Livro do Altar!"
+msgstr "Ossael entregou o Livro do Altar!"
 
 msgid "DLG_FROG_ALTAR_LOCKED"
-msgstr "O altar não reage. Há um vão vazio no centro da pedra, do tamanho de um livro. Serafina deve ter o que falta."
+msgstr "O altar não reage. Há um vão vazio no centro da pedra, do tamanho de um livro. Ossael deve ter o que falta."
 
 msgid "MONSTER_TROLL_MAULER"
 msgstr "Troll Esmagador"
@@ -3136,6 +3136,18 @@ msgstr "Um guerreiro-cogumelo de armadura, nascido nas paredes úmidas do canto 
 
 msgid "BEAST_CHAMP_WARRIOR_HINT"
 msgstr "Ágil e de vida média: desvie quando ele levantar a espada. O Fogo o machuca mais."
+
+msgid "MONSTER_CHEST_MIMIC"
+msgstr "Baú Monstro"
+
+msgid "BEAST_CHEST_MIMIC"
+msgstr "Baú Monstro"
+
+msgid "BEAST_CHEST_MIMIC_LEGEND"
+msgstr "Um baú que perdeu a tampa e ganhou dentes. Se você abrir, ele abre você: engoliu os últimos mercenários que quiseram o tesouro do Esgoto."
+
+msgid "BEAST_CHEST_MIMIC_HINT"
+msgstr "Rápido e teimoso: não adianta fugir. O Fogo o queima mais."
 
 msgid "PROP_SEWER_SECTOR_2"
 msgstr "Canais de Lixo"

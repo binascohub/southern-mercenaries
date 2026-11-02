@@ -760,7 +760,7 @@
     ]
   },
   "sewer_scavenger": {
-    "_comment": "Serafina, a Anja Caída (modelo angel_1.glb; canto inferior esquerdo do mapa): dá a missão do primeiro mini-chefe, o Rei dos Sapos (agora o Monstro de Tábuas), na praça oeste; ela fica parada, de asas abertas.",
+    "_comment": "Ossael, o Anjo Caveira (modelo angel_1.glb; sala aberta no meio do mapa): dá a missão do primeiro mini-chefe, o Rei dos Sapos (agora o Monstro de Tábuas), na praça oeste; ela fica parada, de asas abertas.",
     "name_key": "NPC_SEWER_SCAVENGER",
     "color": [
       0.4,
@@ -812,7 +812,7 @@
     }
   },
   "sewer_ratcatcher": {
-    "_comment": "Itachi, o Caçador de Pragas do Esgoto (posto do lado leste; modelo próprio em NpcModel): dá a missão do segundo mini-chefe, o Gator Velho, que domina a Passagem da Guerra, na praça leste.",
+    "_comment": "Azazel, o Anjo Flamejante (posto do lado leste; modelo angel_2.glb em NpcModel; antes Itachi): dá a missão do segundo mini-chefe, o Gator Velho, que domina a Passagem da Guerra, na praça leste.",
     "name_key": "NPC_SEWER_RATCATCHER",
     "color": [
       0.45,

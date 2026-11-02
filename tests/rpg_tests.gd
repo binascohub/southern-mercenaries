@@ -826,12 +826,13 @@ func _test_sewers() -> void:
 	# Só os chefes do esgoto (Rei dos Sapos, Gator Velho e a Rainha) revidam, cada um sozinho.
 	var sewer_ids: Array = area.encounters.map(func(e: Dictionary) -> String: return String(e.id))
 	sewer_ids.sort()
-	_check(sewer_ids == ["sw1_champ_1", "sw1_champ_2", "sw1_spirit_1", "sw1_spirit_2", "sw1_spirit_3", "sw1_spirit_4", "sw1_troll_1", "sw1_troll_2", "sw1_troll_3", "sw2_barbarian_1", "sw2_barbarian_2", "sw3_twelve_1", "sw3_twelve_2", "sw3_twelve_3", "sw5_mutant_1", "sw5_mutant_2", "sw5_mutant_3", "sw5_mutant_4", "sw5_mutant_5", "sw_old_gator", "sw_queen"],
-		"esgoto: os chefes do mapa, os 3 Trolls Mauler do Setor 1 e os 5 bandos de Mutante do Setor 5 (%s); o Rei dos Sapos vem do altar" % [sewer_ids])
+	var fixed_ids: Array = sewer_ids.filter(func(id: String) -> bool: return not id.begins_with("sw_mimic_"))
+	_check(sewer_ids.filter(func(id: String) -> bool: return id.begins_with("sw_mimic_")).size() >= 10 and fixed_ids.size() == fixed_ids.filter(func(id: String) -> bool: return id.begins_with("sw1_") or id.begins_with("sw2_") or id.begins_with("sw3_") or id.begins_with("sw5_") or id in ["sw_old_gator", "sw_queen"]).size(),
+		"esgoto: os encontros fixos de cada setor, os chefes do mapa e 10 ou mais Baús Monstro espalhados (%s); o Rei dos Sapos vem do altar" % [sewer_ids])
 	var altar: Array = area.props.filter(func(p: Dictionary) -> bool: return p.get("id", "") == "sewer_frog_altar")
 	_check(altar.size() == 1 and altar[0].position == [0.0, -84.0] and altar[0].summon.id == "sw_frog_king" and altar[0].summon.monsters[0].monster == "frog_king",
 		"o altar do Rei dos Sapos fica no centro do mapa e invoca só o Rei")
-	_check(area.encounters.all(func(e: Dictionary) -> bool: return e.monsters.size() == 1 and (GameData.monsters[e.monsters[0].monster].category in ["boss", "miniboss"] or e.monsters[0].monster in ["troll_mauler", "barbarian_monster", "champ_warrior", "mutant", "shadow_spirit", "demon_twelve"])),
+	_check(area.encounters.all(func(e: Dictionary) -> bool: return e.monsters.size() == 1 and (GameData.monsters[e.monsters[0].monster].category in ["boss", "miniboss"] or e.monsters[0].monster in ["troll_mauler", "barbarian_monster", "champ_warrior", "mutant", "shadow_spirit", "demon_twelve", "chest_mimic"])),
 		"esgoto: cada encontro é um chefe, um Troll Mauler ou um bando de Mutante (um só tipo de monstro)")
 	_check(area.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("sw1_spirit_")).all(func(e: Dictionary) -> bool: return e.position[0] > 30.0 and e.position[1] > -60.0),
 		"os Espíritos Sombrios ficam no canto superior direito do mapa")

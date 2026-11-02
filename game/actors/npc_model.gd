@@ -109,13 +109,20 @@ const MODELS := {
 	"forest_reptile": {"scene": "res://assets/models/monsters/reptile.glb", "scale": 1.0, "poses": {"idle": "idle", "talk": "idle", "stand": "idle", "walk": "walk"}},
 	# Capitão pirata (Clint Bellanger, CC BY 3.0): preso ao esqueleto dos heróis
 	# por tools/assets/rig_to_ual.py, com as animações deles; texturas geradas.
-	# Serafina, a Anja Caída (angel_1.glb do autor, anja de asas brancas gerada por IA, malha estática andando; tools/assets/build_angel.py; autoria e licença a confirmar): NPC do Esgoto
+	# Ossael, o Anjo Caveira (angel_1.glb do autor, anjo de asas brancas gerada por IA, malha estática andando; tools/assets/build_angel.py; autoria e licença a confirmar): NPC do Esgoto
 	# (dá a missão do Rei dos Sapos); fica parada na pose do arquivo, de asas abertas. Substituiu o Catador (Homem-Aranha).
-	"sewer_scavenger": {"scene": "res://assets/models/characters/angel.glb", "scale": 1.0, "poses": {"idle": "flap", "talk": "flap", "stand": "flap"}},  # 2,4 m; bate as asas (animação "flap")
+	"sewer_scavenger": {"scene": "res://assets/models/characters/angel.glb", "scale": 1.0, "poses": {"idle": "flap", "talk": "flap", "stand": "flap"},
+		"aura": {"color": [1.0, 0.86, 0.5], "center": 1.3, "size": 3.6}},  # 2,4 m; bate as asas (animação "flap")
+	# Homem-Aranha (The Amazing Spider-Man 2 suit, Ugo9p1, modelo comprado, crédito pedido pelo autor; tools/assets/build_spiderman.py + rig_to_ual.py): dança ao lado da estátua do pirata em Tortuga
+	# (a dança dos heróis, Dance_Loop). Era o Catador do Esgoto; o Ossael o substituiu lá.
+	"spiderman": {"scene": "res://assets/models/characters/spiderman.glb", "scale": 1.0,
+		"poses": {"idle": "Dance_Loop", "talk": "Dance_Loop", "stand": "Dance_Loop"}},
 	# Itachi (itachi.blend do autor, malha do Mixamo sem textura: pintura por vértice e rigging por tools/assets/build_itachi_npc.py): o Caçador de Pragas do Esgoto,
 	# preso ao esqueleto dos heróis, com os movimentos deles.
-	"sewer_ratcatcher": {"scene": "res://assets/models/characters/itachi.glb", "scale": 1.0, "vertex_colors": true,
-		"poses": {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop"}},
+	# (O Itachi, itachi.glb, ficou no projeto sem uso.) Azazel, o Anjo Flamejante (angel_2.glb do autor, anjo guerreiro de armadura e duas espadas em chamas, asas de brasa; tools/assets/build_angel.py;
+	# autoria e licença a confirmar): NPC do posto leste do Esgoto (dá a missão do Gator Velho), no lugar do Itachi; bate as asas (animação "flap"), 2,6 m.
+	"sewer_ratcatcher": {"scene": "res://assets/models/characters/angel_warrior.glb", "scale": 1.0, "poses": {"idle": "flap", "talk": "flap", "stand": "flap"},
+		"aura": {"color": [1.0, 0.45, 0.12], "center": 1.5, "size": 4.0}},
 	# Baltazar (civilian1.glb do autor, homem do Mixamo de camisa e calça; tools/assets/build_mixamo_civilian.py): passeia pela praça do portão da Capital e pela rua de Tortuga, preso ao esqueleto dos heróis,
 	# com os movimentos deles.
 	"civilian_1": {"scene": "res://assets/models/characters/civilian1.glb", "scale": 1.0,
@@ -179,7 +186,7 @@ const MODELS := {
 		"poses": {"walk": "walk", "idle": "idle", "talk": "idle"},
 		"colors": {"Spider": [0.03, 0.03, 0.035]}},
 	# Morcego do esgoto (o mesmo modelo dos monstros; só enfeite, voa em círculos: game/levels/flyer.gd). O arquivo tem ~10 unidades de envergadura.
-	"bat": {"scene": "res://assets/models/monsters/bat.glb", "scale": 0.14,
+	"bat": {"scene": "res://assets/models/monsters/bat.glb", "scale": 0.11, "bat_wings": true,
 		"poses": {"walk": "fly", "idle": "fly", "talk": "fly"}},
 	# Ratinho do esgoto (o mesmo modelo dos monstros antigos): não ataca, só cenário como as aranhas.
 	"rat": {"scene": "res://assets/models/monsters/rat.glb", "scale": 0.72,
@@ -279,6 +286,11 @@ static func create(id: String) -> NpcModel:
 					copy.albedo_color = Color(c[0], c[1], c[2])
 					mesh.set_surface_override_material(i, copy)
 	npc._anim = model.find_child("AnimationPlayer", true, false) as AnimationPlayer
+	if info.has("aura"):  # brilho em volta, como o dos heróis de rank S: {"color": [r, g, b], "center": m, "size": m}
+		var aura: Dictionary = info.aura
+		AuraGlow.attach(npc, Color(aura.color[0], aura.color[1], aura.color[2]), float(aura.center), float(aura.size), float(aura.get("strength", 1.0)))
+	if info.get("bat_wings", false):
+		BatWings.attach(model as Node3D)  # vira o morcego para a frente e bate as asas (a animação do arquivo não mexe nelas)
 	if npc._anim and info.get("dances", false):
 		npc._make_dances()
 	if npc._anim and info.get("bartender", false):

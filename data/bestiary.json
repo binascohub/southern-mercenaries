@@ -92,5 +92,15 @@
     "monsters": [
       "champ_warrior"
     ]
+  },
+  "chest_mimic": {
+    "name_key": "BEAST_CHEST_MIMIC",
+    "legend_key": "BEAST_CHEST_MIMIC_LEGEND",
+    "hint_key": "BEAST_CHEST_MIMIC_HINT",
+    "element": "earth",
+    "map": "map_sewers",
+    "monsters": [
+      "chest_mimic"
+    ]
   }
 }
