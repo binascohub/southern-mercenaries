@@ -1714,7 +1714,7 @@ msgid "DLG_OLD_DRUNK_3"
 msgstr "Años después, la gente de aquí envenenó y quemó a las ratas de allí... pero se olvidaron de la madre."
 
 msgid "DLG_OLD_DRUNK_4"
-msgstr "Dicen que el alquimista del rey, olvidado allá abajo, hizo un pacto con un demonio, le salieron ocho patas de araña y ahora duerme sobre el tesoro, con la corona del rey guardada en la capa."
+msgstr "Dicen que el alquimista del rey, olvidado allá abajo, hizo un pacto con un demonio, se volvió nigromante y ahora duerme sobre el tesoro, con la corona del rey guardada en la capa."
 
 msgid "DLG_OLD_DRUNK_5"
 msgstr "¡Si buscáis tesoro, estáis encima de uno! Solo llevad fuego. Ella ya sabe lo que es el fuego, y lo odia."
@@ -1729,7 +1729,7 @@ msgid "DLG_KEEPER_1"
 msgstr "Sentaos, descansad. En Tortuga nadie pregunta de dónde viene el oro, solo si paga."
 
 msgid "DLG_BARD_QUEEN_1"
-msgstr "El Hechicero Araña fue el alquimista del rey, dejado en la oscuridad para guardar el tesoro."
+msgstr "El Nigromante fue el alquimista del rey, dejado en la oscuridad para guardar el tesoro."
 
 msgid "DLG_BARD_QUEEN_2"
 msgstr "Ahora la tierra corre por sus venas, y la tierra teme al fuego: recordad la canción."
@@ -1756,7 +1756,7 @@ msgid "QUEST_SEWER_TREASURE"
 msgstr "El tesoro bajo la ciudad"
 
 msgid "QUEST_SEWER_TREASURE_DESC"
-msgstr "Baja por la rejilla de la cloaca, derrota al Hechicero Araña y toma el tesoro perdido de la guerra. Las ratas son de Tierra: temen al Fuego."
+msgstr "Baja por la rejilla de la cloaca, derrota al Nigromante, que duerme sobre el tesoro perdido de la guerra. Las ratas son de Tierra: temen al Fuego."
 
 msgid "AREA_TORTUGA"
 msgstr "Tortuga"
@@ -2026,7 +2026,7 @@ msgid "BEAST_PLAGUE_RAT"
 msgstr "Sapo Pestilente"
 
 msgid "BEAST_PLAGUE_RAT_LEGEND"
-msgstr "En la Europa medieval las ratas quedaron ligadas a la Peste Negra: sus pulgas propagaron la peste que mató a buena parte de la población. Aquí son los familiares del Hechicero Araña, contaminados por su pacto con el demonio: más grandes, de ojos rojos, atacan en enjambres."
+msgstr "En la Europa medieval las ratas quedaron ligadas a la Peste Negra: sus pulgas propagaron la peste que mató a buena parte de la población. Aquí son los familiares del Nigromante, contaminados por su pacto con el demonio: más grandes, de ojos rojos, atacan en enjambres."
 
 msgid "BEAST_PLAGUE_RAT_HINT"
 msgstr "Una rata es una rata: le teme al fuego. Llevad una antorcha... o un mago que sepa encenderla."
@@ -2068,7 +2068,7 @@ msgid "BEAST_SEWER_GATOR_HINT"
 msgstr "Si el agua burbujea, aléjate. Vive en el fondo del canal. Un rayo en el agua y sube panza arriba."
 
 msgid "BEAST_DEMON_RAT_QUEEN"
-msgstr "Hechicero Araña"
+msgstr "Nigromante"
 
 msgid "BEAST_DEMON_RAT_QUEEN_LEGEND"
 msgstr "En el folclore alemán, un 'rey de las ratas' es un nudo de ratas atadas por la cola, presagio de peste. Aquí era la madre de todas las ratas de la cloaca; cuando Tortuga envenenó y quemó a sus crías, pactó con un demonio, creció como una carreta y anida sobre el tesoro perdido de la guerra, con la corona del rey caído."
@@ -2348,13 +2348,10 @@ msgid "MONSTER_OLD_GATOR"
 msgstr "Caimán Viejo"
 
 msgid "MONSTER_RAT_QUEEN"
-msgstr "Hechicero Araña"
+msgstr "Nigromante"
 
 msgid "ARENA_SEWERS_DRAINS"
 msgstr "Cloacas de Tortuga"
-
-msgid "ARENA_SEWERS_CANALS"
-msgstr "Cloacas — Canales de Basura"
 
 msgid "ARENA_SEWERS_WAR_PASSAGE"
 msgstr "Cloacas — Pasaje Secreto de la Guerra"
@@ -2378,7 +2375,7 @@ msgid "SIGN_WAR_CREST_ARCHER"
 msgstr "El escudo de mi reino. Así que por aquí huyó el tesoro de la guerra."
 
 msgid "HUD_VICTORY_SEWERS"
-msgstr "El Hechicero Araña ha caído."
+msgstr "El Nigromante ha caído."
 
 msgid "HUD_VICTORY_TREASURE"
 msgstr "El Tesoro Perdido de la Guerra está abierto para el grupo."
@@ -2408,7 +2405,7 @@ msgid "MONSTER_RAT_NEST"
 msgstr "Nido de Crías"
 
 msgid "BOSS_RAT_QUEEN_PHASE_1"
-msgstr "Madre Furiosa"
+msgstr "El Despertar"
 
 msgid "BOSS_RAT_QUEEN_PHASE_2"
 msgstr "La Camada"
@@ -2453,7 +2450,7 @@ msgid "RELIC_FALLEN_KING_CROWN"
 msgstr "Corona del Rey Caído"
 
 msgid "RELIC_FALLEN_KING_CROWN_DESC"
-msgstr "La corona torcida que llevaba el Hechicero Araña. Pesa más de lo que debería."
+msgstr "La corona torcida que llevaba el Nigromante. Pesa más de lo que debería."
 
 msgid "TOAST_RELIC_FOUND"
 msgstr "Reliquia: {relic}"
@@ -3049,12 +3046,6 @@ msgstr "Desagües de la Calle Principal"
 msgid "SIGN_SEWER_SECTOR_1"
 msgstr "Sector 1 — Desagües de la Calle Principal. Sapos pestilentes en manadas; atención a los callejones."
 
-msgid "PROP_SEWER_SECTOR_2"
-msgstr "Canales de Basura"
-
-msgid "SIGN_SEWER_SECTOR_2"
-msgstr "Sector 2 — Canales de Basura. Los sapos ácidos escupen de lejos; la plaza del Rey de los Sapos está al oeste."
-
 msgid "PROP_SEWER_SECTOR_3"
 msgstr "Galerías de los Murciélagos"
 
@@ -3111,3 +3102,42 @@ msgstr "Un bruto encorvado bajo sus propios brazos, de piel gruesa y llena de ci
 
 msgid "BEAST_TROLL_MAULER_HINT"
 msgstr "Lento y pesado: espera el aviso del golpe y esquiva. El Fuego le hace más daño."
+
+msgid "MONSTER_MUTANT"
+msgstr "Mutante"
+
+msgid "MONSTER_BARBARIAN_MONSTER"
+msgstr "Monstruo Bárbaro"
+
+msgid "BEAST_BARBARIAN_MONSTER"
+msgstr "Monstruo Bárbaro"
+
+msgid "BEAST_BARBARIAN_MONSTER_LEGEND"
+msgstr "Un guerrero orco con cuernos, expulsado de su propia banda. Bajó a los canales del lado oeste y los hizo su territorio."
+
+msgid "BEAST_BARBARIAN_MONSTER_HINT"
+msgstr "Golpea rápido y aguanta mucho: aléjate cuando retroceda el brazo. El Fuego le hace más daño."
+
+msgid "MONSTER_CHAMP_WARRIOR"
+msgstr "Guerrero Hongo"
+
+msgid "BEAST_CHAMP_WARRIOR"
+msgstr "Guerrero Hongo"
+
+msgid "BEAST_CHAMP_WARRIOR_LEGEND"
+msgstr "Un guerrero hongo con armadura, nacido en las paredes húmedas de la esquina noroeste. Vigila los primeros canales con su espada de hueso."
+
+msgid "BEAST_CHAMP_WARRIOR_HINT"
+msgstr "Ágil y de vida media: esquiva cuando levante la espada. El Fuego le hace más daño."
+
+msgid "PROP_SEWER_SECTOR_2"
+msgstr "Canales de Basura"
+
+msgid "SIGN_SEWER_SECTOR_2"
+msgstr "Sector 2 — Canales de Basura. La plaza del Rey de los Sapos está al oeste; su altar, en el centro del mapa."
+
+msgid "MONSTER_SHADOW_SPIRIT"
+msgstr "Espíritu Sombrío"
+
+msgid "MONSTER_DEMON_TWELVE"
+msgstr "Demonio Doce"

@@ -51,7 +51,7 @@ Em negrito, os criados nesta rodada (`tools/assets/add_minibosses.py`). A Flores
 
 ## 3. Esgoto de Tortuga (`map_sewers`)
 
-O Esgoto é **um mapa só, num andar só** (`sewers_01_drains`), grande: uma grade de **11 x 13 salas** de 8 m entre a sala de entrada e o túnel do Ninho. **Não há passagens para outros mapas** (os antigos Canais de Lixo, a Passagem Secreta da Guerra e o Covil do Feiticeiro viraram **setores** do mesmo andar, só com cartazes; a única saída é o portal de volta a Tortuga).
+O Esgoto é **um mapa só, num andar só** (`sewers_01_drains`), grande: uma grade de **11 x 13 salas** de 12 m entre a sala de entrada e o túnel do Ninho. **Não há passagens para outros mapas** (os antigos Canais de Lixo, a Passagem Secreta da Guerra e o Covil do Feiticeiro viraram **setores** do mesmo andar, só com cartazes; a única saída é o portal de volta a Tortuga).
 
 | Setor | Onde | Destaques |
 |---|---|---|

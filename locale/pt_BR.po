@@ -1714,7 +1714,7 @@ msgid "DLG_OLD_DRUNK_3"
 msgstr "Anos depois, o povo daqui envenenou e queimou os ratos de lá… mas esqueceram da mãe."
 
 msgid "DLG_OLD_DRUNK_4"
-msgstr "Dizem que o alquimista do rei, esquecido lá embaixo, fez um pacto com um demônio, ganhou oito patas de aranha e agora dorme em cima do tesouro, com a coroa do rei guardada no manto."
+msgstr "Dizem que o alquimista do rei, esquecido lá embaixo, fez um pacto com um demônio, virou um necromante e agora dorme em cima do tesouro, com a coroa do rei guardada no manto."
 
 msgid "DLG_OLD_DRUNK_5"
 msgstr "Se vocês estão procurando tesouro, estão em cima de um! Só levem fogo. Ela já sabe o que é fogo — e odeia."
@@ -1729,7 +1729,7 @@ msgid "DLG_KEEPER_1"
 msgstr "Sentem, descansem. Em Tortuga ninguém pergunta de onde vem o ouro — só se ele paga."
 
 msgid "DLG_BARD_QUEEN_1"
-msgstr "O Feiticeiro-Aranha já foi o alquimista do rei, deixado no escuro para guardar o tesouro."
+msgstr "O Necromante já foi o alquimista do rei, deixado no escuro para guardar o tesouro."
 
 msgid "DLG_BARD_QUEEN_2"
 msgstr "Agora a terra corre nas veias dela, e a terra teme o fogo — lembrem da canção."
@@ -1756,7 +1756,7 @@ msgid "QUEST_SEWER_TREASURE"
 msgstr "O tesouro embaixo da cidade"
 
 msgid "QUEST_SEWER_TREASURE_DESC"
-msgstr "Desça pelo bueiro, derrote o Feiticeiro-Aranha e pegue o tesouro perdido da guerra. Os ratos são de Terra — temem o Fogo."
+msgstr "Desça pelo bueiro, derrote o Necromante, que dorme sobre o tesouro perdido da guerra. Os ratos são de Terra — temem o Fogo."
 
 msgid "AREA_TORTUGA"
 msgstr "Tortuga"
@@ -2026,7 +2026,7 @@ msgid "BEAST_PLAGUE_RAT"
 msgstr "Sapo Pestilento"
 
 msgid "BEAST_PLAGUE_RAT_LEGEND"
-msgstr "Na Europa medieval, os ratos ficaram ligados à Peste Negra: as pulgas deles espalharam a peste que matou boa parte da população. Aqui são os familiares do Feiticeiro-Aranha, contaminados pelo pacto dele com o demônio: maiores, de olhos vermelhos, atacam em enxames."
+msgstr "Na Europa medieval, os ratos ficaram ligados à Peste Negra: as pulgas deles espalharam a peste que matou boa parte da população. Aqui são os familiares do Necromante, contaminados pelo pacto dele com o demônio: maiores, de olhos vermelhos, atacam em enxames."
 
 msgid "BEAST_PLAGUE_RAT_HINT"
 msgstr "Rato é rato: tem medo de fogo. Leve uma tocha… ou um mago que saiba acender uma."
@@ -2068,7 +2068,7 @@ msgid "BEAST_SEWER_GATOR_HINT"
 msgstr "Se a água borbulhar, saia de perto. Ele vive no fundo do canal. Raio na água e ele sobe de barriga pra cima."
 
 msgid "BEAST_DEMON_RAT_QUEEN"
-msgstr "Feiticeiro-Aranha"
+msgstr "Necromante"
 
 msgid "BEAST_DEMON_RAT_QUEEN_LEGEND"
 msgstr "No folclore alemão, um 'rei dos ratos' é um nó de ratos presos pelas caudas, presságio de peste. Aqui ela era a mãe de todos os ratos do esgoto; quando Tortuga envenenou e queimou seus filhotes, fez um pacto com um demônio, cresceu do tamanho de uma carroça e faz o ninho sobre o tesouro perdido da guerra, com a coroa do rei caído."
@@ -2348,13 +2348,10 @@ msgid "MONSTER_OLD_GATOR"
 msgstr "Jacaré Velho"
 
 msgid "MONSTER_RAT_QUEEN"
-msgstr "Feiticeiro-Aranha"
+msgstr "Necromante"
 
 msgid "ARENA_SEWERS_DRAINS"
 msgstr "Esgoto de Tortuga"
-
-msgid "ARENA_SEWERS_CANALS"
-msgstr "Esgoto — Canais de Lixo"
 
 msgid "ARENA_SEWERS_WAR_PASSAGE"
 msgstr "Esgoto — Passagem Secreta da Guerra"
@@ -2378,7 +2375,7 @@ msgid "SIGN_WAR_CREST_ARCHER"
 msgstr "O brasão do meu reino. Então foi por aqui que o tesouro fugiu da guerra."
 
 msgid "HUD_VICTORY_SEWERS"
-msgstr "O Feiticeiro-Aranha caiu."
+msgstr "O Necromante caiu."
 
 msgid "HUD_VICTORY_TREASURE"
 msgstr "O Tesouro Perdido da Guerra está aberto para o grupo."
@@ -2408,7 +2405,7 @@ msgid "MONSTER_RAT_NEST"
 msgstr "Ninho de Filhotes"
 
 msgid "BOSS_RAT_QUEEN_PHASE_1"
-msgstr "Mãe Furiosa"
+msgstr "O Despertar"
 
 msgid "BOSS_RAT_QUEEN_PHASE_2"
 msgstr "A Ninhada"
@@ -2453,7 +2450,7 @@ msgid "RELIC_FALLEN_KING_CROWN"
 msgstr "Coroa do Rei Caído"
 
 msgid "RELIC_FALLEN_KING_CROWN_DESC"
-msgstr "A coroa torta que o Feiticeiro-Aranha usava. Pesa mais do que deveria."
+msgstr "A coroa torta que o Necromante usava. Pesa mais do que deveria."
 
 msgid "TOAST_RELIC_FOUND"
 msgstr "Relíquia: {relic}"
@@ -3049,12 +3046,6 @@ msgstr "Bueiros da Rua Principal"
 msgid "SIGN_SEWER_SECTOR_1"
 msgstr "Setor 1 — Bueiros da Rua Principal. Sapos Pestilentos em bandos; fique de olho nos becos."
 
-msgid "PROP_SEWER_SECTOR_2"
-msgstr "Canais de Lixo"
-
-msgid "SIGN_SEWER_SECTOR_2"
-msgstr "Setor 2 — Canais de Lixo. Sapos Ácidos cospem de longe; a praça do Rei dos Sapos fica ao oeste."
-
 msgid "PROP_SEWER_SECTOR_3"
 msgstr "Galerias dos Morcegos"
 
@@ -3111,3 +3102,42 @@ msgstr "Um bruto curvado sob os próprios braços, de pele grossa e cheia de cic
 
 msgid "BEAST_TROLL_MAULER_HINT"
 msgstr "Lento e pesado: espere o aviso da pancada e desvie. O Fogo o machuca mais."
+
+msgid "MONSTER_MUTANT"
+msgstr "Mutante"
+
+msgid "MONSTER_BARBARIAN_MONSTER"
+msgstr "Monstro Bárbaro"
+
+msgid "BEAST_BARBARIAN_MONSTER"
+msgstr "Monstro Bárbaro"
+
+msgid "BEAST_BARBARIAN_MONSTER_LEGEND"
+msgstr "Um guerreiro orc de chifres, expulso do próprio bando. Desceu aos canais do lado oeste e faz deles o seu território."
+
+msgid "BEAST_BARBARIAN_MONSTER_HINT"
+msgstr "Bate rápido e aguenta muito: afaste-se quando o braço dele recuar. O Fogo o machuca mais."
+
+msgid "MONSTER_CHAMP_WARRIOR"
+msgstr "Guerreiro Cogumelo"
+
+msgid "BEAST_CHAMP_WARRIOR"
+msgstr "Guerreiro Cogumelo"
+
+msgid "BEAST_CHAMP_WARRIOR_LEGEND"
+msgstr "Um guerreiro-cogumelo de armadura, nascido nas paredes úmidas do canto noroeste. Guarda os primeiros canais com a espada de osso."
+
+msgid "BEAST_CHAMP_WARRIOR_HINT"
+msgstr "Ágil e de vida média: desvie quando ele levantar a espada. O Fogo o machuca mais."
+
+msgid "PROP_SEWER_SECTOR_2"
+msgstr "Canais de Lixo"
+
+msgid "SIGN_SEWER_SECTOR_2"
+msgstr "Setor 2 — Canais de Lixo. A praça do Rei dos Sapos fica ao oeste; o altar dele, no centro do mapa."
+
+msgid "MONSTER_SHADOW_SPIRIT"
+msgstr "Espírito Sombrio"
+
+msgid "MONSTER_DEMON_TWELVE"
+msgstr "Demônio Doze"

@@ -72,5 +72,25 @@
     "monsters": [
       "troll_mauler"
     ]
+  },
+  "barbarian_monster": {
+    "name_key": "BEAST_BARBARIAN_MONSTER",
+    "legend_key": "BEAST_BARBARIAN_MONSTER_LEGEND",
+    "hint_key": "BEAST_BARBARIAN_MONSTER_HINT",
+    "element": "earth",
+    "map": "map_sewers",
+    "monsters": [
+      "barbarian_monster"
+    ]
+  },
+  "champ_warrior": {
+    "name_key": "BEAST_CHAMP_WARRIOR",
+    "legend_key": "BEAST_CHAMP_WARRIOR_LEGEND",
+    "hint_key": "BEAST_CHAMP_WARRIOR_HINT",
+    "element": "earth",
+    "map": "map_sewers",
+    "monsters": [
+      "champ_warrior"
+    ]
   }
 }

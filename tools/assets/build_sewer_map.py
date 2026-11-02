@@ -5,7 +5,7 @@ tools/assets/sewer_legacy.json). Também cria os 2 NPCs das missões dos mini-ch
 O mapa (dobro do labirinto antigo): uma grade de 7 x 9 salas de 8 m (1 m de vão na horizontal, as de cima e de baixo se encostam) entre a sala de entrada e o túnel do
 fundo, em 5 SETORES de um monstro cada, mais salas especiais coladas nas bordas (cada parede de sala só aceita uma porta):
   1 Bueiros da Rua Principal   (linhas 0-2)                  Sapos Pestilentos (+ Ratazana nos becos e uma ninhada)
-  2 Canais de Lixo             (linhas 3-5, colunas 0-3)      Sapos Ácidos nas poças         -> praça oeste: REI DOS SAPOS (mini-chefe)
+  2 Canais de Lixo             (linhas do meio, lado oeste)      Sapos Ácidos nas poças         -> praça oeste: REI DOS SAPOS (mini-chefe)
   3 Galerias dos Morcegos      (linhas 3-5, colunas 4-6)      Morcegos Pestilentos           -> segredo a leste (baú, elite tóxica); posto do Caçador de Pragas (NPC)
   4 Passagem Secreta da Guerra (linhas 6-8, colunas 4-6)      Jacarés escondidos na água     -> praça leste: GATOR VELHO (mini-chefe)
   5 Câmaras dos Cogumelos      (linhas 6-8, colunas 0-3)      Tios-Cogumelo e Escorpiões
@@ -21,8 +21,10 @@ AREA = "sewers_01_drains"
 rng = random.Random(21)
 
 NC, NR = 11, 13                     # colunas x linhas de salas (maior que a grade 7 x 9 antiga: o esgoto é UM andar só, sem passagens para outros mapas)
-PX, PZ = 9, 8                       # passo entre os centros (8 m de sala + 1 m de vão na horizontal; as de baixo se encostam)
-X0, Z0 = -45, -10                   # centro da coluna 0 e da linha 0 (a coluna do meio fica em x = 0)
+RS = 12                             # lado da sala do labirinto, em metros (eram 8)
+HALF, GAP = RS // 2, 1
+PX, PZ = RS + GAP, RS               # passo entre os centros (a sala + 1 m de vão na horizontal; as de baixo se encostam)
+X0, Z0 = -(NC // 2) * PX, -(6 + HALF)   # centro da coluna 0 e da linha 0 (a coluna do meio fica em x = 0; a linha 0 encosta na sala de entrada, em z = -6)
 START, END = (NC // 2, 0), (NC // 2, NR - 1)
 
 
@@ -110,19 +112,19 @@ for c in sorted(depth, key=lambda k: depth[k]):
         doors.append("west")
     if c in (ATTACH_E, POST, SECRET):
         doors.append("east")
-    room = {"id": "maze_%d_%d" % c, "center": [cx(c[0]), cz(c[1])], "size": [8, 8], "doors": doors, "narrow": True}
+    room = {"id": "maze_%d_%d" % c, "center": [cx(c[0]), cz(c[1])], "size": [RS, RS], "doors": doors, "narrow": True}
     if depth[c] % 4 == 0 and c != START:
         room["torch"] = True
     rooms.append(room)
 
 # praças e salas ligadas às bordas (centro = célula + 4 de meia sala + 1 de vão + meia largura da sala nova)
 PRACA = (22, 18)
-praca_w = [cx(ATTACH_W[0]) - 5 - PRACA[0] / 2, cz(ATTACH_W[1])]
-praca_e = [cx(ATTACH_E[0]) + 5 + PRACA[0] / 2, cz(ATTACH_E[1])]
-post_c = [cx(POST[0]) + 5 + 5, cz(POST[1])]
-pipe_c = [cx(SECRET[0]) + 5 + 3, cz(SECRET[1])]
+praca_w = [cx(ATTACH_W[0]) - (HALF + GAP) - PRACA[0] / 2, cz(ATTACH_W[1])]
+praca_e = [cx(ATTACH_E[0]) + (HALF + GAP) + PRACA[0] / 2, cz(ATTACH_E[1])]
+post_c = [cx(POST[0]) + (HALF + GAP) + 5, cz(POST[1])]
+pipe_c = [cx(SECRET[0]) + (HALF + GAP) + 3, cz(SECRET[1])]
 secret_c = [pipe_c[0] + 3 + 0.5 + 0.5 + 5, cz(SECRET[1])]
-tunnel_z = cz(END[1]) - 4 - 7
+tunnel_z = cz(END[1]) - HALF - 7
 nest_z = tunnel_z - 7 - 17
 rooms += [
     {"id": "praca_frog_king", "center": praca_w, "size": list(PRACA), "doors": ["east"], "torch": True},
@@ -190,7 +192,7 @@ for i, c in enumerate(pick(5, 6, avoid_dead=True)):
 ALTAR_CELL = (NC // 2, NR // 2)
 _parent = min((n for n in neighbors(ALTAR_CELL) if frozenset((ALTAR_CELL, n)) in open_edges), key=lambda n: depth[n])
 _dx, _dz = _parent[0] - ALTAR_CELL[0], -(_parent[1] - ALTAR_CELL[1])  # linha maior = z menor
-_door = 4.5 if _dx else 4.0  # salas lado a lado têm 1 m de vão; as de cima e de baixo se encostam
+_door = HALF + GAP if _dx else HALF  # salas lado a lado têm 1 m de vão; as de cima e de baixo se encostam
 ALTAR_ENTRY = [round(cx(ALTAR_CELL[0]) + _dx * (_door + 2.5), 1), round(cz(ALTAR_CELL[1]) + _dz * (_door + 2.5), 1)]
 FROG_ALTAR = {"id": "sewer_frog_altar", "kind": "npc", "npc": "sewer_frog_altar", "kit": "Altar_Summon", "solid": [2.2, 2.0], "rotation": 0, "position": [0, cz(NR // 2)],
               "needs_key": "book_frog_altar", "summon": {"id": "sw_frog_king", "position": [0, cz(NR // 2) + 3.5], "level": 1, "toast": "TOAST_FROG_ALTAR_AWAKENS",
@@ -211,8 +213,36 @@ for i, q in enumerate((0.3, 0.6, 0.9)):
     c = troll_cells[min(int(len(troll_cells) * q), len(troll_cells) - 1)]
     encounters.append({"id": "sw1_troll_%d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 1, "monsters": [{"monster": "troll_mauler", "count": 1}]})
 
-# Só os chefes do esgoto (Rei dos Sapos, Gator Velho e a Rainha) e o Troll Mauler do Setor 1 ficam, sozinhos; nenhum outro monstro revida.
-SEWER_BOSSES = ("frog_king", "old_gator", "demon_rat_queen", "troll_mauler")
+# Mutante (thecubber, CC-BY-SA 3.0): o monstro do Setor 5 (Câmaras dos Cogumelos, canto inferior esquerdo), em bandos de 1 a 2 espalhados pelas células do setor, sem sorteio.
+mutant_cells = sorted(by_sector[5], key=lambda c: depth[c])
+for i, q in enumerate((0.15, 0.35, 0.55, 0.75, 0.95)):
+    c = mutant_cells[min(int(len(mutant_cells) * q), len(mutant_cells) - 1)]
+    encounters.append({"id": "sw5_mutant_%d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 2, "monsters": [{"monster": "mutant", "count": 1 + i % 2}]})
+
+# Monstro Bárbaro (barbarian-monster.glb do autor): o monstro do lado esquerdo do meio do mapa (Setor 2, colunas do oeste, linhas do meio do setor); dois, sem sorteio.
+west_middle = sorted([c for c in by_sector[2] if c[0] <= NC // 4], key=lambda c: (abs(c[1] - (NR / 2.0 - 0.5)), c[0]))
+for i, c in enumerate(west_middle[:2]):
+    encounters.append({"id": "sw2_barbarian_%d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 1, "monsters": [{"monster": "barbarian_monster", "count": 1}]})
+
+# Guerreiro Cogumelo (champ-warrior.glb do autor): o monstro do canto superior esquerdo do mapa (Setor 1, as duas células mais perto do canto), sem sorteio.
+corner_cells = sorted(by_sector[1], key=lambda c: (c[0] + c[1], c[0]))
+for i, c in enumerate(corner_cells[:2]):
+    encounters.append({"id": "sw1_champ_%d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 1, "monsters": [{"monster": "champ_warrior", "count": 1}]})
+
+# Espírito Sombrio (shadow-spirit.glb do autor): o monstro do canto superior direito (Setor 1, colunas do lado leste), em bandos de 1 a 2, sem sorteio.
+spirit_cells = sorted((c for c in by_sector[1] if c[0] >= NC - 4), key=lambda c: depth[c])
+for i, q in enumerate((0.1, 0.4, 0.7, 0.95)):
+    c = spirit_cells[min(int(len(spirit_cells) * q), len(spirit_cells) - 1)]
+    encounters.append({"id": "sw1_spirit_%d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 1, "monsters": [{"monster": "shadow_spirit", "count": 1 + i % 2}]})
+
+# Demônio Doze (demon-twelve.glb do autor): o monstro do meio do lado direito (Setor 3, células do leste), em bandos de 1 a 2, sem sorteio.
+twelve_cells = sorted((c for c in by_sector[3] if c[0] >= NC - 4), key=lambda c: depth[c])
+for i, q in enumerate((0.15, 0.5, 0.85)):
+    c = twelve_cells[min(int(len(twelve_cells) * q), len(twelve_cells) - 1)]
+    encounters.append({"id": "sw3_twelve_%d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 1, "monsters": [{"monster": "demon_twelve", "count": 1 + i % 2}]})
+
+# Só os chefes do esgoto (Rei dos Sapos, Gator Velho e a Rainha), o Troll Mauler do Setor 1, o Monstro Bárbaro do Setor 2 e o Mutante do Setor 5 ficam; nenhum outro monstro revida.
+SEWER_BOSSES = ("frog_king", "old_gator", "demon_rat_queen", "troll_mauler", "barbarian_monster", "champ_warrior", "mutant", "shadow_spirit", "demon_twelve")
 encounters = [dict(e, monsters=[m for m in e["monsters"] if m["monster"] in SEWER_BOSSES]) for e in encounters]
 encounters = [e for e in encounters if e["monsters"]]
 
@@ -241,6 +271,8 @@ for p in legacy["nest_props"]:
     if q["id"] == "return_portal":
         q["id"] = "victory_portal"
     props.append(q)
+# Sem o Tesouro Perdido da Guerra (pedido do autor): o baú do Ninho não existe mais (a chave da Rainha também não cai).
+props = [p for p in props if p.get("id") != "war_treasure"]
 # Piso todo de pedra: sem água (nem o lago do Gator Velho).
 props = [p for p in props if p["kind"] != "water"]
 # brasão da Passagem da Guerra (o Arqueiro reconhece) na entrada do setor 4
@@ -265,7 +297,7 @@ for s, n in quotas.items():
     cells = [c for c in depth if sector(*c) == s and c not in special_cells]
     rng.shuffle(cells)
     for c in cells[:n]:
-        hazards.append({"position": [cx(c[0]) + rng.choice((-2, 2)), cz(c[1]) + rng.choice((-2, 2))], "radius": round(rng.choice((1.3, 1.5, 1.8)), 1)})
+        hazards.append({"position": [cx(c[0]) + rng.choice((-3, 3)), cz(c[1]) + rng.choice((-3, 3))], "radius": round(rng.choice((1.3, 1.5, 1.8)), 1)})
 hazards += [{"position": [p["position"][0], p["position"][1] + NEST_DZ], "radius": p["radius"]} for p in legacy["nest_hazards"]]
 # (as manchas verdes de lodo que dão dano voltaram: hazards de cada setor + as do Ninho)
 
@@ -285,6 +317,8 @@ for e in legacy["nest_decor"]:
     e2 = dict(e)
     e2["position"] = [e["position"][0], e["position"][1] + NEST_DZ]
     decor.append(e2)
+# Tesouro Antigo (trasure.rar do autor; tools/assets/build_ancient_treasure.py): o monte de moedas e o baú aberto, no fundo da sala do chefe (só enfeite, sem baú para abrir).
+decor.append({"piece": "Ancient_Treasure", "position": [0, -206.0], "scale": 1.4})
 SECTOR_PIECES = {1: ["Barrel", "Crate_Wooden", "Bucket_Wooden_1", "Rope_1", "Crate_Metal", "Cage_Small"],
                  2: ["Barrel", "Bucket_Wooden_1", "Crate_Wooden", "Rope_1", "Crate_Metal"],
                  3: ["Cage_Small", "Rope_1", "Crate_Metal", "Barrel", "Mushroom_Flat"],
@@ -296,10 +330,10 @@ for c in depth:
     s = sector(*c)
     n = 2 if rng.random() < 0.5 else 1
     for _ in range(n):
-        decor.append({"piece": rng.choice(SECTOR_PIECES[s]), "position": [cx(c[0]) + rng.choice((-3.0, 3.0)), cz(c[1]) + rng.choice((-3.0, 3.0))],
+        decor.append({"piece": rng.choice(SECTOR_PIECES[s]), "position": [cx(c[0]) + rng.choice((-(HALF - 1.0), HALF - 1.0)), cz(c[1]) + rng.choice((-(HALF - 1.0), HALF - 1.0))],
                       "rotation": rng.randrange(0, 360, 15)})
     if rng.random() < 0.4:
-        decor.append({"light": [0.55, 0.75, 0.35], "position": [cx(c[0]), cz(c[1])], "range": 7, "energy": 0.8, "y": 1.0})
+        decor.append({"light": [0.55, 0.75, 0.35], "position": [cx(c[0]), cz(c[1])], "range": 9, "energy": 0.8, "y": 1.0})
 # praça do Gator Velho: marcas da guerra (reaproveita as peças da Passagem da Guerra)
 dx, dz = praca_e[0] - 0, praca_e[1] - (-68)
 for e in legacy["war_decor"]:
@@ -322,7 +356,7 @@ quest_spots = [[cx(c[0]), cz(c[1])] for c in ((1, 2), (5, 4), (2, 7), (5, 6))]
 old = data[AREA]
 area = {
     "_comment": "Esgoto de Tortuga (03-2-areas.md, seção 3), UM andar só e o dobro do labirinto antigo: grade de 7 x 9 salas de 8 m entre a entrada e o túnel do Ninho, em cinco setores "
-                "de um monstro cada (1 Bueiros: sapos; 2 Canais de Lixo: sapos ácidos; 3 Galerias dos Morcegos; 4 Passagem Secreta da Guerra: jacarés; 5 Câmaras dos Cogumelos), "
+                "de um monstro cada (1 Bueiros: sapos; 2 Canais de Lixo; 3 Galerias dos Morcegos; 4 Passagem Secreta da Guerra: jacarés; 5 Câmaras dos Cogumelos), "
                 "duas praças de mini-chefe (Rei dos Sapos a oeste, Gator Velho a leste, cada um com a missão de um NPC), o posto do Caçador de Pragas, um segredo (baú e elite tóxica) "
                 "e, no fundo, o Ninho da Rainha dos Ratos (sala do chefe, Tesouro Perdido da Guerra e portal da vitória). A vitória é só vencer a Rainha. "
                 "Gerado por tools/assets/build_sewer_map.py (substitui build_sewer_maze.py).",
@@ -430,9 +464,9 @@ T = {
                             "Sector 1 — Main Street Drains. Plague frogs in packs; watch the dead ends.",
                             "Sector 1 — Desagües de la Calle Principal. Sapos pestilentes en manadas; atención a los callejones."),
     "PROP_SEWER_SECTOR_2": ("Canais de Lixo", "Garbage Canals", "Canales de Basura"),
-    "SIGN_SEWER_SECTOR_2": ("Setor 2 — Canais de Lixo. Sapos Ácidos cospem de longe; a praça do Rei dos Sapos fica ao oeste.",
-                            "Sector 2 — Garbage Canals. Acid toads spit from afar; the Frog King's plaza is to the west.",
-                            "Sector 2 — Canales de Basura. Los sapos ácidos escupen de lejos; la plaza del Rey de los Sapos está al oeste."),
+    "SIGN_SEWER_SECTOR_2": ("Setor 2 — Canais de Lixo. A praça do Rei dos Sapos fica ao oeste; o altar dele, no centro do mapa.",
+                            "Sector 2 — Garbage Canals. The Frog King's plaza is to the west; his altar, in the center of the map.",
+                            "Sector 2 — Canales de Basura. La plaza del Rey de los Sapos está al oeste; su altar, en el centro del mapa."),
     "PROP_SEWER_SECTOR_3": ("Galerias dos Morcegos", "Bat Galleries", "Galerías de los Murciélagos"),
     "SIGN_SEWER_SECTOR_3": ("Setor 3 — Galerias dos Morcegos. Bandos de morcegos pestilentos; o posto do Itachi fica a leste.",
                             "Sector 3 — Bat Galleries. Flocks of plague bats; Itachi's post is to the east.",

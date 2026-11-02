@@ -2794,15 +2794,15 @@ func _scatter_spiders(room: Dictionary, c: Vector3, half: Vector3) -> void:
 	_scatter_critters(room, c, half, "spider", 1.0, 6)
 
 
-## Morcegos voando em círculos no alto das salas (só enfeite, em cada PC): de 0 a 3 por sala, pela posição dela.
+## Morcegos voando em círculos no alto das salas (só enfeite, em cada PC): de 0 a 2 por sala (a maioria não tem), pela posição dela.
 func _scatter_bats(room: Dictionary, c: Vector3, half: Vector3) -> void:
 	if not NpcModel.has_model("bat"):
 		return
 	var rng := RandomNumberGenerator.new()
 	rng.seed = hash(str(room.get("id", ""), c, "bats"))
-	if rng.randf() < 0.35:
-		return  # nem toda sala tem morcegos
-	for i in rng.randi_range(1, clampi(roundi(half.x * half.z / 20.0), 1, 3)):
+	if rng.randf() < 0.65:
+		return  # a maioria das salas fica sem morcegos
+	for i in rng.randi_range(1, clampi(roundi(half.x * half.z / 40.0), 1, 2)):
 		var flyer := Flyer.new()
 		flyer.radius = rng.randf_range(1.2, minf(3.2, minf(half.x, half.z) - 1.0))
 		flyer.center = Vector3(c.x + rng.randf_range(-1.0, 1.0) * maxf(half.x - flyer.radius - 0.8, 0.0), 0,

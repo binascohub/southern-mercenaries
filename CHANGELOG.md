@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Ninja body and element colors
+- Barbarian Monster (`tools/assets/build_barbarian_monster.py`, author/licence to confirm): a horned orc warrior rigged to the heroes' skeleton (human animations); two roam the left-middle area of the Sewer (`sw2_barbarian_1/2`). Bestiary and 3 languages updated.
 - Troll Mauler (piacenti, CC BY 3.0, `tools/assets/build_troll_mauler.py`): a 3 m hunched brute with the heroes' human animations, three of them roam Sector 1 (the Drains) of the Sewer; it is the only common creature there, so visitor side quests hunt it.
 - Quest footprints (`game/levels/quest_trail.gd`, option "Quest objective footprints" in Options, on by default): with an active quest in the current area, alternating left/right footprints are drawn on the floor from the hero toward the nearest objective (the mini-boss group a quest asks to clear, the monster that drops its item, or the area boss), routed through the rooms and doors with A*, straightened, fading with distance.
 - The Sewer is one single-floor map again with a 7 x 9 maze (`tools/assets/build_sewer_map.py`): 2 mini-boss quests (the Sewer Scavenger — Spider-Man, always dancing — asks for the Frog King, now the Plank Monster; Itachi asks for the Old Gator) and the Rat Queen's Nest as the boss room; the green damaging sludge stains are back.

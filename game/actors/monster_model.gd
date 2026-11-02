@@ -15,6 +15,22 @@ extends Node3D
 ## à metade da vida: elas brotam das costas e batem, mais rápido no ataque.
 
 const FAMILIES := {
+	# Necromante (necromanser.rar do autor; tools/assets/build_necromancer.py): chefe do Esgoto no lugar do Feiticeiro-Aranha. Já vem com esqueleto e animações próprias (sem texturas: materiais
+	# lisos pintados por peça). 2,2 m com o cajado; no tamanho 2,6 da Rainha com escala 0.55 -> ~3,1 m.
+	"necromancer": {"scene": "res://assets/models/monsters/necromancer.glb", "scale": 0.55,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Guerreiro Cogumelo (champ-warrior.glb do autor; tools/assets/build_champ_warrior.py): guerreiro-cogumelo de armadura e espada, 1,5 m no arquivo (ombro levado a 1,44 m
+	# do esqueleto dos heróis, então 2,4 m no arquivo gerado), com os movimentos deles. Escala 0.6 e tamanho 1,1 -> ~1,6 m. Monstro do canto superior esquerdo do Esgoto.
+	"champ_warrior": {"scene": "res://assets/models/monsters/champ_warrior.glb", "scale": 0.6,
+		"anims": {"idle": "Idle", "walk": "Walk", "run": "Jog_Fwd", "attack": "Punch_Cross", "hit": "Hit_Chest", "die": "Death01"}},
+	# Monstro Bárbaro (barbarian-monster.glb do autor; tools/assets/build_barbarian_monster.py): orc bárbaro com chifres, 2,04 m no arquivo, preso ao esqueleto dos heróis
+	# com os movimentos deles (os clipes são os dos heróis, como o Godot os importa). No tamanho 1,2 -> ~2,3 m. Monstro do lado esquerdo do meio do Esgoto.
+	"barbarian_monster": {"scene": "res://assets/models/monsters/barbarian_monster.glb", "scale": 0.94,
+		"anims": {"idle": "Idle", "walk": "Walk", "run": "Jog_Fwd", "attack": "Punch_Cross", "hit": "Hit_Chest", "die": "Death01"}},
+	# Mutante (Rigged, textured Mutant, thecubber, CC-BY-SA 3.0; tools/assets/build_mutant.py): humanoide de armadura, 1,8 m no arquivo, preso ao esqueleto dos heróis
+	# com os movimentos deles. No tamanho 1,1 -> ~2 m. Monstro do Setor 5 do Esgoto (Câmaras dos Cogumelos, canto inferior esquerdo).
+	"mutant": {"scene": "res://assets/models/monsters/mutant.glb", "scale": 1.0,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Troll Mauler (piacenti, CC BY 3.0; tools/assets/build_troll_mauler.py): bruto curvado de 3,1 m no arquivo, preso ao esqueleto dos heróis com os movimentos deles.
 	# No tamanho 1,1 -> ~2,4 m. Monstro do Setor 1 do Esgoto.
 	"troll_mauler": {"scene": "res://assets/models/monsters/troll_mauler.glb", "scale": 0.7,
@@ -50,6 +66,18 @@ const FAMILIES := {
 	# Espreitador (Stalker 3D, GuieA_7, CC BY-SA 4.0; tools/assets/build_stalker.py): olho alado da Mina, malha única sem animação
 	# (`static`); 1 m no arquivo -> ~1,4 m no tamanho 1. Voa e balança por código.
 	"stalker": {"scene": "res://assets/models/monsters/stalker.glb", "scale": 1.4, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Demônio do mini-chefe (a malha do Demônio Doze + as texturas PBR de demon_tex.rar, as de "ferido": cinza com sangue; tools/assets/build_demon_boss.py): malha única `static`,
+	# 2,2 m no arquivo -> ~3,6 m no tamanho 1,8. O Gator Velho, mini-chefe do Esgoto, no lugar do Porco-Tubarão.
+	"demon_boss": {"scene": "res://assets/models/monsters/demon_boss.glb", "scale": 0.9, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Demônio Doze (demon-twelve.glb do autor; tools/assets/build_demon_twelve.py): malha única sem esqueleto nem animação (`static`), 2,2 m de altura no arquivo
+	# -> ~2,2 m no tamanho 1,1. Balança, avança e cai por código. Monstro do meio do lado direito do Esgoto.
+	"demon_twelve": {"scene": "res://assets/models/monsters/demon_twelve.glb", "scale": 0.9, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Espírito Sombrio (shadow-spirit.glb do autor; tools/assets/build_shadow_spirit.py): malha única sem esqueleto nem animação (`static`), 2,5 m de altura no arquivo
+	# -> ~2 m no tamanho 1. Flutua e balança por código. Monstro do canto superior direito do Esgoto.
+	"shadow_spirit": {"scene": "res://assets/models/monsters/shadow_spirit.glb", "scale": 0.8, "static": true,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Porco-Tubarão (pork-shark.blend, do autor; tools/assets/build_pork_shark.py): criatura de pé com esqueleto e 17 animações, 5,55 unidades de altura
 	# (pés em 0) -> ~1,5 m por unidade de size. O Gator Velho, mini-chefe do Esgoto, no lugar do jacaré.

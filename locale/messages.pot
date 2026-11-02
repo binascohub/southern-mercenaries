@@ -2352,9 +2352,6 @@ msgstr ""
 msgid "ARENA_SEWERS_DRAINS"
 msgstr ""
 
-msgid "ARENA_SEWERS_CANALS"
-msgstr ""
-
 msgid "ARENA_SEWERS_WAR_PASSAGE"
 msgstr ""
 
@@ -2998,4 +2995,13 @@ msgid "TOAST_BOOK_RECEIVED"
 msgstr ""
 
 msgid "DLG_FROG_ALTAR_LOCKED"
+msgstr ""
+
+msgid "MONSTER_MUTANT"
+msgstr ""
+
+msgid "MONSTER_SHADOW_SPIRIT"
+msgstr ""
+
+msgid "MONSTER_DEMON_TWELVE"
 msgstr ""

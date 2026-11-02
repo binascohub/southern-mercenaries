@@ -723,16 +723,6 @@ func _sewers_test() -> void:
 	# Vencer só a Rainha é a vitória do mapa: o resto do Esgoto não precisa estar limpo.
 	var others := get_tree().get_nodes_in_group(&"enemies").filter(func(e: Enemy) -> bool: return e.group.begins_with("sw1_") and not e.is_queued_for_deletion())
 	check.call(_arena.result == 1 and not others.is_empty(), "vencer a Rainha é a vitória do mapa, sem limpar o resto (%d bichos vivos)" % others.size())
-	_arena.pick_key(player, {"id": "boss_key", "key": "key_rat_queen"})
-	player.teleport_to(prop_at.call("war_treasure") + Vector3(0, 0, 1.0))
-	var loot_ids: Array = _arena._loot.keys()
-	_arena.request_interact(player)
-	var legendary := false
-	for id in _arena._loot:
-		if id not in loot_ids and _arena._loot[id].item.get("rarity", "") == "legendary":
-			legendary = _arena._loot[id].item.get("legendary", "") == Legendaries.for_boss("demon_rat_queen", "mage")
-	check.call(legendary, "tesouro dá o lendário do Mago")
-	check.call("fallen_king_crown" in _arena.town.relics and "map_ruins" in _arena.town.unlocked, "Coroa do Rei Caído e o mapa das Ruínas")
 	# O que foi aberto e quebrado continua assim ao voltar.
 	_arena.travel("sewers_01_drains", "start")
 	await _wait_frames(2)
@@ -912,7 +902,6 @@ func _town_test() -> void:
 	check.call(_arena.area_id == "sewers_01_drains" and not get_tree().get_nodes_in_group(&"enemies").is_empty(), "bueiro leva ao Esgoto com monstros")
 	# Limpar o resto do Esgoto (tudo, menos a Rainha) não é vitória; a vitória é só vencer a Rainha.
 	var sewer: Dictionary = GameData.arenas.sewers_01_drains
-	var treasure_at: Array = sewer.props.filter(func(p: Dictionary) -> bool: return p.id == "war_treasure")[0].position
 	var portal_at: Array = sewer.props.filter(func(p: Dictionary) -> bool: return p.id == "victory_portal")[0].position
 	for e: Enemy in get_tree().get_nodes_in_group(&"enemies"):
 		if e.monster_id != "demon_rat_queen":
@@ -921,24 +910,13 @@ func _town_test() -> void:
 	check.call(_arena.result == 0 and town.quests.get("sewer_treasure", "") == "active", "o resto do Esgoto limpo não conclui a missão")
 	# Vencer a Rainha no Ninho conclui a missão; aparecem o tesouro e o portal.
 	gold = int(player.character.data.gold)
-	# O tesouro já está lá, trancado: a chave cai da Rainha.
-	player.teleport_to(Vector3(treasure_at[0], 0, treasure_at[1] + 1.0))
-	_arena.request_interact(player)
-	check.call("sewers_01_drains:war_treasure" not in _arena._campaign.get("opened", []), "o tesouro da Rainha começa trancado")
+	check.call(not sewer.props.any(func(p: Dictionary) -> bool: return p.id == "war_treasure"), "o Esgoto não tem mais o Tesouro Perdido da Guerra")
 	for e in get_tree().get_nodes_in_group(&"enemies"):
 		e.take_damage(1e9)
 	await get_tree().physics_frame
 	check.call(town.quests.get("sewer_treasure", "") == "done", "vencer a Rainha conclui a missão")
 	check.call(int(player.character.data.gold) >= gold + 150, "recompensa da missão")
-	var dropped: Dictionary = _arena.prop_near(player, "key", "", 300.0)
-	check.call(not dropped.is_empty(), "a Rainha deixa cair a chave do tesouro")
-	if not dropped.is_empty():
-		_arena.pick_key(player, dropped)
-	check.call("key_rat_queen" in _arena._campaign.get("keys", []), "a chave fica com o grupo")
-	player.teleport_to(Vector3(treasure_at[0], 0, treasure_at[1] + 1.0))
-	var loot_before: int = _arena._loot.size()
-	_arena.request_interact(player)
-	check.call(_arena._loot.size() > loot_before + 2 and "sewers_01_drains:war_treasure" in _arena._campaign.opened, "Tesouro Perdido da Guerra abre e dá loot")
+	check.call(_arena.prop_near(player, "key", "", 300.0).is_empty(), "a Rainha não deixa mais chave")
 	# Portal de volta: Tortuga, fim da expedição, navio novo.
 	player.teleport_to(Vector3(portal_at[0], 0, portal_at[1]))
 	_arena.request_interact(player)

@@ -1032,7 +1032,7 @@ func _tick_model(delta: float, tint: Color) -> void:
 		key = "attack"  # deixa o golpe terminar
 	_model.play(key)
 	# O chefe entra na fase de metade da vida (a Rainha ganhava asas de morcego; o Feiticeiro-Aranha só marca o estado).
-	if data.get("look", "") in ["queen", "demon"] and health > 0.0 and health <= max_health * 0.5:
+	if data.get("look", "") in ["queen", "demon", "necromancer"] and health > 0.0 and health <= max_health * 0.5:
 		_model.show_wings(true)
 	var color := Color.WHITE
 	if _flash > 0.0:

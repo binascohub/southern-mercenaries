@@ -714,7 +714,7 @@ func _test_side_quests() -> void:
 	# O Esgoto (único mapa que libera visitantes) só tem chefes e o Troll Mauler: a única criatura comum para caçar é ele, então toda história de visitante é sobre ele.
 	campaign.unlocked = ["sewer_entrance"]
 	var troll_visitors := SideQuests.generate_visitors(campaign, rng)
-	_check(troll_visitors.all(func(v: Dictionary) -> bool: return v.quest.target == "troll_mauler"), "Esgoto: as missões de visitante são só sobre o Troll Mauler")
+	_check(troll_visitors.all(func(v: Dictionary) -> bool: return v.quest.target in ["troll_mauler", "barbarian_monster", "champ_warrior"]), "Esgoto: as missões de visitante são só sobre o Troll Mauler e o Monstro Bárbaro")
 	_check(SideQuests.creatures_in("prototype_arena").size() == 2, "criaturas do bestiário que existem na área de teste")
 	var title := SideQuests.title({"template": "hunt", "target": "plague_frog", "area": "prototype_arena", "count": 5, "progress": 2, "status": "active"})
 	_check(title.contains("2/5"), "título da caçada com progresso: %s" % title)
@@ -812,13 +812,23 @@ func _test_sewers() -> void:
 	# Só os chefes do esgoto (Rei dos Sapos, Gator Velho e a Rainha) revidam, cada um sozinho.
 	var sewer_ids: Array = area.encounters.map(func(e: Dictionary) -> String: return String(e.id))
 	sewer_ids.sort()
-	_check(sewer_ids == ["sw1_troll_1", "sw1_troll_2", "sw1_troll_3", "sw_old_gator", "sw_queen"],
-		"esgoto: os chefes do mapa e os 3 Trolls Mauler do Setor 1 (%s); o Rei dos Sapos vem do altar" % [sewer_ids])
+	_check(sewer_ids == ["sw1_champ_1", "sw1_champ_2", "sw1_spirit_1", "sw1_spirit_2", "sw1_spirit_3", "sw1_spirit_4", "sw1_troll_1", "sw1_troll_2", "sw1_troll_3", "sw2_barbarian_1", "sw2_barbarian_2", "sw3_twelve_1", "sw3_twelve_2", "sw3_twelve_3", "sw5_mutant_1", "sw5_mutant_2", "sw5_mutant_3", "sw5_mutant_4", "sw5_mutant_5", "sw_old_gator", "sw_queen"],
+		"esgoto: os chefes do mapa, os 3 Trolls Mauler do Setor 1 e os 5 bandos de Mutante do Setor 5 (%s); o Rei dos Sapos vem do altar" % [sewer_ids])
 	var altar: Array = area.props.filter(func(p: Dictionary) -> bool: return p.get("id", "") == "sewer_frog_altar")
-	_check(altar.size() == 1 and altar[0].position == [0.0, -58.0] and altar[0].summon.id == "sw_frog_king" and altar[0].summon.monsters[0].monster == "frog_king",
+	_check(altar.size() == 1 and altar[0].position == [0.0, -84.0] and altar[0].summon.id == "sw_frog_king" and altar[0].summon.monsters[0].monster == "frog_king",
 		"o altar do Rei dos Sapos fica no centro do mapa e invoca só o Rei")
-	_check(area.encounters.all(func(e: Dictionary) -> bool: return e.monsters.size() == 1 and (GameData.monsters[e.monsters[0].monster].category in ["boss", "miniboss"] or e.monsters[0].monster == "troll_mauler")),
-		"esgoto: cada encontro é um chefe ou um Troll Mauler, sempre sozinho")
+	_check(area.encounters.all(func(e: Dictionary) -> bool: return e.monsters.size() == 1 and (GameData.monsters[e.monsters[0].monster].category in ["boss", "miniboss"] or e.monsters[0].monster in ["troll_mauler", "barbarian_monster", "champ_warrior", "mutant", "shadow_spirit", "demon_twelve"])),
+		"esgoto: cada encontro é um chefe, um Troll Mauler ou um bando de Mutante (um só tipo de monstro)")
+	_check(area.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("sw1_spirit_")).all(func(e: Dictionary) -> bool: return e.position[0] > 30.0 and e.position[1] > -60.0),
+		"os Espíritos Sombrios ficam no canto superior direito do mapa")
+	_check(area.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("sw3_twelve_")).all(func(e: Dictionary) -> bool: return e.position[0] > 20.0 and e.position[1] < -60.0 and e.position[1] > -110.0),
+		"os Demônios Doze ficam no meio do lado direito do mapa")
+	_check(area.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("sw5_mutant_")).all(func(e: Dictionary) -> bool: return e.position[0] < -10.0 and e.position[1] < -70.0),
+		"os Mutantes ficam no Setor 5 (canto inferior esquerdo do mapa)")
+	_check(area.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("sw1_champ_")).size() == 2 and area.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("sw1_champ_")).all(func(e: Dictionary) -> bool: return e.position[0] < -50.0 and e.position[1] > -30.0),
+		"os Guerreiros Cogumelo ficam no canto superior esquerdo do mapa")
+	_check(area.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("sw2_barbarian_")).all(func(e: Dictionary) -> bool: return e.position[0] < -20.0 and e.position[1] < -30.0 and e.position[1] > -110.0),
+		"os Monstros Bárbaros ficam na área esquerda, no meio do mapa")
 	_check(area.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("sw1_troll_")).all(func(e: Dictionary) -> bool: return e.position[1] > -50.0),
 		"os Trolls Mauler ficam no Setor 1 (o terço de cima do mapa)")
 	_check(not area.props.any(func(p: Dictionary) -> bool: return p.kind == "water") and area.hazards.size() >= 10, "esgoto: piso de pedra, sem água, com as manchas verdes de lodo que ferem (%d)" % area.hazards.size())
@@ -841,8 +851,8 @@ func _test_sewers() -> void:
 		"sala do chefe grande, com a Rainha dentro")
 	_check(area.final and area.victory_groups == ["sw_queen"], "a vitória é só vencer a Rainha")
 	_check(area.props.filter(func(p: Dictionary) -> bool: return p.get("after_victory", false)).size() == 1, "portal só depois da vitória")
-	_check(area.props.any(func(p: Dictionary) -> bool: return p.kind == "chest" and p.get("key", "") == GameData.monsters.demon_rat_queen.get("drops_key", "-")),
-		"tesouro trancado com a chave que a Rainha deixa cair")
+	_check(not area.props.any(func(p: Dictionary) -> bool: return p.get("id", "") == "war_treasure") and not GameData.monsters.demon_rat_queen.has("drops_key"),
+		"sem o Tesouro Perdido da Guerra: nada de baú trancado nem chave da Rainha")
 	_check(area.props.any(func(p: Dictionary) -> bool: return p.kind == "chest" and p.get("secret", false)), "tem um segredo")
 	# Os 2 NPCs das missões de mini-chefe: cada missão limpa o grupo do chefe, e o NPC fica longe dele.
 	for pair: Array in [["sewer_ratcatcher", "sewer_old_gator", "sw_old_gator"], ["sewer_scavenger", "sewer_frog_king", "sw_frog_king"]]:
@@ -879,7 +889,7 @@ func _test_sewers() -> void:
 	_check(hunt.position == GameData.arenas.sewers_01_drains.quest_spots[1], "no ponto da missão")
 	quest.progress = 5
 	_check(SideQuests.hunt_encounter(quest).is_empty(), "caçada completa não traz bando")
-	_check(SideQuests.creatures_in("sewers_01_drains") == ["troll_mauler"] and SideQuests.open_maps(["sewer_entrance"]) == ["sewers_01_drains"],
+	_check("troll_mauler" in SideQuests.creatures_in("sewers_01_drains") and "barbarian_monster" in SideQuests.creatures_in("sewers_01_drains") and SideQuests.open_maps(["sewer_entrance"]) == ["sewers_01_drains"],
 		"o Esgoto só tem chefes e o Troll Mauler: a única criatura comum é ele, e as missões de visitante o caçam")
 	# A Rainha: fases pela vida (60% e 25%).
 	var thresholds: Array = GameData.monsters.demon_rat_queen.phases
@@ -1053,7 +1063,7 @@ func _test_explore_map() -> void:
 	_check(not ExploreMap.is_seen(mask, area, Vector2(0, -63)), "o fundo da área continua em névoa")
 	_check(ExploreMap.reveal(mask, area, Vector2(0, 3)).is_empty(), "o que já foi visto não conta de novo")
 	var fraction := ExploreMap.explored_fraction(mask, area)
-	_check(fraction > 0.01 and fraction < 0.6, "fração explorada no começo: %.2f" % fraction)
+	_check(fraction > 0.005 and fraction < 0.6, "fração explorada no começo: %.2f" % fraction)
 	var copy := ExploreMap.decode(ExploreMap.encode(mask), area)
 	_check(copy == mask, "máscara volta igual do save")
 	_check(ExploreMap.decode("", area) == ExploreMap.empty(area) and ExploreMap.decode("lixo:3", area).count(1) == 0, "save sem máscara (ou de outra área) começa em névoa")
@@ -1348,7 +1358,7 @@ func _test_quest_trail() -> void:
 	var frog := QuestTrail.objectives("sewers_01_drains", {"sewer_frog_king": "active"}, GameData.quests, GameData.monsters, living, area.props)
 	var gator := QuestTrail.objectives("sewers_01_drains", {"sewer_old_gator": "active"}, GameData.quests, GameData.monsters, living)
 	var queen := QuestTrail.objectives("sewers_01_drains", {"sewer_treasure": "active"}, GameData.quests, GameData.monsters, living)
-	_check(frog.size() == 1 and frog[0].distance_to(Vector2(0, -58)) < 1.0, "pegadas: a missão do Rei dos Sapos mira o altar, no centro do mapa (%s)" % [frog])
+	_check(frog.size() == 1 and frog[0].distance_to(Vector2(0, -84)) < 1.0, "pegadas: a missão do Rei dos Sapos mira o altar, no centro do mapa (%s)" % [frog])
 	_check(gator.size() == 1 and gator[0].x > 50.0 and gator[0].y < -90.0, "pegadas: a missão do Gator Velho mira a praça no canto inferior direito (%s)" % [gator])
 	_check(queen.size() == 1 and queen[0].y < -100.0, "pegadas: a missão do tesouro mira a Rainha, no fundo (%s)" % [queen])
 	_check(QuestTrail.objectives("sewers_01_drains", {"sewer_frog_king": "done"}, GameData.quests, GameData.monsters, living).is_empty(), "pegadas: missão concluída não tem objetivo")

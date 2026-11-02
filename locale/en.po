@@ -1714,7 +1714,7 @@ msgid "DLG_OLD_DRUNK_3"
 msgstr "Years later, folk here poisoned and burned the rats down there... but they forgot the mother."
 
 msgid "DLG_OLD_DRUNK_4"
-msgstr "They say the king's alchemist, forgotten down there, made a pact with a demon, grew eight spider legs, and now sleeps on top of the treasure, with the king's crown tucked in his cloak."
+msgstr "They say the king's alchemist, forgotten down there, made a pact with a demon, became a necromancer, and now sleeps on top of the treasure, with the king's crown tucked in his cloak."
 
 msgid "DLG_OLD_DRUNK_5"
 msgstr "If you're looking for treasure, you're standing on one! Just bring fire. She already knows what fire is — and she hates it."
@@ -1729,7 +1729,7 @@ msgid "DLG_KEEPER_1"
 msgstr "Sit down, rest. In Tortuga nobody asks where the gold comes from — only whether it pays."
 
 msgid "DLG_BARD_QUEEN_1"
-msgstr "The Spider Sorcerer was the king's alchemist once, left in the dark to guard the treasure."
+msgstr "The Necromancer was the king's alchemist once, left in the dark to guard the treasure."
 
 msgid "DLG_BARD_QUEEN_2"
 msgstr "Earth runs in her veins now, and earth fears fire — remember the song."
@@ -1756,7 +1756,7 @@ msgid "QUEST_SEWER_TREASURE"
 msgstr "The treasure under the town"
 
 msgid "QUEST_SEWER_TREASURE_DESC"
-msgstr "Go down the sewer grate, defeat the Spider Sorcerer and take the lost war treasure. The rats are Earth — they fear Fire."
+msgstr "Go down the sewer grate, defeat the Necromancer, who sleeps on the lost war treasure. The rats are Earth — they fear Fire."
 
 msgid "AREA_TORTUGA"
 msgstr "Tortuga"
@@ -2026,7 +2026,7 @@ msgid "BEAST_PLAGUE_RAT"
 msgstr "Plague Frog"
 
 msgid "BEAST_PLAGUE_RAT_LEGEND"
-msgstr "In medieval Europe rats were tied to the Black Death: their fleas spread the plague that killed much of the population. Here they are the Spider Sorcerer's familiars, tainted by his pact with the demon — bigger, red-eyed, attacking in swarms."
+msgstr "In medieval Europe rats were tied to the Black Death: their fleas spread the plague that killed much of the population. Here they are the Necromancer's familiars, tainted by his pact with the demon — bigger, red-eyed, attacking in swarms."
 
 msgid "BEAST_PLAGUE_RAT_HINT"
 msgstr "A rat's a rat: it fears fire. Bring a torch... or a mage who knows how to light one."
@@ -2068,7 +2068,7 @@ msgid "BEAST_SEWER_GATOR_HINT"
 msgstr "If the water bubbles, get away. It lives at the bottom of the channel. Lightning in the water and it comes up belly-up."
 
 msgid "BEAST_DEMON_RAT_QUEEN"
-msgstr "Spider Sorcerer"
+msgstr "Necromancer"
 
 msgid "BEAST_DEMON_RAT_QUEEN_LEGEND"
 msgstr "In German folklore a 'rat king' is a knot of rats bound by their tails, an omen of plague. Here she was the mother of all the sewer's rats; when Tortuga poisoned and burned her young, she made a pact with a demon, grew as big as a cart and nests on the lost war treasure, wearing the fallen king's crown."
@@ -2348,13 +2348,10 @@ msgid "MONSTER_OLD_GATOR"
 msgstr "Old Gator"
 
 msgid "MONSTER_RAT_QUEEN"
-msgstr "Spider Sorcerer"
+msgstr "Necromancer"
 
 msgid "ARENA_SEWERS_DRAINS"
 msgstr "Tortuga Sewers"
-
-msgid "ARENA_SEWERS_CANALS"
-msgstr "Sewers — Refuse Canals"
 
 msgid "ARENA_SEWERS_WAR_PASSAGE"
 msgstr "Sewers — Secret War Passage"
@@ -2378,7 +2375,7 @@ msgid "SIGN_WAR_CREST_ARCHER"
 msgstr "My kingdom's crest. So this is where the treasure fled the war."
 
 msgid "HUD_VICTORY_SEWERS"
-msgstr "The Spider Sorcerer has fallen."
+msgstr "The Necromancer has fallen."
 
 msgid "HUD_VICTORY_TREASURE"
 msgstr "The Lost Treasure of the War is open to the group."
@@ -2408,7 +2405,7 @@ msgid "MONSTER_RAT_NEST"
 msgstr "Pup Nest"
 
 msgid "BOSS_RAT_QUEEN_PHASE_1"
-msgstr "Furious Mother"
+msgstr "The Awakening"
 
 msgid "BOSS_RAT_QUEEN_PHASE_2"
 msgstr "The Brood"
@@ -2453,7 +2450,7 @@ msgid "RELIC_FALLEN_KING_CROWN"
 msgstr "Crown of the Fallen King"
 
 msgid "RELIC_FALLEN_KING_CROWN_DESC"
-msgstr "The crooked crown the Spider Sorcerer wore. It weighs more than it should."
+msgstr "The crooked crown the Necromancer wore. It weighs more than it should."
 
 msgid "TOAST_RELIC_FOUND"
 msgstr "Relic: {relic}"
@@ -3049,12 +3046,6 @@ msgstr "Main Street Drains"
 msgid "SIGN_SEWER_SECTOR_1"
 msgstr "Sector 1 — Main Street Drains. Plague frogs in packs; watch the dead ends."
 
-msgid "PROP_SEWER_SECTOR_2"
-msgstr "Garbage Canals"
-
-msgid "SIGN_SEWER_SECTOR_2"
-msgstr "Sector 2 — Garbage Canals. Acid toads spit from afar; the Frog King's plaza is to the west."
-
 msgid "PROP_SEWER_SECTOR_3"
 msgstr "Bat Galleries"
 
@@ -3111,3 +3102,42 @@ msgstr "A brute hunched under its own arms, thick-skinned and covered in scars. 
 
 msgid "BEAST_TROLL_MAULER_HINT"
 msgstr "Slow and heavy: wait for the blow's warning and dodge. Fire hurts it more."
+
+msgid "MONSTER_MUTANT"
+msgstr "Mutant"
+
+msgid "MONSTER_BARBARIAN_MONSTER"
+msgstr "Barbarian Monster"
+
+msgid "BEAST_BARBARIAN_MONSTER"
+msgstr "Barbarian Monster"
+
+msgid "BEAST_BARBARIAN_MONSTER_LEGEND"
+msgstr "A horned orc warrior cast out from his own warband. He went down to the canals on the west side and made them his territory."
+
+msgid "BEAST_BARBARIAN_MONSTER_HINT"
+msgstr "He hits fast and takes a lot: back off when his arm pulls back. Fire hurts him more."
+
+msgid "MONSTER_CHAMP_WARRIOR"
+msgstr "Mushroom Warrior"
+
+msgid "BEAST_CHAMP_WARRIOR"
+msgstr "Mushroom Warrior"
+
+msgid "BEAST_CHAMP_WARRIOR_LEGEND"
+msgstr "An armored mushroom warrior sprouted from the damp walls of the northwest corner. He guards the first canals with his bone sword."
+
+msgid "BEAST_CHAMP_WARRIOR_HINT"
+msgstr "Agile with average health: dodge when he lifts the sword. Fire hurts him more."
+
+msgid "PROP_SEWER_SECTOR_2"
+msgstr "Garbage Canals"
+
+msgid "SIGN_SEWER_SECTOR_2"
+msgstr "Sector 2 — Garbage Canals. The Frog King's plaza is to the west; his altar, in the center of the map."
+
+msgid "MONSTER_SHADOW_SPIRIT"
+msgstr "Shadow Spirit"
+
+msgid "MONSTER_DEMON_TWELVE"
+msgstr "Demon Twelve"
