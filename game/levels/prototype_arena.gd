@@ -343,6 +343,9 @@ func _spawner(node_name: String, function: Callable) -> MultiplayerSpawner:
 
 func _create_enemy(spawn: Dictionary) -> Enemy:
 	var enemy := Enemy.create(spawn)
+	if _wood_tone.a > 0.0 and String(GameData.monsters.get(spawn.get("monster_id", ""), {}).get("category", "")) == "breakable":
+		# Barris e caixotes quebráveis: a mesma madeira do resto da área (o visual nasce no _ready).
+		enemy.ready.connect(func() -> void: _tone_wood(enemy._visual, enemy._kit_piece))
 	if multiplayer.is_server():
 		enemy.died.connect(_on_enemy_died)
 		enemy.disturbed.connect(func(e: Enemy) -> void: _wake_group(e.group))
@@ -1800,13 +1803,13 @@ func _build_prop(prop_data: Dictionary) -> void:
 					look = {"sex": "male" if h % 2 == 0 else "female", "hair": hairs[h % 2 * 2 + (h / 2) % 2],
 						"hair_color": colors[(h / 4) % colors.size()], "pose": "sit", "outfit": {"body": "cloth"} if h % 3 == 0 else {}}
 				var seated_woman: bool = prop.has("visitor_name") and look.get("sex", "") == "female" and _visitor_woman(node)
-				var own_model: Node3D = NpcModel.create(String(prop.npc)) if String(prop.npc) in ["voodoo_priest", "priest", "castle_guard", "court_jester", "seated_pirate", "elf_archer", "ruins_spartan", "old_lady", "forest_pyre_keeper", "sewer_scavenger"] else null
+				var own_model: Node3D = NpcModel.create(String(prop.npc)) if String(prop.npc) in ["voodoo_priest", "priest", "castle_guard", "court_jester", "seated_pirate", "elf_archer", "ruins_spartan", "old_lady", "forest_pyre_keeper", "sewer_scavenger", "sewer_ratcatcher"] else null
 				var statue_kit: String = prop.get("kit", "")
 				if statue_kit != "" and _kit(node, statue_kit, Transform3D(Basis(Vector3.UP, deg_to_rad(float(prop.get("rotation", 0.0)))), Vector3.ZERO)):
 					pass  # estátua do mapa: a peça do kit no lugar do corpo humano
 				elif own_model:
 					node.add_child(own_model)
-					if own_model.has_method("set_pose") and String(prop.npc) in ["seated_pirate", "old_lady", "sewer_scavenger"]:
+					if own_model.has_method("set_pose") and String(prop.npc) in ["seated_pirate", "old_lady", "sewer_scavenger", "sewer_ratcatcher"]:
 						own_model.call("set_pose", "sit" if String(prop.npc) == "old_lady" else "idle")  # o Macumbeiro (mago de capuz) e o Padre (monge) têm modelo próprio
 				elif not seated_woman and _npc_body_with_instrument(node, look) == null:
 					var body := CapsuleMesh.new()
@@ -2751,6 +2754,7 @@ func _scatter_trash(room: Dictionary, c: Vector3, half: Vector3) -> void:
 			node.scale = Vector3(1.0, 0.25, 1.0)  # os cacos espalhados, rentes ao chão
 		_area_root.add_child(node)
 		_tint_piece(node, TRASH_GRIME)
+		_tone_wood(node, piece_name)
 
 
 ## Aranhinhas que andam pelo chão do esgoto (não atacam; só cenário, em cada PC).
@@ -2791,6 +2795,8 @@ func _trash_scrap(at: Vector3, rng: RandomNumberGenerator) -> void:
 	var colors := [Color(0.24, 0.17, 0.1), Color(0.33, 0.3, 0.22), Color(0.2, 0.22, 0.16), Color(0.4, 0.36, 0.28)]
 	var material := StandardMaterial3D.new()
 	material.albedo_color = (colors[0] if plank else colors[1 + rng.randi() % 3]) * Color(0.7, 0.78, 0.6)
+	if plank and _wood_tone.a > 0.0:
+		material.albedo_color = _wood_tone  # tábua na cor única da madeira da área
 	material.roughness = 0.95
 	scrap.material_override = material
 	scrap.position = at + Vector3(0, 0.02, 0)

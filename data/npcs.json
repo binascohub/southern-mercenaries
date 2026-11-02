@@ -769,7 +769,7 @@
     }
   },
   "sewer_ratcatcher": {
-    "_comment": "Caçador de Pragas (Esgoto, posto do lado leste): pede o fim do Rei dos Sapos, que reina na praça oeste.",
+    "_comment": "Itachi, o Caçador de Pragas do Esgoto (posto do lado leste; modelo próprio em NpcModel): pede o fim do Rei dos Sapos, que reina na praça oeste.",
     "name_key": "NPC_SEWER_RATCATCHER",
     "color": [
       0.45,
@@ -804,14 +804,14 @@
       }
     ],
     "body": {
-      "sex": "female",
+      "sex": "male",
       "hair": [
-        "Hair_Buns"
+        "Hair_Long"
       ],
       "hair_color": [
-        0.3,
-        0.2,
-        0.12
+        0.03,
+        0.02,
+        0.03
       ],
       "pose": "idle",
       "outfit": {

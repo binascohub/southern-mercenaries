@@ -2999,7 +2999,7 @@ msgid "NPC_SEWER_SCAVENGER"
 msgstr "Catador do Esgoto"
 
 msgid "NPC_SEWER_RATCATCHER"
-msgstr "Caçador de Pragas"
+msgstr "Itachi"
 
 msgid "QUEST_SEWER_OLD_GATOR"
 msgstr "O Gator Velho"
@@ -3026,7 +3026,7 @@ msgid "QUEST_SEWER_FROG_KING"
 msgstr "O Rei dos Sapos"
 
 msgid "QUEST_SEWER_FROG_KING_DESC"
-msgstr "O Caçador de Pragas quer acabar com a praga de sapos: derrote o Rei dos Sapos, na praça do lado oeste do esgoto."
+msgstr "Itachi quer acabar com a praga de sapos: derrote o Rei dos Sapos, na praça do lado oeste do esgoto."
 
 msgid "DLG_SEWER_FROG_1"
 msgstr "Pragas eu conheço bem. Mas esta é diferente: um sapo coroado que manda em todos os outros."
@@ -3059,7 +3059,7 @@ msgid "PROP_SEWER_SECTOR_3"
 msgstr "Galerias dos Morcegos"
 
 msgid "SIGN_SEWER_SECTOR_3"
-msgstr "Setor 3 — Galerias dos Morcegos. Bandos de morcegos pestilentos; o posto do Caçador de Pragas fica a leste."
+msgstr "Setor 3 — Galerias dos Morcegos. Bandos de morcegos pestilentos; o posto do Itachi fica a leste."
 
 msgid "PROP_SEWER_SECTOR_4"
 msgstr "Passagem Secreta da Guerra"

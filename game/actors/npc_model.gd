@@ -111,6 +111,10 @@ const MODELS := {
 	# esqueleto dos heróis por tools/assets/rig_to_ual.py (ver tools/assets/build_spiderman.py), com as animações deles.
 	"sewer_scavenger": {"scene": "res://assets/models/characters/spiderman.glb", "scale": 1.0,
 		"poses": {"idle": "Dance_Loop", "talk": "Dance_Loop", "stand": "Dance_Loop"}},  # o Catador vive dançando (a dança dos heróis), até quando conversa
+	# Itachi (itachi.blend do autor, malha do Mixamo sem textura: pintura por vértice e rigging por tools/assets/build_itachi_npc.py): o Caçador de Pragas do Esgoto,
+	# preso ao esqueleto dos heróis, com os movimentos deles.
+	"sewer_ratcatcher": {"scene": "res://assets/models/characters/itachi.glb", "scale": 1.0, "vertex_colors": true,
+		"poses": {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop"}},
 	"pirate_captain": {"scene": "res://assets/models/characters/pirate_captain.glb", "scale": 1.0,
 		"poses": {"walk": "Walk_Loop", "idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "drink": "Consume"}},
 	# Guarda (Brigand, anthonymyers, CC BY 3.0): parado na pose do modelo, de
@@ -219,6 +223,15 @@ static func create(id: String) -> NpcModel:
 	npc.add_child(model)
 	npc.scale = Vector3.ONE * float(info.scale)
 	npc._poses = info.poses.duplicate()
+	if info.get("vertex_colors", false):  # modelo pintado por cor de vértice (o Itachi): o Godot não liga o albedo sozinho
+		for node in model.find_children("*", "MeshInstance3D", true, false):
+			var painted := node as MeshInstance3D
+			for i in painted.get_surface_override_material_count():
+				var base := painted.get_active_material(i) as BaseMaterial3D
+				if base:
+					var copy := base.duplicate() as BaseMaterial3D
+					copy.vertex_color_use_as_albedo = true
+					painted.set_surface_override_material(i, copy)
 	var colors: Dictionary = info.get("colors", {})
 	if info.has("gown"):
 		# O top e o short velhos (o que sobra à vista) combinam com o vestido.

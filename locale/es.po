@@ -2999,7 +2999,7 @@ msgid "NPC_SEWER_SCAVENGER"
 msgstr "Rebuscador de la Alcantarilla"
 
 msgid "NPC_SEWER_RATCATCHER"
-msgstr "Cazador de Plagas"
+msgstr "Itachi"
 
 msgid "QUEST_SEWER_OLD_GATOR"
 msgstr "El Caimán Viejo"
@@ -3026,7 +3026,7 @@ msgid "QUEST_SEWER_FROG_KING"
 msgstr "El Rey de los Sapos"
 
 msgid "QUEST_SEWER_FROG_KING_DESC"
-msgstr "El Cazador de Plagas quiere acabar con la plaga de sapos: derrota al Rey de los Sapos en la plaza del lado oeste de la alcantarilla."
+msgstr "Itachi quiere acabar con la plaga de sapos: derrota al Rey de los Sapos en la plaza del lado oeste de la alcantarilla."
 
 msgid "DLG_SEWER_FROG_1"
 msgstr "Conozco bien las plagas. Pero esta es distinta: un sapo coronado que manda sobre todos los demás."
@@ -3059,7 +3059,7 @@ msgid "PROP_SEWER_SECTOR_3"
 msgstr "Galerías de los Murciélagos"
 
 msgid "SIGN_SEWER_SECTOR_3"
-msgstr "Sector 3 — Galerías de los Murciélagos. Bandadas de murciélagos pestilentes; el puesto del Cazador de Plagas está al este."
+msgstr "Sector 3 — Galerías de los Murciélagos. Bandadas de murciélagos pestilentes; el puesto de Itachi está al este."
 
 msgid "PROP_SEWER_SECTOR_4"
 msgstr "Pasaje Secreto de la Guerra"

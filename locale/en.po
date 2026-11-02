@@ -2999,7 +2999,7 @@ msgid "NPC_SEWER_SCAVENGER"
 msgstr "Sewer Scavenger"
 
 msgid "NPC_SEWER_RATCATCHER"
-msgstr "Pest Hunter"
+msgstr "Itachi"
 
 msgid "QUEST_SEWER_OLD_GATOR"
 msgstr "The Old Gator"
@@ -3026,7 +3026,7 @@ msgid "QUEST_SEWER_FROG_KING"
 msgstr "The Frog King"
 
 msgid "QUEST_SEWER_FROG_KING_DESC"
-msgstr "The Pest Hunter wants to end the frog plague: defeat the Frog King in the plaza on the west side of the sewer."
+msgstr "Itachi wants to end the frog plague: defeat the Frog King in the plaza on the west side of the sewer."
 
 msgid "DLG_SEWER_FROG_1"
 msgstr "I know pests well. But this one is different: a crowned frog that commands all the others."
@@ -3059,7 +3059,7 @@ msgid "PROP_SEWER_SECTOR_3"
 msgstr "Bat Galleries"
 
 msgid "SIGN_SEWER_SECTOR_3"
-msgstr "Sector 3 — Bat Galleries. Flocks of plague bats; the Pest Hunter's post is to the east."
+msgstr "Sector 3 — Bat Galleries. Flocks of plague bats; Itachi's post is to the east."
 
 msgid "PROP_SEWER_SECTOR_4"
 msgstr "Secret War Passage"

@@ -325,7 +325,7 @@ area = {
     "props": props,
     "quest_spots": quest_spots,
     "breakables": breakables,
-    "style": dict(legacy["style"], puddles=False),
+    "style": dict(legacy["style"], puddles=False, wood_tone=[0.192, 0.145, 0.11]),  # madeira na cor da mesa redonda da Taverna
     "decor": decor,
     "passive": True,
 }
@@ -348,12 +348,12 @@ npcs["sewer_scavenger"] = {
                   {"when": {}, "lines": ["DLG_SEWER_GATOR_DONE"]}],
     "body": {"sex": "male", "hair": ["Hair_Buzzed", "Hair_Beard"], "hair_color": [0.22, 0.16, 0.1], "pose": "idle", "outfit": {"body": "cloth"}}}
 npcs["sewer_ratcatcher"] = {
-    "_comment": "Caçador de Pragas (Esgoto, posto do lado leste): pede o fim do Rei dos Sapos, que reina na praça oeste.",
+    "_comment": "Itachi, o Caçador de Pragas do Esgoto (posto do lado leste; modelo próprio em NpcModel): pede o fim do Rei dos Sapos, que reina na praça oeste.",
     "name_key": "NPC_SEWER_RATCATCHER", "color": [0.45, 0.35, 0.25],
     "dialogues": [{"when": {"quest_new": "sewer_frog_king"}, "lines": ["DLG_SEWER_FROG_1", "DLG_SEWER_FROG_2", "DLG_SEWER_FROG_3"], "offer": "sewer_frog_king"},
                   {"when": {"quest_active": "sewer_frog_king"}, "lines": ["DLG_SEWER_FROG_ACTIVE"]},
                   {"when": {}, "lines": ["DLG_SEWER_FROG_DONE"]}],
-    "body": {"sex": "female", "hair": ["Hair_Buns"], "hair_color": [0.3, 0.2, 0.12], "pose": "idle", "outfit": {"body": "cloth"}}}
+    "body": {"sex": "male", "hair": ["Hair_Long"], "hair_color": [0.03, 0.02, 0.03], "pose": "idle", "outfit": {"body": "cloth"}}}
 quests["sewer_old_gator"] = {"name_key": "QUEST_SEWER_OLD_GATOR", "desc_key": "QUEST_SEWER_OLD_GATOR_DESC", "type": "village", "giver": "sewer_scavenger", "area": AREA,
                              "clear": ["sw_old_gator"], "target_element": "fire", "reward": {"gold": 220, "xp": 380}}
 quests["sewer_frog_king"] = {"name_key": "QUEST_SEWER_FROG_KING", "desc_key": "QUEST_SEWER_FROG_KING_DESC", "type": "village", "giver": "sewer_ratcatcher", "area": AREA,
@@ -367,7 +367,7 @@ open(QUESTS, "w", encoding="utf-8").write(json.dumps(quests, indent=2, ensure_as
 T = {
     "ARENA_SEWERS_DRAINS": ("Esgoto de Tortuga", "Tortuga Sewers", "Cloacas de Tortuga"),
     "NPC_SEWER_SCAVENGER": ("Catador do Esgoto", "Sewer Scavenger", "Rebuscador de la Alcantarilla"),
-    "NPC_SEWER_RATCATCHER": ("Caçador de Pragas", "Pest Hunter", "Cazador de Plagas"),
+    "NPC_SEWER_RATCATCHER": ("Itachi", "Itachi", "Itachi"),
     "QUEST_SEWER_OLD_GATOR": ("O Gator Velho", "The Old Gator", "El Caimán Viejo"),
     "QUEST_SEWER_OLD_GATOR_DESC": ("O Catador do Esgoto quer a Passagem Secreta da Guerra de volta: derrote o Gator Velho, na praça do lado leste do esgoto.",
                                    "The Sewer Scavenger wants the Secret War Passage back: defeat the Old Gator in the plaza on the east side of the sewer.",
@@ -388,9 +388,9 @@ T = {
                              "The Old One fell? Then the Passage is ours. Thank you, truly.",
                              "¿El Viejo cayó? Entonces el Pasaje es nuestro. Gracias, de corazón."),
     "QUEST_SEWER_FROG_KING": ("O Rei dos Sapos", "The Frog King", "El Rey de los Sapos"),
-    "QUEST_SEWER_FROG_KING_DESC": ("O Caçador de Pragas quer acabar com a praga de sapos: derrote o Rei dos Sapos, na praça do lado oeste do esgoto.",
-                                   "The Pest Hunter wants to end the frog plague: defeat the Frog King in the plaza on the west side of the sewer.",
-                                   "El Cazador de Plagas quiere acabar con la plaga de sapos: derrota al Rey de los Sapos en la plaza del lado oeste de la alcantarilla."),
+    "QUEST_SEWER_FROG_KING_DESC": ("Itachi quer acabar com a praga de sapos: derrote o Rei dos Sapos, na praça do lado oeste do esgoto.",
+                                   "Itachi wants to end the frog plague: defeat the Frog King in the plaza on the west side of the sewer.",
+                                   "Itachi quiere acabar con la plaga de sapos: derrota al Rey de los Sapos en la plaza del lado oeste de la alcantarilla."),
     "DLG_SEWER_FROG_1": ("Pragas eu conheço bem. Mas esta é diferente: um sapo coroado que manda em todos os outros.",
                          "I know pests well. But this one is different: a crowned frog that commands all the others.",
                          "Conozco bien las plagas. Pero esta es distinta: un sapo coronado que manda sobre todos los demás."),
@@ -413,9 +413,9 @@ T = {
                             "Sector 2 — Garbage Canals. Acid toads spit from afar; the Frog King's plaza is to the west.",
                             "Sector 2 — Canales de Basura. Los sapos ácidos escupen de lejos; la plaza del Rey de los Sapos está al oeste."),
     "PROP_SEWER_SECTOR_3": ("Galerias dos Morcegos", "Bat Galleries", "Galerías de los Murciélagos"),
-    "SIGN_SEWER_SECTOR_3": ("Setor 3 — Galerias dos Morcegos. Bandos de morcegos pestilentos; o posto do Caçador de Pragas fica a leste.",
-                            "Sector 3 — Bat Galleries. Flocks of plague bats; the Pest Hunter's post is to the east.",
-                            "Sector 3 — Galerías de los Murciélagos. Bandadas de murciélagos pestilentes; el puesto del Cazador de Plagas está al este."),
+    "SIGN_SEWER_SECTOR_3": ("Setor 3 — Galerias dos Morcegos. Bandos de morcegos pestilentos; o posto do Itachi fica a leste.",
+                            "Sector 3 — Bat Galleries. Flocks of plague bats; Itachi's post is to the east.",
+                            "Sector 3 — Galerías de los Murciélagos. Bandadas de murciélagos pestilentes; el puesto de Itachi está al este."),
     "PROP_SEWER_SECTOR_4": ("Passagem Secreta da Guerra", "Secret War Passage", "Pasaje Secreto de la Guerra"),
     "SIGN_SEWER_SECTOR_4": ("Setor 4 — Passagem Secreta da Guerra. Jacarés à espreita na água; a praça do Gator Velho fica ao leste.",
                             "Sector 4 — Secret War Passage. Gators lurk in the water; the Old Gator's plaza is to the east.",
