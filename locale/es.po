@@ -2603,28 +2603,28 @@ msgid "NPC_VILLAGE_WIFE"
 msgstr "Elara la Curtidora"
 
 msgid "NPC_ELF_ARCHER"
-msgstr "Aeliana la Exploradora"
+msgstr "Exploradora"
 
 msgid "DLG_ARCHER_1"
-msgstr "Alto. Pisad con cuidado: hacéis demasiado ruido para quien quiere seguir vivo. Soy Aeliana; vigilo este bosque desde antes de que Ferncroft tuviera nombre."
+msgstr "Buenas, viajeros. Cuidado dónde pisan: estos senderos guardan cosas muy antiguas. Soy exploradora y recorro el mundo en busca de rarezas para mi colección."
 
 msgid "DLG_ARCHER_2"
-msgstr "El Leshy duerme al fondo de la arboleda, bajo el árbol anciano. Corteza, piedra y furia. Cada flecha mía solo alimenta su musgo."
+msgstr "Hace meses que busco la daga de hueso de dinosaurio. Dicen que la tiene el Leshy, el gigante de corteza y piedra que duerme en el fondo del bosque."
 
 msgid "DLG_ARCHER_3"
-msgstr "Abatidlo y el bosque volverá a respirar. El Fuego es lo único que teme esa corteza vieja. Hacedlo y os lo pagaré bien."
+msgstr "Derríbenlo y tráiganme la daga. A cambio, les entrego una de las llaves que abren el mapa del jefe final."
 
 msgid "DLG_ARCHER_ACTIVE"
-msgstr "Seguid el sendero de piedras hasta el final de la arboleda. El Leshy embiste desde lejos: no os quedéis quietos. Quemadlo."
+msgstr "Sigan el sendero de piedras hasta el final del bosque: allí está el Leshy. La daga es inconfundible, curva y blanca, del largo de un antebrazo. Tráiganla y la llave es suya."
 
 msgid "DLG_ARCHER_DONE"
-msgstr "La arboleda está en silencio. Sentí suspirar al árbol anciano. Gracias, viajeros: el bosque recuerda a sus amigos."
+msgstr "¡Magnífica! Esta hoja brillará en mi colección. La llave es suya, como acordamos. Guárdenla bien: abre el camino hasta el jefe final."
 
 msgid "QUEST_FOREST_LESHY"
-msgstr "El Anciano de la Arboleda"
+msgstr "La Daga de Hueso"
 
 msgid "QUEST_FOREST_LESHY_DESC"
-msgstr "Aeliana la Exploradora te pide que mates al Leshy, el gigante de corteza y piedra que guarda el árbol anciano. Es de Tierra: teme al Fuego."
+msgstr "La Exploradora quiere la daga de hueso de dinosaurio para su colección de rarezas. La guarda el Leshy, el gigante de corteza y piedra del fondo del bosque. Derrótalo y entrégale la daga: a cambio te da una de las llaves del mapa del jefe final."
 
 msgid "DLG_HUNTER_1"
 msgstr "¡Forasteros! Cuidado con el seto al salir: el bosque ya no es el de antes. Soy Bertram. Elara y yo somos lo que queda de Ferncroft."
@@ -2645,7 +2645,7 @@ msgid "DLG_WIFE_1"
 msgstr "No se fijen en el olor, son las pieles. Soy Elara. Bertram dice que ustedes se enfrentan a lo que los cazadores no pueden."
 
 msgid "DLG_WIFE_2"
-msgstr "En este bosque han empezado a caminar las piedras, pisoteando donde estaban nuestros senderos. Mis tendederos, mis peces… todo. Quienes saben despertar y domar esas cosas son el Ermitaño de la Piedra y la Guardiana de la Pira, en las plazas del sendero."
+msgstr "En este bosque han empezado a caminar las piedras, pisoteando donde estaban nuestros senderos. Mis tendederos, mis peces… todo. Quienes saben despertar y domar esas cosas son el Ermitaño de la Piedra y la elfa Aelindra, Guardiana de la Pira, que recorre el sendero."
 
 msgid "DLG_WIFE_3"
 msgstr "Hablen con ellos, y vuelvan enteros. Lo que hay dentro de las grutas (sapos, murciélagos, reptiles y bestias) tampoco es de broma."
@@ -2709,6 +2709,9 @@ msgstr "Acechador"
 
 msgid "VALUABLE_HUMAN_HEART"
 msgstr "Corazón Humano"
+
+msgid "VALUABLE_CURSED_SKULL"
+msgstr "Calavera de Morvak"
 
 msgid "VALUABLE_OLD_SKULL"
 msgstr "Cráneo Antiguo"
@@ -2837,16 +2840,16 @@ msgid "PROP_BASKET"
 msgstr "Cesta"
 
 msgid "NPC_FOREST_PYRE_KEEPER"
-msgstr "Guardiana de la Pira"
+msgstr "Aelindra, Guardiana de la Pira"
 
 msgid "DLG_PYRE_1"
-msgstr "La pira nunca se apaga, forasteros. La alimento desde que el Bosque era verde de verdad."
+msgstr "La pira nunca se apaga, forasteros. Soy Aelindra, elfa y protectora de este Bosque y de todos los animales que viven en él."
 
 msgid "DLG_PYRE_2"
-msgstr "En el corazón de las brasas duerme el Gólem de Fuego. Me escucha cuando canto, y responde con puños de lava."
+msgstr "Morvak, un cazador, mató sin piedad a los animales de aquí y murió maldito. Su calavera arde en las brasas de esta pira, y la maldición crece con ella. Si llega a los árboles, el Bosque muere."
 
 msgid "DLG_PYRE_3"
-msgstr "Si quieren enfrentarlo, prepárense: las brasas ya se mueven…"
+msgstr "El Gólem de Fuego guarda la calavera. Derrótenlo y tráiganmela: la purifico con mi canto. Las brasas ya se mueven…"
 
 msgid "TOAST_PYRE_AWAKENS"
 msgstr "Las brasas rugen: ¡el Gólem de Fuego despierta!"
@@ -2897,16 +2900,16 @@ msgid "TOAST_EXILE_AWAKENS"
 msgstr "Suena un cuerno: ¡el Señor Elfo Oscuro despierta!"
 
 msgid "QUEST_FOREST_FIRE"
-msgstr "El corazón de la pira"
+msgstr "La calavera de Morvak"
 
 msgid "QUEST_FOREST_FIRE_DESC"
-msgstr "La Guardiana de la Pira pide que derroten al Gólem de Fuego que despierta de las brasas de la plaza."
+msgstr "La elfa Aelindra, protectora del Bosque y de los animales, pide la calavera maldita de Morvak, el cazador que masacró a las bestias del monte. El Gólem de Fuego la guarda en las brasas de la pira: derrótenlo y tráiganle la calavera antes de que la maldición alcance los árboles."
 
 msgid "DLG_PYRE_ACTIVE"
-msgstr "Las brasas aún rugen. Acaben con él, forasteros."
+msgstr "Tráiganme la calavera de Morvak, forasteros, antes de que la maldición alcance los árboles."
 
 msgid "DLG_PYRE_DONE"
-msgstr "La pira arde mansa otra vez. Lleven lo que les debo."
+msgstr "La maldición se deshizo en cenizas. Los animales del Bosque se lo agradecen. Lleven lo que les debo."
 
 msgid "VALUABLE_HUMAN_LUNGS"
 msgstr "Pulmones Humanos"
@@ -3147,3 +3150,9 @@ msgstr "Espíritu Sombrío"
 
 msgid "MONSTER_DEMON_TWELVE"
 msgstr "Demonio Doce"
+
+msgid "VALUABLE_BONE_DAGGER"
+msgstr "Daga de Hueso de Dinosaurio"
+
+msgid "VALUABLE_KEY_SPADES"
+msgstr "Llave de Espadas"

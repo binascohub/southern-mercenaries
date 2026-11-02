@@ -539,7 +539,8 @@
       0.85,
       0.7
     ],
-    "_comment": "Mini-chefe da Floresta (04-tortuga-e-missoes.md: o Leshy guarda a árvore anciã): gigante de casca, investidas e pisões; modelo do Monstro da Floresta (cdmir, CC0)."
+    "_comment": "Mini-chefe da Floresta (04-tortuga-e-missoes.md: o Leshy guarda a árvore anciã): gigante de casca, investidas e pisões; modelo do Monstro da Floresta (cdmir, CC0).",
+    "quest_drop": "bone_dagger"
   },
   "ruin_warden": {
     "name_key": "MONSTER_RUIN_WARDEN",
@@ -816,7 +817,8 @@
       1.0,
       1.0
     ],
-    "_comment": "Golem de Fogo da Floresta (Fire/Ice/Stone Golem, umask007, CC BY 3.0 / CC BY-SA 3.0): elite corpo a corpo, rápido e de dano alto."
+    "_comment": "Golem de Fogo da Floresta (Fire/Ice/Stone Golem, umask007, CC BY 3.0 / CC BY-SA 3.0): elite corpo a corpo, rápido e de dano alto.",
+    "quest_drop": "cursed_skull"
   },
   "golem_ice": {
     "name_key": "MONSTER_GOLEM_ICE",

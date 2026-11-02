@@ -439,7 +439,8 @@
           "DLG_ARCHER_1",
           "DLG_ARCHER_2",
           "DLG_ARCHER_3"
-        ]
+        ],
+        "offer": "forest_leshy"
       },
       {
         "when": {
@@ -447,7 +448,8 @@
         },
         "lines": [
           "DLG_ARCHER_ACTIVE"
-        ]
+        ],
+        "service": "turn_in"
       },
       {
         "when": {},
@@ -509,7 +511,7 @@
     ]
   },
   "forest_pyre_keeper": {
-    "_comment": "Guardiã da Pira (Floresta, Covil das Bestas): fala na praça do centro e, no fim da fala, desperta o Golem de Fogo como mini-chefe.",
+    "_comment": "Aelindra, a Guardiã da Pira (uma elfa protetora da Floresta e dos animais; modelo de florest_quest_1.glb): anda pela trilha (rota em arenas.json); no fim da fala, desperta o Golem de Fogo, que guarda a Caveira de Morvak (o caçador que massacrou os bichos da mata; a maldição dele ameaça a Floresta). Quem traz a caveira a ela encerra a missão (entrega).",
     "name_key": "NPC_FOREST_PYRE_KEEPER",
     "color": [
       0.8,
@@ -534,7 +536,8 @@
         },
         "lines": [
           "DLG_PYRE_ACTIVE"
-        ]
+        ],
+        "service": "turn_in"
       },
       {
         "when": {},

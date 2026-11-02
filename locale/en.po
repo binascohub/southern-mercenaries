@@ -2603,28 +2603,28 @@ msgid "NPC_VILLAGE_WIFE"
 msgstr "Elara the Tanner"
 
 msgid "NPC_ELF_ARCHER"
-msgstr "Aeliana the Ranger"
+msgstr "Explorer"
 
 msgid "DLG_ARCHER_1"
-msgstr "Hold. Walk softly — you are loud for people who mean to live. I am Aeliana; I have watched this wood since before Ferncroft had a name."
+msgstr "Good day, travelers. Mind your step: these trails keep very old things. I am an explorer, and I roam the world after rarities for my collection."
 
 msgid "DLG_ARCHER_2"
-msgstr "The Leshy sleeps at the far end of the grove, under the elder tree. Bark, stone and rage. Every arrow I loose just feeds the moss."
+msgstr "For months I have been after the dinosaur bone dagger. They say the Leshy, the giant of bark and stone sleeping deep in the woods, has it."
 
 msgid "DLG_ARCHER_3"
-msgstr "Put it down and the forest will breathe again. Fire is the one thing the old bark fears. Do this, and I'll make it worth your while."
+msgstr "Bring it down and bring me the dagger. In return I will hand over one of the keys that open the final boss map."
 
 msgid "DLG_ARCHER_ACTIVE"
-msgstr "Follow the stone path to the end of the grove. The Leshy charges from afar — do not stand your ground. Burn it."
+msgstr "Follow the stone trail to the end of the woods: the Leshy is there. The dagger is unmistakable, curved and white, the length of a forearm. Bring it and the key is yours."
 
 msgid "DLG_ARCHER_DONE"
-msgstr "The grove is quiet. I felt the elder tree sigh. My thanks, travelers — the wood remembers its friends."
+msgstr "Magnificent! This blade will shine in my collection. The key is yours, as agreed. Keep it safe: it opens the way to the final boss."
 
 msgid "QUEST_FOREST_LESHY"
-msgstr "The Elder of the Grove"
+msgstr "The Bone Dagger"
 
 msgid "QUEST_FOREST_LESHY_DESC"
-msgstr "Aeliana the Ranger asks you to slay the Leshy, the bark-and-stone giant that guards the elder tree. It is Earth — it fears Fire."
+msgstr "The Explorer wants the dinosaur bone dagger for her collection of rarities. The Leshy, the giant of bark and stone deep in the woods, keeps it. Defeat him and hand her the dagger: in return she gives one of the keys to the final boss map."
 
 msgid "DLG_HUNTER_1"
 msgstr "Strangers! Mind the hedge when you leave — the grove is not what it was. I'm Bertram. Elara and I are all that's left of Ferncroft."
@@ -2645,7 +2645,7 @@ msgid "DLG_WIFE_1"
 msgstr "Don't mind the smell, it's the hides. I'm Elara. Bertram says you fight what hunters cannot."
 
 msgid "DLG_WIFE_2"
-msgstr "Stones have started to walk in these woods, trampling where our paths used to be. My racks, my fish… everything. The ones who know how to wake and tame such things are the Hermit of the Stone and the Keeper of the Pyre, in the squares along the trail."
+msgstr "Stones have started to walk in these woods, trampling where our paths used to be. My racks, my fish… everything. The ones who know how to wake and tame such things are the Hermit of the Stone and the elf Aelindra, Keeper of the Pyre, who walks the trail."
 
 msgid "DLG_WIFE_3"
 msgstr "Talk to them — and come back in one piece. The things inside the caves — toads, bats, reptiles and beasts — are no joke either."
@@ -2709,6 +2709,9 @@ msgstr "Stalker"
 
 msgid "VALUABLE_HUMAN_HEART"
 msgstr "Human Heart"
+
+msgid "VALUABLE_CURSED_SKULL"
+msgstr "Morvak's Skull"
 
 msgid "VALUABLE_OLD_SKULL"
 msgstr "Old Skull"
@@ -2837,16 +2840,16 @@ msgid "PROP_BASKET"
 msgstr "Basket"
 
 msgid "NPC_FOREST_PYRE_KEEPER"
-msgstr "Keeper of the Pyre"
+msgstr "Aelindra, Keeper of the Pyre"
 
 msgid "DLG_PYRE_1"
-msgstr "The pyre never dies, strangers. I have fed it since the Forest was truly green."
+msgstr "The pyre never dies, strangers. I am Aelindra, an elf and protector of this Forest and of every creature that lives in it."
 
 msgid "DLG_PYRE_2"
-msgstr "In the heart of the embers sleeps the Fire Golem. He listens when I sing, and sings back with fists of lava."
+msgstr "Morvak, a hunter, killed the animals here without mercy and died cursed. His skull burns in the embers of this pyre, and the curse grows with it. If it reaches the trees, the Forest dies."
 
 msgid "DLG_PYRE_3"
-msgstr "If you want to face him, get ready: the embers are already stirring…"
+msgstr "The Fire Golem guards the skull. Defeat him and bring it to me: I will purify it with my song. The embers are already stirring…"
 
 msgid "TOAST_PYRE_AWAKENS"
 msgstr "The embers roar: the Fire Golem awakens!"
@@ -2897,16 +2900,16 @@ msgid "TOAST_EXILE_AWAKENS"
 msgstr "A horn sounds: the Dark Elf Lord awakens!"
 
 msgid "QUEST_FOREST_FIRE"
-msgstr "The Heart of the Pyre"
+msgstr "Morvak's Skull"
 
 msgid "QUEST_FOREST_FIRE_DESC"
-msgstr "The Keeper of the Pyre asks you to defeat the Fire Golem she awakens from the embers of the square."
+msgstr "The elf Aelindra, protector of the Forest and its animals, asks for the cursed skull of Morvak, the hunter who slaughtered the beasts of the woods. The Fire Golem guards it in the embers of the pyre: defeat him and bring her the skull before the curse reaches the trees."
 
 msgid "DLG_PYRE_ACTIVE"
-msgstr "The embers still roar. Put an end to him, strangers."
+msgstr "Bring me Morvak's skull, strangers, before the curse reaches the trees."
 
 msgid "DLG_PYRE_DONE"
-msgstr "The pyre burns gently again. Take what I owe you."
+msgstr "The curse crumbled to ashes. The animals of the Forest thank you. Take what I owe you."
 
 msgid "VALUABLE_HUMAN_LUNGS"
 msgstr "Human Lungs"
@@ -3147,3 +3150,9 @@ msgstr "Shadow Spirit"
 
 msgid "MONSTER_DEMON_TWELVE"
 msgstr "Demon Twelve"
+
+msgid "VALUABLE_BONE_DAGGER"
+msgstr "Dinosaur Bone Dagger"
+
+msgid "VALUABLE_KEY_SPADES"
+msgstr "Key of Spades"

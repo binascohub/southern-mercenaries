@@ -1034,6 +1034,21 @@ func _test_sewers() -> void:
 		_check(Town.dialogue_index(mission.giver, {}) == 0 and Town.dialogue_index(mission.giver, {quest_id: "active"}) == 1
 			and Town.dialogue_index(mission.giver, {quest_id: "done"}) == 2 and giver.dialogues[0].get("offer", "") == quest_id,
 			"conversa de %s: oferece, lembra e agradece" % quest_id)
+	# A missão da Aelindra pede a Caveira de Morvak, que o Golem de Fogo (o mini-chefe que ela desperta) larga; ela entrega com "turn_in".
+	var skull_quest: Dictionary = GameData.quests.forest_fire_golem
+	_check(skull_quest.get("item", "") == "cursed_skull" and GameData.valuables.cursed_skull.get("quest_item", false) and Items.is_valid(Items.stack(Items.VALUABLE, "cursed_skull"))
+		and GameData.monsters.golem_fire.get("quest_drop", "") == "cursed_skull" and GameData.valuables.cursed_skull.get("model", "") == "Quest_Skull"
+		and GameData.npcs.forest_pyre_keeper.dialogues[1].get("service", "") == "turn_in" and tr("VALUABLE_CURSED_SKULL") != "VALUABLE_CURSED_SKULL",
+		"Aelindra pede a Caveira de Morvak (modelo Quest_Skull), que o Golem de Fogo larga")
+	_check(Shops.sell_price("blacksmith", Items.stack(Items.VALUABLE, "cursed_skull"), 1, {}) < 0, "a Caveira de Morvak não se vende")
+	# A Exploradora (elf_archer) quer a Adaga de Osso, que o Leshy larga; ela a troca por uma Chave de Espadas ("gives") com "turn_in".
+	var dagger_quest: Dictionary = GameData.quests.forest_leshy
+	_check(dagger_quest.get("giver", "") == "elf_archer" and dagger_quest.get("item", "") == "bone_dagger" and dagger_quest.get("gives", "") == "key_spades" and not dagger_quest.has("clear")
+		and GameData.monsters.leshy.get("quest_drop", "") == "bone_dagger" and GameData.valuables.bone_dagger.get("quest_item", false) and GameData.valuables.key_spades.get("quest_item", false)
+		and Items.is_valid(Items.stack(Items.VALUABLE, "bone_dagger")) and Items.is_valid(Items.stack(Items.VALUABLE, "key_spades"))
+		and GameData.npcs.elf_archer.dialogues[1].get("service", "") == "turn_in" and tr("NPC_ELF_ARCHER") != "NPC_ELF_ARCHER" and tr("VALUABLE_BONE_DAGGER") != "VALUABLE_BONE_DAGGER"
+		and Kit.has(GameData.valuables.bone_dagger.model) and Kit.has(GameData.valuables.key_spades.model),
+		"A Exploradora pede a Adaga de Osso (que o Leshy larga) e dá a Chave de Espadas")
 	# Floresta: seis setores, um monstro em cada, e duas praças com NPC que invoca um mini-chefe.
 	var sectors := {}
 	for e: Dictionary in forest.encounters:

@@ -1849,13 +1849,23 @@ func _build_prop(prop_data: Dictionary) -> void:
 						node.add_child(blocker)
 				elif own_model:
 					node.add_child(own_model)
-					if own_model.has_method("set_pose") and String(prop.npc) in ["seated_pirate", "old_lady", "sewer_scavenger", "sewer_ratcatcher"]:
+					if own_model.has_method("set_pose") and String(prop.npc) in ["seated_pirate", "old_lady", "sewer_scavenger", "sewer_ratcatcher", "elf_archer"]:  # a Aeliana (elf_archer) respira e se mexe parada no lugar (idle)
 						own_model.call("set_pose", "sit" if String(prop.npc) == "old_lady" else "idle")  # o Macumbeiro (mago de capuz) e o Padre (monge) têm modelo próprio
 				elif not seated_woman and _npc_body_with_instrument(node, look) == null:
 					var body := CapsuleMesh.new()
 					body.radius = 0.35
 					body.height = 1.7
 					_prop_mesh(node, body, Vector3.ONE, Vector3(0, 0.85, 0), color)
+				if node is Wanderer and own_model:
+					# NPC que passeia ("route": [[x, z], [x, z]]): vai e volta pela rota, parando nas pontas; a posição de interação o acompanha (como o mercador ambulante).
+					var walker := node as Wanderer
+					var route: Array = prop.route
+					walker.from = Vector3(route[0][0], 0, route[0][1])
+					walker.to = Vector3(route[1][0], 0, route[1][1])
+					walker.speed = float(prop.get("speed", 1.0))
+					walker.synced = true
+					walker.tracked = prop
+					walker.model = own_model
 				# Marca "!" de quem tem história/missão para contar.
 				var mark := Label3D.new()
 				mark.text = "!"

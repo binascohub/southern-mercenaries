@@ -63,11 +63,19 @@ func _ready() -> void:
 	# Modo espectador: câmera livre, começa de frente para a fila toda.
 	_cam = Camera3D.new()
 	_cam.position = Vector3(x / 2.0, 2.2, maxf(8.0, x * 0.55))
+	if "near" in OS.get_cmdline_user_args():  # peças pequenas (itens de missão): a câmera começa perto
+		_cam.position = Vector3(x / 2.0, 0.9, maxf(1.8, x * 0.4))
 	_cam.rotation_degrees = Vector3(-12, 0, 0)
 	_cam.far = 200.0
 	add_child(_cam)
 	_yaw = 0.0
 	_pitch = deg_to_rad(-12.0)
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("shot="):  # salva uma captura e sai (conferência)
+			await get_tree().create_timer(3.0).timeout
+			await RenderingServer.frame_post_draw
+			get_viewport().get_texture().get_image().save_png(arg.trim_prefix("shot="))
+			get_tree().quit()
 
 
 func _bounds(node: Node3D) -> AABB:
@@ -82,6 +90,8 @@ func _bounds(node: Node3D) -> AABB:
 
 
 func _process(delta: float) -> void:
+	if _cam == null:
+		return
 	var move := Vector3.ZERO
 	if Input.is_key_pressed(KEY_W) or Input.is_key_pressed(KEY_UP):
 		move.z -= 1.0

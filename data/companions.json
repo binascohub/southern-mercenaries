@@ -32,7 +32,7 @@
     "cooldown": 1.1,
     "size": 0.55,
     "model": "Werewolf",
-    "model_scale": 0.7,
+    "model_scale": 0.85,
     "anim_map": {"idle": "Idle", "walk": "Walk", "run": "Jog_Fwd", "attack": "Sword_Attack"},
     "run_speed": 2.5,
     "_comment": "Companheiro de Água do Invocador: o Lobo (werewolf.glb fornecido pelo autor, bípede ligado ao esqueleto e às animações dos heróis por tools/assets/build_werewolf_companion.py), no lugar da lontra (o id continua otter); ataca à distância."

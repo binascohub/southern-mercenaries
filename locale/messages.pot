@@ -3005,3 +3005,9 @@ msgstr ""
 
 msgid "MONSTER_DEMON_TWELVE"
 msgstr ""
+
+msgid "VALUABLE_BONE_DAGGER"
+msgstr ""
+
+msgid "VALUABLE_KEY_SPADES"
+msgstr ""

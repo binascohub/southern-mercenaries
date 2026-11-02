@@ -150,14 +150,20 @@ const MODELS := {
 	# Arqueira élfica da Floresta (Elven Archer - lower poly edition, Julius sobre a malha de theclubber, CC BY-SA 3.0): capuz e
 	# capa verdes, arco e aljava nas costas, parada na pose do arquivo (sem animação); 1,85 m. Dá a missão do Leshy.
 	# Criada por tools/assets/build_elf_archer.py.
-	"elf_archer": {"scene": "res://assets/models/characters/elf_archer.glb", "scale": 1.0, "poses": {}},
+	"elf_archer": {"scene": "res://assets/models/characters/explorer.glb", "scale": 1.04, "poses": VILLAGER_POSES},  # a Exploradora (explorer.glb do autor; tools/assets/build_explorer.py) é a NPC da missão do Leshy, no lugar da Aeliana
+	# A nova Aeliana (elf_2.glb do autor), animada com o pacote de animações dos heróis (tools/assets/build_aeliana_animated.py): na Floresta fica parada no lugar da missão (parada e conversando) e em Tortuga dança.
+	"elf_dancer": {"scene": "res://assets/models/characters/aeliana_animated.glb", "scale": 1.07, "poses": VILLAGER_POSES},
 	# Leônidas, o Veterano das Ruínas (Achilles Spartan Greek Warrior, gamekorp, CC0): guerreiro espartano de elmo, couraça e
 	# capa vermelha, 1,9 m com a crista; a malha vinha em T-pose e sem esqueleto, então os braços foram baixados
 	# (tools/assets/build_achilles.py) e ele fica parado nessa pose. Dá a missão dos goblins.
 	"ruins_spartan": {"scene": "res://assets/models/characters/ruins_spartan.glb", "scale": 1.0, "poses": {}},
-	# Guardiã da Pira (Saxon warrior, Blend Swap #83828, CC0): guerreiro saxão de capa, escudo e lança, parado na pose do arquivo (sem animação); 1,85 m
-	# (a lança passa disso). Criado por tools/assets/build_saxon_warrior.py. Dá a missão do Golem de Fogo.
-	"forest_pyre_keeper": {"scene": "res://assets/models/characters/saxon_warrior.glb", "scale": 1.0, "poses": {}},
+	# Guardiã da Pira (florest_quest_1.glb do autor, Sketchfab: Aelindra, elfa da floresta (a Guardiã da Pira) de coroa de galhos e chifres, vestido branco e manto de folhas; autoria e licença a confirmar):
+	# malha de braços caídos presa ao esqueleto dos heróis por tools/assets/build_mixamo_civilian.py (braços a 70 graus, 1,8 m), com os movimentos deles. Dá a missão do Golem de Fogo.
+	# (O guerreiro saxão antigo, saxon_warrior.glb, fica no projeto sem uso.)
+	# Animações do pacote dos heróis (UAL/UAL2): anda com a caminhada formal (Walk_Formal_Loop), para nas pontas da rota com a pose de conjuração (Spell_Simple_Idle_Loop, também ao conversar);
+	# "cast" (Spell_Simple_Shoot) e "interact" (Interact) estão no arquivo para a invocação do golem.
+	"forest_pyre_keeper": {"scene": "res://assets/models/characters/forest_quest_1.glb", "scale": 1.0,
+		"poses": {"idle": "Idle_Loop", "talk": "Spell_Simple_Idle_Loop", "stand": "Idle_Loop", "walk": "Walk_Formal_Loop", "cast": "Spell_Simple_Shoot", "interact": "Interact"}},
 	"guard": {"scene": "res://assets/models/characters/brigand_guard.glb", "scale": 1.0, "poses": {}},
 	# Sentinela do castelo da Capital: o mesmo Brigand (anthonymyers, CC BY 3.0; a versão rigada "Brigand2" é o mesmo personagem), parado de guarda.
 	# Bobo da Corte (Cerimonial Guard, carlosjorgereis, CC0): figura cerimonial de gorro e saia de pele, sem esqueleto nem animação

@@ -57,6 +57,13 @@
     "quest_item": true,
     "model": "Quest_Skull"
   },
+  "cursed_skull": {
+    "name_key": "VALUABLE_CURSED_SKULL",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Quest_Skull"
+  },
   "wild_meat": {
     "name_key": "VALUABLE_WILD_MEAT",
     "value": 0,
@@ -77,5 +84,19 @@
     "maps": [],
     "quest_item": true,
     "model": "Quest_Ghost"
+  },
+  "bone_dagger": {
+    "name_key": "VALUABLE_BONE_DAGGER",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Bone_Sickle"
+  },
+  "key_spades": {
+    "name_key": "VALUABLE_KEY_SPADES",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Spades"
   }
 }

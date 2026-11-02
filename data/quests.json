@@ -46,16 +46,15 @@
     "name_key": "QUEST_FOREST_LESHY",
     "desc_key": "QUEST_FOREST_LESHY_DESC",
     "type": "village",
-    "giver": "old_lady",
+    "giver": "elf_archer",
     "area": "forest_01_path",
-    "clear": [
-      "f_leshy"
-    ],
     "target_element": "fire",
     "reward": {
       "gold": 300,
       "xp": 550
-    }
+    },
+    "item": "bone_dagger",
+    "gives": "key_spades"
   },
   "royal_banquet": {
     "name_key": "QUEST_ROYAL_BANQUET",
@@ -92,13 +91,12 @@
     "type": "village",
     "giver": "forest_pyre_keeper",
     "area": "forest_01_path",
-    "clear": [
-      "f_golem_fire"
-    ],
+    "item": "cursed_skull",
     "reward": {
       "gold": 200,
       "xp": 400
-    }
+    },
+    "target_element": "fire"
   },
   "royal_lungs": {
     "name_key": "QUEST_ROYAL_LUNGS",
