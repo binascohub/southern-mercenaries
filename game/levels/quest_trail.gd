@@ -87,8 +87,9 @@ func _process(delta: float) -> void:
 		living.append({"group": e.group, "monster_id": e.monster_id, "position": Vector2(e.global_position.x, e.global_position.z)})
 	# Grupo que ainda vai ser invocado (altar): o objetivo é o altar até ele surgir.
 	for prop: Dictionary in area.get("props", []):
-		if prop.has("summon") and not living.any(func(l: Dictionary) -> bool: return l.group == prop.summon.id):
-			living.append({"group": prop.summon.id, "monster_id": String(prop.summon.monsters[0].monster), "position": Vector2(prop.position[0], prop.position[1])})
+		for summon: Dictionary in summons_of(prop):
+			if not living.any(func(l: Dictionary) -> bool: return l.group == summon.id):
+				living.append({"group": summon.id, "monster_id": String(summon.monsters[0].monster), "position": Vector2(prop.position[0], prop.position[1])})
 	var from := Vector2(player.global_position.x, player.global_position.z)
 	var goals := objectives(area_id, _level.town.quests, GameData.quests, GameData.monsters, living, area.get("props", []))
 	if goals.is_empty():
@@ -172,9 +173,19 @@ static func objectives(area_id: String, quests: Dictionary, defs: Dictionary, mo
 				found.append(e.position)
 		if not groups.is_empty() and not found_for(groups, living):
 			for prop: Dictionary in props:
-				if prop.has("summon") and prop.summon.get("id", "") in groups:
+				if summons_of(prop).any(func(summon: Dictionary) -> bool: return summon.get("id", "") in groups):
 					found.append(Vector2(prop.position[0], prop.position[1]))
 	return found
+
+
+## Os grupos que um objeto invoca: o "summon" dele e os "extra_summons" (o altar do Esgoto invoca um grupo por livro).
+static func summons_of(prop: Dictionary) -> Array:
+	var result: Array = []
+	if prop.has("summon"):
+		result.append(prop.summon)
+	for extra: Dictionary in prop.get("extra_summons", []):
+		result.append(extra.summon)
+	return result
 
 
 ## Algum bicho vivo é de um dos grupos?

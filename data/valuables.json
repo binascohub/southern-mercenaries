@@ -62,7 +62,8 @@
     "value": 0,
     "maps": [],
     "quest_item": true,
-    "model": "Quest_Skull"
+    "model": "Quest_Skull",
+    "desc_key": "VALUABLE_CURSED_SKULL_DESC"
   },
   "wild_meat": {
     "name_key": "VALUABLE_WILD_MEAT",
@@ -112,5 +113,28 @@
     "maps": [],
     "quest_item": true,
     "model": "Adam_Rib"
+  },
+  "souls_bottle": {
+    "name_key": "VALUABLE_SOULS_BOTTLE",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Souls_Bottle"
+  },
+  "altar_book": {
+    "name_key": "VALUABLE_ALTAR_BOOK",
+    "desc_key": "VALUABLE_ALTAR_BOOK_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Book_A"
+  },
+  "gator_book": {
+    "name_key": "VALUABLE_GATOR_BOOK",
+    "desc_key": "VALUABLE_GATOR_BOOK_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Ornate_Book"
   }
 }

@@ -760,7 +760,7 @@
     ]
   },
   "sewer_scavenger": {
-    "_comment": "Ossael, o Anjo Caveira (modelo angel_1.glb; sala aberta no meio do mapa): dá a missão do primeiro mini-chefe, o Rei dos Sapos (agora o Monstro de Tábuas), na praça oeste; ela fica parada, de asas abertas.",
+    "_comment": "Ossael, o Anjo Caveira (modelo angel_1.glb; sala aberta no meio do mapa): dá a missão do primeiro mini-chefe, o Empalado (agora o Monstro de Tábuas), na praça oeste; ela fica parada, de asas abertas.",
     "name_key": "NPC_SEWER_SCAVENGER",
     "color": [
       0.4,
@@ -837,7 +837,8 @@
         },
         "lines": [
           "DLG_SEWER_GATOR_ACTIVE"
-        ]
+        ],
+        "service": "turn_in"
       },
       {
         "when": {},
@@ -863,7 +864,7 @@
     }
   },
   "sewer_frog_altar": {
-    "_comment": "Altar do Rei dos Sapos (centro do mapa do Esgoto, sala maze_3_6): tocá-lo desperta o Rei dos Sapos, o mini-chefe 1 ('summon' no objeto em arenas.json); a missão do Catador termina quando ele cai.",
+    "_comment": "Altar do Empalado (centro do mapa do Esgoto, sala maze_3_6): tocá-lo desperta o Empalado, o mini-chefe 1 ('summon' no objeto em arenas.json); a missão do Catador termina quando ele cai.",
     "name_key": "NPC_SEWER_FROG_ALTAR",
     "color": [
       0.4,
@@ -882,6 +883,12 @@
         "when": {},
         "lines": [
           "DLG_FROG_ALTAR_LOCKED"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_GATOR_ALTAR_2"
         ]
       }
     ]
@@ -953,6 +960,30 @@
         "when": {},
         "lines": [
           "DLG_REPTILE_DONE"
+        ]
+      }
+    ]
+  },
+  "sewer_gator_altar": {
+    "_comment": "Altar do Gator Velho (centro do mapa, ao lado do altar do Empalado): com o Grimório das Brasas do Azazel, tocá-lo invoca o Gator Velho ('summon' no objeto em arenas.json); a missão do Azazel pede a garrafa que ele solta.",
+    "name_key": "NPC_SEWER_GATOR_ALTAR",
+    "color": [
+      0.55,
+      0.3,
+      0.2
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_GATOR_ALTAR_1",
+          "DLG_GATOR_ALTAR_2"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_GATOR_ALTAR_LOCKED"
         ]
       }
     ]

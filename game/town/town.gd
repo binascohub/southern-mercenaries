@@ -157,19 +157,35 @@ func interact(player: Player, prop: Dictionary) -> void:
 			if index < list.size():
 				_send(player.peer_id, &"_open_visitor", [index])
 		"npc":
-			# Altar que pede um objeto (needs_key): sem ele, só a fala do altar trancado (a 2ª do NPC) e nada desperta.
-			if prop.has("summon") and prop.has("needs_key") and String(prop.needs_key) not in _campaign().get("keys", []):
-				_send(player.peer_id, &"_open_dialogue", [String(prop.npc), 1])
-				return
-			var index := dialogue_index(prop.npc, _campaign().get("quests", {}))
+			# Altar que pede um objeto (needs_key): sem ele, só a fala do altar trancado (a 2ª do NPC) e nada desperta. Com "extra_summons" (um grupo por livro), o livro que o grupo
+			# tem decide quem desperta: cada entrada traz needs_key, summon e a fala ("dialogue", o índice no NPC) da leitura.
+			var summon: Dictionary = prop.get("summon", {})
+			var dialogue_pick := -1
+			if prop.has("summon") and prop.has("needs_key"):
+				var keys: Array = _campaign().get("keys", [])
+				var dead: Array = _campaign().get("dead_groups", [])
+				var options: Array = [{"needs_key": prop.needs_key, "summon": prop.summon, "dialogue": -1}]
+				options.append_array(prop.get("extra_summons", []))
+				var owned: Array = options.filter(func(o: Dictionary) -> bool: return String(o.needs_key) in keys)
+				if owned.is_empty():
+					_send(player.peer_id, &"_open_dialogue", [String(prop.npc), 1])
+					return
+				var pick: Dictionary = owned[0]
+				for option: Dictionary in owned:
+					if String(option.summon.id) not in dead:
+						pick = option
+						break
+				summon = pick.summon
+				dialogue_pick = int(pick.get("dialogue", -1))
+			var index := dialogue_pick if dialogue_pick >= 0 else dialogue_index(prop.npc, _campaign().get("quests", {}))
 			_send(player.peer_id, &"_open_dialogue", [String(prop.npc), index])
 			# Ouvir a história põe as criaturas no bestiário.
 			if index >= 0:
 				learn(GameData.npcs[prop.npc].dialogues[index].get("bestiary", []))
 			# Estátua que desperta um grupo (mini-chefe da praça) depois da fala; com "needs_quest", só quando essa missão está ativa
 			# (assim o mini-chefe não morre antes de a missão pedir o item que ele larga).
-			if prop.has("summon") and (not prop.has("needs_quest") or _campaign().get("quests", {}).get(String(prop.needs_quest), "") == "active"):
-				_arena().summon_encounter(player, prop)
+			if not summon.is_empty() and (not prop.has("needs_quest") or _campaign().get("quests", {}).get(String(prop.needs_quest), "") == "active"):
+				_arena().summon_encounter(player, {"summon": summon})
 		"quest_spot":
 			resolve_spot(player, String(prop.quest))
 		"forge":
@@ -231,6 +247,9 @@ func _rpc_deposit(bag_index: int) -> void:
 	if bag_index < 0 or bag_index >= bag.size() or bag[bag_index] == null:
 		return
 	var item: Dictionary = bag[bag_index]
+	if item.kind == Items.VALUABLE and GameData.valuables.get(String(item.id), {}).get("quest_item", false):
+		_arena()._toast_to(player, "TOAST_QUEST_ITEM_KEEP", {})  # objeto de missão não vai para o baú: não se perde nem se guarda
+		return
 	bag[bag_index] = null
 	player.refresh_character()
 	_send(player.peer_id, &"_stash_add", [item])
@@ -360,7 +379,9 @@ func _rpc_accept(quest_id: String) -> void:
 	# Objeto de missão (chave da campanha) entregue por quem pede: o Livro do Altar do Esgoto.
 	if quest.has("grants_key") and quest.grants_key not in c.get("keys", []):
 		c.keys = c.get("keys", []) + [quest.grants_key]
-		_arena()._toast_all("TOAST_BOOK_RECEIVED", {})
+		_arena()._toast_all(String(quest.get("grants_toast", "TOAST_BOOK_RECEIVED")), {})
+	if quest.has("grants_item"):
+		_arena().grant_quest_item_to_all(String(quest.grants_item))  # o Livro do Altar vai para a bolsa de todos os heróis presentes (os que chegarem depois o recebem ao entrar)
 	SaveSystem.save_campaign(c, true)
 	learn(quest.get("bestiary", []))
 	sync()
@@ -428,6 +449,9 @@ func _turn_in(player: Player, npc_id: String, silent := false) -> void:
 		if quest.has("gives"):
 			player.character.add_item(Items.stack(Items.VALUABLE, String(quest.gives)))
 			_arena()._toast_to(player, "TOAST_ITEM_RECEIVED", {"item": GameData.valuables[String(quest.gives)].name_key})
+		if quest.has("gives_key") and quest.gives_key not in c.get("keys", []):  # chave da campanha entregue pelo NPC (a de espadas do Azazel, que abre o portão do Ninho)
+			c.keys = c.get("keys", []) + [quest.gives_key]
+			_arena()._toast_all("TOAST_ITEM_RECEIVED", {"item": "PROP_SEWER_KEY_SPADES" if quest.gives_key == "sewer_key_spades" else String(quest.gives_key)})
 		player.refresh_character()
 		_finish_quest(c, id, quest)
 		if quest.has("opens_gate"):  # entregou as chaves ao guardião: o portão cai

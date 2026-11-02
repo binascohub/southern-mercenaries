@@ -150,9 +150,11 @@
     "type": "village",
     "giver": "sewer_ratcatcher",
     "area": "sewers_01_drains",
-    "clear": [
-      "sw_old_gator"
-    ],
+    "grants_key": "book_gator_altar",
+    "grants_item": "gator_book",
+    "grants_toast": "TOAST_GATOR_BOOK_RECEIVED",
+    "item": "souls_bottle",
+    "gives_key": "sewer_key_spades",
     "target_element": "fire",
     "reward": {
       "gold": 220,
@@ -169,6 +171,7 @@
       "sw_frog_king"
     ],
     "grants_key": "book_frog_altar",
+    "grants_item": "altar_book",
     "target_element": "air",
     "reward": {
       "gold": 140,

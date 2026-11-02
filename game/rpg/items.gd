@@ -276,5 +276,9 @@ static func describe(item: Dictionary, class_factor := 1.0) -> PackedStringArray
 				"element": t.translate(Elements.data(c.element).name_key)}))
 		else:
 			lines.append(t.translate("ITEM_RESTORES").format({"percent": roundi(c.fraction * 100)}))
+	if item.kind == VALUABLE:
+		var desc_key: String = GameData.valuables.get(String(item.id), {}).get("desc_key", "")
+		if desc_key != "":
+			lines.append(t.translate(desc_key))  # para que serve (objetos de missão)
 	lines.append(t.translate("ITEM_VALUE").format({"gold": value(item)}))
 	return lines

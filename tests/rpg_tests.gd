@@ -848,7 +848,17 @@ func _test_sewers() -> void:
 		"os Trolls Mauler ficam no Setor 1 (o terço de cima do mapa)")
 	_check(not area.props.any(func(p: Dictionary) -> bool: return p.kind == "water") and area.hazards.size() >= 10, "esgoto: piso de pedra, sem água, com as manchas verdes de lodo que ferem (%d)" % area.hazards.size())
 	# Chefes: as duas praças dos mini-chefes (missões dos NPCs) e a Rainha no Ninho, longe uns dos outros.
-	var gator_group: Dictionary = ids.get("sw_old_gator", {})
+	var gator_group: Dictionary = {}  # o Gator Velho nasce no mesmo altar do Empalado, com outro livro (o Grimório das Brasas do Azazel): "extra_summons" do altar
+	for prop: Dictionary in area.props:
+		for extra: Dictionary in prop.get("extra_summons", []):
+			if extra.summon.id == "sw_old_gator":
+				gator_group = extra.summon
+	_check(area.props.filter(func(p: Dictionary) -> bool: return p.get("kind", "") == "npc" and p.get("npc", "") == "sewer_frog_altar" and p.get("extra_summons", []).size() == 1
+			and p.extra_summons[0].needs_key == "book_gator_altar" and p.extra_summons[0].dialogue == 2).size() == 1
+		and area.props.filter(func(p: Dictionary) -> bool: return p.get("npc", "") == "sewer_gator_altar").is_empty()
+		and GameData.quests.sewer_old_gator.get("grants_key", "") == "book_gator_altar" and GameData.quests.sewer_old_gator.get("grants_item", "") == "gator_book"
+		and GameData.valuables.gator_book.get("quest_item", false) and GameData.npcs.sewer_frog_altar.dialogues.size() == 3,
+		"o Azazel entrega o Grimório das Brasas ao abrir a missão; o mesmo altar do centro invoca o Gator Velho com ele (3 falas: normal, trancado, leitura do grimório)")
 	var frog_altar: Dictionary = {}
 	for prop: Dictionary in area.props:
 		if prop.has("summon") and prop.summon.id == "sw_frog_king":
@@ -859,7 +869,7 @@ func _test_sewers() -> void:
 	_check(not frog_group.is_empty() and frog_group.monsters.any(func(m: Dictionary) -> bool: return m.monster == "frog_king"), "o altar do centro invoca o Rei dos Sapos (e o livro abre o altar)")
 	_check(frog_altar.get("needs_key", "") == "book_frog_altar" and GameData.quests.sewer_frog_king.get("grants_key", "") == "book_frog_altar",
 		"o Catador entrega o Livro do Altar ao aceitar a missão do Rei dos Sapos")
-	_check(GameData.npcs.sewer_frog_altar.dialogues.size() == 2, "o altar tem a fala normal e a do altar trancado")
+	_check(GameData.npcs.sewer_frog_altar.dialogues.size() == 3, "o altar tem a fala normal, a do altar trancado e a da leitura do Grimório das Brasas")
 	_check(not queen_group.is_empty() and queen_group.monsters[0].monster == "demon_rat_queen" and int(queen_group.level) == 2, "a Rainha, nível 2")
 	var nest: Dictionary = area.rooms.filter(func(r: Dictionary) -> bool: return r.id == "nest")[0]
 	var tunnel_room: Dictionary = area.rooms.filter(func(r: Dictionary) -> bool: return r.id == "tunnel")[0]
@@ -870,7 +880,7 @@ func _test_sewers() -> void:
 	_check(area.final and area.victory_groups == ["sw_queen"], "a vitória é só vencer a Rainha")
 	var nest_gate: Array = area.props.filter(func(p: Dictionary) -> bool: return p.id == "nest_gate")
 	_check(nest_gate.size() == 1 and nest_gate[0].kind == "gate" and nest_gate[0].needs_keys == ["sewer_key_spades", "sewer_key_hearts"] and nest_gate[0].position[1] > nest_ref_min and nest_gate[0].position[1] < nest_ref_max
-		and GameData.monsters.old_gator.drops_key == "sewer_key_spades" and GameData.monsters.frog_king.drops_key == "sewer_key_hearts",
+		and not GameData.monsters.old_gator.has("drops_key") and GameData.monsters.old_gator.get("quest_drop", "") == "souls_bottle" and GameData.quests.sewer_old_gator.get("item", "") == "souls_bottle" and GameData.quests.sewer_old_gator.get("gives_key", "") == "sewer_key_spades" and GameData.valuables.souls_bottle.get("quest_item", false) and GameData.monsters.frog_king.drops_key == "sewer_key_hearts",
 		"portão do corredor do Ninho: só abre com as 2 chaves dos mini-chefes (Jacaré Velho e Rei dos Sapos)")
 	_check(area.props.filter(func(p: Dictionary) -> bool: return p.get("after_victory", false)).size() == 1, "portal só depois da vitória")
 	_check(not area.props.any(func(p: Dictionary) -> bool: return p.get("id", "") == "war_treasure") and not GameData.monsters.demon_rat_queen.has("drops_key"),
@@ -881,7 +891,7 @@ func _test_sewers() -> void:
 		var npc_prop: Array = area.props.filter(func(p: Dictionary) -> bool: return p.get("npc", "") == pair[0])
 		var quest: Dictionary = GameData.quests.get(pair[1], {})
 		_check(npc_prop.size() == 1 and GameData.npcs.has(pair[0]) and quest.get("giver", "") == pair[0] and quest.get("area", "") == "sewers_01_drains"
-			and quest.get("clear", []) == [pair[2]], "NPC %s dá a missão %s (limpar %s)" % [pair[0], pair[1], pair[2]])
+			and (quest.get("clear", []) == [pair[2]] or quest.get("item", "") == "souls_bottle"), "NPC %s dá a missão %s (limpar %s; a do Azazel pede a garrafa que o Gator Velho solta)" % [pair[0], pair[1], pair[2]])
 		if npc_prop.size() == 1 and ids.has(pair[2]):
 			var d := Vector2(npc_prop[0].position[0], npc_prop[0].position[1]).distance_to(Vector2(ids[pair[2]].position[0], ids[pair[2]].position[1]))
 			_check(d > 40.0, "%s longe do chefe (%.0f m)" % [pair[0], d])
@@ -1063,6 +1073,10 @@ func _test_sewers() -> void:
 		and GameData.npcs.forest_pyre_keeper.dialogues[1].get("service", "") == "turn_in" and tr("VALUABLE_CURSED_SKULL") != "VALUABLE_CURSED_SKULL",
 		"Aelindra pede a Caveira de Morvak (modelo Quest_Skull), que o Golem de Fogo larga")
 	_check(Shops.sell_price("blacksmith", Items.stack(Items.VALUABLE, "cursed_skull"), 1, {}) < 0, "a Caveira de Morvak não se vende")
+	var book := Items.stack(Items.VALUABLE, "altar_book")
+	_check(Items.is_valid(book) and GameData.valuables.altar_book.get("quest_item", false) and GameData.quests.sewer_frog_king.get("grants_item", "") == "altar_book"
+		and Shops.sell_price("blacksmith", book, 1, {}) < 0 and Items.describe(book).has(tr("VALUABLE_ALTAR_BOOK_DESC")) and Items.describe(Items.stack(Items.VALUABLE, "cursed_skull")).has(tr("VALUABLE_CURSED_SKULL_DESC")),
+		"Livro do Altar: item de missão na bolsa de todos, não se vende, e a descrição diz para que serve")
 	# O portão do chefe fecha o corredor c4, antes do covil do Leshy, e abre com as duas chaves das missões do mapa: Espadas (Exploradora; a adaga vem da Rainha das Víboras) e Copas (Guardiã da Pira).
 	var gate: Dictionary = {}
 	for forest_prop: Dictionary in GameData.arenas.forest_01_path.props:
@@ -1411,14 +1425,14 @@ func _test_quest_trail() -> void:
 			living.append({"group": encounter.id, "monster_id": entry.monster, "position": Vector2(encounter.position[0], encounter.position[1])})
 	# O Rei dos Sapos ainda não foi invocado: o objetivo é o altar do centro do mapa (o QuestTrail faz isso com os props "summon").
 	for prop: Dictionary in area.props:
-		if prop.has("summon"):
-			living.append({"group": prop.summon.id, "monster_id": prop.summon.monsters[0].monster, "position": Vector2(prop.position[0], prop.position[1])})
+		for summon: Dictionary in QuestTrail.summons_of(prop):
+			living.append({"group": summon.id, "monster_id": summon.monsters[0].monster, "position": Vector2(prop.position[0], prop.position[1])})
 	# Objetivo por tipo de missão: "clear" mira o grupo, a missão do tesouro (sem clear nem item) mira o chefe vivo.
 	var frog := QuestTrail.objectives("sewers_01_drains", {"sewer_frog_king": "active"}, GameData.quests, GameData.monsters, living, area.props)
-	var gator := QuestTrail.objectives("sewers_01_drains", {"sewer_old_gator": "active"}, GameData.quests, GameData.monsters, living)
+	var gator := QuestTrail.objectives("sewers_01_drains", {"sewer_old_gator": "active"}, GameData.quests, GameData.monsters, living, area.props)
 	var queen := QuestTrail.objectives("sewers_01_drains", {"sewer_treasure": "active"}, GameData.quests, GameData.monsters, living)
 	_check(frog.size() == 1 and frog[0].distance_to(Vector2(0, -84)) < 1.0, "pegadas: a missão do Rei dos Sapos mira o altar, no centro do mapa (%s)" % [frog])
-	_check(gator.size() == 1 and gator[0].x > 50.0 and gator[0].y < -90.0, "pegadas: a missão do Gator Velho mira a praça no canto inferior direito (%s)" % [gator])
+	_check(gator.size() == 1 and gator[0].distance_to(Vector2(0, -84)) < 1.0, "pegadas: a missão do Gator Velho mira o altar, no centro do mapa (%s)" % [gator])
 	_check(queen.size() == 1 and queen[0].y < -100.0, "pegadas: a missão do tesouro mira a Rainha, no fundo (%s)" % [queen])
 	_check(QuestTrail.objectives("sewers_01_drains", {"sewer_frog_king": "done"}, GameData.quests, GameData.monsters, living).is_empty(), "pegadas: missão concluída não tem objetivo")
 	_check(QuestTrail.objectives("tortuga", {"sewer_frog_king": "active"}, GameData.quests, GameData.monsters, living).is_empty(), "pegadas: só mira objetivos da área em que o herói está")

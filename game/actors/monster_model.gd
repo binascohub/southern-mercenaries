@@ -16,7 +16,7 @@ extends Node3D
 
 const FAMILIES := {
 	# Baú Monstro (chest_monster.glb do autor; tools/assets/build_chest_mimic.py): mímico com esqueleto e animações próprias (Idle, Run, Attack; sem acerto nem morte: o resto fica por código). ~2 m no arquivo.
-	"chest_mimic": {"scene": "res://assets/models/monsters/chest_mimic.glb", "scale": 0.8,
+	"chest_mimic": {"scene": "res://assets/models/monsters/chest_mimic.glb", "scale": 0.5,
 		"anims": {"idle": "Idle", "walk": "Run", "run": "Run", "attack": "Attack"}},
 	# Necromante (necromanser.rar do autor; tools/assets/build_necromancer.py): chefe do Esgoto no lugar do Feiticeiro-Aranha. Já vem com esqueleto e animações próprias (sem texturas: materiais
 	# lisos pintados por peça). 2,2 m com o cajado; no tamanho 2,6 da Rainha com escala 0.55 -> ~3,1 m.

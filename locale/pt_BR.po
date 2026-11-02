@@ -2710,6 +2710,18 @@ msgstr "Espreitador"
 msgid "VALUABLE_HUMAN_HEART"
 msgstr "Coração Humano"
 
+msgid "VALUABLE_ALTAR_BOOK"
+msgstr "Livro do Altar"
+
+msgid "VALUABLE_ALTAR_BOOK_DESC"
+msgstr "Dado por Ossael. Faz o altar do centro do Esgoto reagir: leve o grupo até ele e fale com a pedra para despertar o Empalado. Não se vende nem se perde."
+
+msgid "VALUABLE_CURSED_SKULL_DESC"
+msgstr "A caveira maldita de Morvak, guardada no peito do Golem de Fogo. Entregue-a à elfa Aelindra, na Floresta, para purificar a maldição."
+
+msgid "TOAST_QUEST_ITEM_KEEP"
+msgstr "Objeto de missão: não pode ser guardado no baú."
+
 msgid "VALUABLE_CURSED_SKULL"
 msgstr "Caveira de Morvak"
 
@@ -2756,7 +2768,7 @@ msgid "TOAST_NEED_QUEST_ITEM"
 msgstr "Falta: {item}"
 
 msgid "MONSTER_FROG_KING"
-msgstr "Rei dos Sapos"
+msgstr "Empalado"
 
 
 msgid "MONSTER_RUIN_ALPHA"
@@ -3009,34 +3021,34 @@ msgid "QUEST_SEWER_OLD_GATOR"
 msgstr "O Gator Velho"
 
 msgid "QUEST_SEWER_OLD_GATOR_DESC"
-msgstr "Azazel quer a Passagem Secreta da Guerra livre: derrote o Gator Velho, na praça do lado leste do esgoto."
+msgstr "Azazel quer a Garrafa das Almas Condenadas que Lúcifer o mandou buscar: leve o Grimório das Brasas ao altar queimado do centro do esgoto para invocar o Gator Velho, derrote-o e leve a garrafa ao Azazel para receber a chave de espadas."
 
 msgid "DLG_SEWER_GATOR_1"
-msgstr "Eu ardo desde que o céu me expulsou. O Gator Velho engoliu os meus irmãos que caíram nesta Passagem da Guerra, e ainda guarda os ossos deles na barriga."
+msgstr "Eu ardo desde que o céu me expulsou, e Lúcifer me mandou até aqui buscar a Garrafa das Almas Condenadas. O Gator Velho a engoliu na Passagem da Guerra antes que eu pudesse tocá-la."
 
 msgid "DLG_SEWER_GATOR_2"
-msgstr "Ele só sai da água quando alguém chega perto, e nunca vem sozinho. Escuto os ossos estalando dentro dele a cada passo."
+msgstr "Ele não sai da água por vontade própria, e nunca vem sem os jacarés menores. A garrafa está na barriga dele: escuto as almas gritando a cada respiração."
 
 msgid "DLG_SEWER_GATOR_3"
-msgstr "A praça dele fica no lado leste, no fundo do labirinto. Rasguem a barriga dele por mim, e a chave que ele guarda é de vocês."
+msgstr "Levem este grimório. Apoiem-no no altar queimado, no centro do esgoto, e leiam: ele arranca o Velho da água. Rasguem a barriga dele e tragam a garrafa; em troca, a chave que eu guardo é de vocês."
 
 msgid "DLG_SEWER_GATOR_ACTIVE"
-msgstr "O Velho ainda domina a Passagem. Sigam para o leste, rumo ao fundo, e deixem o fogo dele… quer dizer, o meu, fazer o resto."
+msgstr "Ainda sem a garrafa? Apoiem o grimório no altar queimado, no centro do esgoto, e chamem o Velho. Tragam a Garrafa das Almas Condenadas e deixem o fogo, o meu, fazer o resto."
 
 msgid "DLG_SEWER_GATOR_DONE"
-msgstr "A barriga dele se abriu e meus irmãos puderam finalmente ser queimados em paz. Levem a chave. Eu fico com as cinzas."
+msgstr "A garrafa… as almas cantam lá dentro. Lúcifer ficará satisfeito. Levem a chave: ela é de vocês. Eu levo as almas, e as cinzas."
 
 msgid "QUEST_SEWER_FROG_KING"
-msgstr "O Rei dos Sapos"
+msgstr "O Empalado"
 
 msgid "QUEST_SEWER_FROG_KING_DESC"
-msgstr "Ossael quer o Rei dos Sapos fora do caminho: leve o livro dele ao altar no centro do esgoto para despertar o monstro e derrote-o."
+msgstr "Ossael quer o Empalado fora do caminho: leve o livro dele ao altar no centro do esgoto para despertar o monstro e derrote-o."
 
 msgid "DLG_SEWER_FROG_1"
 msgstr "Fui anjo, um dia. Caí por estas grades, e as asas ficaram presas no que o esgoto devora. Escuto os sussurros de uma coisa de carne e tábuas, no oeste."
 
 msgid "DLG_SEWER_FROG_2"
-msgstr "O povo o chama de Rei dos Sapos, mas ele foi montado com os ossos e a madeira dos que se afogaram aqui, pregado a pregado. Ele ainda chora, e o choro dele chama os outros mortos."
+msgstr "O povo o chama de Empalado: foi montado com os ossos e a madeira dos que se afogaram aqui, pregado a pregado, e crava os próprios espinhos em quem chega perto. Ele ainda chora, e o choro dele chama os outros mortos."
 
 msgid "DLG_SEWER_FROG_3"
 msgstr "Derrubem-no e libertem as almas presas nas tábuas. Em troca, a chave que ele guarda é de vocês. Sigam para o oeste, até a praça grande."
@@ -3081,22 +3093,22 @@ msgid "OPTIONS_QUEST_TRAIL"
 msgstr "Pegadas até o objetivo da missão"
 
 msgid "NPC_SEWER_FROG_ALTAR"
-msgstr "Altar do Rei dos Sapos"
+msgstr "Altar do Empalado"
 
 msgid "DLG_FROG_ALTAR_1"
 msgstr "Um altar de pedra manchado de lodo, no coração do esgoto. Há um vão no centro, do tamanho de um livro, e marcas de garras e de pregos ao redor."
 
 msgid "DLG_FROG_ALTAR_2"
-msgstr "Você apoia o Livro do Altar na pedra e lê em voz alta: o chão estremece e o Rei dos Sapos acorda na sala do altar."
+msgstr "Você apoia o Livro do Altar na pedra e lê em voz alta: o chão estremece e o Empalado acorda na sala do altar."
 
 msgid "TOAST_FROG_ALTAR_AWAKENS"
-msgstr "O altar estremece: o Rei dos Sapos desperta!"
+msgstr "O altar estremece: o Empalado desperta!"
 
 msgid "TOAST_BOOK_RECEIVED"
 msgstr "Ossael entregou o Livro do Altar!"
 
 msgid "DLG_FROG_ALTAR_LOCKED"
-msgstr "O altar não reage. Há um vão vazio no centro da pedra, do tamanho de um livro. Ossael deve ter o que falta."
+msgstr "O altar não reage. Há um vão vazio no centro da pedra, do tamanho de um livro. Ossael ou Azazel devem ter o que falta."
 
 msgid "MONSTER_TROLL_MAULER"
 msgstr "Troll Esmagador"
@@ -3153,7 +3165,7 @@ msgid "PROP_SEWER_SECTOR_2"
 msgstr "Canais de Lixo"
 
 msgid "SIGN_SEWER_SECTOR_2"
-msgstr "Setor 2 — Canais de Lixo. A praça do Rei dos Sapos fica ao oeste; o altar dele, no centro do mapa."
+msgstr "Setor 2 — Canais de Lixo. A praça do Empalado fica ao oeste; o altar dele, no centro do mapa."
 
 msgid "MONSTER_SHADOW_SPIRIT"
 msgstr "Espírito Sombrio"
@@ -3275,3 +3287,30 @@ msgstr "Os mortos desta mata gritam alto demais para eu os ouvir. Falem primeiro
 
 msgid "DLG_TEMPLE_LOCKED"
 msgstr "As pedras do templo estão frias e mudas. O que dorme embaixo delas ainda não tem motivo para acordar."
+
+msgid "VALUABLE_SOULS_BOTTLE"
+msgstr "Garrafa das Almas Condenadas"
+
+msgid "VALUABLE_GATOR_BOOK"
+msgstr "Grimório das Brasas"
+
+msgid "VALUABLE_GATOR_BOOK_DESC"
+msgstr "Dado por Azazel. Faz o altar do centro do Esgoto reagir: leve o grupo até ele e fale com a pedra para despertar o Gator Velho. Não se vende nem se perde."
+
+msgid "NPC_SEWER_GATOR_ALTAR"
+msgstr "Altar do Gator Velho"
+
+msgid "DLG_GATOR_ALTAR_1"
+msgstr "Uma pedra queimada, de onde sobe cheiro de enxofre. Há um vão no centro, do tamanho de um grimório, e marcas de garras ao redor."
+
+msgid "DLG_GATOR_ALTAR_2"
+msgstr "Você apoia o Grimório das Brasas no vão da pedra e lê em voz alta: a pedra esquenta, a água ferve e o Gator Velho emerge, com as almas gritando na barriga."
+
+msgid "DLG_GATOR_ALTAR_LOCKED"
+msgstr "O altar queimado não reage. Há um vão vazio no centro, do tamanho de um grimório. Azazel deve ter o que falta."
+
+msgid "TOAST_GATOR_ALTAR_AWAKENS"
+msgstr "O altar ferve: o Gator Velho desperta!"
+
+msgid "TOAST_GATOR_BOOK_RECEIVED"
+msgstr "Azazel entregou o Grimório das Brasas!"

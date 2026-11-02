@@ -591,6 +591,9 @@ func _spawn_player(peer_id: int, resume: Player = null) -> Player:
 		push_warning("Ficha editada fora do jogo: %s" % character.data.name)
 		_toast_all.call_deferred("TOAST_CHARACTER_EDITED", {"name": character.data.name})
 	player.set_character(character)
+	for book: Array in [["book_frog_altar", "altar_book"], ["book_gator_altar", "gator_book"]]:
+		if book[0] in _campaign.get("keys", []) and character.count_of(book[1]) == 0:
+			character.add_item(Items.stack(Items.VALUABLE, book[1]))  # quem entra depois da missão aceita também recebe o livro dela (Livro do Altar, Grimório das Brasas)
 	if not _campaign.is_empty():
 		if character.data.id not in _campaign.get("participants", []):
 			_campaign.participants = _campaign.get("participants", []) + [character.data.id]
@@ -1105,6 +1108,14 @@ func _reset_players() -> void:
 
 # --- Mapas: baús, saídas em grupo, golpes no chão (Fase 7) ---------------------
 
+## Põe um objeto de missão na bolsa de todos os heróis presentes (uma cópia só; quem já o tem não ganha outra).
+func grant_quest_item_to_all(item_id: String) -> void:
+	for p: Player in get_tree().get_nodes_in_group(&"players"):
+		if p.connected and p.character and p.character.count_of(item_id) == 0:
+			p.character.add_item(Items.stack(Items.VALUABLE, item_id))
+			p.refresh_character()
+
+
 ## Baú (segredos e tesouro): cada jogador presente ganha o seu loot; abre uma
 ## vez por campanha.
 func open_chest(player: Player, prop: Dictionary) -> void:
@@ -1290,7 +1301,7 @@ func _on_enemy_died(enemy: Enemy) -> void:
 		# A chave cai onde o chefe (ou o mini-chefe) morreu; as chaves do Esgoto abrem o portão do corredor do Ninho.
 		_add_prop.rpc({"id": "key_%s" % enemy.data.drops_key, "kind": "key", "key": String(enemy.data.drops_key), "name_key": String(enemy.data.get("key_name_key", "PROP_BOSS_KEY")),
 			"model": String(enemy.data.get("key_model", "Key_Gold")),
-			"position": [enemy.global_position.x, enemy.global_position.z]})
+			"position": [enemy.global_position.x + 2.2, enemy.global_position.z + 1.2]})  # ao lado do baú (no mesmo ponto, o aviso de interagir mostrava a chave e não o baú)
 	if enemy.is_boss():
 		# Os ajudantes e os ninhos somem com o chefe.
 		for node in get_tree().get_nodes_in_group(&"enemies"):
@@ -2912,6 +2923,8 @@ func _scatter_trash(room: Dictionary, c: Vector3, half: Vector3) -> void:
 			_trash_scrap(at, rng)
 			continue
 		var piece_name: String = TRASH[rng.randi() % TRASH.size()]
+		if arena.get("style", {}).get("trash_no_bottles", false) and (piece_name.begins_with("Bottle") or piece_name == "Mug_Bottle"):
+			continue  # o Esgoto não tem garrafas jogadas no chão
 		var node := Kit.piece(piece_name)
 		if node == null:
 			continue

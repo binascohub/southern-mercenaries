@@ -54,6 +54,11 @@ func _ready() -> void:
 		if arena.local_player != null:
 			arena.local_player.global_position = Vector3(float(at[0]), 0.5, float(at[1]))
 	_summon_all(arena, args.slice(1))
+	if "summon" in args:  # desperta o Rei dos Sapos (mini-chefe 1 do Esgoto) no altar, como se o grupo tivesse o Livro do Altar
+		arena._campaign.keys = arena._campaign.get("keys", []) + ["book_frog_altar"]
+		for prop: Dictionary in arena.arena.props:
+			if prop.get("id", "") == "sewer_frog_altar":
+				arena.summon_encounter(arena.local_player, prop)
 	if "givekeys" in args:  # entrega as duas chaves do Esgoto (depois de 6 s): o portão do Ninho deve cair
 		get_tree().create_timer(6.0).timeout.connect(func() -> void:
 			arena.pick_key(arena.local_player, {"id": "k1", "key": "sewer_key_spades"})
@@ -61,7 +66,7 @@ func _ready() -> void:
 	if kill != "":
 		_kill_and_open(arena, kill, open_chest)
 	if shot != "":
-		await get_tree().create_timer(12.0 if (kill != "" or "givekeys" in args) else 5.0).timeout
+		await get_tree().create_timer(12.0 if (kill != "" or "givekeys" in args or "summon" in args) else 5.0).timeout
 		await RenderingServer.frame_post_draw
 		get_viewport().get_texture().get_image().save_png(shot)
 		get_tree().quit()
@@ -100,6 +105,9 @@ func _kill_and_open(arena: Node, monster_id: String, open_chest := true) -> void
 			break
 	await get_tree().create_timer(3.0).timeout
 	if not open_chest:
+		var near_chest: Dictionary = arena.prop_near(player, "chest", "", 40.0)
+		if not near_chest.is_empty():
+			player.teleport_to(Vector3(near_chest.position[0], 0.5, near_chest.position[1] + 1.2))  # em cima do baú, fechado: para ver o aviso de interagir
 		return
 	var chest: Dictionary = arena.prop_near(player, "chest", "", 40.0)
 	if chest.is_empty():

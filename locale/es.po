@@ -2710,6 +2710,18 @@ msgstr "Acechador"
 msgid "VALUABLE_HUMAN_HEART"
 msgstr "Corazón Humano"
 
+msgid "VALUABLE_ALTAR_BOOK"
+msgstr "Libro del Altar"
+
+msgid "VALUABLE_ALTAR_BOOK_DESC"
+msgstr "Entregado por Ossael. Hace reaccionar al altar del centro de la cloaca: lleva al grupo hasta él y habla con la piedra para despertar al Empalado. No se vende ni se pierde."
+
+msgid "VALUABLE_CURSED_SKULL_DESC"
+msgstr "La calavera maldita de Morvak, guardada en el pecho del Gólem de Fuego. Entrégala a la elfa Aelindra, en el Bosque, para purificar la maldición."
+
+msgid "TOAST_QUEST_ITEM_KEEP"
+msgstr "Objeto de misión: no se puede guardar en el cofre."
+
 msgid "VALUABLE_CURSED_SKULL"
 msgstr "Calavera de Morvak"
 
@@ -2756,7 +2768,7 @@ msgid "TOAST_NEED_QUEST_ITEM"
 msgstr "Falta: {item}"
 
 msgid "MONSTER_FROG_KING"
-msgstr "Rey de los Sapos"
+msgstr "Empalado"
 
 
 msgid "MONSTER_RUIN_ALPHA"
@@ -3009,34 +3021,34 @@ msgid "QUEST_SEWER_OLD_GATOR"
 msgstr "El Caimán Viejo"
 
 msgid "QUEST_SEWER_OLD_GATOR_DESC"
-msgstr "Azazel quiere el Pasaje Secreto de la Guerra libre: derrota al Caimán Viejo en la plaza del lado este de la alcantarilla."
+msgstr "Azazel quiere la Botella de las Almas Condenadas que Lucifer le mandó a buscar: lleva el Grimorio de las Brasas al altar quemado del centro de la alcantarilla para invocar al Caimán Viejo, derrótalo y llévale la botella a Azazel para recibir la llave de picas."
 
 msgid "DLG_SEWER_GATOR_1"
-msgstr "Ardo desde que el cielo me expulsó. El Caimán Viejo se tragó a mis hermanos caídos en este Pasaje de la Guerra, y aún guarda sus huesos en el vientre."
+msgstr "Ardo desde que el cielo me expulsó, y Lucifer me envió aquí a buscar la Botella de las Almas Condenadas. El Caimán Viejo se la tragó en el Pasaje de la Guerra antes de que pudiera tocarla."
 
 msgid "DLG_SEWER_GATOR_2"
-msgstr "Solo sale del agua cuando alguien se acerca, y nunca viene solo. Oigo los huesos crujir dentro de él a cada paso."
+msgstr "No sale del agua por voluntad propia, y nunca viene sin los caimanes menores. La botella está en su vientre: oigo a las almas gritar con cada respiración."
 
 msgid "DLG_SEWER_GATOR_3"
-msgstr "Su plaza está en el lado este, en el fondo del laberinto. Ábranle el vientre por mí, y la llave que guarda es suya."
+msgstr "Llévense este grimorio. Apóyenlo en el altar quemado, en el centro de la alcantarilla, y léanlo: arranca al Viejo del agua. Ábranle el vientre y tráiganme la botella; a cambio, la llave que guardo es suya."
 
 msgid "DLG_SEWER_GATOR_ACTIVE"
-msgstr "El Viejo aún domina el Pasaje. Vayan al este, hacia el fondo, y dejen que su fuego… quiero decir, el mío, haga el resto."
+msgstr "¿Aún sin la botella? Apoyen el grimorio en el altar quemado, en el centro de la alcantarilla, y llamen al Viejo. Tráiganme la Botella de las Almas Condenadas y dejen que el fuego, el mío, haga el resto."
 
 msgid "DLG_SEWER_GATOR_DONE"
-msgstr "Su vientre se abrió y mis hermanos por fin pudieron arder en paz. Lleven la llave. Yo me quedo con las cenizas."
+msgstr "La botella… las almas cantan dentro. Lucifer quedará satisfecho. Lleven la llave: es suya. Yo me llevo las almas, y las cenizas."
 
 msgid "QUEST_SEWER_FROG_KING"
-msgstr "El Rey de los Sapos"
+msgstr "El Empalado"
 
 msgid "QUEST_SEWER_FROG_KING_DESC"
-msgstr "Ossael quiere al Rey de los Sapos fuera del camino: lleva su libro al altar en el centro de la alcantarilla para despertar al monstruo y derrótalo."
+msgstr "Ossael quiere al Empalado fuera del camino: lleva su libro al altar en el centro de la alcantarilla para despertar al monstruo y derrótalo."
 
 msgid "DLG_SEWER_FROG_1"
 msgstr "Fui ángel, una vez. Caí por estas rejas, y mis alas quedaron atrapadas en lo que la cloaca devora. Oigo los susurros de una cosa de carne y tablas, al oeste."
 
 msgid "DLG_SEWER_FROG_2"
-msgstr "La gente lo llama el Rey de los Sapos, pero lo armaron con los huesos y la madera de quienes se ahogaron aquí, clavo a clavo. Aún llora, y su llanto llama a los demás muertos."
+msgstr "La gente lo llama el Empalado: lo armaron con los huesos y la madera de quienes se ahogaron aquí, clavo a clavo, y clava sus propias espinas en quien se acerca. Aún llora, y su llanto llama a los demás muertos."
 
 msgid "DLG_SEWER_FROG_3"
 msgstr "Derríbenlo y liberen las almas presas en las tablas. A cambio, la llave que guarda es suya. Vayan al oeste, hasta la plaza grande."
@@ -3081,22 +3093,22 @@ msgid "OPTIONS_QUEST_TRAIL"
 msgstr "Huellas hasta el objetivo de la misión"
 
 msgid "NPC_SEWER_FROG_ALTAR"
-msgstr "Altar del Rey de los Sapos"
+msgstr "Altar del Empalado"
 
 msgid "DLG_FROG_ALTAR_1"
 msgstr "Un altar de piedra manchado de lodo, en el corazón de la alcantarilla. Hay un hueco en el centro, del tamaño de un libro, y marcas de garras y de clavos alrededor."
 
 msgid "DLG_FROG_ALTAR_2"
-msgstr "Apoyas el Libro del Altar en la piedra y lees en voz alta: el suelo tiembla y el Rey de los Sapos despierta en la sala del altar."
+msgstr "Apoyas el Libro del Altar en la piedra y lees en voz alta: el suelo tiembla y el Empalado despierta en la sala del altar."
 
 msgid "TOAST_FROG_ALTAR_AWAKENS"
-msgstr "El altar tiembla: ¡el Rey de los Sapos despierta!"
+msgstr "El altar tiembla: ¡el Empalado despierta!"
 
 msgid "TOAST_BOOK_RECEIVED"
 msgstr "¡Ossael entregó el Libro del Altar!"
 
 msgid "DLG_FROG_ALTAR_LOCKED"
-msgstr "El altar no reacciona. Hay un hueco vacío en el centro de la piedra, del tamaño de un libro. Ossael debe tener lo que falta."
+msgstr "El altar no reacciona. Hay un hueco vacío en el centro de la piedra, del tamaño de un libro. Ossael o Azazel deben tener lo que falta."
 
 msgid "MONSTER_TROLL_MAULER"
 msgstr "Troll Aplastador"
@@ -3153,7 +3165,7 @@ msgid "PROP_SEWER_SECTOR_2"
 msgstr "Canales de Basura"
 
 msgid "SIGN_SEWER_SECTOR_2"
-msgstr "Sector 2 — Canales de Basura. La plaza del Rey de los Sapos está al oeste; su altar, en el centro del mapa."
+msgstr "Sector 2 — Canales de Basura. La plaza del Empalado está al oeste; su altar, en el centro del mapa."
 
 msgid "MONSTER_SHADOW_SPIRIT"
 msgstr "Espíritu Sombrío"
@@ -3275,3 +3287,30 @@ msgstr "Los muertos de este bosque gritan demasiado fuerte para que yo los oiga.
 
 msgid "DLG_TEMPLE_LOCKED"
 msgstr "Las piedras del templo están frías y mudas. Lo que duerme debajo aún no tiene motivo para despertar."
+
+msgid "VALUABLE_SOULS_BOTTLE"
+msgstr "Botella de las Almas Condenadas"
+
+msgid "VALUABLE_GATOR_BOOK"
+msgstr "Grimorio de las Brasas"
+
+msgid "VALUABLE_GATOR_BOOK_DESC"
+msgstr "Dado por Azazel. Hace reaccionar el altar del centro de la Alcantarilla: lleva al grupo hasta él y habla con la piedra para despertar al Caimán Viejo. No se vende ni se pierde."
+
+msgid "NPC_SEWER_GATOR_ALTAR"
+msgstr "Altar del Caimán Viejo"
+
+msgid "DLG_GATOR_ALTAR_1"
+msgstr "Una piedra quemada de la que sube olor a azufre. Hay un hueco en el centro, del tamaño de un grimorio, y marcas de garras alrededor."
+
+msgid "DLG_GATOR_ALTAR_2"
+msgstr "Apoyas el Grimorio de las Brasas en el hueco de la piedra y lees en voz alta: la piedra se calienta, el agua hierve y el Caimán Viejo emerge, con las almas gritando en su vientre."
+
+msgid "DLG_GATOR_ALTAR_LOCKED"
+msgstr "El altar quemado no reacciona. Hay un hueco vacío en el centro, del tamaño de un grimorio. Azazel debe tener lo que falta."
+
+msgid "TOAST_GATOR_ALTAR_AWAKENS"
+msgstr "El altar hierve: ¡el Caimán Viejo despierta!"
+
+msgid "TOAST_GATOR_BOOK_RECEIVED"
+msgstr "¡Azazel entregó el Grimorio de las Brasas!"

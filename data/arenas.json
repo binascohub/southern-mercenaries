@@ -2825,7 +2825,7 @@
     ]
   },
   "sewers_01_drains": {
-    "_comment": "Esgoto de Tortuga (03-2-areas.md, seção 3), UM andar só e o dobro do labirinto antigo: grade de 7 x 9 salas de 8 m entre a entrada e o túnel do Ninho, em cinco setores de um monstro cada (1 Bueiros: sapos; 2 Canais de Lixo; 3 Galerias dos Morcegos; 4 Passagem Secreta da Guerra: jacarés; 5 Câmaras dos Cogumelos), duas praças de mini-chefe (Rei dos Sapos a oeste, Gator Velho a leste, cada um com a missão de um NPC), o posto do Caçador de Pragas, um segredo (baú e elite tóxica) e, no fundo, o Ninho da Rainha dos Ratos (sala do chefe, Tesouro Perdido da Guerra e portal da vitória). A vitória é só vencer a Rainha. Gerado por tools/assets/build_sewer_map.py (substitui build_sewer_maze.py).",
+    "_comment": "Esgoto de Tortuga (03-2-areas.md, seção 3), UM andar só e o dobro do labirinto antigo: grade de 7 x 9 salas de 8 m entre a entrada e o túnel do Ninho, em cinco setores de um monstro cada (1 Bueiros: sapos; 2 Canais de Lixo; 3 Galerias dos Morcegos; 4 Passagem Secreta da Guerra: jacarés; 5 Câmaras dos Cogumelos), duas praças de mini-chefe (Empalado a oeste, Gator Velho a leste, cada um com a missão de um NPC), o posto do Caçador de Pragas, um segredo (baú e elite tóxica) e, no fundo, o Ninho da Rainha dos Ratos (sala do chefe, Tesouro Perdido da Guerra e portal da vitória). A vitória é só vencer a Rainha. Gerado por tools/assets/build_sewer_map.py (substitui build_sewer_maze.py).",
     "name_key": "ARENA_SEWERS_DRAINS",
     "player_class": "mage",
     "map_id": "map_sewers",
@@ -3773,6 +3773,7 @@
         ],
         "doors": [
           "east",
+          "north",
           "south"
         ],
         "narrow": true
@@ -3887,8 +3888,7 @@
         ],
         "doors": [
           "east",
-          "west",
-          "north"
+          "west"
         ],
         "narrow": true
       },
@@ -3970,6 +3970,7 @@
           12
         ],
         "doors": [
+          "east",
           "west",
           "north",
           "south"
@@ -4240,12 +4241,9 @@
         ],
         "doors": [
           "east",
-          "west",
-          "north",
-          "south"
+          "west"
         ],
-        "narrow": true,
-        "torch": true
+        "narrow": true
       },
       {
         "id": "maze_5_7",
@@ -4307,9 +4305,12 @@
         ],
         "doors": [
           "east",
-          "north"
+          "west",
+          "north",
+          "south"
         ],
-        "narrow": true
+        "narrow": true,
+        "torch": true
       },
       {
         "id": "maze_1_8",
@@ -4340,8 +4341,7 @@
         ],
         "doors": [
           "east",
-          "north",
-          "south"
+          "north"
         ],
         "narrow": true
       },
@@ -5327,21 +5327,6 @@
     ],
     "encounters": [
       {
-        "id": "sw_old_gator",
-        "position": [
-          83.0,
-          -156
-        ],
-        "level": 2,
-        "spread": 3.4,
-        "monsters": [
-          {
-            "monster": "old_gator",
-            "count": 1
-          }
-        ]
-      },
-      {
         "id": "sw_queen",
         "position": [
           0,
@@ -5779,7 +5764,7 @@
         "id": "sw_mimic_01",
         "position": [
           -39,
-          -36
+          -24
         ],
         "level": 1,
         "monsters": [
@@ -5792,8 +5777,8 @@
       {
         "id": "sw_mimic_02",
         "position": [
-          -26,
-          -36
+          -65,
+          -60
         ],
         "level": 1,
         "monsters": [
@@ -5805,48 +5790,6 @@
       },
       {
         "id": "sw_mimic_03",
-        "position": [
-          -13,
-          -48
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "chest_mimic",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw_mimic_04",
-        "position": [
-          26,
-          -48
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "chest_mimic",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw_mimic_05",
-        "position": [
-          52,
-          -48
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "chest_mimic",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw_mimic_06",
         "position": [
           -39,
           -60
@@ -5860,10 +5803,52 @@
         ]
       },
       {
+        "id": "sw_mimic_04",
+        "position": [
+          -26,
+          -60
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw_mimic_05",
+        "position": [
+          -13,
+          -60
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw_mimic_06",
+        "position": [
+          39,
+          -72
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
         "id": "sw_mimic_07",
         "position": [
-          13,
-          -60
+          26,
+          -84
         ],
         "level": 1,
         "monsters": [
@@ -5876,8 +5861,8 @@
       {
         "id": "sw_mimic_08",
         "position": [
-          65,
-          -60
+          -39,
+          -96
         ],
         "level": 1,
         "monsters": [
@@ -5890,8 +5875,8 @@
       {
         "id": "sw_mimic_09",
         "position": [
-          -13,
-          -72
+          -26,
+          -96
         ],
         "level": 1,
         "monsters": [
@@ -5904,8 +5889,8 @@
       {
         "id": "sw_mimic_10",
         "position": [
-          65,
-          -84
+          13,
+          -96
         ],
         "level": 1,
         "monsters": [
@@ -5918,8 +5903,8 @@
       {
         "id": "sw_mimic_11",
         "position": [
-          39,
-          -96
+          -26,
+          -108
         ],
         "level": 1,
         "monsters": [
@@ -5932,8 +5917,8 @@
       {
         "id": "sw_mimic_12",
         "position": [
-          -65,
-          -108
+          13,
+          -120
         ],
         "level": 1,
         "monsters": [
@@ -5947,7 +5932,7 @@
         "id": "sw_mimic_13",
         "position": [
           52,
-          -108
+          -120
         ],
         "level": 1,
         "monsters": [
@@ -5960,8 +5945,8 @@
       {
         "id": "sw_mimic_14",
         "position": [
-          26,
-          -156
+          65,
+          -132
         ],
         "level": 1,
         "monsters": [
@@ -6228,7 +6213,7 @@
         "kind": "npc",
         "npc": "sewer_scavenger",
         "position": [
-          -13,
+          -26,
           -82.5
         ],
         "rotation": 0
@@ -6374,7 +6359,33 @@
               "count": 1
             }
           ]
-        }
+        },
+        "extra_summons": [
+          {
+            "needs_key": "book_gator_altar",
+            "dialogue": 2,
+            "summon": {
+              "id": "sw_old_gator",
+              "position": [
+                0,
+                -80.5
+              ],
+              "level": 2,
+              "toast": "TOAST_GATOR_ALTAR_AWAKENS",
+              "spread": 3.4,
+              "monsters": [
+                {
+                  "monster": "old_gator",
+                  "count": 1
+                },
+                {
+                  "monster": "sewer_gator",
+                  "count": 2
+                }
+              ]
+            }
+          }
+        ]
       }
     ],
     "quest_spots": [
@@ -6770,6 +6781,7 @@
       "grates": true,
       "bats": true,
       "trash_density": 0.6,
+      "trash_no_bottles": true,
       "wood_tone": [
         0.192,
         0.145,
@@ -100395,15 +100407,15 @@
       {
         "piece": "Bed_4",
         "position": [
-          36.5,
+          38.5,
           -67.5
         ],
         "rotation": 0,
         "solid": [
-          1.4,
-          2.9
+          1.8,
+          3.7
         ],
-        "scale": 1.4
+        "scale": 1.8
       },
       {
         "piece": "Chest_Small",

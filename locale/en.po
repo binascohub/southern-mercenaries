@@ -2710,6 +2710,18 @@ msgstr "Stalker"
 msgid "VALUABLE_HUMAN_HEART"
 msgstr "Human Heart"
 
+msgid "VALUABLE_ALTAR_BOOK"
+msgstr "Altar Book"
+
+msgid "VALUABLE_ALTAR_BOOK_DESC"
+msgstr "Given by Ossael. It makes the altar in the center of the Sewer react: take the party to it and speak to the stone to wake the Impaled One. It cannot be sold or lost."
+
+msgid "VALUABLE_CURSED_SKULL_DESC"
+msgstr "Morvak's cursed skull, kept in the Fire Golem's chest. Hand it to the elf Aelindra, in the Forest, to purify the curse."
+
+msgid "TOAST_QUEST_ITEM_KEEP"
+msgstr "Quest item: it cannot be put in the stash."
+
 msgid "VALUABLE_CURSED_SKULL"
 msgstr "Morvak's Skull"
 
@@ -2756,7 +2768,7 @@ msgid "TOAST_NEED_QUEST_ITEM"
 msgstr "Missing: {item}"
 
 msgid "MONSTER_FROG_KING"
-msgstr "Frog King"
+msgstr "Impaled One"
 
 
 msgid "MONSTER_RUIN_ALPHA"
@@ -3009,34 +3021,34 @@ msgid "QUEST_SEWER_OLD_GATOR"
 msgstr "The Old Gator"
 
 msgid "QUEST_SEWER_OLD_GATOR_DESC"
-msgstr "Azazel wants the Secret War Passage cleared: defeat the Old Gator in the plaza on the east side of the sewer."
+msgstr "Azazel wants the Bottle of Condemned Souls that Lucifer sent him to fetch: take the Grimoire of Embers to the scorched altar in the center of the sewer to summon the Old Gator, defeat him, and bring the bottle to Azazel to receive the spade key."
 
 msgid "DLG_SEWER_GATOR_1"
-msgstr "I have burned since the sky cast me out. The Old Gator swallowed my brothers who fell in this War Passage, and still keeps their bones in his belly."
+msgstr "I have burned since the sky cast me out, and Lucifer sent me here to fetch the Bottle of Condemned Souls. The Old Gator swallowed it in the War Passage before I could touch it."
 
 msgid "DLG_SEWER_GATOR_2"
-msgstr "He only leaves the water when someone gets close, and never comes alone. I hear the bones cracking inside him at every step."
+msgstr "He does not leave the water on his own, and never comes without the smaller gators. The bottle is in his belly: I hear the souls screaming with every breath."
 
 msgid "DLG_SEWER_GATOR_3"
-msgstr "His plaza is on the east side, deep in the maze. Tear his belly open for me, and the key he keeps is yours."
+msgstr "Take this grimoire. Rest it on the scorched altar in the center of the sewer and read it aloud: it drags the Old One out of the water. Tear his belly open and bring me the bottle; in return, the key I keep is yours."
 
 msgid "DLG_SEWER_GATOR_ACTIVE"
-msgstr "The Old One still rules the Passage. Head east, deep down, and let his fire… I mean, mine, do the rest."
+msgstr "Still no bottle? Rest the grimoire on the scorched altar in the center of the sewer and call the Old One. Bring me the Bottle of Condemned Souls and let the fire, mine, do the rest."
 
 msgid "DLG_SEWER_GATOR_DONE"
-msgstr "His belly burst open and my brothers could finally be burned in peace. Take the key. I keep the ashes."
+msgstr "The bottle… the souls sing inside. Lucifer will be pleased. Take the key: it is yours. I take the souls, and the ashes."
 
 msgid "QUEST_SEWER_FROG_KING"
-msgstr "The Frog King"
+msgstr "The Impaled One"
 
 msgid "QUEST_SEWER_FROG_KING_DESC"
-msgstr "Ossael wants the Frog King out of the way: take his book to the altar in the center of the sewer to wake the monster, then defeat it."
+msgstr "Ossael wants the Impaled One out of the way: take his book to the altar in the center of the sewer to wake the monster, then defeat it."
 
 msgid "DLG_SEWER_FROG_1"
 msgstr "I was an angel, once. I fell through these grates, and my wings stayed caught in what the sewer devours. I hear the whispers of a thing of flesh and planks, out west."
 
 msgid "DLG_SEWER_FROG_2"
-msgstr "Folks call it the Frog King, but it was assembled from the bones and wood of those who drowned here, nail by nail. It still weeps, and its weeping calls the other dead."
+msgstr "Folks call it the Impaled One: it was assembled from the bones and wood of those who drowned here, nail by nail, and it drives its own spikes into anyone who comes near. It still weeps, and its weeping calls the other dead."
 
 msgid "DLG_SEWER_FROG_3"
 msgstr "Bring it down and free the souls trapped in the planks. In return, the key it keeps is yours. Head west, to the big plaza."
@@ -3081,22 +3093,22 @@ msgid "OPTIONS_QUEST_TRAIL"
 msgstr "Quest objective footprints"
 
 msgid "NPC_SEWER_FROG_ALTAR"
-msgstr "Frog King's Altar"
+msgstr "The Impaled One's Altar"
 
 msgid "DLG_FROG_ALTAR_1"
 msgstr "A stone altar stained with sludge, in the heart of the sewer. There is a gap in the center, the size of a book, with claw and nail marks around it."
 
 msgid "DLG_FROG_ALTAR_2"
-msgstr "You rest the Altar Book on the stone and read aloud: the floor trembles and the Frog King wakes in the altar room."
+msgstr "You rest the Altar Book on the stone and read aloud: the floor trembles and the Impaled One wakes in the altar room."
 
 msgid "TOAST_FROG_ALTAR_AWAKENS"
-msgstr "The altar trembles: the Frog King awakens!"
+msgstr "The altar trembles: the Impaled One awakens!"
 
 msgid "TOAST_BOOK_RECEIVED"
 msgstr "Ossael handed over the Altar Book!"
 
 msgid "DLG_FROG_ALTAR_LOCKED"
-msgstr "The altar does not react. There is an empty gap in the middle of the stone, the size of a book. Ossael must have what is missing."
+msgstr "The altar does not react. There is an empty gap in the middle of the stone, the size of a book. Ossael or Azazel must have what is missing."
 
 msgid "MONSTER_TROLL_MAULER"
 msgstr "Troll Mauler"
@@ -3153,7 +3165,7 @@ msgid "PROP_SEWER_SECTOR_2"
 msgstr "Garbage Canals"
 
 msgid "SIGN_SEWER_SECTOR_2"
-msgstr "Sector 2 — Garbage Canals. The Frog King's plaza is to the west; his altar, in the center of the map."
+msgstr "Sector 2 — Garbage Canals. The Impaled One's plaza is to the west; his altar, in the center of the map."
 
 msgid "MONSTER_SHADOW_SPIRIT"
 msgstr "Shadow Spirit"
@@ -3275,3 +3287,30 @@ msgstr "The dead of this wood scream too loudly for me to hear you. Speak first 
 
 msgid "DLG_TEMPLE_LOCKED"
 msgstr "The temple stones are cold and silent. What sleeps beneath them has no reason to wake yet."
+
+msgid "VALUABLE_SOULS_BOTTLE"
+msgstr "Bottle of Condemned Souls"
+
+msgid "VALUABLE_GATOR_BOOK"
+msgstr "Grimoire of Embers"
+
+msgid "VALUABLE_GATOR_BOOK_DESC"
+msgstr "Given by Azazel. Makes the altar in the center of the Sewer react: bring the group to it and speak to the stone to wake the Old Gator. It cannot be sold or lost."
+
+msgid "NPC_SEWER_GATOR_ALTAR"
+msgstr "Old Gator's Altar"
+
+msgid "DLG_GATOR_ALTAR_1"
+msgstr "A scorched stone giving off a smell of sulfur. There is a gap in the center, the size of a grimoire, with claw marks around it."
+
+msgid "DLG_GATOR_ALTAR_2"
+msgstr "You rest the Grimoire of Embers in the gap of the stone and read aloud: the stone heats up, the water boils and the Old Gator emerges, with the souls screaming in his belly."
+
+msgid "DLG_GATOR_ALTAR_LOCKED"
+msgstr "The scorched altar does not react. There is an empty gap in the center, the size of a grimoire. Azazel must have what is missing."
+
+msgid "TOAST_GATOR_ALTAR_AWAKENS"
+msgstr "The altar boils: the Old Gator awakens!"
+
+msgid "TOAST_GATOR_BOOK_RECEIVED"
+msgstr "Azazel handed over the Grimoire of Embers!"
