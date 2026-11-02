@@ -62,5 +62,15 @@
       "demon_rat_queen"
     ],
     "boss": true
+  },
+  "troll_mauler": {
+    "name_key": "BEAST_TROLL_MAULER",
+    "legend_key": "BEAST_TROLL_MAULER_LEGEND",
+    "hint_key": "BEAST_TROLL_MAULER_HINT",
+    "element": "earth",
+    "map": "map_sewers",
+    "monsters": [
+      "troll_mauler"
+    ]
   }
 }

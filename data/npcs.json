@@ -717,64 +717,12 @@
     ]
   },
   "sewer_scavenger": {
-    "_comment": "Catador do Esgoto (Esgoto, sala de entrada): pede a cabeça do Gator Velho, que domina a Passagem da Guerra, no leste do fundo.",
+    "_comment": "Catador do Esgoto (o Homem-Aranha; sala de entrada): dá a missão do primeiro mini-chefe, o Rei dos Sapos (agora o Monstro de Tábuas), na praça oeste; ele vive dançando.",
     "name_key": "NPC_SEWER_SCAVENGER",
     "color": [
       0.4,
       0.4,
       0.3
-    ],
-    "dialogues": [
-      {
-        "when": {
-          "quest_new": "sewer_old_gator"
-        },
-        "lines": [
-          "DLG_SEWER_GATOR_1",
-          "DLG_SEWER_GATOR_2",
-          "DLG_SEWER_GATOR_3"
-        ],
-        "offer": "sewer_old_gator"
-      },
-      {
-        "when": {
-          "quest_active": "sewer_old_gator"
-        },
-        "lines": [
-          "DLG_SEWER_GATOR_ACTIVE"
-        ]
-      },
-      {
-        "when": {},
-        "lines": [
-          "DLG_SEWER_GATOR_DONE"
-        ]
-      }
-    ],
-    "body": {
-      "sex": "male",
-      "hair": [
-        "Hair_Buzzed",
-        "Hair_Beard"
-      ],
-      "hair_color": [
-        0.22,
-        0.16,
-        0.1
-      ],
-      "pose": "idle",
-      "outfit": {
-        "body": "cloth"
-      }
-    }
-  },
-  "sewer_ratcatcher": {
-    "_comment": "Itachi, o Caçador de Pragas do Esgoto (posto do lado leste; modelo próprio em NpcModel): pede o fim do Rei dos Sapos, que reina na praça oeste.",
-    "name_key": "NPC_SEWER_RATCATCHER",
-    "color": [
-      0.45,
-      0.35,
-      0.25
     ],
     "dialogues": [
       {
@@ -806,6 +754,58 @@
     "body": {
       "sex": "male",
       "hair": [
+        "Hair_Buzzed",
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.22,
+        0.16,
+        0.1
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "sewer_ratcatcher": {
+    "_comment": "Itachi, o Caçador de Pragas do Esgoto (posto do lado leste; modelo próprio em NpcModel): dá a missão do segundo mini-chefe, o Gator Velho, que domina a Passagem da Guerra, na praça leste.",
+    "name_key": "NPC_SEWER_RATCATCHER",
+    "color": [
+      0.45,
+      0.35,
+      0.25
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "sewer_old_gator"
+        },
+        "lines": [
+          "DLG_SEWER_GATOR_1",
+          "DLG_SEWER_GATOR_2",
+          "DLG_SEWER_GATOR_3"
+        ],
+        "offer": "sewer_old_gator"
+      },
+      {
+        "when": {
+          "quest_active": "sewer_old_gator"
+        },
+        "lines": [
+          "DLG_SEWER_GATOR_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_SEWER_GATOR_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
         "Hair_Long"
       ],
       "hair_color": [
@@ -818,5 +818,29 @@
         "body": "cloth"
       }
     }
+  },
+  "sewer_frog_altar": {
+    "_comment": "Altar do Rei dos Sapos (centro do mapa do Esgoto, sala maze_3_6): tocá-lo desperta o Rei dos Sapos, o mini-chefe 1 ('summon' no objeto em arenas.json); a missão do Catador termina quando ele cai.",
+    "name_key": "NPC_SEWER_FROG_ALTAR",
+    "color": [
+      0.4,
+      0.5,
+      0.35
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_FROG_ALTAR_1",
+          "DLG_FROG_ALTAR_2"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_FROG_ALTAR_LOCKED"
+        ]
+      }
+    ]
   }
 }

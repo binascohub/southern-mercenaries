@@ -44,6 +44,7 @@ func _ready() -> void:
 	_test_refine()
 	_test_opening()
 	_test_sewers()
+	_test_quest_trail()
 	_test_explore_map()
 	_test_ui_theme()
 	_test_tips()
@@ -670,7 +671,7 @@ func _test_minibosses_and_relics() -> void:
 				for m: Dictionary in e.monsters:
 					if GameData.monsters.get(m.monster, {}).get("category", "") == "miniboss":
 						found[m.monster] = true
-			for prop: Dictionary in GameData.arenas[area_id].get("props", []) if map_name == "Floresta" else []:    # (na Floresta o Rei Golem vem do templo, um grupo invocado)
+			for prop: Dictionary in GameData.arenas[area_id].get("props", []) if map_name in ["Floresta", "Esgoto"] else []:    # (na Floresta o Rei Golem vem do templo e no Esgoto o Rei dos Sapos, do altar: grupos invocados)
 				for m: Dictionary in prop.get("summon", {}).get("monsters", []):
 					if GameData.monsters.get(m.monster, {}).get("category", "") == "miniboss":
 						found[m.monster] = true
@@ -806,20 +807,30 @@ func _test_sewers() -> void:
 		for door: String in room.doors:
 			_check(door.get_slice(":", 0) in ["north", "south", "east", "west"], "porta válida: " + door)
 	var maze: Array = area.rooms.filter(func(r: Dictionary) -> bool: return String(r.id).begins_with("maze_"))
-	_check(maze.size() == 63 and not area.has("deeper"), "labirinto de 7 x 9 = 63 salas (dobro do antigo), sem saída para outra área")
+	_check(maze.size() == 143 and not area.has("deeper"), "labirinto de 11 x 13 = 143 salas num andar só, sem passagem para outro mapa (%d)" % maze.size())
 	# Só os chefes do esgoto (Rei dos Sapos, Gator Velho e a Rainha) revidam, cada um sozinho.
 	var sewer_ids: Array = area.encounters.map(func(e: Dictionary) -> String: return String(e.id))
 	sewer_ids.sort()
-	_check(sewer_ids == ["sw_frog_king", "sw_old_gator", "sw_queen"], "esgoto: só os 3 encontros de chefe (%s)" % [sewer_ids])
+	_check(sewer_ids == ["sw_old_gator", "sw_queen"], "esgoto: só os encontros de chefe do mapa (%s); o Rei dos Sapos vem do altar" % [sewer_ids])
+	var altar: Array = area.props.filter(func(p: Dictionary) -> bool: return p.get("id", "") == "sewer_frog_altar")
+	_check(altar.size() == 1 and altar[0].position == [0.0, -58.0] and altar[0].summon.id == "sw_frog_king" and altar[0].summon.monsters[0].monster == "frog_king",
+		"o altar do Rei dos Sapos fica no centro do mapa e invoca só o Rei")
 	_check(area.encounters.all(func(e: Dictionary) -> bool: return e.monsters.size() == 1 and GameData.monsters[e.monsters[0].monster].category in ["boss", "miniboss"]),
 		"esgoto: cada encontro é um chefe sozinho")
-	_check(not area.props.any(func(p: Dictionary) -> bool: return p.kind == "water") and area.hazards.is_empty(), "esgoto: piso de pedra, sem água nem poças")
+	_check(not area.props.any(func(p: Dictionary) -> bool: return p.kind == "water") and area.hazards.size() >= 10, "esgoto: piso de pedra, sem água, com as manchas verdes de lodo que ferem (%d)" % area.hazards.size())
 	# Chefes: as duas praças dos mini-chefes (missões dos NPCs) e a Rainha no Ninho, longe uns dos outros.
 	var gator_group: Dictionary = ids.get("sw_old_gator", {})
-	var frog_group: Dictionary = ids.get("sw_frog_king", {})
+	var frog_altar: Dictionary = {}
+	for prop: Dictionary in area.props:
+		if prop.has("summon") and prop.summon.id == "sw_frog_king":
+			frog_altar = prop
+	var frog_group: Dictionary = frog_altar.get("summon", {})
 	var queen_group: Dictionary = ids.get("sw_queen", {})
 	_check(not gator_group.is_empty() and gator_group.monsters.any(func(m: Dictionary) -> bool: return m.monster == "old_gator"), "praça do Gator Velho")
-	_check(not frog_group.is_empty() and frog_group.monsters.any(func(m: Dictionary) -> bool: return m.monster == "frog_king"), "praça do Rei dos Sapos")
+	_check(not frog_group.is_empty() and frog_group.monsters.any(func(m: Dictionary) -> bool: return m.monster == "frog_king"), "o altar do centro invoca o Rei dos Sapos (e o livro abre o altar)")
+	_check(frog_altar.get("needs_key", "") == "book_frog_altar" and GameData.quests.sewer_frog_king.get("grants_key", "") == "book_frog_altar",
+		"o Catador entrega o Livro do Altar ao aceitar a missão do Rei dos Sapos")
+	_check(GameData.npcs.sewer_frog_altar.dialogues.size() == 2, "o altar tem a fala normal e a do altar trancado")
 	_check(not queen_group.is_empty() and queen_group.monsters[0].monster == "demon_rat_queen" and int(queen_group.level) == 2, "a Rainha, nível 2")
 	var nest: Dictionary = area.rooms.filter(func(r: Dictionary) -> bool: return r.id == "nest")[0]
 	_check(nest.size[0] >= 30 and nest.size[1] >= 30 and absf(queen_group.position[0] - nest.center[0]) < nest.size[0] / 2.0 and absf(queen_group.position[1] - nest.center[1]) < nest.size[1] / 2.0,
@@ -830,7 +841,7 @@ func _test_sewers() -> void:
 		"tesouro trancado com a chave que a Rainha deixa cair")
 	_check(area.props.any(func(p: Dictionary) -> bool: return p.kind == "chest" and p.get("secret", false)), "tem um segredo")
 	# Os 2 NPCs das missões de mini-chefe: cada missão limpa o grupo do chefe, e o NPC fica longe dele.
-	for pair: Array in [["sewer_scavenger", "sewer_old_gator", "sw_old_gator"], ["sewer_ratcatcher", "sewer_frog_king", "sw_frog_king"]]:
+	for pair: Array in [["sewer_ratcatcher", "sewer_old_gator", "sw_old_gator"], ["sewer_scavenger", "sewer_frog_king", "sw_frog_king"]]:
 		var npc_prop: Array = area.props.filter(func(p: Dictionary) -> bool: return p.get("npc", "") == pair[0])
 		var quest: Dictionary = GameData.quests.get(pair[1], {})
 		_check(npc_prop.size() == 1 and GameData.npcs.has(pair[0]) and quest.get("giver", "") == pair[0] and quest.get("area", "") == "sewers_01_drains"
@@ -1315,3 +1326,54 @@ func _clean(path: String) -> void:
 	for dir in DirAccess.get_directories_at(path):
 		_clean(path.path_join(dir))
 		DirAccess.remove_absolute(path.path_join(dir))
+
+
+## Pegadas até o objetivo da missão (QuestTrail): a grade passa pelas portas, o caminho chega a cada objetivo, o objetivo muda com o tipo da missão e os passos alternam.
+func _test_quest_trail() -> void:
+	var area: Dictionary = GameData.arenas.sewers_01_drains
+	var map := QuestTrail.build_map(area)
+	var living: Array = []
+	for encounter: Dictionary in area.encounters:
+		for entry: Dictionary in encounter.monsters:
+			living.append({"group": encounter.id, "monster_id": entry.monster, "position": Vector2(encounter.position[0], encounter.position[1])})
+	# O Rei dos Sapos ainda não foi invocado: o objetivo é o altar do centro do mapa (o QuestTrail faz isso com os props "summon").
+	for prop: Dictionary in area.props:
+		if prop.has("summon"):
+			living.append({"group": prop.summon.id, "monster_id": prop.summon.monsters[0].monster, "position": Vector2(prop.position[0], prop.position[1])})
+	# Objetivo por tipo de missão: "clear" mira o grupo, a missão do tesouro (sem clear nem item) mira o chefe vivo.
+	var frog := QuestTrail.objectives("sewers_01_drains", {"sewer_frog_king": "active"}, GameData.quests, GameData.monsters, living, area.props)
+	var gator := QuestTrail.objectives("sewers_01_drains", {"sewer_old_gator": "active"}, GameData.quests, GameData.monsters, living)
+	var queen := QuestTrail.objectives("sewers_01_drains", {"sewer_treasure": "active"}, GameData.quests, GameData.monsters, living)
+	_check(frog.size() == 1 and frog[0].distance_to(Vector2(0, -58)) < 1.0, "pegadas: a missão do Rei dos Sapos mira o altar, no centro do mapa (%s)" % [frog])
+	_check(gator.size() == 1 and gator[0].x > 50.0 and gator[0].y < -90.0, "pegadas: a missão do Gator Velho mira a praça no canto inferior direito (%s)" % [gator])
+	_check(queen.size() == 1 and queen[0].y < -100.0, "pegadas: a missão do tesouro mira a Rainha, no fundo (%s)" % [queen])
+	_check(QuestTrail.objectives("sewers_01_drains", {"sewer_frog_king": "done"}, GameData.quests, GameData.monsters, living).is_empty(), "pegadas: missão concluída não tem objetivo")
+	_check(QuestTrail.objectives("tortuga", {"sewer_frog_king": "active"}, GameData.quests, GameData.monsters, living).is_empty(), "pegadas: só mira objetivos da área em que o herói está")
+	var cemetery: Dictionary = GameData.arenas.cemetery_01_yard
+	var cem_living: Array = []
+	for encounter: Dictionary in cemetery.encounters:
+		for entry: Dictionary in encounter.monsters:
+			cem_living.append({"group": encounter.id, "monster_id": entry.monster, "position": Vector2(encounter.position[0], encounter.position[1])})
+	var heart := QuestTrail.objectives("cemetery_01_yard", {"royal_heart": "active"}, GameData.quests, GameData.monsters, cem_living)
+	_check(heart.size() == 1, "pegadas: missão de item mira quem larga o item (%d)" % heart.size())
+	# Caminho: da entrada até cada objetivo, pelo labirinto, sem sair do chão nem atravessar parede.
+	var start := Vector2(0, 3)
+	for goal: Vector2 in [frog[0], gator[0], queen[0]]:
+		var path := QuestTrail.route(map, start, goal)
+		var straight := start.distance_to(goal)
+		var length := 0.0
+		for i in range(path.size() - 1):
+			length += path[i].distance_to(path[i + 1])
+		var inside := true
+		for i in range(path.size() - 1):
+			inside = inside and QuestTrail._clear(map, path[i], path[i + 1])
+		_check(path.size() >= 2 and path[path.size() - 1].distance_to(goal) < 2.0 and inside and length >= straight and length < straight * 4.0,
+			"pegadas: caminho da entrada a %s (%d pontos, %.0f m para %.0f m em linha reta)" % [goal, path.size(), length, straight])
+	# Passos: alternam esquerdo e direito, param antes do objetivo e esmaecem.
+	var steps := QuestTrail.footprints(QuestTrail.route(map, start, queen[0]))
+	_check(steps.size() > 10 and steps.size() <= QuestTrail.MAX_STEPS, "pegadas: %d passos" % steps.size())
+	_check(steps.size() > 2 and steps[0].left != steps[1].left and steps[1].left != steps[2].left, "pegadas: pé esquerdo e direito se alternam")
+	_check(steps.size() > 2 and steps[0].alpha > steps[steps.size() - 1].alpha, "pegadas: esmaecem com a distância")
+	var near := QuestTrail.footprints(PackedVector2Array([Vector2(0, 0), Vector2(0, -3.5)]))
+	_check(near.is_empty(), "pegadas: perto do objetivo não desenha")
+	_check(Settings.quest_trail, "pegadas: ligadas por padrão")

@@ -3005,43 +3005,43 @@ msgid "QUEST_SEWER_OLD_GATOR"
 msgstr "The Old Gator"
 
 msgid "QUEST_SEWER_OLD_GATOR_DESC"
-msgstr "The Sewer Scavenger wants the Secret War Passage back: defeat the Old Gator in the plaza on the east side of the sewer."
+msgstr "Itachi wants the Secret War Passage cleared: defeat the Old Gator in the plaza on the east side of the sewer."
 
 msgid "DLG_SEWER_GATOR_1"
-msgstr "Psst! I used to scavenge around here, until the Old Gator took over the War Passage."
+msgstr "There is an ancient gator in the Secret War Passage. No one gets through unless he allows it."
 
 msgid "DLG_SEWER_GATOR_2"
-msgstr "He only leaves the water when someone gets close, and he always brings the smaller gators."
+msgstr "The Old Gator only leaves the water when someone gets close, and he never comes alone."
 
 msgid "DLG_SEWER_GATOR_3"
-msgstr "His plaza is on the east side, deep in the maze. Bring him down and the passage is ours again."
+msgstr "His plaza is on the east side, deep in the maze. Bring him down and I will reward you."
 
 msgid "DLG_SEWER_GATOR_ACTIVE"
-msgstr "The Old Gator still rules the War Passage. Head east, toward the back."
+msgstr "The Old Gator still rules the Passage. Head east, toward the back."
 
 msgid "DLG_SEWER_GATOR_DONE"
-msgstr "The Old One fell? Then the Passage is ours. Thank you, truly."
+msgstr "The Passage is free. Good work."
 
 msgid "QUEST_SEWER_FROG_KING"
 msgstr "The Frog King"
 
 msgid "QUEST_SEWER_FROG_KING_DESC"
-msgstr "Itachi wants to end the frog plague: defeat the Frog King in the plaza on the west side of the sewer."
+msgstr "The Sewer Scavenger wants the Frog King out of the way: take his book to the altar in the center of the sewer to wake the monster, then defeat it."
 
 msgid "DLG_SEWER_FROG_1"
-msgstr "I know pests well. But this one is different: a crowned frog that commands all the others."
+msgstr "I am Spider-Man. I came from the multiverse and landed in this sewer. Yes, I am a hero, but even heroes need help."
 
 msgid "DLG_SEWER_FROG_2"
-msgstr "The Frog King reigns in a plaza on the west side, among the puddles, surrounded by frogs."
+msgstr "Folks call it the Frog King, but there is nothing froggy about it: it is a monster of flesh and planks, full of nails. It sleeps until someone touches the altar in the center of the sewer. I cannot take it alone."
 
 msgid "DLG_SEWER_FROG_3"
-msgstr "Bring him down and the plague ends. I pay well, you won't need to ask twice."
+msgstr "Take it down with me, please. Take this book: it opens the altar in the center of the sewer. Rest it on the stone, read it aloud, and brace yourselves."
 
 msgid "DLG_SEWER_FROG_ACTIVE"
-msgstr "The Frog King still reigns in the west. Follow the croaking: he is near the big puddles."
+msgstr "The monster only wakes when someone reads the book at the altar in the center of the sewer. Watch out for its charge!"
 
 msgid "DLG_SEWER_FROG_DONE"
-msgstr "Silence! What peace. The sewer breathes again."
+msgstr "He really fell? Thanks! Even a hero from the multiverse needs a team. Your friendly neighborhood sewer scavenger appreciates it."
 
 msgid "PROP_SEWER_SECTOR_1"
 msgstr "Main Street Drains"
@@ -3078,3 +3078,36 @@ msgstr "The Queen's Nest"
 
 msgid "SIGN_SEWER_NEST"
 msgstr "The Rat Queen's Nest. The War's Lost Treasure sleeps with her. Come back prepared."
+
+msgid "OPTIONS_QUEST_TRAIL"
+msgstr "Quest objective footprints"
+
+msgid "NPC_SEWER_FROG_ALTAR"
+msgstr "Frog King's Altar"
+
+msgid "DLG_FROG_ALTAR_1"
+msgstr "A stone altar stained with sludge, in the heart of the sewer. There is a gap in the center, the size of a book, with claw and nail marks around it."
+
+msgid "DLG_FROG_ALTAR_2"
+msgstr "You rest the Altar Book on the stone and read aloud: the floor trembles and the Frog King wakes in the altar room."
+
+msgid "TOAST_FROG_ALTAR_AWAKENS"
+msgstr "The altar trembles: the Frog King awakens!"
+
+msgid "TOAST_BOOK_RECEIVED"
+msgstr "The Sewer Scavenger handed over the Altar Book!"
+
+msgid "DLG_FROG_ALTAR_LOCKED"
+msgstr "The altar does not react. There is an empty gap in the middle of the stone, the size of a book. The Sewer Scavenger must have what is missing."
+
+msgid "MONSTER_TROLL_MAULER"
+msgstr "Troll Mauler"
+
+msgid "BEAST_TROLL_MAULER"
+msgstr "Troll Mauler"
+
+msgid "BEAST_TROLL_MAULER_LEGEND"
+msgstr "A brute hunched under its own arms, thick-skinned and covered in scars. It used to roam the docks until the sewer became its home."
+
+msgid "BEAST_TROLL_MAULER_HINT"
+msgstr "Slow and heavy: wait for the blow's warning and dodge. Fire hurts it more."

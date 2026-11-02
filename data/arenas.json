@@ -2936,7 +2936,7 @@
         "narrow": true
       },
       {
-        "id": "maze_3_0",
+        "id": "maze_5_0",
         "center": [
           0,
           -10
@@ -2946,6 +2946,7 @@
           8
         ],
         "doors": [
+          "east",
           "west",
           "north",
           "south"
@@ -2953,7 +2954,23 @@
         "narrow": true
       },
       {
-        "id": "maze_2_0",
+        "id": "maze_6_0",
+        "center": [
+          9,
+          -10
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_4_0",
         "center": [
           -9,
           -10
@@ -2969,7 +2986,7 @@
         "narrow": true
       },
       {
-        "id": "maze_3_1",
+        "id": "maze_5_1",
         "center": [
           0,
           -18
@@ -2980,16 +2997,96 @@
         ],
         "doors": [
           "east",
-          "west",
           "north",
           "south"
         ],
         "narrow": true
       },
       {
-        "id": "maze_1_0",
+        "id": "maze_7_0",
+        "center": [
+          18,
+          -10
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_3_0",
         "center": [
           -18,
+          -10
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_6_1",
+        "center": [
+          9,
+          -18
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west",
+          "north"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_5_2",
+        "center": [
+          0,
+          -26
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_8_0",
+        "center": [
+          27,
+          -10
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_2_0",
+        "center": [
+          -27,
           -10
         ],
         "size": [
@@ -3004,26 +3101,9 @@
         "narrow": true
       },
       {
-        "id": "maze_4_1",
+        "id": "maze_7_1",
         "center": [
-          9,
-          -18
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "west",
-          "north",
-          "south"
-        ],
-        "narrow": true
-      },
-      {
-        "id": "maze_2_1",
-        "center": [
-          -9,
+          18,
           -18
         ],
         "size": [
@@ -3037,10 +3117,44 @@
         "narrow": true
       },
       {
-        "id": "maze_3_2",
+        "id": "maze_6_2",
         "center": [
-          0,
+          9,
           -26
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_9_0",
+        "center": [
+          36,
+          -10
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_1_0",
+        "center": [
+          -36,
+          -10
         ],
         "size": [
           8,
@@ -3049,15 +3163,83 @@
         "doors": [
           "east",
           "west",
+          "north"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_2_1",
+        "center": [
+          -27,
+          -18
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
           "north",
           "south"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_8_1",
+        "center": [
+          27,
+          -18
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_6_3",
+        "center": [
+          9,
+          -34
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "south"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_10_0",
+        "center": [
+          45,
+          -10
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "north"
         ],
         "narrow": true
       },
       {
         "id": "maze_0_0",
         "center": [
-          -27,
+          -45,
           -10
         ],
         "size": [
@@ -3073,6 +3255,22 @@
       {
         "id": "maze_1_1",
         "center": [
+          -36,
+          -18
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_3_1",
+        "center": [
           -18,
           -18
         ],
@@ -3082,6 +3280,232 @@
         ],
         "doors": [
           "east",
+          "west"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_2_2",
+        "center": [
+          -27,
+          -26
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_9_1",
+        "center": [
+          36,
+          -18
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "north"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_7_3",
+        "center": [
+          18,
+          -34
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_10_1",
+        "center": [
+          45,
+          -18
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "south",
+          "east"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_0_1",
+        "center": [
+          -45,
+          -18
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_1_2",
+        "center": [
+          -36,
+          -26
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_4_1",
+        "center": [
+          -9,
+          -18
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_3_2",
+        "center": [
+          -18,
+          -26
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_2_3",
+        "center": [
+          -27,
+          -34
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_9_2",
+        "center": [
+          36,
+          -26
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_7_4",
+        "center": [
+          18,
+          -42
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_7_2",
+        "center": [
+          18,
+          -26
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "north"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_0_2",
+        "center": [
+          -45,
+          -26
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_1_3",
+        "center": [
+          -36,
+          -34
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
           "north",
           "south"
         ],
@@ -3090,40 +3514,6 @@
       {
         "id": "maze_4_2",
         "center": [
-          9,
-          -26
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "east",
-          "west",
-          "north",
-          "south"
-        ],
-        "narrow": true
-      },
-      {
-        "id": "maze_4_0",
-        "center": [
-          9,
-          -10
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "east",
-          "north"
-        ],
-        "narrow": true
-      },
-      {
-        "id": "maze_2_2",
-        "center": [
           -9,
           -26
         ],
@@ -3132,15 +3522,14 @@
           8
         ],
         "doors": [
-          "east",
-          "north"
+          "west"
         ],
         "narrow": true
       },
       {
         "id": "maze_3_3",
         "center": [
-          0,
+          -18,
           -34
         ],
         "size": [
@@ -3148,49 +3537,48 @@
           8
         ],
         "doors": [
+          "east",
           "west",
+          "north"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_10_2",
+        "center": [
+          45,
+          -26
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "north"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_9_3",
+        "center": [
+          36,
+          -34
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
           "south"
         ],
         "narrow": true
       },
       {
-        "id": "maze_0_1",
+        "id": "maze_8_4",
         "center": [
-          -27,
-          -18
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "north",
-          "south"
-        ],
-        "narrow": true,
-        "torch": true
-      },
-      {
-        "id": "maze_1_2",
-        "center": [
-          -18,
-          -26
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "south"
-        ],
-        "narrow": true,
-        "torch": true
-      },
-      {
-        "id": "maze_5_2",
-        "center": [
-          18,
-          -26
+          27,
+          -42
         ],
         "size": [
           8,
@@ -3200,6 +3588,71 @@
           "east",
           "west",
           "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_7_5",
+        "center": [
+          18,
+          -50
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_8_2",
+        "center": [
+          27,
+          -26
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_0_3",
+        "center": [
+          -45,
+          -34
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_1_4",
+        "center": [
+          -36,
+          -42
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west",
           "south"
         ],
         "narrow": true,
@@ -3208,40 +3661,6 @@
       {
         "id": "maze_4_3",
         "center": [
-          9,
-          -34
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "north",
-          "south"
-        ],
-        "narrow": true,
-        "torch": true
-      },
-      {
-        "id": "maze_5_0",
-        "center": [
-          18,
-          -10
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "east",
-          "west"
-        ],
-        "narrow": true,
-        "torch": true
-      },
-      {
-        "id": "maze_2_3",
-        "center": [
           -9,
           -34
         ],
@@ -3251,229 +3670,16 @@
         ],
         "doors": [
           "east",
-          "west",
-          "north",
-          "south"
+          "west"
         ],
         "narrow": true,
         "torch": true
-      },
-      {
-        "id": "maze_0_2",
-        "center": [
-          -27,
-          -26
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "south"
-        ],
-        "narrow": true
-      },
-      {
-        "id": "maze_6_2",
-        "center": [
-          27,
-          -26
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "west",
-          "south"
-        ],
-        "narrow": true
-      },
-      {
-        "id": "maze_5_3",
-        "center": [
-          18,
-          -34
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "north",
-          "south"
-        ],
-        "narrow": true
-      },
-      {
-        "id": "maze_5_1",
-        "center": [
-          18,
-          -18
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "east",
-          "north"
-        ],
-        "narrow": true
-      },
-      {
-        "id": "maze_4_4",
-        "center": [
-          9,
-          -42
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "east",
-          "north",
-          "south"
-        ],
-        "narrow": true
-      },
-      {
-        "id": "maze_6_0",
-        "center": [
-          27,
-          -10
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "west"
-        ],
-        "narrow": true
-      },
-      {
-        "id": "maze_1_3",
-        "center": [
-          -18,
-          -34
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "east",
-          "west"
-        ],
-        "narrow": true
-      },
-      {
-        "id": "maze_2_4",
-        "center": [
-          -9,
-          -42
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "east",
-          "north",
-          "south"
-        ],
-        "narrow": true
-      },
-      {
-        "id": "maze_6_1",
-        "center": [
-          27,
-          -18
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "west",
-          "north",
-          "east"
-        ],
-        "narrow": true
-      },
-      {
-        "id": "maze_5_4",
-        "center": [
-          18,
-          -42
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "east",
-          "west",
-          "north",
-          "south"
-        ],
-        "narrow": true
-      },
-      {
-        "id": "maze_4_5",
-        "center": [
-          9,
-          -50
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "east",
-          "north",
-          "south"
-        ],
-        "narrow": true
-      },
-      {
-        "id": "maze_0_3",
-        "center": [
-          -27,
-          -34
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "east",
-          "north"
-        ],
-        "narrow": true
       },
       {
         "id": "maze_3_4",
         "center": [
-          0,
+          -18,
           -42
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "west"
-        ],
-        "narrow": true
-      },
-      {
-        "id": "maze_2_5",
-        "center": [
-          -9,
-          -50
         ],
         "size": [
           8,
@@ -3481,33 +3687,34 @@
         ],
         "doors": [
           "east",
-          "west",
-          "south"
-        ],
-        "narrow": true
-      },
-      {
-        "id": "maze_6_4",
-        "center": [
-          27,
-          -42
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "west",
           "north",
           "south"
         ],
-        "narrow": true
+        "narrow": true,
+        "torch": true
       },
       {
-        "id": "maze_5_5",
+        "id": "maze_10_3",
         "center": [
-          18,
-          -50
+          45,
+          -34
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "north",
+          "south"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_9_4",
+        "center": [
+          36,
+          -42
         ],
         "size": [
           8,
@@ -3516,14 +3723,48 @@
         "doors": [
           "east",
           "west",
-          "south"
+          "north"
         ],
-        "narrow": true
+        "narrow": true,
+        "torch": true
       },
       {
-        "id": "maze_4_6",
+        "id": "maze_8_5",
         "center": [
-          9,
+          27,
+          -50
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "south"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_8_3",
+        "center": [
+          27,
+          -34
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "north"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_7_6",
+        "center": [
+          18,
           -58
         ],
         "size": [
@@ -3531,15 +3772,14 @@
           8
         ],
         "doors": [
-          "east",
           "west",
-          "north",
           "south"
         ],
-        "narrow": true
+        "narrow": true,
+        "torch": true
       },
       {
-        "id": "maze_0_4",
+        "id": "maze_2_4",
         "center": [
           -27,
           -42
@@ -3549,9 +3789,54 @@
           8
         ],
         "doors": [
+          "west",
+          "north"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_0_4",
+        "center": [
+          -45,
+          -42
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
           "east",
-          "north",
-          "south",
+          "north"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_5_3",
+        "center": [
+          0,
+          -34
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_4_4",
+        "center": [
+          -9,
+          -42
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
           "west"
         ],
         "narrow": true
@@ -3559,8 +3844,222 @@
       {
         "id": "maze_3_5",
         "center": [
-          0,
+          -18,
           -50
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_10_4",
+        "center": [
+          45,
+          -42
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_9_5",
+        "center": [
+          36,
+          -50
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_6_6",
+        "center": [
+          9,
+          -58
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_2_5",
+        "center": [
+          -27,
+          -50
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_0_5",
+        "center": [
+          -45,
+          -50
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_5_4",
+        "center": [
+          0,
+          -42
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_4_5",
+        "center": [
+          -9,
+          -50
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_9_6",
+        "center": [
+          36,
+          -58
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west",
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_6_7",
+        "center": [
+          9,
+          -66
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_6_5",
+        "center": [
+          9,
+          -50
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "north"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_1_5",
+        "center": [
+          -36,
+          -50
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west",
+          "north"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_2_6",
+        "center": [
+          -27,
+          -58
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_6_4",
+        "center": [
+          9,
+          -42
         ],
         "size": [
           8,
@@ -3572,10 +4071,92 @@
         "narrow": true
       },
       {
-        "id": "maze_1_5",
+        "id": "maze_5_5",
         "center": [
-          -18,
+          0,
           -50
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west",
+          "north"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_10_6",
+        "center": [
+          45,
+          -58
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_8_6",
+        "center": [
+          27,
+          -58
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "north"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_9_7",
+        "center": [
+          36,
+          -66
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_7_7",
+        "center": [
+          18,
+          -66
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_1_6",
+        "center": [
+          -36,
+          -58
         ],
         "size": [
           8,
@@ -3586,13 +4167,32 @@
           "west",
           "south"
         ],
-        "narrow": true
+        "narrow": true,
+        "torch": true
       },
       {
-        "id": "maze_6_5",
+        "id": "maze_2_7",
         "center": [
-          27,
-          -50
+          -27,
+          -66
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west",
+          "south"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_5_6",
+        "center": [
+          0,
+          -58
         ],
         "size": [
           8,
@@ -3607,10 +4207,27 @@
         "torch": true
       },
       {
-        "id": "maze_6_3",
+        "id": "maze_10_7",
         "center": [
-          27,
-          -34
+          45,
+          -66
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "north",
+          "south"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_10_5",
+        "center": [
+          45,
+          -50
         ],
         "size": [
           8,
@@ -3624,113 +4241,9 @@
         "torch": true
       },
       {
-        "id": "maze_5_6",
-        "center": [
-          18,
-          -58
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "west",
-          "north"
-        ],
-        "narrow": true,
-        "torch": true
-      },
-      {
-        "id": "maze_3_6",
-        "center": [
-          0,
-          -58
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "east",
-          "west",
-          "north"
-        ],
-        "narrow": true,
-        "torch": true
-      },
-      {
-        "id": "maze_4_7",
-        "center": [
-          9,
-          -66
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "east",
-          "north",
-          "south"
-        ],
-        "narrow": true,
-        "torch": true
-      },
-      {
-        "id": "maze_1_4",
-        "center": [
-          -18,
-          -42
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "west",
-          "north"
-        ],
-        "narrow": true,
-        "torch": true
-      },
-      {
-        "id": "maze_0_5",
-        "center": [
-          -27,
-          -50
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "east",
-          "north",
-          "south"
-        ],
-        "narrow": true,
-        "torch": true
-      },
-      {
-        "id": "maze_6_6",
+        "id": "maze_8_7",
         "center": [
           27,
-          -58
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "north",
-          "south"
-        ],
-        "narrow": true
-      },
-      {
-        "id": "maze_5_7",
-        "center": [
-          18,
           -66
         ],
         "size": [
@@ -3742,12 +4255,13 @@
           "west",
           "south"
         ],
-        "narrow": true
+        "narrow": true,
+        "torch": true
       },
       {
-        "id": "maze_2_6",
+        "id": "maze_0_6",
         "center": [
-          -9,
+          -45,
           -58
         ],
         "size": [
@@ -3763,7 +4277,7 @@
       {
         "id": "maze_3_7",
         "center": [
-          0,
+          -18,
           -66
         ],
         "size": [
@@ -3778,9 +4292,73 @@
         "narrow": true
       },
       {
-        "id": "maze_4_8",
+        "id": "maze_1_7",
         "center": [
-          9,
+          -36,
+          -66
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "north"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_4_6",
+        "center": [
+          -9,
+          -58
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_5_7",
+        "center": [
+          0,
+          -66
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_10_8",
+        "center": [
+          45,
+          -74
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_3_8",
+        "center": [
+          -18,
           -74
         ],
         "size": [
@@ -3794,42 +4372,7 @@
         "narrow": true
       },
       {
-        "id": "maze_0_6",
-        "center": [
-          -27,
-          -58
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "east",
-          "north",
-          "south"
-        ],
-        "narrow": true
-      },
-      {
-        "id": "maze_6_7",
-        "center": [
-          27,
-          -66
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "west",
-          "north",
-          "south",
-          "east"
-        ],
-        "narrow": true
-      },
-      {
-        "id": "maze_1_6",
+        "id": "maze_3_6",
         "center": [
           -18,
           -58
@@ -3840,13 +4383,29 @@
         ],
         "doors": [
           "east",
-          "west",
           "north"
         ],
         "narrow": true
       },
       {
-        "id": "maze_2_7",
+        "id": "maze_1_8",
+        "center": [
+          -36,
+          -74
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_4_7",
         "center": [
           -9,
           -66
@@ -3856,14 +4415,32 @@
           8
         ],
         "doors": [
-          "east"
+          "east",
+          "north"
         ],
         "narrow": true
       },
       {
-        "id": "maze_3_8",
+        "id": "maze_9_8",
         "center": [
-          0,
+          36,
+          -74
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west",
+          "north"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_4_8",
+        "center": [
+          -9,
           -74
         ],
         "size": [
@@ -3872,13 +4449,145 @@
         ],
         "doors": [
           "west",
-          "south",
-          "north"
+          "north",
+          "south"
         ],
         "narrow": true
       },
       {
-        "id": "maze_5_8",
+        "id": "maze_0_8",
+        "center": [
+          -45,
+          -74
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_1_9",
+        "center": [
+          -36,
+          -82
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_8_8",
+        "center": [
+          27,
+          -74
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_9_9",
+        "center": [
+          36,
+          -82
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_4_9",
+        "center": [
+          -9,
+          -82
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "south"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_0_7",
+        "center": [
+          -45,
+          -66
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "north"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_0_9",
+        "center": [
+          -45,
+          -82
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "north"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_1_10",
+        "center": [
+          -36,
+          -90
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "south"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_7_8",
         "center": [
           18,
           -74
@@ -3891,13 +4600,14 @@
           "east",
           "west"
         ],
-        "narrow": true
+        "narrow": true,
+        "torch": true
       },
       {
-        "id": "maze_0_7",
+        "id": "maze_8_9",
         "center": [
-          -27,
-          -66
+          27,
+          -82
         ],
         "size": [
           8,
@@ -3905,6 +4615,57 @@
         ],
         "doors": [
           "east",
+          "west",
+          "north"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_3_9",
+        "center": [
+          -18,
+          -82
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west",
+          "north"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_0_10",
+        "center": [
+          -45,
+          -90
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_2_10",
+        "center": [
+          -27,
+          -90
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
           "south"
         ],
         "narrow": true
@@ -3912,40 +4673,7 @@
       {
         "id": "maze_6_8",
         "center": [
-          27,
-          -74
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "west",
-          "south"
-        ],
-        "narrow": true
-      },
-      {
-        "id": "maze_1_7",
-        "center": [
-          -18,
-          -66
-        ],
-        "size": [
-          8,
-          8
-        ],
-        "doors": [
-          "west",
-          "north",
-          "south"
-        ],
-        "narrow": true
-      },
-      {
-        "id": "maze_2_8",
-        "center": [
-          -9,
+          9,
           -74
         ],
         "size": [
@@ -3959,10 +4687,337 @@
         "narrow": true
       },
       {
-        "id": "maze_1_8",
+        "id": "maze_7_9",
+        "center": [
+          18,
+          -82
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_8_10",
+        "center": [
+          27,
+          -90
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west",
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_2_9",
+        "center": [
+          -27,
+          -82
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_3_10",
         "center": [
           -18,
+          -90
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_0_11",
+        "center": [
+          -45,
+          -98
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_5_8",
+        "center": [
+          0,
           -74
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_6_9",
+        "center": [
+          9,
+          -82
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west",
+          "north"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_9_10",
+        "center": [
+          36,
+          -90
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_7_10",
+        "center": [
+          18,
+          -90
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "north"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_8_11",
+        "center": [
+          27,
+          -98
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_2_8",
+        "center": [
+          -27,
+          -74
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "north"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_4_10",
+        "center": [
+          -9,
+          -90
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_3_11",
+        "center": [
+          -18,
+          -98
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_1_11",
+        "center": [
+          -36,
+          -98
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west",
+          "north"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_5_9",
+        "center": [
+          0,
+          -82
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "north"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_6_10",
+        "center": [
+          9,
+          -90
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_10_10",
+        "center": [
+          45,
+          -90
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_7_11",
+        "center": [
+          18,
+          -98
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_9_11",
+        "center": [
+          36,
+          -98
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "north"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_2_11",
+        "center": [
+          -27,
+          -98
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_1_12",
+        "center": [
+          -36,
+          -106
         ],
         "size": [
           8,
@@ -3977,10 +5032,109 @@
         "torch": true
       },
       {
-        "id": "maze_0_8",
+        "id": "maze_5_10",
+        "center": [
+          0,
+          -90
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "north",
+          "south"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_6_11",
+        "center": [
+          9,
+          -98
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "south"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_10_11",
+        "center": [
+          45,
+          -98
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "north",
+          "south"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_10_9",
+        "center": [
+          45,
+          -82
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "north"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_9_12",
+        "center": [
+          36,
+          -106
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west",
+          "south"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_2_12",
         "center": [
           -27,
-          -74
+          -106
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "west"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_0_12",
+        "center": [
+          -45,
+          -106
         ],
         "size": [
           8,
@@ -3992,10 +5146,157 @@
         "narrow": true
       },
       {
+        "id": "maze_5_11",
+        "center": [
+          0,
+          -98
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "north",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_10_12",
+        "center": [
+          45,
+          -106
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "south",
+          "east"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_8_12",
+        "center": [
+          27,
+          -106
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_5_12",
+        "center": [
+          0,
+          -106
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west",
+          "south",
+          "north"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_7_12",
+        "center": [
+          18,
+          -106
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_6_12",
+        "center": [
+          9,
+          -106
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_4_12",
+        "center": [
+          -9,
+          -106
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east",
+          "west",
+          "south"
+        ],
+        "narrow": true
+      },
+      {
+        "id": "maze_3_12",
+        "center": [
+          -18,
+          -106
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "east"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
+        "id": "maze_4_11",
+        "center": [
+          -9,
+          -98
+        ],
+        "size": [
+          8,
+          8
+        ],
+        "doors": [
+          "north"
+        ],
+        "narrow": true,
+        "torch": true
+      },
+      {
         "id": "praca_frog_king",
         "center": [
-          -43.0,
-          -42
+          -61.0,
+          -58
         ],
         "size": [
           22,
@@ -4009,8 +5310,8 @@
       {
         "id": "praca_old_gator",
         "center": [
-          43.0,
-          -66
+          61.0,
+          -106
         ],
         "size": [
           22,
@@ -4024,7 +5325,7 @@
       {
         "id": "post",
         "center": [
-          37,
+          55,
           -18
         ],
         "size": [
@@ -4040,8 +5341,8 @@
       {
         "id": "secret_pipe",
         "center": [
-          35,
-          -34
+          53,
+          -50
         ],
         "size": [
           6,
@@ -4056,8 +5357,8 @@
       {
         "id": "secret",
         "center": [
-          44.0,
-          -34
+          62.0,
+          -50
         ],
         "size": [
           10,
@@ -4071,7 +5372,7 @@
         "id": "tunnel",
         "center": [
           0,
-          -85
+          -117
         ],
         "size": [
           5,
@@ -4087,7 +5388,7 @@
         "id": "nest",
         "center": [
           0,
-          -109
+          -141
         ],
         "size": [
           32,
@@ -4101,25 +5402,10 @@
     ],
     "encounters": [
       {
-        "id": "sw_frog_king",
-        "position": [
-          -43.0,
-          -42
-        ],
-        "level": 1,
-        "spread": 3.4,
-        "monsters": [
-          {
-            "monster": "frog_king",
-            "count": 1
-          }
-        ]
-      },
-      {
         "id": "sw_old_gator",
         "position": [
-          43.0,
-          -66
+          61.0,
+          -106
         ],
         "level": 2,
         "spread": 3.4,
@@ -4134,7 +5420,7 @@
         "id": "sw_queen",
         "position": [
           0,
-          -115
+          -147
         ],
         "level": 2,
         "monsters": [
@@ -4143,125 +5429,167 @@
             "count": 1
           }
         ]
+      },
+      {
+        "id": "sw1_troll_1",
+        "position": [
+          -36,
+          -10
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "troll_mauler",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw1_troll_2",
+        "position": [
+          -9,
+          -18
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "troll_mauler",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw1_troll_3",
+        "position": [
+          -45,
+          -34
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "troll_mauler",
+            "count": 1
+          }
+        ]
       }
     ],
     "hazards": [
       {
         "position": [
-          16,
-          -12
-        ],
-        "radius": 1.3
-      },
-      {
-        "position": [
-          -25,
-          -28
-        ],
-        "radius": 1.3
-      },
-      {
-        "position": [
-          -25,
-          -32
-        ],
-        "radius": 1.5
-      },
-      {
-        "position": [
-          -29,
-          -52
+          20,
+          -36
         ],
         "radius": 1.8
       },
       {
         "position": [
           -11,
+          -28
+        ],
+        "radius": 1.5
+      },
+      {
+        "position": [
+          -47,
           -52
         ],
         "radius": 1.8
       },
       {
         "position": [
-          16,
+          -34,
+          -56
+        ],
+        "radius": 1.5
+      },
+      {
+        "position": [
+          -7,
           -44
         ],
         "radius": 1.8
       },
       {
         "position": [
-          11,
-          -32
+          16,
+          -48
         ],
-        "radius": 1.8
+        "radius": 1.5
       },
       {
         "position": [
-          20,
-          -68
-        ],
-        "radius": 1.8
-      },
-      {
-        "position": [
-          7,
+          16,
           -64
         ],
         "radius": 1.3
       },
       {
         "position": [
-          29,
-          -60
+          7,
+          -104
         ],
         "radius": 1.3
       },
       {
         "position": [
-          -16,
-          -60
+          16,
+          -92
         ],
         "radius": 1.5
       },
       {
         "position": [
-          -29,
-          -68
+          20,
+          -96
+        ],
+        "radius": 1.5
+      },
+      {
+        "position": [
+          -16,
+          -76
         ],
         "radius": 1.8
       },
       {
         "position": [
-          -11,
-          -56
-        ],
-        "radius": 1.5
-      },
-      {
-        "position": [
-          -29,
-          -56
+          -34,
+          -108
         ],
         "radius": 1.8
       },
       {
         "position": [
-          -16,
-          -68
+          -47,
+          -92
+        ],
+        "radius": 1.3
+      },
+      {
+        "position": [
+          -2,
+          -80
         ],
         "radius": 1.5
+      },
+      {
+        "position": [
+          -25,
+          -96
+        ],
+        "radius": 1.3
       },
       {
         "position": [
           -10,
-          -103
+          -135
         ],
         "radius": 2.0
       },
       {
         "position": [
           11,
-          -117
+          -149
         ],
         "radius": 1.8
       }
@@ -4274,8 +5602,13 @@
       "sewer": [
         0,
         3
+      ],
+      "altar": [
+        0.0,
+        -51.5
       ]
     },
+    "save_point": "altar",
     "props": [
       {
         "id": "return_portal",
@@ -4304,7 +5637,7 @@
         "kind": "npc",
         "npc": "sewer_ratcatcher",
         "position": [
-          38.5,
+          56.5,
           -18
         ],
         "rotation": 270
@@ -4313,8 +5646,8 @@
         "id": "secret_chest",
         "kind": "chest",
         "position": [
-          45.0,
-          -36.0
+          63.0,
+          -52.0
         ],
         "secret": true,
         "loot": "chest"
@@ -4323,8 +5656,26 @@
         "id": "maze_chest_2",
         "kind": "chest",
         "position": [
-          0,
-          -52.5
+          -45,
+          -68.5
+        ],
+        "loot": "chest"
+      },
+      {
+        "id": "maze_chest_3",
+        "kind": "chest",
+        "position": [
+          9,
+          -44.5
+        ],
+        "loot": "chest"
+      },
+      {
+        "id": "maze_chest_4",
+        "kind": "chest",
+        "position": [
+          45,
+          -84.5
         ],
         "loot": "chest"
       },
@@ -4332,8 +5683,8 @@
         "id": "maze_chest_5",
         "kind": "chest",
         "position": [
-          -27,
-          -76.5
+          -18,
+          -108.5
         ],
         "loot": "chest"
       },
@@ -4343,7 +5694,7 @@
         "name_key": "PROP_WAR_TREASURE",
         "position": [
           0,
-          -122
+          -154
         ],
         "loot": "treasure_sewers",
         "key": "key_rat_queen",
@@ -4355,7 +5706,7 @@
         "name_key": "PROP_RETURN_PORTAL",
         "position": [
           8,
-          -121
+          -153
         ],
         "to": "tortuga",
         "entry": "sewer",
@@ -4368,8 +5719,8 @@
         "look": "crest",
         "name_key": "PROP_WAR_CREST",
         "position": [
-          6.5,
-          -61.2
+          42.5,
+          -77.2
         ],
         "text_key": "SIGN_WAR_CREST",
         "archer_key": "SIGN_WAR_CREST_ARCHER"
@@ -4389,8 +5740,8 @@
         "kind": "sign",
         "name_key": "PROP_SEWER_SECTOR_2",
         "position": [
-          -6.2,
-          -31.4
+          -33.2,
+          -39.4
         ],
         "text_key": "SIGN_SEWER_SECTOR_2"
       },
@@ -4399,8 +5750,8 @@
         "kind": "sign",
         "name_key": "PROP_SEWER_SECTOR_3",
         "position": [
-          11.8,
-          -31.4
+          20.8,
+          -39.4
         ],
         "text_key": "SIGN_SEWER_SECTOR_3"
       },
@@ -4409,8 +5760,8 @@
         "kind": "sign",
         "name_key": "PROP_SEWER_SECTOR_4",
         "position": [
-          20.8,
-          -55.4
+          47.8,
+          -71.4
         ],
         "text_key": "SIGN_SEWER_SECTOR_4"
       },
@@ -4419,8 +5770,8 @@
         "kind": "sign",
         "name_key": "PROP_SEWER_SECTOR_5",
         "position": [
-          -6.2,
-          -55.4
+          -15.2,
+          -71.4
         ],
         "text_key": "SIGN_SEWER_SECTOR_5"
       },
@@ -4430,26 +5781,53 @@
         "name_key": "PROP_SEWER_NEST",
         "position": [
           2.8,
-          -90.0
+          -122.0
         ],
         "text_key": "SIGN_SEWER_NEST"
+      },
+      {
+        "id": "sewer_frog_altar",
+        "kind": "npc",
+        "npc": "sewer_frog_altar",
+        "kit": "Podium",
+        "rotation": 0,
+        "position": [
+          0,
+          -58
+        ],
+        "needs_key": "book_frog_altar",
+        "summon": {
+          "id": "sw_frog_king",
+          "position": [
+            0,
+            -54.5
+          ],
+          "level": 1,
+          "toast": "TOAST_FROG_ALTAR_AWAKENS",
+          "monsters": [
+            {
+              "monster": "frog_king",
+              "count": 1
+            }
+          ]
+        }
       }
     ],
     "quest_spots": [
       [
-        -18,
+        -36,
         -26
       ],
       [
-        18,
+        0,
         -42
       ],
       [
-        -9,
+        -27,
         -66
       ],
       [
-        18,
+        0,
         -58
       ]
     ],
@@ -4499,16 +5877,16 @@
         "id": "mb0",
         "monster": "barrel",
         "position": [
-          2.8,
-          -36.8
+          47.8,
+          -95.2
         ]
       },
       {
         "id": "mc1",
         "monster": "crate",
         "position": [
-          24.2,
-          -36.8
+          -33.2,
+          -47.2
         ]
       },
       {
@@ -4516,38 +5894,38 @@
         "monster": "pot",
         "position": [
           15.2,
-          -7.2
+          -36.8
         ]
       },
       {
         "id": "mp3",
         "monster": "pot",
         "position": [
-          29.8,
-          -52.8
+          38.8,
+          -23.2
         ]
       },
       {
         "id": "mb4",
         "monster": "barrel",
         "position": [
-          -2.8,
-          -20.8
+          2.8,
+          -55.2
         ]
       },
       {
         "id": "mc5",
         "monster": "crate",
         "position": [
-          2.8,
-          -63.2
+          47.8,
+          -12.8
         ]
       },
       {
         "id": "mp6",
         "monster": "pot",
         "position": [
-          -15.2,
+          2.8,
           -36.8
         ]
       },
@@ -4555,80 +5933,80 @@
         "id": "mb7",
         "monster": "barrel",
         "position": [
-          -2.8,
-          -55.2
+          -11.8,
+          -36.8
         ]
       },
       {
         "id": "mc8",
         "monster": "crate",
         "position": [
-          -11.8,
-          -55.2
+          -2.8,
+          -15.2
         ]
       },
       {
         "id": "mp9",
         "monster": "pot",
         "position": [
-          -6.2,
-          -28.8
+          33.2,
+          -108.8
         ]
       },
       {
         "id": "mp10",
         "monster": "pot",
         "position": [
-          -24.2,
-          -71.2
+          42.2,
+          -79.2
         ]
       },
       {
         "id": "mb11",
         "monster": "barrel",
         "position": [
-          11.8,
-          -60.8
+          -2.8,
+          -44.8
         ]
       },
       {
         "id": "mc12",
         "monster": "crate",
         "position": [
-          29.8,
-          -44.8
+          -2.8,
+          -71.2
         ]
       },
       {
         "id": "mp13",
         "monster": "pot",
         "position": [
-          24.2,
-          -15.2
+          -29.8,
+          -84.8
         ]
       },
       {
         "id": "mb14",
         "monster": "barrel",
         "position": [
-          -15.2,
-          -23.2
+          -33.2,
+          -71.2
         ]
       },
       {
         "id": "mc15",
         "monster": "crate",
         "position": [
-          15.2,
-          -28.8
+          -15.2,
+          -87.2
         ]
       },
       {
         "id": "mp16",
         "monster": "pot",
         "position": [
-          -29.8,
-          -63.2
+          -20.8,
+          -60.8
         ]
       },
       {
@@ -4636,103 +6014,103 @@
         "monster": "pot",
         "position": [
           -29.8,
-          -39.2
+          -44.8
         ]
       },
       {
         "id": "mb18",
         "monster": "barrel",
         "position": [
-          -29.8,
-          -28.8
+          -33.2,
+          -31.2
         ]
       },
       {
         "id": "mc19",
         "monster": "crate",
         "position": [
-          11.8,
-          -47.2
+          -47.8,
+          -55.2
         ]
       },
       {
         "id": "mp20",
         "monster": "pot",
         "position": [
-          24.2,
-          -7.2
+          -6.2,
+          -63.2
         ]
       },
       {
         "id": "mb21",
         "monster": "barrel",
         "position": [
-          -2.8,
-          -23.2
+          42.2,
+          -20.8
         ]
       },
       {
         "id": "mc22",
         "monster": "crate",
         "position": [
-          6.2,
-          -36.8
+          42.2,
+          -44.8
         ]
       },
       {
         "id": "mp23",
         "monster": "pot",
         "position": [
-          -6.2,
-          -44.8
+          -47.8,
+          -15.2
         ]
       },
       {
         "id": "mp24",
         "monster": "pot",
         "position": [
-          -24.2,
-          -55.2
+          -11.8,
+          -12.8
         ]
       },
       {
         "id": "mb25",
         "monster": "barrel",
         "position": [
-          11.8,
-          -39.2
+          -42.2,
+          -71.2
         ]
       },
       {
         "id": "mc26",
         "monster": "crate",
         "position": [
-          11.8,
-          -71.2
+          38.8,
+          -31.2
         ]
       },
       {
         "id": "mp27",
         "monster": "pot",
         "position": [
-          15.2,
-          -55.2
+          29.8,
+          -36.8
         ]
       },
       {
         "id": "mb28",
         "monster": "barrel",
         "position": [
-          6.2,
-          -23.2
+          -6.2,
+          -44.8
         ]
       },
       {
         "id": "mc29",
         "monster": "crate",
         "position": [
-          29.8,
-          -71.2
+          -33.2,
+          -28.8
         ]
       },
       {
@@ -4740,7 +6118,7 @@
         "monster": "barrel",
         "position": [
           13,
-          -95
+          -127
         ]
       },
       {
@@ -4748,7 +6126,7 @@
         "monster": "crate",
         "position": [
           -13,
-          -95
+          -127
         ]
       },
       {
@@ -4756,7 +6134,7 @@
         "monster": "pot",
         "position": [
           -15,
-          -98
+          -130
         ]
       },
       {
@@ -4764,7 +6142,7 @@
         "monster": "pot",
         "position": [
           15,
-          -98
+          -130
         ]
       },
       {
@@ -4772,7 +6150,7 @@
         "monster": "pot",
         "position": [
           -15,
-          -118
+          -150
         ]
       },
       {
@@ -4780,7 +6158,7 @@
         "monster": "pot",
         "position": [
           15,
-          -118
+          -150
         ]
       },
       {
@@ -4788,14 +6166,14 @@
         "monster": "pot",
         "position": [
           -12,
-          -125
+          -157
         ]
       },
       {
         "id": "pot_post",
         "monster": "pot",
         "position": [
-          33.6,
+          51.6,
           -15.2
         ]
       }
@@ -4826,6 +6204,7 @@
       "trash": true,
       "spiders": true,
       "grates": true,
+      "bats": true,
       "wood_tone": [
         0.192,
         0.145,
@@ -4875,14 +6254,14 @@
         "piece": "Cage_Small",
         "position": [
           -14.5,
-          -94.0
+          -126.0
         ]
       },
       {
         "piece": "Cage_Small",
         "position": [
           14.3,
-          -95.0
+          -127.0
         ],
         "rotation": 30
       },
@@ -4890,28 +6269,28 @@
         "piece": "Bag",
         "position": [
           -13.6,
-          -97.0
+          -129.0
         ]
       },
       {
         "piece": "Coin_Pile",
         "position": [
           13.2,
-          -123.5
+          -155.5
         ]
       },
       {
         "piece": "Bucket_Wooden_1",
         "position": [
           -14.6,
-          -123.0
+          -155.0
         ]
       },
       {
         "piece": "Barrel",
         "position": [
           14.6,
-          -103.0
+          -135.0
         ],
         "rotation": 60
       },
@@ -4919,7 +6298,7 @@
         "piece": "Crate_Wooden",
         "position": [
           -14.6,
-          -109.0
+          -141.0
         ],
         "rotation": 10
       },
@@ -4931,7 +6310,7 @@
         ],
         "position": [
           -9,
-          -119
+          -151
         ],
         "range": 9,
         "energy": 0.8,
@@ -4945,7 +6324,7 @@
         ],
         "position": [
           0,
-          -109
+          -141
         ],
         "range": 14,
         "energy": 0.6,
@@ -4955,7 +6334,7 @@
         "piece": "Mushroom_Cluster",
         "position": [
           -15.3,
-          -93
+          -125
         ],
         "rotation": 0
       },
@@ -4963,7 +6342,7 @@
         "piece": "Mushroom_Tall",
         "position": [
           15.3,
-          -123.5
+          -155.5
         ],
         "rotation": 67
       },
@@ -4971,7 +6350,7 @@
         "piece": "Mushroom_Flat",
         "position": [
           -15.2,
-          -105
+          -137
         ],
         "rotation": 134
       },
@@ -4979,7 +6358,7 @@
         "piece": "Mushroom_Cluster",
         "position": [
           14.8,
-          -94
+          -126
         ],
         "rotation": 201
       },
@@ -4987,7 +6366,7 @@
         "piece": "Gold_Pile_4",
         "position": [
           -2.4,
-          -122.8
+          -154.8
         ],
         "rotation": 15
       },
@@ -4995,7 +6374,7 @@
         "piece": "Gold_Pile_3",
         "position": [
           2.5,
-          -121.4
+          -153.4
         ],
         "rotation": -20
       },
@@ -5003,7 +6382,7 @@
         "piece": "Gold_Pile_2",
         "position": [
           -1.2,
-          -120.3
+          -152.3
         ],
         "rotation": 40
       },
@@ -5011,7 +6390,7 @@
         "piece": "Gold_Pile_5",
         "position": [
           1.9,
-          -123.6
+          -155.6
         ],
         "rotation": 200
       },
@@ -5019,7 +6398,7 @@
         "piece": "Gold_Pile_1",
         "position": [
           3.6,
-          -122.9
+          -154.9
         ],
         "rotation": 75
       },
@@ -5027,7 +6406,7 @@
         "piece": "Gold_Pile_4",
         "position": [
           12.0,
-          -121.8
+          -153.8
         ],
         "rotation": 330
       },
@@ -5035,7 +6414,7 @@
         "piece": "Gold_Pile_2",
         "position": [
           14.3,
-          -122.0
+          -154.0
         ],
         "rotation": 110
       },
@@ -5043,7 +6422,7 @@
         "piece": "Gold_Pile_3",
         "position": [
           11.4,
-          -124.2
+          -156.2
         ],
         "rotation": 260
       },
@@ -5051,7 +6430,7 @@
         "piece": "Gold_Pile_1",
         "position": [
           13.6,
-          -125.0
+          -157.0
         ],
         "rotation": 20
       },
@@ -5059,7 +6438,7 @@
         "piece": "Gold_Pile_5",
         "position": [
           8.6,
-          -125.0
+          -157.0
         ],
         "rotation": 300
       },
@@ -5067,7 +6446,7 @@
         "piece": "Gold_Pile_2",
         "position": [
           -5.6,
-          -125.0
+          -157.0
         ],
         "rotation": 150
       },
@@ -5075,7 +6454,7 @@
         "piece": "Gold_Bed",
         "position": [
           0.6,
-          -122.3
+          -154.3
         ],
         "rotation": 20,
         "y": -0.4
@@ -5084,629 +6463,59 @@
         "piece": "Gold_Bed",
         "position": [
           12.6,
-          -123.4
+          -155.4
         ],
         "rotation": 200,
         "scale": 0.7,
         "y": -0.4
       },
       {
-        "piece": "Crate_Wooden",
-        "position": [
-          -6.0,
-          -13.0
-        ],
-        "rotation": 345
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -9,
-          -10
-        ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          3.0,
-          -21.0
-        ],
-        "rotation": 315
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          -21.0,
-          -13.0
-        ],
-        "rotation": 225
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          12.0,
-          -15.0
-        ],
-        "rotation": 0
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          6.0,
-          -15.0
-        ],
-        "rotation": 15
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          9,
-          -18
-        ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          -12.0,
-          -21.0
-        ],
-        "rotation": 345
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -9,
-          -18
-        ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          3.0,
-          -23.0
-        ],
-        "rotation": 300
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          0,
-          -26
-        ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          -24.0,
-          -7.0
-        ],
-        "rotation": 210
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          -21.0,
-          -15.0
-        ],
-        "rotation": 105
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          -15.0,
-          -21.0
-        ],
-        "rotation": 270
-      },
-      {
-        "piece": "Bucket_Wooden_1",
-        "position": [
-          12.0,
-          -29.0
-        ],
-        "rotation": 75
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          9,
-          -26
-        ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
-        "piece": "Cage_Small",
-        "position": [
-          12.0,
-          -7.0
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          12.0,
-          -13.0
-        ],
-        "rotation": 90
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          9,
-          -10
-        ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          -12.0,
-          -29.0
-        ],
-        "rotation": 75
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          -3.0,
-          -37.0
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Bucket_Wooden_1",
-        "position": [
-          -3.0,
-          -37.0
-        ],
-        "rotation": 105
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          0,
-          -34
-        ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          -30.0,
-          -15.0
-        ],
-        "rotation": 270
-      },
-      {
-        "piece": "Cage_Small",
-        "position": [
-          -21.0,
-          -23.0
-        ],
-        "rotation": 135
-      },
-      {
-        "piece": "Cage_Small",
-        "position": [
-          21.0,
-          -23.0
-        ],
-        "rotation": 15
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          12.0,
-          -37.0
-        ],
-        "rotation": 15
-      },
-      {
-        "piece": "Cage_Small",
-        "position": [
-          12.0,
-          -31.0
-        ],
-        "rotation": 345
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          9,
-          -34
-        ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
-        "piece": "Bucket_Wooden_1",
-        "position": [
-          21.0,
-          -7.0
-        ],
-        "rotation": 315
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          -12.0,
-          -37.0
-        ],
-        "rotation": 135
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          -12.0,
-          -31.0
-        ],
-        "rotation": 150
-      },
-      {
-        "piece": "Cage_Small",
-        "position": [
-          -30.0,
-          -23.0
-        ],
-        "rotation": 135
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          -30.0,
-          -23.0
-        ],
-        "rotation": 315
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          30.0,
-          -23.0
-        ],
-        "rotation": 240
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          15.0,
-          -31.0
-        ],
-        "rotation": 345
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          18,
-          -34
-        ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
-        "piece": "Bucket_Wooden_1",
-        "position": [
-          21.0,
-          -15.0
-        ],
-        "rotation": 75
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          21.0,
-          -21.0
-        ],
-        "rotation": 75
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          18,
-          -18
-        ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          6.0,
-          -45.0
-        ],
-        "rotation": 300
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          6.0,
-          -39.0
-        ],
-        "rotation": 240
-      },
-      {
-        "piece": "Cage_Small",
-        "position": [
-          24.0,
-          -7.0
-        ],
-        "rotation": 225
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          30.0,
-          -7.0
-        ],
-        "rotation": 300
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          27,
-          -10
-        ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          -21.0,
-          -37.0
-        ],
-        "rotation": 345
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          -12.0,
-          -39.0
-        ],
-        "rotation": 0
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          -6.0,
-          -39.0
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Cage_Small",
-        "position": [
-          24.0,
-          -21.0
-        ],
-        "rotation": 0
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          21.0,
-          -45.0
-        ],
-        "rotation": 75
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          6.0,
-          -47.0
-        ],
-        "rotation": 15
-      },
-      {
         "piece": "Rope_1",
         "position": [
           6.0,
-          -53.0
-        ],
-        "rotation": 75
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          -30.0,
-          -31.0
+          -7.0
         ],
         "rotation": 45
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
+        "piece": "Rope_1",
         "position": [
-          -27,
-          -34
+          12.0,
+          -7.0
         ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
+        "rotation": 300
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -12.0,
+          -7.0
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          -12.0,
+          -7.0
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          3.0,
+          -21.0
+        ],
+        "rotation": 345
       },
       {
         "piece": "Rope_1",
         "position": [
           3.0,
-          -39.0
-        ],
-        "rotation": 180
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          -6.0,
-          -53.0
-        ],
-        "rotation": 330
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          30.0,
-          -39.0
-        ],
-        "rotation": 330
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          27,
-          -42
-        ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
-        "piece": "Mushroom_Flat",
-        "position": [
-          21.0,
-          -47.0
+          -15.0
         ],
         "rotation": 90
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          15.0,
-          -47.0
-        ],
-        "rotation": 75
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          18,
-          -50
-        ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          12.0,
-          -61.0
-        ],
-        "rotation": 240
-      },
-      {
-        "piece": "Shield_Wooden",
-        "position": [
-          6.0,
-          -61.0
-        ],
-        "rotation": 75
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          9,
-          -58
-        ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
-        "piece": "Bucket_Wooden_1",
-        "position": [
-          -30.0,
-          -39.0
-        ],
-        "rotation": 285
-      },
-      {
-        "piece": "Bucket_Wooden_1",
-        "position": [
-          -3.0,
-          -53.0
-        ],
-        "rotation": 345
       },
       {
         "light": [
@@ -5716,7 +6525,7 @@
         ],
         "position": [
           0,
-          -50
+          -18
         ],
         "range": 7,
         "energy": 0.8,
@@ -5725,260 +6534,24 @@
       {
         "piece": "Bucket_Wooden_1",
         "position": [
-          -15.0,
-          -47.0
+          21.0,
+          -7.0
         ],
-        "rotation": 135
+        "rotation": 0
       },
       {
-        "piece": "Barrel",
+        "piece": "Bucket_Wooden_1",
         "position": [
           -21.0,
-          -47.0
+          -13.0
         ],
-        "rotation": 150
+        "rotation": 225
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -18,
-          -50
-        ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          24.0,
-          -47.0
-        ],
-        "rotation": 210
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          24.0,
-          -31.0
-        ],
-        "rotation": 15
-      },
-      {
-        "piece": "Shield_Wooden",
-        "position": [
-          21.0,
-          -61.0
-        ],
-        "rotation": 255
-      },
-      {
-        "piece": "Mushroom_Cluster",
-        "position": [
-          -3.0,
-          -55.0
-        ],
-        "rotation": 240
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          0,
-          -58
-        ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
-        "piece": "Shield_Wooden",
-        "position": [
-          12.0,
-          -69.0
-        ],
-        "rotation": 270
-      },
-      {
-        "piece": "Rope_1",
+        "piece": "Cage_Small",
         "position": [
           -15.0,
-          -39.0
-        ],
-        "rotation": 345
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -18,
-          -42
-        ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
-        "piece": "Bucket_Wooden_1",
-        "position": [
-          -24.0,
-          -53.0
-        ],
-        "rotation": 60
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -27,
-          -50
-        ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
-        "piece": "Crate_Metal",
-        "position": [
-          30.0,
-          -55.0
-        ],
-        "rotation": 180
-      },
-      {
-        "piece": "Shield_Wooden",
-        "position": [
-          30.0,
-          -61.0
-        ],
-        "rotation": 30
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          21.0,
-          -63.0
-        ],
-        "rotation": 135
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          -6.0,
-          -55.0
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          -6.0,
-          -55.0
-        ],
-        "rotation": 285
-      },
-      {
-        "piece": "Mushroom_Cluster",
-        "position": [
-          -3.0,
-          -63.0
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Mushroom_Tall",
-        "position": [
-          -3.0,
-          -69.0
-        ],
-        "rotation": 345
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          0,
-          -66
-        ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
-        "piece": "Rope_1",
-        "position": [
-          12.0,
-          -71.0
-        ],
-        "rotation": 105
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          -30.0,
-          -55.0
-        ],
-        "rotation": 270
-      },
-      {
-        "piece": "Mushroom_Cluster",
-        "position": [
-          -30.0,
-          -61.0
-        ],
-        "rotation": 330
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -27,
-          -58
-        ],
-        "range": 7,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          30.0,
-          -63.0
-        ],
-        "rotation": 315
-      },
-      {
-        "piece": "Barrel",
-        "position": [
-          -21.0,
-          -55.0
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Mushroom_Cluster",
-        "position": [
-          -15.0,
-          -55.0
+          -7.0
         ],
         "rotation": 195
       },
@@ -5990,35 +6563,1121 @@
         ],
         "position": [
           -18,
-          -58
+          -10
         ],
         "range": 7,
         "energy": 0.8,
         "y": 1.0
       },
       {
-        "piece": "Mushroom_Flat",
+        "piece": "Bucket_Wooden_1",
         "position": [
-          -6.0,
-          -63.0
+          6.0,
+          -21.0
+        ],
+        "rotation": 75
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          6.0,
+          -21.0
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          3.0,
+          -23.0
+        ],
+        "rotation": 45
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          24.0,
+          -7.0
+        ],
+        "rotation": 330
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          -30.0,
+          -13.0
+        ],
+        "rotation": 120
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -30.0,
+          -13.0
+        ],
+        "rotation": 300
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          21.0,
+          -21.0
+        ],
+        "rotation": 270
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          21.0,
+          -15.0
+        ],
+        "rotation": 30
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          6.0,
+          -23.0
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          39.0,
+          -13.0
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          33.0,
+          -13.0
+        ],
+        "rotation": 225
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -33.0,
+          -13.0
+        ],
+        "rotation": 270
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          -30.0,
+          -15.0
+        ],
+        "rotation": 345
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          -27,
+          -18
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          24.0,
+          -21.0
+        ],
+        "rotation": 270
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          30.0,
+          -21.0
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          6.0,
+          -31.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          6.0,
+          -31.0
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          42.0,
+          -7.0
+        ],
+        "rotation": 300
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          -42.0,
+          -13.0
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -42.0,
+          -7.0
+        ],
+        "rotation": 270
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          -45,
+          -10
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          -33.0,
+          -21.0
+        ],
+        "rotation": 60
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          -36,
+          -18
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -21.0,
+          -15.0
+        ],
+        "rotation": 300
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -24.0,
+          -23.0
+        ],
+        "rotation": 15
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -30.0,
+          -23.0
         ],
         "rotation": 135
       },
       {
-        "piece": "Shield_Wooden",
+        "piece": "Bucket_Wooden_1",
         "position": [
-          21.0,
-          -71.0
+          39.0,
+          -15.0
         ],
         "rotation": 165
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          36,
+          -18
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          21.0,
+          -37.0
+        ],
+        "rotation": 120
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          18,
+          -34
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          48.0,
+          -21.0
+        ],
+        "rotation": 300
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          48.0,
+          -15.0
+        ],
+        "rotation": 60
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -48.0,
+          -15.0
+        ],
+        "rotation": 75
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          -39.0,
+          -23.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          -39.0,
+          -29.0
+        ],
+        "rotation": 240
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -6.0,
+          -15.0
+        ],
+        "rotation": 45
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          -15.0,
+          -23.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -24.0,
+          -37.0
+        ],
+        "rotation": 135
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          -30.0,
+          -37.0
+        ],
+        "rotation": 150
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          -27,
+          -34
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          39.0,
+          -29.0
+        ],
+        "rotation": 330
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          15.0,
+          -45.0
+        ],
+        "rotation": 285
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          21.0,
+          -45.0
+        ],
+        "rotation": 180
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          18,
+          -42
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          21.0,
+          -23.0
+        ],
+        "rotation": 255
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          21.0,
+          -23.0
+        ],
+        "rotation": 30
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          18,
+          -26
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          -48.0,
+          -29.0
+        ],
+        "rotation": 150
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -42.0,
+          -23.0
+        ],
+        "rotation": 285
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -33.0,
+          -31.0
+        ],
+        "rotation": 210
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -39.0,
+          -37.0
+        ],
+        "rotation": 0
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          -36,
+          -34
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          -12.0,
+          -23.0
+        ],
+        "rotation": 75
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -21.0,
+          -31.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          -21.0,
+          -37.0
+        ],
+        "rotation": 225
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          42.0,
+          -29.0
+        ],
+        "rotation": 15
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          33.0,
+          -37.0
+        ],
+        "rotation": 135
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          24.0,
+          -39.0
+        ],
+        "rotation": 75
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          21.0,
+          -47.0
+        ],
+        "rotation": 195
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          18,
+          -50
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          24.0,
+          -29.0
+        ],
+        "rotation": 60
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          27,
+          -26
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          -42.0,
+          -37.0
+        ],
+        "rotation": 135
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          -42.0,
+          -31.0
+        ],
+        "rotation": 330
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          -39.0,
+          -39.0
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -6.0,
+          -37.0
+        ],
+        "rotation": 60
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          -9,
+          -34
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -21.0,
+          -39.0
+        ],
+        "rotation": 165
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          -18,
+          -42
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          48.0,
+          -37.0
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          42.0,
+          -37.0
+        ],
+        "rotation": 210
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          33.0,
+          -39.0
+        ],
+        "rotation": 210
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          30.0,
+          -53.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          30.0,
+          -47.0
+        ],
+        "rotation": 300
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          27,
+          -50
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          24.0,
+          -31.0
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          15.0,
+          -55.0
+        ],
+        "rotation": 135
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          21.0,
+          -61.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          -24.0,
+          -45.0
+        ],
+        "rotation": 300
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -24.0,
+          -45.0
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -48.0,
+          -45.0
+        ],
+        "rotation": 210
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          3.0,
+          -37.0
+        ],
+        "rotation": 120
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          0,
+          -34
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -12.0,
+          -45.0
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -15.0,
+          -53.0
+        ],
+        "rotation": 255
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          42.0,
+          -45.0
+        ],
+        "rotation": 135
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          33.0,
+          -47.0
+        ],
+        "rotation": 345
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          6.0,
+          -55.0
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          -24.0,
+          -53.0
+        ],
+        "rotation": 210
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -48.0,
+          -53.0
+        ],
+        "rotation": 60
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -42.0,
+          -53.0
+        ],
+        "rotation": 270
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          -45,
+          -50
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -3.0,
+          -45.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -6.0,
+          -53.0
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          -12.0,
+          -47.0
+        ],
+        "rotation": 75
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          -9,
+          -50
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          39.0,
+          -61.0
+        ],
+        "rotation": 240
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          33.0,
+          -61.0
+        ],
+        "rotation": 135
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          6.0,
+          -69.0
+        ],
+        "rotation": 255
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          12.0,
+          -63.0
+        ],
+        "rotation": 345
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          12.0,
+          -47.0
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          12.0,
+          -53.0
+        ],
+        "rotation": 150
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          9,
+          -50
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          -33.0,
+          -47.0
+        ],
+        "rotation": 180
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          -36,
+          -50
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
       },
       {
         "piece": "Barrel",
         "position": [
           -30.0,
+          -61.0
+        ],
+        "rotation": 30
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -24.0,
+          -55.0
+        ],
+        "rotation": 300
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          12.0,
+          -39.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          6.0,
+          -45.0
+        ],
+        "rotation": 270
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          9,
+          -42
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -3.0,
+          -47.0
+        ],
+        "rotation": 165
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          0,
+          -50
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          42.0,
+          -55.0
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          30.0,
+          -55.0
+        ],
+        "rotation": 60
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          24.0,
+          -55.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          33.0,
+          -69.0
+        ],
+        "rotation": 45
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          39.0,
+          -69.0
+        ],
+        "rotation": 30
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          15.0,
           -63.0
         ],
-        "rotation": 315
+        "rotation": 75
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          15.0,
+          -69.0
+        ],
+        "rotation": 45
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -33.0,
+          -61.0
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          -24.0,
+          -63.0
+        ],
+        "rotation": 330
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          -24.0,
+          -63.0
+        ],
+        "rotation": 255
       },
       {
         "light": [
@@ -6035,106 +7694,1148 @@
         "y": 1.0
       },
       {
+        "piece": "Crate_Metal",
+        "position": [
+          3.0,
+          -55.0
+        ],
+        "rotation": 120
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          48.0,
+          -69.0
+        ],
+        "rotation": 60
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          48.0,
+          -69.0
+        ],
+        "rotation": 150
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          45,
+          -66
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          42.0,
+          -53.0
+        ],
+        "rotation": 255
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          42.0,
+          -47.0
+        ],
+        "rotation": 225
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          24.0,
+          -69.0
+        ],
+        "rotation": 30
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          27,
+          -66
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          -48.0,
+          -61.0
+        ],
+        "rotation": 300
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          -42.0,
+          -55.0
+        ],
+        "rotation": 270
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          -21.0,
+          -69.0
+        ],
+        "rotation": 120
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          -15.0,
+          -69.0
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -39.0,
+          -69.0
+        ],
+        "rotation": 15
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -39.0,
+          -69.0
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -12.0,
+          -55.0
+        ],
+        "rotation": 120
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -3.0,
+          -63.0
+        ],
+        "rotation": 330
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          48.0,
+          -71.0
+        ],
+        "rotation": 75
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -15.0,
+          -77.0
+        ],
+        "rotation": 300
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -21.0,
+          -77.0
+        ],
+        "rotation": 255
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -15.0,
+          -61.0
+        ],
+        "rotation": 45
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          -21.0,
+          -61.0
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -33.0,
+          -71.0
+        ],
+        "rotation": 120
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          -36,
+          -74
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          -12.0,
+          -69.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -6.0,
+          -69.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          39.0,
+          -77.0
+        ],
+        "rotation": 345
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -6.0,
+          -71.0
+        ],
+        "rotation": 300
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          -9,
+          -74
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -42.0,
+          -77.0
+        ],
+        "rotation": 15
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -33.0,
+          -85.0
+        ],
+        "rotation": 345
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -33.0,
+          -79.0
+        ],
+        "rotation": 30
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          30.0,
+          -77.0
+        ],
+        "rotation": 75
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          24.0,
+          -77.0
+        ],
+        "rotation": 75
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          33.0,
+          -85.0
+        ],
+        "rotation": 315
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -6.0,
+          -85.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -6.0,
+          -85.0
+        ],
+        "rotation": 90
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          -9,
+          -82
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -48.0,
+          -69.0
+        ],
+        "rotation": 75
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -42.0,
+          -69.0
+        ],
+        "rotation": 210
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -42.0,
+          -79.0
+        ],
+        "rotation": 120
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -42.0,
+          -85.0
+        ],
+        "rotation": 270
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -39.0,
+          -87.0
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          21.0,
+          -71.0
+        ],
+        "rotation": 60
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          18,
+          -74
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
         "piece": "Barrel",
         "position": [
           24.0,
+          -79.0
+        ],
+        "rotation": 105
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          27,
+          -82
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -21.0,
+          -85.0
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -21.0,
+          -85.0
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -48.0,
+          -93.0
+        ],
+        "rotation": 300
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          -45,
+          -90
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -24.0,
+          -87.0
+        ],
+        "rotation": 15
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          12.0,
           -71.0
+        ],
+        "rotation": 120
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          9,
+          -74
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          15.0,
+          -79.0
+        ],
+        "rotation": 45
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          24.0,
+          -87.0
+        ],
+        "rotation": 255
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          24.0,
+          -93.0
+        ],
+        "rotation": 255
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -30.0,
+          -79.0
+        ],
+        "rotation": 210
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -21.0,
+          -87.0
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -48.0,
+          -101.0
+        ],
+        "rotation": 315
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          3.0,
+          -71.0
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          6.0,
+          -85.0
+        ],
+        "rotation": 345
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          6.0,
+          -79.0
+        ],
+        "rotation": 75
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          9,
+          -82
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          33.0,
+          -93.0
+        ],
+        "rotation": 75
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          39.0,
+          -87.0
+        ],
+        "rotation": 330
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          21.0,
+          -93.0
+        ],
+        "rotation": 45
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          18,
+          -90
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          24.0,
+          -95.0
+        ],
+        "rotation": 225
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          30.0,
+          -101.0
+        ],
+        "rotation": 345
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          27,
+          -98
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -30.0,
+          -71.0
+        ],
+        "rotation": 30
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -6.0,
+          -93.0
+        ],
+        "rotation": 60
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -15.0,
+          -101.0
+        ],
+        "rotation": 210
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          -18,
+          -98
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -33.0,
+          -95.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          3.0,
+          -79.0
+        ],
+        "rotation": 225
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -3.0,
+          -85.0
+        ],
+        "rotation": 90
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          0,
+          -82
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          12.0,
+          -93.0
+        ],
+        "rotation": 300
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          12.0,
+          -93.0
+        ],
+        "rotation": 240
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          9,
+          -90
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          42.0,
+          -93.0
+        ],
+        "rotation": 240
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          45,
+          -90
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          21.0,
+          -101.0
+        ],
+        "rotation": 105
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          18,
+          -98
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          33.0,
+          -101.0
+        ],
+        "rotation": 345
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -24.0,
+          -101.0
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -30.0,
+          -101.0
+        ],
+        "rotation": 345
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -33.0,
+          -103.0
+        ],
+        "rotation": 15
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -33.0,
+          -109.0
+        ],
+        "rotation": 210
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          3.0,
+          -87.0
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          3.0,
+          -93.0
+        ],
+        "rotation": 60
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          12.0,
+          -101.0
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          12.0,
+          -101.0
+        ],
+        "rotation": 345
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          9,
+          -98
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          48.0,
+          -101.0
+        ],
+        "rotation": 165
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          45,
+          -98
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          48.0,
+          -85.0
+        ],
+        "rotation": 15
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          45,
+          -82
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          33.0,
+          -103.0
+        ],
+        "rotation": 135
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          33.0,
+          -109.0
+        ],
+        "rotation": 255
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -30.0,
+          -109.0
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -24.0,
+          -109.0
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -48.0,
+          -103.0
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -48.0,
+          -103.0
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -3.0,
+          -95.0
+        ],
+        "rotation": 315
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          42.0,
+          -109.0
+        ],
+        "rotation": 150
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          48.0,
+          -103.0
+        ],
+        "rotation": 270
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          45,
+          -106
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Crate_Metal",
+        "position": [
+          30.0,
+          -103.0
+        ],
+        "rotation": 255
+      },
+      {
+        "piece": "Rope_1",
+        "position": [
+          30.0,
+          -109.0
+        ],
+        "rotation": 15
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          15.0,
+          -103.0
+        ],
+        "rotation": 225
+      },
+      {
+        "piece": "Shield_Wooden",
+        "position": [
+          15.0,
+          -109.0
         ],
         "rotation": 300
       },
       {
         "piece": "Barrel",
         "position": [
-          -21.0,
-          -63.0
+          12.0,
+          -109.0
         ],
-        "rotation": 285
+        "rotation": 30
+      },
+      {
+        "light": [
+          0.55,
+          0.75,
+          0.35
+        ],
+        "position": [
+          9,
+          -106
+        ],
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -6.0,
+          -109.0
+        ],
+        "rotation": 120
       },
       {
         "piece": "Barrel",
         "position": [
-          -21.0,
-          -69.0
+          -6.0,
+          -109.0
         ],
-        "rotation": 15
+        "rotation": 270
       },
       {
-        "piece": "Barrel",
+        "piece": "Mushroom_Cluster",
         "position": [
-          -12.0,
-          -77.0
+          -21.0,
+          -103.0
         ],
-        "rotation": 180
+        "rotation": 225
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -21.0,
+          -103.0
+        ],
+        "rotation": 90
       },
       {
         "piece": "Mushroom_Cluster",
         "position": [
           -6.0,
-          -71.0
+          -95.0
         ],
-        "rotation": 15
+        "rotation": 30
       },
       {
-        "piece": "Barrel",
+        "piece": "Mushroom_Tall",
         "position": [
-          -15.0,
-          -71.0
+          -6.0,
+          -101.0
         ],
-        "rotation": 75
+        "rotation": 30
       },
       {
-        "piece": "Mushroom_Cluster",
-        "position": [
-          -15.0,
-          -71.0
+        "light": [
+          0.55,
+          0.75,
+          0.35
         ],
-        "rotation": 45
-      },
-      {
-        "piece": "Barrel",
         "position": [
-          -30.0,
-          -77.0
+          -9,
+          -98
         ],
-        "rotation": 45
-      },
-      {
-        "piece": "Mushroom_Flat",
-        "position": [
-          -30.0,
-          -77.0
-        ],
-        "rotation": 180
+        "range": 7,
+        "energy": 0.8,
+        "y": 1.0
       },
       {
         "piece": "Banner_1",
         "position": [
-          33.5,
-          -69.8
+          51.5,
+          -109.8
         ],
         "y": 0.2
       },
       {
         "piece": "Banner_1",
         "position": [
-          52.5,
-          -69.8
+          70.5,
+          -109.8
         ],
         "y": 0.2
       },
       {
         "piece": "WeaponStand",
         "position": [
-          33.8,
-          -62.8
+          51.8,
+          -102.8
         ],
         "rotation": 90
       },
       {
         "piece": "Shield_Wooden",
         "position": [
-          52.5,
-          -62.8
+          70.5,
+          -102.8
         ],
         "rotation": -90,
         "y": 0.3
@@ -6142,8 +8843,8 @@
       {
         "piece": "Sword_Bronze",
         "position": [
-          46.8,
-          -69.0
+          64.8,
+          -109.0
         ],
         "rotation": 60,
         "y": 0.05
@@ -6151,8 +8852,8 @@
       {
         "piece": "Axe_Bronze",
         "position": [
-          39.0,
-          -63.5
+          57.0,
+          -103.5
         ],
         "rotation": -40,
         "y": 0.05
@@ -6164,8 +8865,8 @@
           0.35
         ],
         "position": [
-          43.0,
-          -66
+          61.0,
+          -106
         ],
         "range": 11,
         "energy": 0.9,
@@ -6178,8 +8879,8 @@
           0.35
         ],
         "position": [
-          -43.0,
-          -42
+          -61.0,
+          -58
         ],
         "range": 11,
         "energy": 0.9,
@@ -6192,68 +8893,82 @@
           0.35
         ],
         "position": [
-          44.0,
-          -34
+          62.0,
+          -50
         ],
         "range": 9,
         "energy": 0.8,
         "y": 0.6
       },
       {
+        "light": [
+          0.4,
+          0.7,
+          0.35
+        ],
+        "position": [
+          0,
+          -58
+        ],
+        "range": 8,
+        "energy": 1.1,
+        "y": 1.2
+      },
+      {
         "piece": "Mushroom_Cluster",
         "position": [
-          -51.6,
-          -49.4
+          -69.6,
+          -65.4
         ],
-        "rotation": 150
+        "rotation": 195
       },
       {
         "piece": "Mushroom_Tall",
         "position": [
-          -34.6,
-          -34.8
+          -52.6,
+          -50.8
         ],
-        "rotation": 255
+        "rotation": 45
       },
       {
         "piece": "Barrel",
         "position": [
-          -52.2,
-          -34.4
-        ],
-        "rotation": 180
-      },
-      {
-        "piece": "Crate_Wooden",
-        "position": [
-          -34.0,
-          -49.6
+          -70.2,
+          -50.4
         ],
         "rotation": 345
       },
       {
+        "piece": "Crate_Wooden",
+        "position": [
+          -52.0,
+          -65.6
+        ],
+        "rotation": 210
+      },
+      {
         "piece": "Barrel",
         "position": [
-          40.2,
+          58.2,
           -20.6
         ],
-        "rotation": 225
+        "rotation": 285
       },
       {
         "piece": "Crate_Wooden",
         "position": [
-          40.3,
+          58.3,
           -15.4
         ],
-        "rotation": 120
+        "rotation": 60
       },
       {
         "piece": "Bucket_Wooden_1",
         "position": [
-          33.4,
+          51.4,
           -20.6
         ],
-        "rotation": 30
+        "rotation": 120
       }
     ],
     "passive": true

@@ -24,7 +24,7 @@ Cada mapa de combate tem **2 mini-chefes** (elites fortes com nome, categoria `m
 
 | Mapa | Mini-chefes |
 |---|---|
-| Esgoto | Gator Velho (Passagem da Guerra) · **Rei dos Ratos** (Canais) |
+| Esgoto | Gator Velho (Passagem da Guerra) · **Rei dos Sapos** (altar no centro do Esgoto) |
 | Floresta | Leshy · **Rainha das Víboras** |
 | Ruínas | Guardião do Cofre · **Alfa da Matilha** |
 | Cemitério | Ogro da Cripta (era o Escorpião; larga os **Pulmões Humanos**) · Senhor da Cripta (larga o **Coração Humano**) |
@@ -51,12 +51,18 @@ Em negrito, os criados nesta rodada (`tools/assets/add_minibosses.py`). A Flores
 
 ## 3. Esgoto de Tortuga (`map_sewers`)
 
-| # | ID | Área | Espaço | Nível | Destaques |
-|---|---|---|---|---|---|
-| 1 | `sewers_01_drains` | **Bueiros da Rua Principal** | Estreito | 1 | Tutorial de combate; enxames pequenos de Ratos Pestilentos; primeiras poças de lodo tóxico |
-| 2 | `sewers_02_canals` | **Canais de Lixo** | Estreito | 1 | Sapos Ácidos, Morcegos Pestilentos; pontes de madeira podre; segredo: depósito de contrabando dos piratas |
-| 3 | `sewers_03_war_passage` | **Passagem Secreta da Guerra** | Estreito | 2 | Túneis antigos dos fundadores de Tortuga, com marcas do reino do Arqueiro nas paredes (o Arqueiro reconhece o brasão); câmaras alagadas; **mini-chefe: Jacaré Velho** |
-| 4 | `sewers_04_nest` | **Covil do Feiticeiro** | Misto (arena ampla) | 2 | **Feiticeiro-Aranha**; Tesouro Perdido da Guerra e o mapa para as Ruínas |
+O Esgoto é **um mapa só, num andar só** (`sewers_01_drains`), grande: uma grade de **11 x 13 salas** de 8 m entre a sala de entrada e o túnel do Ninho. **Não há passagens para outros mapas** (os antigos Canais de Lixo, a Passagem Secreta da Guerra e o Covil do Feiticeiro viraram **setores** do mesmo andar, só com cartazes; a única saída é o portal de volta a Tortuga).
+
+| Setor | Onde | Destaques |
+|---|---|---|
+| 1 · Bueiros da Rua Principal | linhas de cima | Entrada; tutorial de combate; Catador do Esgoto (Homem-Aranha) na sala de entrada |
+| 2 · Canais de Lixo | meio, lado oeste | Praça oeste vazia; **altar do Rei dos Sapos no centro do mapa** (o Livro do Altar, entregue pelo Catador, o desperta: mini-chefe 1) |
+| 3 · Galerias dos Morcegos | meio, lado leste | Posto do Caçador de Pragas; segredo com baú |
+| 4 · Passagem Secreta da Guerra | embaixo, lado leste | Marcas do reino do Arqueiro nas paredes (o Arqueiro reconhece o brasão); **mini-chefe 2: o Gator Velho (Porco-Tubarão), na praça do canto inferior direito** |
+| 5 · Câmaras dos Cogumelos | embaixo, lado oeste | Câmaras estreitas |
+| Fundo | túnel e Ninho | **Feiticeiro-Aranha** (chefe); Tesouro Perdido da Guerra e o mapa para as Ruínas |
+
+Só os chefes do Esgoto revidam (o Rei dos Sapos, o Gator Velho e o Feiticeiro-Aranha); o resto é cenário (aranhas, ratos, morcegos voando, madeira na cor da mesa da Taverna).
 
 ## 4. Ruínas do Reino do Arqueiro (`map_ruins`)
 

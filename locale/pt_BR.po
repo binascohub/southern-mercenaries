@@ -3005,43 +3005,43 @@ msgid "QUEST_SEWER_OLD_GATOR"
 msgstr "O Gator Velho"
 
 msgid "QUEST_SEWER_OLD_GATOR_DESC"
-msgstr "O Catador do Esgoto quer a Passagem Secreta da Guerra de volta: derrote o Gator Velho, na praça do lado leste do esgoto."
+msgstr "Itachi quer a Passagem Secreta da Guerra livre: derrote o Gator Velho, na praça do lado leste do esgoto."
 
 msgid "DLG_SEWER_GATOR_1"
-msgstr "Psiu! Eu catava tralha por aqui, até o Gator Velho tomar a Passagem da Guerra."
+msgstr "Há um jacaré antigo na Passagem Secreta da Guerra. Ninguém passa por lá sem que ele queira."
 
 msgid "DLG_SEWER_GATOR_2"
-msgstr "Ele só sai da água quando alguém chega perto, e anda sempre com os jacarés menores."
+msgstr "O Gator Velho só sai da água quando alguém chega perto, e nunca vem sozinho."
 
 msgid "DLG_SEWER_GATOR_3"
-msgstr "A praça dele fica no lado leste do fundo do labirinto. Derrubem o bicho e a passagem volta a ser nossa."
+msgstr "A praça dele fica no lado leste, no fundo do labirinto. Derrubem-no e eu recompenso vocês."
 
 msgid "DLG_SEWER_GATOR_ACTIVE"
-msgstr "O Gator Velho ainda manda na Passagem da Guerra. Sigam pelo leste, rumo ao fundo."
+msgstr "O Gator Velho ainda domina a Passagem. Sigam para o leste, rumo ao fundo."
 
 msgid "DLG_SEWER_GATOR_DONE"
-msgstr "O Velho caiu? Então a Passagem é nossa. Obrigado, de coração."
+msgstr "A Passagem está livre. Bom trabalho."
 
 msgid "QUEST_SEWER_FROG_KING"
 msgstr "O Rei dos Sapos"
 
 msgid "QUEST_SEWER_FROG_KING_DESC"
-msgstr "Itachi quer acabar com a praga de sapos: derrote o Rei dos Sapos, na praça do lado oeste do esgoto."
+msgstr "O Catador do Esgoto quer o Rei dos Sapos fora do caminho: leve o livro dele ao altar no centro do esgoto para despertar o monstro e derrote-o."
 
 msgid "DLG_SEWER_FROG_1"
-msgstr "Pragas eu conheço bem. Mas esta é diferente: um sapo coroado que manda em todos os outros."
+msgstr "Sou o Homem-Aranha. Vim do multiverso e fui parar neste esgoto. Sim, sou um herói, mas até herói precisa de ajuda."
 
 msgid "DLG_SEWER_FROG_2"
-msgstr "O Rei dos Sapos reina numa praça do lado oeste, entre as poças, cercado de sapos."
+msgstr "O povo chama de Rei dos Sapos, mas não tem nada de sapo: é um monstro de carne e tábuas, cheio de pregos. Ele dorme até alguém tocar o altar, no centro do esgoto. Sozinho eu não dou conta."
 
 msgid "DLG_SEWER_FROG_3"
-msgstr "Derrubem ele e a praga acaba. Eu pago bem, não precisam nem pedir duas vezes."
+msgstr "Derrube ele comigo, por favor. Leve este livro: ele abre o altar no centro do esgoto. Apoiem-no na pedra, leiam e preparem-se."
 
 msgid "DLG_SEWER_FROG_ACTIVE"
-msgstr "O Rei dos Sapos ainda reina no oeste. Sigam o coaxar: ele está perto das poças grandes."
+msgstr "O monstro só acorda quando alguém lê o livro no altar, no centro do esgoto. Cuidado com a investida!"
 
 msgid "DLG_SEWER_FROG_DONE"
-msgstr "Silêncio! Que paz. O esgoto respira de novo."
+msgstr "Caiu mesmo? Valeu! Até um herói do multiverso precisa de uma equipe. Seu amigo e vizinho do esgoto agradece."
 
 msgid "PROP_SEWER_SECTOR_1"
 msgstr "Bueiros da Rua Principal"
@@ -3078,3 +3078,36 @@ msgstr "Ninho da Rainha"
 
 msgid "SIGN_SEWER_NEST"
 msgstr "Ninho da Rainha dos Ratos. O Tesouro Perdido da Guerra dorme com ela. Voltem equipados."
+
+msgid "OPTIONS_QUEST_TRAIL"
+msgstr "Pegadas até o objetivo da missão"
+
+msgid "NPC_SEWER_FROG_ALTAR"
+msgstr "Altar do Rei dos Sapos"
+
+msgid "DLG_FROG_ALTAR_1"
+msgstr "Um altar de pedra manchado de lodo, no coração do esgoto. Há um vão no centro, do tamanho de um livro, e marcas de garras e de pregos ao redor."
+
+msgid "DLG_FROG_ALTAR_2"
+msgstr "Você apoia o Livro do Altar na pedra e lê em voz alta: o chão estremece e o Rei dos Sapos acorda na sala do altar."
+
+msgid "TOAST_FROG_ALTAR_AWAKENS"
+msgstr "O altar estremece: o Rei dos Sapos desperta!"
+
+msgid "TOAST_BOOK_RECEIVED"
+msgstr "O Catador do Esgoto entregou o Livro do Altar!"
+
+msgid "DLG_FROG_ALTAR_LOCKED"
+msgstr "O altar não reage. Há um vão vazio no centro da pedra, do tamanho de um livro. O Catador do Esgoto deve ter o que falta."
+
+msgid "MONSTER_TROLL_MAULER"
+msgstr "Troll Esmagador"
+
+msgid "BEAST_TROLL_MAULER"
+msgstr "Troll Esmagador"
+
+msgid "BEAST_TROLL_MAULER_LEGEND"
+msgstr "Um bruto curvado sob os próprios braços, de pele grossa e cheia de cicatrizes. Rondava as docas até o esgoto virar a casa dele."
+
+msgid "BEAST_TROLL_MAULER_HINT"
+msgstr "Lento e pesado: espere o aviso da pancada e desvie. O Fogo o machuca mais."

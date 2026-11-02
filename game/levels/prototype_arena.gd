@@ -121,6 +121,8 @@ var _thumb_timer := THUMB_FIRST
 var _zones: Array[Dictionary] = []
 ## Poças tóxicas e avisos de golpe no chão (Fase 7).
 var hazards: Hazards
+## Pegadas até o objetivo da missão ativa (opção "Pegadas da missão").
+var _quest_trail: QuestTrail
 ## Mapa que se revela (servidor): máscara da área atual e o próximo passo.
 var _explored := PackedByteArray()
 var _explore_timer := 0.0
@@ -173,6 +175,9 @@ func _ready() -> void:
 	add_child(town)
 	town.state_changed.connect(_refresh_markers)
 	town.state_changed.connect(_refresh_visitors)
+	_quest_trail = QuestTrail.new()
+	_quest_trail.setup(self)
+	add_child(_quest_trail)
 	_camera = TopDownCamera.new()
 	add_child(_camera)
 	_camera.snap()
@@ -285,6 +290,7 @@ func _physics_process(delta: float) -> void:
 			_encounter_timer = ENCOUNTER_CHECK_INTERVAL
 			_update_encounters()
 			_auto_pickup_gold()
+			_update_save_point()
 		_update_zones(delta)
 		_update_training()
 	hud.set_boss(_awake_boss())
@@ -887,6 +893,19 @@ func _refresh_visitors() -> void:
 		_build_prop({"id": "visitor_%d" % i, "kind": "npc", "npc": "visitor:%d" % i,
 			"position": seats[i], "visitor_name": visitor.name, "visitor_type": visitor.type})
 	_refresh_markers()
+
+
+## Save point no meio do mapa ("save_point" em arenas.json, uma entrada): quando um herói de pé chega perto do cristal dele,
+## ele vira o checkpoint (autosave) se ainda não era.
+func _update_save_point() -> void:
+	var id := String(arena.get("save_point", ""))
+	if id == "" or String(_campaign.get("checkpoint", "start")) == id:
+		return
+	var at := entry_point(id) + Vector3(2.2, 0, -0.5)
+	for p: Player in get_tree().get_nodes_in_group(&"players"):
+		if p.alive and p.connected and p.global_position.distance_to(at) < 3.5:
+			_reach_checkpoint(id)
+			return
 
 
 ## Ponto de chegada na área (entradas em data/arenas.json; sem nome, o checkpoint).
@@ -2259,6 +2278,8 @@ func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3,
 	if style.get("spiders", false):
 		_scatter_spiders(room, c, half)
 		_scatter_critters(room, c, half, "rat", 0.7, 3)
+	if style.get("bats", false):
+		_scatter_bats(room, c, half)
 	if style.get("grates", false):
 		var grng := RandomNumberGenerator.new()
 		grng.seed = hash(str(room.get("id", ""), c, "grates"))
@@ -2301,7 +2322,7 @@ func _build_save_crystal() -> void:
 		return
 	var holder := Node3D.new()
 	holder.name = "save_crystal"
-	holder.position = entry_point("start") + Vector3(2.2, 0, -0.5)
+	holder.position = entry_point(String(arena.get("save_point", "start"))) + Vector3(2.2, 0, -0.5)  # "save_point": entrada onde fica o cristal (padrão: o início da área)
 	_area_root.add_child(holder)
 	var bob := Node3D.new()
 	holder.add_child(bob)
@@ -2760,6 +2781,29 @@ func _scatter_trash(room: Dictionary, c: Vector3, half: Vector3) -> void:
 ## Aranhinhas que andam pelo chão do esgoto (não atacam; só cenário, em cada PC).
 func _scatter_spiders(room: Dictionary, c: Vector3, half: Vector3) -> void:
 	_scatter_critters(room, c, half, "spider", 1.0, 6)
+
+
+## Morcegos voando em círculos no alto das salas (só enfeite, em cada PC): de 0 a 3 por sala, pela posição dela.
+func _scatter_bats(room: Dictionary, c: Vector3, half: Vector3) -> void:
+	if not NpcModel.has_model("bat"):
+		return
+	var rng := RandomNumberGenerator.new()
+	rng.seed = hash(str(room.get("id", ""), c, "bats"))
+	if rng.randf() < 0.35:
+		return  # nem toda sala tem morcegos
+	for i in rng.randi_range(1, clampi(roundi(half.x * half.z / 20.0), 1, 3)):
+		var flyer := Flyer.new()
+		flyer.radius = rng.randf_range(1.2, minf(3.2, minf(half.x, half.z) - 1.0))
+		flyer.center = Vector3(c.x + rng.randf_range(-1.0, 1.0) * maxf(half.x - flyer.radius - 0.8, 0.0), 0,
+				c.z + rng.randf_range(-1.0, 1.0) * maxf(half.z - flyer.radius - 0.8, 0.0))
+		flyer.height = rng.randf_range(2.0, 3.0)
+		flyer.speed = rng.randf_range(2.2, 3.6)
+		flyer.direction = 1.0 if rng.randf() < 0.5 else -1.0
+		flyer.phase = rng.randf() * TAU
+		_area_root.add_child(flyer)
+		var model := NpcModel.create("bat")
+		flyer.add_child(model)
+		model.call("set_pose", "walk")
 
 
 ## Bichinhos de cenário (aranhas, ratos): andam entre dois pontos do chão da sala; `density` escala a quantidade.

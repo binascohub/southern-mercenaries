@@ -15,6 +15,14 @@ extends Node3D
 ## à metade da vida: elas brotam das costas e batem, mais rápido no ataque.
 
 const FAMILIES := {
+	# Troll Mauler (piacenti, CC BY 3.0; tools/assets/build_troll_mauler.py): bruto curvado de 3,1 m no arquivo, preso ao esqueleto dos heróis com os movimentos deles.
+	# No tamanho 1,1 -> ~2,4 m. Monstro do Setor 1 do Esgoto.
+	"troll_mauler": {"scene": "res://assets/models/monsters/troll_mauler.glb", "scale": 0.7,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Monstro de Tábuas (Monster_4, minib1.rar do autor; tools/assets/build_plank_monster.py): humanoide de carne com armadura de tábuas e pregos, 1,87 m no arquivo, preso ao
+	# esqueleto dos heróis com os movimentos deles. Mini-chefe do Esgoto (o Rei dos Sapos, no tamanho 2,6 -> ~2,8 m).
+	"plank_monster": {"scene": "res://assets/models/monsters/plank_monster.glb", "scale": 0.58,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	"rat": {"scene": "res://assets/models/monsters/rat.glb", "scale": 1.35,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# A Rainha: corpo humano (o dos heróis, com as animações deles) e cabeça de rato.
@@ -42,6 +50,10 @@ const FAMILIES := {
 	# Espreitador (Stalker 3D, GuieA_7, CC BY-SA 4.0; tools/assets/build_stalker.py): olho alado da Mina, malha única sem animação
 	# (`static`); 1 m no arquivo -> ~1,4 m no tamanho 1. Voa e balança por código.
 	"stalker": {"scene": "res://assets/models/monsters/stalker.glb", "scale": 1.4, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Porco-Tubarão (pork-shark.blend, do autor; tools/assets/build_pork_shark.py): criatura de pé com esqueleto e 17 animações, 5,55 unidades de altura
+	# (pés em 0) -> ~1,5 m por unidade de size. O Gator Velho, mini-chefe do Esgoto, no lugar do jacaré.
+	"pork_shark": {"scene": "res://assets/models/monsters/pork_shark.glb", "scale": 0.27,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
 	"gator": {"scene": "res://assets/models/monsters/gator.glb", "scale": 0.75,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},

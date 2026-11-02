@@ -152,6 +152,10 @@ func interact(player: Player, prop: Dictionary) -> void:
 			if index < list.size():
 				_send(player.peer_id, &"_open_visitor", [index])
 		"npc":
+			# Altar que pede um objeto (needs_key): sem ele, só a fala do altar trancado (a 2ª do NPC) e nada desperta.
+			if prop.has("summon") and prop.has("needs_key") and String(prop.needs_key) not in _campaign().get("keys", []):
+				_send(player.peer_id, &"_open_dialogue", [String(prop.npc), 1])
+				return
 			var index := dialogue_index(prop.npc, _campaign().get("quests", {}))
 			_send(player.peer_id, &"_open_dialogue", [String(prop.npc), index])
 			# Ouvir a história põe as criaturas no bestiário.
@@ -347,6 +351,10 @@ func _rpc_accept(quest_id: String) -> void:
 	c.quests[quest_id] = "active"
 	if quest.has("unlocks") and quest.unlocks not in c.unlocked:
 		c.unlocked.append(quest.unlocks)
+	# Objeto de missão (chave da campanha) entregue por quem pede: o Livro do Altar do Esgoto.
+	if quest.has("grants_key") and quest.grants_key not in c.get("keys", []):
+		c.keys = c.get("keys", []) + [quest.grants_key]
+		_arena()._toast_all("TOAST_BOOK_RECEIVED", {})
 	SaveSystem.save_campaign(c, true)
 	learn(quest.get("bestiary", []))
 	sync()

@@ -150,12 +150,15 @@ const MODELS := {
 	"seated_pirate": {"scene": "res://assets/models/characters/pirate_captain_npc.glb", "scale": 1.0, "poses": {}},  # Capitão Pirata da Taverna (pirate.glb do usuário, malha parada)
 	"castle_guard": {"scene": "res://assets/models/characters/brigand_guard.glb", "scale": 1.0, "poses": {}},
 	# Aranhinha do esgoto (Spider animated, pantherone, CC BY 3.0): não ataca,
-	# só anda pelo chão. Arquivo de 1 m -> 40 cm, preta (decisão do autor).
-	"spider": {"scene": "res://assets/models/monsters/spider.glb", "scale": 0.4,
+	# só anda pelo chão. Arquivo de 1 m -> 32 cm, preta (decisão do autor, depois diminuída um pouco).
+	"spider": {"scene": "res://assets/models/monsters/spider.glb", "scale": 0.32,
 		"poses": {"walk": "walk", "idle": "idle", "talk": "idle"},
 		"colors": {"Spider": [0.03, 0.03, 0.035]}},
+	# Morcego do esgoto (o mesmo modelo dos monstros; só enfeite, voa em círculos: game/levels/flyer.gd). O arquivo tem ~10 unidades de envergadura.
+	"bat": {"scene": "res://assets/models/monsters/bat.glb", "scale": 0.14,
+		"poses": {"walk": "fly", "idle": "fly", "talk": "fly"}},
 	# Ratinho do esgoto (o mesmo modelo dos monstros antigos): não ataca, só cenário como as aranhas.
-	"rat": {"scene": "res://assets/models/monsters/rat.glb", "scale": 0.4,
+	"rat": {"scene": "res://assets/models/monsters/rat.glb", "scale": 0.5,
 		"poses": {"walk": "walk", "idle": "idle", "talk": "idle"}},
 	# Atendente da Taverna (Bartender, cdmir, CC0): o mesmo modelo da visitante sentada, em pé
 	# atrás do balcão (a animação "stand" é criada por código: o arquivo só tem a sentada).

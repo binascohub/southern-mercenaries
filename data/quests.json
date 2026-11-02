@@ -149,7 +149,7 @@
     "name_key": "QUEST_SEWER_OLD_GATOR",
     "desc_key": "QUEST_SEWER_OLD_GATOR_DESC",
     "type": "village",
-    "giver": "sewer_scavenger",
+    "giver": "sewer_ratcatcher",
     "area": "sewers_01_drains",
     "clear": [
       "sw_old_gator"
@@ -164,11 +164,12 @@
     "name_key": "QUEST_SEWER_FROG_KING",
     "desc_key": "QUEST_SEWER_FROG_KING_DESC",
     "type": "village",
-    "giver": "sewer_ratcatcher",
+    "giver": "sewer_scavenger",
     "area": "sewers_01_drains",
     "clear": [
       "sw_frog_king"
     ],
+    "grants_key": "book_frog_altar",
     "target_element": "air",
     "reward": {
       "gold": 140,

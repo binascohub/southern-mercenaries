@@ -10,7 +10,7 @@ fundo, em 5 SETORES de um monstro cada, mais salas especiais coladas nas bordas 
   4 Passagem Secreta da Guerra (linhas 6-8, colunas 4-6)      Jacarés escondidos na água     -> praça leste: GATOR VELHO (mini-chefe)
   5 Câmaras dos Cogumelos      (linhas 6-8, colunas 0-3)      Tios-Cogumelo e Escorpiões
   fundo: túnel + NINHO DA RAINHA (sala do chefe do mapa, com o Tesouro Perdido da Guerra e o portal da vitória).
-O Catador do Esgoto (missão do Gator Velho) fica na sala de entrada; o Caçador de Pragas (missão do Rei dos Sapos), no posto do lado leste: os dois, longe dos chefes.
+O Catador do Esgoto (o Homem-Aranha, que dança; missão do Rei dos Sapos, agora o Monstro de Tábuas) fica na sala de entrada; Itachi (missão do Gator Velho), no posto do lado leste: os dois, longe dos chefes.
 A vitória do mapa é só vencer a Rainha (`victory_groups`): não precisa limpar o resto.
 uso: python3 -I tools/assets/build_sewer_map.py   (na raiz do projeto)"""
 import json, math, random, re
@@ -20,10 +20,10 @@ ARENAS, QUESTS, NPCS, LEGACY = "data/arenas.json", "data/quests.json", "data/npc
 AREA = "sewers_01_drains"
 rng = random.Random(21)
 
-NC, NR = 7, 9                       # colunas x linhas de salas
+NC, NR = 11, 13                     # colunas x linhas de salas (maior que a grade 7 x 9 antiga: o esgoto é UM andar só, sem passagens para outros mapas)
 PX, PZ = 9, 8                       # passo entre os centros (8 m de sala + 1 m de vão na horizontal; as de baixo se encostam)
-X0, Z0 = -27, -10                   # centro da coluna 0 e da linha 0
-START, END = (3, 0), (3, 8)
+X0, Z0 = -45, -10                   # centro da coluna 0 e da linha 0 (a coluna do meio fica em x = 0)
+START, END = (NC // 2, 0), (NC // 2, NR - 1)
 
 
 def cx(c): return X0 + PX * c
@@ -31,18 +31,18 @@ def cz(r): return Z0 - PZ * r
 
 
 def sector(c, r):
-    if r <= 2:
+    if r < NR // 3:
         return 1
-    if r <= 5:
-        return 2 if c <= 3 else 3
-    return 5 if c <= 3 else 4
+    if r < 2 * NR // 3:
+        return 2 if c <= NC // 2 else 3
+    return 5 if c <= NC // 2 else 4
 
 
 # Salas especiais coladas nas bordas: (célula, lado) -> sala
-ATTACH_W = (0, 4)    # praça oeste (Rei dos Sapos), a leste da qual fica a célula (0,4)
-ATTACH_E = (6, 7)    # praça leste (Gator Velho)
-POST = (6, 1)        # posto do Caçador de Pragas
-SECRET = (6, 3)      # passagem do segredo
+ATTACH_W = (0, NR // 2)    # praça oeste (Rei dos Sapos), a leste da qual fica a célula (0,4)
+ATTACH_E = (NC - 1, NR - 1)    # praça leste (Gator Velho)
+POST = (NC - 1, 1)        # posto do Caçador de Pragas
+SECRET = (NC - 1, NR // 3 + 1)      # passagem do segredo
 
 legacy = json.load(open(LEGACY, encoding="utf-8"))
 data = json.load(open(ARENAS, encoding="utf-8"))
@@ -185,8 +185,16 @@ for i, c in enumerate(s4):
 for i, c in enumerate(pick(5, 6, avoid_dead=True)):
     add("sw5_%02d" % (i + 1), c, [("fungus_uncle", 1), ("venom_scorpion", 2)] if i % 2 == 0 else [("venom_scorpion", 3)], 2)
 # mini-chefes (as missões dos NPCs pedem estes grupos) e a Rainha
-encounters.append({"id": "sw_frog_king", "position": praca_w, "level": 1, "spread": 3.4,
-                   "monsters": [{"monster": "frog_king", "count": 1}, {"monster": "plague_frog", "count": 3}]})
+# O Rei dos Sapos (mini-chefe 1) não nasce no mapa: o altar no centro do esgoto (sala maze_3_6) o invoca ao ser tocado ('summon' no objeto).
+# Save point (cristal + checkpoint "altar"): na frente da entrada da sala do altar, do lado da sala por onde o labirinto chega a ela (a de menor profundidade).
+ALTAR_CELL = (NC // 2, NR // 2)
+_parent = min((n for n in neighbors(ALTAR_CELL) if frozenset((ALTAR_CELL, n)) in open_edges), key=lambda n: depth[n])
+_dx, _dz = _parent[0] - ALTAR_CELL[0], -(_parent[1] - ALTAR_CELL[1])  # linha maior = z menor
+_door = 4.5 if _dx else 4.0  # salas lado a lado têm 1 m de vão; as de cima e de baixo se encostam
+ALTAR_ENTRY = [round(cx(ALTAR_CELL[0]) + _dx * (_door + 2.5), 1), round(cz(ALTAR_CELL[1]) + _dz * (_door + 2.5), 1)]
+FROG_ALTAR = {"id": "sewer_frog_altar", "kind": "npc", "npc": "sewer_frog_altar", "kit": "Podium", "rotation": 0, "position": [0, cz(NR // 2)],
+              "needs_key": "book_frog_altar", "summon": {"id": "sw_frog_king", "position": [0, cz(NR // 2) + 3.5], "level": 1, "toast": "TOAST_FROG_ALTAR_AWAKENS",
+                         "monsters": [{"monster": "frog_king", "count": 1}]}}
 encounters.append({"id": "sw_old_gator", "position": praca_e, "level": 2, "spread": 3.4,
                    "monsters": [{"monster": "old_gator", "count": 1}, {"monster": "sewer_gator", "count": 2}]})
 sec = dict(legacy["secret_elite"])
@@ -197,8 +205,14 @@ encounters.append(sec)
 encounters.append({"id": "sw_nest_guard", "position": [0, tunnel_z], "level": 2, "monsters": [{"monster": "plague_frog", "count": 3}]})
 encounters.append({"id": "sw_queen", "position": [0, nest_z + (-42 - -36)], "level": 2, "monsters": [{"monster": "demon_rat_queen", "count": 1}]})
 
-# Só os chefes do esgoto (Rei dos Sapos, Gator Velho e a Rainha) ficam, sozinhos; nenhum outro monstro revida.
-SEWER_BOSSES = ("frog_king", "old_gator", "demon_rat_queen")
+# Troll Mauler (piacenti, CC BY 3.0): o monstro do Setor 1 (Bueiros), um por terço do setor, em células sem sorteio (não mexe nos outros sorteios do mapa).
+troll_cells = sorted(by_sector[1], key=lambda c: depth[c])
+for i, q in enumerate((0.3, 0.6, 0.9)):
+    c = troll_cells[min(int(len(troll_cells) * q), len(troll_cells) - 1)]
+    encounters.append({"id": "sw1_troll_%d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 1, "monsters": [{"monster": "troll_mauler", "count": 1}]})
+
+# Só os chefes do esgoto (Rei dos Sapos, Gator Velho e a Rainha) e o Troll Mauler do Setor 1 ficam, sozinhos; nenhum outro monstro revida.
+SEWER_BOSSES = ("frog_king", "old_gator", "demon_rat_queen", "troll_mauler")
 encounters = [dict(e, monsters=[m for m in e["monsters"] if m["monster"] in SEWER_BOSSES]) for e in encounters]
 encounters = [e for e in encounters if e["monsters"]]
 
@@ -230,16 +244,19 @@ for p in legacy["nest_props"]:
 # Piso todo de pedra: sem água (nem o lago do Gator Velho).
 props = [p for p in props if p["kind"] != "water"]
 # brasão da Passagem da Guerra (o Arqueiro reconhece) na entrada do setor 4
-crest_cell = (4, 6)
+sector_entry = {s: min((c for c in depth if sector(*c) == s), key=lambda c: depth[c]) for s in range(1, 6)}  # a célula mais rasa de cada setor
+crest_cell = sector_entry[4]
 crest = dict(legacy["war_crest"])
 crest["position"] = [cx(crest_cell[0]) - 2.5, cz(crest_cell[1]) - 3.2]
 props.append(crest)
 # cartazes dos setores
-SIGN_AT = {1: (3, 0), 2: (2, 3), 3: (4, 3), 4: (5, 6), 5: (2, 6)}
+SIGN_AT = sector_entry
 for s, c in SIGN_AT.items():
     props.append({"id": "sign_sector_%d" % s, "kind": "sign", "name_key": "PROP_SEWER_SECTOR_%d" % s, "position": [cx(c[0]) + 2.8, cz(c[1]) + 2.6],
                   "text_key": "SIGN_SEWER_SECTOR_%d" % s})
 props.append({"id": "sign_nest", "kind": "sign", "name_key": "PROP_SEWER_NEST", "position": [2.8, tunnel_z - 5.0], "text_key": "SIGN_SEWER_NEST"})
+
+props.append(FROG_ALTAR)
 
 # --- poças de lodo, objetos quebráveis e decoração -------------------------------------------------------------------------------------------------
 hazards = []
@@ -293,6 +310,7 @@ for e in legacy["war_decor"]:
 decor.append({"light": [0.4, 0.7, 0.35], "position": praca_e, "range": 11, "energy": 0.9, "y": 0.6})
 decor.append({"light": [0.4, 0.7, 0.35], "position": praca_w, "range": 11, "energy": 0.9, "y": 0.6})
 decor.append({"light": [0.4, 0.7, 0.35], "position": secret_c, "range": 9, "energy": 0.8, "y": 0.6})
+decor.append({"light": [0.4, 0.7, 0.35], "position": FROG_ALTAR["position"], "range": 8, "energy": 1.1, "y": 1.2})
 for piece, pos in (("Mushroom_Cluster", [praca_w[0] - 8.6, praca_w[1] - 7.4]), ("Mushroom_Tall", [praca_w[0] + 8.4, praca_w[1] + 7.2]),
                    ("Barrel", [praca_w[0] - 9.2, praca_w[1] + 7.6]), ("Crate_Wooden", [praca_w[0] + 9.0, praca_w[1] - 7.6])):
     decor.append({"piece": piece, "position": [round(pos[0], 1), round(pos[1], 1)], "rotation": rng.randrange(0, 360, 15)})
@@ -321,11 +339,11 @@ area = {
     "rooms": rooms,
     "encounters": encounters,
     "hazards": hazards,
-    "entries": {"start": [0, 3], "sewer": [0, 3]},
+    "entries": {"start": [0, 3], "sewer": [0, 3], "altar": ALTAR_ENTRY}, "save_point": "altar",
     "props": props,
     "quest_spots": quest_spots,
     "breakables": breakables,
-    "style": dict(legacy["style"], puddles=False, wood_tone=[0.192, 0.145, 0.11]),  # madeira na cor da mesa redonda da Taverna
+    "style": dict(legacy["style"], puddles=False, bats=True, wood_tone=[0.192, 0.145, 0.11]),  # madeira na cor da mesa redonda da Taverna
     "decor": decor,
     "passive": True,
 }
@@ -341,23 +359,26 @@ print("limites: x", min(r["center"][0] - r["size"][0] / 2 for r in rooms), max(r
 npcs = json.load(open(NPCS, encoding="utf-8"))
 quests = json.load(open(QUESTS, encoding="utf-8"))
 npcs["sewer_scavenger"] = {
-    "_comment": "Catador do Esgoto (Esgoto, sala de entrada): pede a cabeça do Gator Velho, que domina a Passagem da Guerra, no leste do fundo.",
+    "_comment": "Catador do Esgoto (o Homem-Aranha; sala de entrada): dá a missão do primeiro mini-chefe, o Rei dos Sapos (agora o Monstro de Tábuas), na praça oeste; ele vive dançando.",
     "name_key": "NPC_SEWER_SCAVENGER", "color": [0.4, 0.4, 0.3],
-    "dialogues": [{"when": {"quest_new": "sewer_old_gator"}, "lines": ["DLG_SEWER_GATOR_1", "DLG_SEWER_GATOR_2", "DLG_SEWER_GATOR_3"], "offer": "sewer_old_gator"},
-                  {"when": {"quest_active": "sewer_old_gator"}, "lines": ["DLG_SEWER_GATOR_ACTIVE"]},
-                  {"when": {}, "lines": ["DLG_SEWER_GATOR_DONE"]}],
-    "body": {"sex": "male", "hair": ["Hair_Buzzed", "Hair_Beard"], "hair_color": [0.22, 0.16, 0.1], "pose": "idle", "outfit": {"body": "cloth"}}}
-npcs["sewer_ratcatcher"] = {
-    "_comment": "Itachi, o Caçador de Pragas do Esgoto (posto do lado leste; modelo próprio em NpcModel): pede o fim do Rei dos Sapos, que reina na praça oeste.",
-    "name_key": "NPC_SEWER_RATCATCHER", "color": [0.45, 0.35, 0.25],
     "dialogues": [{"when": {"quest_new": "sewer_frog_king"}, "lines": ["DLG_SEWER_FROG_1", "DLG_SEWER_FROG_2", "DLG_SEWER_FROG_3"], "offer": "sewer_frog_king"},
                   {"when": {"quest_active": "sewer_frog_king"}, "lines": ["DLG_SEWER_FROG_ACTIVE"]},
                   {"when": {}, "lines": ["DLG_SEWER_FROG_DONE"]}],
+    "body": {"sex": "male", "hair": ["Hair_Buzzed", "Hair_Beard"], "hair_color": [0.22, 0.16, 0.1], "pose": "idle", "outfit": {"body": "cloth"}}}
+npcs["sewer_ratcatcher"] = {
+    "_comment": "Itachi, o Caçador de Pragas do Esgoto (posto do lado leste; modelo próprio em NpcModel): dá a missão do segundo mini-chefe, o Gator Velho, que domina a Passagem da Guerra, na praça leste.",
+    "name_key": "NPC_SEWER_RATCATCHER", "color": [0.45, 0.35, 0.25],
+    "dialogues": [{"when": {"quest_new": "sewer_old_gator"}, "lines": ["DLG_SEWER_GATOR_1", "DLG_SEWER_GATOR_2", "DLG_SEWER_GATOR_3"], "offer": "sewer_old_gator"},
+                  {"when": {"quest_active": "sewer_old_gator"}, "lines": ["DLG_SEWER_GATOR_ACTIVE"]},
+                  {"when": {}, "lines": ["DLG_SEWER_GATOR_DONE"]}],
     "body": {"sex": "male", "hair": ["Hair_Long"], "hair_color": [0.03, 0.02, 0.03], "pose": "idle", "outfit": {"body": "cloth"}}}
-quests["sewer_old_gator"] = {"name_key": "QUEST_SEWER_OLD_GATOR", "desc_key": "QUEST_SEWER_OLD_GATOR_DESC", "type": "village", "giver": "sewer_scavenger", "area": AREA,
+npcs["sewer_frog_altar"] = {
+    "_comment": "Altar do Rei dos Sapos (centro do mapa do Esgoto, sala maze_3_6): tocá-lo desperta o Rei dos Sapos, o mini-chefe 1 ('summon' no objeto em arenas.json); a missão do Catador termina quando ele cai.",
+    "name_key": "NPC_SEWER_FROG_ALTAR", "color": [0.4, 0.5, 0.35], "dialogues": [{"when": {}, "lines": ["DLG_FROG_ALTAR_1", "DLG_FROG_ALTAR_2"]}, {"when": {}, "lines": ["DLG_FROG_ALTAR_LOCKED"]}]}  # a 2ª fala (trancado) só abre pelo Town.interact, sem o livro
+quests["sewer_old_gator"] = {"name_key": "QUEST_SEWER_OLD_GATOR", "desc_key": "QUEST_SEWER_OLD_GATOR_DESC", "type": "village", "giver": "sewer_ratcatcher", "area": AREA,
                              "clear": ["sw_old_gator"], "target_element": "fire", "reward": {"gold": 220, "xp": 380}}
-quests["sewer_frog_king"] = {"name_key": "QUEST_SEWER_FROG_KING", "desc_key": "QUEST_SEWER_FROG_KING_DESC", "type": "village", "giver": "sewer_ratcatcher", "area": AREA,
-                             "clear": ["sw_frog_king"], "target_element": "air", "reward": {"gold": 140, "xp": 220}}
+quests["sewer_frog_king"] = {"name_key": "QUEST_SEWER_FROG_KING", "desc_key": "QUEST_SEWER_FROG_KING_DESC", "type": "village", "giver": "sewer_scavenger", "area": AREA,
+                             "clear": ["sw_frog_king"], "grants_key": "book_frog_altar", "target_element": "air", "reward": {"gold": 140, "xp": 220}}
 if "sewer_treasure" in quests:
     quests["sewer_treasure"]["area"] = AREA
 open(NPCS, "w", encoding="utf-8").write(json.dumps(npcs, indent=2, ensure_ascii=False) + "\n")
@@ -429,6 +450,45 @@ T = {
                         "The Rat Queen's Nest. The War's Lost Treasure sleeps with her. Come back prepared.",
                         "Nido de la Reina de las Ratas. El Tesoro Perdido de la Guerra duerme con ella. Vuelvan preparados."),
 }
+# As duas missões trocaram de dono: o Catador (Homem-Aranha) pede o Rei dos Sapos (o Monstro de Tábuas, a oeste); Itachi pede o Gator Velho (a leste). Falas na voz de cada um.
+T.update({
+    "DLG_SEWER_FROG_1": ("Sou o Homem-Aranha. Vim do multiverso e fui parar neste esgoto. Sim, sou um herói, mas até herói precisa de ajuda.",
+                         "I am Spider-Man. I came from the multiverse and landed in this sewer. Yes, I am a hero, but even heroes need help.",
+                         "Soy el Hombre Araña. Vengo del multiverso y caí en esta alcantarilla. Sí, soy un héroe, pero hasta los héroes necesitan ayuda."),
+    "DLG_SEWER_FROG_2": ("O povo chama de Rei dos Sapos, mas não tem nada de sapo: é um monstro de carne e tábuas, cheio de pregos, na praça do lado oeste. Sozinho eu não dou conta.",
+                         "Folks call it the Frog King, but there is nothing froggy about it: it is a monster of flesh and planks, full of nails, in the plaza on the west side. I cannot take it alone.",
+                         "La gente lo llama el Rey de los Sapos, pero de sapo no tiene nada: es un monstruo de carne y tablas, lleno de clavos, en la plaza del lado oeste. Yo solo no puedo con él."),
+    "DLG_SEWER_FROG_3": ("Derrube ele comigo, por favor. Prometo que a ajuda vale a pena: é só seguir para o oeste, até a praça grande.",
+                         "Take it down with me, please. I promise the help is worth it: just head west, to the big plaza.",
+                         "Derríbalo conmigo, por favor. Prometo que la ayuda vale la pena: solo sigue hacia el oeste, hasta la plaza grande."),
+    "DLG_SEWER_FROG_ACTIVE": ("O monstro ainda manda na praça do oeste. Eu ajudo no que puder, mas preciso de vocês para derrubá-lo. Cuidado com a investida!",
+                              "The monster still rules the west plaza. I will help however I can, but I need you to bring it down. Watch out for its charge!",
+                              "El monstruo aún manda en la plaza del oeste. Ayudo en lo que pueda, pero los necesito para derribarlo. ¡Cuidado con su embestida!"),
+    "DLG_SEWER_FROG_DONE": ("Caiu mesmo? Valeu! Até um herói do multiverso precisa de uma equipe. Seu amigo e vizinho do esgoto agradece.",
+                            "He really fell? Thanks! Even a hero from the multiverse needs a team. Your friendly neighborhood sewer scavenger appreciates it.",
+                            "¿De verdad cayó? ¡Gracias! Hasta un héroe del multiverso necesita un equipo. Tu amigo y vecino de la alcantarilla lo agradece."),
+    "DLG_SEWER_GATOR_1": ("Há um jacaré antigo na Passagem Secreta da Guerra. Ninguém passa por lá sem que ele queira.",
+                          "There is an ancient gator in the Secret War Passage. No one gets through unless he allows it.",
+                          "Hay un caimán antiguo en el Pasaje Secreto de la Guerra. Nadie pasa si él no quiere."),
+    "DLG_SEWER_GATOR_2": ("O Gator Velho só sai da água quando alguém chega perto, e nunca vem sozinho.",
+                          "The Old Gator only leaves the water when someone gets close, and he never comes alone.",
+                          "El Caimán Viejo solo sale del agua cuando alguien se acerca, y nunca viene solo."),
+    "DLG_SEWER_GATOR_3": ("A praça dele fica no lado leste, no fundo do labirinto. Derrubem-no e eu recompenso vocês.",
+                          "His plaza is on the east side, deep in the maze. Bring him down and I will reward you.",
+                          "Su plaza está en el lado este, al fondo del laberinto. Derríbenlo y los recompenso."),
+    "DLG_SEWER_GATOR_ACTIVE": ("O Gator Velho ainda domina a Passagem. Sigam para o leste, rumo ao fundo.",
+                               "The Old Gator still rules the Passage. Head east, toward the back.",
+                               "El Caimán Viejo aún domina el Pasaje. Sigan hacia el este, hacia el fondo."),
+    "DLG_SEWER_GATOR_DONE": ("A Passagem está livre. Bom trabalho.", "The Passage is free. Good work.", "El Pasaje está libre. Buen trabajo."),
+    "QUEST_SEWER_OLD_GATOR_DESC": ("Itachi quer a Passagem Secreta da Guerra livre: derrote o Gator Velho, na praça do lado leste do esgoto.",
+                                   "Itachi wants the Secret War Passage cleared: defeat the Old Gator in the plaza on the east side of the sewer.",
+                                   "Itachi quiere el Pasaje Secreto de la Guerra libre: derrota al Caimán Viejo en la plaza del lado este de la alcantarilla."),
+    "QUEST_SEWER_FROG_KING_DESC": ("O Catador do Esgoto quer o Rei dos Sapos fora do caminho: derrote o monstro da praça do lado oeste do esgoto.",
+                                   "The Sewer Scavenger wants the Frog King out of the way: defeat the monster in the plaza on the west side of the sewer.",
+                                   "El Rebuscador de la Alcantarilla quiere al Rey de los Sapos fuera del camino: derrota al monstruo de la plaza del lado oeste de la alcantarilla."),
+})
+T.update({k: v for k, v in {'NPC_SEWER_FROG_ALTAR': ('Altar do Rei dos Sapos', "Frog King's Altar", 'Altar del Rey de los Sapos'), 'DLG_FROG_ALTAR_1': ('Um altar de pedra manchado de lodo, no coração do esgoto. Há marcas de garras e de pregos na pedra.', 'A stone altar stained with sludge, in the heart of the sewer. There are claw and nail marks on the stone.', 'Un altar de piedra manchado de lodo, en el corazón de la alcantarilla. Hay marcas de garras y de clavos en la piedra.'), 'DLG_FROG_ALTAR_2': ('Você toca na pedra e o chão estremece: o Rei dos Sapos acorda na sala do altar.', 'You touch the stone and the floor trembles: the Frog King wakes in the altar room.', 'Tocas la piedra y el suelo tiembla: el Rey de los Sapos despierta en la sala del altar.'), 'TOAST_FROG_ALTAR_AWAKENS': ('O altar estremece: o Rei dos Sapos desperta!', 'The altar trembles: the Frog King awakens!', 'El altar tiembla: ¡el Rey de los Sapos despierta!'), 'DLG_SEWER_FROG_2': ('O povo chama de Rei dos Sapos, mas não tem nada de sapo: é um monstro de carne e tábuas, cheio de pregos. Ele dorme até alguém tocar o altar, no centro do esgoto. Sozinho eu não dou conta.', 'Folks call it the Frog King, but there is nothing froggy about it: it is a monster of flesh and planks, full of nails. It sleeps until someone touches the altar in the center of the sewer. I cannot take it alone.', 'La gente lo llama el Rey de los Sapos, pero de sapo no tiene nada: es un monstruo de carne y tablas, lleno de clavos. Duerme hasta que alguien toca el altar, en el centro de la alcantarilla. Yo solo no puedo con él.'), 'DLG_SEWER_FROG_3': ('Derrube ele comigo, por favor. Prometo que a ajuda vale a pena: toquem o altar no centro do esgoto e preparem-se.', 'Take it down with me, please. I promise the help is worth it: touch the altar in the center of the sewer and brace yourselves.', 'Derríbalo conmigo, por favor. Prometo que la ayuda vale la pena: toquen el altar en el centro de la alcantarilla y prepárense.'), 'DLG_SEWER_FROG_ACTIVE': ('O monstro só acorda quando alguém toca o altar, no centro do esgoto. Cuidado com a investida!', 'The monster only wakes when someone touches the altar in the center of the sewer. Watch out for its charge!', 'El monstruo solo despierta cuando alguien toca el altar, en el centro de la alcantarilla. ¡Cuidado con su embestida!'), 'QUEST_SEWER_FROG_KING_DESC': ('O Catador do Esgoto quer o Rei dos Sapos fora do caminho: toque o altar no centro do esgoto para despertá-lo e derrote o monstro.', 'The Sewer Scavenger wants the Frog King out of the way: touch the altar in the center of the sewer to wake it and defeat the monster.', 'El Rebuscador de la Alcantarilla quiere al Rey de los Sapos fuera del camino: toca el altar en el centro de la alcantarilla para despertarlo y derrota al monstruo.')}.items()})
+T.update({k: v for k, v in {'TOAST_BOOK_RECEIVED': ('O Catador do Esgoto entregou o Livro do Altar!', 'The Sewer Scavenger handed over the Altar Book!', '¡El Rebuscador de la Alcantarilla entregó el Libro del Altar!'), 'DLG_FROG_ALTAR_LOCKED': ('O altar não reage. Há um vão vazio no centro da pedra, do tamanho de um livro. O Catador do Esgoto deve ter o que falta.', 'The altar does not react. There is an empty gap in the middle of the stone, the size of a book. The Sewer Scavenger must have what is missing.', 'El altar no reacciona. Hay un hueco vacío en el centro de la piedra, del tamaño de un libro. El Rebuscador de la Alcantarilla debe tener lo que falta.'), 'DLG_FROG_ALTAR_1': ('Um altar de pedra manchado de lodo, no coração do esgoto. Há um vão no centro, do tamanho de um livro, e marcas de garras e de pregos ao redor.', 'A stone altar stained with sludge, in the heart of the sewer. There is a gap in the center, the size of a book, with claw and nail marks around it.', 'Un altar de piedra manchado de lodo, en el corazón de la alcantarilla. Hay un hueco en el centro, del tamaño de un libro, y marcas de garras y de clavos alrededor.'), 'DLG_FROG_ALTAR_2': ('Você apoia o Livro do Altar na pedra e lê em voz alta: o chão estremece e o Rei dos Sapos acorda na sala do altar.', 'You rest the Altar Book on the stone and read aloud: the floor trembles and the Frog King wakes in the altar room.', 'Apoyas el Libro del Altar en la piedra y lees en voz alta: el suelo tiembla y el Rey de los Sapos despierta en la sala del altar.'), 'DLG_SEWER_FROG_3': ('Derrube ele comigo, por favor. Leve este livro: ele abre o altar no centro do esgoto. Apoiem-no na pedra, leiam e preparem-se.', 'Take it down with me, please. Take this book: it opens the altar in the center of the sewer. Rest it on the stone, read it aloud, and brace yourselves.', 'Derríbalo conmigo, por favor. Llévate este libro: abre el altar en el centro de la alcantarilla. Apóyenlo en la piedra, léanlo y prepárense.'), 'DLG_SEWER_FROG_ACTIVE': ('O monstro só acorda quando alguém lê o livro no altar, no centro do esgoto. Cuidado com a investida!', 'The monster only wakes when someone reads the book at the altar in the center of the sewer. Watch out for its charge!', 'El monstruo solo despierta cuando alguien lee el libro en el altar, en el centro de la alcantarilla. ¡Cuidado con su embestida!'), 'QUEST_SEWER_FROG_KING_DESC': ('O Catador do Esgoto quer o Rei dos Sapos fora do caminho: leve o livro dele ao altar no centro do esgoto para despertar o monstro e derrote-o.', 'The Sewer Scavenger wants the Frog King out of the way: take his book to the altar in the center of the sewer to wake the monster, then defeat it.', 'El Rebuscador de la Alcantarilla quiere al Rey de los Sapos fuera del camino: lleva su libro al altar en el centro de la alcantarilla para despertar al monstruo y derrótalo.')}.items()})  # o Livro do Altar
 for lang, i in (("pt_BR", 0), ("en", 1), ("es", 2)):
     path = "locale/%s.po" % lang
     po = open(path, encoding="utf-8").read()

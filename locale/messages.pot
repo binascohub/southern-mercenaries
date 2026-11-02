@@ -2981,3 +2981,21 @@ msgstr ""
 
 msgid "DLG_OLD_LADY_DONE"
 msgstr ""
+
+msgid "NPC_SEWER_FROG_ALTAR"
+msgstr ""
+
+msgid "DLG_FROG_ALTAR_1"
+msgstr ""
+
+msgid "DLG_FROG_ALTAR_2"
+msgstr ""
+
+msgid "TOAST_FROG_ALTAR_AWAKENS"
+msgstr ""
+
+msgid "TOAST_BOOK_RECEIVED"
+msgstr ""
+
+msgid "DLG_FROG_ALTAR_LOCKED"
+msgstr ""

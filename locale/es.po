@@ -3005,43 +3005,43 @@ msgid "QUEST_SEWER_OLD_GATOR"
 msgstr "El Caimán Viejo"
 
 msgid "QUEST_SEWER_OLD_GATOR_DESC"
-msgstr "El Rebuscador de la Alcantarilla quiere recuperar el Pasaje Secreto de la Guerra: derrota al Caimán Viejo en la plaza del lado este de la alcantarilla."
+msgstr "Itachi quiere el Pasaje Secreto de la Guerra libre: derrota al Caimán Viejo en la plaza del lado este de la alcantarilla."
 
 msgid "DLG_SEWER_GATOR_1"
-msgstr "¡Psst! Yo rebuscaba por aquí, hasta que el Caimán Viejo se adueñó del Pasaje de la Guerra."
+msgstr "Hay un caimán antiguo en el Pasaje Secreto de la Guerra. Nadie pasa si él no quiere."
 
 msgid "DLG_SEWER_GATOR_2"
-msgstr "Solo sale del agua cuando alguien se acerca, y siempre va con los caimanes menores."
+msgstr "El Caimán Viejo solo sale del agua cuando alguien se acerca, y nunca viene solo."
 
 msgid "DLG_SEWER_GATOR_3"
-msgstr "Su plaza está en el lado este, al fondo del laberinto. Derríbenlo y el pasaje vuelve a ser nuestro."
+msgstr "Su plaza está en el lado este, al fondo del laberinto. Derríbenlo y los recompenso."
 
 msgid "DLG_SEWER_GATOR_ACTIVE"
-msgstr "El Caimán Viejo aún manda en el Pasaje de la Guerra. Sigan por el este, hacia el fondo."
+msgstr "El Caimán Viejo aún domina el Pasaje. Sigan hacia el este, hacia el fondo."
 
 msgid "DLG_SEWER_GATOR_DONE"
-msgstr "¿El Viejo cayó? Entonces el Pasaje es nuestro. Gracias, de corazón."
+msgstr "El Pasaje está libre. Buen trabajo."
 
 msgid "QUEST_SEWER_FROG_KING"
 msgstr "El Rey de los Sapos"
 
 msgid "QUEST_SEWER_FROG_KING_DESC"
-msgstr "Itachi quiere acabar con la plaga de sapos: derrota al Rey de los Sapos en la plaza del lado oeste de la alcantarilla."
+msgstr "El Rebuscador de la Alcantarilla quiere al Rey de los Sapos fuera del camino: lleva su libro al altar en el centro de la alcantarilla para despertar al monstruo y derrótalo."
 
 msgid "DLG_SEWER_FROG_1"
-msgstr "Conozco bien las plagas. Pero esta es distinta: un sapo coronado que manda sobre todos los demás."
+msgstr "Soy el Hombre Araña. Vengo del multiverso y caí en esta alcantarilla. Sí, soy un héroe, pero hasta los héroes necesitan ayuda."
 
 msgid "DLG_SEWER_FROG_2"
-msgstr "El Rey de los Sapos reina en una plaza del lado oeste, entre los charcos, rodeado de sapos."
+msgstr "La gente lo llama el Rey de los Sapos, pero de sapo no tiene nada: es un monstruo de carne y tablas, lleno de clavos. Duerme hasta que alguien toca el altar, en el centro de la alcantarilla. Yo solo no puedo con él."
 
 msgid "DLG_SEWER_FROG_3"
-msgstr "Derríbenlo y la plaga se acaba. Pago bien, no hará falta pedirlo dos veces."
+msgstr "Derríbalo conmigo, por favor. Llévate este libro: abre el altar en el centro de la alcantarilla. Apóyenlo en la piedra, léanlo y prepárense."
 
 msgid "DLG_SEWER_FROG_ACTIVE"
-msgstr "El Rey de los Sapos aún reina en el oeste. Sigan el croar: está cerca de los charcos grandes."
+msgstr "El monstruo solo despierta cuando alguien lee el libro en el altar, en el centro de la alcantarilla. ¡Cuidado con su embestida!"
 
 msgid "DLG_SEWER_FROG_DONE"
-msgstr "¡Silencio! Qué paz. La alcantarilla respira de nuevo."
+msgstr "¿De verdad cayó? ¡Gracias! Hasta un héroe del multiverso necesita un equipo. Tu amigo y vecino de la alcantarilla lo agradece."
 
 msgid "PROP_SEWER_SECTOR_1"
 msgstr "Desagües de la Calle Principal"
@@ -3078,3 +3078,36 @@ msgstr "Nido de la Reina"
 
 msgid "SIGN_SEWER_NEST"
 msgstr "Nido de la Reina de las Ratas. El Tesoro Perdido de la Guerra duerme con ella. Vuelvan preparados."
+
+msgid "OPTIONS_QUEST_TRAIL"
+msgstr "Huellas hasta el objetivo de la misión"
+
+msgid "NPC_SEWER_FROG_ALTAR"
+msgstr "Altar del Rey de los Sapos"
+
+msgid "DLG_FROG_ALTAR_1"
+msgstr "Un altar de piedra manchado de lodo, en el corazón de la alcantarilla. Hay un hueco en el centro, del tamaño de un libro, y marcas de garras y de clavos alrededor."
+
+msgid "DLG_FROG_ALTAR_2"
+msgstr "Apoyas el Libro del Altar en la piedra y lees en voz alta: el suelo tiembla y el Rey de los Sapos despierta en la sala del altar."
+
+msgid "TOAST_FROG_ALTAR_AWAKENS"
+msgstr "El altar tiembla: ¡el Rey de los Sapos despierta!"
+
+msgid "TOAST_BOOK_RECEIVED"
+msgstr "¡El Rebuscador de la Alcantarilla entregó el Libro del Altar!"
+
+msgid "DLG_FROG_ALTAR_LOCKED"
+msgstr "El altar no reacciona. Hay un hueco vacío en el centro de la piedra, del tamaño de un libro. El Rebuscador de la Alcantarilla debe tener lo que falta."
+
+msgid "MONSTER_TROLL_MAULER"
+msgstr "Troll Aplastador"
+
+msgid "BEAST_TROLL_MAULER"
+msgstr "Troll Aplastador"
+
+msgid "BEAST_TROLL_MAULER_LEGEND"
+msgstr "Un bruto encorvado bajo sus propios brazos, de piel gruesa y llena de cicatrices. Rondaba los muelles hasta que la alcantarilla se volvió su hogar."
+
+msgid "BEAST_TROLL_MAULER_HINT"
+msgstr "Lento y pesado: espera el aviso del golpe y esquiva. El Fuego le hace más daño."
