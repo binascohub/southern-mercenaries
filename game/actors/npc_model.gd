@@ -136,7 +136,7 @@ const MODELS := {
 	# (parado na pose do arquivo); 1,7 m no arquivo -> ~1,8 m. É o Bobo da Corte da Sala do Rei.
 	"court_jester": {"scene": "res://assets/models/characters/court_jester/cerimonial_guard.dae", "scale": 1.05, "poses": {}},
 	# Pirata sentado (Seated pirate with poor rig, pre, CC BY 3.0): malha parada na pose de sentado (sem animação); NPC da missão das Docas, na taverna.
-	"seated_pirate": {"scene": "res://assets/models/characters/pirate_seated.glb", "scale": 1.0, "poses": {}},
+	"seated_pirate": {"scene": "res://assets/models/characters/pirate_captain_npc.glb", "scale": 1.0, "poses": {}},  # Capitão Pirata da Taverna (pirate.glb do usuário, malha parada)
 	"castle_guard": {"scene": "res://assets/models/characters/brigand_guard.glb", "scale": 1.0, "poses": {}},
 	# Aranhinha do esgoto (Spider animated, pantherone, CC BY 3.0): não ataca,
 	# só anda pelo chão. Arquivo de 1 m -> 40 cm, preta (decisão do autor).
@@ -185,6 +185,9 @@ const MODELS := {
 	"crab": {"scene": "res://assets/models/characters/crab.glb", "scale": 2.0, "poses": {}},
 	"squirrel": {"scene": "res://assets/models/characters/squirrel_forest.glb", "scale": 1.0, "poses": {}},
 	"raccoon": {"scene": "res://assets/models/characters/raccoon_forest.glb", "scale": 1.0, "poses": {}},
+	# Benny, o Rottweiler (CC BY-SA 3.0): anda pela Taverna ("walk" é a corrida do arquivo).
+	"rottweiler": {"scene": "res://assets/models/props/Rottweiler.glb", "scale": 1.0,
+		"poses": {"walk": "walk", "idle": "idle", "talk": "idle"}},
 	"farm_horse": {"scene": "res://assets/models/characters/farm_horse.glb", "scale": 1.0,
 		"poses": {"walk": "walk", "idle": "idle", "talk": "idle"}},
 }

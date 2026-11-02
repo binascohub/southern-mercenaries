@@ -2966,7 +2966,7 @@ msgid "MONSTER_QUEEN_SCORPION"
 msgstr "Scorpion Queen"
 
 msgid "NPC_SEATED_PIRATE"
-msgstr "Old Sea Wolf"
+msgstr "Pirate Captain"
 
 msgid "DLG_PIRATE_1"
 msgstr "Sit down, mercenary. See that pier out there, at the Docks? It used to be mine: now it's just frogs, bats and ugly anglerfish."
@@ -2988,3 +2988,21 @@ msgstr "The Old Sea Wolf's Pier"
 
 msgid "QUEST_DOCKS_SMUGGLERS_DESC"
 msgstr "The Old Sea Wolf, in the tavern, wants the Docks pier free of critters: defeat every encounter on the Docks map."
+
+msgid "NPC_OLD_LADY"
+msgstr "Tavern Old Lady"
+
+msgid "DLG_OLD_LADY_1"
+msgstr "Sit, sit. This old woman has seen many people walk through that door, and few return from the woods."
+
+msgid "DLG_OLD_LADY_2"
+msgstr "The Leshy lives in the Forest, a giant of bark and stone. He is Earth — Fire is what the old bark fears."
+
+msgid "DLG_OLD_LADY_3"
+msgstr "Bring him down and I will reward you. The ranger Aeliana waits on the trail."
+
+msgid "DLG_OLD_LADY_ACTIVE"
+msgstr "The Leshy sleeps deep in the woods. Take Fire with you, dears."
+
+msgid "DLG_OLD_LADY_DONE"
+msgstr "So the woods breathe again. How good to have you around."

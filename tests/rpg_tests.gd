@@ -972,7 +972,7 @@ func _test_sewers() -> void:
 	for quest_id in ["forest_stone_golem", "forest_fire_golem", "forest_leshy"]:
 		var mission: Dictionary = GameData.quests.get(quest_id, {})
 		_check(mission.get("area", "") == "forest_01_path" and mission.get("clear", []).all(func(id: String) -> bool: return id in forest_ids)
-			and village_npcs.any(func(p: Dictionary) -> bool: return p.npc == mission.get("giver", "")) and tr(mission.get("name_key", "")) != "",
+			and (village_npcs.any(func(p: Dictionary) -> bool: return p.npc == mission.get("giver", "")) or GameData.arenas.tavern.props.any(func(p: Dictionary) -> bool: return p.get("npc", "") == mission.get("giver", ""))) and tr(mission.get("name_key", "")) != "",
 			"missão da aldeia %s: encontros e quem a dá existem" % quest_id)
 		var giver: Dictionary = GameData.npcs[mission.giver]
 		_check(Town.dialogue_index(mission.giver, {}) == 0 and Town.dialogue_index(mission.giver, {quest_id: "active"}) == 1

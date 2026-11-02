@@ -2966,7 +2966,7 @@ msgid "MONSTER_QUEEN_SCORPION"
 msgstr "Reina Escorpión"
 
 msgid "NPC_SEATED_PIRATE"
-msgstr "Viejo Lobo de Mar"
+msgstr "Capitán Pirata"
 
 msgid "DLG_PIRATE_1"
 msgstr "Siéntate, mercenario. ¿Ves ese muelle de afuera, en los Muelles? Antes era mío: ahora solo hay sapos, murciélagos y rapes feos."
@@ -2988,3 +2988,21 @@ msgstr "El muelle del Viejo Lobo"
 
 msgid "QUEST_DOCKS_SMUGGLERS_DESC"
 msgstr "El Viejo Lobo de Mar, en la taberna, quiere el muelle de los Muelles libre de bichos: derrota todos los encuentros del mapa de los Muelles."
+
+msgid "NPC_OLD_LADY"
+msgstr "Vieja de la Taberna"
+
+msgid "DLG_OLD_LADY_1"
+msgstr "Siéntense, siéntense. Esta vieja ha visto pasar a mucha gente por esa puerta, y a pocos volver del bosque."
+
+msgid "DLG_OLD_LADY_2"
+msgstr "En el Bosque vive el Leshy, un gigante de corteza y piedra. Es de Tierra: al Fuego es a lo que teme la corteza vieja."
+
+msgid "DLG_OLD_LADY_3"
+msgstr "Derríbenlo y los recompensaré. La guardabosques Aeliana espera en el sendero."
+
+msgid "DLG_OLD_LADY_ACTIVE"
+msgstr "El Leshy duerme en lo hondo del bosque. Lleven Fuego, queridos."
+
+msgid "DLG_OLD_LADY_DONE"
+msgstr "Así que el bosque respira de nuevo. Qué bueno tenerlos aquí."

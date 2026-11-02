@@ -2966,7 +2966,7 @@ msgid "MONSTER_QUEEN_SCORPION"
 msgstr "Rainha Escorpião"
 
 msgid "NPC_SEATED_PIRATE"
-msgstr "Velho Lobo do Mar"
+msgstr "Capitão Pirata"
 
 msgid "DLG_PIRATE_1"
 msgstr "Senta aí, mercenário. Vê esse cais lá fora, nas Docas? Antes era meu: hoje só tem sapo, morcego e peixe-pescador feio."
@@ -2988,3 +2988,21 @@ msgstr "O cais do Velho Lobo"
 
 msgid "QUEST_DOCKS_SMUGGLERS_DESC"
 msgstr "O Velho Lobo do Mar, na taverna, quer o cais das Docas livre de bichos: derrote todos os encontros do mapa das Docas."
+
+msgid "NPC_OLD_LADY"
+msgstr "Velha da Taverna"
+
+msgid "DLG_OLD_LADY_1"
+msgstr "Sentem, sentem. Esta velha já viu muita gente passar por aquela porta, e poucos voltarem do bosque."
+
+msgid "DLG_OLD_LADY_2"
+msgstr "Na Floresta vive o Leshy, o gigante de casca e pedra. Ele é de Terra — o Fogo é o que a casca velha teme."
+
+msgid "DLG_OLD_LADY_3"
+msgstr "Derrubem-no e eu recompenso vocês. A patrulheira Aeliana espera na trilha."
+
+msgid "DLG_OLD_LADY_ACTIVE"
+msgstr "O Leshy dorme no fundo do bosque. Levem Fogo, meus queridos."
+
+msgid "DLG_OLD_LADY_DONE"
+msgstr "Então o bosque respira de novo. Que bom ter vocês por aqui."

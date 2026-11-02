@@ -439,8 +439,7 @@
           "DLG_ARCHER_1",
           "DLG_ARCHER_2",
           "DLG_ARCHER_3"
-        ],
-        "offer": "forest_leshy"
+        ]
       },
       {
         "when": {
@@ -712,6 +711,41 @@
         "when": {},
         "lines": [
           "DLG_PIRATE_DONE"
+        ]
+      }
+    ]
+  },
+  "old_lady": {
+    "name_key": "NPC_OLD_LADY",
+    "color": [
+      0.6,
+      0.5,
+      0.55
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "forest_leshy"
+        },
+        "lines": [
+          "DLG_OLD_LADY_1",
+          "DLG_OLD_LADY_2",
+          "DLG_OLD_LADY_3"
+        ],
+        "offer": "forest_leshy"
+      },
+      {
+        "when": {
+          "quest_active": "forest_leshy"
+        },
+        "lines": [
+          "DLG_OLD_LADY_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_OLD_LADY_DONE"
         ]
       }
     ]

@@ -46,7 +46,7 @@
     "name_key": "QUEST_FOREST_LESHY",
     "desc_key": "QUEST_FOREST_LESHY_DESC",
     "type": "village",
-    "giver": "elf_archer",
+    "giver": "old_lady",
     "area": "forest_01_path",
     "clear": [
       "f_leshy"

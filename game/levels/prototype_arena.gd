@@ -1753,12 +1753,14 @@ func _build_prop(prop: Dictionary) -> void:
 					look = {"sex": "male" if h % 2 == 0 else "female", "hair": hairs[h % 2 * 2 + (h / 2) % 2],
 						"hair_color": colors[(h / 4) % colors.size()], "pose": "sit", "outfit": {"body": "cloth"} if h % 3 == 0 else {}}
 				var seated_woman: bool = prop.has("visitor_name") and look.get("sex", "") == "female" and _visitor_woman(node)
-				var own_model: Node3D = NpcModel.create(String(prop.npc)) if String(prop.npc) in ["voodoo_priest", "priest", "castle_guard", "court_jester", "seated_pirate", "elf_archer", "ruins_spartan"] else null
+				var own_model: Node3D = NpcModel.create(String(prop.npc)) if String(prop.npc) in ["voodoo_priest", "priest", "castle_guard", "court_jester", "seated_pirate", "elf_archer", "ruins_spartan", "old_lady"] else null
 				var statue_kit: String = prop.get("kit", "")
 				if statue_kit != "" and _kit(node, statue_kit, Transform3D(Basis(Vector3.UP, deg_to_rad(float(prop.get("rotation", 0.0)))), Vector3.ZERO)):
 					pass  # estátua do mapa: a peça do kit no lugar do corpo humano
 				elif own_model:
-					node.add_child(own_model)  # o Macumbeiro (mago de capuz) e o Padre (monge) têm modelo próprio
+					node.add_child(own_model)
+					if own_model.has_method("set_pose") and String(prop.npc) in ["seated_pirate", "old_lady"]:
+						own_model.call("set_pose", "sit" if String(prop.npc) == "old_lady" else "idle")  # o Macumbeiro (mago de capuz) e o Padre (monge) têm modelo próprio
 				elif not seated_woman and _npc_body_with_instrument(node, look) == null:
 					var body := CapsuleMesh.new()
 					body.radius = 0.35

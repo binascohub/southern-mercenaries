@@ -1851,15 +1851,6 @@
         ]
       },
       {
-        "id": "bard",
-        "kind": "npc",
-        "npc": "bard",
-        "position": [
-          6,
-          -3.5
-        ]
-      },
-      {
         "id": "tavern_exit",
         "kind": "exit",
         "name_key": "PROP_TAVERN_EXIT",
@@ -1875,9 +1866,19 @@
         "kind": "npc",
         "npc": "seated_pirate",
         "position": [
-          -7.5,
-          3.0
+          -8.5,
+          2.7
         ]
+      },
+      {
+        "id": "old_lady",
+        "kind": "npc",
+        "npc": "old_lady",
+        "position": [
+          -2.6,
+          4.95
+        ],
+        "rotation": 180
       }
     ],
     "style": {
@@ -1885,10 +1886,14 @@
       "walls": [
         "Wall_Plaster_WoodGrid",
         "Wall_Plaster_Straight",
-        "Wall_Plaster_Window_Wide_Round",
-        "Wall_Plaster_WoodGrid"
+        "Wall_Plaster_WoodGrid",
+        "Wall_Plaster_Straight",
+        "Wall_Plaster_WoodGrid",
+        "Wall_Plaster_Straight",
+        "Wall_Plaster_WoodGrid",
+        "Wall_Plaster_Straight"
       ],
-      "floor": "Floor_WoodDark",
+      "floor": "Floor_UnevenBrick",
       "low": "",
       "ground": [
         0.08,
@@ -1900,8 +1905,8 @@
       {
         "piece": "Table_Large",
         "position": [
-          -2.9,
-          -3.9
+          -2.8,
+          -3.6
         ],
         "solid": [
           2.8,
@@ -1912,7 +1917,7 @@
         "piece": "Table_Large",
         "position": [
           0,
-          -3.9
+          -3.6
         ],
         "solid": [
           2.8,
@@ -1922,8 +1927,8 @@
       {
         "piece": "Table_Large",
         "position": [
-          2.9,
-          -3.9
+          2.8,
+          -3.6
         ],
         "solid": [
           2.8,
@@ -1933,8 +1938,8 @@
       {
         "piece": "Mug",
         "position": [
-          -2.4,
-          -3.8
+          -2.3,
+          -3.5
         ],
         "y": 0.81
       },
@@ -1942,15 +1947,15 @@
         "piece": "Mug",
         "position": [
           0.6,
-          -4.0
+          -3.7
         ],
         "y": 0.81
       },
       {
         "piece": "Bottle_1",
         "position": [
-          2.6,
-          -3.9
+          2.5,
+          -3.6
         ],
         "y": 0.81
       },
@@ -1958,7 +1963,7 @@
         "piece": "CandleStick_Triple",
         "position": [
           -0.8,
-          -4.0
+          -3.7
         ],
         "y": 0.81
       },
@@ -2071,13 +2076,6 @@
         "y": 0.49
       },
       {
-        "piece": "Stool",
-        "position": [
-          6.0,
-          -3.5
-        ]
-      },
-      {
         "piece": "Crate_Wooden",
         "position": [
           9.2,
@@ -2128,8 +2126,8 @@
       {
         "piece": "Table_Large",
         "position": [
-          -2.5,
-          -2.5
+          -1.5,
+          -0.4
         ],
         "solid": [
           2.8,
@@ -2139,99 +2137,31 @@
       {
         "piece": "Bench",
         "position": [
-          -2.5,
-          -1.35
+          -1.5,
+          0.75
         ]
       },
       {
         "piece": "Mug",
         "position": [
-          -2.1,
-          -2.5
+          -1.1,
+          -0.4
         ],
         "y": 0.81
       },
       {
         "piece": "Table_Plate",
         "position": [
-          -3.0,
-          -2.4
-        ],
-        "y": 0.81
-      },
-      {
-        "piece": "Table_Large",
-        "position": [
-          3.5,
-          0.5
-        ],
-        "solid": [
-          2.8,
-          1.1
-        ]
-      },
-      {
-        "piece": "Bench",
-        "position": [
-          3.5,
-          1.65
-        ]
-      },
-      {
-        "piece": "Mug",
-        "position": [
-          3.9,
-          0.5
-        ],
-        "y": 0.81
-      },
-      {
-        "piece": "Table_Plate",
-        "position": [
-          3.0,
-          0.6
-        ],
-        "y": 0.81
-      },
-      {
-        "piece": "Table_Large",
-        "position": [
-          6.5,
-          -2.0
-        ],
-        "solid": [
-          2.8,
-          1.1
-        ]
-      },
-      {
-        "piece": "Bench",
-        "position": [
-          6.5,
-          -0.85
-        ]
-      },
-      {
-        "piece": "Mug",
-        "position": [
-          6.9,
-          -2.0
-        ],
-        "y": 0.81
-      },
-      {
-        "piece": "Table_Plate",
-        "position": [
-          6.0,
-          -1.9
+          -2.0,
+          -0.3
         ],
         "y": 0.81
       },
       {
         "piece": "Mug_Wood",
         "position": [
-          -2.6,
-          -3.7
+          -2.5,
+          -3.4
         ],
         "y": 0.78,
         "rotation": 0
@@ -2240,7 +2170,7 @@
         "piece": "Mug_Wood",
         "position": [
           0.3,
-          -4.1
+          -3.8
         ],
         "y": 0.78,
         "rotation": 40
@@ -2248,8 +2178,8 @@
       {
         "piece": "Mug_Wood",
         "position": [
-          3.1,
-          -3.7
+          3.0,
+          -3.4
         ],
         "y": 0.78,
         "rotation": 80
@@ -2266,8 +2196,8 @@
       {
         "piece": "Mug_Wood",
         "position": [
-          -2.2,
-          -2.3
+          -1.2,
+          -0.2
         ],
         "y": 0.78,
         "rotation": 160
@@ -2275,26 +2205,8 @@
       {
         "piece": "Mug_Wood",
         "position": [
-          3.8,
-          0.4
-        ],
-        "y": 0.78,
-        "rotation": 200
-      },
-      {
-        "piece": "Mug_Wood",
-        "position": [
-          6.8,
-          -1.8
-        ],
-        "y": 0.78,
-        "rotation": 240
-      },
-      {
-        "piece": "Mug_Wood",
-        "position": [
-          2.6,
-          -3.55
+          2.5,
+          -3.25
         ],
         "rotation": 25,
         "y": 0.78
@@ -2302,8 +2214,8 @@
       {
         "piece": "Dw_Plate",
         "position": [
-          -3.4,
-          -3.85
+          -3.3,
+          -3.55
         ],
         "y": 0.81,
         "rotation": 10
@@ -2311,8 +2223,8 @@
       {
         "piece": "Dw_Fork",
         "position": [
-          -3.68,
-          -3.85
+          -3.58,
+          -3.55
         ],
         "y": 0.81,
         "rotation": 0
@@ -2320,8 +2232,8 @@
       {
         "piece": "Dw_Knife",
         "position": [
-          -3.12,
-          -3.85
+          -3.02,
+          -3.55
         ],
         "y": 0.81,
         "rotation": 0
@@ -2329,8 +2241,8 @@
       {
         "piece": "Dw_Bowl",
         "position": [
-          -1.9,
-          -4.0
+          -1.8,
+          -3.7
         ],
         "y": 0.81,
         "rotation": 0
@@ -2338,8 +2250,8 @@
       {
         "piece": "Dw_Pitcher",
         "position": [
-          -3.7,
-          -4.15
+          -3.6,
+          -3.85
         ],
         "y": 0.81,
         "rotation": 30
@@ -2348,7 +2260,7 @@
         "piece": "Dw_Platter",
         "position": [
           -0.1,
-          -3.65
+          -3.35
         ],
         "y": 0.81,
         "rotation": 15
@@ -2357,7 +2269,7 @@
         "piece": "Dw_Jug",
         "position": [
           1.0,
-          -4.1
+          -3.8
         ],
         "y": 0.81,
         "rotation": 40
@@ -2366,7 +2278,7 @@
         "piece": "Dw_Goblet",
         "position": [
           -0.45,
-          -3.5
+          -3.2
         ],
         "y": 0.81,
         "rotation": 0
@@ -2375,7 +2287,7 @@
         "piece": "Dw_Goblet",
         "position": [
           0.9,
-          -3.55
+          -3.25
         ],
         "y": 0.81,
         "rotation": 0
@@ -2383,8 +2295,8 @@
       {
         "piece": "Dw_Plate",
         "position": [
-          3.8,
-          -3.9
+          3.7,
+          -3.6
         ],
         "y": 0.81,
         "rotation": -20
@@ -2392,8 +2304,8 @@
       {
         "piece": "Dw_Fork",
         "position": [
-          3.55,
-          -3.9
+          3.45,
+          -3.6
         ],
         "y": 0.81,
         "rotation": 5
@@ -2401,8 +2313,8 @@
       {
         "piece": "Dw_Spoon",
         "position": [
-          4.05,
-          -3.9
+          3.95,
+          -3.6
         ],
         "y": 0.81,
         "rotation": -5
@@ -2410,8 +2322,8 @@
       {
         "piece": "Dw_Tankard",
         "position": [
-          3.5,
-          -4.2
+          3.4,
+          -3.9
         ],
         "y": 0.81,
         "rotation": 60
@@ -2419,8 +2331,8 @@
       {
         "piece": "Dw_Cup",
         "position": [
-          1.9,
-          -3.7
+          1.8,
+          -3.4
         ],
         "y": 0.81,
         "rotation": 0
@@ -2464,8 +2376,8 @@
       {
         "piece": "Dw_Bottle",
         "position": [
-          -1.5,
-          -2.2
+          -0.5,
+          -0.1
         ],
         "y": 0.81,
         "rotation": 0
@@ -2473,8 +2385,8 @@
       {
         "piece": "Dw_Goblet",
         "position": [
-          -3.5,
-          -2.7
+          -2.5,
+          -0.6
         ],
         "y": 0.81,
         "rotation": 0
@@ -2482,92 +2394,11 @@
       {
         "piece": "Dw_Jug",
         "position": [
-          -2.6,
-          -2.1
+          -1.6,
+          0.0
         ],
         "y": 0.81,
         "rotation": 120
-      },
-      {
-        "piece": "Dw_Bowl",
-        "position": [
-          2.5,
-          0.8
-        ],
-        "y": 0.81,
-        "rotation": 0
-      },
-      {
-        "piece": "Dw_Fork",
-        "position": [
-          2.7,
-          0.4
-        ],
-        "y": 0.81,
-        "rotation": 90
-      },
-      {
-        "piece": "Dw_Tankard",
-        "position": [
-          4.4,
-          0.8
-        ],
-        "y": 0.81,
-        "rotation": 150
-      },
-      {
-        "piece": "Dw_Goblet",
-        "position": [
-          4.4,
-          0.2
-        ],
-        "y": 0.81,
-        "rotation": 0
-      },
-      {
-        "piece": "Dw_Knife",
-        "position": [
-          3.35,
-          0.15
-        ],
-        "y": 0.81,
-        "rotation": -30
-      },
-      {
-        "piece": "Dw_Pitcher",
-        "position": [
-          7.5,
-          -2.2
-        ],
-        "y": 0.81,
-        "rotation": 80
-      },
-      {
-        "piece": "Dw_Cup",
-        "position": [
-          5.5,
-          -2.3
-        ],
-        "y": 0.81,
-        "rotation": 0
-      },
-      {
-        "piece": "Dw_Spoon",
-        "position": [
-          5.7,
-          -1.75
-        ],
-        "y": 0.81,
-        "rotation": 70
-      },
-      {
-        "piece": "Dw_Bowl",
-        "position": [
-          6.4,
-          -2.3
-        ],
-        "y": 0.81,
-        "rotation": 0
       },
       {
         "piece": "Tv_Fireplace",
@@ -2733,7 +2564,7 @@
       {
         "piece": "Tv_Table_Round",
         "position": [
-          -3.6,
+          -2.6,
           3.6
         ],
         "solid": [
@@ -2744,7 +2575,7 @@
       {
         "piece": "Tv_Stool_Wood",
         "position": [
-          -4.95,
+          -3.95,
           3.6
         ],
         "rotation": 90
@@ -2752,7 +2583,7 @@
       {
         "piece": "Tv_Stool_Wood",
         "position": [
-          -2.25,
+          -1.25,
           3.6
         ],
         "rotation": -90
@@ -2760,7 +2591,7 @@
       {
         "piece": "Tv_Stool_Wood",
         "position": [
-          -3.6,
+          -2.6,
           4.95
         ],
         "rotation": 180
@@ -2768,7 +2599,7 @@
       {
         "piece": "Tv_Plate",
         "position": [
-          -3.3,
+          -2.3,
           3.75
         ],
         "y": 0.75
@@ -2776,7 +2607,7 @@
       {
         "piece": "Tv_Tankard",
         "position": [
-          -3.95,
+          -2.95,
           3.4
         ],
         "rotation": 310,
@@ -2785,7 +2616,7 @@
       {
         "piece": "Tv_Lamp",
         "position": [
-          -3.6,
+          -2.6,
           3.6
         ],
         "y": 0.75
@@ -2797,7 +2628,7 @@
           0.4
         ],
         "position": [
-          -3.6,
+          -2.6,
           3.6
         ],
         "range": 6,
@@ -2834,19 +2665,33 @@
           -6.3
         ],
         "rotation": 60
+      },
+      {
+        "piece": "Tv_Stool_Wood",
+        "position": [
+          -3.6,
+          -2.5
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Tv_Stool_Wood",
+        "position": [
+          -1.2,
+          -2.5
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Tv_Stool_Wood",
+        "position": [
+          1.2,
+          -2.5
+        ],
+        "rotation": 180
       }
     ],
     "crowd": [
-      {
-        "role": "old_lady",
-        "position": [
-          2.9,
-          -3.05
-        ],
-        "rotation": 180,
-        "pose": "sit",
-        "seat": "Chair_1"
-      },
       {
         "role": "bartender",
         "position": [
@@ -2855,6 +2700,65 @@
         ],
         "rotation": 0,
         "pose": "stand"
+      },
+      {
+        "role": "drunk",
+        "position": [
+          5.8,
+          3.2
+        ],
+        "rotation": 90,
+        "pose": "sit"
+      },
+      {
+        "role": "pirate",
+        "position": [
+          8.6,
+          3.2
+        ],
+        "rotation": 270,
+        "pose": "sit"
+      },
+      {
+        "role": "sailor",
+        "position": [
+          -3.95,
+          3.6
+        ],
+        "rotation": 90,
+        "pose": "sit"
+      },
+      {
+        "role": "drunk",
+        "position": [
+          -1.25,
+          3.6
+        ],
+        "rotation": 270,
+        "pose": "sit"
+      },
+      {
+        "role": "courtesan",
+        "position": [
+          -2.6,
+          4.95
+        ],
+        "rotation": 180,
+        "pose": "sit"
+      },
+      {
+        "role": "rottweiler",
+        "position": [
+          -0.5,
+          2.8
+        ],
+        "rotation": 90,
+        "pose": "walk",
+        "path": [
+          4.0,
+          2.8
+        ],
+        "speed": 1.1
       }
     ]
   },
