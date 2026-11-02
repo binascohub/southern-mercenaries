@@ -3000,7 +3000,7 @@ msgid "DLG_OLD_LADY_DONE"
 msgstr "Então o bosque respira de novo. Que bom ter vocês por aqui."
 
 msgid "NPC_SEWER_SCAVENGER"
-msgstr "Catador do Esgoto"
+msgstr "Serafina, a Anja Caída"
 
 msgid "NPC_SEWER_RATCATCHER"
 msgstr "Itachi"
@@ -3030,22 +3030,22 @@ msgid "QUEST_SEWER_FROG_KING"
 msgstr "O Rei dos Sapos"
 
 msgid "QUEST_SEWER_FROG_KING_DESC"
-msgstr "O Catador do Esgoto quer o Rei dos Sapos fora do caminho: leve o livro dele ao altar no centro do esgoto para despertar o monstro e derrote-o."
+msgstr "Serafina quer o Rei dos Sapos fora do caminho: leve o livro dele ao altar no centro do esgoto para despertar o monstro e derrote-o."
 
 msgid "DLG_SEWER_FROG_1"
-msgstr "Sou o Homem-Aranha. Vim do multiverso e fui parar neste esgoto. Sim, sou um herói, mas até herói precisa de ajuda."
+msgstr "Fui anjo, um dia. Caí por estas grades, e as asas ficaram presas no que o esgoto devora. Escuto os sussurros de uma coisa de carne e tábuas, no oeste."
 
 msgid "DLG_SEWER_FROG_2"
-msgstr "O povo chama de Rei dos Sapos, mas não tem nada de sapo: é um monstro de carne e tábuas, cheio de pregos. Ele dorme até alguém tocar o altar, no centro do esgoto. Sozinho eu não dou conta."
+msgstr "O povo o chama de Rei dos Sapos, mas ele foi montado com os ossos e a madeira dos que se afogaram aqui, pregado a pregado. Ele ainda chora, e o choro dele chama os outros mortos."
 
 msgid "DLG_SEWER_FROG_3"
-msgstr "Derrube ele comigo, por favor. Leve este livro: ele abre o altar no centro do esgoto. Apoiem-no na pedra, leiam e preparem-se."
+msgstr "Derrubem-no e libertem as almas presas nas tábuas. Em troca, a chave que ele guarda é de vocês. Sigam para o oeste, até a praça grande."
 
 msgid "DLG_SEWER_FROG_ACTIVE"
-msgstr "O monstro só acorda quando alguém lê o livro no altar, no centro do esgoto. Cuidado com a investida!"
+msgstr "Ainda ouço o choro dele no oeste. Cada tábua que cai solta uma alma… e eu a vejo subir. Não me deixem esperando no escuro."
 
 msgid "DLG_SEWER_FROG_DONE"
-msgstr "Caiu mesmo? Valeu! Até um herói do multiverso precisa de uma equipe. Seu amigo e vizinho do esgoto agradece."
+msgstr "Silêncio, finalmente. As almas subiram e eu senti cada uma passar por entre as minhas asas quebradas. Obrigada. Levem a chave: ela já pesa menos."
 
 msgid "PROP_SEWER_SECTOR_1"
 msgstr "Bueiros da Rua Principal"
@@ -3093,10 +3093,10 @@ msgid "TOAST_FROG_ALTAR_AWAKENS"
 msgstr "O altar estremece: o Rei dos Sapos desperta!"
 
 msgid "TOAST_BOOK_RECEIVED"
-msgstr "O Catador do Esgoto entregou o Livro do Altar!"
+msgstr "Serafina entregou o Livro do Altar!"
 
 msgid "DLG_FROG_ALTAR_LOCKED"
-msgstr "O altar não reage. Há um vão vazio no centro da pedra, do tamanho de um livro. O Catador do Esgoto deve ter o que falta."
+msgstr "O altar não reage. Há um vão vazio no centro da pedra, do tamanho de um livro. Serafina deve ter o que falta."
 
 msgid "MONSTER_TROLL_MAULER"
 msgstr "Troll Esmagador"

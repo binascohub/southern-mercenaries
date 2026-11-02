@@ -19,3 +19,13 @@ human_lungs.png — render of Human Lungs by Scribe, CC0 1.0: https://opengamear
 book_D..S.png — renders of Old Tome 2 by bobjh / Varkalandar, CC BY 4.0: https://opengameart.org/content/old-tome-2 (tools/assets/book_icons.gd)
 royal_soul.png — render of Hapy ghoust by pracalic / GiggaWatt, CC0 1.0: https://opengameart.org/content/hapy-ghoust
 amulet_D..S.png — renders of Necklace by Paul Wortmann, CC0 1.0: https://opengameart.org/content/necklace (tools/assets/amulet_icons.gd)
+
+Silhouettes from game-icons.net (https://game-icons.net, repo https://github.com/game-icons/icons), Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/
+Changes: recolored, outlined and shaded to 128 px icons by tools/assets/glyph_icons.py (masks by tools/assets/glyph_masks.gd).
+scroll_refine_*, blessed_scroll_refine_* — "Scroll unfurled" and "Tied scroll" by Lorc
+old_coins — "Coins" by Delapouite; war_coins — "Coins pile" by Delapouite; silver_goblet — "Jeweled chalice" by Lorc; rough_gem — "Gems" by Lorc
+war_medal — "Medal" by Lorc; royal_seal_ring, ring_* — "Ring" by Delapouite; crown_jewel — "Crown" by Lorc; cursed_skull — "Daemon skull" by Lorc
+bone_dagger — "Bone knife" by Lorc; key_spades — "Skeleton key" by Lorc; key_hearts — "Heart key" by Delapouite; adams_rib — "Ribcage" by Lorc
+hood_* — "Hood" by Lorc; tunic_* — "Robe" by Lorc; gloves_* — "Gloves" by Delapouite; boots_* — "Boots" by Lorc; hunter_cap_* — "Robin Hood hat" by Delapouite
+leather_vest_* — "Leather vest" by Lorc; ninja_mask_* — "Ninja mask" by Lorc; helm_* — "Visored helm" by Lorc; plate_* — "Breastplate" by Lorc
+barding_* — "Horse head" by Lorc; staff_C..S — "Wizard staff" by Lorc; dagger_C..S — "Plain dagger" by Lorc

@@ -207,7 +207,9 @@ static func icon(item: Variant) -> Texture2D:
 static func equipment_icon(item: Dictionary) -> Texture2D:
 	# Espada do Cavaleiro (3D Swords Pack, CC0), adaga do Ninja (Iron Knife, CC0; só o rank D tem ícone) e arco do Arqueiro
 	# (Vulture Bow, CC-BY 4.0), livro do Invocador (Old Tome 2, CC-BY 4.0) e cajado do Mago (staff-d.glb do autor; só o rank D): um ícone por rank, na cor do material.
-	var prefix: String = {"lance": "sword", "daggers": "dagger", "bow": "bow", "book": "book", "amulet": "amulet", "staff": "staff"}.get(String(item.get("base", "")), "")
+	var prefix: String = {"lance": "sword", "daggers": "dagger", "bow": "bow", "book": "book", "amulet": "amulet", "staff": "staff",
+		"hood": "hood", "tunic": "tunic", "gloves": "gloves", "boots": "boots", "ring": "ring", "hunter_cap": "hunter_cap", "leather_vest": "leather_vest",
+		"ninja_mask": "ninja_mask", "helm": "helm", "plate": "plate", "barding": "barding"}.get(String(item.get("base", "")), "")
 	if item.get("kind", "") != EQUIPMENT or prefix == "":
 		return null
 	var path := "res://assets/ui/icons/%s_%s.png" % [prefix, NinjaGear.rank_of(String(item.get("material", "")))]

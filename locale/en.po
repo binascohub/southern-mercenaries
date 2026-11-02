@@ -3000,7 +3000,7 @@ msgid "DLG_OLD_LADY_DONE"
 msgstr "So the woods breathe again. How good to have you around."
 
 msgid "NPC_SEWER_SCAVENGER"
-msgstr "Sewer Scavenger"
+msgstr "Seraphina, the Fallen Angel"
 
 msgid "NPC_SEWER_RATCATCHER"
 msgstr "Itachi"
@@ -3030,22 +3030,22 @@ msgid "QUEST_SEWER_FROG_KING"
 msgstr "The Frog King"
 
 msgid "QUEST_SEWER_FROG_KING_DESC"
-msgstr "The Sewer Scavenger wants the Frog King out of the way: take his book to the altar in the center of the sewer to wake the monster, then defeat it."
+msgstr "Seraphina wants the Frog King out of the way: take his book to the altar in the center of the sewer to wake the monster, then defeat it."
 
 msgid "DLG_SEWER_FROG_1"
-msgstr "I am Spider-Man. I came from the multiverse and landed in this sewer. Yes, I am a hero, but even heroes need help."
+msgstr "I was an angel, once. I fell through these grates, and my wings stayed caught in what the sewer devours. I hear the whispers of a thing of flesh and planks, out west."
 
 msgid "DLG_SEWER_FROG_2"
-msgstr "Folks call it the Frog King, but there is nothing froggy about it: it is a monster of flesh and planks, full of nails. It sleeps until someone touches the altar in the center of the sewer. I cannot take it alone."
+msgstr "Folks call it the Frog King, but it was assembled from the bones and wood of those who drowned here, nail by nail. It still weeps, and its weeping calls the other dead."
 
 msgid "DLG_SEWER_FROG_3"
-msgstr "Take it down with me, please. Take this book: it opens the altar in the center of the sewer. Rest it on the stone, read it aloud, and brace yourselves."
+msgstr "Bring it down and free the souls trapped in the planks. In return, the key it keeps is yours. Head west, to the big plaza."
 
 msgid "DLG_SEWER_FROG_ACTIVE"
-msgstr "The monster only wakes when someone reads the book at the altar in the center of the sewer. Watch out for its charge!"
+msgstr "I can still hear it weeping in the west. Every plank that falls frees a soul… and I watch it rise. Do not leave me waiting in the dark."
 
 msgid "DLG_SEWER_FROG_DONE"
-msgstr "He really fell? Thanks! Even a hero from the multiverse needs a team. Your friendly neighborhood sewer scavenger appreciates it."
+msgstr "Silence, at last. The souls rose and I felt each one pass through my broken wings. Thank you. Take the key: it weighs less now."
 
 msgid "PROP_SEWER_SECTOR_1"
 msgstr "Main Street Drains"
@@ -3093,10 +3093,10 @@ msgid "TOAST_FROG_ALTAR_AWAKENS"
 msgstr "The altar trembles: the Frog King awakens!"
 
 msgid "TOAST_BOOK_RECEIVED"
-msgstr "The Sewer Scavenger handed over the Altar Book!"
+msgstr "Seraphina handed over the Altar Book!"
 
 msgid "DLG_FROG_ALTAR_LOCKED"
-msgstr "The altar does not react. There is an empty gap in the middle of the stone, the size of a book. The Sewer Scavenger must have what is missing."
+msgstr "The altar does not react. There is an empty gap in the middle of the stone, the size of a book. Seraphina must have what is missing."
 
 msgid "MONSTER_TROLL_MAULER"
 msgstr "Troll Mauler"

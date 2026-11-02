@@ -247,8 +247,14 @@ encounters = [dict(e, monsters=[m for m in e["monsters"] if m["monster"] in SEWE
 encounters = [e for e in encounters if e["monsters"]]
 
 # --- props -------------------------------------------------------------------------------------------------------------------------------------------
+# O Anjo (NPC do Catador): no canto inferior esquerdo do mapa (a coluna mais a oeste, a linha mais ao fundo), numa célula livre de encontros e das salas especiais.
+_angel_cells = [c for c in depth if c not in special_cells and c != ALTAR_CELL
+                and all(math.hypot(cx(c[0]) - e["position"][0], cz(c[1]) - e["position"][1]) > 8.0 for e in encounters)]
+_angel_cell = min(_angel_cells, key=lambda c: (c[0] + (NR - 1 - c[1]), c[0]))
+ANGEL_AT = [round(cx(_angel_cell[0]) + 2.0, 1), round(cz(_angel_cell[1]) - 1.5, 1)]
+print("Anjo no canto inferior esquerdo: célula", _angel_cell, "posição", ANGEL_AT)
 props = [{"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-4, 3], "to": "tortuga", "entry": "sewer", "expedition_end": True},
-         {"id": "sewer_scavenger", "kind": "npc", "npc": "sewer_scavenger", "position": [4.5, -1.5], "rotation": 270},
+         {"id": "sewer_scavenger", "kind": "npc", "npc": "sewer_scavenger", "position": ANGEL_AT, "rotation": 0},
          {"id": "sewer_ratcatcher", "kind": "npc", "npc": "sewer_ratcatcher", "position": [post_c[0] + 1.5, post_c[1]], "rotation": 270},
          {"id": "secret_chest", "kind": "chest", "position": [secret_c[0] + 1, secret_c[1] - 2.0], "secret": True, "loot": "chest"}]
 # baús nos becos mais fundos de cada setor (2 a 5)
@@ -297,7 +303,7 @@ props.append(FROG_ALTAR)
 
 # --- poças de lodo, objetos quebráveis e decoração -------------------------------------------------------------------------------------------------
 hazards = []
-quotas = {1: 2, 2: 3, 3: 2, 4: 3, 5: 5}
+quotas = {1: 4, 2: 6, 3: 4, 4: 6, 5: 9}  # poças verdes de lodo por setor (dobradas a pedido do autor)
 for s, n in quotas.items():
     cells = [c for c in depth if sector(*c) == s and c not in special_cells]
     rng.shuffle(cells)
@@ -390,7 +396,7 @@ area = {
     "props": props,
     "quest_spots": quest_spots,
     "breakables": breakables,
-    "style": dict(legacy["style"], puddles=False, bats=True, wood_tone=[0.192, 0.145, 0.11]),  # madeira na cor da mesa redonda da Taverna
+    "style": dict(legacy["style"], puddles=False, bats=True, trash_density=0.6, wood_tone=[0.192, 0.145, 0.11]),  # madeira na cor da mesa redonda da Taverna
     "decor": decor,
     "passive": True,
 }
@@ -406,7 +412,7 @@ print("limites: x", min(r["center"][0] - r["size"][0] / 2 for r in rooms), max(r
 npcs = json.load(open(NPCS, encoding="utf-8"))
 quests = json.load(open(QUESTS, encoding="utf-8"))
 npcs["sewer_scavenger"] = {
-    "_comment": "Catador do Esgoto (o Homem-Aranha; sala de entrada): dá a missão do primeiro mini-chefe, o Rei dos Sapos (agora o Monstro de Tábuas), na praça oeste; ele vive dançando.",
+    "_comment": "Serafina, a Anja Caída (modelo angel_1.glb; canto inferior esquerdo do mapa): dá a missão do primeiro mini-chefe, o Rei dos Sapos (agora o Monstro de Tábuas), na praça oeste; ela fica parada, de asas abertas.",
     "name_key": "NPC_SEWER_SCAVENGER", "color": [0.4, 0.4, 0.3],
     "dialogues": [{"when": {"quest_new": "sewer_frog_king"}, "lines": ["DLG_SEWER_FROG_1", "DLG_SEWER_FROG_2", "DLG_SEWER_FROG_3"], "offer": "sewer_frog_king"},
                   {"when": {"quest_active": "sewer_frog_king"}, "lines": ["DLG_SEWER_FROG_ACTIVE"]},
@@ -536,6 +542,28 @@ T.update({
 })
 T.update({k: v for k, v in {'NPC_SEWER_FROG_ALTAR': ('Altar do Rei dos Sapos', "Frog King's Altar", 'Altar del Rey de los Sapos'), 'DLG_FROG_ALTAR_1': ('Um altar de pedra manchado de lodo, no coração do esgoto. Há marcas de garras e de pregos na pedra.', 'A stone altar stained with sludge, in the heart of the sewer. There are claw and nail marks on the stone.', 'Un altar de piedra manchado de lodo, en el corazón de la alcantarilla. Hay marcas de garras y de clavos en la piedra.'), 'DLG_FROG_ALTAR_2': ('Você toca na pedra e o chão estremece: o Rei dos Sapos acorda na sala do altar.', 'You touch the stone and the floor trembles: the Frog King wakes in the altar room.', 'Tocas la piedra y el suelo tiembla: el Rey de los Sapos despierta en la sala del altar.'), 'TOAST_FROG_ALTAR_AWAKENS': ('O altar estremece: o Rei dos Sapos desperta!', 'The altar trembles: the Frog King awakens!', 'El altar tiembla: ¡el Rey de los Sapos despierta!'), 'DLG_SEWER_FROG_2': ('O povo chama de Rei dos Sapos, mas não tem nada de sapo: é um monstro de carne e tábuas, cheio de pregos. Ele dorme até alguém tocar o altar, no centro do esgoto. Sozinho eu não dou conta.', 'Folks call it the Frog King, but there is nothing froggy about it: it is a monster of flesh and planks, full of nails. It sleeps until someone touches the altar in the center of the sewer. I cannot take it alone.', 'La gente lo llama el Rey de los Sapos, pero de sapo no tiene nada: es un monstruo de carne y tablas, lleno de clavos. Duerme hasta que alguien toca el altar, en el centro de la alcantarilla. Yo solo no puedo con él.'), 'DLG_SEWER_FROG_3': ('Derrube ele comigo, por favor. Prometo que a ajuda vale a pena: toquem o altar no centro do esgoto e preparem-se.', 'Take it down with me, please. I promise the help is worth it: touch the altar in the center of the sewer and brace yourselves.', 'Derríbalo conmigo, por favor. Prometo que la ayuda vale la pena: toquen el altar en el centro de la alcantarilla y prepárense.'), 'DLG_SEWER_FROG_ACTIVE': ('O monstro só acorda quando alguém toca o altar, no centro do esgoto. Cuidado com a investida!', 'The monster only wakes when someone touches the altar in the center of the sewer. Watch out for its charge!', 'El monstruo solo despierta cuando alguien toca el altar, en el centro de la alcantarilla. ¡Cuidado con su embestida!'), 'QUEST_SEWER_FROG_KING_DESC': ('O Catador do Esgoto quer o Rei dos Sapos fora do caminho: toque o altar no centro do esgoto para despertá-lo e derrote o monstro.', 'The Sewer Scavenger wants the Frog King out of the way: touch the altar in the center of the sewer to wake it and defeat the monster.', 'El Rebuscador de la Alcantarilla quiere al Rey de los Sapos fuera del camino: toca el altar en el centro de la alcantarilla para despertarlo y derrota al monstruo.')}.items()})
 T.update({k: v for k, v in {'TOAST_BOOK_RECEIVED': ('O Catador do Esgoto entregou o Livro do Altar!', 'The Sewer Scavenger handed over the Altar Book!', '¡El Rebuscador de la Alcantarilla entregó el Libro del Altar!'), 'DLG_FROG_ALTAR_LOCKED': ('O altar não reage. Há um vão vazio no centro da pedra, do tamanho de um livro. O Catador do Esgoto deve ter o que falta.', 'The altar does not react. There is an empty gap in the middle of the stone, the size of a book. The Sewer Scavenger must have what is missing.', 'El altar no reacciona. Hay un hueco vacío en el centro de la piedra, del tamaño de un libro. El Rebuscador de la Alcantarilla debe tener lo que falta.'), 'DLG_FROG_ALTAR_1': ('Um altar de pedra manchado de lodo, no coração do esgoto. Há um vão no centro, do tamanho de um livro, e marcas de garras e de pregos ao redor.', 'A stone altar stained with sludge, in the heart of the sewer. There is a gap in the center, the size of a book, with claw and nail marks around it.', 'Un altar de piedra manchado de lodo, en el corazón de la alcantarilla. Hay un hueco en el centro, del tamaño de un libro, y marcas de garras y de clavos alrededor.'), 'DLG_FROG_ALTAR_2': ('Você apoia o Livro do Altar na pedra e lê em voz alta: o chão estremece e o Rei dos Sapos acorda na sala do altar.', 'You rest the Altar Book on the stone and read aloud: the floor trembles and the Frog King wakes in the altar room.', 'Apoyas el Libro del Altar en la piedra y lees en voz alta: el suelo tiembla y el Rey de los Sapos despierta en la sala del altar.'), 'DLG_SEWER_FROG_3': ('Derrube ele comigo, por favor. Leve este livro: ele abre o altar no centro do esgoto. Apoiem-no na pedra, leiam e preparem-se.', 'Take it down with me, please. Take this book: it opens the altar in the center of the sewer. Rest it on the stone, read it aloud, and brace yourselves.', 'Derríbalo conmigo, por favor. Llévate este libro: abre el altar en el centro de la alcantarilla. Apóyenlo en la piedra, léanlo y prepárense.'), 'DLG_SEWER_FROG_ACTIVE': ('O monstro só acorda quando alguém lê o livro no altar, no centro do esgoto. Cuidado com a investida!', 'The monster only wakes when someone reads the book at the altar in the center of the sewer. Watch out for its charge!', 'El monstruo solo despierta cuando alguien lee el libro en el altar, en el centro de la alcantarilla. ¡Cuidado con su embestida!'), 'QUEST_SEWER_FROG_KING_DESC': ('O Catador do Esgoto quer o Rei dos Sapos fora do caminho: leve o livro dele ao altar no centro do esgoto para despertar o monstro e derrote-o.', 'The Sewer Scavenger wants the Frog King out of the way: take his book to the altar in the center of the sewer to wake the monster, then defeat it.', 'El Rebuscador de la Alcantarilla quiere al Rey de los Sapos fuera del camino: lleva su libro al altar en el centro de la alcantarilla para despertar al monstruo y derrótalo.')}.items()})  # o Livro do Altar
+T.update({
+    "DLG_SEWER_FROG_1": ("Fui anjo, um dia. Caí por estas grades, e as asas ficaram presas no que o esgoto devora. Escuto os sussurros de uma coisa de carne e tábuas, no oeste.",
+                         "I was an angel, once. I fell through these grates, and my wings stayed caught in what the sewer devours. I hear the whispers of a thing of flesh and planks, out west.",
+                         "Fui ángel, una vez. Caí por estas rejas, y mis alas quedaron atrapadas en lo que la cloaca devora. Oigo los susurros de una cosa de carne y tablas, al oeste."),
+    "DLG_SEWER_FROG_2": ("O povo o chama de Rei dos Sapos, mas ele foi montado com os ossos e a madeira dos que se afogaram aqui, pregado a pregado. Ele ainda chora, e o choro dele chama os outros mortos.",
+                         "Folks call it the Frog King, but it was assembled from the bones and wood of those who drowned here, nail by nail. It still weeps, and its weeping calls the other dead.",
+                         "La gente lo llama el Rey de los Sapos, pero lo armaron con los huesos y la madera de quienes se ahogaron aquí, clavo a clavo. Aún llora, y su llanto llama a los demás muertos."),
+    "DLG_SEWER_FROG_3": ("Derrubem-no e libertem as almas presas nas tábuas. Em troca, a chave que ele guarda é de vocês. Sigam para o oeste, até a praça grande.",
+                         "Bring it down and free the souls trapped in the planks. In return, the key it keeps is yours. Head west, to the big plaza.",
+                         "Derríbenlo y liberen las almas presas en las tablas. A cambio, la llave que guarda es suya. Vayan al oeste, hasta la plaza grande."),
+    "DLG_SEWER_FROG_ACTIVE": ("Ainda ouço o choro dele no oeste. Cada tábua que cai solta uma alma… e eu a vejo subir. Não me deixem esperando no escuro.",
+                              "I can still hear it weeping in the west. Every plank that falls frees a soul… and I watch it rise. Do not leave me waiting in the dark.",
+                              "Todavía oigo su llanto en el oeste. Cada tabla que cae suelta un alma… y la veo subir. No me dejen esperando en la oscuridad."),
+    "DLG_SEWER_FROG_DONE": ("Silêncio, finalmente. As almas subiram e eu senti cada uma passar por entre as minhas asas quebradas. Obrigada. Levem a chave: ela já pesa menos.",
+                            "Silence, at last. The souls rose and I felt each one pass through my broken wings. Thank you. Take the key: it weighs less now.",
+                            "Silencio, por fin. Las almas subieron y sentí cada una pasar entre mis alas rotas. Gracias. Lleven la llave: ya pesa menos."),
+    "NPC_SEWER_SCAVENGER": ("Serafina, a Anja Caída", "Seraphina, the Fallen Angel", "Serafina, la Ángel Caída"),
+})
+# o Catador virou a anja Serafina: o nome dele some dos outros textos (missão, aviso do livro, altar)
+for _k in list(T):
+    T[_k] = tuple(t.replace("O Catador do Esgoto", "Serafina").replace("Catador do Esgoto", "Serafina").replace("The Sewer Scavenger", "Seraphina").replace("El Rebuscador de la Alcantarilla", "Serafina")
+                  .replace("Rebuscador de la Alcantarilla", "Serafina") for t in T[_k])
 for lang, i in (("pt_BR", 0), ("en", 1), ("es", 2)):
     path = "locale/%s.po" % lang
     po = open(path, encoding="utf-8").read()

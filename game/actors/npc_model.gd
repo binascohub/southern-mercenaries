@@ -109,10 +109,9 @@ const MODELS := {
 	"forest_reptile": {"scene": "res://assets/models/monsters/reptile.glb", "scale": 1.0, "poses": {"idle": "idle", "talk": "idle", "stand": "idle", "walk": "walk"}},
 	# Capitão pirata (Clint Bellanger, CC BY 3.0): preso ao esqueleto dos heróis
 	# por tools/assets/rig_to_ual.py, com as animações deles; texturas geradas.
-	# Catador do Esgoto (The Amazing Spider-Man 2 suit, Ugo9p1, modelo comprado, crédito pedido pelo autor): malha em T-pose presa ao
-	# esqueleto dos heróis por tools/assets/rig_to_ual.py (ver tools/assets/build_spiderman.py), com as animações deles.
-	"sewer_scavenger": {"scene": "res://assets/models/characters/spiderman.glb", "scale": 1.0,
-		"poses": {"idle": "Dance_Loop", "talk": "Dance_Loop", "stand": "Dance_Loop"}},  # o Catador vive dançando (a dança dos heróis), até quando conversa
+	# Serafina, a Anja Caída (angel_1.glb do autor, anja de asas brancas gerada por IA, malha estática andando; tools/assets/build_angel.py; autoria e licença a confirmar): NPC do Esgoto
+	# (dá a missão do Rei dos Sapos); fica parada na pose do arquivo, de asas abertas. Substituiu o Catador (Homem-Aranha).
+	"sewer_scavenger": {"scene": "res://assets/models/characters/angel.glb", "scale": 1.0, "poses": {"idle": "flap", "talk": "flap", "stand": "flap"}},  # 2,4 m; bate as asas (animação "flap")
 	# Itachi (itachi.blend do autor, malha do Mixamo sem textura: pintura por vértice e rigging por tools/assets/build_itachi_npc.py): o Caçador de Pragas do Esgoto,
 	# preso ao esqueleto dos heróis, com os movimentos deles.
 	"sewer_ratcatcher": {"scene": "res://assets/models/characters/itachi.glb", "scale": 1.0, "vertex_colors": true,
@@ -183,7 +182,7 @@ const MODELS := {
 	"bat": {"scene": "res://assets/models/monsters/bat.glb", "scale": 0.14,
 		"poses": {"walk": "fly", "idle": "fly", "talk": "fly"}},
 	# Ratinho do esgoto (o mesmo modelo dos monstros antigos): não ataca, só cenário como as aranhas.
-	"rat": {"scene": "res://assets/models/monsters/rat.glb", "scale": 0.5,
+	"rat": {"scene": "res://assets/models/monsters/rat.glb", "scale": 0.72,
 		"poses": {"walk": "walk", "idle": "idle", "talk": "idle"}},
 	# Atendente da Taverna (Bartender, cdmir, CC0): o mesmo modelo da visitante sentada, em pé
 	# atrás do balcão (a animação "stand" é criada por código: o arquivo só tem a sentada).

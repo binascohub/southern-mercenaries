@@ -110,6 +110,8 @@ var _encounter_timer := 0.0
 var _campaign: Dictionary = {}
 ## Loot no chão (servidor): id -> {client, peer, position, item, gold}.
 var _loot := {}
+## Quando cada jogador viu o aviso de bolsa cheia (peer -> ms), para o autoloot não repetir o aviso.
+var _bag_full_toast := {}
 var _next_loot_id := 1
 var _rng := RandomNumberGenerator.new()
 ## Nós de loot deste PC (só os do jogador local).
@@ -313,7 +315,7 @@ func _physics_process(delta: float) -> void:
 
 
 ## Corte das paredes: a câmera olha do sul, então paredes ao sul do herói (até
-## onde a câmera alcança, e perto dele de lado) somem; voltam quando ele passa.
+## onde a câmera alcança, e perto dele de lado) somem (só as de uns 6 m à frente e 3,5 m de lado); voltam quando ele passa.
 func _update_cutaway(delta: float) -> void:
 	_cut_timer -= delta
 	if _cut_timer > 0.0 or _cut_walls.is_empty() or local_player == null or not is_instance_valid(local_player):
@@ -324,7 +326,7 @@ func _update_cutaway(delta: float) -> void:
 		if not is_instance_valid(wall):
 			continue
 		var p := wall.global_position
-		wall.visible = not (p.z > at.z + 1.0 and p.z < at.z + 14.0 and absf(p.x - at.x) < 9.0)
+		wall.visible = not (p.z > at.z + 1.0 and p.z < at.z + 6.0 and absf(p.x - at.x) < 3.5)  # só as paredes na frente do herói (antes 14 m x 9 m: sumiam demais e escondiam o caminho)
 
 
 ## Paredes escondidas agora pelo corte (testes).
@@ -1333,7 +1335,13 @@ func _break(box: Enemy) -> void:
 			continue
 		match outcome:
 			"gold":
-				_add_loot(p, at, {}, _rng.randi_range(int(table.gold.min), int(table.gold.max)) + roundi(float(table.gold.per_level) * level))
+				# Tabela própria do objeto (a bolsa de moedas tem a sua em data/loot.json) e, na bolsa, o ouro cai em várias moedas espalhadas.
+				var table_id := String(_box_table.get(box.group, "breakable"))
+				var gold: Dictionary = GameData.loot[table_id].get("gold", table.gold)
+				var total := _rng.randi_range(int(gold.min), int(gold.max)) + roundi(float(gold.per_level) * level)
+				var pieces := 5 if table_id == "coin_bag" else 1
+				for i in pieces:
+					_add_loot(p, at, {}, total / pieces + (1 if i < total % pieces else 0))
 			"potion_health", "potion_resource":
 				_add_loot(p, at, Items.stack(Items.CONSUMABLE, outcome), 0)
 			"venison":
@@ -1511,6 +1519,7 @@ func request_pickup(player: Player, all: bool) -> void:
 	_collect(player, ids)
 
 
+## Autoloot: ouro e itens ao alcance de quem passa por cima são pegos (o que não couber na bolsa fica no chão).
 func _auto_pickup_gold() -> void:
 	for p: Player in get_tree().get_nodes_in_group(&"players"):
 		if not p.alive or not p.connected:
@@ -1518,8 +1527,7 @@ func _auto_pickup_gold() -> void:
 		var ids: Array[int] = []
 		for id: int in _loot:
 			var entry: Dictionary = _loot[id]
-			if entry.peer == p.peer_id and entry.gold > 0 \
-					and entry.position.distance_to(p.global_position) <= GOLD_AUTO_PICKUP:
+			if entry.peer == p.peer_id and entry.position.distance_to(p.global_position) <= GOLD_AUTO_PICKUP:  # ouro e itens: passar por cima pega (autoloot)
 				ids.append(id)
 		if not ids.is_empty():
 			_collect(p, ids)
@@ -1543,7 +1551,8 @@ func _collect(player: Player, ids: Array[int]) -> void:
 				_remove_loot(id)
 			elif entry.peer in multiplayer.get_peers():
 				_remove_loot.rpc_id(entry.peer, id)
-	if not leftover.is_empty():
+	if not leftover.is_empty() and Time.get_ticks_msec() - int(_bag_full_toast.get(player.peer_id, -10000)) >= 3000:  # o autoloot tenta a cada instante: avisa a cada 3 s
+		_bag_full_toast[player.peer_id] = Time.get_ticks_msec()
 		_toast_to(player, "TOAST_BAG_FULL", {})
 
 
@@ -2365,7 +2374,7 @@ func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3,
 		_scatter_trash(room, c, half)
 	if style.get("spiders", false):
 		_scatter_spiders(room, c, half)
-		_scatter_critters(room, c, half, "rat", 0.7, 3)
+		_scatter_critters(room, c, half, "rat", 0.4, 2)  # ratos do Esgoto: poucos por sala (até 2)
 	if style.get("bats", false):
 		_scatter_bats(room, c, half)
 	if style.get("grates", false):
@@ -2879,14 +2888,14 @@ func _build_statue(decor: Dictionary) -> void:
 ## espalhado pela posição da sala (igual em todos os PCs), mais perto das paredes.
 ## Lixo coberto de limo: bem mais escuro e esverdeado que o resto (sem brilho).
 const TRASH_GRIME := Color(0.45, 0.5, 0.36)
-const TRASH := ["Bottle_1", "Bottle_1", "Mug", "Mug_Wood", "Pot_Small_Shards", "Pot_Large_Shards",
+const TRASH := ["Bottle_1", "Bottle_2", "Bottle_3", "Bottle_4", "Mug_Bottle", "Mug_Jar", "Mug", "Mug_Wood", "Pot_Small_Shards", "Pot_Large_Shards",
 	"Bag", "Rope_1", "Bucket_Wooden_1", "Vase_Big_Shards"]
 
 
 func _scatter_trash(room: Dictionary, c: Vector3, half: Vector3) -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = hash(str(room.get("id", ""), c, "trash"))
-	var count := clampi(roundi(half.x * half.z * 8.0 / 9.0), 8, 80)
+	var count := clampi(roundi(half.x * half.z * 8.0 / 9.0 * float(arena.get("style", {}).get("trash_density", 1.0))), 5, 80)  # "trash_density" do estilo da área (o Esgoto usa 0,6)
 	for i in count:
 		# Mais lixo perto das paredes que no meio.
 		var u := rng.randf_range(-1.0, 1.0)
@@ -2906,7 +2915,7 @@ func _scatter_trash(room: Dictionary, c: Vector3, half: Vector3) -> void:
 			continue
 		node.position = at
 		node.rotation.y = rng.randf() * TAU
-		if piece_name in ["Bottle_1", "Mug", "Mug_Wood", "Bucket_Wooden_1"]:
+		if piece_name in ["Bottle_1", "Bottle_2", "Bottle_3", "Bottle_4", "Mug_Bottle", "Mug_Jar", "Mug", "Mug_Wood", "Bucket_Wooden_1"]:
 			# Caído de lado.
 			node.rotation.x = PI / 2.0
 			node.position.y = 0.08 if piece_name != "Bucket_Wooden_1" else 0.22

@@ -3000,7 +3000,7 @@ msgid "DLG_OLD_LADY_DONE"
 msgstr "Así que el bosque respira de nuevo. Qué bueno tenerlos aquí."
 
 msgid "NPC_SEWER_SCAVENGER"
-msgstr "Rebuscador de la Alcantarilla"
+msgstr "Serafina, la Ángel Caída"
 
 msgid "NPC_SEWER_RATCATCHER"
 msgstr "Itachi"
@@ -3030,22 +3030,22 @@ msgid "QUEST_SEWER_FROG_KING"
 msgstr "El Rey de los Sapos"
 
 msgid "QUEST_SEWER_FROG_KING_DESC"
-msgstr "El Rebuscador de la Alcantarilla quiere al Rey de los Sapos fuera del camino: lleva su libro al altar en el centro de la alcantarilla para despertar al monstruo y derrótalo."
+msgstr "Serafina quiere al Rey de los Sapos fuera del camino: lleva su libro al altar en el centro de la alcantarilla para despertar al monstruo y derrótalo."
 
 msgid "DLG_SEWER_FROG_1"
-msgstr "Soy el Hombre Araña. Vengo del multiverso y caí en esta alcantarilla. Sí, soy un héroe, pero hasta los héroes necesitan ayuda."
+msgstr "Fui ángel, una vez. Caí por estas rejas, y mis alas quedaron atrapadas en lo que la cloaca devora. Oigo los susurros de una cosa de carne y tablas, al oeste."
 
 msgid "DLG_SEWER_FROG_2"
-msgstr "La gente lo llama el Rey de los Sapos, pero de sapo no tiene nada: es un monstruo de carne y tablas, lleno de clavos. Duerme hasta que alguien toca el altar, en el centro de la alcantarilla. Yo solo no puedo con él."
+msgstr "La gente lo llama el Rey de los Sapos, pero lo armaron con los huesos y la madera de quienes se ahogaron aquí, clavo a clavo. Aún llora, y su llanto llama a los demás muertos."
 
 msgid "DLG_SEWER_FROG_3"
-msgstr "Derríbalo conmigo, por favor. Llévate este libro: abre el altar en el centro de la alcantarilla. Apóyenlo en la piedra, léanlo y prepárense."
+msgstr "Derríbenlo y liberen las almas presas en las tablas. A cambio, la llave que guarda es suya. Vayan al oeste, hasta la plaza grande."
 
 msgid "DLG_SEWER_FROG_ACTIVE"
-msgstr "El monstruo solo despierta cuando alguien lee el libro en el altar, en el centro de la alcantarilla. ¡Cuidado con su embestida!"
+msgstr "Todavía oigo su llanto en el oeste. Cada tabla que cae suelta un alma… y la veo subir. No me dejen esperando en la oscuridad."
 
 msgid "DLG_SEWER_FROG_DONE"
-msgstr "¿De verdad cayó? ¡Gracias! Hasta un héroe del multiverso necesita un equipo. Tu amigo y vecino de la alcantarilla lo agradece."
+msgstr "Silencio, por fin. Las almas subieron y sentí cada una pasar entre mis alas rotas. Gracias. Lleven la llave: ya pesa menos."
 
 msgid "PROP_SEWER_SECTOR_1"
 msgstr "Desagües de la Calle Principal"
@@ -3093,10 +3093,10 @@ msgid "TOAST_FROG_ALTAR_AWAKENS"
 msgstr "El altar tiembla: ¡el Rey de los Sapos despierta!"
 
 msgid "TOAST_BOOK_RECEIVED"
-msgstr "¡El Rebuscador de la Alcantarilla entregó el Libro del Altar!"
+msgstr "¡Serafina entregó el Libro del Altar!"
 
 msgid "DLG_FROG_ALTAR_LOCKED"
-msgstr "El altar no reacciona. Hay un hueco vacío en el centro de la piedra, del tamaño de un libro. El Rebuscador de la Alcantarilla debe tener lo que falta."
+msgstr "El altar no reacciona. Hay un hueco vacío en el centro de la piedra, del tamaño de un libro. Serafina debe tener lo que falta."
 
 msgid "MONSTER_TROLL_MAULER"
 msgstr "Troll Aplastador"

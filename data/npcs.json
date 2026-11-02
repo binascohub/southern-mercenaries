@@ -760,7 +760,7 @@
     ]
   },
   "sewer_scavenger": {
-    "_comment": "Catador do Esgoto (o Homem-Aranha; sala de entrada): dá a missão do primeiro mini-chefe, o Rei dos Sapos (agora o Monstro de Tábuas), na praça oeste; ele vive dançando.",
+    "_comment": "Serafina, a Anja Caída (modelo angel_1.glb; canto inferior esquerdo do mapa): dá a missão do primeiro mini-chefe, o Rei dos Sapos (agora o Monstro de Tábuas), na praça oeste; ela fica parada, de asas abertas.",
     "name_key": "NPC_SEWER_SCAVENGER",
     "color": [
       0.4,
