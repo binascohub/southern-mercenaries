@@ -49,6 +49,38 @@ func _ready() -> void:
 				key = String(prop.get("name_key", ""))
 			var text: String = String(TranslationServer.translate(key)) if key != "" else String(prop.get("id", ""))
 			_tag(_arena, prop.position, "[%s]" % text, false, 3.0, Color(0.6, 0.9, 1.0))
+	# títulos dos setores (nome do cartaz + os monstros que moram nele), grandes, no centro de cada setor
+	var sector_of := func(id: String) -> int:
+		if id.begins_with("sw") and id.length() > 2 and id[2].is_valid_int():
+			return int(id[2])
+		return 4 if id == "sw_old_gator" else 0
+	var by_sector := {}
+	for enc: Dictionary in data.get("encounters", []):
+		var sec: int = sector_of.call(String(enc.id))
+		if sec == 0:
+			continue
+		for m: Dictionary in enc.monsters:
+			by_sector[sec] = by_sector.get(sec, []) + [TranslationServer.translate(GameData.monsters.get(m.monster, {}).get("name_key", m.monster))]
+	by_sector[2] = by_sector.get(2, []) + [TranslationServer.translate("MONSTER_PLANK_MONSTER") if TranslationServer.translate("MONSTER_PLANK_MONSTER") != "MONSTER_PLANK_MONSTER" else "Rei dos Sapos (altar)"]
+	var centers := {1: [0, -30], 2: [-45, -80], 3: [45, -80], 4: [45, -130], 5: [-45, -135]}
+	for sec: int in centers:
+		var names: Array = []
+		for n in by_sector.get(sec, []):
+			if n not in names:
+				names.append(n)
+		var title := "SETOR %d — %s\n%s" % [sec, TranslationServer.translate("PROP_SEWER_SECTOR_%d" % sec), ", ".join(PackedStringArray(names))]
+		var big := Label3D.new()
+		big.text = title
+		big.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		big.no_depth_test = true
+		big.font_size = 56
+		big.pixel_size = 0.075
+		big.outline_size = 16
+		big.shaded = false
+		big.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+		big.modulate = [Color(1, 0.6, 0.3), Color(0.5, 1, 0.5), Color(0.5, 0.8, 1), Color(1, 0.9, 0.4), Color(0.9, 0.6, 1)][sec - 1]
+		big.position = Vector3(centers[sec][0], 6.0, centers[sec][1])
+		_arena.add_child(big)
 	for entry: Dictionary in data.get("crowd", []):
 		_tag(_arena, entry.position, String(entry.role), false, 2.5, Color(0.85, 0.85, 0.85))
 	for arg in args:

@@ -1356,6 +1356,8 @@ func _break(box: Enemy) -> void:
 func _random_valuable() -> String:
 	var options: Array[String] = []
 	for id in GameData.valuables:
+		if GameData.valuables[id].get("quest_item", false):
+			continue  # relíquias de missão (caveira de Morvak, chaves, costela…) só caem de quem a missão manda, nunca no sorteio comum
 		var maps: Array = GameData.valuables[id].maps
 		if maps.is_empty() or arena.get("map_id", "") in maps:
 			options.append(id)
