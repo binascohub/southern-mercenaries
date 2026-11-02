@@ -1,6 +1,6 @@
 """Orc (orc.glb enviado pelo autor do projeto, orc bípede em A-pose de 1,95 m, autor/licença a confirmar), companheiro de Terra do Invocador:
 ligado ao esqueleto e às animações dos heróis (assets/models/characters/hero_male.glb), então anda, corre e ataca com os mesmos movimentos dos homens.
-A roupa (casaco laranja e calça/debrum azuis) vira verde na textura; couro, pele e botas ficam como são.
+A textura e as cores originais ficam como são.
 Gera assets/models/props/Orc.glb: uma peça só (Orc_Body, ~45 mil triângulos) mais o esqueleto e as animações do herói (sem as peças do herói).
 Mesmo método de build_wereorc_companion.py.
 uso: blender -b -P tools/assets/build_orc_companion.py -- <orc.glb> <hero_male.glb> <saida.glb>"""
@@ -17,38 +17,6 @@ orc.parent = None
 bpy.context.view_layer.update()
 orc.data.transform(orc.matrix_world)
 orc.matrix_world = orc.matrix_world.__class__.Identity(4)
-# 1b) a roupa vira verde: pixels laranja vivos (casaco) -> verde-folha; azuis (calça, debrum) -> verde-escuro; matiz trocado, brilho e relevo mantidos
-def recolor_green(obj):
-    mat = obj.data.materials[0]
-    tex = next(n for n in mat.node_tree.nodes if n.type == 'TEX_IMAGE' and n.outputs["Color"].links and n.outputs["Color"].links[0].to_socket.name == "Base Color")
-    img = tex.image
-    w, h = img.size
-    px = np.array(img.pixels[:], dtype=np.float32).reshape(h, w, 4)
-    rgb = px[:, :, :3]
-    mx = rgb.max(axis=2); mn = rgb.min(axis=2)
-    d = np.maximum(mx - mn, 1e-6)
-    sat = (mx - mn) / (mx + 1e-6)
-    hue = np.where(mx == rgb[..., 0], ((rgb[..., 1] - rgb[..., 2]) / d) % 6, np.where(mx == rgb[..., 1], (rgb[..., 2] - rgb[..., 0]) / d + 2, (rgb[..., 0] - rgb[..., 1]) / d + 4)) * 60
-    orange = (sat > 0.55) & (mx > 0.45) & (hue > 22) & (hue < 50)
-    blue = (sat > 0.22) & (hue > 190) & (hue < 260) & (mx > 0.08)
-    print("ORANGE", float(orange.mean()), "BLUE", float(blue.mean()))
-    out = rgb.copy()
-    for mask, new_hue, sat_mul, val_mul in ((orange, 108.0, 0.6, 0.68), (blue, 125.0, 0.9, 0.7)):
-        s2 = np.clip(sat * sat_mul, 0, 1)[mask]
-        v2 = np.clip(mx * val_mul, 0, 1)[mask]
-        c = v2 * s2
-        x = c * (1 - abs((new_hue / 60.0) % 2 - 1))
-        m0 = v2 - c
-        # matiz fixo (entre 60 e 180 graus: verde -> g = c, r = x, b = 0 ou x conforme o setor)
-        r = x + m0 if new_hue < 120 else m0
-        g = c + m0
-        b = m0 if new_hue < 120 else x + m0
-        out[mask] = np.stack([r, g, b], axis=1)
-    px[:, :, :3] = out
-    img.pixels = px.ravel().tolist()
-
-
-recolor_green(orc)
 # 2) o herói: só o esqueleto e as animações ficam
 bpy.ops.import_scene.gltf(filepath=hero_path)
 arm = [o for o in bpy.data.objects if o.type == 'ARMATURE'][0]

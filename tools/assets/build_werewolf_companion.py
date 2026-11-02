@@ -17,38 +17,6 @@ wolf.parent = None
 bpy.context.view_layer.update()
 wolf.data.transform(wolf.matrix_world)
 wolf.matrix_world = wolf.matrix_world.__class__.Identity(4)
-# 1b) a calça: os pixels azulados da textura nas pernas e nos quadris (z 0,4-1,15 m) viram azul jeans, mantendo o relevo do tecido
-def paint_pants_blue(obj):
-    mat = obj.data.materials[0]
-    tex = next(n for n in mat.node_tree.nodes if n.type == 'TEX_IMAGE' and n.outputs["Color"].links and n.outputs["Color"].links[0].to_socket.name == "Base Color")
-    img = tex.image
-    w, h = img.size
-    px = np.array(img.pixels[:], dtype=np.float32).reshape(h, w, 4)
-    uv = obj.data.uv_layers.active.data
-    mesh = obj.data
-    mask = np.zeros((h, w), dtype=bool)
-    for poly in mesh.polygons:
-        z = (obj.matrix_world @ poly.center).z
-        if not 0.4 < z < 1.15:
-            continue
-        for li in poly.loop_indices:
-            u = uv[li].uv
-            mask[min(h - 1, max(0, int(u[1] * h))), min(w - 1, max(0, int(u[0] * w)))] = True
-    for _ in range(3):
-        for dy, dx in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-            mask |= np.roll(mask, (dy, dx), axis=(0, 1))
-    rgb = px[:, :, :3]
-    bluish = rgb[:, :, 2] > rgb[:, :, 0] + 0.012
-    sel = mask & bluish
-    lum = rgb.mean(axis=2)
-    shade = np.clip(lum / 0.17, 0.5, 1.8)[sel]
-    jeans = np.array([0.08, 0.24, 0.62], dtype=np.float32)
-    px[:, :, :3][sel] = np.clip(jeans[None, :] * shade[:, None], 0, 1)
-    img.pixels = px.ravel().tolist()
-    print("PANTS PIXELS", int(sel.sum()))
-
-
-paint_pants_blue(wolf)
 # 2) o herói: só o esqueleto e as animações ficam
 bpy.ops.import_scene.gltf(filepath=hero_path)
 arm = [o for o in bpy.data.objects if o.type == 'ARMATURE'][0]

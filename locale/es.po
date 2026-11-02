@@ -1495,7 +1495,7 @@ msgid "COMPANION_OTTER"
 msgstr "Lobo de agua"
 
 msgid "COMPANION_FALCON"
-msgstr "Grifo del aire"
+msgstr "Halcón del aire"
 
 msgid "COMPANION_BOAR"
 msgstr "Orco"

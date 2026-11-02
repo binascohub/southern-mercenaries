@@ -76,7 +76,7 @@ O elemento define **quais animais amigos** respondem ao chamado.
 |---|---|---|---|---|
 | Fogo | **Fênix** (rápido, ataques que queimam) | Mais dano dos companheiros | Aumenta o dano dos aliados e dos animais | Fácil |
 | Água | **Lobo** (ataca à distância com jatos d'água) | Controle e cura | Cura | Fácil |
-| Ar | **Grifo** (voa, ataques rápidos e elétricos) | Velocidade e dano em cadeia | Velocidade para o grupo | Média |
+| Ar | **Falcão** (voa, ataques rápidos e elétricos) | Velocidade e dano em cadeia | Velocidade para o grupo | Média |
 | Terra | **Orc** (resistente, chance de atordoar) | O Invocador mais seguro | Escudo nos aliados | Fácil |
 
 ## 4. Recurso e Poder de Invocação

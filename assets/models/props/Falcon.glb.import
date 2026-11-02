@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bpww4lmx7ug5e"
-path="res://.godot/imported/Griffin.glb-138a9c9c72ecca2ff02ba92de73d4dfd.scn"
+uid="uid://cexhjbjrla1r5"
+path="res://.godot/imported/Falcon.glb-e9afa42778ff5c15b5210b8cce4c9524.scn"
 
 [deps]
 
-source_file="res://assets/models/props/Griffin.glb"
-dest_files=["res://.godot/imported/Griffin.glb-138a9c9c72ecca2ff02ba92de73d4dfd.scn"]
+source_file="res://assets/models/props/Falcon.glb"
+dest_files=["res://.godot/imported/Falcon.glb-e9afa42778ff5c15b5210b8cce4c9524.scn"]
 
 [params]
 

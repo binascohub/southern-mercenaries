@@ -38,10 +38,11 @@
     "cooldown": 0.6,
     "flies": true,
     "size": 0.5,
-    "model": "Griffin",
-    "model_scale": 0.5,
-    "model_y": 0.8,
-    "_comment": "Companheiro de Ar do Invocador: o Grifo (griffin.glb fornecido pelo autor), no lugar do falcão (o id continua falcon); voa."
+    "model": "Falcon",
+    "model_scale": 0.55,
+    "model_y": 0.7,
+    "anim_map": {"idle": "Fly", "walk": "Fly", "run": "Fly", "attack": "Attack"},
+    "_comment": "Companheiro de Ar do Invocador: o Falcão (falcon.glb fornecido pelo autor, com esqueleto de asas e animações Fly/Attack feitos por tools/assets/build_falcon_companion.py); voa."
   },
   "boar": {
     "name_key": "COMPANION_BOAR",
@@ -53,7 +54,7 @@
     "model_scale": 0.8,
     "anim_map": {"idle": "Idle", "walk": "Walk", "run": "Jog_Fwd", "attack": "Sword_Attack"},
     "run_speed": 2.5,
-    "_comment": "Companheiro de Terra do Invocador: o Orc (orc.glb fornecido pelo autor, bípede de roupa verde ligado ao esqueleto e às animações dos heróis por tools/assets/build_orc_companion.py), no lugar do javali (o id continua boar)."
+    "_comment": "Companheiro de Terra do Invocador: o Orc (orc.glb fornecido pelo autor, bípede ligado ao esqueleto e às animações dos heróis por tools/assets/build_orc_companion.py), no lugar do javali (o id continua boar)."
   },
   "bear": {
     "name_key": "COMPANION_BEAR",
