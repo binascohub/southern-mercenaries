@@ -189,7 +189,8 @@ const MODELS := {
 	# Galo da Fazenda (Rooster (animated), CDmir e TinyWorlds, CC0; tools/assets/build_rooster.sh): 0,5 m de comprimento; anda e bica o chão.
 	"rooster": {"scene": "res://assets/models/characters/rooster.glb", "scale": 1.0,
 		"poses": {"walk": "walk", "idle": "eat", "talk": "idle"}},
-	# Porco e cavalo da Fazenda (Farm Animals, Quaternius, CC0; tools/assets/build_farm_animals.sh): 1,2 m e 2,2 m de comprimento.
+	# Porco (Domestic Pig Male, do autor, pork.zip; tools/assets/build_pig.py): 1,3 m de comprimento, com esqueleto, andar e parado montados pelo script.
+	# O cavalo da Fazenda continua o do pacote Farm Animals (Quaternius, CC0; tools/assets/build_farm_animals.sh).
 	"pig": {"scene": "res://assets/models/characters/pig.glb", "scale": 1.0,
 		"poses": {"walk": "walk", "idle": "idle", "talk": "idle"}},
 	# Animais de cenário fornecidos pelo autor (modelos estáticos reduzidos por tools/assets/reduce_scan_model.py; autoria e licença a confirmar):
@@ -438,7 +439,9 @@ func set_pose(key: String) -> void:
 	if _poses.has(key) and _anim.has_animation(_poses[key]):
 		_anim.play(_poses[key], 0.15)
 	else:
-		# Parada: a pose de andar congelada no primeiro quadro.
+		# Parada: a pose de andar congelada no primeiro quadro (modelo estático: não há o que tocar).
+		if not _anim.has_animation(_poses.get("walk", "")):
+			return
 		_anim.play(_poses.get("walk", ""), 0.15)
 		_anim.seek(0.0, true)
 		_anim.pause()

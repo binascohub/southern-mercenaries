@@ -12,7 +12,6 @@ PROPS = [
     # (o barril vem junto com um banquinho: fica só o grupo de peças do barril)
     ("Beer_Barrel", "beer/DwarfBeerBarrel.blend", 1.05, "beer/DwarfBeerBarrel_texture4.png", {}, [], True),
     ("Mug_Wood", "mug/woodmug_0.blend", 0.16, "", {"Material.001": (0.42, 0.26, 0.13, 1), "Material.002": (0.45, 0.45, 0.48, 1)}, ["Mug Detail"], False),
-    ("Treasure_Chest", "chest/treasure_chest.obj", 0.85, "chest/Treasurechest_DIFF.png", {}, [], False),
     # Caixotes de madeira (Yughues, CC0): todos na mesma escala (x2,2).
     ("Crate_Open", "crates/Crate-01.obj", 0.40, "crates/diffuse.tga", {}, [], False),
     ("Crate_Small", "crates/Crate-02.obj", 0.37, "crates/diffuse.tga", {}, [], False),

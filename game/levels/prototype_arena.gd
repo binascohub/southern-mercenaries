@@ -46,6 +46,8 @@ const CHECKPOINT_DELAY := 3.0
 ## Ouro no chão é recolhido sozinho a esta distância (proposta).
 const GOLD_AUTO_PICKUP := 1.6
 const LOOT_SCATTER := 1.2
+## Todos os baús têm a mesma largura nos arquivos (0,9 m); no jogo ficam um pouco maiores (~1,17 m).
+const CHEST_SCALE := 1.3
 ## Miniatura da campanha: primeira captura logo depois de entrar, depois a cada minuto.
 ## Segundos entre a fala da estátua e o surgimento do mini-chefe.
 const SUMMON_DELAY := 4.0
@@ -1244,7 +1246,7 @@ func _on_enemy_died(enemy: Enemy) -> void:
 		_break(enemy)
 		return
 	_reward(enemy)
-	if enemy.category() == "miniboss":
+	if enemy.category() == "miniboss" or enemy.category() == "boss":
 		_drop_miniboss_chest(enemy)
 	if enemy.is_boss() and enemy.data.has("drops_key") and String(enemy.data.drops_key) not in _campaign.get("keys", []):
 		# A chave do tesouro cai onde o chefe morreu.
@@ -1331,7 +1333,9 @@ func _reward(enemy: Enemy) -> void:
 	for p in present:
 		p.grant(xp, 0)
 		if not enemy.data.get("no_loot", false):
-			if enemy.category() != "miniboss":  # o mini-chefe deixa um baú (ver _drop_miniboss_chest)
+			if enemy.category() == "miniboss":  # o mini-chefe solta só poções; o resto vem do baú que ele deixa (ver _drop_miniboss_chest)
+				_drop_table(p, enemy.global_position, GameData.loot.miniboss_drop, enemy.level)
+			else:
 				_drop_loot_for(p, enemy)
 			_drop_quest_item(p, enemy)
 
@@ -1339,13 +1343,16 @@ func _reward(enemy: Enemy) -> void:
 ## Baú do mini-chefe (Treasure Chest, WeaponGuy, CC-BY 3.0): no lugar onde ele caiu; ao abrir (interagir), sai o loot de cada herói
 ## (tabela "miniboss" de data/loot.json). Fica guardado na campanha até ser aberto, mesmo se o grupo sair da área.
 func _drop_miniboss_chest(enemy: Enemy) -> void:
-	var prop := {"id": "mbchest_%s" % enemy.monster_id, "kind": "chest", "name_key": "PROP_MINIBOSS_CHEST", "model": "Chest_Mini",
-		"loot": "miniboss", "position": [snappedf(enemy.global_position.x, 0.1), snappedf(enemy.global_position.z, 0.1)]}
+	# O mini-chefe deixa o baú médio ou o grande; o chefão do mapa, o épico (tabela "boss_chest").
+	var boss := enemy.category() == "boss"
+	var prop := {"id": "mbchest_%s" % enemy.monster_id, "kind": "chest", "name_key": "PROP_BOSS_CHEST" if boss else "PROP_MINIBOSS_CHEST",
+		"model": "Chest_Epic" if boss else ("Chest_Large" if _rng.randf() < 0.5 else "Chest_Medium"),
+		"loot": "boss_chest" if boss else "miniboss", "position": [snappedf(enemy.global_position.x, 0.1), snappedf(enemy.global_position.z, 0.1)]}
 	var saved: Array = _campaign.get("mini_chests", []).filter(func(c: Variant) -> bool: return c.prop.id != prop.id or c.area != area_id)
 	saved.append({"area": area_id, "prop": prop})
 	_campaign.mini_chests = saved
 	_add_prop.rpc(prop)
-	_toast_all("TOAST_MINIBOSS_CHEST", {})
+	_toast_all("TOAST_BOSS_CHEST" if boss else "TOAST_MINIBOSS_CHEST", {})
 	SaveSystem.save_campaign(_campaign, true)
 
 
@@ -1372,7 +1379,10 @@ func _drop_table(player: Player, origin: Vector3, table: Dictionary, level: int)
 	if _rng.randf() < table.gold.chance:
 		var amount := roundi(_rng.randi_range(table.gold.min, table.gold.max) + table.gold.per_level * level)
 		amount = roundi(amount * (1.0 + player.character.gold_find_bonus()))
-		_add_loot(player, origin, {}, maxi(amount, 1))
+		# "gold_piles": o ouro cai em várias moedas espalhadas (o chefão), em vez de uma só.
+		var piles := maxi(1, mini(int(table.get("gold_piles", 1)), amount))
+		for i in piles:
+			_add_loot(player, origin, {}, maxi(amount / piles + (1 if i < amount % piles else 0), 1))
 	var count := 1 if _rng.randf() < table.item_chance else 0
 	if table.has("items"):
 		count = _rng.randi_range(int(table.items[0]), int(table.items[1]))
@@ -1886,7 +1896,7 @@ func _build_prop(prop_data: Dictionary) -> void:
 				_prop_mesh(node, BoxMesh.new(), Vector3(0.9, 0.7, 0.5), Vector3(-0.7, 0.35, 0), Color(0.25, 0.25, 0.27))
 				_prop_mesh(node, BoxMesh.new(), Vector3(1.4, 1.2, 1.2), Vector3(0.9, 0.6, 0), Color(0.35, 0.25, 0.2))
 				_prop_mesh(node, BoxMesh.new(), Vector3(0.6, 0.3, 0.05), Vector3(0.9, 0.7, 0.61), Color(1.0, 0.45, 0.1))
-			"chest" when prop.has("model") and _kit(node, String(prop.model), Transform3D(Basis(Vector3.UP, PI), Vector3.ZERO)):
+			"chest" when prop.has("model") and _kit(node, String(prop.model), Transform3D(Basis(Vector3.UP, PI).scaled(Vector3.ONE * CHEST_SCALE), Vector3.ZERO)):
 				pass  # baú do tesouro do chefe (de ferro, com cravos)
 			"key" when _kit(node, String(prop.get("model", "Key_Gold")), Transform3D(Basis(Vector3.RIGHT,
 					-PI / 2.0 if String(prop.get("model", "Key_Gold")) == "Key_Gold" else PI / 2.0), Vector3(0, 0.3, 0))):
@@ -1901,7 +1911,7 @@ func _build_prop(prop_data: Dictionary) -> void:
 				spin.tween_property(node.get_child(0), "rotation:y", TAU, 2.0).as_relative()
 			"key":
 				_prop_mesh(node, BoxMesh.new(), Vector3(0.15, 0.08, 0.6), Vector3(0, 0.3, 0), Color(0.95, 0.75, 0.25))
-			"chest" when _kit(node, "Chest_Wood", Transform3D(Basis().scaled(Vector3.ONE * 0.5), Vector3(0, 0.5, 0)),
+			"chest" when _kit(node, "Chest_Small", Transform3D(Basis(Vector3.UP, PI).scaled(Vector3.ONE * CHEST_SCALE), Vector3.ZERO),
 					Color(0.55, 0.45, 0.4) if prop.get("secret", false) else Color.WHITE):
 				pass  # baú de madeira com ferragens (o do segredo, mais escuro)
 			"chest":
@@ -1924,7 +1934,7 @@ func _build_prop(prop_data: Dictionary) -> void:
 				# Ponte de madeira podre sobre o canal (cenário).
 				var size: Array = prop.get("size", [4, 6])
 				_prop_mesh(node, BoxMesh.new(), Vector3(size[0], 0.12, size[1]), Vector3(0, 0.06, 0), Color(0.33, 0.24, 0.15))
-			"stash" when _kit(node, "Chest_Wood", Transform3D(Basis().scaled(Vector3.ONE * 0.55), Vector3(0, 0.55, 0))):
+			"stash" when _kit(node, "Chest_Small", Transform3D(Basis(Vector3.UP, PI).scaled(Vector3.ONE * CHEST_SCALE), Vector3.ZERO)):
 				pass
 			"stash":
 				# Baú acorrentado.
@@ -2316,12 +2326,41 @@ func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3,
 					_area_root.add_child(node)
 					if style.get("thatch", false):
 						_thatchify(node)
+					_close_gable(node)
 	# Lampião na parede norte das salas com tocha.
 	if room.get("torch", false) and not low:
 		var lantern := Kit.piece("Lantern_Wall")
 		if lantern:
 			lantern.position = Vector3(c.x, 1.4, c.z - half.z + 0.5)
 			_area_root.add_child(lantern)
+
+
+var _gable_material: StandardMaterial3D
+
+
+## Fecha o triângulo aberto na frente do telhado (a câmera olha do sul e via o vão escuro por baixo da palha):
+## uma tábua triangular um pouco para dentro da beirada, no formato do perfil do telhado (beiral em y -0,5, cumeeira em 3,3).
+func _close_gable(roof_node: Node3D) -> void:
+	if _gable_material == null:
+		# Tábuas (a mesma textura das paredes de madeira); sem a textura, uma cor lisa de madeira.
+		_gable_material = _tiled_material("wood_wall_1", Vector3(0.5, 0.5, 0.5), Color(0.95, 0.8, 0.62))
+		if _gable_material == null:
+			_gable_material = StandardMaterial3D.new()
+			_gable_material.albedo_color = Color(0.3, 0.21, 0.13)
+			_gable_material.roughness = 0.95
+		_match_wood_tone(_gable_material)
+		_gable_material.cull_mode = BaseMaterial3D.CULL_DISABLED
+	var arrays := []
+	arrays.resize(Mesh.ARRAY_MAX)
+	arrays[Mesh.ARRAY_VERTEX] = PackedVector3Array([Vector3(-2.75, -0.55, 2.3), Vector3(2.75, -0.55, 2.3), Vector3(0, 3.35, 2.3)])
+	arrays[Mesh.ARRAY_NORMAL] = PackedVector3Array([Vector3.BACK, Vector3.BACK, Vector3.BACK])
+	var mesh := ArrayMesh.new()
+	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
+	var gable := MeshInstance3D.new()
+	gable.mesh = mesh
+	gable.material_override = _gable_material
+	gable.name = "gable"
+	roof_node.add_child(gable)
 
 
 ## Cristal de save (Mese Crystal, rubberduck, CC0) ao lado do checkpoint da
@@ -2482,6 +2521,7 @@ func _woodify(node: Node3D) -> void:
 				copy.albedo_color = copy.albedo_color * WOOD_PLANK
 				copy.uv1_scale = WOOD_UV_SCALE
 				copy.uv1_offset = WOOD_UV_OFFSET
+			_match_wood_tone(copy)
 			_planks[trim] = copy
 		for i in m.get_surface_override_material_count():
 			var material := m.get_active_material(i) as StandardMaterial3D
@@ -2495,6 +2535,7 @@ func _deckify(node: Node3D) -> void:
 		_deck = _tiled_material("wood_floor_2", Vector3.ONE * 0.5, Color(0.92, 0.8, 0.68))
 	if _deck == null:
 		return
+	_match_wood_tone(_deck)
 	for mesh in node.find_children("*", "MeshInstance3D", true, false):
 		var m := mesh as MeshInstance3D
 		for i in m.get_surface_override_material_count():
@@ -2662,7 +2703,26 @@ func _wood_material() -> StandardMaterial3D:
 				image.get_region(Rect2i(0, int(335 * scale_), image.get_width(), int(280 * scale_))))
 			_wood_flat.uv1_triplanar = true
 			_wood_flat.uv1_scale = Vector3.ONE * 0.9
+	if not _wood_flat_toned:
+		_wood_flat_toned = true
+		_match_wood_tone(_wood_flat)
 	return _wood_flat
+
+
+var _wood_flat_toned := false
+
+
+## Madeira de um tom só (style.wood_tone) nos materiais de madeira feitos em código (paredes de tábuas, convés,
+## tábuas e estátua, tímpano do telhado): a cor média da textura passa a ser o tom, mantendo o relevo. O material é trocado no lugar.
+func _match_wood_tone(material: StandardMaterial3D) -> void:
+	if _wood_tone.a == 0.0 or material == null:
+		return
+	var average := _material_average(material)
+	material.albedo_color = Color(
+		material.albedo_color.r * _wood_tone.r / maxf(average.r, 0.01),
+		material.albedo_color.g * _wood_tone.g / maxf(average.g, 0.01),
+		material.albedo_color.b * _wood_tone.b / maxf(average.b, 0.01))
+	material.roughness = 0.85
 
 
 ## Janela quebrada: tábuas pregadas em X na abertura e, em algumas, a veneziana torta,
@@ -2687,6 +2747,7 @@ func _break_window(wall: Node3D, wide: bool, seed_: int) -> void:
 		pivot.rotation.z = deg_to_rad(rng.randf_range(5.0, 11.0) * (1.0 if rng.randf() < 0.5 else -1.0))
 		var shutters := Kit.piece("WindowShutters_Wide_Round_Open")
 		shutters.position = Vector3(0, -1.9, 0)
+		_tone_wood(shutters, "WindowShutters_Wide_Round_Open")
 		pivot.add_child(shutters)
 		wall.add_child(pivot)
 
@@ -2785,7 +2846,8 @@ func _scatter_trash(room: Dictionary, c: Vector3, half: Vector3) -> void:
 		elif piece_name.ends_with("_Shards"):
 			node.scale = Vector3(1.0, 0.25, 1.0)  # os cacos espalhados, rentes ao chão
 		_area_root.add_child(node)
-		_tint_piece(node, TRASH_GRIME)
+		if not piece_name.begins_with("Bottle"):  # as garrafas ficam na cor original do vidro (só a sujeira dos outros lixos tinge)
+			_tint_piece(node, TRASH_GRIME)
 		_tone_wood(node, piece_name)
 
 

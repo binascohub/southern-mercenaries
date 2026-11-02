@@ -1442,8 +1442,8 @@ while len(fort_rats) < 20:
 fort_chests = [{"id": i, "kind": "chest", "position": cell_pos(c, r), **extra} for i, (c, r), extra in zip(
     ("fort_chest_1", "fort_chest_2", "fort_potions_1", "fort_potions_2", "fort_potions_3"),
     ((9, 18), (8, 22), (25, 10), (26, 3), (3, 30)),
-    ({"loot": "chest"}, {"loot": "chest"}, {"loot": "potion_chest", "model": "Chest_Potion"}, {"loot": "potion_chest", "model": "Chest_Potion"},
-     {"loot": "potion_chest", "model": "Chest_Potion"}))]
+    ({"loot": "chest"}, {"loot": "chest"}, {"loot": "potion_chest", "model": "Chest_Mini"}, {"loot": "potion_chest", "model": "Chest_Mini"},
+     {"loot": "potion_chest", "model": "Chest_Mini"}))]
 # As quatro áreas de monstros (salão do alto, salão oeste, sala do meio, salão leste) e a sala do chefe final. Os dois mini-chefes não
 # estão aqui: um NPC de cada área os desperta (propriedade "summon", como a Floresta).
 fort_encounters = [

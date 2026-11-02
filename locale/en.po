@@ -2854,6 +2854,12 @@ msgstr "The embers roar: the Fire Golem awakens!"
 msgid "PROP_MINIBOSS_CHEST"
 msgstr "Mini-boss chest"
 
+msgid "PROP_BOSS_CHEST"
+msgstr "Boss chest"
+
+msgid "TOAST_BOSS_CHEST"
+msgstr "The boss left a chest!"
+
 msgid "TOAST_MINIBOSS_CHEST"
 msgstr "The mini-boss left a chest!"
 

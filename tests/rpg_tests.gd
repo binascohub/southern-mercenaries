@@ -853,7 +853,7 @@ func _test_sewers() -> void:
 	_check(area.props.filter(func(p: Dictionary) -> bool: return p.get("after_victory", false)).size() == 1, "portal só depois da vitória")
 	_check(not area.props.any(func(p: Dictionary) -> bool: return p.get("id", "") == "war_treasure") and not GameData.monsters.demon_rat_queen.has("drops_key"),
 		"sem o Tesouro Perdido da Guerra: nada de baú trancado nem chave da Rainha")
-	_check(area.props.any(func(p: Dictionary) -> bool: return p.kind == "chest" and p.get("secret", false)), "tem um segredo")
+	_check(not area.props.any(func(p: Dictionary) -> bool: return p.kind == "chest"), "sem baús no mapa: o loot vem só dos chefes e mini-chefes")
 	# Os 2 NPCs das missões de mini-chefe: cada missão limpa o grupo do chefe, e o NPC fica longe dele.
 	for pair: Array in [["sewer_ratcatcher", "sewer_old_gator", "sw_old_gator"], ["sewer_scavenger", "sewer_frog_king", "sw_frog_king"]]:
 		var npc_prop: Array = area.props.filter(func(p: Dictionary) -> bool: return p.get("npc", "") == pair[0])
@@ -881,6 +881,9 @@ func _test_sewers() -> void:
 	for e: Enemy in [rat, elite, gator, queen]:
 		e.free()
 	_check(GameData.loot.elite.items[0] >= 1 and GameData.loot.miniboss.guaranteed == "rare", "elite sempre deixa item; mini-chefe garante raro")
+	_check(GameData.loot.miniboss.potion_chance == 0.0 and GameData.loot.miniboss_drop.item_chance == 0.0 and GameData.loot.miniboss_drop.gold.chance == 0.0 and GameData.loot.miniboss_drop.valuable_chance == 0.0
+		and GameData.loot.miniboss_drop.potions[0] >= 1, "mini-chefe: poções no chão ao morrer; ouro, equipamentos e valiosos só no baú")
+	_check(int(GameData.loot.boss.get("gold_piles", 1)) >= 8, "chefão: o ouro cai em várias moedas")
 	# Caçada: o bando aparece num ponto da área, com uma elite, só o que falta matar.
 	var quest := {"id": "h1", "template": "hunt", "target": "acid_toad", "area": "sewers_01_drains", "count": 5, "progress": 2, "spot": 1, "status": "active"}
 	var hunt := SideQuests.hunt_encounter(quest)

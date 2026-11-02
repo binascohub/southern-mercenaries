@@ -1,5 +1,5 @@
 """Necromante (necromanser.rar enviado pelo autor do projeto: "Necromancer", 128 peças de malha já ligadas a um esqueleto de 223 ossos, 11 animações em FBX — uma por arquivo — e
-SEM texturas; autor/licença a confirmar): chefe do Esgoto, no lugar do Feiticeiro-Aranha. Aqui as peças viram uma malha só com 8 materiais lisos pintados por peça (pele pálida, manto roxo,
+SEM texturas; autor/licença a confirmar): chefe do Esgoto, no lugar do Feiticeiro-Aranha. Aqui as peças viram uma malha só com cor de vértice por peça (pele pálida, manto roxo,
 armadura escura, cajado, cabelo, ossos, correntes, couro), e as animações dos FBX entram no mesmo esqueleto: idle (idle1), walk (walk), attack (atack1), attack2 (atack2), cast (spellcast1),
 hit (wound), die (death) e roar (roar). Gera assets/models/monsters/necromancer.glb (de frente para -Y do Blender, 2,2 m com o cajado).
 uso: blender -b -P tools/assets/build_necromancer.py -- <pasta "Animation FBX"> <saida.glb>"""
@@ -46,6 +46,26 @@ bpy.context.view_layer.objects.active = meshes[0]
 bpy.ops.object.join()
 body = bpy.context.view_layer.objects.active
 body.name = "Necromancer_Body"
+# O jogo repinta os materiais (cor do monstro x cor do material), então a cor vai nos vértices (como o Itachi) e o corpo todo usa um só material branco com a cor de vértice.
+names = [m.name for m in body.data.materials]
+layer = body.data.color_attributes.new("Col", 'FLOAT_COLOR', 'CORNER')
+cols = {i: (*COLORS[n[2:]], 1.0) for i, n in enumerate(names)}
+flat = []
+for poly in body.data.polygons:
+    for _ in poly.loop_indices:
+        flat.extend(cols[poly.material_index])
+layer.data.foreach_set("color", flat)
+paint = bpy.data.materials.new("m_necromancer")
+paint.use_nodes = True
+bsdf = paint.node_tree.nodes["Principled BSDF"]
+bsdf.inputs["Roughness"].default_value = 0.8
+vc = paint.node_tree.nodes.new("ShaderNodeVertexColor")
+vc.layer_name = "Col"
+paint.node_tree.links.new(vc.outputs["Color"], bsdf.inputs["Base Color"])
+body.data.materials.clear()
+body.data.materials.append(paint)
+for poly in body.data.polygons:
+    poly.material_index = 0
 print("POLÍGONOS", len(body.data.polygons), "MATERIAIS", len(body.data.materials), "TAMANHO", [round(x, 2) for x in body.dimensions])
 
 # animações: uma por FBX, todas no esqueleto principal
@@ -77,5 +97,9 @@ bpy.ops.object.select_all(action='DESELECT')
 body.select_set(True)
 arm.select_set(True)
 bpy.context.view_layer.objects.active = arm
-bpy.ops.export_scene.gltf(filepath=dst, export_format='GLB', use_selection=True, export_animations=True, export_animation_mode='NLA_TRACKS', export_skins=True)
+kw = dict(filepath=dst, export_format='GLB', use_selection=True, export_animations=True, export_animation_mode='NLA_TRACKS', export_skins=True)
+try:
+    bpy.ops.export_scene.gltf(export_vertex_color='ACTIVE', **kw)
+except TypeError:
+    bpy.ops.export_scene.gltf(export_colors=True, **kw)
 print("OK", dst)

@@ -273,6 +273,8 @@ for p in legacy["nest_props"]:
     props.append(q)
 # Sem o Tesouro Perdido da Guerra (pedido do autor): o baú do Ninho não existe mais (a chave da Rainha também não cai).
 props = [p for p in props if p.get("id") != "war_treasure"]
+# Sem baús no mapa (pedido do autor): o loot vem só do baú que os chefes e mini-chefes deixam ao morrer.
+props = [p for p in props if p["kind"] != "chest"]
 # Piso todo de pedra: sem água (nem o lago do Gator Velho).
 props = [p for p in props if p["kind"] != "water"]
 # brasão da Passagem da Guerra (o Arqueiro reconhece) na entrada do setor 4
@@ -317,8 +319,10 @@ for e in legacy["nest_decor"]:
     e2 = dict(e)
     e2["position"] = [e["position"][0], e["position"][1] + NEST_DZ]
     decor.append(e2)
-# Tesouro Antigo (trasure.rar do autor; tools/assets/build_ancient_treasure.py): o monte de moedas e o baú aberto, no fundo da sala do chefe (só enfeite, sem baú para abrir).
-decor.append({"piece": "Ancient_Treasure", "position": [0, -206.0], "scale": 1.4})
+# Tesouro Antigo (trasure.rar do autor; tools/assets/build_ancient_treasure.py): montes de moedas com baú aberto espalhados pelo chão da sala do chefe, o maior no fundo (só enfeite, sem baú para abrir).
+for x, z, rot, sc in ((0, -206.0, 0, 1.4), (-11.0, -203.0, 20, 1.0), (11.0, -202.0, -25, 1.1), (-13.5, -191.0, 90, 0.9), (13.5, -192.0, 80, 1.0),
+                       (-8.5, -182.0, 10, 0.7), (8.5, -181.5, -15, 0.75), (-5.0, -196.0, 35, 0.5), (6.0, -210.0 + 4.5, 160, 0.6)):
+    decor.append({"piece": "Ancient_Treasure", "position": [x, z], "rotation": rot, "scale": sc})
 SECTOR_PIECES = {1: ["Barrel", "Crate_Wooden", "Bucket_Wooden_1", "Rope_1", "Crate_Metal", "Cage_Small"],
                  2: ["Barrel", "Bucket_Wooden_1", "Crate_Wooden", "Rope_1", "Crate_Metal"],
                  3: ["Cage_Small", "Rope_1", "Crate_Metal", "Barrel", "Mushroom_Flat"],

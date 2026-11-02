@@ -2854,6 +2854,12 @@ msgstr "Las brasas rugen: ¡el Gólem de Fuego despierta!"
 msgid "PROP_MINIBOSS_CHEST"
 msgstr "Cofre del minijefe"
 
+msgid "PROP_BOSS_CHEST"
+msgstr "Cofre del jefe"
+
+msgid "TOAST_BOSS_CHEST"
+msgstr "¡El jefe dejó un cofre!"
+
 msgid "TOAST_MINIBOSS_CHEST"
 msgstr "¡El minijefe dejó un cofre!"
 

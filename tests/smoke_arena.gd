@@ -635,12 +635,7 @@ func _sewers_test() -> void:
 		e.take_damage(1e9)
 	await get_tree().physics_frame
 	check.call(_arena._campaign.get("broken", []).size() == expected, "objetos quebrados ficam na campanha")
-	var chest_at: Vector3 = prop_at.call("secret_chest")
-	player.teleport_to(chest_at + Vector3(0, 0, 1.0))
-	var loot_before: int = _arena._loot.size()
-	_arena.request_interact(player)
-	check.call("sewers_01_drains:secret_chest" in _arena._campaign.opened and _arena._loot.size() > loot_before, "baú secreto dá loot")
-	check.call(_arena.prop_near(player, "chest", "", 5.0).is_empty(), "baú aberto some")
+	check.call(not area.props.any(func(p: Dictionary) -> bool: return p.kind == "chest"), "o Esgoto não tem baús no mapa (o loot vem dos chefes)")
 	# Golpe no chão: aviso, dano e poça.
 	var puddles: int = _arena.hazards.count()
 	player.health = player.max_health

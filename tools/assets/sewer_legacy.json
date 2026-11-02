@@ -419,7 +419,7 @@
       ],
       "loot": "treasure_sewers",
       "key": "key_rat_queen",
-      "model": "Treasure_Chest"
+      "model": "Chest_Epic"
     },
     {
       "id": "return_portal",

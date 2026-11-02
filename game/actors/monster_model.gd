@@ -17,7 +17,7 @@ extends Node3D
 const FAMILIES := {
 	# Necromante (necromanser.rar do autor; tools/assets/build_necromancer.py): chefe do Esgoto no lugar do Feiticeiro-Aranha. Já vem com esqueleto e animações próprias (sem texturas: materiais
 	# lisos pintados por peça). 2,2 m com o cajado; no tamanho 2,6 da Rainha com escala 0.55 -> ~3,1 m.
-	"necromancer": {"scene": "res://assets/models/monsters/necromancer.glb", "scale": 0.55,
+	"necromancer": {"scene": "res://assets/models/monsters/necromancer.glb", "scale": 0.55, "vertex_colors": true,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Guerreiro Cogumelo (champ-warrior.glb do autor; tools/assets/build_champ_warrior.py): guerreiro-cogumelo de armadura e espada, 1,5 m no arquivo (ombro levado a 1,44 m
 	# do esqueleto dos heróis, então 2,4 m no arquivo gerado), com os movimentos deles. Escala 0.6 e tamanho 1,1 -> ~1,6 m. Monstro do canto superior esquerdo do Esgoto.
@@ -251,6 +251,7 @@ func setup(look: String, size: float, tint: Color) -> bool:
 				continue
 			var copy := source.duplicate() as StandardMaterial3D
 			copy.albedo_color = _tint
+			copy.vertex_color_use_as_albedo = bool(info.get("vertex_colors", false))  # modelo pintado por cor de vértice (o Necromante)
 			# Os modelos antigos têm faces viradas para dentro (o morcego visto de cima).
 			copy.cull_mode = BaseMaterial3D.CULL_DISABLED
 			mesh.set_surface_override_material(i, copy)

@@ -2854,6 +2854,12 @@ msgstr "As brasas rugem: o Golem de Fogo desperta!"
 msgid "PROP_MINIBOSS_CHEST"
 msgstr "Baú do mini-chefe"
 
+msgid "PROP_BOSS_CHEST"
+msgstr "Baú do chefão"
+
+msgid "TOAST_BOSS_CHEST"
+msgstr "O chefão deixou um baú!"
+
 msgid "TOAST_MINIBOSS_CHEST"
 msgstr "O mini-chefe deixou um baú!"
 

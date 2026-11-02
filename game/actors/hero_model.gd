@@ -249,6 +249,9 @@ func _build_kick() -> void:
 func _on_animation_finished(_name: StringName) -> void:
 	if _held:
 		return
+	if _pose == "lie" and _action == "" and _names.has("lie"):
+		_lie_cycle()
+		return
 	_action = ""
 	if _pose != "" and is_inside_tree():
 		_play(_pose)
@@ -544,8 +547,34 @@ func update_state(speed: float, alive: bool, mounted: bool, charging: bool, bloc
 ## Pose fixa de NPC (sit, talk, torch, idle), em repetição.
 func set_pose(key: String) -> void:
 	_pose = key if _names.has(key) else "idle"
+	_lie_rising = false
 	if _anim:
 		_play(_pose, 0.0)
+
+
+## Bêbado deitado (pose "lie"): cai, fica no chão um bom tempo (parado no último quadro), levanta devagar,
+## fica um pouco de pé e cai de novo. Antes a queda recomeçava do início assim que terminava.
+const LIE_HOLD := Vector2(40.0, 70.0)
+const LIE_STAND := 4.0
+const LIE_RISE_SPEED := 0.3
+var _lie_rising := false
+
+
+func _lie_cycle() -> void:
+	if not is_inside_tree():
+		return
+	if _lie_rising:
+		# Acabou de levantar: espera de pé e cai de novo.
+		_lie_rising = false
+		await get_tree().create_timer(LIE_STAND).timeout
+		if _pose == "lie" and _action == "" and is_inside_tree():
+			_anim.play(_names.lie, 0.0)
+		return
+	# Acabou de cair: fica no chão.
+	await get_tree().create_timer(randf_range(LIE_HOLD.x, LIE_HOLD.y)).timeout
+	if _pose == "lie" and _action == "" and is_inside_tree():
+		_lie_rising = true
+		_anim.play(_names.lie, 0.0, -LIE_RISE_SPEED, true)
 
 
 ## Começa a pose fixa num ponto do ciclo (0..1), para um grupo não ficar em uníssono.

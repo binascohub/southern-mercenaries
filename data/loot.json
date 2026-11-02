@@ -63,16 +63,54 @@
       "rare": 35,
       "unique": 10
     },
-    "potion_chance": 1.0,
+    "potion_chance": 0.0,
     "elemental_potion_share": 0.0,
     "valuable_chance": 0.6
   },
+  "miniboss_drop": {
+    "_comment": "O que o mini-chefe solta ao morrer, direto no chão (por jogador): só poções (1 a 2, vida ou recurso). O resto — ouro, equipamentos e valiosos — sai do baú que ele deixa (tabela \"miniboss\"); a relíquia de missão vem de \"quest_drop\".",
+    "gold": {
+      "chance": 0.0,
+      "per_level": 0.0,
+      "min": 0,
+      "max": 0
+    },
+    "item_chance": 0.0,
+    "rarity_weights": {
+      "magic": 100
+    },
+    "potion_chance": 0.0,
+    "potions": [
+      1,
+      2
+    ],
+    "valuable_chance": 0.0
+  },
   "boss": {
+    "gold_piles": 14,
     "gold": {
       "chance": 1.0,
       "per_level": 50.0,
       "min": 40,
       "max": 80
+    },
+    "item_chance": 0.0,
+    "rarity_weights": {
+      "magic": 30,
+      "rare": 50,
+      "unique": 20
+    },
+    "potion_chance": 1.0,
+    "elemental_potion_share": 0.0,
+    "valuable_chance": 0.0
+  },
+  "boss_chest": {
+    "_comment": "Baú Épico que o chefão do mapa deixa ao morrer (por jogador): 3 a 4 equipamentos (o primeiro único, no mínimo) e valiosos. As moedas (em várias pilhas) e as poções caem direto no chão (tabela \"boss\").",
+    "gold": {
+      "chance": 0.0,
+      "per_level": 0.0,
+      "min": 0,
+      "max": 0
     },
     "item_chance": 0.0,
     "items": [
@@ -85,8 +123,7 @@
       "rare": 50,
       "unique": 20
     },
-    "potion_chance": 1.0,
-    "elemental_potion_share": 0.0,
+    "potion_chance": 0.0,
     "valuable_chance": 1.0
   },
   "chest": {

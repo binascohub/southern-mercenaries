@@ -53,7 +53,7 @@ def place(area, center, shape, y, items):
     return out
 
 
-W, C, M, B = 'Glass_Bottle_Wine', 'Glass_Bottle_Champagne', 'Glass_Bottle_Whiskey', 'Glass_Bottle_Beer'
+W, C, M, B = 'Bottle_2', 'Bottle_1', 'Bottle_4', 'Bottle_3'
 CC, CW, T, TW, S, ST = 'Glass_Cup_Champagne', 'Glass_Cup_Wine', 'Glass_Tumbler', 'Glass_Tumbler_Whiskey', 'Glass_Shot', 'Glass_Stein'
 JOBS = {
     'tavern': [((-2.8, -3.6), ('rect', 1.2, 0.4), 0.81, [W, CW, CW]), ((0.0, -3.6), ('rect', 1.2, 0.4), 0.81, [M, TW, TW]),

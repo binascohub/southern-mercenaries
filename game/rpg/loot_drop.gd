@@ -9,6 +9,10 @@ var item: Dictionary = {}
 var gold := 0
 
 const COIN_MODEL := "res://assets/models/props/Coin_Gold.glb"
+## Frasco de cada poção no chão (assets/models/props, tools/assets/build_potions.py): vida vermelho, recurso azul, elementais na cor do elemento.
+const POTION_MODELS := {"potion_health": "Potion_Red", "potion_resource": "Potion_Blue", "elemental_potion_water": "Potion_Aqua",
+	"elemental_potion_fire": "Potion_Orange", "elemental_potion_air": "Potion_Yellow", "elemental_potion_earth": "Potion_Green"}
+const POTION_HEIGHT := 0.5
 
 var _time := 0.0
 var _mesh: Node3D
@@ -36,6 +40,14 @@ func _ready() -> void:
 		if relic_anim and not relic_anim.get_animation_list().is_empty():
 			relic_anim.get_animation(relic_anim.get_animation_list()[0]).loop_mode = Animation.LOOP_LINEAR
 			relic_anim.play(relic_anim.get_animation_list()[0])  # o fantasma "respira" no chão
+	elif POTION_MODELS.has(item.get("id", "")) and Kit.has(POTION_MODELS[item.id]):
+		# Poção: o frasco em pé girando no chão, com ~0,5 m de altura.
+		var bottle := Kit.piece(POTION_MODELS[item.id])
+		var box := _bounds(bottle)
+		if box.size.y > 0.001:
+			bottle.scale = Vector3.ONE * (POTION_HEIGHT / box.size.y)
+			bottle.position.y = -box.position.y * bottle.scale.y
+		_mesh.add_child(bottle)
 	elif gold > 0:
 		# Moeda antiga em pé, girando (Old coin, yd, CC0).
 		var coin: Node3D = load(COIN_MODEL).instantiate()
@@ -69,6 +81,23 @@ func _ready() -> void:
 	label.position.y = 0.9
 	label.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	add_child(label)
+
+
+## Caixa que as malhas do modelo ocupam (antes de entrar na cena), nas coordenadas do próprio modelo.
+static func _bounds(node: Node3D) -> AABB:
+	var total := AABB()
+	var first := true
+	for found in node.find_children("*", "MeshInstance3D", true, false):
+		var mi := found as MeshInstance3D
+		var box := mi.transform * mi.get_aabb()
+		var parent := mi.get_parent()
+		while parent != null and parent != node:
+			if parent is Node3D:
+				box = (parent as Node3D).transform * box
+			parent = parent.get_parent()
+		total = box if first else total.merge(box)
+		first = false
+	return total
 
 
 func _process(delta: float) -> void:
