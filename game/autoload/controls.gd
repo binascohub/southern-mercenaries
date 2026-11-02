@@ -311,6 +311,8 @@ func _extend_ui_navigation() -> void:
 	var extra := {
 		&"ui_up": axis(JOY_AXIS_LEFT_Y, -1), &"ui_down": axis(JOY_AXIS_LEFT_Y, 1),
 		&"ui_left": axis(JOY_AXIS_LEFT_X, -1), &"ui_right": axis(JOY_AXIS_LEFT_X, 1),
+		# Nos menus: A seleciona o botão em foco e B volta/fecha (o padrão do Godot, sem estes dois, deixava o controle só navegar).
+		&"ui_accept": pad(JOY_BUTTON_A), &"ui_cancel": pad(JOY_BUTTON_B),
 	}
 	for action in extra:
 		if not InputMap.action_has_event(action, extra[action]):
