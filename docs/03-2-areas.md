@@ -62,6 +62,8 @@ O Esgoto é **um mapa só, num andar só** (`sewers_01_drains`), grande: uma gra
 | 5 · Câmaras dos Cogumelos | embaixo, lado oeste | Câmaras estreitas |
 | Fundo | túnel e Ninho | **Feiticeiro-Aranha** (chefe); Tesouro Perdido da Guerra e o mapa para as Ruínas |
 
+**Save point:** além do checkpoint da entrada, há um cristal de save **na frente da entrada da sala do altar** (o primeiro mini-chefe): chegar perto dele vira o checkpoint (autosave); se o grupo cair, volta ali (`save_point` em `arenas.json`).
+
 Só os chefes do Esgoto revidam (o Rei dos Sapos, o Gator Velho e o Feiticeiro-Aranha); o resto é cenário (aranhas, ratos, morcegos voando, madeira na cor da mesa da Taverna).
 
 ## 4. Ruínas do Reino do Arqueiro (`map_ruins`)

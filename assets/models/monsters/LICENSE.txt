@@ -94,3 +94,7 @@ goblin.glb — "Goblin" by CDmir (collaborator: TinyWorlds)
             CC0 1.0 Universal (public domain): https://creativecommons.org/publicdomain/zero/1.0/
             Changes: mesh and skeleton kept with the idle, walk, run, attack, hit and die animations, textures re-linked
             and reduced to 512 px, exported to glTF (tools/assets/build_monsters.py).
+
+troll_mauler.glb — "Troll Mauler" by piacenti
+                  https://opengameart.org/content/troll-mauler
+                  CC-BY 3.0 (credit the author). Converted by tools/assets/build_troll_mauler.py: medium mesh, loincloth and eyes rigged to the hero skeleton, textures at 1024 px.

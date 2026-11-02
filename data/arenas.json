@@ -5789,7 +5789,11 @@
         "id": "sewer_frog_altar",
         "kind": "npc",
         "npc": "sewer_frog_altar",
-        "kit": "Podium",
+        "kit": "Altar_Summon",
+        "solid": [
+          2.2,
+          2.0
+        ],
         "rotation": 0,
         "position": [
           0,

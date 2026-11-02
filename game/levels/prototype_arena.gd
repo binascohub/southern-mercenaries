@@ -1825,7 +1825,18 @@ func _build_prop(prop_data: Dictionary) -> void:
 				var own_model: Node3D = NpcModel.create(String(prop.npc)) if String(prop.npc) in ["voodoo_priest", "priest", "castle_guard", "court_jester", "seated_pirate", "elf_archer", "ruins_spartan", "old_lady", "forest_pyre_keeper", "sewer_scavenger", "sewer_ratcatcher"] else null
 				var statue_kit: String = prop.get("kit", "")
 				if statue_kit != "" and _kit(node, statue_kit, Transform3D(Basis(Vector3.UP, deg_to_rad(float(prop.get("rotation", 0.0)))), Vector3.ZERO)):
-					pass  # estátua do mapa: a peça do kit no lugar do corpo humano
+					# Estátua do mapa: a peça do kit no lugar do corpo humano; com "solid" ([largura, fundo]), o herói não atravessa (o altar do Esgoto).
+					if prop.has("solid"):
+						var blocker := StaticBody3D.new()
+						blocker.collision_layer = 1
+						blocker.collision_mask = 0
+						var blocker_shape := CollisionShape3D.new()
+						var blocker_box := BoxShape3D.new()
+						blocker_box.size = Vector3(float(prop.solid[0]), 1.0, float(prop.solid[1]))
+						blocker_shape.shape = blocker_box
+						blocker.add_child(blocker_shape)
+						blocker.position.y = 0.5
+						node.add_child(blocker)
 				elif own_model:
 					node.add_child(own_model)
 					if own_model.has_method("set_pose") and String(prop.npc) in ["seated_pirate", "old_lady", "sewer_scavenger", "sewer_ratcatcher"]:

@@ -192,7 +192,7 @@ _parent = min((n for n in neighbors(ALTAR_CELL) if frozenset((ALTAR_CELL, n)) in
 _dx, _dz = _parent[0] - ALTAR_CELL[0], -(_parent[1] - ALTAR_CELL[1])  # linha maior = z menor
 _door = 4.5 if _dx else 4.0  # salas lado a lado têm 1 m de vão; as de cima e de baixo se encostam
 ALTAR_ENTRY = [round(cx(ALTAR_CELL[0]) + _dx * (_door + 2.5), 1), round(cz(ALTAR_CELL[1]) + _dz * (_door + 2.5), 1)]
-FROG_ALTAR = {"id": "sewer_frog_altar", "kind": "npc", "npc": "sewer_frog_altar", "kit": "Podium", "rotation": 0, "position": [0, cz(NR // 2)],
+FROG_ALTAR = {"id": "sewer_frog_altar", "kind": "npc", "npc": "sewer_frog_altar", "kit": "Altar_Summon", "solid": [2.2, 2.0], "rotation": 0, "position": [0, cz(NR // 2)],
               "needs_key": "book_frog_altar", "summon": {"id": "sw_frog_king", "position": [0, cz(NR // 2) + 3.5], "level": 1, "toast": "TOAST_FROG_ALTAR_AWAKENS",
                          "monsters": [{"monster": "frog_king", "count": 1}]}}
 encounters.append({"id": "sw_old_gator", "position": praca_e, "level": 2, "spread": 3.4,

@@ -711,9 +711,10 @@ func _test_side_quests() -> void:
 	rng.seed = 11
 	var campaign := SaveSystem.new_campaign()
 	_check(SideQuests.generate_visitors(campaign, rng).is_empty(), "sem mapa liberado, sem visitantes")
-	# O Esgoto (único mapa que libera visitantes) só tem chefes: sem criatura comum para caçar, ninguém chega com missão.
+	# O Esgoto (único mapa que libera visitantes) só tem chefes e o Troll Mauler: a única criatura comum para caçar é ele, então toda história de visitante é sobre ele.
 	campaign.unlocked = ["sewer_entrance"]
-	_check(SideQuests.generate_visitors(campaign, rng).is_empty(), "Esgoto só com chefes: sem visitantes com missão")
+	var troll_visitors := SideQuests.generate_visitors(campaign, rng)
+	_check(troll_visitors.all(func(v: Dictionary) -> bool: return v.quest.target == "troll_mauler"), "Esgoto: as missões de visitante são só sobre o Troll Mauler")
 	_check(SideQuests.creatures_in("prototype_arena").size() == 2, "criaturas do bestiário que existem na área de teste")
 	var title := SideQuests.title({"template": "hunt", "target": "plague_frog", "area": "prototype_arena", "count": 5, "progress": 2, "status": "active"})
 	_check(title.contains("2/5"), "título da caçada com progresso: %s" % title)
@@ -811,12 +812,15 @@ func _test_sewers() -> void:
 	# Só os chefes do esgoto (Rei dos Sapos, Gator Velho e a Rainha) revidam, cada um sozinho.
 	var sewer_ids: Array = area.encounters.map(func(e: Dictionary) -> String: return String(e.id))
 	sewer_ids.sort()
-	_check(sewer_ids == ["sw_old_gator", "sw_queen"], "esgoto: só os encontros de chefe do mapa (%s); o Rei dos Sapos vem do altar" % [sewer_ids])
+	_check(sewer_ids == ["sw1_troll_1", "sw1_troll_2", "sw1_troll_3", "sw_old_gator", "sw_queen"],
+		"esgoto: os chefes do mapa e os 3 Trolls Mauler do Setor 1 (%s); o Rei dos Sapos vem do altar" % [sewer_ids])
 	var altar: Array = area.props.filter(func(p: Dictionary) -> bool: return p.get("id", "") == "sewer_frog_altar")
 	_check(altar.size() == 1 and altar[0].position == [0.0, -58.0] and altar[0].summon.id == "sw_frog_king" and altar[0].summon.monsters[0].monster == "frog_king",
 		"o altar do Rei dos Sapos fica no centro do mapa e invoca só o Rei")
-	_check(area.encounters.all(func(e: Dictionary) -> bool: return e.monsters.size() == 1 and GameData.monsters[e.monsters[0].monster].category in ["boss", "miniboss"]),
-		"esgoto: cada encontro é um chefe sozinho")
+	_check(area.encounters.all(func(e: Dictionary) -> bool: return e.monsters.size() == 1 and (GameData.monsters[e.monsters[0].monster].category in ["boss", "miniboss"] or e.monsters[0].monster == "troll_mauler")),
+		"esgoto: cada encontro é um chefe ou um Troll Mauler, sempre sozinho")
+	_check(area.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("sw1_troll_")).all(func(e: Dictionary) -> bool: return e.position[1] > -50.0),
+		"os Trolls Mauler ficam no Setor 1 (o terço de cima do mapa)")
 	_check(not area.props.any(func(p: Dictionary) -> bool: return p.kind == "water") and area.hazards.size() >= 10, "esgoto: piso de pedra, sem água, com as manchas verdes de lodo que ferem (%d)" % area.hazards.size())
 	# Chefes: as duas praças dos mini-chefes (missões dos NPCs) e a Rainha no Ninho, longe uns dos outros.
 	var gator_group: Dictionary = ids.get("sw_old_gator", {})
@@ -875,8 +879,8 @@ func _test_sewers() -> void:
 	_check(hunt.position == GameData.arenas.sewers_01_drains.quest_spots[1], "no ponto da missão")
 	quest.progress = 5
 	_check(SideQuests.hunt_encounter(quest).is_empty(), "caçada completa não traz bando")
-	_check(SideQuests.creatures_in("sewers_01_drains").is_empty() and SideQuests.open_maps(["sewer_entrance"]).is_empty(),
-		"o Esgoto só tem chefes: sem criaturas para caçar, sem missões secundárias de visitante")
+	_check(SideQuests.creatures_in("sewers_01_drains") == ["troll_mauler"] and SideQuests.open_maps(["sewer_entrance"]) == ["sewers_01_drains"],
+		"o Esgoto só tem chefes e o Troll Mauler: a única criatura comum é ele, e as missões de visitante o caçam")
 	# A Rainha: fases pela vida (60% e 25%).
 	var thresholds: Array = GameData.monsters.demon_rat_queen.phases
 	_check(RatQueen.phase_for(1.0, thresholds) == 1 and RatQueen.phase_for(0.61, thresholds) == 1, "fase 1 até 60%")
