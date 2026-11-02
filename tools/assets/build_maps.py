@@ -298,8 +298,6 @@ f_enc = [
 F_PLAZA_R = 6.5
 F_PLAZAS = {"stone": (46, -69), "fire": (12, -17.5)}        # a Praça da Pedra (sala `pedra`) e a Praça da Pira (sala `pira`)
 f_summons = {
-    "stone": {"id": "f_golem_stone", "position": [46, -61.5], "spread": 3.0, "toast": "TOAST_HERMIT_AWAKENS",
-              "monsters": [{"monster": "golem_stone", "count": 1, "rank": "miniboss"}]},
     "fire": {"id": "f_golem_fire", "position": [12, -10.0], "spread": 3.0, "toast": "TOAST_PYRE_AWAKENS",
              "monsters": [{"monster": "golem_fire", "count": 1, "rank": "miniboss"}]},
 }
@@ -487,7 +485,6 @@ arenas["forest_01_path"] = {
     "props": [
         {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-26.5, -9.0], "to": "tortuga", "entry": "forest", "expedition_end": True},
         {"id": "to_ruins", "kind": "exit", "name_key": "PROP_TO_RUINS", "position": [47, -119.5], "to": "ruins_01_city", "entry": "start", "group": True},
-        {"id": "forest_hermit", "kind": "npc", "npc": "forest_hermit", "position": list(F_PLAZAS["stone"]), "rotation": 0, "summon": f_summons["stone"]},
         {"id": "forest_pyre_keeper", "kind": "npc", "npc": "forest_pyre_keeper", "position": list(F_PLAZAS["fire"]), "rotation": 0, "summon": f_summons["fire"]},
     ] + v_props,
     "quest_spots": [], "breakables": f_deer,
@@ -505,11 +502,11 @@ r_rooms = [
     room("vault", 0, -66, 30, 20, ["south"], wall_height=0.8),
 ]
 r_enc = [
-    {"id": "r_lizards_a", "position": [-14, -22], "monsters": [{"monster": "golden_rabbit", "count": 3}]},
+    {"id": "r_lizards_a", "position": [-14, -22], "monsters": [{"monster": "goblin", "count": 3}]},
     {"id": "r_goblins_a", "position": [14, -12], "monsters": [{"monster": "goblin", "count": 4}]},
     {"id": "r_scorp", "position": [12, -28], "monsters": [{"monster": "venom_scorpion", "count": 3}]},
     {"id": "r_bats", "position": [0, -42], "monsters": [{"monster": "plague_bat", "count": 4}]},
-    {"id": "r_lizards_b", "position": [-18, -44], "monsters": [{"monster": "golden_rabbit", "count": 3}]},
+    {"id": "r_lizards_b", "position": [-18, -44], "monsters": [{"monster": "goblin", "count": 3}]},
     {"id": "r_goblins_b", "position": [-10, -62], "monsters": [{"monster": "goblin", "count": 5}]},
     {"id": "r_warden", "position": [0, -70], "monsters": [{"monster": "ruin_warden", "count": 1}]},
 ]
@@ -1884,11 +1881,16 @@ subprocess.run([sys.executable, "tools/assets/move_forest_village.py"], check=Tr
 subprocess.run([sys.executable, "tools/assets/add_forest_campfire.py"], check=True)  # fogueira no centro do acampamento
 subprocess.run([sys.executable, "tools/assets/add_forest_pond.py"], check=True)  # lagoa (e sem pedras) na sala dos sapos
 subprocess.run([sys.executable, "tools/assets/add_forest_pira_south.py"], check=True)  # sala nova ao sul da Praça da Pira (amplia o mapa dos sapos)
+subprocess.run([sys.executable, "tools/assets/add_forest_troll_room.py"], check=True)  # sala dos trolls ampliada (direita e baixo)
 subprocess.run([sys.executable, "tools/assets/add_forest_king_room.py"], check=True)  # sala do Rei Golem ampliada para a direita
+subprocess.run([sys.executable, "tools/assets/add_forest_temple.py"], check=True)  # templo em ruínas no meio da sala do Rei Golem
+subprocess.run([sys.executable, "tools/assets/add_forest_coin_bags.py"], check=True)  # bolsas de moedas espalhadas pela Floresta
+subprocess.run([sys.executable, "tools/assets/add_forest_deer.py"], check=True)  # mais cervos espalhados pela Floresta
 subprocess.run([sys.executable, "tools/assets/add_forest_trees.py"], check=True)  # carvalhos no lugar de parte da vegetação (Floresta toda)
 subprocess.run([sys.executable, "tools/assets/add_forest_trolls.py"], check=True)  # mapa dos trolls (sala hub)
 subprocess.run([sys.executable, "tools/assets/add_forest_walkers.py"], check=True)  # Bertram e Elara andando pelo mapa (sem missão)
 subprocess.run([sys.executable, "tools/assets/add_forest_butterflies.py"], check=True)  # borboletas animadas (Butterfly_Anim)
 subprocess.run([sys.executable, "tools/assets/swap_forest_keeper.py"], check=True)  # Guardiã da Pira na sala da lagoa, sapos na Praça da Pira
-subprocess.run([sys.executable, "tools/assets/add_forest_spacing.py"], check=True)  # caminhos de passagem 12 m mais compridos (sempre por último)
+subprocess.run([sys.executable, "tools/assets/add_forest_spacing.py"], check=True)  # caminhos de passagem 12 m mais compridos
+subprocess.run([sys.executable, "tools/assets/add_forest_fungus_map.py"], check=True)  # caminho e clareira dos Tios Fungo, ao norte da sala do Rei Golem (sempre por último)
 print("OK", [k for k in arenas if k.split("_")[0] in ("forest", "ruins", "cemetery", "fort", "farm", "mine")])

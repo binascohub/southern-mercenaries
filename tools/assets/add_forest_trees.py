@@ -15,6 +15,8 @@ keep += [(p["position"][0], p["position"][1], max(4.0, max(p.get("size", [0, 0])
 keep += [(b["position"][0], b["position"][1], 3.0) for b in forest.get("breakables", [])]
 keep += [(c["position"][0], c["position"][1], 3.0) for c in forest.get("crowd", [])]
 keep += [(d["position"][0], d["position"][1], 4.0) for d in decor if d.get("camp") or d.get("light") or d.get("piece") in ("Fire_Flame", "Signpost_Medieval", "Pr_RoadSign", "Pr_LampPost")]
+keep += [(d["position"][0], d["position"][1], 11.0) for d in decor if d.get("piece") == "Ruin_Temple1"]   # o templo da sala do Rei Golem (e a peça que fica no adereço dele)
+keep += [(p["position"][0], p["position"][1], 11.0) for p in forest["props"] if p.get("kit") == "Ruin_Temple1"]
 trees = []
 rng = random.Random("forest-living-trees")
 for room in forest["rooms"]:

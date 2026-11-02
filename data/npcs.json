@@ -508,58 +508,6 @@
       }
     ]
   },
-  "forest_hermit": {
-    "_comment": "Eremita da Pedra (Floresta, Ninho dos Ratos): fala na praça do centro e, no fim da fala, desperta o Golem de Pedra como mini-chefe ('summon' no objeto em arenas.json).",
-    "name_key": "NPC_FOREST_HERMIT",
-    "color": [
-      0.55,
-      0.55,
-      0.5
-    ],
-    "dialogues": [
-      {
-        "when": {
-          "quest_new": "forest_stone_golem"
-        },
-        "lines": [
-          "DLG_HERMIT_1",
-          "DLG_HERMIT_2",
-          "DLG_HERMIT_3"
-        ],
-        "offer": "forest_stone_golem"
-      },
-      {
-        "when": {
-          "quest_active": "forest_stone_golem"
-        },
-        "lines": [
-          "DLG_HERMIT_ACTIVE"
-        ]
-      },
-      {
-        "when": {},
-        "lines": [
-          "DLG_HERMIT_DONE"
-        ]
-      }
-    ],
-    "body": {
-      "sex": "male",
-      "hair": [
-        "Hair_SimpleParted",
-        "Hair_Beard"
-      ],
-      "hair_color": [
-        0.75,
-        0.75,
-        0.72
-      ],
-      "pose": "idle",
-      "outfit": {
-        "body": "cloth"
-      }
-    }
-  },
   "forest_pyre_keeper": {
     "_comment": "Guardiã da Pira (Floresta, Covil das Bestas): fala na praça do centro e, no fim da fala, desperta o Golem de Fogo como mini-chefe.",
     "name_key": "NPC_FOREST_PYRE_KEEPER",
@@ -746,6 +694,24 @@
         "when": {},
         "lines": [
           "DLG_OLD_LADY_DONE"
+        ]
+      }
+    ]
+  },
+  "forest_temple": {
+    "_comment": "Templo em ruínas da Floresta (sala do Rei Golem): clicar o desperta; no fim da fala invoca o Rei Golem de Pedra (viper_queen) com o Guardião do Túmulo ('summon' no objeto em arenas.json); o Rei invoca ondas de golens dos elementos.",
+    "name_key": "NPC_FOREST_TEMPLE",
+    "color": [
+      0.6,
+      0.65,
+      0.7
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_TEMPLE_1",
+          "DLG_TEMPLE_2"
         ]
       }
     ]

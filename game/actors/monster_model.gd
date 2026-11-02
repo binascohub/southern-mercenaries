@@ -57,6 +57,10 @@ const FAMILIES := {
 	# Só tem idle, pulo, corrida e sentado: o pulo faz de andar e de ataque, e a sentada faz de queda.
 	"rabbit": {"scene": "res://assets/models/characters/rabbit.glb", "scale": 0.05,
 		"anims": {"idle": "idle", "walk": "jump", "run": "run", "attack": "jump", "hit": "sit", "die": "sit"}},
+	# Dragãozinho (Baby Dragon, grab3d, CC0): malha única dourada sem esqueleto (`static`); 0,55 m no arquivo -> ~0,9 m
+	# no tamanho 1. Corre aos pulos (`hop` multiplica a altura do salto do `_animate_static`). Substituiu o Coelho Dourado.
+	"baby_dragon": {"scene": "res://assets/models/monsters/baby_dragon.glb", "scale": 1.6, "static": true, "hop": 8.0,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Lagarto Dourado (Lizardman, skorpio, CC BY-SA 3.0): tingido de ouro no jogo (agora só o Guardião do Cofre usa este corpo).
 	"lizard": {"scene": "res://assets/models/monsters/golden_lizard.glb", "scale": 0.8,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "die": "die"}},
@@ -604,7 +608,7 @@ func _animate_static(delta: float) -> void:
 	var roll := sin(_time * 0.9) * 0.02
 	if _current in ["walk", "run"]:
 		var rate := 9.0 if _current == "run" else 6.0
-		lift = absf(sin(_time * rate)) * 0.04
+		lift = absf(sin(_time * rate)) * 0.04 * float(FAMILIES[family].get("hop", 1.0))
 		pitch = 0.12
 		roll = sin(_time * rate * 0.5) * 0.07
 	elif _current == "attack":

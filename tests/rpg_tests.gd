@@ -670,6 +670,10 @@ func _test_minibosses_and_relics() -> void:
 				for m: Dictionary in e.monsters:
 					if GameData.monsters.get(m.monster, {}).get("category", "") == "miniboss":
 						found[m.monster] = true
+			for prop: Dictionary in GameData.arenas[area_id].get("props", []) if map_name == "Floresta" else []:    # (na Floresta o Rei Golem vem do templo, um grupo invocado)
+				for m: Dictionary in prop.get("summon", {}).get("monsters", []):
+					if GameData.monsters.get(m.monster, {}).get("category", "") == "miniboss":
+						found[m.monster] = true
 		_check(found.size() == 2, "%s tem 2 mini-chefes (%d)" % [map_name, found.size()])
 	for quest_id in ["royal_heart", "royal_lungs", "royal_skull", "royal_soul", "royal_banquet"]:
 		var quest: Dictionary = GameData.quests[quest_id]
@@ -918,13 +922,13 @@ func _test_sewers() -> void:
 	# (o de gelo é um encontro comum; os de pedra e de fogo são mini-chefes invocados pelos NPCs das praças, em `summon`.)
 	var golems: Array = GameData.arenas.forest_01_path.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("f_golem_"))
 	for prop: Dictionary in GameData.arenas.forest_01_path.props:
-		if prop.has("summon"):
+		if prop.has("summon") and String(prop.summon.monsters[0].monster).begins_with("golem_"):
 			golems.append(prop.summon)
 	_check(golems.size() == 2 and golems.all(func(e: Dictionary) -> bool:
 		var m: Dictionary = GameData.monsters.get(e.monsters[0].monster, {})
 		return m.get("category", "") == "elite" and MonsterModel.FAMILIES.has(m.get("look", "")) and float(m.get("damage", 0)) > 0.0), "Floresta tem os dois golens invocados (mini-chefes)")
 	# Floresta: a Toca dos Répteis só tem o Rei Golem de Pedra (maior) e o Guardião (menor); sem bandos de répteis.
-	var den: Array = GameData.arenas.forest_01_path.encounters.filter(func(e: Dictionary) -> bool: return e.id == "f_viper_queen")
+	var den: Array = GameData.arenas.forest_01_path.props.filter(func(p: Dictionary) -> bool: return p.id == "forest_temple").map(func(p: Dictionary) -> Dictionary: return p.summon)
 	var no_reptiles: bool = GameData.arenas.forest_01_path.encounters.all(func(e: Dictionary) -> bool: return not e.id.begins_with("f_reptiles"))
 	_check(den.size() == 1 and den[0].monsters.size() == 2 and den[0].monsters[0].monster == "viper_queen" and den[0].monsters[1].monster == "forest_tomb_guardian"
 		and MonsterModel.FAMILIES.has(GameData.monsters.viper_queen.look) and MonsterModel.FAMILIES.has(GameData.monsters.forest_tomb_guardian.look)
@@ -944,6 +948,20 @@ func _test_sewers() -> void:
 		and forest_decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Rock_MossyStone").size() >= 8 and Kit.has("Rock_MossyStone")
 		and forest_decor.any(func(d: Dictionary) -> bool: return d.get("piece", "") == "Fire_Flame" and d.get("flicker", false)) and Kit.has("Fire_Flame"),
 		"Floresta tem a fogueira (fogo, luz e círculo de pedras musgosas) no acampamento")
+	var temple: Array = GameData.arenas.forest_01_path.props.filter(func(p: Dictionary) -> bool: return p.id == "forest_temple")
+	_check(temple.size() == 1 and temple[0].kit == "Ruin_Temple1" and Kit.has("Ruin_Temple1") and temple[0].summon.id == "f_viper_queen"
+		and temple[0].summon.monsters[0].monster == "viper_queen" and GameData.npcs.has("forest_temple") and tr(temple[0].summon.toast) != temple[0].summon.toast
+		and forest_decor.any(func(d: Dictionary) -> bool: return d.has("collider") and d.get("temple_block", false))
+		and GameData.arenas.forest_01_path.encounters.all(func(e: Dictionary) -> bool: return e.id != "f_viper_queen"),
+		"Floresta tem um templo em ruínas (que bloqueia) no meio da sala do Rei Golem que, ao clicar, invoca o Rei Golem")
+	var waves: Dictionary = GameData.monsters.viper_queen.get("waves", {})
+	var wave_golems := {}
+	for wave: Array in waves.get("list", []):
+		for entry: Dictionary in wave:
+			wave_golems[entry.monster] = true
+	_check(waves.get("list", []).size() >= 3 and wave_golems.has("golem_fire") and wave_golems.has("golem_ice") and wave_golems.has("golem_stone")
+		and wave_golems.keys().all(func(id: String) -> bool: return GameData.monsters.has(id)) and tr(waves.get("toast", "")) != waves.get("toast", ""),
+		"O Rei Golem invoca ondas de golens de fogo, gelo e pedra")
 	_check(forest_decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Butterfly_Anim" and d.has("swim")).size() >= 6 and Kit.has("Butterfly_Anim"), "Floresta tem as borboletas animadas")
 	var forest_now: Dictionary = GameData.arenas.forest_01_path
 	var keeper: Dictionary = forest_now.props.filter(func(p: Dictionary) -> bool: return p.id == "forest_pyre_keeper")[0]
@@ -967,11 +985,11 @@ func _test_sewers() -> void:
 		if prop.has("summon"):
 			forest_ids.append(prop.summon.id)    # os grupos invocados também contam como "limpos"
 	var village_npcs: Array = forest.props.filter(func(p: Dictionary) -> bool: return p.kind == "npc")
-	_check(village_npcs.size() == 3 and village_npcs.all(func(p: Dictionary) -> bool: return GameData.npcs.has(p.npc)), "Floresta tem a elfa e os NPCs das duas praças")
+	_check(village_npcs.size() == 3 and village_npcs.all(func(p: Dictionary) -> bool: return GameData.npcs.has(p.npc)), "Floresta tem a elfa, a Guardiã da Pira e o templo")
 	_check(forest.crowd.any(func(c: Dictionary) -> bool: return c.role == "hunter" and c.has("path")) and forest.crowd.any(func(c: Dictionary) -> bool: return c.role == "tanner" and c.has("path"))
 		and GameData.crowd.roles.has("hunter") and GameData.crowd.roles.has("tanner") and not GameData.quests.has("forest_reptiles"), "Bertram e Elara andam pelo mapa, sem missão")
 	_check(forest.rooms.any(func(r: Dictionary) -> bool: return r.id == "village"), "Floresta tem a sala da aldeia")
-	for quest_id in ["forest_stone_golem", "forest_fire_golem", "forest_leshy"]:
+	for quest_id in ["forest_fire_golem", "forest_leshy"]:
 		var mission: Dictionary = GameData.quests.get(quest_id, {})
 		_check(mission.get("area", "") == "forest_01_path" and mission.get("clear", []).all(func(id: String) -> bool: return id in forest_ids)
 			and (village_npcs.any(func(p: Dictionary) -> bool: return p.npc == mission.get("giver", "")) or GameData.arenas.tavern.props.any(func(p: Dictionary) -> bool: return p.get("npc", "") == mission.get("giver", ""))) and tr(mission.get("name_key", "")) != "",
@@ -985,8 +1003,8 @@ func _test_sewers() -> void:
 	for e: Dictionary in forest.encounters:
 		if e.id != "f_viper_queen" and GameData.monsters[e.monsters[0].monster].get("category", "") in ["common", "elite"]:     # (os mini-chefes e a Toca do Rei Golem ficam de fora)
 			sectors[e.monsters[0].monster] = true
-	_check(sectors.size() == 3 and sectors.has("forest_troll"), "Floresta tem três salas de monstros (sapos, bestas e trolls), um tipo em cada (%d)" % sectors.size())
-	var summoners: Array = forest.props.filter(func(p: Dictionary) -> bool: return p.has("summon"))
+	_check(sectors.size() == 4 and sectors.has("forest_troll") and sectors.has("fungus_uncle"), "Floresta tem quatro salas de monstros (sapos, bestas, trolls e Tios Fungo), um tipo em cada (%d)" % sectors.size())
+	var summoners: Array = forest.props.filter(func(p: Dictionary) -> bool: return p.has("summon") and p.id != "forest_temple")
 	_check(summoners.size() == 2 and summoners.all(func(p: Dictionary) -> bool:
 		var group: Dictionary = p.summon
 		return (GameData.npcs.has(p.npc) and GameData.npcs[p.npc].dialogues[0].lines.size() > 0 and group.monsters[0].get("rank", "") == "miniboss"
@@ -994,7 +1012,7 @@ func _test_sewers() -> void:
 		"Floresta tem duas praças com NPC que invoca um mini-chefe")
 	# Floresta: alguns cervos quebráveis, parados, que só soltam carne (cura como a poção de vida).
 	var deer: Array = GameData.arenas.forest_01_path.get("breakables", []).filter(func(b: Dictionary) -> bool: return b.monster != "coin_bag")  # a bolsa de moedas é outro objeto
-	_check(deer.size() >= 3 and deer.size() <= 10 and deer.all(func(b: Dictionary) -> bool:
+	_check(deer.size() >= 3 and deer.size() <= 40 and deer.all(func(b: Dictionary) -> bool:
 		var m: Dictionary = GameData.monsters.get(b.monster, {})
 		return m.get("breakable", false) and m.get("ai", "") == "static" and float(m.get("damage", 1)) == 0.0 \
 			and MonsterModel.FAMILIES.has(m.get("look", "")) and String(b.get("table", "")) == "breakable_meat"), "Floresta tem cervos que só soltam carne")

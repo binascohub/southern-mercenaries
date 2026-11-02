@@ -403,9 +403,9 @@
       0.2
     ]
   },
-  "golden_rabbit": {
-    "_comment": "Coelho Dourado (pedido do autor; Rabbit, cdmir, CC0): aparece às vezes numa sala do mapa (rare_spawn = chance por área, nunca na área final). Não ataca: passeia; golpeado, corre para longe e solta moedas (em 4 peças) a cada golpe, e um punhado ao morrer; aguenta uns 5 golpes. Era o Lagarto Dourado.",
-    "name_key": "MONSTER_GOLDEN_RABBIT",
+  "baby_dragon": {
+    "_comment": "Dragãozinho Dourado (pedido do autor; Baby Dragon, grab3d, CC0): aparece uma vez em todo mapa (guaranteed_spawn), numa sala que não é a da entrada. Não ataca: passeia; golpeado, corre aos pulos e solta moedas (em 4 peças) a cada golpe. Nunca morre (immortal): depois de soltar teleport_after_coins moedas some e reaparece em outro ponto do mapa. Era o Coelho Dourado.",
+    "name_key": "MONSTER_BABY_DRAGON",
     "max_health": 400,
     "move_speed": 1.4,
     "damage": 0,
@@ -415,9 +415,9 @@
     "aggro_range": 0.0,
     "size": 1.0,
     "category": "common",
-    "element": "earth",
+    "element": "fire",
     "ai": "flee",
-    "rare_spawn": 0.3,
+    "guaranteed_spawn": true,
     "no_loot": true,
     "flee": {
       "time": 3.0,
@@ -427,13 +427,14 @@
         25
       ],
       "coin_pieces": 4,
-      "coins_on_death": 150
+      "immortal": true,
+      "teleport_after_coins": 120
     },
-    "look": "rabbit",
+    "look": "baby_dragon",
     "color": [
       1.0,
-      0.72,
-      0.12
+      1.0,
+      1.0
     ]
   },
   "spawn_nest": {
@@ -1244,7 +1245,47 @@
       1.0,
       1.0
     ],
-    "_comment": "Mini-chefe da Floresta (Toca dos Répteis): usa o modelo do Rei Golem de Pedra (golem_king.glb, tools/assets/build_stone_golem_king.py); o Guardião do Túmulo o acompanha."
+    "_comment": "Mini-chefe da Floresta (Toca dos Répteis): usa o modelo do Rei Golem de Pedra (golem_king.glb, tools/assets/build_stone_golem_king.py); o Guardião do Túmulo o acompanha.",
+    "waves": {
+      "first": 8.0,
+      "interval": 24.0,
+      "radius": 6.0,
+      "toast": "TOAST_VIPER_WAVE",
+      "list": [
+        [
+          {
+            "monster": "golem_fire",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "golem_ice",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "golem_stone",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "golem_fire",
+            "count": 1
+          },
+          {
+            "monster": "golem_ice",
+            "count": 1
+          },
+          {
+            "monster": "golem_stone",
+            "count": 1
+          }
+        ]
+      ]
+    }
   },
   "ruin_alpha": {
     "name_key": "MONSTER_RUIN_ALPHA",

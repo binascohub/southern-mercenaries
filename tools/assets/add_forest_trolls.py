@@ -1,4 +1,4 @@
-"""Mapa dos trolls da Floresta: a sala "hub" (a leste do corredor onde ficava o guaxinim) vira a Clareira dos Trolls, com 3 bandos de 2 Trolls da Floresta.
+"""Mapa dos trolls da Floresta: a sala "hub" (a leste do corredor onde ficava o guaxinim) vira a Clareira dos Trolls, com 7 bandos de 2 Trolls da Floresta (3 na parte original e 4 nas faixas novas, ao sul e a leste).
 O Troll da Floresta (forest_troll) é o Troll Magro com o modelo troll.glb do autor (assets/models/monsters/forest_troll.glb, por build_forest_troll.py), maior e parado
 na pose do arquivo (sem animação, como o Rei Golem). Roda depois de build_maps.py gravar os dados (é chamado no fim dele). Idempotente.
 uso: python3 tools/assets/add_forest_trolls.py   (a partir da raiz do projeto)"""
@@ -14,8 +14,8 @@ open(MON, "a").write("\n")
 arenas = json.load(open(ARENAS, encoding="utf-8"))
 forest = arenas["forest_01_path"]
 forest["encounters"] = [e for e in forest["encounters"] if not e["id"].startswith("f_trolls")]
-for i, pos in enumerate([[44.0, -38.0], [54.0, -14.0], [55.0, -31.0]]):
-    forest["encounters"].append({"id": "f_trolls_%s" % "abc"[i], "position": pos, "monsters": [{"monster": "forest_troll", "count": 2}]})
+for i, pos in enumerate([[44.0, -38.0], [54.0, -14.0], [55.0, -31.0], [47.0, -1.0], [66.0, -3.0], [47.0, 13.0], [66.0, 14.0]]):
+    forest["encounters"].append({"id": "f_trolls_%s" % "abcdefg"[i], "position": pos, "monsters": [{"monster": "forest_troll", "count": 2}]})
 json.dump(arenas, open(ARENAS, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
 open(ARENAS, "a").write("\n")
-print("OK trolls: 3 bandos na sala hub")
+print("OK trolls: 7 bandos na sala hub")

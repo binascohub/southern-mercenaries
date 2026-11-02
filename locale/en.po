@@ -392,6 +392,21 @@ msgstr "+{value}% movement speed"
 msgid "AFFIX_GOLD_FIND"
 msgstr "+{value}% Binascoins found"
 
+msgid "NPC_FOREST_TEMPLE"
+msgstr "Ruined temple"
+
+msgid "DLG_TEMPLE_1"
+msgstr "The temple stones hum under your hand. An ancient sigil lights up at the center."
+
+msgid "DLG_TEMPLE_2"
+msgstr "The ground shakes: the Stone Golem King awakens, and waves of elemental golems will follow."
+
+msgid "TOAST_TEMPLE_AWAKENS"
+msgstr "The temple trembles: the Golem King awakens!"
+
+msgid "TOAST_VIPER_WAVE"
+msgstr "The Golem King summons golem wave {n}!"
+
 msgid "MONSTER_FOREST_TROLL"
 msgstr "Forest Troll"
 
@@ -2323,8 +2338,8 @@ msgstr "Plague Bat"
 msgid "MONSTER_VENOM_SCORPION"
 msgstr "Venom Scorpion"
 
-msgid "MONSTER_GOLDEN_RABBIT"
-msgstr "Golden Rabbit"
+msgid "MONSTER_BABY_DRAGON"
+msgstr "Golden Baby Dragon"
 
 msgid "MONSTER_ACID_TOAD"
 msgstr "Acid Toad"
@@ -2830,20 +2845,8 @@ msgstr "Leonidas, the Veteran, asks you to defeat the two goblin packs infesting
 msgid "PROP_BASKET"
 msgstr "Basket"
 
-msgid "NPC_FOREST_HERMIT"
-msgstr "Hermit of the Stone"
-
 msgid "NPC_FOREST_PYRE_KEEPER"
 msgstr "Keeper of the Pyre"
-
-msgid "DLG_HERMIT_1"
-msgstr "I have kept this square for decades. The stones tell me everything, and today they speak of you: strangers itching for a fight."
-
-msgid "DLG_HERMIT_2"
-msgstr "Beneath these flagstones sleeps the Stone Golem, the old warden of the woods. He wakes only when someone asks, and I know the way to ask."
-
-msgid "DLG_HERMIT_3"
-msgstr "Step back to the edge of the square… I call him now. He is of Earth — he fears Fire."
 
 msgid "DLG_PYRE_1"
 msgstr "The pyre never dies, strangers. I have fed it since the Forest was truly green."
@@ -2853,9 +2856,6 @@ msgstr "In the heart of the embers sleeps the Fire Golem. He listens when I sing
 
 msgid "DLG_PYRE_3"
 msgstr "If you want to face him, get ready: the embers are already stirring…"
-
-msgid "TOAST_HERMIT_AWAKENS"
-msgstr "The ground splits: the Stone Golem awakens!"
 
 msgid "TOAST_PYRE_AWAKENS"
 msgstr "The embers roar: the Fire Golem awakens!"
@@ -2899,23 +2899,11 @@ msgstr "Keep moving while he reloads, and let nothing get between you and the Co
 msgid "TOAST_EXILE_AWAKENS"
 msgstr "A horn sounds: the Dark Elf Lord awakens!"
 
-msgid "QUEST_FOREST_STONE"
-msgstr "The Stone Warden"
-
-msgid "QUEST_FOREST_STONE_DESC"
-msgstr "The Hermit of the Stone asks you to defeat the Stone Golem he awakens in the square. It is of Earth — it fears Fire."
-
 msgid "QUEST_FOREST_FIRE"
 msgstr "The Heart of the Pyre"
 
 msgid "QUEST_FOREST_FIRE_DESC"
 msgstr "The Keeper of the Pyre asks you to defeat the Fire Golem she awakens from the embers of the square."
-
-msgid "DLG_HERMIT_ACTIVE"
-msgstr "The old warden still walks. Bring him down, strangers."
-
-msgid "DLG_HERMIT_DONE"
-msgstr "The stone sleeps again. Take your reward; the stones are grateful."
 
 msgid "DLG_PYRE_ACTIVE"
 msgstr "The embers still roar. Put an end to him, strangers."

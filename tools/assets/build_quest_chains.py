@@ -46,11 +46,6 @@ CHAINS_DEF = [
           "name": ("Catador do Esgoto", "Sewer Scavenger", "Rebuscador de la Alcantarilla"), "near": [4, -3], "color": [0.4, 0.4, 0.3]},
          {"area": "sewers_02_canals", "npc": "sewer_ratcatcher", "boss": "frog_king", "take": "frog_crown", "give": "sewer_cheese", "new": True,
           "name": ("Caçador de Pragas", "Pest Hunter", "Cazador de Plagas"), "near": [4, 2], "color": [0.45, 0.35, 0.25]}]},
-    {"map": "forest", "town_npc": "court_jester", "quest": "gifts_forest", "name": ("Presentes da Floresta", "Gifts from the Forest", "Regalos del Bosque"),
-     "reward": (300, 500), "label": ("a Floresta", "the Forest", "el Bosque"),
-     "pairs": [
-         {"area": "forest_01_path", "npc": "forest_hermit", "boss": "leshy", "take": "leshy_heartwood", "give": "forbidden_grimoire", "new": False},
-         {"area": "forest_01_path", "npc": "forest_pyre_keeper", "boss": "viper_queen", "take": "viper_fang", "give": "pyre_ember", "new": False}]},
     {"map": "ruins", "town_npc": "court_jester", "quest": "gifts_ruins", "name": ("Presentes das Ruínas", "Gifts from the Ruins", "Regalos de las Ruinas"),
      "reward": (360, 600), "label": ("as Ruínas", "the Ruins", "las Ruinas"),
      "pairs": [
@@ -84,7 +79,7 @@ CHAINS_DEF = [
           "name": ("Guia do Oásis", "Oasis Guide", "Guía del Oasis"), "near": [30, -24], "color": [0.6, 0.45, 0.3]}]},
 ]
 # Quem na cidade pede: a ordem das missões de cada NPC (a conversa oferece uma por vez, na ordem)
-TOWN_ORDER = {"court_jester": ["gifts_sewers", "gifts_forest", "gifts_ruins", "gifts_mine", "gifts_desert"], "priest": ["remains_cemetery", "remains_fort"]}
+TOWN_ORDER = {"court_jester": ["gifts_sewers", "gifts_ruins", "gifts_mine", "gifts_desert"], "priest": ["remains_cemetery", "remains_fort"]}
 
 # Textos (pt, en, es); {A}/{B} etc. são trocados antes de gravar.
 T_TOWN_ASK = ("Preciso de duas coisas d{article} {map}: {b1} e {b2}. Lá há dois que as têm, {npc1} e {npc2}, mas só trocam por algo que os chefes de lá guardam.",

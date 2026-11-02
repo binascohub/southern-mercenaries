@@ -392,6 +392,21 @@ msgstr "+{value}% de velocidade de movimento"
 msgid "AFFIX_GOLD_FIND"
 msgstr "+{value}% de Binascoins encontradas"
 
+msgid "NPC_FOREST_TEMPLE"
+msgstr "Templo em ruínas"
+
+msgid "DLG_TEMPLE_1"
+msgstr "As pedras do templo vibram sob a sua mão. Um símbolo antigo se acende no centro."
+
+msgid "DLG_TEMPLE_2"
+msgstr "O chão treme: o Rei Golem de Pedra desperta, e com ele virão ondas de golens dos elementos."
+
+msgid "TOAST_TEMPLE_AWAKENS"
+msgstr "O templo estremece: o Rei Golem desperta!"
+
+msgid "TOAST_VIPER_WAVE"
+msgstr "O Rei Golem convoca a onda {n} de golens!"
+
 msgid "MONSTER_FOREST_TROLL"
 msgstr "Troll da Floresta"
 
@@ -2323,8 +2338,8 @@ msgstr "Morcego Pestilento"
 msgid "MONSTER_VENOM_SCORPION"
 msgstr "Escorpião Venenoso"
 
-msgid "MONSTER_GOLDEN_RABBIT"
-msgstr "Coelho Dourado"
+msgid "MONSTER_BABY_DRAGON"
+msgstr "Dragãozinho Dourado"
 
 msgid "MONSTER_ACID_TOAD"
 msgstr "Sapo Ácido"
@@ -2830,20 +2845,8 @@ msgstr "Leônidas, o Veterano, pede que você derrote os dois bandos de goblins 
 msgid "PROP_BASKET"
 msgstr "Cesto"
 
-msgid "NPC_FOREST_HERMIT"
-msgstr "Eremita da Pedra"
-
 msgid "NPC_FOREST_PYRE_KEEPER"
 msgstr "Guardiã da Pira"
-
-msgid "DLG_HERMIT_1"
-msgstr "Há décadas guardo esta praça. As pedras me contam tudo, e hoje falam de vocês: forasteiros com sede de briga."
-
-msgid "DLG_HERMIT_2"
-msgstr "Sob estas lajes dorme o Golem de Pedra, o guarda velho da mata. Ele só desperta quando alguém pede, e eu sei o jeito de pedir."
-
-msgid "DLG_HERMIT_3"
-msgstr "Recuem para a borda da praça… eu o chamo agora. Ele é de Terra — teme o Fogo."
 
 msgid "DLG_PYRE_1"
 msgstr "A pira nunca apaga, forasteiros. Eu a alimento desde que a Floresta ainda era verde de verdade."
@@ -2853,9 +2856,6 @@ msgstr "No coração das brasas dorme o Golem de Fogo. Ele escuta quando eu cant
 
 msgid "DLG_PYRE_3"
 msgstr "Se querem enfrentá-lo, fiquem prontos: as brasas já se mexem…"
-
-msgid "TOAST_HERMIT_AWAKENS"
-msgstr "A terra se abre: o Golem de Pedra desperta!"
 
 msgid "TOAST_PYRE_AWAKENS"
 msgstr "As brasas rugem: o Golem de Fogo desperta!"
@@ -2899,23 +2899,11 @@ msgstr "Não parem enquanto ele recarrega, e não deixem nada entre vocês e a p
 msgid "TOAST_EXILE_AWAKENS"
 msgstr "Uma trompa soa: o Senhor Elfo Sombrio desperta!"
 
-msgid "QUEST_FOREST_STONE"
-msgstr "O guarda de pedra"
-
-msgid "QUEST_FOREST_STONE_DESC"
-msgstr "O Eremita da Pedra pede que vocês derrotem o Golem de Pedra que ele desperta na praça. É de Terra — teme o Fogo."
-
 msgid "QUEST_FOREST_FIRE"
 msgstr "O coração da pira"
 
 msgid "QUEST_FOREST_FIRE_DESC"
 msgstr "A Guardiã da Pira pede que vocês derrotem o Golem de Fogo que ela desperta das brasas da praça."
-
-msgid "DLG_HERMIT_ACTIVE"
-msgstr "O velho guarda ainda caminha. Derrubem-no, forasteiros."
-
-msgid "DLG_HERMIT_DONE"
-msgstr "A pedra voltou a dormir. Levem a recompensa; as pedras agradecem."
 
 msgid "DLG_PYRE_ACTIVE"
 msgstr "As brasas ainda rugem. Acabem com ele, forasteiros."

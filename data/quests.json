@@ -86,21 +86,6 @@
       "xp": 500
     }
   },
-  "forest_stone_golem": {
-    "name_key": "QUEST_FOREST_STONE",
-    "desc_key": "QUEST_FOREST_STONE_DESC",
-    "type": "village",
-    "giver": "forest_hermit",
-    "area": "forest_01_path",
-    "clear": [
-      "f_golem_stone"
-    ],
-    "target_element": "fire",
-    "reward": {
-      "gold": 150,
-      "xp": 300
-    }
-  },
   "forest_fire_golem": {
     "name_key": "QUEST_FOREST_FIRE",
     "desc_key": "QUEST_FOREST_FIRE_DESC",

@@ -148,7 +148,7 @@ func _physics_process(_delta: float) -> void:
 	# Na entrada da área nenhum grupo deve estar acordado (encontros por exploração).
 	if _frame == 30 and multiplayer.is_server():
 		for e: Enemy in get_tree().get_nodes_in_group(&"enemies"):
-			if e.state != Enemy.State.SLEEP:
+			if e.state != Enemy.State.SLEEP and e.data.get("ai", "") != "flee":  # o Dragãozinho passeia acordado
 				_report(false, "monstro acordado na entrada da área")
 				return
 	var player: Player = _arena.local_player
@@ -806,12 +806,18 @@ func _town_test() -> void:
 				"rato morto deixa o corpo tocando a morte (%s)" % [corpse.current() if is_instance_valid(corpse) else "sumiu"])
 			continue
 		probe.queue_free()
-	# Coelho Dourado: não ataca; golpeado, corre e solta moedas.
-	var lizard := Enemy.create({"monster_id": "golden_rabbit", "position": Vector3(3, -50, 3)})
+	# Dragãozinho Dourado: não ataca; golpeado, corre e solta moedas; nunca morre.
+	var lizard := Enemy.create({"monster_id": "baby_dragon", "position": Vector3(3, -50, 3)})
 	add_child(lizard)
 	var coins_before: int = _arena._loot.size()
 	lizard.take_damage(5.0)
-	check.call(lizard._flee_time > 0.0 and _arena._loot.size() > coins_before, "Coelho Dourado foge e solta moedas ao levar golpe")
+	check.call(lizard._flee_time > 0.0 and _arena._loot.size() > coins_before, "Dragãozinho Dourado foge e solta moedas ao levar golpe")
+	var dragon_start := lizard.global_position
+	for i in 40:
+		lizard.take_damage(500.0)
+	check.call(is_instance_valid(lizard) and not lizard.is_queued_for_deletion() and lizard.health > 0.0,
+		"Dragãozinho Dourado nunca morre")
+	check.call(lizard.global_position.distance_to(dragon_start) > 1.0, "Dragãozinho Dourado se teleporta depois de soltar moedas")
 	lizard.queue_free()
 	# Pote de barro: modelo do kit pela posição; quebrado, os cacos voam.
 	var pot := Enemy.create({"monster_id": "pot", "position": Vector3(1.3, -50, 0.7)})

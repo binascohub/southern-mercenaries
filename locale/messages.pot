@@ -391,6 +391,21 @@ msgstr ""
 msgid "AFFIX_GOLD_FIND"
 msgstr ""
 
+msgid "NPC_FOREST_TEMPLE"
+msgstr ""
+
+msgid "DLG_TEMPLE_1"
+msgstr ""
+
+msgid "DLG_TEMPLE_2"
+msgstr ""
+
+msgid "TOAST_TEMPLE_AWAKENS"
+msgstr ""
+
+msgid "TOAST_VIPER_WAVE"
+msgstr ""
+
 msgid "MONSTER_FOREST_TROLL"
 msgstr ""
 
@@ -2322,7 +2337,7 @@ msgstr ""
 msgid "MONSTER_VENOM_SCORPION"
 msgstr ""
 
-msgid "MONSTER_GOLDEN_RABBIT"
+msgid "MONSTER_BABY_DRAGON"
 msgstr ""
 
 msgid "MONSTER_ACID_TOAD"
@@ -2817,19 +2832,7 @@ msgstr ""
 msgid "PROP_BASKET"
 msgstr ""
 
-msgid "NPC_FOREST_HERMIT"
-msgstr ""
-
 msgid "NPC_FOREST_PYRE_KEEPER"
-msgstr ""
-
-msgid "DLG_HERMIT_1"
-msgstr ""
-
-msgid "DLG_HERMIT_2"
-msgstr ""
-
-msgid "DLG_HERMIT_3"
 msgstr ""
 
 msgid "DLG_PYRE_1"
@@ -2839,9 +2842,6 @@ msgid "DLG_PYRE_2"
 msgstr ""
 
 msgid "DLG_PYRE_3"
-msgstr ""
-
-msgid "TOAST_HERMIT_AWAKENS"
 msgstr ""
 
 msgid "TOAST_PYRE_AWAKENS"
@@ -2886,22 +2886,10 @@ msgstr ""
 msgid "TOAST_EXILE_AWAKENS"
 msgstr ""
 
-msgid "QUEST_FOREST_STONE"
-msgstr ""
-
-msgid "QUEST_FOREST_STONE_DESC"
-msgstr ""
-
 msgid "QUEST_FOREST_FIRE"
 msgstr ""
 
 msgid "QUEST_FOREST_FIRE_DESC"
-msgstr ""
-
-msgid "DLG_HERMIT_ACTIVE"
-msgstr ""
-
-msgid "DLG_HERMIT_DONE"
 msgstr ""
 
 msgid "DLG_PYRE_ACTIVE"

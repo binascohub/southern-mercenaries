@@ -755,16 +755,34 @@ func spawn_adds(at: Vector3, monster_id: String, count: int, radius: float) -> v
 ## Monstros raros (dados "rare_spawn"): com a chance dada, um deles aparece
 ## acordado no meio de uma sala que não é a da entrada.
 func _maybe_spawn_rare() -> void:
-	if arena.get("town", false) or arena.get("final", false) or arena.rooms.size() < 2:
+	if arena.get("town", false) or arena.rooms.is_empty():
 		return
 	for monster_id: String in GameData.monsters:
 		var data: Variant = GameData.monsters[monster_id]
-		if not data is Dictionary or not data.has("rare_spawn"):
+		if not data is Dictionary or not (data.has("rare_spawn") or data.get("guaranteed_spawn", false)):
 			continue
-		if _rng.randf() >= float(data.rare_spawn):
-			continue
-		var room: Dictionary = arena.rooms[_rng.randi_range(1, arena.rooms.size() - 1)]
+		if not data.get("guaranteed_spawn", false):
+			if arena.get("final", false) or arena.rooms.size() < 2 or _rng.randf() >= float(data.rare_spawn):
+				continue
+		var room: Dictionary = arena.rooms[_rng.randi_range(1 if arena.rooms.size() > 1 else 0, arena.rooms.size() - 1)]
 		spawn_adds(Vector3(room.center[0], 0, room.center[1]), monster_id, 1, 0.0)
+
+
+## Ponto sorteado dentro de uma sala do mapa (longe das bordas) a pelo menos `min_dist` de `from`: para onde o
+## Dragãozinho Dourado se teleporta. Sem sala longe o bastante, devolve `from`.
+func random_room_point(from: Vector3, min_dist := 20.0) -> Vector3:
+	var best := from
+	for i in 12:
+		var room: Dictionary = arena.rooms[_rng.randi_range(0, arena.rooms.size() - 1)]
+		var half_x := maxf(float(room.size[0]) / 2.0 - 4.0, 0.0)
+		var half_z := maxf(float(room.size[1]) / 2.0 - 4.0, 0.0)
+		var p := Vector3(float(room.center[0]) + _rng.randf_range(-half_x, half_x), 0.0,
+			float(room.center[1]) + _rng.randf_range(-half_z, half_z))
+		if p.distance_to(from) >= min_dist:
+			return p
+		if p.distance_to(from) > best.distance_to(from):
+			best = p
+	return best
 
 
 ## Moedas que caem de um monstro (o Coelho Dourado, a cada golpe): para cada herói.
@@ -943,7 +961,7 @@ func _start_run() -> void:
 			_enemy_spawner.spawn({"monster_id": box.monster, "group": "box:" + String(box.id),
 				"level": arena.get("area_level", 1), "position": Vector3(box.position[0], 0, box.position[1]),
 				"yaw": _rng.randf() * TAU})
-	# Coelho Dourado: às vezes aparece numa sala do mapa (não na área final).
+	# Dragãozinho Dourado (um por mapa) e outros raros: aparecem numa sala do mapa.
 	_maybe_spawn_rare()
 	# Bandos das caçadas ativas nesta área (SideQuests.hunt_encounter).
 	for quest: Dictionary in SideQuests.active(_campaign.get("side_quests", {})):

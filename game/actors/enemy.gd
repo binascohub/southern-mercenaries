@@ -55,6 +55,9 @@ var modifier := ""
 ## Chefe: fase atual (sincronizada, para a barra do chefe) e temporizadores das ações.
 var phase := 0
 var boss_timers := {}
+var _wave_timer := -1.0  ## ondas de ajudantes (dados "waves"): tempo até a próxima, número da próxima e quem já veio
+var _wave_index := 0
+var _wave_adds: Array = []
 
 var data: Dictionary
 
@@ -157,6 +160,7 @@ func _build_nest(size: float) -> void:
 
 ## Fuga (Coelho Dourado): tempo correndo depois do golpe e o ponto de passeio.
 var _flee_time := 0.0
+var _coins_lost := 0  ## moedas soltas desde o último teleporte (fuga "immortal")
 var _patrol_pause := 0.0
 var _stuck_time := 0.0
 var _wander_to := Vector3.INF
@@ -241,6 +245,30 @@ func wake(health_scale: float, damage: float) -> void:
 		boss_timers = {"swarm": 8.0, "slam": 4.0}
 
 
+## Ondas de ajudantes (dados "waves": first, interval, radius, toast e list, uma lista de [{monster, count}] por onda): acordado, o monstro invoca a próxima
+## onda em volta de si a cada `interval` segundos; quando ele morre, os ajudantes das ondas que ainda estão vivos somem junto.
+func _update_waves(delta: float) -> void:
+	var waves: Dictionary = data.waves
+	var list: Array = waves.list
+	if _wave_index >= list.size():
+		return
+	if _wave_timer < 0.0:
+		_wave_timer = float(waves.get("first", 8.0))
+	_wave_timer -= delta
+	if _wave_timer > 0.0:
+		return
+	_wave_timer = float(waves.get("interval", 25.0))
+	var before := get_tree().get_nodes_in_group(&"enemies")
+	for entry: Dictionary in list[_wave_index]:
+		get_tree().call_group(&"arena", &"spawn_adds", global_position, String(entry.monster), int(entry.count), float(waves.get("radius", 6.0)))
+	for node in get_tree().get_nodes_in_group(&"enemies"):
+		if node is Enemy and node not in before:
+			_wave_adds.append(node)
+	_wave_index += 1
+	if waves.has("toast"):
+		get_tree().call_group(&"arena", &"_toast_all", String(waves.toast), {"n": _wave_index})
+
+
 func level_factor() -> float:
 	return pow(1.12, level - 1)
 
@@ -293,6 +321,8 @@ func _think(delta: float) -> void:
 		return
 	_charge_cd = maxf(_charge_cd - delta, 0.0)
 	_update_pending(delta)
+	if data.has("waves"):
+		_update_waves(delta)
 	if data.get("ai", "") == "static":
 		return  # ninho: não anda nem ataca
 	if data.get("ai", "") == "flee":
@@ -444,6 +474,21 @@ func _think_flee(delta: float) -> void:
 	state = State.CHASE
 
 
+## Teleporte do Dragãozinho Dourado: vai para outro ponto do mapa e passa a passear por lá.
+func _teleport_away() -> void:
+	var arena_node := get_tree().get_first_node_in_group(&"arena")
+	if arena_node == null or not arena_node.has_method(&"random_room_point"):
+		return
+	var to: Vector3 = arena_node.random_room_point(global_position)
+	global_position = to
+	net_position = to
+	home = to
+	velocity = Vector3.ZERO
+	_flee_time = 0.0
+	_wander_to = Vector3.INF
+	_last_visual_pos = Vector3.INF
+
+
 ## O Pacto da Rainha a deixa mais rápida.
 func speed_mult() -> float:
 	return float(data.get("pact_speed", 1.0)) if phase >= 3 else 1.0
@@ -593,7 +638,16 @@ func _hurt(amount: float, effect: String, hit_element: String, crit: bool, combo
 		_flee_time = float(flee.get("time", 3.0))
 		var coins: Array = flee.get("coins_per_hit", [3, 6])
 		var pieces := int(flee.get("coin_pieces", 1))
-		get_tree().call_group(&"arena", &"drop_coins", global_position, _rng.randi_range(int(coins[0]), int(coins[1])), pieces)
+		var dropped := _rng.randi_range(int(coins[0]), int(coins[1]))
+		get_tree().call_group(&"arena", &"drop_coins", global_position, dropped, pieces)
+		if flee.get("immortal", false):
+			# Nunca morre: ao soltar moedas demais, some e reaparece em outro ponto do mapa.
+			_coins_lost += dropped
+			_show_damage.rpc(amount, effect, hit_element, crit, combo)
+			if _coins_lost >= int(flee.get("teleport_after_coins", 100)):
+				_coins_lost = 0
+				_teleport_away()
+			return
 		if health - amount <= 0.0:
 			get_tree().call_group(&"arena", &"drop_coins", global_position, int(flee.get("coins_on_death", 30)), pieces * 2)
 	if state == State.SLEEP:
@@ -607,6 +661,9 @@ func _hurt(amount: float, effect: String, hit_element: String, crit: bool, combo
 			_leave_corpse.rpc()
 		elif data.get("shards", false):
 			_shatter.rpc()
+		for add: Variant in _wave_adds:
+			if is_instance_valid(add) and not (add as Node).is_queued_for_deletion():
+				(add as Node).queue_free()
 		died.emit(self)
 		queue_free()
 
