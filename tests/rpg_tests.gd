@@ -538,6 +538,7 @@ func _test_spell_fx() -> void:
 			repeated.append("%s = %s" % [id, seen[key]])
 		seen[key] = id
 	_check(repeated.is_empty(), "nenhuma magia tem o mesmo efeito que outra (%s)" % [repeated])
+	_check(ResourceLoader.exists(HeroModel.WINGS_SCENE) and GameData.skills.skills.scatter_escape.effect == "escape", "a Fuga em Bando tem as asas de revoada (Hero_Wings.glb) para mostrar no herói")
 
 
 func _test_archer() -> void:

@@ -480,9 +480,9 @@ func attach(bone: String, node: Node3D, offset := Transform3D.IDENTITY, fallback
 
 
 ## Asas de revoada (Fuga em Bando): brotam das costas do herói, batem (a animação "Fly" do arquivo, as duas asas juntas) e se recolhem. Só visual, em todos os PCs.
-## O arquivo está em centímetros (as malhas vêm escaladas por 100 no Godot): WINGS_SCALE leva cada asa a ~1,5 m; o osso da raiz fica nas costas, na altura do ombro.
+## O arquivo está em centímetros (as malhas vêm escaladas por 100 no Godot): WINGS_SCALE leva cada asa a ~0,8 m (o herói mede ~1 m e os ombros ficam em y ≈ 0,7); o osso da raiz fica nas costas, na altura do ombro.
 const WINGS_SCENE := "res://assets/models/props/Hero_Wings.glb"
-const WINGS_SCALE := 0.0055
+const WINGS_SCALE := 0.0029
 const WINGS_ROOT := Vector3(0.0, 142.9, -39.7)  # onde fica a raiz das asas no arquivo (já com a escala de 100)
 
 
@@ -490,7 +490,7 @@ func show_wings(duration := 1.0) -> void:
 	if not ResourceLoader.exists(WINGS_SCENE):
 		return
 	var pivot := Node3D.new()
-	pivot.position = Vector3(0.0, 1.35, -0.12)  # ombros, um pouco atrás do corpo
+	pivot.position = Vector3(0.0, 0.7, -0.07)  # ombros, um pouco atrás do corpo
 	add_child(pivot)
 	var wings := (load(WINGS_SCENE) as PackedScene).instantiate() as Node3D
 	wings.scale = Vector3.ONE * WINGS_SCALE

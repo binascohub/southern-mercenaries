@@ -859,11 +859,15 @@ func _shell_fx(at: Vector3, radius: float, time: float, color: Color) -> void:
 func _drop_feather(falcon: Node3D) -> void:
 	if not is_instance_valid(falcon) or not falcon.is_inside_tree():
 		return
+	_feather_at(falcon.global_position)
+
+
+## Uma pena (azul ou cinza, ao acaso) que cai de `start` até o chão girando e balançando.
+func _feather_at(start: Vector3) -> void:
 	var name := "Bird_Feather_Blue" if randf() < 0.5 else "Bird_Feather_Gray"
 	if not Kit.has(name):
 		return
 	var feather := Kit.piece(name)
-	var start := falcon.global_position
 	# O cartão da pena tem a normal em X: deitado (rotation.z = 90°) ele fica quase de frente para a câmera de cima; o pivô gira em Y e a pena balança de leve em X.
 	var pivot := Node3D.new()
 	add_child(pivot)
@@ -926,7 +930,7 @@ func _bull_run(a: Vector3, b: Vector3, width: float, duration: float) -> void:
 		var dust_point := Node3D.new()
 		dust_point.position = Vector3(0, 0.25, -0.9)
 		holder.add_child(dust_point)
-		var dust := Fx.trail(dust_point, Color(0.62, 0.5, 0.36), "earth", 0.9)
+		var dust := Fx.trail(dust_point, Color(0.62, 0.5, 0.36), "earth", 0.3)
 		dust.amount = 28
 		dust.lifetime = 0.7
 		var run := holder.create_tween()
@@ -938,6 +942,26 @@ func _bull_run(a: Vector3, b: Vector3, width: float, duration: float) -> void:
 		var pitch := bull.create_tween().set_loops()
 		pitch.tween_property(bull, "rotation:x", -0.08, 0.11)
 		pitch.tween_property(bull, "rotation:x", 0.08, 0.11)
+
+
+## Tempestade de Asas: durante a habilidade, penas chovem de cima por toda a área (raio `radius`, centro `at`), ~14 por segundo, com um leque de penas no começo.
+func _feather_storm(at: Vector3, radius: float, time: float) -> void:
+	var total := int(maxf(time, 1.0) * 14.0)
+	var rain := create_tween()
+	for i in total:
+		rain.tween_callback(func() -> void:
+			var angle := randf() * TAU
+			var dist := sqrt(randf()) * radius
+			_feather_at(Vector3(at.x + cos(angle) * dist, randf_range(3.5, 6.0), at.z + sin(angle) * dist)))
+		rain.tween_interval(maxf(time, 1.0) / float(total))
+
+
+## Mergulho da Águia: do alto do herói (`a`) ao alvo (`b`), a ave solta penas pelo caminho e, ao chegar, uma explosão de penas sobe e cai em volta do alvo.
+func _eagle_feathers(a: Vector3, b: Vector3) -> void:
+	get_tree().create_timer(0.05, false).timeout.connect(func() -> void:
+		for i in 14:
+			var angle := TAU * float(i) / 14.0
+			_feather_at(Vector3(b.x + cos(angle) * randf_range(0.3, 1.4), b.y + randf_range(0.6, 2.2), b.z + sin(angle) * randf_range(0.3, 1.4))))
 
 
 ## Falcão voando de `a` a `b` no tempo `duration` (Revoada): modelo animado do Falcão, de frente para o alvo, sobe um pouco no meio do voo e some ao chegar, com um respingo de penas.
@@ -973,6 +997,10 @@ func _fx(kind: String, a: Vector3, b: Vector3, size: float, color: Color, durati
 	var base := parts[0]
 	if base == "disc" and parts.size() > 1 and parts[1] == "falcon_wings":
 		_shell_fx(a, size, float(Skills.def("falcon_wings").get("duration", 8.0)), color)  # Asas do Falcão (Ar): 3 aves no limite da área e poeira subindo do chão enquanto o buff dura
+	if base == "disc" and parts.size() > 1 and parts[1] == "wing_storm":
+		_feather_storm(a, size, duration)  # Tempestade de Asas: chuva de penas sobre a área enquanto ela dura
+	if base == "beam" and parts.size() > 1 and parts[1] == "eagle_dive":
+		_eagle_feathers(a, b)  # Mergulho da Águia: penas soltas ao longo do mergulho e uma explosão delas no alvo
 	if base == "falcon":
 		_falcon_flight(a, b, duration, color)
 		return

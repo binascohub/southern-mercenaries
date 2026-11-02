@@ -99,7 +99,12 @@ func _ready() -> void:
 	if "stampede" in args:  # lança o Estouro da Manada para o norte, de frente para os bonecos de treino (a captura sai logo depois)
 		get_tree().create_timer(2.5).timeout.connect(func() -> void:
 			arena.local_player.facing = Vector2(0, -1)
-			arena.skills.cast(arena.local_player, "stampede", 3))
+			print("STAMPEDE cast=", arena.skills.cast(arena.local_player, "stampede", 3), " bull=", Kit.has("Bull")))
+	if "airskills" in args:  # lança o Mergulho da Águia e a Tempestade de Asas no pátio de treino (a captura sai logo depois)
+		get_tree().create_timer(2.5).timeout.connect(func() -> void:
+			arena.local_player.facing = Vector2(0, -1)
+			arena.skills.cast(arena.local_player, "eagle_dive", 3)
+			arena.skills.cast(arena.local_player, "wing_storm", 3))
 	if "summongator" in args:  # desperta o Gator Velho (mini-chefe 2) no altar, como se o grupo lesse o Grimório das Brasas
 		for prop: Dictionary in arena.arena.props:
 			for extra: Dictionary in prop.get("extra_summons", []):
@@ -119,7 +124,7 @@ func _ready() -> void:
 	if kill != "":
 		_kill_and_open(arena, kill, open_chest)
 	if shot != "":
-		await get_tree().create_timer(4.25 if "stampede" in args else 5.5 if "callskill" in args else 3.6 if "feathers" in args else 7.0 if ("shell" in args or "skillmenu" in args or "cdbar" in args or "feathers" in args or "callskill" in args) else (12.0 if (kill != "" or "givekeys" in args or "summon" in args or "summongator" in args or "invpopup" in args) else 5.0)).timeout
+		await get_tree().create_timer(4.2 if "airskills" in args else 2.72 if "stampede" in args else 5.5 if "callskill" in args else 3.6 if "feathers" in args else 7.0 if ("shell" in args or "skillmenu" in args or "cdbar" in args or "feathers" in args or "callskill" in args) else (12.0 if (kill != "" or "givekeys" in args or "summon" in args or "summongator" in args or "invpopup" in args) else 5.0)).timeout
 		await RenderingServer.frame_post_draw
 		get_viewport().get_texture().get_image().save_png(shot)
 		get_tree().quit()
