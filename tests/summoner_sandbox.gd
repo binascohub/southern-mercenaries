@@ -1,11 +1,19 @@
 # Southern Mercenaries — GPL-3.0-or-later
 extends Node
 ## Abre a arena com um Invocador de teste: nível máximo, todas as habilidades no rank máximo, nada gravado em disco.
-##   godot --path . res://tests/summoner_sandbox.tscn -- [water|air|fire|earth]   (padrão: water); chama todos os animais, ou só os listados depois do elemento (otter = lobo de água, fox, falcon, boar, bear)
+##   godot --path . res://tests/summoner_sandbox.tscn -- [water|air|fire|earth]   (padrão: water) [area=<id>, ex.: area=tavern]; chama todos os animais, ou só os listados depois do elemento (otter = lobo de água, fox, falcon, boar, bear)
 
 
 func _ready() -> void:
-	var args := OS.get_cmdline_user_args()
+	# Saves isolados: nada daqui entra na lista de personagens nem nas campanhas de verdade.
+	SaveSystem.root = "user://test_saves/summoner_sandbox"
+	var args: PackedStringArray = []
+	var area := ""
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("area="):
+			area = arg.trim_prefix("area=")
+		else:
+			args.append(arg)
 	var element: String = args[0] if args.size() > 0 else "water"
 	var c := CharacterData.create("summoner", "female", "Teste", element)
 	c.data.level = int(GameData.balance.max_level)
@@ -23,6 +31,9 @@ func _ready() -> void:
 	c.data.skill_points = 0
 	c.data.gold = 100000
 	Session.character = c
+	Session.campaign = SaveSystem.new_campaign()
+	if area != "" and GameData.arenas.has(area):
+		Session.campaign.area = area
 	NetworkManager.prepare_solo()
 	var arena: Node = load("res://game/levels/prototype_arena.tscn").instantiate()
 	add_child(arena)

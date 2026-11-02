@@ -1489,7 +1489,7 @@ msgid "ITEM_TYPE_BOOK"
 msgstr "Libro"
 
 msgid "COMPANION_FOX"
-msgstr "Fénix"
+msgstr "Gólem de fuego"
 
 msgid "COMPANION_OTTER"
 msgstr "Lobo de agua"

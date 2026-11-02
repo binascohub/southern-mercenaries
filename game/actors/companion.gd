@@ -41,6 +41,8 @@ var _last_net_position := Vector3.INF
 var _material: StandardMaterial3D
 var _anim: AnimationPlayer
 var _anim_lock := 0.0
+var _speed_smooth := 0.0  # velocidade no chão suavizada: evita o pisca-pisca entre parado, andar e correr
+var _locomoting := false
 var _clips := {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack"}  # papel -> nome do clipe (data.anim_map troca, p.ex. o esqueleto dos heróis)
 var _run_speed := INF
 var _model: Node3D  # modelo sem esqueleto (dragão, grifo): animado por código em _animate_rigid
@@ -108,12 +110,24 @@ func _update_animation(delta: float) -> void:
 	if _anim == null:
 		_animate_rigid(delta, speed)
 		return
+	_speed_smooth = lerpf(_speed_smooth, speed, 1.0 - exp(-10.0 * delta))
 	_anim_lock = maxf(_anim_lock - delta, 0.0)
 	if _anim_lock > 0.0:
 		return
-	var clip: String = _clips.run if speed > _run_speed else (_clips.walk if speed > 0.4 else _clips.idle)
+	var running := _speed_smooth > _run_speed
+	var moving := _speed_smooth > (0.2 if _locomoting else 0.45)  # histerese: não troca de clipe a cada oscilação
+	_locomoting = moving
+	var clip: String = _clips.run if running else (_clips.walk if moving else _clips.idle)
+	# A passada acompanha a velocidade real no chão (data.walk_ref_speed / run_ref_speed: o que o clipe cobre a 1x); sem isso, os pés patinam.
+	var ref := float(data.get("run_ref_speed" if running else "walk_ref_speed", 0.0))
+	if not moving:
+		_anim.speed_scale = 1.0
+	elif ref > 0.0:
+		_anim.speed_scale = clampf(_speed_smooth / ref, 0.5, 3.0)
+	else:
+		_anim.speed_scale = float(data.get("walk_anim_speed", 1.0))
 	if _anim.has_animation(clip) and _anim.current_animation != clip:
-		_anim.play(clip, 0.15)
+		_anim.play(clip, 0.25)
 
 
 ## Modelos de uma peça só: o passo vira balanço (sobe e desce, inclina de lado e de frente); parado, respira; o golpe dá um bote.
@@ -172,7 +186,11 @@ func _think(delta: float) -> void:
 	var dist := offset.length()
 	var stop := reach * 0.85 if target else FOLLOW_DISTANCE
 	if dist > stop:
-		velocity = offset.normalized() * float(data.get("speed", 5.0)) * speed_mult()
+		var move_speed := float(data.get("speed", 5.0)) * speed_mult()
+		if data.has("walk_speed_factor"):  # duas marchas: anda perto do dono e corre quando ele se afasta (mudança suave pela distância)
+			var run_from := float(data.get("run_distance", 7.0))
+			move_speed *= lerpf(float(data.walk_speed_factor), 1.0, smoothstep(run_from * 0.5, run_from, dist))
+		velocity = offset.normalized() * move_speed
 		move_and_slide()
 	else:
 		velocity = Vector3.ZERO
@@ -202,8 +220,10 @@ func _target(master: Player) -> Enemy:
 func _attack(master: Player, target: Enemy) -> void:
 	_lunge = 1.0
 	if _anim and _anim.has_animation(_clips.attack):
+		var attack_speed := float(data.get("attack_anim_speed", 1.0))  # golpes longos dos humanos (Sword_Attack, 1,5 s) tocam mais rápido
+		_anim.speed_scale = attack_speed
 		_anim.play(_clips.attack, 0.05)
-		_anim_lock = 0.7
+		_anim_lock = maxf(0.7, _anim.get_animation(_clips.attack).length / attack_speed) if data.has("attack_anim_speed") else 0.7
 	var bond := master.character.passive_value("bond") if master.character else 0.0
 	var hit := {
 		"damage": master.power * damage_fraction * (1.0 + bond) * damage_mult(),
@@ -304,8 +324,9 @@ func _build_visual() -> void:
 	add_child(shape)
 	# Modelo próprio (o Gorila Guardião, Micket, CC0), quando há; senão o corpo provisório abaixo.
 	var model_name: String = data.get("model", "")
-	if model_name != "" and Kit.has(model_name):
-		var model := Kit.piece(model_name)
+	var model_path: String = data.get("model_path", "")  # modelo fora do Kit (ex.: o Golem de Fogo, dos monstros)
+	if (model_path != "" and ResourceLoader.exists(model_path)) or (model_name != "" and Kit.has(model_name)):
+		var model: Node3D = (load(model_path) as PackedScene).instantiate() as Node3D if model_path != "" else Kit.piece(model_name)
 		_model_scale = float(data.get("model_scale", size / 1.4))
 		model.scale = Vector3.ONE * _model_scale
 		_model_yaw = float(data.get("model_yaw", 0.0))  # modelos que vêm olhando para -Z

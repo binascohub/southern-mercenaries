@@ -131,6 +131,10 @@ var _area_root: Node3D
 ## Tinta do estilo da área e materiais do kit já tingidos (original → cópia).
 var _style_tint := Color.WHITE
 var _tinted := {}
+## Tom único da madeira da área (style.wood_tone, alfa 0 = desligado): ver _tone_wood.
+var _wood_tone := Color(0, 0, 0, 0)
+var _toned := {}
+var _wood_average := {}
 var _sludge: StandardMaterial3D
 ## Cristal de save do checkpoint (flutua; acende quando o jogo salva).
 var _crystal_material: StandardMaterial3D
@@ -2116,6 +2120,9 @@ func _build_area() -> void:
 	var t: Array = style.get("tint", [1, 1, 1])
 	_style_tint = Color(t[0], t[1], t[2])
 	_tinted.clear()
+	var wt: Array = style.get("wood_tone", [])
+	_wood_tone = Color(wt[0], wt[1], wt[2], 1.0) if wt.size() >= 3 else Color(0, 0, 0, 0)
+	_toned.clear()
 	_pipes.clear()
 	_cut_walls.clear()
 	var bounds := AABB()
@@ -2198,6 +2205,7 @@ func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3,
 				node.position = Vector3(c.x - half.x + tile.x * (ix + 0.5), 0.01, c.z - half.z + tile.y * (iz + 0.5))
 				_area_root.add_child(node)
 				_tint_piece(node)
+				_tone_wood(node, floor_piece)
 				if floor_piece == "Floor_WoodDark" and style.get("wood", false):
 					_deckify(node)
 	var low := height < 1.5
@@ -2313,6 +2321,59 @@ func _crystal_glow() -> void:
 	tween.tween_property(_crystal_material, "emission_energy_multiplier", 0.6, 1.6).set_ease(Tween.EASE_IN)
 	tween.tween_property(light, "light_energy", 0.6, 1.6).set_ease(Tween.EASE_IN)
 	tween.tween_property(light, "omni_range", 4.0, 1.6)
+
+
+## Madeira de um tom só (style.wood_tone): nas peças da área, os materiais de madeira (nome com "wood", a "MI_Trim_Furniture" do kit de móveis e o único
+## material dos barris e canecas de madeira) ficam com a cor média igual ao tom, mantendo o relevo da textura; fosco e sem metal. Metal, vidro e gesso não mudam.
+func _tone_wood(node: Node3D, piece_name: String) -> void:
+	if _wood_tone.a == 0.0:
+		return
+	for mesh in node.find_children("*", "MeshInstance3D", true, false):
+		var m := mesh as MeshInstance3D
+		for i in m.get_surface_override_material_count():
+			var material := m.get_active_material(i) as StandardMaterial3D
+			if material == null or not _is_wood_material(material, piece_name):
+				continue
+			if not _toned.has(material):
+				var copy := material.duplicate() as StandardMaterial3D
+				var average := _material_average(material)
+				copy.albedo_color = Color(
+					copy.albedo_color.r * _wood_tone.r / maxf(average.r, 0.01),
+					copy.albedo_color.g * _wood_tone.g / maxf(average.g, 0.01),
+					copy.albedo_color.b * _wood_tone.b / maxf(average.b, 0.01))
+				copy.roughness = 0.85
+				copy.metallic = 0.0
+				_toned[material] = copy
+			m.set_surface_override_material(i, _toned[material])
+
+
+func _is_wood_material(material: StandardMaterial3D, piece_name: String) -> bool:
+	var material_name := String(material.resource_name).to_lower()
+	return material_name.contains("wood") or material_name == "mi_trim_furniture" \
+		or (piece_name in ["Beer_Barrel", "Mug_Wood"] and material_name == "material.001")
+
+
+## Cor média do material (média da textura de cor vezes a cor base), guardada por textura.
+func _material_average(material: StandardMaterial3D) -> Color:
+	var texture := material.albedo_texture
+	var average := Color.WHITE
+	if texture:
+		if not _wood_average.has(texture):
+			var image := texture.get_image()
+			if image == null:
+				_wood_average[texture] = Color.WHITE
+			else:
+				if image.is_compressed():
+					image.decompress()
+				image.resize(16, 16)
+				var sum := Color(0, 0, 0, 1)
+				for y in 16:
+					for x in 16:
+						var c := image.get_pixel(x, y)
+						sum = Color(sum.r + c.r, sum.g + c.g, sum.b + c.b, 1.0)
+				_wood_average[texture] = Color(sum.r / 256.0, sum.g / 256.0, sum.b / 256.0, 1.0)
+		average = _wood_average[texture]
+	return Color(average.r * material.albedo_color.r, average.g * material.albedo_color.g, average.b * material.albedo_color.b)
 
 
 ## Peça do kit na tinta do estilo; os materiais tingidos são compartilhados
@@ -2970,6 +3031,7 @@ func _dress_side(face: Vector3, along: Vector3, inward: Vector3, length: float, 
 			node.rotation.y = atan2(inward.x, inward.z)
 			_area_root.add_child(node)
 			_tint_piece(node)
+			_tone_wood(node, piece_name)
 			if arena.get("style", {}).get("wood", false):
 				_woodify(node)
 			if arena.get("style", {}).get("broken_windows", false) and piece_name.contains("Window"):
@@ -3045,6 +3107,7 @@ func _build_decor(decor: Dictionary) -> void:
 			bob.tween_property(node, "position:y", node.position.y, 1.1).set_trans(Tween.TRANS_SINE)
 		return
 	_area_root.add_child(node)
+	_tone_wood(node, String(decor.piece))
 	if decor.get("flicker", false):
 		# Chama: o fogo estica e encolhe sem parar (a fogueira do acampamento).
 		var base := node.scale

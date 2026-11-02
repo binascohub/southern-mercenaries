@@ -13,10 +13,16 @@
     "range": 1.5,
     "cooldown": 0.8,
     "size": 0.6,
-    "model": "Phoenix",
-    "model_scale": 0.55,
-    "_comment": "Companheiro de Fogo do Invocador: a Fênix (modelo Phoenix, no lugar da raposa; o id continua fox).",
-    "model_y": 0.8
+    "model": "FireGolem",
+    "model_scale": 0.3,
+    "speed": 4.5,
+    "walk_speed_factor": 0.25,
+    "run_distance": 7.0,
+    "run_speed": 1.9,
+    "walk_ref_speed": 0.79,
+    "run_ref_speed": 2.28,
+    "attack_anim_speed": 1.3,
+    "_comment": "Companheiro de Fogo do Invocador: o Golem de Fogo (Fire_Golem.blend fornecido pelo autor, bípede de 6,4 m; textura de basalto com veios de lava pintada por tools/assets/build_fire_golem_companion.py porque o arquivo veio sem texturas), com os movimentos dos humanos (idle, walk, run e attack retargetados das animações dos heróis). Duas marchas: anda a 1,1 m/s perto do dono e corre a 4,5 m/s quando ele se afasta (a partir de ~7 m); walk_ref_speed e run_ref_speed (2,64 e 7,6 m/s do arquivo vezes a escala 0,3) sincronizam o clipe com o chão. No lugar da raposa (o id continua fox)."
   },
   "otter": {
     "name_key": "COMPANION_OTTER",

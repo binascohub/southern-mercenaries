@@ -1875,7 +1875,7 @@
         "kind": "npc",
         "npc": "old_lady",
         "position": [
-          -2.6,
+          -0.1,
           4.95
         ],
         "rotation": 180
@@ -1899,6 +1899,11 @@
         0.08,
         0.06,
         0.05
+      ],
+      "wood_tone": [
+        0.192,
+        0.145,
+        0.11
       ]
     },
     "decor": [
@@ -2564,7 +2569,7 @@
       {
         "piece": "Tv_Table_Round",
         "position": [
-          -2.6,
+          -0.1,
           3.6
         ],
         "solid": [
@@ -2575,7 +2580,7 @@
       {
         "piece": "Tv_Stool_Wood",
         "position": [
-          -3.95,
+          -1.45,
           3.6
         ],
         "rotation": 90
@@ -2583,7 +2588,7 @@
       {
         "piece": "Tv_Stool_Wood",
         "position": [
-          -1.25,
+          1.25,
           3.6
         ],
         "rotation": -90
@@ -2591,7 +2596,7 @@
       {
         "piece": "Tv_Stool_Wood",
         "position": [
-          -2.6,
+          -0.1,
           4.95
         ],
         "rotation": 180
@@ -2599,7 +2604,7 @@
       {
         "piece": "Tv_Plate",
         "position": [
-          -2.3,
+          0.2,
           3.75
         ],
         "y": 0.75
@@ -2607,7 +2612,7 @@
       {
         "piece": "Tv_Tankard",
         "position": [
-          -2.95,
+          -0.45,
           3.4
         ],
         "rotation": 310,
@@ -2616,7 +2621,7 @@
       {
         "piece": "Tv_Lamp",
         "position": [
-          -2.6,
+          -0.1,
           3.6
         ],
         "y": 0.75
@@ -2628,7 +2633,7 @@
           0.4
         ],
         "position": [
-          -2.6,
+          -0.1,
           3.6
         ],
         "range": 6,
@@ -2689,6 +2694,236 @@
           -2.5
         ],
         "rotation": 180
+      },
+      {
+        "piece": "Glass_Bottle_Wine",
+        "position": [
+          -2.65,
+          -3.95
+        ],
+        "y": 0.81,
+        "rotation": 95,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Cup_Wine",
+        "position": [
+          -1.6,
+          -3.2
+        ],
+        "y": 0.81,
+        "rotation": 267,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Cup_Wine",
+        "position": [
+          -3.95,
+          -3.2
+        ],
+        "y": 0.81,
+        "rotation": 99,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Bottle_Whiskey",
+        "position": [
+          -1.2,
+          -3.2
+        ],
+        "y": 0.81,
+        "rotation": 241,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Tumbler_Whiskey",
+        "position": [
+          -0.35,
+          -3.95
+        ],
+        "y": 0.81,
+        "rotation": 33,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Tumbler_Whiskey",
+        "position": [
+          -1.2,
+          -3.95
+        ],
+        "y": 0.81,
+        "rotation": 15,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Bottle_Beer",
+        "position": [
+          2.05,
+          -3.95
+        ],
+        "y": 0.81,
+        "rotation": 205,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Bottle_Beer",
+        "position": [
+          2.85,
+          -3.95
+        ],
+        "y": 0.81,
+        "rotation": 351,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Stein",
+        "position": [
+          1.6,
+          -3.85
+        ],
+        "y": 0.81,
+        "rotation": 294,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Bottle_Wine",
+        "position": [
+          -7.7,
+          1.1
+        ],
+        "y": 0.81,
+        "rotation": 311,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Bottle_Beer",
+        "position": [
+          -5.3,
+          1.1
+        ],
+        "y": 0.81,
+        "rotation": 257,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Cup_Wine",
+        "position": [
+          -6.5,
+          1.85
+        ],
+        "y": 0.81,
+        "rotation": 205,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Tumbler",
+        "position": [
+          -5.75,
+          1.1
+        ],
+        "y": 0.81,
+        "rotation": 346,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Bottle_Beer",
+        "position": [
+          -0.3,
+          -0.8
+        ],
+        "y": 0.81,
+        "rotation": 330,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Shot",
+        "position": [
+          -1.55,
+          -0.8
+        ],
+        "y": 0.81,
+        "rotation": 272,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Shot",
+        "position": [
+          -2.65,
+          -0.05
+        ],
+        "y": 0.81,
+        "rotation": 229,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Stein",
+        "position": [
+          -0.8,
+          -0.8
+        ],
+        "y": 0.81,
+        "rotation": 121,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Bottle_Whiskey",
+        "position": [
+          6.95,
+          2.55
+        ],
+        "y": 0.75,
+        "rotation": 334,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Tumbler_Whiskey",
+        "position": [
+          7.15,
+          3.85
+        ],
+        "y": 0.75,
+        "rotation": 61,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Tumbler_Whiskey",
+        "position": [
+          6.6,
+          2.9
+        ],
+        "y": 0.75,
+        "rotation": 73,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Bottle_Wine",
+        "position": [
+          -0.35,
+          4.25
+        ],
+        "y": 0.75,
+        "rotation": 175,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Cup_Wine",
+        "position": [
+          0.15,
+          2.95
+        ],
+        "y": 0.75,
+        "rotation": 292,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Cup_Wine",
+        "position": [
+          -0.75,
+          3.85
+        ],
+        "y": 0.75,
+        "rotation": 269,
+        "scale": 1.8
       }
     ],
     "crowd": [
@@ -2722,7 +2957,7 @@
       {
         "role": "sailor",
         "position": [
-          -3.95,
+          -1.45,
           3.6
         ],
         "rotation": 90,
@@ -2731,32 +2966,23 @@
       {
         "role": "drunk",
         "position": [
-          -1.25,
+          1.25,
           3.6
         ],
         "rotation": 270,
         "pose": "sit"
       },
       {
-        "role": "courtesan",
-        "position": [
-          -2.6,
-          4.95
-        ],
-        "rotation": 180,
-        "pose": "sit"
-      },
-      {
         "role": "rottweiler",
         "position": [
           -0.5,
-          2.8
+          2.0
         ],
         "rotation": 90,
         "pose": "walk",
         "path": [
           4.0,
-          2.8
+          2.0
         ],
         "speed": 1.1
       }
@@ -96592,6 +96818,69 @@
         "rotation": 200
       },
       {
+        "piece": "Food_Bread",
+        "position": [
+          -0.35,
+          -44.55
+        ],
+        "y": 0.9,
+        "rotation": 15
+      },
+      {
+        "piece": "Food_Cheese",
+        "position": [
+          0.98,
+          -44.72
+        ],
+        "y": 0.9,
+        "rotation": 200
+      },
+      {
+        "piece": "Food_Sausage",
+        "position": [
+          -0.6,
+          -45.28
+        ],
+        "y": 0.9,
+        "rotation": -10
+      },
+      {
+        "piece": "Food_Cheese_Wheel",
+        "position": [
+          -0.72,
+          -42.5
+        ],
+        "y": 0.9,
+        "rotation": 40
+      },
+      {
+        "piece": "Food_Bread_Half",
+        "position": [
+          0.9,
+          -42.6
+        ],
+        "y": 0.9,
+        "rotation": 160
+      },
+      {
+        "piece": "Food_Sausage_Single",
+        "position": [
+          -0.1,
+          -41.7
+        ],
+        "y": 0.9,
+        "rotation": 30
+      },
+      {
+        "piece": "Food_Sausage_Single",
+        "position": [
+          0.12,
+          -41.65
+        ],
+        "y": 0.9,
+        "rotation": -20
+      },
+      {
         "piece": "Table_Large",
         "position": [
           14.0,
@@ -97587,6 +97876,156 @@
           0.8,
           0.6
         ]
+      },
+      {
+        "piece": "Glass_Bottle_Champagne",
+        "position": [
+          0.2,
+          -44.55
+        ],
+        "y": 0.9,
+        "rotation": 20,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Bottle_Wine",
+        "position": [
+          0.75,
+          -45.4
+        ],
+        "y": 0.9,
+        "rotation": 142,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Cup_Champagne",
+        "position": [
+          -1.3,
+          -44.55
+        ],
+        "y": 0.9,
+        "rotation": 5,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Cup_Champagne",
+        "position": [
+          -0.05,
+          -44.9
+        ],
+        "y": 0.9,
+        "rotation": 197,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Cup_Champagne",
+        "position": [
+          1.25,
+          -44.95
+        ],
+        "y": 0.9,
+        "rotation": 33,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Cup_Wine",
+        "position": [
+          0.35,
+          -45.4
+        ],
+        "y": 0.9,
+        "rotation": 10,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Cup_Wine",
+        "position": [
+          1.25,
+          -44.55
+        ],
+        "y": 0.9,
+        "rotation": 167,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Bottle_Champagne",
+        "position": [
+          -1.3,
+          -41.75
+        ],
+        "y": 0.9,
+        "rotation": 231,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Bottle_Champagne",
+        "position": [
+          -1.1,
+          -42.1
+        ],
+        "y": 0.9,
+        "rotation": 318,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Bottle_Wine",
+        "position": [
+          -0.35,
+          -42.6
+        ],
+        "y": 0.9,
+        "rotation": 100,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Cup_Champagne",
+        "position": [
+          1.25,
+          -41.75
+        ],
+        "y": 0.9,
+        "rotation": 326,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Cup_Champagne",
+        "position": [
+          -1.0,
+          -41.8
+        ],
+        "y": 0.9,
+        "rotation": 169,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Cup_Champagne",
+        "position": [
+          -0.4,
+          -41.9
+        ],
+        "y": 0.9,
+        "rotation": 296,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Cup_Wine",
+        "position": [
+          0.6,
+          -42.3
+        ],
+        "y": 0.9,
+        "rotation": 102,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Cup_Wine",
+        "position": [
+          0.5,
+          -41.75
+        ],
+        "y": 0.9,
+        "rotation": 159,
+        "scale": 1.8
       }
     ],
     "crowd": [
