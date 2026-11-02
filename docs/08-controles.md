@@ -27,8 +27,8 @@
 |---|---|---|
 | `move` | W A S D | Analógico esquerdo |
 | `aim` | Posição do mouse | Analógico direito (se solto: mira na direção do movimento) |
-| `attack` | Botão esquerdo | RT |
-| `skill_1` | 1 | A |
+| `attack` | Botão esquerdo | A |
+| `skill_1` | 1 | RB |
 | `skill_2` | 2 | B |
 | `skill_3` | 3 | X |
 | `skill_4` (habilidade final) | 4 | Y |

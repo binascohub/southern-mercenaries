@@ -5,6 +5,8 @@ extends RefCounted
 ## (11-saves.md) e na rede, onde a cópia do servidor é a verdade durante a
 ## partida (07-rede.md, seção 8). Só IDs e números, nunca texto traduzido.
 
+## Poções que também podem ocupar um dos 8 atalhos da barra (no lugar de uma habilidade).
+const POTION_SLOTS: Array[String] = ["potion_health", "potion_resource", "potion_elemental"]
 const SLOTS: Array[String] = ["weapon", "head", "body", "hands", "feet", "ring_1", "ring_2", "amulet", "barding"]
 const ATTRIBUTES: Array[String] = ["str", "dex", "int", "vit"]
 const SEXES: Array[String] = ["male", "female"]
@@ -38,7 +40,7 @@ static func create(class_id: String, sex: String, hero_name: String, element := 
 		"element_potion": "",
 		# Habilidades por chave (Skills): a de nível 1 vem no rank 1 e no atalho 1.
 		"skills": {Skills.keys(class_id)[0]: 1},
-		"skill_slots": [Skills.keys(class_id)[0], "", "", "", "", "", "", ""],
+		"skill_slots": [Skills.keys(class_id)[0], "", "", "", "", "", "potion_health", "potion_resource"],
 		"level": 1,
 		"xp": 0,
 		"attributes": cls.attributes.duplicate(),
@@ -318,7 +320,7 @@ func _validate_skills() -> PackedStringArray:
 	if spent + int(data.get("skill_points", 0)) > earned:
 		errors.append("pontos de habilidade demais")
 	for key: Variant in slots:
-		if key != "" and (not skills.has(key) or not Skills.is_active(skill_of(key))):
+		if key != "" and key not in POTION_SLOTS and (not skills.has(key) or not Skills.is_active(skill_of(key))):
 			errors.append("atalho " + str(key))
 	return errors
 
@@ -372,7 +374,7 @@ func respec() -> void:
 	data.skill_points = int(GameData.balance.skill_points_per_level) * levels
 	var first: String = Skills.keys(data.class_id)[0]
 	data.skills = {first: 1}
-	data.skill_slots = [first, "", "", "", "", "", "", ""]
+	data.skill_slots = [first, "", "", "", "", "", "potion_health", "potion_resource"]
 
 
 ## Preço para redistribuir os pontos (proposta: 50 × nível).
@@ -384,7 +386,7 @@ func respec_price() -> int:
 func set_slot(index: int, key: String) -> bool:
 	if index < 0 or index >= data.skill_slots.size():
 		return false
-	if key != "" and (skill_rank(key) == 0 or not Skills.is_active(skill_of(key))):
+	if key != "" and key not in POTION_SLOTS and (skill_rank(key) == 0 or not Skills.is_active(skill_of(key))):
 		return false
 	var old: int = data.skill_slots.find(key)
 	if key != "" and old >= 0:

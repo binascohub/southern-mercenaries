@@ -291,6 +291,40 @@ func show_gamepad_lost(value: bool) -> void:
 	_gamepad_lost.visible = value
 
 
+## A tecla e o botão do controle de uma ação juntos ("2 · A"); sem botão no controle, só a tecla.
+func _keys_of(action: StringName) -> String:
+	var keyboard := Controls.binding_label(action, Controls.KB)
+	var pad := Controls.binding_label(action, Controls.PAD)
+	return keyboard if pad == "—" else "%s · %s" % [keyboard, pad]
+
+
+## Quadrado com uma poção: ícone, tecla, quantidade e o vermelho da recarga das poções (15 s, consumables.json).
+func _update_potion_box(i: int, token: String, prompt: String) -> void:
+	var c := _player.character
+	var id := token
+	var count := 0
+	match token:
+		"potion_health":
+			count = c.count_of("potion_health") + c.count_of("venison")
+		"potion_resource":
+			count = c.count_of("potion_resource")
+		_:
+			id = "elemental_potion_" + String(_player.element)
+			for element_id in Elements.ALL:
+				count += c.count_of("elemental_potion_" + element_id)
+	var path := "res://assets/ui/icons/%s.png" % id
+	_skill_icons[i].texture = load(path) as Texture2D if ResourceLoader.exists(path) else null
+	_skill_boxes[i].tooltip_text = tr("ITEM_POTION_HEALTH" if token == "potion_health" else ("ITEM_POTION_RESOURCE" if token == "potion_resource" else "ITEM_POTION_ELEMENTAL_" + String(_player.element).to_upper()))
+	var cd := _player.potion_cooldown
+	var fill: ColorRect = _skill_cooldown_fill[i]
+	fill.visible = cd > 0.0 and count > 0
+	if fill.visible:
+		fill.offset_top = -_skill_boxes[i].size.y * clampf(cd / 15.0, 0.0, 1.0)
+	_skill_slots[i].text = "%s  x%d" % [prompt, count] + ("  %.0fs" % ceilf(cd) if cd > 0.0 else "")
+	_skill_slots[i].modulate = Color.WHITE if count > 0 else Color(1, 1, 1, 0.5)
+	_skill_icons[i].modulate = Color.WHITE if count > 0 else Color(0.45, 0.45, 0.45)
+
+
 ## Ícone do ataque básico: o projétil do elemento do herói.
 const BASIC_ICONS := {"fire": "fire_bolt", "water": "water_bolt", "air": "wind_blade", "earth": "stone_bolt"}
 
@@ -299,13 +333,16 @@ func _update_skill_bar() -> void:
 	var c := _player.character
 	var basic_path := "res://assets/ui/icons/skills/%s.png" % BASIC_ICONS.get(_player.element, "fire_bolt")
 	_attack_icon.texture = load(basic_path) as Texture2D if ResourceLoader.exists(basic_path) else null
-	_attack_label.text = InputDevice.prompt(&"attack")
+	_attack_label.text = _keys_of(&"attack")
 	for i in _skill_slots.size():
 		var label := _skill_slots[i]
 		var icon := _skill_icons[i]
 		var fill := _skill_cooldown_fill[i]
-		var prompt := InputDevice.prompt(StringName("skill_%d" % (i + 1)))
+		var prompt := _keys_of(StringName("skill_%d" % (i + 1)))
 		var key: String = c.data.skill_slots[i] if c else ""
+		if key in CharacterData.POTION_SLOTS:
+			_update_potion_box(i, key, prompt)
+			continue
 		if key == "":
 			label.text = prompt
 			label.modulate = Color(1, 1, 1, 0.45)

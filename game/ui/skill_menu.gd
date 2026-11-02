@@ -13,6 +13,8 @@ var _player: Player
 var _panel: PanelContainer
 var _points: Label
 var _rows: VBoxContainer
+## Linhas das poções (também vão para os quadrados): token -> {"icon", "slots"}.
+var _potion_rows: Dictionary = {}
 var _details: Label
 var _focused_key := ""
 ## chave -> {"label", "learn", "slots": [Button × 4]}
@@ -116,6 +118,35 @@ func _rebuild_rows() -> void:
 			row.add_child(slot)
 			slots.append(slot)
 		_row_nodes[key] = {"label": label, "learn": learn, "slots": slots, "icon": icon}
+	# As poções: cada uma também pode ocupar um dos 8 quadrados (arrastar ou clicar no número), no lugar de uma habilidade.
+	_potion_rows.clear()
+	for token: String in CharacterData.POTION_SLOTS:
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", 6)
+		_rows.add_child(row)
+		var icon := TextureRect.new()
+		icon.custom_minimum_size = Vector2(34, 34)
+		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		row.add_child(icon)
+		var label := Label.new()
+		label.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+		label.custom_minimum_size = Vector2(ROW_NAME_WIDTH - 40 + 44, 0)  # a largura da linha de habilidade sem o botão "+"
+		label.mouse_filter = Control.MOUSE_FILTER_STOP
+		label.set_drag_forwarding(_drag_skill.bind(token, label), Callable(), Callable())
+		row.add_child(label)
+		var slots: Array[Button] = []
+		for i in PlayerInput.SKILL_SLOTS:
+			var slot := Button.new()
+			slot.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+			slot.text = str(i + 2)
+			slot.toggle_mode = false
+			slot.custom_minimum_size = Vector2(30, 36)
+			slot.pressed.connect(func() -> void: _player.request_slot(i, token))
+			row.add_child(slot)
+			slots.append(slot)
+		_potion_rows[token] = {"label": label, "icon": icon, "slots": slots}
 
 
 func _refresh() -> void:
@@ -145,18 +176,40 @@ func _refresh() -> void:
 			var slot: Button = nodes.slots[i]
 			slot.visible = active
 			slot.modulate = Color(1.0, 0.85, 0.4) if c.data.skill_slots[i] == key else Color.WHITE
+	for token: String in _potion_rows:
+		var nodes: Dictionary = _potion_rows[token]
+		(nodes.label as Label).text = _potion_name(token)
+		var path := "res://assets/ui/icons/%s.png" % _potion_icon_id(token)
+		(nodes.icon as TextureRect).texture = load(path) as Texture2D if ResourceLoader.exists(path) else null
+		for i in PlayerInput.SKILL_SLOTS:
+			(nodes.slots[i] as Button).modulate = Color(1.0, 0.85, 0.4) if c.data.skill_slots[i] == token else Color.WHITE
 	_refresh_dock()
 	_show_details()
+
+
+## Nome e ícone de uma poção que vai num quadrado (a elemental é a do elemento do herói).
+func _potion_name(token: String) -> String:
+	match token:
+		"potion_health":
+			return tr("ITEM_POTION_HEALTH")
+		"potion_resource":
+			return tr("ITEM_POTION_RESOURCE")
+	return tr("ITEM_POTION_ELEMENTAL_" + String(_player.element).to_upper())
+
+
+func _potion_icon_id(token: String) -> String:
+	return token if token != "potion_elemental" else "elemental_potion_" + String(_player.element)
 
 
 ## Arrastar uma habilidade ativa e aprendida: o que vai na mão é o nome dela, e o destino é um dos 4 atalhos do dock.
 func _drag_skill(_at: Vector2, key: String, source: Control) -> Variant:
 	var c := _player.character if _player else null
-	if c == null or c.skill_rank(key) <= 0 or not Skills.is_active(c.skill_of(key)):
+	var is_potion := key in CharacterData.POTION_SLOTS
+	if c == null or (not is_potion and (c.skill_rank(key) <= 0 or not Skills.is_active(c.skill_of(key)))):
 		return null
 	var preview := Label.new()
 	preview.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
-	preview.text = tr(Skills.def(c.skill_of(key)).get("name_key", ""))
+	preview.text = _potion_name(key) if is_potion else tr(Skills.def(c.skill_of(key)).get("name_key", ""))
 	preview.add_theme_font_size_override("font_size", 18)
 	preview.add_theme_color_override("font_color", Color(1.0, 0.9, 0.5))
 	preview.add_theme_color_override("font_outline_color", Color.BLACK)
@@ -215,10 +268,19 @@ func _refresh_dock() -> void:
 	var c := _player.character if _player else null
 	for i in _dock_labels.size():
 		var key: String = c.data.skill_slots[i] if c else ""
-		var prompt := InputDevice.prompt(StringName("skill_%d" % (i + 1)))
-		_dock_labels[i].text = "%s\n—" % prompt if key == "" else "%s\n%s" % [prompt, tr(Skills.def(c.skill_of(key)).get("name_key", ""))]
-		var dock_path := "res://assets/ui/icons/skills/%s.png" % (c.skill_of(key) if key != "" else "")
+		var prompt := _both_keys(StringName("skill_%d" % (i + 1)))
+		var is_potion := key in CharacterData.POTION_SLOTS
+		var shown_name := _potion_name(key) if is_potion else (tr(Skills.def(c.skill_of(key)).get("name_key", "")) if key != "" else "")
+		_dock_labels[i].text = "%s\n—" % prompt if key == "" else "%s\n%s" % [prompt, shown_name]
+		var dock_path := "res://assets/ui/icons/%s.png" % _potion_icon_id(key) if is_potion else "res://assets/ui/icons/skills/%s.png" % (c.skill_of(key) if key != "" else "")
 		_dock_icons[i].texture = load(dock_path) as Texture2D if key != "" and ResourceLoader.exists(dock_path) else null
+
+
+## A tecla e o botão do controle de uma ação ("2 · A"); sem botão no controle, só a tecla.
+func _both_keys(action: StringName) -> String:
+	var keyboard := Controls.binding_label(action, Controls.KB)
+	var pad := Controls.binding_label(action, Controls.PAD)
+	return keyboard if pad == "—" else "%s · %s" % [keyboard, pad]
 
 
 func _focus(key: String) -> void:

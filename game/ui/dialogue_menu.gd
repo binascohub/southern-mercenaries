@@ -64,6 +64,23 @@ func close() -> void:
 		focus.release_focus()
 
 
+## Controle: A continua a conversa (ou fecha na última fala), B fecha. Vale antes de o botão em foco
+## e do ataque/habilidade (A e B) receberem o mesmo toque.
+func _input(event: InputEvent) -> void:
+	if not visible or not event is InputEventJoypadButton or not event.pressed:
+		return
+	if event.button_index == JOY_BUTTON_A:
+		get_viewport().set_input_as_handled()
+		var last: bool = _line >= _dialogue.get("lines", []).size() - 1
+		if last and (_accept.visible or _service.visible):
+			(_accept if _accept.visible else _service).pressed.emit()  # A aceita a missão / usa o serviço
+		else:
+			_advance()
+	elif event.button_index == JOY_BUTTON_B:
+		get_viewport().set_input_as_handled()
+		close()
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if visible and (event.is_action_pressed(&"ui_cancel") or event.is_action_pressed(&"menu")):
 		get_viewport().set_input_as_handled()

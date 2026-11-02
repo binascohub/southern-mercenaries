@@ -799,6 +799,15 @@ func _cast_slot(index: int) -> void:
 	var key: String = character.data.skill_slots[index]
 	if key == "" or float(_skill_cd.get(key, 0.0)) > 0.0:
 		return
+	if key in CharacterData.POTION_SLOTS:  # o quadrado guarda uma poção em vez de uma habilidade
+		match key:
+			"potion_health":
+				_drink("venison" if character.count_of("potion_health") == 0 and character.count_of("venison") > 0 else "potion_health")
+			"potion_resource":
+				_drink("potion_resource")
+			_:
+				_drink_next_elemental()
+		return
 	var id := character.skill_of(key)
 	var rank := character.skill_rank(key)
 	var skill := Skills.def(id)
