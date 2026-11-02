@@ -41,6 +41,15 @@ var _last_net_position := Vector3.INF
 var _material: StandardMaterial3D
 var _anim: AnimationPlayer
 var _anim_lock := 0.0
+var _clips := {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack"}  # papel -> nome do clipe (data.anim_map troca, p.ex. o esqueleto dos heróis)
+var _run_speed := INF
+var _model: Node3D  # modelo sem esqueleto (dragão, grifo): animado por código em _animate_rigid
+var _model_y := 0.0
+var _model_yaw := 0.0
+var _model_scale := 1.0
+var _walk_phase := 0.0
+var _walk_blend := 0.0
+var _lunge := 0.0
 var _last_pos := Vector3.INF
 
 
@@ -92,16 +101,39 @@ func _physics_process(delta: float) -> void:
 
 ## Anima o modelo próprio: anda quando se mexe, fica parado senão; o golpe toca "attack" por um instante.
 func _update_animation(delta: float) -> void:
-	if _anim == null:
+	if _anim == null and _model == null:
 		return
 	var speed := 0.0 if _last_pos == Vector3.INF else global_position.distance_to(_last_pos) / maxf(delta, 0.001)
 	_last_pos = global_position
+	if _anim == null:
+		_animate_rigid(delta, speed)
+		return
 	_anim_lock = maxf(_anim_lock - delta, 0.0)
 	if _anim_lock > 0.0:
 		return
-	var clip := "walk" if speed > 0.4 else "idle"
+	var clip: String = _clips.run if speed > _run_speed else (_clips.walk if speed > 0.4 else _clips.idle)
 	if _anim.has_animation(clip) and _anim.current_animation != clip:
 		_anim.play(clip, 0.15)
+
+
+## Modelos de uma peça só: o passo vira balanço (sobe e desce, inclina de lado e de frente); parado, respira; o golpe dá um bote.
+## Quem voa (grifo) oscila no ar como se batesse as asas.
+func _animate_rigid(delta: float, speed: float) -> void:
+	var flying: bool = data.get("flies", false)
+	_walk_blend = move_toward(_walk_blend, 1.0 if speed > 0.4 else 0.0, delta * 8.0)
+	_walk_phase += delta * (10.0 if flying else clampf(speed * 2.2, 5.0, 14.0))
+	_lunge = move_toward(_lunge, 0.0, delta * 3.0)
+	var step := sin(_walk_phase)
+	var idle := sin(Time.get_ticks_msec() * 0.003)
+	var w := _walk_blend
+	# Passo marcado: o corpo salta a cada passada, balança de lado, cabeceia e guina como quem pisa alternado.
+	var bob := (step * 0.22 if flying else absf(step) * 0.18) * w + idle * 0.03 * (1.0 - w)
+	_model.position.y = _model_y + bob
+	_model.rotation.z = step * (0.2 if flying else 0.17) * w + idle * 0.02
+	_model.rotation.x = -0.1 * w + sin(_walk_phase * 2.0) * 0.07 * w - 0.5 * sin(_lunge * PI) * minf(_lunge * 2.0, 1.0)
+	_model.rotation.y = deg_to_rad(_model_yaw) + cos(_walk_phase) * 0.14 * w
+	var squash := 1.0 - absf(step) * 0.05 * w
+	_model.scale = Vector3(1.0 / sqrt(squash), squash, 1.0 / sqrt(squash)) * _model_scale
 
 
 func _think(delta: float) -> void:
@@ -168,8 +200,9 @@ func _target(master: Player) -> Enemy:
 
 
 func _attack(master: Player, target: Enemy) -> void:
-	if _anim and _anim.has_animation("attack"):
-		_anim.play("attack", 0.05)
+	_lunge = 1.0
+	if _anim and _anim.has_animation(_clips.attack):
+		_anim.play(_clips.attack, 0.05)
 		_anim_lock = 0.7
 	var bond := master.character.passive_value("bond") if master.character else 0.0
 	var hit := {
@@ -273,13 +306,22 @@ func _build_visual() -> void:
 	var model_name: String = data.get("model", "")
 	if model_name != "" and Kit.has(model_name):
 		var model := Kit.piece(model_name)
-		model.scale = Vector3.ONE * float(data.get("model_scale", size / 1.4))
-		model.position.y = float(data.get("model_y", 0.0))  # o pombo voa a ~0,9 m do chão
+		_model_scale = float(data.get("model_scale", size / 1.4))
+		model.scale = Vector3.ONE * _model_scale
+		_model_yaw = float(data.get("model_yaw", 0.0))  # modelos que vêm olhando para -Z
+		model.rotation.y = deg_to_rad(_model_yaw)
+		_model_y = float(data.get("model_y", 0.0))
+		model.position.y = _model_y  # o pombo voa a ~0,9 m do chão
 		add_child(model)
-		_anim = model.find_child("AnimationPlayer", true, false) as AnimationPlayer  # o javali anda e ataca (idle, walk, attack)
+		_anim = model.find_child("AnimationPlayer", true, false) as AnimationPlayer
+		if _anim == null:
+			_model = model
+		# o javali anda e ataca (idle, walk, attack)
 		if _anim:
+			_clips.merge(data.get("anim_map", {}), true)  # o lobo usa as animações dos homens (Idle, Walk, Jog_Fwd, Sword_Attack)
+			_run_speed = float(data.get("run_speed", INF))
 			for clip: String in _anim.get_animation_list():
-				_anim.get_animation(clip).loop_mode = Animation.LOOP_LINEAR if clip != "attack" else Animation.LOOP_NONE
+				_anim.get_animation(clip).loop_mode = Animation.LOOP_LINEAR if clip != _clips.attack else Animation.LOOP_NONE
 		return
 	var body := MeshInstance3D.new()
 	var mesh := CapsuleMesh.new()

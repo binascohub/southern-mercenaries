@@ -1163,7 +1163,7 @@ func _test_ninja_gear() -> void:
 	var goblin := HeroModel.new()
 	add_child(goblin)
 	goblin.setup("female", {}, "summoner")
-	_check(goblin.is_suit() and not goblin.suit_worn() and goblin.visible_parts().has("Peasant_Body"), "invocador: sem peça equipada aparece o Camponês (qualquer sexo)")
+	_check(goblin.is_suit() and not goblin.suit_worn() and goblin.visible_parts() == ["Goblin_Body"], "invocador: é de outra espécie, sem peça equipada aparece o goblin (sem o Camponês humano), qualquer sexo")
 	HeroGear.apply(goblin, "summoner", {"body": "D", "head": "", "hands": "", "feet": ""})
 	_check(goblin.suit_worn() and goblin.visible_parts() == ["Goblin_Body"], "invocador: com uma peça equipada veste o goblin inteiro")
 	var goblin_colors := []

@@ -1492,13 +1492,13 @@ msgid "COMPANION_FOX"
 msgstr "Fênix"
 
 msgid "COMPANION_OTTER"
-msgstr "Crocodilo de água"
+msgstr "Lobo de água"
 
 msgid "COMPANION_FALCON"
-msgstr "Águia do ar"
+msgstr "Grifo do ar"
 
 msgid "COMPANION_BOAR"
-msgstr "Javali"
+msgstr "Orc"
 
 msgid "COMPANION_BEAR"
 msgstr "Gorila guardião"

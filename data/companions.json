@@ -25,9 +25,11 @@
     "ranged": true,
     "cooldown": 1.1,
     "size": 0.55,
-    "model": "Animal_Alligator",
-    "model_scale": 0.8,
-    "_comment": "Companheiro de Água do Invocador: o Crocodilo (Animal Kit 1.0, CC-BY 4.0), no lugar da lontra (o id continua otter); ataca à distância."
+    "model": "Werewolf",
+    "model_scale": 0.7,
+    "anim_map": {"idle": "Idle", "walk": "Walk", "run": "Jog_Fwd", "attack": "Sword_Attack"},
+    "run_speed": 2.5,
+    "_comment": "Companheiro de Água do Invocador: o Lobo (werewolf.glb fornecido pelo autor, bípede ligado ao esqueleto e às animações dos heróis por tools/assets/build_werewolf_companion.py), no lugar da lontra (o id continua otter); ataca à distância."
   },
   "falcon": {
     "name_key": "COMPANION_FALCON",
@@ -36,10 +38,10 @@
     "cooldown": 0.6,
     "flies": true,
     "size": 0.5,
-    "model": "Eagle",
-    "model_scale": 1.0,
-    "model_y": 0.9,
-    "_comment": "Companheiro de Ar do Invocador: a Águia (eagle.glb fornecido pelo autor), no lugar do falcão (o id continua falcon); voa."
+    "model": "Griffin",
+    "model_scale": 0.5,
+    "model_y": 0.8,
+    "_comment": "Companheiro de Ar do Invocador: o Grifo (griffin.glb fornecido pelo autor), no lugar do falcão (o id continua falcon); voa."
   },
   "boar": {
     "name_key": "COMPANION_BOAR",
@@ -47,8 +49,11 @@
     "range": 1.6,
     "cooldown": 1.2,
     "size": 0.8,
-    "model": "Boar",
-    "model_scale": 1.0
+    "model": "Orc",
+    "model_scale": 0.8,
+    "anim_map": {"idle": "Idle", "walk": "Walk", "run": "Jog_Fwd", "attack": "Sword_Attack"},
+    "run_speed": 2.5,
+    "_comment": "Companheiro de Terra do Invocador: o Orc (orc.glb fornecido pelo autor, bípede de roupa verde ligado ao esqueleto e às animações dos heróis por tools/assets/build_orc_companion.py), no lugar do javali (o id continua boar)."
   },
   "bear": {
     "name_key": "COMPANION_BEAR",

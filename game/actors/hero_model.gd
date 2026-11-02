@@ -316,14 +316,16 @@ func set_suit_element(element: String) -> void:
 func dress_suit(ranks: Dictionary) -> void:
 	_suit_ranks = ranks
 	_suit_worn = ["body", "head", "hands", "feet"].any(func(slot: String) -> bool: return String(ranks.get(slot, "")) != "")
+	# O Invocador é de outra espécie (goblin): o corpo dele aparece sempre, sem o Camponês, o rosto nem o cabelo humanos.
+	var shown := _suit_worn or _suit_prefix == "Goblin_"
 	for part_name: String in _parts:
 		var piece: MeshInstance3D = _parts[part_name]
 		if part_name.begins_with(_suit_prefix):
-			piece.visible = _suit_worn
+			piece.visible = shown
 		elif part_name.begins_with("Peasant_"):
-			piece.visible = not _suit_worn
+			piece.visible = not shown
 		else:  # rosto e cabelo: a roupa ninja tem capuz e máscara por cima
-			piece.visible = not _suit_worn and (part_name in ALWAYS or part_name in _hair)
+			piece.visible = not shown and (part_name in ALWAYS or part_name in _hair)
 	var tint: Color = SUIT_COLORS.get(suit_element, SUIT_COLORS.fire)
 	for part_name: String in _parts:
 		var mesh: MeshInstance3D = _parts[part_name]
