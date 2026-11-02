@@ -218,5 +218,15 @@
       "max": 70,
       "per_level": 8.0
     }
+  },
+  "breakable_meat": {
+    "_comment": "Cervos e corças da Floresta: sempre soltam carne (o consumível 'venison', 1 a 2 postas), que cura como a poção de vida.",
+    "outcomes": {
+      "venison": 100
+    },
+    "venison": {
+      "min": 1,
+      "max": 2
+    }
   }
 }

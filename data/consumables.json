@@ -327,5 +327,14 @@
     "cooldown": 0.0,
     "price_base": 80,
     "price_per_level": 0
+  },
+  "venison": {
+    "name_key": "ITEM_VENISON",
+    "stack": 20,
+    "restore": "health",
+    "fraction": 0.3,
+    "cooldown": 15.0,
+    "price_base": 8,
+    "price_per_level": 3
   }
 }

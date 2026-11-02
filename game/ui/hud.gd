@@ -345,7 +345,7 @@ func _process(_delta: float) -> void:
 		if _player.potion_cooldown > 0.0:
 			cooldown = "  (%.0fs)" % ceilf(_player.potion_cooldown)
 		_potions.text = tr("HUD_POTIONS").format({
-			"health_key": InputDevice.prompt(&"potion_health"), "health": c.count_of("potion_health"),
+			"health_key": InputDevice.prompt(&"potion_health"), "health": c.count_of("potion_health") + c.count_of("venison"),
 			"resource_key": InputDevice.prompt(&"potion_mana"), "resource": c.count_of("potion_resource"),
 		}) + cooldown
 		var elemental := 0

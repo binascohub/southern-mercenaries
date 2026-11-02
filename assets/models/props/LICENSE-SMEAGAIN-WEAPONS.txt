@@ -1,0 +1,3 @@
+"Weapons - Medieval Pack 1" by Smeagain (OpenGameArt, id 73738): Creative Commons Attribution 3.0 — https://creativecommons.org/licenses/by/3.0/
+Changes: one glTF per weapon (staff, bow, long sword, dagger) by tools/assets/build_smeagain_weapons.py (upright, centered, resized, plain colors).
+These converted files are shared under the same license (CC BY 3.0).

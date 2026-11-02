@@ -157,7 +157,7 @@ monster("chitin_beast", "skeleton", _comment="Besta Quitinosa da Floresta (Beast
 
 # Cervos da Floresta (CDmir e TinyWorlds, CC0): quebráveis como os potes do Esgoto: não atacam, não perseguem, não voltam depois de mortos
 # (a campanha guarda os já quebrados) e, ao morrer, soltam só poção (tabela "breakable_potion").
-monster("deer_buck", "barrel", _comment="Cervo da Floresta (Old Deer Male, CDmir, CC0): quebrável parado, como o pote do Esgoto; ao morrer solta poção.",
+monster("deer_buck", "barrel", _comment="Cervo da Floresta (Old Deer Male, CDmir, CC0): quebrável parado, como o pote do Esgoto; ao morrer solta carne (tabela 'breakable_meat').",
         name_key="PROP_DEER_BUCK", max_health=20, size=1.4, look="deer_buck", color=[1.0, 1.0, 1.0])
 monster("deer_doe", "barrel", _comment="Corça da Floresta (Deer Female, CDmir, CC0): igual ao cervo.",
         name_key="PROP_DEER_DOE", max_health=20, size=1.4, look="deer_doe", color=[1.0, 1.0, 1.0])
@@ -386,7 +386,7 @@ for rid, count in (("hub", 2), ("toads", 1), ("bats", 1), ("reptiles", 1)):
     rd = f_rooms_out[list(FOR_ROOMS).index(rid)]
     for spot in scatter(dr_, rd, ["deer"], count, margin=4.0, avoid=f_keep + f_samples() + [(d["position"][0], d["position"][1], 10) for d in f_deer]):
         f_deer.append({"id": "d%d" % (len(f_deer) + 1), "monster": "deer_buck" if len(f_deer) % 2 == 0 else "deer_doe",
-                       "position": spot["position"], "table": "breakable_potion"})
+                       "position": spot["position"], "table": "breakable_meat"})
 # --- Aldeia de Ferncroft (Medieval Props Pack 3, Daniel Andersson, CC0; casas do kit de Tortuga) ---------------------------------------------
 # A aldeia é a sala da partida (canto sudoeste): portas ao norte (Clareira dos Sapos) e a leste (corredor até o Covil das Bestas).
 
@@ -1883,6 +1883,7 @@ subprocess.run([sys.executable, "tools/assets/forest_tidy.py"], check=True)  # s
 subprocess.run([sys.executable, "tools/assets/move_forest_village.py"], check=True)  # aldeia no norte e Rei Golem no canto direito-baixo
 subprocess.run([sys.executable, "tools/assets/add_forest_campfire.py"], check=True)  # fogueira no centro do acampamento
 subprocess.run([sys.executable, "tools/assets/add_forest_pond.py"], check=True)  # lagoa (e sem pedras) na sala dos sapos
+subprocess.run([sys.executable, "tools/assets/add_forest_pira_south.py"], check=True)  # sala nova ao sul da Praça da Pira (amplia o mapa dos sapos)
 subprocess.run([sys.executable, "tools/assets/add_forest_walkers.py"], check=True)  # Bertram e Elara andando pelo mapa (sem missão)
 subprocess.run([sys.executable, "tools/assets/add_forest_butterflies.py"], check=True)  # borboletas animadas (Butterfly_Anim)
 subprocess.run([sys.executable, "tools/assets/swap_forest_keeper.py"], check=True)  # Guardiã da Pira na sala da lagoa, sapos na Praça da Pira

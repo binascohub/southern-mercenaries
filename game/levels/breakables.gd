@@ -4,7 +4,7 @@ extends RefCounted
 ## Barris e caixotes (03-2-areas.md, seção 1, decisão do autor), sem nós: o
 ## objeto é um Enemy parado ("breakable") que quebra com qualquer golpe. Ao
 ## quebrar, o servidor sorteia uma vez o que sai (data/loot.json, "breakable"):
-## nada, ouro, poção de vida ou de recurso, um valioso ou monstros escondidos.
+## nada, ouro, poção de vida ou de recurso, carne de cervo, um valioso ou monstros escondidos.
 
 ## O que sai deste objeto.
 ## `table` é a chave em data/loot.json (por padrão "breakable"; as Ruínas usam

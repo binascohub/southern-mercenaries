@@ -392,6 +392,9 @@ msgstr "+{value}% de velocidad de movimiento"
 msgid "AFFIX_GOLD_FIND"
 msgstr "+{value}% de Binascoins encontradas"
 
+msgid "ITEM_VENISON"
+msgstr "Carne de ciervo"
+
 msgid "ITEM_POTION_HEALTH"
 msgstr "Poción de vida"
 

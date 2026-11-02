@@ -192,7 +192,7 @@ func _ready() -> void:
 	_rng_dodge.randomize()
 	_snapshots.delay = GameData.balance.net.interpolation_delay
 	collision_layer = 2
-	collision_mask = 1 | 4
+	collision_mask = 1 | 4 | 16  # 16: lagoas (só os jogadores e os companheiros não passam)
 	# Visão de cima, sem gravidade nem plataformas.
 	motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
 	_load_class()
@@ -500,7 +500,8 @@ func _server_step(delta: float) -> void:
 		regen *= float(data.resource_regen_moving) / float(data.resource_regen)
 	resource = minf(resource + regen * delta, max_resource)
 	if input.potion_health_presses != _seen_extra.potion_health_presses:
-		_drink("potion_health")
+		# Sem poção de vida, a carne de cervo faz o mesmo papel.
+		_drink("venison" if character and character.count_of("potion_health") == 0 and character.count_of("venison") > 0 else "potion_health")
 	if input.potion_resource_presses != _seen_extra.potion_resource_presses:
 		_drink("potion_resource")
 	if input.potion_elemental_presses != _seen_extra.potion_elemental_presses:
@@ -1149,7 +1150,7 @@ func _build_visual() -> void:
 		second.material_override = _staff_material
 		second.rotation = Vector3.ZERO
 		second.position = Vector3(0, 0.15, 0)
-		_dress_weapon(second, "Weapon_Stiletto")  # estilete na mão esquerda (tigeruppercut, CC0)
+		_dress_weapon(second, "Weapon_MS_Dagger")  # adaga na mão esquerda (Weapons - Medieval Pack 1, Smeagain, CC BY)
 		_second_holder = second
 		var left_hand := Node3D.new()
 		left_hand.add_child(second)
@@ -1158,15 +1159,17 @@ func _build_visual() -> void:
 	# (o punho segura a um terço do cabo; a lança e o arco mais à frente).
 	staff.rotation = Vector3.ZERO
 	staff.position = Vector3.ZERO if summoner else Vector3(0, staff_mesh.height * (0.3 if knight else 0.2), 0)
-	# Armas do Kingdom Weapon Set: cajado (Mago), alabarda (Cavaleiro), espadas curtas (Ninja).
+	# Armas do Weapons - Medieval Pack 1 (Smeagain, CC BY 3.0): cajado (Mago), espada longa (Cavaleiro),
+	# adagas (Ninja) e arco (Arqueiro).
 	if class_id == "mage":
-		_dress_weapon(staff, "Weapon_Staff")
+		_dress_weapon(staff, "Weapon_MS_Staff")
 	elif knight:
-		_dress_weapon(staff, "Weapon_Polearm")
+		_dress_weapon(staff, "Weapon_MS_Sword")
+		staff.position = Vector3(0, 0.4, 0)  # a mão segura o cabo, no começo da espada
 	elif ninja:
-		_dress_weapon(staff, "Weapon_Dagger")  # adaga do assassino (danilomattos, CC0)
+		_dress_weapon(staff, "Weapon_MS_Dagger")
 	elif archer:
-		_dress_weapon(staff, "Bow_Long")  # arco longo (Archery Set, yd, CC0)
+		_dress_weapon(staff, "Weapon_MS_Bow")
 	_weapon_holder = staff
 	var right_hand := Node3D.new()
 	right_hand.add_child(staff)

@@ -63,7 +63,7 @@ static func create(spawn: Dictionary) -> Companion:
 func _ready() -> void:
 	add_to_group(&"companions")
 	collision_layer = 2
-	collision_mask = 1 | 4
+	collision_mask = 1 | 4 | 16  # 16: lagoas
 	motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
 	_snapshots.delay = GameData.balance.net.interpolation_delay
 	data = GameData.companions.get(kind, {})

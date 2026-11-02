@@ -43,6 +43,7 @@ locale/fallback="en"
 3d_physics/layer_2="players"
 3d_physics/layer_3="enemies"
 3d_physics/layer_4="player_projectiles"
+3d_physics/layer_5="ponds"
 
 [rendering]
 

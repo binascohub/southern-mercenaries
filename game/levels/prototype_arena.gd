@@ -1247,6 +1247,10 @@ func _break(box: Enemy) -> void:
 				_add_loot(p, at, {}, _rng.randi_range(int(table.gold.min), int(table.gold.max)) + roundi(float(table.gold.per_level) * level))
 			"potion_health", "potion_resource":
 				_add_loot(p, at, Items.stack(Items.CONSUMABLE, outcome), 0)
+			"venison":
+				# Carne do cervo: cura como a poção de vida (tabela "breakable_meat").
+				var meat: Dictionary = GameData.loot.breakable_meat.venison
+				_add_loot(p, at, Items.stack(Items.CONSUMABLE, "venison", _rng.randi_range(int(meat.min), int(meat.max))), 0)
 			"valuable":
 				_add_loot(p, at, Items.stack(Items.VALUABLE, _random_valuable()), 0)
 
@@ -1732,6 +1736,7 @@ func _build_prop(prop: Dictionary) -> void:
 				if prop.get("round", false):
 					# Lagoa: elipse (o "size" é o diâmetro em x e em z).
 					_prop_mesh(node, CylinderMesh.new(), Vector3(size[0], 0.05, size[1]), Vector3(0, 0.02, 0), Color(tint[0], tint[1], tint[2]))
+					_block_pond(node, Vector2(size[0], size[1]))
 				else:
 					_prop_mesh(node, BoxMesh.new(), Vector3(size[0], 0.1, size[1]), Vector3(0, 0.02, 0), Color(tint[0], tint[1], tint[2]))
 			"npc":
@@ -2041,6 +2046,25 @@ func _sludge_material() -> StandardMaterial3D:
 		_sludge.metallic = 0.3
 		_sludge.metallic_specular = 0.8
 	return _sludge
+
+
+## Lagoa que os jogadores não atravessam (monstros e peixes sim): um prisma de colisão com o contorno da elipse (o "size" é o diâmetro em x e em z).
+func _block_pond(node: Node3D, size: Vector2) -> void:
+	var points := PackedVector3Array()
+	for i in 32:
+		var a := TAU * float(i) / 32.0
+		var p := Vector3(cos(a) * size.x / 2.0, 0.0, sin(a) * size.y / 2.0)
+		points.append(p)
+		points.append(p + Vector3(0, 1.5, 0))
+	var shape := ConvexPolygonShape3D.new()
+	shape.points = points
+	var body := StaticBody3D.new()
+	body.collision_layer = 16  # camada das lagoas: só jogadores e companheiros colidem (monstros e peixes passam)
+	body.collision_mask = 0
+	var col := CollisionShape3D.new()
+	col.shape = shape
+	body.add_child(col)
+	node.add_child(body)
 
 
 func _prop_mesh(parent: Node3D, mesh: PrimitiveMesh, scale_: Vector3, at: Vector3, color: Color) -> void:
