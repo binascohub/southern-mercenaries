@@ -78,6 +78,9 @@ const GOWN_LINEN := {"body": [0.62, 0.28, 0.26], "panel": [0.8, 0.76, 0.64], "tr
 const COURTESAN_BONES := {"hips": "hips", "skirt": "root", "chest": "brust", "upper_l": "oberArm_L", "upper_r": "oberArm_R",
 	"lower_l": "unterarm_L", "lower_r": "unterarm_R", "hand_l": "hand_L", "hand_r": "hand_R"}
 
+## Civis do Mixamo: andar, conversa e os golpes de briga (data/arenas.json: papel "brawl" com civis em "fighters").
+const CIVIL_POSES := {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop",
+	"punch_jab": "Punch_Jab", "punch_cross": "Punch_Cross", "hit": "Hit_Chest", "hit_head": "Hit_Head", "fold_arms": "Idle_FoldArms_Loop"}
 const VILLAGER_POSES := {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop", "run": "Jog_Fwd_Loop",
 	"dance_sway": "Dance_Loop", "dance_hips": "Dance_Loop", "dance_twirl": "Dance_Loop", "dance_wild": "Dance_Loop"}
 
@@ -111,6 +114,12 @@ const MODELS := {
 	# por tools/assets/rig_to_ual.py, com as animações deles; texturas geradas.
 	# Ossael, o Anjo Caveira (angel_1.glb do autor, anjo de asas brancas gerada por IA, malha estática andando; tools/assets/build_angel.py; autoria e licença a confirmar): NPC do Esgoto
 	# (dá a missão do Rei dos Sapos); fica parada na pose do arquivo, de asas abertas. Substituiu o Catador (Homem-Aranha).
+	# Meliodas (seven_deadly_sins_meliodas_rig.glb do autor; esqueleto de 150 ossos e a animação "stand"; autoria/licença a confirmar): o Boticário, dono da loja de poções dentro da Taverna.
+	"meliodas": {"scene": "res://assets/models/characters/meliodas.glb", "scale": 0.68, "arms_down": 72.0, "poses": {"idle": "stand", "talk": "stand", "stand": "stand"}},
+	# Guardião do Portão (horror-monster-light.glb do autor, monstro de terror magro e bípede; tools/assets/build_horror_monster.py): preso ao esqueleto dos heróis, com os movimentos deles. Recebe as duas
+	# chaves do Esgoto e faz o portão do Ninho cair. 1,8 m no arquivo -> ~2,25 m.
+	"gate_keeper": {"scene": "res://assets/models/characters/gate_keeper.glb", "scale": 1.25,
+		"poses": {"idle": "Idle_Loop", "talk": "Idle_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop"}},
 	"sewer_scavenger": {"scene": "res://assets/models/characters/angel.glb", "scale": 1.0, "poses": {"idle": "flap", "talk": "flap", "stand": "flap"},
 		"aura": {"color": [1.0, 0.86, 0.5], "center": 1.3, "size": 3.6}},  # 2,4 m; bate as asas (animação "flap")
 	# Homem-Aranha (The Amazing Spider-Man 2 suit, Ugo9p1, modelo comprado, crédito pedido pelo autor; tools/assets/build_spiderman.py + rig_to_ual.py): dança ao lado da estátua do pirata em Tortuga
@@ -126,17 +135,17 @@ const MODELS := {
 	# Baltazar (civilian1.glb do autor, homem do Mixamo de camisa e calça; tools/assets/build_mixamo_civilian.py): passeia pela praça do portão da Capital e pela rua de Tortuga, preso ao esqueleto dos heróis,
 	# com os movimentos deles.
 	"civilian_1": {"scene": "res://assets/models/characters/civilian1.glb", "scale": 1.0,
-		"poses": {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop"}},
+		"poses": CIVIL_POSES},
 	# Hector (civilian3.glb do autor, outro homem do Mixamo, mesmo método; tools/assets/build_mixamo_civilian.py): passeia pela rua de Tortuga, preso ao esqueleto dos heróis.
 	"civilian_2": {"scene": "res://assets/models/characters/civilian3.glb", "scale": 1.0,
-		"poses": {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop"}},
+		"poses": CIVIL_POSES},
 	# Otávio (civilian4.glb do autor, outro homem do Mixamo, mesmo método; tools/assets/build_mixamo_civilian.py): passeia pela rua de Tortuga, preso ao esqueleto dos heróis.
 	"civilian_3": {"scene": "res://assets/models/characters/civilian4.glb", "scale": 1.0,
-		"poses": {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop"}},
+		"poses": CIVIL_POSES},
 	# Dona Zefa (civilian5.glb do autor, mulher de vestido longo estampado e faixa vinho, malhas estáticas em T-pose; tools/assets/build_mixamo_civilian.py, com pesos mais suaves na saia): passeia pela rua de
 	# Tortuga, presa ao esqueleto dos heróis.
 	"civilian_5": {"scene": "res://assets/models/characters/civilian5.glb", "scale": 1.0,
-		"poses": {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop"}},
+		"poses": CIVIL_POSES},
 	# Capitão Barnabé (pirate2.glb do autor, homem de colete de couro, barba e botas, low poly; tools/assets/build_mixamo_civilian.py): passeia pela rua de Tortuga, preso ao esqueleto dos heróis.
 	"pirate_2": {"scene": "res://assets/models/characters/pirate2.glb", "scale": 1.0,
 		"poses": {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop"}},
@@ -178,7 +187,7 @@ const MODELS := {
 	# (parado na pose do arquivo); 1,7 m no arquivo -> ~1,8 m. É o Bobo da Corte da Sala do Rei.
 	"court_jester": {"scene": "res://assets/models/characters/court_jester/cerimonial_guard.dae", "scale": 1.05, "poses": {}},
 	# Pirata sentado (Seated pirate with poor rig, pre, CC BY 3.0): malha parada na pose de sentado (sem animação); NPC da missão das Docas, na taverna.
-	"seated_pirate": {"scene": "res://assets/models/characters/pirate_captain_npc.glb", "scale": 1.0, "poses": {}},  # Capitão Pirata da Taverna (pirate.glb do usuário, malha parada)
+	"seated_pirate": {"scene": "res://assets/models/characters/pirate_captain_npc.glb", "scale": 1.0, "brighten": 1.6, "poses": {}},  # Capitão Pirata da Taverna (pirate.glb do usuário, malha parada)
 	"castle_guard": {"scene": "res://assets/models/characters/brigand_guard.glb", "scale": 1.0, "poses": {}},
 	# Aranhinha do esgoto (Spider animated, pantherone, CC BY 3.0): não ataca,
 	# só anda pelo chão. Arquivo de 1 m -> 32 cm, preta (decisão do autor, depois diminuída um pouco).
@@ -240,6 +249,8 @@ var _poses := {}
 var _spin := 0.0
 var _bounce := 0.0
 var _dance_time := 0.0
+## Graus que os braços descem de uma pose em T (Meliodas); aplicado em _ready, quando o esqueleto já está na cena (antes, o esqueleto ignora a pose).
+var _arms_down := 0.0
 
 
 static func has_model(id: String) -> bool:
@@ -285,7 +296,19 @@ static func create(id: String) -> NpcModel:
 					var copy := source.duplicate() as StandardMaterial3D
 					copy.albedo_color = Color(c[0], c[1], c[2])
 					mesh.set_surface_override_material(i, copy)
+	if info.has("brighten"):  # clareia as cores do modelo (multiplica o albedo): 1.0 = como veio
+		var factor := float(info.brighten)
+		for node in model.find_children("*", "MeshInstance3D", true, false):
+			var lit := node as MeshInstance3D
+			for i in lit.get_surface_override_material_count():
+				var base := lit.get_active_material(i) as BaseMaterial3D
+				if base:
+					var copy := base.duplicate() as BaseMaterial3D
+					copy.albedo_color = copy.albedo_color * Color(factor, factor, factor, 1.0)
+					lit.set_surface_override_material(i, copy)
 	npc._anim = model.find_child("AnimationPlayer", true, false) as AnimationPlayer
+	if info.has("arms_down"):  # o arquivo vem em T e a animação só mexe em botas e saia: os braços descem por código, já com o modelo na cena (no _ready)
+		npc._arms_down = float(info.arms_down)
 	if info.has("aura"):  # brilho em volta, como o dos heróis de rank S: {"color": [r, g, b], "center": m, "size": m}
 		var aura: Dictionary = info.aura
 		AuraGlow.attach(npc, Color(aura.color[0], aura.color[1], aura.color[2]), float(aura.center), float(aura.size), float(aura.get("strength", 1.0)))
@@ -305,6 +328,23 @@ static func create(id: String) -> NpcModel:
 					npc._anim.get_animation(candidate).loop_mode = Animation.LOOP_PINGPONG if info.get("pingpong", false) else Animation.LOOP_LINEAR
 					break
 	return npc
+
+
+## Baixa os dois braços de um modelo em pose de T (ossos arm_l00/arm_r00 do Meliodas): gira o braço no plano do corpo, `degrees` para baixo; o antebraço e a mão vão junto.
+static func _lower_arms(model: Node, degrees: float) -> void:
+	var skeleton := model.find_child("Skeleton3D", true, false) as Skeleton3D
+	if skeleton == null:
+		return
+	for bone_name: String in ["arm_l00_joint_052", "arm_r00_joint_074"]:
+		var bone := skeleton.find_bone(bone_name)
+		if bone < 0:
+			continue
+		var global := skeleton.get_bone_global_pose(bone)
+		var side := -1.0 if global.origin.x > 0.0 else 1.0  # o braço do lado +x gira para baixo no sentido horário (visto de frente)
+		var rotated := Basis(Vector3.BACK, deg_to_rad(degrees) * side) * global.basis.orthonormalized()
+		var parent := skeleton.get_bone_parent(bone)
+		var parent_basis := skeleton.get_bone_global_pose(parent).basis.orthonormalized() if parent >= 0 else Basis.IDENTITY
+		skeleton.set_bone_pose_rotation(bone, (parent_basis.inverse() * rotated).get_rotation_quaternion())
 
 
 ## Aplica os materiais pintados (PaintedTextures) por nome de material do arquivo:
@@ -454,11 +494,28 @@ func _make_bartender(model: Node) -> void:
 	_anim.get_animation_library("").add_animation("stand", animation)
 
 
+func _ready() -> void:
+	if _arms_down > 0.0:
+		_lower_arms(self, _arms_down)
+
+
 func _process(delta: float) -> void:
 	if _spin != 0.0 or _bounce != 0.0:
 		_dance_time += delta
 		rotation.y += _spin * delta
 		position.y = absf(sin(_dance_time * 6.0)) * _bounce
+
+
+## Uma ação de uma vez (soco, golpe sofrido): toca e volta ao "idle". Só vale para poses do modelo; sem elas, não faz nada.
+func play_action(kind: String) -> void:
+	var anim_name: String = _poses.get(kind, "")
+	if _anim == null or anim_name == "" or not _anim.has_animation(anim_name):
+		return
+	_anim.get_animation(anim_name).loop_mode = Animation.LOOP_NONE
+	_anim.play(anim_name, 0.05)
+	var rest: String = _poses.get("idle", "")
+	if rest != "" and _anim.has_animation(rest):
+		_anim.queue(rest)
 
 
 func set_pose(key: String) -> void:

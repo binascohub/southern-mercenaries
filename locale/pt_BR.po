@@ -3332,3 +3332,24 @@ msgstr "O sofrimento dos afogados, preso em vidro e correntes, até que alguém 
 
 msgid "VALUABLE_STORM_BOTTLE_DESC"
 msgstr "Uma tempestade de almas presa no vidro: lá dentro, uma família inteira ri… e depois grita. É tudo o que o Velho Bêbado ainda quer. Não se vende nem se perde."
+
+msgid "SHOP_POTIONS_MELIODAS"
+msgstr "Meliodas, o Boticário"
+
+msgid "NPC_GATE_KEEPER"
+msgstr "Guardião do Portão"
+
+msgid "DLG_GATE_KEEPER_WAIT_1"
+msgstr "…Sssó passa quem me traz as duas chaves. As de espadas e as de copas."
+
+msgid "DLG_GATE_KEEPER_WAIT_2"
+msgstr "Cada mini-chefe do esgoto guarda uma. Volte quando tiver as duas."
+
+msgid "DLG_GATE_KEEPER_GIVE_1"
+msgstr "…As chaves. Ssssim, são as chaves. Faz tanto tempo."
+
+msgid "DLG_GATE_KEEPER_GIVE_2"
+msgstr "O portão é de vocês. Que a Rainha dos Ratos se lembre de quem a guardou."
+
+msgid "DLG_GATE_KEEPER_DONE"
+msgstr "O caminho está aberto. Não olhem para trás."

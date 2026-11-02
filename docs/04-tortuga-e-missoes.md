@@ -52,7 +52,7 @@ Tortuga é uma **cidade portuária suja, barulhenta e perigosa**, de ruas estrei
 |---|---|---|---|
 | `tavern` | **Taverna** | **Construção com interior** (a única) | NPCs bebem e contam histórias que **geram as missões** e **revelam as fraquezas** dos monstros (seção 3) |
 | `pirate_market` | **Mercado Pirata** | **Porto**: um **navio pirata atracado na doca do porto** (decisão do autor); um **NPC pirata mercador, o único capitão da cidade, anda entre o navio e a rua** (a loja abre onde ele estiver) | **Piratas vendem itens que roubaram pelo mundo afora** (estoque que muda a cada navio que chega), **compram os valiosos** dos tesouros sem perguntas e vendem **Poções Elementais** (`05-itens-e-loot.md`, seção 5) |
-| `shop_potions` | Boticário | Banca na Rua Principal | Poções de vida e de recurso |
+| `shop_potions` | Boticário (**Meliodas**) | **Dentro da Taverna**, atrás do balcão, ao lado do Taverneiro (decisão do autor; não há banca de poções na Rua Principal) | Poções de vida e de recurso |
 | `shop_weapons` | Loja de armas | Banca na Rua Principal | Compra e venda de armas comuns de **madeira, ferro e aço** (cobre e prata só na Capital) |
 | `shop_armor` | Loja de armaduras | Banca na Rua Principal | Compra e venda de equipamentos comuns de **pano, ferro e aço** (cobre e prata só na Capital) |
 | `blacksmith` | Ferreiro | Forja ao ar livre na Rua Principal | Crafting: encaixar gemas/runas, desmontar itens; **refino** com pergaminhos de **Ferro e Aço** (vende os pergaminhos desses tiers) — `05-1-refino.md` |

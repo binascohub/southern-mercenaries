@@ -135,6 +135,7 @@ xp_para_o_próximo_nível(n) = 700 × n          (nível 20 = 133.000 XP no tota
 | Quest secundária | 20 x L x (número de monstros da missão ou 10) (proposta) |
 
 - Um mapa tem ~40 monstros comuns por área (4 a 5 áreas), ~2 elites por área, 1 mini-chefe e 1 chefe, o que dá ~**1.400 x L** de XP por mapa limpo: o suficiente para **2 níveis por mapa**.
+- **Esgoto (mapa 1, fechado por XP):** 7 tipos de monstro comum, **20 de cada (140), 4 de cada em cada um dos 5 setores**, todos de nível 1 e com a **mesma força** (vida 210, dano 16; data/monsters.json), mais os 3 chefes (os 2 mini-chefes iguais: vida 140, dano 15) e 3 quests. Soma de XP de quem limpa tudo: comuns 700 + chefes 800 + quests 900 (A Família na Garrafa 360, Garrafa do Tormento Eterno 270, Garrafa das Almas Condenadas 270) = **~2.400**: nível 3 (2.100) com ~300 de sobra. Mudou a quantidade ou o XP dos monstros, ajuste as quests para a soma voltar a ~2.400 (conferido em tests/rpg_tests.gd). Na Taverna, no início, só o Velho Bêbado oferece missão.
 - Quem evita monstros sobe de nível mais devagar, e quem limpa tudo sobe um pouco mais rápido (fica mais forte para o chefe).
 - Bebida da taverna: +5% de XP na próxima missão (`04-tortuga-e-missoes.md`).
 - Sem perda de XP ao cair em combate.

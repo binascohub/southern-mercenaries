@@ -24,8 +24,9 @@ var mount_presses := 0
 var jump_presses := 0
 var block_held := false
 var block_presses := 0
-## Atalhos de habilidade 1 a 4 (contadores de apertos).
-var skill_presses: Array[int] = [0, 0, 0, 0]
+## Atalhos de habilidade 1 a 8 (teclas 2 a 9; contadores de apertos).
+const SKILL_SLOTS := 8
+var skill_presses: Array[int] = [0, 0, 0, 0, 0, 0, 0, 0]
 
 
 ## Lê o Input Map local, continuando os contadores de `previous`.
@@ -47,7 +48,7 @@ static func gather(previous: PlayerInput, origin: Vector3, camera: Camera3D, vie
 	input.jump_presses = previous.jump_presses + int(Input.is_action_just_pressed(&"jump") and not Session.ui_open)
 	input.block_held = Input.is_action_pressed(&"block") and not Session.ui_open
 	input.block_presses = previous.block_presses + int(Input.is_action_just_pressed(&"block") and not Session.ui_open)
-	for i in 4:
+	for i in SKILL_SLOTS:
 		input.skill_presses[i] = previous.skill_presses[i] \
 			+ int(Input.is_action_just_pressed(StringName("skill_%d" % (i + 1))) and not Session.ui_open)
 	# Com uma janela aberta (inventário), os botões não atacam nem esquivam.
@@ -76,7 +77,7 @@ static func gather(previous: PlayerInput, origin: Vector3, camera: Camera3D, vie
 		# Teclado: andando, o herói vira para onde as teclas apontam; a mira do mouse só vale ao atacar (botão segurado ou solto), ao usar uma habilidade ou parado.
 		var shooting := input.attack_held or input.attack_releases != previous.attack_releases or input.attack_presses != previous.attack_presses
 		var casting := false
-		for i in 4:
+		for i in SKILL_SLOTS:
 			casting = casting or input.skill_presses[i] != previous.skill_presses[i]
 		if input.move.length() > 0.2 and not shooting and not casting and not Session.ui_open:
 			input.aim = input.move.normalized()
@@ -92,7 +93,7 @@ func to_array() -> Array:
 
 static func from_array(a: Array) -> PlayerInput:
 	var input := PlayerInput.new()
-	if a.size() != 22:
+	if a.size() != 26:
 		return input
 	input.move = Vector2(a[0], a[1]).limit_length(1.0)
 	input.aim = Vector2(a[2], a[3]).limit_length(1.0)
@@ -106,10 +107,10 @@ static func from_array(a: Array) -> PlayerInput:
 	input.potion_health_presses = int(a[11])
 	input.potion_resource_presses = int(a[12])
 	input.potion_elemental_presses = int(a[13])
-	for i in 4:
+	for i in SKILL_SLOTS:
 		input.skill_presses[i] = int(a[14 + i])
-	input.mount_presses = int(a[18])
-	input.block_held = bool(a[19])
-	input.block_presses = int(a[20])
-	input.jump_presses = int(a[21])
+	input.mount_presses = int(a[22])
+	input.block_held = bool(a[23])
+	input.block_presses = int(a[24])
+	input.jump_presses = int(a[25])
 	return input

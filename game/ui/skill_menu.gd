@@ -105,12 +105,12 @@ func _rebuild_rows() -> void:
 		learn.focus_entered.connect(_focus.bind(key))
 		row.add_child(learn)
 		var slots: Array[Button] = []
-		for i in 4:
+		for i in PlayerInput.SKILL_SLOTS:
 			var slot := Button.new()
 			slot.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
-			slot.text = str(i + 1)
+			slot.text = str(i + 2)  # a tecla (o 1 é o ataque básico)
 			slot.toggle_mode = false
-			slot.custom_minimum_size = Vector2(40, 36)
+			slot.custom_minimum_size = Vector2(30, 36)
 			slot.pressed.connect(func() -> void: _player.request_slot(i, key))
 			slot.focus_entered.connect(_focus.bind(key))
 			row.add_child(slot)
@@ -141,7 +141,7 @@ func _refresh() -> void:
 		var learn: Button = nodes.learn
 		learn.disabled = not c.can_learn(key)
 		var active := Skills.is_active(c.skill_of(key)) and rank > 0
-		for i in 4:
+		for i in PlayerInput.SKILL_SLOTS:
 			var slot: Button = nodes.slots[i]
 			slot.visible = active
 			slot.modulate = Color(1.0, 0.85, 0.4) if c.data.skill_slots[i] == key else Color.WHITE
@@ -180,14 +180,14 @@ func _build_dock() -> void:
 	_dock.grow_horizontal = Control.GROW_DIRECTION_BEGIN
 	_dock.grow_vertical = Control.GROW_DIRECTION_BOTH
 	_dock.offset_right = -20
-	_dock.offset_top = 80
-	_dock.offset_bottom = 80
-	_dock.add_theme_constant_override("separation", 10)
+	_dock.offset_top = 40
+	_dock.offset_bottom = 40
+	_dock.add_theme_constant_override("separation", 6)
 	add_child(_dock)
-	for i in 4:
+	for i in PlayerInput.SKILL_SLOTS:
 		var box := PanelContainer.new()
 		box.theme = UiTheme.paper_theme()
-		box.custom_minimum_size = Vector2(220, 72)
+		box.custom_minimum_size = Vector2(220, 54)
 		box.set_drag_forwarding(Callable(), _can_drop_skill.bind(i), _drop_skill.bind(i))
 		_dock.add_child(box)
 		var line := HBoxContainer.new()
@@ -195,7 +195,7 @@ func _build_dock() -> void:
 		line.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		box.add_child(line)
 		var dock_icon := TextureRect.new()
-		dock_icon.custom_minimum_size = Vector2(52, 52)
+		dock_icon.custom_minimum_size = Vector2(40, 40)
 		dock_icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		dock_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		dock_icon.mouse_filter = Control.MOUSE_FILTER_IGNORE

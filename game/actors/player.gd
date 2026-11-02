@@ -515,7 +515,7 @@ func _server_step(delta: float) -> void:
 	var mount_pressed := input.mount_presses != _seen_extra.mount_presses
 	var block_pressed := input.block_presses != _seen_extra.block_presses
 	var skill_pressed: Array[int] = []
-	for i in 4:
+	for i in PlayerInput.SKILL_SLOTS:
 		if input.skill_presses[i] != _seen_extra.skill_presses[i]:
 			skill_pressed.append(i)
 	if input.interact_presses != _seen_extra.interact_presses:
@@ -578,7 +578,9 @@ func _server_step(delta: float) -> void:
 		return
 
 	# Toque: ataque básico na hora. Segurando por charge_time e soltando: ataque forte.
-	if attack_pressed and _attack_cooldown <= 0.0:
+	if attack_pressed and _attack_cooldown <= 0.0 and _talk_to_npc_near():
+		_attack_cooldown = 0.4  # o botão de ataque perto de um NPC é falar com ele (como o de interagir)
+	elif attack_pressed and _attack_cooldown <= 0.0:
 		# Mago, Arqueiro e Invocador têm também o golpe físico com a arma ("melee_basic"): com inimigo ao alcance na frente, o ataque básico é a pancada (cajado, arco, livro);
 		# sem ninguém perto, continua o tiro à distância.
 		var close: Dictionary = data.get("melee_basic", {})
@@ -1086,6 +1088,22 @@ func _melee(attack: Dictionary) -> void:
 
 
 ## Há inimigo ao alcance e na frente do golpe corpo a corpo `attack` (a mesma regra de SkillSystem.melee_strike)?
+## Perto de um NPC, comerciante ou passagem (e sem inimigo por perto), o ataque básico fala ou passa em vez de atacar. Altares que invocam monstros ficam de fora: só o botão de interagir.
+func _talk_to_npc_near() -> bool:
+	var arena := get_parent()
+	if not arena.has_method(&"prop_near"):
+		return false
+	for node in get_tree().get_nodes_in_group(&"enemies"):
+		if node is Node3D and node.global_position.distance_to(global_position) < 9.0:
+			return false
+	for kind in ["npc", "shop", "exit"]:
+		var prop: Dictionary = arena.prop_near(self, kind)
+		if not prop.is_empty() and not prop.has("summon"):
+			arena.request_interact(self)
+			return true
+	return false
+
+
 func _melee_target_near(attack: Dictionary) -> bool:
 	var half := deg_to_rad(float(attack.get("arc", 120.0)) / 2.0)
 	for e: Enemy in get_parent().skills.enemies_in(global_position, float(attack.range) + 0.4):

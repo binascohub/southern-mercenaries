@@ -240,7 +240,11 @@ func migrate_character(d: Dictionary) -> Dictionary:
 	if not d.is_empty() and not d.has("skills") and GameData.skills.classes.has(d.get("class_id", "")):
 		var first: String = Skills.keys(d.class_id)[0]
 		d.skills = {first: 1}
-		d.skill_slots = [first, "", "", ""]
+		d.skill_slots = [first, "", "", "", "", "", "", ""]
+	# Fichas com 4 atalhos (antes das teclas 2–9) ganham os outros quatro, vazios.
+	if not d.is_empty() and d.get("skill_slots", []) is Array:
+		while d.skill_slots.size() < int(GameData.skills.slots) and d.has("skills"):
+			d.skill_slots.append("")
 	# Fase 6: dicas do tutorial já vistas.
 	if not d.is_empty() and not d.has("tutorial_seen"):
 		d.tutorial_seen = []

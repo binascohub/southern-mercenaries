@@ -45,6 +45,8 @@ var _element_label: Label
 ## Barra de habilidades (09-interface.md, seção 3): 4 atalhos com tecla, nome,
 ## recarga e cinza quando falta mana.
 var _skill_slots: Array[Label] = []
+var _attack_icon: TextureRect
+var _attack_label: Label
 ## Atalhos de habilidade: ícone (assets/ui/icons/skills/<id>.png), tempo de recarga no centro e o vermelho translúcido que desce enquanto recarrega.
 var _skill_icons: Array[TextureRect] = []
 var _skill_cooldown_fill: Array[ColorRect] = []
@@ -289,8 +291,15 @@ func show_gamepad_lost(value: bool) -> void:
 	_gamepad_lost.visible = value
 
 
+## Ícone do ataque básico: o projétil do elemento do herói.
+const BASIC_ICONS := {"fire": "fire_bolt", "water": "water_bolt", "air": "wind_blade", "earth": "stone_bolt"}
+
+
 func _update_skill_bar() -> void:
 	var c := _player.character
+	var basic_path := "res://assets/ui/icons/skills/%s.png" % BASIC_ICONS.get(_player.element, "fire_bolt")
+	_attack_icon.texture = load(basic_path) as Texture2D if ResourceLoader.exists(basic_path) else null
+	_attack_label.text = InputDevice.prompt(&"attack")
 	for i in _skill_slots.size():
 		var label := _skill_slots[i]
 		var icon := _skill_icons[i]
@@ -508,7 +517,24 @@ func _build() -> void:
 	skill_bar.add_theme_constant_override("separation", 8)
 	skill_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(skill_bar)
-	for i in 4:
+	# O primeiro quadrado é o ataque básico (tecla 1 e clique do mouse); depois vêm as oito habilidades (teclas 2 a 9).
+	var attack_box := PanelContainer.new()
+	attack_box.theme_type_variation = &"HudPanel"
+	attack_box.custom_minimum_size = Vector2(76, 76)
+	skill_bar.add_child(attack_box)
+	_attack_icon = TextureRect.new()
+	_attack_icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_attack_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_attack_icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	attack_box.add_child(_attack_icon)
+	_attack_label = _label(14)
+	_attack_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	_attack_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
+	_attack_label.autowrap_mode = TextServer.AUTOWRAP_OFF
+	_attack_label.add_theme_color_override("font_outline_color", Color.BLACK)
+	_attack_label.add_theme_constant_override("outline_size", 6)
+	attack_box.add_child(_attack_label)
+	for i in PlayerInput.SKILL_SLOTS:
 		var box := PanelContainer.new()
 		box.theme_type_variation = &"HudPanel"
 		box.custom_minimum_size = Vector2(76, 76)

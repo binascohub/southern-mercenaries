@@ -700,6 +700,18 @@ func _test_town_rules() -> void:
 	_check(Town.dialogue_index("old_drunk", {}) == 0, "Velho Bêbado oferece a primeira missão")
 	_check(GameData.npcs.old_drunk.dialogues[0].offer == "sewer_treasure", "a missão é o tesouro do esgoto")
 	_check(Town.dialogue_index("old_drunk", {"sewer_treasure": "active"}) == 1, "com a missão ativa, outra fala")
+	# A loja de poções é do Meliodas, dentro da Taverna (não há mais banca de poções na Rua Principal de Tortuga).
+	_check(GameData.arenas.tavern.props.any(func(p: Dictionary) -> bool: return p.get("kind", "") == "shop" and p.get("shop", "") == "potions" and p.get("npc_model", "") == "meliodas")
+		and not GameData.arenas.tortuga.props.any(func(p: Dictionary) -> bool: return p.get("shop", "") == "potions") and GameData.shops.has("potions") and ResourceLoader.exists(NpcModel.MODELS.meliodas.scene),
+		"a loja de poções é do Meliodas, na Taverna")
+	# Mapa 1: na Taverna, no início, só o Velho Bêbado oferece missão (os outros só depois de concluir a missão anterior: "after").
+	var offers_at_start: Array[String] = []
+	for prop: Dictionary in GameData.arenas.tavern.props:
+		if prop.get("kind", "") == "npc" and GameData.npcs.has(String(prop.get("npc", ""))):
+			for dialogue: Dictionary in GameData.npcs[String(prop.npc)].dialogues:
+				if dialogue.has("offer") and not dialogue.when.has("after"):
+					offers_at_start.append(String(prop.npc))
+	_check(offers_at_start == ["old_drunk"], "na Taverna, no início, só o Velho Bêbado tem missão disponível (%s)" % [offers_at_start])
 	_check(GameData.quests.sewer_treasure.get("item", "") == "storm_bottle" and GameData.monsters.demon_rat_queen.get("quest_drop", "") == "storm_bottle" and GameData.valuables.storm_bottle.get("quest_item", false)
 		and GameData.npcs.old_drunk.dialogues[1].get("service", "") == "turn_in" and int(GameData.quests.sewer_treasure.reward.gold) >= 400,
 		"o Velho Bêbado pede a Garrafa da Tempestade de Almas (a família dele), que o chefe final solta; ele a recebe e paga a recompensa")
@@ -876,29 +888,50 @@ func _test_sewers() -> void:
 			_check(door.get_slice(":", 0) in ["north", "south", "east", "west"], "porta válida: " + door)
 	var maze: Array = area.rooms.filter(func(r: Dictionary) -> bool: return String(r.id).begins_with("maze_"))
 	_check(maze.size() == 143 and not area.has("deeper"), "labirinto de 11 x 13 = 143 salas num andar só, sem passagem para outro mapa (%d)" % maze.size())
-	# Só os chefes do esgoto (Rei dos Sapos, Gator Velho e a Rainha) revidam, cada um sozinho.
-	var sewer_ids: Array = area.encounters.map(func(e: Dictionary) -> String: return String(e.id))
-	sewer_ids.sort()
-	var fixed_ids: Array = sewer_ids.filter(func(id: String) -> bool: return not id.begins_with("sw_mimic_"))
-	_check(sewer_ids.filter(func(id: String) -> bool: return id.begins_with("sw_mimic_")).size() >= 10 and fixed_ids.size() == fixed_ids.filter(func(id: String) -> bool: return id.begins_with("sw1_") or id.begins_with("sw2_") or id.begins_with("sw3_") or id.begins_with("sw4_") or id.begins_with("sw5_") or id in ["sw_old_gator", "sw_queen"]).size(),
-		"esgoto: os encontros fixos de cada setor, os chefes do mapa e 10 ou mais Baús Monstro espalhados (%s); o Rei dos Sapos vem do altar" % [sewer_ids])
+	# Só os chefes do esgoto (Empalado, Carniceiro Chifrudo e Necromante) revidam, e os 7 tipos de comum (todos dormindo, menos o Baú Monstro).
+	# Monstros comuns do Esgoto (pedido do autor): 20 de cada tipo, 4 de cada tipo em cada um dos 5 setores (ids "sw<setor>_<tipo>_<n>"); só os chefes ficam de fora.
+	var commons := ["troll_mauler", "mutant", "barbarian_monster", "champ_warrior", "shadow_spirit", "demon_twelve", "chest_mimic"]
+	var by_type := {}
+	var by_sector_type := {}
+	for e: Dictionary in area.encounters:
+		var sector_match := RegEx.create_from_string("^sw(\\d)_").search(String(e.id))
+		for m: Dictionary in e.monsters:
+			by_type[m.monster] = int(by_type.get(m.monster, 0)) + int(m.count)
+			if sector_match:
+				var key := "%s:%s" % [sector_match.get_string(1), m.monster]
+				by_sector_type[key] = int(by_sector_type.get(key, 0)) + int(m.count)
+	var counts_ok := true
+	for monster: String in commons:
+		counts_ok = counts_ok and int(by_type.get(monster, 0)) == 20
+		for sector in range(1, 6):
+			counts_ok = counts_ok and int(by_sector_type.get("%d:%s" % [sector, monster], 0)) == 4
+	_check(counts_ok, "esgoto: 20 monstros de cada um dos 7 tipos comuns, 4 de cada em cada setor (%s)" % [by_type])
+	# Todos os comuns têm a mesma força (vida e dano) e o mesmo nível em todos os setores; os dois mini-chefes também são iguais.
+	var power_ok := true
+	for monster: String in commons:
+		power_ok = power_ok and int(GameData.monsters[monster].max_health) == int(GameData.monsters.troll_mauler.max_health) and int(GameData.monsters[monster].damage) == int(GameData.monsters.troll_mauler.damage)
+	_check(power_ok and area.encounters.filter(func(e: Dictionary) -> bool: return e.monsters[0].monster in commons).all(func(e: Dictionary) -> bool: return int(e.level) == 1),
+		"esgoto: os 7 tipos comuns têm a mesma vida e o mesmo dano, e todos são de nível 1 (mapa 1)")
+	_check(int(GameData.monsters.frog_king.max_health) == int(GameData.monsters.old_gator.max_health) and int(GameData.monsters.frog_king.damage) == int(GameData.monsters.old_gator.damage),
+		"esgoto: os dois mini-chefes têm a mesma vida e o mesmo dano")
+	# Conta de XP (13-balanceamento.md): comuns + chefes + as 3 quests do Esgoto = ~2.400 (nível 3 pede 2.100: 2 níveis por mapa).
+	var xp_total := 0
+	var xp_per: Dictionary = GameData.balance.xp_per_monster_level
+	for e: Dictionary in area.encounters:
+		for m: Dictionary in e.monsters:
+			xp_total += int(xp_per[GameData.monsters[m.monster].category]) * int(e.level) * int(m.count)
+	for prop: Dictionary in area.props:
+		for summon: Dictionary in QuestTrail.summons_of(prop):
+			for m: Dictionary in summon.monsters:
+				xp_total += int(xp_per[GameData.monsters[m.monster].category]) * int(summon.level) * int(m.count)
+	for quest_id in ["sewer_treasure", "sewer_frog_king", "sewer_old_gator"]:
+		xp_total += int(GameData.quests[quest_id].reward.xp)
+	_check(xp_total >= 2300 and xp_total <= 2500, "esgoto: o XP de limpar tudo fecha em ~2.400 (nível 3 pede 2.100): %d" % xp_total)
 	var altar: Array = area.props.filter(func(p: Dictionary) -> bool: return p.get("id", "") == "sewer_frog_altar")
 	_check(altar.size() == 1 and altar[0].position == [0.0, -84.0] and altar[0].summon.id == "sw_frog_king" and altar[0].summon.monsters[0].monster == "frog_king",
 		"o altar do Rei dos Sapos fica no centro do mapa e invoca só o Rei")
 	_check(area.encounters.all(func(e: Dictionary) -> bool: return e.monsters.size() == 1 and (GameData.monsters[e.monsters[0].monster].category in ["boss", "miniboss"] or e.monsters[0].monster in ["troll_mauler", "barbarian_monster", "champ_warrior", "mutant", "shadow_spirit", "demon_twelve", "chest_mimic"])),
 		"esgoto: cada encontro é um chefe, um Troll Mauler ou um bando de Mutante (um só tipo de monstro)")
-	_check(area.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("sw1_spirit_")).all(func(e: Dictionary) -> bool: return e.position[0] > 30.0 and e.position[1] > -60.0),
-		"os Espíritos Sombrios ficam no canto superior direito do mapa")
-	_check(area.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("sw3_twelve_")).all(func(e: Dictionary) -> bool: return e.position[0] > 20.0 and e.position[1] < -60.0 and e.position[1] > -110.0),
-		"os Demônios Doze ficam no meio do lado direito do mapa")
-	_check(area.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("sw5_mutant_")).all(func(e: Dictionary) -> bool: return e.position[0] < -10.0 and e.position[1] < -70.0),
-		"os Mutantes ficam no Setor 5 (canto inferior esquerdo do mapa)")
-	_check(area.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("sw1_champ_")).size() == 2 and area.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("sw1_champ_")).all(func(e: Dictionary) -> bool: return e.position[0] < -50.0 and e.position[1] > -30.0),
-		"os Guerreiros Cogumelo ficam no canto superior esquerdo do mapa")
-	_check(area.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("sw2_barbarian_")).all(func(e: Dictionary) -> bool: return e.position[0] < -20.0 and e.position[1] < -30.0 and e.position[1] > -110.0),
-		"os Monstros Bárbaros ficam na área esquerda, no meio do mapa")
-	_check(area.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("sw1_troll_")).all(func(e: Dictionary) -> bool: return e.position[1] > -50.0),
-		"os Trolls Mauler ficam no Setor 1 (o terço de cima do mapa)")
 	_check(not area.props.any(func(p: Dictionary) -> bool: return p.kind == "water") and area.hazards.size() >= 10, "esgoto: piso de pedra, sem água, com as manchas verdes de lodo que ferem (%d)" % area.hazards.size())
 	# Chefes: as duas praças dos mini-chefes (missões dos NPCs) e a Rainha no Ninho, longe uns dos outros.
 	var gator_group: Dictionary = {}  # o Gator Velho nasce no mesmo altar do Empalado, com outro livro (o Grimório das Brasas do Azazel): "extra_summons" do altar
@@ -962,7 +995,7 @@ func _test_sewers() -> void:
 	_near(elite.attack_damage(), rat.attack_damage() * 1.5, "elite: dano x1,5")
 	_check(elite.category() == "elite" and elite.modifier == "toxic" and elite.xp_value() == 25.0, "elite: categoria, modificador e XP 25 x nível")
 	var gator := Enemy.create({"monster_id": "old_gator", "position": Vector3.ZERO, "level": 2})
-	_near(gator.max_health, 150 * 1.12 * 6, "Jacaré Velho: vida 150 x 1,12 x 6")
+	_near(gator.max_health, 140 * 1.12 * 6, "mini-chefe (o id interno é Jacaré Velho, hoje Carniceiro Chifrudo): vida 140 x 1,12 x 6")
 	var queen := Enemy.create({"monster_id": "demon_rat_queen", "position": Vector3.ZERO, "level": 2})
 	_near(queen.max_health, 1000 * 1.12 * 4.3, "Rainha: ~4.800 de vida no solo")
 	_check(queen.is_boss() and queen.category() == "boss", "Rainha é chefe")

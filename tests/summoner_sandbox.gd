@@ -108,6 +108,15 @@ func _ready() -> void:
 		get_tree().create_timer(2.5).timeout.connect(func() -> void:
 			arena.local_player.facing = Vector2(0, -1)
 			print("MAMMOTH cast=", arena.skills.cast(arena.local_player, "mammoth_stomp", 3), " model=", Kit.has("Elephant")))
+	if "talk" in args:  # ataque básico perto de um NPC da taverna abre a conversa (imprime o resultado); longe dele, não
+		get_tree().create_timer(2.5).timeout.connect(func() -> void:
+			var npc: Dictionary = arena.prop_near(arena.local_player, "npc", "", 999.0)
+			print("TALK far=", arena.local_player._talk_to_npc_near(), " npc=", npc.get("npc", "?"))
+			arena.local_player.global_position = Vector3(npc.position[0] + 1.0, 0, npc.position[1])
+			print("TALK near=", arena.local_player._talk_to_npc_near())
+			var door: Dictionary = arena.prop_near(arena.local_player, "exit", "", 999.0)
+			arena.local_player.global_position = Vector3(door.position[0], 0, door.position[1] - 1.0)
+			print("TALK exit=", door.get("id", "?"), " ", arena.local_player._talk_to_npc_near()))
 	if "airskills" in args:  # lança o Mergulho da Águia e a Tempestade de Asas no pátio de treino (a captura sai logo depois)
 		get_tree().create_timer(2.5).timeout.connect(func() -> void:
 			arena.local_player.facing = Vector2(0, -1)
@@ -128,11 +137,19 @@ func _ready() -> void:
 	if "givekeys" in args:  # entrega as duas chaves do Esgoto (depois de 6 s): o portão do Ninho deve cair
 		get_tree().create_timer(6.0).timeout.connect(func() -> void:
 			arena.pick_key(arena.local_player, {"id": "k1", "key": "sewer_key_spades"})
-			arena.pick_key(arena.local_player, {"id": "k2", "key": "sewer_key_hearts"}))
+			arena.pick_key(arena.local_player, {"id": "k2", "key": "sewer_key_hearts"})
+			print("GATE after keys (still closed, the keeper opens it): ", "sewers_01_drains:nest_gate" in arena._campaign.get("opened", []))
+			await get_tree().create_timer(1.0).timeout
+			var keeper: Dictionary = arena.prop_near(arena.local_player, "npc", "gate_keeper", 999.0)
+			arena.local_player.global_position = Vector3(keeper.position[0] - 1.2, 0, keeper.position[1])
+			arena.request_interact(arena.local_player)
+			await get_tree().create_timer(0.5).timeout
+			Session.ui_open = false
+			print("GATE after delivering: ", "sewers_01_drains:nest_gate" in arena._campaign.get("opened", [])))
 	if kill != "":
 		_kill_and_open(arena, kill, open_chest)
 	if shot != "":
-		await get_tree().create_timer(4.2 if "airskills" in args else 2.72 if "stampede" in args else 3.3 if "mammoth" in args else 2.62 if "rhino" in args else 5.5 if "callskill" in args else 3.6 if "feathers" in args else 7.0 if ("shell" in args or "skillmenu" in args or "cdbar" in args or "feathers" in args or "callskill" in args) else (12.0 if (kill != "" or "givekeys" in args or "summon" in args or "summongator" in args or "invpopup" in args) else 5.0)).timeout
+		await get_tree().create_timer(4.2 if "airskills" in args else 2.72 if "stampede" in args else 3.3 if "mammoth" in args else 2.62 if "rhino" in args else 5.5 if "callskill" in args else 3.6 if "feathers" in args else 7.0 if ("shell" in args or "skillmenu" in args or "cdbar" in args or "feathers" in args or "callskill" in args) else (16.0 if "givekeys" in args else 12.0 if (kill != "" or "summon" in args or "summongator" in args or "invpopup" in args) else 5.0)).timeout
 		await RenderingServer.frame_post_draw
 		get_viewport().get_texture().get_image().save_png(shot)
 		get_tree().quit()

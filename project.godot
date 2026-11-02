@@ -25,6 +25,7 @@ SaveSystem="*res://game/autoload/save_system.gd"
 Session="*res://game/autoload/session.gd"
 TipManager="*res://game/autoload/tip_manager.gd"
 Sfx="*res://game/autoload/sfx.gd"
+Music="*res://game/autoload/music.gd"
 
 [display]
 

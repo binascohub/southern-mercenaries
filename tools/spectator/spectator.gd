@@ -13,6 +13,10 @@ extends Node3D
 const DEFAULT_AREA := "cemetery_01_yard"
 const START_POS := Vector3(0, 34, 18)
 const START_LOOK := Vector3(0, 0, -30)
+## Quem herda este script muda a área e a câmera padrão (sem argumentos) antes de chamar super._ready().
+var default_area := DEFAULT_AREA
+var default_pos := START_POS
+var default_look := START_LOOK
 
 var _arena: Node
 var _cam: Camera3D
@@ -25,7 +29,7 @@ var _help: Label
 
 func _ready() -> void:
 	var args := OS.get_cmdline_user_args()
-	var area: String = args[0] if args.size() > 0 else DEFAULT_AREA
+	var area: String = args[0] if args.size() > 0 else default_area
 	if not GameData.arenas.has(area):
 		push_error("Área desconhecida: %s" % area)
 		get_tree().quit(1)
@@ -46,8 +50,8 @@ func _ready() -> void:
 	_cam.fov = 60.0
 	_cam.far = 400.0
 	add_child(_cam)
-	var pos := START_POS
-	var look := START_LOOK
+	var pos := default_pos
+	var look := default_look
 	if args.size() >= 4:
 		pos = Vector3(float(args[1]), float(args[2]), float(args[3]))
 		var pitch_deg := float(args[4]) if args.size() >= 5 else -26.0

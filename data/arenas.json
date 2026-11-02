@@ -331,18 +331,7 @@
         "position": [
           0,
           -26.6
-        ],
-        "route": [
-          [
-            0,
-            -26.6
-          ],
-          [
-            0,
-            -17
-          ]
-        ],
-        "speed": 1.0
+        ]
       },
       {
         "id": "pirate_ship",
@@ -1623,15 +1612,6 @@
         "speed": 1.0
       },
       {
-        "role": "elf_dancer",
-        "position": [
-          2.5,
-          4.6
-        ],
-        "rotation": 10,
-        "pose": "dance_sway"
-      },
-      {
         "role": "spiderman",
         "position": [
           3.6,
@@ -1639,6 +1619,72 @@
         ],
         "rotation": 215,
         "pose": "idle"
+      },
+      {
+        "role": "brawl",
+        "position": [
+          -14,
+          -2
+        ],
+        "rotation": 20,
+        "fighters": [
+          "civilian_1",
+          "civilian_2"
+        ]
+      },
+      {
+        "role": "brawl",
+        "position": [
+          13.5,
+          -3.5
+        ],
+        "rotation": 160,
+        "fighters": [
+          "civilian_3",
+          "civilian_5"
+        ]
+      },
+      {
+        "role": "civilian_1",
+        "position": [
+          -12,
+          4
+        ],
+        "pose": "walk",
+        "path": [
+          -2,
+          5
+        ],
+        "sway": 0.7,
+        "speed": 0.5
+      },
+      {
+        "role": "civilian_3",
+        "position": [
+          14,
+          -6
+        ],
+        "pose": "walk",
+        "path": [
+          24,
+          -4
+        ],
+        "sway": 0.8,
+        "speed": 0.45
+      },
+      {
+        "role": "civilian_2",
+        "position": [
+          -3,
+          -5
+        ],
+        "pose": "walk",
+        "path": [
+          7,
+          -6.5
+        ],
+        "sway": 0.7,
+        "speed": 0.5
       }
     ]
   },
@@ -1721,9 +1767,21 @@
         "npc": "old_lady",
         "position": [
           -0.1,
-          4.95
+          2.25
         ],
-        "rotation": 180
+        "rotation": 0
+      },
+      {
+        "id": "shop_potions",
+        "kind": "shop",
+        "shop": "potions",
+        "npc_model": "meliodas",
+        "name_key": "SHOP_POTIONS_MELIODAS",
+        "position": [
+          4.5,
+          -5
+        ],
+        "rotation": 0
       }
     ],
     "style": {
@@ -2254,7 +2312,7 @@
         "piece": "Tv_Fireplace",
         "position": [
           -8.85,
-          -1.0
+          -3.0
         ],
         "rotation": 90,
         "solid": [
@@ -2266,7 +2324,7 @@
         "piece": "Tv_Fire",
         "position": [
           -8.95,
-          -1.0
+          -3.0
         ],
         "rotation": 90,
         "y": 0.02
@@ -2279,7 +2337,7 @@
         ],
         "position": [
           -7.9,
-          -1.0
+          -3.0
         ],
         "range": 8,
         "energy": 1.3,
@@ -2289,7 +2347,7 @@
         "piece": "Tv_Stool_Round",
         "position": [
           -7.4,
-          -0.2
+          -2.2
         ],
         "rotation": 35
       },
@@ -2297,7 +2355,7 @@
         "piece": "Tv_Stool_Round",
         "position": [
           -7.5,
-          -1.9
+          -3.9
         ],
         "rotation": -20
       },
@@ -2305,7 +2363,7 @@
         "piece": "Tv_Firewood",
         "position": [
           -8.3,
-          0.9
+          -1.1
         ],
         "rotation": 80,
         "y": 0.0
@@ -2314,7 +2372,7 @@
         "piece": "Tv_Firewood",
         "position": [
           -8.35,
-          1.05
+          -0.95
         ],
         "rotation": 100,
         "y": 0.0
@@ -2323,7 +2381,7 @@
         "piece": "Tv_Firewood",
         "position": [
           -8.3,
-          0.97
+          -1.03
         ],
         "rotation": 90,
         "y": 0.1
@@ -2442,9 +2500,9 @@
         "piece": "Tv_Stool_Wood",
         "position": [
           -0.1,
-          4.95
+          2.25
         ],
-        "rotation": 180
+        "rotation": 0
       },
       {
         "piece": "Tv_Plate",
@@ -2812,13 +2870,13 @@
         "role": "rottweiler",
         "position": [
           -0.5,
-          2.0
+          1.0
         ],
         "rotation": 90,
         "pose": "walk",
         "path": [
           4.0,
-          2.0
+          1.0
         ],
         "speed": 1.1
       }
@@ -2830,6 +2888,10 @@
     "player_class": "mage",
     "map_id": "map_sewers",
     "area_level": 1,
+    "loot_scale": {
+      "potion": 0.7,
+      "valuable": 0.3
+    },
     "final": true,
     "victory_key": "HUD_VICTORY_SEWERS",
     "victory_groups": [
@@ -5343,7 +5405,7 @@
       {
         "id": "sw1_troll_1",
         "position": [
-          -39,
+          13,
           -12
         ],
         "level": 1,
@@ -5355,206 +5417,24 @@
         ]
       },
       {
-        "id": "sw1_troll_2",
+        "id": "sw1_mutant_1",
         "position": [
-          -52,
-          -24
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "troll_mauler",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw1_troll_3",
-        "position": [
-          26,
+          13,
           -36
         ],
         "level": 1,
         "monsters": [
           {
-            "monster": "troll_mauler",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw1_troll_4",
-        "position": [
-          -65,
-          -48
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "troll_mauler",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw5_mutant_1",
-        "position": [
-          -52,
-          -108
-        ],
-        "level": 2,
-        "monsters": [
-          {
             "monster": "mutant",
             "count": 1
           }
         ]
       },
       {
-        "id": "sw5_mutant_2",
-        "position": [
-          -52,
-          -120
-        ],
-        "level": 2,
-        "monsters": [
-          {
-            "monster": "mutant",
-            "count": 2
-          }
-        ]
-      },
-      {
-        "id": "sw5_mutant_3",
+        "id": "sw1_barbarian_1",
         "position": [
           -39,
-          -132
-        ],
-        "level": 2,
-        "monsters": [
-          {
-            "monster": "mutant",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw5_mutant_4",
-        "position": [
-          -39,
-          -108
-        ],
-        "level": 2,
-        "monsters": [
-          {
-            "monster": "mutant",
-            "count": 2
-          }
-        ]
-      },
-      {
-        "id": "sw5_mutant_5",
-        "position": [
-          -52,
-          -156
-        ],
-        "level": 2,
-        "monsters": [
-          {
-            "monster": "mutant",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw5_mutant_6",
-        "position": [
-          -65,
-          -156
-        ],
-        "level": 2,
-        "monsters": [
-          {
-            "monster": "mutant",
-            "count": 2
-          }
-        ]
-      },
-      {
-        "id": "sw5_mutant_7",
-        "position": [
-          -26,
-          -156
-        ],
-        "level": 2,
-        "monsters": [
-          {
-            "monster": "mutant",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw2_barbarian_1",
-        "position": [
-          -52,
-          -84
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "barbarian_monster",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw2_barbarian_2",
-        "position": [
-          -39,
-          -84
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "barbarian_monster",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw2_barbarian_3",
-        "position": [
-          -65,
-          -72
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "barbarian_monster",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw2_barbarian_4",
-        "position": [
-          -65,
-          -96
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "barbarian_monster",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw2_barbarian_5",
-        "position": [
-          -52,
-          -72
+          -36
         ],
         "level": 1,
         "monsters": [
@@ -5568,21 +5448,7 @@
         "id": "sw1_champ_1",
         "position": [
           -65,
-          -12
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "champ_warrior",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw1_champ_2",
-        "position": [
-          -65,
-          -24
+          -36
         ],
         "level": 1,
         "monsters": [
@@ -5596,7 +5462,7 @@
         "id": "sw1_spirit_1",
         "position": [
           39,
-          -12
+          -48
         ],
         "level": 1,
         "monsters": [
@@ -5607,10 +5473,192 @@
         ]
       },
       {
-        "id": "sw1_spirit_2",
+        "id": "sw1_twelve_1",
+        "position": [
+          -39,
+          -12
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "demon_twelve",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw1_mimic_1",
+        "position": [
+          -52,
+          -24
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw1_troll_2",
         "position": [
           52,
+          -36
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "troll_mauler",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw1_mutant_2",
+        "position": [
+          -13,
+          -48
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "mutant",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw1_barbarian_2",
+        "position": [
+          0,
+          -36
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "barbarian_monster",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw1_champ_2",
+        "position": [
+          65,
+          -12
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "champ_warrior",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw1_spirit_2",
+        "position": [
+          -26,
+          -36
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "shadow_spirit",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw1_twelve_2",
+        "position": [
+          39,
+          -36
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "demon_twelve",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw1_mimic_2",
+        "position": [
+          -26,
+          -12
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw1_troll_3",
+        "position": [
+          39,
           -24
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "troll_mauler",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw1_mutant_3",
+        "position": [
+          -52,
+          -36
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "mutant",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw1_barbarian_3",
+        "position": [
+          65,
+          -36
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "barbarian_monster",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw1_champ_3",
+        "position": [
+          0,
+          -24
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "champ_warrior",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw1_spirit_3",
+        "position": [
+          -52,
+          -12
         ],
         "level": 1,
         "monsters": [
@@ -5621,10 +5669,388 @@
         ]
       },
       {
-        "id": "sw1_spirit_3",
+        "id": "sw1_twelve_3",
+        "position": [
+          26,
+          -48
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "demon_twelve",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw1_mimic_3",
+        "position": [
+          -13,
+          -36
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw2_troll_1",
+        "position": [
+          -52,
+          -60
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "troll_mauler",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw2_mutant_1",
+        "position": [
+          -26,
+          -72
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "mutant",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw2_barbarian_1",
+        "position": [
+          -52,
+          -72
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "barbarian_monster",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw2_champ_1",
+        "position": [
+          -26,
+          -96
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "champ_warrior",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw2_spirit_1",
+        "position": [
+          -65,
+          -96
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "shadow_spirit",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw2_twelve_1",
+        "position": [
+          -13,
+          -60
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "demon_twelve",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw2_mimic_1",
+        "position": [
+          -13,
+          -72
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw2_troll_2",
+        "position": [
+          -39,
+          -96
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "troll_mauler",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw2_mutant_2",
+        "position": [
+          -13,
+          -96
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "mutant",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw2_barbarian_2",
+        "position": [
+          -65,
+          -60
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "barbarian_monster",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw2_champ_2",
+        "position": [
+          0,
+          -60
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "champ_warrior",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw2_spirit_2",
+        "position": [
+          -52,
+          -84
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "shadow_spirit",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw2_twelve_2",
+        "position": [
+          0,
+          -96
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "demon_twelve",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw2_mimic_2",
+        "position": [
+          -39,
+          -60
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw2_troll_3",
+        "position": [
+          -65,
+          -72
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "troll_mauler",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw2_mutant_3",
+        "position": [
+          0,
+          -72
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "mutant",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw2_barbarian_3",
+        "position": [
+          -13,
+          -84
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "barbarian_monster",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw2_champ_3",
+        "position": [
+          -26,
+          -60
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "champ_warrior",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw2_spirit_3",
+        "position": [
+          -39,
+          -72
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "shadow_spirit",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw2_twelve_3",
+        "position": [
+          -39,
+          -84
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "demon_twelve",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw2_mimic_3",
+        "position": [
+          -52,
+          -96
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw3_troll_1",
+        "position": [
+          26,
+          -60
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "troll_mauler",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw3_mutant_1",
         "position": [
           39,
-          -48
+          -72
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "mutant",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw3_barbarian_1",
+        "position": [
+          52,
+          -84
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "barbarian_monster",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw3_champ_1",
+        "position": [
+          65,
+          -84
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "champ_warrior",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw3_spirit_1",
+        "position": [
+          39,
+          -96
         ],
         "level": 1,
         "monsters": [
@@ -5637,8 +6063,8 @@
       {
         "id": "sw3_twelve_1",
         "position": [
-          39,
-          -72
+          52,
+          -60
         ],
         "level": 1,
         "monsters": [
@@ -5649,127 +6075,29 @@
         ]
       },
       {
-        "id": "sw3_twelve_2",
+        "id": "sw3_mimic_1",
         "position": [
-          52,
-          -72
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "demon_twelve",
-            "count": 2
-          }
-        ]
-      },
-      {
-        "id": "sw3_twelve_3",
-        "position": [
-          65,
+          13,
           -84
         ],
         "level": 1,
         "monsters": [
           {
-            "monster": "demon_twelve",
+            "monster": "chest_mimic",
             "count": 1
           }
         ]
       },
       {
-        "id": "sw3_twelve_4",
+        "id": "sw3_troll_2",
         "position": [
-          52,
-          -96
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "demon_twelve",
-            "count": 2
-          }
-        ]
-      },
-      {
-        "id": "sw3_twelve_5",
-        "position": [
-          65,
-          -96
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "demon_twelve",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw2_spirit_1",
-        "position": [
-          -39,
+          13,
           -60
         ],
         "level": 1,
         "monsters": [
           {
-            "monster": "shadow_spirit",
-            "count": 2
-          }
-        ]
-      },
-      {
-        "id": "sw2_spirit_2",
-        "position": [
-          -26,
-          -72
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "shadow_spirit",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw2_spirit_3",
-        "position": [
-          -26,
-          -96
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "shadow_spirit",
-            "count": 2
-          }
-        ]
-      },
-      {
-        "id": "sw2_spirit_4",
-        "position": [
-          -13,
-          -96
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "shadow_spirit",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw3_mutant_1",
-        "position": [
-          65,
-          -60
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "mutant",
+            "monster": "troll_mauler",
             "count": 1
           }
         ]
@@ -5777,8 +6105,8 @@
       {
         "id": "sw3_mutant_2",
         "position": [
-          39,
-          -84
+          65,
+          -96
         ],
         "level": 1,
         "monsters": [
@@ -5789,26 +6117,40 @@
         ]
       },
       {
-        "id": "sw4_spirit_1",
+        "id": "sw3_barbarian_2",
         "position": [
-          52,
-          -120
+          26,
+          -72
         ],
-        "level": 2,
+        "level": 1,
         "monsters": [
           {
-            "monster": "shadow_spirit",
-            "count": 2
+            "monster": "barbarian_monster",
+            "count": 1
           }
         ]
       },
       {
-        "id": "sw4_spirit_2",
+        "id": "sw3_champ_2",
         "position": [
-          26,
-          -132
+          52,
+          -72
         ],
-        "level": 2,
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "champ_warrior",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw3_spirit_2",
+        "position": [
+          13,
+          -72
+        ],
+        "level": 1,
         "monsters": [
           {
             "monster": "shadow_spirit",
@@ -5817,15 +6159,127 @@
         ]
       },
       {
-        "id": "sw4_spirit_3",
+        "id": "sw3_twelve_2",
+        "position": [
+          26,
+          -96
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "demon_twelve",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw3_mimic_2",
+        "position": [
+          39,
+          -60
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw3_troll_3",
         "position": [
           65,
-          -120
+          -60
         ],
-        "level": 2,
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "troll_mauler",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw3_mutant_3",
+        "position": [
+          13,
+          -96
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "mutant",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw3_barbarian_3",
+        "position": [
+          52,
+          -96
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "barbarian_monster",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw3_champ_3",
+        "position": [
+          26,
+          -60
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "champ_warrior",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw3_spirit_3",
+        "position": [
+          26,
+          -84
+        ],
+        "level": 1,
         "monsters": [
           {
             "monster": "shadow_spirit",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw3_twelve_3",
+        "position": [
+          52,
+          -84
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "demon_twelve",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw3_mimic_3",
+        "position": [
+          39,
+          -84
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
             "count": 2
           }
         ]
@@ -5833,38 +6287,10 @@
       {
         "id": "sw4_troll_1",
         "position": [
-          39,
+          65,
           -108
         ],
-        "level": 2,
-        "monsters": [
-          {
-            "monster": "troll_mauler",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw4_troll_2",
-        "position": [
-          52,
-          -132
-        ],
-        "level": 2,
-        "monsters": [
-          {
-            "monster": "troll_mauler",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw4_troll_3",
-        "position": [
-          65,
-          -144
-        ],
-        "level": 2,
+        "level": 1,
         "monsters": [
           {
             "monster": "troll_mauler",
@@ -5878,10 +6304,94 @@
           39,
           -120
         ],
-        "level": 2,
+        "level": 1,
         "monsters": [
           {
             "monster": "mutant",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw4_barbarian_1",
+        "position": [
+          26,
+          -132
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "barbarian_monster",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw4_champ_1",
+        "position": [
+          13,
+          -144
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "champ_warrior",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw4_spirit_1",
+        "position": [
+          26,
+          -156
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "shadow_spirit",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw4_twelve_1",
+        "position": [
+          26,
+          -108
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "demon_twelve",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw4_mimic_1",
+        "position": [
+          52,
+          -132
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw4_troll_2",
+        "position": [
+          52,
+          -144
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "troll_mauler",
             "count": 1
           }
         ]
@@ -5889,10 +6399,10 @@
       {
         "id": "sw4_mutant_2",
         "position": [
-          13,
-          -144
+          39,
+          -156
         ],
-        "level": 2,
+        "level": 1,
         "monsters": [
           {
             "monster": "mutant",
@@ -5901,119 +6411,21 @@
         ]
       },
       {
-        "id": "sw_mimic_01",
+        "id": "sw4_barbarian_2",
         "position": [
-          -39,
-          -24
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "chest_mimic",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw_mimic_02",
-        "position": [
-          -26,
-          -36
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "chest_mimic",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw_mimic_03",
-        "position": [
-          -13,
-          -48
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "chest_mimic",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw_mimic_04",
-        "position": [
-          26,
-          -84
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "chest_mimic",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw_mimic_05",
-        "position": [
-          39,
-          -96
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "chest_mimic",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw_mimic_06",
-        "position": [
-          -26,
-          -108
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "chest_mimic",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw_mimic_07",
-        "position": [
-          -13,
-          -108
-        ],
-        "level": 1,
-        "monsters": [
-          {
-            "monster": "chest_mimic",
-            "count": 1
-          }
-        ]
-      },
-      {
-        "id": "sw_mimic_08",
-        "position": [
-          -26,
+          52,
           -120
         ],
         "level": 1,
         "monsters": [
           {
-            "monster": "chest_mimic",
+            "monster": "barbarian_monster",
             "count": 1
           }
         ]
       },
       {
-        "id": "sw_mimic_09",
+        "id": "sw4_champ_2",
         "position": [
           13,
           -120
@@ -6021,22 +6433,442 @@
         "level": 1,
         "monsters": [
           {
-            "monster": "chest_mimic",
+            "monster": "champ_warrior",
             "count": 1
           }
         ]
       },
       {
-        "id": "sw_mimic_10",
+        "id": "sw4_spirit_2",
         "position": [
-          0,
-          -144
+          65,
+          -132
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "shadow_spirit",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw4_twelve_2",
+        "position": [
+          52,
+          -156
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "demon_twelve",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw4_mimic_2",
+        "position": [
+          39,
+          -108
         ],
         "level": 1,
         "monsters": [
           {
             "monster": "chest_mimic",
             "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw4_troll_3",
+        "position": [
+          39,
+          -132
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "troll_mauler",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw4_mutant_3",
+        "position": [
+          13,
+          -132
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "mutant",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw4_barbarian_3",
+        "position": [
+          65,
+          -120
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "barbarian_monster",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw4_champ_3",
+        "position": [
+          52,
+          -108
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "champ_warrior",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw4_spirit_3",
+        "position": [
+          13,
+          -108
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "shadow_spirit",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw4_twelve_3",
+        "position": [
+          39,
+          -144
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "demon_twelve",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw4_mimic_3",
+        "position": [
+          65,
+          -144
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw5_troll_1",
+        "position": [
+          -26,
+          -108
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "troll_mauler",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw5_mutant_1",
+        "position": [
+          -65,
+          -120
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "mutant",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw5_barbarian_1",
+        "position": [
+          -65,
+          -144
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "barbarian_monster",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw5_champ_1",
+        "position": [
+          -39,
+          -144
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "champ_warrior",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw5_spirit_1",
+        "position": [
+          -26,
+          -156
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "shadow_spirit",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw5_twelve_1",
+        "position": [
+          -13,
+          -120
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "demon_twelve",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw5_mimic_1",
+        "position": [
+          -26,
+          -132
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw5_troll_2",
+        "position": [
+          0,
+          -120
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "troll_mauler",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw5_mutant_2",
+        "position": [
+          -13,
+          -156
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "mutant",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw5_barbarian_2",
+        "position": [
+          -52,
+          -120
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "barbarian_monster",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw5_champ_2",
+        "position": [
+          -39,
+          -120
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "champ_warrior",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw5_spirit_2",
+        "position": [
+          -26,
+          -144
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "shadow_spirit",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw5_twelve_2",
+        "position": [
+          -65,
+          -156
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "demon_twelve",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw5_mimic_2",
+        "position": [
+          -13,
+          -108
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "sw5_troll_3",
+        "position": [
+          -65,
+          -132
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "troll_mauler",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw5_mutant_3",
+        "position": [
+          -13,
+          -132
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "mutant",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw5_barbarian_3",
+        "position": [
+          -39,
+          -156
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "barbarian_monster",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw5_champ_3",
+        "position": [
+          -52,
+          -108
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "champ_warrior",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw5_spirit_3",
+        "position": [
+          -26,
+          -120
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "shadow_spirit",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw5_twelve_3",
+        "position": [
+          -39,
+          -108
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "demon_twelve",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "sw5_mimic_3",
+        "position": [
+          0,
+          -132
+        ],
+        "level": 1,
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 2
           }
         ]
       }
@@ -6477,7 +7309,7 @@
         -75.5
       ],
       "savepoint": [
-        63.0,
+        50.0,
         -12
       ]
     },
@@ -6540,6 +7372,22 @@
         "scale": 2.4,
         "block": 5.0,
         "count": 1,
+        "needs_keys": [
+          "sewer_key_spades",
+          "sewer_key_hearts"
+        ],
+        "keeper": "gate_keeper"
+      },
+      {
+        "id": "gate_keeper",
+        "kind": "npc",
+        "npc": "gate_keeper",
+        "position": [
+          0,
+          -167.5
+        ],
+        "rotation": 0,
+        "opens_gate": "nest_gate",
         "needs_keys": [
           "sewer_key_spades",
           "sewer_key_hearts"
@@ -6657,7 +7505,7 @@
                 0,
                 -80.5
               ],
-              "level": 2,
+              "level": 1,
               "toast": "TOAST_GATOR_ALTAR_AWAKENS",
               "spread": 3.4,
               "monsters": [

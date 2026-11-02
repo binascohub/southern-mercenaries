@@ -11,6 +11,9 @@ const AREA := "sewers_01_drains"
 
 func _ready() -> void:
 	TranslationServer.set_locale("pt_BR")
+	default_area = AREA  # sem argumentos abre o Esgoto (antes abria o Cemitério), visto de cima
+	default_pos = Vector3(0, 195, -102)
+	default_look = Vector3(0, -1, -102.001)
 	await super._ready()
 	if _arena == null:
 		return

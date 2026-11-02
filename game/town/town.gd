@@ -156,6 +156,16 @@ func interact(player: Player, prop: Dictionary) -> void:
 			var list: Array = _campaign().get("visitors", [])
 			if index < list.size():
 				_send(player.peer_id, &"_open_visitor", [index])
+		"npc" when prop.has("opens_gate"):
+			# Guardião de um portão (o do Ninho): com todas as chaves da campanha, recebe-as e o portão cai; sem elas, só pede; com o portão já aberto, só comenta.
+			var gate_id := String(prop.opens_gate)
+			var keys: Array = _campaign().get("keys", [])
+			var has_all: bool = prop.get("needs_keys", []).all(func(k: String) -> bool: return k in keys)
+			var already: bool = "%s:%s" % [_arena().area_id, gate_id] in _campaign().get("opened", [])
+			var line := 2 if already else (1 if has_all else 0)
+			_send(player.peer_id, &"_open_dialogue", [String(prop.npc), line])
+			if line == 1:
+				_arena().open_gate(gate_id)
 		"npc":
 			# Altar que pede um objeto (needs_key): sem ele, só a fala do altar trancado (a 2ª do NPC) e nada desperta. Com "extra_summons" (um grupo por livro), o livro que o grupo
 			# tem decide quem desperta: cada entrada traz needs_key, summon e a fala ("dialogue", o índice no NPC) da leitura.

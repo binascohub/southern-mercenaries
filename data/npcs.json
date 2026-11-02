@@ -674,7 +674,8 @@
     "dialogues": [
       {
         "when": {
-          "quest_new": "docks_smugglers"
+          "quest_new": "docks_smugglers",
+          "after": "forest_treasure"
         },
         "lines": [
           "DLG_PIRATE_1",
@@ -709,7 +710,8 @@
     "dialogues": [
       {
         "when": {
-          "quest_new": "forest_leshy"
+          "quest_new": "forest_leshy",
+          "after": "sewer_treasure"
         },
         "lines": [
           "DLG_OLD_LADY_1",
@@ -757,6 +759,25 @@
         "lines": [
           "DLG_TEMPLE_LOCKED"
         ]
+      }
+    ]
+  },
+  "gate_keeper": {
+    "_comment": "Guardião do Portão do Ninho (horror-monster-light.glb em NpcModel): fica ao lado do portão e só o abre para quem lhe entrega as duas chaves do Esgoto (Town.interact, prop com opens_gate). Fala 0: ainda faltam chaves; 1: recebe as chaves e o portão cai; 2: o portão já está aberto.",
+    "name_key": "NPC_GATE_KEEPER",
+    "color": [0.3, 0.27, 0.22],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": ["DLG_GATE_KEEPER_WAIT_1", "DLG_GATE_KEEPER_WAIT_2"]
+      },
+      {
+        "when": {},
+        "lines": ["DLG_GATE_KEEPER_GIVE_1", "DLG_GATE_KEEPER_GIVE_2"]
+      },
+      {
+        "when": {},
+        "lines": ["DLG_GATE_KEEPER_DONE"]
       }
     ]
   },

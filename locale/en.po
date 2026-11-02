@@ -3332,3 +3332,24 @@ msgstr "The suffering of the drowned, held in glass and chains until someone fre
 
 msgid "VALUABLE_STORM_BOTTLE_DESC"
 msgstr "A storm of souls trapped in glass: inside, a whole family laughs… and then screams. It is all the Old Drunk still wants. It cannot be sold or lost."
+
+msgid "SHOP_POTIONS_MELIODAS"
+msgstr "Meliodas, the Apothecary"
+
+msgid "NPC_GATE_KEEPER"
+msgstr "Gatekeeper"
+
+msgid "DLG_GATE_KEEPER_WAIT_1"
+msgstr "…Only those who bring me both keys may pass. Spades and hearts."
+
+msgid "DLG_GATE_KEEPER_WAIT_2"
+msgstr "Each of the sewer's mini-bosses guards one. Come back when you have both."
+
+msgid "DLG_GATE_KEEPER_GIVE_1"
+msgstr "…The keys. Yesss, those are the keys. It has been so long."
+
+msgid "DLG_GATE_KEEPER_GIVE_2"
+msgstr "The gate is yours. May the Rat Queen remember who guarded her."
+
+msgid "DLG_GATE_KEEPER_DONE"
+msgstr "The way is open. Do not look back."

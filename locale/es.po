@@ -3332,3 +3332,24 @@ msgstr "El sufrimiento de los ahogados, preso en vidrio y cadenas hasta que algu
 
 msgid "VALUABLE_STORM_BOTTLE_DESC"
 msgstr "Una tormenta de almas atrapada en el vidrio: dentro, una familia entera ríe… y luego grita. Es todo lo que el Viejo Borracho aún quiere. No se vende ni se pierde."
+
+msgid "SHOP_POTIONS_MELIODAS"
+msgstr "Meliodas, el Boticario"
+
+msgid "NPC_GATE_KEEPER"
+msgstr "Guardián del Portón"
+
+msgid "DLG_GATE_KEEPER_WAIT_1"
+msgstr "…Solo pasa quien me trae las dos llaves. La de picas y la de corazones."
+
+msgid "DLG_GATE_KEEPER_WAIT_2"
+msgstr "Cada minijefe de las alcantarillas guarda una. Vuelve cuando tengas las dos."
+
+msgid "DLG_GATE_KEEPER_GIVE_1"
+msgstr "…Las llaves. Sííí, son las llaves. Hace tanto tiempo."
+
+msgid "DLG_GATE_KEEPER_GIVE_2"
+msgstr "El portón es vuestro. Que la Reina de las Ratas recuerde quién la guardó."
+
+msgid "DLG_GATE_KEEPER_DONE"
+msgstr "El camino está abierto. No miréis atrás."

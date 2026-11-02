@@ -27,6 +27,7 @@ var _entries: Array[Button] = []
 
 
 func _ready() -> void:
+	Music.play("town")
 	_scene = MenuScene.new()
 	_scene.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(_scene)

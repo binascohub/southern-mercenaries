@@ -203,7 +203,7 @@ FROG_ALTAR = {"id": "sewer_frog_altar", "kind": "npc", "npc": "sewer_frog_altar"
                          "monsters": [{"monster": "frog_king", "count": 1}]},
               # O Carniceiro Chifrudo não espera mais na praça leste: o Grimório das Brasas (o Azazel o entrega ao abrir a missão) lido neste mesmo altar o invoca (a 3ª fala do altar é a da leitura).
               "extra_summons": [{"needs_key": "book_gator_altar", "dialogue": 2,
-                                 "summon": {"id": "sw_old_gator", "position": [0, cz(NR // 2) + 3.5], "level": 2, "toast": "TOAST_GATOR_ALTAR_AWAKENS", "spread": 3.4,
+                                 "summon": {"id": "sw_old_gator", "position": [0, cz(NR // 2) + 3.5], "level": 1, "toast": "TOAST_GATOR_ALTAR_AWAKENS", "spread": 3.4,
                                             "monsters": [{"monster": "old_gator", "count": 1}, {"monster": "shadow_spirit", "count": 2}]}}]}
 sec = dict(legacy["secret_elite"])
 sec["id"] = "sw_secret"
@@ -213,65 +213,22 @@ encounters.append(sec)
 encounters.append({"id": "sw_nest_guard", "position": [0, tunnel_z], "level": 2, "monsters": [{"monster": "plague_frog", "count": 3}]})
 encounters.append({"id": "sw_queen", "position": [0, nest_z + (-42 - -36)], "level": 2, "monsters": [{"monster": "demon_rat_queen", "count": 1}]})
 
-# Troll Mauler (piacenti, CC BY 3.0): o monstro do Setor 1 (Bueiros), um por terço do setor, em células sem sorteio (não mexe nos outros sorteios do mapa).
-troll_cells = sorted(by_sector[1], key=lambda c: depth[c])
-for i, q in enumerate((0.2, 0.45, 0.7, 0.9)):
-    c = troll_cells[min(int(len(troll_cells) * q), len(troll_cells) - 1)]
-    encounters.append({"id": "sw1_troll_%d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 1, "monsters": [{"monster": "troll_mauler", "count": 1}]})
-
-# Mutante (thecubber, CC-BY-SA 3.0): o monstro do Setor 5 (Câmaras dos Cogumelos, canto inferior esquerdo), em bandos de 1 a 2 espalhados pelas células do setor, sem sorteio.
-mutant_cells = sorted(by_sector[5], key=lambda c: depth[c])
-for i, q in enumerate((0.05, 0.15, 0.35, 0.55, 0.75, 0.85, 0.95)):
-    c = mutant_cells[min(int(len(mutant_cells) * q), len(mutant_cells) - 1)]
-    encounters.append({"id": "sw5_mutant_%d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 2, "monsters": [{"monster": "mutant", "count": 1 + i % 2}]})
-
-# Monstro Bárbaro (barbarian-monster.glb do autor): o monstro do lado esquerdo do meio do mapa (Setor 2, colunas do oeste, linhas do meio do setor); dois, sem sorteio.
-west_middle = sorted([c for c in by_sector[2] if c[0] <= NC // 4], key=lambda c: (abs(c[1] - (NR / 2.0 - 0.5)), c[0]))
-for i, c in enumerate(west_middle[:5]):
-    encounters.append({"id": "sw2_barbarian_%d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 1, "monsters": [{"monster": "barbarian_monster", "count": 1}]})
-
-# Guerreiro Cogumelo (champ-warrior.glb do autor): o monstro do canto superior esquerdo do mapa (Setor 1, as duas células mais perto do canto), sem sorteio.
-corner_cells = sorted(by_sector[1], key=lambda c: (c[0] + c[1], c[0]))
-for i, c in enumerate(corner_cells[:2]):
-    encounters.append({"id": "sw1_champ_%d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 1, "monsters": [{"monster": "champ_warrior", "count": 1}]})
-
-# Espírito Sombrio (shadow-spirit.glb do autor): o monstro do canto superior direito (Setor 1, colunas do lado leste), em bandos de 1 a 2, sem sorteio.
-spirit_cells = sorted((c for c in by_sector[1] if c[0] >= NC - 4), key=lambda c: depth[c])
-for i, q in enumerate((0.1, 0.4, 0.95)):
-    c = spirit_cells[min(int(len(spirit_cells) * q), len(spirit_cells) - 1)]
-    encounters.append({"id": "sw1_spirit_%d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 1, "monsters": [{"monster": "shadow_spirit", "count": 1 + i % 2}]})
-
-# Demônio Doze (demon-twelve.glb do autor): o monstro do meio do lado direito (Setor 3, células do leste), em bandos de 1 a 2, sem sorteio.
-twelve_cells = sorted((c for c in by_sector[3] if c[0] >= NC - 4 and -108 < cz(c[1]) < -62 and cx(c[0]) > 22), key=lambda c: depth[c])  # só na zona do meio do lado direito
-for i, q in enumerate((0.1, 0.3, 0.5, 0.7, 0.9)):
-    c = twelve_cells[min(int(len(twelve_cells) * q), len(twelve_cells) - 1)]
-    encounters.append({"id": "sw3_twelve_%d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 1, "monsters": [{"monster": "demon_twelve", "count": 1 + i % 2}]})
-
-# Equilíbrio dos setores (~10 monstros e ~2.000 de vida em cada; o Setor 5, perto do chefe, um pouco mais): grupos extras, sem sorteio, longe (7 m) dos que já existem.
-#   Setor 2 (Canais dos Afogados): Espíritos Sombrios (os afogados). Setor 3: 2 Mutantes. Setor 4 (Vala dos Mortos da Guerra, antes vazio): Espíritos (os mortos), Trolls e 2 Mutantes.
-def add_spread(prefix, monster, sector, counts, level, min_dist=7.0):
-    cells = sorted(by_sector[sector], key=lambda c: depth[c])
-    for i, count in enumerate(counts):
-        pool = [c for c in cells if c not in (ALTAR_CELL, ANGEL_CELL)
-                and all(math.hypot(cx(c[0]) - e["position"][0], cz(c[1]) - e["position"][1]) > min_dist for e in encounters)]
-        if not pool:
-            break
-        c = pool[min(int(len(pool) * (i + 0.5) / len(counts)), len(pool) - 1)]
-        encounters.append({"id": "%s_%d" % (prefix, i + 1), "position": [cx(c[0]), cz(c[1])], "level": level, "monsters": [{"monster": monster, "count": count}]})
-
-
-add_spread("sw2_spirit", "shadow_spirit", 2, (2, 1, 2, 1), 1)
-add_spread("sw3_mutant", "mutant", 3, (1, 1), 1)
-add_spread("sw4_spirit", "shadow_spirit", 4, (2, 1, 2), 2)
-add_spread("sw4_troll", "troll_mauler", 4, (1, 1, 1), 2)
-add_spread("sw4_mutant", "mutant", 4, (1, 1), 2)
-
-# Baú Monstro (chest_monster.glb do autor): agressivo, espalhado por todo o mapa — um a cada ~10 células, em células sorteadas por posição (sem usar o rng do resto), longe de encontros, do altar e da sala da Ossael.
-_mimic_cells = [c for c in sorted(depth) if c not in special_cells and c not in (ALTAR_CELL, ANGEL_CELL) and depth[c] > 1
-                and all(math.hypot(cx(c[0]) - e["position"][0], cz(c[1]) - e["position"][1]) > 9.0 for e in encounters)]
-_mimic_cells = [c for i, c in enumerate(sorted(_mimic_cells, key=lambda c: (c[0] * 7 + c[1] * 13) % 11)) if i % 4 == 0][:10]
-for i, c in enumerate(sorted(_mimic_cells, key=lambda c: (c[1], c[0]))):
-    encounters.append({"id": "sw_mimic_%02d" % (i + 1), "position": [cx(c[0]), cz(c[1])], "level": 1, "monsters": [{"monster": "chest_mimic", "count": 1}]})
+# Monstros comuns (pedido do autor: "20 de cada, divididos por igual nas áreas"): 7 tipos x 20 = 140, ou seja, 4 de cada tipo em cada um dos 5 setores (28 por setor), em 3 grupos por
+# tipo e setor (1 + 1 + 2), espalhados pelas salas do setor sem sorteio: um grupo por sala, intercalando os tipos ao longo do caminho (de 5 em 5 salas por profundidade).
+# Os Baús Monstro (agressivos) entram na mesma conta. Todos de nível 1 e com a mesma vida e o mesmo dano (data/monsters.json).
+COMMON_TYPES = [("troll", "troll_mauler"), ("mutant", "mutant"), ("barbarian", "barbarian_monster"), ("champ", "champ_warrior"),
+                ("spirit", "shadow_spirit"), ("twelve", "demon_twelve"), ("mimic", "chest_mimic")]
+GROUP_COUNTS = (1, 1, 2)
+SECTOR_LEVEL = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1}  # mesma força em todos os setores (mapa 1: nível 1)
+for sec_n in range(1, 6):
+    sector_cells = sorted((c for c in by_sector[sec_n] if c not in (ALTAR_CELL, ANGEL_CELL)), key=lambda c: depth[c])
+    sector_groups = [(short, monster, k) for k in range(len(GROUP_COUNTS)) for short, monster in COMMON_TYPES]
+    n_groups = len(sector_groups)
+    for g, (short, monster, k) in enumerate(sector_groups):
+        slot = (g * 5) % n_groups  # 5 e o numero de grupos (21) nao tem divisor comum: percorre todas as posicoes
+        c = sector_cells[min(int(slot * len(sector_cells) / n_groups), len(sector_cells) - 1)]
+        encounters.append({"id": "sw%d_%s_%d" % (sec_n, short, k + 1), "position": [cx(c[0]), cz(c[1])], "level": SECTOR_LEVEL[sec_n],
+                           "monsters": [{"monster": monster, "count": GROUP_COUNTS[k]}]})
 
 # Só os chefes do esgoto (Empalado, Carniceiro Chifrudo e a Rainha), o Troll Mauler do Setor 1, o Monstro Bárbaro do Setor 2 e o Mutante do Setor 5 ficam; nenhum outro monstro revida.
 SEWER_BOSSES = ("frog_king", "old_gator", "demon_rat_queen", "troll_mauler", "barbarian_monster", "champ_warrior", "mutant", "shadow_spirit", "demon_twelve", "chest_mimic")
@@ -311,6 +268,9 @@ props = [p for p in props if p.get("id") != "war_treasure"]
 props = [p for p in props if p["kind"] != "chest"]
 # Portão do corredor logo abaixo do Ninho da Rainha: só cai com as duas chaves dos mini-chefes (Espadas: Carniceiro Chifrudo; Copas: Empalado / Monstro de Tábuas).
 props.append({"id": "nest_gate", "kind": "gate", "name_key": "PROP_NEST_GATE", "position": [0, tunnel_z - 1.0], "rotation": 0, "scale": 2.4, "block": 5.0, "count": 1,
+              "needs_keys": ["sewer_key_spades", "sewer_key_hearts"], "keeper": "gate_keeper"})
+# O Guardião do Portão (monstro de terror): recebe as duas chaves e faz o portão cair (Town.interact, "opens_gate"); fica logo abaixo do portão, bem na frente dele, de frente para quem chega.
+props.append({"id": "gate_keeper", "kind": "npc", "npc": "gate_keeper", "position": [0, tunnel_z + 1.5], "rotation": 0, "opens_gate": "nest_gate",
               "needs_keys": ["sewer_key_spades", "sewer_key_hearts"]})
 # Piso todo de pedra: sem água (nem o lago do Carniceiro Chifrudo).
 props = [p for p in props if p["kind"] != "water"]
@@ -413,6 +373,7 @@ area = {
     "player_class": "mage",
     "map_id": "map_sewers",
     "area_level": 1,
+    "loot_scale": {"potion": 0.7, "valuable": 0.3},  # menos poções e valiosos soltos (poção 70%, valioso 30% da chance base); ouro e o tesouro do chefe seguem as tabelas de data/loot.json
     "final": True,
     "victory_key": "HUD_VICTORY_SEWERS",
     "victory_groups": ["sw_queen"],

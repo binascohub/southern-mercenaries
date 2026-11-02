@@ -691,6 +691,7 @@ func _load_area(id: String, _entry: String) -> void:
 	hud.set_progress(cleared, total_encounters)
 	hud.set_area(tr(arena.get("name_key", "")))
 	hud.show_area_foes(_area_foes())
+	Music.play(Music.track_for_area(id, bool(arena.get("town", false))))
 
 
 ## Monstros desta área (um de cada, na ordem dos encontros) e o elemento deles.
@@ -1162,11 +1163,11 @@ func pick_key(player: Player, prop: Dictionary) -> void:
 	_open_key_gates()
 
 
-## Portões que só abrem com várias chaves da campanha (prop "gate" com "needs_keys"): caem sozinhos quando o grupo as tem todas.
+## Portões que só abrem com várias chaves da campanha (prop "gate" com "needs_keys"): caem sozinhos quando o grupo as tem todas, a não ser que tenham um "keeper" (NPC que recebe as chaves).
 func _open_key_gates() -> void:
 	var keys: Array = _campaign.get("keys", [])
 	for prop: Dictionary in arena.get("props", []):
-		if prop.kind == "gate" and prop.has("needs_keys") and prop.needs_keys.all(func(k: String) -> bool: return k in keys):
+		if prop.kind == "gate" and not prop.has("keeper") and prop.has("needs_keys") and prop.needs_keys.all(func(k: String) -> bool: return k in keys):
 			open_gate(String(prop.id))
 
 
@@ -1344,6 +1345,11 @@ func _break(box: Enemy) -> void:
 	var outcome := Breakables.roll(_rng, String(_box_table.get(box.group, "breakable")))
 	var at := box.global_position
 	var level := int(arena.get("area_level", 1))
+	# Ajuste de loot do mapa ("loot_scale" em arenas.json): poção ou valioso que "não sai" vira caixote vazio.
+	if outcome in ["potion_health", "potion_resource"] and _rng.randf() >= _loot_scaled(1.0, "potion"):
+		outcome = "nothing"
+	elif outcome == "valuable" and _rng.randf() >= _loot_scaled(1.0, "valuable"):
+		outcome = "nothing"
 	if outcome == "monsters":
 		var count := _rng.randi_range(int(table.monsters.count[0]), int(table.monsters.count[1]))
 		spawn_adds(at, String(table.monsters.monster), count, 1.2)
@@ -1369,6 +1375,14 @@ func _break(box: Enemy) -> void:
 				_add_loot(p, at, Items.stack(Items.CONSUMABLE, "venison", _rng.randi_range(int(meat.min), int(meat.max))), 0)
 			"valuable":
 				_add_loot(p, at, Items.stack(Items.VALUABLE, _random_valuable()), 0)
+
+
+## Chance de poção ou valioso ajustada pelo mapa: "loot_scale": {"potion": x, "valuable": y} em arenas.json (sem a chave, vale 1). Chance de 100% (chefes, tesouros, baús)
+## não muda: o que é garantido continua garantido.
+func _loot_scaled(chance: float, kind: String) -> float:
+	if chance >= 1.0:
+		return chance
+	return chance * float(arena.get("loot_scale", {}).get(kind, 1.0))
 
 
 ## Um valioso do tema do mapa (05-itens-e-loot.md, seção 5).
@@ -1459,7 +1473,7 @@ func _drop_table(player: Player, origin: Vector3, table: Dictionary, level: int)
 		if i == 0 and table.has("guaranteed"):
 			rarity = String(table.guaranteed)
 		_add_loot(player, origin, Items.generate_equipment(level, player.character.data.class_id, rarity, _rng), 0)
-	if _rng.randf() < table.potion_chance:
+	if _rng.randf() < _loot_scaled(float(table.potion_chance), "potion"):
 		var potion := "potion_health" if _rng.randf() < 0.6 else "potion_resource"
 		# Provisório até o Mercado de Tortuga (Fase 6): parte das poções é elemental.
 		if _rng.randf() < float(table.get("elemental_potion_share", 0.0)):
@@ -1469,7 +1483,7 @@ func _drop_table(player: Player, origin: Vector3, table: Dictionary, level: int)
 	if table.has("potions"):
 		for i in _rng.randi_range(int(table.potions[0]), int(table.potions[1])):
 			_add_loot(player, origin, Items.stack(Items.CONSUMABLE, "potion_health" if _rng.randf() < 0.6 else "potion_resource"), 0)
-	var valuables := 1 if _rng.randf() < table.valuable_chance else 0
+	var valuables := 1 if _rng.randf() < _loot_scaled(float(table.valuable_chance), "valuable") else 0
 	if table.has("valuables"):
 		valuables = _rng.randi_range(int(table.valuables[0]), int(table.valuables[1]))
 	for i in valuables:
@@ -1819,6 +1833,12 @@ func _build_prop(prop_data: Dictionary) -> void:
 		var label_key: String = prop.get("name_key", "")
 		var color := Color(0.5, 0.4, 0.3)
 		match String(prop.kind):
+			"shop" when prop.has("npc_model") and NpcModel.has_model(String(prop.npc_model)):
+				# Loja atendida por um personagem com modelo próprio (o Meliodas, dono da loja de poções na Taverna), parado de frente para o salão.
+				var seller := NpcModel.create(String(prop.npc_model))
+				node.add_child(seller)
+				seller.set_pose("idle")
+				node.rotation.y = deg_to_rad(float(prop.get("rotation", 0.0)))
 			"shop" when prop.get("look", "") == "vendor":
 				# Vendedor em pé (o pirata na frente do navio): corpo e lenço na cabeça.
 				var c: Array = prop.get("color", [0.6, 0.2, 0.15])
@@ -2146,7 +2166,13 @@ func _build_brawl(entry: Dictionary, at: Vector3) -> void:
 		holder.rotation.y = PI / 2.0 if i == 0 else -PI / 2.0  # um de frente para o outro
 		brawl.add_child(holder)
 		var spot := at + Vector3((i - 0.5) * 3.0, 0, 0.7 * i)
-		var model := _npc_body(holder, _crowd_look(String(roles[i]), spot, {"pose": "idle"}))
+		var model: Node3D = null
+		if NpcModel.has_model(String(roles[i])):  # civis: o corpo próprio do papel
+			model = NpcModel.create(String(roles[i]))
+			holder.add_child(model)
+			model.call("set_pose", "idle")
+		else:
+			model = _npc_body(holder, _crowd_look(String(roles[i]), spot, {"pose": "idle"}))
 		if model:
 			brawl.fighters.append(model)
 			brawl.roles.append(String(roles[i]))

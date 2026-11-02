@@ -10,7 +10,7 @@
     "unlocks": "sewer_entrance",
     "reward": {
       "gold": 400,
-      "xp": 450
+      "xp": 360
     },
     "bestiary": [
       "demon_rat_queen"

@@ -12,8 +12,9 @@ signal bindings_changed
 const PATH := "user://controls.cfg"
 ## Versão do padrão do teclado: 2 = habilidades nos números 1–4 e poções em Q/E/R
 ## (decisão do autor). Arquivos antigos não levam as teclas antigas dessas ações.
-const LAYOUT_VERSION := 2
-const LAYOUT_2_ACTIONS := [&"skill_1", &"skill_2", &"skill_3", &"skill_4", &"potion_health", &"potion_mana", &"potion_elemental"]
+const LAYOUT_VERSION := 3
+## 3 = ataque básico no 1 (e no clique do mouse) e as oito habilidades nos números 2–9.
+const LAYOUT_2_ACTIONS := [&"attack", &"skill_1", &"skill_2", &"skill_3", &"skill_4", &"skill_5", &"skill_6", &"skill_7", &"skill_8", &"potion_health", &"potion_mana", &"potion_elemental"]
 const KB := "kb"
 const PAD := "pad"
 
@@ -21,7 +22,7 @@ const PAD := "pad"
 const REMAPPABLE: Array[StringName] = [
 	&"move_up", &"move_down", &"move_left", &"move_right",
 	&"aim_up", &"aim_down", &"aim_left", &"aim_right",
-	&"attack", &"skill_1", &"skill_2", &"skill_3", &"skill_4",
+	&"attack", &"skill_1", &"skill_2", &"skill_3", &"skill_4", &"skill_5", &"skill_6", &"skill_7", &"skill_8",
 	&"evade", &"jump", &"block", &"mount", &"potion_health", &"potion_mana", &"potion_elemental",
 	&"interact", &"pickup_all", &"inventory", &"skills", &"menu", &"map", &"chat_quick",
 ]
@@ -227,11 +228,13 @@ func _build_defaults() -> void:
 	d[&"aim_down"] = _pair([], [axis(JOY_AXIS_RIGHT_Y, 1)])
 	d[&"aim_left"] = _pair([], [axis(JOY_AXIS_RIGHT_X, -1)])
 	d[&"aim_right"] = _pair([], [axis(JOY_AXIS_RIGHT_X, 1)])
-	d[&"attack"] = _pair([mouse(MOUSE_BUTTON_LEFT)], [pad(JOY_BUTTON_RIGHT_SHOULDER)])  # R1 = ataque simples (segurar: ataque forte)
-	d[&"skill_1"] = _pair([key(KEY_1)], [pad(JOY_BUTTON_A)])
-	d[&"skill_2"] = _pair([key(KEY_2)], [pad(JOY_BUTTON_B)])
-	d[&"skill_3"] = _pair([key(KEY_3)], [pad(JOY_BUTTON_X)])
-	d[&"skill_4"] = _pair([key(KEY_4)], [pad(JOY_BUTTON_Y)])
+	d[&"attack"] = _pair([key(KEY_1), mouse(MOUSE_BUTTON_LEFT), key(KEY_KP_1)], [pad(JOY_BUTTON_RIGHT_SHOULDER)])  # clique ou 1 (R1 no controle) = ataque simples (segurar: ataque forte)
+	d[&"skill_1"] = _pair([key(KEY_2), key(KEY_KP_2)], [pad(JOY_BUTTON_A)])
+	d[&"skill_2"] = _pair([key(KEY_3), key(KEY_KP_3)], [pad(JOY_BUTTON_B)])
+	d[&"skill_3"] = _pair([key(KEY_4), key(KEY_KP_4)], [pad(JOY_BUTTON_X)])
+	d[&"skill_4"] = _pair([key(KEY_5), key(KEY_KP_5)], [pad(JOY_BUTTON_Y)])
+	for i in 4:  # as quatro de baixo: só no teclado (6–9); o controle tem os quatro botões da frente nas quatro primeiras
+		d[StringName("skill_%d" % (i + 5))] = _pair([key(KEY_6 + i), key(KEY_KP_6 + i)], [])
 	d[&"evade"] = _pair([key(KEY_SPACE)], [axis(JOY_AXIS_TRIGGER_LEFT, 1)])
 	# Pular: sem botão livre no controle (remapeável no menu de controles).
 	d[&"jump"] = _pair([key(KEY_X)], [])

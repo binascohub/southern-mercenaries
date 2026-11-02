@@ -18,7 +18,8 @@ const BREATHER := 3.0
 
 enum State { FIGHT, BREATHER }
 
-var fighters: Array[HeroModel] = []
+## Os brigões: corpos dos heróis (HeroModel) ou civis (NpcModel); os dois têm set_pose e play_action.
+var fighters: Array[Node3D] = []
 ## Papel de cada brigão.
 var roles: Array[String] = []
 var _timer := 0.6
