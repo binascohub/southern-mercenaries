@@ -949,6 +949,7 @@ func request_learn(key: String) -> void:
 
 
 func request_slot(index: int, key: String) -> void:
+	Sfx.play("book_flip")  # a página vira ao pôr uma habilidade ou poção num quadrado
 	_rpc_or_local(&"_set_slot", [index, key])
 
 
@@ -1363,12 +1364,25 @@ func _build_visual() -> void:
 	add_child(_revive_bar)
 
 
+## Metros entre um passo e outro.
+const STEP_DISTANCE := 1.5
+var _step_distance := 0.0
+
+
 func _tick_visual(delta: float) -> void:
 	# Animação: velocidade vista na tela (igual em todos os PCs) e ações novas.
 	var moved := global_position - _last_visual_pos
 	moved.y = 0.0
 	_last_visual_pos = global_position
 	var speed := moved.length() / maxf(delta, 0.0001)
+	# Passos: um a cada STEP_DISTANCE m andados no chão (sem montaria, sem pular, vivo); os outros heróis também se ouvem, mais baixo de longe (sons 3D).
+	if alive and not mounted and jump_phase <= 0.0 and speed > 0.6 and speed < 40.0:
+		_step_distance += moved.length()
+		if _step_distance >= STEP_DISTANCE:
+			_step_distance = 0.0
+			Sfx.play("step", global_position, -9.0)
+	else:
+		_step_distance = minf(_step_distance, STEP_DISTANCE * 0.5)
 	if action != _shown_action:
 		_shown_action = action
 		if action.get_slice(":", 0) == "wings":

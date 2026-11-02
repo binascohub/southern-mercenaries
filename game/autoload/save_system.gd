@@ -240,14 +240,17 @@ func migrate_character(d: Dictionary) -> Dictionary:
 	if not d.is_empty() and not d.has("skills") and GameData.skills.classes.has(d.get("class_id", "")):
 		var first: String = Skills.keys(d.class_id)[0]
 		d.skills = {first: 1}
-		d.skill_slots = [first, "", "", "", "", "", "potion_health", "potion_resource"]
-	# Fichas com 4 atalhos (antes das teclas 2–9) ganham os outros quatro, vazios.
-	if not d.is_empty() and d.get("skill_slots", []) is Array:
-		while d.skill_slots.size() < int(GameData.skills.slots) and d.has("skills"):
+		d.skill_slots = [first, "", "", "", "", "potion_health", "potion_resource"]
+	# Fichas com 4 atalhos (antes dos quadrados 1–8) ganham os outros, vazios, e os dois últimos com as poções de vida e de recurso; as com 8 voltam a 7.
+	if not d.is_empty() and d.get("skill_slots", []) is Array and d.has("skills"):
+		var wanted := int(GameData.skills.slots)
+		var grew: bool = d.skill_slots.size() < wanted
+		while d.skill_slots.size() < wanted:
 			d.skill_slots.append("")
-		if d.skill_slots.size() == int(GameData.skills.slots) and d.has("skills") and d.skill_slots.slice(4).all(func(k: Variant) -> bool: return k == ""):
-			d.skill_slots[6] = "potion_health"  # ficha que tinha 4 atalhos: os dois últimos quadrados nascem com as poções de vida e de recurso
-			d.skill_slots[7] = "potion_resource"
+		d.skill_slots = d.skill_slots.slice(0, wanted)
+		if grew and d.skill_slots.slice(4).all(func(k: Variant) -> bool: return k == ""):
+			d.skill_slots[wanted - 2] = "potion_health"
+			d.skill_slots[wanted - 1] = "potion_resource"
 	# Fase 6: dicas do tutorial já vistas.
 	if not d.is_empty() and not d.has("tutorial_seen"):
 		d.tutorial_seen = []

@@ -40,7 +40,7 @@ static func create(class_id: String, sex: String, hero_name: String, element := 
 		"element_potion": "",
 		# Habilidades por chave (Skills): a de nível 1 vem no rank 1 e no atalho 1.
 		"skills": {Skills.keys(class_id)[0]: 1},
-		"skill_slots": [Skills.keys(class_id)[0], "", "", "", "", "", "potion_health", "potion_resource"],
+		"skill_slots": [Skills.keys(class_id)[0], "", "", "", "", "potion_health", "potion_resource"],
 		"level": 1,
 		"xp": 0,
 		"attributes": cls.attributes.duplicate(),
@@ -374,7 +374,7 @@ func respec() -> void:
 	data.skill_points = int(GameData.balance.skill_points_per_level) * levels
 	var first: String = Skills.keys(data.class_id)[0]
 	data.skills = {first: 1}
-	data.skill_slots = [first, "", "", "", "", "", "potion_health", "potion_resource"]
+	data.skill_slots = [first, "", "", "", "", "potion_health", "potion_resource"]
 
 
 ## Preço para redistribuir os pontos (proposta: 50 × nível).

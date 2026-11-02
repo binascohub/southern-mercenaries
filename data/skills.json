@@ -1,7 +1,7 @@
 {
   "_comment": "Habilidades (02-personagens.md: 10 por classe, 5 ranks, liberadas nos níveis 1, 2, 4, 6, 8, 10, 12, 14, 16 e 18; 4 ativas nos atalhos). Mago: 02-1-mago.md, seção 6; Arqueiro: 02-2-arqueiro.md, seção 6 (habilidades de classe \"imbued\" aplicam o estado básico do elemento atual). Ninja: 02-4-ninja.md, seção 7; Invocador: 02-5-invocador.md, seção 6; Cavaleiro: 02-3-cavaleiro.md, seção 7 (foot_*: versão a pé, mais fraca). power_total: o dano é o total da habilidade, dividido no tempo. power = fração do poder da classe no rank 1; per_rank soma por rank acima do 1. Áreas e projéteis em metros; tempos em segundos.",
   "max_rank": 5,
-  "slots": 8,
+  "slots": 7,
   "classes": {
     "mage": {
       "class": {

@@ -798,6 +798,8 @@ func _voice(kind: String) -> void:
 func _show_damage(amount: float, effect := "normal", hit_element := "", crit := false, combo := "") -> void:
 	if str(data.get("category", "")) != "breakable":
 		_voice("hurt")
+		if amount > 0.0:
+			Sfx.play("hit_crit" if crit else "hit", global_position, -2.0)  # o golpe que acertou (os packs "hit_N" e "hit_crit_N" do pacote de hits e socos)
 	DamageNumber.spawn(get_parent(), global_position + Vector3.UP * (data.size + 0.8), amount,
 		effect, hit_element, crit, combo)
 

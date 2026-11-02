@@ -557,6 +557,7 @@ func _finish_quest(c: Dictionary, id: String, quest: Dictionary) -> void:
 	for p: Player in get_tree().get_nodes_in_group(&"players"):
 		if p.character:
 			p.grant(int(reward.get("xp", 0)), int(reward.get("gold", 0)))
+			p._sfx.rpc("quest_complete")  # o jingle de missão cumprida (depois do som de moedas ou de nível)
 	_arena()._toast_all("TOAST_QUEST_DONE", {"quest": quest.name_key})
 
 

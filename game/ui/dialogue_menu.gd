@@ -164,6 +164,7 @@ func _build() -> void:
 			_town.request_accept_side(int(_dialogue.visitor))
 		else:
 			_town.request_accept(String(_dialogue.get("offer", "")))
+		Sfx.play("quest_accept", Vector3.INF, -4.0)
 		close())
 	_accept.text = "DLG_ACCEPT"
 	_accept.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_INHERIT

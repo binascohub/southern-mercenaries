@@ -46,6 +46,7 @@ func toggle() -> void:
 		close()
 	elif _player and _player.character:
 		visible = true
+		Sfx.play("book_open")  # o livro de habilidades se abre
 		Session.ui_open = true
 		_rebuild_rows()
 		_refresh()
@@ -58,6 +59,8 @@ func toggle() -> void:
 func close() -> void:
 	if _dock:
 		_dock.visible = false
+	if visible:
+		Sfx.play("book_close")
 	visible = false
 	Session.ui_open = false
 	var focus := _panel.get_viewport().gui_get_focus_owner()
@@ -110,7 +113,7 @@ func _rebuild_rows() -> void:
 		for i in PlayerInput.SKILL_SLOTS:
 			var slot := Button.new()
 			slot.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
-			slot.text = str(i + 2)  # a tecla (o 1 é o ataque básico)
+			slot.text = str(i + 2)  # a tecla do quadrado (o 1 é o ataque básico)
 			slot.toggle_mode = false
 			slot.custom_minimum_size = Vector2(30, 36)
 			slot.pressed.connect(func() -> void: _player.request_slot(i, key))

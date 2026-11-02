@@ -47,6 +47,8 @@ var _element_label: Label
 var _skill_slots: Array[Label] = []
 var _attack_icon: TextureRect
 var _attack_label: Label
+var _attack_info: Label
+var _skill_infos: Array[Label] = []
 ## Atalhos de habilidade: ícone (assets/ui/icons/skills/<id>.png), tempo de recarga no centro e o vermelho translúcido que desce enquanto recarrega.
 var _skill_icons: Array[TextureRect] = []
 var _skill_cooldown_fill: Array[ColorRect] = []
@@ -192,6 +194,7 @@ func bind_player(player: Player) -> void:
 
 ## Aviso curto no topo (subiu de nível, bolsa cheia…), some sozinho.
 func toast(text: String) -> void:
+	Sfx.play("ui_alert", Vector3.INF, -8.0)
 	var label := _label(22)
 	label.text = text
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -291,6 +294,29 @@ func show_gamepad_lost(value: bool) -> void:
 	_gamepad_lost.visible = value
 
 
+## Uma coluna da barra: a tecla em cima, o quadrado (76 px) e a informação embaixo.
+func _slot_column(parent: Control) -> Dictionary:
+	var column := VBoxContainer.new()
+	column.add_theme_constant_override("separation", 2)
+	column.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	parent.add_child(column)
+	var top := _label(14)
+	top.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	top.custom_minimum_size = Vector2(76, 0)
+	column.add_child(top)
+	var box := PanelContainer.new()
+	box.theme_type_variation = &"HudPanel"
+	box.custom_minimum_size = Vector2(76, 76)
+	column.add_child(box)
+	var bottom := _label(13)
+	bottom.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	bottom.custom_minimum_size = Vector2(76, 0)
+	bottom.autowrap_mode = TextServer.AUTOWRAP_OFF
+	bottom.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	column.add_child(bottom)
+	return {"top": top, "box": box, "bottom": bottom}
+
+
 ## A tecla e o botão do controle de uma ação juntos ("2 · A"); sem botão no controle, só a tecla.
 func _keys_of(action: StringName) -> String:
 	var keyboard := Controls.binding_label(action, Controls.KB)
@@ -299,6 +325,15 @@ func _keys_of(action: StringName) -> String:
 
 
 ## Quadrado com uma poção: ícone, tecla, quantidade e o vermelho da recarga das poções (15 s, consumables.json).
+func _potion_short(token: String) -> String:
+	match token:
+		"potion_health":
+			return tr("HUD_POTION_SHORT_HEALTH")
+		"potion_resource":
+			return tr("HUD_POTION_SHORT_RESOURCE")
+	return tr("HUD_POTION_SHORT_ELEMENTAL")
+
+
 func _update_potion_box(i: int, token: String, prompt: String) -> void:
 	var c := _player.character
 	var id := token
@@ -320,7 +355,8 @@ func _update_potion_box(i: int, token: String, prompt: String) -> void:
 	fill.visible = cd > 0.0 and count > 0
 	if fill.visible:
 		fill.offset_top = -_skill_boxes[i].size.y * clampf(cd / 15.0, 0.0, 1.0)
-	_skill_slots[i].text = "%s  x%d" % [prompt, count] + ("  %.0fs" % ceilf(cd) if cd > 0.0 else "")
+	_skill_slots[i].text = prompt
+	_skill_infos[i].text = "%s x%d" % [_potion_short(token), count] + ("  %.0fs" % ceilf(cd) if cd > 0.0 else "")
 	_skill_slots[i].modulate = Color.WHITE if count > 0 else Color(1, 1, 1, 0.5)
 	_skill_icons[i].modulate = Color.WHITE if count > 0 else Color(0.45, 0.45, 0.45)
 
@@ -334,6 +370,7 @@ func _update_skill_bar() -> void:
 	var basic_path := "res://assets/ui/icons/skills/%s.png" % BASIC_ICONS.get(_player.element, "fire_bolt")
 	_attack_icon.texture = load(basic_path) as Texture2D if ResourceLoader.exists(basic_path) else null
 	_attack_label.text = _keys_of(&"attack")
+	_attack_info.text = tr("HUD_BASIC_ATTACK")
 	for i in _skill_slots.size():
 		var label := _skill_slots[i]
 		var icon := _skill_icons[i]
@@ -345,6 +382,7 @@ func _update_skill_bar() -> void:
 			continue
 		if key == "":
 			label.text = prompt
+			_skill_infos[i].text = ""
 			label.modulate = Color(1, 1, 1, 0.45)
 			icon.texture = null
 			fill.visible = false
@@ -364,8 +402,7 @@ func _update_skill_bar() -> void:
 			var height := _skill_boxes[i].size.y * clampf(cd / total, 0.0, 1.0)
 			fill.offset_top = -height  # o vermelho fica embaixo e desce: a borda de cima desce enquanto recarrega
 		var text := prompt
-		if cd > 0.0:
-			text += "  %.0fs" % ceilf(cd)
+		_skill_infos[i].text = tr(skill.get("name_key", "")) + ("  %.0fs" % ceilf(cd) if cd > 0.0 else "")
 		label.text = text
 		var ready := cd <= 0.0 and _player.resource >= float(skill.get("cost", 0.0))
 		label.modulate = Color.WHITE
@@ -554,28 +591,20 @@ func _build() -> void:
 	skill_bar.add_theme_constant_override("separation", 8)
 	skill_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(skill_bar)
-	# O primeiro quadrado é o ataque básico (tecla 1 e clique do mouse); depois vêm as oito habilidades (teclas 2 a 9).
-	var attack_box := PanelContainer.new()
-	attack_box.theme_type_variation = &"HudPanel"
-	attack_box.custom_minimum_size = Vector2(76, 76)
-	skill_bar.add_child(attack_box)
+	# Oito quadrados (teclas 1 a 8; no controle A B X Y RB RT LB LT): o 1 é o ataque básico e os outros sete guardam habilidade ou poção.
+	# Cada um leva a tecla e o botão do controle EM CIMA e, EMBAIXO, o nome (ou a poção e a quantidade) e o tempo de recarga.
+	var attack_column := _slot_column(skill_bar)
+	var attack_box: PanelContainer = attack_column.box
+	_attack_label = attack_column.top
+	_attack_info = attack_column.bottom
 	_attack_icon = TextureRect.new()
 	_attack_icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	_attack_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	_attack_icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	attack_box.add_child(_attack_icon)
-	_attack_label = _label(14)
-	_attack_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
-	_attack_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
-	_attack_label.autowrap_mode = TextServer.AUTOWRAP_OFF
-	_attack_label.add_theme_color_override("font_outline_color", Color.BLACK)
-	_attack_label.add_theme_constant_override("outline_size", 6)
-	attack_box.add_child(_attack_label)
 	for i in PlayerInput.SKILL_SLOTS:
-		var box := PanelContainer.new()
-		box.theme_type_variation = &"HudPanel"
-		box.custom_minimum_size = Vector2(76, 76)
-		skill_bar.add_child(box)
+		var column := _slot_column(skill_bar)
+		var box: PanelContainer = column.box
 		var icon := TextureRect.new()
 		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
@@ -593,14 +622,8 @@ func _build() -> void:
 		fill.offset_bottom = 0.0
 		fill.visible = false
 		host.add_child(fill)
-		var slot_label := _label(14)
-		slot_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
-		slot_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP  # a tecla no canto de cima; o tempo de recarga vem na mesma linha
-		slot_label.autowrap_mode = TextServer.AUTOWRAP_OFF
-		slot_label.add_theme_color_override("font_outline_color", Color.BLACK)
-		slot_label.add_theme_constant_override("outline_size", 6)
-		box.add_child(slot_label)
-		_skill_slots.append(slot_label)
+		_skill_slots.append(column.top)
+		_skill_infos.append(column.bottom)
 		_skill_icons.append(icon)
 		_skill_cooldown_fill.append(fill)
 		_skill_boxes.append(box)

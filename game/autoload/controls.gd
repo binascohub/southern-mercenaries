@@ -12,9 +12,9 @@ signal bindings_changed
 const PATH := "user://controls.cfg"
 ## Versão do padrão do teclado: 2 = habilidades nos números 1–4 e poções em Q/E/R
 ## (decisão do autor). Arquivos antigos não levam as teclas antigas dessas ações.
-const LAYOUT_VERSION := 3
-## 3 = ataque básico no 1 (e no clique do mouse) e as oito habilidades nos números 2–9.
-const LAYOUT_2_ACTIONS := [&"attack", &"skill_1", &"skill_2", &"skill_3", &"skill_4", &"skill_5", &"skill_6", &"skill_7", &"skill_8", &"potion_health", &"potion_mana", &"potion_elemental"]
+const LAYOUT_VERSION := 4
+## 4 = oito quadrados nos números 1–8 e no controle A B X Y RB RT LB LT: o 1 (A) é o ataque básico (também o clique do mouse) e os outros sete guardam habilidade ou poção.
+const LAYOUT_2_ACTIONS := [&"attack", &"skill_1", &"skill_2", &"skill_3", &"skill_4", &"skill_5", &"skill_6", &"skill_7", &"evade", &"block", &"pickup_all", &"potion_health", &"potion_mana", &"potion_elemental"]
 const KB := "kb"
 const PAD := "pad"
 
@@ -22,7 +22,7 @@ const PAD := "pad"
 const REMAPPABLE: Array[StringName] = [
 	&"move_up", &"move_down", &"move_left", &"move_right",
 	&"aim_up", &"aim_down", &"aim_left", &"aim_right",
-	&"attack", &"skill_1", &"skill_2", &"skill_3", &"skill_4", &"skill_5", &"skill_6", &"skill_7", &"skill_8",
+	&"attack", &"skill_1", &"skill_2", &"skill_3", &"skill_4", &"skill_5", &"skill_6", &"skill_7",
 	&"evade", &"jump", &"block", &"mount", &"potion_health", &"potion_mana", &"potion_elemental",
 	&"interact", &"pickup_all", &"inventory", &"skills", &"menu", &"map", &"chat_quick",
 ]
@@ -94,7 +94,7 @@ func restore_defaults() -> void:
 func apply_deadzone(value: float) -> void:
 	for action in ANALOG:
 		InputMap.action_set_deadzone(action, value)
-	for action in [&"attack", &"evade"]:
+	for action in [&"skill_5", &"skill_7"]:  # os gatilhos (RT e LT) são os botões dos quadrados 6 e 8
 		InputMap.action_set_deadzone(action, TRIGGER_DEADZONE)
 
 
@@ -228,25 +228,25 @@ func _build_defaults() -> void:
 	d[&"aim_down"] = _pair([], [axis(JOY_AXIS_RIGHT_Y, 1)])
 	d[&"aim_left"] = _pair([], [axis(JOY_AXIS_RIGHT_X, -1)])
 	d[&"aim_right"] = _pair([], [axis(JOY_AXIS_RIGHT_X, 1)])
-	d[&"attack"] = _pair([key(KEY_1), mouse(MOUSE_BUTTON_LEFT), key(KEY_KP_1)], [pad(JOY_BUTTON_A)])  # clique ou 1 (A no controle) = ataque simples (segurar: ataque forte)
-	d[&"skill_1"] = _pair([key(KEY_2), key(KEY_KP_2)], [pad(JOY_BUTTON_RIGHT_SHOULDER)])
-	d[&"skill_2"] = _pair([key(KEY_3), key(KEY_KP_3)], [pad(JOY_BUTTON_B)])
-	d[&"skill_3"] = _pair([key(KEY_4), key(KEY_KP_4)], [pad(JOY_BUTTON_X)])
-	d[&"skill_4"] = _pair([key(KEY_5), key(KEY_KP_5)], [pad(JOY_BUTTON_Y)])
-	for i in 4:  # as quatro de baixo: só no teclado (6–9); o controle tem os quatro botões da frente nas quatro primeiras
-		d[StringName("skill_%d" % (i + 5))] = _pair([key(KEY_6 + i), key(KEY_KP_6 + i)], [])
-	d[&"evade"] = _pair([key(KEY_SPACE)], [axis(JOY_AXIS_TRIGGER_LEFT, 1)])
+	d[&"attack"] = _pair([key(KEY_1), mouse(MOUSE_BUTTON_LEFT), key(KEY_KP_1)], [pad(JOY_BUTTON_A)])  # quadrado 1: tecla 1, clique ou A = ataque simples (segurar: ataque forte)
+	# Os outros sete quadrados (habilidade ou poção): teclas 2 a 8 (e as do teclado numérico); no controle B X Y, depois RB, RT, LB e LT.
+	var slot_pad: Array = [pad(JOY_BUTTON_B), pad(JOY_BUTTON_X), pad(JOY_BUTTON_Y), pad(JOY_BUTTON_RIGHT_SHOULDER),
+		axis(JOY_AXIS_TRIGGER_RIGHT, 1), pad(JOY_BUTTON_LEFT_SHOULDER), axis(JOY_AXIS_TRIGGER_LEFT, 1)]
+	for i in 7:
+		d[StringName("skill_%d" % (i + 1))] = _pair([key(KEY_2 + i), key(KEY_KP_2 + i)], [slot_pad[i]])
+	d[&"evade"] = _pair([key(KEY_SPACE)], [pad(JOY_BUTTON_DPAD_DOWN)])  # o LT virou o quadrado 8
 	# Pular: sem botão livre no controle (remapeável no menu de controles).
 	d[&"jump"] = _pair([key(KEY_X)], [])
 	d[&"mount"] = _pair([key(KEY_SHIFT)], [pad(JOY_BUTTON_LEFT_STICK)])
 	# Bloquear / aparar (proposta, 08-controles.md): segurar.
-	d[&"block"] = _pair([key(KEY_C)], [pad(JOY_BUTTON_LEFT_SHOULDER)])
-	d[&"potion_health"] = _pair([key(KEY_Q)], [pad(JOY_BUTTON_DPAD_DOWN)])
-	d[&"potion_mana"] = _pair([key(KEY_E)], [pad(JOY_BUTTON_DPAD_UP)])
-	d[&"potion_elemental"] = _pair([key(KEY_R)], [pad(JOY_BUTTON_DPAD_RIGHT)])
+	d[&"block"] = _pair([key(KEY_C)], [pad(JOY_BUTTON_DPAD_UP)])  # o LB virou o quadrado 7
+	# As poções no controle vão pelos quadrados (por padrão o 7 e o 8: LB e LT); no teclado seguem Q, E e R.
+	d[&"potion_health"] = _pair([key(KEY_Q)], [])
+	d[&"potion_mana"] = _pair([key(KEY_E)], [])
+	d[&"potion_elemental"] = _pair([key(KEY_R)], [])
 	# Botão de interagir no controle: decisão em aberto (08-controles.md, seção 5).
 	d[&"interact"] = _pair([mouse(MOUSE_BUTTON_RIGHT), key(KEY_G)], [])
-	d[&"pickup_all"] = _pair([key(KEY_Z)], [axis(JOY_AXIS_TRIGGER_RIGHT, 1)])  # R2 pega todo o loot (o A é o ataque; o R1, a habilidade 1)
+	d[&"pickup_all"] = _pair([key(KEY_Z)], [pad(JOY_BUTTON_DPAD_RIGHT)])  # o RT virou um quadrado
 	d[&"inventory"] = _pair([key(KEY_I)], [pad(JOY_BUTTON_BACK)])
 	# Habilidades: K no teclado; no controle, pelo botão na janela do inventário.
 	d[&"skills"] = _pair([key(KEY_K)], [])
@@ -300,7 +300,7 @@ func _load_user() -> void:
 		for kind in [KB, PAD]:
 			if not cfg.has_section_key(kind, action):
 				continue
-			if old_layout and kind == KB and action in LAYOUT_2_ACTIONS:
+			if old_layout and action in LAYOUT_2_ACTIONS:
 				continue
 			var data: Dictionary = cfg.get_value(kind, action, {})
 			_replace_primary(action, kind, deserialize(data) if not data.is_empty() else null)

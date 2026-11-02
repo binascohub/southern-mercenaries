@@ -3353,3 +3353,15 @@ msgstr "O portão é de vocês. Que a Rainha dos Ratos se lembre de quem a guard
 
 msgid "DLG_GATE_KEEPER_DONE"
 msgstr "O caminho está aberto. Não olhem para trás."
+
+msgid "HUD_BASIC_ATTACK"
+msgstr "Ataque"
+
+msgid "HUD_POTION_SHORT_HEALTH"
+msgstr "Vida"
+
+msgid "HUD_POTION_SHORT_RESOURCE"
+msgstr "Mana"
+
+msgid "HUD_POTION_SHORT_ELEMENTAL"
+msgstr "Elem."

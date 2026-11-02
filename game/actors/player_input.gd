@@ -24,9 +24,9 @@ var mount_presses := 0
 var jump_presses := 0
 var block_held := false
 var block_presses := 0
-## Atalhos de habilidade 1 a 8 (teclas 2 a 9; contadores de apertos).
-const SKILL_SLOTS := 8
-var skill_presses: Array[int] = [0, 0, 0, 0, 0, 0, 0, 0]
+## Os sete quadrados de habilidade ou poção (teclas 2 a 8; contadores de apertos). O quadrado 1 é o ataque básico.
+const SKILL_SLOTS := 7
+var skill_presses: Array[int] = [0, 0, 0, 0, 0, 0, 0]
 
 
 ## Lê o Input Map local, continuando os contadores de `previous`.
@@ -93,7 +93,7 @@ func to_array() -> Array:
 
 static func from_array(a: Array) -> PlayerInput:
 	var input := PlayerInput.new()
-	if a.size() != 26:
+	if a.size() != 25:
 		return input
 	input.move = Vector2(a[0], a[1]).limit_length(1.0)
 	input.aim = Vector2(a[2], a[3]).limit_length(1.0)
@@ -109,8 +109,8 @@ static func from_array(a: Array) -> PlayerInput:
 	input.potion_elemental_presses = int(a[13])
 	for i in SKILL_SLOTS:
 		input.skill_presses[i] = int(a[14 + i])
-	input.mount_presses = int(a[22])
-	input.block_held = bool(a[23])
-	input.block_presses = int(a[24])
-	input.jump_presses = int(a[25])
+	input.mount_presses = int(a[21])
+	input.block_held = bool(a[22])
+	input.block_presses = int(a[23])
+	input.jump_presses = int(a[24])
 	return input

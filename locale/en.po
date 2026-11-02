@@ -3353,3 +3353,15 @@ msgstr "The gate is yours. May the Rat Queen remember who guarded her."
 
 msgid "DLG_GATE_KEEPER_DONE"
 msgstr "The way is open. Do not look back."
+
+msgid "HUD_BASIC_ATTACK"
+msgstr "Attack"
+
+msgid "HUD_POTION_SHORT_HEALTH"
+msgstr "Health"
+
+msgid "HUD_POTION_SHORT_RESOURCE"
+msgstr "Mana"
+
+msgid "HUD_POTION_SHORT_ELEMENTAL"
+msgstr "Elem."

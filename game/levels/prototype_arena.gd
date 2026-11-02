@@ -693,6 +693,7 @@ func _load_area(id: String, _entry: String) -> void:
 	hud.set_area(tr(arena.get("name_key", "")))
 	hud.show_area_foes(_area_foes())
 	Music.play(Music.track_for_area(id, bool(arena.get("town", false))))
+	Music.play_ambience(Music.ambience_for_area(id))
 
 
 ## Monstros desta área (um de cada, na ordem dos encontros) e o elemento deles.

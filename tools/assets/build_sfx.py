@@ -76,7 +76,13 @@ def delay(x, sec):
     return [0.0] * n(sec) + x
 
 
+## Sons trocados por arquivos de verdade (pack "Battle Sound Effects" do OpenGameArt): o gerador não os sobrescreve.
+REPLACED = {"bow", "swing", "swing_heavy", "slash"}
+
+
 def save(name, x, peak=0.8):
+    if name in REPLACED:
+        return
     m = max(1e-6, max(abs(v) for v in x))
     x = [v / m * peak for v in x]
     fade = min(len(x), 120)
