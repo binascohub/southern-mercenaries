@@ -159,7 +159,10 @@
       1.0,
       1.0,
       1.0
-    ]
+    ],
+    "drops_key": "sewer_key_spades",
+    "key_model": "Key_Spades",
+    "key_name_key": "PROP_SEWER_KEY_SPADES"
   },
   "demon_rat_queen": {
     "_comment": "Chefe do Esgoto — o Feiticeiro-Aranha (no lugar da Rainha dos Ratos; o id e a mecânica ficam, a aparência e o nome mudam) (03-inimigos.md, seção 2): vida 1.000 x fator de chefe 4,3 (13-balanceamento.md 2.4). Fases por vida: 1 Mãe Furiosa (investidas, pisão em área, enxame a cada 20 s), 2 A Ninhada (abaixo de 60%: volta ao ninho e protege 3 ninhos de filhotes; regenera enquanto houver ninho), 3 O Pacto (abaixo de 25%: alaga a arena e o gás tóxico sai dos canos em lugares marcados).",
@@ -541,7 +544,7 @@
     ],
     "_comment": "Mini-chefe da Floresta (04-tortuga-e-missoes.md: o Leshy guarda a árvore anciã): gigante de casca, investidas e pisões; modelo do Monstro da Floresta (cdmir, CC0).",
     "chest_loot": "treasure_forest",
-    "quest_drop": "travelers_bag"
+    "quest_drop": "adams_rib"
   },
   "ruin_warden": {
     "name_key": "MONSTER_RUIN_WARDEN",
@@ -1194,10 +1197,13 @@
       1.0,
       1.0
     ],
-    "_comment": "Mini-chefe do Esgoto (praça oeste): o Rei dos Sapos, agora o Monstro de Tábuas (Monster_4, minib1.rar do autor; modelo em plank_monster.glb, com os movimentos dos heróis); investidas (os ratos não são mais monstros: só cenário)."
+    "_comment": "Mini-chefe do Esgoto (praça oeste): o Rei dos Sapos, agora o Monstro de Tábuas (Monster_4, minib1.rar do autor; modelo em plank_monster.glb, com os movimentos dos heróis); investidas (os ratos não são mais monstros: só cenário).",
+    "drops_key": "sewer_key_hearts",
+    "key_model": "Key_Hearts",
+    "key_name_key": "PROP_SEWER_KEY_HEARTS"
   },
-  "viper_queen": {
-    "name_key": "MONSTER_VIPER_QUEEN",
+  "stone_golem_king": {
+    "name_key": "MONSTER_STONE_GOLEM_KING",
     "max_health": 240,
     "move_speed": 2.8,
     "damage": 17,
@@ -1224,7 +1230,7 @@
       1.0,
       1.0
     ],
-    "_comment": "Mini-chefe da Floresta (Toca dos Répteis): usa o modelo do Rei Golem de Pedra (golem_king.glb, tools/assets/build_stone_golem_king.py); o Guardião do Túmulo o acompanha.",
+    "_comment": "Rei Golem de Pedra, 1º mini-chefe da Floresta: o templo em ruínas do leste o desperta (com o Guardião do Túmulo) quando a missão da Exploradora está ativa, e ele larga a adaga de osso de dinossauro cravada no peito de pedra. Modelo golem_king.glb (tools/assets/build_stone_golem_king.py).",
     "waves": {
       "first": 8.0,
       "interval": 24.0,

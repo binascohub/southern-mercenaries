@@ -113,6 +113,8 @@ static func dialogue_index(npc_id: String, quest_states: Dictionary) -> int:
 		# Missão que só aparece depois de outra terminada (a taberneira passa a da Floresta depois do Esgoto).
 		if when.has("after") and quest_states.get(when.after, "") != "done":
 			continue
+		if when.has("quest_done") and quest_states.get(when.quest_done, "") != "done":
+			continue
 		# Troca do mapa: o NPC só oferece quando a missão da cidade que pede o item dele está ativa.
 		if when.has("requires") and quest_states.get(when.requires, "") != "active":
 			continue
@@ -164,8 +166,9 @@ func interact(player: Player, prop: Dictionary) -> void:
 			# Ouvir a história põe as criaturas no bestiário.
 			if index >= 0:
 				learn(GameData.npcs[prop.npc].dialogues[index].get("bestiary", []))
-			# Estátua que desperta um grupo (mini-chefe da praça) depois da fala.
-			if prop.has("summon"):
+			# Estátua que desperta um grupo (mini-chefe da praça) depois da fala; com "needs_quest", só quando essa missão está ativa
+			# (assim o mini-chefe não morre antes de a missão pedir o item que ele larga).
+			if prop.has("summon") and (not prop.has("needs_quest") or _campaign().get("quests", {}).get(String(prop.needs_quest), "") == "active"):
 				_arena().summon_encounter(player, prop)
 		"quest_spot":
 			resolve_spot(player, String(prop.quest))

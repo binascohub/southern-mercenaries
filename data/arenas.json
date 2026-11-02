@@ -5795,6 +5795,23 @@
         "after_victory": true
       },
       {
+        "id": "nest_gate",
+        "kind": "gate",
+        "name_key": "PROP_NEST_GATE",
+        "position": [
+          0,
+          -170.0
+        ],
+        "rotation": 0,
+        "scale": 2.4,
+        "block": 5.0,
+        "count": 1,
+        "needs_keys": [
+          "sewer_key_spades",
+          "sewer_key_hearts"
+        ]
+      },
+      {
         "id": "war_crest",
         "kind": "sign",
         "look": "crest",
@@ -9921,7 +9938,8 @@
             -51
           ]
         ],
-        "speed": 1.0
+        "speed": 1.0,
+        "needs_quest": "forest_fire_golem"
       },
       {
         "id": "elf_archer",
@@ -10016,7 +10034,7 @@
           -37.0
         ],
         "summon": {
-          "id": "f_viper_queen",
+          "id": "f_stone_golem_king",
           "position": [
             142.0,
             -28.0
@@ -10025,7 +10043,7 @@
           "toast": "TOAST_TEMPLE_AWAKENS",
           "monsters": [
             {
-              "monster": "viper_queen",
+              "monster": "stone_golem_king",
               "count": 1
             },
             {
@@ -10033,7 +10051,8 @@
               "count": 1
             }
           ]
-        }
+        },
+        "needs_quest": "forest_leshy"
       },
       {
         "id": "boss_gate",

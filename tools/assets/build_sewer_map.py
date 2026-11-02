@@ -275,6 +275,9 @@ for p in legacy["nest_props"]:
 props = [p for p in props if p.get("id") != "war_treasure"]
 # Sem baús no mapa (pedido do autor): o loot vem só do baú que os chefes e mini-chefes deixam ao morrer.
 props = [p for p in props if p["kind"] != "chest"]
+# Portão do corredor logo abaixo do Ninho da Rainha: só cai com as duas chaves dos mini-chefes (Espadas: Jacaré Velho; Copas: Rei dos Sapos / Monstro de Tábuas).
+props.append({"id": "nest_gate", "kind": "gate", "name_key": "PROP_NEST_GATE", "position": [0, tunnel_z - 1.0], "rotation": 0, "scale": 2.4, "block": 5.0, "count": 1,
+              "needs_keys": ["sewer_key_spades", "sewer_key_hearts"]})
 # Piso todo de pedra: sem água (nem o lago do Gator Velho).
 props = [p for p in props if p["kind"] != "water"]
 # brasão da Passagem da Guerra (o Arqueiro reconhece) na entrada do setor 4

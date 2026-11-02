@@ -396,13 +396,13 @@ msgid "NPC_FOREST_TEMPLE"
 msgstr "Ruined temple"
 
 msgid "DLG_TEMPLE_1"
-msgstr "The temple stones vibrate under your hand. An ancient symbol lights up in the center, and something coils in the shadows of the altar."
+msgstr "The temple stones vibrate under your hand. An ancient symbol lights up in the center, dripping, and something coils slowly in the shadows of the altar."
 
 msgid "DLG_TEMPLE_2"
-msgstr "The ground shakes: the Viper Queen awakens, and the Tomb Guardian rises beside her."
+msgstr "The ground shakes and splits like a mouth: the Stone Golem King awakens, and the Tomb Guardian rises beside him, soil still running from its sockets."
 
 msgid "TOAST_TEMPLE_AWAKENS"
-msgstr "The temple shudders: the Viper Queen awakens!"
+msgstr "The temple shudders: the Stone Golem King awakens!"
 
 msgid "TOAST_VIPER_WAVE"
 msgstr "The Golem King summons golem wave {n}!"
@@ -2606,25 +2606,25 @@ msgid "NPC_ELF_ARCHER"
 msgstr "Explorer"
 
 msgid "DLG_ARCHER_1"
-msgstr "Good day, travelers. Mind your step: these trails keep very old things. I am an explorer, and I roam the world after rarities for my collection."
+msgstr "Good day, travelers. Mind your step: these trails are full of very old things, and of things that used to be people. I am an explorer, and I roam the world after rarities for my collection. I have a shelf made only of teeth."
 
 msgid "DLG_ARCHER_2"
-msgstr "For months I have been after the dinosaur bone dagger. They say the Viper Queen, who guards the temple in the east of the forest, has it."
+msgstr "For months I have been after the dinosaur bone dagger. They say the Stone Golem King, who sleeps in the temple in the east of the forest, carries it driven into his chest, and that the stone around the blade bleeds."
 
 msgid "DLG_ARCHER_3"
-msgstr "Bring her down and bring me the dagger. In return I will hand over one of the two keys to the gate of the Leshy's lair, deep in the forest."
+msgstr "Wake the temple, bring down the King and tear the dagger from his chest for me. In return I will hand over one of the two keys to the gate of the Leshy's lair, deep in the forest."
 
 msgid "DLG_ARCHER_ACTIVE"
-msgstr "The temple lies at the far east of the woods. The dagger is unmistakable, curved and white, the length of a forearm. Bring it and the key is yours."
+msgstr "The temple lies at the far east of the woods, where the soil is dark from so much blood. Touch its stones to wake the King. The dagger is unmistakable, curved and white, the length of a forearm. Bring it and the key is yours."
 
 msgid "DLG_ARCHER_DONE"
-msgstr "Magnificent! This blade will shine in my collection. The key is yours, as agreed. Keep it safe: together with Aelindra's, it opens the gate to the Leshy's lair. Talk to the warden before it."
+msgstr "Magnificent! There is still dried blood on the hilt. This blade will shine in my collection. The key is yours, as agreed. Keep it safe: together with Aelindra's, it opens the gate to the Leshy's lair. Talk to the warden before it."
 
 msgid "QUEST_FOREST_LESHY"
 msgstr "The Bone Dagger"
 
 msgid "QUEST_FOREST_LESHY_DESC"
-msgstr "The Explorer wants the dinosaur bone dagger for her collection of rarities. The Viper Queen keeps it, in the temple in the east of the forest. Defeat her and hand over the dagger: in return she gives one of the two keys to the gate of the Leshy's lair."
+msgstr "The Explorer wants the dinosaur bone dagger for her collection of horrors. The Stone Golem King keeps it driven into his chest, in the temple in the east of the forest. Wake the temple, defeat the King, pull out the dagger and hand it over: in return she gives one of the two keys to the gate of the Leshy's lair."
 
 msgid "DLG_HUNTER_1"
 msgstr "Strangers! Mind the hedge when you leave — the grove is not what it was. I'm Bertram. Elara and I are all that's left of Ferncroft."
@@ -2758,8 +2758,6 @@ msgstr "Missing: {item}"
 msgid "MONSTER_FROG_KING"
 msgstr "Frog King"
 
-msgid "MONSTER_VIPER_QUEEN"
-msgstr "Viper Queen"
 
 msgid "MONSTER_RUIN_ALPHA"
 msgstr "Pack Alpha"
@@ -2843,13 +2841,13 @@ msgid "NPC_FOREST_PYRE_KEEPER"
 msgstr "Aelindra, Keeper of the Pyre"
 
 msgid "DLG_PYRE_1"
-msgstr "The pyre never dies, strangers. I am Aelindra, an elf and protector of this Forest and of every creature that lives in it."
+msgstr "The pyre never dies, strangers. I am Aelindra, elf and warden of this Forest. I feed the fire with what the woods give back: bones, and what is left of them."
 
 msgid "DLG_PYRE_2"
-msgstr "Morvak, a hunter, killed the animals here without mercy and died cursed. His skull burns in the embers of this pyre, and the curse grows with it. If it reaches the trees, the Forest dies."
+msgstr "Morvak the hunter flayed the animals here alive and nailed their hides to the trees. He died on his feet, headless, laughing. His skull does not burn: it whispers, and where the curse seeps, the bark of the trees bleeds."
 
 msgid "DLG_PYRE_3"
-msgstr "The Fire Golem guards the skull. Defeat him and bring it to me: I will purify it with my song. The embers are already stirring…"
+msgstr "The Fire Golem keeps the skull inside his burning chest. Tear it out of him and bring it to me before the whisper reaches the roots. The embers are already stirring…"
 
 msgid "TOAST_PYRE_AWAKENS"
 msgstr "The embers roar: the Fire Golem awakens!"
@@ -2903,13 +2901,13 @@ msgid "QUEST_FOREST_FIRE"
 msgstr "Morvak's Skull"
 
 msgid "QUEST_FOREST_FIRE_DESC"
-msgstr "The elf Aelindra, protector of the Forest and its animals, asks for the cursed skull of Morvak, the hunter who slaughtered the beasts of the woods. The Fire Golem guards it in the embers of the pyre: defeat him and bring her the skull before the curse reaches the trees."
+msgstr "The elf Aelindra, warden of the Forest and its animals, asks for the cursed skull of Morvak, the hunter who flayed the beasts of the woods and died laughing, headless. The Fire Golem keeps it in his burning chest: tear it out and bring it back before the curse rots the trees."
 
 msgid "DLG_PYRE_ACTIVE"
-msgstr "Bring me Morvak's skull, strangers, before the curse reaches the trees."
+msgstr "Bring Morvak's skull, strangers, before the curse reaches the trees. Listen: it still whispers the names of the animals he killed. The embers are already stirring… beware: the Fire Golem wakes when someone calls it."
 
 msgid "DLG_PYRE_DONE"
-msgstr "The curse has crumbled to ash. The animals of the Forest thank you. Take the Key of Hearts I was given: it opens the gate to the Leshy's lair. The warden awaits you."
+msgstr "The skull screamed one last time and turned to ash. The animals sleep in peace again. Take what I owe you — and do not look back."
 
 msgid "VALUABLE_HUMAN_LUNGS"
 msgstr "Human Lungs"
@@ -3180,6 +3178,15 @@ msgid "PROP_RETURN_FOREST"
 msgstr "Back to the Forest"
 
 
+msgid "PROP_NEST_GATE"
+msgstr "Nest Gate — opens only with the Spades and Hearts keys"
+
+msgid "PROP_SEWER_KEY_SPADES"
+msgstr "Key of Spades"
+
+msgid "PROP_SEWER_KEY_HEARTS"
+msgstr "Key of Hearts"
+
 msgid "PROP_BOSS_GATE"
 msgstr "Boss Gate"
 
@@ -3191,19 +3198,19 @@ msgid "NPC_FOREST_REPTILE"
 msgstr "Gate Warden"
 
 msgid "DLG_REPTILE_1"
-msgstr "Ssss... stop, travelers. This gate is older than the forest, and I have guarded it since before you were born."
+msgstr "Ssss... stop, travelers. This gate is older than the forest. I have guarded it since before the bones that decorate the ground."
 
 msgid "DLG_REPTILE_2"
-msgstr "Behind it sleeps the Leshy, the giant of bark and stone. The gate falls only for those who bring TWO keys: Spades and Hearts. Both are held by the elves of the forest."
+msgstr "Behind it sleeps the Leshy, the giant of bark and stone, and his roots drink the dead. The gate falls only for those who bring TWO keys: Spades and Hearts. Both are held by the elves of the forest."
 
 msgid "DLG_REPTILE_3"
-msgstr "The Explorer and Aelindra, the Pyre Keeper, hold one each, but they ask a price: one wants a bone dagger, the other a cursed skull. Bring both keys to me and I will bring the gate down."
+msgstr "The Explorer and Aelindra, the Pyre Keeper, hold one each, but they ask a price: one wants a dagger made of dinosaur bone, torn from the chest of a stone king; the other, a cursed skull that still burns. Bring both keys to me and I will bring the gate down."
 
 msgid "DLG_REPTILE_ACTIVE"
-msgstr "I only open for both keys: Spades and Hearts, in the same bag. The elves have them: the Explorer and the Pyre Keeper. Bring them and the gate falls."
+msgstr "I only open for both keys: Spades and Hearts, in the same bag. The elves have them: the Explorer and the Pyre Keeper. Bring them and the gate falls. Ssssmell that? It is the Leshy, hungry."
 
 msgid "DLG_REPTILE_DONE"
-msgstr "Both keys! Passss, the gate has fallen. Beware of what sleeps inside."
+msgstr "Both keys! Passss, the gate has fallen. Beware of what sleeps inside: it still sssavors the last ones who passed."
 
 msgid "QUEST_FOREST_GATE"
 msgstr "The Leshy's Gate"
@@ -3212,37 +3219,47 @@ msgid "QUEST_FOREST_GATE_DESC"
 msgstr "The Gate Warden, a forest reptile, will only bring down the gate to the Leshy's lair for those who bring both keys, held by the elves: the Key of Spades (from the Explorer) and the Key of Hearts (from Aelindra, the Pyre Keeper). Hand both to him."
 
 msgid "DLG_KEEPER_FOREST_1"
-msgstr "Travelers and hunters go into the forest and never come back. There are so many I stopped counting."
+msgstr "Travelers and hunters go into the forest and never come back. The ones that do come back, come back later: their boots turn up on the road, with the feet still inside."
 
 msgid "DLG_KEEPER_FOREST_2"
-msgstr "They say there is gold in the roots of the ancient tree, the coins of those who got lost, guarded by the Leshy, lord of the woods. He made a pact with a demon and now makes whoever enters walk in circles until they die."
+msgstr "They say the trees there have red roots. Beneath the ancient tree lies the gold of those who got lost, and the Leshy guards it. He made a pact with a demon and now makes whoever enters walk in circles until the flesh falls off the bone. And what Lucifer ordered hidden there is with him too."
 
 msgid "DLG_KEEPER_FOREST_3"
 msgstr "In my village the elders used to say: if the Leshy makes you walk in circles, turn your clothes inside out and light a fire. Forget the clothes. Bring the fire. He grows as tall as the trees… and trees burn. And if several of him appear, watch the shadow: the real one has his shadow on the right side."
 
 msgid "DLG_KEEPER_FOREST_4"
-msgstr "There are two elves in the woods and a warden before the lair gate. Talk to him first. Bring me the bag of one of the lost travelers and I will pay well."
+msgstr "Among the hidden things is Adam's Rib, the first of all ribs, still warm, they say, as if just torn out. I do not want that bone in the demon's hands. There are two elves in the woods and a warden before the lair gate: talk to him first. Bring me the rib and I will pay well."
 
 msgid "DLG_KEEPER_FOREST_ACTIVE"
-msgstr "Still standing? Talk to the warden before the forest gate. When the Leshy falls, bring me the bag of a lost traveler: just hand it over, the gold is yours."
+msgstr "Still in one piece? Talk to the warden before the forest gate. When the Leshy falls, tear Adam's Rib out of him and bring it to me: the gold in the roots is yours."
 
 msgid "QUEST_FOREST_TREASURE"
-msgstr "The Lost Travelers' Gold"
+msgstr "Adam's Rib"
 
 msgid "QUEST_FOREST_TREASURE_DESC"
-msgstr "Travelers and hunters go into the forest and never return. There is gold in the roots of the ancient tree, guarded by the Leshy, who makes whoever enters walk in circles. He is Earth and fears Fire. The lair gate opens only through the warden, with the keys of the two elves. Defeat the Leshy and bring a lost traveler's bag to the Tavern Keeper."
+msgstr "Travelers enter the forest and come back only in pieces. The Leshy, lord of the woods, made a pact with a demon, makes whoever enters walk in circles until they die, and buries in the roots of the ancient tree the gold of the dead and Adam's Rib, which Lucifer ordered hidden. He is Earth and fears Fire. The lair gate opens only through the warden, with the keys of the two elves. Defeat the Leshy and bring the rib to the Tavern Keeper."
 
-msgid "VALUABLE_TRAVELERS_BAG"
-msgstr "Lost Traveler's Bag"
 
 msgid "RELIC_BRANCH_CROWN"
 msgstr "Crown of Branches"
 
 msgid "RELIC_BRANCH_CROWN_DESC"
-msgstr "Twisted, still living branches that grew from the Leshy's head. They smell of wet earth."
+msgstr "Twisted branches that sprouted from the Leshy's skull and still move. They smell of grave soil."
 
 msgid "DLG_SERVICE_REST_TURN_IN"
 msgstr "Rest / hand over the item"
 
 msgid "TOAST_ITEM_RECEIVED"
 msgstr "Received: {item}"
+
+msgid "VALUABLE_ADAMS_RIB"
+msgstr "Adam's Rib"
+
+msgid "MONSTER_STONE_GOLEM_KING"
+msgstr "Stone Golem King"
+
+msgid "DLG_PYRE_WAIT"
+msgstr "The dead of this wood scream too loudly for me to hear you. Speak first with the Explorer, who combs the temple in the east, and come back when the Stone King has fallen. Then I will listen."
+
+msgid "DLG_TEMPLE_LOCKED"
+msgstr "The temple stones are cold and silent. What sleeps beneath them has no reason to wake yet."

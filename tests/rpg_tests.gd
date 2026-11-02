@@ -861,9 +861,16 @@ func _test_sewers() -> void:
 	_check(GameData.npcs.sewer_frog_altar.dialogues.size() == 2, "o altar tem a fala normal e a do altar trancado")
 	_check(not queen_group.is_empty() and queen_group.monsters[0].monster == "demon_rat_queen" and int(queen_group.level) == 2, "a Rainha, nível 2")
 	var nest: Dictionary = area.rooms.filter(func(r: Dictionary) -> bool: return r.id == "nest")[0]
+	var tunnel_room: Dictionary = area.rooms.filter(func(r: Dictionary) -> bool: return r.id == "tunnel")[0]
+	var nest_ref_min: float = tunnel_room.center[1] - tunnel_room.size[1] / 2.0
+	var nest_ref_max: float = tunnel_room.center[1] + tunnel_room.size[1] / 2.0
 	_check(nest.size[0] >= 30 and nest.size[1] >= 30 and absf(queen_group.position[0] - nest.center[0]) < nest.size[0] / 2.0 and absf(queen_group.position[1] - nest.center[1]) < nest.size[1] / 2.0,
 		"sala do chefe grande, com a Rainha dentro")
 	_check(area.final and area.victory_groups == ["sw_queen"], "a vitória é só vencer a Rainha")
+	var nest_gate: Array = area.props.filter(func(p: Dictionary) -> bool: return p.id == "nest_gate")
+	_check(nest_gate.size() == 1 and nest_gate[0].kind == "gate" and nest_gate[0].needs_keys == ["sewer_key_spades", "sewer_key_hearts"] and nest_gate[0].position[1] > nest_ref_min and nest_gate[0].position[1] < nest_ref_max
+		and GameData.monsters.old_gator.drops_key == "sewer_key_spades" and GameData.monsters.frog_king.drops_key == "sewer_key_hearts",
+		"portão do corredor do Ninho: só abre com as 2 chaves dos mini-chefes (Jacaré Velho e Rei dos Sapos)")
 	_check(area.props.filter(func(p: Dictionary) -> bool: return p.get("after_victory", false)).size() == 1, "portal só depois da vitória")
 	_check(not area.props.any(func(p: Dictionary) -> bool: return p.get("id", "") == "war_treasure") and not GameData.monsters.demon_rat_queen.has("drops_key"),
 		"sem o Tesouro Perdido da Guerra: nada de baú trancado nem chave da Rainha")
@@ -980,9 +987,9 @@ func _test_sewers() -> void:
 	# Floresta: a Toca dos Répteis só tem o Rei Golem de Pedra (maior) e o Guardião (menor); sem bandos de répteis.
 	var den: Array = GameData.arenas.forest_01_path.props.filter(func(p: Dictionary) -> bool: return p.id == "forest_temple").map(func(p: Dictionary) -> Dictionary: return p.summon)
 	var no_reptiles: bool = GameData.arenas.forest_01_path.encounters.all(func(e: Dictionary) -> bool: return not e.id.begins_with("f_reptiles"))
-	_check(den.size() == 1 and den[0].monsters.size() == 2 and den[0].monsters[0].monster == "viper_queen" and den[0].monsters[1].monster == "forest_tomb_guardian"
-		and MonsterModel.FAMILIES.has(GameData.monsters.viper_queen.look) and MonsterModel.FAMILIES.has(GameData.monsters.forest_tomb_guardian.look)
-		and GameData.monsters.viper_queen.size > GameData.monsters.forest_tomb_guardian.size and no_reptiles, "Floresta: Rei Golem maior que o Guardião e sem répteis")
+	_check(den.size() == 1 and den[0].monsters.size() == 2 and den[0].monsters[0].monster == "stone_golem_king" and den[0].monsters[1].monster == "forest_tomb_guardian"
+		and MonsterModel.FAMILIES.has(GameData.monsters.stone_golem_king.look) and MonsterModel.FAMILIES.has(GameData.monsters.forest_tomb_guardian.look)
+		and GameData.monsters.stone_golem_king.size > GameData.monsters.forest_tomb_guardian.size and no_reptiles, "Floresta: Rei Golem maior que o Guardião e sem répteis")
 	# Floresta: trilhas de lajes e marcos de pedra nas divisas dos setores (como no Cemitério).
 	var forest_decor: Array = GameData.arenas.forest_01_path.decor
 	_check(forest_decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Trail_Mud").size() > 100 and Kit.has("Trail_Mud")
@@ -999,12 +1006,12 @@ func _test_sewers() -> void:
 		and forest_decor.any(func(d: Dictionary) -> bool: return d.get("piece", "") == "Fire_Flame" and d.get("flicker", false)) and Kit.has("Fire_Flame"),
 		"Floresta tem a fogueira (fogo, luz e círculo de pedras musgosas) no acampamento")
 	var temple: Array = GameData.arenas.forest_01_path.props.filter(func(p: Dictionary) -> bool: return p.id == "forest_temple")
-	_check(temple.size() == 1 and temple[0].kit == "Ruin_Temple1" and Kit.has("Ruin_Temple1") and temple[0].summon.id == "f_viper_queen"
-		and temple[0].summon.monsters[0].monster == "viper_queen" and GameData.npcs.has("forest_temple") and tr(temple[0].summon.toast) != temple[0].summon.toast
+	_check(temple.size() == 1 and temple[0].kit == "Ruin_Temple1" and Kit.has("Ruin_Temple1") and temple[0].summon.id == "f_stone_golem_king"
+		and temple[0].summon.monsters[0].monster == "stone_golem_king" and GameData.npcs.has("forest_temple") and tr(temple[0].summon.toast) != temple[0].summon.toast
 		and forest_decor.any(func(d: Dictionary) -> bool: return d.has("collider") and d.get("temple_block", false))
-		and GameData.arenas.forest_01_path.encounters.all(func(e: Dictionary) -> bool: return e.id != "f_viper_queen"),
+		and GameData.arenas.forest_01_path.encounters.all(func(e: Dictionary) -> bool: return e.id != "f_stone_golem_king"),
 		"Floresta tem um templo em ruínas (que bloqueia) no meio da sala do Rei Golem que, ao clicar, invoca o Rei Golem")
-	var waves: Dictionary = GameData.monsters.viper_queen.get("waves", {})
+	var waves: Dictionary = GameData.monsters.stone_golem_king.get("waves", {})
 	var wave_golems := {}
 	for wave: Array in waves.get("list", []):
 		for entry: Dictionary in wave:
@@ -1045,7 +1052,7 @@ func _test_sewers() -> void:
 			and (village_npcs.any(func(p: Dictionary) -> bool: return p.npc == mission.get("giver", "")) or GameData.arenas.tavern.props.any(func(p: Dictionary) -> bool: return p.get("npc", "") == mission.get("giver", ""))) and tr(mission.get("name_key", "")) != "",
 			"missão da aldeia %s: encontros e quem a dá existem" % quest_id)
 		var giver: Dictionary = GameData.npcs[mission.giver]
-		_check(Town.dialogue_index(mission.giver, {}) == 0 and Town.dialogue_index(mission.giver, {quest_id: "active"}) == 1
+		_check(Town.dialogue_index(mission.giver, {"forest_leshy": "done"} if quest_id == "forest_fire_golem" else {}) == 0 and Town.dialogue_index(mission.giver, {"forest_leshy": "done", quest_id: "active"} if quest_id == "forest_fire_golem" else {quest_id: "active"}) == 1
 			and Town.dialogue_index(mission.giver, {quest_id: "done"}) == 2 and giver.dialogues[0].get("offer", "") == quest_id,
 			"conversa de %s: oferece, lembra e agradece" % quest_id)
 	# A missão da Aelindra pede a Caveira de Morvak, que o Golem de Fogo (o mini-chefe que ela desperta) larga; ela entrega com "turn_in".
@@ -1062,22 +1069,22 @@ func _test_sewers() -> void:
 			gate = forest_prop
 	_check(not gate.is_empty() and gate.get("opened_by", "") == "forest_gate" and GameData.quests.forest_gate.items == ["key_spades", "key_hearts"] and GameData.quests.forest_gate.get("opens_gate", "") == "boss_gate" and GameData.quests.forest_gate.giver == "forest_reptile" and NpcModel.has_model("forest_reptile") and GameData.quests.forest_leshy.gives == "key_spades" and GameData.quests.forest_fire_golem.gives == "key_hearts"
 		and GameData.valuables.key_hearts.get("quest_item", false) and Kit.has("Boss_Gate") and Kit.has("Key_Hearts") and not GameData.arenas.has("forest_boss_01_lair") and not GameData.arenas.has("forest_pass_01_gate")
-		and absf(float(gate.position[0]) - 70.0) < 6.0 and gate.position[1] > -116.0 and gate.position[1] < -94.0 and GameData.monsters.viper_queen.get("quest_drop", "") == "bone_dagger"
-		and GameData.monsters.leshy.get("quest_drop", "") == "travelers_bag" and GameData.monsters.leshy.get("chest_loot", "") == "treasure_forest",
+		and absf(float(gate.position[0]) - 70.0) < 6.0 and gate.position[1] > -116.0 and gate.position[1] < -94.0 and GameData.monsters.stone_golem_king.get("quest_drop", "") == "bone_dagger"
+		and GameData.monsters.leshy.get("quest_drop", "") == "adams_rib" and GameData.monsters.leshy.get("chest_loot", "") == "treasure_forest",
 		"Portão do chefe da Floresta: no corredor c4 (Espadas + Copas); a adaga de osso vem da Rainha das Víboras, fora do portão")
 	# A taberneira passa a missão da Floresta depois do Esgoto (e ela libera a trilha); o Leshy deixa o baú épico com o tesouro e a bolsa que a taberneira recebe.
 	var treasure_quest: Dictionary = GameData.quests.forest_treasure
-	_check(treasure_quest.giver == "tavern_keeper" and treasure_quest.item == "travelers_bag" and treasure_quest.unlocks == "forest_trail" and GameData.loot.treasure_forest.relic == "branch_crown"
-		and GameData.relics.has("branch_crown") and GameData.valuables.travelers_bag.get("quest_item", false) and Kit.has("Bag")
+	_check(treasure_quest.giver == "tavern_keeper" and treasure_quest.item == "adams_rib" and treasure_quest.unlocks == "forest_trail" and GameData.loot.treasure_forest.relic == "branch_crown"
+		and GameData.relics.has("branch_crown") and GameData.valuables.adams_rib.get("quest_item", false) and Kit.has("Adam_Rib")
 		and Town.dialogue_index("tavern_keeper", {}) == 2 and Town.dialogue_index("tavern_keeper", {"sewer_treasure": "done"}) == 0
 		and Town.dialogue_index("tavern_keeper", {"sewer_treasure": "done", "forest_treasure": "active"}) == 1 and Town.dialogue_index("tavern_keeper", {"sewer_treasure": "done", "forest_treasure": "done"}) == 2
 		and GameData.npcs.tavern_keeper.dialogues[0].offer == "forest_treasure" and GameData.npcs.tavern_keeper.dialogues[1].service == "rest_turn_in"
 		and GameData.arenas.tortuga.props.any(func(p: Dictionary) -> bool: return p.id == "forest_gate" and p.get("requires", "") == "forest_trail"),
-		"A taberneira passa a missão da Floresta (depois do Esgoto): libera a trilha, o Leshy larga a bolsa e o baú com a Coroa de Galhos")
+		"A taberneira passa a missão da Floresta (depois do Esgoto): libera a trilha, o Leshy larga a Costela de Adão e o baú com a Coroa de Galhos")
 	# A Exploradora (elf_archer) quer a Adaga de Osso, que o Leshy larga; ela a troca por uma Chave de Espadas ("gives") com "turn_in".
 	var dagger_quest: Dictionary = GameData.quests.forest_leshy
 	_check(dagger_quest.get("giver", "") == "elf_archer" and dagger_quest.get("item", "") == "bone_dagger" and dagger_quest.get("gives", "") == "key_spades" and not dagger_quest.has("clear")
-		and GameData.monsters.viper_queen.get("quest_drop", "") == "bone_dagger" and GameData.valuables.bone_dagger.get("quest_item", false) and GameData.valuables.key_spades.get("quest_item", false)
+		and GameData.monsters.stone_golem_king.get("quest_drop", "") == "bone_dagger" and GameData.valuables.bone_dagger.get("quest_item", false) and GameData.valuables.key_spades.get("quest_item", false)
 		and Items.is_valid(Items.stack(Items.VALUABLE, "bone_dagger")) and Items.is_valid(Items.stack(Items.VALUABLE, "key_spades"))
 		and GameData.npcs.elf_archer.dialogues[1].get("service", "") == "turn_in" and tr("NPC_ELF_ARCHER") != "NPC_ELF_ARCHER" and tr("VALUABLE_BONE_DAGGER") != "VALUABLE_BONE_DAGGER"
 		and Kit.has(GameData.valuables.bone_dagger.model) and Kit.has(GameData.valuables.key_spades.model),
@@ -1085,7 +1092,7 @@ func _test_sewers() -> void:
 	# Floresta: seis setores, um monstro em cada, e duas praças com NPC que invoca um mini-chefe.
 	var sectors := {}
 	for e: Dictionary in forest.encounters:
-		if e.id != "f_viper_queen" and GameData.monsters[e.monsters[0].monster].get("category", "") in ["common", "elite"]:     # (os mini-chefes e a Toca do Rei Golem ficam de fora)
+		if e.id != "f_stone_golem_king" and GameData.monsters[e.monsters[0].monster].get("category", "") in ["common", "elite"]:     # (os mini-chefes e a Toca do Rei Golem ficam de fora)
 			sectors[e.monsters[0].monster] = true
 	_check(sectors.size() == 4 and sectors.has("forest_troll") and sectors.has("fungus_uncle"), "Floresta tem quatro salas de monstros (sapos, bestas, trolls e Tios Fungo), um tipo em cada (%d)" % sectors.size())
 	var summoners: Array = forest.props.filter(func(p: Dictionary) -> bool: return p.has("summon") and p.id != "forest_temple")

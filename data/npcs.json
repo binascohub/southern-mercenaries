@@ -544,7 +544,8 @@
     "dialogues": [
       {
         "when": {
-          "quest_new": "forest_fire_golem"
+          "quest_new": "forest_fire_golem",
+          "after": "forest_leshy"
         },
         "lines": [
           "DLG_PYRE_1",
@@ -563,9 +564,17 @@
         "service": "turn_in"
       },
       {
-        "when": {},
+        "when": {
+          "quest_done": "forest_fire_golem"
+        },
         "lines": [
           "DLG_PYRE_DONE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_PYRE_WAIT"
         ]
       }
     ],
@@ -725,7 +734,7 @@
     ]
   },
   "forest_temple": {
-    "_comment": "Templo em ruínas da Floresta (sala do Rei Golem): clicar o desperta; no fim da fala invoca o Rei Golem de Pedra (viper_queen) com o Guardião do Túmulo ('summon' no objeto em arenas.json); o Rei invoca ondas de golens dos elementos.",
+    "_comment": "Templo em ruínas da Floresta (sala do Rei Golem): clicar o desperta; no fim da fala invoca o Rei Golem de Pedra (stone_golem_king) com o Guardião do Túmulo ('summon' no objeto em arenas.json); o Rei invoca ondas de golens dos elementos.",
     "name_key": "NPC_FOREST_TEMPLE",
     "color": [
       0.6,
@@ -734,10 +743,18 @@
     ],
     "dialogues": [
       {
-        "when": {},
+        "when": {
+          "quest_active": "forest_leshy"
+        },
         "lines": [
           "DLG_TEMPLE_1",
           "DLG_TEMPLE_2"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_TEMPLE_LOCKED"
         ]
       }
     ]

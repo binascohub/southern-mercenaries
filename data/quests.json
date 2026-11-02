@@ -198,7 +198,7 @@
     "type": "main",
     "giver": "tavern_keeper",
     "area": "forest_01_path",
-    "item": "travelers_bag",
+    "item": "adams_rib",
     "unlocks": "forest_trail",
     "target_element": "fire",
     "reward": {

@@ -25,7 +25,7 @@ Cada mapa de combate tem **2 mini-chefes** (elites fortes com nome, categoria `m
 | Mapa | Mini-chefes |
 |---|---|
 | Esgoto | Gator Velho (Passagem da Guerra) · **Rei dos Sapos** (altar no centro do Esgoto) |
-| Floresta | Leshy · **Rainha das Víboras** |
+| Floresta | Rei Golem de Pedra (templo do leste; larga a **Adaga de Osso**) · Golem de Fogo (pira; larga a **Caveira de Morvak**) · Leshy é o chefe do mapa |
 | Ruínas | Guardião do Cofre · **Alfa da Matilha** |
 | Cemitério | Ogro da Cripta (era o Escorpião; larga os **Pulmões Humanos**) · Senhor da Cripta (larga o **Coração Humano**) |
 | Forte | Comandante (larga o **Crânio Antigo**) · **Rainha das Súcubos** |
@@ -75,6 +75,14 @@ Só os chefes do Esgoto revidam (o Rei dos Sapos, o Gator Velho e o Feiticeiro-A
 | 3 | `ruins_03_battlefield` | **Campo de Batalha** | Aberto | 4 | Neblina, armaduras e covas; Cães Negros; noite deixa os lobos mais fortes; segredo: estandarte do reino |
 | 4 | `ruins_04_capital_walls` | **Muralhas e Cidade Real** | Misto | 4 | Ruas da capital destruída; **mini-chefe: Alfa da Matilha** (Amarok elite) |
 | 5 | `ruins_05_royal_crypt` | **Cripta Real** | Estreito → arena | 4 | Fenda do inferno sob o castelo; **Cérbero**; Cofre Real |
+
+### A história da Floresta no jogo (`forest_01_path`)
+
+1. **Taberneira** (depois de vencer o Esgoto): "viajantes e caçadores entram na floresta e não voltam"; ouro nas raízes da árvore anciã, guardado pelo Leshy (Terra, fraco a Fogo). Aceitar a missão **O Ouro dos Viajantes Perdidos** libera a trilha da Floresta em Tortuga e pede a **Costela de Adão** (a primeira costela, que Lúcifer mandou esconder nas raízes da árvore anciã), que o Leshy larga.
+2. **Guardião do Portão** (réptil da floresta, diante do portão de dois arcos no corredor `c4`): explica que o portão do covil do Leshy só cai com **duas chaves**, que estão com as elfas. Missão **O Portão do Leshy**: entregar a Chave de Espadas e a Chave de Copas; o portão afunda e a passagem fica aberta.
+3. **Exploradora**: procura a adaga de osso de dinossauro para a coleção de raridades. A adaga fica no peito do **Rei Golem de Pedra**, mini-chefe do templo em ruínas (tocar o templo, com esta missão ativa, desperta o Rei e o Guardião do Túmulo). Entregando a adaga, ela dá a **Chave de Espadas**.
+4. **Aelindra, a Guardiã da Pira**: a caveira do caçador Morvak, amaldiçoado, queima na pira e ameaça as árvores. O **Golem de Fogo** (mini-chefe) a guarda; entregando a **Caveira de Morvak** ela purifica a pira e dá a **Chave de Copas**.
+5. **Leshy** (chefe do mapa, atrás do portão): ao morrer deixa o **baú épico** (tabela `treasure_forest`: o ouro dos viajantes perdidos, itens e a relíquia **Coroa de Galhos**) e a **Costela de Adão**; levando a costela à Taberneira (o botão de descansar vira "Descansar / entregar o item"), ela paga 350 de ouro e 700 de XP.
 
 ## 5. Floresta Escura (`map_forest`)
 

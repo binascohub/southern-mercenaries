@@ -4,6 +4,7 @@ extends Node3D
 ##
 ##   XDG_DATA_HOME=$(mktemp -d) godot --path . res://tools/gallery/monster_gallery.tscn
 ##   ... res://tools/gallery/monster_gallery.tscn -- unused   (só os monstros que nenhum mapa usa ainda)
+##   ... res://tools/gallery/monster_gallery.tscn -- only:golem_fire,leshy   (só esses)
 ## Controles: W A S D andam, Q / E descem e sobem, Shift acelera; botão direito + arrastar olha; Esc fecha.
 
 const COLUMNS := 8
@@ -29,6 +30,9 @@ func _ready() -> void:
 	var ids: Array = GameData.monsters.keys()
 	if "unused" in OS.get_cmdline_user_args():
 		ids = _unused_ids()
+	for arg in OS.get_cmdline_user_args():  # "only:golem_fire,golem_stone": só esses monstros
+		if arg.begins_with("only:"):
+			ids = Array(arg.trim_prefix("only:").split(",")).filter(func(id: String) -> bool: return GameData.monsters.has(id))
 	var rows := ceili(ids.size() / float(COLUMNS))
 	for i in ids.size():
 		var id: String = ids[i]

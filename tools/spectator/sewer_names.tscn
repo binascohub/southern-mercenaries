@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://tools/spectator/sewer_names.gd" id="1"]
+
+[node name="SewerNames" type="Node3D"]
+script = ExtResource("1")

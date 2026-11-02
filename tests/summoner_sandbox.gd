@@ -54,10 +54,14 @@ func _ready() -> void:
 		if arena.local_player != null:
 			arena.local_player.global_position = Vector3(float(at[0]), 0.5, float(at[1]))
 	_summon_all(arena, args.slice(1))
+	if "givekeys" in args:  # entrega as duas chaves do Esgoto (depois de 6 s): o portão do Ninho deve cair
+		get_tree().create_timer(6.0).timeout.connect(func() -> void:
+			arena.pick_key(arena.local_player, {"id": "k1", "key": "sewer_key_spades"})
+			arena.pick_key(arena.local_player, {"id": "k2", "key": "sewer_key_hearts"}))
 	if kill != "":
 		_kill_and_open(arena, kill, open_chest)
 	if shot != "":
-		await get_tree().create_timer(12.0 if kill != "" else 5.0).timeout
+		await get_tree().create_timer(12.0 if (kill != "" or "givekeys" in args) else 5.0).timeout
 		await RenderingServer.frame_post_draw
 		get_viewport().get_texture().get_image().save_png(shot)
 		get_tree().quit()

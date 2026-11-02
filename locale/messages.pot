@@ -2742,8 +2742,6 @@ msgstr ""
 msgid "MONSTER_FROG_KING"
 msgstr ""
 
-msgid "MONSTER_VIPER_QUEEN"
-msgstr ""
 
 msgid "MONSTER_RUIN_ALPHA"
 msgstr ""
@@ -3087,8 +3085,6 @@ msgstr ""
 msgid "QUEST_FOREST_TREASURE_DESC"
 msgstr ""
 
-msgid "VALUABLE_TRAVELERS_BAG"
-msgstr ""
 
 msgid "RELIC_BRANCH_CROWN"
 msgstr ""
@@ -3100,4 +3096,16 @@ msgid "DLG_SERVICE_REST_TURN_IN"
 msgstr ""
 
 msgid "TOAST_ITEM_RECEIVED"
+msgstr ""
+
+msgid "VALUABLE_ADAMS_RIB"
+msgstr ""
+
+msgid "MONSTER_STONE_GOLEM_KING"
+msgstr ""
+
+msgid "DLG_PYRE_WAIT"
+msgstr ""
+
+msgid "DLG_TEMPLE_LOCKED"
 msgstr ""

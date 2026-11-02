@@ -106,11 +106,11 @@
     "quest_item": true,
     "model": "Key_Hearts"
   },
-  "travelers_bag": {
-    "name_key": "VALUABLE_TRAVELERS_BAG",
+  "adams_rib": {
+    "name_key": "VALUABLE_ADAMS_RIB",
     "value": 0,
     "maps": [],
     "quest_item": true,
-    "model": "Bag"
+    "model": "Adam_Rib"
   }
 }

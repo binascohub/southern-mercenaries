@@ -1146,6 +1146,15 @@ func pick_key(player: Player, prop: Dictionary) -> void:
 	_remove_prop.rpc(String(prop.id))
 	_toast_all("TOAST_KEY_FOUND", {"name": player.hero_name})
 	SaveSystem.save_campaign(_campaign, true)
+	_open_key_gates()
+
+
+## Portões que só abrem com várias chaves da campanha (prop "gate" com "needs_keys"): caem sozinhos quando o grupo as tem todas.
+func _open_key_gates() -> void:
+	var keys: Array = _campaign.get("keys", [])
+	for prop: Dictionary in arena.get("props", []):
+		if prop.kind == "gate" and prop.has("needs_keys") and prop.needs_keys.all(func(k: String) -> bool: return k in keys):
+			open_gate(String(prop.id))
 
 
 ## Portão do chefe (prop "gate"): só cai quando o Guardião do Portão recebe as duas chaves (missão "opens_gate", entregue em Town._turn_in); fica aberto para sempre na campanha.
@@ -1275,9 +1284,9 @@ func _on_enemy_died(enemy: Enemy) -> void:
 	_reward(enemy)
 	if enemy.category() == "miniboss" or enemy.category() == "boss":
 		_drop_miniboss_chest(enemy)
-	if enemy.is_boss() and enemy.data.has("drops_key") and String(enemy.data.drops_key) not in _campaign.get("keys", []):
-		# A chave do tesouro cai onde o chefe morreu.
-		_add_prop.rpc({"id": "boss_key", "kind": "key", "key": String(enemy.data.drops_key), "name_key": "PROP_BOSS_KEY",
+	if (enemy.is_boss() or enemy.category() == "miniboss") and enemy.data.has("drops_key") and String(enemy.data.drops_key) not in _campaign.get("keys", []):
+		# A chave cai onde o chefe (ou o mini-chefe) morreu; as chaves do Esgoto abrem o portão do corredor do Ninho.
+		_add_prop.rpc({"id": "key_%s" % enemy.data.drops_key, "kind": "key", "key": String(enemy.data.drops_key), "name_key": String(enemy.data.get("key_name_key", "PROP_BOSS_KEY")),
 			"model": String(enemy.data.get("key_model", "Key_Gold")),
 			"position": [enemy.global_position.x, enemy.global_position.z]})
 	if enemy.is_boss():
