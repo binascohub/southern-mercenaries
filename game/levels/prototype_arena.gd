@@ -2082,7 +2082,7 @@ func _build_crowd(entry: Dictionary) -> void:
 		if model and entry.get("instrument", "") == "guitar":
 			_give_guitar(model)
 		# Bêbados com o caneco de madeira na mão.
-		if model is HeroModel and String(entry.role) == "drunk" and Kit.has("Mug_Wood"):
+		if model is HeroModel and (String(entry.role) == "drunk" or GameData.crowd.get("roles", {}).get(String(entry.role), {}).get("mug", false)) and Kit.has("Mug_Wood"):
 			(model as HeroModel).attach("hand_r", Kit.piece("Mug_Wood"), Player.HAND_GRIP, Vector3(0.4, 0.9, 0.1))
 	if model and node is Wanderer:
 		var walker := node as Wanderer

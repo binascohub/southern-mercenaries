@@ -78,33 +78,33 @@ const GOWN_LINEN := {"body": [0.62, 0.28, 0.26], "panel": [0.8, 0.76, 0.64], "tr
 const COURTESAN_BONES := {"hips": "hips", "skirt": "root", "chest": "brust", "upper_l": "oberArm_L", "upper_r": "oberArm_R",
 	"lower_l": "unterarm_L", "lower_r": "unterarm_R", "hand_l": "hand_L", "hand_r": "hand_R"}
 
+const VILLAGER_POSES := {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop", "run": "Jog_Fwd_Loop",
+	"dance_sway": "Dance_Loop", "dance_hips": "Dance_Loop", "dance_twirl": "Dance_Loop", "dance_wild": "Dance_Loop"}
+
 const MODELS := {
-	# Cortesã de Tortuga (Female NPC, umask007, CC BY 3.0): top decotado, short e botas.
-	"courtesan": {"scene": "res://assets/models/characters/courtesan.glb", "scale": 0.186,
-		"poses": COURTESAN_POSES, "dances": true, "paint": COURTESAN_PAINT, "gown": GOWN_BLUE},
-	# Segunda cortesã: o mesmo corpo nas cores da Tetine Elfe (escolha do autor):
-	# top, short e botas de couro vermelho e cabelo ruivo.
-	"courtesan_red": {"scene": "res://assets/models/characters/courtesan.glb", "scale": 0.186,
-		"poses": COURTESAN_POSES, "dances": true, "paint": COURTESAN_PAINT, "gown": GOWN_CRIMSON,
-		"colors": {"bra": [0.50, 0.10, 0.09], "trouser": [0.42, 0.08, 0.07], "shoe": [0.40, 0.10, 0.08],
-			"hair": [0.40, 0.15, 0.07], "hair.001": [0.40, 0.15, 0.07]}},
-	# Mais cortesãs, cada uma com seu jeito: esmeralda, preto com loira, dourado e linho.
-	"courtesan_green": {"scene": "res://assets/models/characters/courtesan.glb", "scale": 0.186,
-		"poses": COURTESAN_POSES, "dances": true, "paint": COURTESAN_PAINT, "gown": GOWN_TEAL,
-		"colors": {"skin": [0.80, 0.58, 0.45], "bra": [0.12, 0.35, 0.22], "trouser": [0.10, 0.25, 0.18],
-			"shoe": [0.22, 0.14, 0.09], "hair": [0.07, 0.05, 0.04], "hair.001": [0.07, 0.05, 0.04]}},
-	"courtesan_black": {"scene": "res://assets/models/characters/courtesan.glb", "scale": 0.186,
-		"poses": COURTESAN_POSES, "dances": true, "paint": COURTESAN_PAINT, "gown": GOWN_NIGHT,
-		"colors": {"skin": [0.90, 0.72, 0.60], "bra": [0.08, 0.08, 0.10], "trouser": [0.12, 0.08, 0.10],
-			"shoe": [0.10, 0.08, 0.07], "hair": [0.72, 0.62, 0.40], "hair.001": [0.72, 0.62, 0.40]}},
-	"courtesan_gold": {"scene": "res://assets/models/characters/courtesan.glb", "scale": 0.186,
-		"poses": COURTESAN_POSES, "dances": true, "paint": COURTESAN_PAINT, "gown": GOWN_ORANGE,
-		"colors": {"skin": [0.55, 0.38, 0.28], "bra": [0.70, 0.52, 0.18], "trouser": [0.55, 0.30, 0.12],
-			"shoe": [0.30, 0.18, 0.10], "hair": [0.12, 0.07, 0.05], "hair.001": [0.12, 0.07, 0.05]}},
-	"courtesan_white": {"scene": "res://assets/models/characters/courtesan.glb", "scale": 0.186,
-		"poses": COURTESAN_POSES, "dances": true, "paint": COURTESAN_PAINT, "gown": GOWN_LINEN,
-		"colors": {"skin": [0.72, 0.50, 0.38], "bra": [0.80, 0.76, 0.66], "trouser": [0.70, 0.65, 0.55],
-			"shoe": [0.35, 0.24, 0.15], "hair": [0.50, 0.22, 0.09], "hair.001": [0.50, 0.22, 0.09]}},
+	# Cortesãs de Tortuga: a Aldeã (villager1.zip do autor, de cg-moon.com; autoria e licença a confirmar), malha em T-pose presa ao esqueleto dos heróis por
+	# tools/assets/rig_to_ual.py (ver tools/assets/build_villager.py), com as animações deles (as danças usam a dos heróis). As variantes são o mesmo corpo
+	# com um tom por cima da textura.
+	"courtesan": {"scene": "res://assets/models/characters/villager.glb", "scale": 1.0, "poses": VILLAGER_POSES},
+	"courtesan_red": {"scene": "res://assets/models/characters/villager.glb", "scale": 1.0, "poses": VILLAGER_POSES,
+		"colors": {"Villager": [1.0, 0.78, 0.76]}},
+	"courtesan_green": {"scene": "res://assets/models/characters/villager.glb", "scale": 1.0, "poses": VILLAGER_POSES,
+		"colors": {"Villager": [0.8, 1.0, 0.85]}},
+	"courtesan_black": {"scene": "res://assets/models/characters/villager.glb", "scale": 1.0, "poses": VILLAGER_POSES,
+		"colors": {"Villager": [0.6, 0.6, 0.72]}},
+	"courtesan_gold": {"scene": "res://assets/models/characters/villager.glb", "scale": 1.0, "poses": VILLAGER_POSES,
+		"colors": {"Villager": [1.0, 0.9, 0.62]}},
+	"courtesan_white": {"scene": "res://assets/models/characters/villager.glb", "scale": 1.0, "poses": VILLAGER_POSES},
+	# Reni (reni.rar do autor, Mixamo Fuse "Lal Suite Wali Women"; autoria e licença a confirmar): malha em T-pose presa ao esqueleto dos heróis por
+	# tools/assets/rig_to_ual.py (ver tools/assets/build_reni.py), com as animações deles; passeia pelas ruas de Tortuga.
+	"reni": {"scene": "res://assets/models/characters/reni.glb", "scale": 1.0, "poses": VILLAGER_POSES},
+	# Mulher de vestido (z-h Fantasy Outfit 21 FREE, woman1.zip do autor; autoria e licença a confirmar): vestido longo bordô de mangas transparentes sobre a cabeça, o cabelo
+	# comprido e as mãos da heroína, presos ao esqueleto dos heróis por tools/assets/build_woman_dress.py, com as animações deles.
+	"woman_dress": {"scene": "res://assets/models/characters/woman_dress.glb", "scale": 1.0, "poses": VILLAGER_POSES},
+	# Guarda da Capital (warrior.glb do autor, Sketchfab "Warior"; autoria e licença a confirmar): elmo, gibão marrom e lança, com esqueleto e uma animação de guarda
+	# parado (499 quadros, "Scene", em laço); 1,8 m. Fica de guarda (idle), sem andar.
+	"warrior_guard": {"scene": "res://assets/models/characters/warrior_guard.glb", "scale": 1.0,
+		"poses": {"idle": "Scene", "talk": "Scene", "stand": "Scene"}},
 	# Capitão pirata (Clint Bellanger, CC BY 3.0): preso ao esqueleto dos heróis
 	# por tools/assets/rig_to_ual.py, com as animações deles; texturas geradas.
 	# Catador do Esgoto (The Amazing Spider-Man 2 suit, Ugo9p1, modelo comprado, crédito pedido pelo autor): malha em T-pose presa ao
@@ -114,6 +114,23 @@ const MODELS := {
 	# Itachi (itachi.blend do autor, malha do Mixamo sem textura: pintura por vértice e rigging por tools/assets/build_itachi_npc.py): o Caçador de Pragas do Esgoto,
 	# preso ao esqueleto dos heróis, com os movimentos deles.
 	"sewer_ratcatcher": {"scene": "res://assets/models/characters/itachi.glb", "scale": 1.0, "vertex_colors": true,
+		"poses": {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop"}},
+	# Baltazar (civilian1.glb do autor, homem do Mixamo de camisa e calça; tools/assets/build_mixamo_civilian.py): passeia pela praça do portão da Capital e pela rua de Tortuga, preso ao esqueleto dos heróis,
+	# com os movimentos deles.
+	"civilian_1": {"scene": "res://assets/models/characters/civilian1.glb", "scale": 1.0,
+		"poses": {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop"}},
+	# Hector (civilian3.glb do autor, outro homem do Mixamo, mesmo método; tools/assets/build_mixamo_civilian.py): passeia pela rua de Tortuga, preso ao esqueleto dos heróis.
+	"civilian_2": {"scene": "res://assets/models/characters/civilian3.glb", "scale": 1.0,
+		"poses": {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop"}},
+	# Otávio (civilian4.glb do autor, outro homem do Mixamo, mesmo método; tools/assets/build_mixamo_civilian.py): passeia pela rua de Tortuga, preso ao esqueleto dos heróis.
+	"civilian_3": {"scene": "res://assets/models/characters/civilian4.glb", "scale": 1.0,
+		"poses": {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop"}},
+	# Dona Zefa (civilian5.glb do autor, mulher de vestido longo estampado e faixa vinho, malhas estáticas em T-pose; tools/assets/build_mixamo_civilian.py, com pesos mais suaves na saia): passeia pela rua de
+	# Tortuga, presa ao esqueleto dos heróis.
+	"civilian_5": {"scene": "res://assets/models/characters/civilian5.glb", "scale": 1.0,
+		"poses": {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop"}},
+	# Capitão Barnabé (pirate2.glb do autor, homem de colete de couro, barba e botas, low poly; tools/assets/build_mixamo_civilian.py): passeia pela rua de Tortuga, preso ao esqueleto dos heróis.
+	"pirate_2": {"scene": "res://assets/models/characters/pirate2.glb", "scale": 1.0,
 		"poses": {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop"}},
 	"pirate_captain": {"scene": "res://assets/models/characters/pirate_captain.glb", "scale": 1.0,
 		"poses": {"walk": "Walk_Loop", "idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "drink": "Consume"}},
@@ -173,9 +190,6 @@ const MODELS := {
 	"rabbit": {"scene": "res://assets/models/characters/rabbit.glb", "scale": 0.04,
 		"poses": {"walk": "jump", "run": "run", "idle": "idle", "talk": "sit"}},
 	# Galinha (cdmir, CC0): anda e cisca pelas cozinhas de Tortuga (12,6 unidades -> 0,4 m).
-	# Gato (Simple Cat, drummyfish, CC0): passeia pelas ruas de Tortuga; parado, fica no 1º quadro da caminhada.
-	"cat": {"scene": "res://assets/models/characters/cat.glb", "scale": 0.2,
-		"poses": {"walk": "walk"}},
 	# Cavalo de tração (Rigged Horse, Lyndon Daniels / ChadM, CC0): passeia pelas ruas de Tortuga; o ciclo de
 	# passo foi criado por tools/assets/build_horse.py (o arquivo original não tem animação).
 	"horse": {"scene": "res://assets/models/characters/horse.glb", "scale": 1.0,

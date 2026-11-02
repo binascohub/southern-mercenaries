@@ -1110,7 +1110,7 @@
         "pose": "lie"
       },
       {
-        "role": "drunk",
+        "role": "civilian_6",
         "position": [
           -15.8,
           -6.9
@@ -1151,35 +1151,13 @@
         "pose": "lie"
       },
       {
-        "role": "drunk",
+        "role": "civilian_6",
         "position": [
           17.6,
           -6.9
         ],
         "pose": "sit",
         "seat": "Stool"
-      },
-      {
-        "role": "courtesan",
-        "position": [
-          -11.6,
-          6.4
-        ],
-        "rotation": 200,
-        "pose": "talk"
-      },
-      {
-        "role": "courtesan",
-        "position": [
-          19.6,
-          -6.4
-        ],
-        "rotation": 60,
-        "path": [
-          11.0,
-          -6.4
-        ],
-        "speed": 0.9
       },
       {
         "role": "sailor",
@@ -1300,7 +1278,7 @@
         "seat": "Crate_Wooden"
       },
       {
-        "role": "drunk",
+        "role": "civilian_6",
         "position": [
           8,
           -13.5
@@ -1416,33 +1394,6 @@
         "speed": 0.5
       },
       {
-        "role": "courtesan_gold",
-        "position": [
-          14.4,
-          0.2
-        ],
-        "rotation": 79,
-        "pose": "dance_hips"
-      },
-      {
-        "role": "courtesan_black",
-        "position": [
-          17.6,
-          -0.8
-        ],
-        "rotation": 309,
-        "pose": "dance_sway"
-      },
-      {
-        "role": "courtesan_white",
-        "position": [
-          15.4,
-          -1.7
-        ],
-        "rotation": 15,
-        "pose": "dance_twirl"
-      },
-      {
         "role": "sailor",
         "position": [
           12.4,
@@ -1450,24 +1401,6 @@
         ],
         "rotation": 104,
         "pose": "talk"
-      },
-      {
-        "role": "courtesan_red",
-        "position": [
-          -22.8,
-          0.6
-        ],
-        "rotation": 52,
-        "pose": "dance_sway"
-      },
-      {
-        "role": "courtesan_white",
-        "position": [
-          -20.2,
-          2.6
-        ],
-        "rotation": 232,
-        "pose": "dance_hips"
       },
       {
         "role": "gambler",
@@ -1488,24 +1421,6 @@
         "pose": "idle"
       },
       {
-        "role": "courtesan_black",
-        "position": [
-          -1.4,
-          -11.6
-        ],
-        "rotation": 106,
-        "pose": "dance_wild"
-      },
-      {
-        "role": "courtesan",
-        "position": [
-          0.2,
-          -13.6
-        ],
-        "rotation": 353,
-        "pose": "dance_sway"
-      },
-      {
         "role": "dockworker",
         "position": [
           -3.6,
@@ -1513,80 +1428,6 @@
         ],
         "rotation": 74,
         "pose": "idle"
-      },
-      {
-        "role": "courtesan_white",
-        "position": [
-          -9.5,
-          -2.5
-        ],
-        "rotation": 77,
-        "pose": "dance_sway"
-      },
-      {
-        "role": "courtesan_green",
-        "position": [
-          5.8,
-          -0.8
-        ],
-        "rotation": 38,
-        "pose": "dance_twirl"
-      },
-      {
-        "role": "cat",
-        "position": [
-          3,
-          1.5
-        ],
-        "path": [
-          9,
-          2.5
-        ],
-        "speed": 0.7
-      },
-      {
-        "role": "cat",
-        "position": [
-          -18,
-          -3
-        ],
-        "path": [
-          -12,
-          -2
-        ],
-        "speed": 0.7
-      },
-      {
-        "role": "cat",
-        "position": [
-          15,
-          6
-        ],
-        "path": [
-          21,
-          5
-        ],
-        "speed": 0.6
-      },
-      {
-        "role": "cat",
-        "position": [
-          -3,
-          -5.5
-        ],
-        "rotation": 200
-      },
-      {
-        "role": "courtesan_red",
-        "position": [
-          22,
-          4
-        ],
-        "path": [
-          14,
-          3.6
-        ],
-        "speed": 0.8
       },
       {
         "role": "pig",
@@ -1709,6 +1550,76 @@
           "sailor",
           "pirate"
         ]
+      },
+      {
+        "role": "civilian_1",
+        "position": [
+          -22,
+          -5.5
+        ],
+        "rotation": 90,
+        "pose": "walk",
+        "path": [
+          22,
+          -5.5
+        ],
+        "speed": 1.0
+      },
+      {
+        "role": "civilian_2",
+        "position": [
+          22,
+          6
+        ],
+        "rotation": 270,
+        "pose": "walk",
+        "path": [
+          -22,
+          6
+        ],
+        "speed": 0.95
+      },
+      {
+        "role": "civilian_3",
+        "position": [
+          -22,
+          2.5
+        ],
+        "rotation": 90,
+        "pose": "walk",
+        "path": [
+          22,
+          2.5
+        ],
+        "speed": 1.1
+      },
+      {
+        "role": "civilian_5",
+        "position": [
+          22,
+          -7
+        ],
+        "rotation": 270,
+        "pose": "walk",
+        "path": [
+          -22,
+          -7
+        ],
+        "speed": 0.9
+      },
+      {
+        "role": "pirate_2",
+        "position": [
+          22,
+          -3.5
+        ],
+        "rotation": 270,
+        "pose": "walk",
+        "path": [
+          -22,
+          -3.5
+        ],
+        "speed": 1.0
       }
     ]
   },
@@ -101251,6 +101162,18 @@
         "y": 0.9,
         "rotation": 159,
         "scale": 1.8
+      },
+      {
+        "piece": "Gallows",
+        "position": [
+          -22.5,
+          -19.2
+        ],
+        "rotation": 0,
+        "solid": [
+          4.8,
+          6.4
+        ]
       }
     ],
     "crowd": [
@@ -101373,6 +101296,38 @@
           -12
         ],
         "speed": 0.9
+      },
+      {
+        "role": "civilian_1",
+        "position": [
+          -16,
+          5
+        ],
+        "rotation": 90,
+        "pose": "walk",
+        "path": [
+          16,
+          5
+        ],
+        "speed": 1.0
+      },
+      {
+        "role": "warrior_guard",
+        "position": [
+          -13,
+          1
+        ],
+        "rotation": 0,
+        "pose": "idle"
+      },
+      {
+        "role": "warrior_guard",
+        "position": [
+          13,
+          1
+        ],
+        "rotation": 0,
+        "pose": "idle"
       }
     ],
     "dummies": [
