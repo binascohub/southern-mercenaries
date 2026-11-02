@@ -392,6 +392,9 @@ msgstr "+{value}% de velocidad de movimiento"
 msgid "AFFIX_GOLD_FIND"
 msgstr "+{value}% de Binascoins encontradas"
 
+msgid "MONSTER_FOREST_TROLL"
+msgstr "Trol del Bosque"
+
 msgid "ITEM_VENISON"
 msgstr "Carne de ciervo"
 

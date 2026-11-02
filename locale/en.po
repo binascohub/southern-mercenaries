@@ -392,6 +392,9 @@ msgstr "+{value}% movement speed"
 msgid "AFFIX_GOLD_FIND"
 msgstr "+{value}% Binascoins found"
 
+msgid "MONSTER_FOREST_TROLL"
+msgstr "Forest Troll"
+
 msgid "ITEM_VENISON"
 msgstr "Venison"
 

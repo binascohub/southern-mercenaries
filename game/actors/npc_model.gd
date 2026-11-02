@@ -130,6 +130,9 @@ const MODELS := {
 	# capa vermelha, 1,9 m com a crista; a malha vinha em T-pose e sem esqueleto, então os braços foram baixados
 	# (tools/assets/build_achilles.py) e ele fica parado nessa pose. Dá a missão dos goblins.
 	"ruins_spartan": {"scene": "res://assets/models/characters/ruins_spartan.glb", "scale": 1.0, "poses": {}},
+	# Guardiã da Pira (Saxon warrior, Blend Swap #83828, CC0): guerreiro saxão de capa, escudo e lança, parado na pose do arquivo (sem animação); 1,85 m
+	# (a lança passa disso). Criado por tools/assets/build_saxon_warrior.py. Dá a missão do Golem de Fogo.
+	"forest_pyre_keeper": {"scene": "res://assets/models/characters/saxon_warrior.glb", "scale": 1.0, "poses": {}},
 	"guard": {"scene": "res://assets/models/characters/brigand_guard.glb", "scale": 1.0, "poses": {}},
 	# Sentinela do castelo da Capital: o mesmo Brigand (anthonymyers, CC BY 3.0; a versão rigada "Brigand2" é o mesmo personagem), parado de guarda.
 	# Bobo da Corte (Cerimonial Guard, carlosjorgereis, CC0): figura cerimonial de gorro e saia de pele, sem esqueleto nem animação

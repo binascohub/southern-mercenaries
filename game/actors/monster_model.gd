@@ -125,6 +125,8 @@ const FAMILIES := {
 	# (o "size" dos dados dá a altura); o corpo todo balança, avança, investe e tomba por código (`static`).
 	"golem_king": {"scene": "res://assets/models/monsters/golem_king.glb", "scale": 1.0, "static": true,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Troll da Floresta (troll.glb do autor; tools/assets/build_forest_troll.py): malha parada de 2,3 m na pose do arquivo, sem animação.
+	"forest_troll": {"scene": "res://assets/models/monsters/forest_troll.glb", "scale": 1.0, "static": true, "anims": {}},
 	# Cervos da Floresta (CDmir e TinyWorlds, CC0; tools/assets/build_deer.sh): 1,6 m de comprimento no arquivo, "size" 1.4 nos dados.
 	"deer_buck": {"scene": "res://assets/models/monsters/deer_buck.glb", "scale": 0.714,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "die": "die"}},

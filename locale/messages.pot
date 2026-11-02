@@ -391,6 +391,9 @@ msgstr ""
 msgid "AFFIX_GOLD_FIND"
 msgstr ""
 
+msgid "MONSTER_FOREST_TROLL"
+msgstr ""
+
 msgid "ITEM_VENISON"
 msgstr ""
 

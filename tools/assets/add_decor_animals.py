@@ -17,10 +17,9 @@ def put(area, entries):
 put("farm_01_fields", [
     {"role": "llama", "position": [-8.0, -17.0], "rotation": 40, "pose": "idle", "path": [-4.5, -20.5], "speed": 0.45},
     {"role": "brown_horse", "position": [20.0, -29.5], "rotation": 250, "pose": "idle", "path": [24.0, -31.5], "speed": 0.55}])
-# Floresta: poucos guaxinins (2) longe dos encontros e da aldeia (nenhum na Praça da Pira, o mapa dos sapos)
+# Floresta: um só guaxinim, no oeste, longe dos encontros e da aldeia (nenhum na Praça da Pira nem na sala a leste dela)
 put("forest_01_path", [
-    {"role": "raccoon", "position": [-30.0, -36.0], "rotation": 80, "pose": "idle", "path": [-28.0, -37.5], "speed": 0.4},
-    {"role": "raccoon", "position": [30.0, -19.0], "rotation": 310, "pose": "idle", "path": [28.5, -17.0], "speed": 0.4}])
+    {"role": "raccoon", "position": [-30.0, -36.0], "rotation": 80, "pose": "idle", "path": [-28.0, -37.5], "speed": 0.4}])
 # Floresta (o "mapa da natureza"): poucos esquilos (4) e borboletas pequenas voando em círculo (decor com "swim" e "flap")
 a_forest = arenas["forest_01_path"]
 a_forest["crowd"] += [

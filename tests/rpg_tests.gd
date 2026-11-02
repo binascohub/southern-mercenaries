@@ -935,8 +935,9 @@ func _test_sewers() -> void:
 		and forest_decor.filter(func(d: Dictionary) -> bool: return String(d.get("piece", "")).begins_with("Pr_") and d.get("piece", "") != "Pr_RoadSign").is_empty(),
 		"Floresta tem trilhas de barro e nenhum asset de cemitério (cruz, lápide, obelisco, pilar, poste)")
 	_check(forest_decor.all(func(d: Dictionary) -> bool: return d.get("piece", "") != "Floor_UnevenBrick"), "Floresta: sem chão de pedra")
-	_check(forest_decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") in ["Dead_Tree", "Oak_Tree", "Vl_Logs"]).is_empty()
-		and forest_decor.filter(func(d: Dictionary) -> bool: return String(d.get("piece", "")).begins_with("Pl_")).size() > 100, "Floresta sem troncos, só plantas")
+	_check(forest_decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") in ["Dead_Tree", "Vl_Logs"]).is_empty()
+		and forest_decor.filter(func(d: Dictionary) -> bool: return String(d.get("piece", "")).begins_with("Pl_")).size() > 100, "Floresta sem troncos secos nem toras, com plantas")
+	_check(forest_decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Oak_Tree" and d.has("solid")).size() >= 20 and Kit.has("Oak_Tree"), "Floresta tem carvalhos vivos (o tronco bloqueia) no lugar de parte da vegetação")
 	_check(forest_decor.filter(func(d: Dictionary) -> bool: return String(d.get("piece", "")).begins_with("Wall_") or String(d.get("piece", "")).begins_with("Roof_")).is_empty(), "Floresta sem casas")
 	_check(forest_decor.all(func(d: Dictionary) -> bool: return not d.get("piece", "") in ["Well_Covered", "Wheelbarrow", "Vl_Cellar", "Vl_Ladder", "Cart_Wood", "Vl_Outhouse"] and not String(d.get("piece", "")).begins_with("Mushroom_")), "Floresta sem o poço, o carrinho de mão, o porão, a escada, a carroça, a casinha e os cogumelos")
 	_check(forest_decor.any(func(d: Dictionary) -> bool: return d.get("piece", "") == "Tv_Fire") and forest_decor.any(func(d: Dictionary) -> bool: return d.has("light") and d.get("camp", false))
@@ -946,7 +947,8 @@ func _test_sewers() -> void:
 	_check(forest_decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Butterfly_Anim" and d.has("swim")).size() >= 6 and Kit.has("Butterfly_Anim"), "Floresta tem as borboletas animadas")
 	var forest_now: Dictionary = GameData.arenas.forest_01_path
 	var keeper: Dictionary = forest_now.props.filter(func(p: Dictionary) -> bool: return p.id == "forest_pyre_keeper")[0]
-	var pira_toads: Array = forest_now.encounters.filter(func(e: Dictionary) -> bool: return e.id.begins_with("f_toads") and e.position[0] >= 0 and e.position[0] <= 24 and e.position[1] <= -7 and e.position[1] >= -28)
+	var pira_room: Dictionary = forest_now.rooms.filter(func(r: Dictionary) -> bool: return r.id == "pira")[0]
+	var pira_toads: Array = forest_now.encounters.filter(func(e: Dictionary) -> bool: return e.id.begins_with("f_toads") and absf(e.position[0] - pira_room.center[0]) <= pira_room.size[0] / 2.0 and absf(e.position[1] - pira_room.center[1]) <= pira_room.size[1] / 2.0 and e.id.length() == 9)
 	_check(keeper.position[1] < -40 and keeper.summon.position[1] < -38 and pira_toads.size() == 4, "A Guardiã da Pira fica na sala da lagoa e os sapos na Praça da Pira")
 	var forest_map: Dictionary = GameData.arenas.forest_01_path
 	var toad_room: Dictionary = forest_map.rooms.filter(func(r: Dictionary) -> bool: return r.id == "pira")[0]
@@ -983,19 +985,20 @@ func _test_sewers() -> void:
 	for e: Dictionary in forest.encounters:
 		if e.id != "f_viper_queen" and GameData.monsters[e.monsters[0].monster].get("category", "") in ["common", "elite"]:     # (os mini-chefes e a Toca do Rei Golem ficam de fora)
 			sectors[e.monsters[0].monster] = true
-	_check(sectors.size() == 2, "Floresta tem duas salas de monstros (sapos e bestas), um tipo em cada (%d)" % sectors.size())
+	_check(sectors.size() == 3 and sectors.has("forest_troll"), "Floresta tem três salas de monstros (sapos, bestas e trolls), um tipo em cada (%d)" % sectors.size())
 	var summoners: Array = forest.props.filter(func(p: Dictionary) -> bool: return p.has("summon"))
 	_check(summoners.size() == 2 and summoners.all(func(p: Dictionary) -> bool:
 		var group: Dictionary = p.summon
 		return (GameData.npcs.has(p.npc) and GameData.npcs[p.npc].dialogues[0].lines.size() > 0 and group.monsters[0].get("rank", "") == "miniboss"
 			and tr(group.get("toast", "")) != group.get("toast", "") and GameData.monsters.has(group.monsters[0].monster))),
 		"Floresta tem duas praças com NPC que invoca um mini-chefe")
-	# Floresta: poucos cervos quebráveis, parados, que só soltam poção.
+	# Floresta: alguns cervos quebráveis, parados, que só soltam carne (cura como a poção de vida).
 	var deer: Array = GameData.arenas.forest_01_path.get("breakables", []).filter(func(b: Dictionary) -> bool: return b.monster != "coin_bag")  # a bolsa de moedas é outro objeto
 	_check(deer.size() >= 3 and deer.size() <= 10 and deer.all(func(b: Dictionary) -> bool:
 		var m: Dictionary = GameData.monsters.get(b.monster, {})
 		return m.get("breakable", false) and m.get("ai", "") == "static" and float(m.get("damage", 1)) == 0.0 \
-			and MonsterModel.FAMILIES.has(m.get("look", "")) and String(b.get("table", "")) == "breakable_potion"), "Floresta tem poucos cervos que só soltam poção")
+			and MonsterModel.FAMILIES.has(m.get("look", "")) and String(b.get("table", "")) == "breakable_meat"), "Floresta tem cervos que só soltam carne")
+	_check(GameData.consumables.has("venison") and GameData.consumables.venison.restore == "health" and GameData.loot.breakable_meat.outcomes.keys() == ["venison"], "carne de cervo é consumível de vida e a tabela só solta carne")
 
 
 func _test_explore_map() -> void:

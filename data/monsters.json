@@ -732,7 +732,7 @@
       1.0,
       1.0
     ],
-    "_comment": "Cervo da Floresta (Old Deer Male, CDmir, CC0): quebrável parado, como o pote do Esgoto; ao morrer solta poção."
+    "_comment": "Cervo da Floresta (Old Deer Male, CDmir, CC0): quebrável parado, como o pote do Esgoto; ao morrer solta carne (tabela 'breakable_meat')."
   },
   "deer_doe": {
     "name_key": "PROP_DEER_DOE",
@@ -1517,5 +1517,28 @@
       0.75
     ],
     "_comment": "Escolta do Rei Golem de Pedra na Toca dos Répteis (Floresta): o Guardião do Túmulo em tamanho menor e sem a alma do rei (que é do Cemitério e da Mina)."
+  },
+  "forest_troll": {
+    "name_key": "MONSTER_FOREST_TROLL",
+    "max_health": 380,
+    "move_speed": 2.4,
+    "damage": 24,
+    "attack_range": 3.2,
+    "attack_windup": 1.1,
+    "attack_cooldown": 2.2,
+    "aggro_range": 40.0,
+    "size": 1.2,
+    "category": "elite",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 5.0,
+    "patrol_speed": 0.8,
+    "look": "forest_troll",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Troll da Floresta (troll.glb do autor, ombros floridos e saia de cascas): o Troll Magro maior e mais resistente, no mapa dos trolls."
   }
 }

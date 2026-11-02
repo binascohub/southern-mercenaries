@@ -1884,7 +1884,11 @@ subprocess.run([sys.executable, "tools/assets/move_forest_village.py"], check=Tr
 subprocess.run([sys.executable, "tools/assets/add_forest_campfire.py"], check=True)  # fogueira no centro do acampamento
 subprocess.run([sys.executable, "tools/assets/add_forest_pond.py"], check=True)  # lagoa (e sem pedras) na sala dos sapos
 subprocess.run([sys.executable, "tools/assets/add_forest_pira_south.py"], check=True)  # sala nova ao sul da Praça da Pira (amplia o mapa dos sapos)
+subprocess.run([sys.executable, "tools/assets/add_forest_king_room.py"], check=True)  # sala do Rei Golem ampliada para a direita
+subprocess.run([sys.executable, "tools/assets/add_forest_trees.py"], check=True)  # carvalhos no lugar de parte da vegetação (Floresta toda)
+subprocess.run([sys.executable, "tools/assets/add_forest_trolls.py"], check=True)  # mapa dos trolls (sala hub)
 subprocess.run([sys.executable, "tools/assets/add_forest_walkers.py"], check=True)  # Bertram e Elara andando pelo mapa (sem missão)
 subprocess.run([sys.executable, "tools/assets/add_forest_butterflies.py"], check=True)  # borboletas animadas (Butterfly_Anim)
 subprocess.run([sys.executable, "tools/assets/swap_forest_keeper.py"], check=True)  # Guardiã da Pira na sala da lagoa, sapos na Praça da Pira
+subprocess.run([sys.executable, "tools/assets/add_forest_spacing.py"], check=True)  # caminhos de passagem 12 m mais compridos (sempre por último)
 print("OK", [k for k in arenas if k.split("_")[0] in ("forest", "ruins", "cemetery", "fort", "farm", "mine")])
