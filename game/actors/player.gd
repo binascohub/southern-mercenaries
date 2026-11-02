@@ -308,6 +308,8 @@ func grant(xp: int, gold: int, items: Array = []) -> Array:
 		_sfx.rpc("level_up")
 	elif gold > 0:
 		_sfx.rpc("coin")
+	elif not items.is_empty():
+		_sfx.rpc("pickup")
 	character.data.gold = int(character.data.gold) + maxi(gold, 0)
 	for item: Dictionary in items:
 		if not character.add_item(item):
@@ -359,6 +361,7 @@ func _spend_point(attr: String) -> void:
 @rpc("any_peer", "reliable")
 func _equip(index: int) -> void:
 	if _from_owner() and character.equip_from_bag(index):
+		_sfx.rpc("equip")
 		_apply_character()
 		_push_character(0)
 

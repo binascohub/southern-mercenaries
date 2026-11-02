@@ -1,5 +1,5 @@
 extends Node
-## Efeitos sonoros (assets/audio/sfx/<nome>.wav ou .ogg, gerados por tools/assets/build_sfx.py). Nome sem arquivo = silêncio, sem erro.
+## Efeitos sonoros (assets/audio/sfx/<nome>.wav ou .ogg, gerados por tools/assets/build_sfx.py e build_rpg_sounds.py). Nome sem arquivo = silêncio, sem erro.
 ## `play` toca um som no mundo (com posição, some com a distância) ou na tela (sem posição); `voice` toca a fala de um NPC (uma por vez).
 
 const DIR := "res://assets/audio/sfx/"
@@ -24,18 +24,43 @@ func _ready() -> void:
 		add_child(p2)
 		_screen.append(p2)
 	add_child(_voice)
+	get_tree().node_added.connect(_on_node_added)
+
+
+## Variantes: `nome_1`, `nome_2`... (ogg do RPG Sound Pack) são sorteadas; sem variantes usa `nome` (wav/ogg).
+func _variants(sound: String) -> Array:
+	if not _cache.has(sound):
+		var found: Array = []
+		for i in range(1, 9):
+			var s := _load("%s_%d" % [sound, i])
+			if s == null:
+				break
+			found.append(s)
+		if found.is_empty():
+			var base := _load(sound)
+			if base:
+				found.append(base)
+		_cache[sound] = found
+	return _cache[sound]
+
+
+func _load(sound: String) -> AudioStream:
+	for ext in ["ogg", "wav"]:
+		var path := "%s%s.%s" % [DIR, sound, ext]
+		if ResourceLoader.exists(path):
+			return load(path)
+	return null
 
 
 func _stream(sound: String) -> AudioStream:
-	if not _cache.has(sound):
-		var found: AudioStream = null
-		for ext in ["wav", "ogg"]:
-			var path := "%s%s.%s" % [DIR, sound, ext]
-			if ResourceLoader.exists(path):
-				found = load(path)
-				break
-		_cache[sound] = found
-	return _cache[sound]
+	var list := _variants(sound)
+	return null if list.is_empty() else list[randi() % list.size()]
+
+
+## Todo botão do jogo faz um clique ao ser apertado.
+func _on_node_added(node: Node) -> void:
+	if node is BaseButton and not node.is_in_group(&"silent_button"):
+		node.pressed.connect(func() -> void: play("ui_click", Vector3.INF, -2.0))
 
 
 ## `at` = Vector3.INF toca na tela (sons do próprio herói e da interface); com posição, toca ali no mundo.

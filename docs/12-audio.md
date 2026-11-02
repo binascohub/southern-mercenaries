@@ -118,6 +118,12 @@ Madeira, couro, metal e papel (`09-interface.md`, seção 7): clicar, passar o c
 - **Desempenho:** limite de vozes, *pooling*, taxa de amostragem de 44,1 kHz (22 kHz para sons curtos pouco importantes), sem reverberação pesada por padrão (reverberação leve só nas áreas de eco, como esgoto e cavernas).
 - **Tamanho:** meta de ~150 MB de áudio no total na v1.0 (proposta), para o instalador não pesar demais (`10-distribuicao.md`).
 
+## 8.1 RPG Sound Pack (implementado)
+
+- Kit CC0 de artisticdude convertido por `tools/assets/build_rpg_sounds.py` para OGG mono em `assets/audio/sfx/`. Sufixo `_1.._N` = variantes sorteadas por `Sfx.play`; os `.wav` sintetizados continuam como reserva.
+- Golpes (`swing`, `swing_heavy`), `coin`, `drink`, `pickup`, `equip`, `block`, `door` (ao trocar de área), `wood` (pote quebrando) e `ui_click` (todo botão, via `node_added`).
+- Vozes de monstros `m_<família>_<n>`: slime, beetle, shade, ogre, giant, beast, wolfman. Família pela aparência (`VOICE_BY_LOOK` em `enemy.gd`) ou pelo campo `"sound"` do monstro; ataque no início do golpe, dano (45% das vezes) e morte. Tom varia com o tamanho.
+
 ## 9. Licenças e fontes
 
 - Aceitos: **CC0**, **CC BY** e **CC BY-SA 4.0** (a arte e o áudio próprios do projeto saem em **CC BY-SA 4.0**, `LICENSE-ASSETS`). Conferir a licença de **cada arquivo**, não só do site.

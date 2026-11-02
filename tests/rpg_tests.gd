@@ -34,6 +34,7 @@ func _ready() -> void:
 	_test_ninja_gear()
 	_test_skills()
 	_test_spell_fx()
+	_test_rpg_sounds()
 	_test_sewer_aggression()
 	_test_archer()
 	_test_ninja()
@@ -514,6 +515,18 @@ func _test_sewer_aggression() -> void:
 			aggressive.append(id)
 	_check(aggressive == ["chest_mimic"] and GameData.arenas.sewers_01_drains.get("passive", false) and float(GameData.monsters.chest_mimic.size) <= 0.65,
 		"o Baú Monstro é pequeno (%s) e o único monstro \"aggressive\" do Esgoto pacífico (%s)" % [GameData.monsters.chest_mimic.size, aggressive])
+
+
+func _test_rpg_sounds() -> void:
+	for fam in ["slime", "beetle", "shade", "ogre", "giant", "beast", "wolfman"]:
+		_check(ResourceLoader.exists("res://assets/audio/sfx/m_%s_1.ogg" % fam), "voz de monstro: " + fam)
+	for sound in ["swing_1", "coin_1", "drink_1", "pickup_1", "equip_1", "block_1", "ui_click_1", "door"]:
+		_check(ResourceLoader.exists("res://assets/audio/sfx/%s.ogg" % sound), "som do kit: " + sound)
+	for id: String in GameData.monsters:
+		var m: Dictionary = GameData.monsters[id]
+		if m.get("category", "") in ["common", "elite", "miniboss", "boss"]:
+			var fam := str(m.get("sound", Enemy.VOICE_BY_LOOK.get(str(m.get("look", "")), "")))
+			_check(fam != "", "monstro com voz: " + id)
 
 
 func _test_spell_fx() -> void:

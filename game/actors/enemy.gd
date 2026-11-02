@@ -60,6 +60,7 @@ var _wave_index := 0
 var _wave_adds: Array = []
 
 var data: Dictionary
+var _was_attacking := false
 
 var _timer := 0.0
 ## Estados elementais (só no servidor).
@@ -698,6 +699,7 @@ func _throw_glob(at: Vector3, time: float) -> void:
 ## um tempo no chão e afundam.
 @rpc("authority", "call_local", "reliable")
 func _shatter() -> void:
+	Sfx.play("wood", global_position, 2.0, randf_range(0.8, 1.1))
 	var arena := get_tree().get_first_node_in_group(&"arena")
 	var area_root: Node3D = arena.get("_area_root") if arena else null
 	var shards := Kit.piece(_kit_piece + "_Shards") if _kit_piece != "" else null
@@ -734,6 +736,7 @@ func _shatter() -> void:
 ## morrer, afunda e some — o inimigo em si já saiu do jogo.
 @rpc("authority", "call_local", "reliable")
 func _leave_corpse() -> void:
+	_voice("death")
 	var arena := get_tree().get_first_node_in_group(&"arena")
 	var area_root: Node3D = arena.get("_area_root") if arena else null
 	if _visual == null or _model == null or area_root == null or not is_instance_valid(area_root):
@@ -757,8 +760,44 @@ func _leave_corpse() -> void:
 	tween.tween_callback(body.queue_free)
 
 
+## Voz do monstro (RPG Sound Pack): família pela aparência, ou pelo campo "sound" do monsters.json.
+const VOICE_BY_LOOK := {
+	"frog": "slime", "toad": "slime", "angler": "slime", "nest": "slime", "mimic": "beetle",
+	"scorpion": "beetle", "chitin_beast": "beetle", "chest_mimic": "beetle",
+	"shadow_spirit": "shade", "skeleton": "shade", "zombie": "shade", "succubus": "shade", "dark_elf": "shade",
+	"undead": "shade", "night_demon": "shade", "stalker": "wolfman", "necromancer": "shade", "demon_twelve": "giant",
+	"troll": "ogre", "troll_mauler": "ogre", "barbarian_monster": "ogre", "champ_warrior": "ogre", "fungus": "ogre", "ogre": "ogre",
+	"demon_boss": "giant", "golem_fire": "giant", "golem_ice": "giant", "golem_stone": "giant", "golem_king": "giant",
+	"plank_monster": "giant", "forest": "giant", "forest_troll": "ogre", "demon": "giant", "lizard": "giant",
+	"mutant": "beast", "goblin": "beast", "bat": "beast", "reptile": "beast", "baby_dragon": "beast", "deer_buck": "beast", "deer_doe": "beast",
+}
+
+
+func _voice_family() -> String:
+	return str(data.get("sound", VOICE_BY_LOOK.get(str(data.get("look", "")), "")))
+
+
+## kind: "attack" (grave e alto), "hurt" (mais agudo e baixo), "death" (mais grave).
+func _voice(kind: String) -> void:
+	var fam := _voice_family()
+	if fam == "":
+		return
+	var big := float(data.get("size", 1.0))
+	var base := clampf(1.25 - 0.25 * big, 0.7, 1.3)
+	match kind:
+		"attack":
+			Sfx.play("m_" + fam, global_position, 2.0, base)
+		"hurt":
+			if randf() < 0.45:
+				Sfx.play("m_" + fam, global_position, -4.0, base * 1.2)
+		"death":
+			Sfx.play("m_" + fam, global_position, 3.0, base * 0.8)
+
+
 @rpc("authority", "call_local", "unreliable")
 func _show_damage(amount: float, effect := "normal", hit_element := "", crit := false, combo := "") -> void:
+	if str(data.get("category", "")) != "breakable":
+		_voice("hurt")
 	DamageNumber.spawn(get_parent(), global_position + Vector3.UP * (data.size + 0.8), amount,
 		effect, hit_element, crit, combo)
 
@@ -1015,6 +1054,10 @@ func _tick_model(delta: float, tint: Color) -> void:
 		moved.y = 0.0
 		_visual_speed = lerpf(_visual_speed, moved.length() / delta, 0.2)
 	_last_visual_pos = global_position
+	var attacking := state == State.WINDUP or state == State.CHARGE
+	if attacking and not _was_attacking:
+		_voice("attack")
+	_was_attacking = attacking
 	var key := "idle"
 	match state:
 		State.WINDUP:

@@ -673,6 +673,7 @@ func _on_peer_left(peer_id: int, dropped: bool) -> void:
 @rpc("authority", "call_local", "reliable")
 func _load_area(id: String, _entry: String) -> void:
 	area_id = id
+	Sfx.play("door")
 	arena = GameData.get_arena(id)
 	total_encounters = arena.encounters.size()
 	for child in _area_root.get_children():
@@ -1921,7 +1922,7 @@ func _build_prop(prop_data: Dictionary) -> void:
 					look = {"sex": "male" if h % 2 == 0 else "female", "hair": hairs[h % 2 * 2 + (h / 2) % 2],
 						"hair_color": colors[(h / 4) % colors.size()], "pose": "sit", "outfit": {"body": "cloth"} if h % 3 == 0 else {}}
 				var seated_woman: bool = prop.has("visitor_name") and look.get("sex", "") == "female" and _visitor_woman(node)
-				var own_model: Node3D = NpcModel.create(String(prop.npc)) if String(prop.npc) in ["voodoo_priest", "priest", "castle_guard", "court_jester", "seated_pirate", "elf_archer", "forest_reptile", "ruins_spartan", "old_lady", "forest_pyre_keeper", "sewer_scavenger", "sewer_ratcatcher"] else null
+				var own_model: Node3D = NpcModel.create(String(prop.npc)) if String(prop.npc) in ["voodoo_priest", "priest", "castle_guard", "court_jester", "seated_pirate", "elf_archer", "forest_reptile", "ruins_spartan", "old_lady", "forest_pyre_keeper", "sewer_scavenger", "sewer_ratcatcher", "gate_keeper"] else null
 				var statue_kit: String = prop.get("kit", "")
 				if statue_kit != "" and _kit(node, statue_kit, Transform3D(Basis(Vector3.UP, deg_to_rad(float(prop.get("rotation", 0.0)))), Vector3.ZERO)):
 					# Estátua do mapa: a peça do kit no lugar do corpo humano; com "solid" ([largura, fundo]), o herói não atravessa (o altar do Esgoto).
@@ -1938,7 +1939,7 @@ func _build_prop(prop_data: Dictionary) -> void:
 						node.add_child(blocker)
 				elif own_model:
 					node.add_child(own_model)
-					if own_model.has_method("set_pose") and String(prop.npc) in ["seated_pirate", "old_lady", "sewer_scavenger", "sewer_ratcatcher", "elf_archer", "forest_reptile"]:  # a Aeliana (elf_archer) respira e se mexe parada no lugar (idle)
+					if own_model.has_method("set_pose") and String(prop.npc) in ["seated_pirate", "old_lady", "sewer_scavenger", "sewer_ratcatcher", "gate_keeper", "elf_archer", "forest_reptile"]:  # a Aeliana (elf_archer) respira e se mexe parada no lugar (idle)
 						own_model.call("set_pose", "sit" if String(prop.npc) == "old_lady" else "idle")  # o Macumbeiro (mago de capuz) e o Padre (monge) têm modelo próprio
 				elif not seated_woman and _npc_body_with_instrument(node, look) == null:
 					var body := CapsuleMesh.new()

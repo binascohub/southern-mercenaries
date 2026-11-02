@@ -117,8 +117,8 @@ const MODELS := {
 	# Meliodas (seven_deadly_sins_meliodas_rig.glb do autor; esqueleto de 150 ossos e a animação "stand"; autoria/licença a confirmar): o Boticário, dono da loja de poções dentro da Taverna.
 	"meliodas": {"scene": "res://assets/models/characters/meliodas.glb", "scale": 0.68, "arms_down": 72.0, "poses": {"idle": "stand", "talk": "stand", "stand": "stand"}},
 	# Guardião do Portão (horror-monster-light.glb do autor, monstro de terror magro e bípede; tools/assets/build_horror_monster.py): preso ao esqueleto dos heróis, com os movimentos deles. Recebe as duas
-	# chaves do Esgoto e faz o portão do Ninho cair. 1,8 m no arquivo -> ~2,25 m.
-	"gate_keeper": {"scene": "res://assets/models/characters/gate_keeper.glb", "scale": 1.25,
+	# chaves do Esgoto e faz o portão do Ninho cair. 1,8 m no arquivo -> ~3 m.
+	"gate_keeper": {"scene": "res://assets/models/characters/gate_keeper.glb", "scale": 1.7,
 		"poses": {"idle": "Idle_Loop", "talk": "Idle_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop"}},
 	"sewer_scavenger": {"scene": "res://assets/models/characters/angel.glb", "scale": 1.0, "poses": {"idle": "flap", "talk": "flap", "stand": "flap"},
 		"aura": {"color": [1.0, 0.86, 0.5], "center": 1.3, "size": 3.6}},  # 2,4 m; bate as asas (animação "flap")
