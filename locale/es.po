@@ -497,6 +497,9 @@ msgstr "Armadura: {value}"
 msgid "INV_FREE_POINTS"
 msgstr "Puntos libres: {points}"
 
+msgid "INV_POPUP_CLOSE"
+msgstr "Cerrar"
+
 msgid "INV_HINT"
 msgstr "Seleccionar: equipar o usar · en una ranura: quitar · {close}: cerrar"
 
@@ -1066,7 +1069,7 @@ msgid "SKILLS_POWER"
 msgstr "Daño: {percent}% de {power} (rango {rank})"
 
 msgid "SKILLS_HINT"
-msgstr "+ gasta un punto de habilidad. 1–4 ponen una habilidad activa en un atajo. Una Poción elemental cambia las habilidades del elemento por las del nuevo, con los mismos rangos."
+msgstr "+ gasta un punto de habilidad. Arrastra una habilidad activa a uno de los 4 atajos de la derecha de la ventana (o usa los botones 1–4 a su lado). Una Poción elemental cambia las habilidades del elemento por las del nuevo, con los mismos rangos."
 
 msgid "SKILL_PRECISE_SHOT_NAME"
 msgstr "Disparo Preciso"
@@ -1705,25 +1708,25 @@ msgid "NPC_BARD"
 msgstr "Bardo"
 
 msgid "DLG_OLD_DRUNK_1"
-msgstr "Tenéis cara de andar detrás del oro... Escuchad esto."
+msgstr "Tienen cara de quien ya perdió algo. Siéntense… y no miren así mi vaso. Fui rico, ¿saben? Poderoso. Tenía nombre, tierras y una familia que llenaba mi casa de ruido."
 
 msgid "DLG_OLD_DRUNK_2"
-msgstr "Cuando fundaron Tortuga, trajeron parte del tesoro del reino que perdió la guerra y lo escondieron allá abajo, en la cloaca, lejos de los vencedores."
+msgstr "Entonces Lucifer vino a cobrar una deuda que ni sabía que tenía. Se llevó las almas de toda mi familia para su colección y las encerró en una botella: una tormenta de almas atrapada en el vidrio. Me quedé con el silencio de la casa. Y con esto, que ayuda a soportarlo."
 
 msgid "DLG_OLD_DRUNK_3"
-msgstr "Años después, la gente de aquí envenenó y quemó a las ratas de allí... pero se olvidaron de la madre."
+msgstr "Dicen que la botella está guardada aquí abajo, en la alcantarilla, junto al tesoro que los fundadores de Tortuga escondieron cuando trajeron parte del oro del reino que perdió la guerra. La guarda el alquimista del rey, olvidado en el fondo: hizo un pacto con un demonio, se volvió el Nigromante y duerme sobre el tesoro."
 
 msgid "DLG_OLD_DRUNK_4"
-msgstr "Dicen que el alquimista del rey, olvidado allá abajo, hizo un pacto con un demonio, se volvió nigromante y ahora duerme sobre el tesoro, con la corona del rey guardada en la capa."
+msgstr "La gente de aquí envenenó y quemó las ratas de allá abajo, pero olvidaron a su madre, que aún manda en lo profundo. Lleven fuego: es de Tierra y teme el fuego."
 
 msgid "DLG_OLD_DRUNK_5"
-msgstr "¡Si buscáis tesoro, estáis encima de uno! Solo llevad fuego. Ella ya sabe lo que es el fuego, y lo odia."
+msgstr "Quédense con todo el oro, no me sirve de nada sin ellos. Solo quiero la botella. Tráiganla y pagaré lo que me queda de la fortuna por recuperar a mi familia. Si buscan tesoro, están sobre uno… pero el que me importa a mí es otro."
 
 msgid "DLG_OLD_DRUNK_ACTIVE"
-msgstr "La rejilla de la cloaca está en la calle principal. Fuego, os lo dije. ¡Fuego!"
+msgstr "La alcantarilla está en la Calle Mayor. Fuego, dije. ¡Fuego! Y la botella: una tormenta de almas atrapada en el vidrio. Tráiganmela."
 
 msgid "DLG_OLD_DRUNK_DONE"
-msgstr "¿Volvisteis? Entonces esta vez decía la verdad. Invitadme a una copa."
+msgstr "Mi familia… ¡los oigo! Esa risa, la oí tantas noches… Gracias. Tomen lo prometido y págueme una copa: la primera en mucho tiempo que bebo de alegría."
 
 msgid "DLG_KEEPER_1"
 msgstr "Sentaos, descansad. En Tortuga nadie pregunta de dónde viene el oro, solo si paga."
@@ -1753,10 +1756,10 @@ msgid "DLG_SERVICE_REST"
 msgstr "Descansar"
 
 msgid "QUEST_SEWER_TREASURE"
-msgstr "El tesoro bajo la ciudad"
+msgstr "La Familia en la Botella"
 
 msgid "QUEST_SEWER_TREASURE_DESC"
-msgstr "Baja por la rejilla de la cloaca, derrota al Nigromante, que duerme sobre el tesoro perdido de la guerra. Las ratas son de Tierra: temen al Fuego."
+msgstr "El Viejo Borracho perdió a su familia ante Lucifer, que encerró sus almas en una botella de su colección. Baja por la alcantarilla, derrota al Nigromante, que guarda la botella sobre el tesoro perdido de la guerra, y lleva la Botella de la Tormenta de Almas al viejo, que promete una recompensa. Las ratas son de Tierra: temen el Fuego."
 
 msgid "AREA_TORTUGA"
 msgstr "Tortuga"
@@ -2058,15 +2061,6 @@ msgstr "En el folclore europeo los sapos se asociaban a la brujería y al veneno
 msgid "BEAST_ACID_TOAD_HINT"
 msgstr "Su escupitajo derrite botas. Son bichos del agua podrida: un rayo y revientan."
 
-msgid "BEAST_SEWER_GATOR"
-msgstr "Caimán de la Cloaca"
-
-msgid "BEAST_SEWER_GATOR_LEGEND"
-msgstr "La famosa leyenda urbana de los caimanes en las cloacas: animales tirados por las tuberías que crecieron en la oscuridad. Aquí son enormes y pálidos, escondidos en los canales."
-
-msgid "BEAST_SEWER_GATOR_HINT"
-msgstr "Si el agua burbujea, aléjate. Vive en el fondo del canal. Un rayo en el agua y sube panza arriba."
-
 msgid "BEAST_DEMON_RAT_QUEEN"
 msgstr "Nigromante"
 
@@ -2345,7 +2339,7 @@ msgid "MONSTER_ACID_TOAD"
 msgstr "Sapo Ácido"
 
 msgid "MONSTER_OLD_GATOR"
-msgstr "Caimán Viejo"
+msgstr "Carnicero Cornudo"
 
 msgid "MONSTER_RAT_QUEEN"
 msgstr "Nigromante"
@@ -2714,7 +2708,7 @@ msgid "VALUABLE_ALTAR_BOOK"
 msgstr "Libro del Altar"
 
 msgid "VALUABLE_ALTAR_BOOK_DESC"
-msgstr "Entregado por Ossael. Hace reaccionar al altar del centro de la cloaca: lleva al grupo hasta él y habla con la piedra para despertar al Empalado. No se vende ni se pierde."
+msgstr "Dado por Ossael. Las oraciones de los ahogados: hacen reaccionar el altar del centro de la Alcantarilla. Lleva al grupo hasta él y habla con la piedra para despertar al Empalado. No se vende ni se pierde."
 
 msgid "VALUABLE_CURSED_SKULL_DESC"
 msgstr "La calavera maldita de Morvak, guardada en el pecho del Gólem de Fuego. Entrégala a la elfa Aelindra, en el Bosque, para purificar la maldición."
@@ -3018,46 +3012,46 @@ msgid "NPC_SEWER_RATCATCHER"
 msgstr "Azazel, el Ángel Flamígero"
 
 msgid "QUEST_SEWER_OLD_GATOR"
-msgstr "El Caimán Viejo"
+msgstr "La Botella de las Almas Condenadas"
 
 msgid "QUEST_SEWER_OLD_GATOR_DESC"
-msgstr "Azazel quiere la Botella de las Almas Condenadas que Lucifer le mandó a buscar: lleva el Grimorio de las Brasas al altar quemado del centro de la alcantarilla para invocar al Caimán Viejo, derrótalo y llévale la botella a Azazel para recibir la llave de picas."
+msgstr "Azazel quiere la Botella de las Almas Condenadas, que Lucifer le mandó a buscar y que el Carnicero Cornudo robó: lleva el Grimorio de las Brasas al altar quemado del centro de la alcantarilla para llamar al demonio, derrótalo y llévale la botella a Azazel para recibir la llave de picas."
 
 msgid "DLG_SEWER_GATOR_1"
-msgstr "Ardo desde que el cielo me expulsó, y Lucifer me envió aquí a buscar la Botella de las Almas Condenadas. El Caimán Viejo se la tragó en el Pasaje de la Guerra antes de que pudiera tocarla."
+msgstr "Ardo desde que el cielo me expulsó. Lucifer me mandó a buscar la Botella de las Almas Condenadas, la joya de su bodega, y un carnicero del propio infierno la robó: el Carnicero Cornudo, que trincha almas a cuchillo y huyó a estas alcantarillas."
 
 msgid "DLG_SEWER_GATOR_2"
-msgstr "No sale del agua por voluntad propia, y nunca viene sin los caimanes menores. La botella está en su vientre: oigo a las almas gritar con cada respiración."
+msgstr "No sale de su escondite por voluntad propia, y no anda solo: los Espíritus Sombríos de las almas que trinchó lo siguen, gritando. Lleva la botella en el cinto; oigo las almas dentro a cada paso suyo."
 
 msgid "DLG_SEWER_GATOR_3"
-msgstr "Llévense este grimorio. Apóyenlo en el altar quemado, en el centro de la alcantarilla, y léanlo: arranca al Viejo del agua. Ábranle el vientre y tráiganme la botella; a cambio, la llave que guardo es suya."
+msgstr "Llévense este grimorio, escrito en mis brasas. Apóyenlo en el altar quemado, en el centro de la alcantarilla, y léanlo: llama al Carnicero por su nombre. Derríbenlo y tráiganme la botella; a cambio, la llave que guardo es suya."
 
 msgid "DLG_SEWER_GATOR_ACTIVE"
-msgstr "¿Aún sin la botella? Apoyen el grimorio en el altar quemado, en el centro de la alcantarilla, y llamen al Viejo. Tráiganme la Botella de las Almas Condenadas y dejen que el fuego, el mío, haga el resto."
+msgstr "¿Aún sin la botella? Lean el grimorio en el altar quemado, en el centro de la alcantarilla, y llamen al Carnicero. Tráiganme la Botella de las Almas Condenadas y dejen que el fuego, el mío, haga el resto."
 
 msgid "DLG_SEWER_GATOR_DONE"
-msgstr "La botella… las almas cantan dentro. Lucifer quedará satisfecho. Lleven la llave: es suya. Yo me llevo las almas, y las cenizas."
+msgstr "La botella… las almas cantan dentro, a salvo de su cuchillo. Lucifer quedará satisfecho. Lleven la llave: es suya. Yo me llevo las almas, y las cenizas."
 
 msgid "QUEST_SEWER_FROG_KING"
-msgstr "El Empalado"
+msgstr "La Botella del Tormento Eterno"
 
 msgid "QUEST_SEWER_FROG_KING_DESC"
-msgstr "Ossael quiere al Empalado fuera del camino: lleva su libro al altar en el centro de la alcantarilla para despertar al monstruo y derrótalo."
+msgstr "Ossael, el Ángel Calavera, quiere la Botella del Tormento Eterno, que el Empalado le quitó: lleva el Libro del Altar al altar del centro de la alcantarilla, léelo para despertar al monstruo, derrótalo y llévale la botella a Ossael para recibir la llave de corazones."
 
 msgid "DLG_SEWER_FROG_1"
-msgstr "Fui ángel, una vez. Caí por estas rejas, y mis alas quedaron atrapadas en lo que la cloaca devora. Oigo los susurros de una cosa de carne y tablas, al oeste."
+msgstr "Estos huesos fueron un ángel, guardián de los ahogados de esta alcantarilla, y vine a buscar la Botella del Tormento Eterno, donde se guarda su sufrimiento para que puedan descansar. Fallé: una cosa de carne y tablas me quitó la carne, las plumas blancas y la botella, y clavó las almas de mis ahogados en su propia madera. Solo quedan huesos y estas alas negras."
 
 msgid "DLG_SEWER_FROG_2"
-msgstr "La gente lo llama el Empalado: lo armaron con los huesos y la madera de quienes se ahogaron aquí, clavo a clavo, y clava sus propias espinas en quien se acerca. Aún llora, y su llanto llama a los demás muertos."
+msgstr "La gente lo llama el Empalado: lo armaron con huesos y las tablas de las pasarelas, clavo a clavo, y clava sus propias púas en quien se acerca. Lleva mi botella clavada en el pecho y duerme bajo el altar de piedra, en el centro de la alcantarilla; solo despierta cuando alguien lee el libro correcto. Su llanto llama a los demás muertos."
 
 msgid "DLG_SEWER_FROG_3"
-msgstr "Derríbenlo y liberen las almas presas en las tablas. A cambio, la llave que guarda es suya. Vayan al oeste, hasta la plaza grande."
+msgstr "Llévense el Libro del Altar, las oraciones de los ahogados. Apóyenlo en la piedra y léanlo en voz alta. Derriben al Empalado y tráiganme la Botella del Tormento Eterno; a cambio, la llave de corazones que guardo es suya."
 
 msgid "DLG_SEWER_FROG_ACTIVE"
-msgstr "Todavía oigo su llanto en el oeste. Cada tabla que cae suelta un alma… y la veo subir. No me dejen esperando en la oscuridad."
+msgstr "¿Aún sin la botella? El Empalado solo despierta cuando se leen las oraciones en el altar, en el centro de la alcantarilla. Cada tabla que cae suelta un alma… Tráiganme la Botella del Tormento Eterno, clavada en su pecho."
 
 msgid "DLG_SEWER_FROG_DONE"
-msgstr "Silencio, por fin. Las almas subieron y sentí cada una pasar entre mis alas rotas. Gracias. Lleven la llave: ya pesa menos."
+msgstr "La botella… su tormento termina aquí, y las almas suben. Cada una pasó entre mis alas negras antes de partir. Gracias. Lleven la llave de corazones: es suya. Yo me quedo aquí, de guardia, mientras haya ahogados."
 
 msgid "PROP_SEWER_SECTOR_1"
 msgstr "Desagües de la Calle Principal"
@@ -3075,7 +3069,7 @@ msgid "PROP_SEWER_SECTOR_4"
 msgstr "Pasaje Secreto de la Guerra"
 
 msgid "SIGN_SEWER_SECTOR_4"
-msgstr "Sector 4 — Pasaje Secreto de la Guerra. Caimanes al acecho en el agua; la plaza del Caimán Viejo está al este."
+msgstr "Sector 4 — Pasaje Secreto de la Guerra. Caimanes al acecho en el agua; la plaza del Carnicero Cornudo está al este."
 
 msgid "PROP_SEWER_SECTOR_5"
 msgstr "Cámaras de Hongos"
@@ -3096,10 +3090,10 @@ msgid "NPC_SEWER_FROG_ALTAR"
 msgstr "Altar del Empalado"
 
 msgid "DLG_FROG_ALTAR_1"
-msgstr "Un altar de piedra manchado de lodo, en el corazón de la alcantarilla. Hay un hueco en el centro, del tamaño de un libro, y marcas de garras y de clavos alrededor."
+msgstr "Un altar de piedra manchado de lodo, en el corazón de la alcantarilla. Hay un hueco en el centro, del tamaño de un libro, con las oraciones de los ahogados rayadas en la piedra y marcas de garras y de clavos alrededor."
 
 msgid "DLG_FROG_ALTAR_2"
-msgstr "Apoyas el Libro del Altar en la piedra y lees en voz alta: el suelo tiembla y el Empalado despierta en la sala del altar."
+msgstr "Apoyas el Libro del Altar en la piedra y lees las oraciones en voz alta: el suelo tiembla, las tablas crujen y el Empalado despierta en la sala del altar, con la botella clavada en el pecho."
 
 msgid "TOAST_FROG_ALTAR_AWAKENS"
 msgstr "El altar tiembla: ¡el Empalado despierta!"
@@ -3295,22 +3289,37 @@ msgid "VALUABLE_GATOR_BOOK"
 msgstr "Grimorio de las Brasas"
 
 msgid "VALUABLE_GATOR_BOOK_DESC"
-msgstr "Dado por Azazel. Hace reaccionar el altar del centro de la Alcantarilla: lleva al grupo hasta él y habla con la piedra para despertar al Caimán Viejo. No se vende ni se pierde."
-
-msgid "NPC_SEWER_GATOR_ALTAR"
-msgstr "Altar del Caimán Viejo"
-
-msgid "DLG_GATOR_ALTAR_1"
-msgstr "Una piedra quemada de la que sube olor a azufre. Hay un hueco en el centro, del tamaño de un grimorio, y marcas de garras alrededor."
+msgstr "Dado por Azazel. Hace reaccionar el altar del centro de la Alcantarilla: lleva al grupo hasta él y habla con la piedra para llamar al Carnicero Cornudo. No se vende ni se pierde."
 
 msgid "DLG_GATOR_ALTAR_2"
-msgstr "Apoyas el Grimorio de las Brasas en el hueco de la piedra y lees en voz alta: la piedra se calienta, el agua hierve y el Caimán Viejo emerge, con las almas gritando en su vientre."
-
-msgid "DLG_GATOR_ALTAR_LOCKED"
-msgstr "El altar quemado no reacciona. Hay un hueco vacío en el centro, del tamaño de un grimorio. Azazel debe tener lo que falta."
+msgstr "Apoyas el Grimorio de las Brasas en el hueco de la piedra y lees en voz alta: la piedra se calienta, el aire apesta a azufre y el Carnicero Cornudo sale de las brasas, cuchillo en mano, con las almas gritando tras él."
 
 msgid "TOAST_GATOR_ALTAR_AWAKENS"
-msgstr "El altar hierve: ¡el Caimán Viejo despierta!"
+msgstr "El altar hierve: ¡el Carnicero Cornudo sale de las brasas!"
 
 msgid "TOAST_GATOR_BOOK_RECEIVED"
 msgstr "¡Azazel entregó el Grimorio de las Brasas!"
+
+msgid "BEAST_HORNED_BUTCHER"
+msgstr "Carnicero Cornudo"
+
+msgid "BEAST_HORNED_BUTCHER_LEGEND"
+msgstr "Carnicero del infierno que huyó a la alcantarilla con la Botella de las Almas Condenadas. Trincha almas a cuchillo, y los Espíritus Sombríos de ellas lo siguen, gritando."
+
+msgid "BEAST_HORNED_BUTCHER_HINT"
+msgstr "Embiste con la cabeza baja: apártate cuando ruja y golpea cuando el cuchillo se le quede atascado. El agua lo hiere más."
+
+msgid "BEAST_IMPALED_ONE"
+msgstr "Empalado"
+
+msgid "BEAST_IMPALED_ONE_LEGEND"
+msgstr "Un monstruo de carne, huesos y tablas de las pasarelas, clavado con las almas de los ahogados dentro y la Botella del Tormento Eterno en el pecho. Duerme bajo el altar del centro de la alcantarilla y clava sus propias púas en quien se acerca."
+
+msgid "BEAST_IMPALED_ONE_HINT"
+msgstr "Embiste en línea recta: esquiva la embestida y golpea cuando se quede clavado. La madera vieja arde: el fuego lo hiere más."
+
+msgid "VALUABLE_TORMENT_BOTTLE"
+msgstr "Botella del Tormento Eterno"
+
+msgid "VALUABLE_STORM_BOTTLE"
+msgstr "Botella de la Tormenta de Almas"

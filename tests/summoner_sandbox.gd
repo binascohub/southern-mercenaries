@@ -54,6 +54,59 @@ func _ready() -> void:
 		if arena.local_player != null:
 			arena.local_player.global_position = Vector3(float(at[0]), 0.5, float(at[1]))
 	_summon_all(arena, args.slice(1))
+	if "invpopup" in args:  # abre o inventário com o Livro do Altar e a caveira de Morvak e o detalhe (botão direito) do livro, para conferir
+		get_tree().create_timer(2.5).timeout.connect(func() -> void:
+			arena.local_player.character.add_item(Items.stack(Items.VALUABLE, "altar_book"))
+			arena.local_player.character.add_item(Items.stack(Items.VALUABLE, "cursed_skull"))
+			arena._inventory.toggle()
+			var bag: Array = arena.local_player.character.data.inventory
+			for i in bag.size():
+				if bag[i] != null and bag[i].get("id", "") == "altar_book":
+					arena._inventory._show_popup({"bag": i}))
+	if "flock" in args:  # lança a Revoada de frente para os bonecos de treino da Capital, perto do instante da captura (os falcões ainda estão voando)
+		get_tree().create_timer(4.85).timeout.connect(func() -> void:
+			arena.local_player.facing = Vector2(0, -1)
+			arena.skills.cast(arena.local_player, "flock", 3))
+	if "birdshot" in args:  # dispara o ataque básico (a ave do Invocador) para o norte, perto do instante da captura
+		get_tree().create_timer(4.85).timeout.connect(func() -> void:
+			arena.local_player.facing = Vector2(0, -1)
+			arena.local_player._fire(arena.local_player.data.strong_attack if "strong" in args else arena.local_player.data.basic_attack))
+	if "shell" in args:  # lança as Asas do Falcão para ver as 3 aves e a poeira (a captura sai 2,5 s depois)
+		get_tree().create_timer(2.5).timeout.connect(func() -> void:
+			arena.skills.cast(arena.local_player, "falcon_wings", 3))
+	if "skillmenu" in args:  # abre o menu de habilidades (tecla K), com o dock dos 4 atalhos por cima, e simula soltar a 1ª habilidade ativa no atalho 4
+		get_tree().create_timer(2.5).timeout.connect(func() -> void:
+			arena._skill_menu.toggle()
+			arena._skill_menu._drop_skill(Vector2.ZERO, {"skill_key": "stampede"}, 3)
+			await get_tree().create_timer(0.8).timeout
+			arena._skill_menu._refresh()
+			print("SLOTS ", arena.local_player.character.data.skill_slots))
+	if "cdbar" in args:  # lança as habilidades 2 e 3 (Revoada e Asas do Falcão) para ver o vermelho de recarga descendo nos atalhos
+		get_tree().create_timer(2.5).timeout.connect(func() -> void:
+			arena.local_player.facing = Vector2(0, -1)
+			for i in [1, 2]:
+				arena.local_player._cast_slot(i))
+	if "feathers" in args:  # solta penas das aves em cima do herói para ver as penas caindo (a captura sai 1 s depois)
+		get_tree().create_timer(2.5).timeout.connect(func() -> void:
+			for i in 8:
+				var holder := Node3D.new()
+				arena.local_player.add_child(holder)
+				holder.position = Vector3(randf_range(-3.0, 3.0), randf_range(2.0, 3.0), randf_range(-3.0, 3.0))
+				arena.skills._drop_feather(holder))
+	if "callskill" in args:  # usa o atalho 1 (Chamar Companheiro), como o jogador, para ver qual animal sai
+		get_tree().create_timer(2.5).timeout.connect(func() -> void:
+			arena.local_player._cast_slot(0))
+	if "stampede" in args:  # lança o Estouro da Manada para o norte, de frente para os bonecos de treino (a captura sai logo depois)
+		get_tree().create_timer(2.5).timeout.connect(func() -> void:
+			arena.local_player.facing = Vector2(0, -1)
+			arena.skills.cast(arena.local_player, "stampede", 3))
+	if "summongator" in args:  # desperta o Gator Velho (mini-chefe 2) no altar, como se o grupo lesse o Grimório das Brasas
+		for prop: Dictionary in arena.arena.props:
+			for extra: Dictionary in prop.get("extra_summons", []):
+				if String(extra.summon.get("id", "")) == "sw_old_gator":
+					var group: Dictionary = extra.summon.duplicate(true)
+					group.monsters = group.monsters.filter(func(m: Dictionary) -> bool: return GameData.monsters.has(m.monster))  # monstros ainda não definidos (sewer_gator) ficam de fora da demonstração
+					arena.summon_encounter(arena.local_player, {"summon": group})
 	if "summon" in args:  # desperta o Rei dos Sapos (mini-chefe 1 do Esgoto) no altar, como se o grupo tivesse o Livro do Altar
 		arena._campaign.keys = arena._campaign.get("keys", []) + ["book_frog_altar"]
 		for prop: Dictionary in arena.arena.props:
@@ -66,7 +119,7 @@ func _ready() -> void:
 	if kill != "":
 		_kill_and_open(arena, kill, open_chest)
 	if shot != "":
-		await get_tree().create_timer(12.0 if (kill != "" or "givekeys" in args or "summon" in args) else 5.0).timeout
+		await get_tree().create_timer(4.25 if "stampede" in args else 5.5 if "callskill" in args else 3.6 if "feathers" in args else 7.0 if ("shell" in args or "skillmenu" in args or "cdbar" in args or "feathers" in args or "callskill" in args) else (12.0 if (kill != "" or "givekeys" in args or "summon" in args or "summongator" in args or "invpopup" in args) else 5.0)).timeout
 		await RenderingServer.frame_post_draw
 		get_viewport().get_texture().get_image().save_png(shot)
 		get_tree().quit()

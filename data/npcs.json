@@ -30,7 +30,8 @@
         },
         "lines": [
           "DLG_OLD_DRUNK_ACTIVE"
-        ]
+        ],
+        "service": "turn_in"
       },
       {
         "when": {},
@@ -760,7 +761,7 @@
     ]
   },
   "sewer_scavenger": {
-    "_comment": "Ossael, o Anjo Caveira (modelo angel_1.glb; sala aberta no meio do mapa): dá a missão do primeiro mini-chefe, o Empalado (agora o Monstro de Tábuas), na praça oeste; ela fica parada, de asas abertas.",
+    "_comment": "Ossael, o Anjo Caveira (angel.glb em NpcModel: esqueleto de asas negras e auréola de espinhos; sala aberta no meio do mapa): guardião dos afogados do esgoto; veio buscar a Garrafa do Tormento Eterno, que o Empalado lhe tomou. Dá a missão (entrega o Livro do Altar, as preces dos afogados, que lido no altar do centro desperta o Empalado); ao receber a garrafa que ele solta, entrega a chave de copas.",
     "name_key": "NPC_SEWER_SCAVENGER",
     "color": [
       0.4,
@@ -785,7 +786,8 @@
         },
         "lines": [
           "DLG_SEWER_FROG_ACTIVE"
-        ]
+        ],
+        "service": "turn_in"
       },
       {
         "when": {},
@@ -812,7 +814,7 @@
     }
   },
   "sewer_ratcatcher": {
-    "_comment": "Azazel, o Anjo Flamejante (posto do lado leste; modelo angel_2.glb em NpcModel; antes Itachi): dá a missão do segundo mini-chefe, o Gator Velho, que domina a Passagem da Guerra, na praça leste.",
+    "_comment": "Azazel, o Anjo Flamejante (posto do lado leste; modelo angel_2.glb em NpcModel; antes Itachi): dá a missão da Garrafa das Almas Condenadas: Lúcifer o mandou buscá-la e o Carniceiro Chifrudo, demônio açougueiro, a roubou. O grimório que ele entrega, lido no altar do centro do mapa, chama o demônio; a garrafa que ele solta vale a chave de espadas.",
     "name_key": "NPC_SEWER_RATCATCHER",
     "color": [
       0.45,
@@ -960,30 +962,6 @@
         "when": {},
         "lines": [
           "DLG_REPTILE_DONE"
-        ]
-      }
-    ]
-  },
-  "sewer_gator_altar": {
-    "_comment": "Altar do Gator Velho (centro do mapa, ao lado do altar do Empalado): com o Grimório das Brasas do Azazel, tocá-lo invoca o Gator Velho ('summon' no objeto em arenas.json); a missão do Azazel pede a garrafa que ele solta.",
-    "name_key": "NPC_SEWER_GATOR_ALTAR",
-    "color": [
-      0.55,
-      0.3,
-      0.2
-    ],
-    "dialogues": [
-      {
-        "when": {},
-        "lines": [
-          "DLG_GATOR_ALTAR_1",
-          "DLG_GATOR_ALTAR_2"
-        ]
-      },
-      {
-        "when": {},
-        "lines": [
-          "DLG_GATOR_ALTAR_LOCKED"
         ]
       }
     ]

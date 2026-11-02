@@ -45,6 +45,11 @@ var _element_label: Label
 ## Barra de habilidades (09-interface.md, seção 3): 4 atalhos com tecla, nome,
 ## recarga e cinza quando falta mana.
 var _skill_slots: Array[Label] = []
+## Atalhos de habilidade: ícone (assets/ui/icons/skills/<id>.png), tempo de recarga no centro e o vermelho translúcido que desce enquanto recarrega.
+var _skill_icons: Array[TextureRect] = []
+var _skill_cooldown_fill: Array[ColorRect] = []
+var _skill_boxes: Array[PanelContainer] = []
+var _cd_total := {}
 var _potions: Label
 var _toasts: VBoxContainer
 var _saving: Label
@@ -288,20 +293,37 @@ func _update_skill_bar() -> void:
 	var c := _player.character
 	for i in _skill_slots.size():
 		var label := _skill_slots[i]
+		var icon := _skill_icons[i]
+		var fill := _skill_cooldown_fill[i]
 		var prompt := InputDevice.prompt(StringName("skill_%d" % (i + 1)))
 		var key: String = c.data.skill_slots[i] if c else ""
 		if key == "":
-			label.text = "%s\n—" % prompt
+			label.text = prompt
 			label.modulate = Color(1, 1, 1, 0.45)
+			icon.texture = null
+			fill.visible = false
+			_skill_boxes[i].tooltip_text = ""
 			continue
-		var skill := Skills.def(c.skill_of(key))
+		var skill_id := c.skill_of(key)
+		var skill := Skills.def(skill_id)
+		var path := "res://assets/ui/icons/skills/%s.png" % skill_id
+		icon.texture = load(path) as Texture2D if ResourceLoader.exists(path) else null
+		_skill_boxes[i].tooltip_text = tr(skill.get("name_key", ""))
 		var cd := _player.skill_cooldown_left(key)
-		var text := "%s\n%s" % [prompt, tr(skill.get("name_key", ""))]
+		if cd > float(_cd_total.get(key, 0.0)) + 0.05 or cd <= 0.0:
+			_cd_total[key] = cd  # a recarga acabou de começar (ou terminou): guarda o tempo todo para a altura do vermelho
+		var total := maxf(float(_cd_total.get(key, 0.0)), 0.01)
+		fill.visible = cd > 0.0
 		if cd > 0.0:
-			text += "\n%.0fs" % ceilf(cd)
+			var height := _skill_boxes[i].size.y * clampf(cd / total, 0.0, 1.0)
+			fill.offset_top = -height  # o vermelho fica embaixo e desce: a borda de cima desce enquanto recarrega
+		var text := prompt
+		if cd > 0.0:
+			text += "  %.0fs" % ceilf(cd)
 		label.text = text
 		var ready := cd <= 0.0 and _player.resource >= float(skill.get("cost", 0.0))
-		label.modulate = Color.WHITE if ready else Color(0.55, 0.55, 0.55)
+		label.modulate = Color.WHITE
+		icon.modulate = Color.WHITE if ready else Color(0.62, 0.62, 0.62)
 
 
 func is_gamepad_lost_visible() -> bool:
@@ -489,14 +511,36 @@ func _build() -> void:
 	for i in 4:
 		var box := PanelContainer.new()
 		box.theme_type_variation = &"HudPanel"
-		box.custom_minimum_size = Vector2(112, 64)
+		box.custom_minimum_size = Vector2(76, 76)
 		skill_bar.add_child(box)
+		var icon := TextureRect.new()
+		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		box.add_child(icon)
+		var host := Control.new()  # a camada do vermelho de recarga (o tamanho da caixa vem do ícone)
+		host.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		host.clip_contents = true
+		box.add_child(host)
+		var fill := ColorRect.new()
+		fill.color = Color(0.85, 0.08, 0.06, 0.55)
+		fill.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		fill.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
+		fill.offset_top = 0.0
+		fill.offset_bottom = 0.0
+		fill.visible = false
+		host.add_child(fill)
 		var slot_label := _label(14)
-		slot_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		slot_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		slot_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		slot_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+		slot_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP  # a tecla no canto de cima; o tempo de recarga vem na mesma linha
+		slot_label.autowrap_mode = TextServer.AUTOWRAP_OFF
+		slot_label.add_theme_color_override("font_outline_color", Color.BLACK)
+		slot_label.add_theme_constant_override("outline_size", 6)
 		box.add_child(slot_label)
 		_skill_slots.append(slot_label)
+		_skill_icons.append(icon)
+		_skill_cooldown_fill.append(fill)
+		_skill_boxes.append(box)
 
 	# Faixa de XP na base da tela.
 	var xp_box := VBoxContainer.new()

@@ -909,8 +909,12 @@ func _town_test() -> void:
 	for e in get_tree().get_nodes_in_group(&"enemies"):
 		e.take_damage(1e9)
 	await get_tree().physics_frame
-	check.call(town.quests.get("sewer_treasure", "") == "done", "vencer a Rainha conclui a missão")
-	check.call(int(player.character.data.gold) >= gold + 150, "recompensa da missão")
+	check.call(_arena.result != 0 and town.quests.get("sewer_treasure", "") == "active", "vencer a Rainha não conclui a missão do Velho: falta entregar a garrafa dele")
+	# A Rainha larga a Garrafa da Tempestade de Almas; o Velho (Tortuga) a troca pela recompensa.
+	player.character.add_item(Items.stack(Items.VALUABLE, "storm_bottle"))
+	town._turn_in(player, "old_drunk")
+	check.call(town.quests.get("sewer_treasure", "") == "done", "entregar a garrafa ao Velho conclui a missão")
+	check.call(int(player.character.data.gold) >= gold + 400, "recompensa da missão")
 	check.call(_arena.prop_near(player, "key", "", 300.0).is_empty(), "a Rainha não deixa mais chave")
 	# Portal de volta: Tortuga, fim da expedição, navio novo.
 	player.teleport_to(Vector3(portal_at[0], 0, portal_at[1]))

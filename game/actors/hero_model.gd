@@ -479,6 +479,50 @@ func attach(bone: String, node: Node3D, offset := Transform3D.IDENTITY, fallback
 	holder.add_child(node)
 
 
+## Asas de revoada (Fuga em Bando): brotam das costas do herói, batem (a animação "Fly" do arquivo, as duas asas juntas) e se recolhem. Só visual, em todos os PCs.
+## O arquivo está em centímetros (as malhas vêm escaladas por 100 no Godot): WINGS_SCALE leva cada asa a ~1,5 m; o osso da raiz fica nas costas, na altura do ombro.
+const WINGS_SCENE := "res://assets/models/props/Hero_Wings.glb"
+const WINGS_SCALE := 0.0055
+const WINGS_ROOT := Vector3(0.0, 142.9, -39.7)  # onde fica a raiz das asas no arquivo (já com a escala de 100)
+
+
+func show_wings(duration := 1.0) -> void:
+	if not ResourceLoader.exists(WINGS_SCENE):
+		return
+	var pivot := Node3D.new()
+	pivot.position = Vector3(0.0, 1.35, -0.12)  # ombros, um pouco atrás do corpo
+	add_child(pivot)
+	var wings := (load(WINGS_SCENE) as PackedScene).instantiate() as Node3D
+	wings.scale = Vector3.ONE * WINGS_SCALE
+	wings.position = -WINGS_ROOT * WINGS_SCALE  # a raiz das asas no pivô
+	pivot.add_child(wings)
+	var player := wings.find_child("AnimationPlayer", true, false) as AnimationPlayer
+	if player:
+		var left: Animation = null
+		var right: Animation = null
+		for anim_name in player.get_animation_list():
+			if String(anim_name).ends_with("Fly"):
+				if String(anim_name).begins_with("Armature_001"):
+					right = player.get_animation(anim_name)
+				elif String(anim_name).begins_with("Armature|"):
+					left = player.get_animation(anim_name)
+		if left and right:
+			var both := left.duplicate() as Animation  # as duas asas batem juntas
+			for i in right.get_track_count():
+				right.copy_track(i, both)
+			both.loop_mode = Animation.LOOP_LINEAR
+			var library := AnimationLibrary.new()
+			library.add_animation("both", both)
+			player.add_animation_library("wings", library)
+			player.play("wings/both")
+	pivot.scale = Vector3.ONE * 0.05
+	var tween := pivot.create_tween()
+	tween.tween_property(pivot, "scale", Vector3.ONE, 0.12).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	tween.tween_interval(maxf(duration - 0.4, 0.1))
+	tween.tween_property(pivot, "scale", Vector3.ONE * 0.05, 0.25).set_ease(Tween.EASE_IN)
+	tween.tween_callback(pivot.queue_free)
+
+
 ## Uma ação de uma vez (ataque, magia, esquiva…): toca por cima da locomoção.
 func play_action(kind: String) -> void:
 	if _anim == null or _dead or not _names.has(kind):

@@ -227,7 +227,7 @@ func _build_defaults() -> void:
 	d[&"aim_down"] = _pair([], [axis(JOY_AXIS_RIGHT_Y, 1)])
 	d[&"aim_left"] = _pair([], [axis(JOY_AXIS_RIGHT_X, -1)])
 	d[&"aim_right"] = _pair([], [axis(JOY_AXIS_RIGHT_X, 1)])
-	d[&"attack"] = _pair([mouse(MOUSE_BUTTON_LEFT)], [axis(JOY_AXIS_TRIGGER_RIGHT, 1)])
+	d[&"attack"] = _pair([mouse(MOUSE_BUTTON_LEFT)], [pad(JOY_BUTTON_RIGHT_SHOULDER)])  # R1 = ataque simples (segurar: ataque forte)
 	d[&"skill_1"] = _pair([key(KEY_1)], [pad(JOY_BUTTON_A)])
 	d[&"skill_2"] = _pair([key(KEY_2)], [pad(JOY_BUTTON_B)])
 	d[&"skill_3"] = _pair([key(KEY_3)], [pad(JOY_BUTTON_X)])
@@ -243,7 +243,7 @@ func _build_defaults() -> void:
 	d[&"potion_elemental"] = _pair([key(KEY_R)], [pad(JOY_BUTTON_DPAD_RIGHT)])
 	# Botão de interagir no controle: decisão em aberto (08-controles.md, seção 5).
 	d[&"interact"] = _pair([mouse(MOUSE_BUTTON_RIGHT), key(KEY_G)], [])
-	d[&"pickup_all"] = _pair([key(KEY_Z)], [pad(JOY_BUTTON_RIGHT_SHOULDER)])
+	d[&"pickup_all"] = _pair([key(KEY_Z)], [axis(JOY_AXIS_TRIGGER_RIGHT, 1)])  # R2 pega todo o loot (o R1 passou a ser o ataque)
 	d[&"inventory"] = _pair([key(KEY_I)], [pad(JOY_BUTTON_BACK)])
 	# Habilidades: K no teclado; no controle, pelo botão na janela do inventário.
 	d[&"skills"] = _pair([key(KEY_K)], [])

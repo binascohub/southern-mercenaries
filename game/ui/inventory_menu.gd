@@ -27,6 +27,10 @@ var _attr_buttons := {}
 var _slot_buttons := {}
 var _bag_buttons: Array[Button] = []
 var _details: Label
+## Janela de detalhe (botão direito num item): a imagem grande e a descrição inteira. Fecha com outro clique, Esc ou o botão de fechar.
+var _popup: PanelContainer
+var _popup_icon: TextureRect
+var _popup_text: Label
 var _hint: Label
 var _trade_button: Button
 var _focused := {}  # {"bag": index} ou {"slot": nome}
@@ -59,6 +63,8 @@ func toggle() -> void:
 
 
 func close() -> void:
+	if _popup:
+		_popup.visible = false
 	visible = false
 	Session.ui_open = false
 	var focus := _panel.get_viewport().gui_get_focus_owner()
@@ -69,6 +75,9 @@ func close() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"inventory"):
 		toggle()
+		get_viewport().set_input_as_handled()
+	elif visible and _popup != null and _popup.visible and (event.is_action_pressed(&"ui_cancel") or event.is_action_pressed(&"menu")):
+		_popup.visible = false  # o primeiro Esc fecha só o detalhe
 		get_viewport().set_input_as_handled()
 	elif visible and (event.is_action_pressed(&"ui_cancel") or event.is_action_pressed(&"menu")):
 		close()
@@ -206,6 +215,7 @@ func _build() -> void:
 		button.custom_minimum_size = SLOT_SIZE
 		button.clip_text = true
 		button.pressed.connect(func() -> void: _player.request_unequip(slot))
+		button.gui_input.connect(func(event: InputEvent) -> void: _on_item_right_click(event, {"slot": slot}))
 		button.focus_entered.connect(func() -> void:
 			_focused = {"slot": slot}
 			_show_details())
@@ -227,6 +237,7 @@ func _build() -> void:
 		button.vertical_icon_alignment = VERTICAL_ALIGNMENT_TOP
 		button.add_theme_font_size_override("font_size", 11)
 		button.pressed.connect(func() -> void: _player.request_use(i))
+		button.gui_input.connect(func(event: InputEvent) -> void: _on_item_right_click(event, {"bag": i}))
 		button.focus_entered.connect(func() -> void:
 			_focused = {"bag": i}
 			_show_details())
@@ -265,6 +276,60 @@ func _build() -> void:
 		close()
 		journal_requested.emit())
 	actions.add_child(journal_button)
+	_build_popup()
+
+
+## Botão direito num item da bolsa ou do equipamento: abre o detalhe (imagem e descrição).
+func _on_item_right_click(event: InputEvent, where: Dictionary) -> void:
+	if not (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT):
+		return
+	_show_popup(where)
+	get_viewport().set_input_as_handled()
+
+
+func _show_popup(where: Dictionary) -> void:
+	if _player == null or _player.character == null:
+		return
+	var c := _player.character
+	var item: Variant = c.data.inventory[where.bag] if where.has("bag") else c.data.equipment.get(where.slot)
+	if item == null:
+		_popup.visible = false
+		return
+	var icon := Items.icon(item)
+	_popup_icon.texture = icon
+	_popup_icon.visible = icon != null
+	_popup_text.text = "\n".join(Items.describe(item, c.class_data().armor_factor))
+	_popup_text.add_theme_color_override("font_color", Color(0.18, 0.12, 0.07))
+	_popup.visible = true
+
+
+func _build_popup() -> void:
+	_popup = PanelContainer.new()
+	_popup.theme = UiTheme.paper_theme()
+	_popup.set_anchors_preset(Control.PRESET_CENTER)
+	_popup.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	_popup.grow_vertical = Control.GROW_DIRECTION_BOTH
+	_popup.custom_minimum_size = Vector2(420, 0)
+	_popup.visible = false
+	add_child(_popup)
+	var box := VBoxContainer.new()
+	box.add_theme_constant_override("separation", 12)
+	_popup.add_child(box)
+	_popup_icon = TextureRect.new()
+	_popup_icon.custom_minimum_size = Vector2(160, 160)
+	_popup_icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_popup_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_popup_icon.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	box.add_child(_popup_icon)
+	_popup_text = _text_label()
+	_popup_text.custom_minimum_size = Vector2(380, 0)
+	box.add_child(_popup_text)
+	var close_button := Button.new()
+	close_button.text = "INV_POPUP_CLOSE"
+	close_button.custom_minimum_size = Vector2(200, 40)
+	close_button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	close_button.pressed.connect(func() -> void: _popup.visible = false)
+	box.add_child(close_button)
 
 
 func _text_label() -> Label:

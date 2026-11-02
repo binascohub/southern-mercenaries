@@ -17,6 +17,10 @@ var _details: Label
 var _focused_key := ""
 ## chave -> {"label", "learn", "slots": [Button × 4]}
 var _row_nodes := {}
+## Os 4 atalhos repetidos aqui, por cima da janela (a barra da tela fica escondida atrás dela): soltar uma habilidade neles a põe no atalho.
+var _dock: VBoxContainer
+var _dock_labels: Array[Label] = []
+var _dock_icons: Array[TextureRect] = []
 
 
 func _ready() -> void:
@@ -43,12 +47,15 @@ func toggle() -> void:
 		Session.ui_open = true
 		_rebuild_rows()
 		_refresh()
+		_dock.visible = true
 		var first: Dictionary = _row_nodes.values()[0] if not _row_nodes.is_empty() else {}
 		if not first.is_empty():
 			first.learn.grab_focus.call_deferred()
 
 
 func close() -> void:
+	if _dock:
+		_dock.visible = false
 	visible = false
 	Session.ui_open = false
 	var focus := _panel.get_viewport().gui_get_focus_owner()
@@ -79,9 +86,17 @@ func _rebuild_rows() -> void:
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation", 6)
 		_rows.add_child(row)
+		var icon := TextureRect.new()
+		icon.custom_minimum_size = Vector2(34, 34)
+		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		row.add_child(icon)
 		var label := Label.new()
 		label.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
-		label.custom_minimum_size = Vector2(ROW_NAME_WIDTH, 0)
+		label.custom_minimum_size = Vector2(ROW_NAME_WIDTH - 40, 0)
+		label.mouse_filter = Control.MOUSE_FILTER_STOP  # para receber o arrastar (a habilidade aprendida e ativa vai para um atalho)
+		label.set_drag_forwarding(_drag_skill.bind(key, label), Callable(), Callable())
 		row.add_child(label)
 		var learn := Button.new()
 		learn.text = "+"
@@ -100,7 +115,7 @@ func _rebuild_rows() -> void:
 			slot.focus_entered.connect(_focus.bind(key))
 			row.add_child(slot)
 			slots.append(slot)
-		_row_nodes[key] = {"label": label, "learn": learn, "slots": slots}
+		_row_nodes[key] = {"label": label, "learn": learn, "slots": slots, "icon": icon}
 
 
 func _refresh() -> void:
@@ -119,6 +134,8 @@ func _refresh() -> void:
 		if skill.get("kind", "") == "passive":
 			line += "  " + tr("SKILLS_PASSIVE")
 		var label: Label = nodes.label
+		var icon_path := "res://assets/ui/icons/skills/%s.png" % c.skill_of(key)
+		(nodes.icon as TextureRect).texture = load(icon_path) as Texture2D if ResourceLoader.exists(icon_path) else null
 		label.text = line
 		label.modulate = Color.WHITE if rank > 0 else (Color(0.75, 0.75, 0.75) if level <= int(c.data.level) else Color(0.45, 0.45, 0.45))
 		var learn: Button = nodes.learn
@@ -128,7 +145,80 @@ func _refresh() -> void:
 			var slot: Button = nodes.slots[i]
 			slot.visible = active
 			slot.modulate = Color(1.0, 0.85, 0.4) if c.data.skill_slots[i] == key else Color.WHITE
+	_refresh_dock()
 	_show_details()
+
+
+## Arrastar uma habilidade ativa e aprendida: o que vai na mão é o nome dela, e o destino é um dos 4 atalhos do dock.
+func _drag_skill(_at: Vector2, key: String, source: Control) -> Variant:
+	var c := _player.character if _player else null
+	if c == null or c.skill_rank(key) <= 0 or not Skills.is_active(c.skill_of(key)):
+		return null
+	var preview := Label.new()
+	preview.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+	preview.text = tr(Skills.def(c.skill_of(key)).get("name_key", ""))
+	preview.add_theme_font_size_override("font_size", 18)
+	preview.add_theme_color_override("font_color", Color(1.0, 0.9, 0.5))
+	preview.add_theme_color_override("font_outline_color", Color.BLACK)
+	preview.add_theme_constant_override("outline_size", 6)
+	source.set_drag_preview(preview)
+	return {"skill_key": key}
+
+
+func _can_drop_skill(_at: Vector2, data: Variant, _index: int) -> bool:
+	return data is Dictionary and data.has("skill_key")
+
+
+func _drop_skill(_at: Vector2, data: Variant, index: int) -> void:
+	if _player and data is Dictionary and data.has("skill_key"):
+		_player.request_slot(index, String(data.skill_key))
+
+
+func _build_dock() -> void:
+	_dock = VBoxContainer.new()  # coluna à direita da janela (a janela ocupa o meio da tela e cobriria uma barra embaixo)
+	_dock.set_anchors_preset(Control.PRESET_CENTER_RIGHT)
+	_dock.grow_horizontal = Control.GROW_DIRECTION_BEGIN
+	_dock.grow_vertical = Control.GROW_DIRECTION_BOTH
+	_dock.offset_right = -20
+	_dock.offset_top = 80
+	_dock.offset_bottom = 80
+	_dock.add_theme_constant_override("separation", 10)
+	add_child(_dock)
+	for i in 4:
+		var box := PanelContainer.new()
+		box.theme = UiTheme.paper_theme()
+		box.custom_minimum_size = Vector2(220, 72)
+		box.set_drag_forwarding(Callable(), _can_drop_skill.bind(i), _drop_skill.bind(i))
+		_dock.add_child(box)
+		var line := HBoxContainer.new()
+		line.add_theme_constant_override("separation", 8)
+		line.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		box.add_child(line)
+		var dock_icon := TextureRect.new()
+		dock_icon.custom_minimum_size = Vector2(52, 52)
+		dock_icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		dock_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		dock_icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		line.add_child(dock_icon)
+		_dock_icons.append(dock_icon)
+		var label := Label.new()
+		label.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		label.custom_minimum_size = Vector2(120, 0)
+		label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		line.add_child(label)
+		_dock_labels.append(label)
+
+
+func _refresh_dock() -> void:
+	var c := _player.character if _player else null
+	for i in _dock_labels.size():
+		var key: String = c.data.skill_slots[i] if c else ""
+		var prompt := InputDevice.prompt(StringName("skill_%d" % (i + 1)))
+		_dock_labels[i].text = "%s\n—" % prompt if key == "" else "%s\n%s" % [prompt, tr(Skills.def(c.skill_of(key)).get("name_key", ""))]
+		var dock_path := "res://assets/ui/icons/skills/%s.png" % (c.skill_of(key) if key != "" else "")
+		_dock_icons[i].texture = load(dock_path) as Texture2D if key != "" and ResourceLoader.exists(dock_path) else null
 
 
 func _focus(key: String) -> void:
@@ -191,3 +281,5 @@ func _build() -> void:
 	hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	hint.custom_minimum_size = Vector2(700, 0)
 	outer.add_child(hint)
+	_build_dock()
+	_dock.visible = false

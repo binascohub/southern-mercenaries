@@ -9,12 +9,13 @@
     "target_element": "earth",
     "unlocks": "sewer_entrance",
     "reward": {
-      "gold": 150,
-      "xp": 300
+      "gold": 400,
+      "xp": 450
     },
     "bestiary": [
       "demon_rat_queen"
-    ]
+    ],
+    "item": "storm_bottle"
   },
   "royal_heart": {
     "name_key": "QUEST_ROYAL_HEART",
@@ -154,6 +155,9 @@
     "grants_item": "gator_book",
     "grants_toast": "TOAST_GATOR_BOOK_RECEIVED",
     "item": "souls_bottle",
+    "bestiary": [
+      "old_gator"
+    ],
     "gives_key": "sewer_key_spades",
     "target_element": "fire",
     "reward": {
@@ -167,12 +171,14 @@
     "type": "village",
     "giver": "sewer_scavenger",
     "area": "sewers_01_drains",
-    "clear": [
-      "sw_frog_king"
+    "item": "torment_bottle",
+    "bestiary": [
+      "frog_king"
     ],
     "grants_key": "book_frog_altar",
     "grants_item": "altar_book",
-    "target_element": "air",
+    "gives_key": "sewer_key_hearts",
+    "target_element": "earth",
     "reward": {
       "gold": 140,
       "xp": 220

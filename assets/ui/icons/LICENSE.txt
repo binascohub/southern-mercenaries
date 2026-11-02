@@ -29,3 +29,5 @@ bone_dagger — "Bone knife" by Lorc; key_spades — "Skeleton key" by Lorc; key
 hood_* — "Hood" by Lorc; tunic_* — "Robe" by Lorc; gloves_* — "Gloves" by Delapouite; boots_* — "Boots" by Lorc; hunter_cap_* — "Robin Hood hat" by Delapouite
 leather_vest_* — "Leather vest" by Lorc; ninja_mask_* — "Ninja mask" by Lorc; helm_* — "Visored helm" by Lorc; plate_* — "Breastplate" by Lorc
 barding_* — "Horse head" by Lorc; staff_C..S — "Wizard staff" by Lorc; dagger_C..S — "Plain dagger" by Lorc
+
+souls_bottle, torment_bottle, storm_bottle, gator_book — renders of models supplied by the project author (souls_bottle.glb, cased_potion_bottle.glb, storm_in_a_bottle.glb, ornate_book.glb; author/licence to confirm), outlined to 128 px icons by tools/assets/souls_bottle_icon.py.

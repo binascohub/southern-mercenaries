@@ -42,14 +42,24 @@
       "acid_toad"
     ]
   },
-  "sewer_gator": {
-    "name_key": "BEAST_SEWER_GATOR",
-    "legend_key": "BEAST_SEWER_GATOR_LEGEND",
-    "hint_key": "BEAST_SEWER_GATOR_HINT",
-    "element": "water",
+  "horned_butcher": {
+    "name_key": "BEAST_HORNED_BUTCHER",
+    "legend_key": "BEAST_HORNED_BUTCHER_LEGEND",
+    "hint_key": "BEAST_HORNED_BUTCHER_HINT",
+    "element": "fire",
     "map": "map_sewers",
     "monsters": [
       "old_gator"
+    ]
+  },
+  "impaled_one": {
+    "name_key": "BEAST_IMPALED_ONE",
+    "legend_key": "BEAST_IMPALED_ONE_LEGEND",
+    "hint_key": "BEAST_IMPALED_ONE_HINT",
+    "element": "earth",
+    "map": "map_sewers",
+    "monsters": [
+      "frog_king"
     ]
   },
   "demon_rat_queen": {

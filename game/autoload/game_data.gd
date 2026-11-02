@@ -17,6 +17,7 @@ const FILES := {
 	"loot": "res://data/loot.json",
 	"elements": "res://data/elements.json",
 	"skills": "res://data/skills.json",
+	"spell_fx": "res://data/spell_fx.json",
 	"companions": "res://data/companions.json",
 	"shops": "res://data/shops.json",
 	"npcs": "res://data/npcs.json",
@@ -41,6 +42,8 @@ var affixes: Dictionary
 var item_bases: Dictionary
 var consumables: Dictionary
 var valuables: Dictionary
+## Efeito visual próprio de cada magia (SpellFx).
+var spell_fx: Dictionary
 var loot: Dictionary
 var elements: Dictionary
 var skills: Dictionary

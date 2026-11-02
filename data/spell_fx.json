@@ -1,0 +1,1228 @@
+{
+  "_comment": "Efeito visual próprio de cada habilidade ativa (game/combat/spell_fx.gd): \"colors\" [principal, clara]; \"cast\" (símbolo no herói ao lançar), \"proj\" (projétil), \"beam\" (feixe, investida, corte), \"disc\" (área no chão), \"warn\" (aviso antes do impacto) e \"hit\" (impacto); cada um é {\"m\": motivo, ...ajustes: k = tamanho, g = símbolo, t = partícula, o = peças em volta}. Sem entrada, vale o efeito genérico por elemento (fx.gd).",
+  "teleport": {
+    "colors": [
+      "#9b6bff",
+      "#e8dcff"
+    ],
+    "cast": {
+      "g": "rune"
+    },
+    "disc": {
+      "m": "teleport",
+      "t": "diamond"
+    }
+  },
+  "fire_bolt": {
+    "colors": [
+      "#ff7a1a",
+      "#ffd98a"
+    ],
+    "cast": {
+      "g": "star4"
+    },
+    "proj": {
+      "m": "dart"
+    }
+  },
+  "fireball": {
+    "colors": [
+      "#ff7a1a",
+      "#ffd98a"
+    ],
+    "cast": {
+      "g": "rune"
+    },
+    "proj": {
+      "m": "comet"
+    },
+    "hit": {
+      "m": "fire_burst"
+    }
+  },
+  "flame_blessing": {
+    "colors": [
+      "#ff7a1a",
+      "#ffd98a"
+    ],
+    "cast": {
+      "g": "star4"
+    },
+    "disc": {
+      "m": "aura_up",
+      "g": "star4",
+      "t": "star4"
+    }
+  },
+  "fire_lance": {
+    "colors": [
+      "#ff7a1a",
+      "#ffd98a"
+    ],
+    "cast": {
+      "g": "ray"
+    },
+    "proj": {
+      "m": "spear"
+    }
+  },
+  "fire_wall": {
+    "colors": [
+      "#ff7a1a",
+      "#ffd98a"
+    ],
+    "cast": {
+      "g": "rune"
+    },
+    "beam": {
+      "m": "fire_line"
+    }
+  },
+  "meteor": {
+    "colors": [
+      "#ff7a1a",
+      "#ffd98a"
+    ],
+    "cast": {
+      "g": "rune"
+    },
+    "warn": {
+      "m": "danger"
+    },
+    "hit": {
+      "m": "meteor"
+    },
+    "disc": {
+      "m": "flame_ring"
+    }
+  },
+  "water_bolt": {
+    "colors": [
+      "#2f8fff",
+      "#a8f0ff"
+    ],
+    "cast": {
+      "g": "crescent"
+    },
+    "proj": {
+      "m": "orb"
+    }
+  },
+  "frost_nova": {
+    "colors": [
+      "#4fc3ff",
+      "#e8fbff"
+    ],
+    "cast": {
+      "g": "snow"
+    },
+    "disc": {
+      "m": "frost_nova"
+    }
+  },
+  "healing_rain": {
+    "colors": [
+      "#3fd0a0",
+      "#d8ffe8"
+    ],
+    "cast": {
+      "g": "plus"
+    },
+    "disc": {
+      "m": "rain_heal"
+    }
+  },
+  "ice_lance": {
+    "colors": [
+      "#4fc3ff",
+      "#e8fbff"
+    ],
+    "cast": {
+      "g": "ray"
+    },
+    "proj": {
+      "m": "crystal"
+    }
+  },
+  "tidal_wave": {
+    "colors": [
+      "#2f8fff",
+      "#a8f0ff"
+    ],
+    "cast": {
+      "g": "crescent"
+    },
+    "disc": {
+      "m": "wave_sweep"
+    }
+  },
+  "blizzard": {
+    "colors": [
+      "#4fc3ff",
+      "#e8fbff"
+    ],
+    "cast": {
+      "g": "snow"
+    },
+    "disc": {
+      "m": "blizzard"
+    }
+  },
+  "wind_blade": {
+    "colors": [
+      "#8fe0ff",
+      "#ffffff"
+    ],
+    "cast": {
+      "g": "crescent"
+    },
+    "proj": {
+      "m": "crescent"
+    }
+  },
+  "chain_lightning": {
+    "colors": [
+      "#ffe45a",
+      "#fffbd0"
+    ],
+    "cast": {
+      "g": "spark"
+    },
+    "beam": {
+      "m": "chain"
+    }
+  },
+  "tailwind": {
+    "colors": [
+      "#8fe0ff",
+      "#ffffff"
+    ],
+    "cast": {
+      "g": "crescent"
+    },
+    "disc": {
+      "m": "aura_wind",
+      "t": "soft"
+    }
+  },
+  "lightning_bolt": {
+    "colors": [
+      "#ffe45a",
+      "#fffbd0"
+    ],
+    "cast": {
+      "g": "ray"
+    },
+    "beam": {
+      "m": "sky_bolt"
+    }
+  },
+  "tornado": {
+    "colors": [
+      "#8fe0ff",
+      "#ffffff"
+    ],
+    "cast": {
+      "g": "crescent"
+    },
+    "disc": {
+      "m": "tornado"
+    }
+  },
+  "storm": {
+    "colors": [
+      "#ffe45a",
+      "#fffbd0"
+    ],
+    "cast": {
+      "g": "rune"
+    },
+    "disc": {
+      "m": "storm"
+    },
+    "beam": {
+      "m": "sky_bolt"
+    }
+  },
+  "stone_bolt": {
+    "colors": [
+      "#a07a45",
+      "#e8c98f"
+    ],
+    "cast": {
+      "g": "diamond"
+    },
+    "proj": {
+      "m": "rock"
+    }
+  },
+  "earth_spikes": {
+    "colors": [
+      "#a07a45",
+      "#e8c98f"
+    ],
+    "cast": {
+      "g": "rune"
+    },
+    "beam": {
+      "m": "earth_line"
+    }
+  },
+  "stone_skin": {
+    "colors": [
+      "#a07a45",
+      "#e8c98f"
+    ],
+    "cast": {
+      "g": "hex"
+    },
+    "disc": {
+      "m": "dome",
+      "g": "hex",
+      "o": "plates"
+    }
+  },
+  "boulder": {
+    "colors": [
+      "#a07a45",
+      "#e8c98f"
+    ],
+    "cast": {
+      "g": "rune"
+    },
+    "proj": {
+      "m": "boulder"
+    }
+  },
+  "quake": {
+    "colors": [
+      "#a07a45",
+      "#e8c98f"
+    ],
+    "cast": {
+      "g": "diamond"
+    },
+    "disc": {
+      "m": "quake"
+    }
+  },
+  "earthquake": {
+    "colors": [
+      "#a07a45",
+      "#e8c98f"
+    ],
+    "cast": {
+      "g": "rune"
+    },
+    "warn": {
+      "m": "danger"
+    },
+    "hit": {
+      "m": "quake",
+      "k": 1.1
+    }
+  },
+  "precise_shot": {
+    "colors": [
+      "#d8c8a0",
+      "#ffffff"
+    ],
+    "cast": {
+      "g": "ray"
+    },
+    "proj": {
+      "m": "arrow"
+    }
+  },
+  "back_leap": {
+    "colors": [
+      "#d8c8a0",
+      "#ffffff"
+    ],
+    "cast": {
+      "g": "diamond"
+    },
+    "disc": {
+      "m": "teleport",
+      "t": "leaf"
+    }
+  },
+  "spike_trap": {
+    "colors": [
+      "#d8c8a0",
+      "#ffffff"
+    ],
+    "cast": {
+      "g": "rune"
+    },
+    "disc": {
+      "m": "trap"
+    },
+    "hit": {
+      "m": "quake",
+      "k": 0.9
+    }
+  },
+  "arrow_fan": {
+    "colors": [
+      "#d8c8a0",
+      "#ffffff"
+    ],
+    "cast": {
+      "g": "ray"
+    },
+    "proj": {
+      "m": "tiny_arrow"
+    }
+  },
+  "piercing_arrow": {
+    "colors": [
+      "#bfe6ff",
+      "#ffffff"
+    ],
+    "cast": {
+      "g": "ray"
+    },
+    "proj": {
+      "m": "pierce"
+    }
+  },
+  "mark_target": {
+    "colors": [
+      "#ff4d4d",
+      "#ffd0d0"
+    ],
+    "cast": {
+      "g": "rune"
+    },
+    "beam": {
+      "m": "mark"
+    }
+  },
+  "hunters_campfire": {
+    "colors": [
+      "#ff7a1a",
+      "#ffd98a"
+    ],
+    "cast": {
+      "g": "star4"
+    },
+    "disc": {
+      "m": "campfire"
+    }
+  },
+  "flaming_arrow": {
+    "colors": [
+      "#ff7a1a",
+      "#ffd98a"
+    ],
+    "cast": {
+      "g": "ray"
+    },
+    "proj": {
+      "m": "arrow"
+    }
+  },
+  "fire_rain": {
+    "colors": [
+      "#ff7a1a",
+      "#ffd98a"
+    ],
+    "cast": {
+      "g": "rune"
+    },
+    "disc": {
+      "m": "fire_rain"
+    }
+  },
+  "spring_arrow": {
+    "colors": [
+      "#2f8fff",
+      "#a8f0ff"
+    ],
+    "cast": {
+      "g": "crescent"
+    },
+    "disc": {
+      "m": "spring"
+    }
+  },
+  "frost_arrow": {
+    "colors": [
+      "#4fc3ff",
+      "#e8fbff"
+    ],
+    "cast": {
+      "g": "ray"
+    },
+    "proj": {
+      "m": "arrow"
+    }
+  },
+  "hail_storm": {
+    "colors": [
+      "#4fc3ff",
+      "#e8fbff"
+    ],
+    "cast": {
+      "g": "snow"
+    },
+    "disc": {
+      "m": "hail"
+    }
+  },
+  "hunters_wind": {
+    "colors": [
+      "#8fe0ff",
+      "#ffffff"
+    ],
+    "cast": {
+      "g": "crescent"
+    },
+    "disc": {
+      "m": "aura_wind",
+      "t": "leaf"
+    }
+  },
+  "thunder_arrow": {
+    "colors": [
+      "#ffe45a",
+      "#fffbd0"
+    ],
+    "cast": {
+      "g": "ray"
+    },
+    "beam": {
+      "m": "lightning",
+      "jag": 0.4
+    }
+  },
+  "storm_volley": {
+    "colors": [
+      "#ffe45a",
+      "#fffbd0"
+    ],
+    "cast": {
+      "g": "rune"
+    },
+    "disc": {
+      "m": "storm_volley"
+    },
+    "beam": {
+      "m": "sky_bolt"
+    }
+  },
+  "bulwark_arrow": {
+    "colors": [
+      "#a07a45",
+      "#e8c98f"
+    ],
+    "cast": {
+      "g": "hex"
+    },
+    "disc": {
+      "m": "dome",
+      "g": "rune",
+      "o": ""
+    }
+  },
+  "boulder_arrow": {
+    "colors": [
+      "#a07a45",
+      "#e8c98f"
+    ],
+    "cast": {
+      "g": "ray"
+    },
+    "proj": {
+      "m": "arrow"
+    }
+  },
+  "stone_rain": {
+    "colors": [
+      "#a07a45",
+      "#e8c98f"
+    ],
+    "cast": {
+      "g": "rune"
+    },
+    "disc": {
+      "m": "stone_rain"
+    }
+  },
+  "twin_slash": {
+    "colors": [
+      "#aab6c4",
+      "#ffffff"
+    ],
+    "cast": {
+      "g": "ray"
+    },
+    "beam": {
+      "m": "slash"
+    }
+  },
+  "shadow_step": {
+    "colors": [
+      "#7a4cc4",
+      "#d7b5ff"
+    ],
+    "cast": {
+      "g": "diamond"
+    },
+    "disc": {
+      "m": "vanish"
+    }
+  },
+  "smoke_bomb": {
+    "colors": [
+      "#8c8c99",
+      "#d6d6e0"
+    ],
+    "cast": {
+      "g": "soft"
+    },
+    "disc": {
+      "m": "smoke"
+    }
+  },
+  "iron_body": {
+    "colors": [
+      "#aab6c4",
+      "#ffffff"
+    ],
+    "cast": {
+      "g": "hex"
+    },
+    "disc": {
+      "m": "iron"
+    }
+  },
+  "blink_strike": {
+    "colors": [
+      "#7a4cc4",
+      "#d7b5ff"
+    ],
+    "cast": {
+      "g": "diamond"
+    },
+    "beam": {
+      "m": "blink"
+    }
+  },
+  "fire_seal": {
+    "colors": [
+      "#ff7a1a",
+      "#ffd98a"
+    ],
+    "cast": {
+      "g": "rune"
+    },
+    "disc": {
+      "m": "seal",
+      "g": "rune",
+      "t": "star4"
+    }
+  },
+  "flame_strike": {
+    "colors": [
+      "#ff7a1a",
+      "#ffd98a"
+    ],
+    "cast": {
+      "g": "star4"
+    },
+    "beam": {
+      "m": "slash",
+      "t": "star4"
+    }
+  },
+  "flame_thousand_cuts": {
+    "colors": [
+      "#ff7a1a",
+      "#ffd98a"
+    ],
+    "cast": {
+      "g": "star4"
+    },
+    "beam": {
+      "m": "blink",
+      "t": "star4"
+    }
+  },
+  "mist_seal": {
+    "colors": [
+      "#2f8fff",
+      "#a8f0ff"
+    ],
+    "cast": {
+      "g": "crescent"
+    },
+    "disc": {
+      "m": "mist"
+    }
+  },
+  "ice_fang": {
+    "colors": [
+      "#4fc3ff",
+      "#e8fbff"
+    ],
+    "cast": {
+      "g": "snow"
+    },
+    "beam": {
+      "m": "slash",
+      "t": "snow"
+    }
+  },
+  "rain_thousand_cuts": {
+    "colors": [
+      "#2f8fff",
+      "#a8f0ff"
+    ],
+    "cast": {
+      "g": "crescent"
+    },
+    "beam": {
+      "m": "blink",
+      "t": "drop"
+    }
+  },
+  "wind_seal": {
+    "colors": [
+      "#8fe0ff",
+      "#ffffff"
+    ],
+    "cast": {
+      "g": "crescent"
+    },
+    "disc": {
+      "m": "aura_wind",
+      "t": "spark"
+    }
+  },
+  "lightning_flash": {
+    "colors": [
+      "#ffe45a",
+      "#fffbd0"
+    ],
+    "cast": {
+      "g": "ray"
+    },
+    "beam": {
+      "m": "spear",
+      "zig": true,
+      "t": "spark"
+    }
+  },
+  "storm_thousand_cuts": {
+    "colors": [
+      "#ffe45a",
+      "#fffbd0"
+    ],
+    "cast": {
+      "g": "spark"
+    },
+    "beam": {
+      "m": "blink",
+      "t": "spark"
+    }
+  },
+  "stone_seal": {
+    "colors": [
+      "#a07a45",
+      "#e8c98f"
+    ],
+    "cast": {
+      "g": "rune"
+    },
+    "disc": {
+      "m": "dome",
+      "g": "rune",
+      "o": ""
+    }
+  },
+  "stone_fang": {
+    "colors": [
+      "#a07a45",
+      "#e8c98f"
+    ],
+    "cast": {
+      "g": "diamond"
+    },
+    "beam": {
+      "m": "slash",
+      "t": "diamond"
+    }
+  },
+  "quake_thousand_cuts": {
+    "colors": [
+      "#a07a45",
+      "#e8c98f"
+    ],
+    "cast": {
+      "g": "diamond"
+    },
+    "beam": {
+      "m": "blink",
+      "t": "diamond"
+    }
+  },
+  "call_companion": {
+    "colors": [
+      "#5fcf6e",
+      "#e2ffc0"
+    ],
+    "cast": {
+      "g": "rune"
+    },
+    "disc": {
+      "m": "summon",
+      "g": "rune",
+      "t": "leaf"
+    }
+  },
+  "flock": {
+    "colors": [
+      "#bfe6ff",
+      "#ffffff"
+    ],
+    "cast": {
+      "g": "wing"
+    },
+    "disc": {
+      "m": "flock"
+    }
+  },
+  "scatter_escape": {
+    "colors": [
+      "#5fcf6e",
+      "#e2ffc0"
+    ],
+    "cast": {
+      "g": "leaf"
+    },
+    "disc": {
+      "m": "teleport",
+      "t": "leaf"
+    }
+  },
+  "guardian_bear": {
+    "colors": [
+      "#8a6a45",
+      "#e0c39a"
+    ],
+    "cast": {
+      "g": "hex"
+    },
+    "disc": {
+      "m": "summon",
+      "g": "hex",
+      "t": "diamond"
+    }
+  },
+  "stampede": {
+    "colors": [
+      "#c8a15a",
+      "#fff0c8"
+    ],
+    "cast": {
+      "g": "diamond"
+    },
+    "beam": {
+      "m": "charge",
+      "t": "soft"
+    }
+  },
+  "animal_rescue": {
+    "colors": [
+      "#3fd0a0",
+      "#d8ffe8"
+    ],
+    "cast": {
+      "g": "plus"
+    },
+    "beam": {
+      "m": "heal"
+    }
+  },
+  "den_warmth": {
+    "colors": [
+      "#ff7a1a",
+      "#ffd98a"
+    ],
+    "cast": {
+      "g": "star4"
+    },
+    "disc": {
+      "m": "aura_up",
+      "g": "rune",
+      "t": "soft"
+    }
+  },
+  "salamander_bite": {
+    "colors": [
+      "#ff7a1a",
+      "#ffd98a"
+    ],
+    "cast": {
+      "g": "star4"
+    },
+    "beam": {
+      "m": "bite"
+    }
+  },
+  "fire_stampede": {
+    "colors": [
+      "#ff7a1a",
+      "#ffd98a"
+    ],
+    "cast": {
+      "g": "star4"
+    },
+    "beam": {
+      "m": "charge",
+      "t": "star4"
+    }
+  },
+  "otter_spring": {
+    "colors": [
+      "#2f8fff",
+      "#a8f0ff"
+    ],
+    "cast": {
+      "g": "crescent"
+    },
+    "disc": {
+      "m": "spring",
+      "k": 0.9
+    }
+  },
+  "narwhal_charge": {
+    "colors": [
+      "#4fc3ff",
+      "#e8fbff"
+    ],
+    "cast": {
+      "g": "ray"
+    },
+    "beam": {
+      "m": "spear",
+      "t": "drop"
+    }
+  },
+  "whale_song": {
+    "colors": [
+      "#2f8fff",
+      "#a8f0ff"
+    ],
+    "cast": {
+      "g": "crescent"
+    },
+    "warn": {
+      "m": "mist"
+    },
+    "hit": {
+      "m": "whale_song"
+    }
+  },
+  "falcon_wings": {
+    "colors": [
+      "#8fe0ff",
+      "#ffffff"
+    ],
+    "cast": {
+      "g": "wing"
+    },
+    "disc": {
+      "m": "aura_wind",
+      "t": "wing"
+    }
+  },
+  "eagle_dive": {
+    "colors": [
+      "#8fe0ff",
+      "#ffffff"
+    ],
+    "cast": {
+      "g": "wing"
+    },
+    "beam": {
+      "m": "dive"
+    }
+  },
+  "wing_storm": {
+    "colors": [
+      "#bfe6ff",
+      "#ffffff"
+    ],
+    "cast": {
+      "g": "wing"
+    },
+    "disc": {
+      "m": "wing_storm"
+    },
+    "beam": {
+      "m": "sky_bolt"
+    }
+  },
+  "turtle_shell": {
+    "colors": [
+      "#5fcf6e",
+      "#e2ffc0"
+    ],
+    "cast": {
+      "g": "hex"
+    },
+    "disc": {
+      "m": "dome",
+      "g": "hex",
+      "o": ""
+    }
+  },
+  "rhino_charge": {
+    "colors": [
+      "#a07a45",
+      "#e8c98f"
+    ],
+    "cast": {
+      "g": "diamond"
+    },
+    "beam": {
+      "m": "charge",
+      "t": "diamond"
+    }
+  },
+  "mammoth_stomp": {
+    "colors": [
+      "#a07a45",
+      "#e8c98f"
+    ],
+    "cast": {
+      "g": "diamond"
+    },
+    "disc": {
+      "m": "stomp",
+      "k": 1.0
+    }
+  },
+  "lance_thrust": {
+    "colors": [
+      "#e8b94a",
+      "#fff2c0"
+    ],
+    "cast": {
+      "g": "ray"
+    },
+    "beam": {
+      "m": "spear"
+    }
+  },
+  "charge": {
+    "colors": [
+      "#e8b94a",
+      "#fff2c0"
+    ],
+    "cast": {
+      "g": "ray"
+    },
+    "beam": {
+      "m": "charge",
+      "t": "ray"
+    }
+  },
+  "challenge": {
+    "colors": [
+      "#e8b94a",
+      "#fff2c0"
+    ],
+    "cast": {
+      "g": "ray"
+    },
+    "disc": {
+      "m": "shout"
+    }
+  },
+  "trample": {
+    "colors": [
+      "#e8b94a",
+      "#fff2c0"
+    ],
+    "cast": {
+      "g": "diamond"
+    },
+    "disc": {
+      "m": "stomp",
+      "k": 0.9
+    }
+  },
+  "lance_sweep": {
+    "colors": [
+      "#e8b94a",
+      "#fff2c0"
+    ],
+    "cast": {
+      "g": "crescent"
+    },
+    "disc": {
+      "m": "arc_sweep"
+    }
+  },
+  "fire_banner": {
+    "colors": [
+      "#ff7a1a",
+      "#ffd98a"
+    ],
+    "cast": {
+      "g": "star4"
+    },
+    "disc": {
+      "m": "banner",
+      "g": "star4"
+    }
+  },
+  "blazing_lance": {
+    "colors": [
+      "#ff7a1a",
+      "#ffd98a"
+    ],
+    "cast": {
+      "g": "star4"
+    },
+    "beam": {
+      "m": "spear",
+      "t": "star4"
+    }
+  },
+  "inferno_charge": {
+    "colors": [
+      "#ff7a1a",
+      "#ffd98a"
+    ],
+    "cast": {
+      "g": "star4"
+    },
+    "beam": {
+      "m": "charge",
+      "t": "ray"
+    }
+  },
+  "tide_banner": {
+    "colors": [
+      "#2f8fff",
+      "#a8f0ff"
+    ],
+    "cast": {
+      "g": "crescent"
+    },
+    "disc": {
+      "m": "banner",
+      "g": "crescent"
+    }
+  },
+  "frost_lance": {
+    "colors": [
+      "#4fc3ff",
+      "#e8fbff"
+    ],
+    "cast": {
+      "g": "snow"
+    },
+    "beam": {
+      "m": "spear",
+      "t": "snow"
+    }
+  },
+  "tidal_charge": {
+    "colors": [
+      "#2f8fff",
+      "#a8f0ff"
+    ],
+    "cast": {
+      "g": "crescent"
+    },
+    "beam": {
+      "m": "charge",
+      "t": "drop"
+    }
+  },
+  "gale_banner": {
+    "colors": [
+      "#8fe0ff",
+      "#ffffff"
+    ],
+    "cast": {
+      "g": "crescent"
+    },
+    "disc": {
+      "m": "banner",
+      "g": "snow"
+    }
+  },
+  "thunder_lance": {
+    "colors": [
+      "#ffe45a",
+      "#fffbd0"
+    ],
+    "cast": {
+      "g": "spark"
+    },
+    "beam": {
+      "m": "spear",
+      "zig": true,
+      "t": "spark"
+    }
+  },
+  "storm_charge": {
+    "colors": [
+      "#ffe45a",
+      "#fffbd0"
+    ],
+    "cast": {
+      "g": "spark"
+    },
+    "beam": {
+      "m": "charge",
+      "t": "spark"
+    }
+  },
+  "stone_banner": {
+    "colors": [
+      "#a07a45",
+      "#e8c98f"
+    ],
+    "cast": {
+      "g": "hex"
+    },
+    "disc": {
+      "m": "banner",
+      "g": "hex"
+    }
+  },
+  "earthbreaker_lance": {
+    "colors": [
+      "#a07a45",
+      "#e8c98f"
+    ],
+    "cast": {
+      "g": "diamond"
+    },
+    "beam": {
+      "m": "spear",
+      "t": "diamond"
+    }
+  },
+  "avalanche_charge": {
+    "colors": [
+      "#a07a45",
+      "#e8c98f"
+    ],
+    "cast": {
+      "g": "diamond"
+    },
+    "beam": {
+      "m": "charge",
+      "t": "hex"
+    }
+  }
+}

@@ -127,6 +127,7 @@ Todo dano das habilidades é uma porcentagem do "poder" da classe:
 
 ### Ações básicas (todas as classes)
 - Ataque básico com a arma da classe (sem custo).
+- **Golpe físico com a arma:** todas as classes batem com a arma que têm nas mãos. Ninja (adagas) e Cavaleiro (lança) sempre; Mago (cajado), Arqueiro (arco) e Invocador (livro) usam a pancada quando há inimigo ao alcance na frente (cerca de 2,2 a 2,4 m, dano menor que o tiro: 60 a 70% do poder) e continuam atirando à distância quando não há ninguém perto (`melee_basic` em `data/classes.json`).
 - Ataque forte (segurar o botão); aplica o estado do elemento.
 - Esquiva (recarga curta). No Cavaleiro montado é um salto lateral do cavalo; no Ninja é um **teleporte curto**.
 - Bloqueio (o Ninja **apara**; o Arqueiro não bloqueia e tem esquiva com recarga menor), usar poção, interagir.

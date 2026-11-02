@@ -136,5 +136,19 @@
     "maps": [],
     "quest_item": true,
     "model": "Ornate_Book"
+  },
+  "torment_bottle": {
+    "name_key": "VALUABLE_TORMENT_BOTTLE",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Torment_Bottle"
+  },
+  "storm_bottle": {
+    "name_key": "VALUABLE_STORM_BOTTLE",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Storm_Bottle"
   }
 }

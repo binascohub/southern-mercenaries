@@ -451,7 +451,7 @@ func _turn_in(player: Player, npc_id: String, silent := false) -> void:
 			_arena()._toast_to(player, "TOAST_ITEM_RECEIVED", {"item": GameData.valuables[String(quest.gives)].name_key})
 		if quest.has("gives_key") and quest.gives_key not in c.get("keys", []):  # chave da campanha entregue pelo NPC (a de espadas do Azazel, que abre o portão do Ninho)
 			c.keys = c.get("keys", []) + [quest.gives_key]
-			_arena()._toast_all("TOAST_ITEM_RECEIVED", {"item": "PROP_SEWER_KEY_SPADES" if quest.gives_key == "sewer_key_spades" else String(quest.gives_key)})
+			_arena()._toast_all("TOAST_ITEM_RECEIVED", {"item": {"sewer_key_spades": "PROP_SEWER_KEY_SPADES", "sewer_key_hearts": "PROP_SEWER_KEY_HEARTS"}.get(String(quest.gives_key), String(quest.gives_key))})
 		player.refresh_character()
 		_finish_quest(c, id, quest)
 		if quest.has("opens_gate"):  # entregou as chaves ao guardião: o portão cai

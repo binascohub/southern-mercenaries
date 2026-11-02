@@ -136,6 +136,7 @@ Qualquer jogador pode completar o combo de outro, de qualquer classe. Exemplo: o
 ## 8. Visual e desempenho
 
 - Cada elemento tem seu conjunto de efeitos (cor, partículas, som), reaproveitado por todas as classes e monstros.
+- **Cada magia de cada herói tem o seu próprio efeito visual**, além da cor do elemento (`data/spell_fx.json`, montado por `game/combat/spell_fx.gd`): símbolo no herói ao lançar, projétil com formato e rastro próprios (cometa, lança, flecha, orbe, cristal, crescente, pedra), feixe (raio, corrente, parede de fogo, jato, espinhos, corte, investida), área no chão (explosão, anel de chamas, nevasca, chuva curativa, redemoinho, tempestade, tremor, cúpula, bandeira, selo, círculo de invocação…), aviso antes do impacto e o impacto. Duas magias nunca repetem o mesmo conjunto (conferido em `tests/rpg_tests.gd`). Poucas partículas por efeito (vídeo integrado).
 - Partículas simples e em pouca quantidade (requisito de rodar em vídeo integrado).
 - A arma de cada classe ganha um brilho na cor do elemento atual (cristal do cajado, ponta da lança, flechas, lâminas das adagas, páginas do livro); muda na hora ao beber uma Poção Elemental.
 

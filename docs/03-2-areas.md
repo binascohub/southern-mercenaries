@@ -20,11 +20,11 @@
 
 ## 1.1. Mini-chefes: dois por mapa de combate
 
-Cada mapa de combate tem **2 mini-chefes** (elites fortes com nome, categoria `miniboss`), incluindo o do mapa 1 (Esgoto) com o Gator Velho e o Rei dos Ratos:
+Cada mapa de combate tem **2 mini-chefes** (elites fortes com nome, categoria `miniboss`), incluindo o do mapa 1 (Esgoto) com o Carniceiro Chifrudo e o Rei dos Ratos:
 
 | Mapa | Mini-chefes |
 |---|---|
-| Esgoto | Gator Velho (Passagem da Guerra) · **Rei dos Sapos** (altar no centro do Esgoto) |
+| Esgoto | **Carniceiro Chifrudo** (demônio açougueiro; o Azazel entrega o Grimório das Brasas, que o invoca no altar do centro; solta a Garrafa das Almas Condenadas) · **Empalado** (altar no centro do Esgoto; quest "As Almas Pregadas", da Ossael) |
 | Floresta | Rei Golem de Pedra (templo do leste; larga a **Adaga de Osso**) · Golem de Fogo (pira; larga a **Caveira de Morvak**) · Leshy é o chefe do mapa |
 | Ruínas | Guardião do Cofre · **Alfa da Matilha** |
 | Cemitério | Ogro da Cripta (era o Escorpião; larga os **Pulmões Humanos**) · Senhor da Cripta (larga o **Coração Humano**) |
@@ -37,7 +37,7 @@ Em negrito, os criados nesta rodada (`tools/assets/add_minibosses.py`). A Flores
 
 | # | Mapa | Ato | Sai de | Áreas | Níveis | Mini-chefe | Chefe |
 |---|---|---|---|---|---|---|---|
-| 1 | Esgoto de Tortuga | 2 | Tortuga | 4 | 1–2 | Jacaré Velho | Feiticeiro-Aranha |
+| 1 | Esgoto de Tortuga | 2 | Tortuga | 4 | 1–2 | Carniceiro Chifrudo | Feiticeiro-Aranha |
 | 2 | Ruínas do Reino do Arqueiro | 2 | Tortuga | 5 | 3–4 | Alfa da Matilha (Amarok) | Cérbero |
 | 3 | Floresta Escura | 2 | Tortuga | 4 | 5–6 | Mapinguari Ancião | Leshy |
 | 4 | Cavalos Míticos | 2 | Tortuga | 4 | 7–8 | Arion, o Veloz | Pégaso |
@@ -58,13 +58,13 @@ O Esgoto é **um mapa só, num andar só** (`sewers_01_drains`), grande: uma gra
 | 1 · Bueiros da Rua Principal | linhas de cima | Entrada; tutorial de combate; Catador do Esgoto (Homem-Aranha) na sala de entrada |
 | 2 · Canais de Lixo | meio, lado oeste | Praça oeste vazia; **altar do Rei dos Sapos no centro do mapa** (o Livro do Altar, entregue pelo Catador, o desperta: mini-chefe 1) |
 | 3 · Galerias dos Morcegos | meio, lado leste | Posto do Caçador de Pragas; segredo com baú |
-| 4 · Passagem Secreta da Guerra | embaixo, lado leste | Marcas do reino do Arqueiro nas paredes (o Arqueiro reconhece o brasão); **mini-chefe 2: o Gator Velho (Porco-Tubarão), na praça do canto inferior direito** |
+| 4 · Passagem Secreta da Guerra | embaixo, lado leste | Marcas do reino do Arqueiro nas paredes (o Arqueiro reconhece o brasão); **mini-chefe 2: o Carniceiro Chifrudo, invocado no altar do centro do mapa com o Grimório das Brasas do Azazel (quest "A Garrafa das Almas Condenadas": ele solta a garrafa; o Azazel a troca pela chave de espadas)** |
 | 5 · Câmaras dos Cogumelos | embaixo, lado oeste | Câmaras estreitas |
 | Fundo | túnel e Ninho | **Feiticeiro-Aranha** (chefe); Tesouro Perdido da Guerra e o mapa para as Ruínas |
 
 **Save point:** além do checkpoint da entrada, há um cristal de save **na frente da entrada da sala do altar** (o primeiro mini-chefe): chegar perto dele vira o checkpoint (autosave); se o grupo cair, volta ali (`save_point` em `arenas.json`).
 
-Só os chefes do Esgoto revidam (o Rei dos Sapos, o Gator Velho e o Feiticeiro-Aranha); o resto é cenário (aranhas, ratos, morcegos voando, madeira na cor da mesa da Taverna).
+Só os chefes do Esgoto revidam (o Rei dos Sapos, o Carniceiro Chifrudo e o Feiticeiro-Aranha); o resto é cenário (aranhas, ratos, morcegos voando, madeira na cor da mesa da Taverna).
 
 ## 4. Ruínas do Reino do Arqueiro (`map_ruins`)
 

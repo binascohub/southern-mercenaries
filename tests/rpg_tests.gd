@@ -33,6 +33,7 @@ func _ready() -> void:
 	_test_appearance()
 	_test_ninja_gear()
 	_test_skills()
+	_test_spell_fx()
 	_test_archer()
 	_test_ninja()
 	_test_summoner()
@@ -503,6 +504,42 @@ func _test_skills() -> void:
 	_check(migrated != null and migrated.skill_rank("element_1") == 1 and not migrated.is_edited(), "ficha antiga ganha a básica")
 
 
+## Cada habilidade ativa tem o seu efeito visual (data/spell_fx.json): motivos que existem, cores válidas, e os momentos que o servidor dispara (projétil, feixe, área, impacto).
+func _test_spell_fx() -> void:
+	var missing: Array[String] = []
+	var wrong: Array[String] = []
+	var lists := {"proj": SpellFx.PROJECTILES, "beam": SpellFx.BEAMS, "disc": SpellFx.GROUND, "warn": SpellFx.GROUND, "hit": SpellFx.GROUND}
+	for id: String in GameData.skills.skills:
+		var skill: Dictionary = GameData.skills.skills[id]
+		if skill.get("kind", "") != "active":
+			continue
+		var profile: Dictionary = GameData.spell_fx.get(id, {})
+		if profile.is_empty():
+			missing.append(id)
+			continue
+		var colors: Array = profile.get("colors", [])
+		if colors.size() != 2 or not String(colors[0]).begins_with("#") or not String(colors[1]).begins_with("#"):
+			wrong.append(id + ": cores")
+		for moment: String in lists:
+			if profile.has(moment) and not (profile[moment].get("m", "") in lists[moment]):
+				wrong.append("%s: %s = %s" % [id, moment, profile[moment].get("m", "?")])
+		var effect := String(skill.get("effect", ""))
+		if effect in ["projectile", "fan"] and not profile.has("proj"):
+			wrong.append(id + ": sem projétil")
+	_check(missing.is_empty() and wrong.is_empty(), "toda habilidade ativa tem efeito visual próprio, com motivos válidos (faltam %s; erros %s)" % [missing, wrong])
+	# Dois heróis ou magias nunca repetem o mesmo conjunto (motivos + cores + ajustes).
+	var seen := {}
+	var repeated: Array[String] = []
+	for id: String in GameData.spell_fx:
+		if id.begins_with("_"):
+			continue
+		var key := JSON.stringify(GameData.spell_fx[id])
+		if seen.has(key):
+			repeated.append("%s = %s" % [id, seen[key]])
+		seen[key] = id
+	_check(repeated.is_empty(), "nenhuma magia tem o mesmo efeito que outra (%s)" % [repeated])
+
+
 func _test_archer() -> void:
 	var a := CharacterData.create("archer", "female", "Kaela", "earth")
 	_check(a.validate().is_empty(), "Arqueiro criado válido: %s" % [a.validate()])
@@ -651,6 +688,9 @@ func _test_town_rules() -> void:
 	_check(Town.dialogue_index("old_drunk", {}) == 0, "Velho Bêbado oferece a primeira missão")
 	_check(GameData.npcs.old_drunk.dialogues[0].offer == "sewer_treasure", "a missão é o tesouro do esgoto")
 	_check(Town.dialogue_index("old_drunk", {"sewer_treasure": "active"}) == 1, "com a missão ativa, outra fala")
+	_check(GameData.quests.sewer_treasure.get("item", "") == "storm_bottle" and GameData.monsters.demon_rat_queen.get("quest_drop", "") == "storm_bottle" and GameData.valuables.storm_bottle.get("quest_item", false)
+		and GameData.npcs.old_drunk.dialogues[1].get("service", "") == "turn_in" and int(GameData.quests.sewer_treasure.reward.gold) >= 400,
+		"o Velho Bêbado pede a Garrafa da Tempestade de Almas (a família dele), que o chefe final solta; ele a recebe e paga a recompensa")
 	_check(Town.dialogue_index("old_drunk", {"sewer_treasure": "done"}) == 2, "depois de concluída, outra fala")
 	var campaign := SaveSystem.new_campaign()
 	_check(campaign.area == "tavern" and campaign.quests.is_empty(), "campanha nova começa na Taverna")
@@ -672,9 +712,10 @@ func _test_minibosses_and_relics() -> void:
 					if GameData.monsters.get(m.monster, {}).get("category", "") == "miniboss":
 						found[m.monster] = true
 			for prop: Dictionary in GameData.arenas[area_id].get("props", []) if map_name in ["Floresta", "Esgoto"] else []:    # (na Floresta o Rei Golem vem do templo e no Esgoto o Rei dos Sapos, do altar: grupos invocados)
-				for m: Dictionary in prop.get("summon", {}).get("monsters", []):
-					if GameData.monsters.get(m.monster, {}).get("category", "") == "miniboss":
-						found[m.monster] = true
+				for summon: Dictionary in QuestTrail.summons_of(prop):
+					for m: Dictionary in summon.get("monsters", []):
+						if GameData.monsters.get(m.monster, {}).get("category", "") == "miniboss":
+							found[m.monster] = true
 		_check(found.size() == 2, "%s tem 2 mini-chefes (%d)" % [map_name, found.size()])
 	for quest_id in ["royal_heart", "royal_lungs", "royal_skull", "royal_soul", "royal_banquet"]:
 		var quest: Dictionary = GameData.quests[quest_id]
@@ -853,9 +894,12 @@ func _test_sewers() -> void:
 		for extra: Dictionary in prop.get("extra_summons", []):
 			if extra.summon.id == "sw_old_gator":
 				gator_group = extra.summon
-	_check(area.props.filter(func(p: Dictionary) -> bool: return p.get("kind", "") == "npc" and p.get("npc", "") == "sewer_frog_altar" and p.get("extra_summons", []).size() == 1
-			and p.extra_summons[0].needs_key == "book_gator_altar" and p.extra_summons[0].dialogue == 2).size() == 1
-		and area.props.filter(func(p: Dictionary) -> bool: return p.get("npc", "") == "sewer_gator_altar").is_empty()
+	var shared_altar := false  # um altar só: o do Empalado, com o Gator Velho como 2º grupo (livro book_gator_altar, 3ª fala)
+	for prop: Dictionary in area.props:
+		if prop.get("npc", "") == "sewer_frog_altar":
+			var extras: Array = prop.get("extra_summons", [])
+			shared_altar = extras.size() == 1 and extras[0].needs_key == "book_gator_altar" and extras[0].dialogue == 2
+	_check(shared_altar and area.props.filter(func(p: Dictionary) -> bool: return p.get("npc", "") == "sewer_gator_altar").is_empty()
 		and GameData.quests.sewer_old_gator.get("grants_key", "") == "book_gator_altar" and GameData.quests.sewer_old_gator.get("grants_item", "") == "gator_book"
 		and GameData.valuables.gator_book.get("quest_item", false) and GameData.npcs.sewer_frog_altar.dialogues.size() == 3,
 		"o Azazel entrega o Grimório das Brasas ao abrir a missão; o mesmo altar do centro invoca o Gator Velho com ele (3 falas: normal, trancado, leitura do grimório)")
@@ -880,7 +924,7 @@ func _test_sewers() -> void:
 	_check(area.final and area.victory_groups == ["sw_queen"], "a vitória é só vencer a Rainha")
 	var nest_gate: Array = area.props.filter(func(p: Dictionary) -> bool: return p.id == "nest_gate")
 	_check(nest_gate.size() == 1 and nest_gate[0].kind == "gate" and nest_gate[0].needs_keys == ["sewer_key_spades", "sewer_key_hearts"] and nest_gate[0].position[1] > nest_ref_min and nest_gate[0].position[1] < nest_ref_max
-		and not GameData.monsters.old_gator.has("drops_key") and GameData.monsters.old_gator.get("quest_drop", "") == "souls_bottle" and GameData.quests.sewer_old_gator.get("item", "") == "souls_bottle" and GameData.quests.sewer_old_gator.get("gives_key", "") == "sewer_key_spades" and GameData.valuables.souls_bottle.get("quest_item", false) and GameData.monsters.frog_king.drops_key == "sewer_key_hearts",
+		and not GameData.monsters.old_gator.has("drops_key") and GameData.monsters.old_gator.get("quest_drop", "") == "souls_bottle" and GameData.quests.sewer_old_gator.get("item", "") == "souls_bottle" and GameData.quests.sewer_old_gator.get("gives_key", "") == "sewer_key_spades" and GameData.valuables.souls_bottle.get("quest_item", false) and not GameData.monsters.frog_king.has("drops_key") and GameData.monsters.frog_king.get("quest_drop", "") == "torment_bottle" and GameData.quests.sewer_frog_king.get("item", "") == "torment_bottle" and GameData.quests.sewer_frog_king.get("gives_key", "") == "sewer_key_hearts" and GameData.valuables.torment_bottle.get("quest_item", false),
 		"portão do corredor do Ninho: só abre com as 2 chaves dos mini-chefes (Jacaré Velho e Rei dos Sapos)")
 	_check(area.props.filter(func(p: Dictionary) -> bool: return p.get("after_victory", false)).size() == 1, "portal só depois da vitória")
 	_check(not area.props.any(func(p: Dictionary) -> bool: return p.get("id", "") == "war_treasure") and not GameData.monsters.demon_rat_queen.has("drops_key"),
@@ -891,7 +935,7 @@ func _test_sewers() -> void:
 		var npc_prop: Array = area.props.filter(func(p: Dictionary) -> bool: return p.get("npc", "") == pair[0])
 		var quest: Dictionary = GameData.quests.get(pair[1], {})
 		_check(npc_prop.size() == 1 and GameData.npcs.has(pair[0]) and quest.get("giver", "") == pair[0] and quest.get("area", "") == "sewers_01_drains"
-			and (quest.get("clear", []) == [pair[2]] or quest.get("item", "") == "souls_bottle"), "NPC %s dá a missão %s (limpar %s; a do Azazel pede a garrafa que o Gator Velho solta)" % [pair[0], pair[1], pair[2]])
+			and (quest.get("clear", []) == [pair[2]] or quest.get("item", "") in ["souls_bottle", "torment_bottle"]), "NPC %s dá a missão %s (limpar %s; as de Azazel e Ossael pedem a garrafa que o chefe solta)" % [pair[0], pair[1], pair[2]])
 		if npc_prop.size() == 1 and ids.has(pair[2]):
 			var d := Vector2(npc_prop[0].position[0], npc_prop[0].position[1]).distance_to(Vector2(ids[pair[2]].position[0], ids[pair[2]].position[1]))
 			_check(d > 40.0, "%s longe do chefe (%.0f m)" % [pair[0], d])

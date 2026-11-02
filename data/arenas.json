@@ -2825,7 +2825,7 @@
     ]
   },
   "sewers_01_drains": {
-    "_comment": "Esgoto de Tortuga (03-2-areas.md, seção 3), UM andar só e o dobro do labirinto antigo: grade de 7 x 9 salas de 8 m entre a entrada e o túnel do Ninho, em cinco setores de um monstro cada (1 Bueiros: sapos; 2 Canais de Lixo; 3 Galerias dos Morcegos; 4 Passagem Secreta da Guerra: jacarés; 5 Câmaras dos Cogumelos), duas praças de mini-chefe (Empalado a oeste, Gator Velho a leste, cada um com a missão de um NPC), o posto do Caçador de Pragas, um segredo (baú e elite tóxica) e, no fundo, o Ninho da Rainha dos Ratos (sala do chefe, Tesouro Perdido da Guerra e portal da vitória). A vitória é só vencer a Rainha. Gerado por tools/assets/build_sewer_map.py (substitui build_sewer_maze.py).",
+    "_comment": "Esgoto de Tortuga (03-2-areas.md, seção 3), UM andar só e o dobro do labirinto antigo: grade de 7 x 9 salas de 8 m entre a entrada e o túnel do Ninho, em cinco setores de um monstro cada (1 Bueiros: sapos; 2 Canais de Lixo; 3 Galerias dos Morcegos; 4 Passagem Secreta da Guerra: jacarés; 5 Câmaras dos Cogumelos), duas praças de mini-chefe (Empalado a oeste, Carniceiro Chifrudo a leste, cada um com a missão de um NPC), o posto do Caçador de Pragas, um segredo (baú e elite tóxica) e, no fundo, o Ninho da Rainha dos Ratos (sala do chefe, Tesouro Perdido da Guerra e portal da vitória). A vitória é só vencer a Rainha. Gerado por tools/assets/build_sewer_map.py (substitui build_sewer_maze.py).",
     "name_key": "ARENA_SEWERS_DRAINS",
     "player_class": "mage",
     "map_id": "map_sewers",
@@ -6379,7 +6379,7 @@
                   "count": 1
                 },
                 {
-                  "monster": "sewer_gator",
+                  "monster": "shadow_spirit",
                   "count": 2
                 }
               ]
@@ -6880,34 +6880,6 @@
         "rotation": 10
       },
       {
-        "light": [
-          0.4,
-          0.7,
-          0.35
-        ],
-        "position": [
-          -9,
-          -203
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 0.6
-      },
-      {
-        "light": [
-          0.85,
-          0.25,
-          0.15
-        ],
-        "position": [
-          0,
-          -193
-        ],
-        "range": 14,
-        "energy": 0.6,
-        "y": 3.0
-      },
-      {
         "piece": "Mushroom_Cluster",
         "position": [
           -15.3,
@@ -7160,20 +7132,6 @@
         "rotation": 225
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          0,
-          -24
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Crate_Wooden",
         "position": [
           21.0,
@@ -7254,20 +7212,6 @@
         "rotation": 345
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          26,
-          -24
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Barrel",
         "position": [
           8.0,
@@ -7324,40 +7268,12 @@
         "rotation": 270
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -39,
-          -24
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Rope_1",
         "position": [
           44.0,
           -29.0
         ],
         "rotation": 60
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          39,
-          -24
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Crate_Wooden",
@@ -7392,40 +7308,12 @@
         "rotation": 165
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -65,
-          -12
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Crate_Wooden",
         "position": [
           -47.0,
           -29.0
         ],
         "rotation": 120
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -52,
-          -24
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Crate_Metal",
@@ -7500,20 +7388,6 @@
         "rotation": 150
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -65,
-          -24
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Bucket_Wooden_1",
         "position": [
           -47.0,
@@ -7538,20 +7412,6 @@
         "rotation": 180
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -13,
-          -24
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Crate_Wooden",
         "position": [
           -21.0,
@@ -7566,20 +7426,6 @@
           -31.0
         ],
         "rotation": 30
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -26,
-          -36
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Crate_Metal",
@@ -7612,20 +7458,6 @@
           -41.0
         ],
         "rotation": 0
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          52,
-          -36
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Barrel",
@@ -7684,40 +7516,12 @@
         "rotation": 195
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -26,
-          -48
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Rope_1",
         "position": [
           60.0,
           -41.0
         ],
         "rotation": 60
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          65,
-          -36
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Cage_Small",
@@ -7752,40 +7556,12 @@
         "rotation": 60
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          26,
-          -72
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Barrel",
         "position": [
           34.0,
           -31.0
         ],
         "rotation": 165
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          39,
-          -36
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Crate_Wooden",
@@ -7826,20 +7602,6 @@
           -43.0
         ],
         "rotation": 300
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -13,
-          -48
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Barrel",
@@ -7896,20 +7658,6 @@
           -53.0
         ],
         "rotation": 120
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          39,
-          -48
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Cage_Small",
@@ -7976,20 +7724,6 @@
         "rotation": 270
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          65,
-          -60
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Cage_Small",
         "position": [
           47.0,
@@ -8012,20 +7746,6 @@
           -79.0
         ],
         "rotation": 75
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          13,
-          -84
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Barrel",
@@ -8076,40 +7796,12 @@
         "rotation": 150
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          0,
-          -60
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Rope_1",
         "position": [
           -8.0,
           -67.0
         ],
         "rotation": 180
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -13,
-          -72
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Cage_Small",
@@ -8144,40 +7836,12 @@
         "rotation": 270
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          13,
-          -96
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Cage_Small",
         "position": [
           8.0,
           -67.0
         ],
         "rotation": 165
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          13,
-          -72
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Barrel",
@@ -8260,20 +7924,6 @@
         "rotation": 255
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          39,
-          -84
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Mushroom_Flat",
         "position": [
           57.0,
@@ -8298,20 +7948,6 @@
         "rotation": 150
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          26,
-          -96
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Crate_Metal",
         "position": [
           -57.0,
@@ -8334,20 +7970,6 @@
           -101.0
         ],
         "rotation": 30
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -39,
-          -96
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Rope_1",
@@ -8422,20 +8044,6 @@
         "rotation": 195
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -26,
-          -96
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Bucket_Wooden_1",
         "position": [
           -47.0,
@@ -8474,20 +8082,6 @@
           -91.0
         ],
         "rotation": 120
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          0,
-          -96
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Shield_Wooden",
@@ -8506,20 +8100,6 @@
         "rotation": 285
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          65,
-          -108
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Barrel",
         "position": [
           -21.0,
@@ -8534,20 +8114,6 @@
           -103.0
         ],
         "rotation": 300
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -26,
-          -108
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Rope_1",
@@ -8614,20 +8180,6 @@
         "rotation": 90
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -13,
-          -108
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Mushroom_Tall",
         "position": [
           -70.0,
@@ -8676,40 +8228,12 @@
         "rotation": 60
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          52,
-          -120
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Barrel",
         "position": [
           -18.0,
           -125.0
         ],
         "rotation": 150
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -13,
-          -120
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Rope_1",
@@ -8752,20 +8276,6 @@
         "rotation": 120
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          26,
-          -108
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Crate_Metal",
         "position": [
           34.0,
@@ -8806,20 +8316,6 @@
         "rotation": 270
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -65,
-          -132
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Barrel",
         "position": [
           -34.0,
@@ -8852,20 +8348,6 @@
         "rotation": 75
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          26,
-          -120
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Crate_Metal",
         "position": [
           34.0,
@@ -8890,20 +8372,6 @@
         "rotation": 45
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -39,
-          -120
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Mushroom_Flat",
         "position": [
           -31.0,
@@ -8918,20 +8386,6 @@
           -137.0
         ],
         "rotation": 345
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -26,
-          -132
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Barrel",
@@ -8958,20 +8412,6 @@
         "rotation": 210
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          13,
-          -120
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Shield_Wooden",
         "position": [
           57.0,
@@ -8996,20 +8436,6 @@
         "rotation": 90
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          26,
-          -132
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Rope_1",
         "position": [
           44.0,
@@ -9024,20 +8450,6 @@
           -149.0
         ],
         "rotation": 240
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          39,
-          -144
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Barrel",
@@ -9062,20 +8474,6 @@
           -137.0
         ],
         "rotation": 225
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -13,
-          -132
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Mushroom_Cluster",
@@ -9126,20 +8524,6 @@
         "rotation": 165
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          0,
-          -120
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Barrel",
         "position": [
           18.0,
@@ -9172,40 +8556,12 @@
         "rotation": 165
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          65,
-          -132
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Crate_Metal",
         "position": [
           31.0,
           -149.0
         ],
         "rotation": 15
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          26,
-          -144
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Shield_Wooden",
@@ -9280,20 +8636,6 @@
         "rotation": 270
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          13,
-          -144
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Crate_Metal",
         "position": [
           70.0,
@@ -9332,20 +8674,6 @@
           -161.0
         ],
         "rotation": 30
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          52,
-          -156
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Mushroom_Flat",
@@ -9396,20 +8724,6 @@
         "rotation": 30
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          0,
-          -144
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Shield_Wooden",
         "position": [
           70.0,
@@ -9424,20 +8738,6 @@
           -151.0
         ],
         "rotation": 0
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          65,
-          -156
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Crate_Metal",
@@ -9464,20 +8764,6 @@
         "rotation": 330
       },
       {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          26,
-          -156
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
-      },
-      {
         "piece": "Crate_Metal",
         "position": [
           8.0,
@@ -9492,20 +8778,6 @@
           -151.0
         ],
         "rotation": 0
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -13,
-          -156
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Barrel",
@@ -9530,20 +8802,6 @@
           -149.0
         ],
         "rotation": 180
-      },
-      {
-        "light": [
-          0.55,
-          0.75,
-          0.35
-        ],
-        "position": [
-          -13,
-          -144
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 1.0
       },
       {
         "piece": "Banner_1",
@@ -9595,62 +8853,6 @@
         ],
         "rotation": -40,
         "y": 0.05
-      },
-      {
-        "light": [
-          0.4,
-          0.7,
-          0.35
-        ],
-        "position": [
-          83.0,
-          -156
-        ],
-        "range": 11,
-        "energy": 0.9,
-        "y": 0.6
-      },
-      {
-        "light": [
-          0.4,
-          0.7,
-          0.35
-        ],
-        "position": [
-          -83.0,
-          -84
-        ],
-        "range": 11,
-        "energy": 0.9,
-        "y": 0.6
-      },
-      {
-        "light": [
-          0.4,
-          0.7,
-          0.35
-        ],
-        "position": [
-          84.0,
-          -72
-        ],
-        "range": 9,
-        "energy": 0.8,
-        "y": 0.6
-      },
-      {
-        "light": [
-          0.4,
-          0.7,
-          0.35
-        ],
-        "position": [
-          0,
-          -84
-        ],
-        "range": 8,
-        "energy": 1.1,
-        "y": 1.2
       },
       {
         "piece": "Mushroom_Cluster",

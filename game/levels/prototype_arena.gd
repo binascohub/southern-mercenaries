@@ -547,9 +547,9 @@ func spawn_companion(spawn: Dictionary) -> Node:
 
 
 ## Projétil que explode (Bola de Fogo), chamado pelo grupo "arena".
-func skill_burst(at: Vector3, radius: float, hit: Dictionary) -> void:
+func skill_burst(at: Vector3, radius: float, hit: Dictionary, fx := "") -> void:
 	if multiplayer.is_server():
-		skills.burst(at, radius, hit)
+		skills.burst(at, radius, hit, fx)
 
 
 ## Chamado pelo grupo "arena" quando um jogador atira (só no servidor).
@@ -1422,7 +1422,9 @@ func _drop_quest_item(player: Player, enemy: Enemy) -> void:
 		return
 	for quest_id: String in _campaign.get("quests", {}):
 		if _campaign.quests[quest_id] == "active" and GameData.quests.get(quest_id, {}).get("item", "") == item_id:
-			_add_loot(player, enemy.global_position, Items.stack(Items.VALUABLE, item_id), 0)
+			# O chefe do mapa encerra a expedição ao morrer: a relíquia cai aos pés de cada herói (o autoloot a pega na hora), para ninguém sair sem ela.
+			var at := player.global_position if enemy.is_boss() else enemy.global_position
+			_add_loot(player, at, Items.stack(Items.VALUABLE, item_id), 0)
 			return
 
 

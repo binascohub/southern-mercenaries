@@ -1,7 +1,8 @@
 """Garrafa de Almas Condenadas (souls_bottle.glb enviado pelo autor do projeto; modelo do Sketchfab, autoria/licença a confirmar): relíquia da missão do Azazel (Esgoto), que o Gator Velho
 solta ao morrer. Os 10 pedaços (vidro, rolha, anel, almas dentro) viram uma malha só (~60 mil polígonos, sem redução), as texturas vão a 1024 px, a base fica em y = 0, centrada em x/z,
 com SIZE metros de altura (as relíquias do jogo têm de 0,35 a 0,5 m). Gera assets/models/props/Souls_Bottle.glb (valioso "souls_bottle" em data/valuables.json).
-uso: blender -b -P tools/assets/build_souls_bottle.py -- <souls_bottle.glb> <saida.glb> [altura_m=0.4]"""
+uso: blender -b -P tools/assets/build_souls_bottle.py -- <modelo.glb> <saida.glb> [altura_m=0.4] [nome=Souls_Bottle] [polígonos=0 (sem redução)] [pular_planos=0 (ignora objetos com até N polígonos: o storm_in_a_bottle.glb traz um plano de fundo de 2 polígonos)] [pular_material=\"\" (ignora os objetos desse material: o gancho e a placa "Wall" do storm_in_a_bottle.glb)]
+Também gera a Garrafa do Tormento Eterno (cased_potion_bottle.glb -> Torment_Bottle.glb, ~150 mil polígonos reduzidos a 40 mil)."""
 import bpy, sys
 import numpy as np
 from mathutils import Matrix
@@ -9,11 +10,16 @@ from mathutils import Matrix
 args = sys.argv[sys.argv.index("--") + 1:]
 src, dst = args[:2]
 SIZE = float(args[2]) if len(args) > 2 else 0.4
+NAME = args[3] if len(args) > 3 else "Souls_Bottle"
+TARGET = int(args[4]) if len(args) > 4 else 0
+SKIP = int(args[5]) if len(args) > 5 else 0
+SKIP_MATERIAL = args[6] if len(args) > 6 else ""
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.gltf(filepath=src)
 dg = bpy.context.evaluated_depsgraph_get()
 parts = []
-for o in [o for o in bpy.data.objects if o.type == 'MESH']:
+for o in [o for o in bpy.data.objects if o.type == 'MESH' and len(o.data.polygons) > SKIP
+          and not (SKIP_MATERIAL and any(m and m.name == SKIP_MATERIAL for m in o.data.materials))]:
     mesh = bpy.data.meshes.new_from_object(o.evaluated_get(dg))
     mesh.transform(o.matrix_world)
     mats = list(o.data.materials)
@@ -31,7 +37,17 @@ for o in bpy.data.objects:
 bpy.context.view_layer.objects.active = parts[0]
 bpy.ops.object.join()
 body = bpy.context.view_layer.objects.active
-body.name = "Souls_Bottle"
+body.name = NAME
+if TARGET and len(body.data.polygons) > TARGET:  # solda as emendas e reduz (modelos com mais de TARGET polígonos)
+    import bmesh
+    bm = bmesh.new()
+    bm.from_mesh(body.data)
+    bmesh.ops.remove_doubles(bm, verts=bm.verts, dist=0.00002)
+    bm.to_mesh(body.data)
+    bm.free()
+    mod = body.modifiers.new("d", "DECIMATE")
+    mod.ratio = TARGET / len(body.data.polygons)
+    bpy.ops.object.modifier_apply(modifier="d")
 for im in bpy.data.images:
     if im.size[0] > 1024 or im.size[1] > 1024:
         im.scale(1024, 1024)

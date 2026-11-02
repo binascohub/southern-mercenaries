@@ -73,6 +73,13 @@ static func gather(previous: PlayerInput, origin: Vector3, camera: Camera3D, vie
 			var flat := Vector2(hit.x - origin.x, hit.z - origin.z)
 			if flat.length() > 0.1:
 				input.aim = flat.normalized()
+		# Teclado: andando, o herói vira para onde as teclas apontam; a mira do mouse só vale ao atacar (botão segurado ou solto), ao usar uma habilidade ou parado.
+		var shooting := input.attack_held or input.attack_releases != previous.attack_releases or input.attack_presses != previous.attack_presses
+		var casting := false
+		for i in 4:
+			casting = casting or input.skill_presses[i] != previous.skill_presses[i]
+		if input.move.length() > 0.2 and not shooting and not casting and not Session.ui_open:
+			input.aim = input.move.normalized()
 	return input
 
 

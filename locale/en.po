@@ -497,6 +497,9 @@ msgstr "Armor: {value}"
 msgid "INV_FREE_POINTS"
 msgstr "Free points: {points}"
 
+msgid "INV_POPUP_CLOSE"
+msgstr "Close"
+
 msgid "INV_HINT"
 msgstr "Select: equip or use · on a slot: unequip · {close}: close"
 
@@ -1066,7 +1069,7 @@ msgid "SKILLS_POWER"
 msgstr "Damage: {percent}% of {power} (rank {rank})"
 
 msgid "SKILLS_HINT"
-msgstr "+ spends a skill point. 1–4 put an active skill on a hotkey. An Elemental Potion swaps the element skills for the new element's, with the same ranks."
+msgstr "+ spends a skill point. Drag an active skill onto one of the 4 hotkeys on the right of the window (or use the 1–4 buttons next to it). An Elemental Potion swaps the element skills for the new element's, with the same ranks."
 
 msgid "SKILL_PRECISE_SHOT_NAME"
 msgstr "Precise Shot"
@@ -1705,25 +1708,25 @@ msgid "NPC_BARD"
 msgstr "Bard"
 
 msgid "DLG_OLD_DRUNK_1"
-msgstr "You look like people chasing gold... Listen to this."
+msgstr "You look like people who have lost something. Sit… and don't look at my cup like that. I was rich, you know? Powerful. I had a name, lands, and a family that filled my house with noise."
 
 msgid "DLG_OLD_DRUNK_2"
-msgstr "When Tortuga was founded, they brought part of the treasure of the kingdom that lost the war and hid it down below, in the sewer, far from the victors."
+msgstr "Then Lucifer came to collect a debt I did not even know I had. He took the souls of my whole family for his collection and locked them in a bottle: a storm of souls trapped in glass. I was left with the silence of the house. And with this, which helps me bear it."
 
 msgid "DLG_OLD_DRUNK_3"
-msgstr "Years later, folk here poisoned and burned the rats down there... but they forgot the mother."
+msgstr "They say the bottle is kept down here, in the sewer, next to the treasure the founders of Tortuga hid when they brought part of the gold of the kingdom that lost the war. Its keeper is the king's alchemist, forgotten down in the deep: he made a pact with a demon, became the Necromancer, and sleeps on top of the treasure."
 
 msgid "DLG_OLD_DRUNK_4"
-msgstr "They say the king's alchemist, forgotten down there, made a pact with a demon, became a necromancer, and now sleeps on top of the treasure, with the king's crown tucked in his cloak."
+msgstr "The people here poisoned and burned the rats down there, but they forgot their mother, who still rules the deep. Bring fire: she is Earth and fears fire."
 
 msgid "DLG_OLD_DRUNK_5"
-msgstr "If you're looking for treasure, you're standing on one! Just bring fire. She already knows what fire is — and she hates it."
+msgstr "Keep all the gold, it is no use to me without them. I only want the bottle. Bring it and I will pay what is left of my fortune to have my family back. If you are looking for treasure, you are standing on top of some… but the one that matters to me is another."
 
 msgid "DLG_OLD_DRUNK_ACTIVE"
-msgstr "The sewer grate is on the main street. Fire, I told you. Fire!"
+msgstr "The manhole is on Main Street. Fire, I said. Fire! And the bottle: a storm of souls trapped in glass. Bring it to me."
 
 msgid "DLG_OLD_DRUNK_DONE"
-msgstr "You came back? Then this time I was telling the truth. Buy me a drink."
+msgstr "My family… I hear them! That laughter, I heard it so many nights… Thank you. Take what I promised and buy me a drink: the first in a long time that I drink out of joy."
 
 msgid "DLG_KEEPER_1"
 msgstr "Sit down, rest. In Tortuga nobody asks where the gold comes from — only whether it pays."
@@ -1753,10 +1756,10 @@ msgid "DLG_SERVICE_REST"
 msgstr "Rest"
 
 msgid "QUEST_SEWER_TREASURE"
-msgstr "The treasure under the town"
+msgstr "The Family in the Bottle"
 
 msgid "QUEST_SEWER_TREASURE_DESC"
-msgstr "Go down the sewer grate, defeat the Necromancer, who sleeps on the lost war treasure. The rats are Earth — they fear Fire."
+msgstr "The Old Drunk lost his family to Lucifer, who trapped their souls in a bottle of his collection. Go down the manhole, defeat the Necromancer, who keeps the bottle over the lost war treasure, and bring the Bottle of the Soul Storm to the old man, who promises a reward. The rats are Earth: they fear Fire."
 
 msgid "AREA_TORTUGA"
 msgstr "Tortuga"
@@ -2058,15 +2061,6 @@ msgstr "In European folklore toads were tied to witchcraft and poison — and so
 msgid "BEAST_ACID_TOAD_HINT"
 msgstr "Their spit melts boots. They're creatures of foul water: one lightning bolt and they burst."
 
-msgid "BEAST_SEWER_GATOR"
-msgstr "Sewer Gator"
-
-msgid "BEAST_SEWER_GATOR_LEGEND"
-msgstr "The famous urban legend of alligators in the sewers: animals flushed down the pipes that grew in the dark. Here they are huge and pale, hidden in the channels."
-
-msgid "BEAST_SEWER_GATOR_HINT"
-msgstr "If the water bubbles, get away. It lives at the bottom of the channel. Lightning in the water and it comes up belly-up."
-
 msgid "BEAST_DEMON_RAT_QUEEN"
 msgstr "Necromancer"
 
@@ -2345,7 +2339,7 @@ msgid "MONSTER_ACID_TOAD"
 msgstr "Acid Toad"
 
 msgid "MONSTER_OLD_GATOR"
-msgstr "Old Gator"
+msgstr "Horned Butcher"
 
 msgid "MONSTER_RAT_QUEEN"
 msgstr "Necromancer"
@@ -2714,7 +2708,7 @@ msgid "VALUABLE_ALTAR_BOOK"
 msgstr "Altar Book"
 
 msgid "VALUABLE_ALTAR_BOOK_DESC"
-msgstr "Given by Ossael. It makes the altar in the center of the Sewer react: take the party to it and speak to the stone to wake the Impaled One. It cannot be sold or lost."
+msgstr "Given by Ossael. The prayers of the drowned: they make the altar in the center of the Sewer react. Bring the group to it and speak to the stone to wake the Impaled One. It cannot be sold or lost."
 
 msgid "VALUABLE_CURSED_SKULL_DESC"
 msgstr "Morvak's cursed skull, kept in the Fire Golem's chest. Hand it to the elf Aelindra, in the Forest, to purify the curse."
@@ -3018,46 +3012,46 @@ msgid "NPC_SEWER_RATCATCHER"
 msgstr "Azazel, the Flaming Angel"
 
 msgid "QUEST_SEWER_OLD_GATOR"
-msgstr "The Old Gator"
+msgstr "The Bottle of Condemned Souls"
 
 msgid "QUEST_SEWER_OLD_GATOR_DESC"
-msgstr "Azazel wants the Bottle of Condemned Souls that Lucifer sent him to fetch: take the Grimoire of Embers to the scorched altar in the center of the sewer to summon the Old Gator, defeat him, and bring the bottle to Azazel to receive the spade key."
+msgstr "Azazel wants the Bottle of Condemned Souls, which Lucifer sent him to fetch and the Horned Butcher stole: take the Grimoire of Embers to the scorched altar in the center of the sewer to call the demon, defeat him, and bring the bottle to Azazel to receive the spade key."
 
 msgid "DLG_SEWER_GATOR_1"
-msgstr "I have burned since the sky cast me out, and Lucifer sent me here to fetch the Bottle of Condemned Souls. The Old Gator swallowed it in the War Passage before I could touch it."
+msgstr "I have burned since the sky cast me out. Lucifer sent me to fetch the Bottle of Condemned Souls, the jewel of his cellar, and a butcher from hell itself stole it: the Horned Butcher, who carves souls with a cleaver and fled to these sewers."
 
 msgid "DLG_SEWER_GATOR_2"
-msgstr "He does not leave the water on his own, and never comes without the smaller gators. The bottle is in his belly: I hear the souls screaming with every breath."
+msgstr "He does not leave his hideout on his own, and never walks alone: the Shadow Spirits of the souls he carved follow him, screaming. He wears the bottle on his belt; I hear the souls inside at every step he takes."
 
 msgid "DLG_SEWER_GATOR_3"
-msgstr "Take this grimoire. Rest it on the scorched altar in the center of the sewer and read it aloud: it drags the Old One out of the water. Tear his belly open and bring me the bottle; in return, the key I keep is yours."
+msgstr "Take this grimoire, written in my embers. Rest it on the scorched altar in the center of the sewer and read it aloud: it calls the Butcher by name. Bring him down and bring me the bottle; in return, the key I keep is yours."
 
 msgid "DLG_SEWER_GATOR_ACTIVE"
-msgstr "Still no bottle? Rest the grimoire on the scorched altar in the center of the sewer and call the Old One. Bring me the Bottle of Condemned Souls and let the fire, mine, do the rest."
+msgstr "Still no bottle? Read the grimoire at the scorched altar in the center of the sewer and call the Butcher. Bring me the Bottle of Condemned Souls and let the fire, mine, do the rest."
 
 msgid "DLG_SEWER_GATOR_DONE"
-msgstr "The bottle… the souls sing inside. Lucifer will be pleased. Take the key: it is yours. I take the souls, and the ashes."
+msgstr "The bottle… the souls sing inside, safe from his cleaver. Lucifer will be pleased. Take the key: it is yours. I take the souls, and the ashes."
 
 msgid "QUEST_SEWER_FROG_KING"
-msgstr "The Impaled One"
+msgstr "The Bottle of Eternal Torment"
 
 msgid "QUEST_SEWER_FROG_KING_DESC"
-msgstr "Ossael wants the Impaled One out of the way: take his book to the altar in the center of the sewer to wake the monster, then defeat it."
+msgstr "Ossael, the Skull Angel, wants the Bottle of Eternal Torment, which the Impaled One took from him: take the Altar Book to the altar in the center of the sewer, read it to wake the monster, defeat it, and bring the bottle to Ossael to receive the heart key."
 
 msgid "DLG_SEWER_FROG_1"
-msgstr "I was an angel, once. I fell through these grates, and my wings stayed caught in what the sewer devours. I hear the whispers of a thing of flesh and planks, out west."
+msgstr "These bones were once an angel, guardian of the drowned of this sewer, and I came to fetch the Bottle of Eternal Torment, where their suffering is kept so they can rest. I failed: a thing of flesh and planks took my flesh, my white feathers and the bottle, and nailed the souls of my drowned into its own wood. Only bones and these black wings remain."
 
 msgid "DLG_SEWER_FROG_2"
-msgstr "Folks call it the Impaled One: it was assembled from the bones and wood of those who drowned here, nail by nail, and it drives its own spikes into anyone who comes near. It still weeps, and its weeping calls the other dead."
+msgstr "Folks call it the Impaled One: it was assembled from bones and the planks of the walkways, nail by nail, and it drives its own spikes into whoever comes close. It carries my bottle nailed to its chest and sleeps under the stone altar in the center of the sewer; it only wakes when someone reads the right book. Its weeping calls the other dead."
 
 msgid "DLG_SEWER_FROG_3"
-msgstr "Bring it down and free the souls trapped in the planks. In return, the key it keeps is yours. Head west, to the big plaza."
+msgstr "Take the Altar Book, the prayers of the drowned. Rest it on the stone and read it aloud. Bring the Impaled One down and bring me the Bottle of Eternal Torment; in return, the heart key I keep is yours."
 
 msgid "DLG_SEWER_FROG_ACTIVE"
-msgstr "I can still hear it weeping in the west. Every plank that falls frees a soul… and I watch it rise. Do not leave me waiting in the dark."
+msgstr "Still no bottle? The Impaled One only wakes when the prayers are read at the altar in the center of the sewer. Every plank that falls frees a soul… Bring me the Bottle of Eternal Torment, nailed to its chest."
 
 msgid "DLG_SEWER_FROG_DONE"
-msgstr "Silence, at last. The souls rose and I felt each one pass through my broken wings. Thank you. Take the key: it weighs less now."
+msgstr "The bottle… their torment ends here, and the souls rise. Each one passed between my black wings before leaving. Thank you. Take the heart key: it is yours. I will stay here, on guard, as long as there are drowned."
 
 msgid "PROP_SEWER_SECTOR_1"
 msgstr "Main Street Drains"
@@ -3075,7 +3069,7 @@ msgid "PROP_SEWER_SECTOR_4"
 msgstr "Secret War Passage"
 
 msgid "SIGN_SEWER_SECTOR_4"
-msgstr "Sector 4 — Secret War Passage. Gators lurk in the water; the Old Gator's plaza is to the east."
+msgstr "Sector 4 — Secret War Passage. Gators lurk in the water; the Horned Butcher's plaza is to the east."
 
 msgid "PROP_SEWER_SECTOR_5"
 msgstr "Mushroom Chambers"
@@ -3096,10 +3090,10 @@ msgid "NPC_SEWER_FROG_ALTAR"
 msgstr "The Impaled One's Altar"
 
 msgid "DLG_FROG_ALTAR_1"
-msgstr "A stone altar stained with sludge, in the heart of the sewer. There is a gap in the center, the size of a book, with claw and nail marks around it."
+msgstr "A stone altar stained with sludge, in the heart of the sewer. There is a gap in the center, the size of a book, with the prayers of the drowned scratched into the stone, and claw and nail marks around it."
 
 msgid "DLG_FROG_ALTAR_2"
-msgstr "You rest the Altar Book on the stone and read aloud: the floor trembles and the Impaled One wakes in the altar room."
+msgstr "You rest the Altar Book on the stone and read the prayers aloud: the floor trembles, the planks creak and the Impaled One wakes in the altar room, the bottle nailed to its chest."
 
 msgid "TOAST_FROG_ALTAR_AWAKENS"
 msgstr "The altar trembles: the Impaled One awakens!"
@@ -3295,22 +3289,37 @@ msgid "VALUABLE_GATOR_BOOK"
 msgstr "Grimoire of Embers"
 
 msgid "VALUABLE_GATOR_BOOK_DESC"
-msgstr "Given by Azazel. Makes the altar in the center of the Sewer react: bring the group to it and speak to the stone to wake the Old Gator. It cannot be sold or lost."
-
-msgid "NPC_SEWER_GATOR_ALTAR"
-msgstr "Old Gator's Altar"
-
-msgid "DLG_GATOR_ALTAR_1"
-msgstr "A scorched stone giving off a smell of sulfur. There is a gap in the center, the size of a grimoire, with claw marks around it."
+msgstr "Given by Azazel. Makes the altar in the center of the Sewer react: bring the group to it and speak to the stone to call the Horned Butcher. It cannot be sold or lost."
 
 msgid "DLG_GATOR_ALTAR_2"
-msgstr "You rest the Grimoire of Embers in the gap of the stone and read aloud: the stone heats up, the water boils and the Old Gator emerges, with the souls screaming in his belly."
-
-msgid "DLG_GATOR_ALTAR_LOCKED"
-msgstr "The scorched altar does not react. There is an empty gap in the center, the size of a grimoire. Azazel must have what is missing."
+msgstr "You rest the Grimoire of Embers in the gap of the stone and read aloud: the stone heats up, the air reeks of sulfur and the Horned Butcher steps out of the embers, cleaver in hand, the souls screaming behind him."
 
 msgid "TOAST_GATOR_ALTAR_AWAKENS"
-msgstr "The altar boils: the Old Gator awakens!"
+msgstr "The altar boils: the Horned Butcher steps out of the embers!"
 
 msgid "TOAST_GATOR_BOOK_RECEIVED"
 msgstr "Azazel handed over the Grimoire of Embers!"
+
+msgid "BEAST_HORNED_BUTCHER"
+msgstr "Horned Butcher"
+
+msgid "BEAST_HORNED_BUTCHER_LEGEND"
+msgstr "A butcher from hell who fled to the sewer with the Bottle of Condemned Souls. He carves souls with a cleaver, and their Shadow Spirits follow him, screaming."
+
+msgid "BEAST_HORNED_BUTCHER_HINT"
+msgstr "He charges head down: step aside when he roars and strike when his cleaver gets stuck. Water hurts him more."
+
+msgid "BEAST_IMPALED_ONE"
+msgstr "Impaled One"
+
+msgid "BEAST_IMPALED_ONE_LEGEND"
+msgstr "A monster of flesh, bone and walkway planks, nailed together with the souls of the drowned inside and the Bottle of Eternal Torment on its chest. It sleeps under the altar in the center of the sewer and drives its own spikes into whoever comes close."
+
+msgid "BEAST_IMPALED_ONE_HINT"
+msgstr "It charges in a straight line: dodge the charge and strike when it stops, stuck fast. Old wood burns: fire hurts it more."
+
+msgid "VALUABLE_TORMENT_BOTTLE"
+msgstr "Bottle of Eternal Torment"
+
+msgid "VALUABLE_STORM_BOTTLE"
+msgstr "Bottle of the Soul Storm"

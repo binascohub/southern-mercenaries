@@ -573,8 +573,15 @@ func _server_step(delta: float) -> void:
 
 	# Toque: ataque básico na hora. Segurando por charge_time e soltando: ataque forte.
 	if attack_pressed and _attack_cooldown <= 0.0:
-		_fire(data.basic_attack)
-		_attack_cooldown = data.basic_attack.cooldown / speed_mult()
+		# Mago, Arqueiro e Invocador têm também o golpe físico com a arma ("melee_basic"): com inimigo ao alcance na frente, o ataque básico é a pancada (cajado, arco, livro);
+		# sem ninguém perto, continua o tiro à distância.
+		var close: Dictionary = data.get("melee_basic", {})
+		if not close.is_empty() and _melee_target_near(close):
+			_fire(close)
+			_attack_cooldown = float(close.cooldown) / speed_mult()
+		else:
+			_fire(data.basic_attack)
+			_attack_cooldown = data.basic_attack.cooldown / speed_mult()
 	if input.attack_held:
 		charge_time += delta
 	if attack_released or (not input.attack_held and charge_time > 0.0):
@@ -750,6 +757,8 @@ func _fire(attack: Dictionary) -> void:
 			else ("burning" if _buffs.has("damage") else ""),  # Bênção das Chamas: golpes queimam
 		"crit_chance": character.crit_chance() if character else GameData.elements.crit_chance,
 		"crit_mult": character.crit_mult() if character else GameData.elements.crit_mult,
+		"bird": class_id == "summoner" and element == "air",  # só o Invocador de Ar lança uma ave; os outros elementos continuam com o orbe
+		"bird_scale": 0.75 if attack.get("applies_state", false) else 0.5,
 	})
 
 
@@ -1050,6 +1059,16 @@ func _melee(attack: Dictionary) -> void:
 	get_parent().skills.melee_strike(self, hit, attack.range, attack.get("arc", 360.0), attack.get("spin", false))
 
 
+## Há inimigo ao alcance e na frente do golpe corpo a corpo `attack` (a mesma regra de SkillSystem.melee_strike)?
+func _melee_target_near(attack: Dictionary) -> bool:
+	var half := deg_to_rad(float(attack.get("arc", 120.0)) / 2.0)
+	for e: Enemy in get_parent().skills.enemies_in(global_position, float(attack.range) + 0.4):
+		var to := Vector2(e.global_position.x - global_position.x, e.global_position.z - global_position.z)
+		if to.length() < 0.8 or absf(facing.angle_to(to)) <= half:
+			return true
+	return false
+
+
 ## Mira assistida leve: puxa para o inimigo mais próximo dentro do cone.
 func _assisted_aim(aim: Vector2, attack_range: float) -> Vector2:
 	var best := aim
@@ -1296,7 +1315,9 @@ func _tick_visual(delta: float) -> void:
 	var speed := moved.length() / maxf(delta, 0.0001)
 	if action != _shown_action:
 		_shown_action = action
-		if action != "":
+		if action.get_slice(":", 0) == "wings":
+			_model.show_wings()  # Fuga em Bando: asas de revoada nas costas
+		elif action != "":
 			_model.play_action(action.get_slice(":", 0))
 	_model.update_state(speed, alive, mounted, charge_time > 0.15, blocking, jump_phase > 0.0)
 	if _block_visual:

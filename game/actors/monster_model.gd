@@ -72,8 +72,9 @@ const FAMILIES := {
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Demônio do mini-chefe (a malha do Demônio Doze + as texturas PBR de demon_tex.rar, as de "ferido": cinza com sangue; tools/assets/build_demon_boss.py): malha única `static`,
 	# 2,2 m no arquivo -> ~3,6 m no tamanho 1,8. O Gator Velho, mini-chefe do Esgoto, no lugar do Porco-Tubarão.
-	"demon_boss": {"scene": "res://assets/models/monsters/demon_boss.glb", "scale": 0.9, "static": true,
-		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	"demon_boss": {"scene": "res://assets/models/monsters/demon_boss_rigged.glb", "scale": 1.0,
+		"anims": {"idle": "Idle", "walk": "Walk", "run": "Jog_Fwd", "attack": "Punch_Cross", "hit": "Hit_Chest", "die": "Death01"}},
+	# (O Gator Velho agora é o Carniceiro Chifrudo: a malha do Demônio Doze presa ao esqueleto dos heróis por tools/assets/build_demon_biped.py, com os movimentos deles; o demon_boss.glb estático ficou como origem.)
 	# Demônio Doze (demon-twelve.glb do autor; tools/assets/build_demon_twelve.py): malha única sem esqueleto nem animação (`static`), 2,2 m de altura no arquivo
 	# -> ~2,2 m no tamanho 1,1. Balança, avança e cai por código. Monstro do meio do lado direito do Esgoto.
 	"demon_twelve": {"scene": "res://assets/models/monsters/demon_twelve.glb", "scale": 0.9, "static": true,

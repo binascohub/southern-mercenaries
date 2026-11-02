@@ -27,6 +27,13 @@
       "cooldown": 0.35,
       "pierce": 0
     },
+    "melee_basic": {
+      "melee": true,
+      "power_pct": 0.6,
+      "range": 2.4,
+      "arc": 110.0,
+      "cooldown": 0.45
+    },
     "strong_attack": {
       "power_pct": 1.6,
       "range": 12.0,
@@ -121,6 +128,13 @@
       "radius": 0.16,
       "cooldown": 0.4,
       "pierce": 0
+    },
+    "melee_basic": {
+      "melee": true,
+      "power_pct": 0.7,
+      "range": 2.2,
+      "arc": 100.0,
+      "cooldown": 0.45
     },
     "strong_attack": {
       "power_pct": 2.0,
@@ -310,6 +324,13 @@
       "radius": 0.25,
       "cooldown": 0.35,
       "pierce": 0
+    },
+    "melee_basic": {
+      "melee": true,
+      "power_pct": 0.6,
+      "range": 2.4,
+      "arc": 110.0,
+      "cooldown": 0.45
     },
     "strong_attack": {
       "power_pct": 1.6,

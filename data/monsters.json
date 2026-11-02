@@ -132,7 +132,7 @@
     ]
   },
   "old_gator": {
-    "_comment": "Mini-chefe da Passagem Secreta da Guerra (03-2-areas.md): o Jacaré Velho, vida x6 e dano x1,8 pela categoria. Emboscada e investida.",
+    "_comment": "Mini-chefe da quest do Azazel (Esgoto): o Carniceiro Chifrudo, demônio açougueiro que fugiu do inferno com a Garrafa das Almas Condenadas (id interno 'old_gator', de quando era o Gator Velho). Invocado no altar do centro pelo Grimório das Brasas, vem com Espíritos Sombrios; vida x6 e dano x1,8 pela categoria. Investida; solta a garrafa.",
     "name_key": "MONSTER_OLD_GATOR",
     "max_health": 150,
     "move_speed": 2.8,
@@ -143,7 +143,7 @@
     "aggro_range": 40.0,
     "size": 1.8,
     "category": "miniboss",
-    "element": "water",
+    "element": "fire",
     "ai": "charger",
     "charge": {
       "min": 4.0,
@@ -239,7 +239,8 @@
       "push": 7.0,
       "push_time": 0.45,
       "wind": true
-    }
+    },
+    "quest_drop": "storm_bottle"
   },
   "training_dummy_fire": {
     "_comment": "Boneco do pátio de treino (04-tortuga-e-missoes.md, seção 5.2): não anda, não ataca, não morre e não dá XP nem loot.",
@@ -1195,10 +1196,8 @@
       1.0,
       1.0
     ],
-    "_comment": "Mini-chefe do Esgoto (praça oeste): o Rei dos Sapos, agora o Monstro de Tábuas (Monster_4, minib1.rar do autor; modelo em plank_monster.glb, com os movimentos dos heróis); investidas (os ratos não são mais monstros: só cenário).",
-    "drops_key": "sewer_key_hearts",
-    "key_model": "Key_Hearts",
-    "key_name_key": "PROP_SEWER_KEY_HEARTS"
+    "_comment": "Mini-chefe da quest 'A Garrafa do Tormento Eterno' (Esgoto): o Empalado, monstro de carne, ossos e tábuas das passarelas (Monster_4, minib1.rar do autor; modelo plank_monster.glb, com os movimentos dos heróis). Dorme sob o altar do centro; o Livro do Altar da Ossael o desperta. Investidas; solta a Garrafa do Tormento Eterno, que a Ossael troca pela chave de copas (id interno 'frog_king', de quando era o Rei dos Sapos).",
+    "quest_drop": "torment_bottle"
   },
   "stone_golem_king": {
     "name_key": "MONSTER_STONE_GOLEM_KING",

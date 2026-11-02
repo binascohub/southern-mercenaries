@@ -109,7 +109,10 @@ A taverna (nome proposto: **Taverna do Corvo Afogado**) é o coração de Tortug
 7. A criatura entra no **bestiário** (lenda, elemento, fraqueza, dica).
 8. Visitantes cujas missões não foram aceitas podem ir embora na próxima volta (e outros chegam).
 
-### A primeira missão: o tesouro embaixo da cidade
+### A primeira missão: a família na garrafa (e o tesouro embaixo da cidade)
+
+> **Atualização:** o Velho Bêbado já foi rico e poderoso; Lúcifer levou as almas da família dele para a coleção e as prendeu numa garrafa (a **Garrafa da Tempestade de Almas**), que o Necromante guarda sobre o tesouro perdido da guerra. A missão pede essa garrafa (item de missão que o chefe final solta; `quest_drop` em `data/monsters.json`); ele a recebe em Tortuga e paga 400 de ouro e 450 de XP. O tesouro continua sendo a isca da conversa.
+
 A campanha começa com os mercenários chegando à taverna sem nada. O **velho bêbado** puxa conversa e conta a primeira história:
 
 > **Velho bêbado:** "Vocês têm cara de quem está atrás de ouro… Escutem só. Quando fundaram Tortuga, trouxeram junto parte do tesouro do reino que perdeu a guerra e esconderam lá embaixo, no esgoto, com o alquimista do rei de guarda. Anos depois, o povo daqui envenenou e queimou os ratos de lá… mas esqueceram do homem. Dizem que o Feiticeiro-Aranha fez um pacto com um demônio, ganhou patas de aranha e agora dorme em cima do tesouro, com a coroa do rei no manto. **Se vocês estão procurando tesouro, estão em cima de um!** Só levem fogo. Ele já sabe o que é fogo — e odeia."
