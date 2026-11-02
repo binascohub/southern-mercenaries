@@ -50,7 +50,7 @@ func _ready() -> void:
 	fields.add_theme_constant_override("separation", 6)
 	body.add_child(fields)
 	_class.item_selected.connect(func(_i: int) -> void:
-		if _class_ids[_class.selected] in ["ninja", "knight"]:
+		if _class_ids[_class.selected] in ["ninja", "knight", "summoner"]:
 			_sex.select(0)  # o Ninja tem corpo, rosto e capuz próprios: sem escolha de sexo, rosto nem cabelo
 			_refresh_hair_options()
 		_suggest_name()
@@ -155,18 +155,18 @@ func _refresh_hair_options() -> void:
 
 func _on_look_changed(_value: Variant = null) -> void:
 	var class_id := _class_ids[_class.selected]
-	if class_id in ["ninja", "knight"] and _sex.selected != 0:
+	if class_id in ["ninja", "knight", "summoner"] and _sex.selected != 0:
 		_sex.select(0)  # Ninja e Cavaleiro: corpo próprio, sempre masculino
 	var sex := CharacterData.SEXES[_sex.selected]
 	var has_gear := HeroGear.has_gear(class_id, sex)
-	var witch := (sex == "female" and class_id in ["mage", "archer"]) or class_id == "knight"  # a Maga e a Arqueira têm corpo, rosto e cabelo do modelo delas: sem escolha de cabelo, pele nem rank
+	var witch := class_id in ["ninja", "mage", "knight", "archer", "summoner"]  # a Maga e a Arqueira têm corpo, rosto e cabelo do modelo delas: sem escolha de cabelo, pele nem rank
 	_gear.visible = has_gear and not witch  # no Ninja: sem peça aparece o Camponês; com qualquer rank, a roupa ninja (o rank não muda a cor)
 	var rank: String = HeroGear.RANKS[_gear.selected - 1] if has_gear and _gear.selected > 0 else ""
 	if witch:
 		rank = "D"  # a prévia mostra a Maga vestida (qualquer rank: o rank não muda a roupa)
 	for field: Control in [_hair, _hair_color, _skin]:
 		field.visible = class_id != "ninja" and not witch
-	_sex.visible = class_id not in ["ninja", "knight"]
+	_sex.visible = class_id not in ["ninja", "knight", "summoner"]
 	_beard.visible = class_id != "ninja" and not witch and sex == "male"
 	_preview.show_hero(sex, _current_look(), rank, class_id, Elements.ALL[_element.selected])
 

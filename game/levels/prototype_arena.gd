@@ -1729,7 +1729,11 @@ func _build_prop(prop: Dictionary) -> void:
 				# Mar do porto: um plano simples (04-tortuga-e-missoes.md, seção 6).
 				var size: Array = prop.get("size", [40, 20])
 				var tint: Array = prop.get("color", [0.07, 0.16, 0.24])  # riacho da Fazenda: água mais clara
-				_prop_mesh(node, BoxMesh.new(), Vector3(size[0], 0.1, size[1]), Vector3(0, 0.02, 0), Color(tint[0], tint[1], tint[2]))
+				if prop.get("round", false):
+					# Lagoa: elipse (o "size" é o diâmetro em x e em z).
+					_prop_mesh(node, CylinderMesh.new(), Vector3(size[0], 0.05, size[1]), Vector3(0, 0.02, 0), Color(tint[0], tint[1], tint[2]))
+				else:
+					_prop_mesh(node, BoxMesh.new(), Vector3(size[0], 0.1, size[1]), Vector3(0, 0.02, 0), Color(tint[0], tint[1], tint[2]))
 			"npc":
 				var npc: Dictionary = GameData.npcs.get(prop.npc, {})
 				label_key = npc.get("name_key", "")
@@ -2945,6 +2949,11 @@ func _build_decor(decor: Dictionary) -> void:
 		light.light_energy = float(decor.get("energy", 1.0))
 		light.position = Vector3(decor.position[0], float(decor.get("y", 2.0)), decor.position[1])
 		_area_root.add_child(light)
+		if decor.get("flicker", false):
+			var glow := light.create_tween().set_loops()
+			glow.tween_property(light, "light_energy", light.light_energy * 1.25, 0.17).set_trans(Tween.TRANS_SINE)
+			glow.tween_property(light, "light_energy", light.light_energy * 0.8, 0.23).set_trans(Tween.TRANS_SINE)
+			glow.tween_property(light, "light_energy", light.light_energy * 1.1, 0.12).set_trans(Tween.TRANS_SINE)
 		return
 	if decor.has("collider"):
 		# Só colisão (as paredes das Ruínas já estão desenhadas na peça Ruins_Layout).
@@ -2975,6 +2984,11 @@ func _build_decor(decor: Dictionary) -> void:
 		node.rotation.y = PI
 		pivot.add_child(node)
 		_area_root.add_child(pivot)
+		var flyer := node.find_child("AnimationPlayer", true, false) as AnimationPlayer
+		if flyer and flyer.has_animation("Flying"):
+			# Borboleta com esqueleto (Butterfly_Anim): toca a batida de asas do próprio modelo.
+			flyer.get_animation("Flying").loop_mode = Animation.LOOP_LINEAR
+			flyer.play("Flying")
 		var loop := pivot.create_tween().set_loops()
 		loop.tween_property(pivot, "rotation:y", TAU, TAU * radius / float(decor.swim.get("speed", 0.6))).as_relative()
 		if decor.get("flap", false):
@@ -2987,6 +3001,14 @@ func _build_decor(decor: Dictionary) -> void:
 			bob.tween_property(node, "position:y", node.position.y, 1.1).set_trans(Tween.TRANS_SINE)
 		return
 	_area_root.add_child(node)
+	if decor.get("flicker", false):
+		# Chama: o fogo estica e encolhe sem parar (a fogueira do acampamento).
+		var base := node.scale
+		var flame := node.create_tween().set_loops()
+		flame.tween_property(node, "scale", base * Vector3(1.0, 1.2, 1.0), 0.17).set_trans(Tween.TRANS_SINE)
+		flame.tween_property(node, "scale", base * Vector3(0.92, 0.88, 0.92), 0.23).set_trans(Tween.TRANS_SINE)
+		flame.tween_property(node, "scale", base * Vector3(1.04, 1.1, 1.04), 0.12).set_trans(Tween.TRANS_SINE)
+		flame.tween_property(node, "scale", base, 0.2).set_trans(Tween.TRANS_SINE)
 	# Peça animada (o aparelho de treino gira): toca a primeira animação em laço.
 	var animator := node.find_child("AnimationPlayer", true, false) as AnimationPlayer
 	if animator and not animator.get_animation_list().is_empty():

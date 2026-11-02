@@ -51,6 +51,14 @@ const WITCH_SCENE := "res://assets/models/characters/hero_witch.glb"
 ## A Arqueira (feminina), a Elfa do elf.glb (tools/assets/build_elf_hero.py): o verde-oliva vira a cor do elemento.
 const ELF_SCENE := "res://assets/models/characters/hero_elf.glb"
 ## O Cavaleiro (masculino), o armored-knight do knight.glb (tools/assets/build_knight_hero.py): o azul vira a cor do elemento.
+## O Mago (masculino), o wizard do mage.glb (tools/assets/build_mage_hero.py): o azul do manto vira a cor do elemento.
+const MAGE_SCENE := "res://assets/models/characters/hero_mage.glb"
+## O Arqueiro (masculino), o anão do dwarf.glb (tools/assets/build_dwarf_hero.py): a camisa azul vira a cor do elemento.
+const DWARF_SCENE := "res://assets/models/characters/hero_dwarf.glb"
+## O corpo do anão é feito ampliado (1,3x) para caber no esqueleto do herói; aqui ele volta ao tamanho de anão.
+const SUIT_SCALE := {"Dwarf_": 0.8, "Goblin_": 0.5}
+## O Invocador (sem sexo), o goblin do goblin.glb (tools/assets/build_goblin_hero.py): o casaco amarelo vira a cor do elemento.
+const GOBLIN_SCENE := "res://assets/models/characters/hero_goblin.glb"
 const KNIGHT_SCENE := "res://assets/models/characters/hero_knight.glb"
 ## A cor da roupa do Ninja identifica o elemento de origem (fogo vermelho, água azul, vento branco, terra verde); o rank não muda a cor.
 const SUIT_COLORS := {
@@ -109,14 +117,26 @@ func setup(sex: String, look: Dictionary, class_id := "") -> void:
 		path = NINJA_SCENE  # os dois sexos usam o mesmo corpo: o Ninja sempre aparece de capuz e máscara
 		_suit = true
 		_suit_prefix = "Ninja_"
+	elif class_id == "mage" and sex == "male" and ResourceLoader.exists(MAGE_SCENE):
+		path = MAGE_SCENE
+		_suit = true
+		_suit_prefix = "Mage_"
 	elif class_id == "mage" and sex == "female" and ResourceLoader.exists(WITCH_SCENE):
 		path = WITCH_SCENE
 		_suit = true
 		_suit_prefix = "Witch_"
+	elif class_id == "summoner" and ResourceLoader.exists(GOBLIN_SCENE):
+		path = GOBLIN_SCENE  # os dois sexos usam o mesmo corpo
+		_suit = true
+		_suit_prefix = "Goblin_"
 	elif class_id == "knight" and ResourceLoader.exists(KNIGHT_SCENE):
 		path = KNIGHT_SCENE  # o Cavaleiro é sempre homem
 		_suit = true
 		_suit_prefix = "Knight_"
+	elif class_id == "archer" and sex == "male" and ResourceLoader.exists(DWARF_SCENE):
+		path = DWARF_SCENE
+		_suit = true
+		_suit_prefix = "Dwarf_"
 	elif class_id == "archer" and sex == "female" and ResourceLoader.exists(ELF_SCENE):
 		path = ELF_SCENE
 		_suit = true
@@ -127,6 +147,8 @@ func setup(sex: String, look: Dictionary, class_id := "") -> void:
 		return
 	var model := scene.instantiate()
 	add_child(model)
+	if _suit:
+		model.scale = Vector3.ONE * float(SUIT_SCALE.get(_suit_prefix, 1.0))
 	skeleton = model.find_child("Skeleton3D", true, false) as Skeleton3D
 	_anim = model.find_child("AnimationPlayer", true, false) as AnimationPlayer
 	var hair_color: Array = look.get("hair_color", [0.25, 0.17, 0.1])

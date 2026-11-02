@@ -16,21 +16,6 @@
       "demon_rat_queen"
     ]
   },
-  "forest_reptiles": {
-    "name_key": "QUEST_FOREST_REPTILES",
-    "desc_key": "QUEST_FOREST_REPTILES_DESC",
-    "type": "village",
-    "giver": "village_hunter",
-    "area": "forest_01_path",
-    "clear": [
-      "f_viper_queen"
-    ],
-    "target_element": "earth",
-    "reward": {
-      "gold": 100,
-      "xp": 200
-    }
-  },
   "royal_heart": {
     "name_key": "QUEST_ROYAL_HEART",
     "desc_key": "QUEST_ROYAL_HEART_DESC",

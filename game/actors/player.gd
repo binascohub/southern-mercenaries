@@ -1379,8 +1379,8 @@ func _update_gear() -> void:
 		for slot in HeroGear.SLOTS:
 			ranks[slot] = HeroGear.rank_of(String(equip_visual[slot])) if equip_visual.has(slot) else ""
 		HeroGear.apply(_model, class_id, ranks)
-		if class_id == "archer" and _backpack:
-			_backpack.visible = not _model.suit_worn()  # a roupa da Elfa já tem a aljava dela
+		if ((class_id == "archer" and sex == "female") or (class_id == "mage" and sex == "male")) and _backpack:
+			_backpack.visible = not _model.suit_worn()  # a roupa da Elfa já tem a aljava dela; a do Mago, o livro
 	else:
 		_model.set_outfit(equip_visual)
 	var weapon: String = equip_visual.get("weapon", "wood")

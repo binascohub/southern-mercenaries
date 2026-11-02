@@ -1,0 +1,1 @@
+Rock_MossyStone.glb — "Mossy Stone Rock" by mastahcez, CC0: https://opengameart.org/content/mossy-stone-rock (152 triangles; albedo and normal at 512 px; tools/assets/build_mossy_stone.py).

@@ -195,8 +195,8 @@ def stone_trail(rng_, points, step=0.9, spread=0.5, scale=(0.42, 0.62)):
 
 
 def dirt_trail(rng_, points, step=1.1):
-    """Trilha de terra batida da Floresta: manchas de solo (Trail_Dirt: terra seca com pedrinhas; de vez em quando Trail_Moss: musgo) de borda
-    irregular e transparente, sobrepostas ao longo da linha (as mesmas peças do leito das trilhas do Cemitério, sem as lajes)."""
+    """Trilha de barro da Floresta: manchas de lama rachada (Trail_Mud, de tools/assets/build_mud_trail.py) de borda irregular e transparente,
+    sobrepostas ao longo da linha."""
     out = []
     n = 0
     for (x0, z0), (x1, z1) in zip(points, points[1:]):
@@ -207,7 +207,7 @@ def dirt_trail(rng_, points, step=1.1):
         for i in range(max(int(length / step), 1)):
             t = (i + 0.5) * step
             off = rng_.uniform(-0.25, 0.25)
-            out.append({"piece": "Trail_Dirt" if rng_.random() < 0.85 else "Trail_Moss", "rotation": rng_.randrange(0, 360, 15),
+            out.append({"piece": "Trail_Mud", "rotation": rng_.randrange(0, 360, 15),
                         "position": [round(x0 + dx * t - dz * off, 2), round(z0 + dz * t + dx * off, 2)],
                         "scale": round(rng_.uniform(0.7, 0.9), 2), "y": round(0.012 + 0.002 * (n % 5), 3)})
             n += 1
@@ -289,9 +289,6 @@ f_enc = [
     {"id": "f_toads_b", "position": [-20, -44], "monsters": [{"monster": "acid_toad", "count": 3}]},
     {"id": "f_toads_c", "position": [-35, -55], "monsters": [{"monster": "acid_toad", "count": 3}]},
     {"id": "f_toads_d", "position": [-21, -55], "monsters": [{"monster": "acid_toad", "count": 3}]},
-    {"id": "f_bats_a", "position": [0, -44], "monsters": [{"monster": "plague_bat", "count": 3}]},
-    {"id": "f_bats_b", "position": [24, -44], "monsters": [{"monster": "plague_bat", "count": 3}]},
-    {"id": "f_bats_c", "position": [12, -52], "monsters": [{"monster": "plague_bat", "count": 4}]},
     {"id": "f_beasts", "position": [80, -39], "monsters": [{"monster": "chitin_beast", "count": 2}]},
     {"id": "f_beasts_b", "position": [90, -39], "monsters": [{"monster": "chitin_beast", "count": 2}]},
     {"id": "f_beasts_c", "position": [80, -15], "monsters": [{"monster": "chitin_beast", "count": 2}]},
@@ -314,7 +311,7 @@ f_trails = [
     [(18.4, -17.5), (24, -17.5), (35, -17.5), (38, -17.5), (43, -24), (49, -32), (47, -40), (46, -46),
      (46, -56), (46, -62.5)],                                                                                    # da Pira, pela encruzilhada, até a Praça da Pedra
     [(46, -75.5), (46, -82), (46, -92), (47, -103)],                                                             # da Praça da Pedra ao Leshy
-    [(-30, -28), (-31, -34), (-30, -40), (-27, -46), (-26, -52)],                                                # caminho 1: aldeia -> sapos
+    [(-24.5, -11.0), (-27, -15), (-29, -20), (-30, -25), (-30, -28), (-31, -34), (-30, -40), (-27, -46), (-26, -52)],  # caminho 1: entrada do mapa -> acampamento
     [(12, -24), (12, -28), (12, -38), (14, -44), (12, -50)],                                                     # caminho 2: Pira -> morcegos
     [(49, -32), (55, -28), (60, -27), (71, -27), (80, -27), (86, -27)],                                          # caminho 3: encruzilhada -> bestas
     [(39.5, -69), (36, -70), (32, -70), (14, -70), (4, -70), (0, -73)],                                          # caminho 4: Praça da Pedra -> répteis
@@ -490,10 +487,6 @@ arenas["forest_01_path"] = {
     "props": [
         {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-26.5, -9.0], "to": "tortuga", "entry": "forest", "expedition_end": True},
         {"id": "to_ruins", "kind": "exit", "name_key": "PROP_TO_RUINS", "position": [47, -119.5], "to": "ruins_01_city", "entry": "start", "group": True},
-        {"id": "forest_chest_1", "kind": "chest", "position": [-38, -57], "loot": "chest"},
-        {"id": "forest_chest_2", "kind": "chest", "position": [28, -53], "loot": "chest"},
-        {"id": "forest_chest_3", "kind": "chest", "position": [-9, -87], "loot": "chest"},
-        {"id": "forest_chest_4", "kind": "chest", "position": [93, -12], "loot": "chest"},
         {"id": "forest_hermit", "kind": "npc", "npc": "forest_hermit", "position": list(F_PLAZAS["stone"]), "rotation": 0, "summon": f_summons["stone"]},
         {"id": "forest_pyre_keeper", "kind": "npc", "npc": "forest_pyre_keeper", "position": list(F_PLAZAS["fire"]), "rotation": 0, "summon": f_summons["fire"]},
     ] + v_props,
@@ -1886,4 +1879,11 @@ subprocess.run([sys.executable, "tools/assets/add_signposts.py"], check=True)  #
 subprocess.run([sys.executable, "tools/assets/add_mossy_rocks.py"], check=True)  # rochas musgosas na Floresta e no Cemitério
 subprocess.run([sys.executable, "tools/assets/add_decor_animals.py"], check=True)  # lhama, cavalo marrom, caranguejos e guaxinins de cenário
 subprocess.run([sys.executable, "tools/assets/remove_forest_crosses.py"], check=True)  # sem cruzes na Floresta
+subprocess.run([sys.executable, "tools/assets/forest_tidy.py"], check=True)  # sem chão de pedra, pedras fora da trilha e mais plantas na entrada da Floresta
+subprocess.run([sys.executable, "tools/assets/move_forest_village.py"], check=True)  # aldeia no norte e Rei Golem no canto direito-baixo
+subprocess.run([sys.executable, "tools/assets/add_forest_campfire.py"], check=True)  # fogueira no centro do acampamento
+subprocess.run([sys.executable, "tools/assets/add_forest_pond.py"], check=True)  # lagoa (e sem pedras) na sala dos sapos
+subprocess.run([sys.executable, "tools/assets/add_forest_walkers.py"], check=True)  # Bertram e Elara andando pelo mapa (sem missão)
+subprocess.run([sys.executable, "tools/assets/add_forest_butterflies.py"], check=True)  # borboletas animadas (Butterfly_Anim)
+subprocess.run([sys.executable, "tools/assets/swap_forest_keeper.py"], check=True)  # Guardiã da Pira na sala da lagoa, sapos na Praça da Pira
 print("OK", [k for k in arenas if k.split("_")[0] in ("forest", "ruins", "cemetery", "fort", "farm", "mine")])

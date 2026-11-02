@@ -534,6 +534,56 @@
           "head": "copper"
         }
       ]
+    },
+    "hunter": {
+      "sex": [
+        "male"
+      ],
+      "hair": {
+        "male": [
+          [
+            "Hair_SimpleParted",
+            "Hair_Beard"
+          ]
+        ]
+      },
+      "hair_color": [
+        [
+          0.32,
+          0.2,
+          0.1
+        ]
+      ],
+      "outfit": [
+        {
+          "body": "copper",
+          "feet": "wood"
+        }
+      ]
+    },
+    "tanner": {
+      "sex": [
+        "female"
+      ],
+      "hair": {
+        "female": [
+          [
+            "Hair_Long"
+          ]
+        ]
+      },
+      "hair_color": [
+        [
+          0.45,
+          0.2,
+          0.1
+        ]
+      ],
+      "outfit": [
+        {
+          "body": "cloth"
+        }
+      ]
     }
   }
 }
