@@ -1,7 +1,7 @@
 # Southern Mercenaries — GPL-3.0-or-later
 extends Node
 ## Abre a arena com um Invocador de teste: nível máximo, todas as habilidades no rank máximo, nada gravado em disco.
-##   godot --path . res://tests/summoner_sandbox.tscn -- [water|air|fire|earth]   (padrão: water) [area=<id>, ex.: area=tavern] [at=x,z, ex.: at=0,-185 para ir a um ponto do mapa] [shot=<arquivo.png>: salva uma captura e sai] [kill=<id do monstro, ex.: old_gator>: mata esse monstro e abre o baú que ele deixa; com "nochest" deixa o baú fechado para ver]; chama todos os animais, ou só os listados depois do elemento (otter = lobo de água, fox, falcon, boar, bear)
+##   godot --path . res://tests/summoner_sandbox.tscn -- [water|air|fire|earth]   (padrão: water) [class=mage|archer|knight|ninja (padrão: summoner)] [area=<id>, ex.: area=tavern] [at=x,z, ex.: at=0,-185 para ir a um ponto do mapa] [shot=<arquivo.png>: salva uma captura e sai] [kill=<id do monstro, ex.: old_gator>: mata esse monstro e abre o baú que ele deixa; com "nochest" deixa o baú fechado para ver]; chama todos os animais, ou só os listados depois do elemento (otter = lobo de água, fox, falcon, boar, bear)
 
 
 var _cam: Camera3D
@@ -43,6 +43,7 @@ func _ready() -> void:
 	var area := ""
 	var at := PackedStringArray()
 	var shot := ""
+	var hero_class := "summoner"  # class=mage|archer|knight|ninja|summoner
 	var kill := ""
 	var open_chest := true
 	for arg in OS.get_cmdline_user_args():
@@ -56,15 +57,17 @@ func _ready() -> void:
 			at = arg.trim_prefix("at=").split(",")
 		elif arg.begins_with("area="):
 			area = arg.trim_prefix("area=")
+		elif arg.begins_with("class="):
+			hero_class = arg.trim_prefix("class=")
 		else:
 			args.append(arg)
 	var element: String = args[0] if args.size() > 0 else "water"
-	var c := CharacterData.create("summoner", "female", "Teste", element)
+	var c := CharacterData.create(hero_class, "female", "Teste", element)
 	c.data.level = int(GameData.balance.max_level)
 	c.data.free_points = 0
 	var skills := {}
 	var slots: Array = []
-	for key in Skills.keys("summoner"):
+	for key in Skills.keys(hero_class):
 		skills[key] = Skills.max_rank()
 		if slots.size() < int(GameData.skills.slots) and Skills.is_active(c.skill_of(key)):
 			slots.append(key)
@@ -97,7 +100,8 @@ func _ready() -> void:
 		_cam.rotation = Vector3(_pitch, 0, 0)
 		add_child(_cam)
 		_cam.make_current()
-	_summon_all(arena, args.slice(1))
+	if hero_class == "summoner":
+		_summon_all(arena, args.slice(1))
 	if "invpopup" in args:  # abre o inventário com o Livro do Altar e a caveira de Morvak e o detalhe (botão direito) do livro, para conferir
 		get_tree().create_timer(2.5).timeout.connect(func() -> void:
 			arena.local_player.character.add_item(Items.stack(Items.VALUABLE, "altar_book"))
@@ -137,6 +141,10 @@ func _ready() -> void:
 				arena.local_player.add_child(holder)
 				holder.position = Vector3(randf_range(-3.0, 3.0), randf_range(2.0, 3.0), randf_range(-3.0, 3.0))
 				arena.skills._drop_feather(holder))
+	if "blizzard" in args:  # lança a Nevasca (Mago de Água) de frente para os bonecos de treino
+		get_tree().create_timer(2.0).timeout.connect(func() -> void:
+			arena.local_player.facing = Vector2(0, -1)
+			arena.skills.cast(arena.local_player, "blizzard", 3))
 	if "callskill" in args:  # usa o atalho 1 (Chamar Companheiro), como o jogador, para ver qual animal sai
 		get_tree().create_timer(2.5).timeout.connect(func() -> void:
 			arena.local_player._cast_slot(0))

@@ -36,8 +36,10 @@ static func update(q: Enemy, delta: float, target: Node3D, dist: float) -> bool:
 				q.get_tree().call_group(&"arena", &"spawn_adds", q.global_position, String(data.swarm.monster),
 					int(data.swarm.count), 3.0)
 		2:
-			if nests_alive(q) > 0:
-				q.health = minf(q.health + q.max_health * float(data.nests.regen) * delta, q.max_health)
+			# Cada ninho vivo devolve uma fatia da vida por segundo (data.nests.regen): destruir os ninhos reduz a cura até ela parar.
+			var alive := nests_alive(q)
+			if alive > 0:
+				q.health = minf(q.health + q.max_health * float(data.nests.regen) * alive * delta, q.max_health)
 		3:
 			if float(timers.get("gas", 0.0)) <= 0.0 and target:
 				timers["gas"] = float(data.gas.interval)

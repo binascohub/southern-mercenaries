@@ -272,8 +272,46 @@ static func _m_frost_nova(r: Node3D, s: float, c: Array) -> void:
 	_emit(r, {"amount": 26, "life": 0.9, "size": s * 0.18, "tex": "snow", "c0": Color.WHITE, "c1": c[0], "vmin": 2.0, "vmax": 5.0, "spread": 60.0, "dir": Vector3.UP, "grav": Vector3(0, -2.0, 0), "shape": "disc", "ext": s * 0.3, "once": true, "burst": 0.95, "pos": Vector3(0, 0.3, 0)})
 
 
+const MAGIC_RING_BLUE := "res://assets/models/props/Magic_Ring_Blue.glb"
+## Diâmetro do quadrado do círculo em raios da área: o anel de runas fica a ~87% do quadrado, então 2,3 faz o anel de fora chegar à borda da área.
+const RING_COVER := 2.3
+
+
+## Círculo mágico azul (magic_ring_-_blue.glb): um quadrado de 6 m com a textura do círculo, já deitado no arquivo (plano XZ), com o anel de fora na borda da área (RING_COVER), gira devagar e some no fim.
+static func _magic_ring(r: Node3D, s: float, life: float) -> void:
+	if not ResourceLoader.exists(MAGIC_RING_BLUE):
+		return
+	var model := (load(MAGIC_RING_BLUE) as PackedScene).instantiate() as Node3D
+	var pivot := Node3D.new()
+	r.add_child(pivot)
+	pivot.position.y = 0.07
+	pivot.scale = Vector3.ONE * (s * RING_COVER / 5.98)
+	pivot.add_child(model)
+	var materials: Array[StandardMaterial3D] = []
+	for node in model.find_children("*", "MeshInstance3D", true, false):
+		var mesh := node as MeshInstance3D
+		mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		for i in mesh.mesh.get_surface_count():
+			var source := mesh.get_active_material(i) as StandardMaterial3D
+			if source == null:
+				continue
+			var copy := source.duplicate() as StandardMaterial3D
+			copy.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+			copy.cull_mode = BaseMaterial3D.CULL_DISABLED
+			copy.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+			copy.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
+			mesh.set_surface_override_material(i, copy)
+			materials.append(copy)
+	var tween := pivot.create_tween().set_parallel(true)
+	tween.tween_property(pivot, "rotation:y", TAU * maxf(life, 1.0) / 6.0, maxf(life, 1.0))
+	for material in materials:
+		var faded := Color(material.albedo_color.r, material.albedo_color.g, material.albedo_color.b, 0.0)
+		tween.tween_property(material, "albedo_color", faded, 0.5).set_delay(maxf(life - 0.5, 0.2))
+
+
 static func _m_blizzard(r: Node3D, s: float, c: Array, life: float) -> void:
 	_glyph(r, "soft", c[1], s * 2.2, life, 0.04, 0.0, 0.3)
+	_magic_ring(r, s, life)
 	_glyph(r, "snow", c[1], s * 1.7, life, 0.05, 0.5, 0.35)
 	var p := _emit(r, {"amount": 40, "life": 1.3, "size": 0.35, "tex": "snow", "c0": Color.WHITE, "c1": c[0], "vmin": 0.4, "vmax": 1.4, "spread": 180.0, "tang": 7.0, "grav": Vector3(0, -1.2, 0), "shape": "box",
 		"ext": Vector3(s * 0.9, 0.3, s * 0.9), "pos": Vector3(0, 3.0, 0)})
