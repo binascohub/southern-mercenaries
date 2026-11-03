@@ -3694,3 +3694,147 @@ msgstr ""
 
 msgid "DLG_CTWARDEN_DONE"
 msgstr ""
+
+msgid "MONSTER_MN_QUARTZ_BEAST"
+msgstr ""
+
+msgid "NPC_MN_APPRENTICE"
+msgstr ""
+
+msgid "NPC_MN_FOREMAN"
+msgstr ""
+
+msgid "NPC_MN_ORE_CART"
+msgstr ""
+
+msgid "NPC_MN_JEWELER"
+msgstr ""
+
+msgid "NPC_MN_CRYSTAL"
+msgstr ""
+
+msgid "NPC_MN_GATEKEEPER"
+msgstr ""
+
+msgid "VALUABLE_TROLL_TUSK"
+msgstr ""
+
+msgid "VALUABLE_QUARTZ_CORE"
+msgstr ""
+
+msgid "VALUABLE_KEY_PICKAXE"
+msgstr ""
+
+msgid "VALUABLE_KEY_LANTERN"
+msgstr ""
+
+msgid "TOAST_ORE_CART_AWAKENS"
+msgstr ""
+
+msgid "TOAST_CRYSTAL_AWAKENS"
+msgstr ""
+
+msgid "QUEST_MN_CLEAR"
+msgstr ""
+
+msgid "QUEST_MN_CLEAR_DESC"
+msgstr ""
+
+msgid "QUEST_MN_TUSK"
+msgstr ""
+
+msgid "QUEST_MN_TUSK_DESC"
+msgstr ""
+
+msgid "QUEST_MN_QUARTZ"
+msgstr ""
+
+msgid "QUEST_MN_QUARTZ_DESC"
+msgstr ""
+
+msgid "QUEST_MN_GATE"
+msgstr ""
+
+msgid "QUEST_MN_GATE_DESC"
+msgstr ""
+
+msgid "DLG_MNAPP_1"
+msgstr ""
+
+msgid "DLG_MNAPP_2"
+msgstr ""
+
+msgid "DLG_MNAPP_3"
+msgstr ""
+
+msgid "DLG_MNAPP_ACTIVE"
+msgstr ""
+
+msgid "DLG_MNAPP_DONE"
+msgstr ""
+
+msgid "DLG_MNFORE_1"
+msgstr ""
+
+msgid "DLG_MNFORE_2"
+msgstr ""
+
+msgid "DLG_MNFORE_3"
+msgstr ""
+
+msgid "DLG_MNFORE_ACTIVE"
+msgstr ""
+
+msgid "DLG_MNFORE_DONE"
+msgstr ""
+
+msgid "DLG_MNCART_1"
+msgstr ""
+
+msgid "DLG_MNCART_2"
+msgstr ""
+
+msgid "DLG_MNCART_LOCKED"
+msgstr ""
+
+msgid "DLG_MNJEW_1"
+msgstr ""
+
+msgid "DLG_MNJEW_2"
+msgstr ""
+
+msgid "DLG_MNJEW_3"
+msgstr ""
+
+msgid "DLG_MNJEW_ACTIVE"
+msgstr ""
+
+msgid "DLG_MNJEW_DONE"
+msgstr ""
+
+msgid "DLG_MNJEW_WAIT"
+msgstr ""
+
+msgid "DLG_MNCRY_1"
+msgstr ""
+
+msgid "DLG_MNCRY_2"
+msgstr ""
+
+msgid "DLG_MNCRY_LOCKED"
+msgstr ""
+
+msgid "DLG_MNGUARD_1"
+msgstr ""
+
+msgid "DLG_MNGUARD_2"
+msgstr ""
+
+msgid "DLG_MNGUARD_3"
+msgstr ""
+
+msgid "DLG_MNGUARD_ACTIVE"
+msgstr ""
+
+msgid "DLG_MNGUARD_DONE"
+msgstr ""

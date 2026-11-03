@@ -2203,7 +2203,7 @@ func _npc_body(parent: Node3D, look: Dictionary) -> HeroModel:
 		return null
 	var model := HeroModel.new()
 	parent.add_child(model)
-	model.setup(String(look.get("sex", "male")), look)
+	model.setup(String(look.get("sex", "male")), look, String(look.get("class", "")))  # "class": o corpo da classe (o anão é o "archer" masculino)
 	model.set_outfit(look.get("outfit", {}))
 	model.set_pose(String(look.get("pose", "idle")))
 	if look.get("mug", false) and Kit.has("Mug_Wood"):
@@ -2253,7 +2253,7 @@ func _crowd_look(role_name: String, at: Vector3, entry: Dictionary) -> Dictionar
 	var hairs: Array = role.get("hair", {}).get(sex, [[]])
 	var colors: Array = role.get("hair_color", [[0.2, 0.15, 0.1]])
 	var outfits: Array = role.get("outfit", [{}])
-	return {"sex": sex, "hair": hairs[(h / 7) % hairs.size()], "hair_color": colors[(h / 13) % colors.size()],
+	return {"sex": sex, "class": role.get("class", ""), "hair": hairs[(h / 7) % hairs.size()], "hair_color": colors[(h / 13) % colors.size()],
 		"outfit": outfits[(h / 29) % outfits.size()], "pose": entry.get("pose", "idle"),
 		"weapon": entry.get("weapon", role.get("weapon", "")) if String(entry.get("pose", "idle")).begins_with("melee") or entry.has("weapon") else "",
 		"clothes": _crowd_clothes(role, sex, h)}

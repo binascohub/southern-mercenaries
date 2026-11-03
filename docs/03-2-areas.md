@@ -30,7 +30,7 @@ Cada mapa de combate tem **2 mini-chefes** (elites fortes com nome, categoria `m
 | Cemitério | Ogro da Cripta (era o Escorpião; larga os **Pulmões Humanos**) · Senhor da Cripta (larga o **Coração Humano**) |
 | Forte | **Senhor Elfo Sombrio** (o Exilado o desperta; larga a **Lâmina do Senhor Elfo**) · **Rainha das Súcubos** (a Penitente a desperta; larga o **Anel da Rainha**) · **Comandante** (anda solto; larga o **Crânio Antigo**) |
 | Catacumbas | **Carrasco das Catacumbas** (a gaiola do Poço o desperta com a missão do Carcereiro Cego; larga o **Machado do Carrasco**) · **Alma Acorrentada** (a Prisioneira a desperta; larga o **Grilhão da Alma**) |
-| Mina | **Chefe Troll** · Guardião do Túmulo |
+| Mina | **Chefe Troll** (a carroça abandonada o desperta com a missão do Capataz; larga a **Presa**) · **Besta de Quartzo** (o Cristal Pulsante a desperta com a missão do Joalheiro; larga o **Núcleo de Quartzo**) · **Guardião do Túmulo** (anda solto no labirinto; larga a **Alma Real** do Padre) |
 
 Em negrito, os criados nesta rodada (`tools/assets/add_minibosses.py`). A Floresta Sombria ainda não tem encontros.
 
@@ -48,7 +48,7 @@ Ordem dos mapas, por hub (`tools/assets/set_map_order.py` liga os portais; cada 
 | 6 | Forte (`fort_01_gate`) | Capital | Senhor Elfo Sombrio · Rainha das Súcubos (+ Comandante solto) | Barão Infernal |
 | 7 | Catacumbas (`catacombs_01_depths`) | Capital | Carrasco das Catacumbas · Alma Acorrentada | Rei Acorrentado |
 | 8 | Deserto (`desert_01_canyon`) | Capital | Lamassu da Areia · Rainha Escorpião | Esfinge |
-| 9 | Mina (`mine_01_crystal_vein`) | Fazenda | Chefe Troll · Guardião do Túmulo | — |
+| 9 | Mina (`mine_01_crystal_vein`) | Fazenda | Chefe Troll · Besta de Quartzo (+ Guardião do Túmulo solto) | Golem de Cristal |
 | 10 | Bunker (`bunker_01_entrance`) | Fazenda | — | — |
 | 11 | Floresta Escura (`dark_forest_01_woods`) | Fazenda | *(só o mapa, sem monstros)* | — |
 
@@ -199,6 +199,20 @@ Mapa novo (cerca de 15,8 mil m2, 15 salas), de salas de parede de pedra do kit c
 5. **Rei Acorrentado** (chefe final) na Cripta atrás do portão, com a saída para a Capital.
 
 Decoração: celas de grades de ferro com presos sentados ou encolhidos, bolas de ferro e correntes no chão, grilhões e correntes nas paredes (peças próprias, `tools/assets/build_chains.py`), forcas, caixões, instrumentos de tortura, ossos, braseiros e teias. Gerado por `tools/assets/build_catacombs.py`.
+
+### Mina no jogo (`mine_01_crystal_vein`)
+
+Mapa grande e **labirinto** (cerca de 17,6 mil m2, 107 salas), feito como o Esgoto: uma grade de 9 x 11 salas de 12 m ligadas por portas (árvore crescente com muitos becos e alguns laços), em setores de monstros, com paredes de pedras (de todos os tipos) e cristais azuis e roxos que brilham. Os **trilhos do trem são o caminho**: uma linha principal sai da entrada (sul), serpenteia até o túnel do portão e o Coração da Mina (norte), e ramais levam às salas dos NPCs e dos mini-chefes; alguns becos têm trilhos de enfeite que acabam numa carroça virada, com baús, ouro e pedras preciosas.
+
+Salas especiais ligadas à borda do labirinto: **Acampamento dos Anões** (leste, perto da partida), **Gruta das Carroças** (oeste), **Salão dos Cristais** (leste), **Casa do Joalheiro** (oeste, no alto) e **Câmara Secreta** (leste, no alto). Anões mineiros (o corpo do Arqueiro masculino, com pá na mão) são NPCs e gente de cenário pelos trilhos e acampamentos.
+
+1. **Aprendiz de Mineiro** (partida): a missão de limpar os dois primeiros bandos das galerias.
+2. **Capataz Brokk** (Acampamento): pede a **Presa do Chefe Troll**. Tocar a carroça abandonada da Gruta das Carroças, com a missão ativa, desperta o **Chefe Troll** (mini-chefe). Entrega a **Chave da Picareta**.
+3. **Joalheiro Dolgrim** (Casa do Joalheiro): pede o **Núcleo de Quartzo**. Tocar o **Cristal Pulsante** do Salão dos Cristais, com a missão ativa, desperta a **Besta de Quartzo** (mini-chefe). Entrega a **Chave da Lanterna**.
+4. **Guarda-Chaves Thrain** (túnel ao norte): só abre o portão com as duas chaves.
+5. **Golem de Cristal** (chefe final) no Coração da Mina, com a saída de volta à Fazenda.
+
+O **Guardião do Túmulo** (a Alma Real do Padre) anda solto em uma sala do labirinto. Gerado por `tools/assets/build_mine.py`.
 
 ### Docas (`docks_01_pier`) — ligada ao porto de Tortuga
 

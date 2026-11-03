@@ -3953,3 +3953,147 @@ msgstr "Só abro com as duas chaves, Ferro e Osso, na mesma bolsa. O Carcereiro 
 
 msgid "DLG_CTWARDEN_DONE"
 msgstr "As duas chaves! O portão está aberto. Cuidado: o Rei Acorrentado quebrou todas as correntes que o prenderam, menos a da vergonha."
+
+msgid "MONSTER_MN_QUARTZ_BEAST"
+msgstr "Besta de Quartzo"
+
+msgid "NPC_MN_APPRENTICE"
+msgstr "Aprendiz de Mineiro"
+
+msgid "NPC_MN_FOREMAN"
+msgstr "Capataz Brokk"
+
+msgid "NPC_MN_ORE_CART"
+msgstr "Carroça Abandonada"
+
+msgid "NPC_MN_JEWELER"
+msgstr "Joalheiro Dolgrim"
+
+msgid "NPC_MN_CRYSTAL"
+msgstr "Cristal Pulsante"
+
+msgid "NPC_MN_GATEKEEPER"
+msgstr "Guarda-Chaves Thrain"
+
+msgid "VALUABLE_TROLL_TUSK"
+msgstr "Presa do Chefe Troll"
+
+msgid "VALUABLE_QUARTZ_CORE"
+msgstr "Núcleo de Quartzo"
+
+msgid "VALUABLE_KEY_PICKAXE"
+msgstr "Chave da Picareta"
+
+msgid "VALUABLE_KEY_LANTERN"
+msgstr "Chave da Lanterna"
+
+msgid "TOAST_ORE_CART_AWAKENS"
+msgstr "A carroça treme sobre os trilhos: o Chefe Troll acorda!"
+
+msgid "TOAST_CRYSTAL_AWAKENS"
+msgstr "O cristal pulsa e racha: a Besta de Quartzo se solta!"
+
+msgid "QUEST_MN_CLEAR"
+msgstr "Limpar as Galerias"
+
+msgid "QUEST_MN_CLEAR_DESC"
+msgstr "O Aprendiz de Mineiro, na entrada, pede que os dois primeiros bandos que ocupam as galerias perto dos trilhos sejam derrubados, para a turma poder trabalhar."
+
+msgid "QUEST_MN_TUSK"
+msgstr "A Presa do Chefe Troll"
+
+msgid "QUEST_MN_TUSK_DESC"
+msgstr "O Capataz Brokk, no Acampamento dos Anões (leste, perto da entrada), quer a presa do Chefe Troll, que dorme numa carroça abandonada na Gruta das Carroças (oeste). Toque a carroça com a missão ativa, derrote o Chefe Troll e traga a presa: em troca vem a Chave da Picareta, uma das duas do portão do Coração da Mina."
+
+msgid "QUEST_MN_QUARTZ"
+msgstr "O Núcleo de Quartzo"
+
+msgid "QUEST_MN_QUARTZ_DESC"
+msgstr "O Joalheiro Dolgrim, na Casa do Joalheiro (oeste, no alto do labirinto), quer o núcleo de quartzo que a Besta de Quartzo guarda no Salão dos Cristais (leste). Toque o Cristal Pulsante com a missão ativa, derrote a fera e traga o núcleo para receber a Chave da Lanterna, a outra do portão do Coração da Mina."
+
+msgid "QUEST_MN_GATE"
+msgstr "O Portão do Coração da Mina"
+
+msgid "QUEST_MN_GATE_DESC"
+msgstr "O Guarda-Chaves Thrain, no túnel ao norte do labirinto (siga os trilhos), só abre o portão para quem trouxer as duas chaves: a da Picareta (Capataz) e a da Lanterna (Joalheiro). Atrás dele fica o Coração da Mina, onde o Golem de Cristal espera."
+
+msgid "DLG_MNAPP_1"
+msgstr "Ah, visitas! Cuidado com os trilhos: eles são o único caminho seguro nesta mina. Fora deles o labirinto se fecha, e eu já perdi três picaretas e um tio nele."
+
+msgid "DLG_MNAPP_2"
+msgstr "Os dois primeiros bandos, aqui perto, tomaram as galerias da frente. Sem elas livres, a turma não consegue puxar as carroças."
+
+msgid "DLG_MNAPP_3"
+msgstr "Derrubem os dois e eu pago. Depois falem com o Capataz Brokk, no acampamento a leste: ele sabe como abrir o portão do Coração da Mina."
+
+msgid "DLG_MNAPP_ACTIVE"
+msgstr "As galerias da frente ficam ao lado dos trilhos. Os bandos fazem barulho: dá para ouvir de longe."
+
+msgid "DLG_MNAPP_DONE"
+msgstr "Que alívio! Agora a turma volta ao trabalho. Sigam os trilhos para o norte, e não saiam deles sem lanterna."
+
+msgid "DLG_MNFORE_1"
+msgstr "Brokk, capataz desta mina há quarenta anos. O portão do Coração só abre com duas chaves, e uma delas está com um troll que dorme numa carroça velha, na Gruta das Carroças, lá no oeste."
+
+msgid "DLG_MNFORE_2"
+msgstr "Ele me roubou uma presa de marfim que eu usava como amuleto de sorte, e desde então a mina só dá desgraça. A presa ficou presa na boca dele, a besta."
+
+msgid "DLG_MNFORE_3"
+msgstr "Toquem a carroça, derrubem o Chefe Troll e tragam a presa. Eu dou a Chave da Picareta. Sigam os trilhos para a Gruta: eles chegam lá."
+
+msgid "DLG_MNFORE_ACTIVE"
+msgstr "A Gruta das Carroças fica a oeste, num ramal dos trilhos. A presa é amarelada e do tamanho do seu braço. Tragam-na e a chave é de vocês."
+
+msgid "DLG_MNFORE_DONE"
+msgstr "A minha presa! A sorte volta à mina. A Chave da Picareta é de vocês: levem-na ao Guarda-Chaves, no túnel ao norte, junto com a da Lanterna."
+
+msgid "DLG_MNCART_1"
+msgstr "A madeira da carroça está fria, mas o ferro dos trilhos vibra, como se algo enorme respirasse debaixo do minério."
+
+msgid "DLG_MNCART_2"
+msgstr "O Chefe Troll acorda!"
+
+msgid "DLG_MNCART_LOCKED"
+msgstr "Uma carroça de minério abandonada sobre os trilhos. Nada responde ao seu toque."
+
+msgid "DLG_MNJEW_1"
+msgstr "Trinta anos lapidando as pedras desta mina, e a mais bela nunca chegou às minhas mãos: o Núcleo de Quartzo, o coração do cristal gigante do Salão dos Cristais, a leste."
+
+msgid "DLG_MNJEW_2"
+msgstr "O cristal pulsa como um coração vivo, e dele nasceu uma fera de quartzo que o protege. Ela só acorda quando alguém toca o Cristal Pulsante com más intenções."
+
+msgid "DLG_MNJEW_3"
+msgstr "Toquem o cristal, derrubem a Besta de Quartzo e tragam o núcleo. Em troca eu dou a Chave da Lanterna, a outra que abre o portão do Coração da Mina."
+
+msgid "DLG_MNJEW_ACTIVE"
+msgstr "O Salão dos Cristais fica a leste, num ramal dos trilhos, depois de muitas curvas. O núcleo brilha em azul e é quente ao toque. Tragam-no para mim."
+
+msgid "DLG_MNJEW_DONE"
+msgstr "O núcleo! É ainda mais lindo do que eu sonhei. A Chave da Lanterna é de vocês: levem-na ao Guarda-Chaves, junto com a da Picareta."
+
+msgid "DLG_MNJEW_WAIT"
+msgstr "Cada pedra tem uma história. Voltem quando quiserem ouvir a de alguma."
+
+msgid "DLG_MNCRY_1"
+msgstr "O cristal pulsa, quente, em tom roxo, e rachaduras finas correm por dentro dele. Algo se move lá no fundo."
+
+msgid "DLG_MNCRY_2"
+msgstr "A Besta de Quartzo se solta!"
+
+msgid "DLG_MNCRY_LOCKED"
+msgstr "Um cristal roxo, imóvel, que brilha de leve. Nada responde ao seu toque."
+
+msgid "DLG_MNGUARD_1"
+msgstr "Alto. Este portão fecha o Coração da Mina, e no Coração mora o Golem de Cristal, que nasceu de todo o minério que arrancamos. Eu guardo as chaves há mais tempo do que o portão tem ferrugem."
+
+msgid "DLG_MNGUARD_2"
+msgstr "O portão só abre com DUAS chaves: a da Picareta e a da Lanterna. A primeira está com o Capataz Brokk, no acampamento a leste; a segunda, com o Joalheiro Dolgrim, na casa dele, a oeste."
+
+msgid "DLG_MNGUARD_3"
+msgstr "Cada um cobra um preço: uma presa, um núcleo de cristal. Tragam as duas chaves a mim e eu abro a passagem."
+
+msgid "DLG_MNGUARD_ACTIVE"
+msgstr "Só abro com as duas chaves, Picareta e Lanterna, na mesma bolsa. O Capataz fica a leste; o Joalheiro, a oeste. Sigam os trilhos."
+
+msgid "DLG_MNGUARD_DONE"
+msgstr "As duas chaves! O portão está aberto. Cuidado: o Golem de Cristal não sente dor, e cada pedaço dele que cai vira lâmina."

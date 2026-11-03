@@ -471,5 +471,66 @@
       "gold": 650,
       "xp": 1300
     }
+  },
+  "mn_clear": {
+    "name_key": "QUEST_MN_CLEAR",
+    "desc_key": "QUEST_MN_CLEAR_DESC",
+    "type": "village",
+    "giver": "mn_apprentice",
+    "area": "mine_01_crystal_vein",
+    "clear": [
+      "mn_s1_1",
+      "mn_s1_2"
+    ],
+    "target_element": "earth",
+    "reward": {
+      "gold": 400,
+      "xp": 800
+    }
+  },
+  "mn_tusk": {
+    "name_key": "QUEST_MN_TUSK",
+    "desc_key": "QUEST_MN_TUSK_DESC",
+    "type": "village",
+    "giver": "mn_foreman",
+    "area": "mine_01_crystal_vein",
+    "target_element": "earth",
+    "reward": {
+      "gold": 450,
+      "xp": 900
+    },
+    "item": "troll_tusk",
+    "gives": "key_pickaxe"
+  },
+  "mn_quartz": {
+    "name_key": "QUEST_MN_QUARTZ",
+    "desc_key": "QUEST_MN_QUARTZ_DESC",
+    "type": "village",
+    "giver": "mn_jeweler",
+    "area": "mine_01_crystal_vein",
+    "target_element": "water",
+    "reward": {
+      "gold": 450,
+      "xp": 900
+    },
+    "item": "quartz_core",
+    "gives": "key_lantern"
+  },
+  "mn_gate": {
+    "name_key": "QUEST_MN_GATE",
+    "desc_key": "QUEST_MN_GATE_DESC",
+    "type": "village",
+    "giver": "mn_gatekeeper",
+    "area": "mine_01_crystal_vein",
+    "items": [
+      "key_pickaxe",
+      "key_lantern"
+    ],
+    "opens_gate": "boss_gate",
+    "target_element": "earth",
+    "reward": {
+      "gold": 550,
+      "xp": 1100
+    }
   }
 }

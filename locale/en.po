@@ -3953,3 +3953,147 @@ msgstr "I only open with both keys, Iron and Bone, in the same bag. The Blind Ja
 
 msgid "DLG_CTWARDEN_DONE"
 msgstr "Both keys! The gate is open. Beware: the Chained King has broken every chain that held him, except the one of shame."
+
+msgid "MONSTER_MN_QUARTZ_BEAST"
+msgstr "Quartz Beast"
+
+msgid "NPC_MN_APPRENTICE"
+msgstr "Mining Apprentice"
+
+msgid "NPC_MN_FOREMAN"
+msgstr "Foreman Brokk"
+
+msgid "NPC_MN_ORE_CART"
+msgstr "Abandoned Ore Cart"
+
+msgid "NPC_MN_JEWELER"
+msgstr "Jeweler Dolgrim"
+
+msgid "NPC_MN_CRYSTAL"
+msgstr "Pulsing Crystal"
+
+msgid "NPC_MN_GATEKEEPER"
+msgstr "Keywarden Thrain"
+
+msgid "VALUABLE_TROLL_TUSK"
+msgstr "Troll Chief's Tusk"
+
+msgid "VALUABLE_QUARTZ_CORE"
+msgstr "Quartz Core"
+
+msgid "VALUABLE_KEY_PICKAXE"
+msgstr "Pickaxe Key"
+
+msgid "VALUABLE_KEY_LANTERN"
+msgstr "Lantern Key"
+
+msgid "TOAST_ORE_CART_AWAKENS"
+msgstr "The cart shakes on its rails: the Troll Chief awakens!"
+
+msgid "TOAST_CRYSTAL_AWAKENS"
+msgstr "The crystal pulses and cracks: the Quartz Beast breaks free!"
+
+msgid "QUEST_MN_CLEAR"
+msgstr "Clear the Galleries"
+
+msgid "QUEST_MN_CLEAR_DESC"
+msgstr "The Mining Apprentice, at the entrance, asks that the first two packs holding the galleries near the rails be brought down, so the crew can work."
+
+msgid "QUEST_MN_TUSK"
+msgstr "The Troll Chief's Tusk"
+
+msgid "QUEST_MN_TUSK_DESC"
+msgstr "Foreman Brokk, at the Dwarves' Camp (east, near the entrance), wants the tusk of the Troll Chief, who sleeps in an abandoned ore cart in the Cart Cave (west). Touch the cart with the quest active, defeat the Troll Chief and bring the tusk: in return you get the Pickaxe Key, one of the two for the Mine Heart's gate."
+
+msgid "QUEST_MN_QUARTZ"
+msgstr "The Quartz Core"
+
+msgid "QUEST_MN_QUARTZ_DESC"
+msgstr "Jeweler Dolgrim, in the Jeweler's House (west, high in the maze), wants the quartz core the Quartz Beast guards in the Crystal Hall (east). Touch the Pulsing Crystal with the quest active, defeat the beast and bring the core to receive the Lantern Key, the other one for the Mine Heart's gate."
+
+msgid "QUEST_MN_GATE"
+msgstr "The Mine Heart's Gate"
+
+msgid "QUEST_MN_GATE_DESC"
+msgstr "Keywarden Thrain, in the tunnel north of the maze (follow the rails), only opens the gate for those with both keys: the Pickaxe (Foreman) and the Lantern (Jeweler). Beyond lies the Mine Heart, where the Crystal Golem waits."
+
+msgid "DLG_MNAPP_1"
+msgstr "Ah, visitors! Mind the rails: they are the only safe way in this mine. Off them the maze closes in, and I have lost three pickaxes and an uncle in it."
+
+msgid "DLG_MNAPP_2"
+msgstr "The first two packs, right here, took the front galleries. Without them clear, the crew cannot haul the carts."
+
+msgid "DLG_MNAPP_3"
+msgstr "Bring both down and I will pay. Then talk to Foreman Brokk, at the camp to the east: he knows how to open the Mine Heart's gate."
+
+msgid "DLG_MNAPP_ACTIVE"
+msgstr "The front galleries are beside the rails. The packs make noise: you can hear them from afar."
+
+msgid "DLG_MNAPP_DONE"
+msgstr "What a relief! Now the crew goes back to work. Follow the rails north, and do not leave them without a lantern."
+
+msgid "DLG_MNFORE_1"
+msgstr "Brokk, foreman of this mine for forty years. The Heart's gate only opens with two keys, and one of them is held by a troll sleeping in an old cart, in the Cart Cave, far to the west."
+
+msgid "DLG_MNFORE_2"
+msgstr "He stole an ivory tusk I used as a lucky charm, and since then the mine has given only misfortune. The tusk is stuck in his mouth, the beast."
+
+msgid "DLG_MNFORE_3"
+msgstr "Touch the cart, bring down the Troll Chief and bring the tusk. I give the Pickaxe Key. Follow the rails to the Cave: they lead there."
+
+msgid "DLG_MNFORE_ACTIVE"
+msgstr "The Cart Cave is to the west, on a branch of the rails. The tusk is yellowed and as long as your arm. Bring it and the key is yours."
+
+msgid "DLG_MNFORE_DONE"
+msgstr "My tusk! Luck returns to the mine. The Pickaxe Key is yours: take it to the Keywarden, in the tunnel to the north, together with the Lantern one."
+
+msgid "DLG_MNCART_1"
+msgstr "The cart's wood is cold, but the iron of the rails hums, as if something huge breathed under the ore."
+
+msgid "DLG_MNCART_2"
+msgstr "The Troll Chief awakens!"
+
+msgid "DLG_MNCART_LOCKED"
+msgstr "An abandoned ore cart on the rails. Nothing answers your touch."
+
+msgid "DLG_MNJEW_1"
+msgstr "Thirty years cutting this mine's stones, and the finest never reached my hands: the Quartz Core, the heart of the giant crystal in the Crystal Hall, to the east."
+
+msgid "DLG_MNJEW_2"
+msgstr "The crystal pulses like a living heart, and from it was born a quartz beast that guards it. It only wakes when someone touches the Pulsing Crystal with ill intent."
+
+msgid "DLG_MNJEW_3"
+msgstr "Touch the crystal, bring down the Quartz Beast and bring me the core. In return I give the Lantern Key, the other one that opens the Mine Heart's gate."
+
+msgid "DLG_MNJEW_ACTIVE"
+msgstr "The Crystal Hall is to the east, on a branch of the rails, after many turns. The core glows blue and is warm to the touch. Bring it to me."
+
+msgid "DLG_MNJEW_DONE"
+msgstr "The core! It is even lovelier than I dreamed. The Lantern Key is yours: take it to the Keywarden, together with the Pickaxe one."
+
+msgid "DLG_MNJEW_WAIT"
+msgstr "Every stone has a story. Come back when you want to hear one."
+
+msgid "DLG_MNCRY_1"
+msgstr "The crystal pulses, warm, in purple, and thin cracks run inside it. Something moves deep within."
+
+msgid "DLG_MNCRY_2"
+msgstr "The Quartz Beast breaks free!"
+
+msgid "DLG_MNCRY_LOCKED"
+msgstr "A purple crystal, motionless, glowing softly. Nothing answers your touch."
+
+msgid "DLG_MNGUARD_1"
+msgstr "Halt. This gate closes the Mine Heart, and in the Heart lives the Crystal Golem, born of all the ore we tore out. I have kept the keys longer than the gate has had rust."
+
+msgid "DLG_MNGUARD_2"
+msgstr "The gate only opens with TWO keys: the Pickaxe and the Lantern. The first is with Foreman Brokk, at the camp to the east; the second, with Jeweler Dolgrim, in his house to the west."
+
+msgid "DLG_MNGUARD_3"
+msgstr "Each charges a price: a tusk, a crystal core. Bring both keys to me and I will open the way."
+
+msgid "DLG_MNGUARD_ACTIVE"
+msgstr "I only open with both keys, Pickaxe and Lantern, in the same bag. The Foreman is to the east; the Jeweler, to the west. Follow the rails."
+
+msgid "DLG_MNGUARD_DONE"
+msgstr "Both keys! The gate is open. Beware: the Crystal Golem feels no pain, and every piece that falls from him becomes a blade."

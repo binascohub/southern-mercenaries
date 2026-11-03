@@ -631,6 +631,53 @@
           "body": "cloth"
         }
       ]
+    },
+    "dwarf_miner": {
+      "class": "archer",
+      "sex": [
+        "male"
+      ],
+      "hair": {
+        "male": [
+          [
+            "Hair_Beard"
+          ],
+          [
+            "Hair_Buzzed",
+            "Hair_Beard"
+          ],
+          [
+            "Hair_SimpleParted",
+            "Hair_Beard"
+          ]
+        ]
+      },
+      "hair_color": [
+        [
+          0.5,
+          0.25,
+          0.1
+        ],
+        [
+          0.2,
+          0.14,
+          0.1
+        ],
+        [
+          0.6,
+          0.55,
+          0.5
+        ],
+        [
+          0.08,
+          0.07,
+          0.07
+        ]
+      ],
+      "outfit": [
+        {}
+      ],
+      "weapon": "Tool_Shovel"
     }
   }
 }

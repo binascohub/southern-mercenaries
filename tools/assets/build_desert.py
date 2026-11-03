@@ -378,7 +378,7 @@ arenas["desert_01_canyon"] = {
                 "(estrada, ruínas de carroças, passagem, areia movediça, dunas) e ramais sem saída (Caravana, Ninho, Oásis, Ruínas do Sol). 2 mini-chefes: a Rainha Escorpião (o NPC do Oásis a "
                 "desperta) e o Lamassu da Areia (o templo das Ruínas do Sol). O Sentinela do Portão pede as duas chaves; atrás do portão fica a Esfinge (chefe final) e a saída. "
                 "Liga-se à Capital (tools/assets/set_map_order.py). Gerado por tools/assets/build_desert.py.",
-    "name_key": "ARENA_DESERT", "outdoor": True, "player_class": "mage", "map_id": "map_desert", "area_level": 7, "wake_radius": 10.0, "alert_radius": 5.0,
+    "name_key": "ARENA_DESERT", "outdoor": True, "player_class": "mage", "map_id": "map_desert", "area_level": 7, "final": True, "victory_groups": ["d_sphinx"], "wake_radius": 10.0, "alert_radius": 5.0,
     "rooms": rooms, "encounters": [{"id": i, "position": p, "monsters": [{"monster": m, "count": c} for m, c in mons]} for i, p, mons in encounters], "hazards": [],
     "entries": {"start": [0, 7], "desert": [0, 7]}, "props": props, "quest_spots": [], "breakables": breakables,
     "style": {"_comment": "Cânion: chão de areia (Ground_Canyon), sem muro do kit; as paredes são as formações de rocha (decor).", "walls": [""], "floor": "Ground_Canyon", "low": "",

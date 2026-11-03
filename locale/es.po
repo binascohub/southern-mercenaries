@@ -3953,3 +3953,147 @@ msgstr "Solo abro con las dos llaves, Hierro y Hueso, en la misma bolsa. El Carc
 
 msgid "DLG_CTWARDEN_DONE"
 msgstr "¡Las dos llaves! El portón está abierto. Cuidado: el Rey Encadenado ha roto todas las cadenas que lo ataron, menos la de la vergüenza."
+
+msgid "MONSTER_MN_QUARTZ_BEAST"
+msgstr "Bestia de Cuarzo"
+
+msgid "NPC_MN_APPRENTICE"
+msgstr "Aprendiz de Minero"
+
+msgid "NPC_MN_FOREMAN"
+msgstr "Capataz Brokk"
+
+msgid "NPC_MN_ORE_CART"
+msgstr "Carreta Abandonada"
+
+msgid "NPC_MN_JEWELER"
+msgstr "Joyero Dolgrim"
+
+msgid "NPC_MN_CRYSTAL"
+msgstr "Cristal Pulsante"
+
+msgid "NPC_MN_GATEKEEPER"
+msgstr "Guardallaves Thrain"
+
+msgid "VALUABLE_TROLL_TUSK"
+msgstr "Colmillo del Jefe Troll"
+
+msgid "VALUABLE_QUARTZ_CORE"
+msgstr "Núcleo de Cuarzo"
+
+msgid "VALUABLE_KEY_PICKAXE"
+msgstr "Llave del Pico"
+
+msgid "VALUABLE_KEY_LANTERN"
+msgstr "Llave de la Linterna"
+
+msgid "TOAST_ORE_CART_AWAKENS"
+msgstr "La carreta tiembla sobre los rieles: ¡el Jefe Troll despierta!"
+
+msgid "TOAST_CRYSTAL_AWAKENS"
+msgstr "El cristal late y se agrieta: ¡la Bestia de Cuarzo se libera!"
+
+msgid "QUEST_MN_CLEAR"
+msgstr "Limpiar las galerías"
+
+msgid "QUEST_MN_CLEAR_DESC"
+msgstr "El Aprendiz de Minero, en la entrada, pide que se derriben las dos primeras bandas que ocupan las galerías junto a los rieles, para que la cuadrilla pueda trabajar."
+
+msgid "QUEST_MN_TUSK"
+msgstr "El colmillo del Jefe Troll"
+
+msgid "QUEST_MN_TUSK_DESC"
+msgstr "El Capataz Brokk, en el Campamento de los Enanos (este, cerca de la entrada), quiere el colmillo del Jefe Troll, que duerme en una carreta abandonada en la Cueva de las Carretas (oeste). Toca la carreta con la misión activa, derrota al Jefe Troll y trae el colmillo: a cambio recibes la Llave del Pico, una de las dos del portón del Corazón de la Mina."
+
+msgid "QUEST_MN_QUARTZ"
+msgstr "El núcleo de cuarzo"
+
+msgid "QUEST_MN_QUARTZ_DESC"
+msgstr "El Joyero Dolgrim, en la Casa del Joyero (oeste, en lo alto del laberinto), quiere el núcleo de cuarzo que guarda la Bestia de Cuarzo en el Salón de los Cristales (este). Toca el Cristal Pulsante con la misión activa, derrota a la fiera y trae el núcleo para recibir la Llave de la Linterna, la otra del portón del Corazón de la Mina."
+
+msgid "QUEST_MN_GATE"
+msgstr "El portón del Corazón de la Mina"
+
+msgid "QUEST_MN_GATE_DESC"
+msgstr "El Guardallaves Thrain, en el túnel al norte del laberinto (sigan los rieles), solo abre el portón a quien traiga las dos llaves: la del Pico (Capataz) y la de la Linterna (Joyero). Tras él está el Corazón de la Mina, donde espera el Gólem de Cristal."
+
+msgid "DLG_MNAPP_1"
+msgstr "¡Ah, visitas! Cuidado con los rieles: son el único camino seguro en esta mina. Fuera de ellos el laberinto se cierra, y ya perdí tres picos y un tío en él."
+
+msgid "DLG_MNAPP_2"
+msgstr "Las dos primeras bandas, aquí cerca, tomaron las galerías de delante. Sin ellas libres, la cuadrilla no puede arrastrar las carretas."
+
+msgid "DLG_MNAPP_3"
+msgstr "Derriben las dos y pago. Luego hablen con el Capataz Brokk, en el campamento al este: él sabe cómo abrir el portón del Corazón de la Mina."
+
+msgid "DLG_MNAPP_ACTIVE"
+msgstr "Las galerías de delante están junto a los rieles. Las bandas hacen ruido: se oyen de lejos."
+
+msgid "DLG_MNAPP_DONE"
+msgstr "¡Qué alivio! Ahora la cuadrilla vuelve al trabajo. Sigan los rieles al norte, y no salgan de ellos sin linterna."
+
+msgid "DLG_MNFORE_1"
+msgstr "Brokk, capataz de esta mina hace cuarenta años. El portón del Corazón solo abre con dos llaves, y una de ellas la tiene un troll que duerme en una carreta vieja, en la Cueva de las Carretas, allá al oeste."
+
+msgid "DLG_MNFORE_2"
+msgstr "Me robó un colmillo de marfil que usaba como amuleto de la suerte, y desde entonces la mina solo da desgracias. El colmillo quedó en su boca, la bestia."
+
+msgid "DLG_MNFORE_3"
+msgstr "Toquen la carreta, derriben al Jefe Troll y traigan el colmillo. Doy la Llave del Pico. Sigan los rieles hasta la Cueva: llegan allí."
+
+msgid "DLG_MNFORE_ACTIVE"
+msgstr "La Cueva de las Carretas está al oeste, en un ramal de los rieles. El colmillo es amarillento y del largo de su brazo. Tráiganlo y la llave es suya."
+
+msgid "DLG_MNFORE_DONE"
+msgstr "¡Mi colmillo! La suerte vuelve a la mina. La Llave del Pico es suya: llévenla al Guardallaves, en el túnel al norte, junto con la de la Linterna."
+
+msgid "DLG_MNCART_1"
+msgstr "La madera de la carreta está fría, pero el hierro de los rieles vibra, como si algo enorme respirara bajo el mineral."
+
+msgid "DLG_MNCART_2"
+msgstr "¡El Jefe Troll despierta!"
+
+msgid "DLG_MNCART_LOCKED"
+msgstr "Una carreta de mineral abandonada sobre los rieles. Nada responde a tu toque."
+
+msgid "DLG_MNJEW_1"
+msgstr "Treinta años puliendo las piedras de esta mina, y la más bella nunca llegó a mis manos: el Núcleo de Cuarzo, el corazón del cristal gigante del Salón de los Cristales, al este."
+
+msgid "DLG_MNJEW_2"
+msgstr "El cristal late como un corazón vivo, y de él nació una fiera de cuarzo que lo protege. Solo despierta cuando alguien toca el Cristal Pulsante con malas intenciones."
+
+msgid "DLG_MNJEW_3"
+msgstr "Toquen el cristal, derriben a la Bestia de Cuarzo y tráiganme el núcleo. A cambio doy la Llave de la Linterna, la otra que abre el portón del Corazón de la Mina."
+
+msgid "DLG_MNJEW_ACTIVE"
+msgstr "El Salón de los Cristales está al este, en un ramal de los rieles, tras muchas curvas. El núcleo brilla en azul y está tibio al tacto. Tráiganmelo."
+
+msgid "DLG_MNJEW_DONE"
+msgstr "¡El núcleo! Es aún más hermoso de lo que soñé. La Llave de la Linterna es suya: llévenla al Guardallaves, junto con la del Pico."
+
+msgid "DLG_MNJEW_WAIT"
+msgstr "Cada piedra tiene una historia. Vuelvan cuando quieran oír alguna."
+
+msgid "DLG_MNCRY_1"
+msgstr "El cristal late, tibio, en tono púrpura, y finas grietas recorren su interior. Algo se mueve en el fondo."
+
+msgid "DLG_MNCRY_2"
+msgstr "¡La Bestia de Cuarzo se libera!"
+
+msgid "DLG_MNCRY_LOCKED"
+msgstr "Un cristal púrpura, inmóvil, que brilla suavemente. Nada responde a tu toque."
+
+msgid "DLG_MNGUARD_1"
+msgstr "Alto. Este portón cierra el Corazón de la Mina, y en el Corazón vive el Gólem de Cristal, nacido de todo el mineral que arrancamos. Guardo las llaves desde hace más tiempo del que el portón tiene óxido."
+
+msgid "DLG_MNGUARD_2"
+msgstr "El portón solo abre con DOS llaves: la del Pico y la de la Linterna. La primera la tiene el Capataz Brokk, en el campamento al este; la segunda, el Joyero Dolgrim, en su casa al oeste."
+
+msgid "DLG_MNGUARD_3"
+msgstr "Cada uno cobra un precio: un colmillo, un núcleo de cristal. Tráiganme las dos llaves y abro el paso."
+
+msgid "DLG_MNGUARD_ACTIVE"
+msgstr "Solo abro con las dos llaves, Pico y Linterna, en la misma bolsa. El Capataz está al este; el Joyero, al oeste. Sigan los rieles."
+
+msgid "DLG_MNGUARD_DONE"
+msgstr "¡Las dos llaves! El portón está abierto. Cuidado: el Gólem de Cristal no siente dolor, y cada pedazo suyo que cae se vuelve hoja."

@@ -293,5 +293,33 @@
     "maps": [],
     "quest_item": true,
     "model": "Key_Clubs"
+  },
+  "troll_tusk": {
+    "name_key": "VALUABLE_TROLL_TUSK",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Bone_Sickle"
+  },
+  "quartz_core": {
+    "name_key": "VALUABLE_QUARTZ_CORE",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Crystal_Gem"
+  },
+  "key_pickaxe": {
+    "name_key": "VALUABLE_KEY_PICKAXE",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Spades"
+  },
+  "key_lantern": {
+    "name_key": "VALUABLE_KEY_LANTERN",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Clubs"
   }
 }

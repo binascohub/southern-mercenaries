@@ -528,7 +528,7 @@ arenas["ruins_01_city"] = {
                 "Cidadela; corredor do portão; Cofre Real) e partes abertas (Acesso, Fórum, Praças, Avenida das Colunas, Pátio Alto). Acesso -> Fórum; a oeste o Bairro Velho e a Praça dos Cavaleiros (a estátua do "
                 "cavaleiro desperta o Guardião das Ruínas), a leste o Bairro do Mercado e a Praça dos Monólitos (a Sacerdotisa desperta o Campeão Caído), ao meio a Avenida das Colunas; tudo fecha no Pátio Alto -> "
                 "Cidadela -> corredor do portão (Porteiro, duas chaves) -> Cofre Real (Rei Caído, chefe final, com a saída). Gerado por tools/assets/build_ruins.py.",
-    "name_key": "ARENA_RUINS", "player_class": "mage", "map_id": "map_ruins", "area_level": 5, "outdoor": True, "wake_radius": 10.0, "alert_radius": 5.0,
+    "name_key": "ARENA_RUINS", "player_class": "mage", "map_id": "map_ruins", "area_level": 5, "outdoor": True, "final": True, "victory_groups": ["r_boss"], "wake_radius": 10.0, "alert_radius": 5.0,
     "rooms": rooms, "encounters": encounters, "hazards": [], "entries": {"start": [0, 3], "ruins": [0, 3]}, "props": props, "quest_spots": [], "breakables": breakables,
     "style": {"_comment": "Ruínas: sem muro de sala (os muros são peças do cenário), chão de terra.", "walls": [""], "floor": "Ground_Dirt", "low": "", "ground": [0.2, 0.18, 0.14]},
     "decor": decor, "passive": True}

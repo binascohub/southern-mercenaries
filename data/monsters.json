@@ -1355,7 +1355,8 @@
       1.0,
       1.0
     ],
-    "_comment": "Mini-chefe da Mina: o Chefe Troll."
+    "_comment": "Mini-chefe da Mina: o Chefe Troll.",
+    "quest_drop": "troll_tusk"
   },
   "basket": {
     "name_key": "PROP_BASKET",
@@ -2065,5 +2066,29 @@
     "aggressive": false,
     "chest_loot": "chest",
     "_comment": "Chefe final das Catacumbas: o Rei Acorrentado, rei morto preso em correntes que guarda a Cripta atrás do portão; investidas e pisões."
+  },
+  "mn_quartz_beast": {
+    "name_key": "MONSTER_MN_QUARTZ_BEAST",
+    "max_health": 360,
+    "move_speed": 2.4,
+    "damage": 28,
+    "attack_range": 3.2,
+    "attack_windup": 1.1,
+    "attack_cooldown": 2.2,
+    "aggro_range": 40.0,
+    "size": 2.6,
+    "category": "miniboss",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 4.0,
+    "patrol_speed": 0.8,
+    "look": "chitin_beast",
+    "color": [
+      0.5,
+      0.75,
+      1.0
+    ],
+    "_comment": "Mini-chefe da Mina (Salão dos Cristais): a Besta de Quartzo, fera de cristal que o Cristal Pulsante desperta; investidas.",
+    "quest_drop": "quartz_core"
   }
 }

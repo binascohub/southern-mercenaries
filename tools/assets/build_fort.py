@@ -345,7 +345,7 @@ arenas["fort_01_gate"] = {
                 "caminho: Guarnição (partida) -> Pátio de Armas -> três rotas para a Galeria (oeste: Quartel -> Ossuário, onde o Exilado desperta o Senhor Elfo Sombrio; leste: Quartel -> Salão do Trono, onde a Penitente "
                 "desperta a Rainha das Súcubos; meio: Salão das Colunas) -> corredor do portão (Carcereiro, duas chaves) -> Salão do Barão (Barão Infernal, chefe final, com a saída). O Comandante anda solto no Pátio de Armas. "
                 "Gerado por tools/assets/build_fort.py.",
-    "name_key": "ARENA_FORT", "player_class": "mage", "map_id": "map_fort", "area_level": 10, "wake_radius": 10.0, "alert_radius": 5.0,
+    "name_key": "ARENA_FORT", "player_class": "mage", "map_id": "map_fort", "area_level": 10, "final": True, "victory_groups": ["fo_boss"], "wake_radius": 10.0, "alert_radius": 5.0,
     "rooms": [{"id": "fort", "center": [0, 0], "size": [COLS * CELL, ROWS * CELL], "doors": [], "wall_height": 0.8, "torch": False}],
     "encounters": encounters, "hazards": [], "entries": {"start": cp(26, 50)}, "props": props, "quest_spots": [], "breakables": breakables,
     "style": {"_comment": "Forte: piso de pedra do pacote; a pedra vem das peças Fort_* em decor.", "walls": [""], "floor": "Fort_Floor", "low": "", "ground": [0.07, 0.07, 0.08]},

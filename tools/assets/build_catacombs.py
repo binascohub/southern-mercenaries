@@ -458,7 +458,7 @@ arenas["catacombs_01_depths"] = {
                 "(Ala das Celas -> Sala de Tortura -> Poço do Carrasco, onde a gaiola desperta o Carrasco), leste (Ala das Celas -> Ossuário -> Capela dos Acorrentados, onde a Prisioneira desperta a Alma Acorrentada) e meio "
                 "(Salão das Correntes -> Pátio do Tribunal); corredor do portão (Diretor, duas chaves) -> Cripta do Rei Acorrentado (chefe final, com a saída). Salas laterais sem saída: Cofre e Cela Secreta. "
                 "Gerado por tools/assets/build_catacombs.py.",
-    "name_key": "ARENA_CATACOMBS", "player_class": "mage", "map_id": "map_catacombs", "area_level": 11, "wake_radius": 12.0, "alert_radius": 5.0,
+    "name_key": "ARENA_CATACOMBS", "player_class": "mage", "map_id": "map_catacombs", "area_level": 11, "final": True, "victory_groups": ["ct_king"], "wake_radius": 12.0, "alert_radius": 5.0,
     "rooms": rooms, "encounters": encounters, "hazards": [], "entries": {"start": [0, 3], "catacombs": [0, 3]}, "props": props, "quest_spots": [], "breakables": breakables,
     "style": {"_comment": "Catacumbas: tijolos irregulares do kit em tom frio de pedra, piso de tijolos; a parede sul fica aberta para a câmera. Teias, morcegos e grades de piso; sem lixo.",
               "walls": ["Wall_UnevenBrick_Straight", "Wall_UnevenBrick_Straight", "Wall_UnevenBrick_Window_Wide_Round", "Wall_UnevenBrick_Straight", "Wall_UnevenBrick_Door_Round"],

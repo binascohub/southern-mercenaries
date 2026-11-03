@@ -322,7 +322,7 @@ arenas["docks_01_pier"] = {
     "_comment": "Docas, ampliadas (Modular Wooden Docks, loafbrr, CC0): píeres sobre o mar com a estrutura da Floresta e outro caminho. Cais de partida -> Píer Principal -> Mercado de Peixe; laço oeste (Estaleiro: casco encalhado "
                 "desperta o Casco Vivo) e laço leste (Peixaria: a Peixeira desperta o Tubarão-Porco), fechando no Farol e no Armazém; Calçada -> Atracadouro -> corredor do portão (Vigia, duas chaves) -> Convés do "
                 "Capitão Afogado (chefe final, com a saída). Mantém os encontros dk_* da missão dos contrabandistas. Gerado por tools/assets/build_docks.py.",
-    "name_key": "ARENA_DOCKS", "player_class": "mage", "map_id": "map_docks", "area_level": 2, "outdoor": True, "wake_radius": 10.0, "alert_radius": 5.0,
+    "name_key": "ARENA_DOCKS", "player_class": "mage", "map_id": "map_docks", "area_level": 2, "outdoor": True, "final": True, "victory_groups": ["dk_captain"], "wake_radius": 10.0, "alert_radius": 5.0,
     "rooms": rooms, "encounters": encounters, "hazards": [], "entries": {"start": [0, 3], "docks": [0, 3]}, "props": props, "quest_spots": [],
     "breakables": [{"id": "coin_bag", "monster": "coin_bag", "position": [4.0, 1.5], "table": "coin_bag"}] + [
         {"id": "coin_bag_%d" % i, "monster": "coin_bag", "position": p, "table": "coin_bag"} for i, p in enumerate(([-24, -40], [24, -52], [-52, -90], [52, -90], [0, -100], [-20, -176], [20, -176]), start=2)],

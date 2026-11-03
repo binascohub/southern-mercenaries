@@ -1942,5 +1942,264 @@
         "body": "cloth"
       }
     }
+  },
+  "mn_apprentice": {
+    "name_key": "NPC_MN_APPRENTICE",
+    "color": [
+      0.55,
+      0.4,
+      0.25
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "mn_clear"
+        },
+        "lines": [
+          "DLG_MNAPP_1",
+          "DLG_MNAPP_2",
+          "DLG_MNAPP_3"
+        ],
+        "offer": "mn_clear"
+      },
+      {
+        "when": {
+          "quest_active": "mn_clear"
+        },
+        "lines": [
+          "DLG_MNAPP_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_MNAPP_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "class": "archer",
+      "sex": "male",
+      "hair": [
+        "Hair_Buzzed",
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.5,
+        0.25,
+        0.1
+      ],
+      "pose": "idle",
+      "outfit": {}
+    }
+  },
+  "mn_foreman": {
+    "name_key": "NPC_MN_FOREMAN",
+    "color": [
+      0.5,
+      0.35,
+      0.2
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "mn_tusk"
+        },
+        "lines": [
+          "DLG_MNFORE_1",
+          "DLG_MNFORE_2",
+          "DLG_MNFORE_3"
+        ],
+        "offer": "mn_tusk"
+      },
+      {
+        "when": {
+          "quest_active": "mn_tusk"
+        },
+        "lines": [
+          "DLG_MNFORE_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_MNFORE_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "class": "archer",
+      "sex": "male",
+      "hair": [
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.6,
+        0.3,
+        0.1
+      ],
+      "pose": "idle",
+      "outfit": {}
+    }
+  },
+  "mn_ore_cart": {
+    "name_key": "NPC_MN_ORE_CART",
+    "color": [
+      0.45,
+      0.35,
+      0.25
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_active": "mn_tusk"
+        },
+        "lines": [
+          "DLG_MNCART_1",
+          "DLG_MNCART_2"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_MNCART_LOCKED"
+        ]
+      }
+    ]
+  },
+  "mn_jeweler": {
+    "name_key": "NPC_MN_JEWELER",
+    "color": [
+      0.6,
+      0.55,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "mn_quartz"
+        },
+        "lines": [
+          "DLG_MNJEW_1",
+          "DLG_MNJEW_2",
+          "DLG_MNJEW_3"
+        ],
+        "offer": "mn_quartz"
+      },
+      {
+        "when": {
+          "quest_active": "mn_quartz"
+        },
+        "lines": [
+          "DLG_MNJEW_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {
+          "quest_done": "mn_quartz"
+        },
+        "lines": [
+          "DLG_MNJEW_DONE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_MNJEW_WAIT"
+        ]
+      }
+    ],
+    "body": {
+      "class": "archer",
+      "sex": "male",
+      "hair": [
+        "Hair_SimpleParted",
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.6,
+        0.55,
+        0.5
+      ],
+      "pose": "idle",
+      "outfit": {}
+    }
+  },
+  "mn_crystal": {
+    "name_key": "NPC_MN_CRYSTAL",
+    "color": [
+      0.7,
+      0.4,
+      1.0
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_active": "mn_quartz"
+        },
+        "lines": [
+          "DLG_MNCRY_1",
+          "DLG_MNCRY_2"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_MNCRY_LOCKED"
+        ]
+      }
+    ]
+  },
+  "mn_gatekeeper": {
+    "name_key": "NPC_MN_GATEKEEPER",
+    "color": [
+      0.4,
+      0.4,
+      0.45
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "mn_gate"
+        },
+        "lines": [
+          "DLG_MNGUARD_1",
+          "DLG_MNGUARD_2",
+          "DLG_MNGUARD_3"
+        ],
+        "offer": "mn_gate"
+      },
+      {
+        "when": {
+          "quest_active": "mn_gate"
+        },
+        "lines": [
+          "DLG_MNGUARD_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_MNGUARD_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "class": "archer",
+      "sex": "male",
+      "hair": [
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.12,
+        0.1,
+        0.1
+      ],
+      "pose": "idle",
+      "outfit": {}
+    }
   }
 }
