@@ -410,5 +410,66 @@
       "gold": 600,
       "xp": 1200
     }
+  },
+  "ct_purge": {
+    "name_key": "QUEST_CT_PURGE",
+    "desc_key": "QUEST_CT_PURGE_DESC",
+    "type": "village",
+    "giver": "ct_monk",
+    "area": "catacombs_01_depths",
+    "clear": [
+      "ct_cells_w",
+      "ct_cells_e"
+    ],
+    "target_element": "water",
+    "reward": {
+      "gold": 500,
+      "xp": 1000
+    }
+  },
+  "ct_axe": {
+    "name_key": "QUEST_CT_AXE",
+    "desc_key": "QUEST_CT_AXE_DESC",
+    "type": "village",
+    "giver": "ct_jailer",
+    "area": "catacombs_01_depths",
+    "target_element": "earth",
+    "reward": {
+      "gold": 550,
+      "xp": 1100
+    },
+    "item": "headsman_axe",
+    "gives": "key_iron"
+  },
+  "ct_soul": {
+    "name_key": "QUEST_CT_SOUL",
+    "desc_key": "QUEST_CT_SOUL_DESC",
+    "type": "village",
+    "giver": "ct_prisoner",
+    "area": "catacombs_01_depths",
+    "target_element": "water",
+    "reward": {
+      "gold": 550,
+      "xp": 1100
+    },
+    "item": "soul_shackle",
+    "gives": "key_bone"
+  },
+  "ct_gate": {
+    "name_key": "QUEST_CT_GATE",
+    "desc_key": "QUEST_CT_GATE_DESC",
+    "type": "village",
+    "giver": "ct_warden",
+    "area": "catacombs_01_depths",
+    "items": [
+      "key_iron",
+      "key_bone"
+    ],
+    "opens_gate": "boss_gate",
+    "target_element": "water",
+    "reward": {
+      "gold": 650,
+      "xp": 1300
+    }
   }
 }

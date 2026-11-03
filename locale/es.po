@@ -3809,3 +3809,147 @@ msgstr "Solo abro con las dos llaves, Ónix y Rubí, en la misma bolsa. El Exili
 
 msgid "DLG_FGUARD_DONE"
 msgstr "¡Las dos llaves! El portón está abierto. Cuidado: el Barón Infernal no recibe visitas, y las que recibe no regresan."
+
+msgid "ARENA_CATACOMBS"
+msgstr "Catacumbas"
+
+msgid "PROP_TO_CATACOMBS"
+msgstr "Camino a las Catacumbas"
+
+msgid "MONSTER_CT_HEADSMAN"
+msgstr "Verdugo de las Catacumbas"
+
+msgid "MONSTER_CT_SOUL"
+msgstr "Alma Encadenada"
+
+msgid "MONSTER_CT_KING"
+msgstr "Rey Encadenado"
+
+msgid "NPC_CT_MONK"
+msgstr "Fraile de las Catacumbas"
+
+msgid "NPC_CT_JAILER"
+msgstr "Carcelero Ciego"
+
+msgid "NPC_CT_GIBBET"
+msgstr "Jaula del Verdugo"
+
+msgid "NPC_CT_PRISONER"
+msgstr "Prisionera"
+
+msgid "NPC_CT_WARDEN"
+msgstr "Director de las Catacumbas"
+
+msgid "VALUABLE_HEADSMAN_AXE"
+msgstr "Hacha del Verdugo"
+
+msgid "VALUABLE_SOUL_SHACKLE"
+msgstr "Grillete del Alma"
+
+msgid "VALUABLE_KEY_IRON"
+msgstr "Llave de Hierro"
+
+msgid "VALUABLE_KEY_BONE"
+msgstr "Llave de Hueso"
+
+msgid "TOAST_GIBBET_AWAKENS"
+msgstr "La jaula cruje y sus cadenas se sueltan: ¡el Verdugo baja al Pozo!"
+
+msgid "TOAST_SOUL_AWAKENS"
+msgstr "Los grilletes se rompen: ¡el Alma Encadenada se libera!"
+
+msgid "QUEST_CT_PURGE"
+msgstr "Limpiar las celdas"
+
+msgid "QUEST_CT_PURGE_DESC"
+msgstr "El Fraile de las Catacumbas pide que las dos Alas de Celdas, al oeste y al este de la Nave de los Huesos, se limpien de los muertos que aún vigilan a los presos."
+
+msgid "QUEST_CT_AXE"
+msgstr "El hacha del Verdugo"
+
+msgid "QUEST_CT_AXE_DESC"
+msgstr "El Carcelero Ciego, en la Nave de los Huesos, quiere el hacha del Verdugo para saldar sus cuentas. Toca la jaula del Pozo del Verdugo (oeste, tras la Sala de Tortura) con la misión activa para despertar al Verdugo de las Catacumbas; derrótalo y trae el hacha: a cambio recibes la Llave de Hierro, una de las dos del portón del Rey Encadenado."
+
+msgid "QUEST_CT_SOUL"
+msgstr "El grillete del alma"
+
+msgid "QUEST_CT_SOUL_DESC"
+msgstr "La Prisionera, en la Capilla de los Encadenados (este, tras el Osario), lleva siglos presa de un grillete que también ata un alma. Sus palabras despiertan al Alma Encadenada; derrótala y trae el grillete para recibir la Llave de Hueso, la otra del portón del Rey Encadenado."
+
+msgid "QUEST_CT_GATE"
+msgstr "El portón del Rey Encadenado"
+
+msgid "QUEST_CT_GATE_DESC"
+msgstr "El Director de las Catacumbas, en el pasillo al norte de la Galería de los Condenados, solo abre el portón a quien traiga las dos llaves: la de Hierro (Carcelero Ciego) y la de Hueso (Prisionera). Tras él está la Cripta del Rey Encadenado."
+
+msgid "DLG_CTMONK_1"
+msgstr "Que la paz los acompañe, incluso aquí abajo. Rezo por los presos de las Catacumbas, que murieron tras las rejas sin haber sido juzgados."
+
+msgid "DLG_CTMONK_2"
+msgstr "Las dos Alas de Celdas, al oeste y al este de la Nave de los Huesos, siguen llenas de muertos de guardia. No dejan pasar ningún alma en paz."
+
+msgid "DLG_CTMONK_3"
+msgstr "Limpien las dos y pagaré el trabajo. Después, el Carcelero Ciego y la Prisionera tienen cuentas pendientes, y ellos guardan las llaves del portón del Rey."
+
+msgid "DLG_CTMONK_ACTIVE"
+msgstr "Las Alas de Celdas están a la izquierda y a la derecha de la Nave de los Huesos. Escuchen las cadenas: donde arrastran, hay un muerto de guardia."
+
+msgid "DLG_CTMONK_DONE"
+msgstr "Las celdas están en silencio por primera vez en siglos. Sigan adelante: la Galería de los Condenados los espera."
+
+msgid "DLG_CTJAILER_1"
+msgstr "No veo desde el día en que el Rey me quitó los ojos, pero conozco cada celda de memoria. Fui carcelero de estas Catacumbas cuarenta años, y el Verdugo era mi único amigo."
+
+msgid "DLG_CTJAILER_2"
+msgstr "Murió en el Pozo, al oeste, tras la Sala de Tortura, y volvió colgado de una jaula, con el hacha a la espalda, aún queriendo trabajo. No es vida para un amigo."
+
+msgid "DLG_CTJAILER_3"
+msgstr "Toquen la jaula, derriben al Verdugo y tráiganme el hacha. A cambio doy la Llave de Hierro, una de las dos que abren el portón del Rey Encadenado, en el pasillo al norte de la Galería."
+
+msgid "DLG_CTJAILER_ACTIVE"
+msgstr "El Pozo del Verdugo está al oeste: pasen por el Ala de Celdas y la Sala de Tortura. El hacha es pesada y tiene mango de hueso. La reconozco por el olor."
+
+msgid "DLG_CTJAILER_DONE"
+msgstr "¡El hacha de mi amigo! Ahora podrá descansar. La Llave de Hierro es suya: llévenla al Director, junto con la de Hueso."
+
+msgid "DLG_CTGIBBET_1"
+msgstr "La jaula se balancea sin viento, y las cadenas tintinean como si alguien respirara dentro. Algo enorme se mueve entre los huesos."
+
+msgid "DLG_CTGIBBET_2"
+msgstr "¡El Verdugo de las Catacumbas desciende!"
+
+msgid "DLG_CTGIBBET_LOCKED"
+msgstr "Una jaula de hierro colgada de una viga, crujiendo. Nada responde a tu toque."
+
+msgid "DLG_CTPRISONER_1"
+msgstr "Llevo aquí desde antes de que nacieran, encadenada a este altar. Dicen que le robé al Rey; nunca robé nada. Solo vi lo que no debía."
+
+msgid "DLG_CTPRISONER_2"
+msgstr "El grillete de mi muñeca también ata un alma, la del guardia que me vigilaba y murió de culpa. Se arrastra por la Capilla y no me deja dormir."
+
+msgid "DLG_CTPRISONER_3"
+msgstr "La liberaré para ustedes, aquí en la Capilla. Derriben al Alma Encadenada y traigan el grillete: doy la Llave de Hueso, la otra del portón del Rey Encadenado."
+
+msgid "DLG_CTPRISONER_ACTIVE"
+msgstr "El grillete es de hierro frío y brilla en azul cuando el alma está cerca. Derríbenla con cuidado: llora antes de atacar."
+
+msgid "DLG_CTPRISONER_DONE"
+msgstr "¡Estoy libre! Después de tantos años... La Llave de Hueso es suya: llévenla al Director, junto con la de Hierro."
+
+msgid "DLG_CTPRISONER_WAIT"
+msgstr "Las cadenas aún tintinean, pero ya no me pesan. Vayan en paz."
+
+msgid "DLG_CTWARDEN_1"
+msgstr "Alto. Este portón cierra la Cripta, y en la Cripta el Rey Encadenado cumple la pena que el reino le debe. Soy el último que lo visita."
+
+msgid "DLG_CTWARDEN_2"
+msgstr "El portón solo abre con DOS llaves: la de Hierro y la de Hueso. La primera la tiene el Carcelero Ciego, en la Nave de los Huesos; la segunda, la Prisionera, en la Capilla de los Encadenados, al este."
+
+msgid "DLG_CTWARDEN_3"
+msgstr "Cada una cobra un precio: un hacha, un grillete. Tráiganme las dos llaves y abro el paso."
+
+msgid "DLG_CTWARDEN_ACTIVE"
+msgstr "Solo abro con las dos llaves, Hierro y Hueso, en la misma bolsa. El Carcelero Ciego está en la Nave de los Huesos; la Prisionera, en la Capilla, al este."
+
+msgid "DLG_CTWARDEN_DONE"
+msgstr "¡Las dos llaves! El portón está abierto. Cuidado: el Rey Encadenado ha roto todas las cadenas que lo ataron, menos la de la vergüenza."

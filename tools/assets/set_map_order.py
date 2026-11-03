@@ -53,11 +53,11 @@ for area, entry in (("mine_01_crystal_vein", "mine"), ("dark_forest_01_woods", "
     retarget(area, "return_portal", "farm_01_fields", entry, name_key="PROP_RETURN_FARM")
 retarget("capital_01_aurenhold", "return_portal", "tortuga", "capital")
 
-# --- Capital: Cemitério, Forte, (Catacumbas: sem mapa ainda), Deserto — portões ao sul da praça
-for pid, name, x, to, entry in (("cemetery_gate", "PROP_TO_CEMETERY", 6.0, "cemetery_01_yard", "start"), ("fort_gate", "PROP_TO_FORT", 12.0, "fort_01_gate", "start"),
-                                ("desert_gate", "PROP_TO_DESERT", 18.0, "desert_01_canyon", "start")):
+# --- Capital: Cemitério, Forte, Catacumbas, Deserto — portões ao sul da praça
+for pid, name, x, to, entry in (("cemetery_gate", "PROP_TO_CEMETERY", 4.5, "cemetery_01_yard", "start"), ("fort_gate", "PROP_TO_FORT", 9.5, "fort_01_gate", "start"),
+                                ("catacombs_gate", "PROP_TO_CATACOMBS", 14.5, "catacombs_01_depths", "start"), ("desert_gate", "PROP_TO_DESERT", 19.5, "desert_01_canyon", "start")):
     put_prop("capital_01_aurenhold", exit_prop(pid, name, (x, 4.5), to, entry))
-arenas["capital_01_aurenhold"]["entries"].update({"cemetery": [6.0, 2.0], "fort": [12.0, 2.0], "desert": [18.0, 2.0]})
+arenas["capital_01_aurenhold"]["entries"].update({"cemetery": [4.5, 2.0], "fort": [9.5, 2.0], "catacombs": [14.5, 2.0], "desert": [19.5, 2.0]})
 
 # --- Fazenda: Mina, Bunker, Floresta Escura (o portal do Deserto sai)
 drop_prop("farm_01_fields", "desert_gate")

@@ -3550,3 +3550,147 @@ msgstr ""
 
 msgid "DLG_FGUARD_DONE"
 msgstr ""
+
+msgid "ARENA_CATACOMBS"
+msgstr ""
+
+msgid "PROP_TO_CATACOMBS"
+msgstr ""
+
+msgid "MONSTER_CT_HEADSMAN"
+msgstr ""
+
+msgid "MONSTER_CT_SOUL"
+msgstr ""
+
+msgid "MONSTER_CT_KING"
+msgstr ""
+
+msgid "NPC_CT_MONK"
+msgstr ""
+
+msgid "NPC_CT_JAILER"
+msgstr ""
+
+msgid "NPC_CT_GIBBET"
+msgstr ""
+
+msgid "NPC_CT_PRISONER"
+msgstr ""
+
+msgid "NPC_CT_WARDEN"
+msgstr ""
+
+msgid "VALUABLE_HEADSMAN_AXE"
+msgstr ""
+
+msgid "VALUABLE_SOUL_SHACKLE"
+msgstr ""
+
+msgid "VALUABLE_KEY_IRON"
+msgstr ""
+
+msgid "VALUABLE_KEY_BONE"
+msgstr ""
+
+msgid "TOAST_GIBBET_AWAKENS"
+msgstr ""
+
+msgid "TOAST_SOUL_AWAKENS"
+msgstr ""
+
+msgid "QUEST_CT_PURGE"
+msgstr ""
+
+msgid "QUEST_CT_PURGE_DESC"
+msgstr ""
+
+msgid "QUEST_CT_AXE"
+msgstr ""
+
+msgid "QUEST_CT_AXE_DESC"
+msgstr ""
+
+msgid "QUEST_CT_SOUL"
+msgstr ""
+
+msgid "QUEST_CT_SOUL_DESC"
+msgstr ""
+
+msgid "QUEST_CT_GATE"
+msgstr ""
+
+msgid "QUEST_CT_GATE_DESC"
+msgstr ""
+
+msgid "DLG_CTMONK_1"
+msgstr ""
+
+msgid "DLG_CTMONK_2"
+msgstr ""
+
+msgid "DLG_CTMONK_3"
+msgstr ""
+
+msgid "DLG_CTMONK_ACTIVE"
+msgstr ""
+
+msgid "DLG_CTMONK_DONE"
+msgstr ""
+
+msgid "DLG_CTJAILER_1"
+msgstr ""
+
+msgid "DLG_CTJAILER_2"
+msgstr ""
+
+msgid "DLG_CTJAILER_3"
+msgstr ""
+
+msgid "DLG_CTJAILER_ACTIVE"
+msgstr ""
+
+msgid "DLG_CTJAILER_DONE"
+msgstr ""
+
+msgid "DLG_CTGIBBET_1"
+msgstr ""
+
+msgid "DLG_CTGIBBET_2"
+msgstr ""
+
+msgid "DLG_CTGIBBET_LOCKED"
+msgstr ""
+
+msgid "DLG_CTPRISONER_1"
+msgstr ""
+
+msgid "DLG_CTPRISONER_2"
+msgstr ""
+
+msgid "DLG_CTPRISONER_3"
+msgstr ""
+
+msgid "DLG_CTPRISONER_ACTIVE"
+msgstr ""
+
+msgid "DLG_CTPRISONER_DONE"
+msgstr ""
+
+msgid "DLG_CTPRISONER_WAIT"
+msgstr ""
+
+msgid "DLG_CTWARDEN_1"
+msgstr ""
+
+msgid "DLG_CTWARDEN_2"
+msgstr ""
+
+msgid "DLG_CTWARDEN_3"
+msgstr ""
+
+msgid "DLG_CTWARDEN_ACTIVE"
+msgstr ""
+
+msgid "DLG_CTWARDEN_DONE"
+msgstr ""

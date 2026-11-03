@@ -3809,3 +3809,147 @@ msgstr "I only open with both keys, Onyx and Ruby, in the same bag. The Exile is
 
 msgid "DLG_FGUARD_DONE"
 msgstr "Both keys! The gate is open. Beware: the Infernal Baron does not receive visitors, and those he does never return."
+
+msgid "ARENA_CATACOMBS"
+msgstr "Catacombs"
+
+msgid "PROP_TO_CATACOMBS"
+msgstr "Path to the Catacombs"
+
+msgid "MONSTER_CT_HEADSMAN"
+msgstr "Catacomb Headsman"
+
+msgid "MONSTER_CT_SOUL"
+msgstr "Chained Soul"
+
+msgid "MONSTER_CT_KING"
+msgstr "Chained King"
+
+msgid "NPC_CT_MONK"
+msgstr "Catacomb Friar"
+
+msgid "NPC_CT_JAILER"
+msgstr "Blind Jailer"
+
+msgid "NPC_CT_GIBBET"
+msgstr "Headsman's Gibbet"
+
+msgid "NPC_CT_PRISONER"
+msgstr "Prisoner"
+
+msgid "NPC_CT_WARDEN"
+msgstr "Catacomb Warden"
+
+msgid "VALUABLE_HEADSMAN_AXE"
+msgstr "Headsman's Axe"
+
+msgid "VALUABLE_SOUL_SHACKLE"
+msgstr "Soul Shackle"
+
+msgid "VALUABLE_KEY_IRON"
+msgstr "Iron Key"
+
+msgid "VALUABLE_KEY_BONE"
+msgstr "Bone Key"
+
+msgid "TOAST_GIBBET_AWAKENS"
+msgstr "The gibbet creaks and its chains fall loose: the Headsman drops into the Pit!"
+
+msgid "TOAST_SOUL_AWAKENS"
+msgstr "The shackles snap: the Chained Soul breaks free!"
+
+msgid "QUEST_CT_PURGE"
+msgstr "Clear the Cells"
+
+msgid "QUEST_CT_PURGE_DESC"
+msgstr "The Catacomb Friar asks that both Cell Wings, west and east of the Nave of Bones, be cleared of the dead who still guard the prisoners."
+
+msgid "QUEST_CT_AXE"
+msgstr "The Headsman's Axe"
+
+msgid "QUEST_CT_AXE_DESC"
+msgstr "The Blind Jailer, in the Nave of Bones, wants the Headsman's axe to settle his accounts. Touch the gibbet in the Headsman's Pit (west, past the Torture Room) with the quest active to wake the Catacomb Headsman; defeat him and bring the axe: in return you get the Iron Key, one of the two for the Chained King's gate."
+
+msgid "QUEST_CT_SOUL"
+msgstr "The Soul Shackle"
+
+msgid "QUEST_CT_SOUL_DESC"
+msgstr "The Prisoner, in the Chapel of the Chained (east, past the Ossuary), has been held for centuries by a shackle that also binds a soul. Her words wake the Chained Soul; defeat it and bring the shackle to receive the Bone Key, the other one for the Chained King's gate."
+
+msgid "QUEST_CT_GATE"
+msgstr "The Chained King's Gate"
+
+msgid "QUEST_CT_GATE_DESC"
+msgstr "The Catacomb Warden, in the lane north of the Gallery of the Condemned, only opens the gate for those with both keys: the Iron (Blind Jailer) and the Bone (Prisoner). Beyond lies the Chained King's Crypt."
+
+msgid "DLG_CTMONK_1"
+msgstr "Peace be with you, even down here. I pray for the prisoners of the Catacombs, who died behind bars without ever being tried."
+
+msgid "DLG_CTMONK_2"
+msgstr "Both Cell Wings, west and east of the Nave of Bones, are still full of the dead on guard. They let no soul pass in peace."
+
+msgid "DLG_CTMONK_3"
+msgstr "Clear both and I will pay for the work. After that, the Blind Jailer and the Prisoner have scores to settle, and they keep the keys to the King's gate."
+
+msgid "DLG_CTMONK_ACTIVE"
+msgstr "The Cell Wings lie left and right of the Nave of Bones. Listen for the chains: where they drag, a dead guard stands."
+
+msgid "DLG_CTMONK_DONE"
+msgstr "The cells are silent for the first time in centuries. Go on: the Gallery of the Condemned awaits you."
+
+msgid "DLG_CTJAILER_1"
+msgstr "I have not seen since the day the King took my eyes, but I know every cell by heart. I was jailer of these Catacombs for forty years, and the Headsman was my only friend."
+
+msgid "DLG_CTJAILER_2"
+msgstr "He died in the Pit, to the west, past the Torture Room, and came back hanging in a gibbet, axe on his back, still wanting work. That is no life for a friend."
+
+msgid "DLG_CTJAILER_3"
+msgstr "Touch the gibbet, bring down the Headsman and bring me the axe. In return I give the Iron Key, one of the two that open the Chained King's gate, in the lane north of the Gallery."
+
+msgid "DLG_CTJAILER_ACTIVE"
+msgstr "The Headsman's Pit is to the west: go through the Cell Wing and the Torture Room. The axe is heavy and has a bone handle. I know it by the smell."
+
+msgid "DLG_CTJAILER_DONE"
+msgstr "My friend's axe! Now he can rest. The Iron Key is yours: take it to the Warden, together with the Bone one."
+
+msgid "DLG_CTGIBBET_1"
+msgstr "The gibbet sways without wind, and the chains chime as if someone breathed inside. Something huge stirs among the bones."
+
+msgid "DLG_CTGIBBET_2"
+msgstr "The Catacomb Headsman descends!"
+
+msgid "DLG_CTGIBBET_LOCKED"
+msgstr "An iron gibbet hanging from a beam, creaking. Nothing answers your touch."
+
+msgid "DLG_CTPRISONER_1"
+msgstr "I have been here since before you were born, chained to this altar. They say I stole from the King; I never stole anything. I only saw what I should not have."
+
+msgid "DLG_CTPRISONER_2"
+msgstr "The shackle on my wrist also binds a soul, that of the guard who watched me and died of guilt. It drags itself through the Chapel and will not let me sleep."
+
+msgid "DLG_CTPRISONER_3"
+msgstr "I will free it for you, here in the Chapel. Bring down the Chained Soul and bring the shackle: I give the Bone Key, the other for the Chained King's gate."
+
+msgid "DLG_CTPRISONER_ACTIVE"
+msgstr "The shackle is cold iron and glows blue when the soul is near. Bring it down carefully: it weeps before it strikes."
+
+msgid "DLG_CTPRISONER_DONE"
+msgstr "I am free! After so many years... The Bone Key is yours: take it to the Warden, together with the Iron one."
+
+msgid "DLG_CTPRISONER_WAIT"
+msgstr "The chains still chime, but they no longer weigh on me. Go in peace."
+
+msgid "DLG_CTWARDEN_1"
+msgstr "Halt. This gate closes the Crypt, and in the Crypt the Chained King serves the sentence the kingdom owes him. I am the last who visits him."
+
+msgid "DLG_CTWARDEN_2"
+msgstr "The gate only opens with TWO keys: the Iron and the Bone. The first is with the Blind Jailer in the Nave of Bones; the second, with the Prisoner in the Chapel of the Chained, to the east."
+
+msgid "DLG_CTWARDEN_3"
+msgstr "Each charges a price: an axe, a shackle. Bring both keys to me and I will open the way."
+
+msgid "DLG_CTWARDEN_ACTIVE"
+msgstr "I only open with both keys, Iron and Bone, in the same bag. The Blind Jailer is in the Nave of Bones; the Prisoner, in the Chapel, to the east."
+
+msgid "DLG_CTWARDEN_DONE"
+msgstr "Both keys! The gate is open. Beware: the Chained King has broken every chain that held him, except the one of shame."

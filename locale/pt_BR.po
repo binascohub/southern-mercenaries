@@ -3809,3 +3809,147 @@ msgstr "Só abro com as duas chaves, Ônix e Rubi, na mesma bolsa. O Exilado fic
 
 msgid "DLG_FGUARD_DONE"
 msgstr "As duas chaves! O portão está aberto. Cuidado: o Barão Infernal não recebe visitas, e as que recebe não voltam."
+
+msgid "ARENA_CATACOMBS"
+msgstr "Catacumbas"
+
+msgid "PROP_TO_CATACOMBS"
+msgstr "Caminho para as Catacumbas"
+
+msgid "MONSTER_CT_HEADSMAN"
+msgstr "Carrasco das Catacumbas"
+
+msgid "MONSTER_CT_SOUL"
+msgstr "Alma Acorrentada"
+
+msgid "MONSTER_CT_KING"
+msgstr "Rei Acorrentado"
+
+msgid "NPC_CT_MONK"
+msgstr "Frade das Catacumbas"
+
+msgid "NPC_CT_JAILER"
+msgstr "Carcereiro Cego"
+
+msgid "NPC_CT_GIBBET"
+msgstr "Gaiola do Carrasco"
+
+msgid "NPC_CT_PRISONER"
+msgstr "Prisioneira"
+
+msgid "NPC_CT_WARDEN"
+msgstr "Diretor das Catacumbas"
+
+msgid "VALUABLE_HEADSMAN_AXE"
+msgstr "Machado do Carrasco"
+
+msgid "VALUABLE_SOUL_SHACKLE"
+msgstr "Grilhão da Alma"
+
+msgid "VALUABLE_KEY_IRON"
+msgstr "Chave de Ferro"
+
+msgid "VALUABLE_KEY_BONE"
+msgstr "Chave de Osso"
+
+msgid "TOAST_GIBBET_AWAKENS"
+msgstr "A gaiola range e as correntes se soltam: o Carrasco desce ao Poço!"
+
+msgid "TOAST_SOUL_AWAKENS"
+msgstr "Os grilhões se partem: a Alma Acorrentada se solta!"
+
+msgid "QUEST_CT_PURGE"
+msgstr "Limpar as Celas"
+
+msgid "QUEST_CT_PURGE_DESC"
+msgstr "O Frade das Catacumbas pede que as duas Alas das Celas, a oeste e a leste da Nave dos Ossos, sejam limpas dos mortos que ainda vigiam os presos."
+
+msgid "QUEST_CT_AXE"
+msgstr "O Machado do Carrasco"
+
+msgid "QUEST_CT_AXE_DESC"
+msgstr "O Carcereiro Cego, na Nave dos Ossos, quer o machado do Carrasco para fechar as contas dele. Tocar a gaiola do Poço do Carrasco (oeste, depois da Sala de Tortura), com a missão ativa, desperta o Carrasco das Catacumbas; derrote-o e traga o machado: em troca vem a Chave de Ferro, uma das duas do portão do Rei Acorrentado."
+
+msgid "QUEST_CT_SOUL"
+msgstr "O Grilhão da Alma"
+
+msgid "QUEST_CT_SOUL_DESC"
+msgstr "A Prisioneira, na Capela dos Acorrentados (leste, depois do Ossuário), está presa há séculos a um grilhão que prende também uma alma. A fala dela desperta a Alma Acorrentada; derrote-a e traga o grilhão para receber a Chave de Osso, a outra do portão do Rei Acorrentado."
+
+msgid "QUEST_CT_GATE"
+msgstr "O Portão do Rei Acorrentado"
+
+msgid "QUEST_CT_GATE_DESC"
+msgstr "O Diretor das Catacumbas, no corredor ao norte da Galeria dos Condenados, só abre o portão para quem trouxer as duas chaves: a de Ferro (Carcereiro Cego) e a de Osso (Prisioneira). Atrás dele fica a Cripta do Rei Acorrentado."
+
+msgid "DLG_CTMONK_1"
+msgstr "Que a paz acompanhe vocês, mesmo aqui embaixo. Eu rezo pelos presos das Catacumbas, que morreram atrás das grades sem nunca terem sido julgados."
+
+msgid "DLG_CTMONK_2"
+msgstr "As duas Alas das Celas, a oeste e a leste da Nave dos Ossos, ainda estão cheias de mortos de guarda. Eles não deixam nenhuma alma passar em paz."
+
+msgid "DLG_CTMONK_3"
+msgstr "Limpem as duas e eu pago pelo trabalho. Depois disso, o Carcereiro Cego e a Prisioneira têm contas a acertar, e são eles que guardam as chaves do portão do Rei."
+
+msgid "DLG_CTMONK_ACTIVE"
+msgstr "As Alas das Celas ficam à esquerda e à direita da Nave dos Ossos. Ouçam as correntes: onde elas arrastam, há um morto de guarda."
+
+msgid "DLG_CTMONK_DONE"
+msgstr "As celas estão em silêncio pela primeira vez em séculos. Sigam adiante: a Galeria dos Condenados os espera."
+
+msgid "DLG_CTJAILER_1"
+msgstr "Não enxergo desde o dia em que o Rei me tirou os olhos, mas conheço cada cela de cor. Fui o carcereiro destas Catacumbas por quarenta anos, e o Carrasco era meu único amigo."
+
+msgid "DLG_CTJAILER_2"
+msgstr "Ele morreu no Poço, a oeste, depois da Sala de Tortura, e voltou pendurado numa gaiola, com o machado nas costas, ainda querendo trabalho. Não é vida para um amigo."
+
+msgid "DLG_CTJAILER_3"
+msgstr "Toquem a gaiola, derrubem o Carrasco e tragam o machado. Em troca eu dou a Chave de Ferro, uma das duas que abrem o portão do Rei Acorrentado, no corredor ao norte da Galeria."
+
+msgid "DLG_CTJAILER_ACTIVE"
+msgstr "O Poço do Carrasco fica a oeste: passem pela Ala das Celas e pela Sala de Tortura. O machado é pesado e tem um cabo de osso. Eu o reconheço pelo cheiro."
+
+msgid "DLG_CTJAILER_DONE"
+msgstr "O machado do meu amigo! Agora ele pode descansar. A Chave de Ferro é de vocês: levem-na ao Diretor, junto com a de Osso."
+
+msgid "DLG_CTGIBBET_1"
+msgstr "A gaiola balança sem vento, e as correntes tilintam como se alguém respirasse lá dentro. Algo enorme se mexe sobre as ossadas."
+
+msgid "DLG_CTGIBBET_2"
+msgstr "O Carrasco das Catacumbas desce!"
+
+msgid "DLG_CTGIBBET_LOCKED"
+msgstr "Uma gaiola de ferro, pendurada de uma viga, rangendo. Nada responde ao seu toque."
+
+msgid "DLG_CTPRISONER_1"
+msgstr "Estou aqui desde antes de vocês nascerem, acorrentada a este altar. Dizem que eu roubei do Rei; nunca roubei nada. Só vi o que não devia."
+
+msgid "DLG_CTPRISONER_2"
+msgstr "O grilhão no meu pulso prende também uma alma, a do guarda que me vigiava e morreu de culpa. Ela se arrasta pela Capela e não me deixa dormir."
+
+msgid "DLG_CTPRISONER_3"
+msgstr "Vou soltá-la para vocês, aqui na Capela. Derrubem a Alma Acorrentada e tragam o grilhão: eu dou a Chave de Osso, a outra do portão do Rei Acorrentado."
+
+msgid "DLG_CTPRISONER_ACTIVE"
+msgstr "O grilhão é de ferro frio e brilha em azul quando a alma está perto. Derrubem-na com cuidado: ela chora antes de atacar."
+
+msgid "DLG_CTPRISONER_DONE"
+msgstr "Estou livre! Depois de tantos anos... A Chave de Osso é de vocês: levem-na ao Diretor, junto com a de Ferro."
+
+msgid "DLG_CTPRISONER_WAIT"
+msgstr "As correntes ainda tilintam, mas já não me pesam. Vão em paz."
+
+msgid "DLG_CTWARDEN_1"
+msgstr "Alto. Este portão fecha a Cripta, e na Cripta o Rei Acorrentado paga a pena que o reino lhe deve. Eu sou o último que o visita."
+
+msgid "DLG_CTWARDEN_2"
+msgstr "O portão só abre com DUAS chaves: a de Ferro e a de Osso. A primeira está com o Carcereiro Cego, na Nave dos Ossos; a segunda, com a Prisioneira, na Capela dos Acorrentados, a leste."
+
+msgid "DLG_CTWARDEN_3"
+msgstr "Cada uma cobra um preço: um machado, um grilhão. Tragam as duas chaves a mim e eu abro a passagem."
+
+msgid "DLG_CTWARDEN_ACTIVE"
+msgstr "Só abro com as duas chaves, Ferro e Osso, na mesma bolsa. O Carcereiro Cego fica na Nave dos Ossos; a Prisioneira, na Capela, a leste."
+
+msgid "DLG_CTWARDEN_DONE"
+msgstr "As duas chaves! O portão está aberto. Cuidado: o Rei Acorrentado quebrou todas as correntes que o prenderam, menos a da vergonha."

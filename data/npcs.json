@@ -1706,5 +1706,241 @@
         "body": "cloth"
       }
     }
+  },
+  "ct_monk": {
+    "name_key": "NPC_CT_MONK",
+    "color": [
+      0.45,
+      0.4,
+      0.35
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "ct_purge"
+        },
+        "lines": [
+          "DLG_CTMONK_1",
+          "DLG_CTMONK_2",
+          "DLG_CTMONK_3"
+        ],
+        "offer": "ct_purge"
+      },
+      {
+        "when": {
+          "quest_active": "ct_purge"
+        },
+        "lines": [
+          "DLG_CTMONK_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_CTMONK_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Buzzed"
+      ],
+      "hair_color": [
+        0.5,
+        0.48,
+        0.45
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "ct_jailer": {
+    "name_key": "NPC_CT_JAILER",
+    "color": [
+      0.35,
+      0.33,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "ct_axe"
+        },
+        "lines": [
+          "DLG_CTJAILER_1",
+          "DLG_CTJAILER_2",
+          "DLG_CTJAILER_3"
+        ],
+        "offer": "ct_axe"
+      },
+      {
+        "when": {
+          "quest_active": "ct_axe"
+        },
+        "lines": [
+          "DLG_CTJAILER_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_CTJAILER_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.45,
+        0.42,
+        0.4
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "ct_gibbet": {
+    "name_key": "NPC_CT_GIBBET",
+    "color": [
+      0.4,
+      0.35,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_active": "ct_axe"
+        },
+        "lines": [
+          "DLG_CTGIBBET_1",
+          "DLG_CTGIBBET_2"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_CTGIBBET_LOCKED"
+        ]
+      }
+    ]
+  },
+  "ct_prisoner": {
+    "name_key": "NPC_CT_PRISONER",
+    "color": [
+      0.55,
+      0.5,
+      0.6
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "ct_soul"
+        },
+        "lines": [
+          "DLG_CTPRISONER_1",
+          "DLG_CTPRISONER_2",
+          "DLG_CTPRISONER_3"
+        ],
+        "offer": "ct_soul"
+      },
+      {
+        "when": {
+          "quest_active": "ct_soul"
+        },
+        "lines": [
+          "DLG_CTPRISONER_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {
+          "quest_done": "ct_soul"
+        },
+        "lines": [
+          "DLG_CTPRISONER_DONE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_CTPRISONER_WAIT"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "female",
+      "hair": [
+        "Hair_Long"
+      ],
+      "hair_color": [
+        0.3,
+        0.28,
+        0.3
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "ct_warden": {
+    "name_key": "NPC_CT_WARDEN",
+    "color": [
+      0.3,
+      0.3,
+      0.36
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "ct_gate"
+        },
+        "lines": [
+          "DLG_CTWARDEN_1",
+          "DLG_CTWARDEN_2",
+          "DLG_CTWARDEN_3"
+        ],
+        "offer": "ct_gate"
+      },
+      {
+        "when": {
+          "quest_active": "ct_gate"
+        },
+        "lines": [
+          "DLG_CTWARDEN_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_CTWARDEN_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_SimpleParted"
+      ],
+      "hair_color": [
+        0.1,
+        0.1,
+        0.12
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
   }
 }

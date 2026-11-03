@@ -265,5 +265,33 @@
     "maps": [],
     "quest_item": true,
     "model": "Key_Spades"
+  },
+  "headsman_axe": {
+    "name_key": "VALUABLE_HEADSMAN_AXE",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Axe_Bronze"
+  },
+  "soul_shackle": {
+    "name_key": "VALUABLE_SOUL_SHACKLE",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Crystal_Gem"
+  },
+  "key_iron": {
+    "name_key": "VALUABLE_KEY_IRON",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Spades"
+  },
+  "key_bone": {
+    "name_key": "VALUABLE_KEY_BONE",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Clubs"
   }
 }

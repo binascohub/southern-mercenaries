@@ -29,6 +29,7 @@ Cada mapa de combate tem **2 mini-chefes** (elites fortes com nome, categoria `m
 | Ruínas | **Guardião das Ruínas** (golem de pedra; a estátua do cavaleiro o desperta; larga o **Coração de Pedra**) · **Campeão Caído** (a Sacerdotisa o desperta; larga o **Estandarte do Campeão**) · **Alfa da Matilha** (anda solto; larga a carne para o Bobo da Corte) |
 | Cemitério | Ogro da Cripta (era o Escorpião; larga os **Pulmões Humanos**) · Senhor da Cripta (larga o **Coração Humano**) |
 | Forte | **Senhor Elfo Sombrio** (o Exilado o desperta; larga a **Lâmina do Senhor Elfo**) · **Rainha das Súcubos** (a Penitente a desperta; larga o **Anel da Rainha**) · **Comandante** (anda solto; larga o **Crânio Antigo**) |
+| Catacumbas | **Carrasco das Catacumbas** (a gaiola do Poço o desperta com a missão do Carcereiro Cego; larga o **Machado do Carrasco**) · **Alma Acorrentada** (a Prisioneira a desperta; larga o **Grilhão da Alma**) |
 | Mina | **Chefe Troll** · Guardião do Túmulo |
 
 Em negrito, os criados nesta rodada (`tools/assets/add_minibosses.py`). A Floresta Sombria ainda não tem encontros.
@@ -45,7 +46,7 @@ Ordem dos mapas, por hub (`tools/assets/set_map_order.py` liga os portais; cada 
 | 4 | Ruínas do Reino do Arqueiro (`ruins_01_city`) | Tortuga | Guardião das Ruínas · Campeão Caído (+ Alfa da Matilha solto) | Rei Caído |
 | 5 | Cemitério (`cemetery_01_yard`) | Capital | Ogro da Cripta · Senhor da Cripta | — |
 | 6 | Forte (`fort_01_gate`) | Capital | Senhor Elfo Sombrio · Rainha das Súcubos (+ Comandante solto) | Barão Infernal |
-| 7 | Catacumbas | Capital | *(mapa ainda não criado)* | — |
+| 7 | Catacumbas (`catacombs_01_depths`) | Capital | Carrasco das Catacumbas · Alma Acorrentada | Rei Acorrentado |
 | 8 | Deserto (`desert_01_canyon`) | Capital | Lamassu da Areia · Rainha Escorpião | Esfinge |
 | 9 | Mina (`mine_01_crystal_vein`) | Fazenda | Chefe Troll · Guardião do Túmulo | — |
 | 10 | Bunker (`bunker_01_entrance`) | Fazenda | — | — |
@@ -186,6 +187,18 @@ Mapa grande (grade de 54 x 54 células de 2,5 m, cerca de 18 mil m2 de área e 8
 5. **Barão Infernal** (chefe final) no Salão do Barão atrás do portão, com a saída para a Capital.
 
 O **Comandante** anda solto no Pátio de Armas (o crânio dele é da missão do Padre). Gerado por `tools/assets/build_fort.py`.
+
+### Catacumbas no jogo (`catacombs_01_depths`)
+
+Mapa novo (cerca de 15,8 mil m2, 15 salas), de salas de parede de pedra do kit como o Esgoto (grade de blocos de 12 m), com a estrutura do Esgoto e da Floresta e outro caminho: o **Portão da Cripta** (partida) leva à **Nave dos Ossos**, e dali saem três rotas até a **Galeria dos Condenados**: a oeste, **Ala das Celas → Sala de Tortura → Poço do Carrasco**; a leste, **Ala das Celas → Ossuário → Capela dos Acorrentados**; no meio, **Salão das Correntes → Pátio do Tribunal**. Salas laterais sem saída: o **Cofre** (oeste) e a **Cela Secreta** (leste).
+
+1. **Frade das Catacumbas** (partida): a missão de limpar as duas Alas das Celas.
+2. **Carcereiro Cego** (Nave dos Ossos): pede o **Machado do Carrasco**. Tocar a gaiola do Poço do Carrasco, com a missão ativa, desperta o **Carrasco das Catacumbas** (mini-chefe). Entrega a **Chave de Ferro**.
+3. **Prisioneira** (Capela dos Acorrentados): pede o **Grilhão da Alma**; a fala dela desperta a **Alma Acorrentada** (mini-chefe). Entrega a **Chave de Osso**.
+4. **Diretor das Catacumbas** (corredor ao norte da Galeria): só abre o portão com as duas chaves.
+5. **Rei Acorrentado** (chefe final) na Cripta atrás do portão, com a saída para a Capital.
+
+Decoração: celas de grades de ferro com presos sentados ou encolhidos, bolas de ferro e correntes no chão, grilhões e correntes nas paredes (peças próprias, `tools/assets/build_chains.py`), forcas, caixões, instrumentos de tortura, ossos, braseiros e teias. Gerado por `tools/assets/build_catacombs.py`.
 
 ### Docas (`docks_01_pier`) — ligada ao porto de Tortuga
 
