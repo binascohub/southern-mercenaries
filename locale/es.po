@@ -1867,13 +1867,13 @@ msgid "ITEM_RETURN_CHARM_EFFECT"
 msgstr "Abre en el suelo un portal de vuelta a la ciudad durante 15 s (solo en los mapas)"
 
 msgid "SHOP_VOODOO"
-msgstr "Amuletos del Brujo"
+msgstr "Amuletos del Viajero del Tiempo"
 
 msgid "NPC_VOODOO_PRIEST"
-msgstr "Brujo"
+msgstr "Viajero del Tiempo"
 
 msgid "DLG_VOODOO_1"
-msgstr "El otro lado también tiene precio, amigo. Dime dónde te quedaste y te dibujo el camino de vuelta."
+msgstr "El tiempo es un camino largo, amigo, y conozco los atajos. Dime adónde quieres ir: te llevo a otra ciudad, o de vuelta a un punto que ya guardaste."
 
 msgid "NPC_PRIEST"
 msgstr "Padre"
@@ -1903,7 +1903,7 @@ msgid "TOAST_PORTAL_MISSING_GOLD"
 msgstr "Faltan Binascoins (B$ {price} cada uno): {names}"
 
 msgid "PORTALS_TITLE"
-msgstr "Portales a puntos guardados"
+msgstr "Viajero del Tiempo — teletransporte"
 
 msgid "PORTALS_NONE"
 msgstr "Todavía no hay puntos alcanzados"
@@ -4559,3 +4559,15 @@ msgstr "Ciervo Espectral"
 
 msgid "MONSTER_FD_WISP"
 msgstr "Fuego Fatuo"
+
+msgid "PORTALS_HERE"
+msgstr "{city} — estás aquí"
+
+msgid "PORTALS_GO"
+msgstr "Teletransportar a {city} (gratis, todo el grupo)"
+
+msgid "PORTALS_LOCKED"
+msgstr "{city} — completa las misiones de {here} (faltan {n})"
+
+msgid "TOAST_HUB_LOCKED"
+msgstr "El Viajero del Tiempo solo los lleva adelante cuando las misiones de {city} estén completas (faltan {n})."

@@ -301,6 +301,45 @@ func _open_portals() -> void:
 	portals_opened.emit()
 
 
+## Cidades (hubs) ligadas pelo Viajante do Tempo, com os mapas de expedição de cada uma. Ele só leva o grupo adiante quando todas as missões de aldeia ("village")
+## dos mapas da cidade onde está agora estão concluídas; as outras cidades aparecem na lista desde o começo.
+const HUB_MAPS := {
+	"tortuga": ["sewers_01_drains", "forest_01_path", "docks_01_pier", "ruins_01_city"],
+	"capital_01_aurenhold": ["cemetery_01_yard", "fort_01_gate", "catacombs_01_depths", "desert_01_canyon"],
+	"farm_01_fields": ["mine_01_crystal_vein", "bunker_01_entrance", "dark_forest_01_woods"],
+}
+
+
+## Quantas missões de aldeia dos mapas da cidade `hub` ainda não foram concluídas.
+static func hub_pending(hub: String, quest_states: Dictionary) -> int:
+	var maps: Array = HUB_MAPS.get(hub, [])
+	var count := 0
+	for id: String in GameData.quests:
+		var quest: Variant = GameData.quests[id]
+		if quest is Dictionary and quest.get("type", "") == "village" and quest.get("area", "") in maps and quest_states.get(id, "") != "done":
+			count += 1
+	return count
+
+
+func request_hub_travel(hub: String) -> void:
+	_ask(&"_rpc_hub_travel", [hub])
+
+
+## Teleporte do Viajante do Tempo entre Tortuga, Capital e Fazenda: de graça, para o grupo todo, mas só com as missões da cidade atual concluídas.
+@rpc("any_peer", "reliable")
+func _rpc_hub_travel(hub: String) -> void:
+	var player := _sender()
+	var here: String = _arena().area_id
+	if not multiplayer.is_server() or player == null or not HUB_MAPS.has(hub) or not HUB_MAPS.has(here) or hub == here \
+			or _arena().prop_near(player, "npc", "voodoo_priest", REACH).is_empty():
+		return
+	var left := hub_pending(here, _campaign().get("quests", {}))
+	if left > 0:
+		_arena()._toast_all("TOAST_HUB_LOCKED", {"city": GameData.arenas[here].name_key, "n": left})
+		return
+	_arena().travel(hub, "start")
+
+
 func request_portal(key: String) -> void:
 	_ask(&"_rpc_portal", [key])
 

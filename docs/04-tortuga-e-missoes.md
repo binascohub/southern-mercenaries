@@ -59,12 +59,12 @@ Tortuga é uma **cidade portuária suja, barulhenta e perigosa**, de ruas estrei
 | `stash` | Baú | Na Rua Principal (baú acorrentado, guardado por um capanga de aluguel) | Baú compartilhado entre os personagens do jogador (guardar valiosos para vender quando o preço subir) |
 | `respec` | Altar / Mestre | Canto da Rua Principal | Redistribuir pontos, pagando ouro |
 | `training_yard` | **Área de treinamento** | Pátio nos fundos da Rua Principal | Bonecos para testar habilidades, elementos e equipamentos, sem risco (seção 5.2) | Sem guardas: os soldados que treinavam aqui foram para a segurança da Capital Real (`04-1-capital-real.md`).
-| `voodoo_priest` | **Macumbeiro** | Tenda de velas, ervas e ossos num beco da Rua Principal | **Abre portais para os pontos salvos** (checkpoints) mediante ouro e **vende o Patuá de Retorno** (seção 5.1) |
+| `voodoo_priest` | **Viajante do Tempo (teleporte)** | Tenda de velas, ervas e ossos num beco da Rua Principal | **Teleporta entre Tortuga, Capital e Fazenda** (há um em cada cidade), **abre portais para os pontos salvos** (checkpoints) mediante ouro e **vende o Patuá de Retorno** (seção 5.1) |
 | `sewer_entrance` | **Bueiro** | Rua Principal | Entrada do **Esgoto** (mapa 1); trancado até a missão do velho bêbado |
 | `port` | **Porto** e Portal de Tortuga | Fim da Rua Principal, no cais | **Portal** para os demais mapas (seção 5) + Mercado Pirata |
 | — | Becos, prostíbulos, casas de apostas | Laterais | Só ambientação (fachadas fechadas) |
 
-- Tortuga é pequena e compacta: tudo perto, para não perder tempo andando. O Macumbeiro fica entre a Rua Principal e o porto.
+- Tortuga é pequena e compacta: tudo perto, para não perder tempo andando. O Viajante do Tempo fica entre a Rua Principal e o porto.
 - Para usar uma loja, basta chegar perto da banca e interagir: abre a janela da loja sem trocar de cena.
 - No co-op, todos os jogadores ficam juntos na cidade do host.
 
@@ -239,7 +239,7 @@ Conteúdo detalhado dos tesouros em `05-itens-e-loot.md`, seção 3.
 - **Volta:** dentro de cada mapa há um **portal de retorno** na entrada da primeira área e **depois de cada chefe**; leva ao portal da cidade de onde o grupo saiu (o elemento volta ao de origem). Ao voltar, a campanha é salva (`11-saves.md`).
 - Entre as áreas de um mapa, a passagem continua sendo uma porta, escada ou caminho normal (não é portal).
 
-### 5.1 O Macumbeiro
+### 5.1 O Viajante do Tempo (antes o Macumbeiro)
 | Campo | Valor |
 |---|---|
 | ID | `voodoo_priest` |
@@ -248,6 +248,7 @@ Conteúdo detalhado dos tesouros em `05-itens-e-loot.md`, seção 3.
 | Personalidade | Misterioso, cobra bem e nunca pergunta o motivo; "o outro lado também tem preço" |
 
 **Serviços:**
+- **Teleporte entre cidades:** há um Viajante do Tempo em **Tortuga, na Capital Real e na Fazenda** (mesmo NPC `voodoo_priest`). A lista mostra as três cidades desde o começo, mas o grupo **só vai para outra cidade quando todas as missões de aldeia (`village`) dos mapas da cidade atual estiverem concluídas** (Tortuga: Esgoto, Floresta, Docas e Ruínas; Capital: Cemitério, Forte, Catacumbas e Deserto; Fazenda: Mina, Bunker e Floresta Escura). Antes disso os botões ficam travados e mostram quantas missões faltam. O teleporte é **de graça** e leva o grupo todo ao início da cidade escolhida (`Town.HUB_MAPS`, `Town.hub_pending`).
 - **Portal para ponto salvo:** lista todos os **checkpoints já alcançados** na campanha (agrupados por mapa, com nome da área, nível e elemento do mapa). O grupo escolhe um, **paga em ouro** e atravessa o portal que ele abre. Serve para voltar ao ponto onde parou depois de ir à cidade.
   - Preço (proposta): 40 + 15 × nível da área, **por jogador** (ouro individual). Se um jogador não tiver ouro suficiente, o aviso mostra quem falta.
   - No co-op, o host escolhe e os outros confirmam (como no portal comum).

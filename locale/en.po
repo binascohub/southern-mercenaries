@@ -1867,13 +1867,13 @@ msgid "ITEM_RETURN_CHARM_EFFECT"
 msgstr "Opens a portal on the ground back to town for 15 s (maps only)"
 
 msgid "SHOP_VOODOO"
-msgstr "Witch doctor's charms"
+msgstr "Time Traveler's charms"
 
 msgid "NPC_VOODOO_PRIEST"
-msgstr "Witch Doctor"
+msgstr "Time Traveler"
 
 msgid "DLG_VOODOO_1"
-msgstr "The other side also has a price, friend. Tell me where you stopped, and I'll draw the way back."
+msgstr "Time is a long road, friend, and I know the shortcuts. Tell me where you want to go: I will take you to another city, or back to a point you already saved."
 
 msgid "NPC_PRIEST"
 msgstr "Priest"
@@ -1903,7 +1903,7 @@ msgid "TOAST_PORTAL_MISSING_GOLD"
 msgstr "Not enough Binascoins (B$ {price} each): {names}"
 
 msgid "PORTALS_TITLE"
-msgstr "Portals to saved points"
+msgstr "Time Traveler — teleport"
 
 msgid "PORTALS_NONE"
 msgstr "No checkpoint reached yet"
@@ -2273,7 +2273,7 @@ msgid "TIP_ELEMENT"
 msgstr "The icon shows the monster's element: hitting its weakness deals more damage; its strength, less."
 
 msgid "TIP_CHECKPOINT"
-msgstr "Checkpoint: progress saves on its own. Tortuga's Voodoo Priest opens portals here."
+msgstr "Checkpoint: progress saves on its own. Tortuga's Time Traveler opens portals here."
 
 msgid "TIP_REVIVE"
 msgstr "An ally is down! Stay close and hold {button} to revive."
@@ -4559,3 +4559,15 @@ msgstr "Spectral Stag"
 
 msgid "MONSTER_FD_WISP"
 msgstr "Will-o'-the-Wisp"
+
+msgid "PORTALS_HERE"
+msgstr "{city} — you are here"
+
+msgid "PORTALS_GO"
+msgstr "Teleport to {city} (free, the whole party)"
+
+msgid "PORTALS_LOCKED"
+msgstr "{city} — finish {here}'s quests ({n} left)"
+
+msgid "TOAST_HUB_LOCKED"
+msgstr "The Time Traveler only takes you onward once {city}'s quests are done ({n} left)."

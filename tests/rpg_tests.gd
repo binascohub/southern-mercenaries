@@ -1090,6 +1090,17 @@ func _test_sewers() -> void:
 	_check(Town.dialogue_index("ruins_spartan", {}) == 0 and Town.dialogue_index("ruins_spartan", {"ruins_goblins": "active"}) == 1
 		and Town.dialogue_index("ruins_spartan", {"ruins_goblins": "done"}) == 2 and NpcModel.has_model("ruins_spartan"),
 		"conversa de Leônidas: oferece, lembra e agradece; tem modelo próprio")
+	# Viajante do Tempo: um em cada cidade; só leva adiante com as missões de aldeia dos mapas da cidade atual concluídas.
+	var all_done := {}
+	for quest_id: String in GameData.quests:
+		if GameData.quests[quest_id] is Dictionary and GameData.quests[quest_id].get("type", "") == "village":
+			all_done[quest_id] = "done"
+	var travelers := 0
+	for city: String in Town.HUB_MAPS:
+		travelers += 1 if GameData.arenas[city].props.any(func(p: Dictionary) -> bool: return p.get("npc", "") == "voodoo_priest") else 0
+	_check(travelers == 3 and Town.hub_pending("tortuga", {}) > 0 and Town.hub_pending("tortuga", all_done) == 0 and Town.hub_pending("farm_01_fields", all_done) == 0
+		and Town.hub_pending("capital_01_aurenhold", {"cemetery_x": "done"}) > 0 and tr("NPC_VOODOO_PRIEST") != "NPC_VOODOO_PRIEST",
+		"Viajante do Tempo: um por cidade e travado até concluir as missões da cidade atual")
 	# Floresta: três golens (fogo, gelo, pedra), elites corpo a corpo com modelo.
 	# (o de gelo é um encontro comum; os de pedra e de fogo são mini-chefes invocados pelos NPCs das praças, em `summon`.)
 	var golems: Array = GameData.arenas.forest_01_path.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("f_golem_"))

@@ -1867,13 +1867,13 @@ msgid "ITEM_RETURN_CHARM_EFFECT"
 msgstr "Abre no chão um portal de volta à cidade por 15 s (só nos mapas)"
 
 msgid "SHOP_VOODOO"
-msgstr "Patuás do Macumbeiro"
+msgstr "Patuás do Viajante do Tempo"
 
 msgid "NPC_VOODOO_PRIEST"
-msgstr "Macumbeiro"
+msgstr "Viajante do Tempo"
 
 msgid "DLG_VOODOO_1"
-msgstr "O outro lado também tem preço, amigo. Diga onde parou e eu risco o caminho de volta."
+msgstr "O tempo é uma estrada comprida, amigo, e eu conheço os atalhos. Diga para onde quer ir: levo você a outra cidade, ou de volta a um ponto que já salvou."
 
 msgid "NPC_PRIEST"
 msgstr "Padre"
@@ -1903,7 +1903,7 @@ msgid "TOAST_PORTAL_MISSING_GOLD"
 msgstr "Faltam Binascoins (B$ {price} cada): {names}"
 
 msgid "PORTALS_TITLE"
-msgstr "Portais para pontos salvos"
+msgstr "Viajante do Tempo — teleporte"
 
 msgid "PORTALS_NONE"
 msgstr "Nenhum checkpoint alcançado ainda"
@@ -2273,7 +2273,7 @@ msgid "TIP_ELEMENT"
 msgstr "O ícone mostra o elemento do monstro: contra a fraqueza dele você causa mais dano; contra o forte, menos."
 
 msgid "TIP_CHECKPOINT"
-msgstr "Checkpoint: o progresso é salvo sozinho. O Macumbeiro de Tortuga abre portais para cá."
+msgstr "Checkpoint: o progresso é salvo sozinho. O Viajante do Tempo de Tortuga abre portais para cá."
 
 msgid "TIP_REVIVE"
 msgstr "Um aliado caiu! Fique perto e segure {button} para reanimar."
@@ -4559,3 +4559,15 @@ msgstr "Cervo Espectral"
 
 msgid "MONSTER_FD_WISP"
 msgstr "Fogo-Fátuo"
+
+msgid "PORTALS_HERE"
+msgstr "{city} — você está aqui"
+
+msgid "PORTALS_GO"
+msgstr "Teleportar para {city} (de graça, o grupo todo)"
+
+msgid "PORTALS_LOCKED"
+msgstr "{city} — conclua as missões de {here} ({n} restantes)"
+
+msgid "TOAST_HUB_LOCKED"
+msgstr "O Viajante do Tempo só leva vocês adiante quando as missões de {city} estiverem concluídas ({n} restantes)."

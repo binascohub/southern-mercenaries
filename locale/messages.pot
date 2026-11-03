@@ -4300,3 +4300,15 @@ msgstr ""
 
 msgid "MONSTER_FD_WISP"
 msgstr ""
+
+msgid "PORTALS_HERE"
+msgstr ""
+
+msgid "PORTALS_GO"
+msgstr ""
+
+msgid "PORTALS_LOCKED"
+msgstr ""
+
+msgid "TOAST_HUB_LOCKED"
+msgstr ""

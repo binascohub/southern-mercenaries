@@ -64,6 +64,9 @@ drop_prop("farm_01_fields", "desert_gate")
 arenas["farm_01_fields"]["entries"].pop("desert", None)
 put_prop("farm_01_fields", exit_prop("dark_forest_gate", "PROP_TO_DARK_FOREST", (-24, -14), "dark_forest_01_woods", "start"))
 arenas["farm_01_fields"]["entries"].update({"dark_forest": [-22.0, -11.0], "mine": [24.0, -10.0]})
+# --- Viajante do Tempo (voodoo_priest): um em cada cidade, para o teleporte entre Tortuga, Capital e Fazenda
+for city, pos in (("capital_01_aurenhold", (-12.0, 1.0)), ("farm_01_fields", (7.0, 1.0))):
+    put_prop(city, {"id": "voodoo_priest", "kind": "npc", "npc": "voodoo_priest", "position": list(pos), "rotation": 180})
 json.dump(arenas, open(ARENAS, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
 open(ARENAS, "a").write("\n")
 print("OK ordem dos mapas")

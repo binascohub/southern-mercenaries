@@ -141206,6 +141206,16 @@
         ],
         "to": "desert_01_canyon",
         "entry": "start"
+      },
+      {
+        "id": "voodoo_priest",
+        "kind": "npc",
+        "npc": "voodoo_priest",
+        "position": [
+          -12.0,
+          1.0
+        ],
+        "rotation": 180
       }
     ],
     "style": {
@@ -144241,6 +144251,16 @@
         ],
         "to": "dark_forest_01_woods",
         "entry": "start"
+      },
+      {
+        "id": "voodoo_priest",
+        "kind": "npc",
+        "npc": "voodoo_priest",
+        "position": [
+          7.0,
+          1.0
+        ],
+        "rotation": 180
       }
     ],
     "quest_spots": [],
