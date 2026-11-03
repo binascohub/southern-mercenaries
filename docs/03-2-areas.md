@@ -26,7 +26,7 @@ Cada mapa de combate tem **2 mini-chefes** (elites fortes com nome, categoria `m
 |---|---|
 | Esgoto | **Carniceiro Chifrudo** (demônio açougueiro; o Azazel entrega o Grimório das Brasas, que o invoca no altar do centro; solta a Garrafa das Almas Condenadas) · **Empalado** (altar no centro do Esgoto; quest "As Almas Pregadas", da Ossael) |
 | Floresta | Rei Golem de Pedra (templo do leste; larga a **Adaga de Osso**) · Golem de Fogo (pira; larga a **Caveira de Morvak**) · Leshy é o chefe do mapa |
-| Ruínas | Guardião do Cofre · **Alfa da Matilha** |
+| Ruínas | **Guardião das Ruínas** (golem de pedra; a estátua do cavaleiro o desperta; larga o **Coração de Pedra**) · **Campeão Caído** (a Sacerdotisa o desperta; larga o **Estandarte do Campeão**) · **Alfa da Matilha** (anda solto; larga a carne para o Bobo da Corte) |
 | Cemitério | Ogro da Cripta (era o Escorpião; larga os **Pulmões Humanos**) · Senhor da Cripta (larga o **Coração Humano**) |
 | Forte | Comandante (larga o **Crânio Antigo**) · **Rainha das Súcubos** |
 | Mina | **Chefe Troll** · Guardião do Túmulo |
@@ -42,7 +42,7 @@ Ordem dos mapas, por hub (`tools/assets/set_map_order.py` liga os portais; cada 
 | 1 | Esgoto de Tortuga (`sewers_01_drains`) | Tortuga | Carniceiro Chifrudo · Rei dos Sapos | Feiticeiro-Aranha |
 | 2 | Floresta (`forest_01_path`, o mapa do Leshy) | Tortuga | Rei Golem de Pedra · Golem de Fogo | Leshy |
 | 3 | Docas (`docks_01_pier`) | Tortuga | — | — |
-| 4 | Ruínas do Reino do Arqueiro (`ruins_01_city`) | Tortuga | Alfa da Matilha · Guardião do Cofre | Cérbero |
+| 4 | Ruínas do Reino do Arqueiro (`ruins_01_city`) | Tortuga | Guardião das Ruínas · Campeão Caído (+ Alfa da Matilha solto) | Rei Caído |
 | 5 | Cemitério (`cemetery_01_yard`) | Capital | Ogro da Cripta · Senhor da Cripta | — |
 | 6 | Forte (`fort_01_gate`) | Capital | Comandante · Rainha das Súcubas | — |
 | 7 | Catacumbas | Capital | *(mapa ainda não criado)* | — |
@@ -157,6 +157,23 @@ Ordem de expedição no jogo: **Tortuga → Floresta → Ruínas → Cemitério 
 | 5 | `fort_01_gate` | Forte | 3D Dungeon Tileset (CC BY-SA 3.0), grade de 20 x 26 células de 2,5 m; paredes baixas (0,85 m) por causa da câmera | Comandante Amaldiçoado |
 
 Os monstros comuns reaproveitam os modelos do Esgoto e do Monstro da Floresta; os chefes são provisórios até haver arte e mecânica próprias. As seções 4 e 5 acima (Ruínas do Reino do Arqueiro, Floresta Escura) continuam sendo o desenho final das áreas; este quadro é o que existe hoje.
+
+### Ruínas no jogo (`ruins_01_city`)
+
+Mapa grande (cerca de 22 mil m2, 11 salas) com a mesma estrutura da Floresta e outro caminho, misturando **partes murados** e **partes abertas**:
+
+- **Murados:** o **Bairro Velho** (oeste) e o **Bairro do Mercado** (leste), o labirinto de ruas de Destroyed Walls (o segundo virado 180 graus); a **Cidadela**, muralha de Ruin_Wall com dois muros internos que obrigam um caminho em S; o corredor do portão; o **Cofre Real**, salão murado com colunata.
+- **Abertos:** o **Acesso** de partida, o **Fórum** (praça de lajes com colunas, fundações de casas caídas, poço e obelisco), a **Praça dos Cavaleiros** (coreto em ruínas), a **Praça dos Monólitos** (círculo de pedras em pé), a **Avenida das Colunas** (pares de colunas, estátuas e arcos) e o **Pátio Alto**.
+- Uma muralha caída (trechos de muro, tocos de colunas, pedras e mato) contorna as bordas do mapa.
+
+Caminho: Acesso → Fórum; a oeste, Bairro Velho → Praça dos Cavaleiros; a leste, Bairro do Mercado → Praça dos Monólitos; ao meio, a Avenida; os três fecham no Pátio Alto → Cidadela → corredor do portão → Cofre Real.
+
+1. **Leônidas** (Acesso): a missão dos goblins (limpar os dois bandos dos bairros). **Erudita das Ruínas** (Fórum): pede o **Coração de Pedra**. Tocar o cavaleiro de pedra da Praça dos Cavaleiros, com a missão ativa, desperta o **Guardião das Ruínas** (mini-chefe). Entrega a **Chave do Leão**.
+2. **Sacerdotisa** (Praça dos Monólitos): pede o **Estandarte do Campeão**; a fala dela desperta o **Campeão Caído** (mini-chefe). Entrega a **Chave da Águia**.
+3. **Porteiro das Ruínas** (corredor ao norte da Cidadela): só abre o portão com as duas chaves.
+4. **Rei Caído** (chefe final) no Cofre Real atrás do portão, com a saída de volta a Tortuga.
+
+O **Alfa da Matilha** continua solto no Pátio Alto (a carne dele é da missão do Bobo da Corte). Gerado por `tools/assets/build_ruins.py`.
 
 ### Docas (`docks_01_pier`) — ligada ao porto de Tortuga
 

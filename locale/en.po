@@ -2525,7 +2525,7 @@ msgid "MONSTER_FOREST_REPTILE"
 msgstr "Forest Reptile"
 
 msgid "MONSTER_RUIN_WARDEN"
-msgstr "Vault Warden"
+msgstr "Ruins Guardian"
 
 msgid "MONSTER_CRYPT_SCORPION"
 msgstr "Crypt Ogre"
@@ -2570,7 +2570,7 @@ msgid "DLG_STATUE_3"
 msgstr "But you stepped into my plaza and looked into my eyes. Let the tomb guardian decide whether you deserve to pass."
 
 msgid "TOAST_STATUE_AWAKENS"
-msgstr "The ground shakes: the Tomb Guardian awakens!"
+msgstr "The stone knight stirs: the Ruins Guardian awakens!"
 
 msgid "MONSTER_TOMB_GUARDIAN"
 msgstr "Tomb Guardian"
@@ -3590,3 +3590,111 @@ msgstr "I only open with both keys, Anchor and Compass, in the same bag. The Har
 
 msgid "DLG_DOCKGUARD_DONE"
 msgstr "Both keys! The gate is open. Beware: the Drowned Captain never lost a ship, and he will not lose this one."
+
+msgid "MONSTER_WAR_CHAMPION"
+msgstr "Fallen Champion"
+
+msgid "MONSTER_FALLEN_KING"
+msgstr "Fallen King"
+
+msgid "NPC_RUINS_SCHOLAR"
+msgstr "Ruins Scholar"
+
+msgid "NPC_RUINS_KNIGHT_STATUE"
+msgstr "Stone Knight"
+
+msgid "NPC_RUINS_PRIESTESS"
+msgstr "Priestess"
+
+msgid "NPC_RUINS_GATEKEEPER"
+msgstr "Ruins Gatekeeper"
+
+msgid "VALUABLE_STONE_HEART"
+msgstr "Stone Heart"
+
+msgid "VALUABLE_CHAMPION_BANNER"
+msgstr "Champion's Banner"
+
+msgid "VALUABLE_KEY_LION"
+msgstr "Lion Key"
+
+msgid "VALUABLE_KEY_EAGLE"
+msgstr "Eagle Key"
+
+msgid "TOAST_CHAMPION_AWAKENS"
+msgstr "The monoliths shake: the Fallen Champion rises!"
+
+msgid "QUEST_RUINS_SEAL"
+msgstr "The Stone Heart"
+
+msgid "QUEST_RUINS_SEAL_DESC"
+msgstr "The Ruins Scholar, in the Forum just past the entrance, says the stone knight of the Knights' Plaza (west, past the Old Quarter) guards a stone heart. Touch the statue with the quest active, defeat the Ruins Guardian and bring the heart: in return you get the Lion Key, one of the two for the Fallen King's gate."
+
+msgid "QUEST_RUINS_BANNER"
+msgstr "The Champion's Banner"
+
+msgid "QUEST_RUINS_BANNER_DESC"
+msgstr "The Priestess, in the Monoliths' Plaza (east, past the Market Quarter), wants the banner of the champion who died in the war. Her words wake the Fallen Champion; defeat him and bring the banner to receive the Eagle Key, the other one for the Fallen King's gate."
+
+msgid "QUEST_RUINS_GATE"
+msgstr "The King's Gate"
+
+msgid "QUEST_RUINS_GATE_DESC"
+msgstr "The Ruins Gatekeeper, in the lane past the Citadel, only opens the gate for those with both keys: the Lion (Scholar) and the Eagle (Priestess). Beyond lies the Fallen King's Royal Vault."
+
+msgid "DLG_SCHOLAR_1"
+msgstr "Mind your step: every stone here was once a house wall. I have catalogued these ruins since before the war and only now understand what the king hid."
+
+msgid "DLG_SCHOLAR_2"
+msgstr "In the Knights' Plaza, to the west, stands a stone knight with a stone heart in his chest. He sleeps, but obeys whoever touches him with the right intent."
+
+msgid "DLG_SCHOLAR_3"
+msgstr "Touch the statue, bring down the Guardian and bring me the heart. In return I give the Lion Key, one of the two that open the Fallen King's gate, north of the Citadel."
+
+msgid "DLG_SCHOLAR_ACTIVE"
+msgstr "The Knights' Plaza is west of the Forum: cross the Old Quarter, where the streets became a maze, and go north. The heart is grey and heavy as lead."
+
+msgid "DLG_SCHOLAR_DONE"
+msgstr "The heart! At last I can close this chapter of my catalogue. The Lion Key is yours; take it to the Gatekeeper, together with the Eagle one."
+
+msgid "DLG_KNIGHT_STATUE_1"
+msgstr "The stone is warm under your hand, and something beats inside, slowly, like an enormous heart."
+
+msgid "DLG_KNIGHT_STATUE_2"
+msgstr "The Ruins Guardian awakens!"
+
+msgid "DLG_KNIGHT_STATUE_LOCKED"
+msgstr "A stone knight, motionless, sword lowered. Nothing answers your touch."
+
+msgid "DLG_PRIESTESS_1"
+msgstr "I light candles for those left without a grave. Here, among the monoliths, the greatest champion of the war fell, and his banner was never buried with him."
+
+msgid "DLG_PRIESTESS_2"
+msgstr "But he does not rest: each moon he rises, searching for the banner, and breaks whatever he finds. Only a blade convinces him to lie down again."
+
+msgid "DLG_PRIESTESS_3"
+msgstr "I will call him for you, here in the plaza. Bring down the Fallen Champion and bring the banner: I give the Eagle Key, the other for the Fallen King's gate."
+
+msgid "DLG_PRIESTESS_ACTIVE"
+msgstr "The banner is red and torn, and he clasps it to his chest. Bring him down with respect and bring the cloth to me."
+
+msgid "DLG_PRIESTESS_DONE"
+msgstr "The banner! Now he can rest. The Eagle Key is yours. Take it to the Gatekeeper, at the lane north of the Citadel."
+
+msgid "DLG_PRIESTESS_WAIT"
+msgstr "The candles still burn. Go in peace, and return if you need a blessing."
+
+msgid "DLG_RGUARD_1"
+msgstr "Halt. This gate closes the Royal Vault, and in the Vault the Fallen King rules. He died defending the treasure and refused to leave it."
+
+msgid "DLG_RGUARD_2"
+msgstr "The gate only opens with TWO keys: the Lion and the Eagle. The first is with the Scholar, in the Forum; the second, with the Priestess, in the Monoliths' Plaza."
+
+msgid "DLG_RGUARD_3"
+msgstr "Each charges a price: a stone heart, an old banner. Bring both keys to me and I will open the way."
+
+msgid "DLG_RGUARD_ACTIVE"
+msgstr "I only open with both keys, Lion and Eagle, in the same bag. The Scholar is in the Forum; the Priestess, in the Monoliths' Plaza, to the east."
+
+msgid "DLG_RGUARD_DONE"
+msgstr "Both keys! The gate is open. Beware: the Fallen King never lost a duel, and not even death took his crown."

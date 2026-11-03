@@ -749,12 +749,13 @@ func _test_minibosses_and_relics() -> void:
 				for m: Dictionary in e.monsters:
 					if GameData.monsters.get(m.monster, {}).get("category", "") == "miniboss":
 						found[m.monster] = true
-			for prop: Dictionary in GameData.arenas[area_id].get("props", []) if map_name in ["Floresta", "Esgoto", "Deserto"] else []:    # (na Floresta o Rei Golem vem do templo e no Esgoto o Rei dos Sapos, do altar: grupos invocados)
+			for prop: Dictionary in GameData.arenas[area_id].get("props", []) if map_name in ["Floresta", "Esgoto", "Deserto", "Ruínas"] else []:    # (na Floresta o Rei Golem vem do templo e no Esgoto o Rei dos Sapos, do altar: grupos invocados)
 				for summon: Dictionary in QuestTrail.summons_of(prop):
 					for m: Dictionary in summon.get("monsters", []):
 						if GameData.monsters.get(m.monster, {}).get("category", "") == "miniboss":
 							found[m.monster] = true
-		_check(found.size() == 2, "%s tem 2 mini-chefes (%d)" % [map_name, found.size()])
+		var expected := 3 if map_name == "Ruínas" else 2    # (Ruínas: o Alfa da Matilha, que anda solto, e os dois das praças, invocados)
+		_check(found.size() == expected, "%s tem %d mini-chefes (%d)" % [map_name, expected, found.size()])
 	for quest_id in ["royal_heart", "royal_lungs", "royal_skull", "royal_soul", "royal_banquet"]:
 		var quest: Dictionary = GameData.quests[quest_id]
 		var relic: Dictionary = GameData.valuables.get(quest.item, {})

@@ -304,5 +304,50 @@
       "gold": 160,
       "xp": 320
     }
+  },
+  "ruins_seal": {
+    "name_key": "QUEST_RUINS_SEAL",
+    "desc_key": "QUEST_RUINS_SEAL_DESC",
+    "type": "village",
+    "giver": "ruins_scholar",
+    "area": "ruins_01_city",
+    "target_element": "earth",
+    "reward": {
+      "gold": 260,
+      "xp": 520
+    },
+    "item": "stone_heart",
+    "gives": "key_lion"
+  },
+  "ruins_banner": {
+    "name_key": "QUEST_RUINS_BANNER",
+    "desc_key": "QUEST_RUINS_BANNER_DESC",
+    "type": "village",
+    "giver": "ruins_priestess",
+    "area": "ruins_01_city",
+    "target_element": "fire",
+    "reward": {
+      "gold": 260,
+      "xp": 520
+    },
+    "item": "champion_banner",
+    "gives": "key_eagle"
+  },
+  "ruins_gate": {
+    "name_key": "QUEST_RUINS_GATE",
+    "desc_key": "QUEST_RUINS_GATE_DESC",
+    "type": "village",
+    "giver": "ruins_gatekeeper",
+    "area": "ruins_01_city",
+    "items": [
+      "key_lion",
+      "key_eagle"
+    ],
+    "opens_gate": "boss_gate",
+    "target_element": "earth",
+    "reward": {
+      "gold": 320,
+      "xp": 640
+    }
   }
 }

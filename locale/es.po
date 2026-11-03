@@ -2525,7 +2525,7 @@ msgid "MONSTER_FOREST_REPTILE"
 msgstr "Reptil del Bosque"
 
 msgid "MONSTER_RUIN_WARDEN"
-msgstr "Guardián de la Cámara"
+msgstr "Guardián de las Ruinas"
 
 msgid "MONSTER_CRYPT_SCORPION"
 msgstr "Ogro de la Cripta"
@@ -2570,7 +2570,7 @@ msgid "DLG_STATUE_3"
 msgstr "Pero pisaste mi plaza y me miraste a los ojos. Que el guardián de la tumba decida si mereces pasar."
 
 msgid "TOAST_STATUE_AWAKENS"
-msgstr "La tierra tiembla: ¡el Guardián de la Tumba despierta!"
+msgstr "El caballero de piedra se mueve: ¡el Guardián de las Ruinas despierta!"
 
 msgid "MONSTER_TOMB_GUARDIAN"
 msgstr "Guardián de la Tumba"
@@ -3590,3 +3590,111 @@ msgstr "Solo abro con las dos llaves, Ancla y Brújula, en la misma bolsa. El Ma
 
 msgid "DLG_DOCKGUARD_DONE"
 msgstr "¡Las dos llaves! El portón está abierto. Cuidado: el Capitán Ahogado nunca perdió un barco, y no perderá este."
+
+msgid "MONSTER_WAR_CHAMPION"
+msgstr "Campeón Caído"
+
+msgid "MONSTER_FALLEN_KING"
+msgstr "Rey Caído"
+
+msgid "NPC_RUINS_SCHOLAR"
+msgstr "Erudita de las Ruinas"
+
+msgid "NPC_RUINS_KNIGHT_STATUE"
+msgstr "Caballero de Piedra"
+
+msgid "NPC_RUINS_PRIESTESS"
+msgstr "Sacerdotisa"
+
+msgid "NPC_RUINS_GATEKEEPER"
+msgstr "Portero de las Ruinas"
+
+msgid "VALUABLE_STONE_HEART"
+msgstr "Corazón de Piedra"
+
+msgid "VALUABLE_CHAMPION_BANNER"
+msgstr "Estandarte del Campeón"
+
+msgid "VALUABLE_KEY_LION"
+msgstr "Llave del León"
+
+msgid "VALUABLE_KEY_EAGLE"
+msgstr "Llave del Águila"
+
+msgid "TOAST_CHAMPION_AWAKENS"
+msgstr "Los monolitos tiemblan: ¡el Campeón Caído se levanta!"
+
+msgid "QUEST_RUINS_SEAL"
+msgstr "El corazón de piedra"
+
+msgid "QUEST_RUINS_SEAL_DESC"
+msgstr "La Erudita de las Ruinas, en el Foro justo tras la entrada, cuenta que el caballero de piedra de la Plaza de los Caballeros (oeste, tras el Barrio Viejo) guarda un corazón de piedra. Toca la estatua con la misión activa, derrota al Guardián de las Ruinas y trae el corazón: a cambio recibes la Llave del León, una de las dos del portón del Rey Caído."
+
+msgid "QUEST_RUINS_BANNER"
+msgstr "El estandarte del campeón"
+
+msgid "QUEST_RUINS_BANNER_DESC"
+msgstr "La Sacerdotisa, en la Plaza de los Monolitos (este, tras el Barrio del Mercado), quiere el estandarte del campeón que murió en la guerra. Sus palabras despiertan al Campeón Caído; derrótalo y trae el estandarte para recibir la Llave del Águila, la otra del portón del Rey Caído."
+
+msgid "QUEST_RUINS_GATE"
+msgstr "El portón del Rey"
+
+msgid "QUEST_RUINS_GATE_DESC"
+msgstr "El Portero de las Ruinas, en el pasillo tras la Ciudadela, solo abre el portón a quien traiga las dos llaves: la del León (Erudita) y la del Águila (Sacerdotisa). Tras él está la Cámara Real del Rey Caído."
+
+msgid "DLG_SCHOLAR_1"
+msgstr "Cuidado dónde pisan: cada piedra aquí fue la pared de una casa. Catalogo estas ruinas desde antes de la guerra y solo ahora entiendo lo que el rey escondió."
+
+msgid "DLG_SCHOLAR_2"
+msgstr "En la Plaza de los Caballeros, al oeste, hay un caballero de piedra con un corazón de piedra en el pecho. Duerme, pero obedece a quien lo toca con la intención correcta."
+
+msgid "DLG_SCHOLAR_3"
+msgstr "Toquen la estatua, derriben al Guardián y tráiganme el corazón. A cambio doy la Llave del León, una de las dos que abren el portón del Rey Caído, al norte de la Ciudadela."
+
+msgid "DLG_SCHOLAR_ACTIVE"
+msgstr "La Plaza de los Caballeros está al oeste del Foro: crucen el Barrio Viejo, donde las calles se volvieron laberinto, y suban. El corazón es gris y pesa como plomo."
+
+msgid "DLG_SCHOLAR_DONE"
+msgstr "¡El corazón! Por fin puedo cerrar este capítulo de mi catálogo. La Llave del León es suya; llévenla al Portero, junto con la del Águila."
+
+msgid "DLG_KNIGHT_STATUE_1"
+msgstr "La piedra está tibia bajo la mano, y algo late dentro, despacio, como un corazón enorme."
+
+msgid "DLG_KNIGHT_STATUE_2"
+msgstr "¡El Guardián de las Ruinas despierta!"
+
+msgid "DLG_KNIGHT_STATUE_LOCKED"
+msgstr "Un caballero de piedra, inmóvil, con la espada baja. Nada responde a tu toque."
+
+msgid "DLG_PRIESTESS_1"
+msgstr "Enciendo velas por los que quedaron sin tumba. Aquí, entre los monolitos, cayó el mayor campeón de la guerra, y su estandarte nunca fue enterrado con él."
+
+msgid "DLG_PRIESTESS_2"
+msgstr "Pero no descansa: cada luna se levanta buscando el estandarte, y rompe lo que encuentra. Solo una hoja lo convence de acostarse de nuevo."
+
+msgid "DLG_PRIESTESS_3"
+msgstr "Lo llamaré para ustedes, aquí en la plaza. Derriben al Campeón Caído y traigan el estandarte: doy la Llave del Águila, la otra del portón del Rey Caído."
+
+msgid "DLG_PRIESTESS_ACTIVE"
+msgstr "El estandarte es rojo y rasgado, y lo aprieta contra el pecho. Derríbenlo con respeto y tráiganme la tela."
+
+msgid "DLG_PRIESTESS_DONE"
+msgstr "¡El estandarte! Ahora podrá descansar. La Llave del Águila es suya. Llévenla al Portero, en el pasillo al norte de la Ciudadela."
+
+msgid "DLG_PRIESTESS_WAIT"
+msgstr "Las velas aún arden. Vayan en paz, y vuelvan si necesitan una bendición."
+
+msgid "DLG_RGUARD_1"
+msgstr "Alto. Este portón cierra la Cámara Real, y en la Cámara manda el Rey Caído. Murió defendiendo el tesoro y se negó a dejarlo."
+
+msgid "DLG_RGUARD_2"
+msgstr "El portón solo abre con DOS llaves: la del León y la del Águila. La primera la tiene la Erudita, en el Foro; la segunda, la Sacerdotisa, en la Plaza de los Monolitos."
+
+msgid "DLG_RGUARD_3"
+msgstr "Cada una cobra un precio: un corazón de piedra, un estandarte viejo. Tráiganme las dos llaves y abro el paso."
+
+msgid "DLG_RGUARD_ACTIVE"
+msgstr "Solo abro con las dos llaves, León y Águila, en la misma bolsa. La Erudita está en el Foro; la Sacerdotisa, en la Plaza de los Monolitos, al este."
+
+msgid "DLG_RGUARD_DONE"
+msgstr "¡Las dos llaves! El portón está abierto. Cuidado: el Rey Caído nunca perdió un duelo, y ni la muerte le quitó la corona."

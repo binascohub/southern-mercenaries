@@ -3331,3 +3331,111 @@ msgstr ""
 
 msgid "DLG_DOCKGUARD_DONE"
 msgstr ""
+
+msgid "MONSTER_WAR_CHAMPION"
+msgstr ""
+
+msgid "MONSTER_FALLEN_KING"
+msgstr ""
+
+msgid "NPC_RUINS_SCHOLAR"
+msgstr ""
+
+msgid "NPC_RUINS_KNIGHT_STATUE"
+msgstr ""
+
+msgid "NPC_RUINS_PRIESTESS"
+msgstr ""
+
+msgid "NPC_RUINS_GATEKEEPER"
+msgstr ""
+
+msgid "VALUABLE_STONE_HEART"
+msgstr ""
+
+msgid "VALUABLE_CHAMPION_BANNER"
+msgstr ""
+
+msgid "VALUABLE_KEY_LION"
+msgstr ""
+
+msgid "VALUABLE_KEY_EAGLE"
+msgstr ""
+
+msgid "TOAST_CHAMPION_AWAKENS"
+msgstr ""
+
+msgid "QUEST_RUINS_SEAL"
+msgstr ""
+
+msgid "QUEST_RUINS_SEAL_DESC"
+msgstr ""
+
+msgid "QUEST_RUINS_BANNER"
+msgstr ""
+
+msgid "QUEST_RUINS_BANNER_DESC"
+msgstr ""
+
+msgid "QUEST_RUINS_GATE"
+msgstr ""
+
+msgid "QUEST_RUINS_GATE_DESC"
+msgstr ""
+
+msgid "DLG_SCHOLAR_1"
+msgstr ""
+
+msgid "DLG_SCHOLAR_2"
+msgstr ""
+
+msgid "DLG_SCHOLAR_3"
+msgstr ""
+
+msgid "DLG_SCHOLAR_ACTIVE"
+msgstr ""
+
+msgid "DLG_SCHOLAR_DONE"
+msgstr ""
+
+msgid "DLG_KNIGHT_STATUE_1"
+msgstr ""
+
+msgid "DLG_KNIGHT_STATUE_2"
+msgstr ""
+
+msgid "DLG_KNIGHT_STATUE_LOCKED"
+msgstr ""
+
+msgid "DLG_PRIESTESS_1"
+msgstr ""
+
+msgid "DLG_PRIESTESS_2"
+msgstr ""
+
+msgid "DLG_PRIESTESS_3"
+msgstr ""
+
+msgid "DLG_PRIESTESS_ACTIVE"
+msgstr ""
+
+msgid "DLG_PRIESTESS_DONE"
+msgstr ""
+
+msgid "DLG_PRIESTESS_WAIT"
+msgstr ""
+
+msgid "DLG_RGUARD_1"
+msgstr ""
+
+msgid "DLG_RGUARD_2"
+msgstr ""
+
+msgid "DLG_RGUARD_3"
+msgstr ""
+
+msgid "DLG_RGUARD_ACTIVE"
+msgstr ""
+
+msgid "DLG_RGUARD_DONE"
+msgstr ""

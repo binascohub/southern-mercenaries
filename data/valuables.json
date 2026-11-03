@@ -209,5 +209,33 @@
     "maps": [],
     "quest_item": true,
     "model": "Key_Hearts"
+  },
+  "stone_heart": {
+    "name_key": "VALUABLE_STONE_HEART",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Crystal_Gem"
+  },
+  "champion_banner": {
+    "name_key": "VALUABLE_CHAMPION_BANNER",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Shield_B"
+  },
+  "key_lion": {
+    "name_key": "VALUABLE_KEY_LION",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Spades"
+  },
+  "key_eagle": {
+    "name_key": "VALUABLE_KEY_EAGLE",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Clubs"
   }
 }

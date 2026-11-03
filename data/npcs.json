@@ -1370,5 +1370,191 @@
         "body": "cloth"
       }
     }
+  },
+  "ruins_scholar": {
+    "name_key": "NPC_RUINS_SCHOLAR",
+    "color": [
+      0.45,
+      0.35,
+      0.55
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "ruins_seal"
+        },
+        "lines": [
+          "DLG_SCHOLAR_1",
+          "DLG_SCHOLAR_2",
+          "DLG_SCHOLAR_3"
+        ],
+        "offer": "ruins_seal"
+      },
+      {
+        "when": {
+          "quest_active": "ruins_seal"
+        },
+        "lines": [
+          "DLG_SCHOLAR_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_SCHOLAR_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "female",
+      "hair": [
+        "Hair_Long"
+      ],
+      "hair_color": [
+        0.25,
+        0.2,
+        0.3
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "ruins_knight_statue": {
+    "name_key": "NPC_RUINS_KNIGHT_STATUE",
+    "color": [
+      0.6,
+      0.6,
+      0.65
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_active": "ruins_seal"
+        },
+        "lines": [
+          "DLG_KNIGHT_STATUE_1",
+          "DLG_KNIGHT_STATUE_2"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_KNIGHT_STATUE_LOCKED"
+        ]
+      }
+    ]
+  },
+  "ruins_priestess": {
+    "name_key": "NPC_RUINS_PRIESTESS",
+    "color": [
+      0.7,
+      0.55,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "ruins_banner"
+        },
+        "lines": [
+          "DLG_PRIESTESS_1",
+          "DLG_PRIESTESS_2",
+          "DLG_PRIESTESS_3"
+        ],
+        "offer": "ruins_banner"
+      },
+      {
+        "when": {
+          "quest_active": "ruins_banner"
+        },
+        "lines": [
+          "DLG_PRIESTESS_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {
+          "quest_done": "ruins_banner"
+        },
+        "lines": [
+          "DLG_PRIESTESS_DONE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_PRIESTESS_WAIT"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "female",
+      "hair": [
+        "Hair_Buns"
+      ],
+      "hair_color": [
+        0.5,
+        0.3,
+        0.15
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "ruins_gatekeeper": {
+    "name_key": "NPC_RUINS_GATEKEEPER",
+    "color": [
+      0.4,
+      0.4,
+      0.45
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "ruins_gate"
+        },
+        "lines": [
+          "DLG_RGUARD_1",
+          "DLG_RGUARD_2",
+          "DLG_RGUARD_3"
+        ],
+        "offer": "ruins_gate"
+      },
+      {
+        "when": {
+          "quest_active": "ruins_gate"
+        },
+        "lines": [
+          "DLG_RGUARD_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_RGUARD_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_SimpleParted"
+      ],
+      "hair_color": [
+        0.15,
+        0.12,
+        0.1
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
   }
 }
