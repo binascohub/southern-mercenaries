@@ -94,6 +94,9 @@ Cada área e cidade tem uma camada contínua de som ambiente (`Ambience`), em lo
 - Tortuga: multidão, gaivotas, briga em taverna, ondas, sinos do porto.
 - Capital Real: passos em pedra, sinos de catedral, trompetes, murmúrio da corte.
 
+### Implementado (sintetizado por `tools/assets/build_ambience.py`, tabela `AMBIENCE_BY_AREA` em `game/autoload/music.gd`)
+Esgoto: gotas e eco · Cemitério: gemidos, vento forte, corvo e sino distante · Floresta: grilos, pássaros, coruja, folhas e riacho · Floresta Escura: vento frio, coruja, lobo, galhos e morcegos · Ruínas: vento, corvos, madeira e uivo · Forte: vento, sino, tambor, murmúrio e clangor · Catacumbas: gotas com eco, ossos e drone grave · Capital: sinos, murmúrio da corte e pássaros · Tortuga e Docas: ondas, gaivotas, madeira do cais e sino de boia · Fazenda: galo, ovelhas, grilos, pássaros e riacho com a roda d'água · Mina: picaretas, gotas, vigas e zumbido · Bunker: zumbido elétrico, vapor, metal e gotas · Deserto: vento e areia, grilos secos e ave de rapina.
+
 ## 6. Sons de interface
 
 Madeira, couro, metal e papel (`09-interface.md`, seção 7): clicar, passar o cursor, abrir pergaminho, selo de cera nas confirmações, arrastar item, vender (moedas), erro (uma batida seca), subir de nível. **Sem bipes sintéticos.**

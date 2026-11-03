@@ -33,11 +33,20 @@ func track_for_area(area_id: String, is_town: bool) -> String:
 	return "town" if is_town else "tense"
 
 
-## Ambiente de uma área: o Esgoto (sewers_*) e o Cemitério (cemetery_*) têm o seu; as demais, nenhum ("").
+## Ambiente de cada área (laços gerados por tools/assets/build_ambience.py): prefixo do id da área -> nome do arquivo ambience_<nome>.ogg.
+const AMBIENCE_BY_AREA := {
+	"sewers_": "sewer", "cemetery_": "cemetery", "forest_": "forest", "dark_forest_": "darkwoods", "ruins_": "ruins", "fort_": "fort",
+	"catacombs_": "catacombs", "capital_": "capital", "tortuga": "harbor", "docks_": "harbor", "farm_": "farm", "mine_": "mine",
+	"bunker_": "bunker", "desert_": "desert",
+}
+
+
+## Ambiente de uma área; sem entrada na tabela (taverna, arena de testes), nenhum ("").
 func ambience_for_area(area_id: String) -> String:
-	if area_id.begins_with("sewers_"):
-		return "sewer"
-	return "cemetery" if area_id.begins_with("cemetery_") else ""
+	for prefix in AMBIENCE_BY_AREA:
+		if area_id.begins_with(prefix):
+			return AMBIENCE_BY_AREA[prefix]
+	return ""
 
 
 func play_ambience(id: String) -> void:
