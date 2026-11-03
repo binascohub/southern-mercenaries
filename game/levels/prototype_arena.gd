@@ -657,7 +657,11 @@ func _spawn_player(peer_id: int, resume: Player = null) -> Player:
 		push_warning("Ficha editada fora do jogo: %s" % character.data.name)
 		_toast_all.call_deferred("TOAST_CHARACTER_EDITED", {"name": character.data.name})
 	player.set_character(character)
-	for book: Array in [["book_frog_altar", "altar_book"], ["book_gator_altar", "gator_book"]]:
+	for quest_id: String in GameData.quests:
+		var book_quest: Dictionary = GameData.quests[quest_id]
+		if not (book_quest.has("grants_key") and book_quest.has("grants_item")):
+			continue
+		var book: Array = [book_quest.grants_key, book_quest.grants_item]
 		if book[0] in _campaign.get("keys", []) and character.count_of(book[1]) == 0 and not _book_used(book[1], character):
 			character.add_item(Items.stack(Items.VALUABLE, book[1]))  # quem entra depois da missão aceita também recebe o livro dela (Livro do Altar, Grimório das Brasas)
 	if not _campaign.is_empty():
@@ -1414,6 +1418,7 @@ func _on_enemy_died(enemy: Enemy) -> void:
 	if group.members.is_empty() and not enemy.group.begins_with("hunt_"):
 		_campaign.dead_groups = _campaign.get("dead_groups", []) + [enemy.group]
 		_campaign.get("summoned", {}).erase(enemy.group)
+		_consume_books(enemy.group)  # o mini-chefe caiu: o livro que o chamou some da bolsa de todos
 		SaveSystem.save_campaign(_campaign, true)
 		town.complete_cleared(area_id)  # missões da aldeia que pedem limpar este bando
 		var done := cleared + 1
@@ -1539,11 +1544,41 @@ func _drop_quest_item(player: Player, enemy: Enemy) -> void:
 			return
 
 
-## O livro já cumpriu o papel: o herói tem a relíquia da missão dele, ou a missão já terminou.
+## Id do grupo que o altar da área da missão desperta com o livro de chave `key` ("" se nenhum).
+func _book_summon_id(key: String, area: String) -> String:
+	for prop: Dictionary in GameData.arenas.get(area, {}).get("props", []):
+		if prop.get("needs_key", "") == key and prop.has("summon"):
+			return String(prop.summon.id)
+		for extra: Dictionary in prop.get("extra_summons", []):
+			if extra.get("needs_key", "") == key:
+				return String(extra.summon.id)
+	return ""
+
+
+## O mini-chefe do grupo `group_id` caiu: o livro que o despertava some da bolsa de todos os heróis (e não volta a quem entra depois, ver _book_used).
+func _consume_books(group_id: String) -> void:
+	for quest: Dictionary in GameData.quests.values():
+		if not (quest.has("grants_key") and quest.has("grants_item")):
+			continue
+		if _book_summon_id(String(quest.grants_key), String(quest.get("area", ""))) != group_id:
+			continue
+		for p: Player in get_tree().get_nodes_in_group(&"players"):
+			if p.connected and p.character:
+				var removed := false
+				while p.character.take_one(String(quest.grants_item)):
+					removed = true
+				if removed:
+					p.refresh_character()
+
+
+## O livro já cumpriu o papel: o mini-chefe dele já caiu, o herói tem a relíquia da missão, ou a missão já terminou.
 func _book_used(book_id: String, character: CharacterData) -> bool:
 	for id: String in GameData.quests:
 		var quest: Dictionary = GameData.quests[id]
 		if quest.get("grants_item", "") == book_id:
+			var group := _book_summon_id(String(quest.get("grants_key", "")), String(quest.get("area", "")))
+			if group != "" and group in _campaign.get("dead_groups", []):
+				return true
 			return _campaign.get("quests", {}).get(id, "") == "done" or character.count_of(String(quest.get("item", ""))) > 0
 	return false
 

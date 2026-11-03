@@ -55,7 +55,9 @@
       "xp": 550
     },
     "item": "bone_dagger",
-    "gives": "key_spades"
+    "gives": "key_spades",
+    "grants_key": "book_forest_1",
+    "grants_item": "forest_book_1"
   },
   "royal_banquet": {
     "name_key": "QUEST_ROYAL_BANQUET",
@@ -98,20 +100,9 @@
       "xp": 400
     },
     "target_element": "fire",
-    "gives": "key_hearts"
-  },
-  "royal_lungs": {
-    "name_key": "QUEST_ROYAL_LUNGS",
-    "desc_key": "QUEST_ROYAL_LUNGS_DESC",
-    "type": "main",
-    "giver": "priest",
-    "area": "cemetery_01_yard",
-    "item": "human_lungs",
-    "target_element": "earth",
-    "reward": {
-      "gold": 300,
-      "xp": 600
-    }
+    "gives": "key_hearts",
+    "grants_key": "book_forest_2",
+    "grants_item": "forest_book_2"
   },
   "royal_soul": {
     "name_key": "QUEST_ROYAL_SOUL",
@@ -132,18 +123,12 @@
     "type": "village",
     "giver": "seated_pirate",
     "area": "docks_01_pier",
-    "clear": [
-      "dk_rats_a",
-      "dk_toads",
-      "dk_bats",
-      "dk_rats_b",
-      "dk_anglers"
-    ],
     "target_element": "water",
     "reward": {
       "gold": 140,
       "xp": 260
-    }
+    },
+    "item": "captain_log"
   },
   "sewer_old_gator": {
     "name_key": "QUEST_SEWER_OLD_GATOR",
@@ -227,7 +212,9 @@
       "xp": 600
     },
     "item": "lamassu_horn",
-    "gives": "key_clubs"
+    "gives": "key_clubs",
+    "grants_key": "book_desert_1",
+    "grants_item": "desert_book_1"
   },
   "desert_scarab": {
     "name_key": "QUEST_DESERT_SCARAB",
@@ -241,7 +228,9 @@
       "xp": 500
     },
     "item": "golden_scarab",
-    "gives": "key_diamonds"
+    "gives": "key_diamonds",
+    "grants_key": "book_desert_2",
+    "grants_item": "desert_book_2"
   },
   "desert_gate": {
     "name_key": "QUEST_DESERT_GATE",
@@ -272,7 +261,9 @@
       "xp": 240
     },
     "item": "ship_helm",
-    "gives": "key_anchor"
+    "gives": "key_anchor",
+    "grants_key": "book_docks_1",
+    "grants_item": "docks_book_1"
   },
   "dock_tooth": {
     "name_key": "QUEST_DOCK_TOOTH",
@@ -286,7 +277,9 @@
       "xp": 240
     },
     "item": "golden_shark_tooth",
-    "gives": "key_compass"
+    "gives": "key_compass",
+    "grants_key": "book_docks_2",
+    "grants_item": "docks_book_2"
   },
   "dock_gate": {
     "name_key": "QUEST_DOCK_GATE",
@@ -317,7 +310,9 @@
       "xp": 520
     },
     "item": "stone_heart",
-    "gives": "key_lion"
+    "gives": "key_lion",
+    "grants_key": "book_ruins_1",
+    "grants_item": "ruins_book_1"
   },
   "ruins_banner": {
     "name_key": "QUEST_RUINS_BANNER",
@@ -331,7 +326,9 @@
       "xp": 520
     },
     "item": "champion_banner",
-    "gives": "key_eagle"
+    "gives": "key_eagle",
+    "grants_key": "book_ruins_2",
+    "grants_item": "ruins_book_2"
   },
   "ruins_gate": {
     "name_key": "QUEST_RUINS_GATE",
@@ -378,7 +375,9 @@
       "xp": 1000
     },
     "item": "dark_blade",
-    "gives": "key_onyx"
+    "gives": "key_onyx",
+    "grants_key": "book_fort_1",
+    "grants_item": "fort_book_1"
   },
   "fort_ring": {
     "name_key": "QUEST_FORT_RING",
@@ -392,7 +391,9 @@
       "xp": 1000
     },
     "item": "queen_ring",
-    "gives": "key_ruby"
+    "gives": "key_ruby",
+    "grants_key": "book_fort_2",
+    "grants_item": "fort_book_2"
   },
   "fort_gate": {
     "name_key": "QUEST_FORT_GATE",
@@ -439,7 +440,9 @@
       "xp": 1100
     },
     "item": "headsman_axe",
-    "gives": "key_iron"
+    "gives": "key_iron",
+    "grants_key": "book_catacombs_1",
+    "grants_item": "catacombs_book_1"
   },
   "ct_soul": {
     "name_key": "QUEST_CT_SOUL",
@@ -453,7 +456,9 @@
       "xp": 1100
     },
     "item": "soul_shackle",
-    "gives": "key_bone"
+    "gives": "key_bone",
+    "grants_key": "book_catacombs_2",
+    "grants_item": "catacombs_book_2"
   },
   "ct_gate": {
     "name_key": "QUEST_CT_GATE",
@@ -500,7 +505,9 @@
       "xp": 900
     },
     "item": "troll_tusk",
-    "gives": "key_pickaxe"
+    "gives": "key_pickaxe",
+    "grants_key": "book_mine_1",
+    "grants_item": "mine_book_1"
   },
   "mn_quartz": {
     "name_key": "QUEST_MN_QUARTZ",
@@ -514,7 +521,9 @@
       "xp": 900
     },
     "item": "quartz_core",
-    "gives": "key_lantern"
+    "gives": "key_lantern",
+    "grants_key": "book_mine_2",
+    "grants_item": "mine_book_2"
   },
   "mn_gate": {
     "name_key": "QUEST_MN_GATE",
@@ -561,7 +570,9 @@
       "xp": 440
     },
     "item": "armory_seal",
-    "gives": "key_brass"
+    "gives": "key_brass",
+    "grants_key": "book_bunker_1",
+    "grants_item": "bunker_book_1"
   },
   "bk_medal": {
     "name_key": "QUEST_BK_MEDAL",
@@ -575,7 +586,9 @@
       "xp": 440
     },
     "item": "commander_medal",
-    "gives": "key_steel"
+    "gives": "key_steel",
+    "grants_key": "book_bunker_2",
+    "grants_item": "bunker_book_2"
   },
   "bk_gate": {
     "name_key": "QUEST_BK_GATE",
@@ -622,7 +635,9 @@
       "xp": 1300
     },
     "item": "viper_fang",
-    "gives": "key_moss"
+    "gives": "key_moss",
+    "grants_key": "book_dark_forest_1",
+    "grants_item": "dark_forest_book_1"
   },
   "fd_crown": {
     "name_key": "QUEST_FD_CROWN",
@@ -636,7 +651,9 @@
       "xp": 1300
     },
     "item": "spore_crown",
-    "gives": "key_thorn"
+    "gives": "key_thorn",
+    "grants_key": "book_dark_forest_2",
+    "grants_item": "dark_forest_book_2"
   },
   "fd_gate": {
     "name_key": "QUEST_FD_GATE",
@@ -661,14 +678,12 @@
     "type": "main",
     "giver": "war_veteran",
     "area": "ruins_01_city",
-    "clear": [
-      "r_boss"
-    ],
     "target_element": "earth",
     "reward": {
       "gold": 600,
       "xp": 1200
-    }
+    },
+    "item": "fallen_crown"
   },
   "trav_to_capital": {
     "name_key": "QUEST_TRAV_TO_CAPITAL",
@@ -689,14 +704,12 @@
     "type": "main",
     "giver": "penitent_sister",
     "area": "catacombs_01_depths",
-    "clear": [
-      "ct_king"
-    ],
     "target_element": "water",
     "reward": {
       "gold": 800,
       "xp": 1600
-    }
+    },
+    "item": "chained_link"
   },
   "map_desert": {
     "name_key": "QUEST_MAP_DESERT",
@@ -704,14 +717,12 @@
     "type": "main",
     "giver": "pilgrim",
     "area": "desert_01_canyon",
-    "clear": [
-      "d_sphinx"
-    ],
     "target_element": "air",
     "reward": {
       "gold": 900,
       "xp": 1800
-    }
+    },
+    "item": "sphinx_eye"
   },
   "cap_to_farm": {
     "name_key": "QUEST_CAP_TO_FARM",
@@ -732,14 +743,12 @@
     "type": "main",
     "giver": "shed_farmer",
     "area": "mine_01_crystal_vein",
-    "clear": [
-      "mn_boss"
-    ],
     "target_element": "earth",
     "reward": {
       "gold": 1000,
       "xp": 2000
-    }
+    },
+    "item": "crystal_heart"
   },
   "map_bunker": {
     "name_key": "QUEST_MAP_BUNKER",
@@ -747,14 +756,12 @@
     "type": "main",
     "giver": "shed_smith",
     "area": "bunker_01_entrance",
-    "clear": [
-      "bk_boss"
-    ],
     "target_element": "fire",
     "reward": {
       "gold": 1100,
       "xp": 2200
-    }
+    },
+    "item": "general_baton"
   },
   "map_dark_forest": {
     "name_key": "QUEST_MAP_DARK_FOREST",
@@ -762,13 +769,60 @@
     "type": "main",
     "giver": "shed_lumberjack",
     "area": "dark_forest_01_woods",
-    "clear": [
-      "fd_boss"
-    ],
     "target_element": "earth",
     "reward": {
       "gold": 1200,
       "xp": 2400
+    },
+    "item": "elder_seed"
+  },
+  "ce_lungs": {
+    "name_key": "QUEST_CE_LUNGS",
+    "desc_key": "QUEST_CE_LUNGS_DESC",
+    "type": "village",
+    "giver": "ce_gravedigger",
+    "area": "cemetery_01_yard",
+    "item": "human_lungs",
+    "gives": "key_ossuary",
+    "target_element": "earth",
+    "reward": {
+      "gold": 180,
+      "xp": 300
+    },
+    "grants_key": "book_cemetery_1",
+    "grants_item": "cemetery_book_1"
+  },
+  "ce_lantern": {
+    "name_key": "QUEST_CE_LANTERN",
+    "desc_key": "QUEST_CE_LANTERN_DESC",
+    "type": "village",
+    "giver": "ce_caretaker",
+    "area": "cemetery_01_yard",
+    "item": "warden_lantern",
+    "gives": "key_crypt",
+    "target_element": "earth",
+    "reward": {
+      "gold": 200,
+      "xp": 350
+    },
+    "grants_key": "book_cemetery_2",
+    "grants_item": "cemetery_book_2"
+  },
+  "ce_gate": {
+    "name_key": "QUEST_CE_GATE",
+    "desc_key": "QUEST_CE_GATE_DESC",
+    "type": "village",
+    "giver": "ce_warden",
+    "area": "cemetery_01_yard",
+    "items": [
+      "key_ossuary",
+      "key_crypt"
+    ],
+    "opens_gate": "boss_gate",
+    "target_element": "earth",
+    "reward": {
+      "gold": 300,
+      "xp": 600
     }
   }
 }

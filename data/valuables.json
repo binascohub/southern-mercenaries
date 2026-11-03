@@ -391,5 +391,245 @@
     "maps": [],
     "quest_item": true,
     "model": "Tool_Sickle"
+  },
+  "forest_book_1": {
+    "name_key": "VALUABLE_FOREST_BOOK_1",
+    "desc_key": "VALUABLE_FOREST_BOOK_1_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Book_A"
+  },
+  "forest_book_2": {
+    "name_key": "VALUABLE_FOREST_BOOK_2",
+    "desc_key": "VALUABLE_FOREST_BOOK_2_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Ornate_Book"
+  },
+  "ruins_book_1": {
+    "name_key": "VALUABLE_RUINS_BOOK_1",
+    "desc_key": "VALUABLE_RUINS_BOOK_1_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Book_A"
+  },
+  "ruins_book_2": {
+    "name_key": "VALUABLE_RUINS_BOOK_2",
+    "desc_key": "VALUABLE_RUINS_BOOK_2_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Ornate_Book"
+  },
+  "fallen_crown": {
+    "name_key": "VALUABLE_FALLEN_CROWN",
+    "desc_key": "VALUABLE_FALLEN_CROWN_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Coin_Gold"
+  },
+  "fort_book_1": {
+    "name_key": "VALUABLE_FORT_BOOK_1",
+    "desc_key": "VALUABLE_FORT_BOOK_1_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Book_A"
+  },
+  "fort_book_2": {
+    "name_key": "VALUABLE_FORT_BOOK_2",
+    "desc_key": "VALUABLE_FORT_BOOK_2_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Ornate_Book"
+  },
+  "catacombs_book_1": {
+    "name_key": "VALUABLE_CATACOMBS_BOOK_1",
+    "desc_key": "VALUABLE_CATACOMBS_BOOK_1_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Book_A"
+  },
+  "catacombs_book_2": {
+    "name_key": "VALUABLE_CATACOMBS_BOOK_2",
+    "desc_key": "VALUABLE_CATACOMBS_BOOK_2_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Ornate_Book"
+  },
+  "chained_link": {
+    "name_key": "VALUABLE_CHAINED_LINK",
+    "desc_key": "VALUABLE_CHAINED_LINK_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Dungeon_Bone"
+  },
+  "desert_book_1": {
+    "name_key": "VALUABLE_DESERT_BOOK_1",
+    "desc_key": "VALUABLE_DESERT_BOOK_1_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Book_A"
+  },
+  "desert_book_2": {
+    "name_key": "VALUABLE_DESERT_BOOK_2",
+    "desc_key": "VALUABLE_DESERT_BOOK_2_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Ornate_Book"
+  },
+  "sphinx_eye": {
+    "name_key": "VALUABLE_SPHINX_EYE",
+    "desc_key": "VALUABLE_SPHINX_EYE_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Crystal_Gem"
+  },
+  "docks_book_1": {
+    "name_key": "VALUABLE_DOCKS_BOOK_1",
+    "desc_key": "VALUABLE_DOCKS_BOOK_1_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Book_A"
+  },
+  "docks_book_2": {
+    "name_key": "VALUABLE_DOCKS_BOOK_2",
+    "desc_key": "VALUABLE_DOCKS_BOOK_2_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Ornate_Book"
+  },
+  "captain_log": {
+    "name_key": "VALUABLE_CAPTAIN_LOG",
+    "desc_key": "VALUABLE_CAPTAIN_LOG_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Book_A"
+  },
+  "mine_book_1": {
+    "name_key": "VALUABLE_MINE_BOOK_1",
+    "desc_key": "VALUABLE_MINE_BOOK_1_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Book_A"
+  },
+  "mine_book_2": {
+    "name_key": "VALUABLE_MINE_BOOK_2",
+    "desc_key": "VALUABLE_MINE_BOOK_2_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Ornate_Book"
+  },
+  "crystal_heart": {
+    "name_key": "VALUABLE_CRYSTAL_HEART",
+    "desc_key": "VALUABLE_CRYSTAL_HEART_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Crystal_Gem"
+  },
+  "bunker_book_1": {
+    "name_key": "VALUABLE_BUNKER_BOOK_1",
+    "desc_key": "VALUABLE_BUNKER_BOOK_1_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Book_A"
+  },
+  "bunker_book_2": {
+    "name_key": "VALUABLE_BUNKER_BOOK_2",
+    "desc_key": "VALUABLE_BUNKER_BOOK_2_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Ornate_Book"
+  },
+  "general_baton": {
+    "name_key": "VALUABLE_GENERAL_BATON",
+    "desc_key": "VALUABLE_GENERAL_BATON_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Sword_D"
+  },
+  "dark_forest_book_1": {
+    "name_key": "VALUABLE_DARK_FOREST_BOOK_1",
+    "desc_key": "VALUABLE_DARK_FOREST_BOOK_1_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Book_A"
+  },
+  "dark_forest_book_2": {
+    "name_key": "VALUABLE_DARK_FOREST_BOOK_2",
+    "desc_key": "VALUABLE_DARK_FOREST_BOOK_2_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Ornate_Book"
+  },
+  "elder_seed": {
+    "name_key": "VALUABLE_ELDER_SEED",
+    "desc_key": "VALUABLE_ELDER_SEED_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Mushroom_Cluster"
+  },
+  "warden_lantern": {
+    "name_key": "VALUABLE_WARDEN_LANTERN",
+    "desc_key": "VALUABLE_WARDEN_LANTERN_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Tv_Lamp"
+  },
+  "key_ossuary": {
+    "name_key": "VALUABLE_KEY_OSSUARY",
+    "desc_key": "VALUABLE_KEY_OSSUARY_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Spades"
+  },
+  "key_crypt": {
+    "name_key": "VALUABLE_KEY_CRYPT",
+    "desc_key": "VALUABLE_KEY_CRYPT_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Clubs"
+  },
+  "cemetery_book_1": {
+    "name_key": "VALUABLE_CEMETERY_BOOK_1",
+    "desc_key": "VALUABLE_CEMETERY_BOOK_1_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Book_A"
+  },
+  "cemetery_book_2": {
+    "name_key": "VALUABLE_CEMETERY_BOOK_2",
+    "desc_key": "VALUABLE_CEMETERY_BOOK_2_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Ornate_Book"
   }
 }

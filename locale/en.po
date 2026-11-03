@@ -2988,7 +2988,7 @@ msgid "QUEST_DOCKS_SMUGGLERS"
 msgstr "The Old Sea Wolf's Pier"
 
 msgid "QUEST_DOCKS_SMUGGLERS_DESC"
-msgstr "The Old Sea Wolf, in the tavern, wants the Docks pier free of critters: defeat every encounter on the Docks map."
+msgstr "Pirate Captain wants Drowned Captain's Log, which Drowned Captain keeps at the bottom of the map. Get the books from the locals, wake the mini-bosses at the altar, trade their items for the keys, open the gate with the guardian and defeat Drowned Captain. Hand Drowned Captain's Log to Pirate Captain for a gold reward."
 
 msgid "NPC_OLD_LADY"
 msgstr "Tavern Old Lady"
@@ -4618,7 +4618,7 @@ msgid "QUEST_MAP_RUINS"
 msgstr "The Fallen King's Crypt"
 
 msgid "QUEST_MAP_RUINS_DESC"
-msgstr "The War Veteran, in the Tavern, wants an end to the Fallen King, who guards the Royal Vault in the Ruins. Complete the quest by defeating the Fallen King."
+msgstr "War Veteran wants Fallen King's Crown, which Fallen King keeps at the bottom of the map. Get the books from the locals, wake the mini-bosses at the altar, trade their items for the keys, open the gate with the guardian and defeat Fallen King. Hand Fallen King's Crown to War Veteran for a gold reward."
 
 msgid "QUEST_TRAV_TO_CAPITAL"
 msgstr "The Sealed Map"
@@ -4630,13 +4630,13 @@ msgid "QUEST_MAP_CATACOMBS"
 msgstr "The Catacombs of the Condemned"
 
 msgid "QUEST_MAP_CATACOMBS_DESC"
-msgstr "Sister Isolda the Penitent, in the Capital's church, asks that the Chained King, deep in the Catacombs, finally rest. Complete the quest by defeating the Chained King."
+msgstr "Sister Isolda the Penitent wants Chained King's Link, which Chained King keeps at the bottom of the map. Get the books from the locals, wake the mini-bosses at the altar, trade their items for the keys, open the gate with the guardian and defeat Chained King. Hand Chained King's Link to Sister Isolda the Penitent for a gold reward."
 
 msgid "QUEST_MAP_DESERT"
 msgstr "The Sphinx's Riddle"
 
 msgid "QUEST_MAP_DESERT_DESC"
-msgstr "Pilgrim Haled, in the Capital's church, lost three brothers of faith crossing the Desert, where the Sphinx guards the hall behind the gate. Complete the quest by defeating the Sphinx."
+msgstr "Pilgrim Haled wants Sphinx's Eye, which Sphinx keeps at the bottom of the map. Get the books from the locals, wake the mini-bosses at the altar, trade their items for the keys, open the gate with the guardian and defeat Sphinx. Hand Sphinx's Eye to Pilgrim Haled for a gold reward."
 
 msgid "QUEST_CAP_TO_FARM"
 msgstr "The Silver Sickle"
@@ -4648,19 +4648,19 @@ msgid "QUEST_MAP_MINE"
 msgstr "The Heart of the Mine"
 
 msgid "QUEST_MAP_MINE_DESC"
-msgstr "Farmer Tadeo, in the Equipment House, lost half a dozen miners in the maze beneath the Farm, where a crystal golem guards the bottom. Complete the quest by defeating the Crystal Golem."
+msgstr "Farmer Tadeo wants Crystal Heart, which Crystal Golem keeps at the bottom of the map. Get the books from the locals, wake the mini-bosses at the altar, trade their items for the keys, open the gate with the guardian and defeat Crystal Golem. Hand Crystal Heart to Farmer Tadeo for a gold reward."
 
 msgid "QUEST_MAP_BUNKER"
 msgstr "The Sealed Bunker"
 
 msgid "QUEST_MAP_BUNKER_DESC"
-msgstr "Smith Gorm, in the Equipment House, recognizes the iron of the weapons coming out of the Bunker, sealed by a general who refused to surrender. Complete the quest by defeating General Rust."
+msgstr "Smith Gorm wants General's Baton, which General Rust keeps at the bottom of the map. Get the books from the locals, wake the mini-bosses at the altar, trade their items for the keys, open the gate with the guardian and defeat General Rust. Hand General's Baton to Smith Gorm for a gold reward."
 
 msgid "QUEST_MAP_DARK_FOREST"
 msgstr "The Forest That Darkened"
 
 msgid "QUEST_MAP_DARK_FOREST_DESC"
-msgstr "Lumberjack Odette, in the Equipment House, no longer cuts wood in the forest to the north: the trees died standing and one of them moves. Complete the quest by defeating the Shadow Elder."
+msgstr "Lumberjack Odette wants Elder's Seed, which Shadow Elder keeps at the bottom of the map. Get the books from the locals, wake the mini-bosses at the altar, trade their items for the keys, open the gate with the guardian and defeat Shadow Elder. Hand Elder's Seed to Lumberjack Odette for a gold reward."
 
 msgid "DLG_WARVET_1"
 msgstr "I served the king to his last day, and saw what is left of his city: ruins, and inside them the king himself, standing, without breath and without rest."
@@ -4796,3 +4796,435 @@ msgstr "Take it quickly, before I grow attached. And tell the Sacristan the weed
 
 msgid "DLG_ZECA_DEFAULT"
 msgstr "I have tended this house's tools since the farmer was born. Good tools make good work."
+
+msgid "VALUABLE_FOREST_BOOK_1"
+msgstr "Explorer's Trail Map"
+
+msgid "VALUABLE_FOREST_BOOK_1_DESC"
+msgstr "Given by Explorer. Take the group to the Old Oak Altar: read before the stone, the book awakens Stone Golem King. It vanishes from the bag when Stone Golem King falls. It cannot be sold or lost."
+
+msgid "DLG_FOREST_BOOK_1"
+msgstr "Take this book, Explorer's Trail Map, to the Old Oak Altar: read before the stone, it awakens Stone Golem King. Bring me Dinosaur Bone Dagger, which it keeps, and I will hand you the key."
+
+msgid "VALUABLE_FOREST_BOOK_2"
+msgstr "Pyre Ashes"
+
+msgid "VALUABLE_FOREST_BOOK_2_DESC"
+msgstr "Given by Aelindra, Keeper of the Pyre. Take the group to the Old Oak Altar: read before the stone, the book awakens Fire Golem. It vanishes from the bag when Fire Golem falls. It cannot be sold or lost."
+
+msgid "DLG_FOREST_BOOK_2"
+msgstr "Take this book, Pyre Ashes, to the Old Oak Altar: read before the stone, it awakens Fire Golem. Bring me Morvak's Skull, which it keeps, and I will hand you the key."
+
+msgid "NPC_FOREST_ALTAR"
+msgstr "Old Oak Altar"
+
+msgid "DLG_FOREST_ALTAR_1"
+msgstr "You rest Explorer's Trail Map on the stone of the Old Oak Altar and read aloud. The ground shakes, and Stone Golem King rises before the altar."
+
+msgid "DLG_FOREST_ALTAR_2"
+msgstr "You rest Pyre Ashes on the stone of the Old Oak Altar and read aloud. The air grows heavy, and Fire Golem appears before the altar."
+
+msgid "DLG_FOREST_ALTAR_LOCKED"
+msgstr "The stone does not react. There is an empty gap in the center, the size of a book: Explorer's Trail Map or Pyre Ashes must hold what is missing."
+
+msgid "VALUABLE_RUINS_BOOK_1"
+msgstr "Scholar's Codex"
+
+msgid "VALUABLE_RUINS_BOOK_1_DESC"
+msgstr "Given by Ruins Scholar. Take the group to the Altar of the Fallen Kingdom: read before the stone, the book awakens Ruins Guardian. It vanishes from the bag when Ruins Guardian falls. It cannot be sold or lost."
+
+msgid "DLG_RUINS_BOOK_1"
+msgstr "Take this book, Scholar's Codex, to the Altar of the Fallen Kingdom: read before the stone, it awakens Ruins Guardian. Bring me Stone Heart, which it keeps, and I will hand you the key."
+
+msgid "VALUABLE_RUINS_BOOK_2"
+msgstr "Priestess's Prayer"
+
+msgid "VALUABLE_RUINS_BOOK_2_DESC"
+msgstr "Given by Priestess. Take the group to the Altar of the Fallen Kingdom: read before the stone, the book awakens Fallen Champion. It vanishes from the bag when Fallen Champion falls. It cannot be sold or lost."
+
+msgid "DLG_RUINS_BOOK_2"
+msgstr "Take this book, Priestess's Prayer, to the Altar of the Fallen Kingdom: read before the stone, it awakens Fallen Champion. Bring me Champion's Banner, which it keeps, and I will hand you the key."
+
+msgid "NPC_RUINS_ALTAR"
+msgstr "Altar of the Fallen Kingdom"
+
+msgid "DLG_RUINS_ALTAR_1"
+msgstr "You rest Scholar's Codex on the stone of the Altar of the Fallen Kingdom and read aloud. The ground shakes, and Ruins Guardian rises before the altar."
+
+msgid "DLG_RUINS_ALTAR_2"
+msgstr "You rest Priestess's Prayer on the stone of the Altar of the Fallen Kingdom and read aloud. The air grows heavy, and Fallen Champion appears before the altar."
+
+msgid "DLG_RUINS_ALTAR_LOCKED"
+msgstr "The stone does not react. There is an empty gap in the center, the size of a book: Scholar's Codex or Priestess's Prayer must hold what is missing."
+
+msgid "VALUABLE_FALLEN_CROWN"
+msgstr "Fallen King's Crown"
+
+msgid "VALUABLE_FALLEN_CROWN_DESC"
+msgstr "Dropped by Fallen King, the map's boss. It cannot be sold or lost: take it to whoever asked for it."
+
+msgid "VALUABLE_FORT_BOOK_1"
+msgstr "Exile's Pact"
+
+msgid "VALUABLE_FORT_BOOK_1_DESC"
+msgstr "Given by The Exile. Take the group to the Altar of the Ramparts: read before the stone, the book awakens Dark Elf Lord. It vanishes from the bag when Dark Elf Lord falls. It cannot be sold or lost."
+
+msgid "DLG_FORT_BOOK_1"
+msgstr "Take this book, Exile's Pact, to the Altar of the Ramparts: read before the stone, it awakens Dark Elf Lord. Bring me Elf Lord's Blade, which it keeps, and I will hand you the key."
+
+msgid "VALUABLE_FORT_BOOK_2"
+msgstr "Penitent's Rosary"
+
+msgid "VALUABLE_FORT_BOOK_2_DESC"
+msgstr "Given by The Penitent. Take the group to the Altar of the Ramparts: read before the stone, the book awakens Succubus Queen. It vanishes from the bag when Succubus Queen falls. It cannot be sold or lost."
+
+msgid "DLG_FORT_BOOK_2"
+msgstr "Take this book, Penitent's Rosary, to the Altar of the Ramparts: read before the stone, it awakens Succubus Queen. Bring me Queen's Ring, which it keeps, and I will hand you the key."
+
+msgid "NPC_FORT_ALTAR"
+msgstr "Altar of the Ramparts"
+
+msgid "DLG_FORT_ALTAR_1"
+msgstr "You rest Exile's Pact on the stone of the Altar of the Ramparts and read aloud. The ground shakes, and Dark Elf Lord rises before the altar."
+
+msgid "DLG_FORT_ALTAR_2"
+msgstr "You rest Penitent's Rosary on the stone of the Altar of the Ramparts and read aloud. The air grows heavy, and Succubus Queen appears before the altar."
+
+msgid "DLG_FORT_ALTAR_LOCKED"
+msgstr "The stone does not react. There is an empty gap in the center, the size of a book: Exile's Pact or Penitent's Rosary must hold what is missing."
+
+msgid "VALUABLE_CATACOMBS_BOOK_1"
+msgstr "Jailer's Ledger"
+
+msgid "VALUABLE_CATACOMBS_BOOK_1_DESC"
+msgstr "Given by Blind Jailer. Take the group to the Altar of the Condemned: read before the stone, the book awakens Catacomb Headsman. It vanishes from the bag when Catacomb Headsman falls. It cannot be sold or lost."
+
+msgid "DLG_CATACOMBS_BOOK_1"
+msgstr "Take this book, Jailer's Ledger, to the Altar of the Condemned: read before the stone, it awakens Catacomb Headsman. Bring me Headsman's Axe, which it keeps, and I will hand you the key."
+
+msgid "VALUABLE_CATACOMBS_BOOK_2"
+msgstr "Prisoner's Lament"
+
+msgid "VALUABLE_CATACOMBS_BOOK_2_DESC"
+msgstr "Given by Prisoner. Take the group to the Altar of the Condemned: read before the stone, the book awakens Chained Soul. It vanishes from the bag when Chained Soul falls. It cannot be sold or lost."
+
+msgid "DLG_CATACOMBS_BOOK_2"
+msgstr "Take this book, Prisoner's Lament, to the Altar of the Condemned: read before the stone, it awakens Chained Soul. Bring me Soul Shackle, which it keeps, and I will hand you the key."
+
+msgid "NPC_CATACOMBS_ALTAR"
+msgstr "Altar of the Condemned"
+
+msgid "DLG_CATACOMBS_ALTAR_1"
+msgstr "You rest Jailer's Ledger on the stone of the Altar of the Condemned and read aloud. The ground shakes, and Catacomb Headsman rises before the altar."
+
+msgid "DLG_CATACOMBS_ALTAR_2"
+msgstr "You rest Prisoner's Lament on the stone of the Altar of the Condemned and read aloud. The air grows heavy, and Chained Soul appears before the altar."
+
+msgid "DLG_CATACOMBS_ALTAR_LOCKED"
+msgstr "The stone does not react. There is an empty gap in the center, the size of a book: Jailer's Ledger or Prisoner's Lament must hold what is missing."
+
+msgid "VALUABLE_CHAINED_LINK"
+msgstr "Chained King's Link"
+
+msgid "VALUABLE_CHAINED_LINK_DESC"
+msgstr "Dropped by Chained King, the map's boss. It cannot be sold or lost: take it to whoever asked for it."
+
+msgid "VALUABLE_DESERT_BOOK_1"
+msgstr "Nomad's Papyrus"
+
+msgid "VALUABLE_DESERT_BOOK_1_DESC"
+msgstr "Given by Sand Nomad. Take the group to the Altar of the Sands: read before the stone, the book awakens Sand Lamassu. It vanishes from the bag when Sand Lamassu falls. It cannot be sold or lost."
+
+msgid "DLG_DESERT_BOOK_1"
+msgstr "Take this book, Nomad's Papyrus, to the Altar of the Sands: read before the stone, it awakens Sand Lamassu. Bring me Lamassu Horn, which it keeps, and I will hand you the key."
+
+msgid "VALUABLE_DESERT_BOOK_2"
+msgstr "Oasis Tablet"
+
+msgid "VALUABLE_DESERT_BOOK_2_DESC"
+msgstr "Given by Oasis Keeper. Take the group to the Altar of the Sands: read before the stone, the book awakens Scorpion Queen. It vanishes from the bag when Scorpion Queen falls. It cannot be sold or lost."
+
+msgid "DLG_DESERT_BOOK_2"
+msgstr "Take this book, Oasis Tablet, to the Altar of the Sands: read before the stone, it awakens Scorpion Queen. Bring me Golden Scarab, which it keeps, and I will hand you the key."
+
+msgid "NPC_DESERT_ALTAR"
+msgstr "Altar of the Sands"
+
+msgid "DLG_DESERT_ALTAR_1"
+msgstr "You rest Nomad's Papyrus on the stone of the Altar of the Sands and read aloud. The ground shakes, and Sand Lamassu rises before the altar."
+
+msgid "DLG_DESERT_ALTAR_2"
+msgstr "You rest Oasis Tablet on the stone of the Altar of the Sands and read aloud. The air grows heavy, and Scorpion Queen appears before the altar."
+
+msgid "DLG_DESERT_ALTAR_LOCKED"
+msgstr "The stone does not react. There is an empty gap in the center, the size of a book: Nomad's Papyrus or Oasis Tablet must hold what is missing."
+
+msgid "VALUABLE_SPHINX_EYE"
+msgstr "Sphinx's Eye"
+
+msgid "VALUABLE_SPHINX_EYE_DESC"
+msgstr "Dropped by Sphinx, the map's boss. It cannot be sold or lost: take it to whoever asked for it."
+
+msgid "VALUABLE_DOCKS_BOOK_1"
+msgstr "Dock Master's Log"
+
+msgid "VALUABLE_DOCKS_BOOK_1_DESC"
+msgstr "Given by Harbor Master. Take the group to the Pier Altar: read before the stone, the book awakens Living Hull. It vanishes from the bag when Living Hull falls. It cannot be sold or lost."
+
+msgid "DLG_DOCKS_BOOK_1"
+msgstr "Take this book, Dock Master's Log, to the Pier Altar: read before the stone, it awakens Living Hull. Bring me Living Hull's Helm, which it keeps, and I will hand you the key."
+
+msgid "VALUABLE_DOCKS_BOOK_2"
+msgstr "Fishwife's Recipe"
+
+msgid "VALUABLE_DOCKS_BOOK_2_DESC"
+msgstr "Given by Fishwife. Take the group to the Pier Altar: read before the stone, the book awakens Pork Shark. It vanishes from the bag when Pork Shark falls. It cannot be sold or lost."
+
+msgid "DLG_DOCKS_BOOK_2"
+msgstr "Take this book, Fishwife's Recipe, to the Pier Altar: read before the stone, it awakens Pork Shark. Bring me Shark's Golden Tooth, which it keeps, and I will hand you the key."
+
+msgid "NPC_DOCKS_ALTAR"
+msgstr "Pier Altar"
+
+msgid "DLG_DOCKS_ALTAR_1"
+msgstr "You rest Dock Master's Log on the stone of the Pier Altar and read aloud. The ground shakes, and Living Hull rises before the altar."
+
+msgid "DLG_DOCKS_ALTAR_2"
+msgstr "You rest Fishwife's Recipe on the stone of the Pier Altar and read aloud. The air grows heavy, and Pork Shark appears before the altar."
+
+msgid "DLG_DOCKS_ALTAR_LOCKED"
+msgstr "The stone does not react. There is an empty gap in the center, the size of a book: Dock Master's Log or Fishwife's Recipe must hold what is missing."
+
+msgid "VALUABLE_CAPTAIN_LOG"
+msgstr "Drowned Captain's Log"
+
+msgid "VALUABLE_CAPTAIN_LOG_DESC"
+msgstr "Dropped by Drowned Captain, the map's boss. It cannot be sold or lost: take it to whoever asked for it."
+
+msgid "VALUABLE_MINE_BOOK_1"
+msgstr "Gallery Map"
+
+msgid "VALUABLE_MINE_BOOK_1_DESC"
+msgstr "Given by Foreman Brokk. Take the group to the Crystal Altar: read before the stone, the book awakens Troll Chief. It vanishes from the bag when Troll Chief falls. It cannot be sold or lost."
+
+msgid "DLG_MINE_BOOK_1"
+msgstr "Take this book, Gallery Map, to the Crystal Altar: read before the stone, it awakens Troll Chief. Bring me Troll Chief's Tusk, which it keeps, and I will hand you the key."
+
+msgid "VALUABLE_MINE_BOOK_2"
+msgstr "Jeweler's Catalog"
+
+msgid "VALUABLE_MINE_BOOK_2_DESC"
+msgstr "Given by Jeweler Dolgrim. Take the group to the Crystal Altar: read before the stone, the book awakens Quartz Beast. It vanishes from the bag when Quartz Beast falls. It cannot be sold or lost."
+
+msgid "DLG_MINE_BOOK_2"
+msgstr "Take this book, Jeweler's Catalog, to the Crystal Altar: read before the stone, it awakens Quartz Beast. Bring me Quartz Core, which it keeps, and I will hand you the key."
+
+msgid "NPC_MINE_ALTAR"
+msgstr "Crystal Altar"
+
+msgid "DLG_MINE_ALTAR_1"
+msgstr "You rest Gallery Map on the stone of the Crystal Altar and read aloud. The ground shakes, and Troll Chief rises before the altar."
+
+msgid "DLG_MINE_ALTAR_2"
+msgstr "You rest Jeweler's Catalog on the stone of the Crystal Altar and read aloud. The air grows heavy, and Quartz Beast appears before the altar."
+
+msgid "DLG_MINE_ALTAR_LOCKED"
+msgstr "The stone does not react. There is an empty gap in the center, the size of a book: Gallery Map or Jeweler's Catalog must hold what is missing."
+
+msgid "VALUABLE_CRYSTAL_HEART"
+msgstr "Crystal Heart"
+
+msgid "VALUABLE_CRYSTAL_HEART_DESC"
+msgstr "Dropped by Crystal Golem, the map's boss. It cannot be sold or lost: take it to whoever asked for it."
+
+msgid "VALUABLE_BUNKER_BOOK_1"
+msgstr "Quartermaster's Ledger"
+
+msgid "VALUABLE_BUNKER_BOOK_1_DESC"
+msgstr "Given by Quartermaster Vorn. Take the group to the Armory Altar: read before the stone, the book awakens Living Armor. It vanishes from the bag when Living Armor falls. It cannot be sold or lost."
+
+msgid "DLG_BUNKER_BOOK_1"
+msgstr "Take this book, Quartermaster's Ledger, to the Armory Altar: read before the stone, it awakens Living Armor. Bring me Armory Seal, which it keeps, and I will hand you the key."
+
+msgid "VALUABLE_BUNKER_BOOK_2"
+msgstr "Medic's Chart"
+
+msgid "VALUABLE_BUNKER_BOOK_2_DESC"
+msgstr "Given by Field Medic Lena. Take the group to the Armory Altar: read before the stone, the book awakens Rotting Commander. It vanishes from the bag when Rotting Commander falls. It cannot be sold or lost."
+
+msgid "DLG_BUNKER_BOOK_2"
+msgstr "Take this book, Medic's Chart, to the Armory Altar: read before the stone, it awakens Rotting Commander. Bring me Commander's Medal, which it keeps, and I will hand you the key."
+
+msgid "NPC_BUNKER_ALTAR"
+msgstr "Armory Altar"
+
+msgid "DLG_BUNKER_ALTAR_1"
+msgstr "You rest Quartermaster's Ledger on the stone of the Armory Altar and read aloud. The ground shakes, and Living Armor rises before the altar."
+
+msgid "DLG_BUNKER_ALTAR_2"
+msgstr "You rest Medic's Chart on the stone of the Armory Altar and read aloud. The air grows heavy, and Rotting Commander appears before the altar."
+
+msgid "DLG_BUNKER_ALTAR_LOCKED"
+msgstr "The stone does not react. There is an empty gap in the center, the size of a book: Quartermaster's Ledger or Medic's Chart must hold what is missing."
+
+msgid "VALUABLE_GENERAL_BATON"
+msgstr "General's Baton"
+
+msgid "VALUABLE_GENERAL_BATON_DESC"
+msgstr "Dropped by General Rust, the map's boss. It cannot be sold or lost: take it to whoever asked for it."
+
+msgid "VALUABLE_DARK_FOREST_BOOK_1"
+msgstr "Herbalist's Herbal"
+
+msgid "VALUABLE_DARK_FOREST_BOOK_1_DESC"
+msgstr "Given by Herbalist Mirta. Take the group to the Bog Altar: read before the stone, the book awakens Ancient Viper. It vanishes from the bag when Ancient Viper falls. It cannot be sold or lost."
+
+msgid "DLG_DARK_FOREST_BOOK_1"
+msgstr "Take this book, Herbalist's Herbal, to the Bog Altar: read before the stone, it awakens Ancient Viper. Bring me Ancient Viper's Fang, which it keeps, and I will hand you the key."
+
+msgid "VALUABLE_DARK_FOREST_BOOK_2"
+msgstr "Charmer's Songbook"
+
+msgid "VALUABLE_DARK_FOREST_BOOK_2_DESC"
+msgstr "Given by Charmer Zhar. Take the group to the Bog Altar: read before the stone, the book awakens Spore King. It vanishes from the bag when Spore King falls. It cannot be sold or lost."
+
+msgid "DLG_DARK_FOREST_BOOK_2"
+msgstr "Take this book, Charmer's Songbook, to the Bog Altar: read before the stone, it awakens Spore King. Bring me Spore Crown, which it keeps, and I will hand you the key."
+
+msgid "NPC_DARK_FOREST_ALTAR"
+msgstr "Bog Altar"
+
+msgid "DLG_DARK_FOREST_ALTAR_1"
+msgstr "You rest Herbalist's Herbal on the stone of the Bog Altar and read aloud. The ground shakes, and Ancient Viper rises before the altar."
+
+msgid "DLG_DARK_FOREST_ALTAR_2"
+msgstr "You rest Charmer's Songbook on the stone of the Bog Altar and read aloud. The air grows heavy, and Spore King appears before the altar."
+
+msgid "DLG_DARK_FOREST_ALTAR_LOCKED"
+msgstr "The stone does not react. There is an empty gap in the center, the size of a book: Herbalist's Herbal or Charmer's Songbook must hold what is missing."
+
+msgid "VALUABLE_ELDER_SEED"
+msgstr "Elder's Seed"
+
+msgid "VALUABLE_ELDER_SEED_DESC"
+msgstr "Dropped by Shadow Elder, the map's boss. It cannot be sold or lost: take it to whoever asked for it."
+
+msgid "VALUABLE_WARDEN_LANTERN"
+msgstr "Sentinel's Lantern"
+
+msgid "VALUABLE_WARDEN_LANTERN_DESC"
+msgstr "Dropped by the Tomb Sentinel. It cannot be sold or lost: take it to the Caretaker."
+
+msgid "VALUABLE_KEY_OSSUARY"
+msgstr "Ossuary Key"
+
+msgid "VALUABLE_KEY_OSSUARY_DESC"
+msgstr "Given by the Gravedigger. The Crypt Guardian asks for it, with the other key, to open the Crypt Lord's gate."
+
+msgid "VALUABLE_KEY_CRYPT"
+msgstr "Crypt Key"
+
+msgid "VALUABLE_KEY_CRYPT_DESC"
+msgstr "Given by the Caretaker. The Crypt Guardian asks for it, with the other key, to open the Crypt Lord's gate."
+
+msgid "NPC_CE_GRAVEDIGGER"
+msgstr "Gravedigger Abel"
+
+msgid "NPC_CE_CARETAKER"
+msgstr "Caretaker Mirta"
+
+msgid "NPC_CE_WARDEN"
+msgstr "Crypt Guardian"
+
+msgid "QUEST_CE_LUNGS"
+msgstr "The Gravedigger's Lungs"
+
+msgid "QUEST_CE_LUNGS_DESC"
+msgstr "Gravedigger Abel wants the Human Lungs the Crypt Ogre carries. Take his book, wake the Ogre at the avenue altar and bring the lungs; he hands over the Ossuary Key."
+
+msgid "QUEST_CE_LANTERN"
+msgstr "The Sentinel's Lantern"
+
+msgid "QUEST_CE_LANTERN_DESC"
+msgstr "Caretaker Mirta wants the Lantern the Tomb Sentinel keeps. Take her book, wake the Sentinel at the avenue altar and bring the lantern; she hands over the Crypt Key."
+
+msgid "QUEST_CE_GATE"
+msgstr "The Crypt Gate"
+
+msgid "QUEST_CE_GATE_DESC"
+msgstr "The Crypt Guardian only opens the Crypt Lord's gate for those who hand him the Ossuary Key and the Crypt Key."
+
+msgid "DLG_CEGRAVE_1"
+msgstr "I have dug graves for forty years and never buried a corpse as stubborn as the Crypt Ogre. He kept the lungs of someone he should not have."
+
+msgid "DLG_CEGRAVE_2"
+msgstr "If you bring the Human Lungs back, I will give you the ossuary key. The Ogre only wakes at the avenue altar, with the right book."
+
+msgid "DLG_CEGRAVE_3"
+msgstr "Watch his club: it has opened more graves than I have."
+
+msgid "DLG_CEGRAVE_ACTIVE"
+msgstr "The lungs are still with the Ogre, at the avenue altar. Without them, the ossuary key stays with me."
+
+msgid "DLG_CEGRAVE_DONE"
+msgstr "Rest, brave ones. That poor king will breathe in peace, wherever he is."
+
+msgid "DLG_CECARE_1"
+msgstr "I have lit this cemetery's lanterns for so long I lost count. The last and oldest one, the Tomb Sentinel took for himself."
+
+msgid "DLG_CECARE_2"
+msgstr "Bring it back and I will hand you the crypt key. The Sentinel dwells in the avenue altar's statue: only the book I give you wakes him."
+
+msgid "DLG_CECARE_3"
+msgstr "He is made of stone, but holds a grudge like a person."
+
+msgid "DLG_CECARE_ACTIVE"
+msgstr "The lantern is still with the Sentinel. Without it, the crypt key stays with me."
+
+msgid "DLG_CECARE_DONE"
+msgstr "The light is back on the avenue. The dead are grateful, in their way."
+
+msgid "DLG_CEWARD_1"
+msgstr "The Crypt Lord sleeps behind this gate, and I make sure no one disturbs him without deserving it."
+
+msgid "DLG_CEWARD_2"
+msgstr "Whoever brings me the Ossuary Key, from the Gravedigger, and the Crypt Key, from the Caretaker, may pass. Only the two together open the gate."
+
+msgid "DLG_CEWARD_3"
+msgstr "The mini-bosses wait at the avenue altar. Without them, there are no keys."
+
+msgid "DLG_CEWARD_ACTIVE"
+msgstr "Keys are still missing. Speak with the Gravedigger and the Caretaker."
+
+msgid "DLG_CEWARD_DONE"
+msgstr "The gate is open. May the Crypt Lord find you ready."
+
+msgid "VALUABLE_CEMETERY_BOOK_1"
+msgstr "Gravedigger's Roll"
+
+msgid "VALUABLE_CEMETERY_BOOK_1_DESC"
+msgstr "Given by Gravedigger Abel. Take the group to the Avenue Altar: read before the stone, the book awakens Crypt Ogre. It vanishes from the bag when Crypt Ogre falls. It cannot be sold or lost."
+
+msgid "DLG_CEMETERY_BOOK_1"
+msgstr "Take this book, Gravedigger's Roll, to the Avenue Altar: read before the stone, it awakens Crypt Ogre. Bring me Human Lungs, which it keeps, and I will hand you the key."
+
+msgid "VALUABLE_CEMETERY_BOOK_2"
+msgstr "Caretaker's Register"
+
+msgid "VALUABLE_CEMETERY_BOOK_2_DESC"
+msgstr "Given by Caretaker Mirta. Take the group to the Avenue Altar: read before the stone, the book awakens Tomb Sentinel. It vanishes from the bag when Tomb Sentinel falls. It cannot be sold or lost."
+
+msgid "DLG_CEMETERY_BOOK_2"
+msgstr "Take this book, Caretaker's Register, to the Avenue Altar: read before the stone, it awakens Tomb Sentinel. Bring me Sentinel's Lantern, which it keeps, and I will hand you the key."
+
+msgid "NPC_CEMETERY_ALTAR"
+msgstr "Avenue Altar"
+
+msgid "DLG_CEMETERY_ALTAR_1"
+msgstr "You rest Gravedigger's Roll on the stone of the Avenue Altar and read aloud. The ground shakes, and Crypt Ogre rises before the altar."
+
+msgid "DLG_CEMETERY_ALTAR_2"
+msgstr "You rest Caretaker's Register on the stone of the Avenue Altar and read aloud. The air grows heavy, and Tomb Sentinel appears before the altar."
+
+msgid "DLG_CEMETERY_ALTAR_LOCKED"
+msgstr "The stone does not react. There is an empty gap in the center, the size of a book: Gravedigger's Roll or Caretaker's Register must hold what is missing."

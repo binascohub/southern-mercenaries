@@ -35,6 +35,7 @@ func _ready() -> void:
 	_test_skills()
 	_test_spell_fx()
 	_test_skill_anims()
+	_test_map_mechanics()
 	_test_rpg_sounds()
 	_test_sewer_aggression()
 	_test_archer()
@@ -583,6 +584,35 @@ func _test_skill_anims() -> void:
 		_check(not GameData.skills.skills[id].has("anim"), "o Invocador de vento fica como está: " + id)
 
 
+## A mecânica de missões do Esgoto vale em todos os mapas: um só altar (needs_key + extra_summons), dois moradores que dão um livro e pedem o item do mini-chefe (e dão uma chave), guardião com as duas chaves,
+## chefe que larga o item da cidade.
+func _test_map_mechanics() -> void:
+	var maps := ["sewers_01_drains", "forest_01_path", "ruins_01_city", "cemetery_01_yard", "fort_01_gate", "catacombs_01_depths", "desert_01_canyon", "docks_01_pier", "mine_01_crystal_vein", "bunker_01_entrance", "dark_forest_01_woods"]
+	var bad: Array[String] = []
+	for area_id: String in maps:
+		var area: Dictionary = GameData.arenas[area_id]
+		var altars: Array = area.props.filter(func(p: Dictionary) -> bool: return p.has("summon") or p.has("extra_summons"))
+		if altars.size() != 1 or not altars[0].has("needs_key") or altars[0].get("extra_summons", []).size() != 1:
+			bad.append(area_id + ": altar")
+			continue
+		var books := 0
+		for quest: Dictionary in GameData.quests.values():
+			if quest.get("area", "") == area_id and quest.has("grants_key") and quest.has("grants_item") and quest.get("item", "") != "" and (quest.has("gives") or quest.has("gives_key")):
+				books += 1
+				if not GameData.valuables.has(quest.grants_item) or not GameData.valuables[quest.grants_item].get("quest_item", false):
+					bad.append(area_id + ": livro " + String(quest.grants_item))
+		if books != 2:
+			bad.append("%s: %d livros" % [area_id, books])
+		var minis := 0
+		for e: Dictionary in area.encounters:
+			for m: Dictionary in e.monsters:
+				if GameData.monsters.get(m.monster, {}).get("category", "") == "miniboss":
+					minis += 1
+		if minis != 0 and area_id != "forest_01_path":
+			bad.append("%s: mini-chefe solto" % area_id)
+	_check(bad.is_empty(), "todos os mapas: um altar com dois livros, dois moradores, sem mini-chefe solto (%s)" % [bad])
+
+
 func _test_archer() -> void:
 	var a := CharacterData.create("archer", "female", "Kaela", "earth")
 	_check(a.validate().is_empty(), "Arqueiro criado válido: %s" % [a.validate()])
@@ -766,22 +796,22 @@ func _test_minibosses_and_relics() -> void:
 				for m: Dictionary in e.monsters:
 					if GameData.monsters.get(m.monster, {}).get("category", "") == "miniboss":
 						found[m.monster] = true
-			for prop: Dictionary in GameData.arenas[area_id].get("props", []) if map_name in ["Floresta", "Esgoto", "Deserto", "Ruínas", "Forte", "Catacumbas", "Mina", "Bunker", "Floresta Escura"] else []:    # (na Floresta o Rei Golem vem do templo e no Esgoto o Rei dos Sapos, do altar: grupos invocados)
+			for prop: Dictionary in GameData.arenas[area_id].get("props", []) if map_name in ["Floresta", "Esgoto", "Cemitério", "Deserto", "Ruínas", "Forte", "Catacumbas", "Mina", "Bunker", "Floresta Escura"] else []:    # (na Floresta o Rei Golem vem do templo e no Esgoto o Rei dos Sapos, do altar: grupos invocados)
 				for summon: Dictionary in QuestTrail.summons_of(prop):
 					for m: Dictionary in summon.get("monsters", []):
 						if GameData.monsters.get(m.monster, {}).get("category", "") == "miniboss":
 							found[m.monster] = true
-		var expected := 3 if map_name in ["Ruínas", "Forte", "Mina"] else 2    # (Ruínas: o Alfa da Matilha, solto, e os dois das praças, invocados; Forte: o Comandante, solto, e os dois invocados pelo Exilado e pela Penitente)
+		var expected := 2    # (Ruínas: o Alfa da Matilha, solto, e os dois das praças, invocados; Forte: o Comandante, solto, e os dois invocados pelo Exilado e pela Penitente)
 		_check(found.size() == expected, "%s tem %d mini-chefes (%d)" % [map_name, expected, found.size()])
-	for quest_id in ["royal_heart", "royal_lungs", "royal_skull", "royal_soul", "royal_banquet"]:
+	for quest_id in ["royal_heart", "royal_skull", "royal_soul", "royal_banquet"]:
 		var quest: Dictionary = GameData.quests[quest_id]
 		var relic: Dictionary = GameData.valuables.get(quest.item, {})
-		var droppers := GameData.monsters.values().filter(func(m: Variant) -> bool: return m is Dictionary and m.get("quest_drop", "") == quest.item and m.get("category", "") == "miniboss")
+		var droppers := GameData.monsters.values().filter(func(m: Variant) -> bool: return m is Dictionary and m.get("quest_drop", "") == quest.item and m.get("category", "") in ["miniboss", "boss", "elite"])
 		_check(relic.get("quest_item", false) and Items.is_valid(Items.stack(Items.VALUABLE, quest.item)) and droppers.size() == 1
 			and GameData.arenas.has(quest.area) and GameData.npcs.has(quest.giver) and tr(quest.name_key) != quest.name_key,
 			"relíquia de %s: item, mini-chefe que larga, mapa e quem pede" % quest_id)
 		_check(Shops.sell_price("blacksmith", Items.stack(Items.VALUABLE, quest.item), 1, {}) < 0, "a relíquia de %s não se vende" % quest_id)
-	var chain := ["royal_heart", "royal_lungs", "royal_skull", "royal_soul"]
+	var chain := ["royal_heart", "royal_skull", "royal_soul"]
 	var priest_ok := Town.dialogue_index("priest", {}) == 0
 	var states := {}
 	for i in chain.size():
@@ -790,7 +820,7 @@ func _test_minibosses_and_relics() -> void:
 		priest_ok = priest_ok and Town.dialogue_index("priest", states) == 2 * i + 1
 		states[chain[i]] = "done"
 	priest_ok = priest_ok and Town.dialogue_index("priest", states) == 2 * chain.size()
-	_check(priest_ok, "o Padre oferece, lembra e agradece as quatro relíquias")
+	_check(priest_ok, "o Padre oferece, lembra e agradece as três relíquias")
 	_check(Town.dialogue_index("court_jester", {}) == 0 and Town.dialogue_index("court_jester", {"royal_banquet": "active"}) == 1
 		and Town.dialogue_index("court_jester", {"royal_banquet": "done"}) == 2, "o Bobo oferece, lembra e agradece a carne")
 	_check(capital.decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Food_Apple").size() >= 8, "mesa farta com maçãs na sala do rei")
@@ -1125,7 +1155,7 @@ func _test_sewers() -> void:
 		var chain_quest: Dictionary = GameData.quests.get(quest_id, {})
 		chain_ok = chain_ok and not chain_quest.is_empty() and GameData.npcs.has(chain_quest.giver) and tr(chain_quest.name_key) != chain_quest.name_key and tr(chain_quest.desc_key) != chain_quest.desc_key
 	for quest_id: String in map_quests:
-		chain_ok = chain_ok and GameData.arenas.has(GameData.quests[quest_id].area) and GameData.quests[quest_id].clear.size() == 1
+		chain_ok = chain_ok and GameData.arenas.has(GameData.quests[quest_id].area) and GameData.quests[quest_id].has("item") and not GameData.quests[quest_id].has("clear")  # o NPC da cidade pede um item do chefe do mapa
 	_check(chain_ok, "missões de cada mapa e da corrente entre cidades: dados, textos e quem as dá")
 	var carto_prop: Array = GameData.arenas.tavern.props.filter(func(p: Dictionary) -> bool: return p.get("npc", "") == "cartographer")
 	_check(carto_prop.size() == 1 and carto_prop[0].get("after_quest", "") == "map_ruins"
@@ -1135,15 +1165,15 @@ func _test_sewers() -> void:
 		and Town.dialogue_index("shed_scarecrow", {}) == 1 and GameData.valuables.has("sealed_map") and GameData.valuables.has("silver_sickle")
 		and GameData.arenas.has("farm_shed") and GameData.arenas.farm_01_fields.props.any(func(p: Dictionary) -> bool: return p.get("to", "") == "farm_shed"),
 		"Cartógrafo depois das Ruínas, Mapa Selado e Foice de Prata, Casa de Equipamentos na Fazenda")
-	# Floresta: três golens (fogo, gelo, pedra), elites corpo a corpo com modelo.
-	# (o de gelo é um encontro comum; os de pedra e de fogo são mini-chefes invocados pelos NPCs das praças, em `summon`.)
+	# Floresta: o golem de fogo, elite corpo a corpo com modelo, é mini-chefe invocado pela Guardiã da Pira (`summon`); o de pedra é o Rei Golem do templo.
 	var golems: Array = GameData.arenas.forest_01_path.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("f_golem_"))
 	for prop: Dictionary in GameData.arenas.forest_01_path.props:
-		if prop.has("summon") and String(prop.summon.monsters[0].monster).begins_with("golem_"):
-			golems.append(prop.summon)
-	_check(golems.size() == 2 and golems.all(func(e: Dictionary) -> bool:
+		for summon: Dictionary in QuestTrail.summons_of(prop):
+			if String(summon.monsters[0].monster).begins_with("golem_"):
+				golems.append(summon)
+	_check(golems.size() == 1 and golems.all(func(e: Dictionary) -> bool:
 		var m: Dictionary = GameData.monsters.get(e.monsters[0].monster, {})
-		return m.get("category", "") == "elite" and MonsterModel.FAMILIES.has(m.get("look", "")) and float(m.get("damage", 0)) > 0.0), "Floresta tem os dois golens invocados (mini-chefes)")
+		return m.get("category", "") == "elite" and MonsterModel.FAMILIES.has(m.get("look", "")) and float(m.get("damage", 0)) > 0.0), "Floresta tem o golem de fogo invocado (mini-chefe; o de pedra virou o Rei Golem do templo)")
 	# Floresta: a Toca dos Répteis só tem o Rei Golem de Pedra (maior) e o Guardião (menor); sem bandos de répteis.
 	var den: Array = GameData.arenas.forest_01_path.props.filter(func(p: Dictionary) -> bool: return p.id == "forest_temple").map(func(p: Dictionary) -> Dictionary: return p.summon)
 	var no_reptiles: bool = GameData.arenas.forest_01_path.encounters.all(func(e: Dictionary) -> bool: return not e.id.begins_with("f_reptiles"))
@@ -1184,7 +1214,7 @@ func _test_sewers() -> void:
 	var keeper: Dictionary = forest_now.props.filter(func(p: Dictionary) -> bool: return p.id == "forest_pyre_keeper")[0]
 	var pira_room: Dictionary = forest_now.rooms.filter(func(r: Dictionary) -> bool: return r.id == "pira")[0]
 	var pira_toads: Array = forest_now.encounters.filter(func(e: Dictionary) -> bool: return e.id.begins_with("f_toads") and absf(e.position[0] - pira_room.center[0]) <= pira_room.size[0] / 2.0 and absf(e.position[1] - pira_room.center[1]) <= pira_room.size[1] / 2.0 and e.id.length() == 9)
-	_check(keeper.position[1] < -40 and keeper.summon.position[1] < -38 and pira_toads.size() == 4, "A Guardiã da Pira fica na sala da lagoa e os sapos na Praça da Pira")
+	_check(keeper.position[1] < -40 and not keeper.has("summon") and pira_toads.size() == 4, "A Guardiã da Pira fica na sala da lagoa (sem altar: o golem de fogo vem do altar único) e os sapos na Praça da Pira")
 	var forest_map: Dictionary = GameData.arenas.forest_01_path
 	var toad_room: Dictionary = forest_map.rooms.filter(func(r: Dictionary) -> bool: return r.id == "pira")[0]
 	_check(forest_map.props.any(func(p: Dictionary) -> bool: return p.id == "toad_pond" and p.kind == "water" and p.get("round", false))
@@ -1208,7 +1238,7 @@ func _test_sewers() -> void:
 	_check(forest.rooms.any(func(r: Dictionary) -> bool: return r.id == "village"), "Floresta tem a sala da aldeia")
 	for quest_id in ["forest_fire_golem", "forest_leshy", "forest_gate"]:
 		var mission: Dictionary = GameData.quests.get(quest_id, {})
-		_check(mission.get("area", "") == "forest_01_path" and mission.get("clear", []).all(func(id: String) -> bool: return id in forest_ids)
+		_check(mission.get("area", "") == "forest_01_path" and mission.get("clear", []).all(func(id: String) -> bool: return id in forest_ids) and (quest_id == "forest_gate" or mission.has("grants_item"))
 			and (village_npcs.any(func(p: Dictionary) -> bool: return p.npc == mission.get("giver", "")) or GameData.arenas.tavern.props.any(func(p: Dictionary) -> bool: return p.get("npc", "") == mission.get("giver", ""))) and tr(mission.get("name_key", "")) != "",
 			"missão da aldeia %s: encontros e quem a dá existem" % quest_id)
 		var giver: Dictionary = GameData.npcs[mission.giver]
@@ -1260,11 +1290,11 @@ func _test_sewers() -> void:
 			sectors[e.monsters[0].monster] = true
 	_check(sectors.size() == 4 and sectors.has("forest_troll") and sectors.has("fungus_uncle"), "Floresta tem quatro salas de monstros (sapos, bestas, trolls e Tios Fungo), um tipo em cada (%d)" % sectors.size())
 	var summoners: Array = forest.props.filter(func(p: Dictionary) -> bool: return p.has("summon") and p.id != "forest_temple")
-	_check(summoners.size() == 2 and summoners.all(func(p: Dictionary) -> bool:
+	_check(summoners.is_empty() and summoners.all(func(p: Dictionary) -> bool:
 		var group: Dictionary = p.summon
 		return (GameData.npcs.has(p.npc) and GameData.npcs[p.npc].dialogues[0].lines.size() > 0 and group.monsters[0].get("rank", "") == "miniboss"
 			and tr(group.get("toast", "")) != group.get("toast", "") and GameData.monsters.has(group.monsters[0].monster))),
-		"Floresta tem duas praças com NPC que invoca um mini-chefe")
+		"Floresta: só o altar único (o templo) invoca mini-chefes; a Guardiã da Pira não invoca")
 	# Floresta: alguns cervos quebráveis, parados, que só soltam carne (cura como a poção de vida).
 	var deer: Array = GameData.arenas.forest_01_path.get("breakables", []).filter(func(b: Dictionary) -> bool: return b.monster != "coin_bag")  # a bolsa de moedas é outro objeto
 	_check(deer.size() >= 3 and deer.size() <= 40 and deer.all(func(b: Dictionary) -> bool:

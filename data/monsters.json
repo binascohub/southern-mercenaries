@@ -515,15 +515,16 @@
   },
   "leshy": {
     "name_key": "MONSTER_LESHY",
-    "max_health": 220,
+    "max_health": 140,
     "move_speed": 2.8,
-    "damage": 18,
+    "damage": 15,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
     "aggro_range": 40.0,
     "size": 2.0,
     "category": "miniboss",
+    "aggressive": true,
     "element": "earth",
     "ai": "charger",
     "charge": {
@@ -541,8 +542,9 @@
       0.85,
       0.7
     ],
-    "quest_drop": "souls_bottle",
-    "_comment": "Mini-chefe da Floresta (04-tortuga-e-missoes.md: o Leshy guarda a árvore anciã): gigante de casca, investidas e pisões; modelo do Monstro da Floresta (cdmir, CC0)."
+    "_comment": "Mini-chefe da Floresta (04-tortuga-e-missoes.md: o Leshy guarda a árvore anciã): gigante de casca, investidas e pisões; modelo do Monstro da Floresta (cdmir, CC0).",
+    "chest_loot": "treasure_forest",
+    "quest_drop": "adams_rib"
   },
   "ruin_warden": {
     "name_key": "MONSTER_RUIN_WARDEN",
@@ -618,7 +620,7 @@
     "attack_cooldown": 1.8,
     "aggro_range": 40.0,
     "size": 2.4,
-    "category": "miniboss",
+    "category": "elite",
     "element": "air",
     "ai": "charger",
     "charge": {
@@ -636,7 +638,6 @@
       1.0,
       1.0
     ],
-    "quest_drop": "old_skull",
     "_comment": "Chefe do Forte: o comandante amaldiçoado (usa o modelo do Feiticeiro-Aranha até haver arte própria)."
   },
   "dark_elf": {
@@ -782,7 +783,7 @@
     "attack_cooldown": 1.8,
     "aggro_range": 40.0,
     "size": 1.5,
-    "category": "miniboss",
+    "category": "boss",
     "element": "water",
     "ai": "charger",
     "charge": {
@@ -805,9 +806,9 @@
   },
   "golem_fire": {
     "name_key": "MONSTER_GOLEM_FIRE",
-    "max_health": 180,
+    "max_health": 140,
     "move_speed": 2.3,
-    "damage": 16,
+    "damage": 12,
     "attack_range": 2.6,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -822,7 +823,8 @@
       1.0,
       1.0
     ],
-    "_comment": "Golem de Fogo da Floresta (Fire/Ice/Stone Golem, umask007, CC BY 3.0 / CC BY-SA 3.0): elite corpo a corpo, rápido e de dano alto."
+    "_comment": "Golem de Fogo da Floresta (Fire/Ice/Stone Golem, umask007, CC BY 3.0 / CC BY-SA 3.0): elite corpo a corpo, rápido e de dano alto.",
+    "quest_drop": "cursed_skull"
   },
   "golem_ice": {
     "name_key": "MONSTER_GOLEM_ICE",
@@ -873,7 +875,6 @@
       1.0,
       1.0
     ],
-    "quest_drop": "souls_bottle",
     "_comment": "Golem de Pedra da Floresta (umask007): elite que investe como o Leshy; Terra."
   },
   "night_demon": {
@@ -1025,7 +1026,7 @@
     "attack_cooldown": 2.0,
     "aggro_range": 40.0,
     "size": 2.6,
-    "category": "elite",
+    "category": "boss",
     "element": "earth",
     "ai": "charger",
     "charge": {
@@ -1043,14 +1044,14 @@
       0.8,
       1.0
     ],
-    "quest_drop": "souls_bottle",
+    "quest_drop": "crystal_heart",
     "_comment": "Chefe da Mina: o golem do coração de cristal (usa o modelo do Golem de Pedra até haver arte própria)."
   },
   "chitin_beast": {
     "name_key": "MONSTER_CHITIN_BEAST",
-    "max_health": 80,
+    "max_health": 210,
     "move_speed": 3.4,
-    "damage": 12,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.5,
     "attack_cooldown": 1.3,
@@ -1150,7 +1151,7 @@
     "attack_cooldown": 1.8,
     "aggro_range": 40.0,
     "size": 2.2,
-    "category": "miniboss",
+    "category": "elite",
     "element": "earth",
     "ai": "charger",
     "charge": {
@@ -1175,14 +1176,14 @@
   },
   "frog_king": {
     "name_key": "MONSTER_FROG_KING",
-    "max_health": 130,
+    "max_health": 140,
     "move_speed": 2.8,
-    "damage": 14,
+    "damage": 15,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
     "aggro_range": 40.0,
-    "size": 4.5,
+    "size": 2.6,
     "category": "miniboss",
     "element": "earth",
     "ai": "charger",
@@ -1195,13 +1196,14 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "frog",
+    "look": "plank_monster",
     "color": [
-      0.32,
-      0.25,
-      0.2
+      1.0,
+      1.0,
+      1.0
     ],
-    "_comment": "Mini-chefe do Esgoto (canais): o Rei dos Sapos, um sapo do tamanho de um boi; investidas (os ratos não são mais monstros: só cenário)."
+    "_comment": "Mini-chefe da quest 'A Garrafa do Tormento Eterno' (Esgoto): o Empalado, monstro de carne, ossos e tábuas das passarelas (Monster_4, minib1.rar do autor; modelo plank_monster.glb, com os movimentos dos heróis). Dorme sob o altar do centro; o Livro do Altar da Ossael o desperta. Investidas; solta a Garrafa do Tormento Eterno, que a Ossael troca pela chave de copas (id interno 'frog_king', de quando era o Rei dos Sapos).",
+    "quest_drop": "torment_bottle"
   },
   "stone_golem_king": {
     "name_key": "MONSTER_STONE_GOLEM_KING",
@@ -1284,7 +1286,7 @@
     "attack_cooldown": 1.8,
     "aggro_range": 40.0,
     "size": 2.0,
-    "category": "miniboss",
+    "category": "elite",
     "element": "air",
     "ai": "charger",
     "charge": {
@@ -1488,9 +1490,9 @@
   },
   "forest_tomb_guardian": {
     "name_key": "MONSTER_TOMB_GUARDIAN",
-    "max_health": 340,
+    "max_health": 140,
     "move_speed": 2.8,
-    "damage": 24,
+    "damage": 12,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -1518,9 +1520,9 @@
   },
   "forest_troll": {
     "name_key": "MONSTER_FOREST_TROLL",
-    "max_health": 380,
+    "max_health": 140,
     "move_speed": 2.4,
-    "damage": 24,
+    "damage": 12,
     "attack_range": 3.2,
     "attack_windup": 1.1,
     "attack_cooldown": 2.2,
@@ -1720,7 +1722,8 @@
     "aggressive": false,
     "chest_loot": "chest",
     "sound": "giant",
-    "visual_pending": true
+    "visual_pending": true,
+    "quest_drop": "sphinx_eye"
   },
   "hull_beast": {
     "name_key": "MONSTER_HULL_BEAST",
@@ -1814,7 +1817,8 @@
     ],
     "_comment": "Chefe final das Docas: o Capitão Afogado, esqueleto verde do mar que guarda o Convés atrás do portão; investidas e pisões.",
     "aggressive": false,
-    "chest_loot": "chest"
+    "chest_loot": "chest",
+    "quest_drop": "captain_log"
   },
   "war_champion": {
     "name_key": "MONSTER_WAR_CHAMPION",
@@ -1881,7 +1885,8 @@
     "chest_loot": "chest",
     "_comment": "Chefe final das Ruínas: o Rei Caído, guardião do Cofre Real atrás do portão; investidas e pisões (modelo do rei golem).",
     "sound": "giant",
-    "visual_pending": true
+    "visual_pending": true,
+    "quest_drop": "fallen_crown"
   },
   "viper_queen": {
     "name_key": "MONSTER_VIPER_QUEEN",
@@ -1983,7 +1988,8 @@
     ],
     "aggressive": false,
     "chest_loot": "chest",
-    "_comment": "Chefe final do Forte: o Barão Infernal, demônio que governa o Salão do Barão atrás do portão; investidas e pisões (modelo do demônio chefe)."
+    "_comment": "Chefe final do Forte: o Barão Infernal, demônio que governa o Salão do Barão atrás do portão; investidas e pisões (modelo do demônio chefe).",
+    "quest_drop": "old_skull"
   },
   "ct_headsman": {
     "name_key": "MONSTER_CT_HEADSMAN",
@@ -2079,7 +2085,8 @@
     ],
     "aggressive": false,
     "chest_loot": "chest",
-    "_comment": "Chefe final das Catacumbas: o Rei Acorrentado, rei morto preso em correntes que guarda a Cripta atrás do portão; investidas e pisões."
+    "_comment": "Chefe final das Catacumbas: o Rei Acorrentado, rei morto preso em correntes que guarda a Cripta atrás do portão; investidas e pisões.",
+    "quest_drop": "chained_link"
   },
   "mn_quartz_beast": {
     "name_key": "MONSTER_MN_QUARTZ_BEAST",
@@ -2203,7 +2210,8 @@
     ],
     "aggressive": false,
     "chest_loot": "chest",
-    "_comment": "Chefe final do Bunker: o General Ferrugem, comandante enferrujado que guarda a Sala de Comando atrás do portão; investidas e pisões."
+    "_comment": "Chefe final do Bunker: o General Ferrugem, comandante enferrujado que guarda a Sala de Comando atrás do portão; investidas e pisões.",
+    "quest_drop": "general_baton"
   },
   "fd_viper": {
     "name_key": "MONSTER_FD_VIPER",
@@ -2299,7 +2307,8 @@
     ],
     "aggressive": false,
     "chest_loot": "chest",
-    "_comment": "Chefe final da Floresta Escura: o Ancião Sombrio, árvore morta e viva que guarda o Covil atrás do portão; investidas e pisões (modelo do monstro da floresta)."
+    "_comment": "Chefe final da Floresta Escura: o Ancião Sombrio, árvore morta e viva que guarda o Covil atrás do portão; investidas e pisões (modelo do monstro da floresta).",
+    "quest_drop": "elder_seed"
   },
   "dk_drowned": {
     "name_key": "MONSTER_DK_DROWNED",
@@ -2636,7 +2645,8 @@
     ],
     "sound": "giant",
     "visual_pending": true,
-    "_comment": "Monstro de cemetery (Sentinela do Túmulo): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de cemetery (Sentinela do Túmulo): visual pendente (sem modelo ainda).",
+    "quest_drop": "warden_lantern"
   },
   "fo_imp": {
     "name_key": "MONSTER_FO_IMP",

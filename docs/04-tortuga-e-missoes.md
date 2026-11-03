@@ -337,3 +337,13 @@ Decisão do autor: **cada cidade tem uma área de treinamento com bonecos**, par
 ## Missão do Bobo da Corte (Sala do Rei)
 - **Banquete do rei** (`royal_banquet`): a mesa farta da sala do rei só tem frutas; o **Alfa da Matilha** (mini-chefe das Ruínas) deixa cair a **Carne Selvagem** (item de missão, no inventário, não se vende). Entregar ao Bobo rende 260 B$ e 500 XP.
 
+
+## Mecânica de missões de todos os mapas (modelo: Esgoto)
+
+1. O **NPC da cidade** passa a missão e pede um **item que só o chefe do mapa larga**; a recompensa é em ouro.
+2. Dois **NPCs do mapa** dão uma missão cada: entregam um **livro** (some da bolsa quando o mini-chefe dele cai), pedem o item do mini-chefe e, ao receber o item, entregam uma **chave**.
+3. Há **um só altar** por mapa, onde os mini-chefes são invocados: o livro que o grupo tem decide qual desperta (`needs_key` + `extra_summons` no prop). Nenhum mini-chefe anda solto (os que andavam viraram elites).
+4. O **guardião** pede as duas chaves e abre o portão do chefe.
+5. O **chefe do mapa** solta o tesouro (baú do chefe) e o item que o NPC da cidade pediu.
+
+Gerado por `tools/assets/build_map_mechanics.py` (e `build_cemetery_quests.py`, que monta antes a estrutura do Cemitério: Coveiro, Zeladora, Guardião da Cripta e o portão do Senhor da Cripta). No Cemitério, a missão `royal_lungs` do Padre virou a do Coveiro.

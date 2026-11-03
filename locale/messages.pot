@@ -4537,3 +4537,435 @@ msgstr ""
 
 msgid "DLG_ZECA_DEFAULT"
 msgstr ""
+
+msgid "VALUABLE_FOREST_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_FOREST_BOOK_1_DESC"
+msgstr ""
+
+msgid "DLG_FOREST_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_FOREST_BOOK_2"
+msgstr ""
+
+msgid "VALUABLE_FOREST_BOOK_2_DESC"
+msgstr ""
+
+msgid "DLG_FOREST_BOOK_2"
+msgstr ""
+
+msgid "NPC_FOREST_ALTAR"
+msgstr ""
+
+msgid "DLG_FOREST_ALTAR_1"
+msgstr ""
+
+msgid "DLG_FOREST_ALTAR_2"
+msgstr ""
+
+msgid "DLG_FOREST_ALTAR_LOCKED"
+msgstr ""
+
+msgid "VALUABLE_RUINS_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_RUINS_BOOK_1_DESC"
+msgstr ""
+
+msgid "DLG_RUINS_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_RUINS_BOOK_2"
+msgstr ""
+
+msgid "VALUABLE_RUINS_BOOK_2_DESC"
+msgstr ""
+
+msgid "DLG_RUINS_BOOK_2"
+msgstr ""
+
+msgid "NPC_RUINS_ALTAR"
+msgstr ""
+
+msgid "DLG_RUINS_ALTAR_1"
+msgstr ""
+
+msgid "DLG_RUINS_ALTAR_2"
+msgstr ""
+
+msgid "DLG_RUINS_ALTAR_LOCKED"
+msgstr ""
+
+msgid "VALUABLE_FALLEN_CROWN"
+msgstr ""
+
+msgid "VALUABLE_FALLEN_CROWN_DESC"
+msgstr ""
+
+msgid "VALUABLE_FORT_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_FORT_BOOK_1_DESC"
+msgstr ""
+
+msgid "DLG_FORT_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_FORT_BOOK_2"
+msgstr ""
+
+msgid "VALUABLE_FORT_BOOK_2_DESC"
+msgstr ""
+
+msgid "DLG_FORT_BOOK_2"
+msgstr ""
+
+msgid "NPC_FORT_ALTAR"
+msgstr ""
+
+msgid "DLG_FORT_ALTAR_1"
+msgstr ""
+
+msgid "DLG_FORT_ALTAR_2"
+msgstr ""
+
+msgid "DLG_FORT_ALTAR_LOCKED"
+msgstr ""
+
+msgid "VALUABLE_CATACOMBS_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_CATACOMBS_BOOK_1_DESC"
+msgstr ""
+
+msgid "DLG_CATACOMBS_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_CATACOMBS_BOOK_2"
+msgstr ""
+
+msgid "VALUABLE_CATACOMBS_BOOK_2_DESC"
+msgstr ""
+
+msgid "DLG_CATACOMBS_BOOK_2"
+msgstr ""
+
+msgid "NPC_CATACOMBS_ALTAR"
+msgstr ""
+
+msgid "DLG_CATACOMBS_ALTAR_1"
+msgstr ""
+
+msgid "DLG_CATACOMBS_ALTAR_2"
+msgstr ""
+
+msgid "DLG_CATACOMBS_ALTAR_LOCKED"
+msgstr ""
+
+msgid "VALUABLE_CHAINED_LINK"
+msgstr ""
+
+msgid "VALUABLE_CHAINED_LINK_DESC"
+msgstr ""
+
+msgid "VALUABLE_DESERT_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_DESERT_BOOK_1_DESC"
+msgstr ""
+
+msgid "DLG_DESERT_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_DESERT_BOOK_2"
+msgstr ""
+
+msgid "VALUABLE_DESERT_BOOK_2_DESC"
+msgstr ""
+
+msgid "DLG_DESERT_BOOK_2"
+msgstr ""
+
+msgid "NPC_DESERT_ALTAR"
+msgstr ""
+
+msgid "DLG_DESERT_ALTAR_1"
+msgstr ""
+
+msgid "DLG_DESERT_ALTAR_2"
+msgstr ""
+
+msgid "DLG_DESERT_ALTAR_LOCKED"
+msgstr ""
+
+msgid "VALUABLE_SPHINX_EYE"
+msgstr ""
+
+msgid "VALUABLE_SPHINX_EYE_DESC"
+msgstr ""
+
+msgid "VALUABLE_DOCKS_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_DOCKS_BOOK_1_DESC"
+msgstr ""
+
+msgid "DLG_DOCKS_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_DOCKS_BOOK_2"
+msgstr ""
+
+msgid "VALUABLE_DOCKS_BOOK_2_DESC"
+msgstr ""
+
+msgid "DLG_DOCKS_BOOK_2"
+msgstr ""
+
+msgid "NPC_DOCKS_ALTAR"
+msgstr ""
+
+msgid "DLG_DOCKS_ALTAR_1"
+msgstr ""
+
+msgid "DLG_DOCKS_ALTAR_2"
+msgstr ""
+
+msgid "DLG_DOCKS_ALTAR_LOCKED"
+msgstr ""
+
+msgid "VALUABLE_CAPTAIN_LOG"
+msgstr ""
+
+msgid "VALUABLE_CAPTAIN_LOG_DESC"
+msgstr ""
+
+msgid "VALUABLE_MINE_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_MINE_BOOK_1_DESC"
+msgstr ""
+
+msgid "DLG_MINE_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_MINE_BOOK_2"
+msgstr ""
+
+msgid "VALUABLE_MINE_BOOK_2_DESC"
+msgstr ""
+
+msgid "DLG_MINE_BOOK_2"
+msgstr ""
+
+msgid "NPC_MINE_ALTAR"
+msgstr ""
+
+msgid "DLG_MINE_ALTAR_1"
+msgstr ""
+
+msgid "DLG_MINE_ALTAR_2"
+msgstr ""
+
+msgid "DLG_MINE_ALTAR_LOCKED"
+msgstr ""
+
+msgid "VALUABLE_CRYSTAL_HEART"
+msgstr ""
+
+msgid "VALUABLE_CRYSTAL_HEART_DESC"
+msgstr ""
+
+msgid "VALUABLE_BUNKER_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_BUNKER_BOOK_1_DESC"
+msgstr ""
+
+msgid "DLG_BUNKER_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_BUNKER_BOOK_2"
+msgstr ""
+
+msgid "VALUABLE_BUNKER_BOOK_2_DESC"
+msgstr ""
+
+msgid "DLG_BUNKER_BOOK_2"
+msgstr ""
+
+msgid "NPC_BUNKER_ALTAR"
+msgstr ""
+
+msgid "DLG_BUNKER_ALTAR_1"
+msgstr ""
+
+msgid "DLG_BUNKER_ALTAR_2"
+msgstr ""
+
+msgid "DLG_BUNKER_ALTAR_LOCKED"
+msgstr ""
+
+msgid "VALUABLE_GENERAL_BATON"
+msgstr ""
+
+msgid "VALUABLE_GENERAL_BATON_DESC"
+msgstr ""
+
+msgid "VALUABLE_DARK_FOREST_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_DARK_FOREST_BOOK_1_DESC"
+msgstr ""
+
+msgid "DLG_DARK_FOREST_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_DARK_FOREST_BOOK_2"
+msgstr ""
+
+msgid "VALUABLE_DARK_FOREST_BOOK_2_DESC"
+msgstr ""
+
+msgid "DLG_DARK_FOREST_BOOK_2"
+msgstr ""
+
+msgid "NPC_DARK_FOREST_ALTAR"
+msgstr ""
+
+msgid "DLG_DARK_FOREST_ALTAR_1"
+msgstr ""
+
+msgid "DLG_DARK_FOREST_ALTAR_2"
+msgstr ""
+
+msgid "DLG_DARK_FOREST_ALTAR_LOCKED"
+msgstr ""
+
+msgid "VALUABLE_ELDER_SEED"
+msgstr ""
+
+msgid "VALUABLE_ELDER_SEED_DESC"
+msgstr ""
+
+msgid "VALUABLE_WARDEN_LANTERN"
+msgstr ""
+
+msgid "VALUABLE_WARDEN_LANTERN_DESC"
+msgstr ""
+
+msgid "VALUABLE_KEY_OSSUARY"
+msgstr ""
+
+msgid "VALUABLE_KEY_OSSUARY_DESC"
+msgstr ""
+
+msgid "VALUABLE_KEY_CRYPT"
+msgstr ""
+
+msgid "VALUABLE_KEY_CRYPT_DESC"
+msgstr ""
+
+msgid "NPC_CE_GRAVEDIGGER"
+msgstr ""
+
+msgid "NPC_CE_CARETAKER"
+msgstr ""
+
+msgid "NPC_CE_WARDEN"
+msgstr ""
+
+msgid "QUEST_CE_LUNGS"
+msgstr ""
+
+msgid "QUEST_CE_LUNGS_DESC"
+msgstr ""
+
+msgid "QUEST_CE_LANTERN"
+msgstr ""
+
+msgid "QUEST_CE_LANTERN_DESC"
+msgstr ""
+
+msgid "QUEST_CE_GATE"
+msgstr ""
+
+msgid "QUEST_CE_GATE_DESC"
+msgstr ""
+
+msgid "DLG_CEGRAVE_1"
+msgstr ""
+
+msgid "DLG_CEGRAVE_2"
+msgstr ""
+
+msgid "DLG_CEGRAVE_3"
+msgstr ""
+
+msgid "DLG_CEGRAVE_ACTIVE"
+msgstr ""
+
+msgid "DLG_CEGRAVE_DONE"
+msgstr ""
+
+msgid "DLG_CECARE_1"
+msgstr ""
+
+msgid "DLG_CECARE_2"
+msgstr ""
+
+msgid "DLG_CECARE_3"
+msgstr ""
+
+msgid "DLG_CECARE_ACTIVE"
+msgstr ""
+
+msgid "DLG_CECARE_DONE"
+msgstr ""
+
+msgid "DLG_CEWARD_1"
+msgstr ""
+
+msgid "DLG_CEWARD_2"
+msgstr ""
+
+msgid "DLG_CEWARD_3"
+msgstr ""
+
+msgid "DLG_CEWARD_ACTIVE"
+msgstr ""
+
+msgid "DLG_CEWARD_DONE"
+msgstr ""
+
+msgid "VALUABLE_CEMETERY_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_CEMETERY_BOOK_1_DESC"
+msgstr ""
+
+msgid "DLG_CEMETERY_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_CEMETERY_BOOK_2"
+msgstr ""
+
+msgid "VALUABLE_CEMETERY_BOOK_2_DESC"
+msgstr ""
+
+msgid "DLG_CEMETERY_BOOK_2"
+msgstr ""
+
+msgid "NPC_CEMETERY_ALTAR"
+msgstr ""
+
+msgid "DLG_CEMETERY_ALTAR_1"
+msgstr ""
+
+msgid "DLG_CEMETERY_ALTAR_2"
+msgstr ""
+
+msgid "DLG_CEMETERY_ALTAR_LOCKED"
+msgstr ""

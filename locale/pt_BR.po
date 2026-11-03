@@ -2988,7 +2988,7 @@ msgid "QUEST_DOCKS_SMUGGLERS"
 msgstr "O cais do Velho Lobo"
 
 msgid "QUEST_DOCKS_SMUGGLERS_DESC"
-msgstr "O Velho Lobo do Mar, na taverna, quer o cais das Docas livre de bichos: derrote todos os encontros do mapa das Docas."
+msgstr "Capitão Pirata quer Diário do Capitão Afogado, que Capitão Afogado guarda no fundo do mapa. Consiga o livro com os moradores, desperte os mini-chefes no altar, troque os itens deles pelas chaves, abra o portão com o guardião e derrote Capitão Afogado. Entregue Diário do Capitão Afogado a Capitão Pirata por uma recompensa em ouro."
 
 msgid "NPC_OLD_LADY"
 msgstr "Velha da Taverna"
@@ -4618,7 +4618,7 @@ msgid "QUEST_MAP_RUINS"
 msgstr "A Cripta do Rei Caído"
 
 msgid "QUEST_MAP_RUINS_DESC"
-msgstr "O Veterano de Guerra, na Taverna, quer o fim do Rei Caído, que guarda o Cofre Real nas Ruínas. Conclua a missão derrotando o Rei Caído."
+msgstr "Veterano de Guerra quer Coroa do Rei Caído, que Rei Caído guarda no fundo do mapa. Consiga o livro com os moradores, desperte os mini-chefes no altar, troque os itens deles pelas chaves, abra o portão com o guardião e derrote Rei Caído. Entregue Coroa do Rei Caído a Veterano de Guerra por uma recompensa em ouro."
 
 msgid "QUEST_TRAV_TO_CAPITAL"
 msgstr "O Mapa Selado"
@@ -4630,13 +4630,13 @@ msgid "QUEST_MAP_CATACOMBS"
 msgstr "As Catacumbas dos Condenados"
 
 msgid "QUEST_MAP_CATACOMBS_DESC"
-msgstr "A Irmã Penitente Isolda, na igreja da Capital, pede que o Rei Acorrentado, no fundo das Catacumbas, finalmente descanse. Conclua a missão derrotando o Rei Acorrentado."
+msgstr "Irmã Penitente Isolda quer Elo do Rei Acorrentado, que Rei Acorrentado guarda no fundo do mapa. Consiga o livro com os moradores, desperte os mini-chefes no altar, troque os itens deles pelas chaves, abra o portão com o guardião e derrote Rei Acorrentado. Entregue Elo do Rei Acorrentado a Irmã Penitente Isolda por uma recompensa em ouro."
 
 msgid "QUEST_MAP_DESERT"
 msgstr "O Enigma da Esfinge"
 
 msgid "QUEST_MAP_DESERT_DESC"
-msgstr "O Peregrino Haled, na igreja da Capital, perdeu três irmãos de fé na travessia do Deserto, onde a Esfinge guarda o salão atrás do portão. Conclua a missão derrotando a Esfinge."
+msgstr "Peregrino Haled quer Olho da Esfinge, que Esfinge guarda no fundo do mapa. Consiga o livro com os moradores, desperte os mini-chefes no altar, troque os itens deles pelas chaves, abra o portão com o guardião e derrote Esfinge. Entregue Olho da Esfinge a Peregrino Haled por uma recompensa em ouro."
 
 msgid "QUEST_CAP_TO_FARM"
 msgstr "A Foice de Prata"
@@ -4648,19 +4648,19 @@ msgid "QUEST_MAP_MINE"
 msgstr "O Coração da Mina"
 
 msgid "QUEST_MAP_MINE_DESC"
-msgstr "O Fazendeiro Tadeu, na Casa de Equipamentos, perdeu meia dúzia de mineiros no labirinto sob a Fazenda, onde um golem de cristal guarda o fundo. Conclua a missão derrotando o Golem de Cristal."
+msgstr "Fazendeiro Tadeu quer Coração de Cristal, que Golem de Cristal guarda no fundo do mapa. Consiga o livro com os moradores, desperte os mini-chefes no altar, troque os itens deles pelas chaves, abra o portão com o guardião e derrote Golem de Cristal. Entregue Coração de Cristal a Fazendeiro Tadeu por uma recompensa em ouro."
 
 msgid "QUEST_MAP_BUNKER"
 msgstr "O Bunker Lacrado"
 
 msgid "QUEST_MAP_BUNKER_DESC"
-msgstr "O Ferreiro Gorm, na Casa de Equipamentos, reconhece o ferro das armas que saem do Bunker, lacrado por um general que não aceitou a rendição. Conclua a missão derrotando o General Ferrugem."
+msgstr "Ferreiro Gorm quer Bastão do General, que General Ferrugem guarda no fundo do mapa. Consiga o livro com os moradores, desperte os mini-chefes no altar, troque os itens deles pelas chaves, abra o portão com o guardião e derrote General Ferrugem. Entregue Bastão do General a Ferreiro Gorm por uma recompensa em ouro."
 
 msgid "QUEST_MAP_DARK_FOREST"
 msgstr "A Floresta que Escureceu"
 
 msgid "QUEST_MAP_DARK_FOREST_DESC"
-msgstr "A Lenhadora Odete, na Casa de Equipamentos, não corta mais lenha na floresta ao norte: as árvores morreram em pé e uma delas se mexe. Conclua a missão derrotando o Ancião Sombrio."
+msgstr "Lenhadora Odete quer Semente do Ancião, que Ancião Sombrio guarda no fundo do mapa. Consiga o livro com os moradores, desperte os mini-chefes no altar, troque os itens deles pelas chaves, abra o portão com o guardião e derrote Ancião Sombrio. Entregue Semente do Ancião a Lenhadora Odete por uma recompensa em ouro."
 
 msgid "DLG_WARVET_1"
 msgstr "Servi o rei até o último dia, e vi o que sobrou da cidade dele: ruínas, e dentro delas o próprio rei, de pé, sem o ar e sem o descanso."
@@ -4796,3 +4796,435 @@ msgstr "Levem logo, antes que eu me apegue. E digam ao Sacristão que as ervas d
 
 msgid "DLG_ZECA_DEFAULT"
 msgstr "Cuido das ferramentas desta casa desde que o fazendeiro nasceu. Ferramentas boas dão trabalho bom."
+
+msgid "VALUABLE_FOREST_BOOK_1"
+msgstr "Mapa de Trilhas da Exploradora"
+
+msgid "VALUABLE_FOREST_BOOK_1_DESC"
+msgstr "Entregue por Exploradora. Leve o grupo ao Altar do Velho Carvalho: lido diante da pedra, o livro desperta Rei Golem de Pedra. Some da bolsa quando Rei Golem de Pedra cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_FOREST_BOOK_1"
+msgstr "Leve este livro, Mapa de Trilhas da Exploradora, ao Altar do Velho Carvalho: lido diante da pedra, ele desperta Rei Golem de Pedra. Traga-me Adaga de Osso de Dinossauro, que ele guarda, e eu lhes entrego a chave."
+
+msgid "VALUABLE_FOREST_BOOK_2"
+msgstr "Cinzas da Pira"
+
+msgid "VALUABLE_FOREST_BOOK_2_DESC"
+msgstr "Entregue por Aelindra, Guardiã da Pira. Leve o grupo ao Altar do Velho Carvalho: lido diante da pedra, o livro desperta Golem de Fogo. Some da bolsa quando Golem de Fogo cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_FOREST_BOOK_2"
+msgstr "Leve este livro, Cinzas da Pira, ao Altar do Velho Carvalho: lido diante da pedra, ele desperta Golem de Fogo. Traga-me Caveira de Morvak, que ele guarda, e eu lhes entrego a chave."
+
+msgid "NPC_FOREST_ALTAR"
+msgstr "Altar do Velho Carvalho"
+
+msgid "DLG_FOREST_ALTAR_1"
+msgstr "Você apoia Mapa de Trilhas da Exploradora na pedra do Altar do Velho Carvalho e lê em voz alta. O chão treme, e Rei Golem de Pedra se levanta diante do altar."
+
+msgid "DLG_FOREST_ALTAR_2"
+msgstr "Você apoia Cinzas da Pira na pedra do Altar do Velho Carvalho e lê em voz alta. O ar pesa, e Golem de Fogo surge diante do altar."
+
+msgid "DLG_FOREST_ALTAR_LOCKED"
+msgstr "A pedra não reage. Há um vazio no centro, do tamanho de um livro: Mapa de Trilhas da Exploradora ou Cinzas da Pira devem ter o que falta."
+
+msgid "VALUABLE_RUINS_BOOK_1"
+msgstr "Códice do Erudito"
+
+msgid "VALUABLE_RUINS_BOOK_1_DESC"
+msgstr "Entregue por Erudita das Ruínas. Leve o grupo ao Altar do Reino Caído: lido diante da pedra, o livro desperta Guardião das Ruínas. Some da bolsa quando Guardião das Ruínas cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_RUINS_BOOK_1"
+msgstr "Leve este livro, Códice do Erudito, ao Altar do Reino Caído: lido diante da pedra, ele desperta Guardião das Ruínas. Traga-me Coração de Pedra, que ele guarda, e eu lhes entrego a chave."
+
+msgid "VALUABLE_RUINS_BOOK_2"
+msgstr "Prece da Sacerdotisa"
+
+msgid "VALUABLE_RUINS_BOOK_2_DESC"
+msgstr "Entregue por Sacerdotisa. Leve o grupo ao Altar do Reino Caído: lido diante da pedra, o livro desperta Campeão Caído. Some da bolsa quando Campeão Caído cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_RUINS_BOOK_2"
+msgstr "Leve este livro, Prece da Sacerdotisa, ao Altar do Reino Caído: lido diante da pedra, ele desperta Campeão Caído. Traga-me Estandarte do Campeão, que ele guarda, e eu lhes entrego a chave."
+
+msgid "NPC_RUINS_ALTAR"
+msgstr "Altar do Reino Caído"
+
+msgid "DLG_RUINS_ALTAR_1"
+msgstr "Você apoia Códice do Erudito na pedra do Altar do Reino Caído e lê em voz alta. O chão treme, e Guardião das Ruínas se levanta diante do altar."
+
+msgid "DLG_RUINS_ALTAR_2"
+msgstr "Você apoia Prece da Sacerdotisa na pedra do Altar do Reino Caído e lê em voz alta. O ar pesa, e Campeão Caído surge diante do altar."
+
+msgid "DLG_RUINS_ALTAR_LOCKED"
+msgstr "A pedra não reage. Há um vazio no centro, do tamanho de um livro: Códice do Erudito ou Prece da Sacerdotisa devem ter o que falta."
+
+msgid "VALUABLE_FALLEN_CROWN"
+msgstr "Coroa do Rei Caído"
+
+msgid "VALUABLE_FALLEN_CROWN_DESC"
+msgstr "Largado por Rei Caído, o chefe do mapa. Não pode ser vendido nem perdido: leve-o a quem o pediu."
+
+msgid "VALUABLE_FORT_BOOK_1"
+msgstr "Pacto do Exilado"
+
+msgid "VALUABLE_FORT_BOOK_1_DESC"
+msgstr "Entregue por O Exilado. Leve o grupo ao Altar das Muralhas: lido diante da pedra, o livro desperta Senhor Elfo Sombrio. Some da bolsa quando Senhor Elfo Sombrio cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_FORT_BOOK_1"
+msgstr "Leve este livro, Pacto do Exilado, ao Altar das Muralhas: lido diante da pedra, ele desperta Senhor Elfo Sombrio. Traga-me Lâmina do Senhor Elfo, que ele guarda, e eu lhes entrego a chave."
+
+msgid "VALUABLE_FORT_BOOK_2"
+msgstr "Rosário da Penitente"
+
+msgid "VALUABLE_FORT_BOOK_2_DESC"
+msgstr "Entregue por A Penitente. Leve o grupo ao Altar das Muralhas: lido diante da pedra, o livro desperta Rainha das Súcubos. Some da bolsa quando Rainha das Súcubos cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_FORT_BOOK_2"
+msgstr "Leve este livro, Rosário da Penitente, ao Altar das Muralhas: lido diante da pedra, ele desperta Rainha das Súcubos. Traga-me Anel da Rainha, que ele guarda, e eu lhes entrego a chave."
+
+msgid "NPC_FORT_ALTAR"
+msgstr "Altar das Muralhas"
+
+msgid "DLG_FORT_ALTAR_1"
+msgstr "Você apoia Pacto do Exilado na pedra do Altar das Muralhas e lê em voz alta. O chão treme, e Senhor Elfo Sombrio se levanta diante do altar."
+
+msgid "DLG_FORT_ALTAR_2"
+msgstr "Você apoia Rosário da Penitente na pedra do Altar das Muralhas e lê em voz alta. O ar pesa, e Rainha das Súcubos surge diante do altar."
+
+msgid "DLG_FORT_ALTAR_LOCKED"
+msgstr "A pedra não reage. Há um vazio no centro, do tamanho de um livro: Pacto do Exilado ou Rosário da Penitente devem ter o que falta."
+
+msgid "VALUABLE_CATACOMBS_BOOK_1"
+msgstr "Registro do Carcereiro"
+
+msgid "VALUABLE_CATACOMBS_BOOK_1_DESC"
+msgstr "Entregue por Carcereiro Cego. Leve o grupo ao Altar dos Condenados: lido diante da pedra, o livro desperta Carrasco das Catacumbas. Some da bolsa quando Carrasco das Catacumbas cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_CATACOMBS_BOOK_1"
+msgstr "Leve este livro, Registro do Carcereiro, ao Altar dos Condenados: lido diante da pedra, ele desperta Carrasco das Catacumbas. Traga-me Machado do Carrasco, que ele guarda, e eu lhes entrego a chave."
+
+msgid "VALUABLE_CATACOMBS_BOOK_2"
+msgstr "Lamento do Prisioneiro"
+
+msgid "VALUABLE_CATACOMBS_BOOK_2_DESC"
+msgstr "Entregue por Prisioneira. Leve o grupo ao Altar dos Condenados: lido diante da pedra, o livro desperta Alma Acorrentada. Some da bolsa quando Alma Acorrentada cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_CATACOMBS_BOOK_2"
+msgstr "Leve este livro, Lamento do Prisioneiro, ao Altar dos Condenados: lido diante da pedra, ele desperta Alma Acorrentada. Traga-me Grilhão da Alma, que ele guarda, e eu lhes entrego a chave."
+
+msgid "NPC_CATACOMBS_ALTAR"
+msgstr "Altar dos Condenados"
+
+msgid "DLG_CATACOMBS_ALTAR_1"
+msgstr "Você apoia Registro do Carcereiro na pedra do Altar dos Condenados e lê em voz alta. O chão treme, e Carrasco das Catacumbas se levanta diante do altar."
+
+msgid "DLG_CATACOMBS_ALTAR_2"
+msgstr "Você apoia Lamento do Prisioneiro na pedra do Altar dos Condenados e lê em voz alta. O ar pesa, e Alma Acorrentada surge diante do altar."
+
+msgid "DLG_CATACOMBS_ALTAR_LOCKED"
+msgstr "A pedra não reage. Há um vazio no centro, do tamanho de um livro: Registro do Carcereiro ou Lamento do Prisioneiro devem ter o que falta."
+
+msgid "VALUABLE_CHAINED_LINK"
+msgstr "Elo do Rei Acorrentado"
+
+msgid "VALUABLE_CHAINED_LINK_DESC"
+msgstr "Largado por Rei Acorrentado, o chefe do mapa. Não pode ser vendido nem perdido: leve-o a quem o pediu."
+
+msgid "VALUABLE_DESERT_BOOK_1"
+msgstr "Papiro do Nômade"
+
+msgid "VALUABLE_DESERT_BOOK_1_DESC"
+msgstr "Entregue por Nômade da Areia. Leve o grupo ao Altar das Areias: lido diante da pedra, o livro desperta Lamassu da Areia. Some da bolsa quando Lamassu da Areia cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_DESERT_BOOK_1"
+msgstr "Leve este livro, Papiro do Nômade, ao Altar das Areias: lido diante da pedra, ele desperta Lamassu da Areia. Traga-me Chifre do Lamassu, que ele guarda, e eu lhes entrego a chave."
+
+msgid "VALUABLE_DESERT_BOOK_2"
+msgstr "Tábua do Oásis"
+
+msgid "VALUABLE_DESERT_BOOK_2_DESC"
+msgstr "Entregue por Guardiã do Oásis. Leve o grupo ao Altar das Areias: lido diante da pedra, o livro desperta Rainha Escorpião. Some da bolsa quando Rainha Escorpião cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_DESERT_BOOK_2"
+msgstr "Leve este livro, Tábua do Oásis, ao Altar das Areias: lido diante da pedra, ele desperta Rainha Escorpião. Traga-me Escaravelho de Ouro, que ele guarda, e eu lhes entrego a chave."
+
+msgid "NPC_DESERT_ALTAR"
+msgstr "Altar das Areias"
+
+msgid "DLG_DESERT_ALTAR_1"
+msgstr "Você apoia Papiro do Nômade na pedra do Altar das Areias e lê em voz alta. O chão treme, e Lamassu da Areia se levanta diante do altar."
+
+msgid "DLG_DESERT_ALTAR_2"
+msgstr "Você apoia Tábua do Oásis na pedra do Altar das Areias e lê em voz alta. O ar pesa, e Rainha Escorpião surge diante do altar."
+
+msgid "DLG_DESERT_ALTAR_LOCKED"
+msgstr "A pedra não reage. Há um vazio no centro, do tamanho de um livro: Papiro do Nômade ou Tábua do Oásis devem ter o que falta."
+
+msgid "VALUABLE_SPHINX_EYE"
+msgstr "Olho da Esfinge"
+
+msgid "VALUABLE_SPHINX_EYE_DESC"
+msgstr "Largado por Esfinge, o chefe do mapa. Não pode ser vendido nem perdido: leve-o a quem o pediu."
+
+msgid "VALUABLE_DOCKS_BOOK_1"
+msgstr "Diário do Mestre do Cais"
+
+msgid "VALUABLE_DOCKS_BOOK_1_DESC"
+msgstr "Entregue por Mestre do Porto. Leve o grupo ao Altar do Cais: lido diante da pedra, o livro desperta Casco Vivo. Some da bolsa quando Casco Vivo cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_DOCKS_BOOK_1"
+msgstr "Leve este livro, Diário do Mestre do Cais, ao Altar do Cais: lido diante da pedra, ele desperta Casco Vivo. Traga-me Leme do Casco Vivo, que ele guarda, e eu lhes entrego a chave."
+
+msgid "VALUABLE_DOCKS_BOOK_2"
+msgstr "Receita da Peixeira"
+
+msgid "VALUABLE_DOCKS_BOOK_2_DESC"
+msgstr "Entregue por Peixeira. Leve o grupo ao Altar do Cais: lido diante da pedra, o livro desperta Tubarão-Porco. Some da bolsa quando Tubarão-Porco cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_DOCKS_BOOK_2"
+msgstr "Leve este livro, Receita da Peixeira, ao Altar do Cais: lido diante da pedra, ele desperta Tubarão-Porco. Traga-me Dente de Ouro do Tubarão, que ele guarda, e eu lhes entrego a chave."
+
+msgid "NPC_DOCKS_ALTAR"
+msgstr "Altar do Cais"
+
+msgid "DLG_DOCKS_ALTAR_1"
+msgstr "Você apoia Diário do Mestre do Cais na pedra do Altar do Cais e lê em voz alta. O chão treme, e Casco Vivo se levanta diante do altar."
+
+msgid "DLG_DOCKS_ALTAR_2"
+msgstr "Você apoia Receita da Peixeira na pedra do Altar do Cais e lê em voz alta. O ar pesa, e Tubarão-Porco surge diante do altar."
+
+msgid "DLG_DOCKS_ALTAR_LOCKED"
+msgstr "A pedra não reage. Há um vazio no centro, do tamanho de um livro: Diário do Mestre do Cais ou Receita da Peixeira devem ter o que falta."
+
+msgid "VALUABLE_CAPTAIN_LOG"
+msgstr "Diário do Capitão Afogado"
+
+msgid "VALUABLE_CAPTAIN_LOG_DESC"
+msgstr "Largado por Capitão Afogado, o chefe do mapa. Não pode ser vendido nem perdido: leve-o a quem o pediu."
+
+msgid "VALUABLE_MINE_BOOK_1"
+msgstr "Mapa das Galerias"
+
+msgid "VALUABLE_MINE_BOOK_1_DESC"
+msgstr "Entregue por Capataz Brokk. Leve o grupo ao Altar de Cristal: lido diante da pedra, o livro desperta Chefe Troll. Some da bolsa quando Chefe Troll cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_MINE_BOOK_1"
+msgstr "Leve este livro, Mapa das Galerias, ao Altar de Cristal: lido diante da pedra, ele desperta Chefe Troll. Traga-me Presa do Chefe Troll, que ele guarda, e eu lhes entrego a chave."
+
+msgid "VALUABLE_MINE_BOOK_2"
+msgstr "Catálogo do Joalheiro"
+
+msgid "VALUABLE_MINE_BOOK_2_DESC"
+msgstr "Entregue por Joalheiro Dolgrim. Leve o grupo ao Altar de Cristal: lido diante da pedra, o livro desperta Besta de Quartzo. Some da bolsa quando Besta de Quartzo cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_MINE_BOOK_2"
+msgstr "Leve este livro, Catálogo do Joalheiro, ao Altar de Cristal: lido diante da pedra, ele desperta Besta de Quartzo. Traga-me Núcleo de Quartzo, que ele guarda, e eu lhes entrego a chave."
+
+msgid "NPC_MINE_ALTAR"
+msgstr "Altar de Cristal"
+
+msgid "DLG_MINE_ALTAR_1"
+msgstr "Você apoia Mapa das Galerias na pedra do Altar de Cristal e lê em voz alta. O chão treme, e Chefe Troll se levanta diante do altar."
+
+msgid "DLG_MINE_ALTAR_2"
+msgstr "Você apoia Catálogo do Joalheiro na pedra do Altar de Cristal e lê em voz alta. O ar pesa, e Besta de Quartzo surge diante do altar."
+
+msgid "DLG_MINE_ALTAR_LOCKED"
+msgstr "A pedra não reage. Há um vazio no centro, do tamanho de um livro: Mapa das Galerias ou Catálogo do Joalheiro devem ter o que falta."
+
+msgid "VALUABLE_CRYSTAL_HEART"
+msgstr "Coração de Cristal"
+
+msgid "VALUABLE_CRYSTAL_HEART_DESC"
+msgstr "Largado por Golem de Cristal, o chefe do mapa. Não pode ser vendido nem perdido: leve-o a quem o pediu."
+
+msgid "VALUABLE_BUNKER_BOOK_1"
+msgstr "Registro do Intendente"
+
+msgid "VALUABLE_BUNKER_BOOK_1_DESC"
+msgstr "Entregue por Intendente Vorn. Leve o grupo ao Altar da Armaria: lido diante da pedra, o livro desperta Armadura Viva. Some da bolsa quando Armadura Viva cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_BUNKER_BOOK_1"
+msgstr "Leve este livro, Registro do Intendente, ao Altar da Armaria: lido diante da pedra, ele desperta Armadura Viva. Traga-me Selo do Arsenal, que ele guarda, e eu lhes entrego a chave."
+
+msgid "VALUABLE_BUNKER_BOOK_2"
+msgstr "Prontuário do Médico"
+
+msgid "VALUABLE_BUNKER_BOOK_2_DESC"
+msgstr "Entregue por Médica de Campo Lena. Leve o grupo ao Altar da Armaria: lido diante da pedra, o livro desperta Comandante Podre. Some da bolsa quando Comandante Podre cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_BUNKER_BOOK_2"
+msgstr "Leve este livro, Prontuário do Médico, ao Altar da Armaria: lido diante da pedra, ele desperta Comandante Podre. Traga-me Medalha do Comandante, que ele guarda, e eu lhes entrego a chave."
+
+msgid "NPC_BUNKER_ALTAR"
+msgstr "Altar da Armaria"
+
+msgid "DLG_BUNKER_ALTAR_1"
+msgstr "Você apoia Registro do Intendente na pedra do Altar da Armaria e lê em voz alta. O chão treme, e Armadura Viva se levanta diante do altar."
+
+msgid "DLG_BUNKER_ALTAR_2"
+msgstr "Você apoia Prontuário do Médico na pedra do Altar da Armaria e lê em voz alta. O ar pesa, e Comandante Podre surge diante do altar."
+
+msgid "DLG_BUNKER_ALTAR_LOCKED"
+msgstr "A pedra não reage. Há um vazio no centro, do tamanho de um livro: Registro do Intendente ou Prontuário do Médico devem ter o que falta."
+
+msgid "VALUABLE_GENERAL_BATON"
+msgstr "Bastão do General"
+
+msgid "VALUABLE_GENERAL_BATON_DESC"
+msgstr "Largado por General Ferrugem, o chefe do mapa. Não pode ser vendido nem perdido: leve-o a quem o pediu."
+
+msgid "VALUABLE_DARK_FOREST_BOOK_1"
+msgstr "Herbário da Ervanária"
+
+msgid "VALUABLE_DARK_FOREST_BOOK_1_DESC"
+msgstr "Entregue por Herbalista Mirta. Leve o grupo ao Altar do Pântano: lido diante da pedra, o livro desperta Víbora Anciã. Some da bolsa quando Víbora Anciã cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_DARK_FOREST_BOOK_1"
+msgstr "Leve este livro, Herbário da Ervanária, ao Altar do Pântano: lido diante da pedra, ele desperta Víbora Anciã. Traga-me Presa da Víbora Anciã, que ele guarda, e eu lhes entrego a chave."
+
+msgid "VALUABLE_DARK_FOREST_BOOK_2"
+msgstr "Cancioneiro do Encantador"
+
+msgid "VALUABLE_DARK_FOREST_BOOK_2_DESC"
+msgstr "Entregue por Encantador Zhar. Leve o grupo ao Altar do Pântano: lido diante da pedra, o livro desperta Rei dos Esporos. Some da bolsa quando Rei dos Esporos cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_DARK_FOREST_BOOK_2"
+msgstr "Leve este livro, Cancioneiro do Encantador, ao Altar do Pântano: lido diante da pedra, ele desperta Rei dos Esporos. Traga-me Coroa de Esporos, que ele guarda, e eu lhes entrego a chave."
+
+msgid "NPC_DARK_FOREST_ALTAR"
+msgstr "Altar do Pântano"
+
+msgid "DLG_DARK_FOREST_ALTAR_1"
+msgstr "Você apoia Herbário da Ervanária na pedra do Altar do Pântano e lê em voz alta. O chão treme, e Víbora Anciã se levanta diante do altar."
+
+msgid "DLG_DARK_FOREST_ALTAR_2"
+msgstr "Você apoia Cancioneiro do Encantador na pedra do Altar do Pântano e lê em voz alta. O ar pesa, e Rei dos Esporos surge diante do altar."
+
+msgid "DLG_DARK_FOREST_ALTAR_LOCKED"
+msgstr "A pedra não reage. Há um vazio no centro, do tamanho de um livro: Herbário da Ervanária ou Cancioneiro do Encantador devem ter o que falta."
+
+msgid "VALUABLE_ELDER_SEED"
+msgstr "Semente do Ancião"
+
+msgid "VALUABLE_ELDER_SEED_DESC"
+msgstr "Largado por Ancião Sombrio, o chefe do mapa. Não pode ser vendido nem perdido: leve-o a quem o pediu."
+
+msgid "VALUABLE_WARDEN_LANTERN"
+msgstr "Lamparina do Sentinela"
+
+msgid "VALUABLE_WARDEN_LANTERN_DESC"
+msgstr "Largada pelo Sentinela do Túmulo. Não pode ser vendida nem perdida: leve-a à Zeladora."
+
+msgid "VALUABLE_KEY_OSSUARY"
+msgstr "Chave do Ossuário"
+
+msgid "VALUABLE_KEY_OSSUARY_DESC"
+msgstr "Entregue pelo Coveiro. O Guardião da Cripta a pede, com a outra chave, para abrir o portão do Senhor da Cripta."
+
+msgid "VALUABLE_KEY_CRYPT"
+msgstr "Chave da Cripta"
+
+msgid "VALUABLE_KEY_CRYPT_DESC"
+msgstr "Entregue pela Zeladora. O Guardião da Cripta a pede, com a outra chave, para abrir o portão do Senhor da Cripta."
+
+msgid "NPC_CE_GRAVEDIGGER"
+msgstr "Coveiro Abel"
+
+msgid "NPC_CE_CARETAKER"
+msgstr "Zeladora Mirta"
+
+msgid "NPC_CE_WARDEN"
+msgstr "Guardião da Cripta"
+
+msgid "QUEST_CE_LUNGS"
+msgstr "Os Pulmões do Coveiro"
+
+msgid "QUEST_CE_LUNGS_DESC"
+msgstr "O Coveiro Abel quer os Pulmões Humanos que o Ogro da Cripta carrega. Pegue o livro com ele, desperte o Ogro no altar da alameda e traga os pulmões; ele entrega a Chave do Ossuário."
+
+msgid "QUEST_CE_LANTERN"
+msgstr "A Lamparina do Sentinela"
+
+msgid "QUEST_CE_LANTERN_DESC"
+msgstr "A Zeladora Mirta quer a Lamparina que o Sentinela do Túmulo guarda. Pegue o livro com ela, desperte o Sentinela no altar da alameda e traga a lamparina; ela entrega a Chave da Cripta."
+
+msgid "QUEST_CE_GATE"
+msgstr "O Portão da Cripta"
+
+msgid "QUEST_CE_GATE_DESC"
+msgstr "O Guardião da Cripta só abre o portão do Senhor da Cripta para quem lhe entregar a Chave do Ossuário e a Chave da Cripta."
+
+msgid "DLG_CEGRAVE_1"
+msgstr "Cavo covas há quarenta anos e nunca enterrei um defunto tão teimoso quanto o Ogro da Cripta. Ele ficou com os pulmões de quem não devia."
+
+msgid "DLG_CEGRAVE_2"
+msgstr "Se trouxerem os Pulmões Humanos de volta, eu lhes dou a chave do ossuário. O Ogro só desperta no altar da alameda, com o livro certo."
+
+msgid "DLG_CEGRAVE_3"
+msgstr "Cuidado com a clava dele: já abriu mais covas do que eu."
+
+msgid "DLG_CEGRAVE_ACTIVE"
+msgstr "Os pulmões ainda estão com o Ogro, no altar da alameda. Sem eles, a chave do ossuário fica comigo."
+
+msgid "DLG_CEGRAVE_DONE"
+msgstr "Descansem, valentes. Aquele pobre rei vai respirar em paz, onde estiver."
+
+msgid "DLG_CECARE_1"
+msgstr "Acendo as lamparinas deste cemitério há tanto tempo que perdi a conta. A última, a mais velha, o Sentinela do Túmulo tomou para si."
+
+msgid "DLG_CECARE_2"
+msgstr "Tragam-na de volta e eu lhes entrego a chave da cripta. O Sentinela mora na estátua do altar da alameda: só o livro que lhes dou o desperta."
+
+msgid "DLG_CECARE_3"
+msgstr "Ele é de pedra, mas guarda rancor como gente."
+
+msgid "DLG_CECARE_ACTIVE"
+msgstr "A lamparina continua com o Sentinela. Sem ela, a chave da cripta fica comigo."
+
+msgid "DLG_CECARE_DONE"
+msgstr "A luz voltou à alameda. Os mortos agradecem, à maneira deles."
+
+msgid "DLG_CEWARD_1"
+msgstr "O Senhor da Cripta dorme atrás deste portão, e eu cuido para que ninguém o incomode sem merecer."
+
+msgid "DLG_CEWARD_2"
+msgstr "Quem me trouxer a Chave do Ossuário, do Coveiro, e a Chave da Cripta, da Zeladora, passa. Só os dois juntos abrem o portão."
+
+msgid "DLG_CEWARD_3"
+msgstr "Os mini-chefes esperam no altar da alameda. Sem eles, não há chaves."
+
+msgid "DLG_CEWARD_ACTIVE"
+msgstr "Ainda faltam chaves. Falem com o Coveiro e com a Zeladora."
+
+msgid "DLG_CEWARD_DONE"
+msgstr "O portão está aberto. Que o Senhor da Cripta os encontre prontos."
+
+msgid "VALUABLE_CEMETERY_BOOK_1"
+msgstr "Rol do Coveiro"
+
+msgid "VALUABLE_CEMETERY_BOOK_1_DESC"
+msgstr "Entregue por Coveiro Abel. Leve o grupo ao Altar da Alameda: lido diante da pedra, o livro desperta Ogro da Cripta. Some da bolsa quando Ogro da Cripta cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_CEMETERY_BOOK_1"
+msgstr "Leve este livro, Rol do Coveiro, ao Altar da Alameda: lido diante da pedra, ele desperta Ogro da Cripta. Traga-me Pulmões Humanos, que ele guarda, e eu lhes entrego a chave."
+
+msgid "VALUABLE_CEMETERY_BOOK_2"
+msgstr "Registro da Zeladora"
+
+msgid "VALUABLE_CEMETERY_BOOK_2_DESC"
+msgstr "Entregue por Zeladora Mirta. Leve o grupo ao Altar da Alameda: lido diante da pedra, o livro desperta Sentinela do Túmulo. Some da bolsa quando Sentinela do Túmulo cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_CEMETERY_BOOK_2"
+msgstr "Leve este livro, Registro da Zeladora, ao Altar da Alameda: lido diante da pedra, ele desperta Sentinela do Túmulo. Traga-me Lamparina do Sentinela, que ele guarda, e eu lhes entrego a chave."
+
+msgid "NPC_CEMETERY_ALTAR"
+msgstr "Altar da Alameda"
+
+msgid "DLG_CEMETERY_ALTAR_1"
+msgstr "Você apoia Rol do Coveiro na pedra do Altar da Alameda e lê em voz alta. O chão treme, e Ogro da Cripta se levanta diante do altar."
+
+msgid "DLG_CEMETERY_ALTAR_2"
+msgstr "Você apoia Registro da Zeladora na pedra do Altar da Alameda e lê em voz alta. O ar pesa, e Sentinela do Túmulo surge diante do altar."
+
+msgid "DLG_CEMETERY_ALTAR_LOCKED"
+msgstr "A pedra não reage. Há um vazio no centro, do tamanho de um livro: Rol do Coveiro ou Registro da Zeladora devem ter o que falta."

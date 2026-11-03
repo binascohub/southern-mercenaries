@@ -260,25 +260,6 @@
       },
       {
         "when": {
-          "quest_new": "royal_lungs"
-        },
-        "lines": [
-          "DLG_PRIEST_LUNGS_1",
-          "DLG_PRIEST_LUNGS_2"
-        ],
-        "offer": "royal_lungs"
-      },
-      {
-        "when": {
-          "quest_active": "royal_lungs"
-        },
-        "lines": [
-          "DLG_PRIEST_LUNGS_ACTIVE"
-        ],
-        "service": "turn_in"
-      },
-      {
-        "when": {
           "quest_new": "royal_skull"
         },
         "lines": [
@@ -462,7 +443,8 @@
         "lines": [
           "DLG_ARCHER_1",
           "DLG_ARCHER_2",
-          "DLG_ARCHER_3"
+          "DLG_ARCHER_3",
+          "DLG_FOREST_BOOK_1"
         ],
         "offer": "forest_leshy"
       },
@@ -551,7 +533,8 @@
         "lines": [
           "DLG_PYRE_1",
           "DLG_PYRE_2",
-          "DLG_PYRE_3"
+          "DLG_PYRE_3",
+          "DLG_FOREST_BOOK_2"
         ],
         "offer": "forest_fire_golem"
       },
@@ -610,7 +593,8 @@
         "lines": [
           "DLG_FPENITENT_1",
           "DLG_FPENITENT_2",
-          "DLG_FPENITENT_3"
+          "DLG_FPENITENT_3",
+          "DLG_FORT_BOOK_2"
         ],
         "offer": "fort_ring"
       },
@@ -669,7 +653,8 @@
         "lines": [
           "DLG_FEXILE_1",
           "DLG_FEXILE_2",
-          "DLG_FEXILE_3"
+          "DLG_FEXILE_3",
+          "DLG_FORT_BOOK_1"
         ],
         "offer": "fort_sigil"
       },
@@ -739,7 +724,8 @@
         },
         "lines": [
           "DLG_PIRATE_ACTIVE"
-        ]
+        ],
+        "service": "turn_in"
       },
       {
         "when": {},
@@ -1063,7 +1049,8 @@
         "lines": [
           "DLG_NOMAD_1",
           "DLG_NOMAD_2",
-          "DLG_NOMAD_3"
+          "DLG_NOMAD_3",
+          "DLG_DESERT_BOOK_1"
         ],
         "offer": "desert_horn"
       },
@@ -1114,7 +1101,8 @@
         "lines": [
           "DLG_OASIS_1",
           "DLG_OASIS_2",
-          "DLG_OASIS_3"
+          "DLG_OASIS_3",
+          "DLG_DESERT_BOOK_2"
         ],
         "offer": "desert_scarab"
       },
@@ -1249,7 +1237,8 @@
         "lines": [
           "DLG_DOCKMASTER_1",
           "DLG_DOCKMASTER_2",
-          "DLG_DOCKMASTER_3"
+          "DLG_DOCKMASTER_3",
+          "DLG_DOCKS_BOOK_1"
         ],
         "offer": "dock_helm"
       },
@@ -1325,7 +1314,8 @@
         "lines": [
           "DLG_FISHWIFE_1",
           "DLG_FISHWIFE_2",
-          "DLG_FISHWIFE_3"
+          "DLG_FISHWIFE_3",
+          "DLG_DOCKS_BOOK_2"
         ],
         "offer": "dock_tooth"
       },
@@ -1435,7 +1425,8 @@
         "lines": [
           "DLG_SCHOLAR_1",
           "DLG_SCHOLAR_2",
-          "DLG_SCHOLAR_3"
+          "DLG_SCHOLAR_3",
+          "DLG_RUINS_BOOK_1"
         ],
         "offer": "ruins_seal"
       },
@@ -1511,7 +1502,8 @@
         "lines": [
           "DLG_PRIESTESS_1",
           "DLG_PRIESTESS_2",
-          "DLG_PRIESTESS_3"
+          "DLG_PRIESTESS_3",
+          "DLG_RUINS_BOOK_2"
         ],
         "offer": "ruins_banner"
       },
@@ -1772,7 +1764,8 @@
         "lines": [
           "DLG_CTJAILER_1",
           "DLG_CTJAILER_2",
-          "DLG_CTJAILER_3"
+          "DLG_CTJAILER_3",
+          "DLG_CATACOMBS_BOOK_1"
         ],
         "offer": "ct_axe"
       },
@@ -1848,7 +1841,8 @@
         "lines": [
           "DLG_CTPRISONER_1",
           "DLG_CTPRISONER_2",
-          "DLG_CTPRISONER_3"
+          "DLG_CTPRISONER_3",
+          "DLG_CATACOMBS_BOOK_2"
         ],
         "offer": "ct_soul"
       },
@@ -2008,7 +2002,8 @@
         "lines": [
           "DLG_MNFORE_1",
           "DLG_MNFORE_2",
-          "DLG_MNFORE_3"
+          "DLG_MNFORE_3",
+          "DLG_MINE_BOOK_1"
         ],
         "offer": "mn_tusk"
       },
@@ -2083,7 +2078,8 @@
         "lines": [
           "DLG_MNJEW_1",
           "DLG_MNJEW_2",
-          "DLG_MNJEW_3"
+          "DLG_MNJEW_3",
+          "DLG_MINE_BOOK_2"
         ],
         "offer": "mn_quartz"
       },
@@ -2267,7 +2263,8 @@
         "lines": [
           "DLG_BKQM_1",
           "DLG_BKQM_2",
-          "DLG_BKQM_3"
+          "DLG_BKQM_3",
+          "DLG_BUNKER_BOOK_1"
         ],
         "offer": "bk_seal"
       },
@@ -2343,7 +2340,8 @@
         "lines": [
           "DLG_BKMED_1",
           "DLG_BKMED_2",
-          "DLG_BKMED_3"
+          "DLG_BKMED_3",
+          "DLG_BUNKER_BOOK_2"
         ],
         "offer": "bk_medal"
       },
@@ -2528,7 +2526,8 @@
         "lines": [
           "DLG_FDHERB_1",
           "DLG_FDHERB_2",
-          "DLG_FDHERB_3"
+          "DLG_FDHERB_3",
+          "DLG_DARK_FOREST_BOOK_1"
         ],
         "offer": "fd_fang"
       },
@@ -2612,7 +2611,8 @@
         "lines": [
           "DLG_FDCHARM_1",
           "DLG_FDCHARM_2",
-          "DLG_FDCHARM_3"
+          "DLG_FDCHARM_3",
+          "DLG_DARK_FOREST_BOOK_2"
         ],
         "offer": "fd_crown"
       },
@@ -2758,7 +2758,8 @@
         },
         "lines": [
           "DLG_WARVET_ACTIVE"
-        ]
+        ],
+        "service": "turn_in"
       },
       {
         "when": {},
@@ -2861,7 +2862,8 @@
         },
         "lines": [
           "DLG_PENSIS_ACTIVE"
-        ]
+        ],
+        "service": "turn_in"
       },
       {
         "when": {},
@@ -2912,7 +2914,8 @@
         },
         "lines": [
           "DLG_PILGRIM_ACTIVE"
-        ]
+        ],
+        "service": "turn_in"
       },
       {
         "when": {},
@@ -3024,7 +3027,8 @@
         },
         "lines": [
           "DLG_FARMER_ACTIVE"
-        ]
+        ],
+        "service": "turn_in"
       },
       {
         "when": {},
@@ -3075,7 +3079,8 @@
         },
         "lines": [
           "DLG_SMITH_ACTIVE"
-        ]
+        ],
+        "service": "turn_in"
       },
       {
         "when": {},
@@ -3126,7 +3131,8 @@
         },
         "lines": [
           "DLG_LUMBER_ACTIVE"
-        ]
+        ],
+        "service": "turn_in"
       },
       {
         "when": {},
@@ -3191,5 +3197,450 @@
         "body": "cloth"
       }
     }
+  },
+  "forest_altar": {
+    "_comment": "Altar único do mapa (forest_01_path): o livro que o grupo tem desperta o mini-chefe dele (needs_key + extra_summons no prop). Gerado por build_map_mechanics.py.",
+    "name_key": "NPC_FOREST_ALTAR",
+    "color": [
+      0.55,
+      0.5,
+      0.45
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_FOREST_ALTAR_1"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_FOREST_ALTAR_LOCKED"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_FOREST_ALTAR_2"
+        ]
+      }
+    ]
+  },
+  "ruins_altar": {
+    "_comment": "Altar único do mapa (ruins_01_city): o livro que o grupo tem desperta o mini-chefe dele (needs_key + extra_summons no prop). Gerado por build_map_mechanics.py.",
+    "name_key": "NPC_RUINS_ALTAR",
+    "color": [
+      0.55,
+      0.5,
+      0.45
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_RUINS_ALTAR_1"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_RUINS_ALTAR_LOCKED"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_RUINS_ALTAR_2"
+        ]
+      }
+    ]
+  },
+  "fort_altar": {
+    "_comment": "Altar único do mapa (fort_01_gate): o livro que o grupo tem desperta o mini-chefe dele (needs_key + extra_summons no prop). Gerado por build_map_mechanics.py.",
+    "name_key": "NPC_FORT_ALTAR",
+    "color": [
+      0.55,
+      0.5,
+      0.45
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_FORT_ALTAR_1"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_FORT_ALTAR_LOCKED"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_FORT_ALTAR_2"
+        ]
+      }
+    ]
+  },
+  "catacombs_altar": {
+    "_comment": "Altar único do mapa (catacombs_01_depths): o livro que o grupo tem desperta o mini-chefe dele (needs_key + extra_summons no prop). Gerado por build_map_mechanics.py.",
+    "name_key": "NPC_CATACOMBS_ALTAR",
+    "color": [
+      0.55,
+      0.5,
+      0.45
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_CATACOMBS_ALTAR_1"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_CATACOMBS_ALTAR_LOCKED"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_CATACOMBS_ALTAR_2"
+        ]
+      }
+    ]
+  },
+  "desert_altar": {
+    "_comment": "Altar único do mapa (desert_01_canyon): o livro que o grupo tem desperta o mini-chefe dele (needs_key + extra_summons no prop). Gerado por build_map_mechanics.py.",
+    "name_key": "NPC_DESERT_ALTAR",
+    "color": [
+      0.55,
+      0.5,
+      0.45
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_DESERT_ALTAR_1"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_DESERT_ALTAR_LOCKED"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_DESERT_ALTAR_2"
+        ]
+      }
+    ]
+  },
+  "docks_altar": {
+    "_comment": "Altar único do mapa (docks_01_pier): o livro que o grupo tem desperta o mini-chefe dele (needs_key + extra_summons no prop). Gerado por build_map_mechanics.py.",
+    "name_key": "NPC_DOCKS_ALTAR",
+    "color": [
+      0.55,
+      0.5,
+      0.45
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_DOCKS_ALTAR_1"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_DOCKS_ALTAR_LOCKED"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_DOCKS_ALTAR_2"
+        ]
+      }
+    ]
+  },
+  "mine_altar": {
+    "_comment": "Altar único do mapa (mine_01_crystal_vein): o livro que o grupo tem desperta o mini-chefe dele (needs_key + extra_summons no prop). Gerado por build_map_mechanics.py.",
+    "name_key": "NPC_MINE_ALTAR",
+    "color": [
+      0.55,
+      0.5,
+      0.45
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_MINE_ALTAR_1"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_MINE_ALTAR_LOCKED"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_MINE_ALTAR_2"
+        ]
+      }
+    ]
+  },
+  "bunker_altar": {
+    "_comment": "Altar único do mapa (bunker_01_entrance): o livro que o grupo tem desperta o mini-chefe dele (needs_key + extra_summons no prop). Gerado por build_map_mechanics.py.",
+    "name_key": "NPC_BUNKER_ALTAR",
+    "color": [
+      0.55,
+      0.5,
+      0.45
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_BUNKER_ALTAR_1"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_BUNKER_ALTAR_LOCKED"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_BUNKER_ALTAR_2"
+        ]
+      }
+    ]
+  },
+  "dark_forest_altar": {
+    "_comment": "Altar único do mapa (dark_forest_01_woods): o livro que o grupo tem desperta o mini-chefe dele (needs_key + extra_summons no prop). Gerado por build_map_mechanics.py.",
+    "name_key": "NPC_DARK_FOREST_ALTAR",
+    "color": [
+      0.55,
+      0.5,
+      0.45
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_DARK_FOREST_ALTAR_1"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_DARK_FOREST_ALTAR_LOCKED"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_DARK_FOREST_ALTAR_2"
+        ]
+      }
+    ]
+  },
+  "ce_gravedigger": {
+    "name_key": "NPC_CE_GRAVEDIGGER",
+    "color": [
+      0.4,
+      0.35,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "ce_lungs"
+        },
+        "lines": [
+          "DLG_CEGRAVE_1",
+          "DLG_CEGRAVE_2",
+          "DLG_CEGRAVE_3",
+          "DLG_CEMETERY_BOOK_1"
+        ],
+        "offer": "ce_lungs"
+      },
+      {
+        "when": {
+          "quest_active": "ce_lungs"
+        },
+        "lines": [
+          "DLG_CEGRAVE_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_CEGRAVE_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Buzzed"
+      ],
+      "hair_color": [
+        0.3,
+        0.25,
+        0.2
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "ce_caretaker": {
+    "name_key": "NPC_CE_CARETAKER",
+    "color": [
+      0.45,
+      0.4,
+      0.5
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "ce_lantern"
+        },
+        "lines": [
+          "DLG_CECARE_1",
+          "DLG_CECARE_2",
+          "DLG_CECARE_3",
+          "DLG_CEMETERY_BOOK_2"
+        ],
+        "offer": "ce_lantern"
+      },
+      {
+        "when": {
+          "quest_active": "ce_lantern"
+        },
+        "lines": [
+          "DLG_CECARE_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_CECARE_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "female",
+      "hair": [
+        "Hair_Long"
+      ],
+      "hair_color": [
+        0.2,
+        0.2,
+        0.25
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "ce_warden": {
+    "name_key": "NPC_CE_WARDEN",
+    "color": [
+      0.35,
+      0.35,
+      0.4
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "ce_gate"
+        },
+        "lines": [
+          "DLG_CEWARD_1",
+          "DLG_CEWARD_2",
+          "DLG_CEWARD_3"
+        ],
+        "offer": "ce_gate"
+      },
+      {
+        "when": {
+          "quest_active": "ce_gate"
+        },
+        "lines": [
+          "DLG_CEWARD_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_CEWARD_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "cemetery_altar": {
+    "_comment": "Altar único do mapa (cemetery_01_yard): o livro que o grupo tem desperta o mini-chefe dele (needs_key + extra_summons no prop). Gerado por build_map_mechanics.py.",
+    "name_key": "NPC_CEMETERY_ALTAR",
+    "color": [
+      0.55,
+      0.5,
+      0.45
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_CEMETERY_ALTAR_1"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_CEMETERY_ALTAR_LOCKED"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_CEMETERY_ALTAR_2"
+        ]
+      }
+    ]
   }
 }

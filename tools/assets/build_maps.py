@@ -1906,5 +1906,7 @@ subprocess.run([sys.executable, "tools/assets/build_bunker.py"], check=True)  # 
 subprocess.run([sys.executable, "tools/assets/build_darkforest.py"], check=True)  # Floresta Escura ampliada (estrutura da Floresta, árvores secas, cogumelos, morcegos, cobras)
 subprocess.run([sys.executable, "tools/assets/set_monster_roster.py"], check=True)  # monstros próprios de cada mapa (sem repetir, fora Floresta, Esgoto e o Mímico)
 subprocess.run([sys.executable, "tools/assets/build_city_quests.py"], check=True)  # NPCs das cidades que abrem as missões dos mapas e a corrente Tortuga -> Capital -> Fazenda
+subprocess.run([sys.executable, "tools/assets/build_cemetery_quests.py"], check=True)  # Cemitério: moradores, portão e guardião (estrutura de missões dos mapas)
+subprocess.run([sys.executable, "tools/assets/build_map_mechanics.py"], check=True)  # livros, altar único, chaves e item do chefe em todos os mapas
 subprocess.run([sys.executable, "tools/assets/set_map_order.py"], check=True)  # ordem dos mapas: hubs Tortuga, Capital e Fazenda (sem portais em cadeia)
 print("OK", [k for k in arenas if k.split("_")[0] in ("forest", "ruins", "cemetery", "fort", "farm", "mine")])
