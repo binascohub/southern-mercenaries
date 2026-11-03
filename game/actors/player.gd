@@ -288,7 +288,7 @@ func request_tip_seen(id: String) -> void:
 ## Servidor: marca uma ação para a animação em todos os PCs (ataque, magia,
 ## esquiva, golpe sofrido). Um golpe sofrido não corta um ataque em andamento.
 func act(kind: String) -> void:
-	if kind == "hit" and _model and _model.current() in ["melee", "cast", "shoot", "roll", "knockback"]:
+	if kind == "hit" and _model and (_model.current() in ["melee", "cast", "shoot", "roll", "knockback"] or _model.current() in HeroModel.SKILL_ANIMS):
 		return
 	_action_seq += 1
 	action = "%s:%d" % [kind, _action_seq]
@@ -818,7 +818,9 @@ func _cast_slot(index: int) -> void:
 		return
 	resource -= cost
 	get_parent().skills.play_cast_sound.rpc(id, global_position, element)
-	act("melee" if class_id in ["ninja", "knight"] else ("shoot" if class_id == "archer" else "cast"))
+	# Cada habilidade tem o seu movimento do corpo (campo "anim" em data/skills.json); sem ele, o golpe, o tiro ou a magia da classe.
+	var skill_anim := String(skill.get("anim", ""))
+	act(skill_anim if skill_anim != "" and not mounted else ("melee" if class_id in ["ninja", "knight"] else ("shoot" if class_id == "archer" else "cast")))
 	# Sem recarga (as básicas) ainda respeitam o ritmo do ataque básico; no pátio
 	# de treino com recargas livres, todas ficam assim.
 	var cd := maxf(Skills.cooldown(skill, rank), data.basic_attack.cooldown)

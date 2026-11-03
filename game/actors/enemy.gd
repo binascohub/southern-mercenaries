@@ -54,6 +54,8 @@ var rank := ""
 var modifier := ""
 ## Chefe: fase atual (sincronizada, para a barra do chefe) e temporizadores das ações.
 var phase := 0
+## Golpe especial do chefe em curso, para a animação em todos os PCs: 0 nenhum, 1 pisão, 2 magia (cuspe), 3 investida, 4 rajada, 5 golpe pesado, 6 convocação.
+var skill_pose := 0
 var boss_timers := {}
 var _wave_timer := -1.0  ## ondas de ajudantes (dados "waves"): tempo até a próxima, número da próxima e quem já veio
 var _wave_index := 0
@@ -91,6 +93,14 @@ var _strike := {}
 ## Golpes agendados no chão (gás da Rainha): {at, radius, time, damage, extra}.
 var _pending: Array[Dictionary] = []
 var _special := ""
+var _summon_time := 0.0
+var _pose_time := 0.0
+var _pose_shown := 0
+var _pose_pitch := 0.0
+var _pose_lift := 0.0
+var _pose_yaw := 0.0
+var _pose_scale := Vector3.ONE
+var _visual_scale0 := Vector3.ZERO
 var _trail_timer := 0.0
 var _ripple: MeshInstance3D
 ## Modelo animado da família (rato, morcego, jacaré); null = cápsula.
@@ -222,6 +232,7 @@ func _physics_process(delta: float) -> void:
 			move_and_collide(_push * delta)
 			global_position.y = 0.0
 		_think(delta)
+		skill_pose = _boss_skill_pose(delta)
 		net_position = global_position
 	else:
 		if net_position != _last_net_position:
@@ -259,6 +270,7 @@ func _update_waves(delta: float) -> void:
 	if _wave_timer > 0.0:
 		return
 	_wave_timer = float(waves.get("interval", 25.0))
+	start_summon()
 	var before := get_tree().get_nodes_in_group(&"enemies")
 	for entry: Dictionary in list[_wave_index]:
 		get_tree().call_group(&"arena", &"spawn_adds", global_position, String(entry.monster), int(entry.count), float(waves.get("radius", 6.0)))
@@ -493,6 +505,32 @@ func _teleport_away() -> void:
 ## O Pacto da Rainha a deixa mais rápida.
 func speed_mult() -> float:
 	return float(data.get("pact_speed", 1.0)) if phase >= 3 else 1.0
+
+
+## Convocação (ondas de ajudantes, enxame): o chefe levanta os braços por um instante (animação do chefe, `skill_pose` 6).
+func start_summon() -> void:
+	_summon_time = 1.4
+
+
+## Golpe especial do chefe visto pela animação (servidor): lê o estado e o `_special`; 0 se não é chefe ou não está golpeando.
+func _boss_skill_pose(delta: float) -> int:
+	if category() != "boss" and category() != "miniboss":
+		return 0
+	if _summon_time > 0.0:
+		_summon_time -= delta
+		return 6
+	if state != State.WINDUP and state != State.CHARGE and state != State.RECOVER:
+		return 0
+	match _special:
+		"slam":
+			return 1
+		"spit":
+			return 2
+		"charge":
+			return 3
+		"gust":
+			return 4
+	return 5
 
 
 ## Pisão em área em volta do monstro (chefe), com aviso no chão.
@@ -825,7 +863,7 @@ func _nearest_player() -> Node3D:
 func _add_synchronizer() -> void:
 	var config := SceneReplicationConfig.new()
 	var always := [":net_position", ":yaw"]
-	var on_change := [":state", ":health", ":max_health", ":states_mask", ":phase"]
+	var on_change := [":state", ":health", ":max_health", ":states_mask", ":phase", ":skill_pose"]
 	for prop in always + on_change:
 		var path := NodePath("." + prop)
 		config.add_property(path)
@@ -1047,6 +1085,91 @@ func _tick_visual(delta: float) -> void:
 		_material.albedo_color = _base_color.lerp(Color(tint.r, tint.g, tint.b), tint.a)
 	if _model:
 		_tick_model(delta, tint)
+	_tick_boss_pose(delta)
+
+
+## Comprimento do aviso (s) de cada golpe especial do chefe, para pôr a animação no compasso.
+func _pose_length(pose: int) -> float:
+	match pose:
+		1:
+			return float(data.get("slam", {}).get("windup", 0.9))
+		3:
+			return float(data.get("charge", {}).get("windup", 0.8))
+		4:
+			return float(data.get("gust", {}).get("windup", 1.0))
+		6:
+			return 1.4
+	return maxf(float(data.get("attack_windup", 0.6)), 0.3)
+
+
+## Animação dos golpes especiais do chefe por cima de qualquer corpo (modelo animado, malha parada ou cápsula): o pisão sobe e desaba, a magia
+## infla e se inclina para trás, a investida agacha e dispara, a rajada gira, a convocação ergue o corpo e o golpe pesado se arma e cai.
+func _tick_boss_pose(delta: float) -> void:
+	if _visual_scale0 == Vector3.ZERO:
+		_visual_scale0 = _visual.scale
+	if skill_pose != _pose_shown:
+		_pose_shown = skill_pose
+		_pose_time = 0.0
+	_pose_time += delta
+	var length := _pose_length(skill_pose)
+	var p := clampf(_pose_time / length, 0.0, 1.0)
+	var after := _pose_time - length  # tempo depois do aviso (o golpe saiu)
+	var pitch := 0.0
+	var lift := 0.0
+	var yaw_extra := 0.0
+	var squash := Vector3.ONE
+	match skill_pose:
+		1:
+			if p < 1.0:
+				pitch = -0.5 * ease(p, 0.6)
+				lift = 0.55 * ease(p, 0.6)
+				squash = Vector3(0.95, 1.1, 0.95)
+			elif after < 0.7:
+				pitch = 0.5
+				squash = Vector3(1.12, 0.84, 1.12)
+		2:
+			if p < 1.0:
+				pitch = -0.32 * p
+				lift = 0.25 * p
+				squash = Vector3.ONE * (1.0 + 0.14 * p + 0.03 * sin(_pose_time * 18.0))
+			elif after < 0.5:
+				pitch = 0.4
+		3:
+			if p < 1.0:
+				pitch = 0.3 * p
+				lift = -0.08 * p
+				squash = Vector3(1.05, 1.0 - 0.14 * p, 1.1)
+			else:
+				pitch = 0.38
+				squash = Vector3(0.94, 0.94, 1.16)
+		4:
+			yaw_extra = TAU * 2.0 * ease(minf(_pose_time / (length + 0.5), 1.0), 0.8)
+			lift = 0.3 * sin(minf(_pose_time / (length + 0.5), 1.0) * PI)
+			squash = Vector3.ONE * (1.0 + 0.1 * sin(_pose_time * 10.0))
+		5:
+			if p < 1.0:
+				pitch = -0.22 * ease(p, 0.6)
+				lift = 0.12 * p
+			elif after < 0.4:
+				pitch = 0.4
+				squash = Vector3(1.06, 0.94, 1.06)
+		6:
+			lift = 0.45 * minf(_pose_time * 3.0, 1.0) + 0.05 * sin(_pose_time * 14.0)
+			pitch = -0.25
+			squash = Vector3.ONE * (1.06 + 0.04 * sin(_pose_time * 12.0))
+	var k := minf(delta * 14.0, 1.0)
+	_pose_pitch = lerpf(_pose_pitch, pitch, k)
+	_pose_lift = lerpf(_pose_lift, lift, k)
+	_pose_yaw = yaw_extra if skill_pose == 4 else lerpf(_pose_yaw, 0.0, k)
+	_pose_scale = _pose_scale.lerp(squash, k)
+	if absf(_pose_pitch) < 0.002 and absf(_pose_lift) < 0.002 and skill_pose == 0 and _pose_scale.is_equal_approx(Vector3.ONE):
+		_visual.rotation.x = 0.0
+		_visual.scale = _visual_scale0
+		return
+	_visual.rotation.y = yaw + _pose_yaw
+	_visual.rotation.x = _pose_pitch
+	_visual.scale = _visual_scale0 * _pose_scale
+	_visual.position.y = (_visual.position.y + _pose_lift) if data.get("flyer", false) else _pose_lift
 
 
 ## Modelo animado: animação pelo estado e pela velocidade vista na tela (vale

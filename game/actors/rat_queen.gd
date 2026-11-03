@@ -33,6 +33,7 @@ static func update(q: Enemy, delta: float, target: Node3D, dist: float) -> bool:
 		1:
 			if float(timers.get("swarm", 0.0)) <= 0.0:
 				timers["swarm"] = float(data.swarm.interval)
+				q.start_summon()
 				q.get_tree().call_group(&"arena", &"spawn_adds", q.global_position, String(data.swarm.monster),
 					int(data.swarm.count), 3.0)
 		2:

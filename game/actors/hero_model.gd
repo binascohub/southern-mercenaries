@@ -39,7 +39,19 @@ const ANIMS := {
 	"knockback": "Hit_Knockback", "zombie_idle": "Zombie_Idle_Loop", "zombie_walk": "Zombie_Walk_Fwd_Loop",
 	"zombie_scratch": "Zombie_Scratch", "fold_arms": "Idle_FoldArms_Loop", "lantern": "Idle_Lantern_Loop",
 	"carry": "Walk_Carry_Loop", "rail": "Idle_Rail_Loop",
+	# Movimentos das habilidades (data/skills.json, campo "anim"): arremesso, braços ao alto, regar, plantar no chão, varrer, defesa de escudo, investidas,
+	# sequências de espada, gancho, salto e pancada no chão.
+	"throw": "OverhandThrow", "call": "Idle_Rail_Call", "call_big": "Idle_Rail_Call", "pour": "Farm_Watering", "plant": "Farm_PlantSeed",
+	"sweep": "Farm_Harvest", "guard": "Shield_OneShot", "dash": "Sword_Dash", "shield_dash": "Shield_Dash", "combo": "Sword_Regular_Combo",
+	"heavy": "Sword_Heavy_Combo", "hook": "Melee_Hook", "leap": "NinjaJump_Start", "slam": "Jump_Land",
 }
+## Velocidade de cada movimento de habilidade (a animação do arquivo é lenta para um golpe de jogo); as demais tocam a 1x.
+const ANIM_SPEED := {
+	"throw": 1.5, "call": 1.9, "call_big": 1.35, "pour": 2.6, "plant": 2.1, "sweep": 2.2, "guard": 1.1, "dash": 2.0, "shield_dash": 1.2,
+	"combo": 2.1, "heavy": 3.1, "hook": 1.1, "leap": 1.3, "slam": 1.1,
+}
+## Movimentos de habilidade: não são cortados por um golpe sofrido.
+const SKILL_ANIMS := ["throw", "call", "call_big", "pour", "plant", "sweep", "guard", "dash", "shield_dash", "combo", "heavy", "hook", "leap", "slam"]
 ## Golpes corpo a corpo em sequência (dentro de COMBO_WINDOW s, o próximo da lista).
 const MELEE_COMBO := ["melee", "melee_b", "melee_c"]
 const COMBO_WINDOW := 1.2
@@ -666,4 +678,4 @@ func _play(key: String, blend := BLEND) -> void:
 	if anim_name == "":
 		return
 	_current = key
-	_anim.play(anim_name, blend)
+	_anim.play(anim_name, blend, float(ANIM_SPEED.get(key, 1.0)))

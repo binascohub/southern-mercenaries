@@ -268,3 +268,9 @@ Materiais raros por família: cauda do Feiticeiro-Aranha, glândula de Sapo Áci
 - Grendel e a Mãe: luta em dupla (proposta) ou só a Mãe como chefe e Grendel como mini-chefe?
 - Ordem dos 10 mapas: manter a proposta?
 - Rejogar áreas (Expedição) e dificuldades: propostos em `15-modos.md`; novo jogo começa do zero (decidido).
+
+## Animação dos golpes especiais dos chefes
+
+Todo chefe e mini-chefe (categoria `boss`/`miniboss`) ganha um movimento do corpo em cada golpe especial, por cima de qualquer modelo (animado, malha parada ou cápsula): `Enemy.skill_pose` (sincronizado) escolhe entre pisão (sobe e desaba), magia/cuspe (inclina para trás e infla), investida (agacha e dispara), rajada (gira), convocação (ergue o corpo) e golpe pesado (arma e cai). Ver `_tick_boss_pose` em `game/actors/enemy.gd`.
+
+Os heróis usam, em cada habilidade, o movimento do campo `anim` de `data/skills.json` (arremesso, braços ao alto, regar, plantar, varrer, escudo, investida, combos, gancho, salto, pancada no chão), tocado por `HeroModel` com a velocidade de `ANIM_SPEED`. O Invocador de vento ficou de fora (já tem as suas).

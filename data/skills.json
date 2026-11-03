@@ -224,7 +224,8 @@
       "cooldown_per_rank": -1.0,
       "distance": 8.0,
       "name_key": "SKILL_TELEPORT_NAME",
-      "desc_key": "SKILL_TELEPORT_DESC"
+      "desc_key": "SKILL_TELEPORT_DESC",
+      "anim": "leap"
     },
     "mana_shield": {
       "kind": "passive",
@@ -274,7 +275,8 @@
       "explode": 3.0,
       "state": "burning",
       "name_key": "SKILL_FIREBALL_NAME",
-      "desc_key": "SKILL_FIREBALL_DESC"
+      "desc_key": "SKILL_FIREBALL_DESC",
+      "anim": "throw"
     },
     "flame_blessing": {
       "kind": "active",
@@ -288,7 +290,8 @@
       "area": 8.0,
       "duration": 8.0,
       "name_key": "SKILL_FLAME_BLESSING_NAME",
-      "desc_key": "SKILL_FLAME_BLESSING_DESC"
+      "desc_key": "SKILL_FLAME_BLESSING_DESC",
+      "anim": "call"
     },
     "fire_lance": {
       "kind": "active",
@@ -303,7 +306,8 @@
       "radius": 0.35,
       "pierce": 1,
       "name_key": "SKILL_FIRE_LANCE_NAME",
-      "desc_key": "SKILL_FIRE_LANCE_DESC"
+      "desc_key": "SKILL_FIRE_LANCE_DESC",
+      "anim": "throw"
     },
     "fire_wall": {
       "kind": "active",
@@ -320,7 +324,8 @@
       "duration": 6.0,
       "state": "burning",
       "name_key": "SKILL_FIRE_WALL_NAME",
-      "desc_key": "SKILL_FIRE_WALL_DESC"
+      "desc_key": "SKILL_FIRE_WALL_DESC",
+      "anim": "sweep"
     },
     "meteor": {
       "kind": "active",
@@ -337,7 +342,8 @@
       "ground_duration": 4.0,
       "ground_power": 0.4,
       "name_key": "SKILL_METEOR_NAME",
-      "desc_key": "SKILL_METEOR_DESC"
+      "desc_key": "SKILL_METEOR_DESC",
+      "anim": "call_big"
     },
     "water_bolt": {
       "kind": "active",
@@ -367,7 +373,8 @@
       "state_duration": 2.0,
       "state_duration_per_rank": 0.25,
       "name_key": "SKILL_FROST_NOVA_NAME",
-      "desc_key": "SKILL_FROST_NOVA_DESC"
+      "desc_key": "SKILL_FROST_NOVA_DESC",
+      "anim": "slam"
     },
     "healing_rain": {
       "kind": "active",
@@ -384,7 +391,8 @@
       "duration": 6.0,
       "state": "soaked",
       "name_key": "SKILL_HEALING_RAIN_NAME",
-      "desc_key": "SKILL_HEALING_RAIN_DESC"
+      "desc_key": "SKILL_HEALING_RAIN_DESC",
+      "anim": "pour"
     },
     "ice_lance": {
       "kind": "active",
@@ -402,7 +410,8 @@
       },
       "state_duration": 2.0,
       "name_key": "SKILL_ICE_LANCE_NAME",
-      "desc_key": "SKILL_ICE_LANCE_DESC"
+      "desc_key": "SKILL_ICE_LANCE_DESC",
+      "anim": "throw"
     },
     "tidal_wave": {
       "kind": "active",
@@ -417,7 +426,8 @@
       "push": 3.0,
       "state": "soaked",
       "name_key": "SKILL_TIDAL_WAVE_NAME",
-      "desc_key": "SKILL_TIDAL_WAVE_DESC"
+      "desc_key": "SKILL_TIDAL_WAVE_DESC",
+      "anim": "sweep"
     },
     "blizzard": {
       "kind": "active",
@@ -435,7 +445,8 @@
       "state": "slowed",
       "freeze_after": 3.0,
       "name_key": "SKILL_BLIZZARD_NAME",
-      "desc_key": "SKILL_BLIZZARD_DESC"
+      "desc_key": "SKILL_BLIZZARD_DESC",
+      "anim": "call_big"
     },
     "wind_blade": {
       "kind": "active",
@@ -469,7 +480,8 @@
       "falloff": 0.15,
       "state": "shocked",
       "name_key": "SKILL_CHAIN_LIGHTNING_NAME",
-      "desc_key": "SKILL_CHAIN_LIGHTNING_DESC"
+      "desc_key": "SKILL_CHAIN_LIGHTNING_DESC",
+      "anim": "call"
     },
     "tailwind": {
       "kind": "active",
@@ -483,7 +495,8 @@
       "area": 8.0,
       "duration": 8.0,
       "name_key": "SKILL_TAILWIND_NAME",
-      "desc_key": "SKILL_TAILWIND_DESC"
+      "desc_key": "SKILL_TAILWIND_DESC",
+      "anim": "call"
     },
     "lightning_bolt": {
       "kind": "active",
@@ -496,7 +509,8 @@
       "range": 14.0,
       "state": "shocked",
       "name_key": "SKILL_LIGHTNING_BOLT_NAME",
-      "desc_key": "SKILL_LIGHTNING_BOLT_DESC"
+      "desc_key": "SKILL_LIGHTNING_BOLT_DESC",
+      "anim": "call"
     },
     "tornado": {
       "kind": "active",
@@ -513,7 +527,8 @@
       "duration": 5.0,
       "pull": 4.0,
       "name_key": "SKILL_TORNADO_NAME",
-      "desc_key": "SKILL_TORNADO_DESC"
+      "desc_key": "SKILL_TORNADO_DESC",
+      "anim": "sweep"
     },
     "storm": {
       "kind": "active",
@@ -530,7 +545,8 @@
       "state": "shocked",
       "name_key": "SKILL_STORM_NAME",
       "desc_key": "SKILL_STORM_DESC",
-      "bolts_per_second": 2.0
+      "bolts_per_second": 2.0,
+      "anim": "call_big"
     },
     "stone_bolt": {
       "kind": "active",
@@ -546,7 +562,8 @@
       "state": "stunned",
       "state_chance": 0.15,
       "name_key": "SKILL_STONE_BOLT_NAME",
-      "desc_key": "SKILL_STONE_BOLT_DESC"
+      "desc_key": "SKILL_STONE_BOLT_DESC",
+      "anim": "throw"
     },
     "earth_spikes": {
       "kind": "active",
@@ -560,7 +577,8 @@
       "width": 1.6,
       "state": "knocked_down",
       "name_key": "SKILL_EARTH_SPIKES_NAME",
-      "desc_key": "SKILL_EARTH_SPIKES_DESC"
+      "desc_key": "SKILL_EARTH_SPIKES_DESC",
+      "anim": "plant"
     },
     "stone_skin": {
       "kind": "active",
@@ -573,7 +591,8 @@
       "range": 10.0,
       "duration": 8.0,
       "name_key": "SKILL_STONE_SKIN_NAME",
-      "desc_key": "SKILL_STONE_SKIN_DESC"
+      "desc_key": "SKILL_STONE_SKIN_DESC",
+      "anim": "guard"
     },
     "boulder": {
       "kind": "active",
@@ -589,7 +608,8 @@
       "state": "stunned",
       "state_chance": 1.0,
       "name_key": "SKILL_BOULDER_NAME",
-      "desc_key": "SKILL_BOULDER_DESC"
+      "desc_key": "SKILL_BOULDER_DESC",
+      "anim": "throw"
     },
     "quake": {
       "kind": "active",
@@ -605,7 +625,8 @@
       "state_duration": 1.5,
       "state_duration_per_rank": 0.2,
       "name_key": "SKILL_QUAKE_NAME",
-      "desc_key": "SKILL_QUAKE_DESC"
+      "desc_key": "SKILL_QUAKE_DESC",
+      "anim": "slam"
     },
     "earthquake": {
       "kind": "active",
@@ -622,7 +643,8 @@
       "state_chance": 1.0,
       "state_duration": 2.0,
       "name_key": "SKILL_EARTHQUAKE_NAME",
-      "desc_key": "SKILL_EARTHQUAKE_DESC"
+      "desc_key": "SKILL_EARTHQUAKE_DESC",
+      "anim": "call_big"
     },
     "precise_shot": {
       "kind": "active",
@@ -651,7 +673,8 @@
       "area": 4.0,
       "state": "crippled",
       "name_key": "SKILL_BACK_LEAP_NAME",
-      "desc_key": "SKILL_BACK_LEAP_DESC"
+      "desc_key": "SKILL_BACK_LEAP_DESC",
+      "anim": "leap"
     },
     "eagle_eye": {
       "kind": "passive",
@@ -680,7 +703,8 @@
       "root": 2.0,
       "root_per_rank": 0.25,
       "name_key": "SKILL_SPIKE_TRAP_NAME",
-      "desc_key": "SKILL_SPIKE_TRAP_DESC"
+      "desc_key": "SKILL_SPIKE_TRAP_DESC",
+      "anim": "plant"
     },
     "arrow_fan": {
       "kind": "active",
@@ -730,7 +754,8 @@
       "range": 25.0,
       "duration": 8.0,
       "name_key": "SKILL_MARK_TARGET_NAME",
-      "desc_key": "SKILL_MARK_TARGET_DESC"
+      "desc_key": "SKILL_MARK_TARGET_DESC",
+      "anim": "call"
     },
     "hunters_campfire": {
       "kind": "active",
@@ -748,7 +773,8 @@
       "value": 0.15,
       "per_rank": 0.03,
       "name_key": "SKILL_HUNTERS_CAMPFIRE_NAME",
-      "desc_key": "SKILL_HUNTERS_CAMPFIRE_DESC"
+      "desc_key": "SKILL_HUNTERS_CAMPFIRE_DESC",
+      "anim": "plant"
     },
     "flaming_arrow": {
       "kind": "active",
@@ -782,7 +808,8 @@
       "duration": 5.0,
       "state": "burning",
       "name_key": "SKILL_FIRE_RAIN_NAME",
-      "desc_key": "SKILL_FIRE_RAIN_DESC"
+      "desc_key": "SKILL_FIRE_RAIN_DESC",
+      "anim": "call_big"
     },
     "spring_arrow": {
       "kind": "active",
@@ -800,7 +827,8 @@
       "duration": 6.0,
       "state": "soaked",
       "name_key": "SKILL_SPRING_ARROW_NAME",
-      "desc_key": "SKILL_SPRING_ARROW_DESC"
+      "desc_key": "SKILL_SPRING_ARROW_DESC",
+      "anim": "pour"
     },
     "frost_arrow": {
       "kind": "active",
@@ -837,7 +865,8 @@
       "state": "slowed",
       "freeze_after": 3.0,
       "name_key": "SKILL_HAIL_STORM_NAME",
-      "desc_key": "SKILL_HAIL_STORM_DESC"
+      "desc_key": "SKILL_HAIL_STORM_DESC",
+      "anim": "call_big"
     },
     "hunters_wind": {
       "kind": "active",
@@ -851,7 +880,8 @@
       "area": 8.0,
       "duration": 8.0,
       "name_key": "SKILL_HUNTERS_WIND_NAME",
-      "desc_key": "SKILL_HUNTERS_WIND_DESC"
+      "desc_key": "SKILL_HUNTERS_WIND_DESC",
+      "anim": "call"
     },
     "thunder_arrow": {
       "kind": "active",
@@ -884,7 +914,8 @@
       "bolt_jumps": 2,
       "state": "shocked",
       "name_key": "SKILL_STORM_VOLLEY_NAME",
-      "desc_key": "SKILL_STORM_VOLLEY_DESC"
+      "desc_key": "SKILL_STORM_VOLLEY_DESC",
+      "anim": "call_big"
     },
     "bulwark_arrow": {
       "kind": "active",
@@ -897,7 +928,8 @@
       "area": 5.0,
       "duration": 8.0,
       "name_key": "SKILL_BULWARK_ARROW_NAME",
-      "desc_key": "SKILL_BULWARK_ARROW_DESC"
+      "desc_key": "SKILL_BULWARK_ARROW_DESC",
+      "anim": "guard"
     },
     "boulder_arrow": {
       "kind": "active",
@@ -933,7 +965,8 @@
       "state": "knocked_down",
       "state_chance": 0.3,
       "name_key": "SKILL_STONE_RAIN_NAME",
-      "desc_key": "SKILL_STONE_RAIN_DESC"
+      "desc_key": "SKILL_STONE_RAIN_DESC",
+      "anim": "call_big"
     },
     "twin_slash": {
       "kind": "active",
@@ -948,7 +981,8 @@
       "arc": 100.0,
       "strikes": 2,
       "name_key": "SKILL_TWIN_SLASH_NAME",
-      "desc_key": "SKILL_TWIN_SLASH_DESC"
+      "desc_key": "SKILL_TWIN_SLASH_DESC",
+      "anim": "combo"
     },
     "shadow_step": {
       "kind": "active",
@@ -961,7 +995,8 @@
       "value": 0.3,
       "per_rank": 0.05,
       "name_key": "SKILL_SHADOW_STEP_NAME",
-      "desc_key": "SKILL_SHADOW_STEP_DESC"
+      "desc_key": "SKILL_SHADOW_STEP_DESC",
+      "anim": "leap"
     },
     "backstab": {
       "kind": "passive",
@@ -981,7 +1016,8 @@
       "duration": 3.0,
       "duration_per_rank": 0.5,
       "name_key": "SKILL_SMOKE_BOMB_NAME",
-      "desc_key": "SKILL_SMOKE_BOMB_DESC"
+      "desc_key": "SKILL_SMOKE_BOMB_DESC",
+      "anim": "throw"
     },
     "iron_body": {
       "kind": "active",
@@ -994,7 +1030,8 @@
       "duration_per_rank": 0.5,
       "area": 6.0,
       "name_key": "SKILL_IRON_BODY_NAME",
-      "desc_key": "SKILL_IRON_BODY_DESC"
+      "desc_key": "SKILL_IRON_BODY_DESC",
+      "anim": "guard"
     },
     "evasion": {
       "kind": "passive",
@@ -1017,7 +1054,8 @@
       "range": 8.0,
       "targets": 3,
       "name_key": "SKILL_BLINK_STRIKE_NAME",
-      "desc_key": "SKILL_BLINK_STRIKE_DESC"
+      "desc_key": "SKILL_BLINK_STRIKE_DESC",
+      "anim": "dash"
     },
     "fire_seal": {
       "kind": "active",
@@ -1034,7 +1072,8 @@
       "value": 0.15,
       "per_rank": 0.03,
       "name_key": "SKILL_FIRE_SEAL_NAME",
-      "desc_key": "SKILL_FIRE_SEAL_DESC"
+      "desc_key": "SKILL_FIRE_SEAL_DESC",
+      "anim": "plant"
     },
     "flame_strike": {
       "kind": "active",
@@ -1050,7 +1089,8 @@
       "state": "burning",
       "dot_mult": 2.0,
       "name_key": "SKILL_FLAME_STRIKE_NAME",
-      "desc_key": "SKILL_FLAME_STRIKE_DESC"
+      "desc_key": "SKILL_FLAME_STRIKE_DESC",
+      "anim": "combo"
     },
     "flame_thousand_cuts": {
       "kind": "active",
@@ -1065,7 +1105,8 @@
       "targets": 8,
       "state": "burning",
       "name_key": "SKILL_FLAME_THOUSAND_CUTS_NAME",
-      "desc_key": "SKILL_FLAME_THOUSAND_CUTS_DESC"
+      "desc_key": "SKILL_FLAME_THOUSAND_CUTS_DESC",
+      "anim": "heavy"
     },
     "mist_seal": {
       "kind": "active",
@@ -1082,7 +1123,8 @@
       "duration": 6.0,
       "state": "soaked",
       "name_key": "SKILL_MIST_SEAL_NAME",
-      "desc_key": "SKILL_MIST_SEAL_DESC"
+      "desc_key": "SKILL_MIST_SEAL_DESC",
+      "anim": "plant"
     },
     "ice_fang": {
       "kind": "active",
@@ -1100,7 +1142,8 @@
       },
       "state_duration": 2.0,
       "name_key": "SKILL_ICE_FANG_NAME",
-      "desc_key": "SKILL_ICE_FANG_DESC"
+      "desc_key": "SKILL_ICE_FANG_DESC",
+      "anim": "combo"
     },
     "rain_thousand_cuts": {
       "kind": "active",
@@ -1115,7 +1158,8 @@
       "targets": 8,
       "state": "soaked",
       "name_key": "SKILL_RAIN_THOUSAND_CUTS_NAME",
-      "desc_key": "SKILL_RAIN_THOUSAND_CUTS_DESC"
+      "desc_key": "SKILL_RAIN_THOUSAND_CUTS_DESC",
+      "anim": "heavy"
     },
     "wind_seal": {
       "kind": "active",
@@ -1129,7 +1173,8 @@
       "area": 8.0,
       "duration": 8.0,
       "name_key": "SKILL_WIND_SEAL_NAME",
-      "desc_key": "SKILL_WIND_SEAL_DESC"
+      "desc_key": "SKILL_WIND_SEAL_DESC",
+      "anim": "plant"
     },
     "lightning_flash": {
       "kind": "active",
@@ -1142,7 +1187,8 @@
       "range": 12.0,
       "state": "shocked",
       "name_key": "SKILL_LIGHTNING_FLASH_NAME",
-      "desc_key": "SKILL_LIGHTNING_FLASH_DESC"
+      "desc_key": "SKILL_LIGHTNING_FLASH_DESC",
+      "anim": "dash"
     },
     "storm_thousand_cuts": {
       "kind": "active",
@@ -1158,7 +1204,8 @@
       "state": "shocked",
       "sparks": 2.5,
       "name_key": "SKILL_STORM_THOUSAND_CUTS_NAME",
-      "desc_key": "SKILL_STORM_THOUSAND_CUTS_DESC"
+      "desc_key": "SKILL_STORM_THOUSAND_CUTS_DESC",
+      "anim": "heavy"
     },
     "stone_seal": {
       "kind": "active",
@@ -1171,7 +1218,8 @@
       "area": 5.0,
       "duration": 8.0,
       "name_key": "SKILL_STONE_SEAL_NAME",
-      "desc_key": "SKILL_STONE_SEAL_DESC"
+      "desc_key": "SKILL_STONE_SEAL_DESC",
+      "anim": "plant"
     },
     "stone_fang": {
       "kind": "active",
@@ -1188,7 +1236,8 @@
       "state_chance": 1.0,
       "state_duration": 1.5,
       "name_key": "SKILL_STONE_FANG_NAME",
-      "desc_key": "SKILL_STONE_FANG_DESC"
+      "desc_key": "SKILL_STONE_FANG_DESC",
+      "anim": "combo"
     },
     "quake_thousand_cuts": {
       "kind": "active",
@@ -1204,7 +1253,8 @@
       "state": "knocked_down",
       "state_chance": 1.0,
       "name_key": "SKILL_QUAKE_THOUSAND_CUTS_NAME",
-      "desc_key": "SKILL_QUAKE_THOUSAND_CUTS_DESC"
+      "desc_key": "SKILL_QUAKE_THOUSAND_CUTS_DESC",
+      "anim": "heavy"
     },
     "call_companion": {
       "kind": "active",
@@ -1222,7 +1272,8 @@
         5
       ],
       "name_key": "SKILL_CALL_COMPANION_NAME",
-      "desc_key": "SKILL_CALL_COMPANION_DESC"
+      "desc_key": "SKILL_CALL_COMPANION_DESC",
+      "anim": "call"
     },
     "flock": {
       "kind": "active",
@@ -1273,7 +1324,8 @@
       "count": 1,
       "duration": 15.0,
       "name_key": "SKILL_GUARDIAN_BEAR_NAME",
-      "desc_key": "SKILL_GUARDIAN_BEAR_DESC"
+      "desc_key": "SKILL_GUARDIAN_BEAR_DESC",
+      "anim": "call"
     },
     "stampede": {
       "kind": "active",
@@ -1288,7 +1340,8 @@
       "width": 2.5,
       "name_key": "SKILL_STAMPEDE_NAME",
       "desc_key": "SKILL_STAMPEDE_DESC",
-      "extra_state": "knocked_down"
+      "extra_state": "knocked_down",
+      "anim": "sweep"
     },
     "animal_rescue": {
       "kind": "active",
@@ -1300,7 +1353,8 @@
       "per_rank": 0.05,
       "range": 20.0,
       "name_key": "SKILL_ANIMAL_RESCUE_NAME",
-      "desc_key": "SKILL_ANIMAL_RESCUE_DESC"
+      "desc_key": "SKILL_ANIMAL_RESCUE_DESC",
+      "anim": "call"
     },
     "den_warmth": {
       "kind": "active",
@@ -1314,7 +1368,8 @@
       "area": 8.0,
       "duration": 8.0,
       "name_key": "SKILL_DEN_WARMTH_NAME",
-      "desc_key": "SKILL_DEN_WARMTH_DESC"
+      "desc_key": "SKILL_DEN_WARMTH_DESC",
+      "anim": "call"
     },
     "salamander_bite": {
       "kind": "active",
@@ -1328,7 +1383,8 @@
       "state": "burning",
       "dot_mult": 2.0,
       "name_key": "SKILL_SALAMANDER_BITE_NAME",
-      "desc_key": "SKILL_SALAMANDER_BITE_DESC"
+      "desc_key": "SKILL_SALAMANDER_BITE_DESC",
+      "anim": "hook"
     },
     "fire_stampede": {
       "kind": "active",
@@ -1342,7 +1398,8 @@
       "width": 6.0,
       "state": "burning",
       "name_key": "SKILL_FIRE_STAMPEDE_NAME",
-      "desc_key": "SKILL_FIRE_STAMPEDE_DESC"
+      "desc_key": "SKILL_FIRE_STAMPEDE_DESC",
+      "anim": "call_big"
     },
     "otter_spring": {
       "kind": "active",
@@ -1359,7 +1416,8 @@
       "duration": 6.0,
       "state": "soaked",
       "name_key": "SKILL_OTTER_SPRING_NAME",
-      "desc_key": "SKILL_OTTER_SPRING_DESC"
+      "desc_key": "SKILL_OTTER_SPRING_DESC",
+      "anim": "pour"
     },
     "narwhal_charge": {
       "kind": "active",
@@ -1375,7 +1433,8 @@
       },
       "state_duration": 2.0,
       "name_key": "SKILL_NARWHAL_CHARGE_NAME",
-      "desc_key": "SKILL_NARWHAL_CHARGE_DESC"
+      "desc_key": "SKILL_NARWHAL_CHARGE_DESC",
+      "anim": "dash"
     },
     "whale_song": {
       "kind": "active",
@@ -1391,7 +1450,8 @@
       "push": 3.0,
       "state": "soaked",
       "name_key": "SKILL_WHALE_SONG_NAME",
-      "desc_key": "SKILL_WHALE_SONG_DESC"
+      "desc_key": "SKILL_WHALE_SONG_DESC",
+      "anim": "call_big"
     },
     "falcon_wings": {
       "kind": "active",
@@ -1449,7 +1509,8 @@
       "area": 5.0,
       "duration": 8.0,
       "name_key": "SKILL_TURTLE_SHELL_NAME",
-      "desc_key": "SKILL_TURTLE_SHELL_DESC"
+      "desc_key": "SKILL_TURTLE_SHELL_DESC",
+      "anim": "guard"
     },
     "rhino_charge": {
       "kind": "active",
@@ -1464,7 +1525,8 @@
       "state_chance": 1.0,
       "state_duration": 1.5,
       "name_key": "SKILL_RHINO_CHARGE_NAME",
-      "desc_key": "SKILL_RHINO_CHARGE_DESC"
+      "desc_key": "SKILL_RHINO_CHARGE_DESC",
+      "anim": "shield_dash"
     },
     "mammoth_stomp": {
       "kind": "active",
@@ -1482,7 +1544,8 @@
       "state": "knocked_down",
       "state_chance": 1.0,
       "name_key": "SKILL_MAMMOTH_STOMP_NAME",
-      "desc_key": "SKILL_MAMMOTH_STOMP_DESC"
+      "desc_key": "SKILL_MAMMOTH_STOMP_DESC",
+      "anim": "slam"
     },
     "lance_thrust": {
       "kind": "active",
@@ -1497,7 +1560,8 @@
       "arc": 50.0,
       "strikes": 1,
       "name_key": "SKILL_LANCE_THRUST_NAME",
-      "desc_key": "SKILL_LANCE_THRUST_DESC"
+      "desc_key": "SKILL_LANCE_THRUST_DESC",
+      "anim": "dash"
     },
     "charge": {
       "kind": "active",
@@ -1515,7 +1579,8 @@
       "foot_power_mult": 0.667,
       "foot_push": 2.5,
       "name_key": "SKILL_CHARGE_NAME",
-      "desc_key": "SKILL_CHARGE_DESC"
+      "desc_key": "SKILL_CHARGE_DESC",
+      "anim": "shield_dash"
     },
     "heavy_armor": {
       "kind": "passive",
@@ -1535,7 +1600,8 @@
       "duration": 4.0,
       "duration_per_rank": 0.5,
       "name_key": "SKILL_CHALLENGE_NAME",
-      "desc_key": "SKILL_CHALLENGE_DESC"
+      "desc_key": "SKILL_CHALLENGE_DESC",
+      "anim": "call_big"
     },
     "trample": {
       "kind": "active",
@@ -1551,7 +1617,8 @@
       "foot_area": 2.5,
       "foot_power_mult": 0.643,
       "name_key": "SKILL_TRAMPLE_NAME",
-      "desc_key": "SKILL_TRAMPLE_DESC"
+      "desc_key": "SKILL_TRAMPLE_DESC",
+      "anim": "slam"
     },
     "lance_sweep": {
       "kind": "active",
@@ -1566,7 +1633,8 @@
       "angle": 240.0,
       "push": 2.5,
       "name_key": "SKILL_LANCE_SWEEP_NAME",
-      "desc_key": "SKILL_LANCE_SWEEP_DESC"
+      "desc_key": "SKILL_LANCE_SWEEP_DESC",
+      "anim": "sweep"
     },
     "unstoppable": {
       "kind": "passive",
@@ -1588,7 +1656,8 @@
       "area": 8.0,
       "duration": 8.0,
       "name_key": "SKILL_FIRE_BANNER_NAME",
-      "desc_key": "SKILL_FIRE_BANNER_DESC"
+      "desc_key": "SKILL_FIRE_BANNER_DESC",
+      "anim": "plant"
     },
     "blazing_lance": {
       "kind": "active",
@@ -1604,7 +1673,8 @@
       "state": "burning",
       "dot_mult": 2.0,
       "name_key": "SKILL_BLAZING_LANCE_NAME",
-      "desc_key": "SKILL_BLAZING_LANCE_DESC"
+      "desc_key": "SKILL_BLAZING_LANCE_DESC",
+      "anim": "dash"
     },
     "inferno_charge": {
       "kind": "active",
@@ -1622,7 +1692,8 @@
       "foot_range": 5.0,
       "foot_power_mult": 0.6,
       "name_key": "SKILL_INFERNO_CHARGE_NAME",
-      "desc_key": "SKILL_INFERNO_CHARGE_DESC"
+      "desc_key": "SKILL_INFERNO_CHARGE_DESC",
+      "anim": "shield_dash"
     },
     "tide_banner": {
       "kind": "active",
@@ -1639,7 +1710,8 @@
       "duration": 6.0,
       "state": "soaked",
       "name_key": "SKILL_TIDE_BANNER_NAME",
-      "desc_key": "SKILL_TIDE_BANNER_DESC"
+      "desc_key": "SKILL_TIDE_BANNER_DESC",
+      "anim": "plant"
     },
     "frost_lance": {
       "kind": "active",
@@ -1657,7 +1729,8 @@
       },
       "state_duration": 2.0,
       "name_key": "SKILL_FROST_LANCE_NAME",
-      "desc_key": "SKILL_FROST_LANCE_DESC"
+      "desc_key": "SKILL_FROST_LANCE_DESC",
+      "anim": "dash"
     },
     "tidal_charge": {
       "kind": "active",
@@ -1676,7 +1749,8 @@
       "foot_range": 5.0,
       "foot_power_mult": 0.6,
       "name_key": "SKILL_TIDAL_CHARGE_NAME",
-      "desc_key": "SKILL_TIDAL_CHARGE_DESC"
+      "desc_key": "SKILL_TIDAL_CHARGE_DESC",
+      "anim": "shield_dash"
     },
     "gale_banner": {
       "kind": "active",
@@ -1690,7 +1764,8 @@
       "area": 8.0,
       "duration": 8.0,
       "name_key": "SKILL_GALE_BANNER_NAME",
-      "desc_key": "SKILL_GALE_BANNER_DESC"
+      "desc_key": "SKILL_GALE_BANNER_DESC",
+      "anim": "plant"
     },
     "thunder_lance": {
       "kind": "active",
@@ -1705,7 +1780,8 @@
       "strikes": 1,
       "state": "shocked",
       "name_key": "SKILL_THUNDER_LANCE_NAME",
-      "desc_key": "SKILL_THUNDER_LANCE_DESC"
+      "desc_key": "SKILL_THUNDER_LANCE_DESC",
+      "anim": "dash"
     },
     "storm_charge": {
       "kind": "active",
@@ -1724,7 +1800,8 @@
       "foot_range": 5.0,
       "foot_power_mult": 0.6,
       "name_key": "SKILL_STORM_CHARGE_NAME",
-      "desc_key": "SKILL_STORM_CHARGE_DESC"
+      "desc_key": "SKILL_STORM_CHARGE_DESC",
+      "anim": "shield_dash"
     },
     "stone_banner": {
       "kind": "active",
@@ -1737,7 +1814,8 @@
       "area": 6.0,
       "duration": 8.0,
       "name_key": "SKILL_STONE_BANNER_NAME",
-      "desc_key": "SKILL_STONE_BANNER_DESC"
+      "desc_key": "SKILL_STONE_BANNER_DESC",
+      "anim": "plant"
     },
     "earthbreaker_lance": {
       "kind": "active",
@@ -1754,7 +1832,8 @@
       "state_chance": 1.0,
       "state_duration": 1.5,
       "name_key": "SKILL_EARTHBREAKER_LANCE_NAME",
-      "desc_key": "SKILL_EARTHBREAKER_LANCE_DESC"
+      "desc_key": "SKILL_EARTHBREAKER_LANCE_DESC",
+      "anim": "slam"
     },
     "avalanche_charge": {
       "kind": "active",
@@ -1773,7 +1852,8 @@
       "foot_range": 5.0,
       "foot_power_mult": 0.6,
       "name_key": "SKILL_AVALANCHE_CHARGE_NAME",
-      "desc_key": "SKILL_AVALANCHE_CHARGE_DESC"
+      "desc_key": "SKILL_AVALANCHE_CHARGE_DESC",
+      "anim": "shield_dash"
     }
   }
 }

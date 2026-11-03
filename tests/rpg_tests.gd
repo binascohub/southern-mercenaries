@@ -34,6 +34,7 @@ func _ready() -> void:
 	_test_ninja_gear()
 	_test_skills()
 	_test_spell_fx()
+	_test_skill_anims()
 	_test_rpg_sounds()
 	_test_sewer_aggression()
 	_test_archer()
@@ -564,6 +565,22 @@ func _test_spell_fx() -> void:
 		seen[key] = id
 	_check(repeated.is_empty(), "nenhuma magia tem o mesmo efeito que outra (%s)" % [repeated])
 	_check(ResourceLoader.exists(HeroModel.WINGS_SCENE) and GameData.skills.skills.scatter_escape.effect == "escape", "a Fuga em Bando tem as asas de revoada (Hero_Wings.glb) para mostrar no herói")
+
+
+## Cada habilidade ativa (menos as do Invocador de vento, que têm animação própria) pode ter um movimento do corpo ("anim" em data/skills.json): precisa existir nas animações do herói.
+func _test_skill_anims() -> void:
+	var bad: Array[String] = []
+	var animated := 0
+	for id: String in GameData.skills.skills:
+		var anim := String(GameData.skills.skills[id].get("anim", ""))
+		if anim == "":
+			continue
+		animated += 1
+		if not HeroModel.ANIMS.has(anim) or not (anim in HeroModel.SKILL_ANIMS):
+			bad.append(id + ": " + anim)
+	_check(bad.is_empty() and animated >= 60, "as habilidades têm movimento do corpo válido (%d; erros %s)" % [animated, bad])
+	for id in ["falcon_wings", "eagle_dive", "wing_storm", "scatter_escape"]:
+		_check(not GameData.skills.skills[id].has("anim"), "o Invocador de vento fica como está: " + id)
 
 
 func _test_archer() -> void:
