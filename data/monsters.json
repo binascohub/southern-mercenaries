@@ -515,16 +515,15 @@
   },
   "leshy": {
     "name_key": "MONSTER_LESHY",
-    "max_health": 140,
+    "max_health": 220,
     "move_speed": 2.8,
-    "damage": 15,
+    "damage": 18,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
     "aggro_range": 40.0,
     "size": 2.0,
     "category": "miniboss",
-    "aggressive": true,
     "element": "earth",
     "ai": "charger",
     "charge": {
@@ -542,9 +541,8 @@
       0.85,
       0.7
     ],
-    "_comment": "Mini-chefe da Floresta (04-tortuga-e-missoes.md: o Leshy guarda a árvore anciã): gigante de casca, investidas e pisões; modelo do Monstro da Floresta (cdmir, CC0).",
-    "chest_loot": "treasure_forest",
-    "quest_drop": "adams_rib"
+    "quest_drop": "souls_bottle",
+    "_comment": "Mini-chefe da Floresta (04-tortuga-e-missoes.md: o Leshy guarda a árvore anciã): gigante de casca, investidas e pisões; modelo do Monstro da Floresta (cdmir, CC0)."
   },
   "ruin_warden": {
     "name_key": "MONSTER_RUIN_WARDEN",
@@ -574,8 +572,8 @@
       0.78,
       0.85
     ],
-    "_comment": "Mini-chefe das Ruínas (Praça dos Cavaleiros): o Guardião das Ruínas, golem de pedra que acorda quando o cavaleiro de pedra é tocado com a missão do Coração de Pedra; investidas rápidas.",
-    "quest_drop": "stone_heart"
+    "quest_drop": "stone_heart",
+    "_comment": "Mini-chefe das Ruínas (Praça dos Cavaleiros): o Guardião das Ruínas, golem de pedra que acorda quando o cavaleiro de pedra é tocado com a missão do Coração de Pedra; investidas rápidas."
   },
   "crypt_scorpion": {
     "name_key": "MONSTER_CRYPT_SCORPION",
@@ -605,8 +603,8 @@
       1.0,
       1.0
     ],
-    "_comment": "Mini-chefe do Cemitério (praça): o Ogro da Cripta (Ogre lowpoly, nubux / rudy85, CC BY 3.0); investidas. O id continua crypt_scorpion (saves e encontros).",
-    "quest_drop": "human_lungs"
+    "quest_drop": "human_lungs",
+    "_comment": "Mini-chefe do Cemitério (praça): o Ogro da Cripta (Ogre lowpoly, nubux / rudy85, CC BY 3.0); investidas. O id continua crypt_scorpion (saves e encontros)."
   },
   "fort_commander": {
     "name_key": "MONSTER_FORT_COMMANDER",
@@ -636,8 +634,8 @@
       0.9,
       1.0
     ],
-    "_comment": "Chefe do Forte: o comandante amaldiçoado (usa o modelo do Feiticeiro-Aranha até haver arte própria).",
-    "quest_drop": "old_skull"
+    "quest_drop": "old_skull",
+    "_comment": "Chefe do Forte: o comandante amaldiçoado (usa o modelo do Feiticeiro-Aranha até haver arte própria)."
   },
   "dark_elf": {
     "name_key": "MONSTER_DARK_ELF",
@@ -800,14 +798,14 @@
       1.0,
       1.0
     ],
-    "_comment": "Chefe do Cemitério: o Senhor da Cripta (Undead male, TiZeta, CC BY), nobre morto-vivo; investidas como o escorpião que ele substitui.",
-    "quest_drop": "human_heart"
+    "quest_drop": "human_heart",
+    "_comment": "Chefe do Cemitério: o Senhor da Cripta (Undead male, TiZeta, CC BY), nobre morto-vivo; investidas como o escorpião que ele substitui."
   },
   "golem_fire": {
     "name_key": "MONSTER_GOLEM_FIRE",
-    "max_health": 140,
+    "max_health": 180,
     "move_speed": 2.3,
-    "damage": 12,
+    "damage": 16,
     "attack_range": 2.6,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -822,8 +820,7 @@
       1.0,
       1.0
     ],
-    "_comment": "Golem de Fogo da Floresta (Fire/Ice/Stone Golem, umask007, CC BY 3.0 / CC BY-SA 3.0): elite corpo a corpo, rápido e de dano alto.",
-    "quest_drop": "cursed_skull"
+    "_comment": "Golem de Fogo da Floresta (Fire/Ice/Stone Golem, umask007, CC BY 3.0 / CC BY-SA 3.0): elite corpo a corpo, rápido e de dano alto."
   },
   "golem_ice": {
     "name_key": "MONSTER_GOLEM_ICE",
@@ -874,6 +871,7 @@
       1.0,
       1.0
     ],
+    "quest_drop": "souls_bottle",
     "_comment": "Golem de Pedra da Floresta (umask007): elite que investe como o Leshy; Terra."
   },
   "night_demon": {
@@ -1043,13 +1041,14 @@
       0.75,
       1.0
     ],
+    "quest_drop": "souls_bottle",
     "_comment": "Chefe da Mina: o golem do coração de cristal (usa o modelo do Golem de Pedra até haver arte própria)."
   },
   "chitin_beast": {
     "name_key": "MONSTER_CHITIN_BEAST",
-    "max_health": 210,
+    "max_health": 80,
     "move_speed": 3.4,
-    "damage": 16,
+    "damage": 12,
     "attack_range": 2.2,
     "attack_windup": 0.5,
     "attack_cooldown": 1.3,
@@ -1167,19 +1166,19 @@
       0.85,
       0.75
     ],
-    "_comment": "Guardião do Túmulo (mini-chefe do Cemitério): golem de pedra que a estátua do poste de luz desperta quando se fala com ela; investe como o Escorpião da Cripta. Terra (fraco a Fogo).",
-    "quest_drop": "royal_soul"
+    "quest_drop": "royal_soul",
+    "_comment": "Guardião do Túmulo (mini-chefe do Cemitério): golem de pedra que a estátua do poste de luz desperta quando se fala com ela; investe como o Escorpião da Cripta. Terra (fraco a Fogo)."
   },
   "frog_king": {
     "name_key": "MONSTER_FROG_KING",
-    "max_health": 140,
+    "max_health": 130,
     "move_speed": 2.8,
-    "damage": 15,
+    "damage": 14,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
     "aggro_range": 40.0,
-    "size": 2.6,
+    "size": 4.5,
     "category": "miniboss",
     "element": "earth",
     "ai": "charger",
@@ -1192,14 +1191,13 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "plank_monster",
+    "look": "frog",
     "color": [
-      1.0,
-      1.0,
-      1.0
+      0.32,
+      0.25,
+      0.2
     ],
-    "_comment": "Mini-chefe da quest 'A Garrafa do Tormento Eterno' (Esgoto): o Empalado, monstro de carne, ossos e tábuas das passarelas (Monster_4, minib1.rar do autor; modelo plank_monster.glb, com os movimentos dos heróis). Dorme sob o altar do centro; o Livro do Altar da Ossael o desperta. Investidas; solta a Garrafa do Tormento Eterno, que a Ossael troca pela chave de copas (id interno 'frog_king', de quando era o Rei dos Sapos).",
-    "quest_drop": "torment_bottle"
+    "_comment": "Mini-chefe do Esgoto (canais): o Rei dos Sapos, um sapo do tamanho de um boi; investidas (os ratos não são mais monstros: só cenário)."
   },
   "stone_golem_king": {
     "name_key": "MONSTER_STONE_GOLEM_KING",
@@ -1483,9 +1481,9 @@
   },
   "forest_tomb_guardian": {
     "name_key": "MONSTER_TOMB_GUARDIAN",
-    "max_health": 140,
+    "max_health": 340,
     "move_speed": 2.8,
-    "damage": 12,
+    "damage": 24,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -1513,9 +1511,9 @@
   },
   "forest_troll": {
     "name_key": "MONSTER_FOREST_TROLL",
-    "max_health": 140,
+    "max_health": 380,
     "move_speed": 2.4,
-    "damage": 12,
+    "damage": 24,
     "attack_range": 3.2,
     "attack_windup": 1.1,
     "attack_cooldown": 2.2,
@@ -1694,7 +1692,6 @@
     "aggro_range": 40.0,
     "size": 4.2,
     "category": "boss",
-    "aggressive": false,
     "element": "air",
     "ai": "charger",
     "charge": {
@@ -1713,6 +1710,7 @@
       0.45
     ],
     "_comment": "Chefe final do Deserto (docs/03-2-areas.md): a Esfinge, guardiã do Salão atrás do portão; investidas e pisões (modelo do golem de pedra, dourado).",
+    "aggressive": false,
     "chest_loot": "chest"
   },
   "hull_beast": {
@@ -1851,7 +1849,6 @@
     "aggro_range": 40.0,
     "size": 4.2,
     "category": "boss",
-    "aggressive": false,
     "element": "earth",
     "ai": "charger",
     "charge": {
@@ -1869,8 +1866,79 @@
       0.75,
       1.0
     ],
+    "aggressive": false,
     "chest_loot": "chest",
     "_comment": "Chefe final das Ruínas: o Rei Caído, guardião do Cofre Real atrás do portão; investidas e pisões (modelo do rei golem)."
+  },
+  "viper_queen": {
+    "name_key": "MONSTER_VIPER_QUEEN",
+    "max_health": 240,
+    "move_speed": 2.8,
+    "damage": 17,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 3.4,
+    "category": "miniboss",
+    "element": "earth",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 10.0,
+      "windup": 1.0,
+      "speed": 12.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "golem_king",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Mini-chefe da Floresta (Toca dos Répteis): usa o modelo do Rei Golem de Pedra (golem_king.glb, tools/assets/build_stone_golem_king.py); o Guardião do Túmulo o acompanha.",
+    "waves": {
+      "first": 8.0,
+      "interval": 24.0,
+      "radius": 6.0,
+      "toast": "TOAST_VIPER_WAVE",
+      "list": [
+        [
+          {
+            "monster": "golem_fire",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "golem_ice",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "golem_stone",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "golem_fire",
+            "count": 1
+          },
+          {
+            "monster": "golem_ice",
+            "count": 1
+          },
+          {
+            "monster": "golem_stone",
+            "count": 1
+          }
+        ]
+      ]
+    }
   },
   "fort_baron": {
     "name_key": "MONSTER_FORT_BARON",
