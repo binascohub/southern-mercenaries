@@ -7454,14 +7454,6 @@
     ],
     "breakables": [
       {
-        "id": "b1",
-        "monster": "barrel",
-        "position": [
-          5,
-          -3
-        ]
-      },
-      {
         "id": "pot1",
         "monster": "pot",
         "position": [
@@ -7475,14 +7467,6 @@
         "position": [
           6.2,
           -5.2
-        ]
-      },
-      {
-        "id": "mb0",
-        "monster": "barrel",
-        "position": [
-          28.8,
-          -93.2
         ]
       },
       {
@@ -7502,27 +7486,11 @@
         ]
       },
       {
-        "id": "mb4",
-        "monster": "barrel",
-        "position": [
-          67.8,
-          -26.8
-        ]
-      },
-      {
         "id": "mp6",
         "monster": "pot",
         "position": [
           -67.8,
           -14.8
-        ]
-      },
-      {
-        "id": "mb7",
-        "monster": "barrel",
-        "position": [
-          23.2,
-          -62.8
         ]
       },
       {
@@ -7542,27 +7510,11 @@
         ]
       },
       {
-        "id": "mb11",
-        "monster": "barrel",
-        "position": [
-          -23.2,
-          -134.8
-        ]
-      },
-      {
         "id": "mp13",
         "monster": "pot",
         "position": [
           23.2,
           -105.2
-        ]
-      },
-      {
-        "id": "mb14",
-        "monster": "barrel",
-        "position": [
-          54.8,
-          -33.2
         ]
       },
       {
@@ -7582,27 +7534,11 @@
         ]
       },
       {
-        "id": "mb18",
-        "monster": "barrel",
-        "position": [
-          36.2,
-          -122.8
-        ]
-      },
-      {
         "id": "mp20",
         "monster": "pot",
         "position": [
           67.8,
           -153.2
-        ]
-      },
-      {
-        "id": "mb21",
-        "monster": "barrel",
-        "position": [
-          28.8,
-          -50.8
         ]
       },
       {
@@ -7622,35 +7558,11 @@
         ]
       },
       {
-        "id": "mb25",
-        "monster": "barrel",
-        "position": [
-          -54.8,
-          -38.8
-        ]
-      },
-      {
         "id": "mp27",
         "monster": "pot",
         "position": [
           -23.2,
           -98.8
-        ]
-      },
-      {
-        "id": "mb28",
-        "monster": "barrel",
-        "position": [
-          -62.2,
-          -62.8
-        ]
-      },
-      {
-        "id": "nb3",
-        "monster": "barrel",
-        "position": [
-          13,
-          -179
         ]
       },
       {
@@ -9484,6 +9396,138 @@
           -26.6
         ],
         "rotation": 165
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          5,
+          -3
+        ],
+        "rotation": 0,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          28.8,
+          -93.2
+        ],
+        "rotation": 67,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          67.8,
+          -26.8
+        ],
+        "rotation": 134,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          23.2,
+          -62.8
+        ],
+        "rotation": 201,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -23.2,
+          -134.8
+        ],
+        "rotation": 268,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          54.8,
+          -33.2
+        ],
+        "rotation": 335,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          36.2,
+          -122.8
+        ],
+        "rotation": 42,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          28.8,
+          -50.8
+        ],
+        "rotation": 109,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -54.8,
+          -38.8
+        ],
+        "rotation": 176,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -62.2,
+          -62.8
+        ],
+        "rotation": 243,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          13,
+          -179
+        ],
+        "rotation": 310,
+        "solid": [
+          0.9,
+          0.9
+        ]
       }
     ],
     "passive": true
@@ -36602,267 +36646,6 @@
     "quest_spots": [],
     "breakables": [
       {
-        "id": "b2",
-        "monster": "barrel",
-        "position": [
-          -12.2,
-          -0.6
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b4",
-        "monster": "barrel",
-        "position": [
-          17.1,
-          -23.7
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b6",
-        "monster": "barrel",
-        "position": [
-          -21.4,
-          -48.0
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b8",
-        "monster": "barrel",
-        "position": [
-          3.5,
-          -15.5
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b10",
-        "monster": "barrel",
-        "position": [
-          -9.6,
-          -53.7
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b12",
-        "monster": "barrel",
-        "position": [
-          -80.2,
-          -32.9
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b14",
-        "monster": "barrel",
-        "position": [
-          -82.7,
-          -26.0
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b16",
-        "monster": "barrel",
-        "position": [
-          -66.5,
-          -37.0
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b18",
-        "monster": "barrel",
-        "position": [
-          -61.8,
-          -46.1
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b20",
-        "monster": "barrel",
-        "position": [
-          -68.1,
-          -34.3
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b22",
-        "monster": "barrel",
-        "position": [
-          38.9,
-          -25.6
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b24",
-        "monster": "barrel",
-        "position": [
-          66.0,
-          -31.4
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b26",
-        "monster": "barrel",
-        "position": [
-          77.2,
-          -13.0
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b28",
-        "monster": "barrel",
-        "position": [
-          43.1,
-          -54.4
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b30",
-        "monster": "barrel",
-        "position": [
-          32.8,
-          -39.4
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b32",
-        "monster": "barrel",
-        "position": [
-          -82.4,
-          -63.9
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b34",
-        "monster": "barrel",
-        "position": [
-          -83.5,
-          -72.1
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b36",
-        "monster": "barrel",
-        "position": [
-          35.9,
-          -83.3
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b38",
-        "monster": "barrel",
-        "position": [
-          77.9,
-          -73.5
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b40",
-        "monster": "barrel",
-        "position": [
-          -2.4,
-          -86.3
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b42",
-        "monster": "barrel",
-        "position": [
-          6.7,
-          -113.5
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b44",
-        "monster": "barrel",
-        "position": [
-          34.4,
-          -117.0
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b46",
-        "monster": "barrel",
-        "position": [
-          -11.3,
-          -108.5
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b48",
-        "monster": "barrel",
-        "position": [
-          15.0,
-          -127.9
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b50",
-        "monster": "barrel",
-        "position": [
-          18.1,
-          -127.8
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b52",
-        "monster": "barrel",
-        "position": [
-          -6.5,
-          -140.3
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b54",
-        "monster": "barrel",
-        "position": [
-          -16.0,
-          -198.8
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b56",
-        "monster": "barrel",
-        "position": [
-          -0.9,
-          -210.3
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b58",
-        "monster": "barrel",
-        "position": [
-          -8.1,
-          -189.4
-        ],
-        "table": "breakable_potion"
-      },
-      {
         "id": "coin_bag",
         "monster": "coin_bag",
         "position": [
@@ -59177,6 +58960,354 @@
         "position": [
           54.4,
           -100.0
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -12.2,
+          -0.6
+        ],
+        "rotation": 0,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          17.1,
+          -23.7
+        ],
+        "rotation": 67,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -21.4,
+          -48.0
+        ],
+        "rotation": 134,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          3.5,
+          -15.5
+        ],
+        "rotation": 201,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -9.6,
+          -53.7
+        ],
+        "rotation": 268,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -80.2,
+          -32.9
+        ],
+        "rotation": 335,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -82.7,
+          -26.0
+        ],
+        "rotation": 42,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -66.5,
+          -37.0
+        ],
+        "rotation": 109,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -61.8,
+          -46.1
+        ],
+        "rotation": 176,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -68.1,
+          -34.3
+        ],
+        "rotation": 243,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          38.9,
+          -25.6
+        ],
+        "rotation": 310,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          66.0,
+          -31.4
+        ],
+        "rotation": 17,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          77.2,
+          -13.0
+        ],
+        "rotation": 84,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          43.1,
+          -54.4
+        ],
+        "rotation": 151,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          32.8,
+          -39.4
+        ],
+        "rotation": 218,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -82.4,
+          -63.9
+        ],
+        "rotation": 285,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -83.5,
+          -72.1
+        ],
+        "rotation": 352,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          35.9,
+          -83.3
+        ],
+        "rotation": 59,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          77.9,
+          -73.5
+        ],
+        "rotation": 126,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -2.4,
+          -86.3
+        ],
+        "rotation": 193,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          6.7,
+          -113.5
+        ],
+        "rotation": 260,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          34.4,
+          -117.0
+        ],
+        "rotation": 327,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -11.3,
+          -108.5
+        ],
+        "rotation": 34,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          15.0,
+          -127.9
+        ],
+        "rotation": 101,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          18.1,
+          -127.8
+        ],
+        "rotation": 168,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -6.5,
+          -140.3
+        ],
+        "rotation": 235,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -16.0,
+          -198.8
+        ],
+        "rotation": 302,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -0.9,
+          -210.3
+        ],
+        "rotation": 9,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -8.1,
+          -189.4
+        ],
+        "rotation": 76,
+        "solid": [
+          0.9,
+          0.9
         ]
       }
     ],
@@ -124340,42 +124471,6 @@
     "quest_spots": [],
     "breakables": [
       {
-        "id": "b2",
-        "monster": "barrel",
-        "position": [
-          -3.1,
-          -85.3
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b4",
-        "monster": "barrel",
-        "position": [
-          -23.8,
-          -141.2
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b6",
-        "monster": "barrel",
-        "position": [
-          23.5,
-          -196.3
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b8",
-        "monster": "barrel",
-        "position": [
-          -1.5,
-          -184.8
-        ],
-        "table": "breakable_potion"
-      },
-      {
         "id": "coin_bag",
         "monster": "coin_bag",
         "position": [
@@ -138161,6 +138256,54 @@
           "speed": 0.64,
           "phase": 2.15
         }
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -3.1,
+          -85.3
+        ],
+        "rotation": 0,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -23.8,
+          -141.2
+        ],
+        "rotation": 67,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          23.5,
+          -196.3
+        ],
+        "rotation": 134,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -1.5,
+          -184.8
+        ],
+        "rotation": 201,
+        "solid": [
+          0.9,
+          0.9
+        ]
       }
     ],
     "crowd": [
@@ -169513,132 +169656,6 @@
     "quest_spots": [],
     "breakables": [
       {
-        "id": "b2",
-        "monster": "barrel",
-        "position": [
-          -8.2,
-          -51.8
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b4",
-        "monster": "barrel",
-        "position": [
-          44.2,
-          -8.2
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b6",
-        "monster": "barrel",
-        "position": [
-          -15.8,
-          -32.2
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b8",
-        "monster": "barrel",
-        "position": [
-          -32.2,
-          -128.2
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b10",
-        "monster": "barrel",
-        "position": [
-          -39.8,
-          -63.8
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b12",
-        "monster": "barrel",
-        "position": [
-          44.2,
-          -80.2
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b14",
-        "monster": "barrel",
-        "position": [
-          -39.8,
-          -75.8
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b16",
-        "monster": "barrel",
-        "position": [
-          3.8,
-          -68.2
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b18",
-        "monster": "barrel",
-        "position": [
-          20.2,
-          -8.2
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b20",
-        "monster": "barrel",
-        "position": [
-          3.8,
-          -8.2
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b22",
-        "monster": "barrel",
-        "position": [
-          -27.8,
-          -8.2
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b24",
-        "monster": "barrel",
-        "position": [
-          -8.2,
-          -27.8
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b26",
-        "monster": "barrel",
-        "position": [
-          51.8,
-          -32.2
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b28",
-        "monster": "barrel",
-        "position": [
-          -27.8,
-          -123.8
-        ],
-        "table": "breakable_potion"
-      },
-      {
         "id": "coin_bag",
         "monster": "coin_bag",
         "position": [
@@ -190098,6 +190115,174 @@
           0.6,
           0.6
         ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -8.2,
+          -51.8
+        ],
+        "rotation": 0,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          44.2,
+          -8.2
+        ],
+        "rotation": 67,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -15.8,
+          -32.2
+        ],
+        "rotation": 134,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -32.2,
+          -128.2
+        ],
+        "rotation": 201,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -39.8,
+          -63.8
+        ],
+        "rotation": 268,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          44.2,
+          -80.2
+        ],
+        "rotation": 335,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -39.8,
+          -75.8
+        ],
+        "rotation": 42,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          3.8,
+          -68.2
+        ],
+        "rotation": 109,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          20.2,
+          -8.2
+        ],
+        "rotation": 176,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          3.8,
+          -8.2
+        ],
+        "rotation": 243,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -27.8,
+          -8.2
+        ],
+        "rotation": 310,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -8.2,
+          -27.8
+        ],
+        "rotation": 17,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          51.8,
+          -32.2
+        ],
+        "rotation": 84,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -27.8,
+          -123.8
+        ],
+        "rotation": 151,
+        "solid": [
+          0.9,
+          0.9
+        ]
       }
     ],
     "crowd": [
@@ -197475,186 +197660,6 @@
     ],
     "quest_spots": [],
     "breakables": [
-      {
-        "id": "b2",
-        "monster": "barrel",
-        "position": [
-          32.6,
-          14.4
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b4",
-        "monster": "barrel",
-        "position": [
-          -15.4,
-          -4.4
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b6",
-        "monster": "barrel",
-        "position": [
-          -39.4,
-          -21.6
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b8",
-        "monster": "barrel",
-        "position": [
-          -32.6,
-          -4.4
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b10",
-        "monster": "barrel",
-        "position": [
-          -20.6,
-          14.4
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b12",
-        "monster": "barrel",
-        "position": [
-          -3.4,
-          43.6
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b14",
-        "monster": "barrel",
-        "position": [
-          -15.4,
-          -9.6
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b16",
-        "monster": "barrel",
-        "position": [
-          -8.6,
-          26.4
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b18",
-        "monster": "barrel",
-        "position": [
-          -15.4,
-          31.6
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b20",
-        "monster": "barrel",
-        "position": [
-          32.6,
-          -9.6
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b22",
-        "monster": "barrel",
-        "position": [
-          -3.4,
-          -40.4
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b24",
-        "monster": "barrel",
-        "position": [
-          -15.4,
-          -28.4
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b26",
-        "monster": "barrel",
-        "position": [
-          -27.4,
-          50.4
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b28",
-        "monster": "barrel",
-        "position": [
-          -15.4,
-          50.4
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b30",
-        "monster": "barrel",
-        "position": [
-          27.4,
-          19.6
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b32",
-        "monster": "barrel",
-        "position": [
-          -20.6,
-          -9.6
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b34",
-        "monster": "barrel",
-        "position": [
-          8.6,
-          -4.4
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b36",
-        "monster": "barrel",
-        "position": [
-          3.4,
-          26.4
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b38",
-        "monster": "barrel",
-        "position": [
-          -39.4,
-          -40.4
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b40",
-        "monster": "barrel",
-        "position": [
-          3.4,
-          -9.6
-        ],
-        "table": "breakable_potion"
-      },
       {
         "id": "coin_bag",
         "monster": "coin_bag",
@@ -243904,6 +243909,246 @@
         "y": 2.4,
         "range": 14.0,
         "energy": 1.6
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          32.6,
+          14.4
+        ],
+        "rotation": 0,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -15.4,
+          -4.4
+        ],
+        "rotation": 67,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -39.4,
+          -21.6
+        ],
+        "rotation": 134,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -32.6,
+          -4.4
+        ],
+        "rotation": 201,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -20.6,
+          14.4
+        ],
+        "rotation": 268,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -3.4,
+          43.6
+        ],
+        "rotation": 335,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -15.4,
+          -9.6
+        ],
+        "rotation": 42,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -8.6,
+          26.4
+        ],
+        "rotation": 109,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -15.4,
+          31.6
+        ],
+        "rotation": 176,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          32.6,
+          -9.6
+        ],
+        "rotation": 243,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -3.4,
+          -40.4
+        ],
+        "rotation": 310,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -15.4,
+          -28.4
+        ],
+        "rotation": 17,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -27.4,
+          50.4
+        ],
+        "rotation": 84,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -15.4,
+          50.4
+        ],
+        "rotation": 151,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          27.4,
+          19.6
+        ],
+        "rotation": 218,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -20.6,
+          -9.6
+        ],
+        "rotation": 285,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          8.6,
+          -4.4
+        ],
+        "rotation": 352,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          3.4,
+          26.4
+        ],
+        "rotation": 59,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -39.4,
+          -40.4
+        ],
+        "rotation": 126,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          3.4,
+          -9.6
+        ],
+        "rotation": 193,
+        "solid": [
+          0.9,
+          0.9
+        ]
       }
     ],
     "crowd": [
@@ -252942,258 +253187,6 @@
     ],
     "quest_spots": [],
     "breakables": [
-      {
-        "id": "b2",
-        "monster": "barrel",
-        "position": [
-          -4.0,
-          -0.8
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b4",
-        "monster": "barrel",
-        "position": [
-          6.3,
-          -23.9
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b6",
-        "monster": "barrel",
-        "position": [
-          -0.7,
-          -17.1
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b8",
-        "monster": "barrel",
-        "position": [
-          -11.2,
-          -25.7
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b10",
-        "monster": "barrel",
-        "position": [
-          -32.0,
-          -12.0
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b12",
-        "monster": "barrel",
-        "position": [
-          -46.2,
-          -9.2
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b14",
-        "monster": "barrel",
-        "position": [
-          -38.3,
-          -38.0
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b16",
-        "monster": "barrel",
-        "position": [
-          48.4,
-          -19.9
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b18",
-        "monster": "barrel",
-        "position": [
-          36.3,
-          -15.7
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b20",
-        "monster": "barrel",
-        "position": [
-          44.5,
-          -14.4
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b22",
-        "monster": "barrel",
-        "position": [
-          -38.5,
-          -74.9
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b24",
-        "monster": "barrel",
-        "position": [
-          -50.4,
-          -54.3
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b26",
-        "monster": "barrel",
-        "position": [
-          -39.1,
-          -57.6
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b28",
-        "monster": "barrel",
-        "position": [
-          46.8,
-          -61.9
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b30",
-        "monster": "barrel",
-        "position": [
-          34.9,
-          -60.6
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b32",
-        "monster": "barrel",
-        "position": [
-          1.7,
-          -61.0
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b34",
-        "monster": "barrel",
-        "position": [
-          13.1,
-          -69.7
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b36",
-        "monster": "barrel",
-        "position": [
-          13.9,
-          -58.4
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b38",
-        "monster": "barrel",
-        "position": [
-          -4.9,
-          -87.4
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b40",
-        "monster": "barrel",
-        "position": [
-          10.2,
-          -83.6
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b42",
-        "monster": "barrel",
-        "position": [
-          -31.3,
-          -92.6
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b44",
-        "monster": "barrel",
-        "position": [
-          45.3,
-          -95.4
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b46",
-        "monster": "barrel",
-        "position": [
-          28.3,
-          -106.9
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b48",
-        "monster": "barrel",
-        "position": [
-          -15.1,
-          -105.2
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b50",
-        "monster": "barrel",
-        "position": [
-          -6.7,
-          -109.7
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b52",
-        "monster": "barrel",
-        "position": [
-          2.6,
-          -162.1
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b54",
-        "monster": "barrel",
-        "position": [
-          -2.8,
-          -150.3
-        ],
-        "table": "breakable_potion"
-      },
-      {
-        "id": "b56",
-        "monster": "barrel",
-        "position": [
-          1.2,
-          -159.7
-        ],
-        "table": "breakable_potion"
-      },
       {
         "id": "coin_bag",
         "monster": "coin_bag",
@@ -265385,6 +265378,342 @@
         ],
         "rotation": 0,
         "scale": 2.99
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -4.0,
+          -0.8
+        ],
+        "rotation": 0,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          6.3,
+          -23.9
+        ],
+        "rotation": 67,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -0.7,
+          -17.1
+        ],
+        "rotation": 134,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -11.2,
+          -25.7
+        ],
+        "rotation": 201,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -32.0,
+          -12.0
+        ],
+        "rotation": 268,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -46.2,
+          -9.2
+        ],
+        "rotation": 335,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -38.3,
+          -38.0
+        ],
+        "rotation": 42,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          48.4,
+          -19.9
+        ],
+        "rotation": 109,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          36.3,
+          -15.7
+        ],
+        "rotation": 176,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          44.5,
+          -14.4
+        ],
+        "rotation": 243,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -38.5,
+          -74.9
+        ],
+        "rotation": 310,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -50.4,
+          -54.3
+        ],
+        "rotation": 17,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -39.1,
+          -57.6
+        ],
+        "rotation": 84,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          46.8,
+          -61.9
+        ],
+        "rotation": 151,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          34.9,
+          -60.6
+        ],
+        "rotation": 218,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          1.7,
+          -61.0
+        ],
+        "rotation": 285,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          13.1,
+          -69.7
+        ],
+        "rotation": 352,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          13.9,
+          -58.4
+        ],
+        "rotation": 59,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -4.9,
+          -87.4
+        ],
+        "rotation": 126,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          10.2,
+          -83.6
+        ],
+        "rotation": 193,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -31.3,
+          -92.6
+        ],
+        "rotation": 260,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          45.3,
+          -95.4
+        ],
+        "rotation": 327,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          28.3,
+          -106.9
+        ],
+        "rotation": 34,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -15.1,
+          -105.2
+        ],
+        "rotation": 101,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -6.7,
+          -109.7
+        ],
+        "rotation": 168,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          2.6,
+          -162.1
+        ],
+        "rotation": 235,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -2.8,
+          -150.3
+        ],
+        "rotation": 302,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          1.2,
+          -159.7
+        ],
+        "rotation": 9,
+        "solid": [
+          0.9,
+          0.9
+        ]
       }
     ],
     "crowd": [

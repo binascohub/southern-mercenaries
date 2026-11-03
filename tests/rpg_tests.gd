@@ -1118,10 +1118,12 @@ func _test_sewers() -> void:
 		var boxes: Array = GameData.arenas[area_id].get("breakables", [])
 		_check(boxes.size() >= 4 and boxes.all(func(b: Dictionary) -> bool: return GameData.monsters.get(b.monster, {}).get("breakable", false)),
 			"%s tem barris e caixotes" % area_id)
-	# Ruínas: caixotes que só soltam poção (tabela "breakable_potion").
-	var ruin_boxes: Array = GameData.arenas.ruins_01_city.get("breakables", [])
-	_check(ruin_boxes.size() >= 10 and ruin_boxes.all(func(b: Dictionary) -> bool:
-		return GameData.monsters.get(b.monster, {}).get("breakable", false) and GameData.loot.has(String(b.get("table", "")))), "Ruínas têm caixotes de poção")
+	# Barris são só decoração em todos os mapas: nenhum quebrável é barril, e as Ruínas têm os barris como cenário com colisão.
+	var any_barrel_breakable := false
+	for area_name: String in GameData.arenas:
+		any_barrel_breakable = any_barrel_breakable or GameData.arenas[area_name].get("breakables", []).any(func(b: Dictionary) -> bool: return b.monster == "barrel")
+	var ruin_barrels: Array = GameData.arenas.ruins_01_city.decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Barrel" and d.has("solid"))
+	_check(not any_barrel_breakable and ruin_barrels.size() >= 10, "barris só decorativos (não quebram nem soltam nada); as Ruínas têm os barris como cenário")
 	var ruin_potions := true
 	for i in 200:
 		ruin_potions = ruin_potions and Breakables.roll(roll_rng, "breakable_potion") in ["potion_health", "potion_resource"]
