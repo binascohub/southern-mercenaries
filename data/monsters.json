@@ -99,9 +99,9 @@
     "flyer": true,
     "look": "bat",
     "color": [
-      0.22,
-      0.2,
-      0.24
+      1.0,
+      1.0,
+      1.0
     ]
   },
   "acid_toad": {
@@ -376,9 +376,9 @@
     },
     "look": "scorpion",
     "color": [
-      0.45,
-      0.32,
-      0.2
+      1.0,
+      1.0,
+      1.0
     ]
   },
   "baby_dragon": {
@@ -566,11 +566,11 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "golem_stone",
+    "look": "golem_block",
     "color": [
-      0.78,
-      0.78,
-      0.85
+      0.9,
+      0.9,
+      1.0
     ],
     "quest_drop": "stone_heart",
     "_comment": "Mini-chefe das Ruínas (Praça dos Cavaleiros): o Guardião das Ruínas, golem de pedra que acorda quando o cavaleiro de pedra é tocado com a missão do Coração de Pedra; investidas rápidas."
@@ -597,14 +597,16 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "ogre",
+    "look": "placeholder",
     "color": [
-      1.0,
-      1.0,
-      1.0
+      0.45,
+      0.55,
+      0.4
     ],
     "quest_drop": "human_lungs",
-    "_comment": "Mini-chefe do Cemitério (praça): o Ogro da Cripta (Ogre lowpoly, nubux / rudy85, CC BY 3.0); investidas. O id continua crypt_scorpion (saves e encontros)."
+    "_comment": "Mini-chefe do Cemitério (praça): o Ogro da Cripta (Ogre lowpoly, nubux / rudy85, CC BY 3.0); investidas. O id continua crypt_scorpion (saves e encontros).",
+    "sound": "ogre",
+    "visual_pending": true
   },
   "fort_commander": {
     "name_key": "MONSTER_FORT_COMMANDER",
@@ -630,8 +632,8 @@
     },
     "look": "demon",
     "color": [
-      0.8,
-      0.9,
+      1.0,
+      1.0,
       1.0
     ],
     "quest_drop": "old_skull",
@@ -687,9 +689,9 @@
     "patrol_speed": 0.8,
     "look": "skeleton",
     "color": [
-      0.92,
-      0.86,
-      0.72
+      1.0,
+      1.0,
+      1.0
     ]
   },
   "deer_buck": {
@@ -1035,10 +1037,10 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "golem_stone",
+    "look": "golem_ice",
     "color": [
-      0.6,
-      0.75,
+      0.7,
+      0.8,
       1.0
     ],
     "quest_drop": "souls_bottle",
@@ -1160,14 +1162,16 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "golem_stone",
+    "look": "placeholder",
     "color": [
-      0.78,
-      0.85,
-      0.75
+      0.55,
+      0.58,
+      0.62
     ],
     "quest_drop": "royal_soul",
-    "_comment": "Guardião do Túmulo (mini-chefe do Cemitério): golem de pedra que a estátua do poste de luz desperta quando se fala com ela; investe como o Escorpião da Cripta. Terra (fraco a Fogo)."
+    "_comment": "Guardião do Túmulo (mini-chefe do Cemitério): golem de pedra que a estátua do poste de luz desperta quando se fala com ela; investe como o Escorpião da Cripta. Terra (fraco a Fogo).",
+    "sound": "giant",
+    "visual_pending": true
   },
   "frog_king": {
     "name_key": "MONSTER_FROG_KING",
@@ -1292,14 +1296,16 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "stalker",
+    "look": "placeholder",
     "color": [
-      1.0,
-      1.0,
-      1.0
+      0.3,
+      0.28,
+      0.3
     ],
     "_comment": "Mini-chefe das Ruínas: o Alfa da Matilha (docs/03-2-areas.md); investidas rápidas.",
-    "quest_drop": "wild_meat"
+    "quest_drop": "wild_meat",
+    "sound": "wolfman",
+    "visual_pending": true
   },
   "succubus_queen": {
     "name_key": "MONSTER_SUCCUBUS_QUEEN",
@@ -1440,11 +1446,11 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "golem_stone",
+    "look": "earth_dragon",
     "color": [
       1.0,
-      0.85,
-      0.55
+      1.0,
+      1.0
     ],
     "_comment": "Mini-chefe do Deserto (portão do cânion): o Lamassu da Areia, guardião de pedra do portão; investidas.",
     "quest_drop": "lamassu_horn"
@@ -1474,8 +1480,8 @@
     "look": "scorpion",
     "color": [
       1.0,
-      0.75,
-      0.3
+      0.7,
+      0.55
     ],
     "_comment": "Mini-chefe do Deserto (arena): a Rainha Escorpião, escorpião gigante e dourado; investidas.",
     "quest_drop": "golden_scarab"
@@ -1704,15 +1710,17 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "golem_stone",
+    "look": "placeholder",
     "color": [
       1.0,
-      0.8,
-      0.45
+      0.85,
+      0.5
     ],
     "_comment": "Chefe final do Deserto (docs/03-2-areas.md): a Esfinge, guardiã do Salão atrás do portão; investidas e pisões (modelo do golem de pedra, dourado).",
     "aggressive": false,
-    "chest_loot": "chest"
+    "chest_loot": "chest",
+    "sound": "giant",
+    "visual_pending": true
   },
   "hull_beast": {
     "name_key": "MONSTER_HULL_BEAST",
@@ -1798,11 +1806,11 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "skeleton",
+    "look": "octaminator",
     "color": [
-      0.4,
-      0.85,
-      0.75
+      0.75,
+      1.0,
+      0.9
     ],
     "_comment": "Chefe final das Docas: o Capitão Afogado, esqueleto verde do mar que guarda o Convés atrás do portão; investidas e pisões.",
     "aggressive": false,
@@ -1830,14 +1838,16 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "champ_warrior",
+    "look": "placeholder",
     "color": [
-      1.0,
-      1.0,
-      1.0
+      0.7,
+      0.3,
+      0.25
     ],
     "_comment": "Mini-chefe das Ruínas (Praça dos Monólitos): o Campeão Caído, guerreiro da guerra que a Sacerdotisa desperta; investidas rápidas.",
-    "quest_drop": "champion_banner"
+    "quest_drop": "champion_banner",
+    "sound": "ogre",
+    "visual_pending": true
   },
   "fallen_king": {
     "name_key": "MONSTER_FALLEN_KING",
@@ -1861,15 +1871,17 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "golem_king",
+    "look": "placeholder",
     "color": [
-      0.85,
-      0.75,
-      1.0
+      0.7,
+      0.6,
+      0.85
     ],
     "aggressive": false,
     "chest_loot": "chest",
-    "_comment": "Chefe final das Ruínas: o Rei Caído, guardião do Cofre Real atrás do portão; investidas e pisões (modelo do rei golem)."
+    "_comment": "Chefe final das Ruínas: o Rei Caído, guardião do Cofre Real atrás do portão; investidas e pisões (modelo do rei golem).",
+    "sound": "giant",
+    "visual_pending": true
   },
   "viper_queen": {
     "name_key": "MONSTER_VIPER_QUEEN",
@@ -1963,11 +1975,11 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "demon_boss",
+    "look": "glutton",
     "color": [
       1.0,
-      0.75,
-      0.75
+      0.8,
+      0.78
     ],
     "aggressive": false,
     "chest_loot": "chest",
@@ -1997,9 +2009,9 @@
     },
     "look": "ogre",
     "color": [
-      0.7,
-      0.55,
-      0.55
+      0.8,
+      0.6,
+      0.6
     ],
     "_comment": "Mini-chefe das Catacumbas (Poço do Carrasco): o Carrasco, ogro de capuz que desce da gaiola quando o Carcereiro Cego pede; investidas.",
     "quest_drop": "headsman_axe"
@@ -2026,14 +2038,16 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "shadow_spirit",
+    "look": "placeholder",
     "color": [
       0.55,
       0.75,
       1.0
     ],
     "_comment": "Mini-chefe das Catacumbas (Capela): a Alma Acorrentada, espírito preso a grilhões que a Prisioneira solta; investidas.",
-    "quest_drop": "soul_shackle"
+    "quest_drop": "soul_shackle",
+    "sound": "shade",
+    "visual_pending": true
   },
   "ct_king": {
     "name_key": "MONSTER_CT_KING",
@@ -2057,9 +2071,9 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "undead",
+    "look": "darsh",
     "color": [
-      0.75,
+      0.8,
       0.85,
       1.0
     ],
@@ -2082,14 +2096,16 @@
     "patrol": true,
     "patrol_radius": 4.0,
     "patrol_speed": 0.8,
-    "look": "chitin_beast",
+    "look": "placeholder",
     "color": [
       0.5,
       0.75,
       1.0
     ],
     "_comment": "Mini-chefe da Mina (Salão dos Cristais): a Besta de Quartzo, fera de cristal que o Cristal Pulsante desperta; investidas.",
-    "quest_drop": "quartz_core"
+    "quest_drop": "quartz_core",
+    "sound": "beetle",
+    "visual_pending": true
   },
   "bk_armor": {
     "name_key": "MONSTER_BK_ARMOR",
@@ -2113,14 +2129,16 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "champ_warrior",
+    "look": "placeholder",
     "color": [
       0.85,
       0.85,
       0.95
     ],
     "_comment": "Mini-chefe do Bunker (Arsenal): a Armadura Viva, armadura de guerra que se levanta quando o rack de armas é tocado; investidas.",
-    "quest_drop": "armory_seal"
+    "quest_drop": "armory_seal",
+    "sound": "ogre",
+    "visual_pending": true
   },
   "bk_commander": {
     "name_key": "MONSTER_BK_COMMANDER",
@@ -2144,14 +2162,16 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "zombie",
+    "look": "placeholder",
     "color": [
       0.65,
       0.85,
       0.55
     ],
     "_comment": "Mini-chefe do Bunker (Alojamento): o Comandante Podre, oficial morto que acorda do catre; investidas.",
-    "quest_drop": "commander_medal"
+    "quest_drop": "commander_medal",
+    "sound": "shade",
+    "visual_pending": true
   },
   "bk_general": {
     "name_key": "MONSTER_BK_GENERAL",
@@ -2175,11 +2195,11 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "barbarian_monster",
+    "look": "mutant_grunt",
     "color": [
+      1.0,
       0.8,
-      0.6,
-      0.5
+      0.7
     ],
     "aggressive": false,
     "chest_loot": "chest",
@@ -2209,9 +2229,9 @@
     },
     "look": "reptile",
     "color": [
-      0.4,
-      0.8,
-      0.4
+      1.0,
+      1.0,
+      1.0
     ],
     "_comment": "Mini-chefe da Floresta Escura (Clareira das Serpentes): a Víbora Anciã, serpente enorme que o Totem das Serpentes desperta; investidas.",
     "quest_drop": "viper_fang"
@@ -2238,14 +2258,16 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "fungus",
+    "look": "placeholder",
     "color": [
       0.85,
       0.65,
       1.0
     ],
     "_comment": "Mini-chefe da Floresta Escura (Círculo de Esporos): o Rei dos Esporos, cogumelo gigante que o Cogumelo Ancestral desperta; investidas.",
-    "quest_drop": "spore_crown"
+    "quest_drop": "spore_crown",
+    "sound": "ogre",
+    "visual_pending": true
   },
   "fd_elder": {
     "name_key": "MONSTER_FD_ELDER",
@@ -2269,14 +2291,1344 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "forest",
+    "look": "horror",
     "color": [
-      0.55,
-      0.65,
-      0.8
+      1.0,
+      1.0,
+      1.0
     ],
     "aggressive": false,
     "chest_loot": "chest",
     "_comment": "Chefe final da Floresta Escura: o Ancião Sombrio, árvore morta e viva que guarda o Covil atrás do portão; investidas e pisões (modelo do monstro da floresta)."
+  },
+  "dk_drowned": {
+    "name_key": "MONSTER_DK_DROWNED",
+    "max_health": 100,
+    "move_speed": 4.2,
+    "damage": 3,
+    "attack_range": 2.5,
+    "attack_windup": 0.3,
+    "attack_cooldown": 1.0,
+    "aggro_range": 40.0,
+    "size": 3.0,
+    "category": "common",
+    "element": "earth",
+    "damage_taken": 0.6,
+    "patrol": true,
+    "patrol_radius": 8.0,
+    "patrol_speed": 0.8,
+    "ai": "melee",
+    "look": "placeholder",
+    "color": [
+      0.4,
+      0.62,
+      0.55
+    ],
+    "sound": "shade",
+    "visual_pending": true,
+    "_comment": "Monstro de docks (Marujo Afogado): visual pendente (sem modelo ainda)."
+  },
+  "dk_gator": {
+    "name_key": "MONSTER_DK_GATOR",
+    "max_health": 210,
+    "move_speed": 1.8,
+    "damage": 16,
+    "attack_range": 8.0,
+    "attack_windup": 0.9,
+    "attack_cooldown": 2.4,
+    "aggro_range": 40.0,
+    "size": 0.85,
+    "category": "common",
+    "element": "water",
+    "ai": "ranged",
+    "keep_distance": 5.0,
+    "spit": {
+      "radius": 1.6,
+      "puddle_time": 5.0,
+      "puddle_dps": 4.0
+    },
+    "look": "gator",
+    "color": [
+      0.55,
+      0.7,
+      0.5
+    ],
+    "_comment": "Monstro de docks (Jacaré do Cais): modelo gator."
+  },
+  "dk_crab": {
+    "name_key": "MONSTER_DK_CRAB",
+    "max_health": 25,
+    "move_speed": 5.0,
+    "damage": 5,
+    "attack_range": 1.3,
+    "attack_windup": 0.3,
+    "attack_cooldown": 0.9,
+    "aggro_range": 40.0,
+    "size": 0.61,
+    "category": "common",
+    "element": "air",
+    "ai": "melee",
+    "look": "crab",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Monstro de docks (Caranguejo Carniceiro): modelo crab."
+  },
+  "dk_deckhand": {
+    "name_key": "MONSTER_DK_DECKHAND",
+    "max_health": 450,
+    "move_speed": 3.0,
+    "damage": 8,
+    "attack_range": 4.1,
+    "attack_windup": 0.6,
+    "attack_cooldown": 1.6,
+    "aggro_range": 40.0,
+    "size": 5.75,
+    "category": "common",
+    "element": "earth",
+    "damage_taken": 0.6,
+    "patrol": true,
+    "patrol_radius": 8.0,
+    "patrol_speed": 0.8,
+    "ai": "charger",
+    "charge": {
+      "min": 3.5,
+      "max": 9.0,
+      "windup": 0.8,
+      "speed": 13.0,
+      "time": 0.5,
+      "damage_mult": 1.4,
+      "cooldown": 4.0
+    },
+    "look": "placeholder",
+    "color": [
+      0.55,
+      0.5,
+      0.35
+    ],
+    "sound": "shade",
+    "visual_pending": true,
+    "_comment": "Monstro de docks (Pirata Morto): visual pendente (sem modelo ainda)."
+  },
+  "ru_ghost": {
+    "name_key": "MONSTER_RU_GHOST",
+    "max_health": 70,
+    "move_speed": 2.2,
+    "damage": 11,
+    "attack_range": 9.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 2.6,
+    "aggro_range": 40.0,
+    "size": 1.2,
+    "category": "common",
+    "element": "earth",
+    "ai": "ranged",
+    "keep_distance": 5.5,
+    "spit": {
+      "radius": 1.5,
+      "puddle_time": 5.0,
+      "puddle_dps": 5.0,
+      "glob": [
+        0.5,
+        0.85,
+        0.15
+      ]
+    },
+    "look": "ghost_wing",
+    "color": [
+      0.8,
+      0.85,
+      1.0
+    ],
+    "_comment": "Monstro de ruins (Soldado Fantasma): modelo ghost_wing."
+  },
+  "ru_hound": {
+    "name_key": "MONSTER_RU_HOUND",
+    "max_health": 25,
+    "move_speed": 5.0,
+    "damage": 5,
+    "attack_range": 1.3,
+    "attack_windup": 0.3,
+    "attack_cooldown": 0.9,
+    "aggro_range": 40.0,
+    "size": 0.55,
+    "category": "common",
+    "element": "air",
+    "ai": "melee",
+    "look": "placeholder",
+    "color": [
+      0.35,
+      0.3,
+      0.28
+    ],
+    "sound": "beast",
+    "visual_pending": true,
+    "_comment": "Monstro de ruins (Cão de Guerra Morto): visual pendente (sem modelo ainda)."
+  },
+  "ce_digger": {
+    "name_key": "MONSTER_CE_DIGGER",
+    "max_health": 100,
+    "move_speed": 4.2,
+    "damage": 3,
+    "attack_range": 2.5,
+    "attack_windup": 0.3,
+    "attack_cooldown": 1.0,
+    "aggro_range": 40.0,
+    "size": 3.0,
+    "category": "common",
+    "element": "earth",
+    "damage_taken": 0.6,
+    "patrol": true,
+    "patrol_radius": 8.0,
+    "patrol_speed": 0.8,
+    "ai": "melee",
+    "look": "placeholder",
+    "color": [
+      0.45,
+      0.4,
+      0.3
+    ],
+    "sound": "beast",
+    "visual_pending": true,
+    "_comment": "Monstro de cemetery (Coveiro Louco): visual pendente (sem modelo ainda)."
+  },
+  "ce_maggot": {
+    "name_key": "MONSTER_CE_MAGGOT",
+    "max_health": 70,
+    "move_speed": 2.2,
+    "damage": 11,
+    "attack_range": 9.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 2.6,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "ai": "ranged",
+    "keep_distance": 5.5,
+    "spit": {
+      "radius": 1.5,
+      "puddle_time": 5.0,
+      "puddle_dps": 5.0,
+      "glob": [
+        0.5,
+        0.85,
+        0.15
+      ]
+    },
+    "look": "placeholder",
+    "color": [
+      0.85,
+      0.8,
+      0.6
+    ],
+    "sound": "slime",
+    "visual_pending": true,
+    "_comment": "Monstro de cemetery (Verme de Cova): visual pendente (sem modelo ainda)."
+  },
+  "ce_gargoyle": {
+    "name_key": "MONSTER_CE_GARGOYLE",
+    "max_health": 260,
+    "move_speed": 1.8,
+    "damage": 18,
+    "attack_range": 2.6,
+    "attack_windup": 0.9,
+    "attack_cooldown": 2.0,
+    "aggro_range": 40.0,
+    "size": 1.6,
+    "category": "elite",
+    "element": "earth",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 9.0,
+      "windup": 1.0,
+      "speed": 10.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "placeholder",
+    "color": [
+      0.5,
+      0.5,
+      0.55
+    ],
+    "sound": "giant",
+    "visual_pending": true,
+    "_comment": "Monstro de cemetery (Gárgula de Lápide): visual pendente (sem modelo ainda)."
+  },
+  "ce_ghoul": {
+    "name_key": "MONSTER_CE_GHOUL",
+    "max_health": 25,
+    "move_speed": 5.0,
+    "damage": 5,
+    "attack_range": 1.3,
+    "attack_windup": 0.3,
+    "attack_cooldown": 0.9,
+    "aggro_range": 40.0,
+    "size": 0.55,
+    "category": "common",
+    "element": "air",
+    "ai": "melee",
+    "look": "fatty",
+    "color": [
+      0.8,
+      0.85,
+      0.7
+    ],
+    "_comment": "Monstro de cemetery (Carniçal Inchado): modelo fatty."
+  },
+  "ce_brute": {
+    "name_key": "MONSTER_CE_BRUTE",
+    "max_health": 320,
+    "move_speed": 2.4,
+    "damage": 24,
+    "attack_range": 3.2,
+    "attack_windup": 1.1,
+    "attack_cooldown": 2.2,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "elite",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 4.0,
+    "patrol_speed": 0.8,
+    "look": "placeholder",
+    "color": [
+      0.45,
+      0.5,
+      0.4
+    ],
+    "sound": "ogre",
+    "visual_pending": true,
+    "_comment": "Monstro de cemetery (Ogro Coveiro): visual pendente (sem modelo ainda)."
+  },
+  "ce_warden": {
+    "name_key": "MONSTER_CE_WARDEN",
+    "max_health": 340,
+    "move_speed": 2.8,
+    "damage": 24,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 2.2,
+    "category": "miniboss",
+    "element": "earth",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 10.0,
+      "windup": 1.0,
+      "speed": 12.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "placeholder",
+    "color": [
+      0.55,
+      0.58,
+      0.62
+    ],
+    "sound": "giant",
+    "visual_pending": true,
+    "_comment": "Monstro de cemetery (Sentinela do Túmulo): visual pendente (sem modelo ainda)."
+  },
+  "fo_imp": {
+    "name_key": "MONSTER_FO_IMP",
+    "max_health": 25,
+    "move_speed": 5.0,
+    "damage": 5,
+    "attack_range": 1.3,
+    "attack_windup": 0.3,
+    "attack_cooldown": 0.9,
+    "aggro_range": 40.0,
+    "size": 0.61,
+    "category": "common",
+    "element": "air",
+    "ai": "melee",
+    "look": "exp_demon",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Monstro de fort (Diabrete Aranha): modelo exp_demon."
+  },
+  "fo_hound": {
+    "name_key": "MONSTER_FO_HOUND",
+    "max_health": 70,
+    "move_speed": 2.2,
+    "damage": 11,
+    "attack_range": 9.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 2.6,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "ai": "ranged",
+    "keep_distance": 5.5,
+    "spit": {
+      "radius": 1.5,
+      "puddle_time": 5.0,
+      "puddle_dps": 5.0,
+      "glob": [
+        0.5,
+        0.85,
+        0.15
+      ]
+    },
+    "look": "placeholder",
+    "color": [
+      0.5,
+      0.15,
+      0.1
+    ],
+    "sound": "wolfman",
+    "visual_pending": true,
+    "_comment": "Monstro de fort (Cão do Inferno): visual pendente (sem modelo ainda)."
+  },
+  "ct_prisoner_dead": {
+    "name_key": "MONSTER_CT_PRISONER_DEAD",
+    "max_health": 90,
+    "move_speed": 3.0,
+    "damage": 14,
+    "attack_range": 2.2,
+    "attack_windup": 0.6,
+    "attack_cooldown": 1.4,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 6.0,
+    "patrol_speed": 0.8,
+    "look": "placeholder",
+    "color": [
+      0.8,
+      0.78,
+      0.7
+    ],
+    "sound": "shade",
+    "visual_pending": true,
+    "_comment": "Monstro de catacombs (Preso Esquelético): visual pendente (sem modelo ainda)."
+  },
+  "ct_crawler": {
+    "name_key": "MONSTER_CT_CRAWLER",
+    "max_health": 130,
+    "move_speed": 2.2,
+    "damage": 12,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.7,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 6.0,
+    "patrol_speed": 0.8,
+    "look": "crawlmaster",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Monstro de catacombs (Rastejante das Celas): modelo crawlmaster."
+  },
+  "ct_eye": {
+    "name_key": "MONSTER_CT_EYE",
+    "max_health": 25,
+    "move_speed": 5.0,
+    "damage": 5,
+    "attack_range": 1.3,
+    "attack_windup": 0.3,
+    "attack_cooldown": 0.9,
+    "aggro_range": 40.0,
+    "size": 0.55,
+    "category": "common",
+    "element": "air",
+    "ai": "melee",
+    "flyer": true,
+    "look": "tentacleye",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Monstro de catacombs (Olho de Tentáculos): modelo tentacleye."
+  },
+  "ct_wretch": {
+    "name_key": "MONSTER_CT_WRETCH",
+    "max_health": 210,
+    "move_speed": 3.3,
+    "damage": 16,
+    "attack_range": 2.0,
+    "attack_windup": 0.7,
+    "attack_cooldown": 1.6,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "air",
+    "ai": "melee",
+    "look": "sonask",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Monstro de catacombs (Miserável Acorrentado): modelo sonask."
+  },
+  "ct_ghoul": {
+    "name_key": "MONSTER_CT_GHOUL",
+    "max_health": 140,
+    "move_speed": 3.4,
+    "damage": 20,
+    "attack_range": 2.2,
+    "attack_windup": 0.6,
+    "attack_cooldown": 1.4,
+    "aggro_range": 40.0,
+    "size": 1.3,
+    "category": "common",
+    "element": "air",
+    "patrol": true,
+    "patrol_radius": 6.0,
+    "patrol_speed": 0.8,
+    "look": "placeholder",
+    "color": [
+      0.45,
+      0.5,
+      0.45
+    ],
+    "sound": "shade",
+    "visual_pending": true,
+    "_comment": "Monstro de catacombs (Carniçal da Cela): visual pendente (sem modelo ainda)."
+  },
+  "ct_guard": {
+    "name_key": "MONSTER_CT_GUARD",
+    "max_health": 210,
+    "move_speed": 2.8,
+    "damage": 16,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.6,
+    "aggro_range": 40.0,
+    "size": 1.1,
+    "category": "common",
+    "element": "earth",
+    "patrol": false,
+    "look": "placeholder",
+    "color": [
+      0.55,
+      0.55,
+      0.65
+    ],
+    "sound": "ogre",
+    "visual_pending": true,
+    "_comment": "Monstro de catacombs (Guarda Acorrentado): visual pendente (sem modelo ainda)."
+  },
+  "ct_torturer": {
+    "name_key": "MONSTER_CT_TORTURER",
+    "max_health": 210,
+    "move_speed": 2.6,
+    "damage": 16,
+    "attack_range": 2.4,
+    "attack_windup": 0.9,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 1.2,
+    "category": "common",
+    "element": "earth",
+    "patrol": false,
+    "look": "placeholder",
+    "color": [
+      0.5,
+      0.25,
+      0.25
+    ],
+    "sound": "ogre",
+    "visual_pending": true,
+    "_comment": "Monstro de catacombs (Torturador Encapuzado): visual pendente (sem modelo ainda)."
+  },
+  "ct_bonebat": {
+    "name_key": "MONSTER_CT_BONEBAT",
+    "max_health": 110,
+    "move_speed": 3.6,
+    "damage": 14,
+    "attack_range": 1.8,
+    "attack_windup": 0.5,
+    "attack_cooldown": 1.4,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "ai": "melee",
+    "look": "placeholder",
+    "color": [
+      0.85,
+      0.85,
+      0.75
+    ],
+    "sound": "beast",
+    "visual_pending": true,
+    "_comment": "Monstro de catacombs (Morcego de Ossos): visual pendente (sem modelo ainda)."
+  },
+  "ct_tormentor": {
+    "name_key": "MONSTER_CT_TORMENTOR",
+    "max_health": 210,
+    "move_speed": 2.8,
+    "damage": 16,
+    "attack_range": 2.3,
+    "attack_windup": 0.9,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 1.1,
+    "category": "common",
+    "element": "fire",
+    "ai": "melee",
+    "look": "placeholder",
+    "color": [
+      0.5,
+      0.2,
+      0.35
+    ],
+    "sound": "giant",
+    "visual_pending": true,
+    "_comment": "Monstro de catacombs (Atormentador): visual pendente (sem modelo ainda)."
+  },
+  "ct_deadjailer": {
+    "name_key": "MONSTER_CT_DEADJAILER",
+    "max_health": 210,
+    "move_speed": 2.3,
+    "damage": 16,
+    "attack_range": 2.8,
+    "attack_windup": 1.0,
+    "attack_cooldown": 2.0,
+    "aggro_range": 40.0,
+    "size": 1.1,
+    "category": "common",
+    "element": "earth",
+    "patrol": false,
+    "look": "placeholder",
+    "color": [
+      0.4,
+      0.4,
+      0.5
+    ],
+    "sound": "ogre",
+    "visual_pending": true,
+    "_comment": "Monstro de catacombs (Carcereiro Morto): visual pendente (sem modelo ainda)."
+  },
+  "de_scarab": {
+    "name_key": "MONSTER_DE_SCARAB",
+    "max_health": 80,
+    "move_speed": 3.4,
+    "damage": 12,
+    "attack_range": 2.2,
+    "attack_windup": 0.5,
+    "attack_cooldown": 1.3,
+    "aggro_range": 40.0,
+    "size": 1.43,
+    "category": "common",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 6.0,
+    "patrol_speed": 0.8,
+    "look": "alien_bug",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Monstro de desert (Escaravelho Devorador): modelo alien_bug."
+  },
+  "de_vulture": {
+    "name_key": "MONSTER_DE_VULTURE",
+    "max_health": 110,
+    "move_speed": 3.6,
+    "damage": 14,
+    "attack_range": 1.8,
+    "attack_windup": 0.5,
+    "attack_cooldown": 1.4,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "ai": "melee",
+    "look": "placeholder",
+    "color": [
+      0.3,
+      0.25,
+      0.22
+    ],
+    "sound": "beast",
+    "visual_pending": true,
+    "_comment": "Monstro de desert (Abutre Carniceiro): visual pendente (sem modelo ainda)."
+  },
+  "de_cobra": {
+    "name_key": "MONSTER_DE_COBRA",
+    "max_health": 55,
+    "move_speed": 3.6,
+    "damage": 10,
+    "attack_range": 1.8,
+    "attack_windup": 0.5,
+    "attack_cooldown": 1.2,
+    "aggro_range": 40.0,
+    "size": 0.99,
+    "category": "common",
+    "element": "earth",
+    "look": "cobra",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Monstro de desert (Naja das Dunas): modelo cobra."
+  },
+  "de_cactus": {
+    "name_key": "MONSTER_DE_CACTUS",
+    "max_health": 320,
+    "move_speed": 2.4,
+    "damage": 24,
+    "attack_range": 3.2,
+    "attack_windup": 1.1,
+    "attack_cooldown": 2.2,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "elite",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 4.0,
+    "patrol_speed": 0.8,
+    "look": "cactus",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Monstro de desert (Cacto Carnívoro): modelo cactus."
+  },
+  "mn_spider": {
+    "name_key": "MONSTER_MN_SPIDER",
+    "max_health": 25,
+    "move_speed": 5.0,
+    "damage": 5,
+    "attack_range": 1.3,
+    "attack_windup": 0.3,
+    "attack_cooldown": 0.9,
+    "aggro_range": 40.0,
+    "size": 0.66,
+    "category": "common",
+    "element": "air",
+    "ai": "melee",
+    "look": "spider_big",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Monstro de mine (Aranha das Cavernas): modelo spider_big."
+  },
+  "mn_digger": {
+    "name_key": "MONSTER_MN_DIGGER",
+    "max_health": 55,
+    "move_speed": 3.6,
+    "damage": 10,
+    "attack_range": 1.8,
+    "attack_windup": 0.5,
+    "attack_cooldown": 1.2,
+    "aggro_range": 40.0,
+    "size": 0.9,
+    "category": "common",
+    "element": "earth",
+    "look": "placeholder",
+    "color": [
+      0.5,
+      0.42,
+      0.3
+    ],
+    "sound": "beast",
+    "visual_pending": true,
+    "_comment": "Monstro de mine (Mineiro Morto): visual pendente (sem modelo ainda)."
+  },
+  "mn_worm": {
+    "name_key": "MONSTER_MN_WORM",
+    "max_health": 70,
+    "move_speed": 2.2,
+    "damage": 11,
+    "attack_range": 9.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 2.6,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "ai": "ranged",
+    "keep_distance": 5.5,
+    "spit": {
+      "radius": 1.5,
+      "puddle_time": 5.0,
+      "puddle_dps": 5.0,
+      "glob": [
+        0.5,
+        0.85,
+        0.15
+      ]
+    },
+    "look": "placeholder",
+    "color": [
+      0.55,
+      0.5,
+      0.45
+    ],
+    "sound": "slime",
+    "visual_pending": true,
+    "_comment": "Monstro de mine (Verme de Rocha): visual pendente (sem modelo ainda)."
+  },
+  "mn_gnome": {
+    "name_key": "MONSTER_MN_GNOME",
+    "max_health": 210,
+    "move_speed": 2.6,
+    "damage": 16,
+    "attack_range": 2.2,
+    "attack_windup": 0.9,
+    "attack_cooldown": 1.9,
+    "aggro_range": 40.0,
+    "size": 1.1,
+    "category": "common",
+    "element": "earth",
+    "patrol": false,
+    "look": "placeholder",
+    "color": [
+      0.3,
+      0.3,
+      0.45
+    ],
+    "sound": "beast",
+    "visual_pending": true,
+    "_comment": "Monstro de mine (Gnomo das Sombras): visual pendente (sem modelo ainda)."
+  },
+  "mn_bones": {
+    "name_key": "MONSTER_MN_BONES",
+    "max_health": 90,
+    "move_speed": 3.0,
+    "damage": 14,
+    "attack_range": 2.2,
+    "attack_windup": 0.6,
+    "attack_cooldown": 1.4,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 6.0,
+    "patrol_speed": 0.8,
+    "look": "placeholder",
+    "color": [
+      0.8,
+      0.75,
+      0.65
+    ],
+    "sound": "shade",
+    "visual_pending": true,
+    "_comment": "Monstro de mine (Esqueleto de Mineiro): visual pendente (sem modelo ainda)."
+  },
+  "mn_magma": {
+    "name_key": "MONSTER_MN_MAGMA",
+    "max_health": 180,
+    "move_speed": 2.3,
+    "damage": 16,
+    "attack_range": 2.6,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 1.6,
+    "category": "elite",
+    "element": "fire",
+    "patrol": false,
+    "look": "lava_golem",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Monstro de mine (Golem de Magma): modelo lava_golem."
+  },
+  "mn_rock": {
+    "name_key": "MONSTER_MN_ROCK",
+    "max_health": 260,
+    "move_speed": 1.8,
+    "damage": 18,
+    "attack_range": 2.6,
+    "attack_windup": 0.9,
+    "attack_cooldown": 2.0,
+    "aggro_range": 40.0,
+    "size": 1.6,
+    "category": "elite",
+    "element": "earth",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 9.0,
+      "windup": 1.0,
+      "speed": 10.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "placeholder",
+    "color": [
+      0.5,
+      0.48,
+      0.45
+    ],
+    "sound": "giant",
+    "visual_pending": true,
+    "_comment": "Monstro de mine (Golem de Rocha): visual pendente (sem modelo ainda)."
+  },
+  "mn_cave_troll": {
+    "name_key": "MONSTER_MN_CAVE_TROLL",
+    "max_health": 210,
+    "move_speed": 2.3,
+    "damage": 16,
+    "attack_range": 2.8,
+    "attack_windup": 1.0,
+    "attack_cooldown": 2.0,
+    "aggro_range": 40.0,
+    "size": 1.1,
+    "category": "common",
+    "element": "earth",
+    "patrol": false,
+    "look": "troll",
+    "color": [
+      0.8,
+      0.85,
+      0.9
+    ],
+    "_comment": "Monstro de mine (Troll das Cavernas): modelo troll."
+  },
+  "bk_dead": {
+    "name_key": "MONSTER_BK_DEAD",
+    "max_health": 90,
+    "move_speed": 3.0,
+    "damage": 14,
+    "attack_range": 2.2,
+    "attack_windup": 0.6,
+    "attack_cooldown": 1.4,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 6.0,
+    "patrol_speed": 0.8,
+    "look": "placeholder",
+    "color": [
+      0.55,
+      0.55,
+      0.45
+    ],
+    "sound": "shade",
+    "visual_pending": true,
+    "_comment": "Monstro de bunker (Soldado Morto): visual pendente (sem modelo ainda)."
+  },
+  "bk_scavenger": {
+    "name_key": "MONSTER_BK_SCAVENGER",
+    "max_health": 55,
+    "move_speed": 3.6,
+    "damage": 10,
+    "attack_range": 1.8,
+    "attack_windup": 0.5,
+    "attack_cooldown": 1.2,
+    "aggro_range": 40.0,
+    "size": 0.9,
+    "category": "common",
+    "element": "earth",
+    "look": "placeholder",
+    "color": [
+      0.45,
+      0.4,
+      0.3
+    ],
+    "sound": "beast",
+    "visual_pending": true,
+    "_comment": "Monstro de bunker (Saqueador do Bunker): visual pendente (sem modelo ainda)."
+  },
+  "bk_rat": {
+    "name_key": "MONSTER_BK_RAT",
+    "max_health": 25,
+    "move_speed": 5.0,
+    "damage": 5,
+    "attack_range": 1.3,
+    "attack_windup": 0.3,
+    "attack_cooldown": 0.9,
+    "aggro_range": 40.0,
+    "size": 0.72,
+    "category": "common",
+    "element": "air",
+    "ai": "melee",
+    "look": "rat",
+    "color": [
+      0.7,
+      0.6,
+      0.55
+    ],
+    "_comment": "Monstro de bunker (Ratazana de Paiol): modelo rat."
+  },
+  "bk_gas": {
+    "name_key": "MONSTER_BK_GAS",
+    "max_health": 100,
+    "move_speed": 4.2,
+    "damage": 3,
+    "attack_range": 2.5,
+    "attack_windup": 0.3,
+    "attack_cooldown": 1.0,
+    "aggro_range": 40.0,
+    "size": 3.0,
+    "category": "common",
+    "element": "earth",
+    "damage_taken": 0.6,
+    "patrol": true,
+    "patrol_radius": 8.0,
+    "patrol_speed": 0.8,
+    "ai": "melee",
+    "look": "hazmat",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Monstro de bunker (Soldado Infectado): modelo hazmat."
+  },
+  "bk_plate": {
+    "name_key": "MONSTER_BK_PLATE",
+    "max_health": 210,
+    "move_speed": 2.8,
+    "damage": 16,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.6,
+    "aggro_range": 40.0,
+    "size": 1.1,
+    "category": "common",
+    "element": "earth",
+    "patrol": false,
+    "look": "placeholder",
+    "color": [
+      0.6,
+      0.62,
+      0.7
+    ],
+    "sound": "ogre",
+    "visual_pending": true,
+    "_comment": "Monstro de bunker (Armadura Vazia): visual pendente (sem modelo ainda)."
+  },
+  "bk_beetle": {
+    "name_key": "MONSTER_BK_BEETLE",
+    "max_health": 70,
+    "move_speed": 2.2,
+    "damage": 11,
+    "attack_range": 9.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 2.6,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "ai": "ranged",
+    "keep_distance": 5.5,
+    "spit": {
+      "radius": 1.5,
+      "puddle_time": 5.0,
+      "puddle_dps": 5.0,
+      "glob": [
+        0.5,
+        0.85,
+        0.15
+      ]
+    },
+    "look": "placeholder",
+    "color": [
+      0.3,
+      0.35,
+      0.25
+    ],
+    "sound": "beetle",
+    "visual_pending": true,
+    "_comment": "Monstro de bunker (Besouro de Guerra): visual pendente (sem modelo ainda)."
+  },
+  "bk_infected": {
+    "name_key": "MONSTER_BK_INFECTED",
+    "max_health": 130,
+    "move_speed": 2.2,
+    "damage": 12,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.7,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 6.0,
+    "patrol_speed": 0.8,
+    "look": "placeholder",
+    "color": [
+      0.55,
+      0.7,
+      0.45
+    ],
+    "sound": "shade",
+    "visual_pending": true,
+    "_comment": "Monstro de bunker (Recruta Infectado): visual pendente (sem modelo ainda)."
+  },
+  "bk_brute": {
+    "name_key": "MONSTER_BK_BRUTE",
+    "max_health": 210,
+    "move_speed": 2.6,
+    "damage": 16,
+    "attack_range": 2.4,
+    "attack_windup": 0.9,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 1.2,
+    "category": "common",
+    "element": "earth",
+    "patrol": false,
+    "look": "placeholder",
+    "color": [
+      0.5,
+      0.4,
+      0.35
+    ],
+    "sound": "ogre",
+    "visual_pending": true,
+    "_comment": "Monstro de bunker (Brutamontes de Trincheira): visual pendente (sem modelo ainda)."
+  },
+  "bk_specter": {
+    "name_key": "MONSTER_BK_SPECTER",
+    "max_health": 210,
+    "move_speed": 3.3,
+    "damage": 16,
+    "attack_range": 2.0,
+    "attack_windup": 0.7,
+    "attack_cooldown": 1.6,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "air",
+    "ai": "melee",
+    "look": "placeholder",
+    "color": [
+      0.5,
+      0.6,
+      0.55
+    ],
+    "sound": "shade",
+    "visual_pending": true,
+    "_comment": "Monstro de bunker (Espectro do Rádio): visual pendente (sem modelo ainda)."
+  },
+  "fd_raven": {
+    "name_key": "MONSTER_FD_RAVEN",
+    "max_health": 110,
+    "move_speed": 3.6,
+    "damage": 14,
+    "attack_range": 1.8,
+    "attack_windup": 0.5,
+    "attack_cooldown": 1.4,
+    "aggro_range": 40.0,
+    "size": 1.2,
+    "category": "common",
+    "element": "earth",
+    "ai": "melee",
+    "flyer": true,
+    "look": "raven",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Monstro de dark (Corvo Negro): modelo raven."
+  },
+  "fd_wolf": {
+    "name_key": "MONSTER_FD_WOLF",
+    "max_health": 55,
+    "move_speed": 3.6,
+    "damage": 10,
+    "attack_range": 1.8,
+    "attack_windup": 0.5,
+    "attack_cooldown": 1.2,
+    "aggro_range": 40.0,
+    "size": 0.9,
+    "category": "common",
+    "element": "earth",
+    "look": "werewolf",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Monstro de dark (Lobisomem): modelo werewolf."
+  },
+  "fd_widow": {
+    "name_key": "MONSTER_FD_WIDOW",
+    "max_health": 70,
+    "move_speed": 2.2,
+    "damage": 11,
+    "attack_range": 9.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 2.6,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "ai": "ranged",
+    "keep_distance": 5.5,
+    "spit": {
+      "radius": 1.5,
+      "puddle_time": 5.0,
+      "puddle_dps": 5.0,
+      "glob": [
+        0.5,
+        0.85,
+        0.15
+      ]
+    },
+    "look": "placeholder",
+    "color": [
+      0.15,
+      0.1,
+      0.18
+    ],
+    "sound": "beetle",
+    "visual_pending": true,
+    "_comment": "Monstro de dark (Viúva da Mata): visual pendente (sem modelo ainda)."
+  },
+  "fd_mushroom": {
+    "name_key": "MONSTER_FD_MUSHROOM",
+    "max_health": 210,
+    "move_speed": 2.6,
+    "damage": 16,
+    "attack_range": 3.4,
+    "attack_windup": 0.7,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 3.52,
+    "category": "common",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 5.0,
+    "patrol_speed": 0.6,
+    "ai": "melee",
+    "look": "mushroom_cap",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Monstro de dark (Cogumelo Carniceiro): modelo mushroom_cap."
+  },
+  "fd_hanged": {
+    "name_key": "MONSTER_FD_HANGED",
+    "max_health": 130,
+    "move_speed": 2.2,
+    "damage": 12,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.7,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 6.0,
+    "patrol_speed": 0.8,
+    "look": "placeholder",
+    "color": [
+      0.5,
+      0.45,
+      0.35
+    ],
+    "sound": "shade",
+    "visual_pending": true,
+    "_comment": "Monstro de dark (Enforcado): visual pendente (sem modelo ainda)."
+  },
+  "fd_hunter": {
+    "name_key": "MONSTER_FD_HUNTER",
+    "max_health": 90,
+    "move_speed": 3.0,
+    "damage": 14,
+    "attack_range": 2.2,
+    "attack_windup": 0.6,
+    "attack_cooldown": 1.4,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 6.0,
+    "patrol_speed": 0.8,
+    "look": "placeholder",
+    "color": [
+      0.75,
+      0.72,
+      0.6
+    ],
+    "sound": "shade",
+    "visual_pending": true,
+    "_comment": "Monstro de dark (Caçador Esquelético): visual pendente (sem modelo ainda)."
+  },
+  "fd_stag": {
+    "name_key": "MONSTER_FD_STAG",
+    "max_health": 140,
+    "move_speed": 3.4,
+    "damage": 20,
+    "attack_range": 2.2,
+    "attack_windup": 0.6,
+    "attack_cooldown": 1.4,
+    "aggro_range": 40.0,
+    "size": 1.3,
+    "category": "common",
+    "element": "air",
+    "patrol": true,
+    "patrol_radius": 6.0,
+    "patrol_speed": 0.8,
+    "look": "placeholder",
+    "color": [
+      0.5,
+      0.6,
+      0.7
+    ],
+    "sound": "beast",
+    "visual_pending": true,
+    "_comment": "Monstro de dark (Cervo Espectral): visual pendente (sem modelo ainda)."
+  },
+  "fd_wisp": {
+    "name_key": "MONSTER_FD_WISP",
+    "max_health": 210,
+    "move_speed": 3.3,
+    "damage": 16,
+    "attack_range": 2.0,
+    "attack_windup": 0.7,
+    "attack_cooldown": 1.6,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "air",
+    "ai": "melee",
+    "look": "placeholder",
+    "color": [
+      0.5,
+      0.9,
+      0.6
+    ],
+    "sound": "shade",
+    "visual_pending": true,
+    "_comment": "Monstro de dark (Fogo-Fátuo): visual pendente (sem modelo ainda)."
   }
 }

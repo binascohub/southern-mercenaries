@@ -4400,3 +4400,162 @@ msgstr "I only open with both keys, Moss and Thorn, in the same bag. The Herbali
 
 msgid "DLG_FDWARD_DONE"
 msgstr "Both keys! The gate is open. Beware: the Shadow Elder does not run, he does not need to; every root in this forest answers to him."
+
+msgid "MONSTER_DK_DROWNED"
+msgstr "Drowned Sailor"
+
+msgid "MONSTER_DK_GATOR"
+msgstr "Dock Alligator"
+
+msgid "MONSTER_DK_CRAB"
+msgstr "Carrion Crab"
+
+msgid "MONSTER_DK_DECKHAND"
+msgstr "Dead Pirate"
+
+msgid "MONSTER_RU_GHOST"
+msgstr "Ghost Soldier"
+
+msgid "MONSTER_RU_HOUND"
+msgstr "Dead War Hound"
+
+msgid "MONSTER_CE_DIGGER"
+msgstr "Mad Gravedigger"
+
+msgid "MONSTER_CE_MAGGOT"
+msgstr "Grave Maggot"
+
+msgid "MONSTER_CE_GARGOYLE"
+msgstr "Tombstone Gargoyle"
+
+msgid "MONSTER_CE_GHOUL"
+msgstr "Bloated Ghoul"
+
+msgid "MONSTER_CE_BRUTE"
+msgstr "Gravedigger Ogre"
+
+msgid "MONSTER_CE_WARDEN"
+msgstr "Tomb Sentinel"
+
+msgid "MONSTER_FO_IMP"
+msgstr "Spider Imp"
+
+msgid "MONSTER_FO_HOUND"
+msgstr "Hellhound"
+
+msgid "MONSTER_CT_PRISONER_DEAD"
+msgstr "Skeletal Prisoner"
+
+msgid "MONSTER_CT_CRAWLER"
+msgstr "Cell Crawler"
+
+msgid "MONSTER_CT_EYE"
+msgstr "Tentacle Eye"
+
+msgid "MONSTER_CT_WRETCH"
+msgstr "Chained Wretch"
+
+msgid "MONSTER_CT_GHOUL"
+msgstr "Cell Ghoul"
+
+msgid "MONSTER_CT_GUARD"
+msgstr "Chained Guard"
+
+msgid "MONSTER_CT_TORTURER"
+msgstr "Hooded Torturer"
+
+msgid "MONSTER_CT_BONEBAT"
+msgstr "Bone Bat"
+
+msgid "MONSTER_CT_TORMENTOR"
+msgstr "Tormentor"
+
+msgid "MONSTER_CT_DEADJAILER"
+msgstr "Dead Jailer"
+
+msgid "MONSTER_DE_SCARAB"
+msgstr "Devouring Scarab"
+
+msgid "MONSTER_DE_VULTURE"
+msgstr "Carrion Vulture"
+
+msgid "MONSTER_DE_COBRA"
+msgstr "Dune Cobra"
+
+msgid "MONSTER_DE_CACTUS"
+msgstr "Carnivorous Cactus"
+
+msgid "MONSTER_MN_SPIDER"
+msgstr "Cave Spider"
+
+msgid "MONSTER_MN_DIGGER"
+msgstr "Dead Miner"
+
+msgid "MONSTER_MN_WORM"
+msgstr "Rock Worm"
+
+msgid "MONSTER_MN_GNOME"
+msgstr "Shadow Gnome"
+
+msgid "MONSTER_MN_BONES"
+msgstr "Miner's Skeleton"
+
+msgid "MONSTER_MN_MAGMA"
+msgstr "Magma Golem"
+
+msgid "MONSTER_MN_ROCK"
+msgstr "Rock Golem"
+
+msgid "MONSTER_MN_CAVE_TROLL"
+msgstr "Cave Troll"
+
+msgid "MONSTER_BK_DEAD"
+msgstr "Dead Soldier"
+
+msgid "MONSTER_BK_SCAVENGER"
+msgstr "Bunker Scavenger"
+
+msgid "MONSTER_BK_RAT"
+msgstr "Magazine Rat"
+
+msgid "MONSTER_BK_GAS"
+msgstr "Infected Soldier"
+
+msgid "MONSTER_BK_PLATE"
+msgstr "Empty Armor"
+
+msgid "MONSTER_BK_BEETLE"
+msgstr "War Beetle"
+
+msgid "MONSTER_BK_INFECTED"
+msgstr "Infected Recruit"
+
+msgid "MONSTER_BK_BRUTE"
+msgstr "Trench Brute"
+
+msgid "MONSTER_BK_SPECTER"
+msgstr "Radio Specter"
+
+msgid "MONSTER_FD_RAVEN"
+msgstr "Black Raven"
+
+msgid "MONSTER_FD_WOLF"
+msgstr "Werewolf"
+
+msgid "MONSTER_FD_WIDOW"
+msgstr "Forest Widow"
+
+msgid "MONSTER_FD_MUSHROOM"
+msgstr "Carrion Mushroom"
+
+msgid "MONSTER_FD_HANGED"
+msgstr "Hanged Man"
+
+msgid "MONSTER_FD_HUNTER"
+msgstr "Skeletal Hunter"
+
+msgid "MONSTER_FD_STAG"
+msgstr "Spectral Stag"
+
+msgid "MONSTER_FD_WISP"
+msgstr "Will-o'-the-Wisp"

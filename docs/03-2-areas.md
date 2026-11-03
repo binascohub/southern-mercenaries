@@ -244,6 +244,22 @@ Decoração: **árvores secas** em abundância, **cogumelos** (de pequenos a gig
 
 Gerado por `tools/assets/build_darkforest.py`.
 
+### Monstros por mapa (cada mapa tem os seus; só o Mímico e os guardiões dos portões se repetem)
+
+A Floresta e o Esgoto mantêm os monstros deles. Nos outros mapas cada monstro tem um visual só dele (modelos do OpenGameArt, CC0, convertidos por `tools/assets/build_oga_monsters.py` e ligados em `tools/assets/set_monster_roster.py`). **Pendente** = ainda sem modelo (aparece como uma cápsula colorida, `look: placeholder`, `visual_pending: true`).
+
+| Mapa | Monstros (visual) |
+|---|---|
+| Docas | Marujo Afogado (**pendente**) · Jacaré do Cais (gator) · Caranguejo Carniceiro (crab) · Pirata Morto (**pendente**) · Anglerman (angler) · Capitão Afogado (octaminator) · Casco Vivo (plank_monster) · Tubarão-Porco (pork_shark) |
+| Ruínas | Goblin (goblin) · Soldado Fantasma (ghost_wing) · Cão de Guerra Morto (**pendente**) · Alfa da Matilha (**pendente**) · Rei Caído (**pendente**) · Guardião das Ruínas (golem_block) · Campeão Caído (**pendente**) |
+| Cemitério | Coveiro Louco (**pendente**) · Verme de Cova (**pendente**) · Esqueleto (skeleton) · Zumbi Magro (zombie) · Gárgula de Lápide (**pendente**) · Carniçal Inchado (fatty) · Ogro Coveiro (**pendente**) · Ogro da Cripta (**pendente**) · Senhor da Cripta (undead) · Sentinela do Túmulo (**pendente**) |
+| Forte | Elfo Sombrio (dark_elf) · Diabrete Aranha (exp_demon) · Súcubo (succubus) · Comandante Amaldiçoado (demon) · Cão do Inferno (**pendente**) · Demônio da Noite (night_demon) · Barão Infernal (glutton) · Senhor Elfo Sombrio (dark_elf) · Rainha das Súcubos (succubus) |
+| Catacumbas | Preso Esquelético (**pendente**) · Rastejante das Celas (crawlmaster) · Olho de Tentáculos (tentacleye) · Miserável Acorrentado (sonask) · Carniçal da Cela (**pendente**) · Guarda Acorrentado (**pendente**) · Torturador Encapuzado (**pendente**) · Morcego de Ossos (**pendente**) · Atormentador (**pendente**) · Carcereiro Morto (**pendente**) · Rei Acorrentado (darsh) · Carrasco das Catacumbas (ogre) · Alma Acorrentada (**pendente**) |
+| Deserto | Escorpião Venenoso (scorpion) · Escaravelho Devorador (alien_bug) · Abutre Carniceiro (**pendente**) · Naja das Dunas (cobra) · Cacto Carnívoro (cactus) · Esfinge (**pendente**) · Rainha Escorpião (scorpion) · Lamassu da Areia (earth_dragon) |
+| Mina | Espreitador (stalker) · Aranha das Cavernas (spider_big) · Mineiro Morto (**pendente**) · Verme de Rocha (**pendente**) · Gnomo das Sombras (**pendente**) · Esqueleto de Mineiro (**pendente**) · Golem de Magma (lava_golem) · Guardião do Túmulo (**pendente**) · Golem de Gelo (golem_ice) · Troll das Cavernas (troll) · Golem de Rocha (**pendente**) · Golem de Cristal (golem_ice) · Chefe Troll (troll) · Besta de Quartzo (**pendente**) |
+| Bunker | Soldado Morto (**pendente**) · Saqueador do Bunker (**pendente**) · Ratazana de Paiol (rat) · Soldado Infectado (hazmat) · Armadura Vazia (**pendente**) · Besouro de Guerra (**pendente**) · Recruta Infectado (**pendente**) · Brutamontes de Trincheira (**pendente**) · Espectro do Rádio (**pendente**) · General Ferrugem (mutant_grunt) · Armadura Viva (**pendente**) · Comandante Podre (**pendente**) |
+| Floresta Escura | Corvo Negro (raven) · Lobisomem (werewolf) · Morcego Pestilento (bat) · Réptil da Floresta (reptile) · Viúva da Mata (**pendente**) · Cogumelo Carniceiro (mushroom_cap) · Enforcado (**pendente**) · Caçador Esquelético (**pendente**) · Cervo Espectral (**pendente**) · Fogo-Fátuo (**pendente**) · Ancião Sombrio (horror) · Víbora Anciã (reptile) · Rei dos Esporos (**pendente**) |
+
 ### Docas (`docks_01_pier`) — ligada ao porto de Tortuga
 
 Mapa grande de píeres de madeira sobre o mar (Modular Wooden Docks, CC0), com a mesma estrutura da Floresta e outro caminho: o **Cais** de partida sobe pelo Píer Principal até o **Mercado de Peixe**; dali, um laço a oeste (**Estaleiro**) e um a leste (**Peixaria**) fecham no **Farol** e no **Armazém**; a Calçada ao norte leva ao **Atracadouro**, ao corredor do portão e ao **Convés** do chefe final. A entrada fica no porto de Tortuga e o portal "Voltar ao porto" leva de volta. Tem barcos, galeões piratas ancorados, peixes e caranguejos, e a decoração é de cais (bitolas, caixotes, barris, redes, bancas, tochas e bandeiras).

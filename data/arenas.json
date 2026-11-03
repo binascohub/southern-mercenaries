@@ -36826,7 +36826,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "ru_ghost",
             "count": 3
           }
         ]
@@ -36865,7 +36865,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "ru_ghost",
             "count": 3
           }
         ]
@@ -36891,7 +36891,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "ru_ghost",
             "count": 3
           }
         ]
@@ -36904,7 +36904,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "ru_hound",
             "count": 4
           }
         ]
@@ -36917,7 +36917,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "ru_hound",
             "count": 4
           }
         ]
@@ -36930,7 +36930,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "ru_hound",
             "count": 4
           }
         ]
@@ -36956,7 +36956,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "ru_ghost",
             "count": 2
           }
         ]
@@ -36982,7 +36982,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "ru_ghost",
             "count": 2
           }
         ]
@@ -36995,7 +36995,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "ru_hound",
             "count": 3
           }
         ]
@@ -37034,7 +37034,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "ru_ghost",
             "count": 3
           }
         ]
@@ -37047,7 +37047,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "ru_hound",
             "count": 3
           }
         ]
@@ -37086,7 +37086,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "ru_ghost",
             "count": 3
           }
         ]
@@ -37099,7 +37099,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "ru_hound",
             "count": 4
           }
         ]
@@ -60812,7 +60812,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_frog",
+            "monster": "ce_digger",
             "count": 3
           }
         ]
@@ -60825,7 +60825,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_frog",
+            "monster": "ce_digger",
             "count": 3
           }
         ]
@@ -60838,7 +60838,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "ce_maggot",
             "count": 3
           }
         ]
@@ -60851,7 +60851,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "ce_maggot",
             "count": 4
           }
         ]
@@ -60864,7 +60864,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "ce_maggot",
             "count": 3
           }
         ]
@@ -61020,7 +61020,7 @@
         ],
         "monsters": [
           {
-            "monster": "golem_stone",
+            "monster": "ce_gargoyle",
             "count": 2
           }
         ]
@@ -61033,7 +61033,7 @@
         ],
         "monsters": [
           {
-            "monster": "golem_stone",
+            "monster": "ce_gargoyle",
             "count": 2
           }
         ]
@@ -61046,7 +61046,7 @@
         ],
         "monsters": [
           {
-            "monster": "golem_stone",
+            "monster": "ce_gargoyle",
             "count": 2
           }
         ]
@@ -61059,7 +61059,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "ce_ghoul",
             "count": 4
           }
         ]
@@ -61072,7 +61072,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "ce_ghoul",
             "count": 5
           }
         ]
@@ -61085,7 +61085,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "ce_ghoul",
             "count": 4
           }
         ]
@@ -61098,7 +61098,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "ce_ghoul",
             "count": 5
           }
         ]
@@ -61111,7 +61111,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "ce_ghoul",
             "count": 4
           }
         ]
@@ -61124,7 +61124,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "ce_ghoul",
             "count": 5
           }
         ]
@@ -61137,7 +61137,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "ce_ghoul",
             "count": 4
           }
         ]
@@ -61150,7 +61150,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "ce_ghoul",
             "count": 5
           }
         ]
@@ -61163,7 +61163,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "ce_ghoul",
             "count": 4
           }
         ]
@@ -61176,7 +61176,7 @@
         ],
         "monsters": [
           {
-            "monster": "troll",
+            "monster": "ce_brute",
             "count": 1
           }
         ]
@@ -61189,7 +61189,7 @@
         ],
         "monsters": [
           {
-            "monster": "troll",
+            "monster": "ce_brute",
             "count": 1
           }
         ]
@@ -61202,7 +61202,7 @@
         ],
         "monsters": [
           {
-            "monster": "troll",
+            "monster": "ce_brute",
             "count": 1
           }
         ]
@@ -61291,7 +61291,7 @@
           "spread": 3.0,
           "monsters": [
             {
-              "monster": "tomb_guardian",
+              "monster": "ce_warden",
               "count": 1
             }
           ]
@@ -111022,7 +111022,7 @@
             "count": 3
           },
           {
-            "monster": "plague_bat",
+            "monster": "fo_imp",
             "count": 2
           }
         ]
@@ -111073,7 +111073,7 @@
             "count": 3
           },
           {
-            "monster": "plague_bat",
+            "monster": "fo_imp",
             "count": 2
           }
         ]
@@ -111099,7 +111099,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "fo_imp",
             "count": 3
           }
         ]
@@ -111112,7 +111112,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "fo_imp",
             "count": 3
           }
         ]
@@ -111142,11 +111142,11 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "fo_hound",
             "count": 3
           },
           {
-            "monster": "mutant_frog",
+            "monster": "night_demon",
             "count": 2
           }
         ]
@@ -111185,7 +111185,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "fo_imp",
             "count": 4
           }
         ]
@@ -111211,7 +111211,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "fo_hound",
             "count": 3
           }
         ]
@@ -111224,7 +111224,7 @@
         ],
         "monsters": [
           {
-            "monster": "mutant_frog",
+            "monster": "night_demon",
             "count": 3
           }
         ]
@@ -111250,7 +111250,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "fo_imp",
             "count": 3
           }
         ]
@@ -111263,7 +111263,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "fo_imp",
             "count": 3
           }
         ]
@@ -125517,7 +125517,7 @@
         ],
         "monsters": [
           {
-            "monster": "stalker",
+            "monster": "fd_raven",
             "count": 3
           }
         ]
@@ -125530,7 +125530,7 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "fd_wolf",
             "count": 4
           }
         ]
@@ -125573,7 +125573,7 @@
             "count": 4
           },
           {
-            "monster": "venom_scorpion",
+            "monster": "fd_widow",
             "count": 2
           }
         ]
@@ -125599,7 +125599,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "fd_widow",
             "count": 3
           }
         ]
@@ -125625,7 +125625,7 @@
         ],
         "monsters": [
           {
-            "monster": "fungus_uncle",
+            "monster": "fd_mushroom",
             "count": 2
           }
         ]
@@ -125638,11 +125638,11 @@
         ],
         "monsters": [
           {
-            "monster": "fungus_uncle",
+            "monster": "fd_mushroom",
             "count": 1
           },
           {
-            "monster": "goblin",
+            "monster": "fd_wolf",
             "count": 3
           }
         ]
@@ -125655,7 +125655,7 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "fd_wolf",
             "count": 4
           }
         ]
@@ -125694,7 +125694,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "fd_widow",
             "count": 3
           }
         ]
@@ -125707,7 +125707,7 @@
         ],
         "monsters": [
           {
-            "monster": "fungus_uncle",
+            "monster": "fd_mushroom",
             "count": 2
           }
         ]
@@ -125720,7 +125720,7 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "fd_wolf",
             "count": 4
           }
         ]
@@ -125733,7 +125733,7 @@
         ],
         "monsters": [
           {
-            "monster": "zombie",
+            "monster": "fd_hanged",
             "count": 4
           }
         ]
@@ -125746,7 +125746,7 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "fd_hunter",
             "count": 4
           }
         ]
@@ -125759,7 +125759,7 @@
         ],
         "monsters": [
           {
-            "monster": "night_demon",
+            "monster": "fd_stag",
             "count": 2
           }
         ]
@@ -125772,7 +125772,7 @@
         ],
         "monsters": [
           {
-            "monster": "shadow_spirit",
+            "monster": "fd_wisp",
             "count": 2
           }
         ]
@@ -125811,7 +125811,7 @@
         ],
         "monsters": [
           {
-            "monster": "stalker",
+            "monster": "fd_raven",
             "count": 3
           }
         ]
@@ -125824,7 +125824,7 @@
         ],
         "monsters": [
           {
-            "monster": "shadow_spirit",
+            "monster": "fd_wisp",
             "count": 2
           }
         ]
@@ -125837,11 +125837,11 @@
         ],
         "monsters": [
           {
-            "monster": "zombie",
+            "monster": "fd_hanged",
             "count": 3
           },
           {
-            "monster": "skeleton",
+            "monster": "fd_hunter",
             "count": 2
           }
         ]
@@ -125854,11 +125854,11 @@
         ],
         "monsters": [
           {
-            "monster": "zombie",
+            "monster": "fd_hanged",
             "count": 3
           },
           {
-            "monster": "skeleton",
+            "monster": "fd_hunter",
             "count": 2
           }
         ]
@@ -162428,7 +162428,7 @@
             "count": 2
           },
           {
-            "monster": "plague_bat",
+            "monster": "mn_spider",
             "count": 2
           }
         ]
@@ -162441,11 +162441,11 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 3
           },
           {
-            "monster": "plague_bat",
+            "monster": "mn_spider",
             "count": 3
           }
         ]
@@ -162462,7 +162462,7 @@
             "count": 2
           },
           {
-            "monster": "plague_bat",
+            "monster": "mn_spider",
             "count": 2
           }
         ]
@@ -162475,7 +162475,7 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 4
           }
         ]
@@ -162488,11 +162488,11 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 3
           },
           {
-            "monster": "plague_bat",
+            "monster": "mn_spider",
             "count": 3
           }
         ]
@@ -162505,11 +162505,11 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 3
           },
           {
-            "monster": "plague_bat",
+            "monster": "mn_spider",
             "count": 3
           }
         ]
@@ -162522,7 +162522,7 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 4
           }
         ]
@@ -162535,7 +162535,7 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 4
           }
         ]
@@ -162548,11 +162548,11 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 3
           },
           {
-            "monster": "plague_bat",
+            "monster": "mn_spider",
             "count": 3
           }
         ]
@@ -162565,7 +162565,7 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 4
           }
         ]
@@ -162578,7 +162578,7 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 4
           }
         ]
@@ -162591,7 +162591,7 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 4
           }
         ]
@@ -162604,11 +162604,11 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 3
           },
           {
-            "monster": "plague_bat",
+            "monster": "mn_spider",
             "count": 3
           }
         ]
@@ -162621,11 +162621,11 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 3
           },
           {
-            "monster": "plague_bat",
+            "monster": "mn_spider",
             "count": 3
           }
         ]
@@ -162638,7 +162638,7 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 4
           }
         ]
@@ -162651,7 +162651,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "mn_worm",
             "count": 3
           }
         ]
@@ -162664,7 +162664,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "mn_worm",
             "count": 3
           }
         ]
@@ -162677,7 +162677,7 @@
         ],
         "monsters": [
           {
-            "monster": "mutant",
+            "monster": "mn_gnome",
             "count": 1
           }
         ]
@@ -162690,7 +162690,7 @@
         ],
         "monsters": [
           {
-            "monster": "mutant",
+            "monster": "mn_gnome",
             "count": 1
           }
         ]
@@ -162703,7 +162703,7 @@
         ],
         "monsters": [
           {
-            "monster": "mutant",
+            "monster": "mn_gnome",
             "count": 1
           }
         ]
@@ -162716,7 +162716,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "mn_worm",
             "count": 3
           }
         ]
@@ -162729,7 +162729,7 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "mn_bones",
             "count": 3
           }
         ]
@@ -162742,7 +162742,7 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "mn_bones",
             "count": 3
           }
         ]
@@ -162755,7 +162755,7 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 3
           },
           {
@@ -162772,7 +162772,7 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 3
           },
           {
@@ -162789,7 +162789,7 @@
         ],
         "monsters": [
           {
-            "monster": "mutant",
+            "monster": "mn_gnome",
             "count": 1
           }
         ]
@@ -162802,7 +162802,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "mn_worm",
             "count": 3
           }
         ]
@@ -162815,7 +162815,7 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "mn_bones",
             "count": 3
           }
         ]
@@ -162828,7 +162828,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "mn_worm",
             "count": 3
           }
         ]
@@ -162841,7 +162841,7 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "mn_bones",
             "count": 3
           }
         ]
@@ -162854,7 +162854,7 @@
         ],
         "monsters": [
           {
-            "monster": "mutant",
+            "monster": "mn_gnome",
             "count": 1
           }
         ]
@@ -162867,7 +162867,7 @@
         ],
         "monsters": [
           {
-            "monster": "mutant",
+            "monster": "mn_gnome",
             "count": 1
           }
         ]
@@ -162880,7 +162880,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "mn_worm",
             "count": 3
           }
         ]
@@ -162893,7 +162893,7 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 3
           },
           {
@@ -162910,7 +162910,7 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "mn_bones",
             "count": 4
           }
         ]
@@ -162923,7 +162923,7 @@
         ],
         "monsters": [
           {
-            "monster": "golem_fire",
+            "monster": "mn_magma",
             "count": 1
           }
         ]
@@ -162936,7 +162936,7 @@
         ],
         "monsters": [
           {
-            "monster": "golem_fire",
+            "monster": "mn_magma",
             "count": 1
           }
         ]
@@ -162949,7 +162949,7 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "mn_bones",
             "count": 4
           }
         ]
@@ -162988,7 +162988,7 @@
         ],
         "monsters": [
           {
-            "monster": "troll_mauler",
+            "monster": "mn_cave_troll",
             "count": 1
           }
         ]
@@ -163001,7 +163001,7 @@
         ],
         "monsters": [
           {
-            "monster": "golem_fire",
+            "monster": "mn_magma",
             "count": 1
           }
         ]
@@ -163014,11 +163014,11 @@
         ],
         "monsters": [
           {
-            "monster": "troll_mauler",
+            "monster": "mn_cave_troll",
             "count": 1
           },
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 2
           }
         ]
@@ -163031,7 +163031,7 @@
         ],
         "monsters": [
           {
-            "monster": "golem_fire",
+            "monster": "mn_magma",
             "count": 1
           }
         ]
@@ -163044,11 +163044,11 @@
         ],
         "monsters": [
           {
-            "monster": "troll_mauler",
+            "monster": "mn_cave_troll",
             "count": 1
           },
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 2
           }
         ]
@@ -163074,11 +163074,11 @@
         ],
         "monsters": [
           {
-            "monster": "golem_stone",
+            "monster": "mn_rock",
             "count": 1
           },
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 2
           }
         ]
@@ -163091,7 +163091,7 @@
         ],
         "monsters": [
           {
-            "monster": "golem_fire",
+            "monster": "mn_magma",
             "count": 1
           }
         ]
@@ -163104,11 +163104,11 @@
         ],
         "monsters": [
           {
-            "monster": "troll_mauler",
+            "monster": "mn_cave_troll",
             "count": 1
           },
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 2
           }
         ]
@@ -163121,11 +163121,11 @@
         ],
         "monsters": [
           {
-            "monster": "troll_mauler",
+            "monster": "mn_cave_troll",
             "count": 1
           },
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 2
           }
         ]
@@ -163138,7 +163138,7 @@
         ],
         "monsters": [
           {
-            "monster": "golem_fire",
+            "monster": "mn_magma",
             "count": 1
           }
         ]
@@ -163164,11 +163164,11 @@
         ],
         "monsters": [
           {
-            "monster": "golem_stone",
+            "monster": "mn_rock",
             "count": 1
           },
           {
-            "monster": "goblin",
+            "monster": "mn_digger",
             "count": 2
           }
         ]
@@ -163181,7 +163181,7 @@
         ],
         "monsters": [
           {
-            "monster": "golem_stone",
+            "monster": "mn_rock",
             "count": 1
           },
           {
@@ -163198,7 +163198,7 @@
         ],
         "monsters": [
           {
-            "monster": "troll_mauler",
+            "monster": "mn_cave_troll",
             "count": 2
           }
         ]
@@ -163211,7 +163211,7 @@
         ],
         "monsters": [
           {
-            "monster": "golem_stone",
+            "monster": "mn_rock",
             "count": 1
           },
           {
@@ -163228,7 +163228,7 @@
         ],
         "monsters": [
           {
-            "monster": "troll_mauler",
+            "monster": "mn_cave_troll",
             "count": 2
           }
         ]
@@ -163241,7 +163241,7 @@
         ],
         "monsters": [
           {
-            "monster": "golem_stone",
+            "monster": "mn_rock",
             "count": 1
           },
           {
@@ -163258,7 +163258,7 @@
         ],
         "monsters": [
           {
-            "monster": "golem_fire",
+            "monster": "mn_magma",
             "count": 1
           },
           {
@@ -163275,7 +163275,7 @@
         ],
         "monsters": [
           {
-            "monster": "golem_stone",
+            "monster": "mn_rock",
             "count": 1
           },
           {
@@ -163292,7 +163292,7 @@
         ],
         "monsters": [
           {
-            "monster": "golem_fire",
+            "monster": "mn_magma",
             "count": 1
           },
           {
@@ -163309,7 +163309,7 @@
         ],
         "monsters": [
           {
-            "monster": "troll_mauler",
+            "monster": "mn_cave_troll",
             "count": 2
           }
         ]
@@ -163322,7 +163322,7 @@
         ],
         "monsters": [
           {
-            "monster": "golem_fire",
+            "monster": "mn_magma",
             "count": 1
           },
           {
@@ -163339,7 +163339,7 @@
         ],
         "monsters": [
           {
-            "monster": "golem_fire",
+            "monster": "mn_magma",
             "count": 1
           },
           {
@@ -163382,7 +163382,7 @@
         ],
         "monsters": [
           {
-            "monster": "troll_mauler",
+            "monster": "mn_cave_troll",
             "count": 1
           }
         ]
@@ -185226,7 +185226,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_frog",
+            "monster": "dk_drowned",
             "count": 4
           }
         ]
@@ -185239,7 +185239,7 @@
         ],
         "monsters": [
           {
-            "monster": "acid_toad",
+            "monster": "dk_gator",
             "count": 3
           }
         ]
@@ -185252,7 +185252,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "dk_crab",
             "count": 4
           }
         ]
@@ -185265,7 +185265,7 @@
         ],
         "monsters": [
           {
-            "monster": "mutant_frog",
+            "monster": "dk_deckhand",
             "count": 3
           },
           {
@@ -185295,7 +185295,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_frog",
+            "monster": "dk_drowned",
             "count": 3
           }
         ]
@@ -185308,7 +185308,7 @@
         ],
         "monsters": [
           {
-            "monster": "mutant_frog",
+            "monster": "dk_deckhand",
             "count": 3
           }
         ]
@@ -185321,7 +185321,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "dk_crab",
             "count": 3
           }
         ]
@@ -185334,7 +185334,7 @@
         ],
         "monsters": [
           {
-            "monster": "acid_toad",
+            "monster": "dk_gator",
             "count": 2
           }
         ]
@@ -185360,7 +185360,7 @@
         ],
         "monsters": [
           {
-            "monster": "acid_toad",
+            "monster": "dk_gator",
             "count": 3
           }
         ]
@@ -185373,7 +185373,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "dk_crab",
             "count": 4
           }
         ]
@@ -185386,7 +185386,7 @@
         ],
         "monsters": [
           {
-            "monster": "mutant_frog",
+            "monster": "dk_deckhand",
             "count": 3
           }
         ]
@@ -185412,7 +185412,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "dk_crab",
             "count": 3
           }
         ]
@@ -185425,7 +185425,7 @@
         ],
         "monsters": [
           {
-            "monster": "mutant_frog",
+            "monster": "dk_deckhand",
             "count": 3
           }
         ]
@@ -185451,7 +185451,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_frog",
+            "monster": "dk_drowned",
             "count": 4
           }
         ]
@@ -185464,7 +185464,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_bat",
+            "monster": "dk_crab",
             "count": 4
           }
         ]
@@ -192421,7 +192421,7 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "bk_dead",
             "count": 3
           }
         ]
@@ -192434,7 +192434,7 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "bk_dead",
             "count": 3
           }
         ]
@@ -192447,7 +192447,7 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "bk_scavenger",
             "count": 4
           }
         ]
@@ -192460,7 +192460,7 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "bk_dead",
             "count": 3
           }
         ]
@@ -192473,11 +192473,11 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "bk_scavenger",
             "count": 3
           },
           {
-            "monster": "plague_bat",
+            "monster": "bk_rat",
             "count": 2
           }
         ]
@@ -192490,7 +192490,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_frog",
+            "monster": "bk_gas",
             "count": 4
           }
         ]
@@ -192503,7 +192503,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_frog",
+            "monster": "bk_gas",
             "count": 4
           }
         ]
@@ -192516,11 +192516,11 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "bk_scavenger",
             "count": 3
           },
           {
-            "monster": "plague_bat",
+            "monster": "bk_rat",
             "count": 2
           }
         ]
@@ -192533,7 +192533,7 @@
         ],
         "monsters": [
           {
-            "monster": "plague_frog",
+            "monster": "bk_gas",
             "count": 4
           }
         ]
@@ -192546,11 +192546,11 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "bk_scavenger",
             "count": 3
           },
           {
-            "monster": "plague_bat",
+            "monster": "bk_rat",
             "count": 2
           }
         ]
@@ -192563,7 +192563,7 @@
         ],
         "monsters": [
           {
-            "monster": "champ_warrior",
+            "monster": "bk_plate",
             "count": 1
           }
         ]
@@ -192576,7 +192576,7 @@
         ],
         "monsters": [
           {
-            "monster": "champ_warrior",
+            "monster": "bk_plate",
             "count": 1
           }
         ]
@@ -192589,7 +192589,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "bk_beetle",
             "count": 3
           }
         ]
@@ -192602,7 +192602,7 @@
         ],
         "monsters": [
           {
-            "monster": "champ_warrior",
+            "monster": "bk_plate",
             "count": 1
           }
         ]
@@ -192615,11 +192615,11 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "bk_dead",
             "count": 3
           },
           {
-            "monster": "goblin",
+            "monster": "bk_scavenger",
             "count": 2
           }
         ]
@@ -192632,7 +192632,7 @@
         ],
         "monsters": [
           {
-            "monster": "champ_warrior",
+            "monster": "bk_plate",
             "count": 1
           }
         ]
@@ -192645,7 +192645,7 @@
         ],
         "monsters": [
           {
-            "monster": "zombie",
+            "monster": "bk_infected",
             "count": 3
           }
         ]
@@ -192658,7 +192658,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "bk_beetle",
             "count": 3
           }
         ]
@@ -192671,7 +192671,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "bk_beetle",
             "count": 3
           }
         ]
@@ -192684,11 +192684,11 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "bk_dead",
             "count": 3
           },
           {
-            "monster": "goblin",
+            "monster": "bk_scavenger",
             "count": 2
           }
         ]
@@ -192701,7 +192701,7 @@
         ],
         "monsters": [
           {
-            "monster": "champ_warrior",
+            "monster": "bk_plate",
             "count": 1
           }
         ]
@@ -192714,7 +192714,7 @@
         ],
         "monsters": [
           {
-            "monster": "venom_scorpion",
+            "monster": "bk_beetle",
             "count": 3
           }
         ]
@@ -192727,7 +192727,7 @@
         ],
         "monsters": [
           {
-            "monster": "zombie",
+            "monster": "bk_infected",
             "count": 3
           }
         ]
@@ -192740,11 +192740,11 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "bk_dead",
             "count": 3
           },
           {
-            "monster": "goblin",
+            "monster": "bk_scavenger",
             "count": 2
           }
         ]
@@ -192757,7 +192757,7 @@
         ],
         "monsters": [
           {
-            "monster": "zombie",
+            "monster": "bk_infected",
             "count": 3
           }
         ]
@@ -192770,7 +192770,7 @@
         ],
         "monsters": [
           {
-            "monster": "barbarian_monster",
+            "monster": "bk_brute",
             "count": 1
           }
         ]
@@ -192783,11 +192783,11 @@
         ],
         "monsters": [
           {
-            "monster": "zombie",
+            "monster": "bk_infected",
             "count": 3
           },
           {
-            "monster": "skeleton",
+            "monster": "bk_dead",
             "count": 2
           }
         ]
@@ -192800,11 +192800,11 @@
         ],
         "monsters": [
           {
-            "monster": "zombie",
+            "monster": "bk_infected",
             "count": 3
           },
           {
-            "monster": "skeleton",
+            "monster": "bk_dead",
             "count": 2
           }
         ]
@@ -192817,7 +192817,7 @@
         ],
         "monsters": [
           {
-            "monster": "shadow_spirit",
+            "monster": "bk_specter",
             "count": 2
           }
         ]
@@ -192830,7 +192830,7 @@
         ],
         "monsters": [
           {
-            "monster": "champ_warrior",
+            "monster": "bk_plate",
             "count": 2
           }
         ]
@@ -192843,7 +192843,7 @@
         ],
         "monsters": [
           {
-            "monster": "barbarian_monster",
+            "monster": "bk_brute",
             "count": 1
           }
         ]
@@ -192856,11 +192856,11 @@
         ],
         "monsters": [
           {
-            "monster": "zombie",
+            "monster": "bk_infected",
             "count": 3
           },
           {
-            "monster": "skeleton",
+            "monster": "bk_dead",
             "count": 2
           }
         ]
@@ -192873,7 +192873,7 @@
         ],
         "monsters": [
           {
-            "monster": "champ_warrior",
+            "monster": "bk_plate",
             "count": 2
           }
         ]
@@ -192886,7 +192886,7 @@
         ],
         "monsters": [
           {
-            "monster": "champ_warrior",
+            "monster": "bk_plate",
             "count": 2
           }
         ]
@@ -192899,7 +192899,7 @@
         ],
         "monsters": [
           {
-            "monster": "barbarian_monster",
+            "monster": "bk_brute",
             "count": 1
           }
         ]
@@ -192912,7 +192912,7 @@
         ],
         "monsters": [
           {
-            "monster": "champ_warrior",
+            "monster": "bk_plate",
             "count": 2
           }
         ]
@@ -192925,11 +192925,11 @@
         ],
         "monsters": [
           {
-            "monster": "zombie",
+            "monster": "bk_infected",
             "count": 3
           },
           {
-            "monster": "skeleton",
+            "monster": "bk_dead",
             "count": 2
           }
         ]
@@ -192942,7 +192942,7 @@
         ],
         "monsters": [
           {
-            "monster": "champ_warrior",
+            "monster": "bk_plate",
             "count": 2
           }
         ]
@@ -192955,7 +192955,7 @@
         ],
         "monsters": [
           {
-            "monster": "shadow_spirit",
+            "monster": "bk_specter",
             "count": 2
           }
         ]
@@ -192968,7 +192968,7 @@
         ],
         "monsters": [
           {
-            "monster": "barbarian_monster",
+            "monster": "bk_brute",
             "count": 1
           }
         ]
@@ -192981,7 +192981,7 @@
         ],
         "monsters": [
           {
-            "monster": "champ_warrior",
+            "monster": "bk_plate",
             "count": 2
           }
         ]
@@ -193007,7 +193007,7 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "bk_dead",
             "count": 3
           }
         ]
@@ -193020,7 +193020,7 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "bk_dead",
             "count": 3
           }
         ]
@@ -241268,7 +241268,7 @@
         ],
         "monsters": [
           {
-            "monster": "chitin_beast",
+            "monster": "de_scarab",
             "count": 2
           }
         ]
@@ -241281,7 +241281,7 @@
         ],
         "monsters": [
           {
-            "monster": "stalker",
+            "monster": "de_vulture",
             "count": 2
           }
         ]
@@ -241324,7 +241324,7 @@
             "count": 2
           },
           {
-            "monster": "chitin_beast",
+            "monster": "de_scarab",
             "count": 1
           }
         ]
@@ -241337,11 +241337,11 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "de_cobra",
             "count": 4
           },
           {
-            "monster": "stalker",
+            "monster": "de_vulture",
             "count": 1
           }
         ]
@@ -241354,7 +241354,7 @@
         ],
         "monsters": [
           {
-            "monster": "chitin_beast",
+            "monster": "de_scarab",
             "count": 2
           }
         ]
@@ -241367,7 +241367,7 @@
         ],
         "monsters": [
           {
-            "monster": "troll",
+            "monster": "de_cactus",
             "count": 1
           }
         ]
@@ -241393,7 +241393,7 @@
         ],
         "monsters": [
           {
-            "monster": "stalker",
+            "monster": "de_vulture",
             "count": 2
           }
         ]
@@ -241419,7 +241419,7 @@
         ],
         "monsters": [
           {
-            "monster": "chitin_beast",
+            "monster": "de_scarab",
             "count": 3
           }
         ]
@@ -241432,7 +241432,7 @@
         ],
         "monsters": [
           {
-            "monster": "stalker",
+            "monster": "de_vulture",
             "count": 2
           }
         ]
@@ -241445,7 +241445,7 @@
         ],
         "monsters": [
           {
-            "monster": "goblin",
+            "monster": "de_cobra",
             "count": 4
           }
         ]
@@ -241471,7 +241471,7 @@
         ],
         "monsters": [
           {
-            "monster": "chitin_beast",
+            "monster": "de_scarab",
             "count": 3
           }
         ]
@@ -241484,7 +241484,7 @@
         ],
         "monsters": [
           {
-            "monster": "troll",
+            "monster": "de_cactus",
             "count": 1
           }
         ]
@@ -241523,7 +241523,7 @@
         ],
         "monsters": [
           {
-            "monster": "chitin_beast",
+            "monster": "de_scarab",
             "count": 2
           }
         ]
@@ -241549,7 +241549,7 @@
         ],
         "monsters": [
           {
-            "monster": "stalker",
+            "monster": "de_vulture",
             "count": 2
           }
         ]
@@ -241562,7 +241562,7 @@
         ],
         "monsters": [
           {
-            "monster": "chitin_beast",
+            "monster": "de_scarab",
             "count": 2
           }
         ]
@@ -241588,7 +241588,7 @@
         ],
         "monsters": [
           {
-            "monster": "chitin_beast",
+            "monster": "de_scarab",
             "count": 2
           }
         ]
@@ -241601,7 +241601,7 @@
         ],
         "monsters": [
           {
-            "monster": "chitin_beast",
+            "monster": "de_scarab",
             "count": 2
           }
         ]
@@ -249199,7 +249199,7 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "ct_prisoner_dead",
             "count": 4
           }
         ]
@@ -249212,7 +249212,7 @@
         ],
         "monsters": [
           {
-            "monster": "zombie",
+            "monster": "ct_crawler",
             "count": 3
           }
         ]
@@ -249225,11 +249225,11 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "ct_prisoner_dead",
             "count": 3
           },
           {
-            "monster": "plague_bat",
+            "monster": "ct_eye",
             "count": 3
           }
         ]
@@ -249242,11 +249242,11 @@
         ],
         "monsters": [
           {
-            "monster": "zombie",
+            "monster": "ct_crawler",
             "count": 3
           },
           {
-            "monster": "shadow_spirit",
+            "monster": "ct_wretch",
             "count": 2
           }
         ]
@@ -249259,7 +249259,7 @@
         ],
         "monsters": [
           {
-            "monster": "zombie",
+            "monster": "ct_crawler",
             "count": 3
           }
         ]
@@ -249285,11 +249285,11 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "ct_prisoner_dead",
             "count": 3
           },
           {
-            "monster": "night_demon",
+            "monster": "ct_ghoul",
             "count": 1
           }
         ]
@@ -249302,7 +249302,7 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "ct_prisoner_dead",
             "count": 4
           }
         ]
@@ -249328,7 +249328,7 @@
         ],
         "monsters": [
           {
-            "monster": "champ_warrior",
+            "monster": "ct_guard",
             "count": 2
           }
         ]
@@ -249341,7 +249341,7 @@
         ],
         "monsters": [
           {
-            "monster": "barbarian_monster",
+            "monster": "ct_torturer",
             "count": 2
           }
         ]
@@ -249354,7 +249354,7 @@
         ],
         "monsters": [
           {
-            "monster": "shadow_spirit",
+            "monster": "ct_wretch",
             "count": 2
           }
         ]
@@ -249367,7 +249367,7 @@
         ],
         "monsters": [
           {
-            "monster": "zombie",
+            "monster": "ct_crawler",
             "count": 4
           }
         ]
@@ -249380,7 +249380,7 @@
         ],
         "monsters": [
           {
-            "monster": "stalker",
+            "monster": "ct_bonebat",
             "count": 2
           }
         ]
@@ -249393,7 +249393,7 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "ct_prisoner_dead",
             "count": 3
           }
         ]
@@ -249406,7 +249406,7 @@
         ],
         "monsters": [
           {
-            "monster": "shadow_spirit",
+            "monster": "ct_wretch",
             "count": 3
           }
         ]
@@ -249419,7 +249419,7 @@
         ],
         "monsters": [
           {
-            "monster": "demon_twelve",
+            "monster": "ct_tormentor",
             "count": 2
           }
         ]
@@ -249432,7 +249432,7 @@
         ],
         "monsters": [
           {
-            "monster": "champ_warrior",
+            "monster": "ct_guard",
             "count": 2
           }
         ]
@@ -249445,7 +249445,7 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "ct_prisoner_dead",
             "count": 4
           }
         ]
@@ -249458,7 +249458,7 @@
         ],
         "monsters": [
           {
-            "monster": "night_demon",
+            "monster": "ct_ghoul",
             "count": 2
           }
         ]
@@ -249471,7 +249471,7 @@
         ],
         "monsters": [
           {
-            "monster": "zombie",
+            "monster": "ct_crawler",
             "count": 3
           }
         ]
@@ -249484,7 +249484,7 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "ct_prisoner_dead",
             "count": 3
           }
         ]
@@ -249497,7 +249497,7 @@
         ],
         "monsters": [
           {
-            "monster": "zombie",
+            "monster": "ct_crawler",
             "count": 3
           }
         ]
@@ -249510,7 +249510,7 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "ct_prisoner_dead",
             "count": 3
           }
         ]
@@ -249523,7 +249523,7 @@
         ],
         "monsters": [
           {
-            "monster": "shadow_spirit",
+            "monster": "ct_wretch",
             "count": 3
           }
         ]
@@ -249536,7 +249536,7 @@
         ],
         "monsters": [
           {
-            "monster": "zombie",
+            "monster": "ct_crawler",
             "count": 3
           }
         ]
@@ -249549,7 +249549,7 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "ct_prisoner_dead",
             "count": 2
           }
         ]
@@ -249562,7 +249562,7 @@
         ],
         "monsters": [
           {
-            "monster": "troll_mauler",
+            "monster": "ct_deadjailer",
             "count": 1
           }
         ]
@@ -249588,11 +249588,11 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "ct_prisoner_dead",
             "count": 3
           },
           {
-            "monster": "zombie",
+            "monster": "ct_crawler",
             "count": 2
           }
         ]
@@ -249605,11 +249605,11 @@
         ],
         "monsters": [
           {
-            "monster": "skeleton",
+            "monster": "ct_prisoner_dead",
             "count": 3
           },
           {
-            "monster": "zombie",
+            "monster": "ct_crawler",
             "count": 2
           }
         ]

@@ -1,0 +1,157 @@
+{
+ "crab": {
+  "file": "crab-low-poly-animated-3d-model/x_crab_0/crab/crab.blend"
+ },
+ "darsh": {
+  "file": "darsh-undead-creature/x_darsh/Darsh.glb"
+ },
+ "fatty": {
+  "file": "fatty/x_Fatty/fatty.blend",
+  "skip": [
+   "floor"
+  ],
+  "flat": [
+   0.55,
+   0.5,
+   0.42
+  ]
+ },
+ "glutton": {
+  "file": "glutton-demon/glutton_final_0.blend",
+  "flat": [
+   0.5,
+   0.42,
+   0.38
+  ]
+ },
+ "werewolf": {
+  "file": "low-poly-werewolf/x_lobisomem/LOBISOMEM/LOBO_LOW_POLY.fbx",
+  "flat": [
+   0.17,
+   0.11,
+   0.09
+  ]
+ },
+ "earth_dragon": {
+  "file": "earth-dragon-lowpoly/x_earthdragon/EARTHDRAGON/earthdragon.blend"
+ },
+ "octaminator": {
+  "file": "octaminator/Octaminator.blend",
+  "flat": [
+   0.3,
+   0.32,
+   0.36
+  ]
+ },
+ "horror": {
+  "file": "horror/horror.blend",
+  "flat": [
+   0.3,
+   0.14,
+   0.34
+  ]
+ },
+ "lava_golem": {
+  "file": "lava-golem/x_golem_clean.blend/golem_clean.blend",
+  "flat": [
+   0.22,
+   0.17,
+   0.15
+  ]
+ },
+ "golem_block": {
+  "file": "golem4/golem4.blend",
+  "flat": [
+   0.38,
+   0.4,
+   0.43
+  ]
+ },
+ "crawlmaster": {
+  "file": "nightmare-monsters/x_vividcharacters/crawlmaster deluxe.fbx",
+  "flat": [
+   0.5,
+   0.55,
+   0.7
+  ]
+ },
+ "sonask": {
+  "file": "nightmare-monsters/x_vividcharacters/sonask redo.fbx"
+ },
+ "tentacleye": {
+  "file": "nightmare-monsters/x_vividcharacters/tentacleye/tentacleye.fbx"
+ },
+ "exp_demon": {
+  "file": "exploding-spider-demon/x_Exploding Demon/ExplodingDemon.blend",
+  "flat": [
+   0.32,
+   0.09,
+   0.11
+  ]
+ },
+ "hazmat": {
+  "file": "hazmat-zombie/hazmat.blend"
+ },
+ "mutant_grunt": {
+  "file": "mutant-grunt/mutant_grunt.blend",
+  "flat": [
+   0.45,
+   0.3,
+   0.28
+  ]
+ },
+ "alien_bug": {
+  "file": "alien-bug-animated/x_alien-bug/alien-bug.glb",
+  "skip": [
+   "Icosphere"
+  ]
+ },
+ "cobra": {
+  "file": "cobra-0/x_cobra/cobra.blend",
+  "flat": [
+   0.3,
+   0.28,
+   0.18
+  ]
+ },
+ "spider_big": {
+  "file": "spider-2/spider_1.blend",
+  "flat": [
+   0.1,
+   0.1,
+   0.11
+  ]
+ },
+ "raven": {
+  "file": "raven-0/raven_0.blend",
+  "flat": [
+   0.05,
+   0.05,
+   0.07
+  ]
+ },
+ "ghost_wing": {
+  "file": "low-poly-ghost/x_ghost_0/Ghost.blend",
+  "flat": [
+   0.75,
+   0.8,
+   0.85
+  ]
+ },
+ "cactus": {
+  "file": "the-mobile-cactus/x_MobileCactus/MobileCactus/TheMobileCactus.blend",
+  "flat": [
+   0.22,
+   0.42,
+   0.18
+  ]
+ },
+ "mushroom_cap": {
+  "file": "mushroom-with-skeleton/x_Mushroom_3/Mushroom1.fbx",
+  "flat": [
+   0.45,
+   0.3,
+   0.55
+  ]
+ }
+}

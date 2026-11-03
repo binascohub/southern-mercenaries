@@ -4400,3 +4400,162 @@ msgstr "Só abro com as duas chaves, Musgo e Espinho, na mesma bolsa. A Herbalis
 
 msgid "DLG_FDWARD_DONE"
 msgstr "As duas chaves! O portão está aberto. Cuidado: o Ancião Sombrio não corre, não precisa; todas as raízes desta floresta respondem a ele."
+
+msgid "MONSTER_DK_DROWNED"
+msgstr "Marujo Afogado"
+
+msgid "MONSTER_DK_GATOR"
+msgstr "Jacaré do Cais"
+
+msgid "MONSTER_DK_CRAB"
+msgstr "Caranguejo Carniceiro"
+
+msgid "MONSTER_DK_DECKHAND"
+msgstr "Pirata Morto"
+
+msgid "MONSTER_RU_GHOST"
+msgstr "Soldado Fantasma"
+
+msgid "MONSTER_RU_HOUND"
+msgstr "Cão de Guerra Morto"
+
+msgid "MONSTER_CE_DIGGER"
+msgstr "Coveiro Louco"
+
+msgid "MONSTER_CE_MAGGOT"
+msgstr "Verme de Cova"
+
+msgid "MONSTER_CE_GARGOYLE"
+msgstr "Gárgula de Lápide"
+
+msgid "MONSTER_CE_GHOUL"
+msgstr "Carniçal Inchado"
+
+msgid "MONSTER_CE_BRUTE"
+msgstr "Ogro Coveiro"
+
+msgid "MONSTER_CE_WARDEN"
+msgstr "Sentinela do Túmulo"
+
+msgid "MONSTER_FO_IMP"
+msgstr "Diabrete Aranha"
+
+msgid "MONSTER_FO_HOUND"
+msgstr "Cão do Inferno"
+
+msgid "MONSTER_CT_PRISONER_DEAD"
+msgstr "Preso Esquelético"
+
+msgid "MONSTER_CT_CRAWLER"
+msgstr "Rastejante das Celas"
+
+msgid "MONSTER_CT_EYE"
+msgstr "Olho de Tentáculos"
+
+msgid "MONSTER_CT_WRETCH"
+msgstr "Miserável Acorrentado"
+
+msgid "MONSTER_CT_GHOUL"
+msgstr "Carniçal da Cela"
+
+msgid "MONSTER_CT_GUARD"
+msgstr "Guarda Acorrentado"
+
+msgid "MONSTER_CT_TORTURER"
+msgstr "Torturador Encapuzado"
+
+msgid "MONSTER_CT_BONEBAT"
+msgstr "Morcego de Ossos"
+
+msgid "MONSTER_CT_TORMENTOR"
+msgstr "Atormentador"
+
+msgid "MONSTER_CT_DEADJAILER"
+msgstr "Carcereiro Morto"
+
+msgid "MONSTER_DE_SCARAB"
+msgstr "Escaravelho Devorador"
+
+msgid "MONSTER_DE_VULTURE"
+msgstr "Abutre Carniceiro"
+
+msgid "MONSTER_DE_COBRA"
+msgstr "Naja das Dunas"
+
+msgid "MONSTER_DE_CACTUS"
+msgstr "Cacto Carnívoro"
+
+msgid "MONSTER_MN_SPIDER"
+msgstr "Aranha das Cavernas"
+
+msgid "MONSTER_MN_DIGGER"
+msgstr "Mineiro Morto"
+
+msgid "MONSTER_MN_WORM"
+msgstr "Verme de Rocha"
+
+msgid "MONSTER_MN_GNOME"
+msgstr "Gnomo das Sombras"
+
+msgid "MONSTER_MN_BONES"
+msgstr "Esqueleto de Mineiro"
+
+msgid "MONSTER_MN_MAGMA"
+msgstr "Golem de Magma"
+
+msgid "MONSTER_MN_ROCK"
+msgstr "Golem de Rocha"
+
+msgid "MONSTER_MN_CAVE_TROLL"
+msgstr "Troll das Cavernas"
+
+msgid "MONSTER_BK_DEAD"
+msgstr "Soldado Morto"
+
+msgid "MONSTER_BK_SCAVENGER"
+msgstr "Saqueador do Bunker"
+
+msgid "MONSTER_BK_RAT"
+msgstr "Ratazana de Paiol"
+
+msgid "MONSTER_BK_GAS"
+msgstr "Soldado Infectado"
+
+msgid "MONSTER_BK_PLATE"
+msgstr "Armadura Vazia"
+
+msgid "MONSTER_BK_BEETLE"
+msgstr "Besouro de Guerra"
+
+msgid "MONSTER_BK_INFECTED"
+msgstr "Recruta Infectado"
+
+msgid "MONSTER_BK_BRUTE"
+msgstr "Brutamontes de Trincheira"
+
+msgid "MONSTER_BK_SPECTER"
+msgstr "Espectro do Rádio"
+
+msgid "MONSTER_FD_RAVEN"
+msgstr "Corvo Negro"
+
+msgid "MONSTER_FD_WOLF"
+msgstr "Lobisomem"
+
+msgid "MONSTER_FD_WIDOW"
+msgstr "Viúva da Mata"
+
+msgid "MONSTER_FD_MUSHROOM"
+msgstr "Cogumelo Carniceiro"
+
+msgid "MONSTER_FD_HANGED"
+msgstr "Enforcado"
+
+msgid "MONSTER_FD_HUNTER"
+msgstr "Caçador Esquelético"
+
+msgid "MONSTER_FD_STAG"
+msgstr "Cervo Espectral"
+
+msgid "MONSTER_FD_WISP"
+msgstr "Fogo-Fátuo"

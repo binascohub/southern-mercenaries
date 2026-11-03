@@ -4141,3 +4141,162 @@ msgstr ""
 
 msgid "DLG_FDWARD_DONE"
 msgstr ""
+
+msgid "MONSTER_DK_DROWNED"
+msgstr ""
+
+msgid "MONSTER_DK_GATOR"
+msgstr ""
+
+msgid "MONSTER_DK_CRAB"
+msgstr ""
+
+msgid "MONSTER_DK_DECKHAND"
+msgstr ""
+
+msgid "MONSTER_RU_GHOST"
+msgstr ""
+
+msgid "MONSTER_RU_HOUND"
+msgstr ""
+
+msgid "MONSTER_CE_DIGGER"
+msgstr ""
+
+msgid "MONSTER_CE_MAGGOT"
+msgstr ""
+
+msgid "MONSTER_CE_GARGOYLE"
+msgstr ""
+
+msgid "MONSTER_CE_GHOUL"
+msgstr ""
+
+msgid "MONSTER_CE_BRUTE"
+msgstr ""
+
+msgid "MONSTER_CE_WARDEN"
+msgstr ""
+
+msgid "MONSTER_FO_IMP"
+msgstr ""
+
+msgid "MONSTER_FO_HOUND"
+msgstr ""
+
+msgid "MONSTER_CT_PRISONER_DEAD"
+msgstr ""
+
+msgid "MONSTER_CT_CRAWLER"
+msgstr ""
+
+msgid "MONSTER_CT_EYE"
+msgstr ""
+
+msgid "MONSTER_CT_WRETCH"
+msgstr ""
+
+msgid "MONSTER_CT_GHOUL"
+msgstr ""
+
+msgid "MONSTER_CT_GUARD"
+msgstr ""
+
+msgid "MONSTER_CT_TORTURER"
+msgstr ""
+
+msgid "MONSTER_CT_BONEBAT"
+msgstr ""
+
+msgid "MONSTER_CT_TORMENTOR"
+msgstr ""
+
+msgid "MONSTER_CT_DEADJAILER"
+msgstr ""
+
+msgid "MONSTER_DE_SCARAB"
+msgstr ""
+
+msgid "MONSTER_DE_VULTURE"
+msgstr ""
+
+msgid "MONSTER_DE_COBRA"
+msgstr ""
+
+msgid "MONSTER_DE_CACTUS"
+msgstr ""
+
+msgid "MONSTER_MN_SPIDER"
+msgstr ""
+
+msgid "MONSTER_MN_DIGGER"
+msgstr ""
+
+msgid "MONSTER_MN_WORM"
+msgstr ""
+
+msgid "MONSTER_MN_GNOME"
+msgstr ""
+
+msgid "MONSTER_MN_BONES"
+msgstr ""
+
+msgid "MONSTER_MN_MAGMA"
+msgstr ""
+
+msgid "MONSTER_MN_ROCK"
+msgstr ""
+
+msgid "MONSTER_MN_CAVE_TROLL"
+msgstr ""
+
+msgid "MONSTER_BK_DEAD"
+msgstr ""
+
+msgid "MONSTER_BK_SCAVENGER"
+msgstr ""
+
+msgid "MONSTER_BK_RAT"
+msgstr ""
+
+msgid "MONSTER_BK_GAS"
+msgstr ""
+
+msgid "MONSTER_BK_PLATE"
+msgstr ""
+
+msgid "MONSTER_BK_BEETLE"
+msgstr ""
+
+msgid "MONSTER_BK_INFECTED"
+msgstr ""
+
+msgid "MONSTER_BK_BRUTE"
+msgstr ""
+
+msgid "MONSTER_BK_SPECTER"
+msgstr ""
+
+msgid "MONSTER_FD_RAVEN"
+msgstr ""
+
+msgid "MONSTER_FD_WOLF"
+msgstr ""
+
+msgid "MONSTER_FD_WIDOW"
+msgstr ""
+
+msgid "MONSTER_FD_MUSHROOM"
+msgstr ""
+
+msgid "MONSTER_FD_HANGED"
+msgstr ""
+
+msgid "MONSTER_FD_HUNTER"
+msgstr ""
+
+msgid "MONSTER_FD_STAG"
+msgstr ""
+
+msgid "MONSTER_FD_WISP"
+msgstr ""
