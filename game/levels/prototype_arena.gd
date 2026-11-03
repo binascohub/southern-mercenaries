@@ -2010,11 +2010,23 @@ func _build_prop(prop_data: Dictionary) -> void:
 				sludge.material_override = _sludge_material()
 				node.add_child(sludge)
 			"water":
-				# Mar do porto: um plano simples (04-tortuga-e-missoes.md, seção 6).
+				# Mar do porto, lagoas e riacho: plano com o shader de água (assets/shaders/water.gdshader); sem ele (testes sem importação), o plano liso de antes.
 				var size: Array = prop.get("size", [40, 20])
 				var tint: Array = prop.get("color", [0.07, 0.16, 0.24])  # riacho da Fazenda: água mais clara
-				if prop.get("round", false):
-					# Lagoa: elipse (o "size" é o diâmetro em x e em z).
+				var round_pond: bool = prop.get("round", false)
+				var water_material := _water_material(tint, size, round_pond, prop)
+				if water_material:
+					var water := MeshInstance3D.new()
+					var water_plane := PlaneMesh.new()
+					water_plane.size = Vector2(float(size[0]), float(size[1]))
+					water.mesh = water_plane
+					water.position.y = 0.06
+					water.material_override = water_material
+					water.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+					node.add_child(water)
+					if round_pond:
+						_block_pond(node, Vector2(size[0], size[1]))
+				elif round_pond:
 					_prop_mesh(node, CylinderMesh.new(), Vector3(size[0], 0.05, size[1]), Vector3(0, 0.02, 0), Color(tint[0], tint[1], tint[2]))
 					_block_pond(node, Vector2(size[0], size[1]))
 				else:
@@ -2385,6 +2397,29 @@ func _kit(parent: Node3D, piece_name: String, offset := Transform3D.IDENTITY, ti
 
 
 ## Lodo do esgoto (canais, câmaras alagadas): verde-escuro, liso e brilhante.
+## Material da água (shader + texturas feitas por tools/assets/build_water_textures.py). `tint` é a cor funda; a rasa é uma versão clareada e esverdeada dela.
+## Do prop: "flow" (correnteza [x, z]), "foam" (0 a 1, espuma na margem; o mar não tem) e "alpha".
+func _water_material(tint: Array, size: Array, round_pond: bool, prop: Dictionary) -> ShaderMaterial:
+	if not ResourceLoader.exists("res://assets/shaders/water.gdshader") or not ResourceLoader.exists("res://assets/textures/water/water_normal.png"):
+		return null
+	var material := ShaderMaterial.new()
+	material.shader = load("res://assets/shaders/water.gdshader") as Shader
+	var deep := Color(tint[0], tint[1], tint[2])
+	var shallow := deep.lerp(Color(0.45, 0.7, 0.62), 0.45).lightened(0.1)
+	material.set_shader_parameter("deep_color", deep)
+	material.set_shader_parameter("shallow_color", shallow)
+	material.set_shader_parameter("normal_tex", load("res://assets/textures/water/water_normal.png"))
+	material.set_shader_parameter("caustic_tex", load("res://assets/textures/water/water_caustic.png"))
+	material.set_shader_parameter("half_size", Vector2(float(size[0]) / 2.0, float(size[1]) / 2.0))
+	material.set_shader_parameter("round_shape", 1.0 if round_pond else 0.0)
+	var flow: Array = prop.get("flow", [0.02, 0.012])
+	material.set_shader_parameter("flow", Vector2(float(flow[0]), float(flow[1])))
+	material.set_shader_parameter("foam_amount", float(prop.get("foam", 0.0 if float(size[0]) > 100.0 else 1.0)))
+	material.set_shader_parameter("alpha", float(prop.get("alpha", 0.93 if float(size[0]) > 100.0 else 0.88)))
+	material.set_shader_parameter("depth_range", 6.0 if float(size[0]) > 100.0 else (1.4 if minf(float(size[0]), float(size[1])) < 5.0 else 3.0))
+	return material
+
+
 func _sludge_material() -> StandardMaterial3D:
 	if _sludge == null:
 		_sludge = StandardMaterial3D.new()

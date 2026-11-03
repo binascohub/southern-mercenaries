@@ -83,7 +83,7 @@ put_prop("capital_01_aurenhold", {"id": "pilgrim", "kind": "npc", "npc": "pilgri
 farm = arenas["farm_01_fields"]
 solid_things = [d["position"] for d in farm["decor"] if d.get("piece") and not d["piece"].startswith(("Pl_", "Grass", "Prop_", "Ground_")) and "position" in d] + [p["position"] for p in farm["props"] if "position" in p]
 SHED = None
-for cx_, cz_ in ((-18, -4), (18, -3), (-12, -3), (-20, -22), (22, -22), (-6, -9)):
+for cx_, cz_ in ((-24, -14), (-18, -4), (18, -3), (-12, -3), (-20, -22), (22, -22), (-6, -9)):
     if not any(math.hypot(cx_ - x, cz_ - z) < 6 for x, z in solid_things):
         SHED = (cx_, cz_)
         break

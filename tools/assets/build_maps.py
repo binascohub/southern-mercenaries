@@ -1870,6 +1870,7 @@ json.dump(arenas, open(ARENAS, "w"), indent=2, ensure_ascii=False); open(ARENAS,
 json.dump(monsters, open(MONSTERS, "w"), indent=2, ensure_ascii=False); open(MONSTERS, "a").write("\n")
 import subprocess, sys
 subprocess.run([sys.executable, "tools/assets/add_minibosses.py"], check=True)  # 2 mini-chefes por mapa + drops das relíquias
+subprocess.run([sys.executable, "tools/assets/build_farm.py"], check=True)  # Fazenda reorganizada em áreas cercadas (substitui a primeira versão acima)
 subprocess.run([sys.executable, "tools/assets/add_fish.py"], check=True)  # peixes no riacho da Fazenda e no mar das Docas
 subprocess.run([sys.executable, "tools/assets/build_desert.py"], check=True)  # mapa do Deserto ligado à Fazenda
 subprocess.run([sys.executable, "tools/assets/add_signposts.py"], check=True)  # placas nos cruzamentos dos mapas ao ar livre
