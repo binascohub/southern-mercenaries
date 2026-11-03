@@ -2731,5 +2731,465 @@
         "body": "cloth"
       }
     }
+  },
+  "war_veteran": {
+    "name_key": "NPC_WAR_VETERAN",
+    "color": [
+      0.5,
+      0.2,
+      0.2
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "map_ruins",
+          "after": "docks_smugglers"
+        },
+        "lines": [
+          "DLG_WARVET_1",
+          "DLG_WARVET_2",
+          "DLG_WARVET_3"
+        ],
+        "offer": "map_ruins"
+      },
+      {
+        "when": {
+          "quest_active": "map_ruins"
+        },
+        "lines": [
+          "DLG_WARVET_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_WARVET_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.4,
+        0.4,
+        0.38
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "cartographer": {
+    "name_key": "NPC_CARTOGRAPHER",
+    "color": [
+      0.45,
+      0.4,
+      0.55
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "trav_to_capital",
+          "after": "map_ruins"
+        },
+        "lines": [
+          "DLG_CARTO_1",
+          "DLG_CARTO_2",
+          "DLG_CARTO_3"
+        ],
+        "offer": "trav_to_capital"
+      },
+      {
+        "when": {
+          "quest_active": "trav_to_capital"
+        },
+        "lines": [
+          "DLG_CARTO_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_CARTO_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_SimpleParted"
+      ],
+      "hair_color": [
+        0.55,
+        0.52,
+        0.48
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "penitent_sister": {
+    "name_key": "NPC_PENITENT_SISTER",
+    "color": [
+      0.6,
+      0.5,
+      0.6
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "map_catacombs",
+          "after": "royal_skull"
+        },
+        "lines": [
+          "DLG_PENSIS_1",
+          "DLG_PENSIS_2",
+          "DLG_PENSIS_3"
+        ],
+        "offer": "map_catacombs"
+      },
+      {
+        "when": {
+          "quest_active": "map_catacombs"
+        },
+        "lines": [
+          "DLG_PENSIS_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_PENSIS_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "female",
+      "hair": [
+        "Hair_Long"
+      ],
+      "hair_color": [
+        0.15,
+        0.12,
+        0.15
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "pilgrim": {
+    "name_key": "NPC_PILGRIM",
+    "color": [
+      0.7,
+      0.55,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "map_desert",
+          "after": "map_catacombs"
+        },
+        "lines": [
+          "DLG_PILGRIM_1",
+          "DLG_PILGRIM_2",
+          "DLG_PILGRIM_3"
+        ],
+        "offer": "map_desert"
+      },
+      {
+        "when": {
+          "quest_active": "map_desert"
+        },
+        "lines": [
+          "DLG_PILGRIM_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_PILGRIM_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.3,
+        0.22,
+        0.12
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "sacristan": {
+    "name_key": "NPC_SACRISTAN",
+    "color": [
+      0.45,
+      0.45,
+      0.5
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "requires": "trav_to_capital"
+        },
+        "lines": [
+          "DLG_SACRI_MAP_1",
+          "DLG_SACRI_MAP_2"
+        ],
+        "grants_item": "sealed_map"
+      },
+      {
+        "when": {
+          "quest_new": "cap_to_farm",
+          "after": "map_desert"
+        },
+        "lines": [
+          "DLG_SACRI_1",
+          "DLG_SACRI_2",
+          "DLG_SACRI_3"
+        ],
+        "offer": "cap_to_farm"
+      },
+      {
+        "when": {
+          "quest_active": "cap_to_farm"
+        },
+        "lines": [
+          "DLG_SACRI_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_SACRI_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Buzzed"
+      ],
+      "hair_color": [
+        0.4,
+        0.38,
+        0.35
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "shed_farmer": {
+    "name_key": "NPC_SHED_FARMER",
+    "color": [
+      0.5,
+      0.4,
+      0.25
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "map_mine"
+        },
+        "lines": [
+          "DLG_FARMER_1",
+          "DLG_FARMER_2",
+          "DLG_FARMER_3"
+        ],
+        "offer": "map_mine"
+      },
+      {
+        "when": {
+          "quest_active": "map_mine"
+        },
+        "lines": [
+          "DLG_FARMER_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_FARMER_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.35,
+        0.25,
+        0.15
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "shed_smith": {
+    "name_key": "NPC_SHED_SMITH",
+    "color": [
+      0.4,
+      0.35,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "map_bunker",
+          "after": "map_mine"
+        },
+        "lines": [
+          "DLG_SMITH_1",
+          "DLG_SMITH_2",
+          "DLG_SMITH_3"
+        ],
+        "offer": "map_bunker"
+      },
+      {
+        "when": {
+          "quest_active": "map_bunker"
+        },
+        "lines": [
+          "DLG_SMITH_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_SMITH_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Buzzed"
+      ],
+      "hair_color": [
+        0.1,
+        0.1,
+        0.1
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "shed_lumberjack": {
+    "name_key": "NPC_SHED_LUMBERJACK",
+    "color": [
+      0.4,
+      0.5,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "map_dark_forest",
+          "after": "map_bunker"
+        },
+        "lines": [
+          "DLG_LUMBER_1",
+          "DLG_LUMBER_2",
+          "DLG_LUMBER_3"
+        ],
+        "offer": "map_dark_forest"
+      },
+      {
+        "when": {
+          "quest_active": "map_dark_forest"
+        },
+        "lines": [
+          "DLG_LUMBER_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_LUMBER_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "female",
+      "hair": [
+        "Hair_Buns"
+      ],
+      "hair_color": [
+        0.3,
+        0.2,
+        0.1
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "shed_scarecrow": {
+    "name_key": "NPC_SHED_SCARECROW",
+    "color": [
+      0.5,
+      0.45,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "requires": "cap_to_farm"
+        },
+        "lines": [
+          "DLG_ZECA_1",
+          "DLG_ZECA_2"
+        ],
+        "grants_item": "silver_sickle"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_ZECA_DEFAULT"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.6,
+        0.58,
+        0.55
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
   }
 }

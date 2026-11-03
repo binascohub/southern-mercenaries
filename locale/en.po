@@ -4571,3 +4571,228 @@ msgstr "{city} — finish {here}'s quests ({n} left)"
 
 msgid "TOAST_HUB_LOCKED"
 msgstr "The Time Traveler only takes you onward once {city}'s quests are done ({n} left)."
+
+msgid "AREA_FARM_SHED"
+msgstr "Equipment House"
+
+msgid "PROP_SHED"
+msgstr "Farmer's Equipment House"
+
+msgid "PROP_SHED_EXIT"
+msgstr "Out to the fields"
+
+msgid "NPC_WAR_VETERAN"
+msgstr "War Veteran"
+
+msgid "NPC_CARTOGRAPHER"
+msgstr "Cartographer Aldrin"
+
+msgid "NPC_PENITENT_SISTER"
+msgstr "Sister Isolda the Penitent"
+
+msgid "NPC_PILGRIM"
+msgstr "Pilgrim Haled"
+
+msgid "NPC_SACRISTAN"
+msgstr "Sacristan Ambrose"
+
+msgid "NPC_SHED_FARMER"
+msgstr "Farmer Tadeo"
+
+msgid "NPC_SHED_SMITH"
+msgstr "Smith Gorm"
+
+msgid "NPC_SHED_LUMBERJACK"
+msgstr "Lumberjack Odette"
+
+msgid "NPC_SHED_SCARECROW"
+msgstr "Old Zeca"
+
+msgid "VALUABLE_SEALED_MAP"
+msgstr "Sealed Map"
+
+msgid "VALUABLE_SILVER_SICKLE"
+msgstr "Silver Sickle"
+
+msgid "QUEST_MAP_RUINS"
+msgstr "The Fallen King's Crypt"
+
+msgid "QUEST_MAP_RUINS_DESC"
+msgstr "The War Veteran, in the Tavern, wants an end to the Fallen King, who guards the Royal Vault in the Ruins. Complete the quest by defeating the Fallen King."
+
+msgid "QUEST_TRAV_TO_CAPITAL"
+msgstr "The Sealed Map"
+
+msgid "QUEST_TRAV_TO_CAPITAL_DESC"
+msgstr "Cartographer Aldrin, in the Tavern, needs the Sealed Map that Sacristan Ambrose keeps in the Royal Capital's church. Use the Time Traveler to reach the Capital, get the map from the Sacristan and bring it back to the Cartographer."
+
+msgid "QUEST_MAP_CATACOMBS"
+msgstr "The Catacombs of the Condemned"
+
+msgid "QUEST_MAP_CATACOMBS_DESC"
+msgstr "Sister Isolda the Penitent, in the Capital's church, asks that the Chained King, deep in the Catacombs, finally rest. Complete the quest by defeating the Chained King."
+
+msgid "QUEST_MAP_DESERT"
+msgstr "The Sphinx's Riddle"
+
+msgid "QUEST_MAP_DESERT_DESC"
+msgstr "Pilgrim Haled, in the Capital's church, lost three brothers of faith crossing the Desert, where the Sphinx guards the hall behind the gate. Complete the quest by defeating the Sphinx."
+
+msgid "QUEST_CAP_TO_FARM"
+msgstr "The Silver Sickle"
+
+msgid "QUEST_CAP_TO_FARM_DESC"
+msgstr "Sacristan Ambrose, in the Capital's church, needs the Silver Sickle that Old Zeca keeps in the Farm's Equipment House. Use the Time Traveler to reach the Farm, get the sickle from Old Zeca and bring it to the Sacristan."
+
+msgid "QUEST_MAP_MINE"
+msgstr "The Heart of the Mine"
+
+msgid "QUEST_MAP_MINE_DESC"
+msgstr "Farmer Tadeo, in the Equipment House, lost half a dozen miners in the maze beneath the Farm, where a crystal golem guards the bottom. Complete the quest by defeating the Crystal Golem."
+
+msgid "QUEST_MAP_BUNKER"
+msgstr "The Sealed Bunker"
+
+msgid "QUEST_MAP_BUNKER_DESC"
+msgstr "Smith Gorm, in the Equipment House, recognizes the iron of the weapons coming out of the Bunker, sealed by a general who refused to surrender. Complete the quest by defeating General Rust."
+
+msgid "QUEST_MAP_DARK_FOREST"
+msgstr "The Forest That Darkened"
+
+msgid "QUEST_MAP_DARK_FOREST_DESC"
+msgstr "Lumberjack Odette, in the Equipment House, no longer cuts wood in the forest to the north: the trees died standing and one of them moves. Complete the quest by defeating the Shadow Elder."
+
+msgid "DLG_WARVET_1"
+msgstr "I served the king to his last day, and saw what is left of his city: ruins, and inside them the king himself, standing, without breath and without rest."
+
+msgid "DLG_WARVET_2"
+msgstr "The Ruins lie north of Tortuga's port, past the Docks. The Fallen King guards the Royal Vault deep inside, behind a two-key gate."
+
+msgid "DLG_WARVET_3"
+msgstr "Bring the Fallen King down and I will pay well. After that, look for Cartographer Aldrin here in the tavern: he always knows where to go next."
+
+msgid "DLG_WARVET_ACTIVE"
+msgstr "The Fallen King is in the Royal Vault, deep in the Ruins. Take the two keys from the Scholar and the Priestess."
+
+msgid "DLG_WARVET_DONE"
+msgstr "The king finally sleeps. I can, too, now. Talk to the Cartographer."
+
+msgid "DLG_CARTO_1"
+msgstr "You cleared the Ruins, and that changes the whole map: Tortuga is no longer the end of the road. There is a city to the north, the Royal Capital, and I have never seen its map."
+
+msgid "DLG_CARTO_2"
+msgstr "Sacristan Ambrose, in the church there, has kept a Sealed Map since the war. Speak to the Time Traveler: he takes you to the Capital in the blink of an eye."
+
+msgid "DLG_CARTO_3"
+msgstr "Get the map from the Sacristan and bring it to me. Do not open it: the seal is the only thing keeping the map's dead quiet."
+
+msgid "DLG_CARTO_ACTIVE"
+msgstr "Sacristan Ambrose is in the Royal Capital's church. The Time Traveler, here in Tortuga, takes you there."
+
+msgid "DLG_CARTO_DONE"
+msgstr "The Sealed Map! The seal is intact. Thank you: the Capital is finally on paper."
+
+msgid "DLG_SACRI_MAP_1"
+msgstr "Ah, Cartographer Aldrin sends you. The Sealed Map has been with me since the war; no one wanted it, no one dared burn it."
+
+msgid "DLG_SACRI_MAP_2"
+msgstr "Take it, and carefully. Tell Aldrin the seal is blessed candle wax: if it cracks, the map starts walking by itself."
+
+msgid "DLG_SACRI_1"
+msgstr "The Desert is conquered, I hear, and the Sphinx is silent. But Aldrin's map came at a price: the Silver Sickle, which cuts what must not be cut, left the church years ago."
+
+msgid "DLG_SACRI_2"
+msgstr "It ended up on the Farm: Old Zeca, in the Farmer's Equipment House, keeps it among the tools, thinking it is just an old sickle."
+
+msgid "DLG_SACRI_3"
+msgstr "Ask the Time Traveler to take you to the Farm, get the sickle from Old Zeca and bring it to me. The church will need it before the trees of the north wake."
+
+msgid "DLG_SACRI_ACTIVE"
+msgstr "The Silver Sickle is with Old Zeca, in the Farm's Equipment House. The Time Traveler takes you."
+
+msgid "DLG_SACRI_DONE"
+msgstr "The sickle! It is home again. May the silver cut only what it should. Thank you, mercenaries."
+
+msgid "DLG_PENSIS_1"
+msgstr "I pray every day for those who died behind the Catacombs' bars, and especially for the king who stayed there chained by his own subjects."
+
+msgid "DLG_PENSIS_2"
+msgstr "The Catacombs lie south of the Capital, past the Fort gate. The Chained King guards the Crypt at the bottom, behind a gate that only opens with two keys."
+
+msgid "DLG_PENSIS_3"
+msgstr "Bring down the Chained King and the church will see to the rest: I will light a candle for him and one for you. Pilgrim Haled, beside me, has the next quest."
+
+msgid "DLG_PENSIS_ACTIVE"
+msgstr "The Chained King is in the Crypt, at the end of the Catacombs. Take the Iron and Bone keys."
+
+msgid "DLG_PENSIS_DONE"
+msgstr "The king rests. The chains have finally grown light. God keep you."
+
+msgid "DLG_PILGRIM_1"
+msgstr "I crossed the Desert singing, with three brothers of faith, and only I came back. The Sphinx asks what no one knows and devours whoever errs."
+
+msgid "DLG_PILGRIM_2"
+msgstr "The Desert lies past the Capital, and the Sphinx waits in the hall behind the gate, at the end of the sand road. There is a nomad camp right at the entrance."
+
+msgid "DLG_PILGRIM_3"
+msgstr "Bring down the Sphinx and tell me the answer. Then speak to Sacristan Ambrose: he has a request for whoever conquers the Desert."
+
+msgid "DLG_PILGRIM_ACTIVE"
+msgstr "The Sphinx guards the hall behind the gate. Take the Clubs and Diamonds keys."
+
+msgid "DLG_PILGRIM_DONE"
+msgstr "The Sphinx is silent. My brothers rest, and I sing for them. Speak to the Sacristan."
+
+msgid "DLG_FARMER_1"
+msgstr "I have planted and harvested here since my grandparents, and never feared anything, until the miners began to vanish in the hole behind my barn."
+
+msgid "DLG_FARMER_2"
+msgstr "The Mine lies in the east corner of the fields. Inside it is a maze, but the rails lead to every important place. A crystal golem guards the bottom."
+
+msgid "DLG_FARMER_3"
+msgstr "Bring down the Crystal Golem and I will pay. Then talk to Smith Gorm, right beside me: he handles the Bunker."
+
+msgid "DLG_FARMER_ACTIVE"
+msgstr "The Crystal Golem is in the Mine's Heart. Follow the rails north, past the maze."
+
+msgid "DLG_FARMER_DONE"
+msgstr "The Mine is calm again, and my miners rest. May the earth receive them well."
+
+msgid "DLG_SMITH_1"
+msgstr "Every iron that reaches me bears the king's army mark, and comes from the Bunker, northeast of the fields. Someone down there still forges, and it is not me."
+
+msgid "DLG_SMITH_2"
+msgstr "General Rust sealed the Bunker with everyone inside. Weapons, tools and supplies for years: all still there. But the general still commands."
+
+msgid "DLG_SMITH_3"
+msgstr "Bring down General Rust. I will forge something good with whatever you bring. Lumberjack Odette has the next quest."
+
+msgid "DLG_SMITH_ACTIVE"
+msgstr "The Bunker is a stone maze to the northeast. The General is in the Command Room, to the north. Take the Brass and Steel keys."
+
+msgid "DLG_SMITH_DONE"
+msgstr "The Bunker is still. Its iron is now just iron. Thank you."
+
+msgid "DLG_LUMBER_1"
+msgstr "I have cut wood for twenty years, and the forest to the north was always good for an axe. Now the trees stand dead, bats live in them, and the trunks hiss."
+
+msgid "DLG_LUMBER_2"
+msgstr "The Dark Forest lies west of the fields. Snakes in the bog, glowing mushrooms, werewolves: and at the bottom, a walking tree, the Shadow Elder."
+
+msgid "DLG_LUMBER_3"
+msgstr "Bring down the Shadow Elder and the forest goes back to being just a forest. I will pay with everything I have."
+
+msgid "DLG_LUMBER_ACTIVE"
+msgstr "The Elder is in the Lair, north of the Bat Grove. Take the Moss and Thorn keys."
+
+msgid "DLG_LUMBER_DONE"
+msgstr "The forest breathes again. Keep my firewood and my gratitude."
+
+msgid "DLG_ZECA_1"
+msgstr "A silver sickle? Ah, that old thing I use to cut bad grass... Sacristan Ambrose wants it back? Take it, I never knew why it never rusts."
+
+msgid "DLG_ZECA_2"
+msgstr "Take it quickly, before I grow attached. And tell the Sacristan the weeds here have been cut by it more times than he imagines."
+
+msgid "DLG_ZECA_DEFAULT"
+msgstr "I have tended this house's tools since the farmer was born. Good tools make good work."

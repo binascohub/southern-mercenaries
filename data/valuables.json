@@ -377,5 +377,19 @@
     "maps": [],
     "quest_item": true,
     "model": "Key_Spades"
+  },
+  "sealed_map": {
+    "name_key": "VALUABLE_SEALED_MAP",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Book_A"
+  },
+  "silver_sickle": {
+    "name_key": "VALUABLE_SILVER_SICKLE",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Tool_Sickle"
   }
 }

@@ -4312,3 +4312,228 @@ msgstr ""
 
 msgid "TOAST_HUB_LOCKED"
 msgstr ""
+
+msgid "AREA_FARM_SHED"
+msgstr ""
+
+msgid "PROP_SHED"
+msgstr ""
+
+msgid "PROP_SHED_EXIT"
+msgstr ""
+
+msgid "NPC_WAR_VETERAN"
+msgstr ""
+
+msgid "NPC_CARTOGRAPHER"
+msgstr ""
+
+msgid "NPC_PENITENT_SISTER"
+msgstr ""
+
+msgid "NPC_PILGRIM"
+msgstr ""
+
+msgid "NPC_SACRISTAN"
+msgstr ""
+
+msgid "NPC_SHED_FARMER"
+msgstr ""
+
+msgid "NPC_SHED_SMITH"
+msgstr ""
+
+msgid "NPC_SHED_LUMBERJACK"
+msgstr ""
+
+msgid "NPC_SHED_SCARECROW"
+msgstr ""
+
+msgid "VALUABLE_SEALED_MAP"
+msgstr ""
+
+msgid "VALUABLE_SILVER_SICKLE"
+msgstr ""
+
+msgid "QUEST_MAP_RUINS"
+msgstr ""
+
+msgid "QUEST_MAP_RUINS_DESC"
+msgstr ""
+
+msgid "QUEST_TRAV_TO_CAPITAL"
+msgstr ""
+
+msgid "QUEST_TRAV_TO_CAPITAL_DESC"
+msgstr ""
+
+msgid "QUEST_MAP_CATACOMBS"
+msgstr ""
+
+msgid "QUEST_MAP_CATACOMBS_DESC"
+msgstr ""
+
+msgid "QUEST_MAP_DESERT"
+msgstr ""
+
+msgid "QUEST_MAP_DESERT_DESC"
+msgstr ""
+
+msgid "QUEST_CAP_TO_FARM"
+msgstr ""
+
+msgid "QUEST_CAP_TO_FARM_DESC"
+msgstr ""
+
+msgid "QUEST_MAP_MINE"
+msgstr ""
+
+msgid "QUEST_MAP_MINE_DESC"
+msgstr ""
+
+msgid "QUEST_MAP_BUNKER"
+msgstr ""
+
+msgid "QUEST_MAP_BUNKER_DESC"
+msgstr ""
+
+msgid "QUEST_MAP_DARK_FOREST"
+msgstr ""
+
+msgid "QUEST_MAP_DARK_FOREST_DESC"
+msgstr ""
+
+msgid "DLG_WARVET_1"
+msgstr ""
+
+msgid "DLG_WARVET_2"
+msgstr ""
+
+msgid "DLG_WARVET_3"
+msgstr ""
+
+msgid "DLG_WARVET_ACTIVE"
+msgstr ""
+
+msgid "DLG_WARVET_DONE"
+msgstr ""
+
+msgid "DLG_CARTO_1"
+msgstr ""
+
+msgid "DLG_CARTO_2"
+msgstr ""
+
+msgid "DLG_CARTO_3"
+msgstr ""
+
+msgid "DLG_CARTO_ACTIVE"
+msgstr ""
+
+msgid "DLG_CARTO_DONE"
+msgstr ""
+
+msgid "DLG_SACRI_MAP_1"
+msgstr ""
+
+msgid "DLG_SACRI_MAP_2"
+msgstr ""
+
+msgid "DLG_SACRI_1"
+msgstr ""
+
+msgid "DLG_SACRI_2"
+msgstr ""
+
+msgid "DLG_SACRI_3"
+msgstr ""
+
+msgid "DLG_SACRI_ACTIVE"
+msgstr ""
+
+msgid "DLG_SACRI_DONE"
+msgstr ""
+
+msgid "DLG_PENSIS_1"
+msgstr ""
+
+msgid "DLG_PENSIS_2"
+msgstr ""
+
+msgid "DLG_PENSIS_3"
+msgstr ""
+
+msgid "DLG_PENSIS_ACTIVE"
+msgstr ""
+
+msgid "DLG_PENSIS_DONE"
+msgstr ""
+
+msgid "DLG_PILGRIM_1"
+msgstr ""
+
+msgid "DLG_PILGRIM_2"
+msgstr ""
+
+msgid "DLG_PILGRIM_3"
+msgstr ""
+
+msgid "DLG_PILGRIM_ACTIVE"
+msgstr ""
+
+msgid "DLG_PILGRIM_DONE"
+msgstr ""
+
+msgid "DLG_FARMER_1"
+msgstr ""
+
+msgid "DLG_FARMER_2"
+msgstr ""
+
+msgid "DLG_FARMER_3"
+msgstr ""
+
+msgid "DLG_FARMER_ACTIVE"
+msgstr ""
+
+msgid "DLG_FARMER_DONE"
+msgstr ""
+
+msgid "DLG_SMITH_1"
+msgstr ""
+
+msgid "DLG_SMITH_2"
+msgstr ""
+
+msgid "DLG_SMITH_3"
+msgstr ""
+
+msgid "DLG_SMITH_ACTIVE"
+msgstr ""
+
+msgid "DLG_SMITH_DONE"
+msgstr ""
+
+msgid "DLG_LUMBER_1"
+msgstr ""
+
+msgid "DLG_LUMBER_2"
+msgstr ""
+
+msgid "DLG_LUMBER_3"
+msgstr ""
+
+msgid "DLG_LUMBER_ACTIVE"
+msgstr ""
+
+msgid "DLG_LUMBER_DONE"
+msgstr ""
+
+msgid "DLG_ZECA_1"
+msgstr ""
+
+msgid "DLG_ZECA_2"
+msgstr ""
+
+msgid "DLG_ZECA_DEFAULT"
+msgstr ""

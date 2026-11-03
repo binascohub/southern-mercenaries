@@ -4571,3 +4571,228 @@ msgstr "{city} — conclua as missões de {here} ({n} restantes)"
 
 msgid "TOAST_HUB_LOCKED"
 msgstr "O Viajante do Tempo só leva vocês adiante quando as missões de {city} estiverem concluídas ({n} restantes)."
+
+msgid "AREA_FARM_SHED"
+msgstr "Casa de Equipamentos"
+
+msgid "PROP_SHED"
+msgstr "Casa de Equipamentos do Fazendeiro"
+
+msgid "PROP_SHED_EXIT"
+msgstr "Sair para os campos"
+
+msgid "NPC_WAR_VETERAN"
+msgstr "Veterano de Guerra"
+
+msgid "NPC_CARTOGRAPHER"
+msgstr "Cartógrafo Aldrin"
+
+msgid "NPC_PENITENT_SISTER"
+msgstr "Irmã Penitente Isolda"
+
+msgid "NPC_PILGRIM"
+msgstr "Peregrino Haled"
+
+msgid "NPC_SACRISTAN"
+msgstr "Sacristão Ambrósio"
+
+msgid "NPC_SHED_FARMER"
+msgstr "Fazendeiro Tadeu"
+
+msgid "NPC_SHED_SMITH"
+msgstr "Ferreiro Gorm"
+
+msgid "NPC_SHED_LUMBERJACK"
+msgstr "Lenhadora Odete"
+
+msgid "NPC_SHED_SCARECROW"
+msgstr "Velho Zeca"
+
+msgid "VALUABLE_SEALED_MAP"
+msgstr "Mapa Selado"
+
+msgid "VALUABLE_SILVER_SICKLE"
+msgstr "Foice de Prata"
+
+msgid "QUEST_MAP_RUINS"
+msgstr "A Cripta do Rei Caído"
+
+msgid "QUEST_MAP_RUINS_DESC"
+msgstr "O Veterano de Guerra, na Taverna, quer o fim do Rei Caído, que guarda o Cofre Real nas Ruínas. Conclua a missão derrotando o Rei Caído."
+
+msgid "QUEST_TRAV_TO_CAPITAL"
+msgstr "O Mapa Selado"
+
+msgid "QUEST_TRAV_TO_CAPITAL_DESC"
+msgstr "O Cartógrafo Aldrin, na Taverna, precisa do Mapa Selado que o Sacristão Ambrósio guarda na igreja da Capital Real. Use o Viajante do Tempo para ir à Capital, pegue o mapa com o Sacristão e traga-o de volta ao Cartógrafo."
+
+msgid "QUEST_MAP_CATACOMBS"
+msgstr "As Catacumbas dos Condenados"
+
+msgid "QUEST_MAP_CATACOMBS_DESC"
+msgstr "A Irmã Penitente Isolda, na igreja da Capital, pede que o Rei Acorrentado, no fundo das Catacumbas, finalmente descanse. Conclua a missão derrotando o Rei Acorrentado."
+
+msgid "QUEST_MAP_DESERT"
+msgstr "O Enigma da Esfinge"
+
+msgid "QUEST_MAP_DESERT_DESC"
+msgstr "O Peregrino Haled, na igreja da Capital, perdeu três irmãos de fé na travessia do Deserto, onde a Esfinge guarda o salão atrás do portão. Conclua a missão derrotando a Esfinge."
+
+msgid "QUEST_CAP_TO_FARM"
+msgstr "A Foice de Prata"
+
+msgid "QUEST_CAP_TO_FARM_DESC"
+msgstr "O Sacristão Ambrósio, na igreja da Capital, precisa da Foice de Prata que o Velho Zeca guarda na Casa de Equipamentos da Fazenda. Use o Viajante do Tempo para ir à Fazenda, pegue a foice com o Velho Zeca e traga-a ao Sacristão."
+
+msgid "QUEST_MAP_MINE"
+msgstr "O Coração da Mina"
+
+msgid "QUEST_MAP_MINE_DESC"
+msgstr "O Fazendeiro Tadeu, na Casa de Equipamentos, perdeu meia dúzia de mineiros no labirinto sob a Fazenda, onde um golem de cristal guarda o fundo. Conclua a missão derrotando o Golem de Cristal."
+
+msgid "QUEST_MAP_BUNKER"
+msgstr "O Bunker Lacrado"
+
+msgid "QUEST_MAP_BUNKER_DESC"
+msgstr "O Ferreiro Gorm, na Casa de Equipamentos, reconhece o ferro das armas que saem do Bunker, lacrado por um general que não aceitou a rendição. Conclua a missão derrotando o General Ferrugem."
+
+msgid "QUEST_MAP_DARK_FOREST"
+msgstr "A Floresta que Escureceu"
+
+msgid "QUEST_MAP_DARK_FOREST_DESC"
+msgstr "A Lenhadora Odete, na Casa de Equipamentos, não corta mais lenha na floresta ao norte: as árvores morreram em pé e uma delas se mexe. Conclua a missão derrotando o Ancião Sombrio."
+
+msgid "DLG_WARVET_1"
+msgstr "Servi o rei até o último dia, e vi o que sobrou da cidade dele: ruínas, e dentro delas o próprio rei, de pé, sem o ar e sem o descanso."
+
+msgid "DLG_WARVET_2"
+msgstr "As Ruínas ficam ao norte do porto de Tortuga, passando as Docas. O Rei Caído guarda o Cofre Real lá no fundo, atrás de um portão de duas chaves."
+
+msgid "DLG_WARVET_3"
+msgstr "Derrubem o Rei Caído e eu pago bem. Depois disso, procurem o Cartógrafo Aldrin aqui na taverna: ele sempre sabe para onde ir em seguida."
+
+msgid "DLG_WARVET_ACTIVE"
+msgstr "O Rei Caído está no Cofre Real, no fundo das Ruínas. Levem as duas chaves da Erudita e da Sacerdotisa."
+
+msgid "DLG_WARVET_DONE"
+msgstr "O rei finalmente dorme. Eu também posso, agora. Falem com o Cartógrafo."
+
+msgid "DLG_CARTO_1"
+msgstr "Vocês limparam as Ruínas, e isso muda o mapa todo: Tortuga já não é o fim da estrada. Há uma cidade ao norte, a Capital Real, e eu nunca vi o mapa dela."
+
+msgid "DLG_CARTO_2"
+msgstr "O Sacristão Ambrósio, na igreja de lá, guarda um Mapa Selado desde a guerra. Fale com o Viajante do Tempo: ele os leva até a Capital num piscar de olhos."
+
+msgid "DLG_CARTO_3"
+msgstr "Peguem o mapa com o Sacristão e tragam para mim. Não o abram: o selo é a única coisa que mantém os mortos do mapa quietos."
+
+msgid "DLG_CARTO_ACTIVE"
+msgstr "O Sacristão Ambrósio está na igreja da Capital Real. O Viajante do Tempo, aqui em Tortuga, leva vocês até lá."
+
+msgid "DLG_CARTO_DONE"
+msgstr "O Mapa Selado! O selo está intacto. Obrigado: a Capital ficou finalmente no papel."
+
+msgid "DLG_SACRI_MAP_1"
+msgstr "Ah, o Cartógrafo Aldrin os manda. O Mapa Selado está comigo desde a guerra; ninguém o quis, ninguém ousou queimá-lo."
+
+msgid "DLG_SACRI_MAP_2"
+msgstr "Levem-no, e com cuidado. Digam a Aldrin que o selo é de cera de vela benta: se rachar, o mapa começa a andar sozinho."
+
+msgid "DLG_SACRI_1"
+msgstr "O Deserto está vencido, ouvi dizer, e a Esfinge cala. Mas o mapa de Aldrin trouxe um preço: a Foice de Prata, que corta o que não deve ser cortado, saiu da igreja há anos."
+
+msgid "DLG_SACRI_2"
+msgstr "Foi parar na Fazenda: o Velho Zeca, na Casa de Equipamentos do Fazendeiro, a guarda entre as ferramentas, achando que é só uma foice velha."
+
+msgid "DLG_SACRI_3"
+msgstr "Peçam ao Viajante do Tempo que os leve à Fazenda, busquem a foice com o Velho Zeca e tragam-na a mim. A igreja vai precisar dela antes que as árvores do norte acordem."
+
+msgid "DLG_SACRI_ACTIVE"
+msgstr "A Foice de Prata está com o Velho Zeca, na Casa de Equipamentos da Fazenda. O Viajante do Tempo os leva."
+
+msgid "DLG_SACRI_DONE"
+msgstr "A foice! Voltou para casa. Que a prata corte só o que deve. Obrigado, mercenários."
+
+msgid "DLG_PENSIS_1"
+msgstr "Rezo todos os dias por quem morreu atrás das grades das Catacumbas, e principalmente pelo rei que lá ficou preso, acorrentado, pelos próprios súditos."
+
+msgid "DLG_PENSIS_2"
+msgstr "As Catacumbas ficam ao sul da Capital, depois do portão do Forte. O Rei Acorrentado guarda a Cripta no fundo, atrás de um portão que só abre com duas chaves."
+
+msgid "DLG_PENSIS_3"
+msgstr "Derrubem o Rei Acorrentado e a igreja cuida do resto: eu acendo uma vela por ele e uma por vocês. O Peregrino Haled, ao lado, tem a próxima missão."
+
+msgid "DLG_PENSIS_ACTIVE"
+msgstr "O Rei Acorrentado está na Cripta, no fim das Catacumbas. Levem as chaves de Ferro e de Osso."
+
+msgid "DLG_PENSIS_DONE"
+msgstr "O rei descansa. As correntes enfim ficaram leves. Que Deus os guarde."
+
+msgid "DLG_PILGRIM_1"
+msgstr "Atravessei o Deserto cantando, com três irmãos de fé, e só eu voltei. A Esfinge pergunta o que ninguém sabe e devora quem erra."
+
+msgid "DLG_PILGRIM_2"
+msgstr "O Deserto fica depois da Capital, e a Esfinge espera no salão atrás do portão, no fim da estrada de areia. Há um acampamento de nômades logo na entrada."
+
+msgid "DLG_PILGRIM_3"
+msgstr "Derrubem a Esfinge e me contem a resposta. Depois, falem com o Sacristão Ambrósio: ele tem um pedido para quem vence o Deserto."
+
+msgid "DLG_PILGRIM_ACTIVE"
+msgstr "A Esfinge guarda o salão atrás do portão. Levem as chaves de Paus e de Ouros."
+
+msgid "DLG_PILGRIM_DONE"
+msgstr "A Esfinge calou. Meus irmãos descansam, e eu canto por eles. Falem com o Sacristão."
+
+msgid "DLG_FARMER_1"
+msgstr "Planto e colho aqui desde os meus avós, e nunca tive medo de nada, até os mineiros começarem a sumir no buraco atrás do meu celeiro."
+
+msgid "DLG_FARMER_2"
+msgstr "A Mina fica no canto leste dos campos. Por dentro é um labirinto, mas os trilhos de trem levam a todo lugar importante. Um golem de cristal guarda o fundo."
+
+msgid "DLG_FARMER_3"
+msgstr "Derrubem o Golem de Cristal e eu pago. Depois falem com o Ferreiro Gorm, aqui ao lado: ele cuida do Bunker."
+
+msgid "DLG_FARMER_ACTIVE"
+msgstr "O Golem de Cristal está no Coração da Mina. Sigam os trilhos para o norte, depois do labirinto."
+
+msgid "DLG_FARMER_DONE"
+msgstr "A Mina está calma outra vez, e meus mineiros descansam. Que a terra os receba bem."
+
+msgid "DLG_SMITH_1"
+msgstr "Todo ferro que me chega tem a marca do exército do rei, e vem do Bunker, a nordeste dos campos. Alguém lá embaixo ainda forja, e não sou eu."
+
+msgid "DLG_SMITH_2"
+msgstr "O General Ferrugem lacrou o Bunker com todos dentro. Armas, ferramentas e suprimentos para anos: tudo ainda lá. Mas o general ainda manda."
+
+msgid "DLG_SMITH_3"
+msgstr "Derrubem o General Ferrugem. Eu forjo algo bom com o que trouxerem. A Lenhadora Odete tem a próxima missão."
+
+msgid "DLG_SMITH_ACTIVE"
+msgstr "O Bunker é um labirinto de pedra a nordeste. O General está na Sala de Comando, ao norte. Levem as chaves de Latão e de Aço."
+
+msgid "DLG_SMITH_DONE"
+msgstr "O Bunker está quieto. O ferro dele agora é só ferro. Obrigado."
+
+msgid "DLG_LUMBER_1"
+msgstr "Corto lenha há vinte anos, e a floresta ao norte sempre foi boa de machado. Agora as árvores estão mortas em pé, os morcegos moram nelas, e os troncos sibilam."
+
+msgid "DLG_LUMBER_2"
+msgstr "A Floresta Escura fica a oeste dos campos. Cobras no pântano, cogumelos que brilham, lobisomens: e no fundo, uma árvore que anda, o Ancião Sombrio."
+
+msgid "DLG_LUMBER_3"
+msgstr "Derrubem o Ancião Sombrio e a floresta volta a ser só floresta. Eu pago com tudo o que tenho."
+
+msgid "DLG_LUMBER_ACTIVE"
+msgstr "O Ancião está no Covil, ao norte do Bosque dos Morcegos. Levem as chaves de Musgo e de Espinho."
+
+msgid "DLG_LUMBER_DONE"
+msgstr "A floresta voltou a respirar. Fiquem com as minhas lenhas e a minha gratidão."
+
+msgid "DLG_ZECA_1"
+msgstr "Foice de prata? Ah, essa velha coisa que eu uso para cortar o capim ruim... O Sacristão Ambrósio a quer de volta? Pois leve, eu nunca soube por que ela nunca enferruja."
+
+msgid "DLG_ZECA_2"
+msgstr "Levem logo, antes que eu me apegue. E digam ao Sacristão que as ervas daninhas daqui já foram cortadas por ela mais vezes do que ele imagina."
+
+msgid "DLG_ZECA_DEFAULT"
+msgstr "Cuido das ferramentas desta casa desde que o fazendeiro nasceu. Ferramentas boas dão trabalho bom."

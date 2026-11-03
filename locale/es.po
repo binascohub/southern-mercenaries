@@ -4571,3 +4571,228 @@ msgstr "{city} — completa las misiones de {here} (faltan {n})"
 
 msgid "TOAST_HUB_LOCKED"
 msgstr "El Viajero del Tiempo solo los lleva adelante cuando las misiones de {city} estén completas (faltan {n})."
+
+msgid "AREA_FARM_SHED"
+msgstr "Casa de Equipos"
+
+msgid "PROP_SHED"
+msgstr "Casa de Equipos del Granjero"
+
+msgid "PROP_SHED_EXIT"
+msgstr "Salir a los campos"
+
+msgid "NPC_WAR_VETERAN"
+msgstr "Veterano de Guerra"
+
+msgid "NPC_CARTOGRAPHER"
+msgstr "Cartógrafo Aldrin"
+
+msgid "NPC_PENITENT_SISTER"
+msgstr "Hermana Penitente Isolda"
+
+msgid "NPC_PILGRIM"
+msgstr "Peregrino Haled"
+
+msgid "NPC_SACRISTAN"
+msgstr "Sacristán Ambrosio"
+
+msgid "NPC_SHED_FARMER"
+msgstr "Granjero Tadeo"
+
+msgid "NPC_SHED_SMITH"
+msgstr "Herrero Gorm"
+
+msgid "NPC_SHED_LUMBERJACK"
+msgstr "Leñadora Odete"
+
+msgid "NPC_SHED_SCARECROW"
+msgstr "Viejo Zeca"
+
+msgid "VALUABLE_SEALED_MAP"
+msgstr "Mapa Sellado"
+
+msgid "VALUABLE_SILVER_SICKLE"
+msgstr "Hoz de Plata"
+
+msgid "QUEST_MAP_RUINS"
+msgstr "La cripta del Rey Caído"
+
+msgid "QUEST_MAP_RUINS_DESC"
+msgstr "El Veterano de Guerra, en la Taberna, quiere acabar con el Rey Caído, que guarda la Cámara Real en las Ruinas. Completa la misión derrotando al Rey Caído."
+
+msgid "QUEST_TRAV_TO_CAPITAL"
+msgstr "El mapa sellado"
+
+msgid "QUEST_TRAV_TO_CAPITAL_DESC"
+msgstr "El Cartógrafo Aldrin, en la Taberna, necesita el Mapa Sellado que el Sacristán Ambrosio guarda en la iglesia de la Capital Real. Usa al Viajero del Tiempo para ir a la Capital, recoge el mapa con el Sacristán y tráelo de vuelta al Cartógrafo."
+
+msgid "QUEST_MAP_CATACOMBS"
+msgstr "Las Catacumbas de los Condenados"
+
+msgid "QUEST_MAP_CATACOMBS_DESC"
+msgstr "La Hermana Penitente Isolda, en la iglesia de la Capital, pide que el Rey Encadenado, en el fondo de las Catacumbas, por fin descanse. Completa la misión derrotando al Rey Encadenado."
+
+msgid "QUEST_MAP_DESERT"
+msgstr "El enigma de la Esfinge"
+
+msgid "QUEST_MAP_DESERT_DESC"
+msgstr "El Peregrino Haled, en la iglesia de la Capital, perdió a tres hermanos de fe cruzando el Desierto, donde la Esfinge guarda el salón tras el portón. Completa la misión derrotando a la Esfinge."
+
+msgid "QUEST_CAP_TO_FARM"
+msgstr "La hoz de plata"
+
+msgid "QUEST_CAP_TO_FARM_DESC"
+msgstr "El Sacristán Ambrosio, en la iglesia de la Capital, necesita la Hoz de Plata que el Viejo Zeca guarda en la Casa de Equipos de la Granja. Usa al Viajero del Tiempo para ir a la Granja, recoge la hoz con el Viejo Zeca y tráela al Sacristán."
+
+msgid "QUEST_MAP_MINE"
+msgstr "El corazón de la mina"
+
+msgid "QUEST_MAP_MINE_DESC"
+msgstr "El Granjero Tadeo, en la Casa de Equipos, perdió media docena de mineros en el laberinto bajo la Granja, donde un gólem de cristal guarda el fondo. Completa la misión derrotando al Gólem de Cristal."
+
+msgid "QUEST_MAP_BUNKER"
+msgstr "El búnker sellado"
+
+msgid "QUEST_MAP_BUNKER_DESC"
+msgstr "El Herrero Gorm, en la Casa de Equipos, reconoce el hierro de las armas que salen del Búnker, sellado por un general que no aceptó la rendición. Completa la misión derrotando al General Óxido."
+
+msgid "QUEST_MAP_DARK_FOREST"
+msgstr "El bosque que oscureció"
+
+msgid "QUEST_MAP_DARK_FOREST_DESC"
+msgstr "La Leñadora Odete, en la Casa de Equipos, ya no corta leña en el bosque del norte: los árboles murieron de pie y uno de ellos se mueve. Completa la misión derrotando al Anciano Sombrío."
+
+msgid "DLG_WARVET_1"
+msgstr "Serví al rey hasta su último día, y vi lo que quedó de su ciudad: ruinas, y dentro de ellas el propio rey, de pie, sin aliento y sin descanso."
+
+msgid "DLG_WARVET_2"
+msgstr "Las Ruinas quedan al norte del puerto de Tortuga, pasando los Muelles. El Rey Caído guarda la Cámara Real en el fondo, tras un portón de dos llaves."
+
+msgid "DLG_WARVET_3"
+msgstr "Derriben al Rey Caído y pago bien. Después, busquen al Cartógrafo Aldrin aquí en la taberna: siempre sabe adónde ir después."
+
+msgid "DLG_WARVET_ACTIVE"
+msgstr "El Rey Caído está en la Cámara Real, en el fondo de las Ruinas. Lleven las dos llaves de la Erudita y de la Sacerdotisa."
+
+msgid "DLG_WARVET_DONE"
+msgstr "El rey por fin duerme. Yo también puedo, ahora. Hablen con el Cartógrafo."
+
+msgid "DLG_CARTO_1"
+msgstr "Despejaron las Ruinas, y eso cambia todo el mapa: Tortuga ya no es el fin del camino. Hay una ciudad al norte, la Capital Real, y nunca vi su mapa."
+
+msgid "DLG_CARTO_2"
+msgstr "El Sacristán Ambrosio, en la iglesia de allá, guarda un Mapa Sellado desde la guerra. Hablen con el Viajero del Tiempo: los lleva a la Capital en un parpadeo."
+
+msgid "DLG_CARTO_3"
+msgstr "Recojan el mapa con el Sacristán y tráiganmelo. No lo abran: el sello es lo único que mantiene quietos a los muertos del mapa."
+
+msgid "DLG_CARTO_ACTIVE"
+msgstr "El Sacristán Ambrosio está en la iglesia de la Capital Real. El Viajero del Tiempo, aquí en Tortuga, los lleva allá."
+
+msgid "DLG_CARTO_DONE"
+msgstr "¡El Mapa Sellado! El sello está intacto. Gracias: la Capital por fin está en el papel."
+
+msgid "DLG_SACRI_MAP_1"
+msgstr "Ah, os manda el Cartógrafo Aldrin. El Mapa Sellado está conmigo desde la guerra; nadie lo quiso, nadie se atrevió a quemarlo."
+
+msgid "DLG_SACRI_MAP_2"
+msgstr "Llévenlo, y con cuidado. Díganle a Aldrin que el sello es de cera de vela bendita: si se rompe, el mapa empieza a caminar solo."
+
+msgid "DLG_SACRI_1"
+msgstr "El Desierto está vencido, dicen, y la Esfinge calla. Pero el mapa de Aldrin trajo un precio: la Hoz de Plata, que corta lo que no debe cortarse, salió de la iglesia hace años."
+
+msgid "DLG_SACRI_2"
+msgstr "Fue a parar a la Granja: el Viejo Zeca, en la Casa de Equipos del Granjero, la guarda entre las herramientas, creyendo que es solo una hoz vieja."
+
+msgid "DLG_SACRI_3"
+msgstr "Pidan al Viajero del Tiempo que los lleve a la Granja, recojan la hoz con el Viejo Zeca y tráiganmela. La iglesia la necesitará antes de que despierten los árboles del norte."
+
+msgid "DLG_SACRI_ACTIVE"
+msgstr "La Hoz de Plata está con el Viejo Zeca, en la Casa de Equipos de la Granja. El Viajero del Tiempo los lleva."
+
+msgid "DLG_SACRI_DONE"
+msgstr "¡La hoz! Volvió a casa. Que la plata corte solo lo que debe. Gracias, mercenarios."
+
+msgid "DLG_PENSIS_1"
+msgstr "Rezo todos los días por quienes murieron tras las rejas de las Catacumbas, y sobre todo por el rey que allí quedó preso, encadenado por sus propios súbditos."
+
+msgid "DLG_PENSIS_2"
+msgstr "Las Catacumbas quedan al sur de la Capital, tras el portón del Fuerte. El Rey Encadenado guarda la Cripta en el fondo, tras un portón que solo abre con dos llaves."
+
+msgid "DLG_PENSIS_3"
+msgstr "Derriben al Rey Encadenado y la iglesia se ocupa del resto: encenderé una vela por él y una por ustedes. El Peregrino Haled, a mi lado, tiene la próxima misión."
+
+msgid "DLG_PENSIS_ACTIVE"
+msgstr "El Rey Encadenado está en la Cripta, al final de las Catacumbas. Lleven las llaves de Hierro y de Hueso."
+
+msgid "DLG_PENSIS_DONE"
+msgstr "El rey descansa. Las cadenas por fin se volvieron ligeras. Que Dios los guarde."
+
+msgid "DLG_PILGRIM_1"
+msgstr "Crucé el Desierto cantando, con tres hermanos de fe, y solo yo regresé. La Esfinge pregunta lo que nadie sabe y devora a quien yerra."
+
+msgid "DLG_PILGRIM_2"
+msgstr "El Desierto queda tras la Capital, y la Esfinge espera en el salón tras el portón, al final del camino de arena. Hay un campamento de nómadas justo en la entrada."
+
+msgid "DLG_PILGRIM_3"
+msgstr "Derriben a la Esfinge y cuéntenme la respuesta. Luego hablen con el Sacristán Ambrosio: tiene un pedido para quien venza el Desierto."
+
+msgid "DLG_PILGRIM_ACTIVE"
+msgstr "La Esfinge guarda el salón tras el portón. Lleven las llaves de Bastos y de Oros."
+
+msgid "DLG_PILGRIM_DONE"
+msgstr "La Esfinge calló. Mis hermanos descansan, y yo canto por ellos. Hablen con el Sacristán."
+
+msgid "DLG_FARMER_1"
+msgstr "Siembro y cosecho aquí desde mis abuelos, y nunca temí nada, hasta que los mineros empezaron a desaparecer en el hoyo detrás de mi granero."
+
+msgid "DLG_FARMER_2"
+msgstr "La Mina queda en la esquina este de los campos. Por dentro es un laberinto, pero los rieles llevan a todos los lugares importantes. Un gólem de cristal guarda el fondo."
+
+msgid "DLG_FARMER_3"
+msgstr "Derriben al Gólem de Cristal y pago. Luego hablen con el Herrero Gorm, aquí al lado: él se ocupa del Búnker."
+
+msgid "DLG_FARMER_ACTIVE"
+msgstr "El Gólem de Cristal está en el Corazón de la Mina. Sigan los rieles al norte, tras el laberinto."
+
+msgid "DLG_FARMER_DONE"
+msgstr "La Mina está en calma otra vez, y mis mineros descansan. Que la tierra los reciba bien."
+
+msgid "DLG_SMITH_1"
+msgstr "Todo el hierro que me llega tiene la marca del ejército del rey, y viene del Búnker, al noreste de los campos. Alguien allá abajo todavía forja, y no soy yo."
+
+msgid "DLG_SMITH_2"
+msgstr "El General Óxido selló el Búnker con todos dentro. Armas, herramientas y suministros para años: todo sigue allí. Pero el general todavía manda."
+
+msgid "DLG_SMITH_3"
+msgstr "Derriben al General Óxido. Forjaré algo bueno con lo que traigan. La Leñadora Odete tiene la próxima misión."
+
+msgid "DLG_SMITH_ACTIVE"
+msgstr "El Búnker es un laberinto de piedra al noreste. El General está en la Sala de Mando, al norte. Lleven las llaves de Latón y de Acero."
+
+msgid "DLG_SMITH_DONE"
+msgstr "El Búnker está quieto. Su hierro ahora es solo hierro. Gracias."
+
+msgid "DLG_LUMBER_1"
+msgstr "Corto leña desde hace veinte años, y el bosque del norte siempre fue bueno para el hacha. Ahora los árboles están muertos en pie, los murciélagos viven en ellos, y los troncos silban."
+
+msgid "DLG_LUMBER_2"
+msgstr "El Bosque Oscuro queda al oeste de los campos. Serpientes en el pantano, hongos que brillan, hombres lobo: y en el fondo, un árbol que anda, el Anciano Sombrío."
+
+msgid "DLG_LUMBER_3"
+msgstr "Derriben al Anciano Sombrío y el bosque vuelve a ser solo bosque. Pago con todo lo que tengo."
+
+msgid "DLG_LUMBER_ACTIVE"
+msgstr "El Anciano está en la Guarida, al norte del Bosque de los Murciélagos. Lleven las llaves de Musgo y de Espina."
+
+msgid "DLG_LUMBER_DONE"
+msgstr "El bosque volvió a respirar. Quédense con mi leña y mi gratitud."
+
+msgid "DLG_ZECA_1"
+msgstr "¿Una hoz de plata? Ah, esa cosa vieja que uso para cortar la hierba mala... ¿El Sacristán Ambrosio la quiere de vuelta? Llévela, nunca supe por qué nunca se oxida."
+
+msgid "DLG_ZECA_2"
+msgstr "Llévenla pronto, antes de que me encariñe. Y díganle al Sacristán que las malas hierbas de aquí han sido cortadas por ella más veces de lo que imagina."
+
+msgid "DLG_ZECA_DEFAULT"
+msgstr "Cuido las herramientas de esta casa desde que nació el granjero. Las buenas herramientas dan buen trabajo."

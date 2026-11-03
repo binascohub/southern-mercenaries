@@ -1101,6 +1101,23 @@ func _test_sewers() -> void:
 	_check(travelers == 3 and Town.hub_pending("tortuga", {}) > 0 and Town.hub_pending("tortuga", all_done) == 0 and Town.hub_pending("farm_01_fields", all_done) == 0
 		and Town.hub_pending("capital_01_aurenhold", {"cemetery_x": "done"}) > 0 and tr("NPC_VOODOO_PRIEST") != "NPC_VOODOO_PRIEST",
 		"Viajante do Tempo: um por cidade e travado até concluir as missões da cidade atual")
+	# Missões das cidades: o Cartógrafo só oferece depois das Ruínas; o Sacristão entrega o Mapa Selado e, depois do Deserto, pede a Foice de Prata (com o Velho Zeca, na Fazenda).
+	var map_quests := ["map_ruins", "map_catacombs", "map_desert", "map_mine", "map_bunker", "map_dark_forest"]
+	var chain_ok := true
+	for quest_id: String in map_quests + ["trav_to_capital", "cap_to_farm"]:
+		var chain_quest: Dictionary = GameData.quests.get(quest_id, {})
+		chain_ok = chain_ok and not chain_quest.is_empty() and GameData.npcs.has(chain_quest.giver) and tr(chain_quest.name_key) != chain_quest.name_key and tr(chain_quest.desc_key) != chain_quest.desc_key
+	for quest_id: String in map_quests:
+		chain_ok = chain_ok and GameData.arenas.has(GameData.quests[quest_id].area) and GameData.quests[quest_id].clear.size() == 1
+	_check(chain_ok, "missões de cada mapa e da corrente entre cidades: dados, textos e quem as dá")
+	var carto_prop: Array = GameData.arenas.tavern.props.filter(func(p: Dictionary) -> bool: return p.get("npc", "") == "cartographer")
+	_check(carto_prop.size() == 1 and carto_prop[0].get("after_quest", "") == "map_ruins"
+		and Town.dialogue_index("cartographer", {}) == 2 and Town.dialogue_index("cartographer", {"map_ruins": "done"}) == 0
+		and Town.dialogue_index("sacristan", {"trav_to_capital": "active"}) == 0 and Town.dialogue_index("sacristan", {"map_desert": "done"}) == 1
+		and Town.dialogue_index("sacristan", {"map_desert": "done", "cap_to_farm": "active"}) == 2 and Town.dialogue_index("shed_scarecrow", {"cap_to_farm": "active"}) == 0
+		and Town.dialogue_index("shed_scarecrow", {}) == 1 and GameData.valuables.has("sealed_map") and GameData.valuables.has("silver_sickle")
+		and GameData.arenas.has("farm_shed") and GameData.arenas.farm_01_fields.props.any(func(p: Dictionary) -> bool: return p.get("to", "") == "farm_shed"),
+		"Cartógrafo depois das Ruínas, Mapa Selado e Foice de Prata, Casa de Equipamentos na Fazenda")
 	# Floresta: três golens (fogo, gelo, pedra), elites corpo a corpo com modelo.
 	# (o de gelo é um encontro comum; os de pedra e de fogo são mini-chefes invocados pelos NPCs das praças, em `summon`.)
 	var golems: Array = GameData.arenas.forest_01_path.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("f_golem_"))

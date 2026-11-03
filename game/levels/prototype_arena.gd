@@ -1927,6 +1927,8 @@ func _build_props() -> void:
 	for prop: Dictionary in arena.get("props", []):
 		if prop.kind == "npc" and "%s:%s" % [area_id, prop.id] in vanished:
 			continue  # já cumpriu a missão e sumiu
+		if prop.has("after_quest") and _campaign.get("quests", {}).get(String(prop.after_quest), "") != "done":
+			continue  # só aparece depois de uma missão concluída (o Cartógrafo de Tortuga, depois das Ruínas)
 		if prop.kind not in ["chest", "gate"] and not prop.get("after_victory", false):
 			_build_prop(prop)
 	_refresh_markers()

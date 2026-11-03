@@ -192,6 +192,12 @@ func interact(player: Player, prop: Dictionary) -> void:
 			# Ouvir a história põe as criaturas no bestiário.
 			if index >= 0:
 				learn(GameData.npcs[prop.npc].dialogues[index].get("bestiary", []))
+				# Fala que entrega um item (o NPC da cidade que guarda o objeto pedido por outro NPC): uma vez, enquanto o herói não o tem na bolsa.
+				var grants: String = GameData.npcs[prop.npc].dialogues[index].get("grants_item", "")
+				if grants != "" and player.character and player.character.count_of(grants) == 0:
+					player.character.add_item(Items.stack(Items.VALUABLE, grants))
+					player.refresh_character()
+					_arena()._toast_to(player, "TOAST_ITEM_RECEIVED", {"item": GameData.valuables[grants].name_key})
 			# Estátua que desperta um grupo (mini-chefe da praça) depois da fala; com "needs_quest", só quando essa missão está ativa
 			# (assim o mini-chefe não morre antes de a missão pedir o item que ele larga).
 			if not summon.is_empty() and (not prop.has("needs_quest") or _campaign().get("quests", {}).get(String(prop.needs_quest), "") == "active"):

@@ -654,5 +654,121 @@
       "gold": 750,
       "xp": 1500
     }
+  },
+  "map_ruins": {
+    "name_key": "QUEST_MAP_RUINS",
+    "desc_key": "QUEST_MAP_RUINS_DESC",
+    "type": "main",
+    "giver": "war_veteran",
+    "area": "ruins_01_city",
+    "clear": [
+      "r_boss"
+    ],
+    "target_element": "earth",
+    "reward": {
+      "gold": 600,
+      "xp": 1200
+    }
+  },
+  "trav_to_capital": {
+    "name_key": "QUEST_TRAV_TO_CAPITAL",
+    "desc_key": "QUEST_TRAV_TO_CAPITAL_DESC",
+    "type": "main",
+    "giver": "cartographer",
+    "area": "tortuga",
+    "target_element": "air",
+    "reward": {
+      "gold": 700,
+      "xp": 1400
+    },
+    "item": "sealed_map"
+  },
+  "map_catacombs": {
+    "name_key": "QUEST_MAP_CATACOMBS",
+    "desc_key": "QUEST_MAP_CATACOMBS_DESC",
+    "type": "main",
+    "giver": "penitent_sister",
+    "area": "catacombs_01_depths",
+    "clear": [
+      "ct_king"
+    ],
+    "target_element": "water",
+    "reward": {
+      "gold": 800,
+      "xp": 1600
+    }
+  },
+  "map_desert": {
+    "name_key": "QUEST_MAP_DESERT",
+    "desc_key": "QUEST_MAP_DESERT_DESC",
+    "type": "main",
+    "giver": "pilgrim",
+    "area": "desert_01_canyon",
+    "clear": [
+      "d_sphinx"
+    ],
+    "target_element": "air",
+    "reward": {
+      "gold": 900,
+      "xp": 1800
+    }
+  },
+  "cap_to_farm": {
+    "name_key": "QUEST_CAP_TO_FARM",
+    "desc_key": "QUEST_CAP_TO_FARM_DESC",
+    "type": "main",
+    "giver": "sacristan",
+    "area": "capital_01_aurenhold",
+    "target_element": "earth",
+    "reward": {
+      "gold": 1000,
+      "xp": 2000
+    },
+    "item": "silver_sickle"
+  },
+  "map_mine": {
+    "name_key": "QUEST_MAP_MINE",
+    "desc_key": "QUEST_MAP_MINE_DESC",
+    "type": "main",
+    "giver": "shed_farmer",
+    "area": "mine_01_crystal_vein",
+    "clear": [
+      "mn_boss"
+    ],
+    "target_element": "earth",
+    "reward": {
+      "gold": 1000,
+      "xp": 2000
+    }
+  },
+  "map_bunker": {
+    "name_key": "QUEST_MAP_BUNKER",
+    "desc_key": "QUEST_MAP_BUNKER_DESC",
+    "type": "main",
+    "giver": "shed_smith",
+    "area": "bunker_01_entrance",
+    "clear": [
+      "bk_boss"
+    ],
+    "target_element": "fire",
+    "reward": {
+      "gold": 1100,
+      "xp": 2200
+    }
+  },
+  "map_dark_forest": {
+    "name_key": "QUEST_MAP_DARK_FOREST",
+    "desc_key": "QUEST_MAP_DARK_FOREST_DESC",
+    "type": "main",
+    "giver": "shed_lumberjack",
+    "area": "dark_forest_01_woods",
+    "clear": [
+      "fd_boss"
+    ],
+    "target_element": "earth",
+    "reward": {
+      "gold": 1200,
+      "xp": 2400
+    }
   }
 }

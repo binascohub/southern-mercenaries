@@ -1801,6 +1801,27 @@
           -5
         ],
         "rotation": 0
+      },
+      {
+        "id": "war_veteran",
+        "kind": "npc",
+        "npc": "war_veteran",
+        "position": [
+          6.8,
+          -1.2
+        ],
+        "rotation": 200
+      },
+      {
+        "id": "cartographer",
+        "kind": "npc",
+        "npc": "cartographer",
+        "position": [
+          3.4,
+          -1.2
+        ],
+        "rotation": 160,
+        "after_quest": "map_ruins"
       }
     ],
     "style": {
@@ -141164,6 +141185,36 @@
         ]
       },
       {
+        "id": "sacristan",
+        "kind": "npc",
+        "npc": "sacristan",
+        "position": [
+          -42.5,
+          -34.5
+        ],
+        "rotation": 90
+      },
+      {
+        "id": "penitent_sister",
+        "kind": "npc",
+        "npc": "penitent_sister",
+        "position": [
+          -33.0,
+          -33.6
+        ],
+        "rotation": 180
+      },
+      {
+        "id": "pilgrim",
+        "kind": "npc",
+        "npc": "pilgrim",
+        "position": [
+          -27.0,
+          -33.6
+        ],
+        "rotation": 180
+      },
+      {
         "id": "cemetery_gate",
         "kind": "exit",
         "name_key": "PROP_TO_CEMETERY",
@@ -144187,6 +144238,10 @@
       "mine": [
         24.0,
         -10.0
+      ],
+      "shed": [
+        -18,
+        0.5999999999999996
       ]
     },
     "props": [
@@ -144240,6 +144295,17 @@
         ],
         "to": "mine_01_crystal_vein",
         "entry": "start"
+      },
+      {
+        "id": "shed_door",
+        "kind": "exit",
+        "name_key": "PROP_SHED",
+        "position": [
+          -18,
+          -0.7999999999999998
+        ],
+        "to": "farm_shed",
+        "entry": "door"
       },
       {
         "id": "dark_forest_gate",
@@ -159890,6 +159956,262 @@
           "speed": 0.8208637853583698,
           "phase": 1.84
         }
+      },
+      {
+        "piece": "Wall_Plaster_Straight",
+        "position": [
+          -20,
+          -2
+        ],
+        "rotation": 0,
+        "solid": [
+          2.0,
+          0.5
+        ],
+        "shed": true
+      },
+      {
+        "piece": "Wall_Plaster_Door_Round",
+        "position": [
+          -18,
+          -2
+        ],
+        "rotation": 0,
+        "solid": [
+          2.0,
+          0.5
+        ],
+        "shed": true
+      },
+      {
+        "piece": "Wall_Plaster_Straight",
+        "position": [
+          -16,
+          -2
+        ],
+        "rotation": 0,
+        "solid": [
+          2.0,
+          0.5
+        ],
+        "shed": true
+      },
+      {
+        "piece": "Wall_Plaster_Straight",
+        "position": [
+          -20,
+          -6
+        ],
+        "rotation": 180,
+        "solid": [
+          2.0,
+          0.5
+        ],
+        "shed": true
+      },
+      {
+        "piece": "Wall_Plaster_Straight",
+        "position": [
+          -18,
+          -6
+        ],
+        "rotation": 180,
+        "solid": [
+          2.0,
+          0.5
+        ],
+        "shed": true
+      },
+      {
+        "piece": "Wall_Plaster_Straight",
+        "position": [
+          -16,
+          -6
+        ],
+        "rotation": 180,
+        "solid": [
+          2.0,
+          0.5
+        ],
+        "shed": true
+      },
+      {
+        "piece": "Wall_Plaster_Window_Wide_Round",
+        "position": [
+          -21,
+          -4
+        ],
+        "rotation": 270,
+        "solid": [
+          0.5,
+          2.0
+        ],
+        "shed": true
+      },
+      {
+        "piece": "Wall_Plaster_Window_Thin_Round",
+        "position": [
+          -15,
+          -4
+        ],
+        "rotation": 90,
+        "solid": [
+          0.5,
+          2.0
+        ],
+        "shed": true
+      },
+      {
+        "piece": "Corner_Exterior_Wood",
+        "position": [
+          -21,
+          -6
+        ],
+        "shed": true
+      },
+      {
+        "piece": "Corner_Exterior_Wood",
+        "position": [
+          -21,
+          -2
+        ],
+        "shed": true
+      },
+      {
+        "piece": "Corner_Exterior_Wood",
+        "position": [
+          -15,
+          -6
+        ],
+        "shed": true
+      },
+      {
+        "piece": "Corner_Exterior_Wood",
+        "position": [
+          -15,
+          -2
+        ],
+        "shed": true
+      },
+      {
+        "piece": "Floor_WoodDark",
+        "position": [
+          -20,
+          -5
+        ],
+        "y": 0.03,
+        "shed": true
+      },
+      {
+        "piece": "Floor_WoodDark",
+        "position": [
+          -20,
+          -3
+        ],
+        "y": 0.03,
+        "shed": true
+      },
+      {
+        "piece": "Floor_WoodDark",
+        "position": [
+          -18,
+          -5
+        ],
+        "y": 0.03,
+        "shed": true
+      },
+      {
+        "piece": "Floor_WoodDark",
+        "position": [
+          -18,
+          -3
+        ],
+        "y": 0.03,
+        "shed": true
+      },
+      {
+        "piece": "Floor_WoodDark",
+        "position": [
+          -16,
+          -5
+        ],
+        "y": 0.03,
+        "shed": true
+      },
+      {
+        "piece": "Floor_WoodDark",
+        "position": [
+          -16,
+          -3
+        ],
+        "y": 0.03,
+        "shed": true
+      },
+      {
+        "piece": "Roof_RoundTiles_4x4",
+        "position": [
+          -19.5,
+          -4
+        ],
+        "y": 3.2,
+        "shed": true
+      },
+      {
+        "piece": "Roof_RoundTiles_4x4",
+        "position": [
+          -16.5,
+          -4
+        ],
+        "y": 3.2,
+        "shed": true
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          -13.8,
+          -1.6
+        ],
+        "rotation": 0,
+        "solid": [
+          0.9,
+          0.9
+        ],
+        "shed": true
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -22.2,
+          -1.7000000000000002
+        ],
+        "rotation": 20,
+        "solid": [
+          0.9,
+          0.9
+        ],
+        "shed": true
+      },
+      {
+        "piece": "Pr_CartSmall",
+        "position": [
+          -12.0,
+          -3.5
+        ],
+        "rotation": 70,
+        "solid": [
+          1.6,
+          1.6
+        ],
+        "shed": true
+      },
+      {
+        "piece": "Tool_Hoe",
+        "position": [
+          -14.4,
+          -0.6000000000000001
+        ],
+        "rotation": 90,
+        "shed": true
       }
     ],
     "crowd": [
@@ -263006,6 +263328,409 @@
         "pose": "crouch"
       }
     ],
+    "passive": true
+  },
+  "farm_shed": {
+    "_comment": "Interior da Casa de Equipamentos do fazendeiro (Fazenda): bancada, bigorna, ferramentas, barris e sacas; o Fazendeiro, o Ferreiro e a Lenhadora abrem as missões da Mina, do Bunker e da Floresta Escura, e o Velho Zeca guarda a Foice de Prata. Gerado por tools/assets/build_city_quests.py.",
+    "name_key": "AREA_FARM_SHED",
+    "town": true,
+    "player_class": "mage",
+    "wake_radius": 0,
+    "alert_radius": 0,
+    "area_level": 1,
+    "rooms": [
+      {
+        "id": "hall",
+        "center": [
+          0,
+          0
+        ],
+        "size": [
+          18,
+          14
+        ],
+        "doors": [],
+        "torch": true
+      }
+    ],
+    "encounters": [],
+    "entries": {
+      "start": [
+        0,
+        2
+      ],
+      "door": [
+        0,
+        4.5
+      ]
+    },
+    "props": [
+      {
+        "id": "shed_exit",
+        "kind": "exit",
+        "name_key": "PROP_SHED_EXIT",
+        "position": [
+          0,
+          6.2
+        ],
+        "to": "farm_01_fields",
+        "entry": "shed"
+      },
+      {
+        "id": "shed_farmer",
+        "kind": "npc",
+        "npc": "shed_farmer",
+        "position": [
+          -4.8,
+          -2.4
+        ],
+        "rotation": 180
+      },
+      {
+        "id": "shed_smith",
+        "kind": "npc",
+        "npc": "shed_smith",
+        "position": [
+          -2.6,
+          -3.6
+        ],
+        "rotation": 200
+      },
+      {
+        "id": "shed_lumberjack",
+        "kind": "npc",
+        "npc": "shed_lumberjack",
+        "position": [
+          3.2,
+          -3.4
+        ],
+        "rotation": 160
+      },
+      {
+        "id": "shed_scarecrow",
+        "kind": "npc",
+        "npc": "shed_scarecrow",
+        "position": [
+          5.0,
+          -0.4
+        ],
+        "rotation": 240
+      }
+    ],
+    "style": {
+      "_comment": "Casa de Equipamentos: paredes de reboco e enxaimel, piso de tábuas escuras; a parede sul fica aberta para a câmera.",
+      "walls": [
+        "Wall_Plaster_WoodGrid",
+        "Wall_Plaster_Straight",
+        "Wall_Plaster_WoodGrid",
+        "Wall_Plaster_Straight",
+        "Wall_Plaster_WoodGrid",
+        "Wall_Plaster_Straight",
+        "Wall_Plaster_WoodGrid",
+        "Wall_Plaster_Straight"
+      ],
+      "floor": "Floor_WoodDark",
+      "low": "",
+      "ground": [
+        0.08,
+        0.06,
+        0.05
+      ],
+      "wood_tone": [
+        0.192,
+        0.145,
+        0.11
+      ]
+    },
+    "decor": [
+      {
+        "piece": "Workbench",
+        "position": [
+          -6.5,
+          -5.2
+        ],
+        "rotation": 0,
+        "solid": [
+          2.0,
+          0.9
+        ]
+      },
+      {
+        "piece": "Anvil",
+        "position": [
+          -3.8,
+          -5.3
+        ],
+        "rotation": 0,
+        "solid": [
+          0.9,
+          0.7
+        ]
+      },
+      {
+        "piece": "Whetstone",
+        "position": [
+          -2.4,
+          -5.3
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Shelf_Simple",
+        "position": [
+          2.0,
+          -5.5
+        ],
+        "rotation": 0,
+        "solid": [
+          1.4,
+          0.5
+        ]
+      },
+      {
+        "piece": "Shelf_Simple",
+        "position": [
+          4.0,
+          -5.5
+        ],
+        "rotation": 0,
+        "solid": [
+          1.4,
+          0.5
+        ]
+      },
+      {
+        "piece": "Weapon_Rack",
+        "position": [
+          6.4,
+          -5.3
+        ],
+        "rotation": 0,
+        "solid": [
+          2.0,
+          0.8
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          7.6,
+          -4.2
+        ],
+        "rotation": 0,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          7.7,
+          -2.9
+        ],
+        "rotation": 0,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Crate_Wooden",
+        "position": [
+          -7.6,
+          -3.5
+        ],
+        "rotation": 15,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          -7.5,
+          -2.2
+        ],
+        "rotation": 0,
+        "solid": [
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          -7.4,
+          0.2
+        ],
+        "rotation": 40
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          -6.5,
+          0.5
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Table_Large",
+        "position": [
+          5.0,
+          1.8
+        ],
+        "rotation": 0,
+        "solid": [
+          2.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Bench",
+        "position": [
+          5.0,
+          3.0
+        ],
+        "rotation": 0,
+        "solid": [
+          1.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Tv_Firewood",
+        "position": [
+          7.8,
+          0.5
+        ],
+        "rotation": 90,
+        "solid": [
+          1.4,
+          0.8
+        ]
+      },
+      {
+        "piece": "Pr_CartSmall",
+        "position": [
+          -5.2,
+          3.4
+        ],
+        "rotation": 20,
+        "solid": [
+          2.0,
+          1.2
+        ]
+      },
+      {
+        "piece": "Tool_Pitchfork",
+        "position": [
+          -1.0,
+          -5.6
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Tool_Scythe",
+        "position": [
+          0.4,
+          -5.6
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Tool_Shovel",
+        "position": [
+          -0.3,
+          -5.5
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Tool_Hoe",
+        "position": [
+          1.2,
+          -5.5
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          3.0,
+          0.5
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          -3.0,
+          3.8
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Tv_Torch",
+        "position": [
+          -7.9,
+          -1.0
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Tv_Torch",
+        "position": [
+          7.9,
+          2.0
+        ],
+        "rotation": 270
+      },
+      {
+        "light": [
+          1.0,
+          0.7,
+          0.4
+        ],
+        "position": [
+          0,
+          -1
+        ],
+        "y": 2.6,
+        "range": 12.0,
+        "energy": 1.4
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.3
+        ],
+        "position": [
+          -7.5,
+          -1.5
+        ],
+        "y": 1.8,
+        "range": 6.0,
+        "energy": 0.9
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.3
+        ],
+        "position": [
+          7.5,
+          1.0
+        ],
+        "y": 1.8,
+        "range": 6.0,
+        "energy": 0.9
+      }
+    ],
+    "crowd": [],
     "passive": true
   }
 }

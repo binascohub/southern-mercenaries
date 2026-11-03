@@ -256,6 +256,21 @@ Conteúdo detalhado dos tesouros em `05-itens-e-loot.md`, seção 3.
 - **O portal dele abre no chão** (decisão do autor): um círculo de símbolos e velas que se risca no solo e vira um redemoinho de sombra e brasas; os jogadores **pisam nele** para atravessar. Some depois de alguns segundos. Vale também para o portal aberto pelo Patuá de Retorno, no meio do mapa.
 - Mais caro que o portal comum, porque economiza a caminhada do início do mapa (a ideia é o jogador pagar pela comodidade).
 
+### 5.2 Missões de cada mapa e a corrente entre as cidades
+
+Cada mapa tem uma **missão de mapa** aberta por um NPC da cidade (termina sozinha quando o chefe do mapa cai):
+
+| Cidade | Onde | NPC | Mapa |
+|---|---|---|---|
+| Tortuga | Taverna | Velho Bêbado · Taberneira · Capitão Pirata · **Veterano de Guerra** | Esgoto · Floresta · Docas · Ruínas (`map_ruins`) |
+| Capital Real | Igreja | Padre · **Irmã Penitente Isolda** · **Peregrino Haled** | Cemitério e Forte (relíquias do Padre) · Catacumbas (`map_catacombs`) · Deserto (`map_desert`) |
+| Fazenda | **Casa de Equipamentos** do fazendeiro (nova: interior `farm_shed`, porta na lateral dos campos) | **Fazendeiro Tadeu** · **Ferreiro Gorm** · **Lenhadora Odete** | Mina (`map_mine`) · Bunker (`map_bunker`) · Floresta Escura (`map_dark_forest`) |
+
+**Corrente de missões entre as cidades** (gerada por `tools/assets/build_city_quests.py`):
+1. Ao concluir as **Ruínas**, aparece na Taverna de Tortuga o **Cartógrafo Aldrin**, que manda ir à Capital (pelo Viajante do Tempo) buscar o **Mapa Selado** com o **Sacristão Ambrósio**, na Igreja, e trazê-lo de volta (`trav_to_capital`).
+2. Ao concluir o **Deserto**, o mesmo Sacristão pede a **Foice de Prata**, que está com o **Velho Zeca**, na Casa de Equipamentos da Fazenda (`cap_to_farm`); o herói a pega com o Velho Zeca e a leva ao Sacristão.
+Falas com `grants_item` entregam o item (só enquanto a missão que o pede está ativa); props com `after_quest` só aparecem depois dessa missão.
+
 **Patuá de Retorno** (`return_charm`, consumível):
 - Usado no mapa (fora de combate, 5 s de canalização), abre, **no chão**, um **portal de volta à cidade** de onde o grupo saiu, que fica aberto por 15 s para qualquer jogador do grupo atravessar.
 - Usar o patuá **salva o checkpoint** atual como ponto de volta (o jogador volta a ele com o Macumbeiro).
