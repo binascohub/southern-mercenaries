@@ -264,7 +264,7 @@ msgid "NET_CONNECTING"
 msgstr "Conectando…"
 
 msgid "NET_CONNECTION_FAILED"
-msgstr "No se pudo conectar con el anfitrión. Revisa la dirección y el cortafuegos."
+msgstr "No se pudo conectar con el anfitrión ({address}). Revisa la dirección, que ambos estén en la misma red y el cortafuegos del anfitrión (puerto UDP 24567)."
 
 msgid "NET_HOST_FAILED"
 msgstr "No se pudo crear la partida: el puerto UDP {port} está en uso o bloqueado."
@@ -735,6 +735,9 @@ msgstr "Aceptar"
 msgid "TRADE_DECLINE"
 msgstr "Rechazar"
 
+msgid "TRADE_BAG"
+msgstr "Tu bolsa"
+
 msgid "TRADE_TITLE"
 msgstr "Intercambio con {name}"
 
@@ -763,7 +766,7 @@ msgid "TRADE_CANCEL"
 msgstr "Cancelar"
 
 msgid "TRADE_HINT"
-msgstr "Pulsa un objeto de tu bolsa para añadirlo o quitarlo de la oferta. Cualquier cambio deshace ambas confirmaciones."
+msgstr "Pulsa un objeto de tu bolsa para añadirlo o quitarlo de la oferta; clic derecho muestra los detalles. Cualquier cambio deshace ambas confirmaciones."
 
 msgid "TRADE_DONE"
 msgstr "Intercambio completado"

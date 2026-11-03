@@ -26,7 +26,7 @@ enum Mode { NONE, SOLO, HOST, CLIENT }
 const GAME_ID := "southern-mercenaries"
 const ANNOUNCE_INTERVAL := 1.0
 const HOST_TIMEOUT := 5.0
-const CONNECT_TIMEOUT := 6.0
+const CONNECT_TIMEOUT := 10.0
 const DATA_DIR := "res://data"
 const CLIENT_ID_PATH := "user://client.cfg"
 
@@ -53,8 +53,8 @@ var _accepted_peers: Array[int] = []
 var _announcer: PacketPeerUDP
 var _announce_left := 0.0
 var _listener: PacketPeerUDP
-## Prazo da conexão em relógio real (ms); 0 = sem prazo.
-var _connect_deadline := 0
+## Tempo que ainda resta para a conexão (s), contado só com o jogo andando: um travamento longo (carregar o mapa) não gasta o prazo; 0 = sem prazo.
+var _connect_left := 0.0
 
 
 func _ready() -> void:
@@ -165,10 +165,10 @@ func begin() -> void:
 			var peer := ENetMultiplayerPeer.new()
 			var err := peer.create_client(_join_address, _join_port)
 			if err != OK:
-				_end("NET_CONNECTION_FAILED")
+				_end("NET_CONNECTION_FAILED", {"address": "%s:%d" % [_join_address, _join_port]})
 				return
 			multiplayer.multiplayer_peer = peer
-			_connect_deadline = Time.get_ticks_msec() + int(CONNECT_TIMEOUT * 1000.0)
+			_connect_left = CONNECT_TIMEOUT
 		_:
 			mode = Mode.SOLO
 			multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
@@ -230,8 +230,10 @@ func _process(delta: float) -> void:
 			_announcer.put_packet(JSON.stringify(info).to_utf8_buffer())
 	if _listener:
 		_poll_discovery()
-	if mode == Mode.CLIENT and _connect_deadline > 0 and Time.get_ticks_msec() > _connect_deadline:
-		_end("NET_CONNECTION_FAILED")
+	if mode == Mode.CLIENT and _connect_left > 0.0:
+		_connect_left -= minf(delta, 0.25)
+		if _connect_left <= 0.0:
+			_end("NET_CONNECTION_FAILED", {"address": "%s:%d" % [_join_address, _join_port]})
 
 
 func _poll_discovery() -> void:
@@ -263,7 +265,7 @@ func _poll_discovery() -> void:
 # --- Aperto de mão ----------------------------------------------------------
 
 func _on_connected_to_server() -> void:
-	_connect_deadline = 0
+	_connect_left = 0.0
 	_hello.rpc_id(1, version(), _content_hash, client_id, Session.ensure_character().to_dict())
 
 
@@ -334,7 +336,7 @@ func _on_peer_disconnected(peer_id: int) -> void:
 
 
 func _on_connection_failed() -> void:
-	_end("NET_CONNECTION_FAILED")
+	_end("NET_CONNECTION_FAILED", {"address": "%s:%d" % [_join_address, _join_port]})
 
 
 func _on_server_disconnected() -> void:
@@ -351,7 +353,7 @@ func _end(reason_key: String, args := {}) -> void:
 
 
 func _close() -> void:
-	_connect_deadline = 0
+	_connect_left = 0.0
 	if _announcer:
 		_announcer.close()
 		_announcer = null

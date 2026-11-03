@@ -23,14 +23,19 @@ var _title: Label
 var _bag_buttons: Array[Button] = []
 var _gold: HSlider
 var _gold_label: Label
-var _yours: Label
-var _theirs: Label
+var _yours: VBoxContainer
+var _theirs: VBoxContainer
+var _bag_title: Label
+var _popup: PanelContainer
+var _popup_icon: TextureRect
+var _popup_text: Label
 var _confirm: Button
 
 
 func _ready() -> void:
 	layer = 6
 	_build()
+	_build_popup()
 	_hide_all()
 
 
@@ -59,6 +64,9 @@ func is_open() -> bool:
 func _unhandled_input(event: InputEvent) -> void:
 	if is_open() and (event.is_action_pressed(&"ui_cancel") or event.is_action_pressed(&"menu")):
 		get_viewport().set_input_as_handled()
+		if _popup.visible:
+			_popup.visible = false
+			return
 		if _panel.visible:
 			_trade.cancel(_id)
 		else:
@@ -103,6 +111,7 @@ func _hide_all() -> void:
 	var was_open := _invite.visible or _panel.visible
 	_invite.visible = false
 	_panel.visible = false
+	_popup.visible = false
 	_state = {}
 	if was_open:
 		Session.ui_open = false
@@ -139,6 +148,7 @@ func _refresh() -> void:
 	var them: Dictionary = _state.them
 	var bag: Array = _player.character.data.inventory
 	_title.text = tr("TRADE_TITLE").format({"name": them.name})
+	_bag_title.text = tr("TRADE_BAG")
 	for i in _bag_buttons.size():
 		var item: Variant = bag[i] if i < bag.size() else null
 		var button := _bag_buttons[i]
@@ -151,22 +161,74 @@ func _refresh() -> void:
 	_gold.step = maxi(1, gold / 100)
 	_gold.set_value_no_signal(int(you.gold))
 	_gold_label.text = tr("TRADE_GOLD").format({"gold": int(you.gold), "total": gold})
-	_yours.text = _offer_text("TRADE_YOUR_OFFER", you)
-	_theirs.text = _offer_text("TRADE_THEIR_OFFER", them)
+	_fill_offer(_yours, "TRADE_YOUR_OFFER", you, true)
+	_fill_offer(_theirs, "TRADE_THEIR_OFFER", them, false)
 	_confirm.text = tr("TRADE_WAITING") if you.confirmed else tr("TRADE_CONFIRM")
 	_confirm.disabled = bool(you.confirmed)
 
 
-func _offer_text(title_key: String, side: Dictionary) -> String:
-	var lines := PackedStringArray([tr(title_key).format({"name": side.name})])
-	for item: Dictionary in side.items:
-		lines.append("  " + _short(item))
+## Monta o quadro de uma oferta: título, um botão por item (botão direito = detalhes; na sua, apertar tira da oferta),
+## ouro e estado da confirmação.
+func _fill_offer(box: VBoxContainer, title_key: String, side: Dictionary, yours: bool) -> void:
+	for child in box.get_children():
+		box.remove_child(child)
+		child.queue_free()
+	var title := _text_label()
+	title.theme_type_variation = &"TitleLabel"
+	title.text = tr(title_key).format({"name": side.name})
+	box.add_child(title)
+	var bag: Array = _player.character.data.inventory if yours else []
+	for n in side.items.size():
+		var item: Dictionary = side.items[n]
+		var button := Button.new()
+		button.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+		button.text = _short(item)
+		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		button.add_theme_color_override("font_color", Items.color(item))
+		button.gui_input.connect(_on_item_input.bind(item))
+		if yours and n < side.indices.size():
+			button.pressed.connect(_toggle.bind(int(side.indices[n])))
+		else:
+			button.pressed.connect(_show_popup.bind(item))
+		box.add_child(button)
 	if int(side.gold) > 0:
-		lines.append("  " + tr("HUD_GOLD").format({"gold": side.gold}))
+		var gold := _text_label()
+		gold.text = tr("HUD_GOLD").format({"gold": side.gold})
+		box.add_child(gold)
 	if side.items.is_empty() and int(side.gold) <= 0:
-		lines.append("  —")
-	lines.append(tr("TRADE_CONFIRMED") if side.confirmed else tr("TRADE_NOT_CONFIRMED"))
-	return "\n".join(lines)
+		var empty := _text_label()
+		empty.text = "—"
+		box.add_child(empty)
+	var state := _text_label()
+	state.text = tr("TRADE_CONFIRMED") if side.confirmed else tr("TRADE_NOT_CONFIRMED")
+	state.modulate = Color(0.45, 0.85, 0.45) if side.confirmed else Color(1, 1, 1, 0.65)
+	box.add_child(state)
+
+
+func _on_item_input(event: InputEvent, item: Dictionary) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
+		_show_popup(item)
+		get_viewport().set_input_as_handled()
+
+
+func _on_bag_input(event: InputEvent, index: int) -> void:
+	if not (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT):
+		return
+	var bag: Array = _player.character.data.inventory
+	if index < bag.size() and bag[index] != null:
+		_show_popup(bag[index])
+	get_viewport().set_input_as_handled()
+
+
+## Detalhe do item (imagem e descrição), igual ao da bolsa.
+func _show_popup(item: Dictionary) -> void:
+	var icon := Items.icon(item)
+	_popup_icon.texture = icon
+	_popup_icon.visible = icon != null
+	var factor: float = _player.character.class_data().armor_factor if _player and _player.character else 1.0
+	_popup_text.text = "\n".join(Items.describe(item, factor))
+	_popup_text.add_theme_color_override("font_color", Color(0.18, 0.12, 0.07))
+	_popup.visible = true
 
 
 func _short(item: Dictionary) -> String:
@@ -207,11 +269,15 @@ func _build() -> void:
 	columns.add_theme_constant_override("separation", 18)
 	outer.add_child(columns)
 
-	var left := VBoxContainer.new()
-	columns.add_child(left)
+	var left := _section(Color(0.35, 0.28, 0.18, 0.35))
+	columns.add_child(left.panel)
+	_bag_title = _text_label()
+	var bag_title := _bag_title
+	bag_title.theme_type_variation = &"TitleLabel"
+	left.box.add_child(bag_title)
 	var bag := GridContainer.new()
 	bag.columns = BAG_COLUMNS
-	left.add_child(bag)
+	left.box.add_child(bag)
 	for i in GameData.balance.inventory_size:
 		var button := Button.new()
 		button.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
@@ -220,28 +286,32 @@ func _build() -> void:
 		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		button.add_theme_font_size_override("font_size", 11)
 		button.pressed.connect(_toggle.bind(i))
+		button.gui_input.connect(_on_bag_input.bind(i))
 		bag.add_child(button)
 		_bag_buttons.append(button)
 	_gold_label = _text_label()
-	left.add_child(_gold_label)
+	left.box.add_child(_gold_label)
 	_gold = HSlider.new()
 	_gold.custom_minimum_size = Vector2(300, 28)
 	_gold.focus_mode = Control.FOCUS_ALL
 	_gold.value_changed.connect(_on_gold_changed)
-	left.add_child(_gold)
+	left.box.add_child(_gold)
 
-	var right := VBoxContainer.new()
-	right.custom_minimum_size = Vector2(260, 0)
-	right.add_theme_constant_override("separation", 12)
-	columns.add_child(right)
-	_yours = _text_label()
-	right.add_child(_yours)
-	_theirs = _text_label()
-	right.add_child(_theirs)
+	var mine := _section(Color(0.25, 0.5, 0.3, 0.3))
+	mine.panel.custom_minimum_size = Vector2(230, 0)
+	columns.add_child(mine.panel)
+	_yours = mine.box
+	var other := _section(Color(0.25, 0.4, 0.6, 0.3))
+	other.panel.custom_minimum_size = Vector2(230, 0)
+	columns.add_child(other.panel)
+	_theirs = other.box
+	var actions := VBoxContainer.new()
+	actions.add_theme_constant_override("separation", 12)
+	columns.add_child(actions)
 	_confirm = _button("TRADE_CONFIRM", func() -> void: _trade.confirm(_id))
 	_confirm.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
-	right.add_child(_confirm)
-	right.add_child(_button("TRADE_CANCEL", func() -> void: _trade.cancel(_id)))
+	actions.add_child(_confirm)
+	actions.add_child(_button("TRADE_CANCEL", func() -> void: _trade.cancel(_id)))
 	var hint := _text_label()
 	hint.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_INHERIT
 	hint.text = "TRADE_HINT"
@@ -272,3 +342,48 @@ func _text_label() -> Label:
 	label.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	return label
+
+
+## Quadro com fundo tingido (bolsa, oferta sua, oferta do outro): {panel, box}.
+func _section(tint: Color) -> Dictionary:
+	var panel := PanelContainer.new()
+	var style := StyleBoxFlat.new()
+	style.bg_color = tint
+	style.border_color = tint.lightened(0.4)
+	style.set_border_width_all(2)
+	style.set_corner_radius_all(4)
+	style.set_content_margin_all(10)
+	panel.add_theme_stylebox_override("panel", style)
+	var box := VBoxContainer.new()
+	box.add_theme_constant_override("separation", 6)
+	panel.add_child(box)
+	return {"panel": panel, "box": box}
+
+
+func _build_popup() -> void:
+	_popup = PanelContainer.new()
+	_popup.theme = UiTheme.paper_theme()
+	_popup.set_anchors_preset(Control.PRESET_CENTER)
+	_popup.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	_popup.grow_vertical = Control.GROW_DIRECTION_BOTH
+	_popup.custom_minimum_size = Vector2(420, 0)
+	_popup.visible = false
+	add_child(_popup)
+	var box := VBoxContainer.new()
+	box.add_theme_constant_override("separation", 12)
+	_popup.add_child(box)
+	_popup_icon = TextureRect.new()
+	_popup_icon.custom_minimum_size = Vector2(160, 160)
+	_popup_icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_popup_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_popup_icon.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	box.add_child(_popup_icon)
+	_popup_text = _text_label()
+	_popup_text.custom_minimum_size = Vector2(380, 0)
+	box.add_child(_popup_text)
+	var close_button := Button.new()
+	close_button.text = "INV_POPUP_CLOSE"
+	close_button.custom_minimum_size = Vector2(200, 40)
+	close_button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	close_button.pressed.connect(func() -> void: _popup.visible = false)
+	box.add_child(close_button)

@@ -264,7 +264,7 @@ msgid "NET_CONNECTING"
 msgstr "Connecting…"
 
 msgid "NET_CONNECTION_FAILED"
-msgstr "Could not connect to the host. Check the address and the firewall."
+msgstr "Could not connect to the host ({address}). Check the address, that both are on the same network, and the host firewall (UDP port 24567)."
 
 msgid "NET_HOST_FAILED"
 msgstr "Could not host the game: UDP port {port} is in use or blocked."
@@ -735,6 +735,9 @@ msgstr "Accept"
 msgid "TRADE_DECLINE"
 msgstr "Decline"
 
+msgid "TRADE_BAG"
+msgstr "Your bag"
+
 msgid "TRADE_TITLE"
 msgstr "Trade with {name}"
 
@@ -763,7 +766,7 @@ msgid "TRADE_CANCEL"
 msgstr "Cancel"
 
 msgid "TRADE_HINT"
-msgstr "Press an item in your bag to add it to or remove it from the offer. Any change undoes both confirmations."
+msgstr "Press an item in your bag to add it to or remove it from the offer; right-click shows its details. Any change undoes both confirmations."
 
 msgid "TRADE_DONE"
 msgstr "Trade complete"

@@ -10022,7 +10022,7 @@
     "name_key": "ARENA_FOREST",
     "player_class": "mage",
     "map_id": "map_forest",
-    "area_level": 3,
+    "area_level": 2,
     "outdoor": true,
     "wake_radius": 10.0,
     "alert_radius": 5.0,
@@ -10726,6 +10726,331 @@
             "count": 2
           }
         ]
+      },
+      {
+        "id": "f_mimic_1",
+        "position": [
+          -32.5,
+          -17.0
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_2",
+        "position": [
+          -32.6,
+          -36.6
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_3",
+        "position": [
+          25.0,
+          -10.3
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_4",
+        "position": [
+          21.0,
+          -37.1
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_5",
+        "position": [
+          37.4,
+          -58.0
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_6",
+        "position": [
+          13.3,
+          -60.5
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_7",
+        "position": [
+          74.3,
+          -6.2
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_8",
+        "position": [
+          66.6,
+          -43.2
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_9",
+        "position": [
+          116.0,
+          -29.5
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_10",
+        "position": [
+          146.9,
+          -21.1
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_11",
+        "position": [
+          140.6,
+          -51.5
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_12",
+        "position": [
+          67.1,
+          -64.4
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_13",
+        "position": [
+          65.3,
+          -76.2
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_14",
+        "position": [
+          74.1,
+          -90.1
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_15",
+        "position": [
+          41.6,
+          -79.3
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_16",
+        "position": [
+          17.5,
+          -91.6
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_17",
+        "position": [
+          22.5,
+          -85.0
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_18",
+        "position": [
+          67.3,
+          -107.5
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_19",
+        "position": [
+          66.8,
+          -137.8
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_20",
+        "position": [
+          75.1,
+          -119.1
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_21",
+        "position": [
+          25.3,
+          -0.7
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_22",
+        "position": [
+          24.2,
+          17.0
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_23",
+        "position": [
+          144.9,
+          -81.3
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_24",
+        "position": [
+          134.5,
+          -117.4
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "f_mimic_25",
+        "position": [
+          138.2,
+          -131.0
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
       }
     ],
     "hazards": [],
@@ -11033,141 +11358,6 @@
         "table": "breakable_meat"
       },
       {
-        "id": "coin_bag_1",
-        "monster": "coin_bag",
-        "position": [
-          -32.1,
-          -11.3
-        ],
-        "table": "coin_bag"
-      },
-      {
-        "id": "coin_bag_2",
-        "monster": "coin_bag",
-        "position": [
-          -21.5,
-          -54.3
-        ],
-        "table": "coin_bag"
-      },
-      {
-        "id": "coin_bag_3",
-        "monster": "coin_bag",
-        "position": [
-          19.2,
-          -23.0
-        ],
-        "table": "coin_bag"
-      },
-      {
-        "id": "coin_bag_4",
-        "monster": "coin_bag",
-        "position": [
-          88.6,
-          -5.8
-        ],
-        "table": "coin_bag"
-      },
-      {
-        "id": "coin_bag_5",
-        "monster": "coin_bag",
-        "position": [
-          68.2,
-          13.9
-        ],
-        "table": "coin_bag"
-      },
-      {
-        "id": "coin_bag_6",
-        "monster": "coin_bag",
-        "position": [
-          148.4,
-          -40.1
-        ],
-        "table": "coin_bag"
-      },
-      {
-        "id": "coin_bag_7",
-        "monster": "coin_bag",
-        "position": [
-          130.9,
-          -47.2
-        ],
-        "table": "coin_bag"
-      },
-      {
-        "id": "coin_bag_8",
-        "monster": "coin_bag",
-        "position": [
-          81.3,
-          -80.1
-        ],
-        "table": "coin_bag"
-      },
-      {
-        "id": "coin_bag_9",
-        "monster": "coin_bag",
-        "position": [
-          64.6,
-          -77.0
-        ],
-        "table": "coin_bag"
-      },
-      {
-        "id": "coin_bag_10",
-        "monster": "coin_bag",
-        "position": [
-          3.4,
-          -95.1
-        ],
-        "table": "coin_bag"
-      },
-      {
-        "id": "coin_bag_11",
-        "monster": "coin_bag",
-        "position": [
-          6.5,
-          -87.4
-        ],
-        "table": "coin_bag"
-      },
-      {
-        "id": "coin_bag_12",
-        "monster": "coin_bag",
-        "position": [
-          64.7,
-          -132.8
-        ],
-        "table": "coin_bag"
-      },
-      {
-        "id": "coin_bag_13",
-        "monster": "coin_bag",
-        "position": [
-          61.7,
-          -138.5
-        ],
-        "table": "coin_bag"
-      },
-      {
-        "id": "coin_bag_14",
-        "monster": "coin_bag",
-        "position": [
-          26.6,
-          -3.0
-        ],
-        "table": "coin_bag"
-      },
-      {
-        "id": "coin_bag_15",
-        "monster": "coin_bag",
-        "position": [
-          24.3,
-          30.8
-        ],
-        "table": "coin_bag"
-      },
-      {
         "id": "deer_1",
         "monster": "deer_buck",
         "position": [
@@ -11330,29 +11520,56 @@
         "table": "breakable_meat"
       },
       {
-        "id": "coin_bag_f1",
+        "id": "coin_bag_1",
         "monster": "coin_bag",
         "position": [
-          148.0,
-          -105.0
+          67.2,
+          -11.8
         ],
         "table": "coin_bag"
       },
       {
-        "id": "coin_bag_f2",
+        "id": "coin_bag_2",
         "monster": "coin_bag",
         "position": [
-          136.0,
-          -119.0
+          148.4,
+          -40.1
         ],
         "table": "coin_bag"
       },
       {
-        "id": "coin_bag_f3",
+        "id": "coin_bag_3",
         "monster": "coin_bag",
         "position": [
-          148.0,
-          -134.0
+          63.2,
+          -85.1
+        ],
+        "table": "coin_bag"
+      },
+      {
+        "id": "coin_bag_4",
+        "monster": "coin_bag",
+        "position": [
+          6.5,
+          -87.4
+        ],
+        "table": "coin_bag"
+      },
+      {
+        "id": "coin_bag_5",
+        "monster": "coin_bag",
+        "position": [
+          62.0,
+          -131.4
+        ],
+        "table": "coin_bag"
+      },
+      {
+        "id": "coin_bag_6",
+        "monster": "coin_bag",
+        "position": [
+          153.9,
+          -131.1
         ],
         "table": "coin_bag"
       }
@@ -35846,6 +36063,9 @@
       }
     ],
     "passive": true,
+    "loot_scale": {
+      "potion": 1.8
+    },
     "crowd": [
       {
         "role": "squirrel",

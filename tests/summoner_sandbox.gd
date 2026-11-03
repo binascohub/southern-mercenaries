@@ -134,6 +134,26 @@ func _ready() -> void:
 		for prop: Dictionary in arena.arena.props:
 			if prop.get("id", "") == "sewer_frog_altar":
 				arena.summon_encounter(arena.local_player, prop)
+	if "tripsummon" in args:  # desperta o Empalado, vai a Tortuga e volta; o altar deve poder despertá-lo de novo
+		arena._campaign.keys = arena._campaign.get("keys", []) + ["book_frog_altar"]
+		var altar: Dictionary = arena.prop_near(arena.local_player, "npc", "sewer_frog_altar", 9999.0)
+		arena.local_player.global_position = Vector3(altar.position[0], 0, altar.position[1] + 1.5)
+		arena.request_interact(arena.local_player)
+		await get_tree().create_timer(5.0).timeout
+		Session.ui_open = false
+		print("TRIP groups1=", arena._groups.has("sw_frog_king"), " awake=", arena._groups.get("sw_frog_king", {}).get("awake"))
+		arena.travel("tortuga", "start", true)
+		await get_tree().create_timer(1.0).timeout
+		arena.travel("sewers_01_drains", "start")
+		await get_tree().create_timer(1.0).timeout
+		print("TRIP back has_king=", arena._groups.has("sw_frog_king"), " summoning=", arena._summoning)
+		altar = arena.prop_near(arena.local_player, "npc", "sewer_frog_altar", 9999.0)
+		print("TRIP altar=", altar.get("id", "NONE"))
+		arena.local_player.global_position = Vector3(altar.position[0], 0, altar.position[1] + 1.5)
+		arena.request_interact(arena.local_player)
+		await get_tree().create_timer(5.0).timeout
+		Session.ui_open = false
+		print("TRIP marks=", arena.hud.minimap._marks.filter(func(m): return m.kind == "miniboss").size()); print("TRIP groups2=", arena._groups.has("sw_frog_king"), " awake=", arena._groups.get("sw_frog_king", {}).get("awake"))
 	if "givekeys" in args:  # entrega as duas chaves do Esgoto (depois de 6 s): o portão do Ninho deve cair
 		get_tree().create_timer(6.0).timeout.connect(func() -> void:
 			arena.pick_key(arena.local_player, {"id": "k1", "key": "sewer_key_spades"})

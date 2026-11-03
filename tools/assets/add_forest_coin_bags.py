@@ -19,7 +19,9 @@ for room in forest["rooms"]:
     w, h = room["size"]
     if w * h < 300 or w < 20 or h < 20:      # só as salas grandes (corredores e salinhas ficam de fora)
         continue
-    want = 2 if w * h >= 600 else 1
+    want = 1 if w * h >= 600 else 0   # segundo mapa do jogo: ouro direto contido (a renda vem das missões e do tesouro)
+    if want == 0:
+        continue
     got = 0
     for _ in range(400):
         if got >= want:

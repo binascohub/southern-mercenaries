@@ -21,7 +21,7 @@ var _grid := Vector2i.ZERO
 var _town := false
 ## {position: Vector2 (x, z), local: bool}
 var _heroes: Array[Dictionary] = []
-## Marcas: {position: Vector2, kind: "exit" | "quest"}
+## Marcas: {position: Vector2, kind: "exit" | "quest" | "altar" | "miniboss"}
 var _marks: Array[Dictionary] = []
 var _timer := 0.0
 
@@ -111,11 +111,21 @@ func _draw() -> void:
 				continue  # o que ainda não foi explorado não aparece, nem como sombra do mapa
 			draw_rect(Rect2(at, cell + Vector2(0.5, 0.5)), FLOOR_COLOR)
 	for mark in _marks:
+		if mark.kind == "miniboss":
+			continue  # desenhado por último, por cima dos heróis
 		if not is_seen(mark.position):
 			continue
 		var p := _to_map(mark.position)
+		if mark.kind == "altar":  # losango roxo pequeno
+			draw_colored_polygon(PackedVector2Array([p + Vector2(0, -4.5), p + Vector2(4, 0), p + Vector2(0, 4.5), p + Vector2(-4, 0)]), Color(0.75, 0.4, 1.0))
+			continue
 		var color := Color(0.4, 0.85, 1.0) if mark.kind == "exit" else Color(1.0, 0.85, 0.3)
 		draw_rect(Rect2(p - Vector2(3, 3), Vector2(6, 6)), color)
 	for hero in _heroes:
 		var p := _to_map(hero.position)
 		draw_circle(p, 5.0 if hero.local else 4.0, Color(1.0, 0.8, 0.25) if hero.local else Color(0.35, 0.6, 1.0))
+	for mark in _marks:
+		if mark.kind == "miniboss":
+			var p := _to_map(mark.position)
+			draw_circle(p, 6.5, Color(1.0, 1.0, 1.0))
+			draw_circle(p, 5.0, Color(0.95, 0.05, 0.05))

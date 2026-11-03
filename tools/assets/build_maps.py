@@ -479,7 +479,7 @@ v_props = [
 ]
 arenas["forest_01_path"] = {
     "_comment": "Floresta (04-tortuga-e-missoes.md, missão 3 na ordem do mapa: Tortuga -> Floresta -> Ruínas -> Cemitério -> Forte). Mapa de salas e trilhas no desenho de ~/Downloads/map-forest.jpg: a aldeia na partida (sudoeste) e uma rota principal (Praça da Pira, encruzilhada, Praça da Pedra) até o Covil do Leshy (chefe final, com a saída, no nordeste). As duas praças são as áreas de mini-chefe: o NPC de cada uma passa a missão e invoca um golem. Quatro caminhos sem saída terminam em salas de monstros (Clareira dos Sapos, Gruta dos Morcegos, Covil das Bestas, Toca dos Répteis); marcos de pedra nas portas e trilhas de lajes. Gerado por tools/assets/build_maps.py.",
-    "name_key": "ARENA_FOREST", "player_class": "mage", "map_id": "map_forest", "area_level": 3, "outdoor": True,
+    "name_key": "ARENA_FOREST", "player_class": "mage", "map_id": "map_forest", "area_level": 2, "outdoor": True,
     "wake_radius": 10.0, "alert_radius": 5.0, "rooms": f_rooms_out, "encounters": f_enc + f_extra, "hazards": [],
     "entries": {"start": [F_START[0], -12.0], "forest": [F_START[0], -12.0]},
     "props": [
@@ -1886,6 +1886,7 @@ subprocess.run([sys.executable, "tools/assets/add_forest_king_room.py"], check=T
 subprocess.run([sys.executable, "tools/assets/add_forest_temple.py"], check=True)  # templo em ruínas no meio da sala do Rei Golem
 subprocess.run([sys.executable, "tools/assets/add_forest_coin_bags.py"], check=True)  # bolsas de moedas espalhadas pela Floresta
 subprocess.run([sys.executable, "tools/assets/add_forest_deer.py"], check=True)  # mais cervos espalhados pela Floresta
+subprocess.run([sys.executable, "tools/assets/add_forest_mimics.py"], check=True)  # baús monstro (agressivos) pela Floresta toda
 subprocess.run([sys.executable, "tools/assets/add_forest_trees.py"], check=True)  # carvalhos no lugar de parte da vegetação (Floresta toda)
 subprocess.run([sys.executable, "tools/assets/add_forest_trolls.py"], check=True)  # mapa dos trolls (sala hub)
 subprocess.run([sys.executable, "tools/assets/add_forest_walkers.py"], check=True)  # Bertram e Elara andando pelo mapa (sem missão)

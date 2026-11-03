@@ -592,7 +592,7 @@ func _spawn_player(peer_id: int, resume: Player = null) -> Player:
 		_toast_all.call_deferred("TOAST_CHARACTER_EDITED", {"name": character.data.name})
 	player.set_character(character)
 	for book: Array in [["book_frog_altar", "altar_book"], ["book_gator_altar", "gator_book"]]:
-		if book[0] in _campaign.get("keys", []) and character.count_of(book[1]) == 0:
+		if book[0] in _campaign.get("keys", []) and character.count_of(book[1]) == 0 and not _book_used(book[1], character):
 			character.add_item(Items.stack(Items.VALUABLE, book[1]))  # quem entra depois da missão aceita também recebe o livro dela (Livro do Altar, Grimório das Brasas)
 	if not _campaign.is_empty():
 		if character.data.id not in _campaign.get("participants", []):
@@ -865,6 +865,15 @@ func _update_minimap_marks() -> void:
 	for prop: Dictionary in _props:
 		if prop.kind in ["exit", "quest_spot"]:
 			marks.append({"position": Vector2(prop.position[0], prop.position[1]), "kind": "exit" if prop.kind == "exit" else "quest"})
+	# Altares e estátuas que chamam um mini-chefe: aparecem (ícone pequeno) depois que a área deles foi explorada.
+	for prop: Dictionary in _props:
+		if prop.kind == "npc" and prop.has("summon"):
+			marks.append({"position": Vector2(prop.position[0], prop.position[1]), "kind": "altar"})
+	# Mini-chefe solto (acordado e vivo): ponto vermelho, visto mesmo fora da área explorada.
+	for node in get_tree().get_nodes_in_group(&"enemies"):
+		var e := node as Enemy
+		if e and e.category() == "miniboss" and e.state != Enemy.State.SLEEP and e.health > 0.0 and not e.is_queued_for_deletion():
+			marks.append({"position": Vector2(e.global_position.x, e.global_position.z), "kind": "miniboss"})
 	hud.minimap.set_markers(heroes, marks)
 
 
@@ -970,6 +979,11 @@ func summon_encounter(player: Player, prop: Dictionary) -> void:
 		return
 	_spawn_group(group)
 	_wake_group(id)
+	# Fica guardado na campanha: se o grupo sair da área com ele vivo, ele continua no mapa do altar até ser derrotado.
+	var summoned: Dictionary = _campaign.get("summoned", {})
+	summoned[id] = {"area": area_id, "group": group.duplicate(true)}
+	_campaign.summoned = summoned
+	SaveSystem.save_campaign(_campaign, true)
 	_toast_all(String(group.get("toast", "TOAST_STATUE_AWAKENS")), {})
 
 
@@ -990,6 +1004,12 @@ func _start_run() -> void:
 	for encounter: Dictionary in arena.encounters:
 		if encounter.id not in dead:
 			_spawn_group(encounter)
+	# Mini-chefes chamados num altar/estátua desta área e ainda vivos: voltam acordados ao lugar do altar.
+	for id: String in _campaign.get("summoned", {}):
+		var saved: Dictionary = _campaign.summoned[id]
+		if saved.area == area_id and id not in dead and not _groups.has(id):
+			_spawn_group(saved.group)
+			_wake_group(id)
 	# Barris e caixotes que ainda não quebraram nesta campanha.
 	var broken: Array = _campaign.get("broken", [])
 	for box: Dictionary in arena.get("breakables", []):
@@ -1244,9 +1264,9 @@ func _update_encounters() -> void:
 		var group: Dictionary = _groups[id]
 		if group.awake or group.members.is_empty():
 			continue
-		# Áreas pacíficas (o Esgoto): os bichos só revidam — quem chega perto não
+		# Áreas pacíficas (o Esgoto; "passive_all" também poupa os chefes, como na Floresta): os bichos só revidam — quem chega perto não
 		# os acorda; só atacam por conta própria os chefes e os "aggressive" (o Baú Monstro, o único monstro comum do Esgoto que ataca sem ser atacado).
-		if arena.get("passive", false) and not _group_has_boss(group) and not _group_is_aggressive(group):
+		if arena.get("passive", false) and (arena.get("passive_all", false) or not _group_has_boss(group)) and not _group_is_aggressive(group):
 			continue
 		for p: Player in players:
 			if p.alive and p.connected \
@@ -1327,6 +1347,7 @@ func _on_enemy_died(enemy: Enemy) -> void:
 	# Bandos de caçada não contam como encontros da área.
 	if group.members.is_empty() and not enemy.group.begins_with("hunt_"):
 		_campaign.dead_groups = _campaign.get("dead_groups", []) + [enemy.group]
+		_campaign.get("summoned", {}).erase(enemy.group)
 		SaveSystem.save_campaign(_campaign, true)
 		town.complete_cleared(area_id)  # missões da aldeia que pedem limpar este bando
 		var done := cleared + 1
@@ -1450,6 +1471,23 @@ func _drop_quest_item(player: Player, enemy: Enemy) -> void:
 			var at := player.global_position if enemy.is_boss() else enemy.global_position
 			_add_loot(player, at, Items.stack(Items.VALUABLE, item_id), 0)
 			return
+
+
+## O livro já cumpriu o papel: o herói tem a relíquia da missão dele, ou a missão já terminou.
+func _book_used(book_id: String, character: CharacterData) -> bool:
+	for id: String in GameData.quests:
+		var quest: Dictionary = GameData.quests[id]
+		if quest.get("grants_item", "") == book_id:
+			return _campaign.get("quests", {}).get(id, "") == "done" or character.count_of(String(quest.get("item", ""))) > 0
+	return false
+
+
+## Livro (grants_item) da missão cuja relíquia é `item_id`; "" se não houver.
+func _quest_book_for(item_id: String) -> String:
+	for quest: Dictionary in GameData.quests.values():
+		if quest.get("item", "") == item_id and quest.has("grants_item"):
+			return String(quest.grants_item)
+	return ""
 
 
 func _drop_loot_for(player: Player, enemy: Enemy) -> void:
@@ -1582,6 +1620,12 @@ func _collect(player: Player, ids: Array[int]) -> void:
 		if not _loot[id].item.is_empty():
 			items.append(_loot[id].item)
 	var leftover: Array = player.grant(0, gold, items)
+	# Pegou a relíquia do mini-chefe: o livro que servia para chamá-lo some da bolsa.
+	for item: Dictionary in items:
+		if item not in leftover and item.kind == Items.VALUABLE:
+			var book := _quest_book_for(String(item.id))
+			if book != "" and player.character.take_one(book):
+				player.refresh_character()
 	for id in ids:
 		var entry: Dictionary = _loot[id]
 		if entry.item.is_empty() or entry.item not in leftover:
