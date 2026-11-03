@@ -596,7 +596,6 @@
     }
   },
   "fort_penitent": {
-    "_comment": "Penitente (Forte, corredor leste): sacerdotisa que fala diante da sala do leste e, no fim da fala, desperta a Rainha das Súcubos como mini-chefe ('summon' no objeto em arenas.json).",
     "name_key": "NPC_FORT_PENITENT",
     "color": [
       0.75,
@@ -605,11 +604,37 @@
     ],
     "dialogues": [
       {
+        "when": {
+          "quest_new": "fort_ring"
+        },
+        "lines": [
+          "DLG_FPENITENT_1",
+          "DLG_FPENITENT_2",
+          "DLG_FPENITENT_3"
+        ],
+        "offer": "fort_ring"
+      },
+      {
+        "when": {
+          "quest_active": "fort_ring"
+        },
+        "lines": [
+          "DLG_FPENITENT_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {
+          "quest_done": "fort_ring"
+        },
+        "lines": [
+          "DLG_FPENITENT_DONE"
+        ]
+      },
+      {
         "when": {},
         "lines": [
-          "DLG_PENITENT_1",
-          "DLG_PENITENT_2",
-          "DLG_PENITENT_3"
+          "DLG_FPENITENT_WAIT"
         ]
       }
     ],
@@ -630,7 +655,6 @@
     }
   },
   "fort_exile": {
-    "_comment": "Exilado (Forte, corredor do sul): cavaleiro caído que fala diante da sala do sudoeste e, no fim da fala, desperta o Senhor Elfo Sombrio como mini-chefe.",
     "name_key": "NPC_FORT_EXILE",
     "color": [
       0.5,
@@ -639,18 +663,43 @@
     ],
     "dialogues": [
       {
+        "when": {
+          "quest_new": "fort_sigil"
+        },
+        "lines": [
+          "DLG_FEXILE_1",
+          "DLG_FEXILE_2",
+          "DLG_FEXILE_3"
+        ],
+        "offer": "fort_sigil"
+      },
+      {
+        "when": {
+          "quest_active": "fort_sigil"
+        },
+        "lines": [
+          "DLG_FEXILE_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {
+          "quest_done": "fort_sigil"
+        },
+        "lines": [
+          "DLG_FEXILE_DONE"
+        ]
+      },
+      {
         "when": {},
         "lines": [
-          "DLG_EXILE_1",
-          "DLG_EXILE_2",
-          "DLG_EXILE_3"
+          "DLG_FEXILE_WAIT"
         ]
       }
     ],
     "body": {
       "sex": "male",
       "hair": [
-        "Hair_SimpleParted",
         "Hair_Beard"
       ],
       "hair_color": [
@@ -1550,6 +1599,107 @@
         0.15,
         0.12,
         0.1
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "fort_sergeant": {
+    "name_key": "NPC_FORT_SERGEANT",
+    "color": [
+      0.5,
+      0.35,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "fort_purge"
+        },
+        "lines": [
+          "DLG_FSERGEANT_1",
+          "DLG_FSERGEANT_2",
+          "DLG_FSERGEANT_3"
+        ],
+        "offer": "fort_purge"
+      },
+      {
+        "when": {
+          "quest_active": "fort_purge"
+        },
+        "lines": [
+          "DLG_FSERGEANT_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_FSERGEANT_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Buzzed"
+      ],
+      "hair_color": [
+        0.2,
+        0.15,
+        0.1
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "fort_gatekeeper": {
+    "name_key": "NPC_FORT_GATEKEEPER",
+    "color": [
+      0.35,
+      0.35,
+      0.4
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "fort_gate"
+        },
+        "lines": [
+          "DLG_FGUARD_1",
+          "DLG_FGUARD_2",
+          "DLG_FGUARD_3"
+        ],
+        "offer": "fort_gate"
+      },
+      {
+        "when": {
+          "quest_active": "fort_gate"
+        },
+        "lines": [
+          "DLG_FGUARD_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_FGUARD_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.1,
+        0.1,
+        0.12
       ],
       "pose": "idle",
       "outfit": {

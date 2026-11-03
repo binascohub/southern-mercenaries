@@ -3698,3 +3698,114 @@ msgstr "Só abro com as duas chaves, Leão e Águia, na mesma bolsa. A Erudita f
 
 msgid "DLG_RGUARD_DONE"
 msgstr "As duas chaves! O portão está aberto. Cuidado: o Rei Caído nunca perdeu um duelo, e nem a morte lhe tirou a coroa."
+
+msgid "MONSTER_FORT_BARON"
+msgstr "Barão Infernal"
+
+msgid "NPC_FORT_SERGEANT"
+msgstr "Sargento da Guarnição"
+
+msgid "NPC_FORT_GATEKEEPER"
+msgstr "Carcereiro do Forte"
+
+msgid "VALUABLE_DARK_BLADE"
+msgstr "Lâmina do Senhor Elfo"
+
+msgid "VALUABLE_QUEEN_RING"
+msgstr "Anel da Rainha"
+
+msgid "VALUABLE_KEY_RUBY"
+msgstr "Chave de Rubi"
+
+msgid "VALUABLE_KEY_ONYX"
+msgstr "Chave de Ônix"
+
+msgid "QUEST_FORT_PURGE"
+msgstr "Limpar os Quartéis"
+
+msgid "QUEST_FORT_PURGE_DESC"
+msgstr "O Sargento da Guarnição pede que os dois quartéis, o Oeste e o Leste (logo depois do Pátio de Armas), sejam limpos dos soldados amaldiçoados que ainda os ocupam."
+
+msgid "QUEST_FORT_SIGIL"
+msgstr "A Lâmina do Senhor Elfo"
+
+msgid "QUEST_FORT_SIGIL_DESC"
+msgstr "O Exilado, no Ossuário a oeste, quer de volta a lâmina que o Senhor Elfo Sombrio lhe tomou. A fala dele desperta o Senhor Elfo Sombrio; derrote-o e traga a lâmina: em troca vem a Chave de Ônix, uma das duas do portão do Barão."
+
+msgid "QUEST_FORT_RING"
+msgstr "O Anel da Rainha"
+
+msgid "QUEST_FORT_RING_DESC"
+msgstr "A Penitente, no Salão do Trono a leste, jurou devolver o anel que a Rainha das Súcubos usa. A fala dela desperta a Rainha; derrote-a e traga o anel para receber a Chave de Rubi, a outra do portão do Barão."
+
+msgid "QUEST_FORT_GATE"
+msgstr "O Portão do Barão"
+
+msgid "QUEST_FORT_GATE_DESC"
+msgstr "O Carcereiro do Forte, no corredor ao norte da Galeria, só abre o portão para quem trouxer as duas chaves: a de Ônix (Exilado) e a de Rubi (Penitente). Atrás dele fica o Salão do Barão Infernal."
+
+msgid "DLG_FSERGEANT_1"
+msgstr "Bem-vindos à Guarnição. Era daqui que o reino vigiava o sul, até o Barão abrir as portas lá embaixo e a guarnição inteira se levantar de novo, de olhos vazios."
+
+msgid "DLG_FSERGEANT_2"
+msgstr "Os dois quartéis, o Oeste e o Leste, ficam depois do Pátio de Armas, e ainda estão cheios deles. Enquanto não forem limpos, nada passa pelas rotas do norte."
+
+msgid "DLG_FSERGEANT_3"
+msgstr "Limpem os dois e eu pago pelo trabalho. Depois disso, o Exilado e a Penitente têm contas a acertar, cada um num canto do forte, e são eles que guardam as chaves do portão do Barão."
+
+msgid "DLG_FSERGEANT_ACTIVE"
+msgstr "Os quartéis ficam a oeste e a leste do Pátio de Armas, atrás dos portões de arco. Ouçam os passos antes de abrir a porta."
+
+msgid "DLG_FSERGEANT_DONE"
+msgstr "Os quartéis estão calmos pela primeira vez em anos. Sigam pelo oeste ou pelo leste: a Galeria os espera lá em cima."
+
+msgid "DLG_FEXILE_1"
+msgstr "Cavaleiro caído, é o que sou. Servi o Barão até ele me expulsar por recusar a ordem de queimar a vila. Agora vivo entre os caixões do Ossuário, como o resto dos esquecidos."
+
+msgid "DLG_FEXILE_2"
+msgstr "O Senhor Elfo Sombrio, líder dos besteiros, me tomou a lâmina na noite em que me expulsaram. Ele a guarda aqui no fundo do Ossuário, como troféu, e dorme de olhos abertos."
+
+msgid "DLG_FEXILE_3"
+msgstr "Vou chamá-lo para vocês. Derrubem-no e tragam a lâmina: eu dou a Chave de Ônix, uma das duas que abrem o portão do Barão, no corredor ao norte da Galeria."
+
+msgid "DLG_FEXILE_ACTIVE"
+msgstr "A lâmina é longa e escura, de punho de osso. Ele a leva às costas. Derrubem-no e eu a reconheço de longe."
+
+msgid "DLG_FEXILE_DONE"
+msgstr "Minha lâmina! Enfim posso morrer como cavaleiro. A Chave de Ônix é de vocês: levem-na ao Carcereiro, junto com a de Rubi."
+
+msgid "DLG_FEXILE_WAIT"
+msgstr "Os caixões estão quietos hoje. Voltem quando precisarem de uma história."
+
+msgid "DLG_FPENITENT_1"
+msgstr "Rezo aqui todos os dias, diante do trono vazio. Fui dama da corte da Rainha das Súcubos, e ajudei a seduzir metade do reino para o Barão. Hoje carrego esse peso."
+
+msgid "DLG_FPENITENT_2"
+msgstr "A Rainha usa um anel que era meu, um anel de rubi, presente da minha mãe. Enquanto ele estiver no dedo dela, eu não consigo me perdoar. Ela dorme no fundo do salão, e sonha com o poder."
+
+msgid "DLG_FPENITENT_3"
+msgstr "Vou acordá-la para vocês. Derrubem a Rainha e tragam o anel: eu dou a Chave de Rubi, a outra do portão do Barão."
+
+msgid "DLG_FPENITENT_ACTIVE"
+msgstr "O anel é pequeno e brilha como sangue fresco. Ela o aperta contra o peito. Derrubem-na com cuidado: ela canta antes de atacar."
+
+msgid "DLG_FPENITENT_DONE"
+msgstr "O anel de minha mãe! Talvez agora eu consiga rezar em paz. A Chave de Rubi é de vocês: levem-na ao Carcereiro, junto com a de Ônix."
+
+msgid "DLG_FPENITENT_WAIT"
+msgstr "O trono continua vazio, mas as velas ainda ardem. Vão em paz."
+
+msgid "DLG_FGUARD_1"
+msgstr "Alto. Este portão fecha o Salão do Barão, e no Salão manda o Barão Infernal. Fui seu carcereiro por tanto tempo que esqueci o que era a luz do dia."
+
+msgid "DLG_FGUARD_2"
+msgstr "O portão só abre com DUAS chaves: a de Ônix e a de Rubi. A primeira está com o Exilado, no Ossuário a oeste; a segunda, com a Penitente, no Salão do Trono a leste."
+
+msgid "DLG_FGUARD_3"
+msgstr "Cada um cobra um preço: uma lâmina, um anel. Tragam as duas chaves a mim e eu abro a passagem."
+
+msgid "DLG_FGUARD_ACTIVE"
+msgstr "Só abro com as duas chaves, Ônix e Rubi, na mesma bolsa. O Exilado fica a oeste, no Ossuário; a Penitente, a leste, no Salão do Trono."
+
+msgid "DLG_FGUARD_DONE"
+msgstr "As duas chaves! O portão está aberto. Cuidado: o Barão Infernal não recebe visitas, e as que recebe não voltam."

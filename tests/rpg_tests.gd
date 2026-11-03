@@ -749,12 +749,12 @@ func _test_minibosses_and_relics() -> void:
 				for m: Dictionary in e.monsters:
 					if GameData.monsters.get(m.monster, {}).get("category", "") == "miniboss":
 						found[m.monster] = true
-			for prop: Dictionary in GameData.arenas[area_id].get("props", []) if map_name in ["Floresta", "Esgoto", "Deserto", "Ruínas"] else []:    # (na Floresta o Rei Golem vem do templo e no Esgoto o Rei dos Sapos, do altar: grupos invocados)
+			for prop: Dictionary in GameData.arenas[area_id].get("props", []) if map_name in ["Floresta", "Esgoto", "Deserto", "Ruínas", "Forte"] else []:    # (na Floresta o Rei Golem vem do templo e no Esgoto o Rei dos Sapos, do altar: grupos invocados)
 				for summon: Dictionary in QuestTrail.summons_of(prop):
 					for m: Dictionary in summon.get("monsters", []):
 						if GameData.monsters.get(m.monster, {}).get("category", "") == "miniboss":
 							found[m.monster] = true
-		var expected := 3 if map_name == "Ruínas" else 2    # (Ruínas: o Alfa da Matilha, que anda solto, e os dois das praças, invocados)
+		var expected := 3 if map_name in ["Ruínas", "Forte"] else 2    # (Ruínas: o Alfa da Matilha, solto, e os dois das praças, invocados; Forte: o Comandante, solto, e os dois invocados pelo Exilado e pela Penitente)
 		_check(found.size() == expected, "%s tem %d mini-chefes (%d)" % [map_name, expected, found.size()])
 	for quest_id in ["royal_heart", "royal_lungs", "royal_skull", "royal_soul", "royal_banquet"]:
 		var quest: Dictionary = GameData.quests[quest_id]

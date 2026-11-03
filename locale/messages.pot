@@ -3439,3 +3439,114 @@ msgstr ""
 
 msgid "DLG_RGUARD_DONE"
 msgstr ""
+
+msgid "MONSTER_FORT_BARON"
+msgstr ""
+
+msgid "NPC_FORT_SERGEANT"
+msgstr ""
+
+msgid "NPC_FORT_GATEKEEPER"
+msgstr ""
+
+msgid "VALUABLE_DARK_BLADE"
+msgstr ""
+
+msgid "VALUABLE_QUEEN_RING"
+msgstr ""
+
+msgid "VALUABLE_KEY_RUBY"
+msgstr ""
+
+msgid "VALUABLE_KEY_ONYX"
+msgstr ""
+
+msgid "QUEST_FORT_PURGE"
+msgstr ""
+
+msgid "QUEST_FORT_PURGE_DESC"
+msgstr ""
+
+msgid "QUEST_FORT_SIGIL"
+msgstr ""
+
+msgid "QUEST_FORT_SIGIL_DESC"
+msgstr ""
+
+msgid "QUEST_FORT_RING"
+msgstr ""
+
+msgid "QUEST_FORT_RING_DESC"
+msgstr ""
+
+msgid "QUEST_FORT_GATE"
+msgstr ""
+
+msgid "QUEST_FORT_GATE_DESC"
+msgstr ""
+
+msgid "DLG_FSERGEANT_1"
+msgstr ""
+
+msgid "DLG_FSERGEANT_2"
+msgstr ""
+
+msgid "DLG_FSERGEANT_3"
+msgstr ""
+
+msgid "DLG_FSERGEANT_ACTIVE"
+msgstr ""
+
+msgid "DLG_FSERGEANT_DONE"
+msgstr ""
+
+msgid "DLG_FEXILE_1"
+msgstr ""
+
+msgid "DLG_FEXILE_2"
+msgstr ""
+
+msgid "DLG_FEXILE_3"
+msgstr ""
+
+msgid "DLG_FEXILE_ACTIVE"
+msgstr ""
+
+msgid "DLG_FEXILE_DONE"
+msgstr ""
+
+msgid "DLG_FEXILE_WAIT"
+msgstr ""
+
+msgid "DLG_FPENITENT_1"
+msgstr ""
+
+msgid "DLG_FPENITENT_2"
+msgstr ""
+
+msgid "DLG_FPENITENT_3"
+msgstr ""
+
+msgid "DLG_FPENITENT_ACTIVE"
+msgstr ""
+
+msgid "DLG_FPENITENT_DONE"
+msgstr ""
+
+msgid "DLG_FPENITENT_WAIT"
+msgstr ""
+
+msgid "DLG_FGUARD_1"
+msgstr ""
+
+msgid "DLG_FGUARD_2"
+msgstr ""
+
+msgid "DLG_FGUARD_3"
+msgstr ""
+
+msgid "DLG_FGUARD_ACTIVE"
+msgstr ""
+
+msgid "DLG_FGUARD_DONE"
+msgstr ""

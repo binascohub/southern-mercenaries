@@ -349,5 +349,66 @@
       "gold": 320,
       "xp": 640
     }
+  },
+  "fort_purge": {
+    "name_key": "QUEST_FORT_PURGE",
+    "desc_key": "QUEST_FORT_PURGE_DESC",
+    "type": "village",
+    "giver": "fort_sergeant",
+    "area": "fort_01_gate",
+    "clear": [
+      "fo_barracks_w",
+      "fo_barracks_e"
+    ],
+    "target_element": "fire",
+    "reward": {
+      "gold": 450,
+      "xp": 900
+    }
+  },
+  "fort_sigil": {
+    "name_key": "QUEST_FORT_SIGIL",
+    "desc_key": "QUEST_FORT_SIGIL_DESC",
+    "type": "village",
+    "giver": "fort_exile",
+    "area": "fort_01_gate",
+    "target_element": "air",
+    "reward": {
+      "gold": 500,
+      "xp": 1000
+    },
+    "item": "dark_blade",
+    "gives": "key_onyx"
+  },
+  "fort_ring": {
+    "name_key": "QUEST_FORT_RING",
+    "desc_key": "QUEST_FORT_RING_DESC",
+    "type": "village",
+    "giver": "fort_penitent",
+    "area": "fort_01_gate",
+    "target_element": "fire",
+    "reward": {
+      "gold": 500,
+      "xp": 1000
+    },
+    "item": "queen_ring",
+    "gives": "key_ruby"
+  },
+  "fort_gate": {
+    "name_key": "QUEST_FORT_GATE",
+    "desc_key": "QUEST_FORT_GATE_DESC",
+    "type": "village",
+    "giver": "fort_gatekeeper",
+    "area": "fort_01_gate",
+    "items": [
+      "key_ruby",
+      "key_onyx"
+    ],
+    "opens_gate": "boss_gate",
+    "target_element": "fire",
+    "reward": {
+      "gold": 600,
+      "xp": 1200
+    }
   }
 }

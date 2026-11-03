@@ -3698,3 +3698,114 @@ msgstr "Solo abro con las dos llaves, León y Águila, en la misma bolsa. La Eru
 
 msgid "DLG_RGUARD_DONE"
 msgstr "¡Las dos llaves! El portón está abierto. Cuidado: el Rey Caído nunca perdió un duelo, y ni la muerte le quitó la corona."
+
+msgid "MONSTER_FORT_BARON"
+msgstr "Barón Infernal"
+
+msgid "NPC_FORT_SERGEANT"
+msgstr "Sargento de la Guarnición"
+
+msgid "NPC_FORT_GATEKEEPER"
+msgstr "Carcelero del Fuerte"
+
+msgid "VALUABLE_DARK_BLADE"
+msgstr "Hoja del Señor Elfo"
+
+msgid "VALUABLE_QUEEN_RING"
+msgstr "Anillo de la Reina"
+
+msgid "VALUABLE_KEY_RUBY"
+msgstr "Llave de Rubí"
+
+msgid "VALUABLE_KEY_ONYX"
+msgstr "Llave de Ónix"
+
+msgid "QUEST_FORT_PURGE"
+msgstr "Limpiar los cuarteles"
+
+msgid "QUEST_FORT_PURGE_DESC"
+msgstr "El Sargento de la Guarnición pide que los dos cuarteles, Oeste y Este (justo después del Patio de Armas), se limpien de los soldados malditos que aún los ocupan."
+
+msgid "QUEST_FORT_SIGIL"
+msgstr "La hoja del Señor Elfo"
+
+msgid "QUEST_FORT_SIGIL_DESC"
+msgstr "El Exiliado, en el Osario al oeste, quiere recuperar la hoja que le quitó el Señor Elfo Oscuro. Sus palabras despiertan al Señor Elfo Oscuro; derrótalo y trae la hoja: a cambio recibes la Llave de Ónix, una de las dos del portón del Barón."
+
+msgid "QUEST_FORT_RING"
+msgstr "El anillo de la Reina"
+
+msgid "QUEST_FORT_RING_DESC"
+msgstr "La Penitente, en el Salón del Trono al este, juró devolver el anillo que lleva la Reina de las Súcubos. Sus palabras despiertan a la Reina; derrótala y trae el anillo para recibir la Llave de Rubí, la otra del portón del Barón."
+
+msgid "QUEST_FORT_GATE"
+msgstr "El portón del Barón"
+
+msgid "QUEST_FORT_GATE_DESC"
+msgstr "El Carcelero del Fuerte, en el pasillo al norte de la Galería, solo abre el portón a quien traiga las dos llaves: la de Ónix (Exiliado) y la de Rubí (Penitente). Tras él está el Salón del Barón Infernal."
+
+msgid "DLG_FSERGEANT_1"
+msgstr "Bienvenidos a la Guarnición. Desde aquí el reino vigilaba el sur, hasta que el Barón abrió las puertas de abajo y toda la guarnición se levantó de nuevo, con los ojos vacíos."
+
+msgid "DLG_FSERGEANT_2"
+msgstr "Los dos cuarteles, Oeste y Este, quedan tras el Patio de Armas, y aún están llenos de ellos. Mientras no se limpien, nada pasa por las rutas del norte."
+
+msgid "DLG_FSERGEANT_3"
+msgstr "Limpien los dos y pagaré el trabajo. Después, el Exiliado y la Penitente tienen cuentas pendientes, cada uno en un rincón del fuerte, y ellos guardan las llaves del portón del Barón."
+
+msgid "DLG_FSERGEANT_ACTIVE"
+msgstr "Los cuarteles están al oeste y al este del Patio de Armas, tras los portones en arco. Escuchen los pasos antes de abrir la puerta."
+
+msgid "DLG_FSERGEANT_DONE"
+msgstr "Los cuarteles están en calma por primera vez en años. Sigan por el oeste o por el este: la Galería los espera arriba."
+
+msgid "DLG_FEXILE_1"
+msgstr "Un caballero caído, eso soy. Serví al Barón hasta que me expulsó por negarme a quemar la aldea. Ahora vivo entre los ataúdes del Osario, como el resto de los olvidados."
+
+msgid "DLG_FEXILE_2"
+msgstr "El Señor Elfo Oscuro, líder de los ballesteros, me quitó la hoja la noche en que me expulsaron. La guarda aquí al fondo del Osario, como trofeo, y duerme con los ojos abiertos."
+
+msgid "DLG_FEXILE_3"
+msgstr "Lo llamaré para ustedes. Derríbenlo y traigan la hoja: doy la Llave de Ónix, una de las dos que abren el portón del Barón, en el pasillo al norte de la Galería."
+
+msgid "DLG_FEXILE_ACTIVE"
+msgstr "La hoja es larga y oscura, con empuñadura de hueso. La lleva a la espalda. Derríbenlo y la reconoceré de lejos."
+
+msgid "DLG_FEXILE_DONE"
+msgstr "¡Mi hoja! Por fin puedo morir como caballero. La Llave de Ónix es suya: llévenla al Carcelero, junto con la de Rubí."
+
+msgid "DLG_FEXILE_WAIT"
+msgstr "Los ataúdes están quietos hoy. Vuelvan cuando necesiten una historia."
+
+msgid "DLG_FPENITENT_1"
+msgstr "Rezo aquí todos los días, ante el trono vacío. Fui dama de la corte de la Reina de las Súcubos, y ayudé a seducir a medio reino para el Barón. Hoy cargo ese peso."
+
+msgid "DLG_FPENITENT_2"
+msgstr "La Reina lleva un anillo que era mío, un anillo de rubí, regalo de mi madre. Mientras esté en su dedo, no puedo perdonarme. Duerme al fondo del salón, y sueña con el poder."
+
+msgid "DLG_FPENITENT_3"
+msgstr "La despertaré para ustedes. Derriben a la Reina y traigan el anillo: doy la Llave de Rubí, la otra del portón del Barón."
+
+msgid "DLG_FPENITENT_ACTIVE"
+msgstr "El anillo es pequeño y brilla como sangre fresca. Lo aprieta contra el pecho. Derríbenla con cuidado: canta antes de atacar."
+
+msgid "DLG_FPENITENT_DONE"
+msgstr "¡El anillo de mi madre! Quizá ahora pueda rezar en paz. La Llave de Rubí es suya: llévenla al Carcelero, junto con la de Ónix."
+
+msgid "DLG_FPENITENT_WAIT"
+msgstr "El trono sigue vacío, pero las velas aún arden. Vayan en paz."
+
+msgid "DLG_FGUARD_1"
+msgstr "Alto. Este portón cierra el Salón del Barón, y en el Salón manda el Barón Infernal. Fui su carcelero tanto tiempo que olvidé lo que era la luz del día."
+
+msgid "DLG_FGUARD_2"
+msgstr "El portón solo abre con DOS llaves: la de Ónix y la de Rubí. La primera la tiene el Exiliado, en el Osario al oeste; la segunda, la Penitente, en el Salón del Trono al este."
+
+msgid "DLG_FGUARD_3"
+msgstr "Cada uno cobra un precio: una hoja, un anillo. Tráiganme las dos llaves y abro el paso."
+
+msgid "DLG_FGUARD_ACTIVE"
+msgstr "Solo abro con las dos llaves, Ónix y Rubí, en la misma bolsa. El Exiliado está al oeste, en el Osario; la Penitente, al este, en el Salón del Trono."
+
+msgid "DLG_FGUARD_DONE"
+msgstr "¡Las dos llaves! El portón está abierto. Cuidado: el Barón Infernal no recibe visitas, y las que recibe no regresan."

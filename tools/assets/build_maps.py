@@ -1898,5 +1898,6 @@ subprocess.run([sys.executable, "tools/assets/build_docks.py"], check=True)  # D
 subprocess.run([sys.executable, "tools/assets/add_signposts.py"], check=True)  # (de novo: as Docas foram refeitas)
 subprocess.run([sys.executable, "tools/assets/build_ruins.py"], check=True)  # Ruínas ampliadas (estrutura da Floresta, outro caminho, muros e áreas abertas)
 subprocess.run([sys.executable, "tools/assets/add_signposts.py"], check=True)  # (de novo: as Ruínas foram refeitas)
+subprocess.run([sys.executable, "tools/assets/build_fort.py"], check=True)  # Forte ampliado (estrutura da Floresta, outro caminho)
 subprocess.run([sys.executable, "tools/assets/set_map_order.py"], check=True)  # ordem dos mapas: hubs Tortuga, Capital e Fazenda (sem portais em cadeia)
 print("OK", [k for k in arenas if k.split("_")[0] in ("forest", "ruins", "cemetery", "fort", "farm", "mine")])

@@ -237,5 +237,33 @@
     "maps": [],
     "quest_item": true,
     "model": "Key_Clubs"
+  },
+  "dark_blade": {
+    "name_key": "VALUABLE_DARK_BLADE",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Sword_D"
+  },
+  "queen_ring": {
+    "name_key": "VALUABLE_QUEEN_RING",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Crystal_Gem"
+  },
+  "key_ruby": {
+    "name_key": "VALUABLE_KEY_RUBY",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Hearts"
+  },
+  "key_onyx": {
+    "name_key": "VALUABLE_KEY_ONYX",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Spades"
   }
 }

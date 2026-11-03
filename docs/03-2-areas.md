@@ -28,7 +28,7 @@ Cada mapa de combate tem **2 mini-chefes** (elites fortes com nome, categoria `m
 | Floresta | Rei Golem de Pedra (templo do leste; larga a **Adaga de Osso**) · Golem de Fogo (pira; larga a **Caveira de Morvak**) · Leshy é o chefe do mapa |
 | Ruínas | **Guardião das Ruínas** (golem de pedra; a estátua do cavaleiro o desperta; larga o **Coração de Pedra**) · **Campeão Caído** (a Sacerdotisa o desperta; larga o **Estandarte do Campeão**) · **Alfa da Matilha** (anda solto; larga a carne para o Bobo da Corte) |
 | Cemitério | Ogro da Cripta (era o Escorpião; larga os **Pulmões Humanos**) · Senhor da Cripta (larga o **Coração Humano**) |
-| Forte | Comandante (larga o **Crânio Antigo**) · **Rainha das Súcubos** |
+| Forte | **Senhor Elfo Sombrio** (o Exilado o desperta; larga a **Lâmina do Senhor Elfo**) · **Rainha das Súcubos** (a Penitente a desperta; larga o **Anel da Rainha**) · **Comandante** (anda solto; larga o **Crânio Antigo**) |
 | Mina | **Chefe Troll** · Guardião do Túmulo |
 
 Em negrito, os criados nesta rodada (`tools/assets/add_minibosses.py`). A Floresta Sombria ainda não tem encontros.
@@ -44,7 +44,7 @@ Ordem dos mapas, por hub (`tools/assets/set_map_order.py` liga os portais; cada 
 | 3 | Docas (`docks_01_pier`) | Tortuga | — | — |
 | 4 | Ruínas do Reino do Arqueiro (`ruins_01_city`) | Tortuga | Guardião das Ruínas · Campeão Caído (+ Alfa da Matilha solto) | Rei Caído |
 | 5 | Cemitério (`cemetery_01_yard`) | Capital | Ogro da Cripta · Senhor da Cripta | — |
-| 6 | Forte (`fort_01_gate`) | Capital | Comandante · Rainha das Súcubas | — |
+| 6 | Forte (`fort_01_gate`) | Capital | Senhor Elfo Sombrio · Rainha das Súcubos (+ Comandante solto) | Barão Infernal |
 | 7 | Catacumbas | Capital | *(mapa ainda não criado)* | — |
 | 8 | Deserto (`desert_01_canyon`) | Capital | Lamassu da Areia · Rainha Escorpião | Esfinge |
 | 9 | Mina (`mine_01_crystal_vein`) | Fazenda | Chefe Troll · Guardião do Túmulo | — |
@@ -174,6 +174,18 @@ Caminho: Acesso → Fórum; a oeste, Bairro Velho → Praça dos Cavaleiros; a l
 4. **Rei Caído** (chefe final) no Cofre Real atrás do portão, com a saída de volta a Tortuga.
 
 O **Alfa da Matilha** continua solto no Pátio Alto (a carne dele é da missão do Bobo da Corte). Gerado por `tools/assets/build_ruins.py`.
+
+### Forte no jogo (`fort_01_gate`)
+
+Mapa grande (grade de 54 x 54 células de 2,5 m, cerca de 18 mil m2 de área e 8,7 mil m2 de piso), todo murado, com a mesma estrutura da Floresta e outro caminho: a **Guarnição** (partida, ao sul) sobe ao **Pátio de Armas**; dali saem três rotas paralelas para a **Galeria**, que corta o mapa de leste a oeste: a oeste, **Quartel Oeste → Ossuário**; a leste, **Quartel Leste → Salão do Trono**; no meio, o **Salão das Colunas** (com duas câmaras sem saída). Câmaras com baús também saem da Galeria.
+
+1. **Sargento da Guarnição** (partida): a missão de limpar os dois quartéis.
+2. **Exilado** (Ossuário, oeste): pede a **Lâmina do Senhor Elfo**; a fala dele desperta o **Senhor Elfo Sombrio** (mini-chefe). Entrega a **Chave de Ônix**.
+3. **Penitente** (Salão do Trono, leste): pede o **Anel da Rainha**; a fala dela desperta a **Rainha das Súcubos** (mini-chefe). Entrega a **Chave de Rubi**.
+4. **Carcereiro do Forte** (corredor ao norte da Galeria): só abre o portão com as duas chaves.
+5. **Barão Infernal** (chefe final) no Salão do Barão atrás do portão, com a saída para a Capital.
+
+O **Comandante** anda solto no Pátio de Armas (o crânio dele é da missão do Padre). Gerado por `tools/assets/build_fort.py`.
 
 ### Docas (`docks_01_pier`) — ligada ao porto de Tortuga
 

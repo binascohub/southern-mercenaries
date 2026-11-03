@@ -3698,3 +3698,114 @@ msgstr "I only open with both keys, Lion and Eagle, in the same bag. The Scholar
 
 msgid "DLG_RGUARD_DONE"
 msgstr "Both keys! The gate is open. Beware: the Fallen King never lost a duel, and not even death took his crown."
+
+msgid "MONSTER_FORT_BARON"
+msgstr "Infernal Baron"
+
+msgid "NPC_FORT_SERGEANT"
+msgstr "Garrison Sergeant"
+
+msgid "NPC_FORT_GATEKEEPER"
+msgstr "Fort Jailer"
+
+msgid "VALUABLE_DARK_BLADE"
+msgstr "Elf Lord's Blade"
+
+msgid "VALUABLE_QUEEN_RING"
+msgstr "Queen's Ring"
+
+msgid "VALUABLE_KEY_RUBY"
+msgstr "Ruby Key"
+
+msgid "VALUABLE_KEY_ONYX"
+msgstr "Onyx Key"
+
+msgid "QUEST_FORT_PURGE"
+msgstr "Clear the Barracks"
+
+msgid "QUEST_FORT_PURGE_DESC"
+msgstr "The Garrison Sergeant asks that both barracks, West and East (just past the Armory Yard), be cleared of the cursed soldiers still holding them."
+
+msgid "QUEST_FORT_SIGIL"
+msgstr "The Elf Lord's Blade"
+
+msgid "QUEST_FORT_SIGIL_DESC"
+msgstr "The Exile, in the Ossuary to the west, wants back the blade the Dark Elf Lord took from him. His words wake the Dark Elf Lord; defeat him and bring the blade: in return you get the Onyx Key, one of the two for the Baron's gate."
+
+msgid "QUEST_FORT_RING"
+msgstr "The Queen's Ring"
+
+msgid "QUEST_FORT_RING_DESC"
+msgstr "The Penitent, in the Throne Hall to the east, swore to return the ring the Succubus Queen wears. Her words wake the Queen; defeat her and bring the ring to receive the Ruby Key, the other one for the Baron's gate."
+
+msgid "QUEST_FORT_GATE"
+msgstr "The Baron's Gate"
+
+msgid "QUEST_FORT_GATE_DESC"
+msgstr "The Fort Jailer, in the lane north of the Gallery, only opens the gate for those with both keys: the Onyx (Exile) and the Ruby (Penitent). Beyond lies the Infernal Baron's Hall."
+
+msgid "DLG_FSERGEANT_1"
+msgstr "Welcome to the Garrison. This is where the kingdom watched the south, until the Baron opened the doors below and the whole garrison rose again, eyes empty."
+
+msgid "DLG_FSERGEANT_2"
+msgstr "The two barracks, West and East, lie past the Armory Yard, and are still full of them. Until they are cleared, nothing gets through the northern routes."
+
+msgid "DLG_FSERGEANT_3"
+msgstr "Clear both and I will pay for the work. After that, the Exile and the Penitent have scores to settle, each in a corner of the fort, and they keep the keys to the Baron's gate."
+
+msgid "DLG_FSERGEANT_ACTIVE"
+msgstr "The barracks are west and east of the Armory Yard, behind the arched gates. Listen for the footsteps before you open the door."
+
+msgid "DLG_FSERGEANT_DONE"
+msgstr "The barracks are calm for the first time in years. Go west or east: the Gallery awaits you up there."
+
+msgid "DLG_FEXILE_1"
+msgstr "A fallen knight, that is what I am. I served the Baron until he cast me out for refusing the order to burn the village. Now I live among the Ossuary's coffins, like the rest of the forgotten."
+
+msgid "DLG_FEXILE_2"
+msgstr "The Dark Elf Lord, captain of the crossbowmen, took my blade the night I was cast out. He keeps it here at the back of the Ossuary as a trophy, and sleeps with his eyes open."
+
+msgid "DLG_FEXILE_3"
+msgstr "I will call him for you. Bring him down and bring the blade: I give the Onyx Key, one of the two that open the Baron's gate, in the lane north of the Gallery."
+
+msgid "DLG_FEXILE_ACTIVE"
+msgstr "The blade is long and dark, with a bone hilt. He carries it on his back. Bring him down and I will know it from afar."
+
+msgid "DLG_FEXILE_DONE"
+msgstr "My blade! At last I can die as a knight. The Onyx Key is yours: take it to the Jailer, together with the Ruby one."
+
+msgid "DLG_FEXILE_WAIT"
+msgstr "The coffins are quiet today. Come back when you need a story."
+
+msgid "DLG_FPENITENT_1"
+msgstr "I pray here every day, before the empty throne. I was a lady of the Succubus Queen's court, and I helped seduce half the kingdom for the Baron. Today I carry that weight."
+
+msgid "DLG_FPENITENT_2"
+msgstr "The Queen wears a ring that was mine, a ruby ring, a gift from my mother. While it is on her finger, I cannot forgive myself. She sleeps at the back of the hall, and dreams of power."
+
+msgid "DLG_FPENITENT_3"
+msgstr "I will wake her for you. Bring down the Queen and bring the ring: I give the Ruby Key, the other for the Baron's gate."
+
+msgid "DLG_FPENITENT_ACTIVE"
+msgstr "The ring is small and shines like fresh blood. She clasps it to her chest. Bring her down carefully: she sings before she strikes."
+
+msgid "DLG_FPENITENT_DONE"
+msgstr "My mother's ring! Perhaps now I can pray in peace. The Ruby Key is yours: take it to the Jailer, together with the Onyx one."
+
+msgid "DLG_FPENITENT_WAIT"
+msgstr "The throne is still empty, but the candles still burn. Go in peace."
+
+msgid "DLG_FGUARD_1"
+msgstr "Halt. This gate closes the Baron's Hall, and in the Hall the Infernal Baron rules. I was his jailer so long I forgot what daylight was."
+
+msgid "DLG_FGUARD_2"
+msgstr "The gate only opens with TWO keys: the Onyx and the Ruby. The first is with the Exile, in the Ossuary to the west; the second, with the Penitent, in the Throne Hall to the east."
+
+msgid "DLG_FGUARD_3"
+msgstr "Each charges a price: a blade, a ring. Bring both keys to me and I will open the way."
+
+msgid "DLG_FGUARD_ACTIVE"
+msgstr "I only open with both keys, Onyx and Ruby, in the same bag. The Exile is to the west, in the Ossuary; the Penitent, to the east, in the Throne Hall."
+
+msgid "DLG_FGUARD_DONE"
+msgstr "Both keys! The gate is open. Beware: the Infernal Baron does not receive visitors, and those he does never return."
