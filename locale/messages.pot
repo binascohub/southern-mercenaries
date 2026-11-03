@@ -3838,3 +3838,153 @@ msgstr ""
 
 msgid "DLG_MNGUARD_DONE"
 msgstr ""
+
+msgid "MONSTER_BK_ARMOR"
+msgstr ""
+
+msgid "MONSTER_BK_COMMANDER"
+msgstr ""
+
+msgid "MONSTER_BK_GENERAL"
+msgstr ""
+
+msgid "NPC_BK_SERGEANT"
+msgstr ""
+
+msgid "NPC_BK_QUARTERMASTER"
+msgstr ""
+
+msgid "NPC_BK_RACK"
+msgstr ""
+
+msgid "NPC_BK_MEDIC"
+msgstr ""
+
+msgid "NPC_BK_COT"
+msgstr ""
+
+msgid "NPC_BK_GATEKEEPER"
+msgstr ""
+
+msgid "VALUABLE_ARMORY_SEAL"
+msgstr ""
+
+msgid "VALUABLE_KEY_BRASS"
+msgstr ""
+
+msgid "VALUABLE_KEY_STEEL"
+msgstr ""
+
+msgid "TOAST_ARMORY_AWAKENS"
+msgstr ""
+
+msgid "TOAST_COT_AWAKENS"
+msgstr ""
+
+msgid "QUEST_BK_CLEAR"
+msgstr ""
+
+msgid "QUEST_BK_CLEAR_DESC"
+msgstr ""
+
+msgid "QUEST_BK_SEAL"
+msgstr ""
+
+msgid "QUEST_BK_SEAL_DESC"
+msgstr ""
+
+msgid "QUEST_BK_MEDAL"
+msgstr ""
+
+msgid "QUEST_BK_MEDAL_DESC"
+msgstr ""
+
+msgid "QUEST_BK_GATE"
+msgstr ""
+
+msgid "QUEST_BK_GATE_DESC"
+msgstr ""
+
+msgid "DLG_BKSGT_1"
+msgstr ""
+
+msgid "DLG_BKSGT_2"
+msgstr ""
+
+msgid "DLG_BKSGT_3"
+msgstr ""
+
+msgid "DLG_BKSGT_ACTIVE"
+msgstr ""
+
+msgid "DLG_BKSGT_DONE"
+msgstr ""
+
+msgid "DLG_BKQM_1"
+msgstr ""
+
+msgid "DLG_BKQM_2"
+msgstr ""
+
+msgid "DLG_BKQM_3"
+msgstr ""
+
+msgid "DLG_BKQM_ACTIVE"
+msgstr ""
+
+msgid "DLG_BKQM_DONE"
+msgstr ""
+
+msgid "DLG_BKRACK_1"
+msgstr ""
+
+msgid "DLG_BKRACK_2"
+msgstr ""
+
+msgid "DLG_BKRACK_LOCKED"
+msgstr ""
+
+msgid "DLG_BKMED_1"
+msgstr ""
+
+msgid "DLG_BKMED_2"
+msgstr ""
+
+msgid "DLG_BKMED_3"
+msgstr ""
+
+msgid "DLG_BKMED_ACTIVE"
+msgstr ""
+
+msgid "DLG_BKMED_DONE"
+msgstr ""
+
+msgid "DLG_BKMED_WAIT"
+msgstr ""
+
+msgid "DLG_BKCOT_1"
+msgstr ""
+
+msgid "DLG_BKCOT_2"
+msgstr ""
+
+msgid "DLG_BKCOT_LOCKED"
+msgstr ""
+
+msgid "DLG_BKGUARD_1"
+msgstr ""
+
+msgid "DLG_BKGUARD_2"
+msgstr ""
+
+msgid "DLG_BKGUARD_3"
+msgstr ""
+
+msgid "DLG_BKGUARD_ACTIVE"
+msgstr ""
+
+msgid "DLG_BKGUARD_DONE"
+msgstr ""
+
+msgid "VALUABLE_COMMANDER_MEDAL"
+msgstr ""

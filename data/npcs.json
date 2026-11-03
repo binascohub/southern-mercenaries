@@ -2201,5 +2201,266 @@
       "pose": "idle",
       "outfit": {}
     }
+  },
+  "bk_sergeant": {
+    "name_key": "NPC_BK_SERGEANT",
+    "color": [
+      0.45,
+      0.4,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "bk_clear"
+        },
+        "lines": [
+          "DLG_BKSGT_1",
+          "DLG_BKSGT_2",
+          "DLG_BKSGT_3"
+        ],
+        "offer": "bk_clear"
+      },
+      {
+        "when": {
+          "quest_active": "bk_clear"
+        },
+        "lines": [
+          "DLG_BKSGT_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_BKSGT_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Buzzed"
+      ],
+      "hair_color": [
+        0.2,
+        0.15,
+        0.1
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "bk_quartermaster": {
+    "name_key": "NPC_BK_QUARTERMASTER",
+    "color": [
+      0.5,
+      0.4,
+      0.25
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "bk_seal"
+        },
+        "lines": [
+          "DLG_BKQM_1",
+          "DLG_BKQM_2",
+          "DLG_BKQM_3"
+        ],
+        "offer": "bk_seal"
+      },
+      {
+        "when": {
+          "quest_active": "bk_seal"
+        },
+        "lines": [
+          "DLG_BKQM_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_BKQM_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.35,
+        0.28,
+        0.2
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "bk_rack": {
+    "name_key": "NPC_BK_RACK",
+    "color": [
+      0.5,
+      0.5,
+      0.55
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_active": "bk_seal"
+        },
+        "lines": [
+          "DLG_BKRACK_1",
+          "DLG_BKRACK_2"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_BKRACK_LOCKED"
+        ]
+      }
+    ]
+  },
+  "bk_medic": {
+    "name_key": "NPC_BK_MEDIC",
+    "color": [
+      0.75,
+      0.6,
+      0.6
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "bk_medal"
+        },
+        "lines": [
+          "DLG_BKMED_1",
+          "DLG_BKMED_2",
+          "DLG_BKMED_3"
+        ],
+        "offer": "bk_medal"
+      },
+      {
+        "when": {
+          "quest_active": "bk_medal"
+        },
+        "lines": [
+          "DLG_BKMED_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {
+          "quest_done": "bk_medal"
+        },
+        "lines": [
+          "DLG_BKMED_DONE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_BKMED_WAIT"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "female",
+      "hair": [
+        "Hair_Buns"
+      ],
+      "hair_color": [
+        0.4,
+        0.25,
+        0.15
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "bk_cot": {
+    "name_key": "NPC_BK_COT",
+    "color": [
+      0.5,
+      0.45,
+      0.4
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_active": "bk_medal"
+        },
+        "lines": [
+          "DLG_BKCOT_1",
+          "DLG_BKCOT_2"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_BKCOT_LOCKED"
+        ]
+      }
+    ]
+  },
+  "bk_gatekeeper": {
+    "name_key": "NPC_BK_GATEKEEPER",
+    "color": [
+      0.35,
+      0.35,
+      0.4
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "bk_gate"
+        },
+        "lines": [
+          "DLG_BKGUARD_1",
+          "DLG_BKGUARD_2",
+          "DLG_BKGUARD_3"
+        ],
+        "offer": "bk_gate"
+      },
+      {
+        "when": {
+          "quest_active": "bk_gate"
+        },
+        "lines": [
+          "DLG_BKGUARD_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_BKGUARD_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.12,
+        0.12,
+        0.14
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
   }
 }

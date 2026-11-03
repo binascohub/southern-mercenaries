@@ -532,5 +532,66 @@
       "gold": 550,
       "xp": 1100
     }
+  },
+  "bk_clear": {
+    "name_key": "QUEST_BK_CLEAR",
+    "desc_key": "QUEST_BK_CLEAR_DESC",
+    "type": "village",
+    "giver": "bk_sergeant",
+    "area": "bunker_01_entrance",
+    "clear": [
+      "bk_s1_1",
+      "bk_s1_2"
+    ],
+    "target_element": "earth",
+    "reward": {
+      "gold": 200,
+      "xp": 400
+    }
+  },
+  "bk_seal": {
+    "name_key": "QUEST_BK_SEAL",
+    "desc_key": "QUEST_BK_SEAL_DESC",
+    "type": "village",
+    "giver": "bk_quartermaster",
+    "area": "bunker_01_entrance",
+    "target_element": "earth",
+    "reward": {
+      "gold": 220,
+      "xp": 440
+    },
+    "item": "armory_seal",
+    "gives": "key_brass"
+  },
+  "bk_medal": {
+    "name_key": "QUEST_BK_MEDAL",
+    "desc_key": "QUEST_BK_MEDAL_DESC",
+    "type": "village",
+    "giver": "bk_medic",
+    "area": "bunker_01_entrance",
+    "target_element": "water",
+    "reward": {
+      "gold": 220,
+      "xp": 440
+    },
+    "item": "commander_medal",
+    "gives": "key_steel"
+  },
+  "bk_gate": {
+    "name_key": "QUEST_BK_GATE",
+    "desc_key": "QUEST_BK_GATE_DESC",
+    "type": "village",
+    "giver": "bk_gatekeeper",
+    "area": "bunker_01_entrance",
+    "items": [
+      "key_brass",
+      "key_steel"
+    ],
+    "opens_gate": "boss_gate",
+    "target_element": "fire",
+    "reward": {
+      "gold": 280,
+      "xp": 560
+    }
   }
 }

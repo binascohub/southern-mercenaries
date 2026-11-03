@@ -321,5 +321,33 @@
     "maps": [],
     "quest_item": true,
     "model": "Key_Clubs"
+  },
+  "armory_seal": {
+    "name_key": "VALUABLE_ARMORY_SEAL",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Shield_C"
+  },
+  "key_brass": {
+    "name_key": "VALUABLE_KEY_BRASS",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Gold"
+  },
+  "key_steel": {
+    "name_key": "VALUABLE_KEY_STEEL",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Spades"
+  },
+  "commander_medal": {
+    "name_key": "VALUABLE_COMMANDER_MEDAL",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Coin_Gold"
   }
 }

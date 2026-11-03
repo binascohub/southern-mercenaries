@@ -4097,3 +4097,153 @@ msgstr "Só abro com as duas chaves, Picareta e Lanterna, na mesma bolsa. O Capa
 
 msgid "DLG_MNGUARD_DONE"
 msgstr "As duas chaves! O portão está aberto. Cuidado: o Golem de Cristal não sente dor, e cada pedaço dele que cai vira lâmina."
+
+msgid "MONSTER_BK_ARMOR"
+msgstr "Armadura Viva"
+
+msgid "MONSTER_BK_COMMANDER"
+msgstr "Comandante Podre"
+
+msgid "MONSTER_BK_GENERAL"
+msgstr "General Ferrugem"
+
+msgid "NPC_BK_SERGEANT"
+msgstr "Sargento da Guarnição"
+
+msgid "NPC_BK_QUARTERMASTER"
+msgstr "Intendente Vorn"
+
+msgid "NPC_BK_RACK"
+msgstr "Rack de Armas"
+
+msgid "NPC_BK_MEDIC"
+msgstr "Médica de Campo Lena"
+
+msgid "NPC_BK_COT"
+msgstr "Catre do Comandante"
+
+msgid "NPC_BK_GATEKEEPER"
+msgstr "Sentinela do Portão"
+
+msgid "VALUABLE_ARMORY_SEAL"
+msgstr "Selo do Arsenal"
+
+msgid "VALUABLE_KEY_BRASS"
+msgstr "Chave de Latão"
+
+msgid "VALUABLE_KEY_STEEL"
+msgstr "Chave de Aço"
+
+msgid "TOAST_ARMORY_AWAKENS"
+msgstr "As armas tilintam nos racks: a Armadura Viva se levanta!"
+
+msgid "TOAST_COT_AWAKENS"
+msgstr "O catre range: o Comandante Podre se levanta!"
+
+msgid "QUEST_BK_CLEAR"
+msgstr "Limpar a Entrada"
+
+msgid "QUEST_BK_CLEAR_DESC"
+msgstr "O Sargento da Guarnição pede que os dois primeiros bandos que rondam as salas perto da entrada sejam derrubados, antes que o exército de sombras se organize."
+
+msgid "QUEST_BK_SEAL"
+msgstr "O Selo do Arsenal"
+
+msgid "QUEST_BK_SEAL_DESC"
+msgstr "O Intendente Vorn, no Depósito de Suprimentos (leste, perto da entrada), perdeu o selo que lacrava o Arsenal: uma armadura de guerra o carrega. Toque o rack de armas do Arsenal (oeste) com a missão ativa, derrote a Armadura Viva e traga o selo: em troca vem a Chave de Latão, uma das duas do portão do General Ferrugem."
+
+msgid "QUEST_BK_MEDAL"
+msgstr "A Medalha de Guerra"
+
+msgid "QUEST_BK_MEDAL_DESC"
+msgstr "A Médica de Campo Lena, na Enfermaria (oeste, no alto), quer a medalha de guerra do comandante que morreu no Alojamento (leste). Toque o catre dele com a missão ativa, derrote o Comandante Podre e traga a medalha para receber a Chave de Aço, a outra do portão do General Ferrugem."
+
+msgid "QUEST_BK_GATE"
+msgstr "O Portão da Sala de Comando"
+
+msgid "QUEST_BK_GATE_DESC"
+msgstr "A Sentinela do Portão, no túnel ao norte do labirinto, só abre o portão para quem trouxer as duas chaves: a de Latão (Intendente) e a de Aço (Médica). Atrás dele fica a Sala de Comando do General Ferrugem."
+
+msgid "DLG_BKSGT_1"
+msgstr "Alto lá, civis. Este bunker foi a última trincheira do exército do rei, e ainda está cheio de armas, ferramentas e comida. Só que também está cheio dos soldados que nunca saíram."
+
+msgid "DLG_BKSGT_2"
+msgstr "As salas perto da entrada já estão se enchendo de novo. Dois bandos, os mais próximos, antes que o resto acorde."
+
+msgid "DLG_BKSGT_3"
+msgstr "Derrubem os dois e eu pago. Depois, procurem o Intendente Vorn, no depósito a leste: ele e a Médica Lena guardam as chaves do portão do General."
+
+msgid "DLG_BKSGT_ACTIVE"
+msgstr "As salas ficam logo depois da guarnição, atrás dos vãos largos. Ouçam os passos antes de entrar."
+
+msgid "DLG_BKSGT_DONE"
+msgstr "Bom trabalho. Agora o caminho é seu: o bunker é um labirinto, então sigam as paredes e anotem o que passarem."
+
+msgid "DLG_BKQM_1"
+msgstr "Vorn, intendente, trinta anos contando cada caixote deste depósito. Falta um selo: o do Arsenal, o selo de lacre que prova que as armas são do rei."
+
+msgid "DLG_BKQM_2"
+msgstr "Uma armadura de guerra o levou: está no Arsenal, a oeste, parada entre os racks, e acorda se alguém toca as armas. Foi o último a sair armado."
+
+msgid "DLG_BKQM_3"
+msgstr "Toquem o rack, derrubem a Armadura Viva e tragam o selo. Eu dou a Chave de Latão, uma das duas que abrem o portão do General, no túnel ao norte."
+
+msgid "DLG_BKQM_ACTIVE"
+msgstr "O Arsenal fica a oeste: atravessem o labirinto até a sala dos racks. O selo é de cera vermelha, preso ao peitoral. Tragam-no."
+
+msgid "DLG_BKQM_DONE"
+msgstr "O selo do Arsenal! Agora as contas fecham. A Chave de Latão é de vocês: levem-na à Sentinela, junto com a de Aço."
+
+msgid "DLG_BKRACK_1"
+msgstr "As armas vibram nos racks, escudos batem uns nos outros, e uma sombra de ferro se mexe entre as lanças."
+
+msgid "DLG_BKRACK_2"
+msgstr "A Armadura Viva se levanta!"
+
+msgid "DLG_BKRACK_LOCKED"
+msgstr "Um rack de armas antigo, com lanças e escudos. Nada responde ao seu toque."
+
+msgid "DLG_BKMED_1"
+msgstr "Cuidei de feridos aqui até o último dia. O comandante morreu no Alojamento, a leste, com a medalha de guerra no peito, e nunca me deixou enterrá-lo."
+
+msgid "DLG_BKMED_2"
+msgstr "Ele não descansa: levanta do catre e vaga pelo alojamento, procurando alguém para dar ordens. Só uma luta o convence a deitar de novo."
+
+msgid "DLG_BKMED_3"
+msgstr "Toquem o catre dele, derrubem o Comandante Podre e tragam a medalha. Eu dou a Chave de Aço, a outra do portão do General Ferrugem."
+
+msgid "DLG_BKMED_ACTIVE"
+msgstr "O Alojamento fica a leste, com fileiras de catres. A medalha é de bronze, com uma águia. Tragam-na para mim."
+
+msgid "DLG_BKMED_DONE"
+msgstr "A medalha dele! Agora posso enterrá-lo com honra. A Chave de Aço é de vocês: levem-na à Sentinela, junto com a de Latão."
+
+msgid "DLG_BKMED_WAIT"
+msgstr "As camas estão limpas e as ataduras, secas. Voltem se precisarem de cura."
+
+msgid "DLG_BKCOT_1"
+msgstr "O colchão ainda está quente, e a medalha brilha sobre o travesseiro, onde um peito já não respira."
+
+msgid "DLG_BKCOT_2"
+msgstr "O Comandante Podre se levanta!"
+
+msgid "DLG_BKCOT_LOCKED"
+msgstr "Um catre militar, vazio e frio. Nada responde ao seu toque."
+
+msgid "DLG_BKGUARD_1"
+msgstr "Alto. Este portão fecha a Sala de Comando, e na Sala manda o General Ferrugem, que nunca aceitou a rendição e mandou lacrar o bunker com todos dentro."
+
+msgid "DLG_BKGUARD_2"
+msgstr "O portão só abre com DUAS chaves: a de Latão e a de Aço. A primeira está com o Intendente Vorn, no depósito a leste; a segunda, com a Médica Lena, na enfermaria a oeste."
+
+msgid "DLG_BKGUARD_3"
+msgstr "Cada um cobra um preço: um selo, uma medalha. Tragam as duas chaves a mim e eu abro a passagem."
+
+msgid "DLG_BKGUARD_ACTIVE"
+msgstr "Só abro com as duas chaves, Latão e Aço, na mesma bolsa. O Intendente fica a leste; a Médica, a oeste."
+
+msgid "DLG_BKGUARD_DONE"
+msgstr "As duas chaves! O portão está aberto. Cuidado: o General Ferrugem não aceita visitas, e a ferrugem dele corrói até o aço."
+
+msgid "VALUABLE_COMMANDER_MEDAL"
+msgstr "Medalha do Comandante"

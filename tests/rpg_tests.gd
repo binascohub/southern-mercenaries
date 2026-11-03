@@ -741,7 +741,7 @@ func _test_town_rules() -> void:
 func _test_minibosses_and_relics() -> void:
 	var capital: Dictionary = GameData.arenas.capital_01_aurenhold
 	var maps := {"Esgoto": ["sewers_01_drains"], "Floresta": ["forest_01_path"],
-		"Ruínas": ["ruins_01_city"], "Cemitério": ["cemetery_01_yard"], "Forte": ["fort_01_gate"], "Mina": ["mine_01_crystal_vein"], "Deserto": ["desert_01_canyon"], "Catacumbas": ["catacombs_01_depths"]}
+		"Ruínas": ["ruins_01_city"], "Cemitério": ["cemetery_01_yard"], "Forte": ["fort_01_gate"], "Mina": ["mine_01_crystal_vein"], "Deserto": ["desert_01_canyon"], "Catacumbas": ["catacombs_01_depths"], "Bunker": ["bunker_01_entrance"]}
 	for map_name: String in maps:
 		var found := {}
 		for area_id: String in maps[map_name]:
@@ -749,7 +749,7 @@ func _test_minibosses_and_relics() -> void:
 				for m: Dictionary in e.monsters:
 					if GameData.monsters.get(m.monster, {}).get("category", "") == "miniboss":
 						found[m.monster] = true
-			for prop: Dictionary in GameData.arenas[area_id].get("props", []) if map_name in ["Floresta", "Esgoto", "Deserto", "Ruínas", "Forte", "Catacumbas", "Mina"] else []:    # (na Floresta o Rei Golem vem do templo e no Esgoto o Rei dos Sapos, do altar: grupos invocados)
+			for prop: Dictionary in GameData.arenas[area_id].get("props", []) if map_name in ["Floresta", "Esgoto", "Deserto", "Ruínas", "Forte", "Catacumbas", "Mina", "Bunker"] else []:    # (na Floresta o Rei Golem vem do templo e no Esgoto o Rei dos Sapos, do altar: grupos invocados)
 				for summon: Dictionary in QuestTrail.summons_of(prop):
 					for m: Dictionary in summon.get("monsters", []):
 						if GameData.monsters.get(m.monster, {}).get("category", "") == "miniboss":

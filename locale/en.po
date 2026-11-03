@@ -4097,3 +4097,153 @@ msgstr "I only open with both keys, Pickaxe and Lantern, in the same bag. The Fo
 
 msgid "DLG_MNGUARD_DONE"
 msgstr "Both keys! The gate is open. Beware: the Crystal Golem feels no pain, and every piece that falls from him becomes a blade."
+
+msgid "MONSTER_BK_ARMOR"
+msgstr "Living Armor"
+
+msgid "MONSTER_BK_COMMANDER"
+msgstr "Rotting Commander"
+
+msgid "MONSTER_BK_GENERAL"
+msgstr "General Rust"
+
+msgid "NPC_BK_SERGEANT"
+msgstr "Garrison Sergeant"
+
+msgid "NPC_BK_QUARTERMASTER"
+msgstr "Quartermaster Vorn"
+
+msgid "NPC_BK_RACK"
+msgstr "Weapon Rack"
+
+msgid "NPC_BK_MEDIC"
+msgstr "Field Medic Lena"
+
+msgid "NPC_BK_COT"
+msgstr "Commander's Cot"
+
+msgid "NPC_BK_GATEKEEPER"
+msgstr "Gate Sentinel"
+
+msgid "VALUABLE_ARMORY_SEAL"
+msgstr "Armory Seal"
+
+msgid "VALUABLE_KEY_BRASS"
+msgstr "Brass Key"
+
+msgid "VALUABLE_KEY_STEEL"
+msgstr "Steel Key"
+
+msgid "TOAST_ARMORY_AWAKENS"
+msgstr "The weapons clatter on their racks: the Living Armor rises!"
+
+msgid "TOAST_COT_AWAKENS"
+msgstr "The cot creaks: the Rotting Commander rises!"
+
+msgid "QUEST_BK_CLEAR"
+msgstr "Clear the Entrance"
+
+msgid "QUEST_BK_CLEAR_DESC"
+msgstr "The Garrison Sergeant asks that the first two packs roaming the rooms near the entrance be brought down before the army of shadows organizes."
+
+msgid "QUEST_BK_SEAL"
+msgstr "The Armory Seal"
+
+msgid "QUEST_BK_SEAL_DESC"
+msgstr "Quartermaster Vorn, in the Supply Depot (east, near the entrance), lost the seal that locked the Armory: a suit of war armor carries it. Touch the weapon rack in the Armory (west) with the quest active, defeat the Living Armor and bring the seal: in return you get the Brass Key, one of the two for General Rust's gate."
+
+msgid "QUEST_BK_MEDAL"
+msgstr "The War Medal"
+
+msgid "QUEST_BK_MEDAL_DESC"
+msgstr "Field Medic Lena, in the Infirmary (west, high up), wants the war medal of the commander who died in the Barracks (east). Touch his cot with the quest active, defeat the Rotting Commander and bring the medal to receive the Steel Key, the other one for General Rust's gate."
+
+msgid "QUEST_BK_GATE"
+msgstr "The Command Room Gate"
+
+msgid "QUEST_BK_GATE_DESC"
+msgstr "The Gate Sentinel, in the tunnel north of the maze, only opens the gate for those with both keys: the Brass (Quartermaster) and the Steel (Medic). Beyond lies General Rust's Command Room."
+
+msgid "DLG_BKSGT_1"
+msgstr "Halt, civilians. This bunker was the king's army's last trench, and it is still full of weapons, tools and food. It is also full of the soldiers who never left."
+
+msgid "DLG_BKSGT_2"
+msgstr "The rooms near the entrance are filling up again. Two packs, the closest ones, before the rest wake."
+
+msgid "DLG_BKSGT_3"
+msgstr "Bring both down and I will pay. Then look for Quartermaster Vorn, at the depot to the east: he and Medic Lena keep the keys to the General's gate."
+
+msgid "DLG_BKSGT_ACTIVE"
+msgstr "The rooms lie just past the garrison, behind the wide gaps. Listen for footsteps before entering."
+
+msgid "DLG_BKSGT_DONE"
+msgstr "Good work. The way is yours now: the bunker is a maze, so follow the walls and note what you pass."
+
+msgid "DLG_BKQM_1"
+msgstr "Vorn, quartermaster, thirty years counting every crate in this depot. One seal is missing: the Armory's, the wax seal that proves the weapons are the king's."
+
+msgid "DLG_BKQM_2"
+msgstr "A suit of war armor took it: it stands in the Armory, to the west, among the racks, and wakes if anyone touches the weapons. It was the last to leave armed."
+
+msgid "DLG_BKQM_3"
+msgstr "Touch the rack, bring down the Living Armor and bring me the seal. I give the Brass Key, one of the two that open the General's gate, in the tunnel to the north."
+
+msgid "DLG_BKQM_ACTIVE"
+msgstr "The Armory is to the west: cross the maze to the room of racks. The seal is red wax, stuck to the breastplate. Bring it."
+
+msgid "DLG_BKQM_DONE"
+msgstr "The Armory seal! Now the books balance. The Brass Key is yours: take it to the Sentinel, together with the Steel one."
+
+msgid "DLG_BKRACK_1"
+msgstr "The weapons hum on the racks, shields knock against each other, and an iron shadow moves among the spears."
+
+msgid "DLG_BKRACK_2"
+msgstr "The Living Armor rises!"
+
+msgid "DLG_BKRACK_LOCKED"
+msgstr "An old weapon rack with spears and shields. Nothing answers your touch."
+
+msgid "DLG_BKMED_1"
+msgstr "I tended the wounded here until the last day. The commander died in the Barracks, to the east, with his war medal on his chest, and never let me bury him."
+
+msgid "DLG_BKMED_2"
+msgstr "He does not rest: he rises from the cot and wanders the barracks, looking for someone to give orders to. Only a fight convinces him to lie down again."
+
+msgid "DLG_BKMED_3"
+msgstr "Touch his cot, bring down the Rotting Commander and bring the medal. I give the Steel Key, the other for General Rust's gate."
+
+msgid "DLG_BKMED_ACTIVE"
+msgstr "The Barracks lie to the east, with rows of cots. The medal is bronze, with an eagle. Bring it to me."
+
+msgid "DLG_BKMED_DONE"
+msgstr "His medal! Now I can bury him with honor. The Steel Key is yours: take it to the Sentinel, together with the Brass one."
+
+msgid "DLG_BKMED_WAIT"
+msgstr "The beds are clean and the bandages dry. Come back if you need healing."
+
+msgid "DLG_BKCOT_1"
+msgstr "The mattress is still warm, and the medal gleams on the pillow where a chest no longer breathes."
+
+msgid "DLG_BKCOT_2"
+msgstr "The Rotting Commander rises!"
+
+msgid "DLG_BKCOT_LOCKED"
+msgstr "A military cot, empty and cold. Nothing answers your touch."
+
+msgid "DLG_BKGUARD_1"
+msgstr "Halt. This gate closes the Command Room, and in the Room General Rust rules, who never accepted surrender and had the bunker sealed with everyone inside."
+
+msgid "DLG_BKGUARD_2"
+msgstr "The gate only opens with TWO keys: the Brass and the Steel. The first is with Quartermaster Vorn, in the depot to the east; the second, with Medic Lena, in the infirmary to the west."
+
+msgid "DLG_BKGUARD_3"
+msgstr "Each charges a price: a seal, a medal. Bring both keys to me and I will open the way."
+
+msgid "DLG_BKGUARD_ACTIVE"
+msgstr "I only open with both keys, Brass and Steel, in the same bag. The Quartermaster is to the east; the Medic, to the west."
+
+msgid "DLG_BKGUARD_DONE"
+msgstr "Both keys! The gate is open. Beware: General Rust accepts no visitors, and his rust eats even steel."
+
+msgid "VALUABLE_COMMANDER_MEDAL"
+msgstr "Commander's Medal"

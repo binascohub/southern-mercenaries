@@ -31,6 +31,7 @@ Cada mapa de combate tem **2 mini-chefes** (elites fortes com nome, categoria `m
 | Forte | **Senhor Elfo Sombrio** (o Exilado o desperta; larga a **Lâmina do Senhor Elfo**) · **Rainha das Súcubos** (a Penitente a desperta; larga o **Anel da Rainha**) · **Comandante** (anda solto; larga o **Crânio Antigo**) |
 | Catacumbas | **Carrasco das Catacumbas** (a gaiola do Poço o desperta com a missão do Carcereiro Cego; larga o **Machado do Carrasco**) · **Alma Acorrentada** (a Prisioneira a desperta; larga o **Grilhão da Alma**) |
 | Mina | **Chefe Troll** (a carroça abandonada o desperta com a missão do Capataz; larga a **Presa**) · **Besta de Quartzo** (o Cristal Pulsante a desperta com a missão do Joalheiro; larga o **Núcleo de Quartzo**) · **Guardião do Túmulo** (anda solto no labirinto; larga a **Alma Real** do Padre) |
+| Bunker | **Armadura Viva** (o rack de armas do Arsenal a desperta com a missão do Intendente; larga o **Selo do Arsenal**) · **Comandante Podre** (o catre do Alojamento o desperta com a missão da Médica; larga a **Medalha de Guerra**) |
 
 Em negrito, os criados nesta rodada (`tools/assets/add_minibosses.py`). A Floresta Sombria ainda não tem encontros.
 
@@ -49,7 +50,7 @@ Ordem dos mapas, por hub (`tools/assets/set_map_order.py` liga os portais; cada 
 | 7 | Catacumbas (`catacombs_01_depths`) | Capital | Carrasco das Catacumbas · Alma Acorrentada | Rei Acorrentado |
 | 8 | Deserto (`desert_01_canyon`) | Capital | Lamassu da Areia · Rainha Escorpião | Esfinge |
 | 9 | Mina (`mine_01_crystal_vein`) | Fazenda | Chefe Troll · Besta de Quartzo (+ Guardião do Túmulo solto) | Golem de Cristal |
-| 10 | Bunker (`bunker_01_entrance`) | Fazenda | — | — |
+| 10 | Bunker (`bunker_01_entrance`) | Fazenda | Armadura Viva · Comandante Podre | General Ferrugem |
 | 11 | Floresta Escura (`dark_forest_01_woods`) | Fazenda | *(só o mapa, sem monstros)* | — |
 
 A Capital e a Fazenda são acessadas por Tortuga (`capital_gate`, `farm_gate`). Pântano e Inferno (seções abaixo) continuam só no documento, fora desta ordem.
@@ -213,6 +214,20 @@ Salas especiais ligadas à borda do labirinto: **Acampamento dos Anões** (leste
 5. **Golem de Cristal** (chefe final) no Coração da Mina, com a saída de volta à Fazenda.
 
 O **Guardião do Túmulo** (a Alma Real do Padre) anda solto em uma sala do labirinto. Gerado por `tools/assets/build_mine.py`.
+
+### Bunker no jogo (`bunker_01_entrance`)
+
+Mapa grande e **labirinto** (grade de 69 x 82 células de 2 m, cerca de 10,6 mil m2 de piso), feito como o Esgoto, com as paredes e pilares do pacote Bk_*: salas de 10 m ligadas por vãos de 6 m (árvore crescente com muitos becos e alguns laços), em três setores de monstros. A **Guarnição** (partida) fica ao sul; o túnel do portão e a **Sala de Comando** (chefe final), ao norte. Salas especiais nas laterais: **Depósito de Suprimentos** e **Alojamento** (leste), **Cofre** (leste, no alto), **Arsenal** e **Enfermaria** (oeste).
+
+Decoração: **armamentos** (racks, espadas, escudos, bestas, machados, martelos, lanças, canhões), **ferramentas** (pás, enxadas, forcados, bigornas, bancadas, pedras de amolar) e **suprimentos** (caixotes, barris, sacos, prateleiras de garrafas, comida, camas e mesas); cada sala do labirinto tem um tema (depósito, arsenal, oficina, alojamento ou refeitório).
+
+1. **Sargento da Guarnição** (partida): a missão de limpar os dois primeiros bandos.
+2. **Intendente Vorn** (Depósito, leste): pede o **Selo do Arsenal**. Tocar o rack de armas do Arsenal (oeste), com a missão ativa, desperta a **Armadura Viva** (mini-chefe). Entrega a **Chave de Latão**.
+3. **Médica de Campo Lena** (Enfermaria, oeste, no alto): pede a **Medalha de Guerra**. Tocar o catre do Alojamento (leste), com a missão ativa, desperta o **Comandante Podre** (mini-chefe). Entrega a **Chave de Aço**.
+4. **Sentinela do Portão** (túnel ao norte): só abre o portão com as duas chaves.
+5. **General Ferrugem** (chefe final) na Sala de Comando, com a saída de volta à Fazenda.
+
+Gerado por `tools/assets/build_bunker.py`.
 
 ### Docas (`docks_01_pier`) — ligada ao porto de Tortuga
 

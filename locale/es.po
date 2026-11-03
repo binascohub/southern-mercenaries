@@ -4097,3 +4097,153 @@ msgstr "Solo abro con las dos llaves, Pico y Linterna, en la misma bolsa. El Cap
 
 msgid "DLG_MNGUARD_DONE"
 msgstr "¡Las dos llaves! El portón está abierto. Cuidado: el Gólem de Cristal no siente dolor, y cada pedazo suyo que cae se vuelve hoja."
+
+msgid "MONSTER_BK_ARMOR"
+msgstr "Armadura Viva"
+
+msgid "MONSTER_BK_COMMANDER"
+msgstr "Comandante Podrido"
+
+msgid "MONSTER_BK_GENERAL"
+msgstr "General Óxido"
+
+msgid "NPC_BK_SERGEANT"
+msgstr "Sargento de la Guarnición"
+
+msgid "NPC_BK_QUARTERMASTER"
+msgstr "Intendente Vorn"
+
+msgid "NPC_BK_RACK"
+msgstr "Armero"
+
+msgid "NPC_BK_MEDIC"
+msgstr "Médica de Campaña Lena"
+
+msgid "NPC_BK_COT"
+msgstr "Catre del Comandante"
+
+msgid "NPC_BK_GATEKEEPER"
+msgstr "Centinela del Portón"
+
+msgid "VALUABLE_ARMORY_SEAL"
+msgstr "Sello del Arsenal"
+
+msgid "VALUABLE_KEY_BRASS"
+msgstr "Llave de Latón"
+
+msgid "VALUABLE_KEY_STEEL"
+msgstr "Llave de Acero"
+
+msgid "TOAST_ARMORY_AWAKENS"
+msgstr "Las armas tintinean en los armeros: ¡la Armadura Viva se levanta!"
+
+msgid "TOAST_COT_AWAKENS"
+msgstr "El catre cruje: ¡el Comandante Podrido se levanta!"
+
+msgid "QUEST_BK_CLEAR"
+msgstr "Limpiar la entrada"
+
+msgid "QUEST_BK_CLEAR_DESC"
+msgstr "El Sargento de la Guarnición pide que se derriben las dos primeras bandas que rondan las salas cerca de la entrada antes de que el ejército de sombras se organice."
+
+msgid "QUEST_BK_SEAL"
+msgstr "El sello del Arsenal"
+
+msgid "QUEST_BK_SEAL_DESC"
+msgstr "El Intendente Vorn, en el Depósito de Suministros (este, cerca de la entrada), perdió el sello que cerraba el Arsenal: una armadura de guerra lo lleva. Toca el armero del Arsenal (oeste) con la misión activa, derrota a la Armadura Viva y trae el sello: a cambio recibes la Llave de Latón, una de las dos del portón del General Óxido."
+
+msgid "QUEST_BK_MEDAL"
+msgstr "La medalla de guerra"
+
+msgid "QUEST_BK_MEDAL_DESC"
+msgstr "La Médica de Campaña Lena, en la Enfermería (oeste, en lo alto), quiere la medalla de guerra del comandante que murió en el Alojamiento (este). Toca su catre con la misión activa, derrota al Comandante Podrido y trae la medalla para recibir la Llave de Acero, la otra del portón del General Óxido."
+
+msgid "QUEST_BK_GATE"
+msgstr "El portón de la Sala de Mando"
+
+msgid "QUEST_BK_GATE_DESC"
+msgstr "El Centinela del Portón, en el túnel al norte del laberinto, solo abre el portón a quien traiga las dos llaves: la de Latón (Intendente) y la de Acero (Médica). Tras él está la Sala de Mando del General Óxido."
+
+msgid "DLG_BKSGT_1"
+msgstr "Alto ahí, civiles. Este búnker fue la última trinchera del ejército del rey, y aún está lleno de armas, herramientas y comida. Pero también está lleno de los soldados que nunca salieron."
+
+msgid "DLG_BKSGT_2"
+msgstr "Las salas cerca de la entrada se están llenando otra vez. Dos bandas, las más cercanas, antes de que despierte el resto."
+
+msgid "DLG_BKSGT_3"
+msgstr "Derriben las dos y pago. Luego busquen al Intendente Vorn, en el depósito al este: él y la Médica Lena guardan las llaves del portón del General."
+
+msgid "DLG_BKSGT_ACTIVE"
+msgstr "Las salas quedan justo después de la guarnición, tras los vanos anchos. Escuchen los pasos antes de entrar."
+
+msgid "DLG_BKSGT_DONE"
+msgstr "Buen trabajo. Ahora el camino es suyo: el búnker es un laberinto, así que sigan las paredes y anoten lo que pasen."
+
+msgid "DLG_BKQM_1"
+msgstr "Vorn, intendente, treinta años contando cada caja de este depósito. Falta un sello: el del Arsenal, el sello de lacre que prueba que las armas son del rey."
+
+msgid "DLG_BKQM_2"
+msgstr "Una armadura de guerra se lo llevó: está en el Arsenal, al oeste, entre los armeros, y despierta si alguien toca las armas. Fue el último en salir armado."
+
+msgid "DLG_BKQM_3"
+msgstr "Toquen el armero, derriben a la Armadura Viva y tráiganme el sello. Doy la Llave de Latón, una de las dos que abren el portón del General, en el túnel al norte."
+
+msgid "DLG_BKQM_ACTIVE"
+msgstr "El Arsenal está al oeste: crucen el laberinto hasta la sala de los armeros. El sello es de cera roja, pegado al peto. Tráiganlo."
+
+msgid "DLG_BKQM_DONE"
+msgstr "¡El sello del Arsenal! Ahora las cuentas cuadran. La Llave de Latón es suya: llévenla al Centinela, junto con la de Acero."
+
+msgid "DLG_BKRACK_1"
+msgstr "Las armas vibran en los armeros, los escudos chocan entre sí, y una sombra de hierro se mueve entre las lanzas."
+
+msgid "DLG_BKRACK_2"
+msgstr "¡La Armadura Viva se levanta!"
+
+msgid "DLG_BKRACK_LOCKED"
+msgstr "Un viejo armero con lanzas y escudos. Nada responde a tu toque."
+
+msgid "DLG_BKMED_1"
+msgstr "Cuidé a los heridos aquí hasta el último día. El comandante murió en el Alojamiento, al este, con la medalla de guerra en el pecho, y nunca me dejó enterrarlo."
+
+msgid "DLG_BKMED_2"
+msgstr "No descansa: se levanta del catre y vaga por el alojamiento, buscando a quién dar órdenes. Solo una pelea lo convence de acostarse de nuevo."
+
+msgid "DLG_BKMED_3"
+msgstr "Toquen su catre, derriben al Comandante Podrido y traigan la medalla. Doy la Llave de Acero, la otra del portón del General Óxido."
+
+msgid "DLG_BKMED_ACTIVE"
+msgstr "El Alojamiento está al este, con filas de catres. La medalla es de bronce, con un águila. Tráiganmela."
+
+msgid "DLG_BKMED_DONE"
+msgstr "¡Su medalla! Ahora puedo enterrarlo con honor. La Llave de Acero es suya: llévenla al Centinela, junto con la de Latón."
+
+msgid "DLG_BKMED_WAIT"
+msgstr "Las camas están limpias y las vendas secas. Vuelvan si necesitan curación."
+
+msgid "DLG_BKCOT_1"
+msgstr "El colchón aún está tibio, y la medalla brilla sobre la almohada, donde un pecho ya no respira."
+
+msgid "DLG_BKCOT_2"
+msgstr "¡El Comandante Podrido se levanta!"
+
+msgid "DLG_BKCOT_LOCKED"
+msgstr "Un catre militar, vacío y frío. Nada responde a tu toque."
+
+msgid "DLG_BKGUARD_1"
+msgstr "Alto. Este portón cierra la Sala de Mando, y en la Sala manda el General Óxido, que nunca aceptó la rendición y mandó sellar el búnker con todos dentro."
+
+msgid "DLG_BKGUARD_2"
+msgstr "El portón solo abre con DOS llaves: la de Latón y la de Acero. La primera la tiene el Intendente Vorn, en el depósito al este; la segunda, la Médica Lena, en la enfermería al oeste."
+
+msgid "DLG_BKGUARD_3"
+msgstr "Cada uno cobra un precio: un sello, una medalla. Tráiganme las dos llaves y abro el paso."
+
+msgid "DLG_BKGUARD_ACTIVE"
+msgstr "Solo abro con las dos llaves, Latón y Acero, en la misma bolsa. El Intendente está al este; la Médica, al oeste."
+
+msgid "DLG_BKGUARD_DONE"
+msgstr "¡Las dos llaves! El portón está abierto. Cuidado: el General Óxido no acepta visitas, y su óxido corroe hasta el acero."
+
+msgid "VALUABLE_COMMANDER_MEDAL"
+msgstr "Medalla del Comandante"
