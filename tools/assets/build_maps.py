@@ -1902,5 +1902,6 @@ subprocess.run([sys.executable, "tools/assets/build_fort.py"], check=True)  # Fo
 subprocess.run([sys.executable, "tools/assets/build_catacombs.py"], check=True)  # Catacumbas (mapa novo: celas, presos, correntes; estrutura do Esgoto)
 subprocess.run([sys.executable, "tools/assets/build_mine.py"], check=True)  # Mina ampliada e feita labirinto (trilhos como caminho, anões mineiros)
 subprocess.run([sys.executable, "tools/assets/build_bunker.py"], check=True)  # Bunker ampliado e feito labirinto (armas, ferramentas e suprimentos)
+subprocess.run([sys.executable, "tools/assets/build_darkforest.py"], check=True)  # Floresta Escura ampliada (estrutura da Floresta, árvores secas, cogumelos, morcegos, cobras)
 subprocess.run([sys.executable, "tools/assets/set_map_order.py"], check=True)  # ordem dos mapas: hubs Tortuga, Capital e Fazenda (sem portais em cadeia)
 print("OK", [k for k in arenas if k.split("_")[0] in ("forest", "ruins", "cemetery", "fort", "farm", "mine")])

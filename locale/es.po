@@ -4247,3 +4247,156 @@ msgstr "¡Las dos llaves! El portón está abierto. Cuidado: el General Óxido n
 
 msgid "VALUABLE_COMMANDER_MEDAL"
 msgstr "Medalla del Comandante"
+
+msgid "MONSTER_FD_VIPER"
+msgstr "Víbora Ancestral"
+
+msgid "MONSTER_FD_SPORE_KING"
+msgstr "Rey de las Esporas"
+
+msgid "MONSTER_FD_ELDER"
+msgstr "Anciano Sombrío"
+
+msgid "NPC_FD_WOODCUTTER"
+msgstr "Leñador Ardo"
+
+msgid "NPC_FD_HERBALIST"
+msgstr "Herbolaria Mirta"
+
+msgid "NPC_FD_TOTEM"
+msgstr "Tótem de las Serpientes"
+
+msgid "NPC_FD_CHARMER"
+msgstr "Encantador Zhar"
+
+msgid "NPC_FD_MUSHROOM"
+msgstr "Hongo Ancestral"
+
+msgid "NPC_FD_WARDEN"
+msgstr "Guardián del Bosque"
+
+msgid "VALUABLE_VIPER_FANG"
+msgstr "Colmillo de la Víbora Ancestral"
+
+msgid "VALUABLE_SPORE_CROWN"
+msgstr "Corona de Esporas"
+
+msgid "VALUABLE_KEY_MOSS"
+msgstr "Llave de Musgo"
+
+msgid "VALUABLE_KEY_THORN"
+msgstr "Llave de Espina"
+
+msgid "TOAST_TOTEM_AWAKENS"
+msgstr "Las piedras silban: ¡la Víbora Ancestral baja del tótem!"
+
+msgid "TOAST_SPORE_AWAKENS"
+msgstr "Sube una nube de esporas: ¡el Rey de las Esporas despierta!"
+
+msgid "QUEST_FD_CLEAR"
+msgstr "Limpiar la maleza"
+
+msgid "QUEST_FD_CLEAR_DESC"
+msgstr "El Leñador Ardo, en el Claro del Borde, pide que se derriben las dos primeras bandas que ocupan la Maleza justo al norte, para volver a cortar leña en paz."
+
+msgid "QUEST_FD_FANG"
+msgstr "El colmillo de la Víbora Ancestral"
+
+msgid "QUEST_FD_FANG_DESC"
+msgstr "La Herbolaria Mirta, en el Bosque de los Hongos (este), necesita el colmillo de la Víbora Ancestral para preparar el antídoto. Toca el Tótem de las Serpientes del Claro (oeste, tras el Pantano de las Serpientes) con la misión activa, derrota a la Víbora y trae el colmillo: a cambio recibes la Llave de Musgo, una de las dos del portón del Anciano Sombrío."
+
+msgid "QUEST_FD_CROWN"
+msgstr "La corona de esporas"
+
+msgid "QUEST_FD_CROWN_DESC"
+msgstr "El Encantador Zhar, en el Pantano de las Serpientes (oeste), quiere la corona de esporas del Rey de las Esporas para calmar a las serpientes. Tocar el Hongo Ancestral del Círculo de Esporas (este) despierta al Rey; derrótalo y trae la corona para recibir la Llave de Espina, la otra del portón del Anciano Sombrío."
+
+msgid "QUEST_FD_GATE"
+msgstr "El portón del Anciano"
+
+msgid "QUEST_FD_GATE_DESC"
+msgstr "El Guardián del Bosque, en el pasillo al norte del Bosque de los Murciélagos, solo abre el portón a quien traiga las dos llaves: la de Musgo (Herbolaria) y la de Espina (Encantador). Tras él está la Guarida del Anciano Sombrío."
+
+msgid "DLG_FDWOOD_1"
+msgstr "Cuidado dónde pisan: en este bosque ni los árboles están vivos, y lo que se mueve entre ellos es peor. Corto leña aquí en el borde, donde aún se puede respirar."
+
+msgid "DLG_FDWOOD_2"
+msgstr "Las dos primeras bandas, aquí en la Maleza al norte, me cercaron el claro. Sin ellas lejos, ni siquiera puedo buscar leña."
+
+msgid "DLG_FDWOOD_3"
+msgstr "Derriben las dos y pago. Luego hablen con la Herbolaria Mirta, en el bosque de hongos al este, y con el Encantador Zhar, en el pantano al oeste: ellos guardan las llaves del portón del Anciano."
+
+msgid "DLG_FDWOOD_ACTIVE"
+msgstr "La Maleza queda justo al norte del claro. Escuchen las alas: donde hay murciélagos, hay banda."
+
+msgid "DLG_FDWOOD_DONE"
+msgstr "¡Qué buen silencio! Ahora elijan: oeste por las serpientes, este por los hongos o directo al norte, por el bosque seco. Todos los caminos llegan allí."
+
+msgid "DLG_FDHERB_1"
+msgstr "Recojo hongos y hierbas desde hace treinta años y conozco cada uno por el olor. Hoy solo necesito una cosa: el colmillo de la Víbora Ancestral, para el antídoto del veneno de este bosque."
+
+msgid "DLG_FDHERB_2"
+msgstr "Vive en el Claro de las Serpientes, al oeste, tras el pantano, enroscada en un tótem de piedra. Solo despierta si alguien toca el tótem con la intención de cazarla."
+
+msgid "DLG_FDHERB_3"
+msgstr "Toquen el tótem, derriben a la Víbora y tráiganme el colmillo. Doy la Llave de Musgo, una de las dos que abren el portón del Anciano Sombrío, en el pasillo al norte del bosque de los murciélagos."
+
+msgid "DLG_FDHERB_ACTIVE"
+msgstr "El Claro está al oeste de la Maleza, tras el Pantano de las Serpientes. El colmillo es verde, curvo y del tamaño de una hoz. Tráiganlo."
+
+msgid "DLG_FDHERB_DONE"
+msgstr "¡El colmillo! Ahora sale el antídoto. La Llave de Musgo es suya: llévenla al Guardián, junto con la de Espina."
+
+msgid "DLG_FDHERB_WAIT"
+msgstr "Los hongos brillan más cuando alguien es amable con ellos. Vuelvan cuando quieran."
+
+msgid "DLG_FDTOTEM_1"
+msgstr "Las piedras en círculo silban bajito, y algo se desliza entre ellas, despacio, dejando un rastro de escamas."
+
+msgid "DLG_FDTOTEM_2"
+msgstr "¡La Víbora Ancestral baja del tótem!"
+
+msgid "DLG_FDTOTEM_LOCKED"
+msgstr "Un tótem de piedra cubierto de musgo. Nada responde a tu toque."
+
+msgid "DLG_FDCHARM_1"
+msgstr "Shh, no griten: lo oyen todo. Encanto a las serpientes de este pantano con una flauta, pero últimamente ni me escuchan, agitadas por algo en el este."
+
+msgid "DLG_FDCHARM_2"
+msgstr "Es el Rey de las Esporas, en el Círculo de Esporas: su corona suelta un polvo que enloquece a cualquier bicho de sangre fría. Sin la corona, las serpientes se calman."
+
+msgid "DLG_FDCHARM_3"
+msgstr "Hablen con el Hongo Ancestral en el círculo y el Rey despierta. Derríbenlo y traigan la corona: doy la Llave de Espina, la otra del portón del Anciano."
+
+msgid "DLG_FDCHARM_ACTIVE"
+msgstr "El Círculo de Esporas está al este, tras el Bosque de los Hongos. La corona es morada y suelta humo. No respiren cerca de ella."
+
+msgid "DLG_FDCHARM_DONE"
+msgstr "¡La corona! Las serpientes vuelven a escucharme. La Llave de Espina es suya: llévenla al Guardián, junto con la de Musgo."
+
+msgid "DLG_FDCHARM_WAIT"
+msgstr "La flauta suena sola cuando estoy calmo. Vuelvan cuando quieran oírla."
+
+msgid "DLG_FDMUSH_1"
+msgstr "El hongo gigante late en púrpura, soltando esporas que brillan en el aire, y un sombrero enorme se inclina sobre ti como si escuchara."
+
+msgid "DLG_FDMUSH_2"
+msgstr "¡El Rey de las Esporas despierta!"
+
+msgid "DLG_FDMUSH_LOCKED"
+msgstr "Un hongo enorme, inmóvil, rodeado de un anillo de compañeros. Nada responde a tu toque."
+
+msgid "DLG_FDWARD_1"
+msgstr "Alto. Este portón cierra la Guarida, y en la Guarida vive el Anciano Sombrío, el árbol que ya era viejo antes de que este bosque oscureciera. Cuido el portón desde que aún tenía hojas."
+
+msgid "DLG_FDWARD_2"
+msgstr "El portón solo abre con DOS llaves: la de Musgo y la de Espina. La primera la tiene la Herbolaria Mirta, en el bosque de hongos al este; la segunda, el Encantador Zhar, en el pantano al oeste."
+
+msgid "DLG_FDWARD_3"
+msgstr "Cada uno cobra un precio: un colmillo, una corona. Tráiganme las dos llaves y abro el paso."
+
+msgid "DLG_FDWARD_ACTIVE"
+msgstr "Solo abro con las dos llaves, Musgo y Espina, en la misma bolsa. La Herbolaria está al este; el Encantador, al oeste."
+
+msgid "DLG_FDWARD_DONE"
+msgstr "¡Las dos llaves! El portón está abierto. Cuidado: el Anciano Sombrío no corre, no lo necesita; todas las raíces de este bosque le responden."

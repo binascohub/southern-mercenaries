@@ -32,6 +32,7 @@ Cada mapa de combate tem **2 mini-chefes** (elites fortes com nome, categoria `m
 | Catacumbas | **Carrasco das Catacumbas** (a gaiola do Poço o desperta com a missão do Carcereiro Cego; larga o **Machado do Carrasco**) · **Alma Acorrentada** (a Prisioneira a desperta; larga o **Grilhão da Alma**) |
 | Mina | **Chefe Troll** (a carroça abandonada o desperta com a missão do Capataz; larga a **Presa**) · **Besta de Quartzo** (o Cristal Pulsante a desperta com a missão do Joalheiro; larga o **Núcleo de Quartzo**) · **Guardião do Túmulo** (anda solto no labirinto; larga a **Alma Real** do Padre) |
 | Bunker | **Armadura Viva** (o rack de armas do Arsenal a desperta com a missão do Intendente; larga o **Selo do Arsenal**) · **Comandante Podre** (o catre do Alojamento o desperta com a missão da Médica; larga a **Medalha de Guerra**) |
+| Floresta Escura | **Víbora Anciã** (o Totem das Serpentes a desperta com a missão da Herbalista; larga a **Presa**) · **Rei dos Esporos** (o Cogumelo Ancestral o desperta com a missão do Encantador; larga a **Coroa de Esporos**) |
 
 Em negrito, os criados nesta rodada (`tools/assets/add_minibosses.py`). A Floresta Sombria ainda não tem encontros.
 
@@ -51,7 +52,7 @@ Ordem dos mapas, por hub (`tools/assets/set_map_order.py` liga os portais; cada 
 | 8 | Deserto (`desert_01_canyon`) | Capital | Lamassu da Areia · Rainha Escorpião | Esfinge |
 | 9 | Mina (`mine_01_crystal_vein`) | Fazenda | Chefe Troll · Besta de Quartzo (+ Guardião do Túmulo solto) | Golem de Cristal |
 | 10 | Bunker (`bunker_01_entrance`) | Fazenda | Armadura Viva · Comandante Podre | General Ferrugem |
-| 11 | Floresta Escura (`dark_forest_01_woods`) | Fazenda | *(só o mapa, sem monstros)* | — |
+| 11 | Floresta Escura (`dark_forest_01_woods`) | Fazenda | Víbora Anciã · Rei dos Esporos | Ancião Sombrio |
 
 A Capital e a Fazenda são acessadas por Tortuga (`capital_gate`, `farm_gate`). Pântano e Inferno (seções abaixo) continuam só no documento, fora desta ordem.
 
@@ -228,6 +229,20 @@ Decoração: **armamentos** (racks, espadas, escudos, bestas, machados, martelos
 5. **General Ferrugem** (chefe final) na Sala de Comando, com a saída de volta à Fazenda.
 
 Gerado por `tools/assets/build_bunker.py`.
+
+### Floresta Escura no jogo (`dark_forest_01_woods`)
+
+Mapa grande (10 salas, cerca de 20 mil m2) com a mesma estrutura da Floresta e outro caminho: mata aberta de grama escura cercada de arbustos e bambus. A **Clareira da Borda** (partida) abre no **Matagal**, e dali saem três rotas até a **Mata Seca**: a oeste, **Pântano das Cobras → Clareira das Serpentes**; a leste, **Bosque dos Cogumelos → Círculo de Esporos**; e uma direta ao norte. Depois vêm o **Bosque dos Morcegos**, o corredor do portão e o **Covil do Ancião Sombrio**.
+
+Decoração: **árvores secas** em abundância, **cogumelos** (de pequenos a gigantes, alguns brilhando), **morcegos** voando em círculos (papel `bat` do `crowd`) e **cobras** (peças `Snake_*`, feitas por `tools/assets/build_snakes.py`): enroscadas e deslizando em círculos; também lápides, cruzes, ossos, teias e fogueira.
+
+1. **Lenhador Ardo** (partida): a missão de limpar os dois primeiros bandos do Matagal.
+2. **Herbalista Mirta** (Bosque dos Cogumelos, leste): pede a **Presa da Víbora Anciã**. Tocar o **Totem das Serpentes** da Clareira (oeste), com a missão ativa, desperta a **Víbora Anciã** (mini-chefe). Entrega a **Chave de Musgo**.
+3. **Encantador Zhar** (Pântano das Cobras, oeste): pede a **Coroa de Esporos**. Tocar o **Cogumelo Ancestral** do Círculo de Esporos (leste), com a missão ativa, desperta o **Rei dos Esporos** (mini-chefe). Entrega a **Chave de Espinho**.
+4. **Guardião da Mata** (corredor ao norte do Bosque dos Morcegos): só abre o portão com as duas chaves.
+5. **Ancião Sombrio** (chefe final) no Covil, com a saída de volta à Fazenda.
+
+Gerado por `tools/assets/build_darkforest.py`.
 
 ### Docas (`docks_01_pier`) — ligada ao porto de Tortuga
 

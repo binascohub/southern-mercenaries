@@ -593,5 +593,66 @@
       "gold": 280,
       "xp": 560
     }
+  },
+  "fd_clear": {
+    "name_key": "QUEST_FD_CLEAR",
+    "desc_key": "QUEST_FD_CLEAR_DESC",
+    "type": "village",
+    "giver": "fd_woodcutter",
+    "area": "dark_forest_01_woods",
+    "clear": [
+      "fd_thicket_a",
+      "fd_thicket_b"
+    ],
+    "target_element": "earth",
+    "reward": {
+      "gold": 600,
+      "xp": 1200
+    }
+  },
+  "fd_fang": {
+    "name_key": "QUEST_FD_FANG",
+    "desc_key": "QUEST_FD_FANG_DESC",
+    "type": "village",
+    "giver": "fd_herbalist",
+    "area": "dark_forest_01_woods",
+    "target_element": "earth",
+    "reward": {
+      "gold": 650,
+      "xp": 1300
+    },
+    "item": "viper_fang",
+    "gives": "key_moss"
+  },
+  "fd_crown": {
+    "name_key": "QUEST_FD_CROWN",
+    "desc_key": "QUEST_FD_CROWN_DESC",
+    "type": "village",
+    "giver": "fd_charmer",
+    "area": "dark_forest_01_woods",
+    "target_element": "water",
+    "reward": {
+      "gold": 650,
+      "xp": 1300
+    },
+    "item": "spore_crown",
+    "gives": "key_thorn"
+  },
+  "fd_gate": {
+    "name_key": "QUEST_FD_GATE",
+    "desc_key": "QUEST_FD_GATE_DESC",
+    "type": "village",
+    "giver": "fd_warden",
+    "area": "dark_forest_01_woods",
+    "items": [
+      "key_moss",
+      "key_thorn"
+    ],
+    "opens_gate": "boss_gate",
+    "target_element": "earth",
+    "reward": {
+      "gold": 750,
+      "xp": 1500
+    }
   }
 }

@@ -4247,3 +4247,156 @@ msgstr "As duas chaves! O portão está aberto. Cuidado: o General Ferrugem não
 
 msgid "VALUABLE_COMMANDER_MEDAL"
 msgstr "Medalha do Comandante"
+
+msgid "MONSTER_FD_VIPER"
+msgstr "Víbora Anciã"
+
+msgid "MONSTER_FD_SPORE_KING"
+msgstr "Rei dos Esporos"
+
+msgid "MONSTER_FD_ELDER"
+msgstr "Ancião Sombrio"
+
+msgid "NPC_FD_WOODCUTTER"
+msgstr "Lenhador Ardo"
+
+msgid "NPC_FD_HERBALIST"
+msgstr "Herbalista Mirta"
+
+msgid "NPC_FD_TOTEM"
+msgstr "Totem das Serpentes"
+
+msgid "NPC_FD_CHARMER"
+msgstr "Encantador Zhar"
+
+msgid "NPC_FD_MUSHROOM"
+msgstr "Cogumelo Ancestral"
+
+msgid "NPC_FD_WARDEN"
+msgstr "Guardião da Mata"
+
+msgid "VALUABLE_VIPER_FANG"
+msgstr "Presa da Víbora Anciã"
+
+msgid "VALUABLE_SPORE_CROWN"
+msgstr "Coroa de Esporos"
+
+msgid "VALUABLE_KEY_MOSS"
+msgstr "Chave de Musgo"
+
+msgid "VALUABLE_KEY_THORN"
+msgstr "Chave de Espinho"
+
+msgid "TOAST_TOTEM_AWAKENS"
+msgstr "As pedras sibilam: a Víbora Anciã desce do totem!"
+
+msgid "TOAST_SPORE_AWAKENS"
+msgstr "Uma nuvem de esporos sobe: o Rei dos Esporos acorda!"
+
+msgid "QUEST_FD_CLEAR"
+msgstr "Limpar o Matagal"
+
+msgid "QUEST_FD_CLEAR_DESC"
+msgstr "O Lenhador Ardo, na Clareira da Borda, pede que os dois primeiros bandos que ocupam o Matagal logo ao norte sejam derrubados, para ele voltar a cortar lenha em paz."
+
+msgid "QUEST_FD_FANG"
+msgstr "A Presa da Víbora Anciã"
+
+msgid "QUEST_FD_FANG_DESC"
+msgstr "A Herbalista Mirta, no Bosque dos Cogumelos (leste), precisa da presa da Víbora Anciã para preparar o antídoto. Toque o Totem das Serpentes da Clareira (oeste, depois do Pântano das Cobras) com a missão ativa, derrote a Víbora e traga a presa: em troca vem a Chave de Musgo, uma das duas do portão do Ancião Sombrio."
+
+msgid "QUEST_FD_CROWN"
+msgstr "A Coroa de Esporos"
+
+msgid "QUEST_FD_CROWN_DESC"
+msgstr "O Encantador Zhar, no Pântano das Cobras (oeste), quer a coroa de esporos do Rei dos Esporos para acalmar as cobras. A fala do Cogumelo Ancestral do Círculo de Esporos (leste) desperta o Rei; derrote-o e traga a coroa para receber a Chave de Espinho, a outra do portão do Ancião Sombrio."
+
+msgid "QUEST_FD_GATE"
+msgstr "O Portão do Ancião"
+
+msgid "QUEST_FD_GATE_DESC"
+msgstr "O Guardião da Mata, no corredor ao norte do Bosque dos Morcegos, só abre o portão para quem trouxer as duas chaves: a de Musgo (Herbalista) e a de Espinho (Encantador). Atrás dele fica o Covil do Ancião Sombrio."
+
+msgid "DLG_FDWOOD_1"
+msgstr "Cuidado onde pisam: nesta mata nem as árvores estão vivas, e o que se mexe entre elas é pior. Corto lenha aqui na borda, onde ainda dá para respirar."
+
+msgid "DLG_FDWOOD_2"
+msgstr "Os dois primeiros bandos, aqui no Matagal, ao norte, me cercaram a clareira. Sem eles longe, eu não consigo nem buscar lenha."
+
+msgid "DLG_FDWOOD_3"
+msgstr "Derrubem os dois e eu pago. Depois falem com a Herbalista Mirta, no bosque de cogumelos a leste, e com o Encantador Zhar, no pântano a oeste: eles guardam as chaves do portão do Ancião."
+
+msgid "DLG_FDWOOD_ACTIVE"
+msgstr "O Matagal fica logo ao norte da clareira. Ouçam as asas: onde há morcegos, há bando."
+
+msgid "DLG_FDWOOD_DONE"
+msgstr "Que silêncio bom! Agora escolham: oeste pelas cobras, leste pelos cogumelos ou direto ao norte, pela mata seca. Todos os caminhos chegam lá."
+
+msgid "DLG_FDHERB_1"
+msgstr "Colho cogumelos e ervas há trinta anos, e conheço cada um pelo cheiro. Hoje só preciso de uma coisa: a presa da Víbora Anciã, para o antídoto do veneno desta floresta."
+
+msgid "DLG_FDHERB_2"
+msgstr "Ela vive na Clareira das Serpentes, a oeste, depois do pântano, enrolada num totem de pedra. Só acorda se alguém toca o totem com a intenção de caçá-la."
+
+msgid "DLG_FDHERB_3"
+msgstr "Toquem o totem, derrubem a Víbora e tragam a presa. Eu dou a Chave de Musgo, uma das duas que abrem o portão do Ancião Sombrio, no corredor ao norte do bosque dos morcegos."
+
+msgid "DLG_FDHERB_ACTIVE"
+msgstr "A Clareira fica a oeste do Matagal, depois do Pântano das Cobras. A presa é verde, curva e do tamanho de uma foice. Tragam-na."
+
+msgid "DLG_FDHERB_DONE"
+msgstr "A presa! Agora o antídoto sai. A Chave de Musgo é de vocês: levem-na ao Guardião, junto com a de Espinho."
+
+msgid "DLG_FDHERB_WAIT"
+msgstr "Os cogumelos brilham mais quando alguém é gentil com eles. Voltem a qualquer hora."
+
+msgid "DLG_FDTOTEM_1"
+msgstr "As pedras em círculo sibilam baixinho, e algo escorrega entre elas, devagar, deixando um rastro de escamas."
+
+msgid "DLG_FDTOTEM_2"
+msgstr "A Víbora Anciã desce do totem!"
+
+msgid "DLG_FDTOTEM_LOCKED"
+msgstr "Um totem de pedra coberto de musgo. Nada responde ao seu toque."
+
+msgid "DLG_FDCHARM_1"
+msgstr "Shhh, não gritem: elas ouvem tudo. Eu encanto as cobras deste pântano com uma flauta, mas ultimamente elas nem me escutam, agitadas por algo no leste."
+
+msgid "DLG_FDCHARM_2"
+msgstr "É o Rei dos Esporos, no Círculo de Esporos: a coroa dele solta um pó que enlouquece qualquer bicho de sangue frio. Sem a coroa, as cobras se acalmam."
+
+msgid "DLG_FDCHARM_3"
+msgstr "Falem com o Cogumelo Ancestral, no círculo, e o Rei acorda. Derrubem-no e tragam a coroa: eu dou a Chave de Espinho, a outra do portão do Ancião."
+
+msgid "DLG_FDCHARM_ACTIVE"
+msgstr "O Círculo de Esporos fica a leste, depois do Bosque dos Cogumelos. A coroa é roxa e solta fumaça. Não respirem perto dela."
+
+msgid "DLG_FDCHARM_DONE"
+msgstr "A coroa! As cobras já estão voltando a me ouvir. A Chave de Espinho é de vocês: levem-na ao Guardião, junto com a de Musgo."
+
+msgid "DLG_FDCHARM_WAIT"
+msgstr "A flauta toca sozinha quando estou calmo. Voltem quando quiserem ouvi-la."
+
+msgid "DLG_FDMUSH_1"
+msgstr "O cogumelo gigante pulsa em roxo, soltando esporos que brilham no ar, e um chapéu enorme se inclina sobre você como se escutasse."
+
+msgid "DLG_FDMUSH_2"
+msgstr "O Rei dos Esporos acorda!"
+
+msgid "DLG_FDMUSH_LOCKED"
+msgstr "Um cogumelo enorme, imóvel, rodeado de um anel de companheiros. Nada responde ao seu toque."
+
+msgid "DLG_FDWARD_1"
+msgstr "Alto. Este portão fecha o Covil, e no Covil mora o Ancião Sombrio, a árvore que já era velha antes desta floresta escurecer. Eu cuido do portão desde que ele ainda tinha folhas."
+
+msgid "DLG_FDWARD_2"
+msgstr "O portão só abre com DUAS chaves: a de Musgo e a de Espinho. A primeira está com a Herbalista Mirta, no bosque de cogumelos a leste; a segunda, com o Encantador Zhar, no pântano a oeste."
+
+msgid "DLG_FDWARD_3"
+msgstr "Cada um cobra um preço: uma presa, uma coroa. Tragam as duas chaves a mim e eu abro a passagem."
+
+msgid "DLG_FDWARD_ACTIVE"
+msgstr "Só abro com as duas chaves, Musgo e Espinho, na mesma bolsa. A Herbalista fica a leste; o Encantador, a oeste."
+
+msgid "DLG_FDWARD_DONE"
+msgstr "As duas chaves! O portão está aberto. Cuidado: o Ancião Sombrio não corre, não precisa; todas as raízes desta floresta respondem a ele."

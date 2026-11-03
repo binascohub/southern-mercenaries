@@ -4247,3 +4247,156 @@ msgstr "Both keys! The gate is open. Beware: General Rust accepts no visitors, a
 
 msgid "VALUABLE_COMMANDER_MEDAL"
 msgstr "Commander's Medal"
+
+msgid "MONSTER_FD_VIPER"
+msgstr "Ancient Viper"
+
+msgid "MONSTER_FD_SPORE_KING"
+msgstr "Spore King"
+
+msgid "MONSTER_FD_ELDER"
+msgstr "Shadow Elder"
+
+msgid "NPC_FD_WOODCUTTER"
+msgstr "Woodcutter Ardo"
+
+msgid "NPC_FD_HERBALIST"
+msgstr "Herbalist Mirta"
+
+msgid "NPC_FD_TOTEM"
+msgstr "Serpent Totem"
+
+msgid "NPC_FD_CHARMER"
+msgstr "Charmer Zhar"
+
+msgid "NPC_FD_MUSHROOM"
+msgstr "Ancestral Mushroom"
+
+msgid "NPC_FD_WARDEN"
+msgstr "Forest Warden"
+
+msgid "VALUABLE_VIPER_FANG"
+msgstr "Ancient Viper's Fang"
+
+msgid "VALUABLE_SPORE_CROWN"
+msgstr "Spore Crown"
+
+msgid "VALUABLE_KEY_MOSS"
+msgstr "Moss Key"
+
+msgid "VALUABLE_KEY_THORN"
+msgstr "Thorn Key"
+
+msgid "TOAST_TOTEM_AWAKENS"
+msgstr "The stones hiss: the Ancient Viper slides down from the totem!"
+
+msgid "TOAST_SPORE_AWAKENS"
+msgstr "A cloud of spores rises: the Spore King awakens!"
+
+msgid "QUEST_FD_CLEAR"
+msgstr "Clear the Thicket"
+
+msgid "QUEST_FD_CLEAR_DESC"
+msgstr "Woodcutter Ardo, in the Edge Glade, asks that the first two packs holding the Thicket just to the north be brought down, so he can chop wood in peace again."
+
+msgid "QUEST_FD_FANG"
+msgstr "The Ancient Viper's Fang"
+
+msgid "QUEST_FD_FANG_DESC"
+msgstr "Herbalist Mirta, in the Mushroom Grove (east), needs the Ancient Viper's fang to brew the antidote. Touch the Serpent Totem in the Glade (west, past the Snake Bog) with the quest active, defeat the Viper and bring the fang: in return you get the Moss Key, one of the two for the Shadow Elder's gate."
+
+msgid "QUEST_FD_CROWN"
+msgstr "The Spore Crown"
+
+msgid "QUEST_FD_CROWN_DESC"
+msgstr "Charmer Zhar, in the Snake Bog (west), wants the Spore King's spore crown to calm the snakes. Touching the Ancestral Mushroom in the Spore Circle (east) wakes the King; defeat him and bring the crown to receive the Thorn Key, the other one for the Shadow Elder's gate."
+
+msgid "QUEST_FD_GATE"
+msgstr "The Elder's Gate"
+
+msgid "QUEST_FD_GATE_DESC"
+msgstr "The Forest Warden, in the lane north of the Bat Grove, only opens the gate for those with both keys: the Moss (Herbalist) and the Thorn (Charmer). Beyond lies the Shadow Elder's Lair."
+
+msgid "DLG_FDWOOD_1"
+msgstr "Mind your step: in this wood not even the trees are alive, and what moves between them is worse. I chop wood here at the edge, where one can still breathe."
+
+msgid "DLG_FDWOOD_2"
+msgstr "The first two packs, here in the Thicket to the north, have hemmed in my glade. Without them gone I cannot even fetch firewood."
+
+msgid "DLG_FDWOOD_3"
+msgstr "Bring both down and I will pay. Then talk to Herbalist Mirta, in the mushroom grove to the east, and to Charmer Zhar, in the bog to the west: they keep the keys to the Elder's gate."
+
+msgid "DLG_FDWOOD_ACTIVE"
+msgstr "The Thicket lies just north of the glade. Listen for wings: where there are bats, there is a pack."
+
+msgid "DLG_FDWOOD_DONE"
+msgstr "What a good silence! Now choose: west through the snakes, east through the mushrooms or straight north through the dry wood. All paths lead there."
+
+msgid "DLG_FDHERB_1"
+msgstr "I have gathered mushrooms and herbs for thirty years and know each by its smell. Today I need only one thing: the Ancient Viper's fang, for the antidote to this forest's poison."
+
+msgid "DLG_FDHERB_2"
+msgstr "She lives in the Serpent Glade, to the west, past the bog, coiled around a stone totem. She only wakes if someone touches the totem intending to hunt her."
+
+msgid "DLG_FDHERB_3"
+msgstr "Touch the totem, bring down the Viper and bring me the fang. I give the Moss Key, one of the two that open the Shadow Elder's gate, in the lane north of the bat grove."
+
+msgid "DLG_FDHERB_ACTIVE"
+msgstr "The Glade is west of the Thicket, past the Snake Bog. The fang is green, curved and the size of a sickle. Bring it."
+
+msgid "DLG_FDHERB_DONE"
+msgstr "The fang! Now the antidote can be brewed. The Moss Key is yours: take it to the Warden, together with the Thorn one."
+
+msgid "DLG_FDHERB_WAIT"
+msgstr "The mushrooms glow brighter when someone is kind to them. Come back anytime."
+
+msgid "DLG_FDTOTEM_1"
+msgstr "The ring of stones hisses softly, and something slides between them, slowly, leaving a trail of scales."
+
+msgid "DLG_FDTOTEM_2"
+msgstr "The Ancient Viper slides down from the totem!"
+
+msgid "DLG_FDTOTEM_LOCKED"
+msgstr "A moss-covered stone totem. Nothing answers your touch."
+
+msgid "DLG_FDCHARM_1"
+msgstr "Shh, do not shout: they hear everything. I charm this bog's snakes with a flute, but lately they do not even listen, stirred up by something in the east."
+
+msgid "DLG_FDCHARM_2"
+msgstr "It is the Spore King, in the Spore Circle: his crown sheds a dust that maddens any cold-blooded creature. Without the crown, the snakes calm down."
+
+msgid "DLG_FDCHARM_3"
+msgstr "Speak to the Ancestral Mushroom in the circle and the King wakes. Bring him down and bring the crown: I give the Thorn Key, the other for the Elder's gate."
+
+msgid "DLG_FDCHARM_ACTIVE"
+msgstr "The Spore Circle is east, past the Mushroom Grove. The crown is purple and gives off smoke. Do not breathe near it."
+
+msgid "DLG_FDCHARM_DONE"
+msgstr "The crown! The snakes are listening to me again. The Thorn Key is yours: take it to the Warden, together with the Moss one."
+
+msgid "DLG_FDCHARM_WAIT"
+msgstr "The flute plays itself when I am calm. Come back when you wish to hear it."
+
+msgid "DLG_FDMUSH_1"
+msgstr "The giant mushroom pulses purple, releasing spores that glow in the air, and a huge cap leans over you as if listening."
+
+msgid "DLG_FDMUSH_2"
+msgstr "The Spore King awakens!"
+
+msgid "DLG_FDMUSH_LOCKED"
+msgstr "A huge mushroom, motionless, ringed by companions. Nothing answers your touch."
+
+msgid "DLG_FDWARD_1"
+msgstr "Halt. This gate closes the Lair, and in the Lair lives the Shadow Elder, a tree already old before this forest darkened. I have tended the gate since it still had leaves."
+
+msgid "DLG_FDWARD_2"
+msgstr "The gate only opens with TWO keys: the Moss and the Thorn. The first is with Herbalist Mirta, in the mushroom grove to the east; the second, with Charmer Zhar, in the bog to the west."
+
+msgid "DLG_FDWARD_3"
+msgstr "Each charges a price: a fang, a crown. Bring both keys to me and I will open the way."
+
+msgid "DLG_FDWARD_ACTIVE"
+msgstr "I only open with both keys, Moss and Thorn, in the same bag. The Herbalist is to the east; the Charmer, to the west."
+
+msgid "DLG_FDWARD_DONE"
+msgstr "Both keys! The gate is open. Beware: the Shadow Elder does not run, he does not need to; every root in this forest answers to him."

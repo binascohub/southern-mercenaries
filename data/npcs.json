@@ -2462,5 +2462,274 @@
         "body": "cloth"
       }
     }
+  },
+  "fd_woodcutter": {
+    "name_key": "NPC_FD_WOODCUTTER",
+    "color": [
+      0.4,
+      0.3,
+      0.2
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "fd_clear"
+        },
+        "lines": [
+          "DLG_FDWOOD_1",
+          "DLG_FDWOOD_2",
+          "DLG_FDWOOD_3"
+        ],
+        "offer": "fd_clear"
+      },
+      {
+        "when": {
+          "quest_active": "fd_clear"
+        },
+        "lines": [
+          "DLG_FDWOOD_ACTIVE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_FDWOOD_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.3,
+        0.22,
+        0.12
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "fd_herbalist": {
+    "name_key": "NPC_FD_HERBALIST",
+    "color": [
+      0.4,
+      0.55,
+      0.35
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "fd_fang"
+        },
+        "lines": [
+          "DLG_FDHERB_1",
+          "DLG_FDHERB_2",
+          "DLG_FDHERB_3"
+        ],
+        "offer": "fd_fang"
+      },
+      {
+        "when": {
+          "quest_active": "fd_fang"
+        },
+        "lines": [
+          "DLG_FDHERB_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {
+          "quest_done": "fd_fang"
+        },
+        "lines": [
+          "DLG_FDHERB_DONE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_FDHERB_WAIT"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "female",
+      "hair": [
+        "Hair_Long"
+      ],
+      "hair_color": [
+        0.35,
+        0.3,
+        0.2
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "fd_totem": {
+    "name_key": "NPC_FD_TOTEM",
+    "color": [
+      0.4,
+      0.5,
+      0.4
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_active": "fd_fang"
+        },
+        "lines": [
+          "DLG_FDTOTEM_1",
+          "DLG_FDTOTEM_2"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_FDTOTEM_LOCKED"
+        ]
+      }
+    ]
+  },
+  "fd_charmer": {
+    "name_key": "NPC_FD_CHARMER",
+    "color": [
+      0.5,
+      0.35,
+      0.5
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "fd_crown"
+        },
+        "lines": [
+          "DLG_FDCHARM_1",
+          "DLG_FDCHARM_2",
+          "DLG_FDCHARM_3"
+        ],
+        "offer": "fd_crown"
+      },
+      {
+        "when": {
+          "quest_active": "fd_crown"
+        },
+        "lines": [
+          "DLG_FDCHARM_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {
+          "quest_done": "fd_crown"
+        },
+        "lines": [
+          "DLG_FDCHARM_DONE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_FDCHARM_WAIT"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_SimpleParted"
+      ],
+      "hair_color": [
+        0.12,
+        0.1,
+        0.12
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "fd_mushroom": {
+    "name_key": "NPC_FD_MUSHROOM",
+    "color": [
+      0.7,
+      0.45,
+      1.0
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_active": "fd_crown"
+        },
+        "lines": [
+          "DLG_FDMUSH_1",
+          "DLG_FDMUSH_2"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_FDMUSH_LOCKED"
+        ]
+      }
+    ]
+  },
+  "fd_warden": {
+    "name_key": "NPC_FD_WARDEN",
+    "color": [
+      0.35,
+      0.4,
+      0.4
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "fd_gate"
+        },
+        "lines": [
+          "DLG_FDWARD_1",
+          "DLG_FDWARD_2",
+          "DLG_FDWARD_3"
+        ],
+        "offer": "fd_gate"
+      },
+      {
+        "when": {
+          "quest_active": "fd_gate"
+        },
+        "lines": [
+          "DLG_FDWARD_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_FDWARD_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.45,
+        0.45,
+        0.4
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
   }
 }

@@ -2300,6 +2300,9 @@ func _build_crowd(entry: Dictionary) -> void:
 	if entry.role == "brawl":
 		_build_brawl(entry, at)
 		return
+	if entry.role == "bat":
+		_build_bat(entry, at)
+		return
 	var look := _crowd_look(String(entry.role), at, entry)
 	if look.is_empty() and not NpcModel.has_model(String(entry.role)):
 		return
@@ -2332,6 +2335,23 @@ func _build_crowd(entry: Dictionary) -> void:
 		walker.speed = float(entry.get("speed", 1.2))
 		walker.model = model
 		model.call("set_pose", "walk")
+
+
+## Morcego de cenário solto no mapa (papel "bat" do "crowd"): voa em círculos em volta do ponto, com o raio ("radius"), a altura ("height") e a velocidade ("speed") dados.
+func _build_bat(entry: Dictionary, at: Vector3) -> void:
+	if not NpcModel.has_model("bat"):
+		return
+	var flyer := Flyer.new()
+	flyer.center = at
+	flyer.radius = float(entry.get("radius", 2.5))
+	flyer.height = float(entry.get("height", 2.6))
+	flyer.speed = float(entry.get("speed", 3.0))
+	flyer.direction = 1.0 if float(entry.get("rotation", 0.0)) < 180.0 else -1.0
+	flyer.phase = deg_to_rad(float(entry.get("rotation", 0.0)))
+	_area_root.add_child(flyer)
+	var model := NpcModel.create("bat")
+	flyer.add_child(model)
+	model.call("set_pose", "walk")
 
 
 ## Cobertura da forja (o telhado de pano xadrez da barraca "patch"); sempre verdadeiro,

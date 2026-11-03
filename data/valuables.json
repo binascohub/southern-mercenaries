@@ -349,5 +349,33 @@
     "maps": [],
     "quest_item": true,
     "model": "Coin_Gold"
+  },
+  "viper_fang": {
+    "name_key": "VALUABLE_VIPER_FANG",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Dungeon_Bone"
+  },
+  "spore_crown": {
+    "name_key": "VALUABLE_SPORE_CROWN",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Mushroom_Cluster"
+  },
+  "key_moss": {
+    "name_key": "VALUABLE_KEY_MOSS",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Clubs"
+  },
+  "key_thorn": {
+    "name_key": "VALUABLE_KEY_THORN",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Spades"
   }
 }

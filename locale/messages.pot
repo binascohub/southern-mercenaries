@@ -3988,3 +3988,156 @@ msgstr ""
 
 msgid "VALUABLE_COMMANDER_MEDAL"
 msgstr ""
+
+msgid "MONSTER_FD_VIPER"
+msgstr ""
+
+msgid "MONSTER_FD_SPORE_KING"
+msgstr ""
+
+msgid "MONSTER_FD_ELDER"
+msgstr ""
+
+msgid "NPC_FD_WOODCUTTER"
+msgstr ""
+
+msgid "NPC_FD_HERBALIST"
+msgstr ""
+
+msgid "NPC_FD_TOTEM"
+msgstr ""
+
+msgid "NPC_FD_CHARMER"
+msgstr ""
+
+msgid "NPC_FD_MUSHROOM"
+msgstr ""
+
+msgid "NPC_FD_WARDEN"
+msgstr ""
+
+msgid "VALUABLE_VIPER_FANG"
+msgstr ""
+
+msgid "VALUABLE_SPORE_CROWN"
+msgstr ""
+
+msgid "VALUABLE_KEY_MOSS"
+msgstr ""
+
+msgid "VALUABLE_KEY_THORN"
+msgstr ""
+
+msgid "TOAST_TOTEM_AWAKENS"
+msgstr ""
+
+msgid "TOAST_SPORE_AWAKENS"
+msgstr ""
+
+msgid "QUEST_FD_CLEAR"
+msgstr ""
+
+msgid "QUEST_FD_CLEAR_DESC"
+msgstr ""
+
+msgid "QUEST_FD_FANG"
+msgstr ""
+
+msgid "QUEST_FD_FANG_DESC"
+msgstr ""
+
+msgid "QUEST_FD_CROWN"
+msgstr ""
+
+msgid "QUEST_FD_CROWN_DESC"
+msgstr ""
+
+msgid "QUEST_FD_GATE"
+msgstr ""
+
+msgid "QUEST_FD_GATE_DESC"
+msgstr ""
+
+msgid "DLG_FDWOOD_1"
+msgstr ""
+
+msgid "DLG_FDWOOD_2"
+msgstr ""
+
+msgid "DLG_FDWOOD_3"
+msgstr ""
+
+msgid "DLG_FDWOOD_ACTIVE"
+msgstr ""
+
+msgid "DLG_FDWOOD_DONE"
+msgstr ""
+
+msgid "DLG_FDHERB_1"
+msgstr ""
+
+msgid "DLG_FDHERB_2"
+msgstr ""
+
+msgid "DLG_FDHERB_3"
+msgstr ""
+
+msgid "DLG_FDHERB_ACTIVE"
+msgstr ""
+
+msgid "DLG_FDHERB_DONE"
+msgstr ""
+
+msgid "DLG_FDHERB_WAIT"
+msgstr ""
+
+msgid "DLG_FDTOTEM_1"
+msgstr ""
+
+msgid "DLG_FDTOTEM_2"
+msgstr ""
+
+msgid "DLG_FDTOTEM_LOCKED"
+msgstr ""
+
+msgid "DLG_FDCHARM_1"
+msgstr ""
+
+msgid "DLG_FDCHARM_2"
+msgstr ""
+
+msgid "DLG_FDCHARM_3"
+msgstr ""
+
+msgid "DLG_FDCHARM_ACTIVE"
+msgstr ""
+
+msgid "DLG_FDCHARM_DONE"
+msgstr ""
+
+msgid "DLG_FDCHARM_WAIT"
+msgstr ""
+
+msgid "DLG_FDMUSH_1"
+msgstr ""
+
+msgid "DLG_FDMUSH_2"
+msgstr ""
+
+msgid "DLG_FDMUSH_LOCKED"
+msgstr ""
+
+msgid "DLG_FDWARD_1"
+msgstr ""
+
+msgid "DLG_FDWARD_2"
+msgstr ""
+
+msgid "DLG_FDWARD_3"
+msgstr ""
+
+msgid "DLG_FDWARD_ACTIVE"
+msgstr ""
+
+msgid "DLG_FDWARD_DONE"
+msgstr ""
