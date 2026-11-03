@@ -4969,3 +4969,6 @@ msgstr ""
 
 msgid "DLG_CEMETERY_ALTAR_LOCKED"
 msgstr ""
+
+msgid "TOAST_BREAKABLE_MIMIC"
+msgstr ""

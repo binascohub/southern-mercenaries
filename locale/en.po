@@ -5228,3 +5228,6 @@ msgstr "You rest Caretaker's Register on the stone of the Avenue Altar and read 
 
 msgid "DLG_CEMETERY_ALTAR_LOCKED"
 msgstr "The stone does not react. There is an empty gap in the center, the size of a book: Gravedigger's Roll or Caretaker's Register must hold what is missing."
+
+msgid "TOAST_BREAKABLE_MIMIC"
+msgstr "It was a Mimic!"

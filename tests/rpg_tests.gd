@@ -36,6 +36,7 @@ func _ready() -> void:
 	_test_spell_fx()
 	_test_skill_anims()
 	_test_map_mechanics()
+	_test_crates_pots()
 	_test_rpg_sounds()
 	_test_sewer_aggression()
 	_test_archer()
@@ -586,6 +587,19 @@ func _test_skill_anims() -> void:
 
 ## A mecânica de missões do Esgoto vale em todos os mapas: um só altar (needs_key + extra_summons), dois moradores que dão um livro e pedem o item do mini-chefe (e dão uma chave), guardião com as duas chaves,
 ## chefe que larga o item da cidade.
+## Caixotes e potes quebráveis em grupos nos cantos (tabelas com poção e Mímico) em todos os mapas de combate.
+func _test_crates_pots() -> void:
+	var bad: Array[String] = []
+	for area_id: String in ["sewers_01_drains", "forest_01_path", "ruins_01_city", "cemetery_01_yard", "fort_01_gate", "catacombs_01_depths", "desert_01_canyon", "docks_01_pier", "mine_01_crystal_vein", "bunker_01_entrance", "dark_forest_01_woods"]:
+		var list: Array = GameData.arenas[area_id].breakables
+		var crates: Array = list.filter(func(b: Dictionary) -> bool: return b.monster == "crate")
+		var pots: Array = list.filter(func(b: Dictionary) -> bool: return b.monster == "pot")
+		if crates.size() < 3 or pots.size() < 5 or not list.all(func(b: Dictionary) -> bool: return GameData.monsters.get(b.monster, {}).get("breakable", false) and GameData.monsters[b.monster].look != "barrel"):
+			bad.append(area_id)
+	_check(bad.is_empty() and GameData.loot.breakable_crate.outcomes.has("mimic") and GameData.loot.breakable_pot.outcomes.has("potion_health") and GameData.monsters.has("chest_mimic"),
+		"todos os mapas têm caixotes e potes quebráveis (poção ou Mímico) e nenhum barril quebrável (%s)" % [bad])
+
+
 func _test_map_mechanics() -> void:
 	var maps := ["sewers_01_drains", "forest_01_path", "ruins_01_city", "cemetery_01_yard", "fort_01_gate", "catacombs_01_depths", "desert_01_canyon", "docks_01_pier", "mine_01_crystal_vein", "bunker_01_entrance", "dark_forest_01_woods"]
 	var bad: Array[String] = []
@@ -1298,7 +1312,7 @@ func _test_sewers() -> void:
 			and tr(group.get("toast", "")) != group.get("toast", "") and GameData.monsters.has(group.monsters[0].monster))),
 		"Floresta: só o altar único (o templo) invoca mini-chefes; a Guardiã da Pira não invoca")
 	# Floresta: alguns cervos quebráveis, parados, que só soltam carne (cura como a poção de vida).
-	var deer: Array = GameData.arenas.forest_01_path.get("breakables", []).filter(func(b: Dictionary) -> bool: return b.monster != "coin_bag")  # a bolsa de moedas é outro objeto
+	var deer: Array = GameData.arenas.forest_01_path.get("breakables", []).filter(func(b: Dictionary) -> bool: return b.monster.begins_with("deer"))  # a bolsa de moedas, os caixotes e os potes são outros objetos
 	_check(deer.size() >= 3 and deer.size() <= 40 and deer.all(func(b: Dictionary) -> bool:
 		var m: Dictionary = GameData.monsters.get(b.monster, {})
 		return m.get("breakable", false) and m.get("ai", "") == "static" and float(m.get("damage", 1)) == 0.0 \

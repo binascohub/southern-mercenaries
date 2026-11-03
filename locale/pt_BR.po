@@ -5228,3 +5228,6 @@ msgstr "Você apoia Registro da Zeladora na pedra do Altar da Alameda e lê em v
 
 msgid "DLG_CEMETERY_ALTAR_LOCKED"
 msgstr "A pedra não reage. Há um vazio no centro, do tamanho de um livro: Rol do Coveiro ou Registro da Zeladora devem ter o que falta."
+
+msgid "TOAST_BREAKABLE_MIMIC"
+msgstr "Era um Mímico!"

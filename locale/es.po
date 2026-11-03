@@ -5228,3 +5228,6 @@ msgstr "Apoyas Registro de la Cuidadora en la piedra del Altar de la Alameda y l
 
 msgid "DLG_CEMETERY_ALTAR_LOCKED"
 msgstr "La piedra no reacciona. Hay un hueco en el centro, del tamaño de un libro: Rol del Sepulturero o Registro de la Cuidadora deben tener lo que falta."
+
+msgid "TOAST_BREAKABLE_MIMIC"
+msgstr "¡Era un Mímico!"

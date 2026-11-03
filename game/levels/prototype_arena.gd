@@ -1444,6 +1444,10 @@ func _break(box: Enemy) -> void:
 		outcome = "nothing"
 	elif outcome == "valuable" and _rng.randf() >= _loot_scaled(1.0, "valuable"):
 		outcome = "nothing"
+	if outcome == "mimic":  # era um Mímico escondido (caixotes e potes dos cantos)
+		spawn_adds(at, "chest_mimic", 1, 0.8)
+		_toast_all("TOAST_BREAKABLE_MIMIC", {})
+		return
 	if outcome == "monsters":
 		var count := _rng.randi_range(int(table.monsters.count[0]), int(table.monsters.count[1]))
 		spawn_adds(at, String(table.monsters.monster), count, 1.2)

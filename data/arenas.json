@@ -7621,6 +7621,1851 @@
           1.5
         ],
         "table": "coin_bag"
+      },
+      {
+        "id": "cx_1",
+        "monster": "crate",
+        "position": [
+          17.3,
+          -64.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_2",
+        "monster": "crate",
+        "position": [
+          16.2,
+          -64.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_3",
+        "monster": "crate",
+        "position": [
+          17.3,
+          -63.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_4",
+        "monster": "crate",
+        "position": [
+          -14.3,
+          -177.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_5",
+        "monster": "crate",
+        "position": [
+          -13.2,
+          -177.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_6",
+        "monster": "crate",
+        "position": [
+          -14.3,
+          -178.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_1",
+        "monster": "pot",
+        "position": [
+          67.7,
+          -115.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_2",
+        "monster": "pot",
+        "position": [
+          68.3,
+          -117.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_3",
+        "monster": "pot",
+        "position": [
+          69.1,
+          -116.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_4",
+        "monster": "pot",
+        "position": [
+          68.5,
+          -115.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_5",
+        "monster": "pot",
+        "position": [
+          68.0,
+          -116.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_6",
+        "monster": "pot",
+        "position": [
+          69.2,
+          -117.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_7",
+        "monster": "crate",
+        "position": [
+          -92.3,
+          -91.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_8",
+        "monster": "crate",
+        "position": [
+          -91.2,
+          -91.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_9",
+        "monster": "crate",
+        "position": [
+          -92.3,
+          -90.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_7",
+        "monster": "pot",
+        "position": [
+          9.1,
+          -100.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_8",
+        "monster": "pot",
+        "position": [
+          10.2,
+          -99.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_9",
+        "monster": "pot",
+        "position": [
+          9.2,
+          -99.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_10",
+        "monster": "pot",
+        "position": [
+          9.7,
+          -100.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_11",
+        "monster": "pot",
+        "position": [
+          9.6,
+          -98.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_12",
+        "monster": "pot",
+        "position": [
+          8.9,
+          -98.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_13",
+        "monster": "pot",
+        "position": [
+          -35.7,
+          -158.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_14",
+        "monster": "pot",
+        "position": [
+          -35.1,
+          -159.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_15",
+        "monster": "pot",
+        "position": [
+          -35.8,
+          -160.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_16",
+        "monster": "pot",
+        "position": [
+          -35.0,
+          -159.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_17",
+        "monster": "pot",
+        "position": [
+          -36.3,
+          -159.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_18",
+        "monster": "pot",
+        "position": [
+          -35.7,
+          -159.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_19",
+        "monster": "pot",
+        "position": [
+          -34.9,
+          -160.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_20",
+        "monster": "pot",
+        "position": [
+          85.9,
+          -69.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_21",
+        "monster": "pot",
+        "position": [
+          86.9,
+          -69.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_22",
+        "monster": "pot",
+        "position": [
+          87.0,
+          -70.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_23",
+        "monster": "pot",
+        "position": [
+          86.2,
+          -69.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_24",
+        "monster": "pot",
+        "position": [
+          86.6,
+          -68.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_25",
+        "monster": "pot",
+        "position": [
+          29.2,
+          -86.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_26",
+        "monster": "pot",
+        "position": [
+          29.7,
+          -87.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_27",
+        "monster": "pot",
+        "position": [
+          30.2,
+          -88.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_28",
+        "monster": "pot",
+        "position": [
+          30.3,
+          -87.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_29",
+        "monster": "pot",
+        "position": [
+          28.9,
+          -88.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_30",
+        "monster": "pot",
+        "position": [
+          28.9,
+          -87.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_31",
+        "monster": "pot",
+        "position": [
+          -82.8,
+          -78.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_32",
+        "monster": "pot",
+        "position": [
+          -83.5,
+          -78.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_33",
+        "monster": "pot",
+        "position": [
+          -83.4,
+          -77.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_34",
+        "monster": "pot",
+        "position": [
+          -81.6,
+          -77.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_35",
+        "monster": "pot",
+        "position": [
+          -82.1,
+          -77.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_36",
+        "monster": "pot",
+        "position": [
+          -84.2,
+          -77.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_37",
+        "monster": "pot",
+        "position": [
+          -82.8,
+          -77.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_38",
+        "monster": "pot",
+        "position": [
+          55.8,
+          -99.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_39",
+        "monster": "pot",
+        "position": [
+          55.2,
+          -99.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_40",
+        "monster": "pot",
+        "position": [
+          56.3,
+          -99.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_41",
+        "monster": "pot",
+        "position": [
+          55.1,
+          -98.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_42",
+        "monster": "pot",
+        "position": [
+          54.8,
+          -100.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_43",
+        "monster": "pot",
+        "position": [
+          61.9,
+          -116.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_44",
+        "monster": "pot",
+        "position": [
+          61.8,
+          -115.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_45",
+        "monster": "pot",
+        "position": [
+          61.0,
+          -116.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_46",
+        "monster": "pot",
+        "position": [
+          60.8,
+          -115.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_47",
+        "monster": "pot",
+        "position": [
+          61.5,
+          -117.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_48",
+        "monster": "pot",
+        "position": [
+          62.3,
+          -117.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_10",
+        "monster": "crate",
+        "position": [
+          -60.7,
+          -91.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_11",
+        "monster": "crate",
+        "position": [
+          -61.8,
+          -91.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_12",
+        "monster": "crate",
+        "position": [
+          -60.7,
+          -92.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_49",
+        "monster": "pot",
+        "position": [
+          -3.9,
+          -39.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_50",
+        "monster": "pot",
+        "position": [
+          -3.4,
+          -39.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_51",
+        "monster": "pot",
+        "position": [
+          -3.0,
+          -39.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_52",
+        "monster": "pot",
+        "position": [
+          -2.9,
+          -40.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_53",
+        "monster": "pot",
+        "position": [
+          -4.0,
+          -39.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_54",
+        "monster": "pot",
+        "position": [
+          -3.1,
+          -38.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_55",
+        "monster": "pot",
+        "position": [
+          43.2,
+          -39.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_56",
+        "monster": "pot",
+        "position": [
+          43.2,
+          -39.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_57",
+        "monster": "pot",
+        "position": [
+          42.5,
+          -40.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_58",
+        "monster": "pot",
+        "position": [
+          42.0,
+          -38.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_59",
+        "monster": "pot",
+        "position": [
+          41.7,
+          -40.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_60",
+        "monster": "pot",
+        "position": [
+          42.2,
+          -39.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_61",
+        "monster": "pot",
+        "position": [
+          -8.9,
+          -31.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_62",
+        "monster": "pot",
+        "position": [
+          -9.6,
+          -33.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_63",
+        "monster": "pot",
+        "position": [
+          -9.7,
+          -31.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_64",
+        "monster": "pot",
+        "position": [
+          -9.9,
+          -32.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_65",
+        "monster": "pot",
+        "position": [
+          -9.3,
+          -32.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_66",
+        "monster": "pot",
+        "position": [
+          -9.0,
+          -33.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_67",
+        "monster": "pot",
+        "position": [
+          -10.3,
+          -33.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_13",
+        "monster": "crate",
+        "position": [
+          -69.3,
+          -91.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_14",
+        "monster": "crate",
+        "position": [
+          -68.2,
+          -91.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_15",
+        "monster": "crate",
+        "position": [
+          -69.3,
+          -92.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_68",
+        "monster": "pot",
+        "position": [
+          82.3,
+          -149.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_69",
+        "monster": "pot",
+        "position": [
+          83.4,
+          -150.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_70",
+        "monster": "pot",
+        "position": [
+          84.0,
+          -149.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_71",
+        "monster": "pot",
+        "position": [
+          83.2,
+          -149.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_72",
+        "monster": "pot",
+        "position": [
+          82.1,
+          -150.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_73",
+        "monster": "pot",
+        "position": [
+          -10.1,
+          -39.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_74",
+        "monster": "pot",
+        "position": [
+          -8.9,
+          -40.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_75",
+        "monster": "pot",
+        "position": [
+          -8.8,
+          -39.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_76",
+        "monster": "pot",
+        "position": [
+          -9.7,
+          -40.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_77",
+        "monster": "pot",
+        "position": [
+          -9.2,
+          -38.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_78",
+        "monster": "pot",
+        "position": [
+          -10.3,
+          -40.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_79",
+        "monster": "pot",
+        "position": [
+          -9.4,
+          -39.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_16",
+        "monster": "crate",
+        "position": [
+          4.3,
+          -52.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_17",
+        "monster": "crate",
+        "position": [
+          3.2,
+          -52.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_18",
+        "monster": "crate",
+        "position": [
+          4.3,
+          -51.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_80",
+        "monster": "pot",
+        "position": [
+          -9.9,
+          -135.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_81",
+        "monster": "pot",
+        "position": [
+          -9.3,
+          -135.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_82",
+        "monster": "pot",
+        "position": [
+          -8.8,
+          -135.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_83",
+        "monster": "pot",
+        "position": [
+          -10.2,
+          -136.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_84",
+        "monster": "pot",
+        "position": [
+          -8.8,
+          -136.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_85",
+        "monster": "pot",
+        "position": [
+          91.2,
+          -161.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_86",
+        "monster": "pot",
+        "position": [
+          91.9,
+          -162.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_87",
+        "monster": "pot",
+        "position": [
+          90.7,
+          -163.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_88",
+        "monster": "pot",
+        "position": [
+          92.3,
+          -163.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_89",
+        "monster": "pot",
+        "position": [
+          91.5,
+          -162.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_90",
+        "monster": "pot",
+        "position": [
+          90.9,
+          -162.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_91",
+        "monster": "pot",
+        "position": [
+          13.4,
+          -188.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_92",
+        "monster": "pot",
+        "position": [
+          13.4,
+          -186.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_93",
+        "monster": "pot",
+        "position": [
+          14.0,
+          -188.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_94",
+        "monster": "pot",
+        "position": [
+          12.9,
+          -187.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_95",
+        "monster": "pot",
+        "position": [
+          14.3,
+          -187.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_96",
+        "monster": "pot",
+        "position": [
+          12.9,
+          -185.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_97",
+        "monster": "pot",
+        "position": [
+          14.1,
+          -186.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_98",
+        "monster": "pot",
+        "position": [
+          -35.3,
+          -152.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_99",
+        "monster": "pot",
+        "position": [
+          -34.9,
+          -152.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_100",
+        "monster": "pot",
+        "position": [
+          -36.0,
+          -152.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_101",
+        "monster": "pot",
+        "position": [
+          -36.0,
+          -151.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_102",
+        "monster": "pot",
+        "position": [
+          -35.6,
+          -153.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_103",
+        "monster": "pot",
+        "position": [
+          -36.3,
+          -153.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_104",
+        "monster": "pot",
+        "position": [
+          -34.7,
+          -151.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_105",
+        "monster": "pot",
+        "position": [
+          3.6,
+          -99.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_106",
+        "monster": "pot",
+        "position": [
+          3.9,
+          -98.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_107",
+        "monster": "pot",
+        "position": [
+          3.1,
+          -99.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_108",
+        "monster": "pot",
+        "position": [
+          2.9,
+          -99.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_109",
+        "monster": "pot",
+        "position": [
+          4.2,
+          -99.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_110",
+        "monster": "pot",
+        "position": [
+          3.8,
+          -100.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_111",
+        "monster": "pot",
+        "position": [
+          -68.6,
+          -158.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_112",
+        "monster": "pot",
+        "position": [
+          -68.9,
+          -159.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_113",
+        "monster": "pot",
+        "position": [
+          -67.7,
+          -159.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_114",
+        "monster": "pot",
+        "position": [
+          -68.2,
+          -160.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_115",
+        "monster": "pot",
+        "position": [
+          -69.2,
+          -158.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_116",
+        "monster": "pot",
+        "position": [
+          -68.9,
+          -160.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_117",
+        "monster": "pot",
+        "position": [
+          -16.8,
+          -91.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_118",
+        "monster": "pot",
+        "position": [
+          -16.3,
+          -92.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_119",
+        "monster": "pot",
+        "position": [
+          -16.3,
+          -93.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_120",
+        "monster": "pot",
+        "position": [
+          -16.9,
+          -92.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_121",
+        "monster": "pot",
+        "position": [
+          -17.3,
+          -92.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_122",
+        "monster": "pot",
+        "position": [
+          -68.3,
+          -51.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_123",
+        "monster": "pot",
+        "position": [
+          -68.4,
+          -51.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_124",
+        "monster": "pot",
+        "position": [
+          -69.1,
+          -51.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_125",
+        "monster": "pot",
+        "position": [
+          -67.7,
+          -51.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_126",
+        "monster": "pot",
+        "position": [
+          -69.1,
+          -51.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_127",
+        "monster": "pot",
+        "position": [
+          -42.3,
+          -104.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_128",
+        "monster": "pot",
+        "position": [
+          -42.6,
+          -104.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_129",
+        "monster": "pot",
+        "position": [
+          -42.0,
+          -105.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_130",
+        "monster": "pot",
+        "position": [
+          -43.3,
+          -104.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_131",
+        "monster": "pot",
+        "position": [
+          -43.0,
+          -103.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_19",
+        "monster": "crate",
+        "position": [
+          -17.3,
+          -139.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_20",
+        "monster": "crate",
+        "position": [
+          -16.2,
+          -139.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_21",
+        "monster": "crate",
+        "position": [
+          -17.3,
+          -140.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_132",
+        "monster": "pot",
+        "position": [
+          74.4,
+          -149.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_133",
+        "monster": "pot",
+        "position": [
+          73.8,
+          -149.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_134",
+        "monster": "pot",
+        "position": [
+          75.3,
+          -149.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_135",
+        "monster": "pot",
+        "position": [
+          74.4,
+          -149.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_136",
+        "monster": "pot",
+        "position": [
+          74.0,
+          -150.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_137",
+        "monster": "pot",
+        "position": [
+          75.0,
+          -150.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_22",
+        "monster": "crate",
+        "position": [
+          14.3,
+          -198.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_23",
+        "monster": "crate",
+        "position": [
+          15.4,
+          -198.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_24",
+        "monster": "crate",
+        "position": [
+          14.8,
+          -197.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_138",
+        "monster": "pot",
+        "position": [
+          41.8,
+          -75.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_139",
+        "monster": "pot",
+        "position": [
+          42.6,
+          -75.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_140",
+        "monster": "pot",
+        "position": [
+          43.2,
+          -76.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_141",
+        "monster": "pot",
+        "position": [
+          42.2,
+          -74.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_142",
+        "monster": "pot",
+        "position": [
+          43.2,
+          -75.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_143",
+        "monster": "pot",
+        "position": [
+          42.4,
+          -76.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_144",
+        "monster": "pot",
+        "position": [
+          43.1,
+          -74.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_145",
+        "monster": "pot",
+        "position": [
+          42.2,
+          -44.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_146",
+        "monster": "pot",
+        "position": [
+          42.6,
+          -45.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_147",
+        "monster": "pot",
+        "position": [
+          41.8,
+          -45.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_148",
+        "monster": "pot",
+        "position": [
+          41.8,
+          -43.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_149",
+        "monster": "pot",
+        "position": [
+          42.9,
+          -43.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_150",
+        "monster": "pot",
+        "position": [
+          43.3,
+          -44.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_151",
+        "monster": "pot",
+        "position": [
+          -13.4,
+          -199.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_152",
+        "monster": "pot",
+        "position": [
+          -13.5,
+          -198.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_153",
+        "monster": "pot",
+        "position": [
+          -14.0,
+          -198.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_154",
+        "monster": "pot",
+        "position": [
+          -12.9,
+          -199.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_155",
+        "monster": "pot",
+        "position": [
+          -14.0,
+          -197.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_156",
+        "monster": "pot",
+        "position": [
+          -13.3,
+          -197.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_157",
+        "monster": "pot",
+        "position": [
+          -14.0,
+          -199.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_158",
+        "monster": "pot",
+        "position": [
+          -12.7,
+          -200.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_25",
+        "monster": "crate",
+        "position": [
+          56.3,
+          -52.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_26",
+        "monster": "crate",
+        "position": [
+          55.2,
+          -52.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_27",
+        "monster": "crate",
+        "position": [
+          56.3,
+          -51.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_159",
+        "monster": "pot",
+        "position": [
+          -68.6,
+          -44.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_160",
+        "monster": "pot",
+        "position": [
+          -68.0,
+          -45.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_161",
+        "monster": "pot",
+        "position": [
+          -69.1,
+          -45.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_162",
+        "monster": "pot",
+        "position": [
+          -68.7,
+          -44.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_163",
+        "monster": "pot",
+        "position": [
+          -67.9,
+          -44.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_164",
+        "monster": "pot",
+        "position": [
+          -67.7,
+          -43.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_165",
+        "monster": "pot",
+        "position": [
+          -10.1,
+          -123.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_166",
+        "monster": "pot",
+        "position": [
+          -10.0,
+          -122.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_167",
+        "monster": "pot",
+        "position": [
+          -8.9,
+          -123.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_168",
+        "monster": "pot",
+        "position": [
+          -9.5,
+          -124.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_169",
+        "monster": "pot",
+        "position": [
+          -9.1,
+          -122.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_28",
+        "monster": "crate",
+        "position": [
+          34.7,
+          -79.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_29",
+        "monster": "crate",
+        "position": [
+          35.8,
+          -79.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_30",
+        "monster": "crate",
+        "position": [
+          34.7,
+          -80.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_31",
+        "monster": "crate",
+        "position": [
+          -30.3,
+          -160.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_32",
+        "monster": "crate",
+        "position": [
+          -29.2,
+          -160.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_33",
+        "monster": "crate",
+        "position": [
+          -30.3,
+          -159.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_34",
+        "monster": "crate",
+        "position": [
+          -8.7,
+          -127.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_35",
+        "monster": "crate",
+        "position": [
+          -9.8,
+          -127.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_36",
+        "monster": "crate",
+        "position": [
+          -8.7,
+          -128.8
+        ],
+        "table": "breakable_crate"
       }
     ],
     "style": {
@@ -11093,6 +12938,771 @@
           -131.1
         ],
         "table": "coin_bag"
+      },
+      {
+        "id": "cx_1",
+        "monster": "crate",
+        "position": [
+          84.3,
+          -136.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_2",
+        "monster": "crate",
+        "position": [
+          85.3,
+          -136.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_3",
+        "monster": "crate",
+        "position": [
+          84.8,
+          -135.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_4",
+        "monster": "crate",
+        "position": [
+          13.7,
+          12.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_5",
+        "monster": "crate",
+        "position": [
+          14.8,
+          12.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_6",
+        "monster": "crate",
+        "position": [
+          13.7,
+          11.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_1",
+        "monster": "pot",
+        "position": [
+          9.1,
+          -52.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_2",
+        "monster": "pot",
+        "position": [
+          8.2,
+          -53.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_3",
+        "monster": "pot",
+        "position": [
+          7.9,
+          -51.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_4",
+        "monster": "pot",
+        "position": [
+          8.8,
+          -52.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_5",
+        "monster": "pot",
+        "position": [
+          9.2,
+          -53.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_6",
+        "monster": "pot",
+        "position": [
+          8.5,
+          -52.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_7",
+        "monster": "pot",
+        "position": [
+          8.0,
+          -52.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_8",
+        "monster": "pot",
+        "position": [
+          33.2,
+          4.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_9",
+        "monster": "pot",
+        "position": [
+          33.6,
+          5.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_10",
+        "monster": "pot",
+        "position": [
+          34.2,
+          2.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_11",
+        "monster": "pot",
+        "position": [
+          33.7,
+          3.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_12",
+        "monster": "pot",
+        "position": [
+          34.1,
+          4.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_13",
+        "monster": "pot",
+        "position": [
+          33.3,
+          3.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_7",
+        "monster": "crate",
+        "position": [
+          84.3,
+          -126.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_8",
+        "monster": "crate",
+        "position": [
+          85.3,
+          -126.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_9",
+        "monster": "crate",
+        "position": [
+          84.8,
+          -125.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_14",
+        "monster": "pot",
+        "position": [
+          24.2,
+          32.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_15",
+        "monster": "pot",
+        "position": [
+          25.0,
+          31.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_16",
+        "monster": "pot",
+        "position": [
+          25.4,
+          33.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_17",
+        "monster": "pot",
+        "position": [
+          23.0,
+          31.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_18",
+        "monster": "pot",
+        "position": [
+          23.7,
+          32.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_19",
+        "monster": "pot",
+        "position": [
+          24.5,
+          32.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_20",
+        "monster": "pot",
+        "position": [
+          23.4,
+          33.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_21",
+        "monster": "pot",
+        "position": [
+          22.7,
+          33.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_10",
+        "monster": "crate",
+        "position": [
+          128.7,
+          -147.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_11",
+        "monster": "crate",
+        "position": [
+          129.8,
+          -147.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_12",
+        "monster": "crate",
+        "position": [
+          128.7,
+          -146.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_22",
+        "monster": "pot",
+        "position": [
+          84.6,
+          -44.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_23",
+        "monster": "pot",
+        "position": [
+          86.4,
+          -43.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_24",
+        "monster": "pot",
+        "position": [
+          84.0,
+          -43.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_25",
+        "monster": "pot",
+        "position": [
+          85.6,
+          -42.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_26",
+        "monster": "pot",
+        "position": [
+          86.4,
+          -44.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_27",
+        "monster": "pot",
+        "position": [
+          86.8,
+          -42.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_28",
+        "monster": "pot",
+        "position": [
+          85.0,
+          -43.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_29",
+        "monster": "pot",
+        "position": [
+          85.5,
+          -43.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_13",
+        "monster": "crate",
+        "position": [
+          -39.3,
+          -61.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_14",
+        "monster": "crate",
+        "position": [
+          -38.2,
+          -61.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_15",
+        "monster": "crate",
+        "position": [
+          -38.8,
+          -60.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_30",
+        "monster": "pot",
+        "position": [
+          160.1,
+          -21.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_31",
+        "monster": "pot",
+        "position": [
+          159.5,
+          -21.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_32",
+        "monster": "pot",
+        "position": [
+          159.3,
+          -19.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_33",
+        "monster": "pot",
+        "position": [
+          160.0,
+          -18.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_34",
+        "monster": "pot",
+        "position": [
+          160.0,
+          -19.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_35",
+        "monster": "pot",
+        "position": [
+          159.1,
+          -18.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_36",
+        "monster": "pot",
+        "position": [
+          159.0,
+          -21.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_37",
+        "monster": "pot",
+        "position": [
+          159.5,
+          -20.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_16",
+        "monster": "crate",
+        "position": [
+          1.7,
+          -82.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_17",
+        "monster": "crate",
+        "position": [
+          2.8,
+          -82.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_18",
+        "monster": "crate",
+        "position": [
+          2.2,
+          -81.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_38",
+        "monster": "pot",
+        "position": [
+          22.9,
+          -99.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_39",
+        "monster": "pot",
+        "position": [
+          22.4,
+          -100.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_40",
+        "monster": "pot",
+        "position": [
+          22.1,
+          -99.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_41",
+        "monster": "pot",
+        "position": [
+          23.0,
+          -99.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_42",
+        "monster": "pot",
+        "position": [
+          21.7,
+          -99.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_43",
+        "monster": "pot",
+        "position": [
+          22.4,
+          -98.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_19",
+        "monster": "crate",
+        "position": [
+          57.7,
+          -144.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_20",
+        "monster": "crate",
+        "position": [
+          58.8,
+          -144.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_21",
+        "monster": "crate",
+        "position": [
+          57.7,
+          -143.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_44",
+        "monster": "pot",
+        "position": [
+          150.8,
+          -11.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_45",
+        "monster": "pot",
+        "position": [
+          153.1,
+          -11.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_46",
+        "monster": "pot",
+        "position": [
+          151.6,
+          -11.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_47",
+        "monster": "pot",
+        "position": [
+          152.4,
+          -11.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_48",
+        "monster": "pot",
+        "position": [
+          153.0,
+          -12.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_49",
+        "monster": "pot",
+        "position": [
+          152.1,
+          -10.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_50",
+        "monster": "pot",
+        "position": [
+          150.7,
+          -12.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_51",
+        "monster": "pot",
+        "position": [
+          152.7,
+          -11.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_22",
+        "monster": "crate",
+        "position": [
+          155.3,
+          -129.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_23",
+        "monster": "crate",
+        "position": [
+          156.4,
+          -129.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_24",
+        "monster": "crate",
+        "position": [
+          155.8,
+          -128.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_52",
+        "monster": "pot",
+        "position": [
+          33.6,
+          11.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_53",
+        "monster": "pot",
+        "position": [
+          34.2,
+          11.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_54",
+        "monster": "pot",
+        "position": [
+          33.0,
+          12.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_55",
+        "monster": "pot",
+        "position": [
+          34.0,
+          10.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_56",
+        "monster": "pot",
+        "position": [
+          33.4,
+          10.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_57",
+        "monster": "pot",
+        "position": [
+          32.7,
+          10.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_58",
+        "monster": "pot",
+        "position": [
+          33.7,
+          12.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_25",
+        "monster": "crate",
+        "position": [
+          -39.3,
+          -26.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_26",
+        "monster": "crate",
+        "position": [
+          -38.2,
+          -26.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_27",
+        "monster": "crate",
+        "position": [
+          -39.3,
+          -25.2
+        ],
+        "table": "breakable_crate"
       }
     ],
     "style": {
@@ -36725,6 +39335,600 @@
           -145
         ],
         "table": "coin_bag"
+      },
+      {
+        "id": "cx_1",
+        "monster": "crate",
+        "position": [
+          -28.3,
+          -26.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_2",
+        "monster": "crate",
+        "position": [
+          -27.2,
+          -26.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_3",
+        "monster": "crate",
+        "position": [
+          -27.8,
+          -25.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_1",
+        "monster": "pot",
+        "position": [
+          27.9,
+          -25.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_2",
+        "monster": "pot",
+        "position": [
+          26.9,
+          -28.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_3",
+        "monster": "pot",
+        "position": [
+          27.0,
+          -26.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_4",
+        "monster": "pot",
+        "position": [
+          27.8,
+          -26.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_5",
+        "monster": "pot",
+        "position": [
+          28.0,
+          -27.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_6",
+        "monster": "pot",
+        "position": [
+          27.1,
+          -27.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_7",
+        "monster": "pot",
+        "position": [
+          33.2,
+          -46.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_8",
+        "monster": "pot",
+        "position": [
+          31.9,
+          -48.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_9",
+        "monster": "pot",
+        "position": [
+          32.7,
+          -46.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_10",
+        "monster": "pot",
+        "position": [
+          33.2,
+          -48.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_11",
+        "monster": "pot",
+        "position": [
+          32.6,
+          -49.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_12",
+        "monster": "pot",
+        "position": [
+          32.5,
+          -47.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_13",
+        "monster": "pot",
+        "position": [
+          31.7,
+          -46.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_14",
+        "monster": "pot",
+        "position": [
+          32.8,
+          -48.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_15",
+        "monster": "pot",
+        "position": [
+          -51.8,
+          -98.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_16",
+        "monster": "pot",
+        "position": [
+          -52.8,
+          -98.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_17",
+        "monster": "pot",
+        "position": [
+          -52.7,
+          -99.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_18",
+        "monster": "pot",
+        "position": [
+          -51.9,
+          -99.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_19",
+        "monster": "pot",
+        "position": [
+          -53.2,
+          -100.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_4",
+        "monster": "crate",
+        "position": [
+          16.8,
+          4.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_5",
+        "monster": "crate",
+        "position": [
+          17.8,
+          4.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_6",
+        "monster": "crate",
+        "position": [
+          17.3,
+          3.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_7",
+        "monster": "crate",
+        "position": [
+          41.2,
+          -59.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_8",
+        "monster": "crate",
+        "position": [
+          42.2,
+          -59.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_9",
+        "monster": "crate",
+        "position": [
+          41.7,
+          -60.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_20",
+        "monster": "pot",
+        "position": [
+          -32.5,
+          -60.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_21",
+        "monster": "pot",
+        "position": [
+          -33.1,
+          -59.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_22",
+        "monster": "pot",
+        "position": [
+          -32.0,
+          -59.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_23",
+        "monster": "pot",
+        "position": [
+          -33.2,
+          -61.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_24",
+        "monster": "pot",
+        "position": [
+          -31.9,
+          -60.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_10",
+        "monster": "crate",
+        "position": [
+          31.7,
+          -56.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_11",
+        "monster": "crate",
+        "position": [
+          32.8,
+          -56.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_12",
+        "monster": "crate",
+        "position": [
+          31.7,
+          -55.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_25",
+        "monster": "pot",
+        "position": [
+          -16.5,
+          -2.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_26",
+        "monster": "pot",
+        "position": [
+          -16.2,
+          -3.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_27",
+        "monster": "pot",
+        "position": [
+          -17.1,
+          -3.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_28",
+        "monster": "pot",
+        "position": [
+          -17.6,
+          -3.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_29",
+        "monster": "pot",
+        "position": [
+          -15.2,
+          -3.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_30",
+        "monster": "pot",
+        "position": [
+          -17.6,
+          -2.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_31",
+        "monster": "pot",
+        "position": [
+          -16.0,
+          -4.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_13",
+        "monster": "crate",
+        "position": [
+          20.0,
+          -7.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_14",
+        "monster": "crate",
+        "position": [
+          21.1,
+          -7.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_15",
+        "monster": "crate",
+        "position": [
+          20.5,
+          -8.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_32",
+        "monster": "pot",
+        "position": [
+          -20.8,
+          -7.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_33",
+        "monster": "pot",
+        "position": [
+          -19.0,
+          -7.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_34",
+        "monster": "pot",
+        "position": [
+          -19.1,
+          -8.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_35",
+        "monster": "pot",
+        "position": [
+          -20.1,
+          -8.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_36",
+        "monster": "pot",
+        "position": [
+          -20.9,
+          -9.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_37",
+        "monster": "pot",
+        "position": [
+          -19.6,
+          -9.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_38",
+        "monster": "pot",
+        "position": [
+          -18.5,
+          -9.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_39",
+        "monster": "pot",
+        "position": [
+          -52.6,
+          -118.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_40",
+        "monster": "pot",
+        "position": [
+          -52.8,
+          -119.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_41",
+        "monster": "pot",
+        "position": [
+          -52.1,
+          -119.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_42",
+        "monster": "pot",
+        "position": [
+          -53.3,
+          -118.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_43",
+        "monster": "pot",
+        "position": [
+          -51.9,
+          -118.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_44",
+        "monster": "pot",
+        "position": [
+          -42.4,
+          -9.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_45",
+        "monster": "pot",
+        "position": [
+          -40.0,
+          -9.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_46",
+        "monster": "pot",
+        "position": [
+          -39.7,
+          -10.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_47",
+        "monster": "pot",
+        "position": [
+          -40.8,
+          -10.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_48",
+        "monster": "pot",
+        "position": [
+          -41.5,
+          -9.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_49",
+        "monster": "pot",
+        "position": [
+          -42.1,
+          -11.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_50",
+        "monster": "pot",
+        "position": [
+          -41.6,
+          -10.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_51",
+        "monster": "pot",
+        "position": [
+          -42.6,
+          -10.5
+        ],
+        "table": "breakable_pot"
       }
     ],
     "style": {
@@ -60272,6 +63476,843 @@
           1.5
         ],
         "table": "coin_bag"
+      },
+      {
+        "id": "pt_1",
+        "monster": "pot",
+        "position": [
+          -59.1,
+          -110.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_2",
+        "monster": "pot",
+        "position": [
+          -57.5,
+          -111.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_3",
+        "monster": "pot",
+        "position": [
+          -58.1,
+          -111.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_4",
+        "monster": "pot",
+        "position": [
+          -57.7,
+          -110.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_5",
+        "monster": "pot",
+        "position": [
+          -56.8,
+          -110.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_6",
+        "monster": "pot",
+        "position": [
+          -56.8,
+          -111.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_7",
+        "monster": "pot",
+        "position": [
+          -59.0,
+          -111.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_8",
+        "monster": "pot",
+        "position": [
+          -58.4,
+          -109.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_1",
+        "monster": "crate",
+        "position": [
+          -101.3,
+          6.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_2",
+        "monster": "crate",
+        "position": [
+          -100.2,
+          6.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_3",
+        "monster": "crate",
+        "position": [
+          -101.3,
+          7.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_4",
+        "monster": "crate",
+        "position": [
+          -87.3,
+          -16.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_5",
+        "monster": "crate",
+        "position": [
+          -86.2,
+          -16.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_6",
+        "monster": "crate",
+        "position": [
+          -86.8,
+          -15.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_9",
+        "monster": "pot",
+        "position": [
+          -163.3,
+          -88.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_10",
+        "monster": "pot",
+        "position": [
+          -161.8,
+          -88.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_11",
+        "monster": "pot",
+        "position": [
+          -164.1,
+          -89.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_12",
+        "monster": "pot",
+        "position": [
+          -161.6,
+          -90.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_13",
+        "monster": "pot",
+        "position": [
+          -162.2,
+          -89.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_14",
+        "monster": "pot",
+        "position": [
+          -162.5,
+          -88.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_15",
+        "monster": "pot",
+        "position": [
+          -162.4,
+          -90.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_16",
+        "monster": "pot",
+        "position": [
+          -16.9,
+          1.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_17",
+        "monster": "pot",
+        "position": [
+          -15.7,
+          1.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_18",
+        "monster": "pot",
+        "position": [
+          -15.8,
+          0.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_19",
+        "monster": "pot",
+        "position": [
+          -16.6,
+          1.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_20",
+        "monster": "pot",
+        "position": [
+          -17.3,
+          1.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_21",
+        "monster": "pot",
+        "position": [
+          -16.2,
+          1.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_7",
+        "monster": "crate",
+        "position": [
+          -84.3,
+          -141.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_8",
+        "monster": "crate",
+        "position": [
+          -83.2,
+          -141.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_9",
+        "monster": "crate",
+        "position": [
+          -83.8,
+          -140.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_22",
+        "monster": "pot",
+        "position": [
+          -76.3,
+          -96.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_23",
+        "monster": "pot",
+        "position": [
+          -76.1,
+          -94.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_24",
+        "monster": "pot",
+        "position": [
+          -76.1,
+          -95.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_25",
+        "monster": "pot",
+        "position": [
+          -77.2,
+          -95.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_26",
+        "monster": "pot",
+        "position": [
+          -77.1,
+          -96.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_27",
+        "monster": "pot",
+        "position": [
+          -77.3,
+          -96.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_10",
+        "monster": "crate",
+        "position": [
+          -47.4,
+          -109.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_11",
+        "monster": "crate",
+        "position": [
+          -46.4,
+          -109.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_12",
+        "monster": "crate",
+        "position": [
+          -46.9,
+          -110.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_28",
+        "monster": "pot",
+        "position": [
+          -203.7,
+          -123.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_29",
+        "monster": "pot",
+        "position": [
+          -203.3,
+          -123.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_30",
+        "monster": "pot",
+        "position": [
+          -203.4,
+          -122.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_31",
+        "monster": "pot",
+        "position": [
+          -203.7,
+          -124.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_32",
+        "monster": "pot",
+        "position": [
+          -203.5,
+          -121.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_33",
+        "monster": "pot",
+        "position": [
+          -204.2,
+          -121.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_34",
+        "monster": "pot",
+        "position": [
+          -62.7,
+          -178.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_35",
+        "monster": "pot",
+        "position": [
+          -63.8,
+          -177.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_36",
+        "monster": "pot",
+        "position": [
+          -62.8,
+          -176.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_37",
+        "monster": "pot",
+        "position": [
+          -63.8,
+          -178.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_38",
+        "monster": "pot",
+        "position": [
+          -63.1,
+          -177.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_39",
+        "monster": "pot",
+        "position": [
+          -64.2,
+          -176.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_40",
+        "monster": "pot",
+        "position": [
+          -64.8,
+          23.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_41",
+        "monster": "pot",
+        "position": [
+          -66.0,
+          24.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_42",
+        "monster": "pot",
+        "position": [
+          -64.8,
+          25.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_43",
+        "monster": "pot",
+        "position": [
+          -65.9,
+          25.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_44",
+        "monster": "pot",
+        "position": [
+          -65.6,
+          23.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_45",
+        "monster": "pot",
+        "position": [
+          -65.3,
+          24.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_13",
+        "monster": "crate",
+        "position": [
+          -184.5,
+          -88.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_14",
+        "monster": "crate",
+        "position": [
+          -183.4,
+          -88.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_15",
+        "monster": "crate",
+        "position": [
+          -184.0,
+          -89.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_16",
+        "monster": "crate",
+        "position": [
+          -37.2,
+          -109.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_17",
+        "monster": "crate",
+        "position": [
+          -36.2,
+          -109.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_18",
+        "monster": "crate",
+        "position": [
+          -36.7,
+          -110.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_46",
+        "monster": "pot",
+        "position": [
+          20.4,
+          -61.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_47",
+        "monster": "pot",
+        "position": [
+          19.7,
+          -62.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_48",
+        "monster": "pot",
+        "position": [
+          21.2,
+          -62.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_49",
+        "monster": "pot",
+        "position": [
+          20.3,
+          -62.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_50",
+        "monster": "pot",
+        "position": [
+          19.7,
+          -63.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_51",
+        "monster": "pot",
+        "position": [
+          21.0,
+          -63.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_52",
+        "monster": "pot",
+        "position": [
+          -153.6,
+          -89.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_53",
+        "monster": "pot",
+        "position": [
+          -153.2,
+          -90.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_54",
+        "monster": "pot",
+        "position": [
+          -151.2,
+          -88.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_55",
+        "monster": "pot",
+        "position": [
+          -152.6,
+          -90.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_56",
+        "monster": "pot",
+        "position": [
+          -152.4,
+          -89.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_57",
+        "monster": "pot",
+        "position": [
+          -151.3,
+          -89.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_58",
+        "monster": "pot",
+        "position": [
+          -151.7,
+          -89.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_59",
+        "monster": "pot",
+        "position": [
+          -153.7,
+          -89.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_60",
+        "monster": "pot",
+        "position": [
+          -115.8,
+          5.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_61",
+        "monster": "pot",
+        "position": [
+          -115.3,
+          4.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_62",
+        "monster": "pot",
+        "position": [
+          -115.9,
+          4.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_63",
+        "monster": "pot",
+        "position": [
+          -114.7,
+          5.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_64",
+        "monster": "pot",
+        "position": [
+          -115.1,
+          4.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_65",
+        "monster": "pot",
+        "position": [
+          -116.2,
+          4.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_66",
+        "monster": "pot",
+        "position": [
+          -114.7,
+          3.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_67",
+        "monster": "pot",
+        "position": [
+          -68.2,
+          -56.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_68",
+        "monster": "pot",
+        "position": [
+          -67.9,
+          -55.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_69",
+        "monster": "pot",
+        "position": [
+          -66.8,
+          -56.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_70",
+        "monster": "pot",
+        "position": [
+          -67.6,
+          -57.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_71",
+        "monster": "pot",
+        "position": [
+          -66.8,
+          -56.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_72",
+        "monster": "pot",
+        "position": [
+          -68.2,
+          -57.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_19",
+        "monster": "crate",
+        "position": [
+          -24.3,
+          -63.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_20",
+        "monster": "crate",
+        "position": [
+          -23.2,
+          -63.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_21",
+        "monster": "crate",
+        "position": [
+          -23.8,
+          -62.0
+        ],
+        "table": "breakable_crate"
       }
     ],
     "style": {
@@ -110199,6 +114240,339 @@
           -51.25
         ],
         "table": "coin_bag"
+      },
+      {
+        "id": "pt_1",
+        "monster": "pot",
+        "position": [
+          -69.2,
+          -19.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_2",
+        "monster": "pot",
+        "position": [
+          -69.6,
+          -19.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_3",
+        "monster": "pot",
+        "position": [
+          -70.3,
+          -18.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_4",
+        "monster": "pot",
+        "position": [
+          -70.5,
+          -19.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_5",
+        "monster": "pot",
+        "position": [
+          -69.9,
+          -18.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_1",
+        "monster": "crate",
+        "position": [
+          -69.6,
+          -26.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_2",
+        "monster": "crate",
+        "position": [
+          -70.7,
+          -26.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_3",
+        "monster": "crate",
+        "position": [
+          -69.6,
+          -25.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_4",
+        "monster": "crate",
+        "position": [
+          69.6,
+          37.4
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_5",
+        "monster": "crate",
+        "position": [
+          70.6,
+          37.4
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_6",
+        "monster": "crate",
+        "position": [
+          69.6,
+          38.5
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_7",
+        "monster": "crate",
+        "position": [
+          69.7,
+          -21.4
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_8",
+        "monster": "crate",
+        "position": [
+          70.8,
+          -21.4
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_9",
+        "monster": "crate",
+        "position": [
+          69.7,
+          -20.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_10",
+        "monster": "crate",
+        "position": [
+          70.1,
+          -24.9
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_11",
+        "monster": "crate",
+        "position": [
+          71.1,
+          -24.9
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_12",
+        "monster": "crate",
+        "position": [
+          70.1,
+          -23.9
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_6",
+        "monster": "pot",
+        "position": [
+          59.6,
+          3.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_7",
+        "monster": "pot",
+        "position": [
+          59.3,
+          4.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_8",
+        "monster": "pot",
+        "position": [
+          58.7,
+          3.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_9",
+        "monster": "pot",
+        "position": [
+          60.0,
+          4.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_10",
+        "monster": "pot",
+        "position": [
+          58.5,
+          4.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_11",
+        "monster": "pot",
+        "position": [
+          69.6,
+          41.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_12",
+        "monster": "pot",
+        "position": [
+          70.2,
+          41.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_13",
+        "monster": "pot",
+        "position": [
+          70.6,
+          40.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_14",
+        "monster": "pot",
+        "position": [
+          69.2,
+          40.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_15",
+        "monster": "pot",
+        "position": [
+          69.6,
+          41.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_16",
+        "monster": "pot",
+        "position": [
+          69.9,
+          40.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_13",
+        "monster": "crate",
+        "position": [
+          -52.1,
+          15.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_14",
+        "monster": "crate",
+        "position": [
+          -53.2,
+          15.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_15",
+        "monster": "crate",
+        "position": [
+          -52.1,
+          13.9
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_16",
+        "monster": "crate",
+        "position": [
+          60.7,
+          6.9
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_17",
+        "monster": "crate",
+        "position": [
+          59.7,
+          6.9
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_18",
+        "monster": "crate",
+        "position": [
+          60.7,
+          5.9
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_19",
+        "monster": "crate",
+        "position": [
+          -69.2,
+          -4.9
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_20",
+        "monster": "crate",
+        "position": [
+          -70.2,
+          -4.9
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_21",
+        "monster": "crate",
+        "position": [
+          -69.2,
+          -3.8
+        ],
+        "table": "breakable_crate"
       }
     ],
     "style": {
@@ -124532,6 +128906,582 @@
           -196
         ],
         "table": "coin_bag"
+      },
+      {
+        "id": "pt_1",
+        "monster": "pot",
+        "position": [
+          -3.1,
+          -166.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_2",
+        "monster": "pot",
+        "position": [
+          -3.5,
+          -167.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_3",
+        "monster": "pot",
+        "position": [
+          -4.1,
+          -167.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_4",
+        "monster": "pot",
+        "position": [
+          -3.1,
+          -164.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_5",
+        "monster": "pot",
+        "position": [
+          -3.9,
+          -164.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_6",
+        "monster": "pot",
+        "position": [
+          -4.0,
+          -165.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_7",
+        "monster": "pot",
+        "position": [
+          -4.1,
+          -166.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_8",
+        "monster": "pot",
+        "position": [
+          -3.1,
+          -166.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_9",
+        "monster": "pot",
+        "position": [
+          38.6,
+          -93.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_10",
+        "monster": "pot",
+        "position": [
+          41.2,
+          -92.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_11",
+        "monster": "pot",
+        "position": [
+          41.2,
+          -94.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_12",
+        "monster": "pot",
+        "position": [
+          38.6,
+          -94.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_13",
+        "monster": "pot",
+        "position": [
+          41.5,
+          -93.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_14",
+        "monster": "pot",
+        "position": [
+          38.9,
+          -92.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_1",
+        "monster": "crate",
+        "position": [
+          26.3,
+          -52.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_2",
+        "monster": "crate",
+        "position": [
+          27.4,
+          -52.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_3",
+        "monster": "crate",
+        "position": [
+          26.8,
+          -51.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_4",
+        "monster": "crate",
+        "position": [
+          -28.3,
+          -200.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_5",
+        "monster": "crate",
+        "position": [
+          -27.2,
+          -200.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_6",
+        "monster": "crate",
+        "position": [
+          -27.8,
+          -199.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_15",
+        "monster": "pot",
+        "position": [
+          24.8,
+          -110.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_16",
+        "monster": "pot",
+        "position": [
+          25.8,
+          -110.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_17",
+        "monster": "pot",
+        "position": [
+          25.9,
+          -110.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_18",
+        "monster": "pot",
+        "position": [
+          25.1,
+          -111.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_19",
+        "monster": "pot",
+        "position": [
+          24.8,
+          -109.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_7",
+        "monster": "crate",
+        "position": [
+          20.3,
+          -6.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_8",
+        "monster": "crate",
+        "position": [
+          19.2,
+          -6.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_9",
+        "monster": "crate",
+        "position": [
+          20.3,
+          -5.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_10",
+        "monster": "crate",
+        "position": [
+          -26.3,
+          -52.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_11",
+        "monster": "crate",
+        "position": [
+          -25.2,
+          -52.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_12",
+        "monster": "crate",
+        "position": [
+          -25.8,
+          -51.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_20",
+        "monster": "pot",
+        "position": [
+          -72.8,
+          -18.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_21",
+        "monster": "pot",
+        "position": [
+          -73.3,
+          -19.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_22",
+        "monster": "pot",
+        "position": [
+          -74.2,
+          -18.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_23",
+        "monster": "pot",
+        "position": [
+          -73.5,
+          -17.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_24",
+        "monster": "pot",
+        "position": [
+          -73.9,
+          -18.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_25",
+        "monster": "pot",
+        "position": [
+          -27.2,
+          -190.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_26",
+        "monster": "pot",
+        "position": [
+          -27.7,
+          -188.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_27",
+        "monster": "pot",
+        "position": [
+          -27.8,
+          -189.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_28",
+        "monster": "pot",
+        "position": [
+          -26.7,
+          -189.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_29",
+        "monster": "pot",
+        "position": [
+          -27.2,
+          -188.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_30",
+        "monster": "pot",
+        "position": [
+          -27.7,
+          -191.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_31",
+        "monster": "pot",
+        "position": [
+          -28.1,
+          -189.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_32",
+        "monster": "pot",
+        "position": [
+          -28.0,
+          -190.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_33",
+        "monster": "pot",
+        "position": [
+          65.6,
+          -17.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_34",
+        "monster": "pot",
+        "position": [
+          64.4,
+          -18.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_35",
+        "monster": "pot",
+        "position": [
+          64.8,
+          -17.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_36",
+        "monster": "pot",
+        "position": [
+          63.2,
+          -17.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_37",
+        "monster": "pot",
+        "position": [
+          62.8,
+          -19.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_38",
+        "monster": "pot",
+        "position": [
+          65.1,
+          -18.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_39",
+        "monster": "pot",
+        "position": [
+          -10.0,
+          -5.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_40",
+        "monster": "pot",
+        "position": [
+          -9.8,
+          -4.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_41",
+        "monster": "pot",
+        "position": [
+          -11.9,
+          -5.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_42",
+        "monster": "pot",
+        "position": [
+          -11.0,
+          -5.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_43",
+        "monster": "pot",
+        "position": [
+          -9.4,
+          -5.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_44",
+        "monster": "pot",
+        "position": [
+          -11.4,
+          -6.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_45",
+        "monster": "pot",
+        "position": [
+          -12.2,
+          -4.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_46",
+        "monster": "pot",
+        "position": [
+          -10.6,
+          -6.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_13",
+        "monster": "crate",
+        "position": [
+          74.3,
+          -17.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_14",
+        "monster": "crate",
+        "position": [
+          73.2,
+          -17.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_15",
+        "monster": "crate",
+        "position": [
+          74.3,
+          -18.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_16",
+        "monster": "crate",
+        "position": [
+          -52.0,
+          -94.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_17",
+        "monster": "crate",
+        "position": [
+          -51.0,
+          -94.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_18",
+        "monster": "crate",
+        "position": [
+          -51.5,
+          -93.3
+        ],
+        "table": "breakable_crate"
       }
     ],
     "style": {
@@ -169717,6 +174667,1887 @@
           -99.5
         ],
         "table": "coin_bag"
+      },
+      {
+        "id": "pt_1",
+        "monster": "pot",
+        "position": [
+          -27.1,
+          -99.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_2",
+        "monster": "pot",
+        "position": [
+          -28.2,
+          -99.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_3",
+        "monster": "pot",
+        "position": [
+          -27.7,
+          -99.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_4",
+        "monster": "pot",
+        "position": [
+          -27.6,
+          -98.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_5",
+        "monster": "pot",
+        "position": [
+          -28.1,
+          -100.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_6",
+        "monster": "pot",
+        "position": [
+          -26.8,
+          -100.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_7",
+        "monster": "pot",
+        "position": [
+          -26.8,
+          -98.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_1",
+        "monster": "crate",
+        "position": [
+          -19.7,
+          -28.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_2",
+        "monster": "crate",
+        "position": [
+          -20.8,
+          -28.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_3",
+        "monster": "crate",
+        "position": [
+          -19.7,
+          -27.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_4",
+        "monster": "crate",
+        "position": [
+          -7.7,
+          -115.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_5",
+        "monster": "crate",
+        "position": [
+          -8.8,
+          -115.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_6",
+        "monster": "crate",
+        "position": [
+          -7.7,
+          -116.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_8",
+        "monster": "pot",
+        "position": [
+          51.7,
+          -43.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_9",
+        "monster": "pot",
+        "position": [
+          52.2,
+          -44.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_10",
+        "monster": "pot",
+        "position": [
+          51.0,
+          -44.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_11",
+        "monster": "pot",
+        "position": [
+          50.9,
+          -43.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_12",
+        "monster": "pot",
+        "position": [
+          51.1,
+          -45.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_13",
+        "monster": "pot",
+        "position": [
+          51.8,
+          -45.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_14",
+        "monster": "pot",
+        "position": [
+          52.3,
+          -44.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_15",
+        "monster": "pot",
+        "position": [
+          -66.4,
+          -80.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_16",
+        "monster": "pot",
+        "position": [
+          -65.7,
+          -79.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_17",
+        "monster": "pot",
+        "position": [
+          -66.5,
+          -79.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_18",
+        "monster": "pot",
+        "position": [
+          -65.5,
+          -78.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_19",
+        "monster": "pot",
+        "position": [
+          -64.7,
+          -79.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_20",
+        "monster": "pot",
+        "position": [
+          -67.4,
+          -79.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_21",
+        "monster": "pot",
+        "position": [
+          2.9,
+          -129.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_22",
+        "monster": "pot",
+        "position": [
+          4.2,
+          -128.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_23",
+        "monster": "pot",
+        "position": [
+          3.7,
+          -127.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_24",
+        "monster": "pot",
+        "position": [
+          3.0,
+          -128.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_25",
+        "monster": "pot",
+        "position": [
+          3.7,
+          -129.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_26",
+        "monster": "pot",
+        "position": [
+          2.7,
+          -127.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_27",
+        "monster": "pot",
+        "position": [
+          3.6,
+          -128.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_28",
+        "monster": "pot",
+        "position": [
+          32.2,
+          -104.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_29",
+        "monster": "pot",
+        "position": [
+          33.2,
+          -104.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_30",
+        "monster": "pot",
+        "position": [
+          32.5,
+          -104.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_31",
+        "monster": "pot",
+        "position": [
+          33.0,
+          -103.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_32",
+        "monster": "pot",
+        "position": [
+          32.1,
+          -105.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_33",
+        "monster": "pot",
+        "position": [
+          31.8,
+          -103.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_34",
+        "monster": "pot",
+        "position": [
+          32.7,
+          -105.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_35",
+        "monster": "pot",
+        "position": [
+          32.4,
+          -8.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_36",
+        "monster": "pot",
+        "position": [
+          33.1,
+          -8.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_37",
+        "monster": "pot",
+        "position": [
+          32.5,
+          -9.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_38",
+        "monster": "pot",
+        "position": [
+          33.2,
+          -9.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_39",
+        "monster": "pot",
+        "position": [
+          31.9,
+          -8.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_40",
+        "monster": "pot",
+        "position": [
+          31.7,
+          -9.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_41",
+        "monster": "pot",
+        "position": [
+          33.0,
+          -7.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_42",
+        "monster": "pot",
+        "position": [
+          31.8,
+          -7.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_7",
+        "monster": "crate",
+        "position": [
+          -31.7,
+          -7.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_8",
+        "monster": "crate",
+        "position": [
+          -32.8,
+          -7.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_9",
+        "monster": "crate",
+        "position": [
+          -31.7,
+          -8.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_43",
+        "monster": "pot",
+        "position": [
+          -17.1,
+          -154.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_44",
+        "monster": "pot",
+        "position": [
+          -18.2,
+          -155.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_45",
+        "monster": "pot",
+        "position": [
+          -16.9,
+          -154.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_46",
+        "monster": "pot",
+        "position": [
+          -18.0,
+          -153.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_47",
+        "monster": "pot",
+        "position": [
+          -17.6,
+          -154.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_48",
+        "monster": "pot",
+        "position": [
+          -32.3,
+          -31.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_49",
+        "monster": "pot",
+        "position": [
+          -32.3,
+          -32.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_50",
+        "monster": "pot",
+        "position": [
+          -31.7,
+          -32.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_51",
+        "monster": "pot",
+        "position": [
+          -33.0,
+          -31.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_52",
+        "monster": "pot",
+        "position": [
+          -33.2,
+          -32.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_53",
+        "monster": "pot",
+        "position": [
+          -32.9,
+          -33.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_54",
+        "monster": "pot",
+        "position": [
+          -32.2,
+          -33.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_55",
+        "monster": "pot",
+        "position": [
+          51.3,
+          -38.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_56",
+        "monster": "pot",
+        "position": [
+          52.2,
+          -39.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_57",
+        "monster": "pot",
+        "position": [
+          52.2,
+          -38.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_58",
+        "monster": "pot",
+        "position": [
+          51.4,
+          -39.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_59",
+        "monster": "pot",
+        "position": [
+          51.0,
+          -39.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_60",
+        "monster": "pot",
+        "position": [
+          50.8,
+          -40.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_10",
+        "monster": "crate",
+        "position": [
+          -4.3,
+          -16.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_11",
+        "monster": "crate",
+        "position": [
+          -3.2,
+          -16.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_12",
+        "monster": "crate",
+        "position": [
+          -4.3,
+          -15.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_13",
+        "monster": "crate",
+        "position": [
+          -52.3,
+          -7.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_14",
+        "monster": "crate",
+        "position": [
+          -51.2,
+          -7.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_15",
+        "monster": "crate",
+        "position": [
+          -52.3,
+          -8.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_61",
+        "monster": "pot",
+        "position": [
+          -3.0,
+          -123.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_62",
+        "monster": "pot",
+        "position": [
+          -3.9,
+          -123.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_63",
+        "monster": "pot",
+        "position": [
+          -3.1,
+          -122.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_64",
+        "monster": "pot",
+        "position": [
+          -4.1,
+          -124.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_65",
+        "monster": "pot",
+        "position": [
+          -4.0,
+          -122.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_66",
+        "monster": "pot",
+        "position": [
+          -39.7,
+          -112.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_67",
+        "monster": "pot",
+        "position": [
+          -39.4,
+          -110.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_68",
+        "monster": "pot",
+        "position": [
+          -40.3,
+          -111.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_69",
+        "monster": "pot",
+        "position": [
+          -38.8,
+          -111.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_70",
+        "monster": "pot",
+        "position": [
+          -38.9,
+          -111.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_71",
+        "monster": "pot",
+        "position": [
+          -39.6,
+          -111.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_16",
+        "monster": "crate",
+        "position": [
+          43.7,
+          -64.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_17",
+        "monster": "crate",
+        "position": [
+          44.8,
+          -64.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_18",
+        "monster": "crate",
+        "position": [
+          43.7,
+          -63.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_72",
+        "monster": "pot",
+        "position": [
+          -51.1,
+          -39.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_73",
+        "monster": "pot",
+        "position": [
+          -51.7,
+          -40.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_74",
+        "monster": "pot",
+        "position": [
+          -51.8,
+          -39.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_75",
+        "monster": "pot",
+        "position": [
+          -50.8,
+          -39.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_76",
+        "monster": "pot",
+        "position": [
+          -52.3,
+          -39.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_77",
+        "monster": "pot",
+        "position": [
+          65.5,
+          -115.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_78",
+        "monster": "pot",
+        "position": [
+          65.9,
+          -114.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_79",
+        "monster": "pot",
+        "position": [
+          64.7,
+          -115.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_80",
+        "monster": "pot",
+        "position": [
+          66.2,
+          -115.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_81",
+        "monster": "pot",
+        "position": [
+          64.9,
+          -115.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_82",
+        "monster": "pot",
+        "position": [
+          65.7,
+          -116.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_83",
+        "monster": "pot",
+        "position": [
+          -28.1,
+          -56.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_84",
+        "monster": "pot",
+        "position": [
+          -26.8,
+          -57.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_85",
+        "monster": "pot",
+        "position": [
+          -27.0,
+          -56.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_86",
+        "monster": "pot",
+        "position": [
+          -27.9,
+          -55.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_87",
+        "monster": "pot",
+        "position": [
+          -27.9,
+          -57.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_88",
+        "monster": "pot",
+        "position": [
+          -27.3,
+          -56.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_89",
+        "monster": "pot",
+        "position": [
+          -3.0,
+          -63.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_90",
+        "monster": "pot",
+        "position": [
+          -3.7,
+          -63.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_91",
+        "monster": "pot",
+        "position": [
+          -3.7,
+          -64.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_92",
+        "monster": "pot",
+        "position": [
+          -3.1,
+          -63.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_93",
+        "monster": "pot",
+        "position": [
+          -4.1,
+          -62.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_94",
+        "monster": "pot",
+        "position": [
+          -4.3,
+          -63.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_19",
+        "monster": "crate",
+        "position": [
+          76.3,
+          -96.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_20",
+        "monster": "crate",
+        "position": [
+          77.3,
+          -96.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_21",
+        "monster": "crate",
+        "position": [
+          76.8,
+          -95.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_95",
+        "monster": "pot",
+        "position": [
+          27.4,
+          -116.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_96",
+        "monster": "pot",
+        "position": [
+          28.3,
+          -117.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_97",
+        "monster": "pot",
+        "position": [
+          26.8,
+          -116.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_98",
+        "monster": "pot",
+        "position": [
+          28.1,
+          -116.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_99",
+        "monster": "pot",
+        "position": [
+          27.4,
+          -117.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_100",
+        "monster": "pot",
+        "position": [
+          26.8,
+          -115.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_22",
+        "monster": "crate",
+        "position": [
+          -18.3,
+          -174.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_23",
+        "monster": "crate",
+        "position": [
+          -17.2,
+          -174.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_24",
+        "monster": "crate",
+        "position": [
+          -17.8,
+          -173.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_25",
+        "monster": "crate",
+        "position": [
+          -52.3,
+          -52.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_26",
+        "monster": "crate",
+        "position": [
+          -51.2,
+          -52.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_27",
+        "monster": "crate",
+        "position": [
+          -52.3,
+          -51.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_101",
+        "monster": "pot",
+        "position": [
+          -20.8,
+          -33.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_102",
+        "monster": "pot",
+        "position": [
+          -20.3,
+          -32.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_103",
+        "monster": "pot",
+        "position": [
+          -20.0,
+          -32.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_104",
+        "monster": "pot",
+        "position": [
+          -21.2,
+          -32.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_105",
+        "monster": "pot",
+        "position": [
+          -19.8,
+          -31.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_106",
+        "monster": "pot",
+        "position": [
+          10.0,
+          -182.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_107",
+        "monster": "pot",
+        "position": [
+          9.7,
+          -183.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_108",
+        "monster": "pot",
+        "position": [
+          11.0,
+          -183.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_109",
+        "monster": "pot",
+        "position": [
+          8.6,
+          -183.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_110",
+        "monster": "pot",
+        "position": [
+          8.5,
+          -184.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_111",
+        "monster": "pot",
+        "position": [
+          11.5,
+          -183.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_112",
+        "monster": "pot",
+        "position": [
+          10.4,
+          -183.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_113",
+        "monster": "pot",
+        "position": [
+          9.1,
+          -184.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_114",
+        "monster": "pot",
+        "position": [
+          27.7,
+          -8.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_115",
+        "monster": "pot",
+        "position": [
+          26.8,
+          -8.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_116",
+        "monster": "pot",
+        "position": [
+          28.2,
+          -8.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_117",
+        "monster": "pot",
+        "position": [
+          26.8,
+          -9.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_118",
+        "monster": "pot",
+        "position": [
+          27.6,
+          -9.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_119",
+        "monster": "pot",
+        "position": [
+          27.5,
+          -7.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_120",
+        "monster": "pot",
+        "position": [
+          28.3,
+          -9.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_121",
+        "monster": "pot",
+        "position": [
+          18.0,
+          -162.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_122",
+        "monster": "pot",
+        "position": [
+          17.0,
+          -163.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_123",
+        "monster": "pot",
+        "position": [
+          17.6,
+          -163.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_124",
+        "monster": "pot",
+        "position": [
+          18.3,
+          -164.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_125",
+        "monster": "pot",
+        "position": [
+          17.3,
+          -161.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_126",
+        "monster": "pot",
+        "position": [
+          18.0,
+          -161.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_127",
+        "monster": "pot",
+        "position": [
+          16.9,
+          -162.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_128",
+        "monster": "pot",
+        "position": [
+          -15.3,
+          -135.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_129",
+        "monster": "pot",
+        "position": [
+          -16.0,
+          -136.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_130",
+        "monster": "pot",
+        "position": [
+          -16.0,
+          -134.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_131",
+        "monster": "pot",
+        "position": [
+          -14.7,
+          -134.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_132",
+        "monster": "pot",
+        "position": [
+          -15.3,
+          -136.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_133",
+        "monster": "pot",
+        "position": [
+          -16.0,
+          -135.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_28",
+        "monster": "crate",
+        "position": [
+          8.3,
+          4.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_29",
+        "monster": "crate",
+        "position": [
+          7.3,
+          4.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_30",
+        "monster": "crate",
+        "position": [
+          8.3,
+          3.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_134",
+        "monster": "pot",
+        "position": [
+          15.9,
+          -86.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_135",
+        "monster": "pot",
+        "position": [
+          15.0,
+          -87.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_136",
+        "monster": "pot",
+        "position": [
+          16.3,
+          -87.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_137",
+        "monster": "pot",
+        "position": [
+          16.2,
+          -88.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_138",
+        "monster": "pot",
+        "position": [
+          15.4,
+          -88.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_139",
+        "monster": "pot",
+        "position": [
+          3.2,
+          -51.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_140",
+        "monster": "pot",
+        "position": [
+          4.2,
+          -51.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_141",
+        "monster": "pot",
+        "position": [
+          3.8,
+          -50.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_142",
+        "monster": "pot",
+        "position": [
+          2.9,
+          -50.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_143",
+        "monster": "pot",
+        "position": [
+          4.1,
+          -52.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_144",
+        "monster": "pot",
+        "position": [
+          2.8,
+          -51.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_31",
+        "monster": "crate",
+        "position": [
+          55.7,
+          -17.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_32",
+        "monster": "crate",
+        "position": [
+          56.8,
+          -17.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_33",
+        "monster": "crate",
+        "position": [
+          55.7,
+          -18.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_34",
+        "monster": "crate",
+        "position": [
+          52.3,
+          -7.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_35",
+        "monster": "crate",
+        "position": [
+          51.2,
+          -7.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_36",
+        "monster": "crate",
+        "position": [
+          52.3,
+          -8.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_37",
+        "monster": "crate",
+        "position": [
+          -28.3,
+          -91.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_38",
+        "monster": "crate",
+        "position": [
+          -27.2,
+          -91.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_39",
+        "monster": "crate",
+        "position": [
+          -28.3,
+          -92.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_145",
+        "monster": "pot",
+        "position": [
+          -56.4,
+          -63.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_146",
+        "monster": "pot",
+        "position": [
+          -56.4,
+          -65.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_147",
+        "monster": "pot",
+        "position": [
+          -55.8,
+          -64.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_148",
+        "monster": "pot",
+        "position": [
+          -57.0,
+          -64.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_149",
+        "monster": "pot",
+        "position": [
+          -57.3,
+          -64.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_150",
+        "monster": "pot",
+        "position": [
+          -55.8,
+          -65.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_151",
+        "monster": "pot",
+        "position": [
+          40.0,
+          -27.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_152",
+        "monster": "pot",
+        "position": [
+          38.8,
+          -27.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_153",
+        "monster": "pot",
+        "position": [
+          40.1,
+          -26.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_154",
+        "monster": "pot",
+        "position": [
+          39.5,
+          -27.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_155",
+        "monster": "pot",
+        "position": [
+          39.2,
+          -26.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_156",
+        "monster": "pot",
+        "position": [
+          39.0,
+          -28.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_157",
+        "monster": "pot",
+        "position": [
+          27.6,
+          -68.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_158",
+        "monster": "pot",
+        "position": [
+          27.4,
+          -68.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_159",
+        "monster": "pot",
+        "position": [
+          28.2,
+          -69.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_160",
+        "monster": "pot",
+        "position": [
+          26.8,
+          -68.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_161",
+        "monster": "pot",
+        "position": [
+          27.1,
+          -67.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_162",
+        "monster": "pot",
+        "position": [
+          28.2,
+          -67.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_163",
+        "monster": "pot",
+        "position": [
+          26.7,
+          -69.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_164",
+        "monster": "pot",
+        "position": [
+          66.7,
+          -102.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_165",
+        "monster": "pot",
+        "position": [
+          65.2,
+          -103.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_166",
+        "monster": "pot",
+        "position": [
+          64.9,
+          -103.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_167",
+        "monster": "pot",
+        "position": [
+          66.1,
+          -103.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_168",
+        "monster": "pot",
+        "position": [
+          66.9,
+          -104.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_169",
+        "monster": "pot",
+        "position": [
+          65.7,
+          -102.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_170",
+        "monster": "pot",
+        "position": [
+          66.8,
+          -103.4
+        ],
+        "table": "breakable_pot"
       }
     ],
     "style": {
@@ -191428,6 +198259,663 @@
           -176
         ],
         "table": "coin_bag"
+      },
+      {
+        "id": "pt_1",
+        "monster": "pot",
+        "position": [
+          32.6,
+          -144.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_2",
+        "monster": "pot",
+        "position": [
+          31.7,
+          -144.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_3",
+        "monster": "pot",
+        "position": [
+          33.2,
+          -145.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_4",
+        "monster": "pot",
+        "position": [
+          32.1,
+          -145.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_5",
+        "monster": "pot",
+        "position": [
+          33.0,
+          -143.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_6",
+        "monster": "pot",
+        "position": [
+          42.8,
+          -4.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_7",
+        "monster": "pot",
+        "position": [
+          43.9,
+          -4.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_8",
+        "monster": "pot",
+        "position": [
+          42.9,
+          -3.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_9",
+        "monster": "pot",
+        "position": [
+          44.1,
+          -3.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_10",
+        "monster": "pot",
+        "position": [
+          43.5,
+          -3.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_11",
+        "monster": "pot",
+        "position": [
+          43.3,
+          -2.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_12",
+        "monster": "pot",
+        "position": [
+          -32.7,
+          -153.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_13",
+        "monster": "pot",
+        "position": [
+          -32.3,
+          -154.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_14",
+        "monster": "pot",
+        "position": [
+          -33.3,
+          -151.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_15",
+        "monster": "pot",
+        "position": [
+          -32.4,
+          -152.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_16",
+        "monster": "pot",
+        "position": [
+          -33.1,
+          -154.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_17",
+        "monster": "pot",
+        "position": [
+          24.5,
+          -144.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_18",
+        "monster": "pot",
+        "position": [
+          25.9,
+          -144.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_19",
+        "monster": "pot",
+        "position": [
+          25.4,
+          -144.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_20",
+        "monster": "pot",
+        "position": [
+          23.5,
+          -144.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_21",
+        "monster": "pot",
+        "position": [
+          25.5,
+          -145.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_22",
+        "monster": "pot",
+        "position": [
+          24.5,
+          -145.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_23",
+        "monster": "pot",
+        "position": [
+          23.6,
+          -144.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_24",
+        "monster": "pot",
+        "position": [
+          -67.9,
+          -99.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_25",
+        "monster": "pot",
+        "position": [
+          -66.7,
+          -101.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_26",
+        "monster": "pot",
+        "position": [
+          -67.1,
+          -100.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_27",
+        "monster": "pot",
+        "position": [
+          -66.9,
+          -98.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_28",
+        "monster": "pot",
+        "position": [
+          -68.3,
+          -98.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_29",
+        "monster": "pot",
+        "position": [
+          -68.2,
+          -100.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_30",
+        "monster": "pot",
+        "position": [
+          -49.1,
+          -117.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_31",
+        "monster": "pot",
+        "position": [
+          -51.2,
+          -117.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_32",
+        "monster": "pot",
+        "position": [
+          -49.9,
+          -118.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_33",
+        "monster": "pot",
+        "position": [
+          -50.1,
+          -116.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_34",
+        "monster": "pot",
+        "position": [
+          -50.8,
+          -116.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_35",
+        "monster": "pot",
+        "position": [
+          -37.5,
+          -115.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_36",
+        "monster": "pot",
+        "position": [
+          -37.8,
+          -115.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_37",
+        "monster": "pot",
+        "position": [
+          -36.8,
+          -115.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_38",
+        "monster": "pot",
+        "position": [
+          -38.3,
+          -116.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_39",
+        "monster": "pot",
+        "position": [
+          -36.8,
+          -115.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_40",
+        "monster": "pot",
+        "position": [
+          -38.0,
+          -114.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_41",
+        "monster": "pot",
+        "position": [
+          -37.5,
+          -116.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_42",
+        "monster": "pot",
+        "position": [
+          -37.6,
+          -98.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_43",
+        "monster": "pot",
+        "position": [
+          -37.3,
+          -98.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_44",
+        "monster": "pot",
+        "position": [
+          -36.7,
+          -97.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_45",
+        "monster": "pot",
+        "position": [
+          -36.7,
+          -98.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_46",
+        "monster": "pot",
+        "position": [
+          -38.2,
+          -98.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_47",
+        "monster": "pot",
+        "position": [
+          -5.0,
+          -195.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_48",
+        "monster": "pot",
+        "position": [
+          -5.6,
+          -194.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_49",
+        "monster": "pot",
+        "position": [
+          -4.2,
+          -195.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_50",
+        "monster": "pot",
+        "position": [
+          -5.5,
+          -195.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_51",
+        "monster": "pot",
+        "position": [
+          -6.2,
+          -195.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_1",
+        "monster": "crate",
+        "position": [
+          -30.0,
+          -97.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_2",
+        "monster": "crate",
+        "position": [
+          -28.9,
+          -97.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_3",
+        "monster": "crate",
+        "position": [
+          -29.5,
+          -98.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_52",
+        "monster": "pot",
+        "position": [
+          -32.1,
+          -143.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_53",
+        "monster": "pot",
+        "position": [
+          -32.1,
+          -145.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_54",
+        "monster": "pot",
+        "position": [
+          -32.8,
+          -144.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_55",
+        "monster": "pot",
+        "position": [
+          -32.9,
+          -144.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_56",
+        "monster": "pot",
+        "position": [
+          -31.9,
+          -144.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_4",
+        "monster": "crate",
+        "position": [
+          30.0,
+          -97.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_5",
+        "monster": "crate",
+        "position": [
+          31.1,
+          -97.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_6",
+        "monster": "crate",
+        "position": [
+          30.5,
+          -98.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_57",
+        "monster": "pot",
+        "position": [
+          -42.0,
+          -117.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_58",
+        "monster": "pot",
+        "position": [
+          -42.5,
+          -117.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_59",
+        "monster": "pot",
+        "position": [
+          -43.2,
+          -118.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_60",
+        "monster": "pot",
+        "position": [
+          -42.9,
+          -117.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_61",
+        "monster": "pot",
+        "position": [
+          -42.1,
+          -118.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_62",
+        "monster": "pot",
+        "position": [
+          -43.2,
+          -117.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_63",
+        "monster": "pot",
+        "position": [
+          -24.7,
+          -196.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_64",
+        "monster": "pot",
+        "position": [
+          -25.5,
+          -196.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_65",
+        "monster": "pot",
+        "position": [
+          -26.3,
+          -195.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_66",
+        "monster": "pot",
+        "position": [
+          -24.9,
+          -195.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_67",
+        "monster": "pot",
+        "position": [
+          -24.3,
+          -194.9
+        ],
+        "table": "breakable_pot"
       }
     ],
     "style": {
@@ -197722,6 +205210,501 @@
           -16.0
         ],
         "table": "coin_bag"
+      },
+      {
+        "id": "pt_1",
+        "monster": "pot",
+        "position": [
+          -66.5,
+          -62.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_2",
+        "monster": "pot",
+        "position": [
+          -67.3,
+          -60.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_3",
+        "monster": "pot",
+        "position": [
+          -65.8,
+          -62.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_4",
+        "monster": "pot",
+        "position": [
+          -65.9,
+          -61.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_5",
+        "monster": "pot",
+        "position": [
+          -66.4,
+          -60.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_6",
+        "monster": "pot",
+        "position": [
+          65.8,
+          79.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_7",
+        "monster": "pot",
+        "position": [
+          67.1,
+          79.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_8",
+        "monster": "pot",
+        "position": [
+          66.3,
+          80.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_9",
+        "monster": "pot",
+        "position": [
+          66.8,
+          79.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_10",
+        "monster": "pot",
+        "position": [
+          66.2,
+          78.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_1",
+        "monster": "crate",
+        "position": [
+          67.3,
+          71.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_2",
+        "monster": "crate",
+        "position": [
+          68.3,
+          71.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_3",
+        "monster": "crate",
+        "position": [
+          67.8,
+          72.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_11",
+        "monster": "pot",
+        "position": [
+          -67.1,
+          41.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_12",
+        "monster": "pot",
+        "position": [
+          -66.8,
+          40.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_13",
+        "monster": "pot",
+        "position": [
+          -66.5,
+          42.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_14",
+        "monster": "pot",
+        "position": [
+          -66.6,
+          39.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_15",
+        "monster": "pot",
+        "position": [
+          -65.9,
+          40.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_16",
+        "monster": "pot",
+        "position": [
+          -66.2,
+          41.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_17",
+        "monster": "pot",
+        "position": [
+          -65.8,
+          42.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_18",
+        "monster": "pot",
+        "position": [
+          -67.0,
+          41.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_19",
+        "monster": "pot",
+        "position": [
+          66.9,
+          -71.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_20",
+        "monster": "pot",
+        "position": [
+          66.2,
+          -72.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_21",
+        "monster": "pot",
+        "position": [
+          66.7,
+          -70.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_22",
+        "monster": "pot",
+        "position": [
+          66.5,
+          -73.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_23",
+        "monster": "pot",
+        "position": [
+          66.4,
+          -70.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_24",
+        "monster": "pot",
+        "position": [
+          66.9,
+          -72.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_25",
+        "monster": "pot",
+        "position": [
+          -66.0,
+          -72.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_26",
+        "monster": "pot",
+        "position": [
+          -66.3,
+          -71.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_27",
+        "monster": "pot",
+        "position": [
+          -65.8,
+          -71.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_28",
+        "monster": "pot",
+        "position": [
+          -66.2,
+          -73.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_29",
+        "monster": "pot",
+        "position": [
+          -66.9,
+          -72.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_30",
+        "monster": "pot",
+        "position": [
+          -66.8,
+          -70.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_31",
+        "monster": "pot",
+        "position": [
+          -66.2,
+          -70.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_32",
+        "monster": "pot",
+        "position": [
+          -66.9,
+          61.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_33",
+        "monster": "pot",
+        "position": [
+          -66.3,
+          62.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_34",
+        "monster": "pot",
+        "position": [
+          -65.8,
+          61.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_35",
+        "monster": "pot",
+        "position": [
+          -66.0,
+          60.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_36",
+        "monster": "pot",
+        "position": [
+          -66.5,
+          61.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_37",
+        "monster": "pot",
+        "position": [
+          -36.4,
+          80.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_38",
+        "monster": "pot",
+        "position": [
+          -37.4,
+          80.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_39",
+        "monster": "pot",
+        "position": [
+          -38.7,
+          79.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_40",
+        "monster": "pot",
+        "position": [
+          -36.0,
+          79.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_41",
+        "monster": "pot",
+        "position": [
+          -38.2,
+          78.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_42",
+        "monster": "pot",
+        "position": [
+          -25.9,
+          80.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_43",
+        "monster": "pot",
+        "position": [
+          -25.2,
+          79.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_44",
+        "monster": "pot",
+        "position": [
+          -25.6,
+          79.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_45",
+        "monster": "pot",
+        "position": [
+          -27.5,
+          80.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_46",
+        "monster": "pot",
+        "position": [
+          -26.7,
+          79.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_47",
+        "monster": "pot",
+        "position": [
+          58.6,
+          -79.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_48",
+        "monster": "pot",
+        "position": [
+          56.9,
+          -78.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_49",
+        "monster": "pot",
+        "position": [
+          58.4,
+          -79.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_50",
+        "monster": "pot",
+        "position": [
+          59.9,
+          -79.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_51",
+        "monster": "pot",
+        "position": [
+          57.8,
+          -79.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_52",
+        "monster": "pot",
+        "position": [
+          56.9,
+          -79.7
+        ],
+        "table": "breakable_pot"
       }
     ],
     "style": {
@@ -245570,6 +253553,654 @@
           -158
         ],
         "table": "coin_bag"
+      },
+      {
+        "id": "pt_1",
+        "monster": "pot",
+        "position": [
+          -19.6,
+          -10.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_2",
+        "monster": "pot",
+        "position": [
+          -18.9,
+          -11.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_3",
+        "monster": "pot",
+        "position": [
+          -19.1,
+          -9.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_4",
+        "monster": "pot",
+        "position": [
+          -19.9,
+          -11.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_5",
+        "monster": "pot",
+        "position": [
+          -20.2,
+          -10.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_6",
+        "monster": "pot",
+        "position": [
+          -20.1,
+          -9.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_7",
+        "monster": "pot",
+        "position": [
+          -18.8,
+          -10.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_1",
+        "monster": "crate",
+        "position": [
+          -56.3,
+          -98.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_2",
+        "monster": "crate",
+        "position": [
+          -55.2,
+          -98.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_3",
+        "monster": "crate",
+        "position": [
+          -56.3,
+          -97.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_4",
+        "monster": "crate",
+        "position": [
+          16.3,
+          -14.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_5",
+        "monster": "crate",
+        "position": [
+          15.2,
+          -14.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_6",
+        "monster": "crate",
+        "position": [
+          16.3,
+          -15.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_8",
+        "monster": "pot",
+        "position": [
+          5.5,
+          -15.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_9",
+        "monster": "pot",
+        "position": [
+          7.2,
+          -15.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_10",
+        "monster": "pot",
+        "position": [
+          5.1,
+          -15.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_11",
+        "monster": "pot",
+        "position": [
+          6.4,
+          -16.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_12",
+        "monster": "pot",
+        "position": [
+          6.0,
+          -14.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_13",
+        "monster": "pot",
+        "position": [
+          4.7,
+          -16.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_14",
+        "monster": "pot",
+        "position": [
+          6.9,
+          -15.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_7",
+        "monster": "crate",
+        "position": [
+          -16.8,
+          -140.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_8",
+        "monster": "crate",
+        "position": [
+          -15.8,
+          -140.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_9",
+        "monster": "crate",
+        "position": [
+          -16.3,
+          -141.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_15",
+        "monster": "pot",
+        "position": [
+          -47.2,
+          -6.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_16",
+        "monster": "pot",
+        "position": [
+          -46.8,
+          -7.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_17",
+        "monster": "pot",
+        "position": [
+          -48.1,
+          -6.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_18",
+        "monster": "pot",
+        "position": [
+          -47.5,
+          -5.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_19",
+        "monster": "pot",
+        "position": [
+          -48.0,
+          -7.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_20",
+        "monster": "pot",
+        "position": [
+          -46.7,
+          -6.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_21",
+        "monster": "pot",
+        "position": [
+          -48.1,
+          -5.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_10",
+        "monster": "crate",
+        "position": [
+          19.7,
+          -16.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_11",
+        "monster": "crate",
+        "position": [
+          20.8,
+          -16.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_12",
+        "monster": "crate",
+        "position": [
+          19.7,
+          -17.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_13",
+        "monster": "crate",
+        "position": [
+          82.0,
+          -67.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_14",
+        "monster": "crate",
+        "position": [
+          83.0,
+          -67.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_15",
+        "monster": "crate",
+        "position": [
+          82.5,
+          -68.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_22",
+        "monster": "pot",
+        "position": [
+          91.9,
+          -89.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_23",
+        "monster": "pot",
+        "position": [
+          91.6,
+          -91.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_24",
+        "monster": "pot",
+        "position": [
+          91.1,
+          -89.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_25",
+        "monster": "pot",
+        "position": [
+          91.0,
+          -90.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_26",
+        "monster": "pot",
+        "position": [
+          92.1,
+          -91.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_27",
+        "monster": "pot",
+        "position": [
+          91.5,
+          -88.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_28",
+        "monster": "pot",
+        "position": [
+          90.7,
+          -90.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_29",
+        "monster": "pot",
+        "position": [
+          92.2,
+          -90.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_30",
+        "monster": "pot",
+        "position": [
+          -47.6,
+          -96.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_31",
+        "monster": "pot",
+        "position": [
+          -46.8,
+          -97.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_32",
+        "monster": "pot",
+        "position": [
+          -45.3,
+          -98.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_33",
+        "monster": "pot",
+        "position": [
+          -45.7,
+          -97.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_34",
+        "monster": "pot",
+        "position": [
+          -45.9,
+          -98.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_35",
+        "monster": "pot",
+        "position": [
+          -45.2,
+          -96.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_36",
+        "monster": "pot",
+        "position": [
+          -44.5,
+          -98.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_37",
+        "monster": "pot",
+        "position": [
+          15.1,
+          -56.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_38",
+        "monster": "pot",
+        "position": [
+          15.7,
+          -55.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_39",
+        "monster": "pot",
+        "position": [
+          16.1,
+          -56.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_40",
+        "monster": "pot",
+        "position": [
+          14.7,
+          -57.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_41",
+        "monster": "pot",
+        "position": [
+          15.0,
+          -55.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_42",
+        "monster": "pot",
+        "position": [
+          15.8,
+          -57.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_43",
+        "monster": "pot",
+        "position": [
+          15.2,
+          -48.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_44",
+        "monster": "pot",
+        "position": [
+          15.7,
+          -46.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_45",
+        "monster": "pot",
+        "position": [
+          15.0,
+          -47.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_46",
+        "monster": "pot",
+        "position": [
+          16.3,
+          -48.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_47",
+        "monster": "pot",
+        "position": [
+          15.5,
+          -47.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_48",
+        "monster": "pot",
+        "position": [
+          -11.8,
+          -106.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_49",
+        "monster": "pot",
+        "position": [
+          -12.2,
+          -106.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_50",
+        "monster": "pot",
+        "position": [
+          -10.6,
+          -106.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_51",
+        "monster": "pot",
+        "position": [
+          -10.1,
+          -105.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_52",
+        "monster": "pot",
+        "position": [
+          -11.2,
+          -106.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_53",
+        "monster": "pot",
+        "position": [
+          -9.9,
+          -106.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_54",
+        "monster": "pot",
+        "position": [
+          -12.5,
+          -107.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_16",
+        "monster": "crate",
+        "position": [
+          -5.6,
+          -193.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_17",
+        "monster": "crate",
+        "position": [
+          -4.6,
+          -193.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_18",
+        "monster": "crate",
+        "position": [
+          -5.1,
+          -192.3
+        ],
+        "table": "breakable_crate"
       }
     ],
     "style": {
@@ -253276,6 +261907,618 @@
           -82.0
         ],
         "table": "coin_bag"
+      },
+      {
+        "id": "pt_1",
+        "monster": "pot",
+        "position": [
+          -41.6,
+          -44.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_2",
+        "monster": "pot",
+        "position": [
+          -40.5,
+          -44.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_3",
+        "monster": "pot",
+        "position": [
+          -42.2,
+          -43.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_4",
+        "monster": "pot",
+        "position": [
+          -41.6,
+          -43.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_5",
+        "monster": "pot",
+        "position": [
+          -40.9,
+          -45.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_6",
+        "monster": "pot",
+        "position": [
+          -42.9,
+          -44.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_7",
+        "monster": "pot",
+        "position": [
+          -42.5,
+          -44.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_1",
+        "monster": "crate",
+        "position": [
+          16.3,
+          -18.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_2",
+        "monster": "crate",
+        "position": [
+          17.4,
+          -18.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_3",
+        "monster": "crate",
+        "position": [
+          16.8,
+          -17.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_4",
+        "monster": "crate",
+        "position": [
+          -16.3,
+          -76.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_5",
+        "monster": "crate",
+        "position": [
+          -15.2,
+          -76.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_6",
+        "monster": "crate",
+        "position": [
+          -16.3,
+          -75.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_7",
+        "monster": "crate",
+        "position": [
+          -42.0,
+          -40.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_8",
+        "monster": "crate",
+        "position": [
+          -41.0,
+          -40.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_9",
+        "monster": "crate",
+        "position": [
+          -41.5,
+          -39.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_10",
+        "monster": "crate",
+        "position": [
+          -42.0,
+          -100.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_11",
+        "monster": "crate",
+        "position": [
+          -41.0,
+          -100.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_12",
+        "monster": "crate",
+        "position": [
+          -41.5,
+          -99.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_8",
+        "monster": "pot",
+        "position": [
+          -55.7,
+          -38.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_9",
+        "monster": "pot",
+        "position": [
+          -57.1,
+          -39.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_10",
+        "monster": "pot",
+        "position": [
+          -56.4,
+          -40.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_11",
+        "monster": "pot",
+        "position": [
+          -56.5,
+          -39.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_12",
+        "monster": "pot",
+        "position": [
+          -55.8,
+          -39.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_13",
+        "monster": "pot",
+        "position": [
+          -57.1,
+          -39.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_13",
+        "monster": "crate",
+        "position": [
+          19.7,
+          -79.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_14",
+        "monster": "crate",
+        "position": [
+          20.8,
+          -79.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_15",
+        "monster": "crate",
+        "position": [
+          19.7,
+          -80.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_16",
+        "monster": "crate",
+        "position": [
+          -28.3,
+          -174.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_17",
+        "monster": "crate",
+        "position": [
+          -27.2,
+          -174.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_18",
+        "monster": "crate",
+        "position": [
+          -27.8,
+          -173.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_19",
+        "monster": "crate",
+        "position": [
+          52.3,
+          -100.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_20",
+        "monster": "crate",
+        "position": [
+          51.2,
+          -100.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_21",
+        "monster": "crate",
+        "position": [
+          52.3,
+          -99.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_14",
+        "monster": "pot",
+        "position": [
+          42.9,
+          -98.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_15",
+        "monster": "pot",
+        "position": [
+          42.0,
+          -98.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_16",
+        "monster": "pot",
+        "position": [
+          43.5,
+          -99.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_17",
+        "monster": "pot",
+        "position": [
+          43.5,
+          -99.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_18",
+        "monster": "pot",
+        "position": [
+          40.9,
+          -99.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_19",
+        "monster": "pot",
+        "position": [
+          15.6,
+          -65.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_20",
+        "monster": "pot",
+        "position": [
+          15.4,
+          -64.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_21",
+        "monster": "pot",
+        "position": [
+          16.2,
+          -65.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_22",
+        "monster": "pot",
+        "position": [
+          15.4,
+          -67.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_23",
+        "monster": "pot",
+        "position": [
+          16.1,
+          -64.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_24",
+        "monster": "pot",
+        "position": [
+          7.4,
+          -76.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_25",
+        "monster": "pot",
+        "position": [
+          4.5,
+          -76.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_26",
+        "monster": "pot",
+        "position": [
+          5.0,
+          -75.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_27",
+        "monster": "pot",
+        "position": [
+          6.7,
+          -75.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_28",
+        "monster": "pot",
+        "position": [
+          4.6,
+          -74.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_29",
+        "monster": "pot",
+        "position": [
+          6.3,
+          -76.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_30",
+        "monster": "pot",
+        "position": [
+          -30.4,
+          -7.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_31",
+        "monster": "pot",
+        "position": [
+          -30.3,
+          -8.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_32",
+        "monster": "pot",
+        "position": [
+          -31.4,
+          -8.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_33",
+        "monster": "pot",
+        "position": [
+          -29.6,
+          -9.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_34",
+        "monster": "pot",
+        "position": [
+          -29.6,
+          -7.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_35",
+        "monster": "pot",
+        "position": [
+          -31.5,
+          -9.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_36",
+        "monster": "pot",
+        "position": [
+          -28.4,
+          -8.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_37",
+        "monster": "pot",
+        "position": [
+          -15.3,
+          -39.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_38",
+        "monster": "pot",
+        "position": [
+          -16.1,
+          -39.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_39",
+        "monster": "pot",
+        "position": [
+          -14.7,
+          -40.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_40",
+        "monster": "pot",
+        "position": [
+          -15.1,
+          -39.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_41",
+        "monster": "pot",
+        "position": [
+          -16.2,
+          -40.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_42",
+        "monster": "pot",
+        "position": [
+          -15.7,
+          -38.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_43",
+        "monster": "pot",
+        "position": [
+          51.0,
+          -19.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_44",
+        "monster": "pot",
+        "position": [
+          51.1,
+          -18.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_45",
+        "monster": "pot",
+        "position": [
+          51.9,
+          -18.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_46",
+        "monster": "pot",
+        "position": [
+          51.5,
+          -17.5
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_47",
+        "monster": "pot",
+        "position": [
+          50.7,
+          -16.9
+        ],
+        "table": "breakable_pot"
       }
     ],
     "style": {
