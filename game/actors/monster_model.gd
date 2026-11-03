@@ -15,7 +15,7 @@ extends Node3D
 ## à metade da vida: elas brotam das costas e batem, mais rápido no ataque.
 
 const FAMILIES := {
-	# Baú Monstro (chest_monster.glb do autor; tools/assets/build_chest_mimic.py): mímico com esqueleto e animações próprias (Idle, Run, Attack; sem acerto nem morte: o resto fica por código). ~2 m no arquivo.
+	# Mímico (chest_monster.glb do autor; tools/assets/build_chest_mimic.py): mímico com esqueleto e animações próprias (Idle, Run, Attack; sem acerto nem morte: o resto fica por código). ~2 m no arquivo.
 	"chest_mimic": {"scene": "res://assets/models/monsters/chest_mimic.glb", "scale": 0.5,
 		"anims": {"idle": "Idle", "walk": "Run", "run": "Run", "attack": "Attack"}},
 	# Necromante (necromanser.rar do autor; tools/assets/build_necromancer.py): chefe do Esgoto no lugar do Feiticeiro-Aranha. Já vem com esqueleto e animações próprias (sem texturas: materiais
@@ -183,6 +183,9 @@ const FAMILIES := {
 ## Animações que não repetem.
 const ONCE := ["attack", "hit", "die"]
 const BLEND := 0.15
+## Inclinação da tampa do Mímico (rad): aberta e fechada (a do arquivo fica entre -0,7 e -0,5 parado; o golpe vai de -1,3 a -0,3).
+const CHOMP_OPEN := -1.25
+const CHOMP_CLOSED := -0.25
 
 var family := ""
 var _anim: AnimationPlayer
@@ -288,8 +291,39 @@ func setup(look: String, size: float, tint: Color) -> bool:
 				_names[key] = wanted
 				_anim.get_animation(wanted).loop_mode = Animation.LOOP_NONE if key in ONCE and wanted != "fly" \
 					else Animation.LOOP_LINEAR
+		if look == "chest_mimic":
+			_chomp(model)
 		play("idle", 0.0)
 	return true
+
+
+## Mímico: a tampa ("top_6") abre e fecha a boca o tempo todo (devagar parado, rápido correndo). A animação do arquivo quase não a mexe fora do golpe;
+## aqui as chaves da tampa em Idle e Run são trocadas por uma mordida que abre e fecha, sem mexer nas da língua.
+func _chomp(model: Node) -> void:
+	var skeleton := model.find_child("Skeleton3D", true, false) as Skeleton3D
+	if skeleton == null or _anim == null:
+		return
+	var skeleton_path := _anim.get_node(_anim.root_node).get_path_to(skeleton)
+	var track_path := NodePath("%s:top_6" % skeleton_path)
+	for entry: Array in [["Idle", 1.4], ["Run", 0.45]]:
+		if not _anim.has_animation(entry[0]):
+			continue
+		var animation := _anim.get_animation(entry[0])
+		var track := -1
+		for t in animation.get_track_count():
+			if animation.track_get_type(t) == Animation.TYPE_ROTATION_3D and animation.track_get_path(t) == track_path:
+				track = t
+				break
+		if track < 0:
+			continue
+		var rest := Quaternion(animation.track_get_key_value(track, 0)).get_euler()
+		var steps := maxi(roundi(animation.length / float(entry[1])), 1) * 2
+		while animation.track_get_key_count(track) > 0:
+			animation.track_remove_key(track, 0)
+		for k in steps + 1:
+			var open := k % 2 == 0
+			var pitch := CHOMP_OPEN if open else CHOMP_CLOSED
+			animation.rotation_track_insert_key(track, animation.length * k / steps, Quaternion.from_euler(Vector3(pitch, rest.y, rest.z)))
 
 
 ## Corpo humano com cabeça de rato: as animações são as dos heróis.

@@ -1675,7 +1675,7 @@
       1.0,
       1.0
     ],
-    "_comment": "Baú Monstro (chest_monster.glb do autor; tools/assets/build_chest_mimic.py): mímico de ferro e madeira com dentes e língua. Agressivo e rápido, espalhado por todo o Esgoto: é o ÚNICO monstro do mapa que ataca sem ser atacado (\"aggressive\": acorda por proximidade; os outros só revidam). Fareja de longe (aggro 60 m) e persegue sem parar. Pequeno (tamanho 0,62). Terra (fraco a Fogo).",
+    "_comment": "Mímico (chest_monster.glb do autor; tools/assets/build_chest_mimic.py): mímico de ferro e madeira com dentes e língua. Agressivo e rápido, espalhado por todo o Esgoto: é o ÚNICO monstro do mapa que ataca sem ser atacado (\"aggressive\": acorda por proximidade; os outros só revidam). Fareja de longe (aggro 60 m) e persegue sem parar. Pequeno (tamanho 0,62). Terra (fraco a Fogo).",
     "aggressive": true
   }
 }

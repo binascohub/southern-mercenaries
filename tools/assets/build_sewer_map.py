@@ -357,12 +357,12 @@ quest_spots = [[cx(c[0]), cz(c[1])] for c in ((1, 2), (5, 4), (2, 7), (5, 6))]
 # Sem as luzes de cenário coloridas (pedido do autor): ficam só as tochas das salas (room.torch) e o brilho do altar e dos monstros.
 decor = [e for e in decor if "light" not in e]
 old = data[AREA]
-# Save point (cristal): no canto superior direito do mapa (a célula mais ao norte e depois mais a leste, longe de encontros e das salas especiais).
+# Save point (cristal): no meio do mapa (a célula livre mais perto do centro, longe de encontros e das salas especiais).
 _save_cells = [c for c in depth if c not in special_cells and c != ALTAR_CELL
                and all(math.hypot(cx(c[0]) - e["position"][0], cz(c[1]) - e["position"][1]) > 7.0 for e in encounters)]
-_save_cell = min(_save_cells, key=lambda c: (c[1], -c[0]))
+_save_cell = min(_save_cells, key=lambda c: math.hypot(cx(c[0]), cz(c[1]) + 100.0))  # a mais perto do meio do mapa (x 0, z -100)
 SAVE_ENTRY = [round(cx(_save_cell[0]) - 2.0, 1), round(cz(_save_cell[1]), 1)]  # o cristal nasce 2,2 m à direita desta entrada
-print("save point (canto superior direito): célula", _save_cell, "entrada", SAVE_ENTRY)
+print("save point (meio do mapa): célula", _save_cell, "entrada", SAVE_ENTRY)
 area = {
     "_comment": "Esgoto de Tortuga (03-2-areas.md, seção 3), UM andar só e o dobro do labirinto antigo: grade de 7 x 9 salas de 8 m entre a entrada e o túnel do Ninho, em cinco setores "
                 "de um monstro cada (1 Bueiros: sapos; 2 Canais de Lixo; 3 Galerias dos Morcegos; 4 Passagem Secreta da Guerra: jacarés; 5 Câmaras dos Cogumelos), "
@@ -383,7 +383,7 @@ area = {
     "rooms": rooms,
     "encounters": encounters,
     "hazards": hazards,
-    "entries": {"start": [0, 3], "sewer": [0, 3], "altar": ALTAR_ENTRY, "savepoint": SAVE_ENTRY}, "save_point": "savepoint",  # o cristal fica no canto superior direito do mapa
+    "entries": {"start": [0, 3], "sewer": [0, 3], "altar": ALTAR_ENTRY, "savepoint": SAVE_ENTRY}, "save_point": "savepoint",  # o cristal fica no meio do mapa
     "props": props,
     "quest_spots": quest_spots,
     "breakables": breakables,

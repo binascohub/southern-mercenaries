@@ -7309,8 +7309,8 @@
         -75.5
       ],
       "savepoint": [
-        50.0,
-        -12
+        -2.0,
+        -108.0
       ]
     },
     "save_point": "savepoint",
@@ -11575,12 +11575,14 @@
       }
     ],
     "style": {
-      "_comment": "Floresta: sem piso do kit (chão de grama), cerca viva de arbustos nas bordas; o chão de fora das salas é quase preto (o vazio do desenho).",
+      "_comment": "Floresta: sem piso do kit (chão de grama), cerca viva de arbustos nas bordas; fill_grass: o vazio entre as salas vira grama e um muro de bambus e arbustos fecha o contorno do mapa.",
       "walls": [
         ""
       ],
       "floor": "Ground_Grass",
       "low": "Pl_Bush",
+      "fill_grass": true,
+      "hedge_edges": true,
       "ground": [
         0.02,
         0.035,

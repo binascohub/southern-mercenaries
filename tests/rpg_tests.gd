@@ -508,14 +508,14 @@ func _test_skills() -> void:
 
 ## Cada habilidade ativa tem o seu efeito visual (data/spell_fx.json): motivos que existem, cores válidas, e os momentos que o servidor dispara (projétil, feixe, área, impacto).
 func _test_sewer_aggression() -> void:
-	# No Esgoto pacífico, o Baú Monstro é o único monstro comum que ataca sem ser atacado ("aggressive"); os chefes continuam agressivos.
+	# No Esgoto pacífico, o Mímico é o único monstro comum que ataca sem ser atacado ("aggressive"); os chefes continuam agressivos.
 	var aggressive: Array[String] = []
 	for id: String in GameData.monsters:
 		if GameData.monsters[id] is Dictionary and GameData.monsters[id].get("aggressive", false):
 			aggressive.append(id)
 	aggressive.erase("leshy")  # o Leshy (mini-chefe final da Floresta) também acorda por proximidade
 	_check(aggressive == ["chest_mimic"] and GameData.arenas.sewers_01_drains.get("passive", false) and float(GameData.monsters.chest_mimic.size) <= 0.65,
-		"o Baú Monstro é pequeno (%s) e o único monstro \"aggressive\" do Esgoto pacífico (%s)" % [GameData.monsters.chest_mimic.size, aggressive])
+		"o Mímico é pequeno (%s) e o único monstro \"aggressive\" do Esgoto pacífico (%s)" % [GameData.monsters.chest_mimic.size, aggressive])
 
 
 func _test_rpg_sounds() -> void:
@@ -902,7 +902,7 @@ func _test_sewers() -> void:
 			_check(door.get_slice(":", 0) in ["north", "south", "east", "west"], "porta válida: " + door)
 	var maze: Array = area.rooms.filter(func(r: Dictionary) -> bool: return String(r.id).begins_with("maze_"))
 	_check(maze.size() == 143 and not area.has("deeper"), "labirinto de 11 x 13 = 143 salas num andar só, sem passagem para outro mapa (%d)" % maze.size())
-	# Só os chefes do esgoto (Empalado, Carniceiro Chifrudo e Necromante) revidam, e os 7 tipos de comum (todos dormindo, menos o Baú Monstro).
+	# Só os chefes do esgoto (Empalado, Carniceiro Chifrudo e Necromante) revidam, e os 7 tipos de comum (todos dormindo, menos o Mímico).
 	# Monstros comuns do Esgoto (pedido do autor): 20 de cada tipo, 4 de cada tipo em cada um dos 5 setores (ids "sw<setor>_<tipo>_<n>"); só os chefes ficam de fora.
 	var commons := ["troll_mauler", "mutant", "barbarian_monster", "champ_warrior", "shadow_spirit", "demon_twelve", "chest_mimic"]
 	var by_type := {}

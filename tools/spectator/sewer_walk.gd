@@ -1,6 +1,6 @@
 # Southern Mercenaries — GPL-3.0-or-later
 extends "res://tools/spectator/spectator.gd"
-## Espectador do Esgoto com os monstros ANDANDO (patrulham em volta de onde nasceram, como o Baú Monstro) e um marcador colorido por tipo em cima de cada um,
+## Espectador do Esgoto com os monstros ANDANDO (patrulham em volta de onde nasceram, como o Mímico) e um marcador colorido por tipo em cima de cada um,
 ## para ver a densidade do mapa. Sem nomes: a legenda de cores fica no canto da tela.
 ##   XDG_DATA_HOME=$(mktemp -d) godot --path . res://tools/spectator/sewer_walk.tscn            (de cima, no centro do mapa)
 ##   ... res://tools/spectator/sewer_walk.tscn -- sewers_01_drains X Y Z INCLINAÇÃO              (outra posição, como o espectador comum)

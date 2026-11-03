@@ -1,4 +1,4 @@
-"""Baú Monstro (chest_monster.glb enviado pelo autor do projeto: um baú-mímico de ferro e madeira com dentes, língua vermelha e espinhos, já com esqueleto de 14 ossos (a tampa e 9 pedaços de língua) e as animações
+"""Mímico (chest_monster.glb enviado pelo autor do projeto: um baú-mímico de ferro e madeira com dentes, língua vermelha e espinhos, já com esqueleto de 14 ossos (a tampa e 9 pedaços de língua) e as animações
 Attack, Idle e Run; autoria e licença a confirmar): monstro do Esgoto, espalhado por todo o mapa. Aqui só se reduz a textura a 1024 px (WebP) e se exporta de novo com as três animações como estão;
 a frente (a boca) olha para -Y do Blender (+Z do glTF), com ~2 m de largura e a base em y = 0.
 Gera assets/models/monsters/chest_mimic.glb.

@@ -559,6 +559,8 @@ func _finish_quest(c: Dictionary, id: String, quest: Dictionary) -> void:
 			p.grant(int(reward.get("xp", 0)), int(reward.get("gold", 0)))
 			p._sfx.rpc("quest_complete")  # o jingle de missão cumprida (depois do som de moedas ou de nível)
 	_arena()._toast_all("TOAST_QUEST_DONE", {"quest": quest.name_key})
+	if quest.get("type", "") == "village" and quest.has("giver"):
+		_arena().npc_vanishes(String(quest.giver))  # o NPC do mapa cumpriu o papel: vira fumaça preta e some
 
 
 ## Voltou a Tortuga: chega outro navio (estoque pirata e preços dos valiosos novos)

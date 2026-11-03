@@ -3147,10 +3147,10 @@ msgid "BEAST_CHAMP_WARRIOR_HINT"
 msgstr "Ágil y de vida media: esquiva cuando levante la espada. El Fuego le hace más daño."
 
 msgid "MONSTER_CHEST_MIMIC"
-msgstr "Cofre Monstruo"
+msgstr "Mímico"
 
 msgid "BEAST_CHEST_MIMIC"
-msgstr "Cofre Monstruo"
+msgstr "Mímico"
 
 msgid "BEAST_CHEST_MIMIC_LEGEND"
 msgstr "Un cofre que perdió la tapa y le salieron dientes. Si lo abres, te abre a ti: se tragó a los últimos mercenarios que quisieron el tesoro de la Alcantarilla, y dicen que aún se oye a alguien pidiendo ayuda dentro."

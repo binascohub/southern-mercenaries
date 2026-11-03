@@ -488,7 +488,7 @@ arenas["forest_01_path"] = {
         {"id": "forest_pyre_keeper", "kind": "npc", "npc": "forest_pyre_keeper", "position": list(F_PLAZAS["fire"]), "rotation": 0, "summon": f_summons["fire"]},
     ] + v_props,
     "quest_spots": [], "breakables": f_deer,
-    "style": {"_comment": "Floresta: sem piso do kit (chão de grama), cerca viva de arbustos nas bordas; o chão de fora das salas é quase preto (o vazio do desenho).", "walls": [""], "floor": "Ground_Grass", "low": "Pl_Bush",
+    "style": {"_comment": "Floresta: sem piso do kit (chão de grama), cerca viva de arbustos nas bordas; fill_grass: o vazio entre as salas vira grama e um muro de bambus e arbustos fecha o contorno do mapa.", "walls": [""], "floor": "Ground_Grass", "low": "Pl_Bush", "fill_grass": True, "hedge_edges": True,
               "ground": [0.02, 0.035, 0.02]},
     "decor": f_decor, "passive": True,
 }

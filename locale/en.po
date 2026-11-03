@@ -3147,10 +3147,10 @@ msgid "BEAST_CHAMP_WARRIOR_HINT"
 msgstr "Agile with average health: dodge when he lifts the sword. Fire hurts him more."
 
 msgid "MONSTER_CHEST_MIMIC"
-msgstr "Chest Monster"
+msgstr "Mimic"
 
 msgid "BEAST_CHEST_MIMIC"
-msgstr "Chest Monster"
+msgstr "Mimic"
 
 msgid "BEAST_CHEST_MIMIC_LEGEND"
 msgstr "A chest that lost its lid and grew teeth. If you open it, it opens you: it swallowed the last mercenaries who wanted the Sewer's treasure, and they say you can still hear someone calling for help inside."

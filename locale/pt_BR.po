@@ -3147,10 +3147,10 @@ msgid "BEAST_CHAMP_WARRIOR_HINT"
 msgstr "Ágil e de vida média: desvie quando ele levantar a espada. O Fogo o machuca mais."
 
 msgid "MONSTER_CHEST_MIMIC"
-msgstr "Baú Monstro"
+msgstr "Mímico"
 
 msgid "BEAST_CHEST_MIMIC"
-msgstr "Baú Monstro"
+msgstr "Mímico"
 
 msgid "BEAST_CHEST_MIMIC_LEGEND"
 msgstr "Um baú que perdeu a tampa e ganhou dentes. Se você abrir, ele abre você: engoliu os últimos mercenários que quiseram o tesouro do Esgoto, e dizem que ainda se ouve alguém pedindo ajuda lá dentro."

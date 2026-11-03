@@ -4,6 +4,38 @@ extends Node
 ##   godot --path . res://tests/summoner_sandbox.tscn -- [water|air|fire|earth]   (padrão: water) [area=<id>, ex.: area=tavern] [at=x,z, ex.: at=0,-185 para ir a um ponto do mapa] [shot=<arquivo.png>: salva uma captura e sai] [kill=<id do monstro, ex.: old_gator>: mata esse monstro e abre o baú que ele deixa; com "nochest" deixa o baú fechado para ver]; chama todos os animais, ou só os listados depois do elemento (otter = lobo de água, fox, falcon, boar, bear)
 
 
+var _cam: Camera3D
+var _yaw := 0.0
+var _pitch := 0.0
+var _speed := 12.0
+
+
+func _process(delta: float) -> void:
+	if _cam == null:
+		return
+	var move := Vector3.ZERO
+	move.z = float(Input.is_key_pressed(KEY_S) or Input.is_key_pressed(KEY_DOWN)) - float(Input.is_key_pressed(KEY_W) or Input.is_key_pressed(KEY_UP))
+	move.x = float(Input.is_key_pressed(KEY_D) or Input.is_key_pressed(KEY_RIGHT)) - float(Input.is_key_pressed(KEY_A) or Input.is_key_pressed(KEY_LEFT))
+	move.y = float(Input.is_key_pressed(KEY_E) or Input.is_key_pressed(KEY_SPACE)) - float(Input.is_key_pressed(KEY_Q) or Input.is_key_pressed(KEY_CTRL))
+	_cam.position += _cam.global_transform.basis * move * _speed * (3.0 if Input.is_key_pressed(KEY_SHIFT) else 1.0) * delta
+	if not _cam.current:
+		_cam.make_current()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if _cam == null:
+		return
+	if event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		_yaw -= event.relative.x * 0.003
+		_pitch = clampf(_pitch - event.relative.y * 0.003, -1.5, 1.5)
+		_cam.rotation = Vector3(_pitch, _yaw, 0.0)
+	elif event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			_speed = minf(_speed * 1.25, 80.0)
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			_speed = maxf(_speed / 1.25, 1.0)
+
+
 func _ready() -> void:
 	# Saves isolados: nada daqui entra na lista de personagens nem nas campanhas de verdade.
 	SaveSystem.root = "user://test_saves/summoner_sandbox"
@@ -53,6 +85,18 @@ func _ready() -> void:
 		await get_tree().create_timer(1.0).timeout
 		if arena.local_player != null:
 			arena.local_player.global_position = Vector3(float(at[0]), 0.5, float(at[1]))
+	if "spectator" in args:  # modo espectador: câmera livre sobre o mapa (W/A/S/D andam, E/Espaço sobe, Q/Ctrl desce, Shift acelera, botão direito + arrastar olha, roda muda a velocidade)
+		await get_tree().create_timer(1.0).timeout
+		Session.ui_open = true
+		arena.hud.visible = false
+		var focus := Vector3(float(at[0]), 0.0, float(at[1])) if at.size() == 2 else Vector3(arena.local_player.global_position.x, 0.0, arena.local_player.global_position.z)
+		_cam = Camera3D.new()
+		_cam.far = 600.0
+		_cam.position = focus + Vector3(0, 60 if not "low" in args else 12, 45 if not "low" in args else 14)
+		_pitch = deg_to_rad(-55.0)
+		_cam.rotation = Vector3(_pitch, 0, 0)
+		add_child(_cam)
+		_cam.make_current()
 	_summon_all(arena, args.slice(1))
 	if "invpopup" in args:  # abre o inventário com o Livro do Altar e a caveira de Morvak e o detalhe (botão direito) do livro, para conferir
 		get_tree().create_timer(2.5).timeout.connect(func() -> void:

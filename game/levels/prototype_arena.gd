@@ -53,6 +53,7 @@ const CHEST_SCALE := 1.3
 ## Miniatura da campanha: primeira captura logo depois de entrar, depois a cada minuto.
 ## Segundos entre a fala da estátua e o surgimento do mini-chefe.
 const SUMMON_DELAY := 4.0
+const NPC_VANISH_DELAY := 3.0
 const THUMB_FIRST := 3.0
 const THUMB_INTERVAL := 60.0
 
@@ -439,6 +440,71 @@ func open_return_charm(player: Player) -> bool:
 @rpc("authority", "call_local", "reliable")
 func _add_prop(prop: Dictionary) -> void:
 	_build_prop(prop)
+
+
+## Missão de um NPC do mapa cumprida (servidor): depois de uns segundos para ler a última fala, ele vira fumaça preta e some
+## (e não volta quando o grupo entra de novo na área). Em cidades e na taverna os NPCs ficam.
+func npc_vanishes(npc_id: String) -> void:
+	if not multiplayer.is_server() or arena.get("town", false) or area_id == "tavern":
+		return
+	var prop: Dictionary = {}
+	for p: Dictionary in _props:
+		if p.kind == "npc" and String(p.get("npc", "")) == npc_id:
+			prop = p
+			break
+	if prop.is_empty():
+		return
+	var key := "%s:%s" % [area_id, prop.id]
+	var vanished: Array = _campaign.get("vanished", [])
+	if key in vanished:
+		return
+	vanished.append(key)
+	_campaign.vanished = vanished
+	SaveSystem.save_campaign(_campaign, true)
+	await get_tree().create_timer(NPC_VANISH_DELAY).timeout
+	if is_inside_tree() and not _props.filter(func(p: Dictionary) -> bool: return p.id == prop.id).is_empty():
+		_vanish_npc.rpc(String(prop.id), Vector3(prop.position[0], 0.0, prop.position[1]))
+
+
+@rpc("authority", "call_local", "reliable")
+func _vanish_npc(id: String, at: Vector3) -> void:
+	_remove_prop(id)
+	_refresh_markers()
+	Sfx.play("cast_arcane", at, -4.0)
+	var smoke := CPUParticles3D.new()
+	var mesh := SphereMesh.new()
+	mesh.radius = 0.35
+	mesh.height = 0.7
+	var material := StandardMaterial3D.new()
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	material.vertex_color_use_as_albedo = true
+	material.albedo_color = Color(0.03, 0.02, 0.04)
+	mesh.material = material
+	smoke.mesh = mesh
+	smoke.amount = 70
+	smoke.lifetime = 1.8
+	smoke.one_shot = true
+	smoke.explosiveness = 0.55
+	smoke.emission_shape = CPUParticles3D.EMISSION_SHAPE_SPHERE
+	smoke.emission_sphere_radius = 0.7
+	smoke.direction = Vector3.UP
+	smoke.spread = 40.0
+	smoke.gravity = Vector3(0, 0.6, 0)
+	smoke.initial_velocity_min = 0.6
+	smoke.initial_velocity_max = 1.8
+	smoke.scale_amount_min = 0.8
+	smoke.scale_amount_max = 2.0
+	smoke.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	var ramp := Gradient.new()
+	ramp.set_color(0, Color(0.05, 0.03, 0.07, 0.9))
+	ramp.add_point(0.6, Color(0.08, 0.06, 0.1, 0.6))
+	ramp.set_color(ramp.get_point_count() - 1, Color(0.1, 0.1, 0.12, 0.0))
+	smoke.color_ramp = ramp
+	add_child(smoke)
+	smoke.global_position = at + Vector3(0, 1.0, 0)
+	smoke.emitting = true
+	get_tree().create_timer(smoke.lifetime + 0.5).timeout.connect(smoke.queue_free)
 
 
 @rpc("authority", "call_local", "reliable")
@@ -1265,7 +1331,7 @@ func _update_encounters() -> void:
 		if group.awake or group.members.is_empty():
 			continue
 		# Áreas pacíficas (o Esgoto; "passive_all" também poupa os chefes, como na Floresta): os bichos só revidam — quem chega perto não
-		# os acorda; só atacam por conta própria os chefes e os "aggressive" (o Baú Monstro, o único monstro comum do Esgoto que ataca sem ser atacado).
+		# os acorda; só atacam por conta própria os chefes e os "aggressive" (o Mímico, o único monstro comum do Esgoto que ataca sem ser atacado).
 		if arena.get("passive", false) and (arena.get("passive_all", false) or not _group_has_boss(group)) and not _group_is_aggressive(group):
 			continue
 		for p: Player in players:
@@ -1857,7 +1923,10 @@ func _build_environment() -> void:
 func _build_props() -> void:
 	_props.clear()
 	_prop_markers.clear()
+	var vanished: Array = _campaign.get("vanished", [])
 	for prop: Dictionary in arena.get("props", []):
+		if prop.kind == "npc" and "%s:%s" % [area_id, prop.id] in vanished:
+			continue  # já cumpriu a missão e sumiu
 		if prop.kind not in ["chest", "gate"] and not prop.get("after_victory", false):
 			_build_prop(prop)
 	_refresh_markers()
@@ -2383,6 +2452,8 @@ func _build_area() -> void:
 	_box(Vector3(center.x, -0.5, center.z), Vector3(bounds.size.x + 4, 1, bounds.size.z + 4),
 		Color(style.get("ground", [0.12, 0.11, 0.1])[0], style.get("ground", [0.12, 0.11, 0.1])[1],
 			style.get("ground", [0.12, 0.11, 0.1])[2]) if dressed else FLOOR_COLOR)
+	if dressed and style.get("fill_grass", false):
+		_fill_grass(bounds, style)
 	if not arena.get("town", false):
 		_build_save_crystal()
 	if dressed:
@@ -2390,6 +2461,69 @@ func _build_area() -> void:
 			_build_decor(decor)
 		for person: Dictionary in arena.get("crowd", []):
 			_build_crowd(person)
+
+
+const GRASS_MARGIN := 8.0
+const HEDGE_PLANTS: Array[String] = ["Pl_Bush", "Pl_Bush", "Pl_Swirl", "Pl_Bush", "Pl_Bamboo"]
+
+
+## Estilo "fill_grass" (a Floresta): o vazio entre as salas e em volta delas vira grama (a textura do piso), e uma cerca viva de arbustos (a peça "low" do estilo, em duas
+## fileiras) fecha o contorno do mapa, como um muro de planta. É só cenário: a colisão continua sendo a das salas.
+func _fill_grass(bounds: AABB, style: Dictionary) -> void:
+	var area := Rect2(bounds.position.x, bounds.position.z, bounds.size.x, bounds.size.z).grow(GRASS_MARGIN)
+	var grass := Kit.piece(String(style.get("floor", "")))
+	var material: Material = null
+	if grass:
+		for m in grass.find_children("*", "MeshInstance3D", true, false):
+			var mesh_instance := m as MeshInstance3D
+			if mesh_instance.mesh and mesh_instance.mesh.get_surface_count() > 0:
+				material = mesh_instance.get_active_material(0)
+				break
+		grass.free()
+	if material is StandardMaterial3D:
+		material = material.duplicate()
+		material.uv1_scale = Vector3(area.size.x / Kit.FLOOR_SIZE, area.size.y / Kit.FLOOR_SIZE, 1.0)
+		material.uv1_triplanar = false
+	else:
+		var flat := StandardMaterial3D.new()
+		flat.albedo_color = Color(0.16, 0.3, 0.1)
+		material = flat
+	var ground := MeshInstance3D.new()
+	var plane := PlaneMesh.new()
+	plane.size = area.size
+	ground.mesh = plane
+	ground.material_override = material
+	ground.position = Vector3(area.get_center().x, 0.005, area.get_center().y)
+	ground.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	_area_root.add_child(ground)
+	var fence: String = style.get("low", "")
+	if fence == "" or not Kit.has(fence):
+		return
+	var rng := RandomNumberGenerator.new()
+	rng.seed = hash(area_id)
+	var step := 1.3
+	var plants: Array[String] = [fence, "Pl_Bamboo", "Pl_Bamboo", fence, "Pl_Swirl"]
+	for row in 3:
+		var edge := area.grow(-float(row) * 1.4 - 0.5)
+		var points: Array[Vector3] = []
+		var x := edge.position.x
+		while x <= edge.end.x:
+			points.append(Vector3(x, 0, edge.position.y))
+			points.append(Vector3(x, 0, edge.end.y))
+			x += step
+		var z := edge.position.y
+		while z <= edge.end.y:
+			points.append(Vector3(edge.position.x, 0, z))
+			points.append(Vector3(edge.end.x, 0, z))
+			z += step
+		for at in points:
+			var bush := Kit.piece(plants[rng.randi() % plants.size()])
+			if bush == null:
+				continue
+			bush.position = at + Vector3(rng.randf_range(-0.4, 0.4), 0, rng.randf_range(-0.4, 0.4))
+			bush.rotation.y = rng.randf() * TAU
+			bush.scale = Vector3.ONE * rng.randf_range(2.2, 3.4)
+			_area_root.add_child(bush)
 
 
 ## Portal-poço (Well of Lost Souls, bobjh, e Light crystal, Pompei2): um cristal azul brilhante gira e flutua dentro do poço, com uma luz azul;
@@ -2445,6 +2579,10 @@ func _dress_room(room: Dictionary, style: Dictionary, c: Vector3, half: Vector3,
 	var low := height < 1.5
 	var walls: Array = room.get("walls", style.get("walls", []))
 	var fence: String = style.get("low", "")
+	if style.get("hedge_edges", false):  # a Floresta: todas as divisas das salas (fora das portas) são um muro de plantas
+		walls = HEDGE_PLANTS
+		fence = HEDGE_PLANTS[0]
+		low = false
 	# Norte: a caixa fica centrada na borda (a face de dentro, 0,5 m para dentro).
 	_dress_side(Vector3(c.x, 0, c.z - half.z + 0.5), Vector3.RIGHT, Vector3.BACK, half.x * 2.0,
 		doors.has("north"), doors.get("north", 0.0), [fence] if low else walls)
@@ -3331,9 +3469,10 @@ static func _grime_texture(drips: bool) -> ImageTexture:
 func _dress_side(face: Vector3, along: Vector3, inward: Vector3, length: float, door: bool, offset: float, pieces: Array) -> void:
 	if pieces.is_empty() or String(pieces[0]) == "":
 		return
-	var full := pieces.size() > 1 or String(pieces[0]).begins_with("Wall")
+	var hedge: bool = arena.get("style", {}).get("hedge_edges", false)
+	var full := (pieces.size() > 1 or String(pieces[0]).begins_with("Wall")) and not hedge
 	for segment in _wall_pieces(length, door, offset):
-		var count := maxi(roundi(segment.y / Kit.WALL_WIDTH), 1)
+		var count := maxi(roundi(segment.y / (Kit.WALL_WIDTH * (0.55 if hedge else 1.0))), 1)
 		var width := segment.y / count
 		for i in count:
 			var at := segment.x - segment.y / 2.0 + width * (i + 0.5)
@@ -3345,6 +3484,11 @@ func _dress_side(face: Vector3, along: Vector3, inward: Vector3, length: float, 
 			# A face da parede do kit fica 0,09 m à frente da origem.
 			node.position = face + along * at - inward * (0.09 if full else 0.0)
 			node.rotation.y = atan2(inward.x, inward.z)
+			if hedge:  # planta solta: tamanho, giro e posição variam para não parecer uma fileira
+				var jitter := hash(Vector3(node.position.x, i, node.position.z)) % 1000 / 1000.0
+				node.scale = Vector3.ONE * ((0.9 + jitter * 0.5) if String(piece_name) == "Pl_Bamboo" else (1.7 + jitter * 0.8))  # o bambu é alto: fica menor que os arbustos
+				node.rotation.y = jitter * TAU
+				node.position += along * (jitter - 0.5) * 0.6
 			_area_root.add_child(node)
 			_tint_piece(node)
 			_tone_wood(node, piece_name)
