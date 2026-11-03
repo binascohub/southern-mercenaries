@@ -1444,7 +1444,8 @@
       0.85,
       0.55
     ],
-    "_comment": "Mini-chefe do Deserto (portão do cânion): o Lamassu da Areia, guardião de pedra do portão; investidas."
+    "_comment": "Mini-chefe do Deserto (portão do cânion): o Lamassu da Areia, guardião de pedra do portão; investidas.",
+    "quest_drop": "lamassu_horn"
   },
   "queen_scorpion": {
     "name_key": "MONSTER_QUEEN_SCORPION",
@@ -1474,7 +1475,8 @@
       0.75,
       0.3
     ],
-    "_comment": "Mini-chefe do Deserto (arena): a Rainha Escorpião, escorpião gigante e dourado; investidas."
+    "_comment": "Mini-chefe do Deserto (arena): a Rainha Escorpião, escorpião gigante e dourado; investidas.",
+    "quest_drop": "golden_scarab"
   },
   "forest_tomb_guardian": {
     "name_key": "MONSTER_TOMB_GUARDIAN",
@@ -1677,5 +1679,37 @@
     ],
     "_comment": "Mímico (chest_monster.glb do autor; tools/assets/build_chest_mimic.py): mímico de ferro e madeira com dentes e língua. Agressivo e rápido, espalhado por todo o Esgoto: é o ÚNICO monstro do mapa que ataca sem ser atacado (\"aggressive\": acorda por proximidade; os outros só revidam). Fareja de longe (aggro 60 m) e persegue sem parar. Pequeno (tamanho 0,62). Terra (fraco a Fogo).",
     "aggressive": true
+  },
+  "sphinx": {
+    "name_key": "MONSTER_SPHINX",
+    "max_health": 900,
+    "move_speed": 2.8,
+    "damage": 36,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 4.2,
+    "category": "boss",
+    "aggressive": false,
+    "element": "air",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 10.0,
+      "windup": 1.0,
+      "speed": 12.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "golem_stone",
+    "color": [
+      1.0,
+      0.8,
+      0.45
+    ],
+    "_comment": "Chefe final do Deserto (docs/03-2-areas.md): a Esfinge, guardiã do Salão atrás do portão; investidas e pisões (modelo do golem de pedra, dourado).",
+    "chest_loot": "chest"
   }
 }

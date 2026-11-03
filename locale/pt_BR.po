@@ -3368,3 +3368,111 @@ msgstr "Mana"
 
 msgid "HUD_POTION_SHORT_ELEMENTAL"
 msgstr "Elem."
+
+msgid "MONSTER_SPHINX"
+msgstr "Esfinge"
+
+msgid "NPC_DESERT_NOMAD"
+msgstr "Nômade da Areia"
+
+msgid "NPC_DESERT_OASIS_KEEPER"
+msgstr "Guardiã do Oásis"
+
+msgid "NPC_DESERT_TEMPLE"
+msgstr "Templo do Sol"
+
+msgid "NPC_DESERT_SENTINEL"
+msgstr "Sentinela do Portão"
+
+msgid "VALUABLE_LAMASSU_HORN"
+msgstr "Chifre do Lamassu"
+
+msgid "VALUABLE_GOLDEN_SCARAB"
+msgstr "Escaravelho de Ouro"
+
+msgid "VALUABLE_KEY_CLUBS"
+msgstr "Chave de Paus"
+
+msgid "VALUABLE_KEY_DIAMONDS"
+msgstr "Chave de Ouros"
+
+msgid "TOAST_OASIS_AWAKENS"
+msgstr "A água do oásis se agita: a Rainha Escorpião emerge da areia!"
+
+msgid "TOAST_SUN_TEMPLE_AWAKENS"
+msgstr "O templo do sol estremece: o Lamassu da Areia desperta!"
+
+msgid "QUEST_DESERT_HORN"
+msgstr "O Chifre do Lamassu"
+
+msgid "QUEST_DESERT_HORN_DESC"
+msgstr "O Nômade da Areia quer o chifre do Lamassu, o guardião de pedra das Ruínas do Sol, a leste. Toque o templo, derrote o Lamassu e traga o chifre: em troca, ele dá uma das duas chaves do portão da Esfinge."
+
+msgid "QUEST_DESERT_SCARAB"
+msgstr "O Escaravelho de Ouro"
+
+msgid "QUEST_DESERT_SCARAB_DESC"
+msgstr "A Guardiã do Oásis perdeu o escaravelho de ouro da sua gente: a Rainha Escorpião o carrega no ferrão. Ela desperta a Rainha com a sua fala; traga o escaravelho e receba a outra chave do portão da Esfinge."
+
+msgid "QUEST_DESERT_GATE"
+msgstr "O Portão da Esfinge"
+
+msgid "QUEST_DESERT_GATE_DESC"
+msgstr "O Sentinela do Portão só abre o caminho para quem trouxer as duas chaves: a de Paus (com o Nômade) e a de Ouros (com a Guardiã do Oásis). Atrás do portão fica o Salão da Esfinge."
+
+msgid "DLG_NOMAD_1"
+msgstr "A areia engole caravanas inteiras, viajantes. Sou o que sobrou da última: sei onde cada poço e cada ruína ficam, e sei o que dorme em cada uma."
+
+msgid "DLG_NOMAD_2"
+msgstr "Ao leste, nas Ruínas do Sol, um templo guarda o Lamassu da Areia, um touro alado de pedra. Ele carrega um chifre dourado que vale mais que a minha caravana inteira."
+
+msgid "DLG_NOMAD_3"
+msgstr "Toquem as pedras do templo, derrubem o Lamassu e tragam o chifre. Em troca, dou a Chave de Paus, uma das duas que abrem o portão da Esfinge, ao norte das dunas."
+
+msgid "DLG_NOMAD_ACTIVE"
+msgstr "O templo fica a leste: sigam a estrada, passem pelas dunas e pela areia movediça. O chifre é dourado e do tamanho de um braço. Tragam-no e a chave é de vocês."
+
+msgid "DLG_NOMAD_DONE"
+msgstr "Que chifre! Com ele eu refaço a caravana. A Chave de Paus é de vocês; levem-na ao Sentinela do Portão, junto com a de Ouros."
+
+msgid "DLG_OASIS_1"
+msgstr "Shh... a água ouve. Eu cuido deste oásis desde antes de a areia chegar, e só o que me ficou foi esta poça."
+
+msgid "DLG_OASIS_2"
+msgstr "A Rainha Escorpião dorme sob a areia, aqui perto, e usa no ferrão o escaravelho de ouro da minha gente. Sem ele, o oásis seca de vez."
+
+msgid "DLG_OASIS_3"
+msgstr "Vou chamá-la para vocês. Derrubem a Rainha e tragam o escaravelho: eu entrego a Chave de Ouros, a outra que abre o portão da Esfinge."
+
+msgid "DLG_OASIS_ACTIVE"
+msgstr "O escaravelho brilha como uma gota de sol. A Rainha o carrega no ferrão. Derrubem-na e tragam-no para mim."
+
+msgid "DLG_OASIS_DONE"
+msgstr "A água voltou a cantar! A Chave de Ouros é de vocês. Levem-na ao Sentinela, no corredor ao norte das dunas."
+
+msgid "DLG_OASIS_WAIT"
+msgstr "Bebam, descansem. A água é de quem a respeita."
+
+msgid "DLG_SUNTEMPLE_1"
+msgstr "As pedras do templo estão quentes, como se alguém tivesse acabado de sair daqui. Um rugido de pedra sobe do subsolo."
+
+msgid "DLG_SUNTEMPLE_2"
+msgstr "O Lamassu da Areia desperta!"
+
+msgid "DLG_SUNTEMPLE_LOCKED"
+msgstr "Um templo antigo, coberto de areia. Nada responde às suas mãos."
+
+msgid "DLG_SENTINEL_1"
+msgstr "Alto, forasteiros. Este portão é mais velho que as dunas, e atrás dele dorme a Esfinge. Eu o vigio desde que o último rei passou por aqui."
+
+msgid "DLG_SENTINEL_2"
+msgstr "O portão só cai para quem trouxer DUAS chaves: a de Paus e a de Ouros. A primeira está com o Nômade da Areia, no acampamento; a segunda, com a Guardiã do Oásis."
+
+msgid "DLG_SENTINEL_3"
+msgstr "Os dois cobram um preço: um chifre de pedra, um escaravelho de ouro. Tragam as duas chaves a mim e eu abro a passagem."
+
+msgid "DLG_SENTINEL_ACTIVE"
+msgstr "Só abro com as duas chaves, Paus e Ouros, na mesma bolsa. O Nômade fica no acampamento; a Guardiã, no oásis a oeste da estrada."
+
+msgid "DLG_SENTINEL_DONE"
+msgstr "As duas chaves! O portão está aberto. Cuidado: a Esfinge faz uma pergunta e não aceita silêncio como resposta."

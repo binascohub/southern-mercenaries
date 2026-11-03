@@ -131108,7 +131108,7 @@
     "passive": true
   },
   "desert_01_canyon": {
-    "_comment": "Deserto — o Cânion (Canyon Terrain Asset, loafbrr / Ian87, CC0): areia e rocha em salas abertas (entrada, cânion, oásis, ravina e arena), com cactos, capim e árvores secas; 2 mini-chefes (Lamassu da Areia e Rainha Escorpião). Liga-se à Fazenda pelo portal do oeste dos campos. Gerado por tools/assets/build_desert.py.",
+    "_comment": "Deserto — o Cânion (Canyon Terrain Asset, loafbrr / Ian87, CC0), mapa grande com a estrutura da Floresta e outro caminho: acampamento ao sul, rota em laço para o norte (estrada, ruínas de carroças, passagem, areia movediça, dunas) e ramais sem saída (Caravana, Ninho, Oásis, Ruínas do Sol). 2 mini-chefes: a Rainha Escorpião (o NPC do Oásis a desperta) e o Lamassu da Areia (o templo das Ruínas do Sol). O Sentinela do Portão pede as duas chaves; atrás do portão fica a Esfinge (chefe final) e a saída. Liga-se à Fazenda pelo portal do oeste dos campos. Gerado por tools/assets/build_desert.py.",
     "name_key": "ARENA_DESERT",
     "outdoor": true,
     "player_class": "mage",
@@ -131118,79 +131118,64 @@
     "alert_radius": 5.0,
     "rooms": [
       {
-        "id": "start",
+        "id": "camp",
         "center": [
           0,
           0
         ],
         "size": [
-          30,
-          14
+          44,
+          26
         ],
         "doors": [
+          "west:2",
           "north"
         ],
         "wall_height": 0.8,
         "torch": true
       },
       {
-        "id": "canyon_a",
+        "id": "caravan",
         "center": [
-          0,
-          -22
+          -36,
+          6
         ],
         "size": [
-          34,
+          28,
           30
         ],
         "doors": [
+          "east:-4"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "road",
+        "center": [
+          0,
+          -36
+        ],
+        "size": [
+          36,
+          46
+        ],
+        "doors": [
           "south",
-          "north",
-          "east"
+          "west",
+          "east:6",
+          "north"
         ],
         "wall_height": 0.8
       },
       {
         "id": "oasis",
         "center": [
-          30,
-          -22
+          -34,
+          -36
         ],
         "size": [
-          26,
-          16
-        ],
-        "doors": [
-          "west"
-        ],
-        "wall_height": 0.8
-      },
-      {
-        "id": "canyon_b",
-        "center": [
-          0,
-          -56
-        ],
-        "size": [
-          38,
-          38
-        ],
-        "doors": [
-          "south",
-          "north",
-          "west"
-        ],
-        "wall_height": 0.8
-      },
-      {
-        "id": "ravine",
-        "center": [
-          -30,
-          -56
-        ],
-        "size": [
-          22,
-          18
+          32,
+          24
         ],
         "doors": [
           "east"
@@ -131198,14 +131183,127 @@
         "wall_height": 0.8
       },
       {
-        "id": "arena",
+        "id": "wrecks",
         "center": [
-          0,
-          -94
+          36,
+          -30
         ],
         "size": [
-          48,
-          38
+          36,
+          30
+        ],
+        "doors": [
+          "west",
+          "north:10"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "pass",
+        "center": [
+          46,
+          -57
+        ],
+        "size": [
+          12,
+          24
+        ],
+        "doors": [
+          "south",
+          "north"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "dunes",
+        "center": [
+          0,
+          -84
+        ],
+        "size": [
+          44,
+          50
+        ],
+        "doors": [
+          "south",
+          "west",
+          "east",
+          "north"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "nest",
+        "center": [
+          -40,
+          -84
+        ],
+        "size": [
+          36,
+          32
+        ],
+        "doors": [
+          "east"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "quicksand",
+        "center": [
+          40,
+          -84
+        ],
+        "size": [
+          36,
+          30
+        ],
+        "doors": [
+          "south:6",
+          "west",
+          "east"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "ruins",
+        "center": [
+          76,
+          -84
+        ],
+        "size": [
+          36,
+          36
+        ],
+        "doors": [
+          "west"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "gate_lane",
+        "center": [
+          0,
+          -124
+        ],
+        "size": [
+          12,
+          30
+        ],
+        "doors": [
+          "south",
+          "north"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "sphinx",
+        "center": [
+          0,
+          -167
+        ],
+        "size": [
+          56,
+          56
         ],
         "doors": [
           "south"
@@ -131215,10 +131313,10 @@
     ],
     "encounters": [
       {
-        "id": "d_scorp_a",
+        "id": "d_road_scorp",
         "position": [
           -8,
-          -18
+          -28
         ],
         "monsters": [
           {
@@ -131228,10 +131326,10 @@
         ]
       },
       {
-        "id": "d_chitin_a",
+        "id": "d_road_chitin",
         "position": [
           8,
-          -26
+          -44
         ],
         "monsters": [
           {
@@ -131241,10 +131339,10 @@
         ]
       },
       {
-        "id": "d_stalker_a",
+        "id": "d_road_stalker",
         "position": [
           0,
-          -32
+          -53
         ],
         "monsters": [
           {
@@ -131254,10 +131352,36 @@
         ]
       },
       {
+        "id": "d_caravan",
+        "position": [
+          -36,
+          2
+        ],
+        "monsters": [
+          {
+            "monster": "venom_scorpion",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "d_caravan_mimic",
+        "position": [
+          -44,
+          16
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
         "id": "d_oasis",
         "position": [
-          30,
-          -20
+          -30,
+          -44
         ],
         "monsters": [
           {
@@ -131271,23 +131395,10 @@
         ]
       },
       {
-        "id": "d_scorp_b",
+        "id": "d_wrecks_a",
         "position": [
-          -8,
-          -48
-        ],
-        "monsters": [
-          {
-            "monster": "venom_scorpion",
-            "count": 3
-          }
-        ]
-      },
-      {
-        "id": "d_goblin_b",
-        "position": [
-          10,
-          -52
+          30,
+          -24
         ],
         "monsters": [
           {
@@ -131301,10 +131412,23 @@
         ]
       },
       {
-        "id": "d_ravine",
+        "id": "d_wrecks_b",
         "position": [
-          -30,
-          -56
+          28,
+          -38
+        ],
+        "monsters": [
+          {
+            "monster": "chitin_beast",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "d_wrecks_troll",
+        "position": [
+          47,
+          -36
         ],
         "monsters": [
           {
@@ -131314,23 +131438,49 @@
         ]
       },
       {
-        "id": "d_lamassu",
+        "id": "d_wrecks_mimic",
         "position": [
-          0,
-          -68
+          50,
+          -22
         ],
         "monsters": [
           {
-            "monster": "sand_lamassu",
+            "monster": "chest_mimic",
             "count": 1
           }
         ]
       },
       {
-        "id": "d_arena_a",
+        "id": "d_pass",
         "position": [
-          -12,
-          -88
+          46,
+          -57
+        ],
+        "monsters": [
+          {
+            "monster": "stalker",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "d_dunes_a",
+        "position": [
+          -10,
+          -70
+        ],
+        "monsters": [
+          {
+            "monster": "venom_scorpion",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "d_dunes_b",
+        "position": [
+          10,
+          -96
         ],
         "monsters": [
           {
@@ -131340,31 +131490,196 @@
         ]
       },
       {
-        "id": "d_arena_b",
+        "id": "d_dunes_c",
         "position": [
-          12,
-          -90
+          -8,
+          -101
         ],
         "monsters": [
           {
             "monster": "stalker",
             "count": 2
-          },
+          }
+        ]
+      },
+      {
+        "id": "d_dunes_d",
+        "position": [
+          12,
+          -74
+        ],
+        "monsters": [
+          {
+            "monster": "goblin",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "d_nest_a",
+        "position": [
+          -40,
+          -84
+        ],
+        "monsters": [
           {
             "monster": "venom_scorpion",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "d_nest_b",
+        "position": [
+          -48,
+          -90
+        ],
+        "monsters": [
+          {
+            "monster": "chitin_beast",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "d_nest_troll",
+        "position": [
+          -34,
+          -76
+        ],
+        "monsters": [
+          {
+            "monster": "troll",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "d_nest_mimic",
+        "position": [
+          -52,
+          -94
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "d_sand_a",
+        "position": [
+          34,
+          -90
+        ],
+        "monsters": [
+          {
+            "monster": "venom_scorpion",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "d_sand_b",
+        "position": [
+          46,
+          -78
+        ],
+        "monsters": [
+          {
+            "monster": "chitin_beast",
             "count": 2
           }
         ]
       },
       {
-        "id": "d_queen",
+        "id": "d_sand_mimic",
         "position": [
-          0,
-          -104
+          54,
+          -72
         ],
         "monsters": [
           {
-            "monster": "queen_scorpion",
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "d_ruins_a",
+        "position": [
+          64,
+          -94
+        ],
+        "monsters": [
+          {
+            "monster": "stalker",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "d_ruins_b",
+        "position": [
+          88,
+          -76
+        ],
+        "monsters": [
+          {
+            "monster": "chitin_beast",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "d_ruins_mimic",
+        "position": [
+          90,
+          -96
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "d_sphinx_a",
+        "position": [
+          -14,
+          -152
+        ],
+        "monsters": [
+          {
+            "monster": "chitin_beast",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "d_sphinx_b",
+        "position": [
+          14,
+          -152
+        ],
+        "monsters": [
+          {
+            "monster": "chitin_beast",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "d_sphinx",
+        "position": [
+          0,
+          -180
+        ],
+        "monsters": [
+          {
+            "monster": "sphinx",
             "count": 1
           }
         ]
@@ -131374,11 +131689,11 @@
     "entries": {
       "start": [
         0,
-        3
+        7
       ],
       "desert": [
         0,
-        3
+        7
       ]
     },
     "props": [
@@ -131387,18 +131702,155 @@
         "kind": "exit",
         "name_key": "PROP_TO_FARM",
         "position": [
-          -6,
-          3
+          -8,
+          9
         ],
         "to": "farm_01_fields",
         "entry": "desert"
       },
       {
+        "id": "to_farm",
+        "kind": "exit",
+        "name_key": "PROP_TO_FARM",
+        "position": [
+          0,
+          -191.5
+        ],
+        "to": "farm_01_fields",
+        "entry": "desert",
+        "group": true
+      },
+      {
+        "id": "desert_nomad",
+        "kind": "npc",
+        "npc": "desert_nomad",
+        "position": [
+          8,
+          -4
+        ],
+        "rotation": 200
+      },
+      {
+        "id": "desert_oasis_keeper",
+        "kind": "npc",
+        "npc": "desert_oasis_keeper",
+        "position": [
+          -26,
+          -30
+        ],
+        "rotation": 0,
+        "summon": {
+          "id": "d_queen",
+          "position": [
+            -43.0,
+            -42.0
+          ],
+          "spread": 3.0,
+          "toast": "TOAST_OASIS_AWAKENS",
+          "monsters": [
+            {
+              "monster": "queen_scorpion",
+              "count": 1,
+              "rank": "miniboss"
+            }
+          ]
+        },
+        "needs_quest": "desert_scarab"
+      },
+      {
+        "id": "oasis_pond",
+        "kind": "water",
+        "position": [
+          -34,
+          -37
+        ],
+        "size": [
+          10.0,
+          6.0
+        ],
+        "round": true,
+        "color": [
+          0.12,
+          0.38,
+          0.45
+        ]
+      },
+      {
+        "id": "oasis_pond_b",
+        "kind": "water",
+        "position": [
+          -30.5,
+          -35.5
+        ],
+        "size": [
+          5.0,
+          3.5
+        ],
+        "round": true,
+        "color": [
+          0.12,
+          0.38,
+          0.45
+        ]
+      },
+      {
+        "id": "desert_temple",
+        "kind": "npc",
+        "npc": "desert_temple",
+        "kit": "Ruin_Temple1",
+        "rotation": 0,
+        "position": [
+          76.0,
+          -84.0
+        ],
+        "summon": {
+          "id": "d_lamassu",
+          "position": [
+            76.0,
+            -75.0
+          ],
+          "spread": 3.0,
+          "toast": "TOAST_SUN_TEMPLE_AWAKENS",
+          "monsters": [
+            {
+              "monster": "sand_lamassu",
+              "count": 1,
+              "rank": "miniboss"
+            }
+          ]
+        },
+        "needs_quest": "desert_horn"
+      },
+      {
+        "id": "boss_gate",
+        "kind": "gate",
+        "name_key": "PROP_BOSS_GATE",
+        "position": [
+          0.0,
+          -135.0
+        ],
+        "rotation": 0,
+        "scale": 3.0,
+        "block": 12.0,
+        "count": 2,
+        "opened_by": "desert_gate"
+      },
+      {
+        "id": "desert_sentinel",
+        "kind": "npc",
+        "npc": "desert_sentinel",
+        "position": [
+          0.0,
+          -131.0
+        ],
+        "rotation": 0
+      },
+      {
         "id": "desert_chest_1",
         "kind": "chest",
         "position": [
-          38,
-          -26
+          -46,
+          14
         ],
         "loot": "chest"
       },
@@ -131406,8 +131858,8 @@
         "id": "desert_chest_2",
         "kind": "chest",
         "position": [
-          -37,
-          -59
+          -46,
+          -28
         ],
         "loot": "chest"
       },
@@ -131415,8 +131867,8 @@
         "id": "desert_chest_3",
         "kind": "chest",
         "position": [
-          18,
-          -106
+          -55,
+          -94
         ],
         "loot": "chest"
       },
@@ -131424,8 +131876,35 @@
         "id": "desert_chest_4",
         "kind": "chest",
         "position": [
-          -18,
-          -106
+          88,
+          -98
+        ],
+        "loot": "chest"
+      },
+      {
+        "id": "desert_chest_5",
+        "kind": "chest",
+        "position": [
+          52,
+          -40
+        ],
+        "loot": "chest"
+      },
+      {
+        "id": "desert_chest_6",
+        "kind": "chest",
+        "position": [
+          -22,
+          -190
+        ],
+        "loot": "chest"
+      },
+      {
+        "id": "desert_chest_7",
+        "kind": "chest",
+        "position": [
+          22,
+          -190
         ],
         "loot": "chest"
       }
@@ -131438,6 +131917,78 @@
         "position": [
           4.0,
           1.5
+        ],
+        "table": "coin_bag"
+      },
+      {
+        "id": "coin_bag_2",
+        "monster": "coin_bag",
+        "position": [
+          -30,
+          14
+        ],
+        "table": "coin_bag"
+      },
+      {
+        "id": "coin_bag_3",
+        "monster": "coin_bag",
+        "position": [
+          20,
+          -40
+        ],
+        "table": "coin_bag"
+      },
+      {
+        "id": "coin_bag_4",
+        "monster": "coin_bag",
+        "position": [
+          -8,
+          -62
+        ],
+        "table": "coin_bag"
+      },
+      {
+        "id": "coin_bag_5",
+        "monster": "coin_bag",
+        "position": [
+          -52,
+          -76
+        ],
+        "table": "coin_bag"
+      },
+      {
+        "id": "coin_bag_6",
+        "monster": "coin_bag",
+        "position": [
+          56,
+          -90
+        ],
+        "table": "coin_bag"
+      },
+      {
+        "id": "coin_bag_7",
+        "monster": "coin_bag",
+        "position": [
+          92,
+          -80
+        ],
+        "table": "coin_bag"
+      },
+      {
+        "id": "coin_bag_8",
+        "monster": "coin_bag",
+        "position": [
+          -18,
+          -158
+        ],
+        "table": "coin_bag"
+      },
+      {
+        "id": "coin_bag_9",
+        "monster": "coin_bag",
+        "position": [
+          18,
+          -158
         ],
         "table": "coin_bag"
       }
@@ -131457,1891 +132008,5968 @@
     },
     "decor": [
       {
-        "piece": "Canyon_Rock_Boulders_5",
-        "position": [
-          -11.8,
-          9.5
-        ],
-        "rotation": 165
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_1",
-        "position": [
-          -9.6,
-          9.5
-        ],
-        "rotation": 165
-      },
-      {
-        "piece": "Canyon_Rock_Platforms_4",
-        "position": [
-          -6.1,
-          10.1
-        ],
-        "rotation": 165
-      },
-      {
-        "piece": "Canyon_Rock_Platforms_1",
-        "position": [
-          -1.7,
-          10.0
-        ],
-        "rotation": 180
-      },
-      {
-        "piece": "Canyon_Rock_Platforms_1",
-        "position": [
-          2.4,
-          10.0
-        ],
-        "rotation": 165
-      },
-      {
-        "piece": "Canyon_Rock_Formations_1",
-        "position": [
-          7.4,
-          10.4
-        ],
-        "rotation": 180
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_6",
-        "position": [
-          10.9,
-          9.4
-        ],
-        "rotation": 195
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_4",
-        "position": [
-          13.7,
-          9.9
-        ],
-        "rotation": 195
-      },
-      {
-        "piece": "Canyon_Rock_Formations_12",
-        "position": [
-          -18.5,
-          -1.5
-        ],
-        "rotation": 90
-      },
-      {
         "piece": "Canyon_Rock_Formations_6",
         "position": [
-          19.8,
-          -33.1
-        ],
-        "rotation": 270
-      },
-      {
-        "piece": "Canyon_Rock_Formations_4",
-        "position": [
-          -20.5,
-          -31.6
-        ],
-        "rotation": 105
-      },
-      {
-        "piece": "Canyon_Rock_Formations_4",
-        "position": [
-          -20.5,
-          -25.6
-        ],
-        "rotation": 105
-      },
-      {
-        "piece": "Canyon_Rock_Formations_10",
-        "position": [
-          -20.9,
-          -18.7
-        ],
-        "rotation": 105
-      },
-      {
-        "piece": "Canyon_Rock_Formations_7",
-        "position": [
-          24.2,
-          -34.3
-        ],
-        "rotation": 15
-      },
-      {
-        "piece": "Canyon_Rock_Formations_12",
-        "position": [
-          31.9,
-          -33.5
+          -18.1,
+          -15.8
         ],
         "rotation": 0
       },
       {
         "piece": "Canyon_Rock_Formations_9",
         "position": [
-          38.7,
-          -33.8
+          -12.6,
+          -13.0
         ],
         "rotation": -15
       },
       {
-        "piece": "Canyon_Rock_Boulders_1",
+        "piece": "Canyon_Rock_Platforms_5",
         "position": [
-          20.2,
-          -11.5
+          11.8,
+          -13.0
+        ],
+        "rotation": -15
+      },
+      {
+        "piece": "Canyon_Rock_Formations_1",
+        "position": [
+          -16.9,
+          16.4
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_6",
+        "position": [
+          -13.4,
+          15.4
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_6",
+        "position": [
+          -11.7,
+          15.4
         ],
         "rotation": 180
       },
       {
         "piece": "Canyon_Rock_Platforms_6",
         "position": [
-          23.9,
-          -10.8
+          -8.2,
+          16.2
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_6",
+        "position": [
+          -3.3,
+          16.2
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_1",
+        "position": [
+          0.0,
+          15.5
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_6",
+        "position": [
+          3.7,
+          16.2
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_4",
+        "position": [
+          7.8,
+          15.9
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_6",
+        "position": [
+          10.4,
+          15.4
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_1",
+        "position": [
+          13.4,
+          16.0
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_6",
+        "position": [
+          18.0,
+          16.2
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_6",
+        "position": [
+          21.1,
+          15.4
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Canyon_Rock_Formations_7",
+        "position": [
+          26.3,
+          -5.8
+        ],
+        "rotation": 255
+      },
+      {
+        "piece": "Canyon_Rock_Formations_4",
+        "position": [
+          -44.6,
+          -12.5
+        ],
+        "rotation": -15
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_5",
+        "position": [
+          -36.0,
+          -13.6
+        ],
+        "rotation": -15
+      },
+      {
+        "piece": "Canyon_Rock_Formations_2",
+        "position": [
+          -45.6,
+          24.1
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_6",
+        "position": [
+          -42.7,
+          23.4
         ],
         "rotation": 180
       },
       {
         "piece": "Canyon_Rock_Formations_2",
         "position": [
-          28.4,
-          -10.9
+          -39.6,
+          24.1
         ],
         "rotation": 195
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_4",
+        "position": [
+          -35.6,
+          23.9
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_6",
+        "position": [
+          -33.1,
+          23.4
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_5",
+        "position": [
+          -31.1,
+          23.5
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Formations_1",
+        "position": [
+          -27.0,
+          24.4
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_4",
+        "position": [
+          -22.5,
+          23.9
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Formations_3",
+        "position": [
+          -55.0,
+          -0.2
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Canyon_Rock_Formations_3",
+        "position": [
+          -55.0,
+          11.9
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Canyon_Rock_Formations_12",
+        "position": [
+          -12.5,
+          -59.0
+        ],
+        "rotation": -15
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_10",
+        "position": [
+          24.0,
+          -48.0
+        ],
+        "rotation": 255
+      },
+      {
+        "piece": "Canyon_Rock_Formations_12",
+        "position": [
+          -21.5,
+          -53.5
+        ],
+        "rotation": 75
+      },
+      {
+        "piece": "Canyon_Rock_Formations_6",
+        "position": [
+          -20.8,
+          -48.8
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_7",
+        "position": [
+          -37.5,
+          -54.6
+        ],
+        "rotation": 15
+      },
+      {
+        "piece": "Canyon_Rock_Formations_8",
+        "position": [
+          -24.6,
+          -52.0
+        ],
+        "rotation": 15
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_1",
+        "position": [
+          -46.8,
+          -21.5
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_4",
+        "position": [
+          -43.8,
+          -21.1
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Formations_1",
+        "position": [
+          -39.1,
+          -20.6
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Formations_1",
+        "position": [
+          -33.4,
+          -20.6
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_6",
+        "position": [
+          -29.9,
+          -21.6
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_6",
+        "position": [
+          -26.5,
+          -20.8
+        ],
+        "rotation": 180
       },
       {
         "piece": "Canyon_Rock_Formations_2",
         "position": [
-          32.7,
-          -10.9
+          -21.9,
+          -20.9
         ],
-        "rotation": 195
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_5",
+        "position": [
+          -54.6,
+          -40.0
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_5",
+        "position": [
+          -54.6,
+          -29.2
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Canyon_Rock_Formations_9",
+        "position": [
+          24.0,
+          -48.8
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Canyon_Rock_Formations_7",
+        "position": [
+          32.4,
+          -49.3
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_6",
+        "position": [
+          22.7,
+          -11.8
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Canyon_Rock_Formations_1",
+        "position": [
+          28.0,
+          -11.6
+        ],
+        "rotation": 180
       },
       {
         "piece": "Canyon_Rock_Platforms_1",
         "position": [
-          37.0,
-          -11.0
+          32.8,
+          -12.0
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Canyon_Rock_Formations_1",
+        "position": [
+          37.8,
+          -11.6
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_4",
+        "position": [
+          42.3,
+          -12.1
         ],
         "rotation": 165
       },
       {
         "piece": "Canyon_Rock_Boulders_4",
         "position": [
-          40.8,
-          -11.1
+          45.9,
+          -12.1
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Formations_2",
+        "position": [
+          49.9,
+          -11.9
         ],
         "rotation": 180
       },
       {
         "piece": "Canyon_Rock_Formations_9",
         "position": [
-          46.8,
-          -24.0
-        ],
-        "rotation": 285
-      },
-      {
-        "piece": "Canyon_Rock_Formations_6",
-        "position": [
-          45.8,
-          -18.9
-        ],
-        "rotation": 285
-      },
-      {
-        "piece": "Canyon_Rock_Formations_6",
-        "position": [
-          45.8,
-          -15.5
-        ],
-        "rotation": 285
-      },
-      {
-        "piece": "Canyon_Rock_Formations_6",
-        "position": [
-          21.8,
-          -71.1
-        ],
-        "rotation": 285
-      },
-      {
-        "piece": "Canyon_Rock_Platforms_10",
-        "position": [
-          25.0,
-          -60.6
+          57.8,
+          -39.0
         ],
         "rotation": 270
       },
       {
-        "piece": "Canyon_Rock_Formations_6",
+        "piece": "Canyon_Rock_Platforms_10",
         "position": [
-          21.8,
-          -51.5
+          60.0,
+          -26.8
         ],
         "rotation": 270
       },
       {
         "piece": "Canyon_Rock_Formations_3",
         "position": [
-          -24.0,
-          -66.2
+          57.0,
+          -60.2
         ],
-        "rotation": 105
+        "rotation": 270
       },
       {
         "piece": "Canyon_Rock_Formations_10",
         "position": [
-          -22.9,
-          -44.5
+          55.9,
+          -50.6
         ],
-        "rotation": 90
+        "rotation": 255
       },
       {
-        "piece": "Canyon_Rock_Platforms_5",
+        "piece": "Canyon_Rock_Formations_10",
         "position": [
-          -33.0,
-          -69.6
-        ],
-        "rotation": -15
-      },
-      {
-        "piece": "Canyon_Rock_Formations_12",
-        "position": [
-          -24.7,
-          -68.5
-        ],
-        "rotation": -15
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_5",
-        "position": [
-          -37.8,
-          -44.5
-        ],
-        "rotation": 180
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_4",
-        "position": [
-          -34.8,
-          -44.1
-        ],
-        "rotation": 165
-      },
-      {
-        "piece": "Canyon_Rock_Platforms_4",
-        "position": [
-          -30.6,
-          -43.9
-        ],
-        "rotation": 180
-      },
-      {
-        "piece": "Canyon_Rock_Formations_2",
-        "position": [
-          -26.2,
-          -43.9
-        ],
-        "rotation": 180
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_5",
-        "position": [
-          -23.0,
-          -44.5
-        ],
-        "rotation": 180
-      },
-      {
-        "piece": "Canyon_Rock_Formations_6",
-        "position": [
-          -43.8,
-          -61.1
+          36.1,
+          -62.8
         ],
         "rotation": 75
       },
       {
         "piece": "Canyon_Rock_Formations_3",
         "position": [
-          -46.0,
-          -52.8
+          35.0,
+          -52.6
         ],
-        "rotation": 90
+        "rotation": 75
       },
       {
-        "piece": "Canyon_Rock_Formations_9",
+        "piece": "Canyon_Rock_Formations_12",
         "position": [
-          -18.0,
-          -116.8
+          -16.5,
+          -112.5
         ],
         "rotation": -15
       },
       {
         "piece": "Canyon_Rock_Formations_7",
         "position": [
-          -9.6,
-          -117.3
+          10.4,
+          -113.3
         ],
-        "rotation": -15
+        "rotation": 15
       },
       {
-        "piece": "Canyon_Rock_Platforms_7",
+        "piece": "Canyon_Rock_Formations_2",
         "position": [
-          5.1,
-          -119.6
-        ],
-        "rotation": -15
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_1",
-        "position": [
-          -20.8,
-          -72.5
+          20.6,
+          -55.9
         ],
         "rotation": 195
       },
       {
-        "piece": "Canyon_Rock_Boulders_6",
-        "position": [
-          19.3,
-          -72.6
-        ],
-        "rotation": 165
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_4",
+        "piece": "Canyon_Rock_Formations_5",
         "position": [
           22.0,
-          -72.1
+          -98.5
         ],
-        "rotation": 165
+        "rotation": 285
       },
       {
-        "piece": "Canyon_Rock_Formations_8",
+        "piece": "Canyon_Rock_Formations_12",
         "position": [
-          28.0,
-          -106.5
+          22.0,
+          -74.3
         ],
         "rotation": 270
       },
       {
         "piece": "Canyon_Rock_Formations_8",
         "position": [
-          28.0,
-          -98.4
+          26.0,
+          -67.0
+        ],
+        "rotation": 255
+      },
+      {
+        "piece": "Canyon_Rock_Formations_7",
+        "position": [
+          -26.3,
+          -101.8
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Canyon_Rock_Formations_6",
+        "position": [
+          -22.0,
+          -77.6
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Canyon_Rock_Formations_4",
+        "position": [
+          -22.0,
+          -72.7
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Canyon_Rock_Formations_4",
+        "position": [
+          -25.5,
+          -66.7
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Canyon_Rock_Formations_3",
+        "position": [
+          -49.2,
+          -105.0
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Canyon_Rock_Formations_7",
+        "position": [
+          -38.6,
+          -104.3
+        ],
+        "rotation": 15
+      },
+      {
+        "piece": "Canyon_Rock_Formations_4",
+        "position": [
+          -31.1,
+          -103.5
+        ],
+        "rotation": 15
+      },
+      {
+        "piece": "Canyon_Rock_Formations_9",
+        "position": [
+          -24.5,
+          -103.8
+        ],
+        "rotation": 15
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_6",
+        "position": [
+          -53.3,
+          -64.8
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_4",
+        "position": [
+          -49.1,
+          -65.1
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_6",
+        "position": [
+          -46.6,
+          -65.6
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_4",
+        "position": [
+          -43.2,
+          -64.9
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_4",
+        "position": [
+          -39.1,
+          -65.1
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_1",
+        "position": [
+          -35.2,
+          -65.0
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Formations_1",
+        "position": [
+          -30.3,
+          -64.6
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_6",
+        "position": [
+          -25.0,
+          -64.8
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Formations_7",
+        "position": [
+          -62.3,
+          -92.8
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_7",
+        "position": [
+          -64.6,
+          -78.1
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Canyon_Rock_Formations_10",
+        "position": [
+          28.2,
+          -102.9
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Canyon_Rock_Formations_5",
+        "position": [
+          40.1,
+          -104.7
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Canyon_Rock_Formations_8",
+        "position": [
+          51.4,
+          -103.0
+        ],
+        "rotation": -15
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_1",
+        "position": [
+          26.3,
+          -66.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_5",
+        "position": [
+          29.3,
+          -66.5
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_6",
+        "position": [
+          33.0,
+          -65.8
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_5",
+        "position": [
+          36.4,
+          -66.5
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_5",
+        "position": [
+          38.5,
+          -66.5
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_1",
+        "position": [
+          52.0,
+          -66.5
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Canyon_Rock_Formations_1",
+        "position": [
+          56.1,
+          -65.6
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Canyon_Rock_Formations_9",
+        "position": [
+          58.0,
+          -93.0
+        ],
+        "rotation": 285
+      },
+      {
+        "piece": "Canyon_Rock_Formations_4",
+        "position": [
+          58.0,
+          -72.2
+        ],
+        "rotation": 270
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_10",
+        "position": [
+          69.0,
+          -108.0
+        ],
+        "rotation": -15
+      },
+      {
+        "piece": "Canyon_Rock_Formations_12",
+        "position": [
+          79.7,
+          -105.5
+        ],
+        "rotation": -15
+      },
+      {
+        "piece": "Canyon_Rock_Formations_7",
+        "position": [
+          87.7,
+          -106.3
+        ],
+        "rotation": 15
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_6",
+        "position": [
+          61.0,
+          -63.6
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_5",
+        "position": [
+          62.9,
+          -63.5
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Canyon_Rock_Formations_2",
+        "position": [
+          66.3,
+          -62.9
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_4",
+        "position": [
+          70.8,
+          -62.9
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_1",
+        "position": [
+          75.2,
+          -63.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_6",
+        "position": [
+          79.7,
+          -62.8
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_1",
+        "position": [
+          84.2,
+          -63.0
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_1",
+        "position": [
+          88.3,
+          -63.0
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Canyon_Rock_Formations_8",
+        "position": [
+          98.0,
+          -95.5
+        ],
+        "rotation": 285
+      },
+      {
+        "piece": "Canyon_Rock_Formations_9",
+        "position": [
+          97.8,
+          -87.9
+        ],
+        "rotation": 255
+      },
+      {
+        "piece": "Canyon_Rock_Formations_12",
+        "position": [
+          97.5,
+          -81.2
+        ],
+        "rotation": 285
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_5",
+        "position": [
+          98.6,
+          -72.4
         ],
         "rotation": 285
       },
       {
         "piece": "Canyon_Rock_Formations_6",
         "position": [
-          26.8,
-          -92.9
+          5.6,
+          -139.0
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_5",
+        "position": [
+          10.6,
+          -131.0
         ],
         "rotation": 285
       },
       {
+        "piece": "Canyon_Rock_Formations_12",
+        "position": [
+          9.5,
+          -122.7
+        ],
+        "rotation": 270
+      },
+      {
         "piece": "Canyon_Rock_Formations_10",
         "position": [
-          27.9,
-          -87.1
+          9.9,
+          -115.7
         ],
         "rotation": 255
       },
       {
         "piece": "Canyon_Rock_Formations_6",
         "position": [
-          26.8,
-          -81.8
+          8.8,
+          -110.3
+        ],
+        "rotation": 285
+      },
+      {
+        "piece": "Canyon_Rock_Formations_6",
+        "position": [
+          -8.8,
+          -135.1
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Canyon_Rock_Formations_12",
+        "position": [
+          -9.5,
+          -130.1
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Canyon_Rock_Formations_12",
+        "position": [
+          -9.5,
+          -123.8
+        ],
+        "rotation": 75
+      },
+      {
+        "piece": "Canyon_Rock_Formations_6",
+        "position": [
+          -8.8,
+          -119.1
+        ],
+        "rotation": 75
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_10",
+        "position": [
+          -17.0,
+          -201.0
+        ],
+        "rotation": 15
+      },
+      {
+        "piece": "Canyon_Rock_Formations_12",
+        "position": [
+          -6.3,
+          -198.5
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Canyon_Rock_Formations_4",
+        "position": [
+          -0.2,
+          -198.5
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_5",
+        "position": [
+          8.5,
+          -199.6
+        ],
+        "rotation": -15
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_1",
+        "position": [
+          -23.7,
+          -136.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Canyon_Rock_Formations_1",
+        "position": [
+          -18.7,
+          -135.6
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Canyon_Rock_Formations_1",
+        "position": [
+          -13.0,
+          -135.6
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Canyon_Rock_Formations_1",
+        "position": [
+          -7.4,
+          -135.6
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_1",
+        "position": [
+          7.2,
+          -136.5
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_1",
+        "position": [
+          10.5,
+          -136.0
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_4",
+        "position": [
+          14.9,
+          -135.9
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_4",
+        "position": [
+          19.6,
+          -135.9
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Canyon_Rock_Formations_1",
+        "position": [
+          24.9,
+          -135.6
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Rock_Formations_9",
+        "position": [
+          31.8,
+          -189.0
+        ],
+        "rotation": 255
+      },
+      {
+        "piece": "Canyon_Rock_Formations_9",
+        "position": [
+          31.8,
+          -181.8
+        ],
+        "rotation": 270
+      },
+      {
+        "piece": "Canyon_Rock_Formations_4",
+        "position": [
+          31.5,
+          -175.2
+        ],
+        "rotation": 285
+      },
+      {
+        "piece": "Canyon_Rock_Formations_9",
+        "position": [
+          31.8,
+          -168.6
+        ],
+        "rotation": 255
+      },
+      {
+        "piece": "Canyon_Rock_Formations_7",
+        "position": [
+          32.3,
+          -160.2
         ],
         "rotation": 270
       },
       {
         "piece": "Canyon_Rock_Formations_9",
         "position": [
-          -27.8,
-          -107.0
+          31.8,
+          -152.0
+        ],
+        "rotation": 285
+      },
+      {
+        "piece": "Canyon_Rock_Formations_12",
+        "position": [
+          -31.5,
+          -189.5
         ],
         "rotation": 75
       },
       {
-        "piece": "Canyon_Rock_Formations_6",
+        "piece": "Canyon_Rock_Formations_5",
         "position": [
-          -26.8,
-          -101.9
+          -33.7,
+          -178.2
+        ],
+        "rotation": 105
+      },
+      {
+        "piece": "Canyon_Rock_Platforms_7",
+        "position": [
+          -34.6,
+          -161.0
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Canyon_Rock_Formations_4",
+        "position": [
+          -31.5,
+          -149.2
         ],
         "rotation": 75
       },
       {
-        "piece": "Canyon_Rock_Formations_6",
+        "piece": "Tv_Fire",
         "position": [
-          -26.8,
-          -98.5
+          -6.0,
+          -3.0
         ],
-        "rotation": 105
+        "rotation": 0,
+        "scale": 1.7,
+        "solid": [
+          1.6,
+          1.6
+        ]
       },
       {
-        "piece": "Canyon_Rock_Platforms_9",
+        "piece": "Fire_Flame",
         "position": [
-          -30.6,
-          -86.5
+          -6.0,
+          -3.0
         ],
-        "rotation": 105
+        "y": 0.2,
+        "scale": 1.5,
+        "flicker": true
       },
       {
-        "piece": "Canyon_Rock_Boulders_3",
+        "light": [
+          1.0,
+          0.55,
+          0.2
+        ],
         "position": [
-          -8.9,
-          -2.9
+          -6.0,
+          -3.0
+        ],
+        "y": 1.0,
+        "range": 13.0,
+        "energy": 1.8,
+        "flicker": true
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -4.0,
+          -3.0
+        ],
+        "rotation": 225,
+        "scale": 0.6
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -4.4,
+          -1.8
+        ],
+        "rotation": 270,
+        "scale": 0.6
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -5.4,
+          -1.1
+        ],
+        "rotation": 255,
+        "scale": 0.6
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -6.6,
+          -1.1
+        ],
+        "rotation": 240,
+        "scale": 0.6
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -7.6,
+          -1.8
+        ],
+        "rotation": 150,
+        "scale": 0.6
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -8.0,
+          -3.0
+        ],
+        "rotation": 345,
+        "scale": 0.6
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -7.6,
+          -4.2
+        ],
+        "rotation": 345,
+        "scale": 0.6
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -6.6,
+          -4.9
+        ],
+        "rotation": 15,
+        "scale": 0.6
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -5.4,
+          -4.9
+        ],
+        "rotation": 150,
+        "scale": 0.6
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -4.4,
+          -4.2
+        ],
+        "rotation": 225,
+        "scale": 0.6
+      },
+      {
+        "piece": "Tv_Firewood",
+        "position": [
+          -2.6,
+          -2.2
+        ],
+        "rotation": 80,
+        "scale": 1.6
+      },
+      {
+        "piece": "Tv_Firewood",
+        "position": [
+          -9.2,
+          -1.4
+        ],
+        "rotation": 15,
+        "scale": 1.6
+      },
+      {
+        "piece": "Tv_Firewood",
+        "position": [
+          -5.4,
+          -6.4
+        ],
+        "rotation": 120,
+        "scale": 1.6
+      },
+      {
+        "piece": "Tv_Firewood",
+        "position": [
+          -7.2,
+          0.4
+        ],
+        "rotation": 200,
+        "scale": 1.6
+      },
+      {
+        "piece": "Stall_Empty",
+        "position": [
+          -14,
+          -7
+        ],
+        "rotation": 160,
+        "scale": 1.6,
+        "solid": [
+          2.9,
+          1.5
+        ]
+      },
+      {
+        "piece": "Stall_Empty",
+        "position": [
+          -13,
+          6
+        ],
+        "rotation": 20,
+        "scale": 1.6,
+        "solid": [
+          2.9,
+          1.5
+        ]
+      },
+      {
+        "piece": "Stall_Empty",
+        "position": [
+          14,
+          6
+        ],
+        "rotation": 200,
+        "scale": 1.6,
+        "solid": [
+          2.9,
+          1.5
+        ]
+      },
+      {
+        "piece": "Stall_Empty",
+        "position": [
+          17,
+          -4
+        ],
+        "rotation": 250,
+        "scale": 1.6,
+        "solid": [
+          2.9,
+          1.5
+        ]
+      },
+      {
+        "piece": "Stall_Cart_Empty",
+        "position": [
+          15,
+          -9
+        ],
+        "rotation": 170,
+        "scale": 1.4,
+        "solid": [
+          4.2,
+          1.5
+        ]
+      },
+      {
+        "piece": "Pr_CoveredWell",
+        "position": [
+          -15,
+          10
+        ],
+        "rotation": 0,
+        "scale": 1.3,
+        "solid": [
+          2.3,
+          2.3
+        ]
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          -4.5,
+          -11
+        ],
+        "rotation": 0,
+        "scale": 1.1
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          4.5,
+          -11
+        ],
+        "rotation": 0,
+        "scale": 1.1
+      },
+      {
+        "piece": "Tv_Torch",
+        "position": [
+          -19,
+          -11
+        ],
+        "rotation": 150,
+        "scale": 1.5
+      },
+      {
+        "light": [
+          1.0,
+          0.55,
+          0.2
+        ],
+        "position": [
+          -19,
+          -11
+        ],
+        "y": 1.7,
+        "range": 6.0,
+        "energy": 0.8,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Torch",
+        "position": [
+          19,
+          11
+        ],
+        "rotation": 60,
+        "scale": 1.5
+      },
+      {
+        "light": [
+          1.0,
+          0.55,
+          0.2
+        ],
+        "position": [
+          19,
+          11
+        ],
+        "y": 1.7,
+        "range": 6.0,
+        "energy": 0.8,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Torch",
+        "position": [
+          -19,
+          11
+        ],
+        "rotation": 150,
+        "scale": 1.5
+      },
+      {
+        "light": [
+          1.0,
+          0.55,
+          0.2
+        ],
+        "position": [
+          -19,
+          11
+        ],
+        "y": 1.7,
+        "range": 6.0,
+        "energy": 0.8,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Torch",
+        "position": [
+          19,
+          -11
+        ],
+        "rotation": 15,
+        "scale": 1.5
+      },
+      {
+        "light": [
+          1.0,
+          0.55,
+          0.2
+        ],
+        "position": [
+          19,
+          -11
+        ],
+        "y": 1.7,
+        "range": 6.0,
+        "energy": 0.8,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Torch",
+        "position": [
+          -11,
+          -3
+        ],
+        "rotation": 75,
+        "scale": 1.5
+      },
+      {
+        "light": [
+          1.0,
+          0.55,
+          0.2
+        ],
+        "position": [
+          -11,
+          -3
+        ],
+        "y": 1.7,
+        "range": 6.0,
+        "energy": 0.8,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Torch",
+        "position": [
+          -1,
+          1
+        ],
+        "rotation": 330,
+        "scale": 1.5
+      },
+      {
+        "light": [
+          1.0,
+          0.55,
+          0.2
+        ],
+        "position": [
+          -1,
+          1
+        ],
+        "y": 1.7,
+        "range": 6.0,
+        "energy": 0.8,
+        "flicker": true
+      },
+      {
+        "piece": "Vase_Big_Shards",
+        "position": [
+          -18.6,
+          -3.3
+        ],
+        "rotation": 135,
+        "scale": 0.94
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          -12.5,
+          -1.6
+        ],
+        "rotation": 135,
+        "scale": 1.0
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          5.3,
+          3.3
+        ],
+        "rotation": 210,
+        "scale": 1.06
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          4.3,
+          -3.8
+        ],
+        "rotation": 210,
+        "scale": 1.09
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          10.8,
+          -6.9
+        ],
+        "rotation": 90,
+        "scale": 0.91
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          -15.8,
+          -4.3
+        ],
+        "rotation": 30,
+        "scale": 1.06
+      },
+      {
+        "piece": "Pot_Small",
+        "position": [
+          1.2,
+          9.4
+        ],
+        "rotation": 210,
+        "scale": 0.95
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          7.8,
+          7.6
+        ],
+        "rotation": 90,
+        "scale": 0.82
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          -12.3,
+          -9.5
+        ],
+        "rotation": 75,
+        "scale": 1.04
+      },
+      {
+        "piece": "Tv_Basket",
+        "position": [
+          -1.3,
+          9.7
+        ],
+        "rotation": 180,
+        "scale": 0.8
+      },
+      {
+        "piece": "Tv_Basket",
+        "position": [
+          -3.7,
+          -8.4
+        ],
+        "rotation": 150,
+        "scale": 0.96
+      },
+      {
+        "piece": "Pot_Large_Shards",
+        "position": [
+          -15.6,
+          0.4
+        ],
+        "rotation": 90,
+        "scale": 0.87
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          -17.2,
+          -7.9
+        ],
+        "rotation": 120,
+        "scale": 0.82
+      },
+      {
+        "piece": "Tv_Basket",
+        "position": [
+          1.8,
+          -8.4
+        ],
+        "rotation": 210,
+        "scale": 0.99
+      },
+      {
+        "piece": "Bag",
+        "position": [
+          -4.7,
+          9.0
+        ],
+        "rotation": 255,
+        "scale": 1.0
+      },
+      {
+        "piece": "Vase_2",
+        "position": [
+          -18.7,
+          -6.2
+        ],
+        "rotation": 255,
+        "scale": 0.96
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          10.5,
+          2.4
+        ],
+        "rotation": 180,
+        "scale": 0.9
+      },
+      {
+        "piece": "Pot_Large_Shards",
+        "position": [
+          -12.0,
+          0.7
         ],
         "rotation": 45,
+        "scale": 0.86
+      },
+      {
+        "piece": "Cart_Wood",
+        "position": [
+          -2.4,
+          5.4
+        ],
+        "rotation": 15,
+        "scale": 1.4,
         "solid": [
-          1.8,
+          4.5,
+          2.1
+        ]
+      },
+      {
+        "piece": "Pr_CartLarge",
+        "position": [
+          -41.3,
+          10.4
+        ],
+        "rotation": 90,
+        "scale": 1.3,
+        "solid": [
+          3.4,
+          2.1
+        ]
+      },
+      {
+        "piece": "Pr_CartSmall",
+        "position": [
+          -31.5,
+          13.7
+        ],
+        "rotation": 60,
+        "scale": 1.37,
+        "solid": [
+          3.6,
+          2.2
+        ]
+      },
+      {
+        "piece": "Cart_Wood",
+        "position": [
+          -29.3,
+          -0.7
+        ],
+        "rotation": 0,
+        "scale": 1.12,
+        "solid": [
+          2.9,
           1.8
         ]
       },
       {
-        "piece": "Canyon_Rock_Boulders_4",
+        "piece": "Pr_CartLarge",
         "position": [
-          -5.0,
-          -3.1
-        ],
-        "rotation": 30,
-        "solid": [
-          2.7,
-          2.7
-        ]
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_4",
-        "position": [
-          9.6,
-          2.0
-        ],
-        "rotation": 285,
-        "solid": [
-          2.7,
-          2.7
-        ]
-      },
-      {
-        "piece": "Canyon_Cactus_Flat_2",
-        "position": [
-          -11.9,
-          -3.8
-        ],
-        "rotation": 225,
-        "scale": 1.32
-      },
-      {
-        "piece": "Canyon_Cactus_Flat_1",
-        "position": [
-          12.1,
-          -0.5
-        ],
-        "rotation": 15,
-        "scale": 1.12
-      },
-      {
-        "piece": "Canyon_Cactus_Small_1",
-        "position": [
-          -10.0,
-          3.7
-        ],
-        "rotation": 270,
-        "scale": 1.3
-      },
-      {
-        "piece": "Canyon_Cactus_Small_3",
-        "position": [
-          12.4,
-          0.8
-        ],
-        "rotation": 105,
-        "scale": 1.12
-      },
-      {
-        "piece": "Canyon_Sticks_1",
-        "position": [
-          4.5,
-          -3.7
-        ],
-        "rotation": 255
-      },
-      {
-        "piece": "Canyon_Grass_1",
-        "position": [
-          -1.0,
-          -4.9
-        ],
-        "rotation": 195
-      },
-      {
-        "piece": "Canyon_Grass_6",
-        "position": [
-          -9.2,
-          1.9
-        ],
-        "rotation": 330
-      },
-      {
-        "piece": "Canyon_Grass_10",
-        "position": [
-          12.9,
-          -4.2
-        ],
-        "rotation": 270
-      },
-      {
-        "piece": "Canyon_Grass_1",
-        "position": [
-          -12.5,
-          1.3
-        ],
-        "rotation": 15
-      },
-      {
-        "piece": "Canyon_Grass_1",
-        "position": [
-          -10.8,
-          -4.4
-        ],
-        "rotation": 105
-      },
-      {
-        "piece": "Canyon_Grass_6",
-        "position": [
-          8.9,
+          -35.6,
           -0.3
         ],
-        "rotation": 225
+        "rotation": 105,
+        "scale": 1.13,
+        "solid": [
+          3.0,
+          1.8
+        ]
       },
       {
-        "piece": "Canyon_Tree_4",
+        "piece": "Pr_CartLarge",
         "position": [
-          -8.0,
-          -3.3
+          -35.3,
+          8.3
         ],
-        "rotation": 135,
-        "scale": 1.37
+        "rotation": 0,
+        "scale": 1.33,
+        "solid": [
+          3.5,
+          2.1
+        ]
       },
       {
-        "piece": "Canyon_Rock_Boulders_6",
+        "piece": "Vase_2",
         "position": [
-          -7.1,
-          -30.2
+          -27.0,
+          16.9
+        ],
+        "rotation": 90,
+        "scale": 1.17
+      },
+      {
+        "piece": "Tv_Basket",
+        "position": [
+          -28.6,
+          7.6
+        ],
+        "rotation": 240,
+        "scale": 0.89
+      },
+      {
+        "piece": "Pot_Large_Shards",
+        "position": [
+          -45.8,
+          6.7
+        ],
+        "rotation": 60,
+        "scale": 1.0
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          -26.3,
+          -4.3
+        ],
+        "rotation": 255,
+        "scale": 0.94
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          -40.6,
+          -1.5
+        ],
+        "rotation": 45,
+        "scale": 1.15
+      },
+      {
+        "piece": "Bag",
+        "position": [
+          -46.7,
+          -1.9
+        ],
+        "rotation": 225,
+        "scale": 0.94
+      },
+      {
+        "piece": "Pot_Small",
+        "position": [
+          -41.2,
+          17.8
+        ],
+        "rotation": 225,
+        "scale": 0.81
+      },
+      {
+        "piece": "Pot_Large",
+        "position": [
+          -25.3,
+          3.8
+        ],
+        "rotation": 315,
+        "scale": 1.13
+      },
+      {
+        "piece": "Bag",
+        "position": [
+          -30.8,
+          5.0
+        ],
+        "rotation": 105,
+        "scale": 0.84
+      },
+      {
+        "piece": "Vase_Big_Shards",
+        "position": [
+          -32.8,
+          2.7
+        ],
+        "rotation": 315,
+        "scale": 0.97
+      },
+      {
+        "piece": "Vase_Big_Shards",
+        "position": [
+          -27.9,
+          4.5
+        ],
+        "rotation": 270,
+        "scale": 1.11
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          -35.5,
+          -4.7
+        ],
+        "rotation": 315,
+        "scale": 0.97
+      },
+      {
+        "piece": "Pot_Large_Shards",
+        "position": [
+          -46.0,
+          11.0
+        ],
+        "rotation": 120,
+        "scale": 1.15
+      },
+      {
+        "piece": "Vase_Big_Shards",
+        "position": [
+          -43.1,
+          -4.0
+        ],
+        "rotation": 165,
+        "scale": 1.01
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          -25.2,
+          7.8
+        ],
+        "rotation": 180,
+        "scale": 1.08
+      },
+      {
+        "piece": "Pot_Large",
+        "position": [
+          -38.2,
+          15.9
+        ],
+        "rotation": 255,
+        "scale": 0.86
+      },
+      {
+        "piece": "Crate_Open",
+        "position": [
+          -46.7,
+          2.4
+        ],
+        "rotation": 345,
+        "scale": 0.88
+      },
+      {
+        "piece": "Vase_Big_Shards",
+        "position": [
+          -37.3,
+          13.9
         ],
         "rotation": 30,
+        "scale": 0.91
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          -25.9,
+          10.2
+        ],
+        "rotation": 285,
+        "scale": 0.9
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          -42.0,
+          5.9
+        ],
+        "rotation": 315,
+        "scale": 1.13
+      },
+      {
+        "piece": "Dungeon_BonePile_5",
+        "position": [
+          -30.2,
+          -5.8
+        ],
+        "rotation": 15,
+        "scale": 2.59
+      },
+      {
+        "piece": "Dungeon_Bone",
+        "position": [
+          -39.1,
+          3.8
+        ],
+        "rotation": 60,
+        "scale": 2.68
+      },
+      {
+        "piece": "Dungeon_Bone",
+        "position": [
+          -43.5,
+          0.9
+        ],
+        "rotation": 255,
+        "scale": 2.73
+      },
+      {
+        "piece": "Dungeon_Pelvis",
+        "position": [
+          -46.7,
+          -5.5
+        ],
+        "rotation": 330,
+        "scale": 2.62
+      },
+      {
+        "piece": "Dead_Tree",
+        "position": [
+          -46.8,
+          16.2
+        ],
+        "rotation": 120,
+        "scale": 1.06
+      },
+      {
+        "piece": "Pr_Obelisk3",
+        "position": [
+          -11,
+          -20
+        ],
+        "rotation": 0,
+        "scale": 1.3,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk3",
+        "position": [
+          11,
+          -20
+        ],
+        "rotation": 0,
+        "scale": 1.3,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk2",
+        "position": [
+          -11,
+          -28
+        ],
+        "rotation": 0,
+        "scale": 1.5,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk2",
+        "position": [
+          11,
+          -28
+        ],
+        "rotation": 0,
+        "scale": 1.5,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk3",
+        "position": [
+          -11,
+          -36
+        ],
+        "rotation": 0,
+        "scale": 1.3,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk3",
+        "position": [
+          11,
+          -36
+        ],
+        "rotation": 0,
+        "scale": 1.3,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk2",
+        "position": [
+          -11,
+          -44
+        ],
+        "rotation": 0,
+        "scale": 1.5,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk2",
+        "position": [
+          11,
+          -44
+        ],
+        "rotation": 0,
+        "scale": 1.5,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk3",
+        "position": [
+          -11,
+          -52
+        ],
+        "rotation": 0,
+        "scale": 1.3,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk3",
+        "position": [
+          11,
+          -52
+        ],
+        "rotation": 0,
+        "scale": 1.3,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Ruin_PillarStub",
+        "position": [
+          -6.7,
+          -39.8
+        ],
+        "rotation": 0,
+        "scale": 1.07,
+        "solid": [
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar1",
+        "position": [
+          -7.0,
+          -49.4
+        ],
+        "rotation": 255,
+        "scale": 1.13,
+        "solid": [
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar2",
+        "position": [
+          -5.1,
+          -32.2
+        ],
+        "rotation": 45,
+        "scale": 1.16,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar1",
+        "position": [
+          4.8,
+          -28.4
+        ],
+        "rotation": 75,
+        "scale": 1.34,
         "solid": [
           1.3,
           1.3
         ]
       },
       {
-        "piece": "Canyon_Rock_Boulders_4",
+        "piece": "Pr_BrokenPillar2",
         "position": [
-          13.1,
-          -21.0
-        ],
-        "rotation": 210,
-        "solid": [
-          2.7,
-          2.7
-        ]
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_5",
-        "position": [
-          9.1,
-          -17.9
-        ],
-        "rotation": 120,
-        "solid": [
-          1.6,
-          1.6
-        ]
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_5",
-        "position": [
-          3.7,
-          -32.3
+          -2.7,
+          -22.3
         ],
         "rotation": 135,
+        "scale": 1.18,
         "solid": [
-          1.6,
-          1.6
+          1.2,
+          1.2
         ]
       },
       {
-        "piece": "Canyon_Rock_Boulders_5",
+        "piece": "Dungeon_BonePile_1",
         "position": [
-          7.7,
-          -22.2
-        ],
-        "rotation": 150,
-        "solid": [
-          1.6,
-          1.6
-        ]
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_2",
-        "position": [
-          -9.4,
-          -26.9
+          2.6,
+          -32.5
         ],
         "rotation": 210,
-        "solid": [
-          1.8,
-          1.8
-        ]
+        "scale": 3.16
       },
       {
-        "piece": "Canyon_Rock_Boulders_5",
+        "piece": "Dungeon_Pelvis",
         "position": [
-          -4.7,
-          -23.8
+          -14.1,
+          -31.3
         ],
-        "rotation": 15,
-        "solid": [
-          1.6,
-          1.6
-        ]
+        "rotation": 120,
+        "scale": 3.04
       },
       {
-        "piece": "Canyon_Cactus_Flat_1",
+        "piece": "Dungeon_BonePile_2",
         "position": [
-          -2.5,
-          -30.5
+          4.5,
+          -54.2
         ],
-        "rotation": 300,
-        "scale": 1.15
+        "rotation": 285,
+        "scale": 3.13
       },
       {
-        "piece": "Canyon_Cactus_Small_3",
+        "piece": "Dungeon_BonePile_1",
         "position": [
-          9.6,
-          -20.0
+          -2.4,
+          -39.8
         ],
-        "rotation": 0,
-        "scale": 0.95
+        "rotation": 180,
+        "scale": 3.45
       },
       {
-        "piece": "Canyon_Cactus_Tall_4",
+        "piece": "Dungeon_CrossBones",
         "position": [
-          -2.2,
-          -26.6
+          3.9,
+          -16.6
         ],
-        "rotation": 300,
-        "scale": 1.05
+        "rotation": 195,
+        "scale": 3.06
       },
       {
-        "piece": "Canyon_Cactus_Tall_1",
+        "piece": "Dungeon_Skull_1",
         "position": [
-          -7.7,
-          -35.3
+          5.1,
+          -43.0
         ],
-        "rotation": 90,
-        "scale": 1.24
+        "rotation": 270,
+        "scale": 2.97
       },
       {
-        "piece": "Canyon_Cactus_Tall_5",
+        "piece": "Dungeon_BonePile_1",
         "position": [
-          -2.5,
-          -15.8
+          -14.5,
+          -55.3
         ],
-        "rotation": 30,
-        "scale": 1.39
+        "rotation": 270,
+        "scale": 3.05
       },
       {
-        "piece": "Canyon_Cactus_Tall_3",
+        "piece": "Dungeon_Skull_1",
+        "position": [
+          -0.2,
+          -46.0
+        ],
+        "rotation": 45,
+        "scale": 2.72
+      },
+      {
+        "piece": "Dungeon_Skull_2",
         "position": [
           6.7,
-          -19.6
+          -37.2
         ],
-        "rotation": 165,
-        "scale": 1.26
+        "rotation": 30,
+        "scale": 3.09
       },
       {
-        "piece": "Canyon_Cactus_Small_4",
+        "piece": "Dungeon_BonePile_3",
         "position": [
-          -12.7,
-          -20.3
+          14.9,
+          -26.7
         ],
-        "rotation": 210,
-        "scale": 1.38
+        "rotation": 345,
+        "scale": 3.15
       },
       {
-        "piece": "Canyon_Cactus_Tall_4",
+        "piece": "Canyon_Tree_3",
         "position": [
-          9.2,
-          -35.2
+          -4.8,
+          -43.9
+        ],
+        "rotation": 225,
+        "scale": 0.78
+      },
+      {
+        "piece": "Dead_Tree",
+        "position": [
+          11.6,
+          -32.0
+        ],
+        "rotation": 45,
+        "scale": 0.87
+      },
+      {
+        "piece": "Dead_Tree",
+        "position": [
+          -13.5,
+          -47.3
         ],
         "rotation": 60,
-        "scale": 1.18
+        "scale": 0.77
       },
       {
-        "piece": "Canyon_Cactus_Small_5",
+        "piece": "Rock_MossyStone",
         "position": [
-          -9.2,
-          -34.9
+          -27.4,
+          -37.0
         ],
-        "rotation": 300,
-        "scale": 1.13
+        "rotation": 105,
+        "scale": 0.9
       },
       {
-        "piece": "Canyon_Cactus_Small_3",
+        "piece": "Rock_MossyStone",
         "position": [
-          13.0,
-          -24.7
+          -27.9,
+          -34.5
+        ],
+        "rotation": 270,
+        "scale": 0.9
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -29.3,
+          -32.3
         ],
         "rotation": 240,
+        "scale": 0.9
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -31.5,
+          -30.9
+        ],
+        "rotation": 0,
+        "scale": 0.9
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -34.0,
+          -30.4
+        ],
+        "rotation": 105,
+        "scale": 0.9
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -36.5,
+          -30.9
+        ],
+        "rotation": 195,
+        "scale": 0.9
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -38.7,
+          -32.3
+        ],
+        "rotation": 30,
+        "scale": 0.9
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -40.1,
+          -34.5
+        ],
+        "rotation": 45,
+        "scale": 0.9
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -40.6,
+          -37.0
+        ],
+        "rotation": 15,
+        "scale": 0.9
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -40.1,
+          -39.5
+        ],
+        "rotation": 210,
+        "scale": 0.9
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -38.7,
+          -41.7
+        ],
+        "rotation": 105,
+        "scale": 0.9
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -36.5,
+          -43.1
+        ],
+        "rotation": 90,
+        "scale": 0.9
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -34.0,
+          -43.6
+        ],
+        "rotation": 30,
+        "scale": 0.9
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -31.5,
+          -43.1
+        ],
+        "rotation": 30,
+        "scale": 0.9
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -29.3,
+          -41.7
+        ],
+        "rotation": 330,
+        "scale": 0.9
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          -27.9,
+          -39.5
+        ],
+        "rotation": 75,
+        "scale": 0.9
+      },
+      {
+        "piece": "Pl_Bamboo",
+        "position": [
+          -24.4,
+          -37.0
+        ],
+        "rotation": 135,
+        "scale": 0.55
+      },
+      {
+        "piece": "Pl_Bamboo",
+        "position": [
+          -26.2,
+          -31.4
+        ],
+        "rotation": 60,
+        "scale": 0.55
+      },
+      {
+        "piece": "Pl_Bamboo",
+        "position": [
+          -31.0,
+          -27.9
+        ],
+        "rotation": 315,
+        "scale": 0.55
+      },
+      {
+        "piece": "Pl_Bamboo",
+        "position": [
+          -37.0,
+          -27.9
+        ],
+        "rotation": 330,
+        "scale": 0.55
+      },
+      {
+        "piece": "Pl_Bamboo",
+        "position": [
+          -41.8,
+          -31.4
+        ],
+        "rotation": 90,
+        "scale": 0.55
+      },
+      {
+        "piece": "Pl_Bamboo",
+        "position": [
+          -43.6,
+          -37.0
+        ],
+        "rotation": 330,
+        "scale": 0.55
+      },
+      {
+        "piece": "Pl_Bamboo",
+        "position": [
+          -41.8,
+          -42.6
+        ],
+        "rotation": 345,
+        "scale": 0.55
+      },
+      {
+        "piece": "Pl_Bamboo",
+        "position": [
+          -37.0,
+          -46.1
+        ],
+        "rotation": 120,
+        "scale": 0.55
+      },
+      {
+        "piece": "Pl_Bamboo",
+        "position": [
+          -31.0,
+          -46.1
+        ],
+        "rotation": 45,
+        "scale": 0.55
+      },
+      {
+        "piece": "Pl_Bamboo",
+        "position": [
+          -26.2,
+          -42.6
+        ],
+        "rotation": 285,
+        "scale": 0.55
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          -22.4,
+          -29.6
+        ],
+        "rotation": 30,
+        "scale": 0.98
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          -42.0,
+          -27.8
+        ],
+        "rotation": 105,
+        "scale": 1.09
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          -23.3,
+          -41.9
+        ],
+        "rotation": 300,
         "scale": 1.03
       },
       {
-        "piece": "Canyon_Cactus_Small_4",
+        "piece": "Pl_Shrub1",
         "position": [
-          8.2,
-          -26.3
+          -35.3,
+          -32.5
+        ],
+        "rotation": 180,
+        "scale": 0.89
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          -33.3,
+          -40.8
+        ],
+        "rotation": 120,
+        "scale": 0.94
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          -30.8,
+          -37.3
+        ],
+        "rotation": 135,
+        "scale": 1.16
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          -46.8,
+          -42.5
+        ],
+        "rotation": 165,
+        "scale": 1.18
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          -43.9,
+          -44.6
+        ],
+        "rotation": 0,
+        "scale": 1.03
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          -38.6,
+          -38.1
+        ],
+        "rotation": 30,
+        "scale": 0.97
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          -42.7,
+          -33.8
+        ],
+        "rotation": 300,
+        "scale": 1.0
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          -34.5,
+          -37.9
+        ],
+        "rotation": 300,
+        "scale": 0.82
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          -21.7,
+          -32.9
+        ],
+        "rotation": 90,
+        "scale": 1.09
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          -44.8,
+          -30.2
+        ],
+        "rotation": 150,
+        "scale": 0.98
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          -24.3,
+          -44.7
+        ],
+        "rotation": 315,
+        "scale": 0.97
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -27.4,
+          -33.1
+        ],
+        "rotation": 195,
+        "scale": 1.1
+      },
+      {
+        "piece": "Pl_Weed1",
+        "position": [
+          -28.4,
+          -26.6
+        ],
+        "rotation": 210,
+        "scale": 1.27
+      },
+      {
+        "piece": "Pl_Weed1",
+        "position": [
+          -28.4,
+          -43.3
+        ],
+        "rotation": 15,
+        "scale": 0.91
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -35.5,
+          -35.5
+        ],
+        "rotation": 315,
+        "scale": 0.87
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          -20.6,
+          -42.9
+        ],
+        "rotation": 270,
+        "scale": 1.02
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -38.2,
+          -44.4
+        ],
+        "rotation": 300,
+        "scale": 0.93
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -46.8,
+          -36.3
+        ],
+        "rotation": 105,
+        "scale": 1.24
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          -29.5,
+          -39.7
+        ],
+        "rotation": 300,
+        "scale": 1.16
+      },
+      {
+        "piece": "Pl_Weed1",
+        "position": [
+          -45.7,
+          -38.0
+        ],
+        "rotation": 135,
+        "scale": 1.22
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -33.1,
+          -26.7
+        ],
+        "rotation": 150,
+        "scale": 0.91
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -24.3,
+          -32.1
+        ],
+        "rotation": 255,
+        "scale": 0.88
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -36.3,
+          -41.1
+        ],
+        "rotation": 165,
+        "scale": 1.0
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          -31.3,
+          -34.8
+        ],
+        "rotation": 165,
+        "scale": 1.08
+      },
+      {
+        "piece": "Pl_Weed2",
+        "position": [
+          -44.0,
+          -27.9
+        ],
+        "rotation": 255,
+        "scale": 1.11
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          -22.0,
+          -27.4
+        ],
+        "rotation": 165,
+        "scale": 1.14
+      },
+      {
+        "piece": "Pl_Weed1",
+        "position": [
+          -39.2,
+          -28.2
+        ],
+        "rotation": 255,
+        "scale": 0.93
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          -24.4,
+          -28.2
+        ],
+        "rotation": 270,
+        "scale": 1.18
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -41.5,
+          -40.2
+        ],
+        "rotation": 15,
+        "scale": 1.12
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -25.6,
+          -35.0
+        ],
+        "rotation": 165,
+        "scale": 1.11
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -42.8,
+          -40.5
+        ],
+        "rotation": 225,
+        "scale": 0.96
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -22.2,
+          -44.5
+        ],
+        "rotation": 315,
+        "scale": 1.03
+      },
+      {
+        "piece": "Pl_Weed2",
+        "position": [
+          -20.7,
+          -28.9
+        ],
+        "rotation": 0,
+        "scale": 1.17
+      },
+      {
+        "piece": "Pl_Weed2",
+        "position": [
+          -23.4,
+          -39.3
+        ],
+        "rotation": 15,
+        "scale": 0.86
+      },
+      {
+        "piece": "Pl_Weed2",
+        "position": [
+          -26.5,
+          -45.5
+        ],
+        "rotation": 180,
+        "scale": 1.07
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -29.2,
+          -29.3
+        ],
+        "rotation": 120,
+        "scale": 1.14
+      },
+      {
+        "piece": "Pl_Weed2",
+        "position": [
+          -21.6,
+          -39.6
         ],
         "rotation": 225,
         "scale": 0.99
       },
       {
-        "piece": "Canyon_Cactus_Flat_2",
+        "piece": "Pl_Weed2",
         "position": [
-          11.4,
-          -23.5
+          -37.8,
+          -39.9
         ],
-        "rotation": 105,
+        "rotation": 180,
+        "scale": 1.14
+      },
+      {
+        "piece": "Pl_Weed1",
+        "position": [
+          -34.9,
+          -45.2
+        ],
+        "rotation": 150,
+        "scale": 0.83
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -21.8,
+          -36.4
+        ],
+        "rotation": 180,
+        "scale": 1.3
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          -24.3,
+          -30.9
+        ],
+        "rotation": 0,
         "scale": 0.97
       },
       {
-        "piece": "Canyon_Grass_10",
+        "piece": "Pl_Grass2",
         "position": [
-          2.6,
-          -27.7
-        ],
-        "rotation": 120
-      },
-      {
-        "piece": "Canyon_Grass_1",
-        "position": [
-          -1.0,
-          -13.0
-        ],
-        "rotation": 255
-      },
-      {
-        "piece": "Canyon_Sticks_2",
-        "position": [
-          -7.3,
-          -31.6
-        ],
-        "rotation": 300
-      },
-      {
-        "piece": "Canyon_Grass_6",
-        "position": [
-          8.5,
-          -16.9
-        ],
-        "rotation": 330
-      },
-      {
-        "piece": "Canyon_Sticks_1",
-        "position": [
-          4.9,
-          -14.7
-        ],
-        "rotation": 225
-      },
-      {
-        "piece": "Canyon_Grass_1",
-        "position": [
-          12.8,
-          -15.2
-        ],
-        "rotation": 0
-      },
-      {
-        "piece": "Canyon_Grass_10",
-        "position": [
-          -5.4,
-          -11.3
-        ],
-        "rotation": 345
-      },
-      {
-        "piece": "Canyon_Grass_10",
-        "position": [
-          -5.8,
-          -20.6
-        ],
-        "rotation": 330
-      },
-      {
-        "piece": "Canyon_Grass_1",
-        "position": [
-          -6.1,
-          -28.5
-        ],
-        "rotation": 135
-      },
-      {
-        "piece": "Canyon_Grass_6",
-        "position": [
-          -2.4,
-          -13.0
-        ],
-        "rotation": 195
-      },
-      {
-        "piece": "Canyon_Leafs_1",
-        "position": [
-          -6.4,
-          -20.1
-        ],
-        "rotation": 345
-      },
-      {
-        "piece": "Canyon_Grass_1",
-        "position": [
-          -10.0,
-          -12.2
-        ],
-        "rotation": 345
-      },
-      {
-        "piece": "Canyon_Grass_1",
-        "position": [
-          2.6,
-          -26.6
-        ],
-        "rotation": 75
-      },
-      {
-        "piece": "Canyon_Sticks_1",
-        "position": [
-          -9.4,
-          -16.5
-        ],
-        "rotation": 345
-      },
-      {
-        "piece": "Canyon_Sticks_1",
-        "position": [
-          9.1,
-          -12.4
-        ],
-        "rotation": 225
-      },
-      {
-        "piece": "Canyon_Grass_1",
-        "position": [
-          -0.2,
-          -31.8
-        ],
-        "rotation": 255
-      },
-      {
-        "piece": "Canyon_Grass_6",
-        "position": [
-          2.3,
-          -35.4
-        ],
-        "rotation": 150
-      },
-      {
-        "piece": "Canyon_Leafs_1",
-        "position": [
-          -5.4,
-          -22.9
-        ],
-        "rotation": 135
-      },
-      {
-        "piece": "Canyon_Sticks_1",
-        "position": [
-          11.1,
-          -13.9
-        ],
-        "rotation": 150
-      },
-      {
-        "piece": "Canyon_Leafs_1",
-        "position": [
-          12.9,
-          -14.4
-        ],
-        "rotation": 210
-      },
-      {
-        "piece": "Canyon_Tree_2",
-        "position": [
-          -13.0,
-          -30.0
-        ],
-        "rotation": 0,
-        "scale": 1.33
-      },
-      {
-        "piece": "Canyon_Tree_3",
-        "position": [
-          10.8,
-          -19.6
-        ],
-        "rotation": 240,
-        "scale": 0.95
-      },
-      {
-        "piece": "Canyon_Tree_4",
-        "position": [
-          3.8,
-          -9.8
+          -33.2,
+          -45.3
         ],
         "rotation": 135,
-        "scale": 1.1
+        "scale": 1.23
       },
       {
-        "piece": "Canyon_Rock_Boulders_6",
+        "piece": "Pl_Grass2",
         "position": [
-          33.6,
-          -20.7
+          -26.0,
+          -39.7
         ],
-        "rotation": 15,
-        "solid": [
-          1.3,
-          1.3
-        ]
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_5",
-        "position": [
-          37.6,
-          -17.6
-        ],
-        "rotation": 90,
-        "solid": [
-          1.6,
-          1.6
-        ]
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_5",
-        "position": [
-          32.5,
-          -19.3
-        ],
-        "rotation": 285,
-        "solid": [
-          1.6,
-          1.6
-        ]
-      },
-      {
-        "piece": "Canyon_Cactus_Flat_1",
-        "position": [
-          23.8,
-          -21.4
-        ],
-        "rotation": 120,
-        "scale": 1.13
-      },
-      {
-        "piece": "Canyon_Cactus_Tall_2",
-        "position": [
-          41.3,
-          -24.9
-        ],
-        "rotation": 165,
-        "scale": 1.08
-      },
-      {
-        "piece": "Canyon_Cactus_Small_1",
-        "position": [
-          32.2,
-          -26.6
-        ],
-        "rotation": 180,
+        "rotation": 45,
         "scale": 0.94
       },
       {
-        "piece": "Canyon_Cactus_Small_1",
+        "piece": "Pl_Flower",
         "position": [
-          30.8,
-          -15.6
+          -36.7,
+          -37.9
         ],
-        "rotation": 180,
-        "scale": 1.39
-      },
-      {
-        "piece": "Canyon_Cactus_Small_1",
-        "position": [
-          24.9,
-          -23.8
-        ],
-        "rotation": 105,
-        "scale": 1.22
-      },
-      {
-        "piece": "Canyon_Grass_1",
-        "position": [
-          21.3,
-          -23.4
-        ],
-        "rotation": 315
-      },
-      {
-        "piece": "Canyon_Sticks_2",
-        "position": [
-          21.9,
-          -26.0
-        ],
-        "rotation": 60
-      },
-      {
-        "piece": "Canyon_Sticks_2",
-        "position": [
-          39.0,
-          -16.9
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Canyon_Leafs_1",
-        "position": [
-          25.5,
-          -27.3
-        ],
-        "rotation": 0
-      },
-      {
-        "piece": "Canyon_Sticks_2",
-        "position": [
-          34.9,
-          -28.0
-        ],
-        "rotation": 315
-      },
-      {
-        "piece": "Canyon_Grass_10",
-        "position": [
-          33.9,
-          -20.9
-        ],
-        "rotation": 45
-      },
-      {
-        "piece": "Canyon_Sticks_2",
-        "position": [
-          28.2,
-          -24.1
-        ],
-        "rotation": 240
-      },
-      {
-        "piece": "Canyon_Grass_10",
-        "position": [
-          20.9,
-          -24.0
-        ],
-        "rotation": 180
-      },
-      {
-        "piece": "Canyon_Tree_3",
-        "position": [
-          27.4,
-          -26.1
-        ],
-        "rotation": 180,
-        "scale": 1.37
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_3",
-        "position": [
-          -9.5,
-          -70.9
-        ],
-        "rotation": 270,
-        "solid": [
-          1.8,
-          1.8
-        ]
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_2",
-        "position": [
-          2.0,
-          -60.1
-        ],
-        "rotation": 330,
-        "solid": [
-          1.8,
-          1.8
-        ]
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_5",
-        "position": [
-          11.3,
-          -57.7
-        ],
-        "rotation": 300,
-        "solid": [
-          1.6,
-          1.6
-        ]
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_1",
-        "position": [
-          -14.2,
-          -49.0
-        ],
-        "rotation": 180,
-        "solid": [
-          1.6,
-          1.6
-        ]
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_5",
-        "position": [
-          -6.5,
-          -64.9
-        ],
-        "rotation": 0,
-        "solid": [
-          1.6,
-          1.6
-        ]
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_4",
-        "position": [
-          9.3,
-          -51.5
-        ],
-        "rotation": 195,
-        "solid": [
-          2.7,
-          2.7
-        ]
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_6",
-        "position": [
-          9.1,
-          -50.1
-        ],
-        "rotation": 30,
-        "solid": [
-          1.3,
-          1.3
-        ]
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_4",
-        "position": [
-          -14.3,
-          -53.8
-        ],
-        "rotation": 315,
-        "solid": [
-          2.7,
-          2.7
-        ]
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_1",
-        "position": [
-          3.4,
-          -56.0
-        ],
-        "rotation": 90,
-        "solid": [
-          1.6,
-          1.6
-        ]
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_3",
-        "position": [
-          -14.1,
-          -48.6
-        ],
-        "rotation": 30,
-        "solid": [
-          1.8,
-          1.8
-        ]
-      },
-      {
-        "piece": "Canyon_Cactus_Tall_4",
-        "position": [
-          -10.4,
-          -60.3
-        ],
-        "rotation": 150,
-        "scale": 0.93
-      },
-      {
-        "piece": "Canyon_Cactus_Small_1",
-        "position": [
-          -8.1,
-          -65.0
-        ],
-        "rotation": 30,
-        "scale": 1.0
-      },
-      {
-        "piece": "Canyon_Cactus_Flat_1",
-        "position": [
-          -9.8,
-          -72.9
-        ],
-        "rotation": 195,
-        "scale": 1.12
-      },
-      {
-        "piece": "Canyon_Cactus_Small_1",
-        "position": [
-          -8.3,
-          -42.2
-        ],
-        "rotation": 75,
-        "scale": 0.95
-      },
-      {
-        "piece": "Canyon_Cactus_Tall_4",
-        "position": [
-          17.4,
-          -67.5
-        ],
-        "rotation": 270,
-        "scale": 1.1
-      },
-      {
-        "piece": "Canyon_Cactus_Small_3",
-        "position": [
-          13.2,
-          -66.8
-        ],
-        "rotation": 75,
-        "scale": 1.08
-      },
-      {
-        "piece": "Canyon_Cactus_Tall_2",
-        "position": [
-          5.2,
-          -55.6
-        ],
-        "rotation": 345,
-        "scale": 0.91
-      },
-      {
-        "piece": "Canyon_Cactus_Flat_3",
-        "position": [
-          7.7,
-          -55.4
-        ],
-        "rotation": 120,
-        "scale": 1.4
-      },
-      {
-        "piece": "Canyon_Cactus_Small_1",
-        "position": [
-          12.5,
-          -57.0
-        ],
-        "rotation": 165,
+        "rotation": 210,
         "scale": 1.19
       },
       {
-        "piece": "Canyon_Cactus_Tall_1",
+        "piece": "Pl_Weed2",
         "position": [
-          17.4,
-          -45.8
+          -30.9,
+          -32.6
+        ],
+        "rotation": 330,
+        "scale": 0.87
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          -32.3,
+          -33.4
+        ],
+        "rotation": 285,
+        "scale": 1.2
+      },
+      {
+        "piece": "Pot_Large",
+        "position": [
+          -45.5,
+          -32.8
+        ],
+        "rotation": 0,
+        "scale": 1.27
+      },
+      {
+        "piece": "Pot_Large",
+        "position": [
+          -38.1,
+          -35.6
+        ],
+        "rotation": 105,
+        "scale": 1.25
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          -34.1,
+          -28.1
+        ],
+        "rotation": 120,
+        "scale": 1.16
+      },
+      {
+        "piece": "Tv_Basket",
+        "position": [
+          -24.5,
+          -33.8
+        ],
+        "rotation": 240,
+        "scale": 1.13
+      },
+      {
+        "piece": "Vase_2",
+        "position": [
+          -26.5,
+          -27.5
+        ],
+        "rotation": 30,
+        "scale": 1.01
+      },
+      {
+        "piece": "Pr_CartSmall",
+        "position": [
+          46.9,
+          -29.1
+        ],
+        "rotation": 315,
+        "scale": 1.06,
+        "solid": [
+          2.8,
+          1.7
+        ]
+      },
+      {
+        "piece": "Cart_Wood",
+        "position": [
+          40.2,
+          -33.8
+        ],
+        "rotation": 90,
+        "scale": 1.27,
+        "solid": [
+          3.3,
+          2.0
+        ]
+      },
+      {
+        "piece": "Pr_CartLarge",
+        "position": [
+          49.3,
+          -34.4
+        ],
+        "rotation": 0,
+        "scale": 1.1,
+        "solid": [
+          2.9,
+          1.8
+        ]
+      },
+      {
+        "piece": "Prop_Wagon",
+        "position": [
+          44.6,
+          -19.3
+        ],
+        "rotation": 210,
+        "scale": 1.44,
+        "solid": [
+          3.8,
+          2.3
+        ]
+      },
+      {
+        "piece": "Pr_CartSmall",
+        "position": [
+          32.9,
+          -29.5
+        ],
+        "rotation": 180,
+        "scale": 1.17,
+        "solid": [
+          3.0,
+          1.9
+        ]
+      },
+      {
+        "piece": "Cart_Wood",
+        "position": [
+          37.4,
+          -20.0
+        ],
+        "rotation": 240,
+        "scale": 1.24,
+        "solid": [
+          3.2,
+          2.0
+        ]
+      },
+      {
+        "piece": "Prop_Wagon",
+        "position": [
+          47.5,
+          -41.5
+        ],
+        "rotation": 285,
+        "scale": 1.43,
+        "solid": [
+          3.7,
+          2.3
+        ]
+      },
+      {
+        "piece": "Pot_Large",
+        "position": [
+          40.2,
+          -23.9
+        ],
+        "rotation": 240,
+        "scale": 1.17
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          31.1,
+          -20.9
+        ],
+        "rotation": 240,
+        "scale": 1.04
+      },
+      {
+        "piece": "Vase_Big_Shards",
+        "position": [
+          48.1,
+          -25.1
+        ],
+        "rotation": 180,
+        "scale": 1.08
+      },
+      {
+        "piece": "Barrel",
+        "position": [
+          26.7,
+          -25.3
+        ],
+        "rotation": 45,
+        "scale": 0.95
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          36.7,
+          -39.6
+        ],
+        "rotation": 105,
+        "scale": 1.16
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          30.2,
+          -39.0
         ],
         "rotation": 30,
         "scale": 1.0
       },
       {
-        "piece": "Canyon_Cactus_Tall_5",
+        "piece": "Pot_Large",
         "position": [
-          -16.0,
-          -51.2
+          44.2,
+          -25.4
         ],
-        "rotation": 285,
-        "scale": 0.96
+        "rotation": 120,
+        "scale": 0.84
       },
       {
-        "piece": "Canyon_Cactus_Small_4",
+        "piece": "Pot_Large",
         "position": [
-          -14.9,
-          -47.5
-        ],
-        "rotation": 135,
-        "scale": 1.02
-      },
-      {
-        "piece": "Canyon_Cactus_Tall_5",
-        "position": [
-          15.8,
-          -69.8
-        ],
-        "rotation": 225,
-        "scale": 0.9
-      },
-      {
-        "piece": "Canyon_Cactus_Small_4",
-        "position": [
-          2.2,
-          -40.9
+          43.2,
+          -37.5
         ],
         "rotation": 90,
+        "scale": 0.97
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          35.9,
+          -33.9
+        ],
+        "rotation": 165,
+        "scale": 0.93
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          32.9,
+          -37.6
+        ],
+        "rotation": 285,
+        "scale": 1.06
+      },
+      {
+        "piece": "Vase_2",
+        "position": [
+          26.6,
+          -40.2
+        ],
+        "rotation": 165,
+        "scale": 0.87
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          22.5,
+          -30.2
+        ],
+        "rotation": 225,
+        "scale": 1.04
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          21.2,
+          -24.5
+        ],
+        "rotation": 30,
+        "scale": 0.99
+      },
+      {
+        "piece": "Crate_Open",
+        "position": [
+          33.5,
+          -25.3
+        ],
+        "rotation": 270,
+        "scale": 1.14
+      },
+      {
+        "piece": "Bag",
+        "position": [
+          24.8,
+          -20.7
+        ],
+        "rotation": 195,
         "scale": 1.1
       },
       {
-        "piece": "Canyon_Cactus_Tall_3",
+        "piece": "Tv_Sack_2",
         "position": [
-          -8.4,
-          -45.9
+          26.3,
+          -29.2
         ],
-        "rotation": 330,
-        "scale": 0.96
+        "rotation": 225,
+        "scale": 1.09
       },
       {
-        "piece": "Canyon_Cactus_Small_2",
+        "piece": "Vase_Big_Shards",
         "position": [
-          -5.5,
-          -63.5
+          31.4,
+          -33.1
+        ],
+        "rotation": 210,
+        "scale": 0.82
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          41.0,
+          -28.4
         ],
         "rotation": 285,
-        "scale": 0.95
+        "scale": 0.88
       },
       {
-        "piece": "Canyon_Cactus_Small_5",
+        "piece": "Pot_Large",
         "position": [
-          -9.9,
-          -42.6
+          30.9,
+          -35.7
         ],
-        "rotation": 120,
-        "scale": 0.92
+        "rotation": 315,
+        "scale": 0.93
       },
       {
-        "piece": "Canyon_Grass_10",
+        "piece": "Bag",
         "position": [
-          5.9,
-          -39.7
+          35.7,
+          -23.9
         ],
-        "rotation": 300
-      },
-      {
-        "piece": "Canyon_Sticks_2",
-        "position": [
-          5.0,
-          -46.9
-        ],
-        "rotation": 90
-      },
-      {
-        "piece": "Canyon_Sticks_2",
-        "position": [
-          -7.6,
-          -49.9
-        ],
-        "rotation": 315
-      },
-      {
-        "piece": "Canyon_Sticks_2",
-        "position": [
-          2.7,
-          -61.9
-        ],
-        "rotation": 15
-      },
-      {
-        "piece": "Canyon_Grass_10",
-        "position": [
-          2.3,
-          -72.1
-        ],
-        "rotation": 225
-      },
-      {
-        "piece": "Canyon_Grass_10",
-        "position": [
-          -9.4,
-          -38.6
-        ],
-        "rotation": 30
-      },
-      {
-        "piece": "Canyon_Grass_1",
-        "position": [
-          -15.1,
-          -51.3
-        ],
-        "rotation": 120
-      },
-      {
-        "piece": "Canyon_Sticks_2",
-        "position": [
-          12.6,
-          -63.0
-        ],
-        "rotation": 0
-      },
-      {
-        "piece": "Canyon_Grass_6",
-        "position": [
-          -6.8,
-          -46.9
-        ],
-        "rotation": 15
-      },
-      {
-        "piece": "Canyon_Sticks_1",
-        "position": [
-          -16.1,
-          -50.5
-        ],
-        "rotation": 120
-      },
-      {
-        "piece": "Canyon_Sticks_2",
-        "position": [
-          -17.2,
-          -72.3
-        ],
-        "rotation": 15
-      },
-      {
-        "piece": "Canyon_Grass_1",
-        "position": [
-          -10.7,
-          -41.5
-        ],
-        "rotation": 285
-      },
-      {
-        "piece": "Canyon_Grass_6",
-        "position": [
-          -4.9,
-          -54.6
-        ],
-        "rotation": 15
-      },
-      {
-        "piece": "Canyon_Sticks_2",
-        "position": [
-          7.3,
-          -54.4
-        ],
-        "rotation": 225
-      },
-      {
-        "piece": "Canyon_Sticks_2",
-        "position": [
-          -9.7,
-          -52.2
-        ],
-        "rotation": 0
-      },
-      {
-        "piece": "Canyon_Sticks_1",
-        "position": [
-          7.8,
-          -56.4
-        ],
-        "rotation": 345
-      },
-      {
-        "piece": "Canyon_Grass_6",
-        "position": [
-          8.6,
-          -66.8
-        ],
-        "rotation": 345
-      },
-      {
-        "piece": "Canyon_Sticks_2",
-        "position": [
-          10.7,
-          -63.0
-        ],
-        "rotation": 45
-      },
-      {
-        "piece": "Canyon_Grass_1",
-        "position": [
-          -15.3,
-          -60.7
-        ],
-        "rotation": 30
-      },
-      {
-        "piece": "Canyon_Sticks_2",
-        "position": [
-          0.7,
-          -46.0
-        ],
-        "rotation": 165
-      },
-      {
-        "piece": "Canyon_Sticks_1",
-        "position": [
-          6.6,
-          -40.4
-        ],
-        "rotation": 180
-      },
-      {
-        "piece": "Canyon_Grass_1",
-        "position": [
-          -1.1,
-          -47.2
-        ],
-        "rotation": 165
-      },
-      {
-        "piece": "Canyon_Sticks_2",
-        "position": [
-          13.7,
-          -56.4
-        ],
-        "rotation": 180
-      },
-      {
-        "piece": "Canyon_Grass_1",
-        "position": [
-          4.2,
-          -70.2
-        ],
-        "rotation": 210
-      },
-      {
-        "piece": "Canyon_Grass_6",
-        "position": [
-          12.5,
-          -62.5
-        ],
-        "rotation": 75
-      },
-      {
-        "piece": "Canyon_Leafs_1",
-        "position": [
-          -15.2,
-          -39.1
-        ],
-        "rotation": 210
-      },
-      {
-        "piece": "Canyon_Grass_10",
-        "position": [
-          9.6,
-          -56.0
-        ],
-        "rotation": 30
-      },
-      {
-        "piece": "Canyon_Grass_1",
-        "position": [
-          5.6,
-          -51.3
-        ],
-        "rotation": 150
-      },
-      {
-        "piece": "Canyon_Sticks_1",
-        "position": [
-          -14.9,
-          -40.5
-        ],
-        "rotation": 330
-      },
-      {
-        "piece": "Canyon_Tree_4",
-        "position": [
-          10.4,
-          -65.1
-        ],
-        "rotation": 180,
-        "scale": 1.39
-      },
-      {
-        "piece": "Canyon_Tree_4",
-        "position": [
-          6.0,
-          -58.5
-        ],
-        "rotation": 345,
+        "rotation": 0,
         "scale": 1.03
       },
       {
-        "piece": "Canyon_Tree_1",
+        "piece": "Pot_Small",
         "position": [
-          7.9,
-          -66.4
+          23.8,
+          -25.0
         ],
-        "rotation": 255,
-        "scale": 1.12
+        "rotation": 210,
+        "scale": 1.07
       },
       {
-        "piece": "Canyon_Tree_1",
+        "piece": "Barrel_Oga_1",
         "position": [
-          4.5,
-          -53.9
+          29.4,
+          -19.3
         ],
-        "rotation": 90,
-        "scale": 1.39
+        "rotation": 15,
+        "scale": 0.87
       },
       {
-        "piece": "Canyon_Rock_Boulders_6",
+        "piece": "Crate_Small",
         "position": [
-          -34.0,
-          -52.8
+          24.1,
+          -33.2
         ],
-        "rotation": 150,
-        "solid": [
-          1.3,
-          1.3
-        ]
+        "rotation": 165,
+        "scale": 1.1
       },
       {
-        "piece": "Canyon_Rock_Boulders_1",
+        "piece": "Tv_Sack_2",
         "position": [
-          -35.5,
-          -55.8
+          24.7,
+          -36.7
         ],
-        "rotation": 120,
-        "solid": [
-          1.6,
-          1.6
-        ]
+        "rotation": 75,
+        "scale": 1.01
       },
       {
-        "piece": "Canyon_Rock_Boulders_5",
+        "piece": "Tv_Sack",
         "position": [
-          -25.2,
-          -60.8
+          26.9,
+          -32.5
+        ],
+        "rotation": 75,
+        "scale": 0.81
+      },
+      {
+        "piece": "Crate_Open",
+        "position": [
+          45.1,
+          -33.2
+        ],
+        "rotation": 285,
+        "scale": 0.86
+      },
+      {
+        "piece": "Dungeon_BonePile_1",
+        "position": [
+          22.1,
+          -40.0
         ],
         "rotation": 240,
+        "scale": 3.18
+      },
+      {
+        "piece": "Dungeon_BonePile_1",
+        "position": [
+          21.3,
+          -18.9
+        ],
+        "rotation": 75,
+        "scale": 2.68
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          39.3,
+          -39.5
+        ],
+        "rotation": 135,
+        "scale": 1.07,
         "solid": [
-          1.6,
-          1.6
+          0.6,
+          0.6
         ]
       },
       {
-        "piece": "Canyon_Cactus_Tall_2",
+        "piece": "War_Banner",
         "position": [
-          -23.5,
-          -59.6
+          25.4,
+          -23.1
+        ],
+        "rotation": 270,
+        "scale": 1.06,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar1",
+        "position": [
+          38.7,
+          -26.7
+        ],
+        "rotation": 195,
+        "scale": 1.24,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Dungeon_BonePile_3",
+        "position": [
+          42.9,
+          -61.0
+        ],
+        "rotation": 60,
+        "scale": 3.11
+      },
+      {
+        "piece": "Dungeon_Skull_2",
+        "position": [
+          49.9,
+          -52.2
+        ],
+        "rotation": 135,
+        "scale": 3.29
+      },
+      {
+        "piece": "Dungeon_Skull_2",
+        "position": [
+          46.8,
+          -64.6
+        ],
+        "rotation": 240,
+        "scale": 2.71
+      },
+      {
+        "piece": "Dungeon_BonePile_3",
+        "position": [
+          42.4,
+          -66.7
+        ],
+        "rotation": 135,
+        "scale": 3.26
+      },
+      {
+        "piece": "Dungeon_Skull_2",
+        "position": [
+          42.8,
+          -47.1
+        ],
+        "rotation": 330,
+        "scale": 3.31
+      },
+      {
+        "piece": "Dungeon_Arm",
+        "position": [
+          50.0,
+          -60.6
+        ],
+        "rotation": 195,
+        "scale": 2.86
+      },
+      {
+        "piece": "Dungeon_Ribcage",
+        "position": [
+          44.3,
+          -53.4
+        ],
+        "rotation": 210,
+        "scale": 3.08
+      },
+      {
+        "piece": "Ruin_Arch",
+        "position": [
+          0,
+          -64
+        ],
+        "rotation": 0,
+        "scale": 1.2
+      },
+      {
+        "piece": "Pr_Obelisk3",
+        "position": [
+          -16,
+          -78
+        ],
+        "rotation": 0,
+        "scale": 1.5,
+        "solid": [
+          1.4,
+          1.4
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk3",
+        "position": [
+          16,
+          -78
+        ],
+        "rotation": 0,
+        "scale": 1.5,
+        "solid": [
+          1.4,
+          1.4
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk3",
+        "position": [
+          -16,
+          -92
+        ],
+        "rotation": 0,
+        "scale": 1.5,
+        "solid": [
+          1.4,
+          1.4
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk3",
+        "position": [
+          16,
+          -92
+        ],
+        "rotation": 0,
+        "scale": 1.5,
+        "solid": [
+          1.4,
+          1.4
+        ]
+      },
+      {
+        "piece": "Dungeon_Spine",
+        "position": [
+          5.7,
+          -86.1
+        ],
+        "rotation": 300,
+        "scale": 4.11
+      },
+      {
+        "piece": "Dungeon_Pelvis",
+        "position": [
+          9.7,
+          -104.8
+        ],
+        "rotation": 60,
+        "scale": 5.07
+      },
+      {
+        "piece": "Dungeon_Ribcage",
+        "position": [
+          -15.0,
+          -104.9
+        ],
+        "rotation": 300,
+        "scale": 4.94
+      },
+      {
+        "piece": "Dungeon_BonePile_4",
+        "position": [
+          10.7,
+          -68.5
+        ],
+        "rotation": 285,
+        "scale": 2.64
+      },
+      {
+        "piece": "Dungeon_BonePile_2",
+        "position": [
+          -3.3,
+          -96.8
+        ],
+        "rotation": 90,
+        "scale": 2.57
+      },
+      {
+        "piece": "Dungeon_Skull_1",
+        "position": [
+          17.7,
+          -68.9
+        ],
+        "rotation": 195,
+        "scale": 2.97
+      },
+      {
+        "piece": "Dungeon_Leg",
+        "position": [
+          -0.1,
+          -70.5
+        ],
+        "rotation": 195,
+        "scale": 3.1
+      },
+      {
+        "piece": "Dungeon_BonePile_4",
+        "position": [
+          -17.9,
+          -64.5
+        ],
+        "rotation": 255,
+        "scale": 2.6
+      },
+      {
+        "piece": "Dungeon_Pelvis",
+        "position": [
+          -7.4,
+          -72.9
+        ],
+        "rotation": 150,
+        "scale": 2.88
+      },
+      {
+        "piece": "Dungeon_Bone",
+        "position": [
+          18.7,
+          -62.8
+        ],
+        "rotation": 225,
+        "scale": 2.66
+      },
+      {
+        "piece": "Dungeon_CrossBones",
+        "position": [
+          -14.0,
+          -68.1
+        ],
+        "rotation": 255,
+        "scale": 3.27
+      },
+      {
+        "piece": "Dungeon_CrossBones",
+        "position": [
+          18.3,
+          -83.8
+        ],
+        "rotation": 180,
+        "scale": 3.27
+      },
+      {
+        "piece": "Dungeon_Arm",
+        "position": [
+          -10.3,
+          -84.1
+        ],
+        "rotation": 225,
+        "scale": 3.17
+      },
+      {
+        "piece": "Dungeon_BonePile_2",
+        "position": [
+          -7.7,
+          -65.8
+        ],
+        "rotation": 45,
+        "scale": 3.07
+      },
+      {
+        "piece": "Dungeon_Arm",
+        "position": [
+          -13.0,
+          -74.1
+        ],
+        "rotation": 300,
+        "scale": 2.72
+      },
+      {
+        "piece": "Dungeon_BonePile_6",
+        "position": [
+          8.3,
+          -74.2
+        ],
+        "rotation": 285,
+        "scale": 2.99
+      },
+      {
+        "piece": "Dungeon_CrossBones",
+        "position": [
+          -9.3,
+          -89.0
+        ],
+        "rotation": 270,
+        "scale": 2.67
+      },
+      {
+        "piece": "Dungeon_SkullPile",
+        "position": [
+          -17.8,
+          -87.0
+        ],
+        "rotation": 345,
+        "scale": 3.24
+      },
+      {
+        "piece": "Dead_Tree",
+        "position": [
+          7.5,
+          -63.9
+        ],
+        "rotation": 135,
+        "scale": 1.14
+      },
+      {
+        "piece": "Dead_Tree",
+        "position": [
+          -10.1,
+          -78.3
+        ],
+        "rotation": 30,
+        "scale": 0.97
+      },
+      {
+        "piece": "Canyon_Tree_1",
+        "position": [
+          17.5,
+          -95.2
+        ],
+        "rotation": 300,
+        "scale": 0.81
+      },
+      {
+        "piece": "Canyon_Tree_1",
+        "position": [
+          -1.4,
+          -76.9
         ],
         "rotation": 75,
         "scale": 1.06
       },
       {
-        "piece": "Canyon_Cactus_Tall_5",
+        "piece": "Canyon_Tree_1",
         "position": [
-          -35.7,
-          -56.4
+          -4.1,
+          -91.5
+        ],
+        "rotation": 270,
+        "scale": 1.01
+      },
+      {
+        "piece": "Ruin_PillarStub",
+        "position": [
+          -4.2,
+          -70.2
+        ],
+        "rotation": 270,
+        "scale": 1.17,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Ruin_PillarStub",
+        "position": [
+          12.8,
+          -93.3
+        ],
+        "rotation": 285,
+        "scale": 1.2,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar2",
+        "position": [
+          12.4,
+          -62.8
+        ],
+        "rotation": 120,
+        "scale": 1.27,
+        "solid": [
+          1.3,
+          1.3
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar2",
+        "position": [
+          -19.0,
+          -75.9
+        ],
+        "rotation": 15,
+        "scale": 1.36,
+        "solid": [
+          1.4,
+          1.4
+        ]
+      },
+      {
+        "piece": "Web_Round_Up",
+        "position": [
+          -26.1,
+          -77.8
+        ],
+        "rotation": 300,
+        "scale": 3.84
+      },
+      {
+        "piece": "Web_Round_Up",
+        "position": [
+          -39.2,
+          -76.7
+        ],
+        "rotation": 285,
+        "scale": 3.91
+      },
+      {
+        "piece": "Web_Round_Up",
+        "position": [
+          -46.6,
+          -91.0
+        ],
+        "rotation": 180,
+        "scale": 3.76
+      },
+      {
+        "piece": "Web_Round_Up",
+        "position": [
+          -37.0,
+          -86.3
+        ],
+        "rotation": 240,
+        "scale": 3.12
+      },
+      {
+        "piece": "Web_Round_Up",
+        "position": [
+          -53.0,
+          -71.5
+        ],
+        "rotation": 240,
+        "scale": 3.7
+      },
+      {
+        "piece": "Web_Round_Up",
+        "position": [
+          -28.3,
+          -95.7
+        ],
+        "rotation": 60,
+        "scale": 3.06
+      },
+      {
+        "piece": "Web_Round_Up",
+        "position": [
+          -46.6,
+          -82.5
+        ],
+        "rotation": 150,
+        "scale": 3.07
+      },
+      {
+        "piece": "Web_Round_Up",
+        "position": [
+          -54.6,
+          -84.9
+        ],
+        "rotation": 105,
+        "scale": 3.85
+      },
+      {
+        "piece": "Dungeon_BonePile_5",
+        "position": [
+          -31.2,
+          -83.1
+        ],
+        "rotation": 330,
+        "scale": 2.86
+      },
+      {
+        "piece": "Dungeon_Pelvis",
+        "position": [
+          -25.4,
+          -89.7
+        ],
+        "rotation": 210,
+        "scale": 3.45
+      },
+      {
+        "piece": "Dungeon_BonePile_6",
+        "position": [
+          -39.8,
+          -94.6
+        ],
+        "rotation": 30,
+        "scale": 3.01
+      },
+      {
+        "piece": "Dungeon_BonePile_1",
+        "position": [
+          -32.3,
+          -71.2
+        ],
+        "rotation": 240,
+        "scale": 3.27
+      },
+      {
+        "piece": "Dungeon_BonePile_5",
+        "position": [
+          -34.8,
+          -92.1
+        ],
+        "rotation": 90,
+        "scale": 2.52
+      },
+      {
+        "piece": "Dungeon_BonePile_1",
+        "position": [
+          -47.5,
+          -75.7
+        ],
+        "rotation": 240,
+        "scale": 2.85
+      },
+      {
+        "piece": "Dungeon_Pelvis",
+        "position": [
+          -52.0,
+          -96.7
+        ],
+        "rotation": 210,
+        "scale": 3.35
+      },
+      {
+        "piece": "Dungeon_BonePile_2",
+        "position": [
+          -31.0,
+          -88.0
+        ],
+        "rotation": 255,
+        "scale": 2.7
+      },
+      {
+        "piece": "Dungeon_Spine",
+        "position": [
+          43.8,
+          -92.3
+        ],
+        "rotation": 150,
+        "scale": 4.77
+      },
+      {
+        "piece": "Dungeon_Ribcage",
+        "position": [
+          31.6,
+          -76.2
+        ],
+        "rotation": 15,
+        "scale": 4.62
+      },
+      {
+        "piece": "Ruin_PillarStub",
+        "position": [
+          25.8,
+          -85.6
+        ],
+        "rotation": 150,
+        "scale": 1.09,
+        "solid": [
+          1.1,
+          1.1
+        ],
+        "y": -0.35
+      },
+      {
+        "piece": "Pr_BrokenPillar1",
+        "position": [
+          49.9,
+          -78.5
+        ],
+        "rotation": 255,
+        "scale": 1.06,
+        "solid": [
+          1.1,
+          1.1
+        ],
+        "y": -0.35
+      },
+      {
+        "piece": "Pr_BrokenPillar2",
+        "position": [
+          54.1,
+          -79.3
+        ],
+        "rotation": 300,
+        "scale": 1.02,
+        "solid": [
+          1.0,
+          1.0
+        ],
+        "y": -0.35
+      },
+      {
+        "piece": "Pr_BrokenPillar2",
+        "position": [
+          50.9,
+          -83.1
+        ],
+        "rotation": 45,
+        "scale": 1.03,
+        "solid": [
+          1.0,
+          1.0
+        ],
+        "y": -0.35
+      },
+      {
+        "piece": "Pr_BrokenPillar2",
+        "position": [
+          42.9,
+          -72.7
+        ],
+        "rotation": 0,
+        "scale": 1.07,
+        "solid": [
+          1.1,
+          1.1
+        ],
+        "y": -0.35
+      },
+      {
+        "piece": "Statue_Knight_Lying",
+        "position": [
+          31.3,
+          -93.8
+        ],
+        "rotation": 270,
+        "scale": 1.6,
+        "y": -0.3
+      },
+      {
+        "piece": "Dungeon_Skull_2",
+        "position": [
+          25.0,
+          -93.1
+        ],
+        "rotation": 45,
+        "scale": 3.02
+      },
+      {
+        "piece": "Dungeon_Bone",
+        "position": [
+          31.3,
+          -88.2
+        ],
+        "rotation": 330,
+        "scale": 3.23
+      },
+      {
+        "piece": "Dungeon_BonePile_5",
+        "position": [
+          44.4,
+          -80.6
+        ],
+        "rotation": 60,
+        "scale": 2.67
+      },
+      {
+        "piece": "Dungeon_CrossBones",
+        "position": [
+          49.0,
+          -73.3
+        ],
+        "rotation": 0,
+        "scale": 3.04
+      },
+      {
+        "piece": "Dungeon_Leg",
+        "position": [
+          53.4,
+          -85.7
+        ],
+        "rotation": 120,
+        "scale": 2.57
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          88.3,
+          -81.5
+        ],
+        "rotation": 240,
+        "scale": 1.25,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          86.0,
+          -76.4
+        ],
+        "rotation": 30,
+        "scale": 1.25,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          81.7,
+          -72.9
+        ],
+        "rotation": 285,
+        "scale": 1.25,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          76.3,
+          -71.5
+        ],
+        "rotation": 30,
+        "scale": 1.25,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          70.9,
+          -72.6
+        ],
+        "rotation": 285,
+        "scale": 1.25,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          66.4,
+          -76.0
+        ],
+        "rotation": 315,
+        "scale": 1.25,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          63.9,
+          -80.9
+        ],
+        "rotation": 165,
+        "scale": 1.25,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          63.7,
+          -86.5
+        ],
+        "rotation": 195,
+        "scale": 1.25,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          66.0,
+          -91.6
+        ],
+        "rotation": 315,
+        "scale": 1.25,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          70.3,
+          -95.1
+        ],
+        "rotation": 270,
+        "scale": 1.25,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          75.7,
+          -96.5
+        ],
+        "rotation": 270,
+        "scale": 1.25,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          81.1,
+          -95.4
+        ],
+        "rotation": 135,
+        "scale": 1.25,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          85.6,
+          -92.0
+        ],
+        "rotation": 240,
+        "scale": 1.25,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          88.1,
+          -87.1
+        ],
+        "rotation": 270,
+        "scale": 1.25,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Ruin_PillarStub",
+        "position": [
+          89.6,
+          -76.6
+        ],
+        "rotation": 45,
+        "scale": 1.3,
+        "solid": [
+          0.8,
+          0.8
+        ]
+      },
+      {
+        "piece": "Ruin_PillarStub",
+        "position": [
+          84.1,
+          -70.8
+        ],
+        "rotation": 60,
+        "scale": 1.3,
+        "solid": [
+          0.8,
+          0.8
+        ]
+      },
+      {
+        "piece": "Ruin_PillarStub",
+        "position": [
+          76.4,
+          -68.5
+        ],
+        "rotation": 75,
+        "scale": 1.3,
+        "solid": [
+          0.8,
+          0.8
+        ]
+      },
+      {
+        "piece": "Ruin_PillarStub",
+        "position": [
+          68.6,
+          -70.4
+        ],
+        "rotation": 150,
+        "scale": 1.3,
+        "solid": [
+          0.8,
+          0.8
+        ]
+      },
+      {
+        "piece": "Ruin_PillarStub",
+        "position": [
+          62.8,
+          -75.9
+        ],
+        "rotation": 165,
+        "scale": 1.3,
+        "solid": [
+          0.8,
+          0.8
+        ]
+      },
+      {
+        "piece": "Ruin_PillarStub",
+        "position": [
+          60.5,
+          -83.6
+        ],
+        "rotation": 165,
+        "scale": 1.3,
+        "solid": [
+          0.8,
+          0.8
+        ]
+      },
+      {
+        "piece": "Ruin_PillarStub",
+        "position": [
+          62.4,
+          -91.4
+        ],
+        "rotation": 165,
+        "scale": 1.3,
+        "solid": [
+          0.8,
+          0.8
+        ]
+      },
+      {
+        "piece": "Ruin_PillarStub",
+        "position": [
+          67.9,
+          -97.2
+        ],
+        "rotation": 75,
+        "scale": 1.3,
+        "solid": [
+          0.8,
+          0.8
+        ]
+      },
+      {
+        "piece": "Ruin_PillarStub",
+        "position": [
+          75.6,
+          -99.5
+        ],
+        "rotation": 90,
+        "scale": 1.3,
+        "solid": [
+          0.8,
+          0.8
+        ]
+      },
+      {
+        "piece": "Ruin_PillarStub",
+        "position": [
+          83.4,
+          -97.6
+        ],
+        "rotation": 255,
+        "scale": 1.3,
+        "solid": [
+          0.8,
+          0.8
+        ]
+      },
+      {
+        "piece": "Ruin_PillarStub",
+        "position": [
+          89.2,
+          -92.1
+        ],
+        "rotation": 315,
+        "scale": 1.3,
+        "solid": [
+          0.8,
+          0.8
+        ]
+      },
+      {
+        "piece": "Ruin_PillarStub",
+        "position": [
+          91.5,
+          -84.4
+        ],
+        "rotation": 75,
+        "scale": 1.3,
+        "solid": [
+          0.8,
+          0.8
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.45
+        ],
+        "position": [
+          68,
+          -93
+        ],
+        "y": 2.6,
+        "range": 8.0,
+        "energy": 1.1,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.45
+        ],
+        "position": [
+          84,
+          -93
+        ],
+        "y": 2.6,
+        "range": 8.0,
+        "energy": 1.1,
+        "flicker": true
+      },
+      {
+        "piece": "Pr_Obelisk3",
+        "position": [
+          62,
+          -98
+        ],
+        "rotation": 0,
+        "scale": 1.6,
+        "solid": [
+          1.5,
+          1.5
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk3",
+        "position": [
+          62,
+          -70
+        ],
+        "rotation": 0,
+        "scale": 1.6,
+        "solid": [
+          1.5,
+          1.5
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk3",
+        "position": [
+          90,
+          -70
+        ],
+        "rotation": 0,
+        "scale": 1.6,
+        "solid": [
+          1.5,
+          1.5
+        ]
+      },
+      {
+        "piece": "Ruin_Stones",
+        "position": [
+          76.3,
+          -79.2
+        ],
+        "rotation": 300,
+        "scale": 1.07,
+        "solid": [
+          7.5,
+          6.4
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar1",
+        "position": [
+          81.0,
+          -85.3
+        ],
+        "rotation": 345,
+        "scale": 1.45,
+        "solid": [
+          1.5,
+          1.5
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar1",
+        "position": [
+          82.1,
+          -88.5
+        ],
+        "rotation": 180,
+        "scale": 1.05,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar1",
+        "position": [
+          65.6,
+          -72.1
+        ],
+        "rotation": 285,
+        "scale": 1.18,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar2",
+        "position": [
+          69.6,
+          -77.2
+        ],
+        "rotation": 105,
+        "scale": 1.36,
+        "solid": [
+          1.4,
+          1.4
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar2",
+        "position": [
+          73.9,
+          -87.4
+        ],
+        "rotation": 330,
+        "scale": 1.41,
+        "solid": [
+          1.4,
+          1.4
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar2",
+        "position": [
+          64.7,
+          -83.9
+        ],
+        "rotation": 0,
+        "scale": 1.31,
+        "solid": [
+          1.3,
+          1.3
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar2",
+        "position": [
+          79.8,
+          -69.4
+        ],
+        "rotation": 225,
+        "scale": 1.41,
+        "solid": [
+          1.4,
+          1.4
+        ]
+      },
+      {
+        "piece": "Ruin_WallStub",
+        "position": [
+          70.2,
+          -91.8
+        ],
+        "rotation": 315,
+        "scale": 1.44,
+        "solid": [
+          1.4,
+          1.4
+        ]
+      },
+      {
+        "piece": "Dungeon_Bone",
+        "position": [
+          71.3,
+          -84.1
+        ],
+        "rotation": 330,
+        "scale": 2.62
+      },
+      {
+        "piece": "Dungeon_Bone",
+        "position": [
+          79.0,
+          -97.7
+        ],
+        "rotation": 120,
+        "scale": 2.63
+      },
+      {
+        "piece": "Dungeon_BonePile_5",
+        "position": [
+          67.8,
+          -81.6
+        ],
+        "rotation": 120,
+        "scale": 2.55
+      },
+      {
+        "piece": "Dungeon_BonePile_4",
+        "position": [
+          76.8,
+          -92.1
+        ],
+        "rotation": 15,
+        "scale": 2.73
+      },
+      {
+        "piece": "Dungeon_Skull_2",
+        "position": [
+          84.6,
+          -81.6
+        ],
+        "rotation": 210,
+        "scale": 3.1
+      },
+      {
+        "piece": "Dungeon_CrossBones",
+        "position": [
+          61.1,
+          -79.3
+        ],
+        "rotation": 135,
+        "scale": 2.78
+      },
+      {
+        "piece": "Tv_Torch",
+        "position": [
+          83.6,
+          -77.6
+        ],
+        "rotation": 270,
+        "scale": 1.5
+      },
+      {
+        "light": [
+          1.0,
+          0.55,
+          0.2
+        ],
+        "position": [
+          83.6,
+          -77.6
+        ],
+        "y": 1.7,
+        "range": 6.0,
+        "energy": 0.8,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Torch",
+        "position": [
+          83.1,
+          -91.1
+        ],
+        "rotation": 105,
+        "scale": 1.5
+      },
+      {
+        "light": [
+          1.0,
+          0.55,
+          0.2
+        ],
+        "position": [
+          83.1,
+          -91.1
+        ],
+        "y": 1.7,
+        "range": 6.0,
+        "energy": 0.8,
+        "flicker": true
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          -4.4,
+          -112
+        ],
+        "rotation": 0,
+        "scale": 1.2,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          -4.4,
+          -118
+        ],
+        "rotation": 0,
+        "scale": 1.2,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          4.4,
+          -118
+        ],
+        "rotation": 0,
+        "scale": 1.2,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          -4.4,
+          -124
+        ],
+        "rotation": 0,
+        "scale": 1.2,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          4.4,
+          -124
+        ],
+        "rotation": 0,
+        "scale": 1.2,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          -4.6,
+          -115
+        ],
+        "rotation": -90
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          4.6,
+          -115
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          -4.6,
+          -121
+        ],
+        "rotation": -90
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          4.6,
+          -121
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Statue_Lamp",
+        "position": [
+          -4.4,
+          -131
+        ],
+        "rotation": 0,
+        "scale": 1.1,
+        "solid": [
+          2.0,
+          1.2
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.75,
+          0.4
+        ],
+        "position": [
+          -4.4,
+          -131
+        ],
+        "y": 2.5,
+        "range": 8.0,
+        "energy": 1.0,
+        "flicker": true
+      },
+      {
+        "piece": "Statue_Lamp",
+        "position": [
+          4.4,
+          -131
+        ],
+        "rotation": 0,
+        "scale": 1.1,
+        "solid": [
+          2.0,
+          1.2
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.75,
+          0.4
+        ],
+        "position": [
+          4.4,
+          -131
+        ],
+        "y": 2.5,
+        "range": 8.0,
+        "energy": 1.0,
+        "flicker": true
+      },
+      {
+        "piece": "Ruin_Arch",
+        "position": [
+          0,
+          -142.5
+        ],
+        "rotation": 0,
+        "scale": 1.5
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          -9.5,
+          -148
+        ],
+        "rotation": 0,
+        "scale": 1.4,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          -13.5,
+          -148
+        ],
+        "rotation": 0,
+        "scale": 1.6,
+        "solid": [
+          1.4,
+          1.1
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          -13.5,
+          -148
+        ],
+        "y": 0.192,
+        "scale": 1.44,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.55,
+          0.2
+        ],
+        "position": [
+          -13.5,
+          -148
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.7,
+        "flicker": true
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          9.5,
+          -148
+        ],
+        "rotation": 0,
+        "scale": 1.4,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          13.5,
+          -148
+        ],
+        "rotation": 0,
+        "scale": 1.6,
+        "solid": [
+          1.4,
+          1.1
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          13.5,
+          -148
+        ],
+        "y": 0.192,
+        "scale": 1.44,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.55,
+          0.2
+        ],
+        "position": [
+          13.5,
+          -148
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.7,
+        "flicker": true
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          -9.5,
+          -154
+        ],
+        "rotation": 0,
+        "scale": 1.4,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          9.5,
+          -154
+        ],
+        "rotation": 0,
+        "scale": 1.4,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          -9.5,
+          -160
+        ],
+        "rotation": 0,
+        "scale": 1.4,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          -13.5,
+          -160
+        ],
+        "rotation": 0,
+        "scale": 1.6,
+        "solid": [
+          1.4,
+          1.1
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          -13.5,
+          -160
+        ],
+        "y": 0.192,
+        "scale": 1.44,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.55,
+          0.2
+        ],
+        "position": [
+          -13.5,
+          -160
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.7,
+        "flicker": true
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          9.5,
+          -160
+        ],
+        "rotation": 0,
+        "scale": 1.4,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          13.5,
+          -160
+        ],
+        "rotation": 0,
+        "scale": 1.6,
+        "solid": [
+          1.4,
+          1.1
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          13.5,
+          -160
+        ],
+        "y": 0.192,
+        "scale": 1.44,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.55,
+          0.2
+        ],
+        "position": [
+          13.5,
+          -160
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.7,
+        "flicker": true
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          -9.5,
+          -166
+        ],
+        "rotation": 0,
+        "scale": 1.4,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          9.5,
+          -166
+        ],
+        "rotation": 0,
+        "scale": 1.4,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          -9.5,
+          -172
+        ],
+        "rotation": 0,
+        "scale": 1.4,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          -13.5,
+          -172
+        ],
+        "rotation": 0,
+        "scale": 1.6,
+        "solid": [
+          1.4,
+          1.1
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          -13.5,
+          -172
+        ],
+        "y": 0.192,
+        "scale": 1.44,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.55,
+          0.2
+        ],
+        "position": [
+          -13.5,
+          -172
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.7,
+        "flicker": true
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          9.5,
+          -172
+        ],
+        "rotation": 0,
+        "scale": 1.4,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          13.5,
+          -172
+        ],
+        "rotation": 0,
+        "scale": 1.6,
+        "solid": [
+          1.4,
+          1.1
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          13.5,
+          -172
+        ],
+        "y": 0.192,
+        "scale": 1.44,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.55,
+          0.2
+        ],
+        "position": [
+          13.5,
+          -172
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.7,
+        "flicker": true
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          -9.5,
+          -178
+        ],
+        "rotation": 0,
+        "scale": 1.4,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          9.5,
+          -178
+        ],
+        "rotation": 0,
+        "scale": 1.4,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk3",
+        "position": [
+          -24,
+          -150
+        ],
+        "rotation": 0,
+        "scale": 1.7,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk3",
+        "position": [
+          24,
+          -150
+        ],
+        "rotation": 0,
+        "scale": 1.7,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk3",
+        "position": [
+          -24,
+          -184
+        ],
+        "rotation": 0,
+        "scale": 1.7,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk3",
+        "position": [
+          24,
+          -184
+        ],
+        "rotation": 0,
+        "scale": 1.7,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk3",
+        "position": [
+          -24,
+          -167
+        ],
+        "rotation": 0,
+        "scale": 1.7,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Pr_Obelisk3",
+        "position": [
+          24,
+          -167
+        ],
+        "rotation": 0,
+        "scale": 1.7,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Statue_Lamp",
+        "position": [
+          -15,
+          -187
+        ],
+        "rotation": 0,
+        "scale": 1.5,
+        "solid": [
+          3.0,
+          1.8
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.45
+        ],
+        "position": [
+          -15,
+          -187
+        ],
+        "y": 3.2,
+        "range": 11.0,
+        "energy": 1.4,
+        "flicker": true
+      },
+      {
+        "piece": "Statue_Knight",
+        "position": [
+          -20,
+          -158
+        ],
+        "rotation": 90,
+        "scale": 1.7,
+        "solid": [
+          1.7,
+          1.8
+        ]
+      },
+      {
+        "piece": "Statue_Knight",
+        "position": [
+          -20,
+          -172
+        ],
+        "rotation": 90,
+        "scale": 1.7,
+        "solid": [
+          1.7,
+          1.8
+        ]
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          -18,
+          -150
+        ],
+        "rotation": 90,
+        "scale": 1.3
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          -18,
+          -176
+        ],
+        "rotation": 90,
+        "scale": 1.3
+      },
+      {
+        "piece": "Statue_Lamp",
+        "position": [
+          15,
+          -187
+        ],
+        "rotation": 0,
+        "scale": 1.5,
+        "solid": [
+          3.0,
+          1.8
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.45
+        ],
+        "position": [
+          15,
+          -187
+        ],
+        "y": 3.2,
+        "range": 11.0,
+        "energy": 1.4,
+        "flicker": true
+      },
+      {
+        "piece": "Statue_Knight",
+        "position": [
+          20,
+          -158
+        ],
+        "rotation": -90,
+        "scale": 1.7,
+        "solid": [
+          1.7,
+          1.8
+        ]
+      },
+      {
+        "piece": "Statue_Knight",
+        "position": [
+          20,
+          -172
+        ],
+        "rotation": -90,
+        "scale": 1.7,
+        "solid": [
+          1.7,
+          1.8
+        ]
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          18,
+          -150
+        ],
+        "rotation": -90,
+        "scale": 1.3
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          18,
+          -176
+        ],
+        "rotation": -90,
+        "scale": 1.3
+      },
+      {
+        "piece": "Vase_Big",
+        "position": [
+          17.3,
+          -162.0
+        ],
+        "rotation": 165,
+        "scale": 1.04
+      },
+      {
+        "piece": "Pot_Large",
+        "position": [
+          -9.1,
+          -185.9
+        ],
+        "rotation": 285,
+        "scale": 1.3
+      },
+      {
+        "piece": "Vase_Big",
+        "position": [
+          -16.6,
+          -163.3
+        ],
+        "rotation": 90,
+        "scale": 0.97
+      },
+      {
+        "piece": "Pot_Large",
+        "position": [
+          14.1,
+          -191.2
         ],
         "rotation": 150,
         "scale": 1.03
       },
       {
-        "piece": "Canyon_Cactus_Tall_4",
+        "piece": "Vase_2",
         "position": [
-          -22.5,
-          -50.4
-        ],
-        "rotation": 255,
-        "scale": 1.19
-      },
-      {
-        "piece": "Canyon_Cactus_Small_2",
-        "position": [
-          -38.9,
-          -61.9
-        ],
-        "rotation": 45,
-        "scale": 1.0
-      },
-      {
-        "piece": "Canyon_Cactus_Flat_1",
-        "position": [
-          -24.6,
-          -60.6
-        ],
-        "rotation": 165,
-        "scale": 1.0
-      },
-      {
-        "piece": "Canyon_Grass_6",
-        "position": [
-          -28.6,
-          -61.8
-        ],
-        "rotation": 15
-      },
-      {
-        "piece": "Canyon_Leafs_1",
-        "position": [
-          -22.7,
-          -55.9
-        ],
-        "rotation": 45
-      },
-      {
-        "piece": "Canyon_Leafs_1",
-        "position": [
-          -34.8,
-          -55.6
-        ],
-        "rotation": 195
-      },
-      {
-        "piece": "Canyon_Sticks_2",
-        "position": [
-          -38.8,
-          -49.3
-        ],
-        "rotation": 330
-      },
-      {
-        "piece": "Canyon_Grass_1",
-        "position": [
-          -23.3,
-          -56.9
-        ],
-        "rotation": 345
-      },
-      {
-        "piece": "Canyon_Grass_10",
-        "position": [
-          -31.7,
-          -48.9
-        ],
-        "rotation": 255
-      },
-      {
-        "piece": "Canyon_Sticks_2",
-        "position": [
-          -22.0,
-          -53.6
-        ],
-        "rotation": 330
-      },
-      {
-        "piece": "Canyon_Leafs_1",
-        "position": [
-          -39.3,
-          -59.9
-        ],
-        "rotation": 180
-      },
-      {
-        "piece": "Canyon_Tree_3",
-        "position": [
-          -34.3,
-          -62.1
-        ],
-        "rotation": 315,
-        "scale": 1.12
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_2",
-        "position": [
-          -15.1,
-          -108.4
-        ],
-        "rotation": 0,
-        "solid": [
-          1.8,
-          1.8
-        ]
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_3",
-        "position": [
-          4.3,
-          -105.2
+          16.4,
+          -146.7
         ],
         "rotation": 345,
-        "solid": [
-          1.8,
-          1.8
-        ]
+        "scale": 0.91
       },
       {
-        "piece": "Canyon_Rock_Boulders_1",
+        "piece": "Vase_Big",
         "position": [
-          1.3,
-          -91.5
-        ],
-        "rotation": 210,
-        "solid": [
-          1.6,
-          1.6
-        ]
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_4",
-        "position": [
-          -5.0,
-          -79.0
-        ],
-        "rotation": 75,
-        "solid": [
-          2.7,
-          2.7
-        ]
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_1",
-        "position": [
-          0.1,
-          -92.3
-        ],
-        "rotation": 150,
-        "solid": [
-          1.6,
-          1.6
-        ]
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_3",
-        "position": [
-          3.4,
-          -93.9
+          -10.0,
+          -189.2
         ],
         "rotation": 285,
+        "scale": 1.16
+      },
+      {
+        "piece": "Pot_Large",
+        "position": [
+          20.3,
+          -176.6
+        ],
+        "rotation": 165,
+        "scale": 1.08
+      },
+      {
+        "piece": "Vase_2",
+        "position": [
+          6.8,
+          -168.2
+        ],
+        "rotation": 315,
+        "scale": 1.16
+      },
+      {
+        "piece": "Pot_Large",
+        "position": [
+          10.2,
+          -181.0
+        ],
+        "rotation": 270,
+        "scale": 1.23
+      },
+      {
+        "piece": "Pot_Large",
+        "position": [
+          -4.7,
+          -165.1
+        ],
+        "rotation": 255,
+        "scale": 1.3
+      },
+      {
+        "piece": "Vase_2",
+        "position": [
+          3.3,
+          -149.3
+        ],
+        "rotation": 75,
+        "scale": 1.13
+      },
+      {
+        "piece": "Pot_Large",
+        "position": [
+          24.2,
+          -190.5
+        ],
+        "rotation": 225,
+        "scale": 1.3
+      },
+      {
+        "piece": "Dungeon_BonePile_3",
+        "position": [
+          11.0,
+          -144.7
+        ],
+        "rotation": 285,
+        "scale": 2.96
+      },
+      {
+        "piece": "Dungeon_BonePile_4",
+        "position": [
+          3.8,
+          -177.6
+        ],
+        "rotation": 75,
+        "scale": 3.0
+      },
+      {
+        "piece": "Dungeon_BonePile_3",
+        "position": [
+          -4.4,
+          -169.0
+        ],
+        "rotation": 135,
+        "scale": 2.54
+      },
+      {
+        "piece": "Dungeon_CrossBones",
+        "position": [
+          -21.9,
+          -176.4
+        ],
+        "rotation": 315,
+        "scale": 3.16
+      },
+      {
+        "piece": "Dungeon_Skull_1",
+        "position": [
+          2.6,
+          -163.6
+        ],
+        "rotation": 135,
+        "scale": 2.68
+      },
+      {
+        "piece": "Dungeon_CrossBones",
+        "position": [
+          -4.4,
+          -180.4
+        ],
+        "rotation": 345,
+        "scale": 3.26
+      },
+      {
+        "piece": "Dungeon_Skull_2",
+        "position": [
+          -13.1,
+          -190.7
+        ],
+        "rotation": 30,
+        "scale": 2.59
+      },
+      {
+        "piece": "Dungeon_Bone",
+        "position": [
+          -15.9,
+          -179.4
+        ],
+        "rotation": 180,
+        "scale": 3.16
+      },
+      {
+        "piece": "Dungeon_BonePile_5",
+        "position": [
+          18.0,
+          -167.3
+        ],
+        "rotation": 255,
+        "scale": 2.53
+      },
+      {
+        "piece": "Dungeon_CrossBones",
+        "position": [
+          8.1,
+          -188.5
+        ],
+        "rotation": 330,
+        "scale": 2.88
+      },
+      {
+        "piece": "Dungeon_BonePile_4",
+        "position": [
+          12.8,
+          -156.0
+        ],
+        "rotation": 300,
+        "scale": 3.3
+      },
+      {
+        "piece": "Dungeon_Leg",
+        "position": [
+          -3.4,
+          -189.1
+        ],
+        "rotation": 180,
+        "scale": 2.64
+      },
+      {
+        "piece": "Dungeon_BonePile_4",
+        "position": [
+          5.1,
+          -171.9
+        ],
+        "rotation": 240,
+        "scale": 2.95
+      },
+      {
+        "piece": "Dungeon_Skull_2",
+        "position": [
+          -12.8,
+          -164.0
+        ],
+        "rotation": 15,
+        "scale": 3.0
+      },
+      {
+        "piece": "Dungeon_Skull_1",
+        "position": [
+          18.9,
+          -181.1
+        ],
+        "rotation": 60,
+        "scale": 2.61
+      },
+      {
+        "piece": "Dungeon_Arm",
+        "position": [
+          -20.2,
+          -163.7
+        ],
+        "rotation": 15,
+        "scale": 3.04
+      },
+      {
+        "piece": "Dungeon_SkullPile",
+        "position": [
+          -4.0,
+          -152.4
+        ],
+        "rotation": 330,
+        "scale": 3.31
+      },
+      {
+        "piece": "Dungeon_SkullPile",
+        "position": [
+          -0.2,
+          -185.0
+        ],
+        "rotation": 15,
+        "scale": 3.03
+      },
+      {
+        "piece": "Dungeon_SkullPile",
+        "position": [
+          5.1,
+          -156.4
+        ],
+        "rotation": 30,
+        "scale": 3.25
+      },
+      {
+        "piece": "Dungeon_SkullPile",
+        "position": [
+          20.3,
+          -144.7
+        ],
+        "rotation": 75,
+        "scale": 3.22
+      },
+      {
+        "piece": "Dungeon_SkullPile",
+        "position": [
+          -22.3,
+          -144.4
+        ],
+        "rotation": 90,
+        "scale": 3.81
+      },
+      {
+        "piece": "Pr_BrokenPillar1",
+        "position": [
+          -13.0,
+          -155.9
+        ],
+        "rotation": 315,
+        "scale": 1.25,
         "solid": [
-          1.8,
-          1.8
+          1.2,
+          1.2
         ]
+      },
+      {
+        "piece": "Pr_BrokenPillar1",
+        "position": [
+          -18.7,
+          -184.7
+        ],
+        "rotation": 330,
+        "scale": 1.23,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar2",
+        "position": [
+          -1.9,
+          -160.5
+        ],
+        "rotation": 45,
+        "scale": 1.25,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Ruin_PillarStub",
+        "position": [
+          21.4,
+          -164.6
+        ],
+        "rotation": 60,
+        "scale": 1.23,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Ruin_PillarStub",
+        "position": [
+          13.4,
+          -176.3
+        ],
+        "rotation": 210,
+        "scale": 1.52,
+        "solid": [
+          1.5,
+          1.5
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar2",
+        "position": [
+          -7.0,
+          -175.0
+        ],
+        "rotation": 75,
+        "scale": 1.33,
+        "solid": [
+          1.3,
+          1.3
+        ]
+      },
+      {
+        "piece": "Dungeon_Pelvis",
+        "position": [
+          -34.9,
+          18.0
+        ],
+        "rotation": 105,
+        "scale": 2.71
+      },
+      {
+        "piece": "Dungeon_Bone",
+        "position": [
+          -4.9,
+          -26.6
+        ],
+        "rotation": 45,
+        "scale": 2.86
+      },
+      {
+        "piece": "Dungeon_Skull_1",
+        "position": [
+          13.8,
+          -39.0
+        ],
+        "rotation": 315,
+        "scale": 2.89
+      },
+      {
+        "piece": "Dungeon_Leg",
+        "position": [
+          -1.3,
+          -16.6
+        ],
+        "rotation": 255,
+        "scale": 3.29
+      },
+      {
+        "piece": "Dungeon_BonePile_2",
+        "position": [
+          15.1,
+          -45.2
+        ],
+        "rotation": 225,
+        "scale": 3.16
+      },
+      {
+        "piece": "Dungeon_Arm",
+        "position": [
+          2.9,
+          -74.9
+        ],
+        "rotation": 345,
+        "scale": 2.6
+      },
+      {
+        "piece": "Dungeon_Leg",
+        "position": [
+          18.1,
+          -74.4
+        ],
+        "rotation": 135,
+        "scale": 2.73
+      },
+      {
+        "piece": "Dungeon_Bone",
+        "position": [
+          11.6,
+          -77.4
+        ],
+        "rotation": 30,
+        "scale": 2.69
+      },
+      {
+        "piece": "Dungeon_Skull_2",
+        "position": [
+          13.6,
+          -71.9
+        ],
+        "rotation": 240,
+        "scale": 2.9
+      },
+      {
+        "piece": "Dungeon_CrossBones",
+        "position": [
+          -43.7,
+          -70.7
+        ],
+        "rotation": 75,
+        "scale": 2.89
+      },
+      {
+        "piece": "Dungeon_BonePile_5",
+        "position": [
+          86.5,
+          -95.5
+        ],
+        "rotation": 195,
+        "scale": 3.05
+      },
+      {
+        "piece": "Dungeon_Arm",
+        "position": [
+          91.2,
+          -80.1
+        ],
+        "rotation": 0,
+        "scale": 2.58
       },
       {
         "piece": "Canyon_Rock_Boulders_3",
         "position": [
-          -16.2,
-          -103.7
-        ],
-        "rotation": 90,
-        "solid": [
-          1.8,
-          1.8
-        ]
-      },
-      {
-        "piece": "Canyon_Rock_Boulders_2",
-        "position": [
-          -5.5,
-          -96.6
+          13.3,
+          0.3
         ],
         "rotation": 300,
         "solid": [
@@ -133350,12 +137978,103 @@
         ]
       },
       {
+        "piece": "Canyon_Rock_Boulders_1",
+        "position": [
+          17.6,
+          2.5
+        ],
+        "rotation": 270,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Canyon_Cactus_Tall_3",
+        "position": [
+          8.2,
+          -7.7
+        ],
+        "rotation": 0,
+        "scale": 1.32
+      },
+      {
+        "piece": "Canyon_Cactus_Tall_4",
+        "position": [
+          6.6,
+          -8.4
+        ],
+        "rotation": 15,
+        "scale": 1.31
+      },
+      {
+        "piece": "Canyon_Cactus_Flat_3",
+        "position": [
+          20.0,
+          3.3
+        ],
+        "rotation": 60,
+        "scale": 1.11
+      },
+      {
+        "piece": "Canyon_Grass_10",
+        "position": [
+          9.5,
+          -0.7
+        ],
+        "rotation": 45
+      },
+      {
+        "piece": "Canyon_Sticks_2",
+        "position": [
+          10.2,
+          10.4
+        ],
+        "rotation": 270
+      },
+      {
+        "piece": "Canyon_Leafs_1",
+        "position": [
+          14.8,
+          10.7
+        ],
+        "rotation": 60
+      },
+      {
+        "piece": "Canyon_Grass_6",
+        "position": [
+          10.5,
+          7.2
+        ],
+        "rotation": 210
+      },
+      {
+        "piece": "Canyon_Leafs_1",
+        "position": [
+          -38.0,
+          -6.7
+        ],
+        "rotation": 255
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_1",
+        "position": [
+          -7.2,
+          -17.4
+        ],
+        "rotation": 285,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
         "piece": "Canyon_Rock_Boulders_5",
         "position": [
-          13.0,
-          -95.5
+          4.4,
+          -22.2
         ],
-        "rotation": 210,
+        "rotation": 15,
         "solid": [
           1.6,
           1.6
@@ -133364,32 +138083,592 @@
       {
         "piece": "Canyon_Rock_Boulders_1",
         "position": [
-          -11.3,
-          -91.0
+          1.6,
+          -21.1
         ],
-        "rotation": 180,
+        "rotation": 225,
         "solid": [
           1.6,
           1.6
         ]
       },
       {
-        "piece": "Canyon_Rock_Boulders_4",
+        "piece": "Canyon_Rock_Boulders_3",
         "position": [
-          -11.5,
-          -104.1
+          -13.3,
+          -23.8
         ],
-        "rotation": 120,
+        "rotation": 225,
         "solid": [
-          2.7,
-          2.7
+          1.8,
+          1.8
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_1",
+        "position": [
+          14.2,
+          -17.0
+        ],
+        "rotation": 210,
+        "solid": [
+          1.6,
+          1.6
         ]
       },
       {
         "piece": "Canyon_Rock_Boulders_5",
         "position": [
-          4.7,
-          -96.2
+          -14.4,
+          -41.7
+        ],
+        "rotation": 60,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_2",
+        "position": [
+          4.9,
+          -23.5
+        ],
+        "rotation": 105,
+        "solid": [
+          1.8,
+          1.8
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_1",
+        "position": [
+          8.8,
+          -23.9
+        ],
+        "rotation": 300,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Canyon_Cactus_Small_2",
+        "position": [
+          16.1,
+          -57.2
+        ],
+        "rotation": 300,
+        "scale": 1.08
+      },
+      {
+        "piece": "Canyon_Cactus_Flat_3",
+        "position": [
+          -15.5,
+          -42.7
+        ],
+        "rotation": 0,
+        "scale": 1.05
+      },
+      {
+        "piece": "Canyon_Cactus_Tall_2",
+        "position": [
+          -9.9,
+          -46.9
+        ],
+        "rotation": 240,
+        "scale": 1.19
+      },
+      {
+        "piece": "Canyon_Cactus_Tall_5",
+        "position": [
+          16.5,
+          -41.4
+        ],
+        "rotation": 180,
+        "scale": 0.96
+      },
+      {
+        "piece": "Canyon_Cactus_Flat_3",
+        "position": [
+          -6.1,
+          -20.8
+        ],
+        "rotation": 210,
+        "scale": 1.32
+      },
+      {
+        "piece": "Canyon_Cactus_Tall_3",
+        "position": [
+          -4.7,
+          -55.1
+        ],
+        "rotation": 210,
+        "scale": 1.32
+      },
+      {
+        "piece": "Canyon_Cactus_Tall_4",
+        "position": [
+          15.1,
+          -49.5
+        ],
+        "rotation": 75,
+        "scale": 1.23
+      },
+      {
+        "piece": "Canyon_Cactus_Tall_1",
+        "position": [
+          -6.1,
+          -20.4
+        ],
+        "rotation": 210,
+        "scale": 1.03
+      },
+      {
+        "piece": "Canyon_Cactus_Tall_3",
+        "position": [
+          -6.4,
+          -54.7
+        ],
+        "rotation": 105,
+        "scale": 1.38
+      },
+      {
+        "piece": "Canyon_Grass_6",
+        "position": [
+          13.3,
+          -21.2
+        ],
+        "rotation": 240
+      },
+      {
+        "piece": "Canyon_Grass_6",
+        "position": [
+          -4.2,
+          -48.7
+        ],
+        "rotation": 315
+      },
+      {
+        "piece": "Canyon_Leafs_1",
+        "position": [
+          -8.0,
+          -16.7
+        ],
+        "rotation": 45
+      },
+      {
+        "piece": "Canyon_Grass_1",
+        "position": [
+          -10.0,
+          -55.1
+        ],
+        "rotation": 300
+      },
+      {
+        "piece": "Canyon_Leafs_1",
+        "position": [
+          15.1,
+          -15.1
+        ],
+        "rotation": 180
+      },
+      {
+        "piece": "Canyon_Leafs_1",
+        "position": [
+          12.1,
+          -22.4
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Canyon_Sticks_1",
+        "position": [
+          10.5,
+          -57.3
+        ],
+        "rotation": 45
+      },
+      {
+        "piece": "Canyon_Tree_1",
+        "position": [
+          -13.8,
+          -20.4
+        ],
+        "rotation": 300,
+        "scale": 1.15
+      },
+      {
+        "piece": "Canyon_Tree_4",
+        "position": [
+          1.6,
+          -26.1
+        ],
+        "rotation": 150,
+        "scale": 1.06
+      },
+      {
+        "piece": "Canyon_Tree_4",
+        "position": [
+          -1.3,
+          -49.6
+        ],
+        "rotation": 195,
+        "scale": 0.94
+      },
+      {
+        "piece": "Canyon_Tree_2",
+        "position": [
+          -15.0,
+          -38.5
+        ],
+        "rotation": 210,
+        "scale": 1.16
+      },
+      {
+        "piece": "Canyon_Sticks_2",
+        "position": [
+          -24.2,
+          -26.2
+        ],
+        "rotation": 60
+      },
+      {
+        "piece": "Canyon_Grass_10",
+        "position": [
+          20.0,
+          -33.1
+        ],
+        "rotation": 300
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_6",
+        "position": [
+          -9.4,
+          -93.7
+        ],
+        "rotation": 210,
+        "solid": [
+          1.3,
+          1.3
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_1",
+        "position": [
+          4.9,
+          -70.6
+        ],
+        "rotation": 330,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_6",
+        "position": [
+          -5.5,
+          -82.6
+        ],
+        "rotation": 15,
+        "solid": [
+          1.3,
+          1.3
+        ]
+      },
+      {
+        "piece": "Canyon_Cactus_Tall_2",
+        "position": [
+          -4.1,
+          -80.4
+        ],
+        "rotation": 330,
+        "scale": 0.99
+      },
+      {
+        "piece": "Canyon_Grass_6",
+        "position": [
+          6.6,
+          -69.4
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Canyon_Grass_6",
+        "position": [
+          -15.1,
+          -83.0
+        ],
+        "rotation": 240
+      },
+      {
+        "piece": "Canyon_Sticks_1",
+        "position": [
+          -10.4,
+          -94.3
+        ],
+        "rotation": 30
+      },
+      {
+        "piece": "Canyon_Tree_3",
+        "position": [
+          -4.1,
+          -60.7
+        ],
+        "rotation": 135,
+        "scale": 1.36
+      },
+      {
+        "piece": "Canyon_Grass_6",
+        "position": [
+          -43.1,
+          -97.6
+        ],
+        "rotation": 210
+      },
+      {
+        "piece": "Canyon_Cactus_Flat_2",
+        "position": [
+          27.7,
+          -97.2
+        ],
+        "rotation": 255,
+        "scale": 1.4
+      },
+      {
+        "piece": "Canyon_Grass_6",
+        "position": [
+          52.3,
+          -76.8
+        ],
+        "rotation": 30
+      },
+      {
+        "piece": "Canyon_Leafs_1",
+        "position": [
+          43.3,
+          -76.4
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Canyon_Tree_3",
+        "position": [
+          45.3,
+          -74.2
+        ],
+        "rotation": 120,
+        "scale": 1.16
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_1",
+        "position": [
+          66.9,
+          -88.0
+        ],
+        "rotation": 195,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Canyon_Cactus_Flat_3",
+        "position": [
+          86.5,
+          -71.7
+        ],
+        "rotation": 255,
+        "scale": 1.12
+      },
+      {
+        "piece": "Canyon_Cactus_Small_1",
+        "position": [
+          67.6,
+          -88.7
+        ],
+        "rotation": 240,
+        "scale": 1.15
+      },
+      {
+        "piece": "Canyon_Cactus_Small_3",
+        "position": [
+          74.0,
+          -67.6
+        ],
+        "rotation": 255,
+        "scale": 1.33
+      },
+      {
+        "piece": "Canyon_Sticks_2",
+        "position": [
+          78.1,
+          -87.2
+        ],
+        "rotation": 165
+      },
+      {
+        "piece": "Canyon_Sticks_1",
+        "position": [
+          80.3,
+          -91.6
+        ],
+        "rotation": 210
+      },
+      {
+        "piece": "Canyon_Sticks_1",
+        "position": [
+          92.2,
+          -99.9
+        ],
+        "rotation": 195
+      },
+      {
+        "piece": "Canyon_Sticks_2",
+        "position": [
+          83.6,
+          -100.0
+        ],
+        "rotation": 30
+      },
+      {
+        "piece": "Canyon_Grass_10",
+        "position": [
+          68.3,
+          -100.2
+        ],
+        "rotation": 255
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_2",
+        "position": [
+          0.7,
+          -124.3
+        ],
+        "rotation": 90,
+        "solid": [
+          1.8,
+          1.8
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_3",
+        "position": [
+          0.4,
+          -124.4
+        ],
+        "rotation": 135,
+        "solid": [
+          1.8,
+          1.8
+        ]
+      },
+      {
+        "piece": "Canyon_Sticks_2",
+        "position": [
+          -1.8,
+          -112.3
+        ],
+        "rotation": 135
+      },
+      {
+        "piece": "Canyon_Sticks_2",
+        "position": [
+          1.1,
+          -126.2
+        ],
+        "rotation": 60
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_3",
+        "position": [
+          -7.5,
+          -144.2
+        ],
+        "rotation": 165,
+        "solid": [
+          1.8,
+          1.8
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_2",
+        "position": [
+          0.7,
+          -169.2
+        ],
+        "rotation": 240,
+        "solid": [
+          1.8,
+          1.8
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_1",
+        "position": [
+          -24.1,
+          -159.3
+        ],
+        "rotation": 195,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_1",
+        "position": [
+          24.0,
+          -177.2
+        ],
+        "rotation": 345,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_6",
+        "position": [
+          -2.6,
+          -174.1
+        ],
+        "rotation": 45,
+        "solid": [
+          1.3,
+          1.3
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_5",
+        "position": [
+          24.1,
+          -161.0
+        ],
+        "rotation": 300,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_2",
+        "position": [
+          -17.1,
+          -168.7
+        ],
+        "rotation": 240,
+        "solid": [
+          1.8,
+          1.8
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_1",
+        "position": [
+          -24.3,
+          -159.6
         ],
         "rotation": 135,
         "solid": [
@@ -133398,559 +138677,259 @@
         ]
       },
       {
-        "piece": "Canyon_Cactus_Small_3",
-        "position": [
-          -21.0,
-          -109.5
-        ],
-        "rotation": 60,
-        "scale": 1.15
-      },
-      {
-        "piece": "Canyon_Cactus_Small_1",
-        "position": [
-          18.6,
-          -86.3
-        ],
-        "rotation": 45,
-        "scale": 1.03
-      },
-      {
-        "piece": "Canyon_Cactus_Small_3",
-        "position": [
-          -15.5,
-          -100.1
-        ],
-        "rotation": 0,
-        "scale": 1.14
-      },
-      {
-        "piece": "Canyon_Cactus_Small_1",
-        "position": [
-          -13.7,
-          -85.1
-        ],
-        "rotation": 15,
-        "scale": 1.17
-      },
-      {
-        "piece": "Canyon_Cactus_Flat_3",
-        "position": [
-          21.8,
-          -86.8
-        ],
-        "rotation": 0,
-        "scale": 1.28
-      },
-      {
         "piece": "Canyon_Cactus_Small_5",
         "position": [
-          -22.1,
-          -109.4
+          -6.9,
+          -184.1
+        ],
+        "rotation": 120,
+        "scale": 0.98
+      },
+      {
+        "piece": "Canyon_Cactus_Small_2",
+        "position": [
+          -16.6,
+          -156.0
         ],
         "rotation": 75,
         "scale": 1.34
       },
       {
-        "piece": "Canyon_Cactus_Flat_1",
+        "piece": "Canyon_Cactus_Small_3",
         "position": [
-          12.7,
-          -80.4
+          5.9,
+          -149.2
         ],
-        "rotation": 60,
-        "scale": 1.1
-      },
-      {
-        "piece": "Canyon_Cactus_Small_1",
-        "position": [
-          -7.1,
-          -98.2
-        ],
-        "rotation": 315,
-        "scale": 1.09
-      },
-      {
-        "piece": "Canyon_Cactus_Flat_3",
-        "position": [
-          12.5,
-          -110.0
-        ],
-        "rotation": 225,
-        "scale": 0.96
-      },
-      {
-        "piece": "Canyon_Cactus_Tall_3",
-        "position": [
-          15.4,
-          -100.6
-        ],
-        "rotation": 225,
-        "scale": 1.19
-      },
-      {
-        "piece": "Canyon_Cactus_Small_1",
-        "position": [
-          10.9,
-          -102.2
-        ],
-        "rotation": 285,
-        "scale": 1.07
-      },
-      {
-        "piece": "Canyon_Cactus_Small_5",
-        "position": [
-          -13.1,
-          -77.9
-        ],
-        "rotation": 60,
-        "scale": 1.0
-      },
-      {
-        "piece": "Canyon_Cactus_Tall_4",
-        "position": [
-          18.2,
-          -84.5
-        ],
-        "rotation": 165,
-        "scale": 1.12
-      },
-      {
-        "piece": "Canyon_Cactus_Small_2",
-        "position": [
-          19.3,
-          -91.3
-        ],
-        "rotation": 240,
-        "scale": 1.39
-      },
-      {
-        "piece": "Canyon_Cactus_Small_1",
-        "position": [
-          11.1,
-          -89.6
-        ],
-        "rotation": 90,
-        "scale": 0.98
-      },
-      {
-        "piece": "Canyon_Cactus_Flat_1",
-        "position": [
-          -15.6,
-          -109.6
-        ],
-        "rotation": 195,
-        "scale": 1.14
-      },
-      {
-        "piece": "Canyon_Cactus_Tall_3",
-        "position": [
-          12.0,
-          -93.9
-        ],
-        "rotation": 300,
-        "scale": 1.37
-      },
-      {
-        "piece": "Canyon_Cactus_Flat_1",
-        "position": [
-          -7.8,
-          -103.4
-        ],
-        "rotation": 255,
-        "scale": 0.9
-      },
-      {
-        "piece": "Canyon_Cactus_Tall_5",
-        "position": [
-          -3.0,
-          -95.1
-        ],
-        "rotation": 0,
-        "scale": 1.24
-      },
-      {
-        "piece": "Canyon_Cactus_Tall_2",
-        "position": [
-          -20.0,
-          -95.3
-        ],
-        "rotation": 15,
-        "scale": 1.19
-      },
-      {
-        "piece": "Canyon_Cactus_Tall_1",
-        "position": [
-          -13.5,
-          -91.6
-        ],
-        "rotation": 255,
-        "scale": 1.02
+        "rotation": 270,
+        "scale": 1.22
       },
       {
         "piece": "Canyon_Cactus_Flat_2",
         "position": [
-          -10.7,
-          -85.3
+          -17.6,
+          -191.5
         ],
-        "rotation": 255,
-        "scale": 1.1
+        "rotation": 195,
+        "scale": 1.18
       },
       {
-        "piece": "Canyon_Grass_10",
+        "piece": "Canyon_Cactus_Tall_3",
         "position": [
-          -0.5,
-          -83.8
+          -21.7,
+          -153.3
         ],
-        "rotation": 270
+        "rotation": 180,
+        "scale": 1.36
+      },
+      {
+        "piece": "Canyon_Cactus_Tall_2",
+        "position": [
+          14.7,
+          -145.3
+        ],
+        "rotation": 135,
+        "scale": 1.11
+      },
+      {
+        "piece": "Canyon_Cactus_Flat_2",
+        "position": [
+          -10.8,
+          -141.0
+        ],
+        "rotation": 285,
+        "scale": 1.01
+      },
+      {
+        "piece": "Canyon_Cactus_Tall_2",
+        "position": [
+          4.9,
+          -166.3
+        ],
+        "rotation": 135,
+        "scale": 1.27
+      },
+      {
+        "piece": "Canyon_Cactus_Flat_2",
+        "position": [
+          13.5,
+          -163.5
+        ],
+        "rotation": 30,
+        "scale": 1.29
+      },
+      {
+        "piece": "Canyon_Cactus_Small_5",
+        "position": [
+          -23.3,
+          -155.6
+        ],
+        "rotation": 150,
+        "scale": 0.94
       },
       {
         "piece": "Canyon_Grass_6",
         "position": [
-          -8.3,
-          -110.3
+          3.5,
+          -187.9
         ],
-        "rotation": 150
-      },
-      {
-        "piece": "Canyon_Grass_6",
-        "position": [
-          -16.2,
-          -90.5
-        ],
-        "rotation": 45
+        "rotation": 180
       },
       {
         "piece": "Canyon_Grass_1",
         "position": [
-          -6.7,
-          -97.2
+          4.4,
+          -191.4
         ],
-        "rotation": 270
-      },
-      {
-        "piece": "Canyon_Grass_6",
-        "position": [
-          -13.8,
-          -81.2
-        ],
-        "rotation": 255
+        "rotation": 15
       },
       {
         "piece": "Canyon_Sticks_2",
         "position": [
-          -1.6,
-          -89.7
-        ],
-        "rotation": 330
-      },
-      {
-        "piece": "Canyon_Grass_10",
-        "position": [
-          -16.0,
-          -85.4
-        ],
-        "rotation": 60
-      },
-      {
-        "piece": "Canyon_Grass_10",
-        "position": [
-          6.6,
-          -98.0
-        ],
-        "rotation": 195
-      },
-      {
-        "piece": "Canyon_Grass_6",
-        "position": [
-          -19.2,
-          -102.4
-        ],
-        "rotation": 240
-      },
-      {
-        "piece": "Canyon_Grass_10",
-        "position": [
-          13.4,
-          -107.7
-        ],
-        "rotation": 105
-      },
-      {
-        "piece": "Canyon_Sticks_2",
-        "position": [
-          8.5,
-          -102.0
-        ],
-        "rotation": 135
-      },
-      {
-        "piece": "Canyon_Grass_6",
-        "position": [
-          -7.2,
-          -81.8
+          7.2,
+          -146.9
         ],
         "rotation": 150
       },
       {
-        "piece": "Canyon_Leafs_1",
+        "piece": "Canyon_Grass_1",
         "position": [
-          7.1,
-          -105.0
-        ],
-        "rotation": 315
-      },
-      {
-        "piece": "Canyon_Grass_6",
-        "position": [
-          13.2,
-          -107.3
+          -24.9,
+          -162.5
         ],
         "rotation": 90
       },
       {
-        "piece": "Canyon_Grass_6",
+        "piece": "Canyon_Grass_1",
         "position": [
-          11.8,
-          -103.6
+          5.0,
+          -190.1
         ],
-        "rotation": 135
-      },
-      {
-        "piece": "Canyon_Sticks_2",
-        "position": [
-          20.8,
-          -101.9
-        ],
-        "rotation": 135
-      },
-      {
-        "piece": "Canyon_Grass_6",
-        "position": [
-          16.4,
-          -76.7
-        ],
-        "rotation": 60
+        "rotation": 90
       },
       {
         "piece": "Canyon_Grass_1",
         "position": [
-          -6.2,
-          -96.4
+          -22.9,
+          -153.2
+        ],
+        "rotation": 270
+      },
+      {
+        "piece": "Canyon_Sticks_1",
+        "position": [
+          -24.7,
+          -157.6
+        ],
+        "rotation": 0
+      },
+      {
+        "piece": "Canyon_Grass_1",
+        "position": [
+          -15.4,
+          -183.6
         ],
         "rotation": 330
       },
       {
-        "piece": "Canyon_Grass_1",
+        "piece": "Canyon_Sticks_1",
         "position": [
-          16.5,
-          -80.9
+          5.6,
+          -147.5
         ],
-        "rotation": 45
-      },
-      {
-        "piece": "Canyon_Leafs_1",
-        "position": [
-          -1.4,
-          -99.5
-        ],
-        "rotation": 285
-      },
-      {
-        "piece": "Canyon_Grass_1",
-        "position": [
-          11.7,
-          -100.8
-        ],
-        "rotation": 60
+        "rotation": 15
       },
       {
         "piece": "Canyon_Sticks_1",
         "position": [
-          7.1,
-          -78.9
-        ],
-        "rotation": 105
-      },
-      {
-        "piece": "Canyon_Sticks_1",
-        "position": [
-          -14.0,
-          -77.3
-        ],
-        "rotation": 330
-      },
-      {
-        "piece": "Canyon_Leafs_1",
-        "position": [
-          15.4,
-          -102.6
-        ],
-        "rotation": 30
-      },
-      {
-        "piece": "Canyon_Sticks_1",
-        "position": [
-          10.6,
-          -93.6
-        ],
-        "rotation": 120
-      },
-      {
-        "piece": "Canyon_Grass_10",
-        "position": [
-          2.4,
-          -89.2
+          -21.2,
+          -152.2
         ],
         "rotation": 300
       },
       {
-        "piece": "Canyon_Grass_10",
+        "piece": "Canyon_Sticks_2",
         "position": [
-          -21.3,
-          -91.4
+          -10.6,
+          -192.9
         ],
-        "rotation": 105
+        "rotation": 30
+      },
+      {
+        "piece": "Canyon_Sticks_2",
+        "position": [
+          7.4,
+          -144.1
+        ],
+        "rotation": 330
+      },
+      {
+        "piece": "Canyon_Grass_1",
+        "position": [
+          11.9,
+          -165.1
+        ],
+        "rotation": 90
       },
       {
         "piece": "Canyon_Sticks_1",
         "position": [
-          -7.2,
-          -93.8
-        ],
-        "rotation": 60
-      },
-      {
-        "piece": "Canyon_Sticks_1",
-        "position": [
-          -0.8,
-          -106.1
-        ],
-        "rotation": 15
-      },
-      {
-        "piece": "Canyon_Sticks_1",
-        "position": [
-          -19.2,
-          -77.8
+          -26.0,
+          -140.6
         ],
         "rotation": 285
       },
       {
         "piece": "Canyon_Sticks_2",
         "position": [
-          -12.0,
-          -100.9
+          16.3,
+          -178.3
         ],
-        "rotation": 45
-      },
-      {
-        "piece": "Canyon_Grass_1",
-        "position": [
-          -1.7,
-          -101.6
-        ],
-        "rotation": 255
-      },
-      {
-        "piece": "Canyon_Leafs_1",
-        "position": [
-          -6.9,
-          -97.3
-        ],
-        "rotation": 225
-      },
-      {
-        "piece": "Canyon_Grass_6",
-        "position": [
-          4.5,
-          -97.7
-        ],
-        "rotation": 15
-      },
-      {
-        "piece": "Canyon_Grass_10",
-        "position": [
-          -10.2,
-          -92.7
-        ],
-        "rotation": 240
-      },
-      {
-        "piece": "Canyon_Grass_10",
-        "position": [
-          13.4,
-          -91.8
-        ],
-        "rotation": 240
-      },
-      {
-        "piece": "Canyon_Tree_4",
-        "position": [
-          3.1,
-          -90.5
-        ],
-        "rotation": 180,
-        "scale": 1.14
-      },
-      {
-        "piece": "Canyon_Tree_1",
-        "position": [
-          4.7,
-          -95.9
-        ],
-        "rotation": 60,
-        "scale": 1.36
+        "rotation": 180
       },
       {
         "piece": "Canyon_Tree_3",
         "position": [
-          -12.3,
-          -111.1
+          -24.8,
+          -172.1
         ],
-        "rotation": 90,
+        "rotation": 300,
+        "scale": 0.9
+      },
+      {
+        "piece": "Canyon_Tree_2",
+        "position": [
+          20.0,
+          -151.3
+        ],
+        "rotation": 45,
         "scale": 1.37
       },
       {
-        "piece": "Canyon_Tree_4",
+        "piece": "Canyon_Tree_3",
         "position": [
-          -19.8,
-          -82.4
-        ],
-        "rotation": 165,
-        "scale": 1.26
-      },
-      {
-        "piece": "Canyon_Tree_4",
-        "position": [
-          -10.4,
-          -106.4
-        ],
-        "rotation": 255,
-        "scale": 1.25
-      },
-      {
-        "piece": "Signpost_Medieval",
-        "position": [
-          3.0,
-          -19.5
+          -23.9,
+          -160.5
         ],
         "rotation": 315,
-        "solid": [
-          0.6,
-          0.6
-        ]
+        "scale": 0.96
       },
       {
-        "piece": "Signpost_Medieval",
+        "piece": "Canyon_Tree_1",
         "position": [
-          3.0,
-          -53.5
+          0.1,
+          -155.9
         ],
-        "rotation": 300,
-        "solid": [
-          0.6,
-          0.6
-        ]
+        "rotation": 105,
+        "scale": 0.93
+      },
+      {
+        "piece": "Canyon_Tree_3",
+        "position": [
+          11.8,
+          -188.3
+        ],
+        "rotation": 60,
+        "scale": 1.16
       }
     ],
     "passive": true

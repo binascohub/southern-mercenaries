@@ -749,7 +749,7 @@ func _test_minibosses_and_relics() -> void:
 				for m: Dictionary in e.monsters:
 					if GameData.monsters.get(m.monster, {}).get("category", "") == "miniboss":
 						found[m.monster] = true
-			for prop: Dictionary in GameData.arenas[area_id].get("props", []) if map_name in ["Floresta", "Esgoto"] else []:    # (na Floresta o Rei Golem vem do templo e no Esgoto o Rei dos Sapos, do altar: grupos invocados)
+			for prop: Dictionary in GameData.arenas[area_id].get("props", []) if map_name in ["Floresta", "Esgoto", "Deserto"] else []:    # (na Floresta o Rei Golem vem do templo e no Esgoto o Rei dos Sapos, do altar: grupos invocados)
 				for summon: Dictionary in QuestTrail.summons_of(prop):
 					for m: Dictionary in summon.get("monsters", []):
 						if GameData.monsters.get(m.monster, {}).get("category", "") == "miniboss":

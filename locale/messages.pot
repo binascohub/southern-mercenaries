@@ -3109,3 +3109,111 @@ msgstr ""
 
 msgid "DLG_TEMPLE_LOCKED"
 msgstr ""
+
+msgid "MONSTER_SPHINX"
+msgstr ""
+
+msgid "NPC_DESERT_NOMAD"
+msgstr ""
+
+msgid "NPC_DESERT_OASIS_KEEPER"
+msgstr ""
+
+msgid "NPC_DESERT_TEMPLE"
+msgstr ""
+
+msgid "NPC_DESERT_SENTINEL"
+msgstr ""
+
+msgid "VALUABLE_LAMASSU_HORN"
+msgstr ""
+
+msgid "VALUABLE_GOLDEN_SCARAB"
+msgstr ""
+
+msgid "VALUABLE_KEY_CLUBS"
+msgstr ""
+
+msgid "VALUABLE_KEY_DIAMONDS"
+msgstr ""
+
+msgid "TOAST_OASIS_AWAKENS"
+msgstr ""
+
+msgid "TOAST_SUN_TEMPLE_AWAKENS"
+msgstr ""
+
+msgid "QUEST_DESERT_HORN"
+msgstr ""
+
+msgid "QUEST_DESERT_HORN_DESC"
+msgstr ""
+
+msgid "QUEST_DESERT_SCARAB"
+msgstr ""
+
+msgid "QUEST_DESERT_SCARAB_DESC"
+msgstr ""
+
+msgid "QUEST_DESERT_GATE"
+msgstr ""
+
+msgid "QUEST_DESERT_GATE_DESC"
+msgstr ""
+
+msgid "DLG_NOMAD_1"
+msgstr ""
+
+msgid "DLG_NOMAD_2"
+msgstr ""
+
+msgid "DLG_NOMAD_3"
+msgstr ""
+
+msgid "DLG_NOMAD_ACTIVE"
+msgstr ""
+
+msgid "DLG_NOMAD_DONE"
+msgstr ""
+
+msgid "DLG_OASIS_1"
+msgstr ""
+
+msgid "DLG_OASIS_2"
+msgstr ""
+
+msgid "DLG_OASIS_3"
+msgstr ""
+
+msgid "DLG_OASIS_ACTIVE"
+msgstr ""
+
+msgid "DLG_OASIS_DONE"
+msgstr ""
+
+msgid "DLG_OASIS_WAIT"
+msgstr ""
+
+msgid "DLG_SUNTEMPLE_1"
+msgstr ""
+
+msgid "DLG_SUNTEMPLE_2"
+msgstr ""
+
+msgid "DLG_SUNTEMPLE_LOCKED"
+msgstr ""
+
+msgid "DLG_SENTINEL_1"
+msgstr ""
+
+msgid "DLG_SENTINEL_2"
+msgstr ""
+
+msgid "DLG_SENTINEL_3"
+msgstr ""
+
+msgid "DLG_SENTINEL_ACTIVE"
+msgstr ""
+
+msgid "DLG_SENTINEL_DONE"
+msgstr ""

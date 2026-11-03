@@ -765,19 +765,31 @@
   "gate_keeper": {
     "_comment": "Guardião do Portão do Ninho (horror-monster-light.glb em NpcModel): fica ao lado do portão e só o abre para quem lhe entrega as duas chaves do Esgoto (Town.interact, prop com opens_gate). Fala 0: ainda faltam chaves; 1: recebe as chaves e o portão cai; 2: o portão já está aberto.",
     "name_key": "NPC_GATE_KEEPER",
-    "color": [0.3, 0.27, 0.22],
+    "color": [
+      0.3,
+      0.27,
+      0.22
+    ],
     "dialogues": [
       {
         "when": {},
-        "lines": ["DLG_GATE_KEEPER_WAIT_1", "DLG_GATE_KEEPER_WAIT_2"]
+        "lines": [
+          "DLG_GATE_KEEPER_WAIT_1",
+          "DLG_GATE_KEEPER_WAIT_2"
+        ]
       },
       {
         "when": {},
-        "lines": ["DLG_GATE_KEEPER_GIVE_1", "DLG_GATE_KEEPER_GIVE_2"]
+        "lines": [
+          "DLG_GATE_KEEPER_GIVE_1",
+          "DLG_GATE_KEEPER_GIVE_2"
+        ]
       },
       {
         "when": {},
-        "lines": ["DLG_GATE_KEEPER_DONE"]
+        "lines": [
+          "DLG_GATE_KEEPER_DONE"
+        ]
       }
     ]
   },
@@ -986,5 +998,191 @@
         ]
       }
     ]
+  },
+  "desert_nomad": {
+    "name_key": "NPC_DESERT_NOMAD",
+    "color": [
+      0.7,
+      0.55,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "desert_horn"
+        },
+        "lines": [
+          "DLG_NOMAD_1",
+          "DLG_NOMAD_2",
+          "DLG_NOMAD_3"
+        ],
+        "offer": "desert_horn"
+      },
+      {
+        "when": {
+          "quest_active": "desert_horn"
+        },
+        "lines": [
+          "DLG_NOMAD_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_NOMAD_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_SimpleParted"
+      ],
+      "hair_color": [
+        0.2,
+        0.13,
+        0.08
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "desert_oasis_keeper": {
+    "name_key": "NPC_DESERT_OASIS_KEEPER",
+    "color": [
+      0.2,
+      0.6,
+      0.55
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "desert_scarab"
+        },
+        "lines": [
+          "DLG_OASIS_1",
+          "DLG_OASIS_2",
+          "DLG_OASIS_3"
+        ],
+        "offer": "desert_scarab"
+      },
+      {
+        "when": {
+          "quest_active": "desert_scarab"
+        },
+        "lines": [
+          "DLG_OASIS_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {
+          "quest_done": "desert_scarab"
+        },
+        "lines": [
+          "DLG_OASIS_DONE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_OASIS_WAIT"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "female",
+      "hair": [
+        "Hair_Long"
+      ],
+      "hair_color": [
+        0.08,
+        0.06,
+        0.05
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "desert_temple": {
+    "name_key": "NPC_DESERT_TEMPLE",
+    "color": [
+      0.85,
+      0.7,
+      0.4
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_active": "desert_horn"
+        },
+        "lines": [
+          "DLG_SUNTEMPLE_1",
+          "DLG_SUNTEMPLE_2"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_SUNTEMPLE_LOCKED"
+        ]
+      }
+    ]
+  },
+  "desert_sentinel": {
+    "name_key": "NPC_DESERT_SENTINEL",
+    "color": [
+      0.55,
+      0.5,
+      0.4
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "desert_gate"
+        },
+        "lines": [
+          "DLG_SENTINEL_1",
+          "DLG_SENTINEL_2",
+          "DLG_SENTINEL_3"
+        ],
+        "offer": "desert_gate"
+      },
+      {
+        "when": {
+          "quest_active": "desert_gate"
+        },
+        "lines": [
+          "DLG_SENTINEL_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_SENTINEL_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_SimpleParted"
+      ],
+      "hair_color": [
+        0.12,
+        0.1,
+        0.08
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
   }
 }

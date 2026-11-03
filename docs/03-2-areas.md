@@ -122,6 +122,17 @@ Só os chefes do Esgoto revidam (o Rei dos Sapos, o Carniceiro Chifrudo e o Feit
 | 3 | `desert_03_buried_gate` | **Portão Soterrado** | Misto | 12 | Entrada do templo; Homens-Escorpião; **mini-chefe: Lamassu do Portão** |
 | 4 | `desert_04_sphinx_hall` | **Salão da Esfinge** | Arena | 12 | **Esfinge** (fase do enigma); ouro das caravanas; Olho da Esfinge |
 
+### O Deserto no jogo (`desert_01_canyon`)
+
+Mapa único e grande, com a mesma estrutura da Floresta (aldeia de partida, duas áreas de mini-chefe, guardião do portão e chefe final), mas com outro caminho: o **Acampamento** fica ao sul e a rota sobe para o norte em laço (Estrada → Ruínas de Carroças → Passagem → Areia Movediça → Dunas), com ramais sem saída (Caravana, Ninho, Oásis, Ruínas do Sol).
+
+1. **Nômade da Areia** (acampamento): pede o **Chifre do Lamassu**. Tocar o templo das Ruínas do Sol (leste), com a missão ativa, desperta o **Lamassu da Areia** (mini-chefe). Entrega a **Chave de Paus**.
+2. **Guardiã do Oásis** (oeste da estrada): pede o **Escaravelho de Ouro**, que a **Rainha Escorpião** (mini-chefe, despertada pela fala dela) carrega no ferrão. Entrega a **Chave de Ouros**.
+3. **Sentinela do Portão** (corredor ao norte das Dunas): só abre o portão com as duas chaves.
+4. **Esfinge** (chefe final) no Salão atrás do portão, com a saída para a Fazenda.
+
+Gerado por `tools/assets/build_desert.py`.
+
 ## 9. Águas (`map_waters`)
 
 | # | ID | Área | Espaço | Nível | Destaques |

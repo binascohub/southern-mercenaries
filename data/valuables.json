@@ -153,5 +153,33 @@
     "maps": [],
     "quest_item": true,
     "model": "Storm_Bottle"
+  },
+  "lamassu_horn": {
+    "name_key": "VALUABLE_LAMASSU_HORN",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Bone_Sickle"
+  },
+  "golden_scarab": {
+    "name_key": "VALUABLE_GOLDEN_SCARAB",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Crystal_Gem"
+  },
+  "key_clubs": {
+    "name_key": "VALUABLE_KEY_CLUBS",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Clubs"
+  },
+  "key_diamonds": {
+    "name_key": "VALUABLE_KEY_DIAMONDS",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Diamonds"
   }
 }

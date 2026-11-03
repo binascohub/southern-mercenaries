@@ -214,5 +214,50 @@
       "gold": 350,
       "xp": 700
     }
+  },
+  "desert_horn": {
+    "name_key": "QUEST_DESERT_HORN",
+    "desc_key": "QUEST_DESERT_HORN_DESC",
+    "type": "village",
+    "giver": "desert_nomad",
+    "area": "desert_01_canyon",
+    "target_element": "water",
+    "reward": {
+      "gold": 350,
+      "xp": 600
+    },
+    "item": "lamassu_horn",
+    "gives": "key_clubs"
+  },
+  "desert_scarab": {
+    "name_key": "QUEST_DESERT_SCARAB",
+    "desc_key": "QUEST_DESERT_SCARAB_DESC",
+    "type": "village",
+    "giver": "desert_oasis_keeper",
+    "area": "desert_01_canyon",
+    "target_element": "earth",
+    "reward": {
+      "gold": 300,
+      "xp": 500
+    },
+    "item": "golden_scarab",
+    "gives": "key_diamonds"
+  },
+  "desert_gate": {
+    "name_key": "QUEST_DESERT_GATE",
+    "desc_key": "QUEST_DESERT_GATE_DESC",
+    "type": "village",
+    "giver": "desert_sentinel",
+    "area": "desert_01_canyon",
+    "items": [
+      "key_clubs",
+      "key_diamonds"
+    ],
+    "opens_gate": "boss_gate",
+    "target_element": "air",
+    "reward": {
+      "gold": 450,
+      "xp": 800
+    }
   }
 }

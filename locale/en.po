@@ -3368,3 +3368,111 @@ msgstr "Mana"
 
 msgid "HUD_POTION_SHORT_ELEMENTAL"
 msgstr "Elem."
+
+msgid "MONSTER_SPHINX"
+msgstr "Sphinx"
+
+msgid "NPC_DESERT_NOMAD"
+msgstr "Sand Nomad"
+
+msgid "NPC_DESERT_OASIS_KEEPER"
+msgstr "Oasis Keeper"
+
+msgid "NPC_DESERT_TEMPLE"
+msgstr "Sun Temple"
+
+msgid "NPC_DESERT_SENTINEL"
+msgstr "Gate Sentinel"
+
+msgid "VALUABLE_LAMASSU_HORN"
+msgstr "Lamassu Horn"
+
+msgid "VALUABLE_GOLDEN_SCARAB"
+msgstr "Golden Scarab"
+
+msgid "VALUABLE_KEY_CLUBS"
+msgstr "Key of Clubs"
+
+msgid "VALUABLE_KEY_DIAMONDS"
+msgstr "Key of Diamonds"
+
+msgid "TOAST_OASIS_AWAKENS"
+msgstr "The oasis water stirs: the Scorpion Queen bursts from the sand!"
+
+msgid "TOAST_SUN_TEMPLE_AWAKENS"
+msgstr "The sun temple shakes: the Sand Lamassu awakens!"
+
+msgid "QUEST_DESERT_HORN"
+msgstr "The Lamassu's Horn"
+
+msgid "QUEST_DESERT_HORN_DESC"
+msgstr "The Sand Nomad wants the horn of the Lamassu, the stone guardian of the Sun Ruins to the east. Touch the temple, defeat the Lamassu and bring the horn: in return he gives one of the two keys to the Sphinx's gate."
+
+msgid "QUEST_DESERT_SCARAB"
+msgstr "The Golden Scarab"
+
+msgid "QUEST_DESERT_SCARAB_DESC"
+msgstr "The Oasis Keeper lost her people's golden scarab: the Scorpion Queen wears it on her stinger. Her words wake the Queen; bring back the scarab and receive the other key to the Sphinx's gate."
+
+msgid "QUEST_DESERT_GATE"
+msgstr "The Sphinx's Gate"
+
+msgid "QUEST_DESERT_GATE_DESC"
+msgstr "The Gate Sentinel only opens the way for those who bring both keys: Clubs (from the Nomad) and Diamonds (from the Oasis Keeper). Beyond the gate lies the Sphinx's Hall."
+
+msgid "DLG_NOMAD_1"
+msgstr "The sand swallows whole caravans, travelers. I am what is left of the last one: I know where every well and ruin lies, and what sleeps in each."
+
+msgid "DLG_NOMAD_2"
+msgstr "To the east, in the Sun Ruins, a temple guards the Sand Lamassu, a winged bull of stone. It carries a golden horn worth more than my whole caravan."
+
+msgid "DLG_NOMAD_3"
+msgstr "Touch the temple stones, bring down the Lamassu and bring me the horn. In return I give the Key of Clubs, one of the two that open the Sphinx's gate, north of the dunes."
+
+msgid "DLG_NOMAD_ACTIVE"
+msgstr "The temple is to the east: follow the road, cross the dunes and the quicksand. The horn is golden and as long as an arm. Bring it and the key is yours."
+
+msgid "DLG_NOMAD_DONE"
+msgstr "What a horn! With it I can rebuild my caravan. The Key of Clubs is yours; take it to the Gate Sentinel, together with the Diamonds one."
+
+msgid "DLG_OASIS_1"
+msgstr "Shh... the water listens. I have tended this oasis since before the sand arrived, and all that is left to me is this pool."
+
+msgid "DLG_OASIS_2"
+msgstr "The Scorpion Queen sleeps under the sand nearby, wearing my people's golden scarab on her stinger. Without it the oasis dries up for good."
+
+msgid "DLG_OASIS_3"
+msgstr "I will call her for you. Bring down the Queen and bring back the scarab: I will hand over the Key of Diamonds, the other one that opens the Sphinx's gate."
+
+msgid "DLG_OASIS_ACTIVE"
+msgstr "The scarab shines like a drop of sun. The Queen wears it on her stinger. Bring her down and bring it to me."
+
+msgid "DLG_OASIS_DONE"
+msgstr "The water sings again! The Key of Diamonds is yours. Take it to the Sentinel, in the lane north of the dunes."
+
+msgid "DLG_OASIS_WAIT"
+msgstr "Drink, rest. The water belongs to those who respect it."
+
+msgid "DLG_SUNTEMPLE_1"
+msgstr "The temple stones are warm, as if someone had just left. A roar of stone rises from below."
+
+msgid "DLG_SUNTEMPLE_2"
+msgstr "The Sand Lamassu awakens!"
+
+msgid "DLG_SUNTEMPLE_LOCKED"
+msgstr "An ancient temple buried in sand. Nothing answers your hands."
+
+msgid "DLG_SENTINEL_1"
+msgstr "Halt, strangers. This gate is older than the dunes, and behind it sleeps the Sphinx. I have watched it since the last king passed this way."
+
+msgid "DLG_SENTINEL_2"
+msgstr "The gate only falls for those who bring TWO keys: Clubs and Diamonds. The first is with the Sand Nomad at the camp; the second, with the Oasis Keeper."
+
+msgid "DLG_SENTINEL_3"
+msgstr "Both charge a price: a stone horn, a golden scarab. Bring both keys to me and I will open the way."
+
+msgid "DLG_SENTINEL_ACTIVE"
+msgstr "I only open with both keys, Clubs and Diamonds, in the same bag. The Nomad is at the camp; the Keeper, at the oasis west of the road."
+
+msgid "DLG_SENTINEL_DONE"
+msgstr "Both keys! The gate is open. Beware: the Sphinx asks a question and does not accept silence as an answer."

@@ -3368,3 +3368,111 @@ msgstr "Maná"
 
 msgid "HUD_POTION_SHORT_ELEMENTAL"
 msgstr "Elem."
+
+msgid "MONSTER_SPHINX"
+msgstr "Esfinge"
+
+msgid "NPC_DESERT_NOMAD"
+msgstr "Nómada de la Arena"
+
+msgid "NPC_DESERT_OASIS_KEEPER"
+msgstr "Guardiana del Oasis"
+
+msgid "NPC_DESERT_TEMPLE"
+msgstr "Templo del Sol"
+
+msgid "NPC_DESERT_SENTINEL"
+msgstr "Centinela del Portón"
+
+msgid "VALUABLE_LAMASSU_HORN"
+msgstr "Cuerno del Lamasu"
+
+msgid "VALUABLE_GOLDEN_SCARAB"
+msgstr "Escarabajo de Oro"
+
+msgid "VALUABLE_KEY_CLUBS"
+msgstr "Llave de Bastos"
+
+msgid "VALUABLE_KEY_DIAMONDS"
+msgstr "Llave de Oros"
+
+msgid "TOAST_OASIS_AWAKENS"
+msgstr "El agua del oasis se agita: ¡la Reina Escorpión surge de la arena!"
+
+msgid "TOAST_SUN_TEMPLE_AWAKENS"
+msgstr "El templo del sol tiembla: ¡el Lamasu de la Arena despierta!"
+
+msgid "QUEST_DESERT_HORN"
+msgstr "El cuerno del Lamasu"
+
+msgid "QUEST_DESERT_HORN_DESC"
+msgstr "El Nómada de la Arena quiere el cuerno del Lamasu, el guardián de piedra de las Ruinas del Sol, al este. Toca el templo, derrota al Lamasu y trae el cuerno: a cambio te da una de las dos llaves del portón de la Esfinge."
+
+msgid "QUEST_DESERT_SCARAB"
+msgstr "El escarabajo de oro"
+
+msgid "QUEST_DESERT_SCARAB_DESC"
+msgstr "La Guardiana del Oasis perdió el escarabajo de oro de su gente: la Reina Escorpión lo lleva en el aguijón. Sus palabras despiertan a la Reina; trae el escarabajo y recibe la otra llave del portón de la Esfinge."
+
+msgid "QUEST_DESERT_GATE"
+msgstr "El portón de la Esfinge"
+
+msgid "QUEST_DESERT_GATE_DESC"
+msgstr "El Centinela del Portón solo abre el paso a quien traiga las dos llaves: la de Bastos (del Nómada) y la de Oros (de la Guardiana del Oasis). Tras el portón está el Salón de la Esfinge."
+
+msgid "DLG_NOMAD_1"
+msgstr "La arena se traga caravanas enteras, viajeros. Soy lo que queda de la última: sé dónde está cada pozo y cada ruina, y qué duerme en cada una."
+
+msgid "DLG_NOMAD_2"
+msgstr "Al este, en las Ruinas del Sol, un templo guarda al Lamasu de la Arena, un toro alado de piedra. Lleva un cuerno dorado que vale más que toda mi caravana."
+
+msgid "DLG_NOMAD_3"
+msgstr "Toquen las piedras del templo, derriben al Lamasu y tráiganme el cuerno. A cambio doy la Llave de Bastos, una de las dos que abren el portón de la Esfinge, al norte de las dunas."
+
+msgid "DLG_NOMAD_ACTIVE"
+msgstr "El templo está al este: sigan el camino, crucen las dunas y las arenas movedizas. El cuerno es dorado y largo como un brazo. Tráiganlo y la llave es suya."
+
+msgid "DLG_NOMAD_DONE"
+msgstr "¡Qué cuerno! Con él rehago mi caravana. La Llave de Bastos es suya; llévenla al Centinela del Portón, junto con la de Oros."
+
+msgid "DLG_OASIS_1"
+msgstr "Shh... el agua escucha. Cuido este oasis desde antes de que llegara la arena, y solo me queda este charco."
+
+msgid "DLG_OASIS_2"
+msgstr "La Reina Escorpión duerme bajo la arena, cerca de aquí, y lleva en el aguijón el escarabajo de oro de mi gente. Sin él, el oasis se seca para siempre."
+
+msgid "DLG_OASIS_3"
+msgstr "La llamaré para ustedes. Derriben a la Reina y traigan el escarabajo: les entrego la Llave de Oros, la otra que abre el portón de la Esfinge."
+
+msgid "DLG_OASIS_ACTIVE"
+msgstr "El escarabajo brilla como una gota de sol. La Reina lo lleva en el aguijón. Derríbenla y tráiganmelo."
+
+msgid "DLG_OASIS_DONE"
+msgstr "¡El agua vuelve a cantar! La Llave de Oros es suya. Llévenla al Centinela, en el pasillo al norte de las dunas."
+
+msgid "DLG_OASIS_WAIT"
+msgstr "Beban, descansen. El agua es de quien la respeta."
+
+msgid "DLG_SUNTEMPLE_1"
+msgstr "Las piedras del templo están calientes, como si alguien acabara de salir. Un rugido de piedra sube del subsuelo."
+
+msgid "DLG_SUNTEMPLE_2"
+msgstr "¡El Lamasu de la Arena despierta!"
+
+msgid "DLG_SUNTEMPLE_LOCKED"
+msgstr "Un templo antiguo cubierto de arena. Nada responde a sus manos."
+
+msgid "DLG_SENTINEL_1"
+msgstr "Alto, forasteros. Este portón es más viejo que las dunas, y tras él duerme la Esfinge. Lo vigilo desde que pasó el último rey."
+
+msgid "DLG_SENTINEL_2"
+msgstr "El portón solo cae para quien traiga DOS llaves: la de Bastos y la de Oros. La primera la tiene el Nómada de la Arena, en el campamento; la segunda, la Guardiana del Oasis."
+
+msgid "DLG_SENTINEL_3"
+msgstr "Ambos cobran un precio: un cuerno de piedra, un escarabajo de oro. Tráiganme las dos llaves y abro el paso."
+
+msgid "DLG_SENTINEL_ACTIVE"
+msgstr "Solo abro con las dos llaves, Bastos y Oros, en la misma bolsa. El Nómada está en el campamento; la Guardiana, en el oasis al oeste del camino."
+
+msgid "DLG_SENTINEL_DONE"
+msgstr "¡Las dos llaves! El portón está abierto. Cuidado: la Esfinge hace una pregunta y no acepta el silencio como respuesta."
