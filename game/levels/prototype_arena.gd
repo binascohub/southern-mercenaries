@@ -1506,7 +1506,7 @@ func _reward(enemy: Enemy) -> void:
 			present.append(p)
 	if present.is_empty():
 		return
-	var xp := roundi(enemy.xp_value() / present.size())
+	var xp := roundi(enemy.xp_value() * float(arena.get("xp_scale", 1.0)) / present.size())  # xp_scale: ajuste do mapa para render ~2 níveis (tools/assets/balance_monsters.py)
 	for p in present:
 		p.grant(xp, 0)
 		if not enemy.data.get("no_loot", false):

@@ -2,9 +2,9 @@
   "plague_frog": {
     "_comment": "Esgoto (03-inimigos.md, seção 2): filhotes da Rainha, em enxames. Vida 20, dano 4, rápido.",
     "name_key": "MONSTER_PLAGUE_RAT",
-    "max_health": 100,
+    "max_health": 210,
     "move_speed": 4.2,
-    "damage": 3,
+    "damage": 16,
     "attack_range": 2.5,
     "attack_windup": 0.3,
     "attack_cooldown": 1.0,
@@ -22,7 +22,8 @@
       0.32,
       0.25,
       0.2
-    ]
+    ],
+    "role": "normal"
   },
   "fungus_uncle": {
     "_comment": "Tio Fungo (Uncle Fungus, piacenti, CC BY-SA 3.0): fera de fungo, lenta e pesada, corpo a corpo; investe com aviso. Esgoto, 3ª área (Passagem da Guerra).",
@@ -46,14 +47,15 @@
       1.0,
       1.0,
       1.0
-    ]
+    ],
+    "role": "normal"
   },
   "mutant_frog": {
     "_comment": "Do tamanho de um cão; investida curta com aviso (charger). Costuma ser elite.",
     "name_key": "MONSTER_MUTANT_RAT",
-    "max_health": 450,
+    "max_health": 336,
     "move_speed": 3.0,
-    "damage": 8,
+    "damage": 10,
     "attack_range": 4.1,
     "attack_windup": 0.6,
     "attack_cooldown": 1.6,
@@ -80,14 +82,15 @@
       0.42,
       0.3,
       0.24
-    ]
+    ],
+    "role": "tank"
   },
   "plague_bat": {
     "_comment": "Bandos que caem do teto; voador rápido.",
     "name_key": "MONSTER_PLAGUE_BAT",
-    "max_health": 25,
+    "max_health": 84,
     "move_speed": 5.0,
-    "damage": 5,
+    "damage": 8,
     "attack_range": 1.3,
     "attack_windup": 0.3,
     "attack_cooldown": 0.9,
@@ -102,7 +105,8 @@
       1.0,
       1.0,
       1.0
-    ]
+    ],
+    "role": "swarm"
   },
   "acid_toad": {
     "_comment": "À distância: cospe ácido onde o alvo está (marca no chão antes) e deixa uma poça tóxica. Mantém distância.",
@@ -129,14 +133,15 @@
       0.3,
       0.42,
       0.2
-    ]
+    ],
+    "role": "normal"
   },
   "old_gator": {
     "_comment": "Mini-chefe da quest do Azazel (Esgoto): o Carniceiro Chifrudo, demônio açougueiro que fugiu do inferno com a Garrafa das Almas Condenadas (id interno 'old_gator', de quando era o Gator Velho). Invocado no altar do centro pelo Grimório das Brasas, vem com Espíritos Sombrios; vida x6 e dano x1,8 pela categoria. Investida; solta a garrafa.",
     "name_key": "MONSTER_OLD_GATOR",
-    "max_health": 140,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 15,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -160,15 +165,16 @@
       1.0,
       1.0
     ],
-    "quest_drop": "souls_bottle"
+    "quest_drop": "souls_bottle",
+    "role": "normal"
   },
   "demon_rat_queen": {
     "_comment": "Chefe do Esgoto — o Feiticeiro-Aranha (no lugar da Rainha dos Ratos; o id e a mecânica ficam, a aparência e o nome mudam) (03-inimigos.md, seção 2): vida 1.000 x fator de chefe 4,3 (13-balanceamento.md 2.4). Fases por vida: 1 Mãe Furiosa (investidas, pisão em área, enxame a cada 20 s), 2 A Ninhada (abaixo de 60%: volta ao ninho e protege 3 ninhos de filhotes; regenera enquanto houver ninho (0,15% da vida por segundo por ninho vivo)), 3 O Pacto (abaixo de 25%: alaga a arena e o gás tóxico sai dos canos em lugares marcados).",
     "name_key": "MONSTER_RAT_QUEEN",
-    "max_health": 1000,
+    "max_health": 889,
     "boss_factor": 4.3,
     "move_speed": 2.6,
-    "damage": 20,
+    "damage": 40,
     "attack_range": 2.6,
     "attack_windup": 0.9,
     "attack_cooldown": 1.8,
@@ -352,9 +358,9 @@
   "venom_scorpion": {
     "_comment": "Escorpião venenoso (sunburn, CC BY 3.0; pedido do autor): à distância, arremessa o veneno do ferrão em arco; a bola cai na marca do chão e deixa uma poça venenosa. Mantém distância. Mora na Passagem da Guerra do Esgoto (decisão do autor).",
     "name_key": "MONSTER_VENOM_SCORPION",
-    "max_health": 70,
+    "max_health": 136,
     "move_speed": 2.2,
-    "damage": 11,
+    "damage": 12,
     "attack_range": 9.0,
     "attack_windup": 1.0,
     "attack_cooldown": 2.6,
@@ -379,14 +385,15 @@
       1.0,
       1.0,
       1.0
-    ]
+    ],
+    "role": "light"
   },
   "baby_dragon": {
     "_comment": "Dragãozinho Dourado (pedido do autor; Baby Dragon, grab3d, CC0): aparece uma vez em todo mapa (guaranteed_spawn), numa sala que não é a da entrada. Não ataca: passeia; golpeado, corre aos pulos e solta moedas (em 4 peças) a cada golpe. Nunca morre (immortal): depois de soltar teleport_after_coins moedas some e reaparece em outro ponto do mapa. Era o Coelho Dourado.",
     "name_key": "MONSTER_BABY_DRAGON",
-    "max_health": 400,
+    "max_health": 336,
     "move_speed": 1.4,
-    "damage": 0,
+    "damage": 10,
     "attack_range": 0.0,
     "attack_windup": 1.0,
     "attack_cooldown": 1.0,
@@ -413,14 +420,15 @@
       1.0,
       1.0,
       1.0
-    ]
+    ],
+    "role": "tank"
   },
   "spawn_nest": {
     "_comment": "Ninho de filhotes da fase 2 da Rainha: não anda nem ataca; enquanto existir, ela regenera. Fogo causa dano dobrado (03-inimigos.md).",
     "name_key": "MONSTER_RAT_NEST",
-    "max_health": 150,
+    "max_health": 210,
     "move_speed": 0.0,
-    "damage": 0,
+    "damage": 16,
     "attack_range": 0.0,
     "attack_windup": 1.0,
     "attack_cooldown": 1.0,
@@ -436,7 +444,8 @@
       0.35,
       0.27,
       0.18
-    ]
+    ],
+    "role": "normal"
   },
   "barrel": {
     "_comment": "Objeto quebrável (03-2-areas.md, seção 1, decisão do autor): quebra com qualquer golpe; o que sai vem de data/loot.json 'breakable'. Não dá XP.",
@@ -515,9 +524,9 @@
   },
   "leshy": {
     "name_key": "MONSTER_LESHY",
-    "max_health": 140,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 15,
+    "damage": 22.2,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -544,13 +553,15 @@
     ],
     "_comment": "Mini-chefe da Floresta (04-tortuga-e-missoes.md: o Leshy guarda a árvore anciã): gigante de casca, investidas e pisões; modelo do Monstro da Floresta (cdmir, CC0).",
     "chest_loot": "treasure_forest",
-    "quest_drop": "adams_rib"
+    "quest_drop": "adams_rib",
+    "role": "normal",
+    "boss_factor": 3.841
   },
   "ruin_warden": {
     "name_key": "MONSTER_RUIN_WARDEN",
-    "max_health": 300,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 20,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -575,13 +586,14 @@
       1.0
     ],
     "quest_drop": "stone_heart",
-    "_comment": "Mini-chefe das Ruínas (Praça dos Cavaleiros): o Guardião das Ruínas, golem de pedra que acorda quando o cavaleiro de pedra é tocado com a missão do Coração de Pedra; investidas rápidas."
+    "_comment": "Mini-chefe das Ruínas (Praça dos Cavaleiros): o Guardião das Ruínas, golem de pedra que acorda quando o cavaleiro de pedra é tocado com a missão do Coração de Pedra; investidas rápidas.",
+    "role": "normal"
   },
   "crypt_scorpion": {
     "name_key": "MONSTER_CRYPT_SCORPION",
-    "max_health": 300,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 22,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -608,13 +620,14 @@
     "quest_drop": "human_lungs",
     "_comment": "Mini-chefe do Cemitério (praça): o Ogro da Cripta (Ogre lowpoly, nubux / rudy85, CC BY 3.0); investidas. O id continua crypt_scorpion (saves e encontros).",
     "sound": "ogre",
-    "visual_pending": true
+    "visual_pending": true,
+    "role": "normal"
   },
   "fort_commander": {
     "name_key": "MONSTER_FORT_COMMANDER",
-    "max_health": 400,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 25,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -638,13 +651,14 @@
       1.0,
       1.0
     ],
-    "_comment": "Chefe do Forte: o comandante amaldiçoado (usa o modelo do Feiticeiro-Aranha até haver arte própria)."
+    "_comment": "Chefe do Forte: o comandante amaldiçoado (usa o modelo do Feiticeiro-Aranha até haver arte própria).",
+    "role": "normal"
   },
   "dark_elf": {
     "name_key": "MONSTER_DARK_ELF",
-    "max_health": 90,
+    "max_health": 210,
     "move_speed": 2.4,
-    "damage": 14,
+    "damage": 16,
     "attack_range": 9.0,
     "attack_windup": 1.0,
     "attack_cooldown": 2.2,
@@ -670,14 +684,15 @@
       1.0,
       1.0
     ],
-    "_comment": "Elfo Sombrio (Dark Elf, danimal, CC BY-SA 3.0): besteiro do Forte; atira de longe um virote de sombra (marca no chão antes) e recua."
+    "_comment": "Elfo Sombrio (Dark Elf, danimal, CC BY-SA 3.0): besteiro do Forte; atira de longe um virote de sombra (marca no chão antes) e recua.",
+    "role": "normal"
   },
   "skeleton": {
     "_comment": "Esqueleto do Cemitério (Skeleton with rig, rudy85, CC0): corpo a corpo, vaga entre as covas até alguém chegar perto. Terra, como os mortos da lenda (fraco a Fogo).",
     "name_key": "MONSTER_SKELETON",
-    "max_health": 90,
+    "max_health": 210,
     "move_speed": 3.0,
-    "damage": 14,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.6,
     "attack_cooldown": 1.4,
@@ -693,7 +708,8 @@
       1.0,
       1.0,
       1.0
-    ]
+    ],
+    "role": "normal"
   },
   "deer_buck": {
     "name_key": "PROP_DEER_BUCK",
@@ -743,9 +759,9 @@
   },
   "succubus": {
     "name_key": "MONSTER_SUCCUBUS",
-    "max_health": 110,
+    "max_health": 210,
     "move_speed": 2.2,
-    "damage": 18,
+    "damage": 16,
     "attack_range": 10.0,
     "attack_windup": 1.2,
     "attack_cooldown": 2.6,
@@ -771,13 +787,14 @@
       1.0,
       1.0
     ],
-    "_comment": "Súcubo (docs/03-1-bestiario.md, seção 10; Goth Female \"Fleur du Mal\", tizeta, CC BY 3.0): serva de Lúcifer, ataque de magia à distância: lança uma bola de fogo do inferno (marca no chão antes) que deixa chamas e recua. O encanto dela (mercenário atingido ataca os amigos) ainda não existe."
+    "_comment": "Súcubo (docs/03-1-bestiario.md, seção 10; Goth Female \"Fleur du Mal\", tizeta, CC BY 3.0): serva de Lúcifer, ataque de magia à distância: lança uma bola de fogo do inferno (marca no chão antes) que deixa chamas e recua. O encanto dela (mercenário atingido ataca os amigos) ainda não existe.",
+    "role": "normal"
   },
   "crypt_lord": {
     "name_key": "MONSTER_CRYPT_LORD",
-    "max_health": 300,
+    "max_health": 6505,
     "move_speed": 2.8,
-    "damage": 22,
+    "damage": 40,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -806,9 +823,9 @@
   },
   "golem_fire": {
     "name_key": "MONSTER_GOLEM_FIRE",
-    "max_health": 140,
+    "max_health": 210,
     "move_speed": 2.3,
-    "damage": 12,
+    "damage": 16,
     "attack_range": 2.6,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -824,13 +841,14 @@
       1.0
     ],
     "_comment": "Golem de Fogo da Floresta (Fire/Ice/Stone Golem, umask007, CC BY 3.0 / CC BY-SA 3.0): elite corpo a corpo, rápido e de dano alto.",
-    "quest_drop": "cursed_skull"
+    "quest_drop": "cursed_skull",
+    "role": "normal"
   },
   "golem_ice": {
     "name_key": "MONSTER_GOLEM_ICE",
-    "max_health": 220,
+    "max_health": 210,
     "move_speed": 1.6,
-    "damage": 14,
+    "damage": 16,
     "attack_range": 2.6,
     "attack_windup": 1.0,
     "attack_cooldown": 2.2,
@@ -845,13 +863,14 @@
       1.0,
       1.0
     ],
-    "_comment": "Golem de Gelo da Floresta (umask007): elite corpo a corpo, o mais lento; Água."
+    "_comment": "Golem de Gelo da Floresta (umask007): elite corpo a corpo, o mais lento; Água.",
+    "role": "normal"
   },
   "golem_stone": {
     "name_key": "MONSTER_GOLEM_STONE",
-    "max_health": 260,
+    "max_health": 210,
     "move_speed": 1.8,
-    "damage": 18,
+    "damage": 16,
     "attack_range": 2.6,
     "attack_windup": 0.9,
     "attack_cooldown": 2.0,
@@ -875,13 +894,14 @@
       1.0,
       1.0
     ],
-    "_comment": "Golem de Pedra da Floresta (umask007): elite que investe como o Leshy; Terra."
+    "_comment": "Golem de Pedra da Floresta (umask007): elite que investe como o Leshy; Terra.",
+    "role": "normal"
   },
   "night_demon": {
     "name_key": "MONSTER_NIGHT_DEMON",
-    "max_health": 140,
+    "max_health": 210,
     "move_speed": 3.4,
-    "damage": 20,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.6,
     "attack_cooldown": 1.4,
@@ -898,13 +918,14 @@
       1.0,
       1.0
     ],
-    "_comment": "Demônio da Noite (Night Demon, nubux / morgan strauss, CC BY 3.0): demônio magro de garras longas, corpo a corpo e rápido; ainda não está em nenhum mapa (pode entrar em qualquer um, é só pôr em um encontro)."
+    "_comment": "Demônio da Noite (Night Demon, nubux / morgan strauss, CC BY 3.0): demônio magro de garras longas, corpo a corpo e rápido; ainda não está em nenhum mapa (pode entrar em qualquer um, é só pôr em um encontro).",
+    "role": "normal"
   },
   "zombie": {
     "name_key": "MONSTER_ZOMBIE",
-    "max_health": 130,
+    "max_health": 210,
     "move_speed": 2.2,
-    "damage": 12,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.7,
@@ -921,13 +942,14 @@
       1.0,
       1.0
     ],
-    "_comment": "Zumbi Magro do Cemitério (Thin Zombie, Rosswet Mobile, CC BY 3.0): corpo a corpo, lento e resistente; vaga entre as covas. Terra (fraco a Fogo)."
+    "_comment": "Zumbi Magro do Cemitério (Thin Zombie, Rosswet Mobile, CC BY 3.0): corpo a corpo, lento e resistente; vaga entre as covas. Terra (fraco a Fogo).",
+    "role": "normal"
   },
   "forest_reptile": {
     "name_key": "MONSTER_FOREST_REPTILE",
-    "max_health": 70,
+    "max_health": 136,
     "move_speed": 3.2,
-    "damage": 10,
+    "damage": 12,
     "attack_range": 2.0,
     "attack_windup": 0.5,
     "attack_cooldown": 1.3,
@@ -944,13 +966,14 @@
       1.0,
       1.0
     ],
-    "_comment": "Réptil da Floresta (thecubber, CC BY-SA 3.0): garras rápidas, em bando de três; vaga entre as árvores até alguém chegar perto."
+    "_comment": "Réptil da Floresta (thecubber, CC BY-SA 3.0): garras rápidas, em bando de três; vaga entre as árvores até alguém chegar perto.",
+    "role": "light"
   },
   "troll": {
     "name_key": "MONSTER_TROLL",
-    "max_health": 320,
+    "max_health": 210,
     "move_speed": 2.4,
-    "damage": 24,
+    "damage": 16,
     "attack_range": 3.2,
     "attack_windup": 1.1,
     "attack_cooldown": 2.2,
@@ -967,14 +990,15 @@
       1.0,
       1.0
     ],
-    "_comment": "Troll Magro do Cemitério (Skinny Troll, piacenti, CC BY 3.0): elite corpo a corpo; lento, resistente e de pancada lenta e pesada com a clava. Terra (fraco a Fogo)."
+    "_comment": "Troll Magro do Cemitério (Skinny Troll, piacenti, CC BY 3.0): elite corpo a corpo; lento, resistente e de pancada lenta e pesada com a clava. Terra (fraco a Fogo).",
+    "role": "normal"
   },
   "goblin": {
     "_comment": "Goblin das Ruínas (Goblin, CDmir, CC0): pequeno, rápido e frágil; ataca em bando, corpo a corpo. Terra.",
     "name_key": "MONSTER_GOBLIN",
-    "max_health": 55,
+    "max_health": 136,
     "move_speed": 3.6,
-    "damage": 10,
+    "damage": 12,
     "attack_range": 1.8,
     "attack_windup": 0.5,
     "attack_cooldown": 1.2,
@@ -987,7 +1011,8 @@
       1.0,
       1.0,
       1.0
-    ]
+    ],
+    "role": "light"
   },
   "coin_bag": {
     "name_key": "PROP_COIN_BAG",
@@ -1018,9 +1043,9 @@
   },
   "crystal_golem": {
     "name_key": "MONSTER_CRYSTAL_GOLEM",
-    "max_health": 500,
+    "max_health": 6901,
     "move_speed": 1.8,
-    "damage": 24,
+    "damage": 40,
     "attack_range": 2.6,
     "attack_windup": 0.9,
     "attack_cooldown": 2.0,
@@ -1068,7 +1093,8 @@
       1.0,
       1.0
     ],
-    "_comment": "Besta Quitinosa da Floresta (Beast 02, Atmostatic, CC BY / CC BY-SA): corpo a corpo rápido e frágil; vaga até alguém chegar. Terra."
+    "_comment": "Besta Quitinosa da Floresta (Beast 02, Atmostatic, CC BY / CC BY-SA): corpo a corpo rápido e frágil; vaga até alguém chegar. Terra.",
+    "role": "normal"
   },
   "mug": {
     "name_key": "PROP_MUG",
@@ -1101,9 +1127,9 @@
   "angler": {
     "_comment": "Anglerman das Docas (Angler Man 3D, piacenti, CC BY 3.0): corre até o alvo e morde; vida e dano acima do sapo. Malha estática movida por código.",
     "name_key": "MONSTER_ANGLER",
-    "max_health": 70,
+    "max_health": 136,
     "move_speed": 3.2,
-    "damage": 11,
+    "damage": 12,
     "attack_range": 2.0,
     "attack_windup": 0.7,
     "attack_cooldown": 1.6,
@@ -1117,13 +1143,14 @@
       1.0,
       1.0,
       1.0
-    ]
+    ],
+    "role": "light"
   },
   "stalker": {
     "name_key": "MONSTER_STALKER",
-    "max_health": 110,
+    "max_health": 210,
     "move_speed": 3.6,
-    "damage": 14,
+    "damage": 16,
     "attack_range": 1.8,
     "attack_windup": 0.5,
     "attack_cooldown": 1.4,
@@ -1139,13 +1166,14 @@
       1.0,
       1.0
     ],
-    "_comment": "Espreitador da Mina (Stalker 3D, GuieA_7, CC BY-SA 4.0): olho alado que voa em bando e ataca de perto."
+    "_comment": "Espreitador da Mina (Stalker 3D, GuieA_7, CC BY-SA 4.0): olho alado que voa em bando e ataca de perto.",
+    "role": "normal"
   },
   "tomb_guardian": {
     "name_key": "MONSTER_TOMB_GUARDIAN",
-    "max_health": 340,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 24,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -1172,13 +1200,14 @@
     "quest_drop": "royal_soul",
     "_comment": "Guardião do Túmulo (mini-chefe do Cemitério): golem de pedra que a estátua do poste de luz desperta quando se fala com ela; investe como o Escorpião da Cripta. Terra (fraco a Fogo).",
     "sound": "giant",
-    "visual_pending": true
+    "visual_pending": true,
+    "role": "normal"
   },
   "frog_king": {
     "name_key": "MONSTER_FROG_KING",
-    "max_health": 140,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 15,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -1203,13 +1232,14 @@
       1.0
     ],
     "_comment": "Mini-chefe da quest 'A Garrafa do Tormento Eterno' (Esgoto): o Empalado, monstro de carne, ossos e tábuas das passarelas (Monster_4, minib1.rar do autor; modelo plank_monster.glb, com os movimentos dos heróis). Dorme sob o altar do centro; o Livro do Altar da Ossael o desperta. Investidas; solta a Garrafa do Tormento Eterno, que a Ossael troca pela chave de copas (id interno 'frog_king', de quando era o Rei dos Sapos).",
-    "quest_drop": "torment_bottle"
+    "quest_drop": "torment_bottle",
+    "role": "normal"
   },
   "stone_golem_king": {
     "name_key": "MONSTER_STONE_GOLEM_KING",
-    "max_health": 140,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 15,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -1274,13 +1304,14 @@
         ]
       ]
     },
-    "quest_drop": "bone_dagger"
+    "quest_drop": "bone_dagger",
+    "role": "normal"
   },
   "ruin_alpha": {
     "name_key": "MONSTER_RUIN_ALPHA",
-    "max_health": 300,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 22,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -1307,13 +1338,14 @@
     "_comment": "Mini-chefe das Ruínas: o Alfa da Matilha (docs/03-2-areas.md); investidas rápidas.",
     "quest_drop": "wild_meat",
     "sound": "wolfman",
-    "visual_pending": true
+    "visual_pending": true,
+    "role": "normal"
   },
   "succubus_queen": {
     "name_key": "MONSTER_SUCCUBUS_QUEEN",
-    "max_health": 480,
+    "max_health": 210,
     "move_speed": 2.2,
-    "damage": 24,
+    "damage": 16,
     "attack_range": 10.0,
     "attack_windup": 1.2,
     "attack_cooldown": 2.6,
@@ -1340,13 +1372,14 @@
       1.0
     ],
     "_comment": "Mini-chefe do Forte: a Rainha das Súcubos; magia à distância como as súcubas, bem mais forte.",
-    "quest_drop": "queen_ring"
+    "quest_drop": "queen_ring",
+    "role": "normal"
   },
   "troll_chief": {
     "name_key": "MONSTER_TROLL_CHIEF",
-    "max_health": 420,
+    "max_health": 210,
     "move_speed": 2.4,
-    "damage": 28,
+    "damage": 16,
     "attack_range": 3.2,
     "attack_windup": 1.1,
     "attack_cooldown": 2.2,
@@ -1364,7 +1397,8 @@
       1.0
     ],
     "_comment": "Mini-chefe da Mina: o Chefe Troll.",
-    "quest_drop": "troll_tusk"
+    "quest_drop": "troll_tusk",
+    "role": "normal"
   },
   "basket": {
     "name_key": "PROP_BASKET",
@@ -1395,9 +1429,9 @@
   },
   "dark_elf_lord": {
     "name_key": "MONSTER_DARK_ELF_LORD",
-    "max_health": 420,
+    "max_health": 210,
     "move_speed": 2.4,
-    "damage": 22,
+    "damage": 16,
     "attack_range": 9.0,
     "attack_windup": 1.0,
     "attack_cooldown": 2.2,
@@ -1424,13 +1458,14 @@
       1.0
     ],
     "_comment": "Mini-chefe do Forte (sudoeste): o Senhor Elfo Sombrio, líder dos besteiros; virote de sombra mais forte; despertado pelo Exilado.",
-    "quest_drop": "dark_blade"
+    "quest_drop": "dark_blade",
+    "role": "normal"
   },
   "sand_lamassu": {
     "name_key": "MONSTER_SAND_LAMASSU",
-    "max_health": 520,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 30,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -1455,13 +1490,14 @@
       1.0
     ],
     "_comment": "Mini-chefe do Deserto (portão do cânion): o Lamassu da Areia, guardião de pedra do portão; investidas.",
-    "quest_drop": "lamassu_horn"
+    "quest_drop": "lamassu_horn",
+    "role": "normal"
   },
   "queen_scorpion": {
     "name_key": "MONSTER_QUEEN_SCORPION",
-    "max_health": 600,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 32,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -1486,13 +1522,14 @@
       0.55
     ],
     "_comment": "Mini-chefe do Deserto (arena): a Rainha Escorpião, escorpião gigante e dourado; investidas.",
-    "quest_drop": "golden_scarab"
+    "quest_drop": "golden_scarab",
+    "role": "normal"
   },
   "forest_tomb_guardian": {
     "name_key": "MONSTER_TOMB_GUARDIAN",
-    "max_health": 140,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 12,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -1516,13 +1553,14 @@
       0.85,
       0.75
     ],
-    "_comment": "Escolta do Rei Golem de Pedra na Toca dos Répteis (Floresta): o Guardião do Túmulo em tamanho menor e sem a alma do rei (que é do Cemitério e da Mina)."
+    "_comment": "Escolta do Rei Golem de Pedra na Toca dos Répteis (Floresta): o Guardião do Túmulo em tamanho menor e sem a alma do rei (que é do Cemitério e da Mina).",
+    "role": "normal"
   },
   "forest_troll": {
     "name_key": "MONSTER_FOREST_TROLL",
-    "max_health": 140,
+    "max_health": 210,
     "move_speed": 2.4,
-    "damage": 12,
+    "damage": 16,
     "attack_range": 3.2,
     "attack_windup": 1.1,
     "attack_cooldown": 2.2,
@@ -1539,7 +1577,8 @@
       1.0,
       1.0
     ],
-    "_comment": "Troll da Floresta (troll.glb do autor, ombros floridos e saia de cascas): o Troll Magro maior e mais resistente, no mapa dos trolls."
+    "_comment": "Troll da Floresta (troll.glb do autor, ombros floridos e saia de cascas): o Troll Magro maior e mais resistente, no mapa dos trolls.",
+    "role": "normal"
   },
   "troll_mauler": {
     "name_key": "MONSTER_TROLL_MAULER",
@@ -1560,7 +1599,8 @@
       1.0,
       1.0
     ],
-    "_comment": "Troll Mauler (piacenti, OpenGameArt, CC BY 3.0; tools/assets/build_troll_mauler.py): bruto curvado de 3,1 m, com os movimentos dos heróis. Monstro do Setor 1 do Esgoto (Bueiros): lento, resistente e de pancada pesada. Terra (fraco a Fogo)."
+    "_comment": "Troll Mauler (piacenti, OpenGameArt, CC BY 3.0; tools/assets/build_troll_mauler.py): bruto curvado de 3,1 m, com os movimentos dos heróis. Monstro do Setor 1 do Esgoto (Bueiros): lento, resistente e de pancada pesada. Terra (fraco a Fogo).",
+    "role": "normal"
   },
   "mutant": {
     "name_key": "MONSTER_MUTANT",
@@ -1581,7 +1621,8 @@
       1.0,
       1.0
     ],
-    "_comment": "Mutante (Rigged, textured Mutant, thecubber, OpenGameArt, CC-BY-SA 3.0; tools/assets/build_mutant.py): humanoide de armadura inspirado em Rage, com os movimentos dos heróis. Monstro do Setor 5 do Esgoto (Câmaras dos Cogumelos, canto inferior esquerdo): em bandos de 1 a 2, pancada média. Terra (fraco a Fogo)."
+    "_comment": "Mutante (Rigged, textured Mutant, thecubber, OpenGameArt, CC-BY-SA 3.0; tools/assets/build_mutant.py): humanoide de armadura inspirado em Rage, com os movimentos dos heróis. Monstro do Setor 5 do Esgoto (Câmaras dos Cogumelos, canto inferior esquerdo): em bandos de 1 a 2, pancada média. Terra (fraco a Fogo).",
+    "role": "normal"
   },
   "barbarian_monster": {
     "name_key": "MONSTER_BARBARIAN_MONSTER",
@@ -1602,7 +1643,8 @@
       1.0,
       1.0
     ],
-    "_comment": "Monstro Bárbaro (barbarian-monster.glb do autor, \"Orc Warrior\"; tools/assets/build_barbarian_monster.py): orc bárbaro com chifres de 2,2 m, com os movimentos dos heróis. Monstro do lado esquerdo do meio do Esgoto (Setor 2): rápido de pancada, resistente. Terra (fraco a Fogo)."
+    "_comment": "Monstro Bárbaro (barbarian-monster.glb do autor, \"Orc Warrior\"; tools/assets/build_barbarian_monster.py): orc bárbaro com chifres de 2,2 m, com os movimentos dos heróis. Monstro do lado esquerdo do meio do Esgoto (Setor 2): rápido de pancada, resistente. Terra (fraco a Fogo).",
+    "role": "normal"
   },
   "champ_warrior": {
     "name_key": "MONSTER_CHAMP_WARRIOR",
@@ -1623,7 +1665,8 @@
       1.0,
       1.0
     ],
-    "_comment": "Guerreiro Cogumelo (champ-warrior.glb do autor, \"Mushroom Warrior\"; tools/assets/build_champ_warrior.py): guerreiro-cogumelo de armadura e espada, com os movimentos dos heróis. Monstro do canto superior esquerdo do Esgoto (Setor 1): ágil e de vida média. Terra (fraco a Fogo)."
+    "_comment": "Guerreiro Cogumelo (champ-warrior.glb do autor, \"Mushroom Warrior\"; tools/assets/build_champ_warrior.py): guerreiro-cogumelo de armadura e espada, com os movimentos dos heróis. Monstro do canto superior esquerdo do Esgoto (Setor 1): ágil e de vida média. Terra (fraco a Fogo).",
+    "role": "normal"
   },
   "shadow_spirit": {
     "name_key": "MONSTER_SHADOW_SPIRIT",
@@ -1645,7 +1688,8 @@
       1.0,
       1.0
     ],
-    "_comment": "Espírito Sombrio (shadow-spirit.glb do autor; tools/assets/build_shadow_spirit.py; autor/licença a confirmar): espectro de 2 m que flutua, sem animações próprias (movido por código). Monstro do canto superior direito do Esgoto: em bandos de 1 a 2. Ar (fraco a Terra)."
+    "_comment": "Espírito Sombrio (shadow-spirit.glb do autor; tools/assets/build_shadow_spirit.py; autor/licença a confirmar): espectro de 2 m que flutua, sem animações próprias (movido por código). Monstro do canto superior direito do Esgoto: em bandos de 1 a 2. Ar (fraco a Terra).",
+    "role": "normal"
   },
   "demon_twelve": {
     "name_key": "MONSTER_DEMON_TWELVE",
@@ -1666,7 +1710,8 @@
       1.0,
       1.0
     ],
-    "_comment": "Demônio Doze (demon-twelve.glb do autor; tools/assets/build_demon_twelve.py; autor/licença a confirmar): demônio de 2,2 m, sem animações próprias (movido por código). Monstro do meio do lado direito do Esgoto (Setor 3): em bandos de 1 a 2. Fogo (fraco a Água)."
+    "_comment": "Demônio Doze (demon-twelve.glb do autor; tools/assets/build_demon_twelve.py; autor/licença a confirmar): demônio de 2,2 m, sem animações próprias (movido por código). Monstro do meio do lado direito do Esgoto (Setor 3): em bandos de 1 a 2. Fogo (fraco a Água).",
+    "role": "normal"
   },
   "chest_mimic": {
     "name_key": "MONSTER_CHEST_MIMIC",
@@ -1688,13 +1733,14 @@
       1.0
     ],
     "_comment": "Mímico (chest_monster.glb do autor; tools/assets/build_chest_mimic.py): mímico de ferro e madeira com dentes e língua. Agressivo e rápido, espalhado por todo o Esgoto: é o ÚNICO monstro do mapa que ataca sem ser atacado (\"aggressive\": acorda por proximidade; os outros só revidam). Fareja de longe (aggro 60 m) e persegue sem parar. Pequeno (tamanho 0,62). Terra (fraco a Fogo).",
-    "aggressive": true
+    "aggressive": true,
+    "role": "normal"
   },
   "sphinx": {
     "name_key": "MONSTER_SPHINX",
-    "max_health": 900,
+    "max_health": 6839,
     "move_speed": 2.8,
-    "damage": 36,
+    "damage": 40,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -1727,9 +1773,9 @@
   },
   "hull_beast": {
     "name_key": "MONSTER_HULL_BEAST",
-    "max_health": 190,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 13,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -1754,13 +1800,14 @@
       0.7
     ],
     "_comment": "Mini-chefe das Docas (Estaleiro): o Casco Vivo, monstro de tábuas e pregos que acorda do casco encalhado; investidas.",
-    "quest_drop": "ship_helm"
+    "quest_drop": "ship_helm",
+    "role": "normal"
   },
   "pork_shark": {
     "name_key": "MONSTER_PORK_SHARK",
     "max_health": 210,
     "move_speed": 2.8,
-    "damage": 14,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -1785,13 +1832,14 @@
       1.0
     ],
     "_comment": "Mini-chefe das Docas (Peixaria): o Tubarão-Porco, tubarão de dentes de ouro que a Peixeira desperta; investidas.",
-    "quest_drop": "golden_shark_tooth"
+    "quest_drop": "golden_shark_tooth",
+    "role": "normal"
   },
   "drowned_captain": {
     "name_key": "MONSTER_DROWNED_CAPTAIN",
-    "max_health": 420,
+    "max_health": 5630,
     "move_speed": 2.8,
-    "damage": 18,
+    "damage": 40,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -1822,9 +1870,9 @@
   },
   "war_champion": {
     "name_key": "MONSTER_WAR_CHAMPION",
-    "max_health": 280,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 24,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -1851,13 +1899,14 @@
     "_comment": "Mini-chefe das Ruínas (Praça dos Monólitos): o Campeão Caído, guerreiro da guerra que a Sacerdotisa desperta; investidas rápidas.",
     "quest_drop": "champion_banner",
     "sound": "ogre",
-    "visual_pending": true
+    "visual_pending": true,
+    "role": "normal"
   },
   "fallen_king": {
     "name_key": "MONSTER_FALLEN_KING",
-    "max_health": 1000,
+    "max_health": 6139,
     "move_speed": 2.8,
-    "damage": 38,
+    "damage": 40,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -1890,9 +1939,9 @@
   },
   "viper_queen": {
     "name_key": "MONSTER_VIPER_QUEEN",
-    "max_health": 240,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 17,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -1956,13 +2005,14 @@
           }
         ]
       ]
-    }
+    },
+    "role": "normal"
   },
   "fort_baron": {
     "name_key": "MONSTER_FORT_BARON",
-    "max_health": 1300,
+    "max_health": 6636,
     "move_speed": 2.8,
-    "damage": 44,
+    "damage": 40,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -1993,9 +2043,9 @@
   },
   "ct_headsman": {
     "name_key": "MONSTER_CT_HEADSMAN",
-    "max_health": 340,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 28,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -2020,13 +2070,14 @@
       0.6
     ],
     "_comment": "Mini-chefe das Catacumbas (Poço do Carrasco): o Carrasco, ogro de capuz que desce da gaiola quando o Carcereiro Cego pede; investidas.",
-    "quest_drop": "headsman_axe"
+    "quest_drop": "headsman_axe",
+    "role": "normal"
   },
   "ct_soul": {
     "name_key": "MONSTER_CT_SOUL",
-    "max_health": 320,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 26,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -2053,11 +2104,12 @@
     "_comment": "Mini-chefe das Catacumbas (Capela): a Alma Acorrentada, espírito preso a grilhões que a Prisioneira solta; investidas.",
     "quest_drop": "soul_shackle",
     "sound": "shade",
-    "visual_pending": true
+    "visual_pending": true,
+    "role": "normal"
   },
   "ct_king": {
     "name_key": "MONSTER_CT_KING",
-    "max_health": 1200,
+    "max_health": 6847,
     "move_speed": 2.8,
     "damage": 40,
     "attack_range": 2.2,
@@ -2090,9 +2142,9 @@
   },
   "mn_quartz_beast": {
     "name_key": "MONSTER_MN_QUARTZ_BEAST",
-    "max_health": 360,
+    "max_health": 210,
     "move_speed": 2.4,
-    "damage": 28,
+    "damage": 16,
     "attack_range": 3.2,
     "attack_windup": 1.1,
     "attack_cooldown": 2.2,
@@ -2112,13 +2164,14 @@
     "_comment": "Mini-chefe da Mina (Salão dos Cristais): a Besta de Quartzo, fera de cristal que o Cristal Pulsante desperta; investidas.",
     "quest_drop": "quartz_core",
     "sound": "beetle",
-    "visual_pending": true
+    "visual_pending": true,
+    "role": "normal"
   },
   "bk_armor": {
     "name_key": "MONSTER_BK_ARMOR",
-    "max_health": 300,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 22,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -2145,13 +2198,14 @@
     "_comment": "Mini-chefe do Bunker (Arsenal): a Armadura Viva, armadura de guerra que se levanta quando o rack de armas é tocado; investidas.",
     "quest_drop": "armory_seal",
     "sound": "ogre",
-    "visual_pending": true
+    "visual_pending": true,
+    "role": "normal"
   },
   "bk_commander": {
     "name_key": "MONSTER_BK_COMMANDER",
-    "max_health": 320,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 24,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -2178,13 +2232,14 @@
     "_comment": "Mini-chefe do Bunker (Alojamento): o Comandante Podre, oficial morto que acorda do catre; investidas.",
     "quest_drop": "commander_medal",
     "sound": "shade",
-    "visual_pending": true
+    "visual_pending": true,
+    "role": "normal"
   },
   "bk_general": {
     "name_key": "MONSTER_BK_GENERAL",
-    "max_health": 900,
+    "max_health": 6684,
     "move_speed": 2.8,
-    "damage": 30,
+    "damage": 40,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -2215,9 +2270,9 @@
   },
   "fd_viper": {
     "name_key": "MONSTER_FD_VIPER",
-    "max_health": 360,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 30,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -2242,13 +2297,14 @@
       1.0
     ],
     "_comment": "Mini-chefe da Floresta Escura (Clareira das Serpentes): a Víbora Anciã, serpente enorme que o Totem das Serpentes desperta; investidas.",
-    "quest_drop": "viper_fang"
+    "quest_drop": "viper_fang",
+    "role": "normal"
   },
   "fd_spore_king": {
     "name_key": "MONSTER_FD_SPORE_KING",
-    "max_health": 380,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 28,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -2275,13 +2331,14 @@
     "_comment": "Mini-chefe da Floresta Escura (Círculo de Esporos): o Rei dos Esporos, cogumelo gigante que o Cogumelo Ancestral desperta; investidas.",
     "quest_drop": "spore_crown",
     "sound": "ogre",
-    "visual_pending": true
+    "visual_pending": true,
+    "role": "normal"
   },
   "fd_elder": {
     "name_key": "MONSTER_FD_ELDER",
-    "max_health": 1400,
+    "max_health": 7036,
     "move_speed": 2.8,
-    "damage": 46,
+    "damage": 40,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -2312,9 +2369,9 @@
   },
   "dk_drowned": {
     "name_key": "MONSTER_DK_DROWNED",
-    "max_health": 100,
+    "max_health": 210,
     "move_speed": 4.2,
-    "damage": 3,
+    "damage": 16,
     "attack_range": 2.5,
     "attack_windup": 0.3,
     "attack_cooldown": 1.0,
@@ -2335,7 +2392,8 @@
     ],
     "sound": "shade",
     "visual_pending": true,
-    "_comment": "Monstro de docks (Marujo Afogado): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de docks (Marujo Afogado): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "dk_gator": {
     "name_key": "MONSTER_DK_GATOR",
@@ -2362,13 +2420,14 @@
       0.7,
       0.5
     ],
-    "_comment": "Monstro de docks (Jacaré do Cais): modelo gator."
+    "_comment": "Monstro de docks (Jacaré do Cais): modelo gator.",
+    "role": "normal"
   },
   "dk_crab": {
     "name_key": "MONSTER_DK_CRAB",
-    "max_health": 25,
+    "max_health": 84,
     "move_speed": 5.0,
-    "damage": 5,
+    "damage": 8,
     "attack_range": 1.3,
     "attack_windup": 0.3,
     "attack_cooldown": 0.9,
@@ -2383,13 +2442,14 @@
       1.0,
       1.0
     ],
-    "_comment": "Monstro de docks (Caranguejo Carniceiro): modelo crab."
+    "_comment": "Monstro de docks (Caranguejo Carniceiro): modelo crab.",
+    "role": "swarm"
   },
   "dk_deckhand": {
     "name_key": "MONSTER_DK_DECKHAND",
-    "max_health": 450,
+    "max_health": 336,
     "move_speed": 3.0,
-    "damage": 8,
+    "damage": 10,
     "attack_range": 4.1,
     "attack_windup": 0.6,
     "attack_cooldown": 1.6,
@@ -2419,13 +2479,14 @@
     ],
     "sound": "shade",
     "visual_pending": true,
-    "_comment": "Monstro de docks (Pirata Morto): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de docks (Pirata Morto): visual pendente (sem modelo ainda).",
+    "role": "tank"
   },
   "ru_ghost": {
     "name_key": "MONSTER_RU_GHOST",
-    "max_health": 70,
+    "max_health": 136,
     "move_speed": 2.2,
-    "damage": 11,
+    "damage": 12,
     "attack_range": 9.0,
     "attack_windup": 1.0,
     "attack_cooldown": 2.6,
@@ -2451,13 +2512,14 @@
       0.85,
       1.0
     ],
-    "_comment": "Monstro de ruins (Soldado Fantasma): modelo ghost_wing."
+    "_comment": "Monstro de ruins (Soldado Fantasma): modelo ghost_wing.",
+    "role": "light"
   },
   "ru_hound": {
     "name_key": "MONSTER_RU_HOUND",
-    "max_health": 25,
+    "max_health": 84,
     "move_speed": 5.0,
-    "damage": 5,
+    "damage": 8,
     "attack_range": 1.3,
     "attack_windup": 0.3,
     "attack_cooldown": 0.9,
@@ -2474,13 +2536,14 @@
     ],
     "sound": "beast",
     "visual_pending": true,
-    "_comment": "Monstro de ruins (Cão de Guerra Morto): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de ruins (Cão de Guerra Morto): visual pendente (sem modelo ainda).",
+    "role": "swarm"
   },
   "ce_digger": {
     "name_key": "MONSTER_CE_DIGGER",
-    "max_health": 100,
+    "max_health": 210,
     "move_speed": 4.2,
-    "damage": 3,
+    "damage": 16,
     "attack_range": 2.5,
     "attack_windup": 0.3,
     "attack_cooldown": 1.0,
@@ -2501,13 +2564,14 @@
     ],
     "sound": "beast",
     "visual_pending": true,
-    "_comment": "Monstro de cemetery (Coveiro Louco): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de cemetery (Coveiro Louco): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "ce_maggot": {
     "name_key": "MONSTER_CE_MAGGOT",
-    "max_health": 70,
+    "max_health": 136,
     "move_speed": 2.2,
-    "damage": 11,
+    "damage": 12,
     "attack_range": 9.0,
     "attack_windup": 1.0,
     "attack_cooldown": 2.6,
@@ -2535,13 +2599,14 @@
     ],
     "sound": "slime",
     "visual_pending": true,
-    "_comment": "Monstro de cemetery (Verme de Cova): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de cemetery (Verme de Cova): visual pendente (sem modelo ainda).",
+    "role": "light"
   },
   "ce_gargoyle": {
     "name_key": "MONSTER_CE_GARGOYLE",
-    "max_health": 260,
+    "max_health": 210,
     "move_speed": 1.8,
-    "damage": 18,
+    "damage": 16,
     "attack_range": 2.6,
     "attack_windup": 0.9,
     "attack_cooldown": 2.0,
@@ -2567,13 +2632,14 @@
     ],
     "sound": "giant",
     "visual_pending": true,
-    "_comment": "Monstro de cemetery (Gárgula de Lápide): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de cemetery (Gárgula de Lápide): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "ce_ghoul": {
     "name_key": "MONSTER_CE_GHOUL",
-    "max_health": 25,
+    "max_health": 84,
     "move_speed": 5.0,
-    "damage": 5,
+    "damage": 8,
     "attack_range": 1.3,
     "attack_windup": 0.3,
     "attack_cooldown": 0.9,
@@ -2588,13 +2654,14 @@
       0.85,
       0.7
     ],
-    "_comment": "Monstro de cemetery (Carniçal Inchado): modelo fatty."
+    "_comment": "Monstro de cemetery (Carniçal Inchado): modelo fatty.",
+    "role": "swarm"
   },
   "ce_brute": {
     "name_key": "MONSTER_CE_BRUTE",
-    "max_health": 320,
+    "max_health": 210,
     "move_speed": 2.4,
-    "damage": 24,
+    "damage": 16,
     "attack_range": 3.2,
     "attack_windup": 1.1,
     "attack_cooldown": 2.2,
@@ -2613,13 +2680,14 @@
     ],
     "sound": "ogre",
     "visual_pending": true,
-    "_comment": "Monstro de cemetery (Ogro Coveiro): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de cemetery (Ogro Coveiro): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "ce_warden": {
     "name_key": "MONSTER_CE_WARDEN",
-    "max_health": 340,
+    "max_health": 210,
     "move_speed": 2.8,
-    "damage": 24,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.8,
@@ -2646,13 +2714,14 @@
     "sound": "giant",
     "visual_pending": true,
     "_comment": "Monstro de cemetery (Sentinela do Túmulo): visual pendente (sem modelo ainda).",
-    "quest_drop": "warden_lantern"
+    "quest_drop": "warden_lantern",
+    "role": "normal"
   },
   "fo_imp": {
     "name_key": "MONSTER_FO_IMP",
-    "max_health": 25,
+    "max_health": 84,
     "move_speed": 5.0,
-    "damage": 5,
+    "damage": 8,
     "attack_range": 1.3,
     "attack_windup": 0.3,
     "attack_cooldown": 0.9,
@@ -2667,13 +2736,14 @@
       1.0,
       1.0
     ],
-    "_comment": "Monstro de fort (Diabrete Aranha): modelo exp_demon."
+    "_comment": "Monstro de fort (Diabrete Aranha): modelo exp_demon.",
+    "role": "swarm"
   },
   "fo_hound": {
     "name_key": "MONSTER_FO_HOUND",
-    "max_health": 70,
+    "max_health": 136,
     "move_speed": 2.2,
-    "damage": 11,
+    "damage": 12,
     "attack_range": 9.0,
     "attack_windup": 1.0,
     "attack_cooldown": 2.6,
@@ -2701,13 +2771,14 @@
     ],
     "sound": "wolfman",
     "visual_pending": true,
-    "_comment": "Monstro de fort (Cão do Inferno): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de fort (Cão do Inferno): visual pendente (sem modelo ainda).",
+    "role": "light"
   },
   "ct_prisoner_dead": {
     "name_key": "MONSTER_CT_PRISONER_DEAD",
-    "max_health": 90,
+    "max_health": 210,
     "move_speed": 3.0,
-    "damage": 14,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.6,
     "attack_cooldown": 1.4,
@@ -2726,13 +2797,14 @@
     ],
     "sound": "shade",
     "visual_pending": true,
-    "_comment": "Monstro de catacombs (Preso Esquelético): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de catacombs (Preso Esquelético): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "ct_crawler": {
     "name_key": "MONSTER_CT_CRAWLER",
-    "max_health": 130,
+    "max_health": 210,
     "move_speed": 2.2,
-    "damage": 12,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.7,
@@ -2749,13 +2821,14 @@
       1.0,
       1.0
     ],
-    "_comment": "Monstro de catacombs (Rastejante das Celas): modelo crawlmaster."
+    "_comment": "Monstro de catacombs (Rastejante das Celas): modelo crawlmaster.",
+    "role": "normal"
   },
   "ct_eye": {
     "name_key": "MONSTER_CT_EYE",
-    "max_health": 25,
+    "max_health": 84,
     "move_speed": 5.0,
-    "damage": 5,
+    "damage": 8,
     "attack_range": 1.3,
     "attack_windup": 0.3,
     "attack_cooldown": 0.9,
@@ -2771,7 +2844,8 @@
       1.0,
       1.0
     ],
-    "_comment": "Monstro de catacombs (Olho de Tentáculos): modelo tentacleye."
+    "_comment": "Monstro de catacombs (Olho de Tentáculos): modelo tentacleye.",
+    "role": "swarm"
   },
   "ct_wretch": {
     "name_key": "MONSTER_CT_WRETCH",
@@ -2792,13 +2866,14 @@
       1.0,
       1.0
     ],
-    "_comment": "Monstro de catacombs (Miserável Acorrentado): modelo sonask."
+    "_comment": "Monstro de catacombs (Miserável Acorrentado): modelo sonask.",
+    "role": "normal"
   },
   "ct_ghoul": {
     "name_key": "MONSTER_CT_GHOUL",
-    "max_health": 140,
+    "max_health": 210,
     "move_speed": 3.4,
-    "damage": 20,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.6,
     "attack_cooldown": 1.4,
@@ -2817,7 +2892,8 @@
     ],
     "sound": "shade",
     "visual_pending": true,
-    "_comment": "Monstro de catacombs (Carniçal da Cela): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de catacombs (Carniçal da Cela): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "ct_guard": {
     "name_key": "MONSTER_CT_GUARD",
@@ -2840,7 +2916,8 @@
     ],
     "sound": "ogre",
     "visual_pending": true,
-    "_comment": "Monstro de catacombs (Guarda Acorrentado): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de catacombs (Guarda Acorrentado): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "ct_torturer": {
     "name_key": "MONSTER_CT_TORTURER",
@@ -2863,13 +2940,14 @@
     ],
     "sound": "ogre",
     "visual_pending": true,
-    "_comment": "Monstro de catacombs (Torturador Encapuzado): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de catacombs (Torturador Encapuzado): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "ct_bonebat": {
     "name_key": "MONSTER_CT_BONEBAT",
-    "max_health": 110,
+    "max_health": 210,
     "move_speed": 3.6,
-    "damage": 14,
+    "damage": 16,
     "attack_range": 1.8,
     "attack_windup": 0.5,
     "attack_cooldown": 1.4,
@@ -2886,7 +2964,8 @@
     ],
     "sound": "beast",
     "visual_pending": true,
-    "_comment": "Monstro de catacombs (Morcego de Ossos): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de catacombs (Morcego de Ossos): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "ct_tormentor": {
     "name_key": "MONSTER_CT_TORMENTOR",
@@ -2909,7 +2988,8 @@
     ],
     "sound": "giant",
     "visual_pending": true,
-    "_comment": "Monstro de catacombs (Atormentador): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de catacombs (Atormentador): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "ct_deadjailer": {
     "name_key": "MONSTER_CT_DEADJAILER",
@@ -2932,11 +3012,12 @@
     ],
     "sound": "ogre",
     "visual_pending": true,
-    "_comment": "Monstro de catacombs (Carcereiro Morto): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de catacombs (Carcereiro Morto): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "de_scarab": {
     "name_key": "MONSTER_DE_SCARAB",
-    "max_health": 80,
+    "max_health": 136,
     "move_speed": 3.4,
     "damage": 12,
     "attack_range": 2.2,
@@ -2955,13 +3036,14 @@
       1.0,
       1.0
     ],
-    "_comment": "Monstro de desert (Escaravelho Devorador): modelo alien_bug."
+    "_comment": "Monstro de desert (Escaravelho Devorador): modelo alien_bug.",
+    "role": "light"
   },
   "de_vulture": {
     "name_key": "MONSTER_DE_VULTURE",
-    "max_health": 110,
+    "max_health": 210,
     "move_speed": 3.6,
-    "damage": 14,
+    "damage": 16,
     "attack_range": 1.8,
     "attack_windup": 0.5,
     "attack_cooldown": 1.4,
@@ -2978,13 +3060,14 @@
     ],
     "sound": "beast",
     "visual_pending": true,
-    "_comment": "Monstro de desert (Abutre Carniceiro): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de desert (Abutre Carniceiro): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "de_cobra": {
     "name_key": "MONSTER_DE_COBRA",
-    "max_health": 55,
+    "max_health": 136,
     "move_speed": 3.6,
-    "damage": 10,
+    "damage": 12,
     "attack_range": 1.8,
     "attack_windup": 0.5,
     "attack_cooldown": 1.2,
@@ -2998,13 +3081,14 @@
       1.0,
       1.0
     ],
-    "_comment": "Monstro de desert (Naja das Dunas): modelo cobra."
+    "_comment": "Monstro de desert (Naja das Dunas): modelo cobra.",
+    "role": "light"
   },
   "de_cactus": {
     "name_key": "MONSTER_DE_CACTUS",
-    "max_health": 320,
+    "max_health": 210,
     "move_speed": 2.4,
-    "damage": 24,
+    "damage": 16,
     "attack_range": 3.2,
     "attack_windup": 1.1,
     "attack_cooldown": 2.2,
@@ -3021,13 +3105,14 @@
       1.0,
       1.0
     ],
-    "_comment": "Monstro de desert (Cacto Carnívoro): modelo cactus."
+    "_comment": "Monstro de desert (Cacto Carnívoro): modelo cactus.",
+    "role": "normal"
   },
   "mn_spider": {
     "name_key": "MONSTER_MN_SPIDER",
-    "max_health": 25,
+    "max_health": 84,
     "move_speed": 5.0,
-    "damage": 5,
+    "damage": 8,
     "attack_range": 1.3,
     "attack_windup": 0.3,
     "attack_cooldown": 0.9,
@@ -3042,13 +3127,14 @@
       1.0,
       1.0
     ],
-    "_comment": "Monstro de mine (Aranha das Cavernas): modelo spider_big."
+    "_comment": "Monstro de mine (Aranha das Cavernas): modelo spider_big.",
+    "role": "swarm"
   },
   "mn_digger": {
     "name_key": "MONSTER_MN_DIGGER",
-    "max_health": 55,
+    "max_health": 136,
     "move_speed": 3.6,
-    "damage": 10,
+    "damage": 12,
     "attack_range": 1.8,
     "attack_windup": 0.5,
     "attack_cooldown": 1.2,
@@ -3064,13 +3150,14 @@
     ],
     "sound": "beast",
     "visual_pending": true,
-    "_comment": "Monstro de mine (Mineiro Morto): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de mine (Mineiro Morto): visual pendente (sem modelo ainda).",
+    "role": "light"
   },
   "mn_worm": {
     "name_key": "MONSTER_MN_WORM",
-    "max_health": 70,
+    "max_health": 136,
     "move_speed": 2.2,
-    "damage": 11,
+    "damage": 12,
     "attack_range": 9.0,
     "attack_windup": 1.0,
     "attack_cooldown": 2.6,
@@ -3098,7 +3185,8 @@
     ],
     "sound": "slime",
     "visual_pending": true,
-    "_comment": "Monstro de mine (Verme de Rocha): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de mine (Verme de Rocha): visual pendente (sem modelo ainda).",
+    "role": "light"
   },
   "mn_gnome": {
     "name_key": "MONSTER_MN_GNOME",
@@ -3121,13 +3209,14 @@
     ],
     "sound": "beast",
     "visual_pending": true,
-    "_comment": "Monstro de mine (Gnomo das Sombras): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de mine (Gnomo das Sombras): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "mn_bones": {
     "name_key": "MONSTER_MN_BONES",
-    "max_health": 90,
+    "max_health": 210,
     "move_speed": 3.0,
-    "damage": 14,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.6,
     "attack_cooldown": 1.4,
@@ -3146,11 +3235,12 @@
     ],
     "sound": "shade",
     "visual_pending": true,
-    "_comment": "Monstro de mine (Esqueleto de Mineiro): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de mine (Esqueleto de Mineiro): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "mn_magma": {
     "name_key": "MONSTER_MN_MAGMA",
-    "max_health": 180,
+    "max_health": 210,
     "move_speed": 2.3,
     "damage": 16,
     "attack_range": 2.6,
@@ -3167,13 +3257,14 @@
       1.0,
       1.0
     ],
-    "_comment": "Monstro de mine (Golem de Magma): modelo lava_golem."
+    "_comment": "Monstro de mine (Golem de Magma): modelo lava_golem.",
+    "role": "normal"
   },
   "mn_rock": {
     "name_key": "MONSTER_MN_ROCK",
-    "max_health": 260,
+    "max_health": 210,
     "move_speed": 1.8,
-    "damage": 18,
+    "damage": 16,
     "attack_range": 2.6,
     "attack_windup": 0.9,
     "attack_cooldown": 2.0,
@@ -3199,7 +3290,8 @@
     ],
     "sound": "giant",
     "visual_pending": true,
-    "_comment": "Monstro de mine (Golem de Rocha): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de mine (Golem de Rocha): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "mn_cave_troll": {
     "name_key": "MONSTER_MN_CAVE_TROLL",
@@ -3220,13 +3312,14 @@
       0.85,
       0.9
     ],
-    "_comment": "Monstro de mine (Troll das Cavernas): modelo troll."
+    "_comment": "Monstro de mine (Troll das Cavernas): modelo troll.",
+    "role": "normal"
   },
   "bk_dead": {
     "name_key": "MONSTER_BK_DEAD",
-    "max_health": 90,
+    "max_health": 210,
     "move_speed": 3.0,
-    "damage": 14,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.6,
     "attack_cooldown": 1.4,
@@ -3245,13 +3338,14 @@
     ],
     "sound": "shade",
     "visual_pending": true,
-    "_comment": "Monstro de bunker (Soldado Morto): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de bunker (Soldado Morto): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "bk_scavenger": {
     "name_key": "MONSTER_BK_SCAVENGER",
-    "max_health": 55,
+    "max_health": 136,
     "move_speed": 3.6,
-    "damage": 10,
+    "damage": 12,
     "attack_range": 1.8,
     "attack_windup": 0.5,
     "attack_cooldown": 1.2,
@@ -3267,13 +3361,14 @@
     ],
     "sound": "beast",
     "visual_pending": true,
-    "_comment": "Monstro de bunker (Saqueador do Bunker): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de bunker (Saqueador do Bunker): visual pendente (sem modelo ainda).",
+    "role": "light"
   },
   "bk_rat": {
     "name_key": "MONSTER_BK_RAT",
-    "max_health": 25,
+    "max_health": 84,
     "move_speed": 5.0,
-    "damage": 5,
+    "damage": 8,
     "attack_range": 1.3,
     "attack_windup": 0.3,
     "attack_cooldown": 0.9,
@@ -3288,13 +3383,14 @@
       0.6,
       0.55
     ],
-    "_comment": "Monstro de bunker (Ratazana de Paiol): modelo rat."
+    "_comment": "Monstro de bunker (Ratazana de Paiol): modelo rat.",
+    "role": "swarm"
   },
   "bk_gas": {
     "name_key": "MONSTER_BK_GAS",
-    "max_health": 100,
+    "max_health": 210,
     "move_speed": 4.2,
-    "damage": 3,
+    "damage": 16,
     "attack_range": 2.5,
     "attack_windup": 0.3,
     "attack_cooldown": 1.0,
@@ -3313,7 +3409,8 @@
       1.0,
       1.0
     ],
-    "_comment": "Monstro de bunker (Soldado Infectado): modelo hazmat."
+    "_comment": "Monstro de bunker (Soldado Infectado): modelo hazmat.",
+    "role": "normal"
   },
   "bk_plate": {
     "name_key": "MONSTER_BK_PLATE",
@@ -3336,13 +3433,14 @@
     ],
     "sound": "ogre",
     "visual_pending": true,
-    "_comment": "Monstro de bunker (Armadura Vazia): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de bunker (Armadura Vazia): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "bk_beetle": {
     "name_key": "MONSTER_BK_BEETLE",
-    "max_health": 70,
+    "max_health": 136,
     "move_speed": 2.2,
-    "damage": 11,
+    "damage": 12,
     "attack_range": 9.0,
     "attack_windup": 1.0,
     "attack_cooldown": 2.6,
@@ -3370,13 +3468,14 @@
     ],
     "sound": "beetle",
     "visual_pending": true,
-    "_comment": "Monstro de bunker (Besouro de Guerra): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de bunker (Besouro de Guerra): visual pendente (sem modelo ainda).",
+    "role": "light"
   },
   "bk_infected": {
     "name_key": "MONSTER_BK_INFECTED",
-    "max_health": 130,
+    "max_health": 210,
     "move_speed": 2.2,
-    "damage": 12,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.7,
@@ -3395,7 +3494,8 @@
     ],
     "sound": "shade",
     "visual_pending": true,
-    "_comment": "Monstro de bunker (Recruta Infectado): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de bunker (Recruta Infectado): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "bk_brute": {
     "name_key": "MONSTER_BK_BRUTE",
@@ -3418,7 +3518,8 @@
     ],
     "sound": "ogre",
     "visual_pending": true,
-    "_comment": "Monstro de bunker (Brutamontes de Trincheira): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de bunker (Brutamontes de Trincheira): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "bk_specter": {
     "name_key": "MONSTER_BK_SPECTER",
@@ -3441,13 +3542,14 @@
     ],
     "sound": "shade",
     "visual_pending": true,
-    "_comment": "Monstro de bunker (Espectro do Rádio): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de bunker (Espectro do Rádio): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "fd_raven": {
     "name_key": "MONSTER_FD_RAVEN",
-    "max_health": 110,
+    "max_health": 210,
     "move_speed": 3.6,
-    "damage": 14,
+    "damage": 16,
     "attack_range": 1.8,
     "attack_windup": 0.5,
     "attack_cooldown": 1.4,
@@ -3463,13 +3565,14 @@
       1.0,
       1.0
     ],
-    "_comment": "Monstro de dark (Corvo Negro): modelo raven."
+    "_comment": "Monstro de dark (Corvo Negro): modelo raven.",
+    "role": "normal"
   },
   "fd_wolf": {
     "name_key": "MONSTER_FD_WOLF",
-    "max_health": 55,
+    "max_health": 136,
     "move_speed": 3.6,
-    "damage": 10,
+    "damage": 12,
     "attack_range": 1.8,
     "attack_windup": 0.5,
     "attack_cooldown": 1.2,
@@ -3483,13 +3586,14 @@
       1.0,
       1.0
     ],
-    "_comment": "Monstro de dark (Lobisomem): modelo werewolf."
+    "_comment": "Monstro de dark (Lobisomem): modelo werewolf.",
+    "role": "light"
   },
   "fd_widow": {
     "name_key": "MONSTER_FD_WIDOW",
-    "max_health": 70,
+    "max_health": 136,
     "move_speed": 2.2,
-    "damage": 11,
+    "damage": 12,
     "attack_range": 9.0,
     "attack_windup": 1.0,
     "attack_cooldown": 2.6,
@@ -3517,7 +3621,8 @@
     ],
     "sound": "beetle",
     "visual_pending": true,
-    "_comment": "Monstro de dark (Viúva da Mata): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de dark (Viúva da Mata): visual pendente (sem modelo ainda).",
+    "role": "light"
   },
   "fd_mushroom": {
     "name_key": "MONSTER_FD_MUSHROOM",
@@ -3541,13 +3646,14 @@
       1.0,
       1.0
     ],
-    "_comment": "Monstro de dark (Cogumelo Carniceiro): modelo mushroom_cap."
+    "_comment": "Monstro de dark (Cogumelo Carniceiro): modelo mushroom_cap.",
+    "role": "normal"
   },
   "fd_hanged": {
     "name_key": "MONSTER_FD_HANGED",
-    "max_health": 130,
+    "max_health": 210,
     "move_speed": 2.2,
-    "damage": 12,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.8,
     "attack_cooldown": 1.7,
@@ -3566,13 +3672,14 @@
     ],
     "sound": "shade",
     "visual_pending": true,
-    "_comment": "Monstro de dark (Enforcado): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de dark (Enforcado): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "fd_hunter": {
     "name_key": "MONSTER_FD_HUNTER",
-    "max_health": 90,
+    "max_health": 210,
     "move_speed": 3.0,
-    "damage": 14,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.6,
     "attack_cooldown": 1.4,
@@ -3591,13 +3698,14 @@
     ],
     "sound": "shade",
     "visual_pending": true,
-    "_comment": "Monstro de dark (Caçador Esquelético): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de dark (Caçador Esquelético): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "fd_stag": {
     "name_key": "MONSTER_FD_STAG",
-    "max_health": 140,
+    "max_health": 210,
     "move_speed": 3.4,
-    "damage": 20,
+    "damage": 16,
     "attack_range": 2.2,
     "attack_windup": 0.6,
     "attack_cooldown": 1.4,
@@ -3616,7 +3724,8 @@
     ],
     "sound": "beast",
     "visual_pending": true,
-    "_comment": "Monstro de dark (Cervo Espectral): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de dark (Cervo Espectral): visual pendente (sem modelo ainda).",
+    "role": "normal"
   },
   "fd_wisp": {
     "name_key": "MONSTER_FD_WISP",
@@ -3639,6 +3748,7 @@
     ],
     "sound": "shade",
     "visual_pending": true,
-    "_comment": "Monstro de dark (Fogo-Fátuo): visual pendente (sem modelo ainda)."
+    "_comment": "Monstro de dark (Fogo-Fátuo): visual pendente (sem modelo ainda).",
+    "role": "normal"
   }
 }

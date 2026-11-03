@@ -235,3 +235,28 @@ Exemplos (valor base → compra na loja certa): Espada de Aço comum nível 6 = 
 - Fator de chefe ao longo dos mapas: manter os valores da seção 2.4 ou usar uma curva mais suave?
 - Nível máximo continua 20 (novo jogo começa do zero); dificuldade maior: Pesadelo em `15-modos.md`.
 - A Poção de vida de 35% com recarga compartilhada de 15 s é suficiente ou deve haver tipos diferentes?
+
+
+## 6. Equalização pela ordem dos mapas (implementada)
+
+Ordem: 1 Esgoto, 2 Floresta, 3 Docas, 4 Ruínas, 5 Cemitério, 6 Forte, 7 Catacumbas, 8 Deserto, 9 Mina, 10 Bunker, 11 Floresta Escura. Gerado por `tools/assets/balance_monsters.py` (último passo do `build_maps.py`).
+
+- **Nível da área:** 1, 3, 5 … 19, 20 (2 níveis por mapa); o chefe do mapa fica um nível acima.
+- **Força:** todo monstro tem a base da categoria do Esgoto (vida 210, dano 16); o papel (`role`: enxame x0,4/x0,5, leve x0,65/x0,75, normal, tanque x1,6/x0,6) só ajusta essa base. Elite, mini-chefe e nível multiplicam como na seção 2.4. Vida do chefe = DPS do herói no nível x duração da luta (2 min no mapa 1, 4,5 min no 9, 5 min no 11); dano base 40.
+- **XP:** cada mapa rende ~1400 x nível + 700 (2 níveis). As missões ficam com uma fatia (principal 15%, item de morador 8%, portão 4%) e `xp_scale` na área ajusta o XP dos monstros ao resto.
+- **Ouro:** missões seguem a renda alvo (600 x mapa^1,1): principal 35%, item de morador 15%, portão 10%. O ouro dos monstros já escala por nível nas tabelas de `data/loot.json`.
+- **Drop:** as mesmas tabelas por categoria em todos os mapas; o `loot_scale` por mapa foi removido.
+
+| Mapa | Área | Nível | Comum (vida / dano) | Vida do chefe | Ouro das missões | XP p/ 2 níveis | xp_scale |
+|---|---|---|---|---|---|---|---|
+| 1 | sewers | 1 | 210 / 16 | 4281 | 390 | 2100 | 0.95 |
+| 2 | forest | 3 | 263 / 20 | 6799 | 960 | 4900 | 1.02 |
+| 3 | docks | 5 | 330 / 25 | 9922 | 1100 | 7700 | 1.22 |
+| 4 | ruins | 7 | 415 / 32 | 13571 | 3240 | 10500 | 0.69 |
+| 5 | cemetery | 9 | 520 / 40 | 18039 | 2640 | 13300 | 0.78 |
+| 6 | fort | 11 | 652 / 50 | 23084 | 3580 | 16100 | 0.98 |
+| 7 | catacombs | 13 | 818 / 62 | 29877 | 4250 | 18900 | 0.90 |
+| 8 | desert | 15 | 1026 / 78 | 37434 | 4440 | 21700 | 1.09 |
+| 9 | mine | 17 | 1287 / 98 | 47383 | 7930 | 24500 | 0.34 |
+| 10 | bunker | 19 | 1615 / 123 | 57568 | 6260 | 27300 | 0.76 |
+| 11 | dark_forest | 20 | 1809 / 138 | 60599 | 6970 | 28700 | 0.93 |

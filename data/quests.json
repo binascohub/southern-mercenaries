@@ -9,8 +9,8 @@
     "target_element": "earth",
     "unlocks": "sewer_entrance",
     "reward": {
-      "gold": 400,
-      "xp": 360
+      "gold": 210,
+      "xp": 320
     },
     "bestiary": [
       "demon_rat_queen"
@@ -26,8 +26,8 @@
     "item": "human_heart",
     "target_element": "fire",
     "reward": {
-      "gold": 220,
-      "xp": 450
+      "gold": 1230,
+      "xp": 2000
     }
   },
   "royal_skull": {
@@ -39,8 +39,8 @@
     "item": "old_skull",
     "target_element": "water",
     "reward": {
-      "gold": 420,
-      "xp": 800
+      "gold": 1510,
+      "xp": 2420
     }
   },
   "forest_leshy": {
@@ -51,8 +51,8 @@
     "area": "forest_01_path",
     "target_element": "fire",
     "reward": {
-      "gold": 300,
-      "xp": 550
+      "gold": 190,
+      "xp": 390
     },
     "item": "bone_dagger",
     "gives": "key_spades",
@@ -68,8 +68,8 @@
     "item": "wild_meat",
     "target_element": "earth",
     "reward": {
-      "gold": 260,
-      "xp": 500
+      "gold": 960,
+      "xp": 1580
     }
   },
   "ruins_goblins": {
@@ -84,8 +84,8 @@
     ],
     "target_element": "fire",
     "reward": {
-      "gold": 250,
-      "xp": 500
+      "gold": 220,
+      "xp": 420
     }
   },
   "forest_fire_golem": {
@@ -96,8 +96,8 @@
     "area": "forest_01_path",
     "item": "cursed_skull",
     "reward": {
-      "gold": 200,
-      "xp": 400
+      "gold": 190,
+      "xp": 390
     },
     "target_element": "fire",
     "gives": "key_hearts",
@@ -113,8 +113,8 @@
     "item": "royal_soul",
     "target_element": "fire",
     "reward": {
-      "gold": 600,
-      "xp": 1000
+      "gold": 2350,
+      "xp": 3680
     }
   },
   "docks_smugglers": {
@@ -125,8 +125,8 @@
     "area": "docks_01_pier",
     "target_element": "water",
     "reward": {
-      "gold": 140,
-      "xp": 260
+      "gold": 300,
+      "xp": 620
     },
     "item": "captain_log"
   },
@@ -146,8 +146,8 @@
     "gives_key": "sewer_key_spades",
     "target_element": "fire",
     "reward": {
-      "gold": 220,
-      "xp": 380
+      "gold": 90,
+      "xp": 170
     }
   },
   "sewer_frog_king": {
@@ -165,8 +165,8 @@
     "gives_key": "sewer_key_hearts",
     "target_element": "earth",
     "reward": {
-      "gold": 140,
-      "xp": 220
+      "gold": 90,
+      "xp": 170
     }
   },
   "forest_gate": {
@@ -182,8 +182,8 @@
     "opens_gate": "boss_gate",
     "target_element": "earth",
     "reward": {
-      "gold": 400,
-      "xp": 700
+      "gold": 130,
+      "xp": 200
     }
   },
   "forest_treasure": {
@@ -196,8 +196,8 @@
     "unlocks": "forest_trail",
     "target_element": "fire",
     "reward": {
-      "gold": 350,
-      "xp": 700
+      "gold": 450,
+      "xp": 740
     }
   },
   "desert_horn": {
@@ -208,8 +208,8 @@
     "area": "desert_01_canyon",
     "target_element": "water",
     "reward": {
-      "gold": 350,
-      "xp": 600
+      "gold": 890,
+      "xp": 1740
     },
     "item": "lamassu_horn",
     "gives": "key_clubs",
@@ -224,8 +224,8 @@
     "area": "desert_01_canyon",
     "target_element": "earth",
     "reward": {
-      "gold": 300,
-      "xp": 500
+      "gold": 890,
+      "xp": 1740
     },
     "item": "golden_scarab",
     "gives": "key_diamonds",
@@ -245,8 +245,8 @@
     "opens_gate": "boss_gate",
     "target_element": "air",
     "reward": {
-      "gold": 450,
-      "xp": 800
+      "gold": 590,
+      "xp": 870
     }
   },
   "dock_helm": {
@@ -257,8 +257,8 @@
     "area": "docks_01_pier",
     "target_element": "air",
     "reward": {
-      "gold": 120,
-      "xp": 240
+      "gold": 300,
+      "xp": 620
     },
     "item": "ship_helm",
     "gives": "key_anchor",
@@ -273,8 +273,8 @@
     "area": "docks_01_pier",
     "target_element": "earth",
     "reward": {
-      "gold": 120,
-      "xp": 240
+      "gold": 300,
+      "xp": 620
     },
     "item": "golden_shark_tooth",
     "gives": "key_compass",
@@ -294,8 +294,8 @@
     "opens_gate": "boss_gate",
     "target_element": "earth",
     "reward": {
-      "gold": 160,
-      "xp": 320
+      "gold": 200,
+      "xp": 310
     }
   },
   "ruins_seal": {
@@ -306,8 +306,8 @@
     "area": "ruins_01_city",
     "target_element": "earth",
     "reward": {
-      "gold": 260,
-      "xp": 520
+      "gold": 410,
+      "xp": 840
     },
     "item": "stone_heart",
     "gives": "key_lion",
@@ -322,8 +322,8 @@
     "area": "ruins_01_city",
     "target_element": "fire",
     "reward": {
-      "gold": 260,
-      "xp": 520
+      "gold": 410,
+      "xp": 840
     },
     "item": "champion_banner",
     "gives": "key_eagle",
@@ -343,8 +343,8 @@
     "opens_gate": "boss_gate",
     "target_element": "earth",
     "reward": {
-      "gold": 320,
-      "xp": 640
+      "gold": 280,
+      "xp": 420
     }
   },
   "fort_purge": {
@@ -359,8 +359,8 @@
     ],
     "target_element": "fire",
     "reward": {
-      "gold": 450,
-      "xp": 900
+      "gold": 340,
+      "xp": 640
     }
   },
   "fort_sigil": {
@@ -371,8 +371,8 @@
     "area": "fort_01_gate",
     "target_element": "air",
     "reward": {
-      "gold": 500,
-      "xp": 1000
+      "gold": 650,
+      "xp": 1290
     },
     "item": "dark_blade",
     "gives": "key_onyx",
@@ -387,8 +387,8 @@
     "area": "fort_01_gate",
     "target_element": "fire",
     "reward": {
-      "gold": 500,
-      "xp": 1000
+      "gold": 650,
+      "xp": 1290
     },
     "item": "queen_ring",
     "gives": "key_ruby",
@@ -408,8 +408,8 @@
     "opens_gate": "boss_gate",
     "target_element": "fire",
     "reward": {
-      "gold": 600,
-      "xp": 1200
+      "gold": 430,
+      "xp": 640
     }
   },
   "ct_purge": {
@@ -424,8 +424,8 @@
     ],
     "target_element": "water",
     "reward": {
-      "gold": 500,
-      "xp": 1000
+      "gold": 410,
+      "xp": 760
     }
   },
   "ct_axe": {
@@ -436,8 +436,8 @@
     "area": "catacombs_01_depths",
     "target_element": "earth",
     "reward": {
-      "gold": 550,
-      "xp": 1100
+      "gold": 770,
+      "xp": 1510
     },
     "item": "headsman_axe",
     "gives": "key_iron",
@@ -452,8 +452,8 @@
     "area": "catacombs_01_depths",
     "target_element": "water",
     "reward": {
-      "gold": 550,
-      "xp": 1100
+      "gold": 770,
+      "xp": 1510
     },
     "item": "soul_shackle",
     "gives": "key_bone",
@@ -473,8 +473,8 @@
     "opens_gate": "boss_gate",
     "target_element": "water",
     "reward": {
-      "gold": 650,
-      "xp": 1300
+      "gold": 510,
+      "xp": 760
     }
   },
   "mn_clear": {
@@ -489,8 +489,8 @@
     ],
     "target_element": "earth",
     "reward": {
-      "gold": 400,
-      "xp": 800
+      "gold": 540,
+      "xp": 980
     }
   },
   "mn_tusk": {
@@ -501,8 +501,8 @@
     "area": "mine_01_crystal_vein",
     "target_element": "earth",
     "reward": {
-      "gold": 450,
-      "xp": 900
+      "gold": 1010,
+      "xp": 1960
     },
     "item": "troll_tusk",
     "gives": "key_pickaxe",
@@ -517,8 +517,8 @@
     "area": "mine_01_crystal_vein",
     "target_element": "water",
     "reward": {
-      "gold": 450,
-      "xp": 900
+      "gold": 1010,
+      "xp": 1960
     },
     "item": "quartz_core",
     "gives": "key_lantern",
@@ -538,8 +538,8 @@
     "opens_gate": "boss_gate",
     "target_element": "earth",
     "reward": {
-      "gold": 550,
-      "xp": 1100
+      "gold": 670,
+      "xp": 980
     }
   },
   "bk_clear": {
@@ -554,8 +554,8 @@
     ],
     "target_element": "earth",
     "reward": {
-      "gold": 200,
-      "xp": 400
+      "gold": 600,
+      "xp": 1090
     }
   },
   "bk_seal": {
@@ -566,8 +566,8 @@
     "area": "bunker_01_entrance",
     "target_element": "earth",
     "reward": {
-      "gold": 220,
-      "xp": 440
+      "gold": 1130,
+      "xp": 2180
     },
     "item": "armory_seal",
     "gives": "key_brass",
@@ -582,8 +582,8 @@
     "area": "bunker_01_entrance",
     "target_element": "water",
     "reward": {
-      "gold": 220,
-      "xp": 440
+      "gold": 1130,
+      "xp": 2180
     },
     "item": "commander_medal",
     "gives": "key_steel",
@@ -603,8 +603,8 @@
     "opens_gate": "boss_gate",
     "target_element": "fire",
     "reward": {
-      "gold": 280,
-      "xp": 560
+      "gold": 760,
+      "xp": 1090
     }
   },
   "fd_clear": {
@@ -619,8 +619,8 @@
     ],
     "target_element": "earth",
     "reward": {
-      "gold": 600,
-      "xp": 1200
+      "gold": 670,
+      "xp": 1150
     }
   },
   "fd_fang": {
@@ -631,8 +631,8 @@
     "area": "dark_forest_01_woods",
     "target_element": "earth",
     "reward": {
-      "gold": 650,
-      "xp": 1300
+      "gold": 1260,
+      "xp": 2300
     },
     "item": "viper_fang",
     "gives": "key_moss",
@@ -647,8 +647,8 @@
     "area": "dark_forest_01_woods",
     "target_element": "water",
     "reward": {
-      "gold": 650,
-      "xp": 1300
+      "gold": 1260,
+      "xp": 2300
     },
     "item": "spore_crown",
     "gives": "key_thorn",
@@ -668,8 +668,8 @@
     "opens_gate": "boss_gate",
     "target_element": "earth",
     "reward": {
-      "gold": 750,
-      "xp": 1500
+      "gold": 840,
+      "xp": 1150
     }
   },
   "map_ruins": {
@@ -680,8 +680,8 @@
     "area": "ruins_01_city",
     "target_element": "earth",
     "reward": {
-      "gold": 600,
-      "xp": 1200
+      "gold": 960,
+      "xp": 1580
     },
     "item": "fallen_crown"
   },
@@ -706,8 +706,8 @@
     "area": "catacombs_01_depths",
     "target_element": "water",
     "reward": {
-      "gold": 800,
-      "xp": 1600
+      "gold": 1790,
+      "xp": 2840
     },
     "item": "chained_link"
   },
@@ -719,8 +719,8 @@
     "area": "desert_01_canyon",
     "target_element": "air",
     "reward": {
-      "gold": 900,
-      "xp": 1800
+      "gold": 2070,
+      "xp": 3260
     },
     "item": "sphinx_eye"
   },
@@ -745,8 +745,8 @@
     "area": "mine_01_crystal_vein",
     "target_element": "earth",
     "reward": {
-      "gold": 1000,
-      "xp": 2000
+      "gold": 2350,
+      "xp": 3680
     },
     "item": "crystal_heart"
   },
@@ -758,8 +758,8 @@
     "area": "bunker_01_entrance",
     "target_element": "fire",
     "reward": {
-      "gold": 1100,
-      "xp": 2200
+      "gold": 2640,
+      "xp": 4100
     },
     "item": "general_baton"
   },
@@ -771,8 +771,8 @@
     "area": "dark_forest_01_woods",
     "target_element": "earth",
     "reward": {
-      "gold": 1200,
-      "xp": 2400
+      "gold": 2940,
+      "xp": 4300
     },
     "item": "elder_seed"
   },
@@ -786,8 +786,8 @@
     "gives": "key_ossuary",
     "target_element": "earth",
     "reward": {
-      "gold": 180,
-      "xp": 300
+      "gold": 530,
+      "xp": 1060
     },
     "grants_key": "book_cemetery_1",
     "grants_item": "cemetery_book_1"
@@ -802,8 +802,8 @@
     "gives": "key_crypt",
     "target_element": "earth",
     "reward": {
-      "gold": 200,
-      "xp": 350
+      "gold": 530,
+      "xp": 1060
     },
     "grants_key": "book_cemetery_2",
     "grants_item": "cemetery_book_2"
@@ -821,8 +821,8 @@
     "opens_gate": "boss_gate",
     "target_element": "earth",
     "reward": {
-      "gold": 300,
-      "xp": 600
+      "gold": 350,
+      "xp": 530
     }
   }
 }

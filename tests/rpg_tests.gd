@@ -788,7 +788,7 @@ func _test_town_rules() -> void:
 					offers_at_start.append(String(prop.npc))
 	_check(offers_at_start == ["old_drunk"], "na Taverna, no início, só o Velho Bêbado tem missão disponível (%s)" % [offers_at_start])
 	_check(GameData.quests.sewer_treasure.get("item", "") == "storm_bottle" and GameData.monsters.demon_rat_queen.get("quest_drop", "") == "storm_bottle" and GameData.valuables.storm_bottle.get("quest_item", false)
-		and GameData.npcs.old_drunk.dialogues[1].get("service", "") == "turn_in" and int(GameData.quests.sewer_treasure.reward.gold) >= 400,
+		and GameData.npcs.old_drunk.dialogues[1].get("service", "") == "turn_in" and int(GameData.quests.sewer_treasure.reward.gold) >= 150,
 		"o Velho Bêbado pede a Garrafa da Tempestade de Almas (a família dele), que o chefe final solta; ele a recebe e paga a recompensa")
 	_check(Town.dialogue_index("old_drunk", {"sewer_treasure": "done"}) == 2, "depois de concluída, outra fala")
 	var campaign := SaveSystem.new_campaign()
@@ -1000,9 +1000,10 @@ func _test_sewers() -> void:
 		for summon: Dictionary in QuestTrail.summons_of(prop):
 			for m: Dictionary in summon.monsters:
 				xp_total += int(xp_per[GameData.monsters[m.monster].category]) * int(summon.level) * int(m.count)
+	xp_total = roundi(xp_total * float(area.xp_scale))  # o XP dos monstros do mapa é ajustado por `xp_scale` (balance_monsters.py)
 	for quest_id in ["sewer_treasure", "sewer_frog_king", "sewer_old_gator"]:
 		xp_total += int(GameData.quests[quest_id].reward.xp)
-	_check(xp_total >= 2300 and xp_total <= 2500, "esgoto: o XP de limpar tudo fecha em ~2.400 (nível 3 pede 2.100): %d" % xp_total)
+	_check(xp_total >= 2000 and xp_total <= 2200, "esgoto: o XP de limpar tudo fecha em ~2.100 (nível 3 pede 2.100: 2 níveis por mapa): %d" % xp_total)
 	var altar: Array = area.props.filter(func(p: Dictionary) -> bool: return p.get("id", "") == "sewer_frog_altar")
 	_check(altar.size() == 1 and altar[0].position == [0.0, -84.0] and altar[0].summon.id == "sw_frog_king" and altar[0].summon.monsters[0].monster == "frog_king",
 		"o altar do Rei dos Sapos fica no centro do mapa e invoca só o Rei")
@@ -1071,9 +1072,9 @@ func _test_sewers() -> void:
 	_near(elite.attack_damage(), rat.attack_damage() * 1.5, "elite: dano x1,5")
 	_check(elite.category() == "elite" and elite.modifier == "toxic" and elite.xp_value() == 25.0, "elite: categoria, modificador e XP 25 x nível")
 	var gator := Enemy.create({"monster_id": "old_gator", "position": Vector3.ZERO, "level": 2})
-	_near(gator.max_health, 140 * 1.12 * 6, "mini-chefe (o id interno é Jacaré Velho, hoje Carniceiro Chifrudo): vida 140 x 1,12 x 6")
+	_near(gator.max_health, 210 * 1.12 * 6, "mini-chefe (o id interno é Jacaré Velho, hoje Carniceiro Chifrudo): vida-base 210 (a de todo monstro) x 1,12 x 6")
 	var queen := Enemy.create({"monster_id": "demon_rat_queen", "position": Vector3.ZERO, "level": 2})
-	_near(queen.max_health, 1000 * 1.12 * 4.3, "Rainha: ~4.800 de vida no solo")
+	_near(queen.max_health, float(GameData.monsters.demon_rat_queen.max_health) * 1.12 * 4.3, "Rainha: ~4.300 de vida no solo (DPS do herói no nível 2 x 2 min)")
 	_check(queen.is_boss() and queen.category() == "boss", "Rainha é chefe")
 	for e: Enemy in [rat, elite, gator, queen]:
 		e.free()

@@ -2799,10 +2799,6 @@
     "player_class": "mage",
     "map_id": "map_sewers",
     "area_level": 1,
-    "loot_scale": {
-      "potion": 0.7,
-      "valuable": 0.3
-    },
     "final": true,
     "victory_key": "HUD_VICTORY_SEWERS",
     "victory_groups": [
@@ -11375,14 +11371,15 @@
         ]
       }
     ],
-    "passive": true
+    "passive": true,
+    "xp_scale": 0.954
   },
   "forest_01_path": {
     "_comment": "Floresta (04-tortuga-e-missoes.md, missão 3 na ordem do mapa: Tortuga -> Floresta -> Ruínas -> Cemitério -> Forte). Mapa de salas e trilhas no desenho de ~/Downloads/map-forest.jpg: a aldeia na partida (sudoeste) e uma rota principal (Praça da Pira, encruzilhada, Praça da Pedra) até o Covil do Leshy (chefe final, com a saída, no nordeste). As duas praças são as áreas de mini-chefe: o NPC de cada uma passa a missão e invoca um golem. Quatro caminhos sem saída terminam em salas de monstros (Clareira dos Sapos, Gruta dos Morcegos, Covil das Bestas, Toca dos Répteis); marcos de pedra nas portas e trilhas de lajes. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_FOREST",
     "player_class": "mage",
     "map_id": "map_forest",
-    "area_level": 2,
+    "area_level": 3,
     "outdoor": true,
     "wake_radius": 10.0,
     "alert_radius": 5.0,
@@ -11734,7 +11731,8 @@
             "monster": "acid_toad",
             "count": 3
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_toads_b",
@@ -11747,7 +11745,8 @@
             "monster": "acid_toad",
             "count": 3
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_toads_c",
@@ -11760,7 +11759,8 @@
             "monster": "acid_toad",
             "count": 3
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_toads_d",
@@ -11773,7 +11773,8 @@
             "monster": "acid_toad",
             "count": 3
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_beasts",
@@ -11786,7 +11787,8 @@
             "monster": "chitin_beast",
             "count": 2
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_beasts_b",
@@ -11799,7 +11801,8 @@
             "monster": "chitin_beast",
             "count": 2
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_beasts_c",
@@ -11812,7 +11815,8 @@
             "monster": "chitin_beast",
             "count": 2
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_beasts_d",
@@ -11825,7 +11829,8 @@
             "monster": "chitin_beast",
             "count": 2
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_leshy",
@@ -11838,7 +11843,8 @@
             "monster": "leshy",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_toads_s1",
@@ -11851,7 +11857,8 @@
             "monster": "acid_toad",
             "count": 3
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_toads_s2",
@@ -11864,7 +11871,8 @@
             "monster": "acid_toad",
             "count": 3
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_toads_s3",
@@ -11877,7 +11885,8 @@
             "monster": "acid_toad",
             "count": 3
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_toads_s4",
@@ -11890,7 +11899,8 @@
             "monster": "acid_toad",
             "count": 3
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_trolls_a",
@@ -11903,7 +11913,8 @@
             "monster": "forest_troll",
             "count": 2
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_trolls_b",
@@ -11916,7 +11927,8 @@
             "monster": "forest_troll",
             "count": 2
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_trolls_c",
@@ -11929,7 +11941,8 @@
             "monster": "forest_troll",
             "count": 2
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_trolls_d",
@@ -11942,7 +11955,8 @@
             "monster": "forest_troll",
             "count": 2
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_trolls_e",
@@ -11955,7 +11969,8 @@
             "monster": "forest_troll",
             "count": 2
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_trolls_f",
@@ -11968,7 +11983,8 @@
             "monster": "forest_troll",
             "count": 2
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_trolls_g",
@@ -11981,7 +11997,8 @@
             "monster": "forest_troll",
             "count": 2
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_fungus_a",
@@ -11994,7 +12011,8 @@
             "monster": "fungus_uncle",
             "count": 2
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_fungus_b",
@@ -12007,7 +12025,8 @@
             "monster": "fungus_uncle",
             "count": 2
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_fungus_c",
@@ -12020,7 +12039,8 @@
             "monster": "fungus_uncle",
             "count": 2
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_fungus_d",
@@ -12033,7 +12053,8 @@
             "monster": "fungus_uncle",
             "count": 2
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_fungus_e",
@@ -12046,7 +12067,8 @@
             "monster": "fungus_uncle",
             "count": 2
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_fungus_f",
@@ -12059,7 +12081,8 @@
             "monster": "fungus_uncle",
             "count": 2
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_fungus_g",
@@ -12072,7 +12095,8 @@
             "monster": "fungus_uncle",
             "count": 2
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_fungus_h",
@@ -12085,7 +12109,8 @@
             "monster": "fungus_uncle",
             "count": 2
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_1",
@@ -12098,7 +12123,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_2",
@@ -12111,7 +12137,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_3",
@@ -12124,7 +12151,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_4",
@@ -12137,7 +12165,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_5",
@@ -12150,7 +12179,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_6",
@@ -12163,7 +12193,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_7",
@@ -12176,7 +12207,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_8",
@@ -12189,7 +12221,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_9",
@@ -12202,7 +12235,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_10",
@@ -12215,7 +12249,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_11",
@@ -12228,7 +12263,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_12",
@@ -12241,7 +12277,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_13",
@@ -12254,7 +12291,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_14",
@@ -12267,7 +12305,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_15",
@@ -12280,7 +12319,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_16",
@@ -12293,7 +12333,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_17",
@@ -12306,7 +12347,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_18",
@@ -12319,7 +12361,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_19",
@@ -12332,7 +12375,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_20",
@@ -12345,7 +12389,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_21",
@@ -12358,7 +12403,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_22",
@@ -12371,7 +12417,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_23",
@@ -12384,7 +12431,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_24",
@@ -12397,7 +12445,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       },
       {
         "id": "f_mimic_25",
@@ -12410,7 +12459,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 3
       }
     ],
     "hazards": [],
@@ -12580,7 +12630,8 @@
               "monster": "forest_tomb_guardian",
               "count": 1
             }
-          ]
+          ],
+          "level": 3
         },
         "needs_key": "book_forest_1",
         "extra_summons": [
@@ -12601,7 +12652,8 @@
                   "count": 1,
                   "rank": "miniboss"
                 }
-              ]
+              ],
+              "level": 3
             }
           }
         ]
@@ -38211,9 +38263,6 @@
       }
     ],
     "passive": true,
-    "loot_scale": {
-      "potion": 1.8
-    },
     "crowd": [
       {
         "role": "hunter",
@@ -38413,14 +38462,15 @@
       }
     ],
     "_spacing": 12.0,
-    "_vegetation": "retouch_forest_vegetation.py"
+    "_vegetation": "retouch_forest_vegetation.py",
+    "xp_scale": 1.019
   },
   "ruins_01_city": {
     "_comment": "Ruínas da cidade destruída na guerra, ampliadas: estrutura da Floresta com outro caminho, mistura de partes murados (Bairro Velho e Bairro do Mercado = labirinto de ruas Ruins_Layout, Destroyed Walls, LFA, CC BY 3.0; Cidadela; corredor do portão; Cofre Real) e partes abertas (Acesso, Fórum, Praças, Avenida das Colunas, Pátio Alto). Acesso -> Fórum; a oeste o Bairro Velho e a Praça dos Cavaleiros (a estátua do cavaleiro desperta o Guardião das Ruínas), a leste o Bairro do Mercado e a Praça dos Monólitos (a Sacerdotisa desperta o Campeão Caído), ao meio a Avenida das Colunas; tudo fecha no Pátio Alto -> Cidadela -> corredor do portão (Porteiro, duas chaves) -> Cofre Real (Rei Caído, chefe final, com a saída). Gerado por tools/assets/build_ruins.py.",
     "name_key": "ARENA_RUINS",
     "player_class": "mage",
     "map_id": "map_ruins",
-    "area_level": 5,
+    "area_level": 7,
     "outdoor": true,
     "final": true,
     "victory_groups": [
@@ -38625,7 +38675,8 @@
             "monster": "goblin",
             "count": 4
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_lizards_a",
@@ -38638,7 +38689,8 @@
             "monster": "goblin",
             "count": 3
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_scorp_w",
@@ -38651,7 +38703,8 @@
             "monster": "ru_ghost",
             "count": 3
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_goblins_b",
@@ -38664,7 +38717,8 @@
             "monster": "goblin",
             "count": 5
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_lizards_b",
@@ -38677,7 +38731,8 @@
             "monster": "goblin",
             "count": 3
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_scorp_e",
@@ -38690,7 +38745,8 @@
             "monster": "ru_ghost",
             "count": 3
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_forum_a",
@@ -38703,7 +38759,8 @@
             "monster": "goblin",
             "count": 3
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_forum_b",
@@ -38716,7 +38773,8 @@
             "monster": "ru_ghost",
             "count": 3
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_forum_c",
@@ -38729,7 +38787,8 @@
             "monster": "ru_hound",
             "count": 4
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_bats",
@@ -38742,7 +38801,8 @@
             "monster": "ru_hound",
             "count": 4
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_bats_w",
@@ -38755,7 +38815,8 @@
             "monster": "ru_hound",
             "count": 4
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_plaza_w_a",
@@ -38768,7 +38829,8 @@
             "monster": "goblin",
             "count": 3
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_plaza_w_b",
@@ -38781,7 +38843,8 @@
             "monster": "ru_ghost",
             "count": 2
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_plaza_e_a",
@@ -38794,7 +38857,8 @@
             "monster": "goblin",
             "count": 3
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_plaza_e_b",
@@ -38807,7 +38871,8 @@
             "monster": "ru_ghost",
             "count": 2
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_avenue_a",
@@ -38820,7 +38885,8 @@
             "monster": "ru_hound",
             "count": 3
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_avenue_b",
@@ -38833,7 +38899,8 @@
             "monster": "goblin",
             "count": 3
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_yard_a",
@@ -38846,7 +38913,8 @@
             "monster": "goblin",
             "count": 4
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_yard_b",
@@ -38859,7 +38927,8 @@
             "monster": "ru_ghost",
             "count": 3
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_yard_c",
@@ -38872,7 +38941,8 @@
             "monster": "ru_hound",
             "count": 3
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_alpha",
@@ -38885,7 +38955,8 @@
             "monster": "ruin_alpha",
             "count": 1
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_cit_a",
@@ -38898,7 +38969,8 @@
             "monster": "goblin",
             "count": 4
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_cit_b",
@@ -38911,7 +38983,8 @@
             "monster": "ru_ghost",
             "count": 3
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_cit_c",
@@ -38924,7 +38997,8 @@
             "monster": "ru_hound",
             "count": 4
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_vault_a",
@@ -38937,7 +39011,8 @@
             "monster": "goblin",
             "count": 3
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_vault_b",
@@ -38950,7 +39025,8 @@
             "monster": "goblin",
             "count": 3
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_mimic_w",
@@ -38963,7 +39039,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_mimic_e",
@@ -38976,7 +39053,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_mimic_yard",
@@ -38989,7 +39067,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_mimic_vault",
@@ -39002,7 +39081,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 7
       },
       {
         "id": "r_boss",
@@ -39015,7 +39095,8 @@
             "monster": "fallen_king",
             "count": 1
           }
-        ]
+        ],
+        "level": 8
       }
     ],
     "hazards": [],
@@ -39102,7 +39183,8 @@
               "count": 1,
               "rank": "miniboss"
             }
-          ]
+          ],
+          "level": 7
         },
         "needs_key": "book_ruins_1",
         "extra_summons": [
@@ -39123,7 +39205,8 @@
                   "count": 1,
                   "rank": "miniboss"
                 }
-              ]
+              ],
+              "level": 7
             }
           }
         ]
@@ -62515,14 +62598,15 @@
         ]
       }
     ],
-    "passive": true
+    "passive": true,
+    "xp_scale": 0.69
   },
   "cemetery_01_yard": {
     "_comment": "Cemitério (Medieval Props Textured, Clint Bellanger, CC BY 3.0, modelos de Lamoot): mapa de salas e corredores no desenho de calabouço da referência do autor, cercado de vazio, com sete setores de um monstro cada (1 Campo de Covas, 2 Terra dos Escorpiões, 3 Ossuário, 4 Cova dos Mortos, 5 Alameda da Estátua, 6 Catacumbas, 7 Covil do Troll), duas praças de ruínas com mini-chefe a 170 m uma da outra, corredores em anéis e uma rede de trilhas de lajes musgosas, grades pretas nas salas, jarros que soltam poção, ossos e a cripta do Senhor da Cripta no fundo. Gerado por tools/assets/build_maps.py.",
     "name_key": "ARENA_CEMETERY",
     "player_class": "mage",
     "map_id": "map_cemetery",
-    "area_level": 7,
+    "area_level": 9,
     "outdoor": true,
     "wake_radius": 10.0,
     "alert_radius": 5.0,
@@ -62927,7 +63011,8 @@
             "monster": "ce_digger",
             "count": 3
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s1_2",
@@ -62940,7 +63025,8 @@
             "monster": "ce_digger",
             "count": 3
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s2_3",
@@ -62953,7 +63039,8 @@
             "monster": "ce_maggot",
             "count": 3
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s2_4",
@@ -62966,7 +63053,8 @@
             "monster": "ce_maggot",
             "count": 4
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s2_5",
@@ -62979,7 +63067,8 @@
             "monster": "ce_maggot",
             "count": 3
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s3_6",
@@ -62992,7 +63081,8 @@
             "monster": "skeleton",
             "count": 3
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s3_7",
@@ -63005,7 +63095,8 @@
             "monster": "skeleton",
             "count": 4
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s3_8",
@@ -63018,7 +63109,8 @@
             "monster": "skeleton",
             "count": 3
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s3_9",
@@ -63031,7 +63123,8 @@
             "monster": "skeleton",
             "count": 4
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s3_10",
@@ -63044,7 +63137,8 @@
             "monster": "skeleton",
             "count": 3
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s3_11",
@@ -63057,7 +63151,8 @@
             "monster": "skeleton",
             "count": 4
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s4_12",
@@ -63070,7 +63165,8 @@
             "monster": "zombie",
             "count": 3
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s4_13",
@@ -63083,7 +63179,8 @@
             "monster": "zombie",
             "count": 4
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s4_14",
@@ -63096,7 +63193,8 @@
             "monster": "zombie",
             "count": 3
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s4_15",
@@ -63109,7 +63207,8 @@
             "monster": "zombie",
             "count": 4
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s4_16",
@@ -63122,7 +63221,8 @@
             "monster": "zombie",
             "count": 3
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s5_17",
@@ -63135,7 +63235,8 @@
             "monster": "ce_gargoyle",
             "count": 2
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s5_18",
@@ -63148,7 +63249,8 @@
             "monster": "ce_gargoyle",
             "count": 2
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s5_19",
@@ -63161,7 +63263,8 @@
             "monster": "ce_gargoyle",
             "count": 2
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s6_20",
@@ -63174,7 +63277,8 @@
             "monster": "ce_ghoul",
             "count": 4
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s6_21",
@@ -63187,7 +63291,8 @@
             "monster": "ce_ghoul",
             "count": 5
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s6_22",
@@ -63200,7 +63305,8 @@
             "monster": "ce_ghoul",
             "count": 4
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s6_23",
@@ -63213,7 +63319,8 @@
             "monster": "ce_ghoul",
             "count": 5
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s6_24",
@@ -63226,7 +63333,8 @@
             "monster": "ce_ghoul",
             "count": 4
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s6_25",
@@ -63239,7 +63347,8 @@
             "monster": "ce_ghoul",
             "count": 5
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s6_26",
@@ -63252,7 +63361,8 @@
             "monster": "ce_ghoul",
             "count": 4
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s6_27",
@@ -63265,7 +63375,8 @@
             "monster": "ce_ghoul",
             "count": 5
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s6_28",
@@ -63278,7 +63389,8 @@
             "monster": "ce_ghoul",
             "count": 4
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s7_29",
@@ -63291,7 +63403,8 @@
             "monster": "ce_brute",
             "count": 1
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s7_30",
@@ -63304,7 +63417,8 @@
             "monster": "ce_brute",
             "count": 1
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_s7_31",
@@ -63317,7 +63431,8 @@
             "monster": "ce_brute",
             "count": 1
           }
-        ]
+        ],
+        "level": 9
       },
       {
         "id": "c_boss",
@@ -63330,7 +63445,8 @@
             "monster": "crypt_lord",
             "count": 1
           }
-        ]
+        ],
+        "level": 10
       }
     ],
     "hazards": [],
@@ -63386,7 +63502,7 @@
             -166.0,
             -35.5
           ],
-          "level": 1,
+          "level": 9,
           "toast": "",
           "monsters": [
             {
@@ -63411,7 +63527,8 @@
                   "monster": "ce_warden",
                   "count": 1
                 }
-              ]
+              ],
+              "level": 9
             }
           }
         ],
@@ -113475,14 +113592,15 @@
     "final": true,
     "victory_groups": [
       "c_boss"
-    ]
+    ],
+    "xp_scale": 0.782
   },
   "fort_01_gate": {
     "_comment": "Forte, ampliado (3D Dungeon Tileset, Skorpio, CC BY-SA 3.0): grade de 54 x 54 células de 2,5 m com pedra e piso do pacote (Fort_<máscara>); a colisão é uma caixa por trecho de pedra. Estrutura da Floresta com outro caminho: Guarnição (partida) -> Pátio de Armas -> três rotas para a Galeria (oeste: Quartel -> Ossuário, onde o Exilado desperta o Senhor Elfo Sombrio; leste: Quartel -> Salão do Trono, onde a Penitente desperta a Rainha das Súcubos; meio: Salão das Colunas) -> corredor do portão (Carcereiro, duas chaves) -> Salão do Barão (Barão Infernal, chefe final, com a saída). O Comandante anda solto no Pátio de Armas. Gerado por tools/assets/build_fort.py.",
     "name_key": "ARENA_FORT",
     "player_class": "mage",
     "map_id": "map_fort",
-    "area_level": 10,
+    "area_level": 11,
     "final": true,
     "victory_groups": [
       "fo_boss"
@@ -113521,7 +113639,8 @@
             "monster": "fo_imp",
             "count": 2
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_yard_b",
@@ -113538,7 +113657,8 @@
             "monster": "dark_elf",
             "count": 1
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_commander",
@@ -113555,7 +113675,8 @@
             "monster": "dark_elf",
             "count": 2
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_barracks_w",
@@ -113572,7 +113693,8 @@
             "monster": "fo_imp",
             "count": 2
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_barracks_e",
@@ -113585,7 +113707,8 @@
             "monster": "succubus",
             "count": 3
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_corr_w",
@@ -113598,7 +113721,8 @@
             "monster": "fo_imp",
             "count": 3
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_corr_e",
@@ -113611,7 +113735,8 @@
             "monster": "fo_imp",
             "count": 3
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_ossuary",
@@ -113628,7 +113753,8 @@
             "monster": "dark_elf",
             "count": 2
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_throne",
@@ -113645,7 +113771,8 @@
             "monster": "night_demon",
             "count": 2
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_cross_a",
@@ -113658,7 +113785,8 @@
             "monster": "dark_elf",
             "count": 3
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_cross_b",
@@ -113671,7 +113799,8 @@
             "monster": "succubus",
             "count": 3
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_cross_c",
@@ -113684,7 +113813,8 @@
             "monster": "fo_imp",
             "count": 4
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_gallery_a",
@@ -113697,7 +113827,8 @@
             "monster": "dark_elf",
             "count": 3
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_gallery_b",
@@ -113710,7 +113841,8 @@
             "monster": "fo_hound",
             "count": 3
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_gallery_c",
@@ -113723,7 +113855,8 @@
             "monster": "night_demon",
             "count": 3
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_gallery_d",
@@ -113736,7 +113869,8 @@
             "monster": "succubus",
             "count": 3
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_up_w",
@@ -113749,7 +113883,8 @@
             "monster": "fo_imp",
             "count": 3
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_up_e",
@@ -113762,7 +113897,8 @@
             "monster": "fo_imp",
             "count": 3
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_mimic_w",
@@ -113775,7 +113911,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_mimic_e",
@@ -113788,7 +113925,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_mimic_vw",
@@ -113801,7 +113939,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_mimic_ve",
@@ -113814,7 +113953,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_guard_a",
@@ -113831,7 +113971,8 @@
             "monster": "succubus",
             "count": 1
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_guard_b",
@@ -113848,7 +113989,8 @@
             "monster": "succubus",
             "count": 1
           }
-        ]
+        ],
+        "level": 11
       },
       {
         "id": "fo_boss",
@@ -113861,7 +114003,8 @@
             "monster": "fort_baron",
             "count": 1
           }
-        ]
+        ],
+        "level": 12
       }
     ],
     "hazards": [],
@@ -114114,7 +114257,8 @@
               "count": 1,
               "rank": "miniboss"
             }
-          ]
+          ],
+          "level": 11
         },
         "extra_summons": [
           {
@@ -114134,7 +114278,8 @@
                   "count": 1,
                   "rank": "miniboss"
                 }
-              ]
+              ],
+              "level": 11
             }
           }
         ]
@@ -127966,14 +128111,15 @@
         "pose": "walk"
       }
     ],
-    "passive": true
+    "passive": true,
+    "xp_scale": 0.984
   },
   "dark_forest_01_woods": {
     "_comment": "Floresta Escura, ampliada: mata aberta de grama escura cercada de arbustos e bambus (como a Floresta), com árvores secas, cogumelos, morcegos e cobras no cenário. Estrutura da Floresta com outro caminho: Clareira da Borda (partida) -> Matagal e três rotas até a Mata Seca (oeste: Pântano das Cobras -> Clareira das Serpentes, onde o Totem desperta a Víbora Anciã; leste: Bosque dos Cogumelos -> Círculo de Esporos, onde o Cogumelo Ancestral desperta o Rei dos Esporos; direta ao norte) -> Bosque dos Morcegos -> corredor do portão (Guardião, duas chaves) -> Covil do Ancião Sombrio (chefe final, com a saída). Gerado por tools/assets/build_darkforest.py.",
     "name_key": "ARENA_DARK_FOREST",
     "player_class": "mage",
     "map_id": "map_dark_forest",
-    "area_level": 8,
+    "area_level": 20,
     "outdoor": true,
     "final": true,
     "victory_groups": [
@@ -128159,7 +128305,8 @@
             "monster": "fd_raven",
             "count": 3
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_thicket_b",
@@ -128172,7 +128319,8 @@
             "monster": "fd_wolf",
             "count": 4
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_thicket_c",
@@ -128185,7 +128333,8 @@
             "monster": "plague_bat",
             "count": 4
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_thicket_d",
@@ -128198,7 +128347,8 @@
             "monster": "forest_reptile",
             "count": 3
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_bog_a",
@@ -128215,7 +128365,8 @@
             "monster": "fd_widow",
             "count": 2
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_bog_b",
@@ -128228,7 +128379,8 @@
             "monster": "forest_reptile",
             "count": 3
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_bog_c",
@@ -128241,7 +128393,8 @@
             "monster": "fd_widow",
             "count": 3
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_mimic_bog",
@@ -128254,7 +128407,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_grove_a",
@@ -128267,7 +128421,8 @@
             "monster": "fd_mushroom",
             "count": 2
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_grove_b",
@@ -128284,7 +128439,8 @@
             "monster": "fd_wolf",
             "count": 3
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_grove_c",
@@ -128297,7 +128453,8 @@
             "monster": "fd_wolf",
             "count": 4
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_mimic_grove",
@@ -128310,7 +128467,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_hollow_a",
@@ -128323,7 +128481,8 @@
             "monster": "forest_reptile",
             "count": 3
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_hollow_b",
@@ -128336,7 +128495,8 @@
             "monster": "fd_widow",
             "count": 3
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_ring_a",
@@ -128349,7 +128509,8 @@
             "monster": "fd_mushroom",
             "count": 2
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_ring_b",
@@ -128362,7 +128523,8 @@
             "monster": "fd_wolf",
             "count": 4
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_dead_a",
@@ -128375,7 +128537,8 @@
             "monster": "fd_hanged",
             "count": 4
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_dead_b",
@@ -128388,7 +128551,8 @@
             "monster": "fd_hunter",
             "count": 4
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_dead_c",
@@ -128401,7 +128565,8 @@
             "monster": "fd_stag",
             "count": 2
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_dead_d",
@@ -128414,7 +128579,8 @@
             "monster": "fd_wisp",
             "count": 2
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_bats_a",
@@ -128427,7 +128593,8 @@
             "monster": "plague_bat",
             "count": 5
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_bats_b",
@@ -128440,7 +128607,8 @@
             "monster": "plague_bat",
             "count": 5
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_bats_c",
@@ -128453,7 +128621,8 @@
             "monster": "fd_raven",
             "count": 3
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_bats_d",
@@ -128466,7 +128635,8 @@
             "monster": "fd_wisp",
             "count": 2
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_lair_a",
@@ -128483,7 +128653,8 @@
             "monster": "fd_hunter",
             "count": 2
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_lair_b",
@@ -128500,7 +128671,8 @@
             "monster": "fd_hunter",
             "count": 2
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_mimic_lair",
@@ -128513,7 +128685,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "fd_boss",
@@ -128526,7 +128699,8 @@
             "monster": "fd_elder",
             "count": 1
           }
-        ]
+        ],
+        "level": 20
       }
     ],
     "hazards": [],
@@ -128614,7 +128788,8 @@
               "count": 1,
               "rank": "miniboss"
             }
-          ]
+          ],
+          "level": 20
         },
         "needs_key": "book_dark_forest_1",
         "extra_summons": [
@@ -128635,7 +128810,8 @@
                   "count": 1,
                   "rank": "miniboss"
                 }
-              ]
+              ],
+              "level": 20
             }
           }
         ]
@@ -144006,7 +144182,8 @@
         "speed": 2.9
       }
     ],
-    "passive": true
+    "passive": true,
+    "xp_scale": 0.931
   },
   "capital_01_aurenhold": {
     "_comment": "Capital Real, Aurenhold (04-1-capital-real.md): a cidade do reino vencedor, rica e cheia de guardas; segunda cidade-base, depois do Forte. Primeira passada: praça do portão, avenida e pátio do castelo, com a segurança feita pelos 10 guardas que treinavam em Tortuga. Ainda sem lojas, Bobo da Corte nem missões. Gerado por tools/assets/build_maps.py.",
@@ -171473,7 +171650,7 @@
     "name_key": "ARENA_MINE",
     "player_class": "mage",
     "map_id": "map_mine",
-    "area_level": 5,
+    "area_level": 17,
     "final": true,
     "victory_groups": [
       "mn_boss"
@@ -173329,7 +173506,8 @@
             "monster": "mn_spider",
             "count": 2
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s1_2",
@@ -173346,7 +173524,8 @@
             "monster": "mn_spider",
             "count": 3
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s1_3",
@@ -173363,7 +173542,8 @@
             "monster": "mn_spider",
             "count": 2
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s1_4",
@@ -173376,7 +173556,8 @@
             "monster": "mn_digger",
             "count": 4
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s1_5",
@@ -173393,7 +173574,8 @@
             "monster": "mn_spider",
             "count": 3
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s1_6",
@@ -173410,7 +173592,8 @@
             "monster": "mn_spider",
             "count": 3
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s1_7",
@@ -173423,7 +173606,8 @@
             "monster": "mn_digger",
             "count": 4
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s1_8",
@@ -173436,7 +173620,8 @@
             "monster": "mn_digger",
             "count": 4
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s1_9",
@@ -173453,7 +173638,8 @@
             "monster": "mn_spider",
             "count": 3
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s1_10",
@@ -173466,7 +173652,8 @@
             "monster": "mn_digger",
             "count": 4
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s1_11",
@@ -173479,7 +173666,8 @@
             "monster": "mn_digger",
             "count": 4
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s1_12",
@@ -173492,7 +173680,8 @@
             "monster": "mn_digger",
             "count": 4
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s1_13",
@@ -173509,7 +173698,8 @@
             "monster": "mn_spider",
             "count": 3
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s1_14",
@@ -173526,7 +173716,8 @@
             "monster": "mn_spider",
             "count": 3
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s1_15",
@@ -173539,7 +173730,8 @@
             "monster": "mn_digger",
             "count": 4
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s2_1",
@@ -173552,7 +173744,8 @@
             "monster": "mn_worm",
             "count": 3
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s2_2",
@@ -173565,7 +173758,8 @@
             "monster": "mn_worm",
             "count": 3
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s3_1",
@@ -173578,7 +173772,8 @@
             "monster": "mn_gnome",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s3_2",
@@ -173591,7 +173786,8 @@
             "monster": "mn_gnome",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s3_3",
@@ -173604,7 +173800,8 @@
             "monster": "mn_gnome",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s3_4",
@@ -173617,7 +173814,8 @@
             "monster": "mn_worm",
             "count": 3
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s2_3",
@@ -173630,7 +173828,8 @@
             "monster": "mn_bones",
             "count": 3
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s2_4",
@@ -173643,7 +173842,8 @@
             "monster": "mn_bones",
             "count": 3
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s3_5",
@@ -173660,7 +173860,8 @@
             "monster": "stalker",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s3_6",
@@ -173677,7 +173878,8 @@
             "monster": "stalker",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s3_7",
@@ -173690,7 +173892,8 @@
             "monster": "mn_gnome",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s2_5",
@@ -173703,7 +173906,8 @@
             "monster": "mn_worm",
             "count": 3
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s2_6",
@@ -173716,7 +173920,8 @@
             "monster": "mn_bones",
             "count": 3
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s2_7",
@@ -173729,7 +173934,8 @@
             "monster": "mn_worm",
             "count": 3
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s2_8",
@@ -173742,7 +173948,8 @@
             "monster": "mn_bones",
             "count": 3
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s3_8",
@@ -173755,7 +173962,8 @@
             "monster": "mn_gnome",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s3_9",
@@ -173768,7 +173976,8 @@
             "monster": "mn_gnome",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s3_10",
@@ -173781,7 +173990,8 @@
             "monster": "mn_worm",
             "count": 3
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s3_11",
@@ -173798,7 +174008,8 @@
             "monster": "stalker",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s5_1",
@@ -173811,7 +174022,8 @@
             "monster": "mn_bones",
             "count": 4
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s5_2",
@@ -173824,7 +174036,8 @@
             "monster": "mn_magma",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s5_3",
@@ -173837,7 +174050,8 @@
             "monster": "mn_magma",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s5_4",
@@ -173850,7 +174064,8 @@
             "monster": "mn_bones",
             "count": 4
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_tomb",
@@ -173863,7 +174078,8 @@
             "monster": "tomb_guardian",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s4_1",
@@ -173876,7 +174092,8 @@
             "monster": "golem_ice",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s4_2",
@@ -173889,7 +174106,8 @@
             "monster": "mn_cave_troll",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s5_5",
@@ -173902,7 +174120,8 @@
             "monster": "mn_magma",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s5_6",
@@ -173919,7 +174138,8 @@
             "monster": "mn_digger",
             "count": 2
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s5_7",
@@ -173932,7 +174152,8 @@
             "monster": "mn_magma",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s5_8",
@@ -173949,7 +174170,8 @@
             "monster": "mn_digger",
             "count": 2
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s4_3",
@@ -173962,7 +174184,8 @@
             "monster": "golem_ice",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s4_4",
@@ -173979,7 +174202,8 @@
             "monster": "mn_digger",
             "count": 2
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s5_9",
@@ -173992,7 +174216,8 @@
             "monster": "mn_magma",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s5_10",
@@ -174009,7 +174234,8 @@
             "monster": "mn_digger",
             "count": 2
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s5_11",
@@ -174026,7 +174252,8 @@
             "monster": "mn_digger",
             "count": 2
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s5_12",
@@ -174039,7 +174266,8 @@
             "monster": "mn_magma",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s4_5",
@@ -174052,7 +174280,8 @@
             "monster": "golem_ice",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s4_6",
@@ -174069,7 +174298,8 @@
             "monster": "mn_digger",
             "count": 2
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s6_1",
@@ -174086,7 +174316,8 @@
             "monster": "stalker",
             "count": 2
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s6_2",
@@ -174099,7 +174330,8 @@
             "monster": "mn_cave_troll",
             "count": 2
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s6_3",
@@ -174116,7 +174348,8 @@
             "monster": "stalker",
             "count": 2
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s6_4",
@@ -174129,7 +174362,8 @@
             "monster": "mn_cave_troll",
             "count": 2
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s6_5",
@@ -174146,7 +174380,8 @@
             "monster": "stalker",
             "count": 2
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s6_6",
@@ -174163,7 +174398,8 @@
             "monster": "golem_ice",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s6_7",
@@ -174180,7 +174416,8 @@
             "monster": "stalker",
             "count": 2
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s6_8",
@@ -174197,7 +174434,8 @@
             "monster": "golem_ice",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s6_9",
@@ -174210,7 +174448,8 @@
             "monster": "mn_cave_troll",
             "count": 2
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s6_10",
@@ -174227,7 +174466,8 @@
             "monster": "golem_ice",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_s6_11",
@@ -174244,7 +174484,8 @@
             "monster": "golem_ice",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_mimic_5_10",
@@ -174257,7 +174498,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_boss",
@@ -174270,7 +174512,8 @@
             "monster": "crystal_golem",
             "count": 1
           }
-        ]
+        ],
+        "level": 18
       },
       {
         "id": "mn_secret",
@@ -174283,7 +174526,8 @@
             "monster": "mn_cave_troll",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       },
       {
         "id": "mn_mimic_secret",
@@ -174296,7 +174540,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 17
       }
     ],
     "hazards": [],
@@ -174384,7 +174629,8 @@
               "count": 1,
               "rank": "miniboss"
             }
-          ]
+          ],
+          "level": 17
         },
         "needs_key": "book_mine_1",
         "extra_summons": [
@@ -174405,7 +174651,8 @@
                   "count": 1,
                   "rank": "miniboss"
                 }
-              ]
+              ],
+              "level": 17
             }
           }
         ]
@@ -197369,14 +197616,15 @@
         "speed": 0.91
       }
     ],
-    "passive": true
+    "passive": true,
+    "xp_scale": 0.344
   },
   "docks_01_pier": {
     "_comment": "Docas, ampliadas (Modular Wooden Docks, loafbrr, CC0): píeres sobre o mar com a estrutura da Floresta e outro caminho. Cais de partida -> Píer Principal -> Mercado de Peixe; laço oeste (Estaleiro: casco encalhado desperta o Casco Vivo) e laço leste (Peixaria: a Peixeira desperta o Tubarão-Porco), fechando no Farol e no Armazém; Calçada -> Atracadouro -> corredor do portão (Vigia, duas chaves) -> Convés do Capitão Afogado (chefe final, com a saída). Mantém os encontros dk_* da missão dos contrabandistas. Gerado por tools/assets/build_docks.py.",
     "name_key": "ARENA_DOCKS",
     "player_class": "mage",
     "map_id": "map_docks",
-    "area_level": 2,
+    "area_level": 5,
     "outdoor": true,
     "final": true,
     "victory_groups": [
@@ -197644,7 +197892,8 @@
             "monster": "dk_drowned",
             "count": 4
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_toads",
@@ -197657,7 +197906,8 @@
             "monster": "dk_gator",
             "count": 3
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_bats",
@@ -197670,7 +197920,8 @@
             "monster": "dk_crab",
             "count": 4
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_rats_b",
@@ -197687,7 +197938,8 @@
             "monster": "angler",
             "count": 2
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_anglers",
@@ -197700,7 +197952,8 @@
             "monster": "angler",
             "count": 2
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_market_a",
@@ -197713,7 +197966,8 @@
             "monster": "dk_drowned",
             "count": 3
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_market_b",
@@ -197726,7 +197980,8 @@
             "monster": "dk_deckhand",
             "count": 3
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_market_c",
@@ -197739,7 +197994,8 @@
             "monster": "dk_crab",
             "count": 3
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_east_pier",
@@ -197752,7 +198008,8 @@
             "monster": "dk_gator",
             "count": 2
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_yard_a",
@@ -197765,7 +198022,8 @@
             "monster": "angler",
             "count": 3
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_yard_b",
@@ -197778,7 +198036,8 @@
             "monster": "dk_gator",
             "count": 3
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_fishery_a",
@@ -197791,7 +198050,8 @@
             "monster": "dk_crab",
             "count": 4
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_fishery_b",
@@ -197804,7 +198064,8 @@
             "monster": "dk_deckhand",
             "count": 3
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_light_a",
@@ -197817,7 +198078,8 @@
             "monster": "angler",
             "count": 3
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_light_b",
@@ -197830,7 +198092,8 @@
             "monster": "dk_crab",
             "count": 3
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_ware_a",
@@ -197843,7 +198106,8 @@
             "monster": "dk_deckhand",
             "count": 3
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_ware_b",
@@ -197856,7 +198120,8 @@
             "monster": "angler",
             "count": 3
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_wharf_a",
@@ -197869,7 +198134,8 @@
             "monster": "dk_drowned",
             "count": 4
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_wharf_b",
@@ -197882,7 +198148,8 @@
             "monster": "dk_crab",
             "count": 4
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_boathouse_mimic",
@@ -197895,7 +198162,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_yard_mimic",
@@ -197908,7 +198176,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_light_mimic",
@@ -197921,7 +198190,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_ware_mimic",
@@ -197934,7 +198204,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_deck_a",
@@ -197947,7 +198218,8 @@
             "monster": "angler",
             "count": 2
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_deck_b",
@@ -197960,7 +198232,8 @@
             "monster": "angler",
             "count": 2
           }
-        ]
+        ],
+        "level": 5
       },
       {
         "id": "dk_captain",
@@ -197973,7 +198246,8 @@
             "monster": "drowned_captain",
             "count": 1
           }
-        ]
+        ],
+        "level": 6
       }
     ],
     "hazards": [],
@@ -198058,7 +198332,8 @@
               "count": 1,
               "rank": "miniboss"
             }
-          ]
+          ],
+          "level": 5
         },
         "needs_key": "book_docks_1",
         "extra_summons": [
@@ -198079,7 +198354,8 @@
                   "count": 1,
                   "rank": "miniboss"
                 }
-              ]
+              ],
+              "level": 5
             }
           }
         ],
@@ -204217,14 +204493,15 @@
         "speed": 0.5
       }
     ],
-    "passive": true
+    "passive": true,
+    "xp_scale": 1.215
   },
   "bunker_01_entrance": {
     "_comment": "Bunker, ampliado e feito labirinto (3D Dungeon Modular Wall Set 2, Paul Wortmann, CC0; Lamp, Mev Lyshkin, CC-BY): grade de células de 2 m (Bk_*), salas de 10 m ligadas por vãos de 6 m como o Esgoto, setores de monstros e salas especiais nas laterais (Depósito, Alojamento, Cofre, Arsenal, Enfermaria). Guarnição (partida) -> labirinto -> túnel do portão (Sentinela, duas chaves) -> Sala de Comando (General Ferrugem, chefe final, com a saída). Armamentos, ferramentas e suprimentos fazem a decoração. Gerado por tools/assets/build_bunker.py.",
     "name_key": "ARENA_BUNKER",
     "player_class": "mage",
     "map_id": "map_bunker",
-    "area_level": 2,
+    "area_level": 19,
     "final": true,
     "victory_groups": [
       "bk_boss"
@@ -204259,7 +204536,8 @@
             "monster": "bk_dead",
             "count": 3
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s1_2",
@@ -204272,7 +204550,8 @@
             "monster": "bk_dead",
             "count": 3
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s1_3",
@@ -204285,7 +204564,8 @@
             "monster": "bk_scavenger",
             "count": 4
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s1_4",
@@ -204298,7 +204578,8 @@
             "monster": "bk_dead",
             "count": 3
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s1_5",
@@ -204315,7 +204596,8 @@
             "monster": "bk_rat",
             "count": 2
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s1_6",
@@ -204328,7 +204610,8 @@
             "monster": "bk_gas",
             "count": 4
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s1_7",
@@ -204341,7 +204624,8 @@
             "monster": "bk_gas",
             "count": 4
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s1_8",
@@ -204358,7 +204642,8 @@
             "monster": "bk_rat",
             "count": 2
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s1_9",
@@ -204371,7 +204656,8 @@
             "monster": "bk_gas",
             "count": 4
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s1_10",
@@ -204388,7 +204674,8 @@
             "monster": "bk_rat",
             "count": 2
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s2_1",
@@ -204401,7 +204688,8 @@
             "monster": "bk_plate",
             "count": 1
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s2_2",
@@ -204414,7 +204702,8 @@
             "monster": "bk_plate",
             "count": 1
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s2_3",
@@ -204427,7 +204716,8 @@
             "monster": "bk_beetle",
             "count": 3
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s2_4",
@@ -204440,7 +204730,8 @@
             "monster": "bk_plate",
             "count": 1
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s2_5",
@@ -204457,7 +204748,8 @@
             "monster": "bk_scavenger",
             "count": 2
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s2_6",
@@ -204470,7 +204762,8 @@
             "monster": "bk_plate",
             "count": 1
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s2_7",
@@ -204483,7 +204776,8 @@
             "monster": "bk_infected",
             "count": 3
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s2_8",
@@ -204496,7 +204790,8 @@
             "monster": "bk_beetle",
             "count": 3
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s2_9",
@@ -204509,7 +204804,8 @@
             "monster": "bk_beetle",
             "count": 3
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s2_10",
@@ -204526,7 +204822,8 @@
             "monster": "bk_scavenger",
             "count": 2
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s2_11",
@@ -204539,7 +204836,8 @@
             "monster": "bk_plate",
             "count": 1
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s2_12",
@@ -204552,7 +204850,8 @@
             "monster": "bk_beetle",
             "count": 3
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s2_13",
@@ -204565,7 +204864,8 @@
             "monster": "bk_infected",
             "count": 3
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s2_14",
@@ -204582,7 +204882,8 @@
             "monster": "bk_scavenger",
             "count": 2
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s2_15",
@@ -204595,7 +204896,8 @@
             "monster": "bk_infected",
             "count": 3
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s3_1",
@@ -204608,7 +204910,8 @@
             "monster": "bk_brute",
             "count": 1
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s3_2",
@@ -204625,7 +204928,8 @@
             "monster": "bk_dead",
             "count": 2
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s3_3",
@@ -204642,7 +204946,8 @@
             "monster": "bk_dead",
             "count": 2
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s3_4",
@@ -204655,7 +204960,8 @@
             "monster": "bk_specter",
             "count": 2
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s3_5",
@@ -204668,7 +204974,8 @@
             "monster": "bk_plate",
             "count": 2
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s3_6",
@@ -204681,7 +204988,8 @@
             "monster": "bk_brute",
             "count": 1
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s3_7",
@@ -204698,7 +205006,8 @@
             "monster": "bk_dead",
             "count": 2
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s3_8",
@@ -204711,7 +205020,8 @@
             "monster": "bk_plate",
             "count": 2
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s3_9",
@@ -204724,7 +205034,8 @@
             "monster": "bk_plate",
             "count": 2
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s3_10",
@@ -204737,7 +205048,8 @@
             "monster": "bk_brute",
             "count": 1
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s3_11",
@@ -204750,7 +205062,8 @@
             "monster": "bk_plate",
             "count": 2
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s3_12",
@@ -204767,7 +205080,8 @@
             "monster": "bk_dead",
             "count": 2
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s3_13",
@@ -204780,7 +205094,8 @@
             "monster": "bk_plate",
             "count": 2
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s3_14",
@@ -204793,7 +205108,8 @@
             "monster": "bk_specter",
             "count": 2
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_s3_15",
@@ -204806,7 +205122,8 @@
             "monster": "bk_brute",
             "count": 1
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_vault",
@@ -204819,7 +205136,8 @@
             "monster": "bk_plate",
             "count": 2
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_boss",
@@ -204832,7 +205150,8 @@
             "monster": "bk_general",
             "count": 1
           }
-        ]
+        ],
+        "level": 20
       },
       {
         "id": "bk_guard_a",
@@ -204845,7 +205164,8 @@
             "monster": "bk_dead",
             "count": 3
           }
-        ]
+        ],
+        "level": 19
       },
       {
         "id": "bk_guard_b",
@@ -204858,7 +205178,8 @@
             "monster": "bk_dead",
             "count": 3
           }
-        ]
+        ],
+        "level": 19
       }
     ],
     "hazards": [],
@@ -204946,7 +205267,8 @@
               "count": 1,
               "rank": "miniboss"
             }
-          ]
+          ],
+          "level": 19
         },
         "needs_key": "book_bunker_1",
         "extra_summons": [
@@ -204967,7 +205289,8 @@
                   "count": 1,
                   "rank": "miniboss"
                 }
-              ]
+              ],
+              "level": 19
             }
           }
         ]
@@ -252656,7 +252979,8 @@
         "pose": "walk"
       }
     ],
-    "passive": true
+    "passive": true,
+    "xp_scale": 0.762
   },
   "desert_01_canyon": {
     "_comment": "Deserto — o Cânion (Canyon Terrain Asset, loafbrr / Ian87, CC0), mapa grande com a estrutura da Floresta e outro caminho: acampamento ao sul, rota em laço para o norte (estrada, ruínas de carroças, passagem, areia movediça, dunas) e ramais sem saída (Caravana, Ninho, Oásis, Ruínas do Sol). 2 mini-chefes: a Rainha Escorpião (o NPC do Oásis a desperta) e o Lamassu da Areia (o templo das Ruínas do Sol). O Sentinela do Portão pede as duas chaves; atrás do portão fica a Esfinge (chefe final) e a saída. Liga-se à Capital (tools/assets/set_map_order.py). Gerado por tools/assets/build_desert.py.",
@@ -252664,7 +252988,7 @@
     "outdoor": true,
     "player_class": "mage",
     "map_id": "map_desert",
-    "area_level": 7,
+    "area_level": 15,
     "final": true,
     "victory_groups": [
       "d_sphinx"
@@ -252878,7 +253202,8 @@
             "monster": "venom_scorpion",
             "count": 3
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_road_chitin",
@@ -252891,7 +253216,8 @@
             "monster": "de_scarab",
             "count": 2
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_road_stalker",
@@ -252904,7 +253230,8 @@
             "monster": "de_vulture",
             "count": 2
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_caravan",
@@ -252917,7 +253244,8 @@
             "monster": "venom_scorpion",
             "count": 3
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_caravan_mimic",
@@ -252930,7 +253258,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_oasis",
@@ -252947,7 +253276,8 @@
             "monster": "de_scarab",
             "count": 1
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_wrecks_a",
@@ -252964,7 +253294,8 @@
             "monster": "de_vulture",
             "count": 1
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_wrecks_b",
@@ -252977,7 +253308,8 @@
             "monster": "de_scarab",
             "count": 2
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_wrecks_troll",
@@ -252990,7 +253322,8 @@
             "monster": "de_cactus",
             "count": 1
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_wrecks_mimic",
@@ -253003,7 +253336,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_pass",
@@ -253016,7 +253350,8 @@
             "monster": "de_vulture",
             "count": 2
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_dunes_a",
@@ -253029,7 +253364,8 @@
             "monster": "venom_scorpion",
             "count": 3
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_dunes_b",
@@ -253042,7 +253378,8 @@
             "monster": "de_scarab",
             "count": 3
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_dunes_c",
@@ -253055,7 +253392,8 @@
             "monster": "de_vulture",
             "count": 2
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_dunes_d",
@@ -253068,7 +253406,8 @@
             "monster": "de_cobra",
             "count": 4
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_nest_a",
@@ -253081,7 +253420,8 @@
             "monster": "venom_scorpion",
             "count": 4
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_nest_b",
@@ -253094,7 +253434,8 @@
             "monster": "de_scarab",
             "count": 3
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_nest_troll",
@@ -253107,7 +253448,8 @@
             "monster": "de_cactus",
             "count": 1
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_nest_mimic",
@@ -253120,7 +253462,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_sand_a",
@@ -253133,7 +253476,8 @@
             "monster": "venom_scorpion",
             "count": 3
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_sand_b",
@@ -253146,7 +253490,8 @@
             "monster": "de_scarab",
             "count": 2
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_sand_mimic",
@@ -253159,7 +253504,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_ruins_a",
@@ -253172,7 +253518,8 @@
             "monster": "de_vulture",
             "count": 2
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_ruins_b",
@@ -253185,7 +253532,8 @@
             "monster": "de_scarab",
             "count": 2
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_ruins_mimic",
@@ -253198,7 +253546,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_sphinx_a",
@@ -253211,7 +253560,8 @@
             "monster": "de_scarab",
             "count": 2
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_sphinx_b",
@@ -253224,7 +253574,8 @@
             "monster": "de_scarab",
             "count": 2
           }
-        ]
+        ],
+        "level": 15
       },
       {
         "id": "d_sphinx",
@@ -253237,7 +253588,8 @@
             "monster": "sphinx",
             "count": 1
           }
-        ]
+        ],
+        "level": 16
       }
     ],
     "hazards": [],
@@ -253357,7 +253709,8 @@
               "count": 1,
               "rank": "miniboss"
             }
-          ]
+          ],
+          "level": 15
         },
         "needs_key": "book_desert_1",
         "extra_summons": [
@@ -253378,7 +253731,8 @@
                   "count": 1,
                   "rank": "miniboss"
                 }
-              ]
+              ],
+              "level": 15
             }
           }
         ]
@@ -260764,14 +261118,15 @@
         ]
       }
     ],
-    "passive": true
+    "passive": true,
+    "xp_scale": 1.086
   },
   "catacombs_01_depths": {
     "_comment": "Catacumbas (novo): salas de parede de pedra do kit numa grade de blocos de 12 m, estrutura do Esgoto/Floresta com outro caminho. Portão da Cripta -> Nave dos Ossos; três rotas até a Galeria dos Condenados: oeste (Ala das Celas -> Sala de Tortura -> Poço do Carrasco, onde a gaiola desperta o Carrasco), leste (Ala das Celas -> Ossuário -> Capela dos Acorrentados, onde a Prisioneira desperta a Alma Acorrentada) e meio (Salão das Correntes -> Pátio do Tribunal); corredor do portão (Diretor, duas chaves) -> Cripta do Rei Acorrentado (chefe final, com a saída). Salas laterais sem saída: Cofre e Cela Secreta. Gerado por tools/assets/build_catacombs.py.",
     "name_key": "ARENA_CATACOMBS",
     "player_class": "mage",
     "map_id": "map_catacombs",
-    "area_level": 11,
+    "area_level": 13,
     "final": true,
     "victory_groups": [
       "ct_king"
@@ -261061,7 +261416,8 @@
             "monster": "ct_prisoner_dead",
             "count": 4
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_nave_b",
@@ -261074,7 +261430,8 @@
             "monster": "ct_crawler",
             "count": 3
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_nave_c",
@@ -261091,7 +261448,8 @@
             "monster": "ct_eye",
             "count": 3
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_cells_w",
@@ -261108,7 +261466,8 @@
             "monster": "ct_wretch",
             "count": 2
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_cells_w2",
@@ -261121,7 +261480,8 @@
             "monster": "ct_crawler",
             "count": 3
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_mimic_cw",
@@ -261134,7 +261494,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_cells_e",
@@ -261151,7 +261512,8 @@
             "monster": "ct_ghoul",
             "count": 1
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_cells_e2",
@@ -261164,7 +261526,8 @@
             "monster": "ct_prisoner_dead",
             "count": 4
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_mimic_ce",
@@ -261177,7 +261540,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_torture_a",
@@ -261190,7 +261554,8 @@
             "monster": "ct_guard",
             "count": 2
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_torture_b",
@@ -261203,7 +261568,8 @@
             "monster": "ct_torturer",
             "count": 2
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_torture_c",
@@ -261216,7 +261582,8 @@
             "monster": "ct_wretch",
             "count": 2
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_ossuary_a",
@@ -261229,7 +261596,8 @@
             "monster": "ct_crawler",
             "count": 4
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_ossuary_b",
@@ -261242,7 +261610,8 @@
             "monster": "ct_bonebat",
             "count": 2
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_ossuary_c",
@@ -261255,7 +261624,8 @@
             "monster": "ct_prisoner_dead",
             "count": 3
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_chain_a",
@@ -261268,7 +261638,8 @@
             "monster": "ct_wretch",
             "count": 3
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_chain_b",
@@ -261281,7 +261652,8 @@
             "monster": "ct_tormentor",
             "count": 2
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_chain_c",
@@ -261294,7 +261666,8 @@
             "monster": "ct_guard",
             "count": 2
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_court_a",
@@ -261307,7 +261680,8 @@
             "monster": "ct_prisoner_dead",
             "count": 4
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_court_b",
@@ -261320,7 +261694,8 @@
             "monster": "ct_ghoul",
             "count": 2
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_pit",
@@ -261333,7 +261708,8 @@
             "monster": "ct_crawler",
             "count": 3
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_chapel",
@@ -261346,7 +261722,8 @@
             "monster": "ct_prisoner_dead",
             "count": 3
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_gallery_a",
@@ -261359,7 +261736,8 @@
             "monster": "ct_crawler",
             "count": 3
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_gallery_b",
@@ -261372,7 +261750,8 @@
             "monster": "ct_prisoner_dead",
             "count": 3
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_gallery_c",
@@ -261385,7 +261764,8 @@
             "monster": "ct_wretch",
             "count": 3
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_gallery_d",
@@ -261398,7 +261778,8 @@
             "monster": "ct_crawler",
             "count": 3
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_vault",
@@ -261411,7 +261792,8 @@
             "monster": "ct_prisoner_dead",
             "count": 2
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_secret",
@@ -261424,7 +261806,8 @@
             "monster": "ct_deadjailer",
             "count": 1
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_mimic_secret",
@@ -261437,7 +261820,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_crypt_a",
@@ -261454,7 +261838,8 @@
             "monster": "ct_crawler",
             "count": 2
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_crypt_b",
@@ -261471,7 +261856,8 @@
             "monster": "ct_crawler",
             "count": 2
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_mimic_crypt",
@@ -261484,7 +261870,8 @@
             "monster": "chest_mimic",
             "count": 1
           }
-        ]
+        ],
+        "level": 13
       },
       {
         "id": "ct_king",
@@ -261497,7 +261884,8 @@
             "monster": "ct_king",
             "count": 1
           }
-        ]
+        ],
+        "level": 14
       }
     ],
     "hazards": [],
@@ -261585,7 +261973,8 @@
               "count": 1,
               "rank": "miniboss"
             }
-          ]
+          ],
+          "level": 13
         },
         "needs_key": "book_catacombs_1",
         "extra_summons": [
@@ -261606,7 +261995,8 @@
                   "count": 1,
                   "rank": "miniboss"
                 }
-              ]
+              ],
+              "level": 13
             }
           }
         ]
@@ -275213,7 +275603,8 @@
         "pose": "crouch"
       }
     ],
-    "passive": true
+    "passive": true,
+    "xp_scale": 0.901
   },
   "farm_shed": {
     "_comment": "Interior da Casa de Equipamentos do fazendeiro (Fazenda): bancada, bigorna, ferramentas, barris e sacas; o Fazendeiro, o Ferreiro e a Lenhadora abrem as missões da Mina, do Bunker e da Floresta Escura, e o Velho Zeca guarda a Foice de Prata. Gerado por tools/assets/build_city_quests.py.",

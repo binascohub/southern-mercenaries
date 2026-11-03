@@ -2,6 +2,7 @@
 
 > Versão 18 · 2026-10-30 · Premissa e estrutura da campanha. **Fonte oficial da ordem da campanha.** Complementa `01-escopo.md`, `03-inimigos.md`, `03-1-bestiario.md`, `03-2-areas.md`, `04-tortuga-e-missoes.md` e `04-1-capital-real.md`
 > Pontos marcados como **proposta** são sugestões para revisar.
+> **Roteiro macabro da campanha, missão por missão, na ordem atual dos 11 mapas: `15-roteiro.md`.** Onde ele diverge das seções 4 e 6 (mapas de cavalos, aves, pântano etc., ainda não feitos), vale o roteiro.
 
 ## 1. Premissa
 

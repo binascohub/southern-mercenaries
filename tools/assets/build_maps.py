@@ -1910,5 +1910,6 @@ subprocess.run([sys.executable, "tools/assets/build_cemetery_quests.py"], check=
 subprocess.run([sys.executable, "tools/assets/build_map_mechanics.py"], check=True)  # livros, altar único, chaves e item do chefe em todos os mapas
 subprocess.run([sys.executable, "tools/assets/make_barrels_decor.py"], check=True)  # barris só decorativos (não quebram)
 subprocess.run([sys.executable, "tools/assets/add_crates_pots.py"], check=True)  # caixotes e cerâmicas quebráveis em grupos nos cantos e bordas
+subprocess.run([sys.executable, "tools/assets/balance_monsters.py"], check=True)  # força, XP e ouro equalizados pela ordem dos mapas
 subprocess.run([sys.executable, "tools/assets/set_map_order.py"], check=True)  # ordem dos mapas: hubs Tortuga, Capital e Fazenda (sem portais em cadeia)
 print("OK", [k for k in arenas if k.split("_")[0] in ("forest", "ruins", "cemetery", "fort", "farm", "mine")])
