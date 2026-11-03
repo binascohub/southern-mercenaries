@@ -47,12 +47,8 @@
 | `map_sewers` | Esgoto | Gotas, graves, tensão baixa |
 | `map_ruins` | Ruínas do Reino do Arqueiro | Marcha fúnebre, uivos ao longe |
 | `map_forest` | Floresta Escura | Cordas e flautas, vozes distantes |
-| `map_horses` | Cavalos Míticos | Galope, cordas rápidas |
-| `map_birds` | Aves | Vento, cordas agudas, asas |
 | `map_desert` | Deserto | Instrumentos de sopro e percussão do deserto, ritmo lento |
-| `map_waters` | Águas | Ondas, coral grave, sinos de navio |
 | `map_swamp` | Pântano | Sons lamacentos, flauta baixa, tensão |
-| `map_serpents` | Serpentes | Percussão tribal, sussurros |
 | `map_hell` | Inferno | Coral demoníaco, metal, graves |
 | `boss_*` | Um tema por chefe, ou por família (proposta) | Fases intensificando |
 | `boss_lucifer` | Lúcifer | Tema final, três fases |

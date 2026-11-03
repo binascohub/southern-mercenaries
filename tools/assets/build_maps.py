@@ -1894,4 +1894,7 @@ subprocess.run([sys.executable, "tools/assets/add_forest_butterflies.py"], check
 subprocess.run([sys.executable, "tools/assets/swap_forest_keeper.py"], check=True)  # Guardiã da Pira na sala da lagoa, sapos na Praça da Pira
 subprocess.run([sys.executable, "tools/assets/add_forest_spacing.py"], check=True)  # caminhos de passagem 12 m mais compridos
 subprocess.run([sys.executable, "tools/assets/add_forest_fungus_map.py"], check=True)  # caminho e clareira dos Tios Fungo, ao norte da sala do Rei Golem (sempre por último)
+subprocess.run([sys.executable, "tools/assets/build_docks.py"], check=True)  # Docas ampliadas (estrutura da Floresta, outro caminho)
+subprocess.run([sys.executable, "tools/assets/add_signposts.py"], check=True)  # (de novo: as Docas foram refeitas)
+subprocess.run([sys.executable, "tools/assets/set_map_order.py"], check=True)  # ordem dos mapas: hubs Tortuga, Capital e Fazenda (sem portais em cadeia)
 print("OK", [k for k in arenas if k.split("_")[0] in ("forest", "ruins", "cemetery", "fort", "farm", "mine")])

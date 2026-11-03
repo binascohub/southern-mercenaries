@@ -25,17 +25,13 @@
 | 1 | 2 | `map_sewers` | **Esgoto de Tortuga** | Túneis, canais de lixo, câmaras alagadas sob a cidade | Animais contaminados | Terra | **Feiticeiro-Aranha** (pacto com um demônio) | Terra | Fogo |
 | 2 | 2 | `map_ruins` | **Ruínas do Reino do Arqueiro** | Capital em ruínas, vilas queimadas, campos de batalha, cemitérios, floresta nevada | Lobos e cães míticos | Terra | **Cérbero** | Fogo / Água / Terra (uma por cabeça) | Água / Ar / Fogo |
 | 3 | 2 | `map_forest` | **Floresta Escura** | Mata fechada sem luz do sol, árvores gigantes, teias, cachoeira, clareiras | Espíritos e feras da floresta | Terra | **Leshy** | Terra | Fogo |
-| 4 | 2 | `map_horses` | Cavalos Míticos | Planícies e ruínas no alto | Cavalos míticos | Misto | **Pégaso** | Fogo | Água |
-| 5 | 2 | `map_birds` | Aves | Picos, penhascos e ninhos | Aves míticas | Ar | **Fênix** | Fogo | Água |
-| 6 | 3 | `map_desert` | **Deserto** | Dunas, rotas de caravana, oásis, templo de pedra soterrado | Feras híbridas do deserto | Fogo | **Esfinge** | Ar | Terra |
-| 7 | 3 | `map_waters` | Águas | Costa, naufrágios e grutas alagadas | Criaturas das águas | Água | **Kraken** | Água | Ar |
-| 8 | 3 | `map_swamp` | **Pântano** | Charcos, atoleiros, neblina, túmulos afundados, lago negro | Mortos e espíritos do pântano | Água | **Grendel** (e sua Mãe) | Água | Ar |
-| 9 | 3 | `map_serpents` | Serpentes | Selva, templos em ruínas, templo meio afundado no mar | Serpentes e dragões | Terra | **Jörmungandr** | Água | Ar |
-| 10 | 4 | `map_hell` | Inferno | Inferno, rios de lava e de ouro | Súcubos e ecos dos demônios | Fogo | **Lúcifer** | **Muda a cada fase** (Ar → Fogo → todos) | Terra → Água → o que vence o elemento do momento |
+| 4 | 3 | `map_desert` | **Deserto** | Dunas, rotas de caravana, oásis, templo de pedra soterrado | Feras híbridas do deserto | Fogo | **Esfinge** | Ar | Terra |
+| 5 | 3 | `map_swamp` | **Pântano** | Charcos, atoleiros, neblina, túmulos afundados, lago negro | Mortos e espíritos do pântano | Água | **Grendel** (e sua Mãe) | Água | Ar |
+| 6 | 4 | `map_hell` | Inferno | Inferno, rios de lava e de ouro | Súcubos e ecos dos demônios | Fogo | **Lúcifer** | **Muda a cada fase** (Ar → Fogo → todos) | Terra → Água → o que vence o elemento do momento |
 
 - O **Esgoto** é o primeiro mapa: fica **embaixo de Tortuga** e é acessado por um bueiro na Rua Principal (não precisa de barco).
 - As **Ruínas do Reino do Arqueiro** são o segundo: continuação direta da história do Esgoto (o resto do tesouro real ficou lá).
-- Mapas 1–5 saem de **Tortuga** (missões da taverna); mapas 6–9 saem da **Capital Real** (missões do Bobo da Corte); o 10 é o resgate do Bobo.
+- Mapas 1–3 saem de **Tortuga** (missões da taverna); mapas 4–5 saem da **Capital Real** (missões do Bobo da Corte); o 6 é o resgate do Bobo.
 - O Cavaleiro **desmonta** em áreas estreitas (ver o tipo de cada área em `03-2-areas.md`).
 - Mapas com elementos mistos obrigam o grupo a combinar elementos diferentes (cada jogador com uma poção diferente).
 
@@ -167,48 +163,6 @@ Decisão do autor: **o jogo não é feito de ondas (waves)**. O jogador **explor
 - **Fase 3 — A Floresta Viva (30%–0%):** as árvores da arena fecham o espaço aos poucos; ele se funde à árvore anciã e ataca de dentro dela; queimar as raízes expõe o coração.
 - **Tesouro:** o **ouro dos viajantes perdidos** + relíquia proposta **Coroa de Galhos**.
 
-## 5. Cavalos Míticos (`map_horses`)
-
-| ID | Monstro | Origem | Elemento | Fraco a | Comportamento | Vida | Dano | Velocidade | Mecânica |
-|---|---|---|---|---|---|---|---|---|---|
-| `headless_mule` | Mula sem Cabeça | Brasil | Fogo | Água | `charger` | 140 | 16 | Rápida em investida | Rastro de fogo; atordoada após bater numa parede, um jogador pode **arrancar o freio** para derrotá-la na hora |
-| `anggitay` | Anggitay | Filipinas | Ar | Terra | `ranged_kite` | 70 | 10 | Rápida | Dispara rajadas pelo chifre e recua galopando |
-| `ipotane` | Ipotane | Grécia | Terra | Fogo | `melee_rush` | 90 | 12 | Média | Bandos; coices em área |
-| `bakotsu` | Bakotsu | Japão | Terra | Fogo | `swarm` | 40 | 7 | Rápida | Esqueleto que se remonta uma vez se não for destruído com golpe forte |
-| `arion` | Arion | Grécia | Água | Ar | `charger` | 160 | 18 | Muito rápida | O mais veloz; investidas seguidas; costuma ser elite |
-| `cheollima` | Cheollima | Coreia | Ar | Terra | `flyer` + `charger` | 110 | 14 | Muito rápida | Investidas aéreas em mergulho com sombra no chão como aviso |
-| `nuckelavee` | Nuckelavee | Escócia (Órcades) | Água | Ar | `charger` | 130 | 16 | Rápida | Cavalo-demônio sem pele nascido do mar; investida com aviso; seu hálito deixa uma nuvem de peste (dano ao longo do tempo) |
-
-### Chefe: Pégaso demoníaco (`demon_pegasus`)
-- **Elemento:** Fogo. **Fraco a:** Água.
-- **Arena:** planalto no alto de ruínas, aberto para voos e investidas (largo para o Cavaleiro montado).
-- **Vida:** 2.500 (solo).
-- **Fase 1 — Senhor dos Céus (100%–65%):** voa em círculos e mergulha em investida; rajadas de vento das asas empurram os jogadores.
-- **Fase 2 — Manada Corrompida (65%–30%):** pousa e convoca Bakotsus e Arion; relincho que atordoa quem estiver perto (aviso visual).
-- **Fase 3 — Asas do Inferno (30%–0%):** as asas pegam fogo; ao voar deixa linhas de fogo no chão; áreas seguras diminuem.
-- **Tesouro:** proposta **Rédeas de Ouro do Céu** (relíquia).
-
-## 6. Aves (`map_birds`)
-
-| ID | Monstro | Origem | Elemento | Fraco a | Comportamento | Vida | Dano | Velocidade | Mecânica |
-|---|---|---|---|---|---|---|---|---|---|
-| `harpy` | Harpia | Grécia | Ar | Terra | `flyer` + `melee_rush` | 60 | 10 | Rápida | Agarra e solta jogadores de uma pequena altura (dano de queda); rouba poções |
-| `stymphalian` | Ave Estinfália | Grécia | Terra (penas de bronze) | Fogo | `swarm` + `flyer` | 30 | 6 | Rápida | Bandos que disparam penas de metal; **barulho forte** (golpes de área de Terra) espanta o bando por 3 s |
-| `strix` | Strix | Roma | Ar | Terra | `flyer` + `caster` | 55 | 11 | Média | Drena vida; enxerga jogadores invisíveis (contra o Ninja) |
-| `dark_raven` | Corvo Sombrio | Nórdico | Ar | Terra | `support` + `flyer` | 40 | 5 | Rápida | Marca um jogador: todos os monstros atacam o marcado |
-| `roc` | Roca | Oriente Médio | Terra | Fogo | `flyer` + `charger` | 220 | 20 | Média | Sempre elite; carrega rochas e as larga sobre o grupo |
-
-### Chefe: Fênix demoníaca (`demon_phoenix`)
-- **Elemento:** Fogo. **Fraco a:** Água.
-- **Vida:** 3.000 (solo).
-- **Renascer:** ao chegar a 0% pela primeira vez, vira um **ovo de cinzas** por 15 s; o grupo precisa destruir o ovo ou ela renasce com 50% da vida.
-- **Fase 1 (100%–50%):** voa pela arena soltando chuva de penas em chamas.
-- **Fase 2 (50%–0%):** pousa em um ninho, cria anéis de fogo que se expandem (pular/esquivar).
-- **Fase 3 (renascimento):** ovo de cinzas; se renascer, fica mais rápida e mais agressiva.
-- **Tesouro:** proposta **Pena da Chama Eterna** (relíquia).
-
-> Depois deste mapa, o Cavaleiro leva o grupo à **Capital Real** e ao Bobo da Corte (`04-1-capital-real.md`).
-
 ## 7. Deserto (`map_desert`)
 
 > Dunas sem fim, rotas de caravana abandonadas, um oásis e, soterrado na areia, um **templo de pedra** guardado pela Esfinge. O Bobo da Corte descobriu que **caravanas com o ouro do rei** cruzam o deserto e nunca chegam: os guardas somem, e o ouro vai parar no templo.
@@ -235,28 +189,6 @@ Decisão do autor: **o jogo não é feito de ondas (waves)**. O jogador **explor
 - **Fase 3 — Areia e Vento (30%–0%):** o teto do templo começa a desabar (areia cai em pontos com aviso, a arena diminui); ela fica mais rápida e chama Ghuls.
 - **Tesouro:** o **ouro das caravanas do rei** + relíquia proposta **Olho da Esfinge**.
 
-## 8. Águas (`map_waters`)
-
-> Chão molhado e água rasa por todo lado: em certas áreas, monstros e jogadores ficam `soaked` (combos de Ar são fortes aqui).
-
-| ID | Monstro | Origem | Elemento | Fraco a | Comportamento | Vida | Dano | Velocidade | Mecânica |
-|---|---|---|---|---|---|---|---|---|---|
-| `iara` | Iara | Brasil | Água | Ar | `caster` | 70 | 12 | Média | Canto que **encanta** e puxa jogadores para a água (aliado acerta para libertar) |
-| `siren` | Sereia | Grécia | Água | Ar | `support` | 55 | 8 | Média | Canto que cura outros monstros e deixa jogadores lentos |
-| `kelpie` | Kelpie | Escócia | Água | Ar | `ambush` + `charger` | 120 | 15 | Rápida | Surge da água e arrasta quem atingir |
-| `kappa` | Kappa | Japão | Água | Ar | `melee_rush` | 80 | 11 | Média | Forte enquanto a água do prato da cabeça não derrama: golpe que derruba (`knocked_down`) faz derramar e ele fica fraco (-50% dano) |
-| `drowned` | Afogado | Folclore marinho | Terra (lodo) | Fogo | `swarm` | 35 | 6 | Lenta | Marinheiros afogados saindo dos naufrágios em grupos |
-
-### Chefe: Kraken demoníaco (`demon_kraken`)
-- **Elemento:** Água. **Fraco a:** Ar.
-- **Arena:** convés de um navio naufragado preso entre rochas, cercado pela água.
-- **Vida:** 4.000 (solo).
-- **Tentáculos:** 6 tentáculos saem da água e atacam separadamente; destruir tentáculos faz o corpo emergir e ficar vulnerável.
-- **Fase 1 (100%–65%):** tentáculos batem no convés (marcas de aviso) e agarram jogadores.
-- **Fase 2 (65%–30%):** alaga o convés (todos `soaked`) e convoca Afogados; jato de tinta que escurece a tela por 2 s.
-- **Fase 3 (30%–0%):** o navio começa a afundar; a área seca diminui; tentáculos voltam mais rápidos.
-- **Tesouro:** **Coração do Abismo** (relíquia, proposta) + parte do ouro do rei, levada para o fundo do mar.
-
 ## 9. Pântano (`map_swamp`)
 
 > Charcos de água negra, neblina que não se dissipa, árvores mortas, túmulos antigos afundados na lama e, no centro, um **lago escuro e sem fundo**. Lá vive **Grendel**, o monstro que odeia a luz e o barulho dos homens — e, no fundo do lago, a **Mãe de Grendel**, sobre um tesouro de reis antigos e agora o ouro do rei que o Bobo procura.
@@ -282,29 +214,6 @@ Decisão do autor: **o jogo não é feito de ondas (waves)**. O jogador **explor
 - **Fase 2 — A Mãe no Lago (Mãe 100%–40%):** ferido, Grendel foge para o lago; a **Mãe** sai da água furiosa: ataques vindos de baixo d'água (bolhas como aviso), puxa jogadores para o fundo (aliado acerta para soltar); a margem é `soaked`.
 - **Fase 3 — A Vingança (Mãe 40%–0%):** Grendel volta enfurecido para ajudar a Mãe (com pouca vida); a água do lago sobe e a área seca diminui. Proposta: na arena aparece a **Espada dos Gigantes** cravada numa pedra — quem a pegar causa +50% de dano à Mãe por 15 s (como na lenda).
 - **Tesouro:** o **tesouro do lago** + parte do ouro do rei + relíquia proposta **Espada dos Gigantes**.
-
-## 10. Serpentes (`map_serpents`)
-
-> Selva quente, templos em ruínas tomados por serpentes e, na costa, um **templo meio afundado no mar**, onde Jörmungandr, a Serpente do Mundo, subiu das profundezas.
-
-| ID | Monstro | Origem | Elemento | Fraco a | Comportamento | Vida | Dano | Velocidade | Mecânica |
-|---|---|---|---|---|---|---|---|---|---|
-| `boitata` | Boitatá | Brasil | Fogo | Água | `charger` | 130 | 16 | Rápida | Cobra de fogo de olhos enormes e brilhantes; deixa rastro de fogo |
-| `basilisk` | Basilisco | Europa | Terra | Fogo | `caster` | 100 | 12 | Lenta | Olhar petrificante: quem fica de frente para ele por 2 s fica `stunned` (aviso: brilho nos olhos) |
-| `naga` | Naga | Índia | Água | Ar | `melee_rush` | 90 | 13 | Média | Guardiões dos templos, com lâminas |
-| `amphisbaena` | Anfisbena | Grécia | Terra | Fogo | `swarm` | 40 | 7 | Rápida | Serpente de duas cabeças; cortada, vira duas menores (uma vez) |
-| `wyvern` | Serpe (Wyvern) | Europa | Ar | Terra | `flyer` | 150 | 17 | Média | Dragão de duas patas; cauda venenosa e cuspe em área |
-| `hydra` | Hidra | Grécia | Água | Ar | `caster` | 260 | 18 | Lenta | Sempre elite; cabeças cortadas crescem em dobro, **a menos que o pescoço seja queimado** (golpe de Fogo logo após cortar) |
-
-### Chefe: Jörmungandr demoníaco (`demon_jormungandr`)
-- **Elemento:** Água (a serpente do mar). **Fraco a:** Ar (raios, como os de Thor).
-- **Arena:** templo meio afundado no mar, com o corpo da serpente passando por baixo e em volta.
-- **Vida:** 5.000 (solo).
-- **Corpo gigante:** a cabeça aparece em pontos diferentes; partes do corpo atravessam a arena como paredes que esmagam.
-- **Fase 1 (100%–65%):** cabeça surge e morde; corpo varre a arena (pular/esquivar).
-- **Fase 2 (65%–30%):** veneno no chão (poças que se espalham); convoca Anfisbenas.
-- **Fase 3 (30%–0%):** a serpente se enrola na arena, que diminui a cada volta; cabeça em fúria.
-- **Tesouro:** **Escama do Mundo** (relíquia, proposta) + a última parte do ouro do rei. **Descoberta:** inscrições e um portal no templo mostram que todo o ouro vai para o Inferno, para Lúcifer.
 
 ## 11. Inferno (`map_hell`) — mapa final
 

@@ -3217,3 +3217,117 @@ msgstr ""
 
 msgid "DLG_SENTINEL_DONE"
 msgstr ""
+
+msgid "MONSTER_HULL_BEAST"
+msgstr ""
+
+msgid "MONSTER_PORK_SHARK"
+msgstr ""
+
+msgid "MONSTER_DROWNED_CAPTAIN"
+msgstr ""
+
+msgid "NPC_DOCK_MASTER"
+msgstr ""
+
+msgid "NPC_WRECKED_HULL"
+msgstr ""
+
+msgid "NPC_DOCK_FISHWIFE"
+msgstr ""
+
+msgid "NPC_DOCK_SENTINEL"
+msgstr ""
+
+msgid "VALUABLE_SHIP_HELM"
+msgstr ""
+
+msgid "VALUABLE_GOLDEN_SHARK_TOOTH"
+msgstr ""
+
+msgid "VALUABLE_KEY_ANCHOR"
+msgstr ""
+
+msgid "VALUABLE_KEY_COMPASS"
+msgstr ""
+
+msgid "TOAST_HULL_AWAKENS"
+msgstr ""
+
+msgid "TOAST_SHARK_AWAKENS"
+msgstr ""
+
+msgid "QUEST_DOCK_HELM"
+msgstr ""
+
+msgid "QUEST_DOCK_HELM_DESC"
+msgstr ""
+
+msgid "QUEST_DOCK_TOOTH"
+msgstr ""
+
+msgid "QUEST_DOCK_TOOTH_DESC"
+msgstr ""
+
+msgid "QUEST_DOCK_GATE"
+msgstr ""
+
+msgid "QUEST_DOCK_GATE_DESC"
+msgstr ""
+
+msgid "DLG_DOCKMASTER_1"
+msgstr ""
+
+msgid "DLG_DOCKMASTER_2"
+msgstr ""
+
+msgid "DLG_DOCKMASTER_3"
+msgstr ""
+
+msgid "DLG_DOCKMASTER_ACTIVE"
+msgstr ""
+
+msgid "DLG_DOCKMASTER_DONE"
+msgstr ""
+
+msgid "DLG_HULL_1"
+msgstr ""
+
+msgid "DLG_HULL_2"
+msgstr ""
+
+msgid "DLG_HULL_LOCKED"
+msgstr ""
+
+msgid "DLG_FISHWIFE_1"
+msgstr ""
+
+msgid "DLG_FISHWIFE_2"
+msgstr ""
+
+msgid "DLG_FISHWIFE_3"
+msgstr ""
+
+msgid "DLG_FISHWIFE_ACTIVE"
+msgstr ""
+
+msgid "DLG_FISHWIFE_DONE"
+msgstr ""
+
+msgid "DLG_FISHWIFE_WAIT"
+msgstr ""
+
+msgid "DLG_DOCKGUARD_1"
+msgstr ""
+
+msgid "DLG_DOCKGUARD_2"
+msgstr ""
+
+msgid "DLG_DOCKGUARD_3"
+msgstr ""
+
+msgid "DLG_DOCKGUARD_ACTIVE"
+msgstr ""
+
+msgid "DLG_DOCKGUARD_DONE"
+msgstr ""

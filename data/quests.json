@@ -259,5 +259,50 @@
       "gold": 450,
       "xp": 800
     }
+  },
+  "dock_helm": {
+    "name_key": "QUEST_DOCK_HELM",
+    "desc_key": "QUEST_DOCK_HELM_DESC",
+    "type": "village",
+    "giver": "dock_master",
+    "area": "docks_01_pier",
+    "target_element": "air",
+    "reward": {
+      "gold": 120,
+      "xp": 240
+    },
+    "item": "ship_helm",
+    "gives": "key_anchor"
+  },
+  "dock_tooth": {
+    "name_key": "QUEST_DOCK_TOOTH",
+    "desc_key": "QUEST_DOCK_TOOTH_DESC",
+    "type": "village",
+    "giver": "dock_fishwife",
+    "area": "docks_01_pier",
+    "target_element": "earth",
+    "reward": {
+      "gold": 120,
+      "xp": 240
+    },
+    "item": "golden_shark_tooth",
+    "gives": "key_compass"
+  },
+  "dock_gate": {
+    "name_key": "QUEST_DOCK_GATE",
+    "desc_key": "QUEST_DOCK_GATE_DESC",
+    "type": "village",
+    "giver": "dock_sentinel",
+    "area": "docks_01_pier",
+    "items": [
+      "key_anchor",
+      "key_compass"
+    ],
+    "opens_gate": "boss_gate",
+    "target_element": "earth",
+    "reward": {
+      "gold": 160,
+      "xp": 320
+    }
   }
 }

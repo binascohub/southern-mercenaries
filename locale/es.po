@@ -3476,3 +3476,117 @@ msgstr "Solo abro con las dos llaves, Bastos y Oros, en la misma bolsa. El Nóma
 
 msgid "DLG_SENTINEL_DONE"
 msgstr "¡Las dos llaves! El portón está abierto. Cuidado: la Esfinge hace una pregunta y no acepta el silencio como respuesta."
+
+msgid "MONSTER_HULL_BEAST"
+msgstr "Casco Viviente"
+
+msgid "MONSTER_PORK_SHARK"
+msgstr "Tiburón-Cerdo"
+
+msgid "MONSTER_DROWNED_CAPTAIN"
+msgstr "Capitán Ahogado"
+
+msgid "NPC_DOCK_MASTER"
+msgstr "Maestro del Puerto"
+
+msgid "NPC_WRECKED_HULL"
+msgstr "Casco Varado"
+
+msgid "NPC_DOCK_FISHWIFE"
+msgstr "Pescadera"
+
+msgid "NPC_DOCK_SENTINEL"
+msgstr "Vigía del Muelle"
+
+msgid "VALUABLE_SHIP_HELM"
+msgstr "Timón del Casco Viviente"
+
+msgid "VALUABLE_GOLDEN_SHARK_TOOTH"
+msgstr "Diente de Oro del Tiburón"
+
+msgid "VALUABLE_KEY_ANCHOR"
+msgstr "Llave del Ancla"
+
+msgid "VALUABLE_KEY_COMPASS"
+msgstr "Llave de la Brújula"
+
+msgid "TOAST_HULL_AWAKENS"
+msgstr "El casco cruje y se levanta: ¡el Casco Viviente despierta!"
+
+msgid "TOAST_SHARK_AWAKENS"
+msgstr "El agua hierve: ¡el Tiburón-Cerdo salta al muelle!"
+
+msgid "QUEST_DOCK_HELM"
+msgstr "El timón perdido"
+
+msgid "QUEST_DOCK_HELM_DESC"
+msgstr "El Maestro del Puerto quiere su timón: un casco varado en el Astillero (al oeste del mercado) despierta como el Casco Viviente, que lo lleva. Toca el casco, derrótalo y trae el timón: a cambio recibes la Llave del Ancla, una de las dos del portón del Capitán Ahogado."
+
+msgid "QUEST_DOCK_TOOTH"
+msgstr "El diente de oro"
+
+msgid "QUEST_DOCK_TOOTH_DESC"
+msgstr "La Pescadera perdió el diente de oro de su marido ante el Tiburón-Cerdo, en la Pescadería al este del mercado. Sus palabras lo despiertan; derrótalo y trae el diente para recibir la Llave de la Brújula, la otra del portón del Capitán Ahogado."
+
+msgid "QUEST_DOCK_GATE"
+msgstr "El portón del Capitán"
+
+msgid "QUEST_DOCK_GATE_DESC"
+msgstr "El Vigía del Muelle solo abre el portón a quien traiga las dos llaves: la del Ancla (Maestro del Puerto) y la de la Brújula (Pescadera). Tras él está la Cubierta del Capitán Ahogado."
+
+msgid "DLG_DOCKMASTER_1"
+msgstr "Marea baja, forasteros, y aun así el puerto no duerme. Cuido este muelle hace treinta años y nunca vi el mar tan inquieto."
+
+msgid "DLG_DOCKMASTER_2"
+msgstr "Un casco varado en el Astillero, al oeste del mercado, se mueve de noche. Se tragó el timón de mi último barco, y sin él no puedo soltar nada de aquí."
+
+msgid "DLG_DOCKMASTER_3"
+msgstr "Toquen el casco, derriben lo que salga y tráiganme el timón. A cambio doy la Llave del Ancla, una de las dos que abren el portón del Capitán Ahogado, al final del muelle."
+
+msgid "DLG_DOCKMASTER_ACTIVE"
+msgstr "El Astillero está al oeste del mercado de pescado: sigan el muelle principal y giren a la izquierda. El timón es de bronce y huele a sal. Tráiganlo y la llave es suya."
+
+msgid "DLG_DOCKMASTER_DONE"
+msgstr "¡Mi timón! Ahora este viejo puerto vuelve a tener futuro. La Llave del Ancla es suya; llévenla al Vigía, junto con la de la Brújula."
+
+msgid "DLG_HULL_1"
+msgstr "Las tablas están calientes y húmedas, y brotan clavos nuevos de la madera. Algo grande respira dentro del casco."
+
+msgid "DLG_HULL_2"
+msgstr "¡El Casco Viviente despierta!"
+
+msgid "DLG_HULL_LOCKED"
+msgstr "Un casco viejo en su caballete. Nada responde a sus manos."
+
+msgid "DLG_FISHWIFE_1"
+msgstr "¡Pescado fresquito, solo hoy! ...Ah, perdón, costumbre. Hoy no tengo nada que vender: el Tiburón-Cerdo se come todas las redes."
+
+msgid "DLG_FISHWIFE_2"
+msgstr "También se llevó el diente de oro de mi marido, que cayó al agua cuando peleó con la bestia. Era todo lo que teníamos de valor."
+
+msgid "DLG_FISHWIFE_3"
+msgstr "Llamaré a la bestia para ustedes, aquí en la Pescadería. Derriben al Tiburón-Cerdo y traigan el diente: doy la Llave de la Brújula, la otra del portón del Capitán Ahogado."
+
+msgid "DLG_FISHWIFE_ACTIVE"
+msgstr "El diente brilla más que una escama nueva. Está en la boca de la bestia. Derríbenla y tráiganmelo."
+
+msgid "DLG_FISHWIFE_DONE"
+msgstr "¡El diente de mi viejo! La Llave de la Brújula es suya. Llévenla al Vigía, en el pasillo al norte del atracadero."
+
+msgid "DLG_FISHWIFE_WAIT"
+msgstr "Las redes están rotas, pero la marea vuelve. Lleven un pescado, está fresquito."
+
+msgid "DLG_DOCKGUARD_1"
+msgstr "Alto ahí. Este portón cierra la Cubierta, y en la Cubierta manda el Capitán Ahogado. Navegó hasta el fondo del mar y volvió con toda la tripulación."
+
+msgid "DLG_DOCKGUARD_2"
+msgstr "El portón solo abre con DOS llaves: la del Ancla y la de la Brújula. La primera la tiene el Maestro del Puerto, en el muelle de llegada; la segunda, la Pescadera, en la Pescadería."
+
+msgid "DLG_DOCKGUARD_3"
+msgstr "Cada uno cobra un precio: un timón, un diente de oro. Tráiganme las dos llaves y abro el paso."
+
+msgid "DLG_DOCKGUARD_ACTIVE"
+msgstr "Solo abro con las dos llaves, Ancla y Brújula, en la misma bolsa. El Maestro del Puerto está en el muelle de llegada; la Pescadera, en la Pescadería al este del mercado."
+
+msgid "DLG_DOCKGUARD_DONE"
+msgstr "¡Las dos llaves! El portón está abierto. Cuidado: el Capitán Ahogado nunca perdió un barco, y no perderá este."

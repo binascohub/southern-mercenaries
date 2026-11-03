@@ -1184,5 +1184,191 @@
         "body": "cloth"
       }
     }
+  },
+  "dock_master": {
+    "name_key": "NPC_DOCK_MASTER",
+    "color": [
+      0.3,
+      0.45,
+      0.6
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "dock_helm"
+        },
+        "lines": [
+          "DLG_DOCKMASTER_1",
+          "DLG_DOCKMASTER_2",
+          "DLG_DOCKMASTER_3"
+        ],
+        "offer": "dock_helm"
+      },
+      {
+        "when": {
+          "quest_active": "dock_helm"
+        },
+        "lines": [
+          "DLG_DOCKMASTER_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_DOCKMASTER_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_SimpleParted"
+      ],
+      "hair_color": [
+        0.35,
+        0.3,
+        0.25
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "wrecked_hull": {
+    "name_key": "NPC_WRECKED_HULL",
+    "color": [
+      0.45,
+      0.35,
+      0.25
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_active": "dock_helm"
+        },
+        "lines": [
+          "DLG_HULL_1",
+          "DLG_HULL_2"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_HULL_LOCKED"
+        ]
+      }
+    ]
+  },
+  "dock_fishwife": {
+    "name_key": "NPC_DOCK_FISHWIFE",
+    "color": [
+      0.7,
+      0.4,
+      0.35
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "dock_tooth"
+        },
+        "lines": [
+          "DLG_FISHWIFE_1",
+          "DLG_FISHWIFE_2",
+          "DLG_FISHWIFE_3"
+        ],
+        "offer": "dock_tooth"
+      },
+      {
+        "when": {
+          "quest_active": "dock_tooth"
+        },
+        "lines": [
+          "DLG_FISHWIFE_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {
+          "quest_done": "dock_tooth"
+        },
+        "lines": [
+          "DLG_FISHWIFE_DONE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_FISHWIFE_WAIT"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "female",
+      "hair": [
+        "Hair_Long"
+      ],
+      "hair_color": [
+        0.45,
+        0.2,
+        0.1
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "dock_sentinel": {
+    "name_key": "NPC_DOCK_SENTINEL",
+    "color": [
+      0.4,
+      0.45,
+      0.5
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "dock_gate"
+        },
+        "lines": [
+          "DLG_DOCKGUARD_1",
+          "DLG_DOCKGUARD_2",
+          "DLG_DOCKGUARD_3"
+        ],
+        "offer": "dock_gate"
+      },
+      {
+        "when": {
+          "quest_active": "dock_gate"
+        },
+        "lines": [
+          "DLG_DOCKGUARD_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_DOCKGUARD_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_SimpleParted"
+      ],
+      "hair_color": [
+        0.12,
+        0.1,
+        0.1
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
   }
 }

@@ -1711,5 +1711,99 @@
     ],
     "_comment": "Chefe final do Deserto (docs/03-2-areas.md): a Esfinge, guardiã do Salão atrás do portão; investidas e pisões (modelo do golem de pedra, dourado).",
     "chest_loot": "chest"
+  },
+  "hull_beast": {
+    "name_key": "MONSTER_HULL_BEAST",
+    "max_health": 190,
+    "move_speed": 2.8,
+    "damage": 13,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 3.0,
+    "category": "miniboss",
+    "element": "water",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 10.0,
+      "windup": 1.0,
+      "speed": 12.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "plank_monster",
+    "color": [
+      0.55,
+      0.75,
+      0.7
+    ],
+    "_comment": "Mini-chefe das Docas (Estaleiro): o Casco Vivo, monstro de tábuas e pregos que acorda do casco encalhado; investidas.",
+    "quest_drop": "ship_helm"
+  },
+  "pork_shark": {
+    "name_key": "MONSTER_PORK_SHARK",
+    "max_health": 210,
+    "move_speed": 2.8,
+    "damage": 14,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 2.4,
+    "category": "miniboss",
+    "element": "water",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 10.0,
+      "windup": 1.0,
+      "speed": 12.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "pork_shark",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_comment": "Mini-chefe das Docas (Peixaria): o Tubarão-Porco, tubarão de dentes de ouro que a Peixeira desperta; investidas.",
+    "quest_drop": "golden_shark_tooth"
+  },
+  "drowned_captain": {
+    "name_key": "MONSTER_DROWNED_CAPTAIN",
+    "max_health": 420,
+    "move_speed": 2.8,
+    "damage": 18,
+    "attack_range": 2.2,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 2.8,
+    "category": "boss",
+    "element": "water",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 10.0,
+      "windup": 1.0,
+      "speed": 12.0,
+      "time": 0.6,
+      "damage_mult": 1.3,
+      "cooldown": 5.0
+    },
+    "look": "skeleton",
+    "color": [
+      0.4,
+      0.85,
+      0.75
+    ],
+    "_comment": "Chefe final das Docas: o Capitão Afogado, esqueleto verde do mar que guarda o Convés atrás do portão; investidas e pisões.",
+    "aggressive": false,
+    "chest_loot": "chest"
   }
 }

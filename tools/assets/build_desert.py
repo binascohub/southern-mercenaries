@@ -1,10 +1,9 @@
-"""Mapa do Deserto: o Cânion (desert_01_canyon), ligado à Fazenda (Canyon Terrain Asset, loafbrr / Ian87, CC0: peças de
+"""Mapa do Deserto: o Cânion (desert_01_canyon), ligado à Capital (Canyon Terrain Asset, loafbrr / Ian87, CC0: peças de
 assets/models/maps/desert/ feitas por tools/assets/build_canyon_pieces.py). Mapa grande de salas abertas, com a MESMA estrutura da Floresta
 (forest_01_path) mas outro caminho: o acampamento fica ao sul e a rota sobe para o norte em laço (estrada -> ruínas de carroças -> passagem -> poço
 de areia movediça -> dunas), com ramais sem saída. Duas áreas de mini-chefe (o NPC do Oásis desperta a Rainha Escorpião; o templo das Ruínas do Sol
 desperta o Lamassu da Areia), o Sentinela do Portão (pede as duas chaves) e, atrás do portão, o Salão da Esfinge (chefe final, com a saída).
-Sorteio com semente fixa: rodar de novo reproduz o mesmo mapa. Também põe o portal "desert_gate" na Fazenda (e a entrada "desert" dela),
-os NPCs/missões/itens do Deserto (data/npcs.json, quests.json, valuables.json, monsters.json), os textos pt/en/es e os ícones.
+Sorteio com semente fixa: rodar de novo reproduz o mesmo mapa. Também põe os NPCs/missões/itens do Deserto (data/npcs.json, quests.json, valuables.json, monsters.json), os textos pt/en/es e os ícones.
 Idempotente; chamado no fim de tools/assets/build_maps.py.
 uso: python3 tools/assets/build_desert.py   (a partir da raiz do projeto)"""
 import json, math, random, re
@@ -68,8 +67,8 @@ SUMMON_GUIDE = {"id": "d_queen", "position": [-43.0, -42.0], "spread": 3.0, "toa
 SUMMON_TEMPLE = {"id": "d_lamassu", "position": [76.0, -75.0], "spread": 3.0, "toast": "TOAST_SUN_TEMPLE_AWAKENS",
                  "monsters": [{"monster": "sand_lamassu", "count": 1, "rank": "miniboss"}]}
 props = [
-    {"id": "return_portal", "kind": "exit", "name_key": "PROP_TO_FARM", "position": [-8, 9], "to": "farm_01_fields", "entry": "desert"},
-    {"id": "to_farm", "kind": "exit", "name_key": "PROP_TO_FARM", "position": [0, -191.5], "to": "farm_01_fields", "entry": "desert", "group": True},
+    {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-8, 9], "to": "capital_01_aurenhold", "entry": "desert"},
+    {"id": "victory_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [0, -191.5], "to": "capital_01_aurenhold", "entry": "desert", "after_victory": True, "group": True},
     {"id": "desert_nomad", "kind": "npc", "npc": "desert_nomad", "position": [8, -4], "rotation": 200},
     {"id": "desert_oasis_keeper", "kind": "npc", "npc": "desert_oasis_keeper", "position": [-26, -30], "rotation": 0, "summon": SUMMON_GUIDE, "needs_quest": "desert_scarab"},
     {"id": "oasis_pond", "kind": "water", "position": [-34, -37], "size": [10.0, 6.0], "round": True, "color": [0.12, 0.38, 0.45]},
@@ -378,18 +377,14 @@ arenas["desert_01_canyon"] = {
     "_comment": "Deserto — o Cânion (Canyon Terrain Asset, loafbrr / Ian87, CC0), mapa grande com a estrutura da Floresta e outro caminho: acampamento ao sul, rota em laço para o norte "
                 "(estrada, ruínas de carroças, passagem, areia movediça, dunas) e ramais sem saída (Caravana, Ninho, Oásis, Ruínas do Sol). 2 mini-chefes: a Rainha Escorpião (o NPC do Oásis a "
                 "desperta) e o Lamassu da Areia (o templo das Ruínas do Sol). O Sentinela do Portão pede as duas chaves; atrás do portão fica a Esfinge (chefe final) e a saída. "
-                "Liga-se à Fazenda pelo portal do oeste dos campos. Gerado por tools/assets/build_desert.py.",
+                "Liga-se à Capital (tools/assets/set_map_order.py). Gerado por tools/assets/build_desert.py.",
     "name_key": "ARENA_DESERT", "outdoor": True, "player_class": "mage", "map_id": "map_desert", "area_level": 7, "wake_radius": 10.0, "alert_radius": 5.0,
     "rooms": rooms, "encounters": [{"id": i, "position": p, "monsters": [{"monster": m, "count": c} for m, c in mons]} for i, p, mons in encounters], "hazards": [],
     "entries": {"start": [0, 7], "desert": [0, 7]}, "props": props, "quest_spots": [], "breakables": breakables,
     "style": {"_comment": "Cânion: chão de areia (Ground_Canyon), sem muro do kit; as paredes são as formações de rocha (decor).", "walls": [""], "floor": "Ground_Canyon", "low": "",
               "ground": [0.5, 0.36, 0.22]},
     "decor": decor, "passive": True}
-# Fazenda: portal para o Deserto no oeste dos campos
-farm = arenas["farm_01_fields"]
-farm["props"] = [p for p in farm["props"] if p["id"] != "desert_gate"] + [
-    {"id": "desert_gate", "kind": "exit", "name_key": "PROP_TO_DESERT", "position": [-24, -14], "to": "desert_01_canyon", "entry": "start"}]
-farm["entries"]["desert"] = [-22.0, -17.0]
+# (o portal do Deserto fica na Capital: tools/assets/set_map_order.py)
 
 # ---------------------------------------------------------------- monstros (Esfinge) e itens de missão
 sphinx = json.loads(json.dumps(monsters["leshy"]))

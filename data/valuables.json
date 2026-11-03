@@ -181,5 +181,33 @@
     "maps": [],
     "quest_item": true,
     "model": "Key_Diamonds"
+  },
+  "ship_helm": {
+    "name_key": "VALUABLE_SHIP_HELM",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Bucket_Wooden_1"
+  },
+  "golden_shark_tooth": {
+    "name_key": "VALUABLE_GOLDEN_SHARK_TOOTH",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Coin_Gold"
+  },
+  "key_anchor": {
+    "name_key": "VALUABLE_KEY_ANCHOR",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Gold"
+  },
+  "key_compass": {
+    "name_key": "VALUABLE_KEY_COMPASS",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Hearts"
   }
 }

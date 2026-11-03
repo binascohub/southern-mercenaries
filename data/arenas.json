@@ -281,6 +281,14 @@
       "docks": [
         0,
         -26
+      ],
+      "ruins": [
+        -24.0,
+        6.0
+      ],
+      "capital": [
+        24.0,
+        -2.5
       ]
     },
     "props": [
@@ -404,17 +412,6 @@
         "entry": "start"
       },
       {
-        "id": "mine_gate",
-        "kind": "exit",
-        "name_key": "PROP_TO_MINE",
-        "position": [
-          -28.5,
-          5.9
-        ],
-        "to": "mine_01_crystal_vein",
-        "entry": "start"
-      },
-      {
         "id": "docks_gate",
         "kind": "exit",
         "name_key": "PROP_TO_DOCKS",
@@ -423,6 +420,28 @@
           -26.8
         ],
         "to": "docks_01_pier",
+        "entry": "start"
+      },
+      {
+        "id": "ruins_gate",
+        "kind": "exit",
+        "name_key": "PROP_TO_RUINS",
+        "position": [
+          -28.5,
+          5.9
+        ],
+        "to": "ruins_01_city",
+        "entry": "start"
+      },
+      {
+        "id": "capital_gate",
+        "kind": "exit",
+        "name_key": "PROP_TO_CAPITAL",
+        "position": [
+          27.0,
+          -2.5
+        ],
+        "to": "capital_01_aurenhold",
         "entry": "start"
       }
     ],
@@ -11078,16 +11097,17 @@
         "expedition_end": true
       },
       {
-        "id": "to_ruins",
+        "id": "victory_portal",
         "kind": "exit",
-        "name_key": "PROP_TO_RUINS",
+        "name_key": "PROP_RETURN_PORTAL",
         "position": [
           71.0,
           -143.5
         ],
-        "to": "ruins_01_city",
-        "entry": "start",
-        "group": true
+        "to": "tortuga",
+        "entry": "forest",
+        "group": true,
+        "after_victory": true
       },
       {
         "id": "forest_pyre_keeper",
@@ -13987,30 +14007,6 @@
         ],
         "scale": 0.83,
         "y": 0.02
-      },
-      {
-        "piece": "Signpost_Medieval",
-        "position": [
-          69.0,
-          -24.5
-        ],
-        "rotation": 90,
-        "solid": [
-          0.6,
-          0.6
-        ]
-      },
-      {
-        "piece": "Signpost_Medieval",
-        "position": [
-          68.0,
-          -78.5
-        ],
-        "rotation": 45,
-        "solid": [
-          0.6,
-          0.6
-        ]
       },
       {
         "piece": "Butterfly_Small",
@@ -36062,6 +36058,42 @@
         ],
         "rotation": 37,
         "scale": 1.01
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          21.0,
+          -20.0
+        ],
+        "rotation": 345,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          76.0,
+          -10.5
+        ],
+        "rotation": 90,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          68.0,
+          -78.5
+        ],
+        "rotation": 45,
+        "solid": [
+          0.6,
+          0.6
+        ]
       }
     ],
     "passive": true,
@@ -36439,20 +36471,21 @@
           3
         ],
         "to": "tortuga",
-        "entry": "forest",
+        "entry": "ruins",
         "expedition_end": true
       },
       {
-        "id": "to_cemetery",
+        "id": "victory_portal",
         "kind": "exit",
-        "name_key": "PROP_TO_CEMETERY",
+        "name_key": "PROP_RETURN_PORTAL",
         "position": [
           0,
           -73
         ],
-        "to": "cemetery_01_yard",
-        "entry": "start",
-        "group": true
+        "to": "tortuga",
+        "entry": "ruins",
+        "group": true,
+        "after_victory": true
       },
       {
         "id": "ruins_spartan",
@@ -38937,21 +38970,22 @@
           -6,
           3
         ],
-        "to": "tortuga",
-        "entry": "forest",
-        "expedition_end": true
+        "to": "capital_01_aurenhold",
+        "entry": "cemetery",
+        "expedition_end": false
       },
       {
-        "id": "to_fort",
+        "id": "victory_portal",
         "kind": "exit",
-        "name_key": "PROP_TO_DARK_FOREST",
+        "name_key": "PROP_RETURN_PORTAL",
         "position": [
           -80,
           -177
         ],
-        "to": "dark_forest_01_woods",
-        "entry": "start",
-        "group": true
+        "to": "capital_01_aurenhold",
+        "entry": "cemetery",
+        "group": true,
+        "after_victory": true
       },
       {
         "id": "lamp_statue",
@@ -86802,42 +86836,6 @@
         "y": 0.0
       },
       {
-        "piece": "Signpost_Medieval",
-        "position": [
-          -76.0,
-          -116.5
-        ],
-        "rotation": 255,
-        "solid": [
-          0.6,
-          0.6
-        ]
-      },
-      {
-        "piece": "Signpost_Medieval",
-        "position": [
-          -80.0,
-          -45.5
-        ],
-        "rotation": 270,
-        "solid": [
-          0.6,
-          0.6
-        ]
-      },
-      {
-        "piece": "Signpost_Medieval",
-        "position": [
-          -86.0,
-          2.5
-        ],
-        "rotation": 135,
-        "solid": [
-          0.6,
-          0.6
-        ]
-      },
-      {
         "piece": "Rock_Mossy",
         "position": [
           0.8,
@@ -87810,6 +87808,42 @@
         "solid": [
           2.2,
           1.9
+        ]
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          -76.0,
+          -116.5
+        ],
+        "rotation": 255,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          -80.0,
+          -45.5
+        ],
+        "rotation": 270,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          -86.0,
+          2.5
+        ],
+        "rotation": 135,
+        "solid": [
+          0.6,
+          0.6
         ]
       }
     ],
@@ -88789,20 +88823,20 @@
           33.75,
           33.75
         ],
-        "to": "tortuga",
-        "entry": "forest",
-        "expedition_end": true
+        "to": "capital_01_aurenhold",
+        "entry": "fort",
+        "expedition_end": false
       },
       {
-        "id": "to_capital",
+        "id": "victory_portal",
         "kind": "exit",
-        "name_key": "PROP_TO_CAPITAL",
+        "name_key": "PROP_RETURN_PORTAL",
         "position": [
           -27.5,
           -39.35
         ],
         "to": "capital_01_aurenhold",
-        "entry": "start",
+        "entry": "fort",
         "after_victory": true,
         "group": true
       },
@@ -95174,26 +95208,27 @@
       {
         "id": "return_portal",
         "kind": "exit",
-        "name_key": "PROP_RETURN_PORTAL",
+        "name_key": "PROP_RETURN_FARM",
         "position": [
           -6,
           3
         ],
-        "to": "tortuga",
-        "entry": "forest",
+        "to": "farm_01_fields",
+        "entry": "dark_forest",
         "expedition_end": true
       },
       {
-        "id": "to_fort",
+        "id": "victory_portal",
         "kind": "exit",
-        "name_key": "PROP_TO_FORT",
+        "name_key": "PROP_RETURN_PORTAL",
         "position": [
           0,
           -82.5
         ],
-        "to": "fort_01_gate",
-        "entry": "start",
-        "group": true
+        "to": "farm_01_fields",
+        "entry": "dark_forest",
+        "group": true,
+        "after_victory": true
       }
     ],
     "quest_spots": [],
@@ -99600,6 +99635,18 @@
       "capital": [
         0,
         3
+      ],
+      "cemetery": [
+        6.0,
+        2.0
+      ],
+      "fort": [
+        12.0,
+        2.0
+      ],
+      "desert": [
+        18.0,
+        2.0
       ]
     },
     "props": [
@@ -99612,7 +99659,7 @@
           3
         ],
         "to": "tortuga",
-        "entry": "forest"
+        "entry": "capital"
       },
       {
         "id": "shop_potions",
@@ -99732,6 +99779,39 @@
           -39,
           -8.4
         ]
+      },
+      {
+        "id": "cemetery_gate",
+        "kind": "exit",
+        "name_key": "PROP_TO_CEMETERY",
+        "position": [
+          6.0,
+          4.5
+        ],
+        "to": "cemetery_01_yard",
+        "entry": "start"
+      },
+      {
+        "id": "fort_gate",
+        "kind": "exit",
+        "name_key": "PROP_TO_FORT",
+        "position": [
+          12.0,
+          4.5
+        ],
+        "to": "fort_01_gate",
+        "entry": "start"
+      },
+      {
+        "id": "desert_gate",
+        "kind": "exit",
+        "name_key": "PROP_TO_DESERT",
+        "position": [
+          18.0,
+          4.5
+        ],
+        "to": "desert_01_canyon",
+        "entry": "start"
       }
     ],
     "style": {
@@ -102696,9 +102776,13 @@
         17.0,
         -7.6
       ],
-      "desert": [
+      "dark_forest": [
         -22.0,
-        -17.0
+        -11.0
+      ],
+      "mine": [
+        24.0,
+        -10.0
       ]
     },
     "props": [
@@ -102754,14 +102838,14 @@
         "entry": "start"
       },
       {
-        "id": "desert_gate",
+        "id": "dark_forest_gate",
         "kind": "exit",
-        "name_key": "PROP_TO_DESERT",
+        "name_key": "PROP_TO_DARK_FOREST",
         "position": [
           -24,
           -14
         ],
-        "to": "desert_01_canyon",
+        "to": "dark_forest_01_woods",
         "entry": "start"
       }
     ],
@@ -119377,13 +119461,13 @@
       {
         "id": "return_portal",
         "kind": "exit",
-        "name_key": "PROP_RETURN_PORTAL",
+        "name_key": "PROP_RETURN_FARM",
         "position": [
           -6,
           3
         ],
-        "to": "tortuga",
-        "entry": "forest",
+        "to": "farm_01_fields",
+        "entry": "mine",
         "expedition_end": true
       },
       {
@@ -126681,7 +126765,7 @@
     "passive": true
   },
   "docks_01_pier": {
-    "_comment": "Docas, ligadas ao porto de Tortuga (Modular Wooden Docks, loafbrr, CC0): píeres de madeira sobre o mar, com barcos, defensas, barris e caixotes; saída para o porto no sul. Gerado por tools/assets/build_maps.py.",
+    "_comment": "Docas, ampliadas (Modular Wooden Docks, loafbrr, CC0): píeres sobre o mar com a estrutura da Floresta e outro caminho. Cais de partida -> Píer Principal -> Mercado de Peixe; laço oeste (Estaleiro: casco encalhado desperta o Casco Vivo) e laço leste (Peixaria: a Peixeira desperta o Tubarão-Porco), fechando no Farol e no Armazém; Calçada -> Atracadouro -> corredor do portão (Vigia, duas chaves) -> Convés do Capitão Afogado (chefe final, com a saída). Mantém os encontros dk_* da missão dos contrabandistas. Gerado por tools/assets/build_docks.py.",
     "name_key": "ARENA_DOCKS",
     "player_class": "mage",
     "map_id": "map_docks",
@@ -126697,58 +126781,26 @@
           0
         ],
         "size": [
-          20,
-          10
+          36,
+          16
         ],
         "doors": [
-          "north"
-        ],
-        "torch": true,
-        "wall_height": 0.8
-      },
-      {
-        "id": "pier_main",
-        "center": [
-          0,
-          -12
-        ],
-        "size": [
-          8,
-          14
-        ],
-        "doors": [
-          "south",
-          "north"
-        ],
-        "wall_height": 0.8
-      },
-      {
-        "id": "crossing",
-        "center": [
-          0,
-          -25
-        ],
-        "size": [
-          40,
-          8
-        ],
-        "doors": [
-          "south",
           "west",
           "east",
           "north"
         ],
-        "wall_height": 0.8
+        "wall_height": 0.8,
+        "torch": true
       },
       {
-        "id": "west_pier",
+        "id": "fish_pier",
         "center": [
-          -26,
-          -25
+          -32,
+          0
         ],
         "size": [
-          12,
-          8
+          28,
+          12
         ],
         "doors": [
           "east"
@@ -126756,14 +126808,14 @@
         "wall_height": 0.8
       },
       {
-        "id": "east_pier",
+        "id": "boathouse",
         "center": [
-          26,
-          -25
+          32,
+          0
         ],
         "size": [
-          12,
-          8
+          28,
+          12
         ],
         "doors": [
           "west"
@@ -126771,19 +126823,202 @@
         "wall_height": 0.8
       },
       {
-        "id": "end_pier",
+        "id": "main_pier",
         "center": [
           0,
-          -37
+          -18
         ],
         "size": [
           10,
-          16
+          20
+        ],
+        "doors": [
+          "south",
+          "north"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "market",
+        "center": [
+          0,
+          -46
+        ],
+        "size": [
+          64,
+          36
+        ],
+        "doors": [
+          "south",
+          "west",
+          "east",
+          "north"
+        ],
+        "wall_height": 0.8,
+        "torch": true
+      },
+      {
+        "id": "west_pier",
+        "center": [
+          -46,
+          -46
+        ],
+        "size": [
+          28,
+          8
+        ],
+        "doors": [
+          "east",
+          "north:-1"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "east_pier",
+        "center": [
+          46,
+          -46
+        ],
+        "size": [
+          28,
+          8
+        ],
+        "doors": [
+          "west",
+          "north:1"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "shipyard",
+        "center": [
+          -52,
+          -70
+        ],
+        "size": [
+          36,
+          40
+        ],
+        "doors": [
+          "south:5",
+          "north:-3"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "fishery",
+        "center": [
+          52,
+          -70
+        ],
+        "size": [
+          36,
+          40
+        ],
+        "doors": [
+          "south:-5",
+          "north:3"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "causeway",
+        "center": [
+          0,
+          -80
+        ],
+        "size": [
+          12,
+          32
+        ],
+        "doors": [
+          "south",
+          "north"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "wharf",
+        "center": [
+          0,
+          -107
+        ],
+        "size": [
+          80,
+          22
+        ],
+        "doors": [
+          "south",
+          "west",
+          "east",
+          "north"
+        ],
+        "wall_height": 0.8,
+        "torch": true
+      },
+      {
+        "id": "lighthouse",
+        "center": [
+          -55,
+          -105
+        ],
+        "size": [
+          30,
+          30
+        ],
+        "doors": [
+          "south",
+          "east:-2"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "warehouse",
+        "center": [
+          55,
+          -105
+        ],
+        "size": [
+          30,
+          30
+        ],
+        "doors": [
+          "south",
+          "west:-2"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "gate_lane",
+        "center": [
+          0,
+          -130
+        ],
+        "size": [
+          10,
+          24
+        ],
+        "doors": [
+          "south",
+          "north"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "deck",
+        "center": [
+          0,
+          -170
+        ],
+        "size": [
+          70,
+          56
         ],
         "doors": [
           "south"
         ],
-        "wall_height": 0.8
+        "wall_height": 0.8,
+        "torch": true
       }
     ],
     "encounters": [
@@ -126791,7 +127026,7 @@
         "id": "dk_rats_a",
         "position": [
           0,
-          -12
+          -18
         ],
         "monsters": [
           {
@@ -126803,8 +127038,8 @@
       {
         "id": "dk_toads",
         "position": [
-          -24,
-          -23
+          -32,
+          0
         ],
         "monsters": [
           {
@@ -126816,8 +127051,8 @@
       {
         "id": "dk_bats",
         "position": [
-          26,
-          -25
+          32,
+          0
         ],
         "monsters": [
           {
@@ -126830,7 +127065,7 @@
         "id": "dk_rats_b",
         "position": [
           0,
-          -40
+          -80
         ],
         "monsters": [
           {
@@ -126846,13 +127081,286 @@
       {
         "id": "dk_anglers",
         "position": [
-          -26,
-          -25
+          -46,
+          -46
         ],
         "monsters": [
           {
             "monster": "angler",
             "count": 2
+          }
+        ]
+      },
+      {
+        "id": "dk_market_a",
+        "position": [
+          -18,
+          -42
+        ],
+        "monsters": [
+          {
+            "monster": "plague_frog",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "dk_market_b",
+        "position": [
+          18,
+          -52
+        ],
+        "monsters": [
+          {
+            "monster": "mutant_frog",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "dk_market_c",
+        "position": [
+          -4,
+          -36
+        ],
+        "monsters": [
+          {
+            "monster": "plague_bat",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "dk_east_pier",
+        "position": [
+          46,
+          -46
+        ],
+        "monsters": [
+          {
+            "monster": "acid_toad",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "dk_yard_a",
+        "position": [
+          -62,
+          -80
+        ],
+        "monsters": [
+          {
+            "monster": "angler",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "dk_yard_b",
+        "position": [
+          -42,
+          -58
+        ],
+        "monsters": [
+          {
+            "monster": "acid_toad",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "dk_fishery_a",
+        "position": [
+          44,
+          -84
+        ],
+        "monsters": [
+          {
+            "monster": "plague_bat",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "dk_fishery_b",
+        "position": [
+          62,
+          -58
+        ],
+        "monsters": [
+          {
+            "monster": "mutant_frog",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "dk_light_a",
+        "position": [
+          -55,
+          -112
+        ],
+        "monsters": [
+          {
+            "monster": "angler",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "dk_light_b",
+        "position": [
+          -62,
+          -98
+        ],
+        "monsters": [
+          {
+            "monster": "plague_bat",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "dk_ware_a",
+        "position": [
+          55,
+          -112
+        ],
+        "monsters": [
+          {
+            "monster": "mutant_frog",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "dk_ware_b",
+        "position": [
+          62,
+          -98
+        ],
+        "monsters": [
+          {
+            "monster": "angler",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": "dk_wharf_a",
+        "position": [
+          -20,
+          -107
+        ],
+        "monsters": [
+          {
+            "monster": "plague_frog",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "dk_wharf_b",
+        "position": [
+          20,
+          -107
+        ],
+        "monsters": [
+          {
+            "monster": "plague_bat",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "dk_boathouse_mimic",
+        "position": [
+          38,
+          3
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "dk_yard_mimic",
+        "position": [
+          -60,
+          -60
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "dk_light_mimic",
+        "position": [
+          -66,
+          -112
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "dk_ware_mimic",
+        "position": [
+          66,
+          -112
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "dk_deck_a",
+        "position": [
+          -18,
+          -158
+        ],
+        "monsters": [
+          {
+            "monster": "angler",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "dk_deck_b",
+        "position": [
+          18,
+          -158
+        ],
+        "monsters": [
+          {
+            "monster": "angler",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "dk_captain",
+        "position": [
+          0,
+          -188
+        ],
+        "monsters": [
+          {
+            "monster": "drowned_captain",
+            "count": 1
           }
         ]
       }
@@ -126874,11 +127382,11 @@
         "kind": "water",
         "position": [
           0,
-          -22
+          -95
         ],
         "size": [
-          110,
-          90
+          240,
+          260
         ]
       },
       {
@@ -126893,11 +127401,113 @@
         "entry": "docks"
       },
       {
+        "id": "victory_portal",
+        "kind": "exit",
+        "name_key": "PROP_TO_PORT",
+        "position": [
+          0,
+          -195.5
+        ],
+        "to": "tortuga",
+        "entry": "docks",
+        "after_victory": true,
+        "group": true
+      },
+      {
+        "id": "dock_master",
+        "kind": "npc",
+        "npc": "dock_master",
+        "position": [
+          8,
+          -2
+        ],
+        "rotation": 200
+      },
+      {
+        "id": "wrecked_hull",
+        "kind": "npc",
+        "npc": "wrecked_hull",
+        "kit": "Dock_Boat_Stand",
+        "rotation": 0,
+        "position": [
+          -52.0,
+          -70.0
+        ],
+        "summon": {
+          "id": "dk_hull",
+          "position": [
+            -52.0,
+            -62.0
+          ],
+          "spread": 3.0,
+          "toast": "TOAST_HULL_AWAKENS",
+          "monsters": [
+            {
+              "monster": "hull_beast",
+              "count": 1,
+              "rank": "miniboss"
+            }
+          ]
+        },
+        "needs_quest": "dock_helm"
+      },
+      {
+        "id": "dock_fishwife",
+        "kind": "npc",
+        "npc": "dock_fishwife",
+        "position": [
+          42.0,
+          -60.0
+        ],
+        "rotation": 0,
+        "summon": {
+          "id": "dk_shark",
+          "position": [
+            62.0,
+            -80.0
+          ],
+          "spread": 3.0,
+          "toast": "TOAST_SHARK_AWAKENS",
+          "monsters": [
+            {
+              "monster": "pork_shark",
+              "count": 1,
+              "rank": "miniboss"
+            }
+          ]
+        },
+        "needs_quest": "dock_tooth"
+      },
+      {
+        "id": "boss_gate",
+        "kind": "gate",
+        "name_key": "PROP_BOSS_GATE",
+        "position": [
+          0.0,
+          -124.0
+        ],
+        "rotation": 0,
+        "scale": 3.0,
+        "block": 10.0,
+        "count": 2,
+        "opened_by": "dock_gate"
+      },
+      {
+        "id": "dock_sentinel",
+        "kind": "npc",
+        "npc": "dock_sentinel",
+        "position": [
+          0.0,
+          -120.0
+        ],
+        "rotation": 0
+      },
+      {
         "id": "dock_chest_1",
         "kind": "chest",
         "position": [
-          -30,
-          -27
+          -40,
+          -2
         ],
         "loot": "chest"
       },
@@ -126905,8 +127515,53 @@
         "id": "dock_chest_2",
         "kind": "chest",
         "position": [
-          0,
-          -44
+          40,
+          3
+        ],
+        "loot": "chest"
+      },
+      {
+        "id": "dock_chest_3",
+        "kind": "chest",
+        "position": [
+          -62,
+          -112
+        ],
+        "loot": "chest"
+      },
+      {
+        "id": "dock_chest_4",
+        "kind": "chest",
+        "position": [
+          62,
+          -112
+        ],
+        "loot": "chest"
+      },
+      {
+        "id": "dock_chest_5",
+        "kind": "chest",
+        "position": [
+          -28,
+          -58
+        ],
+        "loot": "chest"
+      },
+      {
+        "id": "dock_chest_6",
+        "kind": "chest",
+        "position": [
+          -30,
+          -190
+        ],
+        "loot": "chest"
+      },
+      {
+        "id": "dock_chest_7",
+        "kind": "chest",
+        "position": [
+          30,
+          -190
         ],
         "loot": "chest"
       }
@@ -126919,6 +127574,69 @@
         "position": [
           4.0,
           1.5
+        ],
+        "table": "coin_bag"
+      },
+      {
+        "id": "coin_bag_2",
+        "monster": "coin_bag",
+        "position": [
+          -24,
+          -40
+        ],
+        "table": "coin_bag"
+      },
+      {
+        "id": "coin_bag_3",
+        "monster": "coin_bag",
+        "position": [
+          24,
+          -52
+        ],
+        "table": "coin_bag"
+      },
+      {
+        "id": "coin_bag_4",
+        "monster": "coin_bag",
+        "position": [
+          -52,
+          -90
+        ],
+        "table": "coin_bag"
+      },
+      {
+        "id": "coin_bag_5",
+        "monster": "coin_bag",
+        "position": [
+          52,
+          -90
+        ],
+        "table": "coin_bag"
+      },
+      {
+        "id": "coin_bag_6",
+        "monster": "coin_bag",
+        "position": [
+          0,
+          -100
+        ],
+        "table": "coin_bag"
+      },
+      {
+        "id": "coin_bag_7",
+        "monster": "coin_bag",
+        "position": [
+          -20,
+          -176
+        ],
+        "table": "coin_bag"
+      },
+      {
+        "id": "coin_bag_8",
+        "monster": "coin_bag",
+        "position": [
+          20,
+          -176
         ],
         "table": "coin_bag"
       }
@@ -126938,385 +127656,2256 @@
     },
     "decor": [
       {
-        "piece": "Dock_Boat_A_1",
+        "piece": "Dock_Dock_Bollard_1",
         "position": [
-          -12,
-          -14
+          -67.2,
+          -89.1
         ],
-        "y": -0.2,
-        "rotation": 20
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
       },
       {
-        "piece": "Dock_Boat_B_1",
+        "piece": "Dock_Dock_Bollard_1",
         "position": [
-          12,
-          -15
+          -39.5,
+          -89.1
         ],
-        "y": -0.2,
-        "rotation": -15
+        "rotation": 75,
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
       },
       {
-        "piece": "Dock_Boat_A_2",
+        "piece": "Dock_Dock_Bollard_1",
         "position": [
-          -14,
-          -33
+          -69.1,
+          -70.0
         ],
-        "y": -0.2,
-        "rotation": 80
+        "rotation": 210,
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
       },
       {
-        "piece": "Dock_Boat_A_1",
+        "piece": "Dock_Dock_Bollard_1",
         "position": [
-          14,
-          -34
+          40.9,
+          -89.1
         ],
-        "y": -0.2,
-        "rotation": 100
+        "rotation": 180,
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
       },
       {
-        "piece": "Dock_Boat_B_1",
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          69.1,
+          -86.1
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          5.0,
+          -64.9
+        ],
+        "rotation": 135,
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          -2.7,
+          -96.9
+        ],
+        "rotation": 210,
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          -5.7,
+          -117.1
+        ],
+        "rotation": 105,
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          24.8,
+          -96.9
+        ],
+        "rotation": 315,
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          25.3,
+          -117.1
+        ],
+        "rotation": 60,
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          35.7,
+          -117.1
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          -26.6,
+          -117.1
+        ],
+        "rotation": 300,
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          -59.0,
+          -90.9
+        ],
+        "rotation": 180,
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          -69.1,
+          -110.0
+        ],
+        "rotation": 255,
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          60.9,
+          -119.1
+        ],
+        "rotation": 300,
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          69.1,
+          -117.0
+        ],
+        "rotation": 30,
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          67.7,
+          -119.1
+        ],
+        "rotation": 300,
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          25.2,
+          -197.1
+        ],
+        "rotation": 180,
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          23.6,
+          -197.1
+        ],
+        "rotation": 300,
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          -13.2,
+          -142.9
+        ],
+        "rotation": 210,
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Dock_Dock_Bollard_1",
+        "position": [
+          -15.9,
+          -142.9
+        ],
+        "rotation": 45,
+        "y": 0.12,
+        "solid": [
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "piece": "Pr_LampPost",
         "position": [
           -8,
-          6
+          -3
         ],
-        "y": -0.2,
-        "rotation": 0
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.5
+        ],
+        "position": [
+          -8,
+          -3
+        ],
+        "y": 3.2,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": true
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          8,
+          5
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.5
+        ],
+        "position": [
+          8,
+          5
+        ],
+        "y": 3.2,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": true
       },
       {
         "piece": "Dock_Boat_Stand",
         "position": [
-          10,
-          8
+          12,
+          4
         ],
-        "rotation": 90
-      },
-      {
-        "piece": "Dock_Dock_Bollard_1",
-        "position": [
-          -9,
-          3
-        ],
+        "rotation": 90,
         "y": 0.12,
         "solid": [
-          0.4,
-          0.4
+          3.0,
+          1.5
         ]
       },
       {
-        "piece": "Dock_Dock_Bollard_1",
+        "piece": "War_Banner",
         "position": [
-          -9,
-          -4
+          -13,
+          -6
         ],
-        "y": 0.12,
-        "solid": [
-          0.4,
-          0.4
-        ]
+        "rotation": 0,
+        "y": 0.12
       },
       {
-        "piece": "Dock_Dock_Bollard_1",
+        "piece": "War_Banner",
         "position": [
-          9,
-          3
+          13,
+          -6
         ],
-        "y": 0.12,
-        "solid": [
-          0.4,
-          0.4
-        ]
+        "rotation": 0,
+        "y": 0.12
       },
       {
-        "piece": "Dock_Dock_Bollard_1",
+        "piece": "Tv_Torch",
         "position": [
-          9,
-          -4
+          -14,
+          6
         ],
+        "rotation": 90,
         "y": 0.12,
-        "solid": [
-          0.4,
-          0.4
-        ]
+        "scale": 1.5
       },
       {
-        "piece": "Dock_Dock_Bollard_1",
-        "position": [
-          -3,
-          -8
+        "light": [
+          1.0,
+          0.6,
+          0.25
         ],
-        "y": 0.12,
-        "solid": [
-          0.4,
-          0.4
-        ]
+        "position": [
+          -14,
+          6
+        ],
+        "y": 1.8,
+        "range": 6.5,
+        "energy": 0.8,
+        "flicker": true
       },
       {
-        "piece": "Dock_Dock_Bollard_1",
+        "piece": "Tv_Torch",
         "position": [
-          3,
-          -8
+          -2,
+          -6
         ],
+        "rotation": 315,
         "y": 0.12,
-        "solid": [
-          0.4,
-          0.4
-        ]
+        "scale": 1.5
       },
       {
-        "piece": "Dock_Dock_Bollard_1",
-        "position": [
-          -3,
-          -16
+        "light": [
+          1.0,
+          0.6,
+          0.25
         ],
-        "y": 0.12,
-        "solid": [
-          0.4,
-          0.4
-        ]
+        "position": [
+          -2,
+          -6
+        ],
+        "y": 1.8,
+        "range": 6.5,
+        "energy": 0.8,
+        "flicker": true
       },
       {
-        "piece": "Dock_Dock_Bollard_1",
+        "piece": "Tv_Torch",
         "position": [
-          3,
-          -16
+          4,
+          6
         ],
+        "rotation": 150,
         "y": 0.12,
-        "solid": [
-          0.4,
-          0.4
-        ]
+        "scale": 1.5
       },
       {
-        "piece": "Dock_Props_Crate",
-        "position": [
-          -7.8,
-          1.4
+        "light": [
+          1.0,
+          0.6,
+          0.25
         ],
+        "position": [
+          4,
+          6
+        ],
+        "y": 1.8,
+        "range": 6.5,
+        "energy": 0.8,
+        "flicker": true
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          -10.9,
+          3.2
+        ],
+        "rotation": 90,
         "y": 0.12,
-        "rotation": 225
+        "scale": 1.15
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          -8.0,
+          4.8
+        ],
+        "rotation": 345,
+        "y": 0.12,
+        "scale": 0.98
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          1.1,
+          -3.2
+        ],
+        "rotation": 75,
+        "y": 0.12,
+        "scale": 1.1
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -13.5,
+          -2.0
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 1.09
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          7.8,
+          -4.9
+        ],
+        "rotation": 30,
+        "y": 0.12,
+        "scale": 1.0
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          -10.6,
+          0.1
+        ],
+        "rotation": 60,
+        "y": 0.12,
+        "scale": 1.07
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          10.4,
+          -3.6
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 1.08
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          1.8,
+          1.8
+        ],
+        "rotation": 210,
+        "y": 0.12,
+        "scale": 1.11
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          14.0,
+          -0.8
+        ],
+        "rotation": 330,
+        "y": 0.12,
+        "scale": 1.17
       },
       {
         "piece": "Dock_Props_Barrel",
         "position": [
-          -7.0,
-          1.3
+          -2.6,
+          -1.4
         ],
+        "rotation": 90,
         "y": 0.12,
-        "rotation": 240
+        "scale": 1.06
       },
       {
         "piece": "Dock_Props_Crate",
-        "position": [
-          6.6,
-          1.3
-        ],
-        "y": 0.12,
-        "rotation": 270
-      },
-      {
-        "piece": "Dock_Props_Box",
-        "position": [
-          7.4,
-          0.7
-        ],
-        "y": 0.12,
-        "rotation": 0
-      },
-      {
-        "piece": "Dock_Props_Box",
-        "position": [
-          -17.8,
-          -26.3
-        ],
-        "y": 0.12,
-        "rotation": 330
-      },
-      {
-        "piece": "Dock_Props_Box",
-        "position": [
-          -17.7,
-          -25.9
-        ],
-        "y": 0.12,
-        "rotation": 225
-      },
-      {
-        "piece": "Dock_Props_Barrel",
-        "position": [
-          -17.5,
-          -25.3
-        ],
-        "y": 0.12,
-        "rotation": 330
-      },
-      {
-        "piece": "Dock_Props_Crate",
-        "position": [
-          -29.4,
-          -23.0
-        ],
-        "y": 0.12,
-        "rotation": 150
-      },
-      {
-        "piece": "Dock_Props_Crate",
-        "position": [
-          -30.5,
-          -22.9
-        ],
-        "y": 0.12,
-        "rotation": 210
-      },
-      {
-        "piece": "Dock_Props_Box",
-        "position": [
-          -30.3,
-          -22.5
-        ],
-        "y": 0.12,
-        "rotation": 210
-      },
-      {
-        "piece": "Dock_Props_Crate",
-        "position": [
-          21.5,
-          -27.1
-        ],
-        "y": 0.12,
-        "rotation": 285
-      },
-      {
-        "piece": "Dock_Props_Crate",
-        "position": [
-          21.5,
-          -26.3
-        ],
-        "y": 0.12,
-        "rotation": 255
-      },
-      {
-        "piece": "Dock_Props_Crate",
-        "position": [
-          22.4,
-          -27.1
-        ],
-        "y": 0.12,
-        "rotation": 195
-      },
-      {
-        "piece": "Dock_Props_Crate",
-        "position": [
-          30.3,
-          -22.6
-        ],
-        "y": 0.12,
-        "rotation": 30
-      },
-      {
-        "piece": "Dock_Props_Box",
-        "position": [
-          30.6,
-          -23.4
-        ],
-        "y": 0.12,
-        "rotation": 150
-      },
-      {
-        "piece": "Dock_Props_Barrel",
-        "position": [
-          -2.4,
-          -33.4
-        ],
-        "y": 0.12,
-        "rotation": 15
-      },
-      {
-        "piece": "Dock_Props_Box",
-        "position": [
-          -3.4,
-          -32.4
-        ],
-        "y": 0.12,
-        "rotation": 270
-      },
-      {
-        "piece": "Dock_Props_Box",
         "position": [
           3.2,
-          -41.8
+          -2.5
         ],
+        "rotation": 255,
         "y": 0.12,
-        "rotation": 315
+        "scale": 1.12
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -4.4,
+          -4.4
+        ],
+        "rotation": 240,
+        "y": 0.12,
+        "scale": 1.08
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          9.2,
+          1.1
+        ],
+        "rotation": 240,
+        "y": 0.12,
+        "scale": 1.12
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -6.5,
+          1.5
+        ],
+        "rotation": 285,
+        "y": 0.12,
+        "scale": 0.92
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          -30.2,
+          -1.3
+        ],
+        "rotation": 210,
+        "y": 0.12,
+        "scale": 1.13
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          -24.0,
+          -2.0
+        ],
+        "rotation": 150,
+        "y": 0.12,
+        "scale": 1.16
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -35.3,
+          3.4
+        ],
+        "rotation": 45,
+        "y": 0.12,
+        "scale": 1.07
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          -26.2,
+          -0.1
+        ],
+        "rotation": 240,
+        "y": 0.12,
+        "scale": 1.09
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          -31.7,
+          -2.7
+        ],
+        "rotation": 60,
+        "y": 0.12,
+        "scale": 1.06
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -25.4,
+          2.1
+        ],
+        "rotation": 225,
+        "y": 0.12,
+        "scale": 1.1
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          -22.9,
+          1.3
+        ],
+        "rotation": 60,
+        "y": 0.12,
+        "scale": 1.03
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          -28.3,
+          1.0
+        ],
+        "rotation": 300,
+        "y": 0.12,
+        "scale": 0.94
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -20.6,
+          -1.3
+        ],
+        "rotation": 75,
+        "y": 0.12,
+        "scale": 0.9
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          -31.0,
+          2.2
+        ],
+        "rotation": 60,
+        "y": 0.12,
+        "scale": 0.94
+      },
+      {
+        "piece": "Dock_Props_Table_1",
+        "position": [
+          -38,
+          2
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          1.8,
+          1.1
+        ]
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          42.3,
+          2.5
+        ],
+        "rotation": 285,
+        "y": 0.12,
+        "scale": 1.04
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          40.1,
+          0.5
+        ],
+        "rotation": 15,
+        "y": 0.12,
+        "scale": 1.2
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          24.3,
+          3.3
+        ],
+        "rotation": 75,
+        "y": 0.12,
+        "scale": 1.04
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          24.8,
+          1.0
+        ],
+        "rotation": 45,
+        "y": 0.12,
+        "scale": 0.96
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          24.2,
+          -0.7
+        ],
+        "rotation": 315,
+        "y": 0.12,
+        "scale": 0.97
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          41.0,
+          -1.7
+        ],
+        "rotation": 45,
+        "y": 0.12,
+        "scale": 1.01
       },
       {
         "piece": "Dock_Props_Crate",
         "position": [
-          3.6,
-          -42.6
+          31.5,
+          -2.2
         ],
+        "rotation": 105,
         "y": 0.12,
-        "rotation": 165
+        "scale": 1.04
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          29.9,
+          1.1
+        ],
+        "rotation": 210,
+        "y": 0.12,
+        "scale": 1.03
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          31.4,
+          2.7
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 1.06
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          27.5,
+          -1.0
+        ],
+        "rotation": 135,
+        "y": 0.12,
+        "scale": 1.19
       },
       {
         "piece": "Dock_Props_Barrel",
+        "position": [
+          27.2,
+          2.8
+        ],
+        "rotation": 135,
+        "y": 0.12,
+        "scale": 1.1
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          29.8,
+          3.8
+        ],
+        "rotation": 225,
+        "y": 0.12,
+        "scale": 1.03
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -1.0,
+          -22.2
+        ],
+        "rotation": 240,
+        "y": 0.12,
+        "scale": 0.99
+      },
+      {
+        "piece": "Tv_Sack_2",
         "position": [
           -2.8,
-          -28.7
+          -21.8
         ],
+        "rotation": 255,
         "y": 0.12,
-        "rotation": 90
-      },
-      {
-        "piece": "Dock_Props_Box",
-        "position": [
-          -3.2,
-          -28.3
-        ],
-        "y": 0.12,
-        "rotation": 165
+        "scale": 0.94
       },
       {
         "piece": "Dock_Props_Crate",
         "position": [
-          -2.4,
-          -28.6
+          -1.9,
+          -19.7
         ],
+        "rotation": 90,
         "y": 0.12,
-        "rotation": 300
+        "scale": 1.05
       },
       {
-        "piece": "Dock_Props_Barrel",
+        "piece": "Crate_Small",
         "position": [
-          6.3,
-          -23.3
+          0.8,
+          -25.1
         ],
+        "rotation": 315,
         "y": 0.12,
-        "rotation": 270
+        "scale": 1.1
       },
       {
-        "piece": "Dock_Props_Crate",
+        "piece": "Stall_Empty",
         "position": [
-          6.9,
-          -24.0
+          -24,
+          -58
         ],
+        "rotation": 0,
         "y": 0.12,
-        "rotation": 75
+        "scale": 1.5,
+        "solid": [
+          2.7,
+          1.4
+        ]
       },
       {
-        "piece": "Dock_Props_Barrel",
+        "piece": "Stall_Empty",
         "position": [
-          7.4,
-          -24.0
+          -24,
+          -34
         ],
+        "rotation": 180,
         "y": 0.12,
-        "rotation": 120
+        "scale": 1.5,
+        "solid": [
+          2.7,
+          1.4
+        ]
+      },
+      {
+        "piece": "Stall_Empty",
+        "position": [
+          -12,
+          -58
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.5,
+        "solid": [
+          2.7,
+          1.4
+        ]
+      },
+      {
+        "piece": "Stall_Empty",
+        "position": [
+          -12,
+          -34
+        ],
+        "rotation": 180,
+        "y": 0.12,
+        "scale": 1.5,
+        "solid": [
+          2.7,
+          1.4
+        ]
+      },
+      {
+        "piece": "Stall_Empty",
+        "position": [
+          12,
+          -58
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.5,
+        "solid": [
+          2.7,
+          1.4
+        ]
+      },
+      {
+        "piece": "Stall_Empty",
+        "position": [
+          12,
+          -34
+        ],
+        "rotation": 180,
+        "y": 0.12,
+        "scale": 1.5,
+        "solid": [
+          2.7,
+          1.4
+        ]
+      },
+      {
+        "piece": "Stall_Empty",
+        "position": [
+          24,
+          -58
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.5,
+        "solid": [
+          2.7,
+          1.4
+        ]
+      },
+      {
+        "piece": "Stall_Empty",
+        "position": [
+          24,
+          -34
+        ],
+        "rotation": 180,
+        "y": 0.12,
+        "scale": 1.5,
+        "solid": [
+          2.7,
+          1.4
+        ]
+      },
+      {
+        "piece": "Stall_Cart_Empty",
+        "position": [
+          -26,
+          -46
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 1.3,
+        "solid": [
+          1.5,
+          4.0
+        ]
+      },
+      {
+        "piece": "Stall_Cart_Empty",
+        "position": [
+          26,
+          -46
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 1.3,
+        "solid": [
+          1.5,
+          4.0
+        ]
       },
       {
         "piece": "Dock_Props_Rack_Fish",
         "position": [
-          -24,
-          -28
+          -18,
+          -46
         ],
+        "rotation": 90,
+        "y": 0.12,
+        "solid": [
+          2.4,
+          1.1
+        ]
+      },
+      {
+        "piece": "Vl_FishRack",
+        "position": [
+          -15,
+          -43
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 1.1,
+        "solid": [
+          2.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Dock_Props_Rack_Fish",
+        "position": [
+          18,
+          -46
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "solid": [
+          2.4,
+          1.1
+        ]
+      },
+      {
+        "piece": "Vl_FishRack",
+        "position": [
+          21,
+          -43
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 1.1,
+        "solid": [
+          2.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Dock_Props_Rack_Fish",
+        "position": [
+          -6,
+          -52
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          2.4,
+          1.1
+        ]
+      },
+      {
+        "piece": "Vl_FishRack",
+        "position": [
+          -9,
+          -49
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.1,
+        "solid": [
+          2.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Dock_Props_Rack_Fish",
+        "position": [
+          6,
+          -40
+        ],
+        "rotation": 180,
+        "y": 0.12,
+        "solid": [
+          2.4,
+          1.1
+        ]
+      },
+      {
+        "piece": "Vl_FishRack",
+        "position": [
+          3,
+          -37
+        ],
+        "rotation": 180,
+        "y": 0.12,
+        "scale": 1.1,
+        "solid": [
+          2.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          -28,
+          -40
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.5
+        ],
+        "position": [
+          -28,
+          -40
+        ],
+        "y": 3.2,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": true
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          28,
+          -52
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.5
+        ],
+        "position": [
+          28,
+          -52
+        ],
+        "y": 3.2,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": true
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          -10,
+          -32
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.5
+        ],
+        "position": [
+          -10,
+          -32
+        ],
+        "y": 3.2,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": true
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          10,
+          -60
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.5
+        ],
+        "position": [
+          10,
+          -60
+        ],
+        "y": 3.2,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": true
+      },
+      {
+        "piece": "Banner_1",
+        "position": [
+          -30,
+          -34
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.2
+      },
+      {
+        "piece": "Banner_1",
+        "position": [
+          30,
+          -34
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.2
+      },
+      {
+        "piece": "Banner_1",
+        "position": [
+          -30,
+          -58
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.2
+      },
+      {
+        "piece": "Banner_1",
+        "position": [
+          30,
+          -58
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.2
+      },
+      {
+        "piece": "Tv_Basket",
+        "position": [
+          -9.8,
+          -55.5
+        ],
+        "rotation": 60,
+        "y": 0.12,
+        "scale": 1.17
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          1.2,
+          -31.1
+        ],
+        "rotation": 285,
+        "y": 0.12,
+        "scale": 1.1
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          -2.4,
+          -38.0
+        ],
+        "rotation": 240,
+        "y": 0.12,
+        "scale": 1.23
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          -13.0,
+          -39.8
+        ],
+        "rotation": 150,
+        "y": 0.12,
+        "scale": 1.06
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          -28.4,
+          -36.8
+        ],
+        "rotation": 135,
+        "y": 0.12,
+        "scale": 1.08
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          -8.7,
+          -53.9
+        ],
+        "rotation": 240,
+        "y": 0.12,
+        "scale": 0.99
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          -19.7,
+          -60.3
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 1.05
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          -8.4,
+          -57.0
+        ],
+        "rotation": 225,
+        "y": 0.12,
+        "scale": 1.1
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          -14.8,
+          -53.3
+        ],
+        "rotation": 240,
+        "y": 0.12,
+        "scale": 1.11
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          14.5,
+          -49.5
+        ],
+        "rotation": 210,
+        "y": 0.12,
+        "scale": 1.01
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          9.8,
+          -52.5
+        ],
+        "rotation": 285,
+        "y": 0.12,
+        "scale": 0.98
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          -14.3,
+          -48.5
+        ],
+        "rotation": 240,
+        "y": 0.12,
+        "scale": 0.96
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          28.3,
+          -55.3
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.22
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          2.3,
+          -59.4
+        ],
+        "rotation": 150,
+        "y": 0.12,
+        "scale": 1.03
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          16.4,
+          -59.0
+        ],
+        "rotation": 120,
+        "y": 0.12,
+        "scale": 1.29
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          7.4,
+          -57.9
+        ],
+        "rotation": 120,
+        "y": 0.12,
+        "scale": 1.26
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -18.6,
+          -32.0
+        ],
+        "rotation": 195,
+        "y": 0.12,
+        "scale": 0.97
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          -18.1,
+          -54.0
+        ],
+        "rotation": 225,
+        "y": 0.12,
+        "scale": 1.0
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          21.6,
+          -53.9
+        ],
+        "rotation": 330,
+        "y": 0.12,
+        "scale": 0.95
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          12.1,
+          -42.6
+        ],
+        "rotation": 180,
+        "y": 0.12,
+        "scale": 1.25
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          -23.5,
+          -54.8
+        ],
+        "rotation": 315,
+        "y": 0.12,
+        "scale": 1.24
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          -2.3,
+          -51.2
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 1.1
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          4.5,
+          -50.4
+        ],
+        "rotation": 315,
+        "y": 0.12,
+        "scale": 0.98
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          -27.5,
+          -52.3
+        ],
+        "rotation": 15,
+        "y": 0.12,
+        "scale": 1.13
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          -4.4,
+          -31.6
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 1.19
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          -8.1,
+          -31.5
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 0.96
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          -25.3,
+          -38.3
+        ],
+        "rotation": 30,
+        "y": 0.12,
+        "scale": 1.25
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          -16.3,
+          -31.9
+        ],
+        "rotation": 240,
+        "y": 0.12,
+        "scale": 0.92
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          -4.2,
+          -46.6
+        ],
+        "rotation": 300,
+        "y": 0.12,
+        "scale": 0.9
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          -28.3,
+          -32.1
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 1.26
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          7.0,
+          -47.9
+        ],
+        "rotation": 345,
+        "y": 0.12,
+        "scale": 0.99
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          -25.7,
+          -54.4
+        ],
+        "rotation": 225,
+        "y": 0.12,
+        "scale": 1.06
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          1.4,
+          -35.3
+        ],
+        "rotation": 210,
+        "y": 0.12,
+        "scale": 0.98
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          16.1,
+          -50.7
+        ],
+        "rotation": 30,
+        "y": 0.12,
+        "scale": 1.03
+      },
+      {
+        "piece": "Cart_Wood",
+        "position": [
+          1.6,
+          -55.7
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.21,
+        "solid": [
+          2.7,
+          1.5
+        ]
+      },
+      {
+        "piece": "Cart_Wood",
+        "position": [
+          -1.6,
+          -43.1
+        ],
+        "rotation": 150,
+        "y": 0.12,
+        "scale": 1.31,
+        "solid": [
+          2.9,
+          1.6
+        ]
+      },
+      {
+        "piece": "Cart_Wood",
+        "position": [
+          22.7,
+          -39.3
+        ],
+        "rotation": 195,
+        "y": 0.12,
+        "scale": 1.34,
+        "solid": [
+          2.9,
+          1.6
+        ]
+      },
+      {
+        "piece": "Dock_Boat_Stand",
+        "position": [
+          -64,
+          -76
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "solid": [
+          3.0,
+          1.6
+        ]
+      },
+      {
+        "piece": "Dock_Boat_B_1",
+        "position": [
+          -64,
+          -76
+        ],
+        "rotation": 90,
+        "y": 0.9
+      },
+      {
+        "piece": "Dock_Boat_Stand",
+        "position": [
+          -64,
+          -62
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "solid": [
+          3.0,
+          1.6
+        ]
+      },
+      {
+        "piece": "Dock_Boat_A_1",
+        "position": [
+          -64,
+          -62
+        ],
+        "rotation": 90,
+        "y": 0.9
+      },
+      {
+        "piece": "Dock_Boat_Stand",
+        "position": [
+          -40,
+          -80
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "solid": [
+          3.0,
+          1.6
+        ]
+      },
+      {
+        "piece": "Dock_Boat_B_1",
+        "position": [
+          -40,
+          -80
+        ],
+        "rotation": 90,
+        "y": 0.9
+      },
+      {
+        "piece": "Dock_Boat_Stand",
+        "position": [
+          -44,
+          -58
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          3.0,
+          1.6
+        ]
+      },
+      {
+        "piece": "Dock_Boat_A_1",
+        "position": [
+          -44,
+          -58
+        ],
+        "rotation": 0,
+        "y": 0.9
+      },
+      {
+        "piece": "Vl_Logs",
+        "position": [
+          -63.9,
+          -70.4
+        ],
+        "rotation": 30,
+        "y": 0.12,
+        "scale": 1.1,
+        "solid": [
+          1.6,
+          0.9
+        ]
+      },
+      {
+        "piece": "Vl_Logs",
+        "position": [
+          -53.0,
+          -67.4
+        ],
+        "rotation": 75,
+        "y": 0.12,
+        "scale": 1.21,
+        "solid": [
+          1.8,
+          1.0
+        ]
+      },
+      {
+        "piece": "Vl_ChoppingBlock",
+        "position": [
+          -44.9,
+          -71.2
+        ],
+        "rotation": 315,
+        "y": 0.12,
+        "scale": 1.01,
+        "solid": [
+          1.5,
+          0.8
+        ]
+      },
+      {
+        "piece": "Vl_ChoppingBlock",
+        "position": [
+          -60.3,
+          -86.4
+        ],
+        "rotation": 180,
+        "y": 0.12,
+        "scale": 1.29,
+        "solid": [
+          1.9,
+          1.0
+        ]
+      },
+      {
+        "piece": "Vl_Logs",
+        "position": [
+          -37.9,
+          -70.6
+        ],
+        "rotation": 30,
+        "y": 0.12,
+        "scale": 1.34,
+        "solid": [
+          2.0,
+          1.1
+        ]
+      },
+      {
+        "piece": "Vl_ChoppingBlock",
+        "position": [
+          -46.8,
+          -74.5
+        ],
+        "rotation": 15,
+        "y": 0.12,
+        "scale": 1.24,
+        "solid": [
+          1.9,
+          1.0
+        ]
+      },
+      {
+        "piece": "Vl_ChoppingBlock",
+        "position": [
+          -49.2,
+          -57.9
+        ],
+        "rotation": 15,
+        "y": 0.12,
+        "scale": 1.15,
+        "solid": [
+          1.7,
+          0.9
+        ]
+      },
+      {
+        "piece": "Vl_ChoppingBlock",
+        "position": [
+          -46.2,
+          -79.9
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 1.06,
+        "solid": [
+          1.6,
+          0.8
+        ]
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -54.6,
+          -70.7
+        ],
+        "rotation": 75,
+        "y": 0.12,
+        "scale": 1.0
+      },
+      {
+        "piece": "Cauldron",
+        "position": [
+          -66.9,
+          -73.0
+        ],
+        "rotation": 255,
+        "y": 0.12,
+        "scale": 1.11
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -43.8,
+          -62.2
+        ],
+        "rotation": 300,
+        "y": 0.12,
+        "scale": 1.13
+      },
+      {
+        "piece": "Cauldron",
+        "position": [
+          -45.1,
+          -85.4
+        ],
+        "rotation": 300,
+        "y": 0.12,
+        "scale": 1.08
+      },
+      {
+        "piece": "Anvil",
+        "position": [
+          -59.0,
+          -76.1
+        ],
+        "rotation": 45,
+        "y": 0.12,
+        "scale": 1.01
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          -51.8,
+          -73.0
+        ],
+        "rotation": 300,
+        "y": 0.12,
+        "scale": 0.95
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          -51.6,
+          -85.5
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 1.14
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          -53.9,
+          -72.7
+        ],
+        "rotation": 75,
+        "y": 0.12,
+        "scale": 0.98
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -41.9,
+          -74.8
+        ],
+        "rotation": 60,
+        "y": 0.12,
+        "scale": 0.93
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          -58.3,
+          -68.9
+        ],
+        "rotation": 135,
+        "y": 0.12,
+        "scale": 1.07
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          -59.2,
+          -63.9
+        ],
+        "rotation": 75,
+        "y": 0.12,
+        "scale": 0.96
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          -62.2,
+          -66.4
+        ],
+        "rotation": 180,
+        "y": 0.12,
+        "scale": 1.21
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -52.2,
+          -82.6
+        ],
+        "rotation": 240,
+        "y": 0.12,
+        "scale": 1.13
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          -56.3,
+          -74.9
+        ],
+        "rotation": 285,
+        "y": 0.12,
+        "scale": 1.16
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          -37.5,
+          -67.1
+        ],
+        "rotation": 150,
+        "y": 0.12,
+        "scale": 0.95
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          -50.0,
+          -82.3
+        ],
+        "rotation": 75,
+        "y": 0.12,
+        "scale": 0.97
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          -50.4,
+          -60.7
+        ],
+        "rotation": 300,
+        "y": 0.12,
+        "scale": 0.98
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          -55.4,
+          -62.5
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.1
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -61.4,
+          -53.2
+        ],
+        "rotation": 15,
+        "y": 0.12,
+        "scale": 1.0
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          -48.5,
+          -62.6
+        ],
+        "rotation": 210,
+        "y": 0.12,
+        "scale": 1.07
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          -56.9,
+          -85.6
+        ],
+        "rotation": 345,
+        "y": 0.12,
+        "scale": 1.07
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          -55.5,
+          -57.0
+        ],
+        "rotation": 45,
+        "y": 0.12,
+        "scale": 1.13
+      },
+      {
+        "piece": "Tv_Basket",
+        "position": [
+          -42.0,
+          -85.9
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 0.95
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          -51.5,
+          -64.8
+        ],
+        "rotation": 315,
+        "y": 0.12,
+        "scale": 1.04
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          -58.2,
+          -66.2
+        ],
+        "rotation": 105,
+        "y": 0.12,
+        "scale": 1.15
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          -53.3,
+          -80.5
+        ],
+        "rotation": 330,
+        "y": 0.12,
+        "scale": 1.19
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          -48.5,
+          -66.5
+        ],
+        "rotation": 210,
+        "y": 0.12,
+        "scale": 1.26
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          -40.2,
+          -64.0
+        ],
+        "rotation": 315,
+        "y": 0.12,
+        "scale": 0.93
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          -62.7,
+          -83.0
+        ],
+        "rotation": 210,
+        "y": 0.12,
+        "scale": 1.1
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          -65.2,
+          -85.8
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 1.05
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          -40.8,
+          -71.9
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.21
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -49.2,
+          -79.5
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 1.14
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          -46.7,
+          -54.8
+        ],
+        "rotation": 300,
+        "y": 0.12,
+        "scale": 1.17
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          -60.8,
+          -55.5
+        ],
+        "rotation": 345,
+        "y": 0.12,
+        "scale": 1.0
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          -45.8,
+          -77.2
+        ],
+        "rotation": 30,
+        "y": 0.12,
+        "scale": 0.98
+      },
+      {
+        "piece": "Tv_Torch",
+        "position": [
+          -36,
+          -52
+        ],
+        "rotation": 180,
+        "y": 0.12,
+        "scale": 1.5
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          -36,
+          -52
+        ],
+        "y": 1.8,
+        "range": 6.5,
+        "energy": 0.8,
+        "flicker": true
+      },
+      {
+        "piece": "Dock_Props_Rack_Fish",
+        "position": [
+          38,
+          -52
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          2.4,
+          1.1
+        ]
+      },
+      {
+        "piece": "Dock_Props_Rack_Fish",
+        "position": [
+          66,
+          -52
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          2.4,
+          1.1
+        ]
+      },
+      {
+        "piece": "Dock_Props_Rack_Fish",
+        "position": [
+          38,
+          -88
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          2.4,
+          1.1
+        ]
+      },
+      {
+        "piece": "Dock_Props_Rack_Fish",
+        "position": [
+          66,
+          -88
+        ],
+        "rotation": 0,
         "y": 0.12,
         "solid": [
           2.4,
@@ -127326,349 +129915,4091 @@
       {
         "piece": "Dock_Props_Rack",
         "position": [
-          24,
-          -28
+          40.7,
+          -75.4
         ],
+        "rotation": 270,
         "y": 0.12,
+        "scale": 1.14,
         "solid": [
-          2.4,
+          2.5,
           1.1
         ]
       },
       {
-        "piece": "Dock_Props_Table_1",
+        "piece": "Dock_Props_Rack_Fish",
         "position": [
-          -8,
-          -29.5
+          65.5,
+          -79.8
         ],
+        "rotation": 45,
         "y": 0.12,
+        "scale": 1.17,
         "solid": [
-          1.8,
+          2.6,
+          1.2
+        ]
+      },
+      {
+        "piece": "Vl_FishRack",
+        "position": [
+          58.9,
+          -75.2
+        ],
+        "rotation": 195,
+        "y": 0.12,
+        "scale": 1.05,
+        "solid": [
+          2.3,
+          1.1
+        ]
+      },
+      {
+        "piece": "Vl_FishRack",
+        "position": [
+          46.2,
+          -68.5
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 1.12,
+        "solid": [
+          2.5,
+          1.1
+        ]
+      },
+      {
+        "piece": "Vl_FishRack",
+        "position": [
+          40.2,
+          -55.0
+        ],
+        "rotation": 285,
+        "y": 0.12,
+        "scale": 1.05,
+        "solid": [
+          2.3,
+          1.0
+        ]
+      },
+      {
+        "piece": "Dock_Props_Rack_Fish",
+        "position": [
+          50.0,
+          -66.3
+        ],
+        "rotation": 330,
+        "y": 0.12,
+        "scale": 1.2,
+        "solid": [
+          2.6,
+          1.2
+        ]
+      },
+      {
+        "piece": "Dock_Props_Bench",
+        "position": [
+          37.2,
+          -77.5
+        ],
+        "rotation": 165,
+        "y": 0.12,
+        "scale": 1.13,
+        "solid": [
+          1.7,
           1.1
         ]
       },
       {
         "piece": "Dock_Props_Bench",
         "position": [
+          47.0,
+          -73.5
+        ],
+        "rotation": 75,
+        "y": 0.12,
+        "scale": 1.17,
+        "solid": [
+          1.8,
+          1.2
+        ]
+      },
+      {
+        "piece": "Dock_Props_Table_1",
+        "position": [
+          43.9,
+          -53.3
+        ],
+        "rotation": 210,
+        "y": 0.12,
+        "scale": 1.19,
+        "solid": [
+          1.8,
+          1.2
+        ]
+      },
+      {
+        "piece": "Dock_Props_Bench",
+        "position": [
+          65.6,
+          -67.2
+        ],
+        "rotation": 75,
+        "y": 0.12,
+        "scale": 1.1,
+        "solid": [
+          1.6,
+          1.1
+        ]
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          60.0,
+          -69.4
+        ],
+        "rotation": 345,
+        "y": 0.12,
+        "scale": 0.95
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          63.7,
+          -77.2
+        ],
+        "rotation": 75,
+        "y": 0.12,
+        "scale": 1.17
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          56.3,
+          -58.1
+        ],
+        "rotation": 105,
+        "y": 0.12,
+        "scale": 0.91
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          61.6,
+          -83.9
+        ],
+        "rotation": 60,
+        "y": 0.12,
+        "scale": 1.3
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          56.0,
+          -71.9
+        ],
+        "rotation": 75,
+        "y": 0.12,
+        "scale": 1.01
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          50.7,
+          -74.0
+        ],
+        "rotation": 300,
+        "y": 0.12,
+        "scale": 0.92
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          56.3,
+          -84.9
+        ],
+        "rotation": 180,
+        "y": 0.12,
+        "scale": 1.18
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          55.6,
+          -69.1
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 1.04
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          63.9,
+          -60.2
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 1.12
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          46.0,
+          -65.1
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.21
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          59.8,
+          -57.4
+        ],
+        "rotation": 120,
+        "y": 0.12,
+        "scale": 1.17
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          50.4,
+          -69.5
+        ],
+        "rotation": 30,
+        "y": 0.12,
+        "scale": 1.09
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          54.8,
+          -62.0
+        ],
+        "rotation": 255,
+        "y": 0.12,
+        "scale": 1.07
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          50.8,
+          -79.2
+        ],
+        "rotation": 165,
+        "y": 0.12,
+        "scale": 1.03
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          63.6,
+          -64.6
+        ],
+        "rotation": 255,
+        "y": 0.12,
+        "scale": 1.02
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          39.8,
+          -61.4
+        ],
+        "rotation": 330,
+        "y": 0.12,
+        "scale": 0.97
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          53.0,
+          -63.2
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 1.07
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          52.2,
+          -58.5
+        ],
+        "rotation": 15,
+        "y": 0.12,
+        "scale": 1.02
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          52.0,
+          -77.4
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 0.95
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          54.7,
+          -81.3
+        ],
+        "rotation": 195,
+        "y": 0.12,
+        "scale": 1.01
+      },
+      {
+        "piece": "Tv_Torch",
+        "position": [
+          36,
+          -54
+        ],
+        "rotation": 225,
+        "y": 0.12,
+        "scale": 1.5
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          36,
+          -54
+        ],
+        "y": 1.8,
+        "range": 6.5,
+        "energy": 0.8,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Torch",
+        "position": [
+          68,
+          -54
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 1.5
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          68,
+          -54
+        ],
+        "y": 1.8,
+        "range": 6.5,
+        "energy": 0.8,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Torch",
+        "position": [
+          36,
+          -86
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.5
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          36,
+          -86
+        ],
+        "y": 1.8,
+        "range": 6.5,
+        "energy": 0.8,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Torch",
+        "position": [
+          68,
+          -86
+        ],
+        "rotation": 120,
+        "y": 0.12,
+        "scale": 1.5
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          68,
+          -86
+        ],
+        "y": 1.8,
+        "range": 6.5,
+        "energy": 0.8,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          -55,
+          -105
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 3.0,
+        "solid": [
+          2.7,
+          2.1
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          -55,
+          -105
+        ],
+        "y": 0.2,
+        "scale": 2.7,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          -55,
+          -105
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.6,
+        "flicker": true
+      },
+      {
+        "piece": "Statue_Lamp",
+        "position": [
+          -64,
+          -114
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.3,
+        "solid": [
+          2.4,
+          1.4
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.85,
+          0.5
+        ],
+        "position": [
+          -64,
+          -114
+        ],
+        "y": 2.8,
+        "range": 8.0,
+        "energy": 1.0,
+        "flicker": true
+      },
+      {
+        "piece": "Statue_Lamp",
+        "position": [
+          -46,
+          -114
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.3,
+        "solid": [
+          2.4,
+          1.4
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.85,
+          0.5
+        ],
+        "position": [
+          -46,
+          -114
+        ],
+        "y": 2.8,
+        "range": 8.0,
+        "energy": 1.0,
+        "flicker": true
+      },
+      {
+        "piece": "Statue_Lamp",
+        "position": [
+          -64,
+          -96
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.3,
+        "solid": [
+          2.4,
+          1.4
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.85,
+          0.5
+        ],
+        "position": [
+          -64,
+          -96
+        ],
+        "y": 2.8,
+        "range": 8.0,
+        "energy": 1.0,
+        "flicker": true
+      },
+      {
+        "piece": "Statue_Lamp",
+        "position": [
+          -46,
+          -96
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.3,
+        "solid": [
+          2.4,
+          1.4
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.85,
+          0.5
+        ],
+        "position": [
+          -46,
+          -96
+        ],
+        "y": 2.8,
+        "range": 8.0,
+        "energy": 1.0,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Basket",
+        "position": [
+          -61.5,
+          -104.3
+        ],
+        "rotation": 225,
+        "y": 0.12,
+        "scale": 0.91
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          -51.1,
+          -102.5
+        ],
+        "rotation": 105,
+        "y": 0.12,
+        "scale": 0.97
+      },
+      {
+        "piece": "Tv_Basket",
+        "position": [
+          -66.0,
+          -101.9
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.13
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          -44.6,
+          -100.5
+        ],
+        "rotation": 330,
+        "y": 0.12,
+        "scale": 1.1
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          -54.8,
+          -101.7
+        ],
+        "rotation": 30,
+        "y": 0.12,
+        "scale": 1.13
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          -58.8,
+          -108.0
+        ],
+        "rotation": 345,
+        "y": 0.12,
+        "scale": 1.01
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          -63.5,
+          -107.0
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 1.16
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          -43.5,
+          -109.3
+        ],
+        "rotation": 240,
+        "y": 0.12,
+        "scale": 1.04
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          -60.8,
+          -102.7
+        ],
+        "rotation": 330,
+        "y": 0.12,
+        "scale": 1.01
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          -52.3,
+          -96.0
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.19
+      },
+      {
+        "piece": "Dungeon_BonePile_4",
+        "position": [
+          -49.0,
+          -106.8
+        ],
+        "rotation": 105,
+        "y": 0.12,
+        "scale": 3.0
+      },
+      {
+        "piece": "Dungeon_Arm",
+        "position": [
+          -51.0,
+          -114.2
+        ],
+        "rotation": 180,
+        "y": 0.12,
+        "scale": 2.69
+      },
+      {
+        "piece": "Dungeon_Skull_2",
+        "position": [
+          -56.1,
+          -93.4
+        ],
+        "rotation": 30,
+        "y": 0.12,
+        "scale": 3.23
+      },
+      {
+        "piece": "Dungeon_BonePile_5",
+        "position": [
+          -58.7,
+          -98.3
+        ],
+        "rotation": 135,
+        "y": 0.12,
+        "scale": 3.12
+      },
+      {
+        "piece": "Dungeon_Leg",
+        "position": [
+          -57.8,
+          -113.6
+        ],
+        "rotation": 105,
+        "y": 0.12,
+        "scale": 3.08
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          63.9,
+          -116.4
+        ],
+        "rotation": 15,
+        "y": 0.12,
+        "scale": 1.27
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          49.9,
+          -113.1
+        ],
+        "rotation": 225,
+        "y": 0.12,
+        "scale": 1.43
+      },
+      {
+        "piece": "Tv_Basket",
+        "position": [
+          56.2,
+          -94.0
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 1.35
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          56.5,
+          -106.2
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 1.14
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          65.1,
+          -96.8
+        ],
+        "rotation": 225,
+        "y": 0.12,
+        "scale": 1.34
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          56.9,
+          -100.3
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 1.43
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          54.0,
+          -117.0
+        ],
+        "rotation": 165,
+        "y": 0.12,
+        "scale": 1.44
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          50.3,
+          -99.9
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.48
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          59.1,
+          -106.6
+        ],
+        "rotation": 60,
+        "y": 0.12,
+        "scale": 1.18
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          51.4,
+          -94.7
+        ],
+        "rotation": 120,
+        "y": 0.12,
+        "scale": 1.13
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          58.8,
+          -111.9
+        ],
+        "rotation": 210,
+        "y": 0.12,
+        "scale": 1.4
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          47.3,
+          -97.6
+        ],
+        "rotation": 255,
+        "y": 0.12,
+        "scale": 1.48
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          52.6,
+          -98.0
+        ],
+        "rotation": 240,
+        "y": 0.12,
+        "scale": 1.33
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          44.5,
+          -109.3
+        ],
+        "rotation": 45,
+        "y": 0.12,
+        "scale": 1.37
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          50.7,
+          -116.0
+        ],
+        "rotation": 315,
+        "y": 0.12,
+        "scale": 1.2
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          44.3,
+          -114.6
+        ],
+        "rotation": 15,
+        "y": 0.12,
+        "scale": 1.12
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          53.0,
+          -114.3
+        ],
+        "rotation": 75,
+        "y": 0.12,
+        "scale": 1.06
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          44.9,
+          -94.6
+        ],
+        "rotation": 165,
+        "y": 0.12,
+        "scale": 1.29
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          59.9,
+          -101.6
+        ],
+        "rotation": 135,
+        "y": 0.12,
+        "scale": 1.16
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          66.7,
+          -108.2
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 1.3
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          47.1,
+          -115.7
+        ],
+        "rotation": 75,
+        "y": 0.12,
+        "scale": 1.2
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          53.5,
+          -107.7
+        ],
+        "rotation": 330,
+        "y": 0.12,
+        "scale": 1.23
+      },
+      {
+        "piece": "Tv_Basket",
+        "position": [
+          53.8,
+          -101.2
+        ],
+        "rotation": 345,
+        "y": 0.12,
+        "scale": 1.03
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          48.7,
+          -108.4
+        ],
+        "rotation": 45,
+        "y": 0.12,
+        "scale": 1.11
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          47.1,
+          -100.9
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 1.1
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          67.3,
+          -115.9
+        ],
+        "rotation": 75,
+        "y": 0.12,
+        "scale": 1.31
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          59.7,
+          -97.6
+        ],
+        "rotation": 165,
+        "y": 0.12,
+        "scale": 1.1
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          61.3,
+          -116.0
+        ],
+        "rotation": 315,
+        "y": 0.12,
+        "scale": 1.22
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          67.3,
+          -105.2
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 1.2
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          62.4,
+          -109.8
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 1.21
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          62.5,
+          -105.7
+        ],
+        "rotation": 300,
+        "y": 0.12,
+        "scale": 1.31
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          56.0,
+          -109.4
+        ],
+        "rotation": 345,
+        "y": 0.12,
+        "scale": 1.49
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          44.2,
+          -103.2
+        ],
+        "rotation": 330,
+        "y": 0.12,
+        "scale": 1.54
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          57.0,
+          -114.8
+        ],
+        "rotation": 60,
+        "y": 0.12,
+        "scale": 1.41
+      },
+      {
+        "piece": "Chest_Large",
+        "position": [
+          65.8,
+          -100.2
+        ],
+        "rotation": 75,
+        "y": 0.12,
+        "scale": 1.48
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          62.0,
+          -95.1
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 1.3
+      },
+      {
+        "piece": "Cart_Wood",
+        "position": [
+          50.6,
+          -104.2
+        ],
+        "rotation": 240,
+        "y": 0.12,
+        "scale": 1.4,
+        "solid": [
+          3.6,
+          1.8
+        ]
+      },
+      {
+        "piece": "Tv_Torch",
+        "position": [
+          43,
+          -118
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.5
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          43,
+          -118
+        ],
+        "y": 1.8,
+        "range": 6.5,
+        "energy": 0.8,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Torch",
+        "position": [
+          67,
+          -118
+        ],
+        "rotation": 75,
+        "y": 0.12,
+        "scale": 1.5
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          67,
+          -118
+        ],
+        "y": 1.8,
+        "range": 6.5,
+        "energy": 0.8,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Torch",
+        "position": [
+          43,
+          -92
+        ],
+        "rotation": 300,
+        "y": 0.12,
+        "scale": 1.5
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          43,
+          -92
+        ],
+        "y": 1.8,
+        "range": 6.5,
+        "energy": 0.8,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Torch",
+        "position": [
+          67,
+          -92
+        ],
+        "rotation": 150,
+        "y": 0.12,
+        "scale": 1.5
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          67,
+          -92
+        ],
+        "y": 1.8,
+        "range": 6.5,
+        "energy": 0.8,
+        "flicker": true
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          -28,
+          -113
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.2
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          -14,
+          -113
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.2
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          14,
+          -113
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.2
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          28,
+          -113
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.2
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          -34,
+          -101
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.5
+        ],
+        "position": [
+          -34,
+          -101
+        ],
+        "y": 3.2,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": true
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          -20,
+          -101
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.5
+        ],
+        "position": [
+          -20,
+          -101
+        ],
+        "y": 3.2,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": true
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
           -8,
+          -101
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.5
+        ],
+        "position": [
+          -8,
+          -101
+        ],
+        "y": 3.2,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": true
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          8,
+          -101
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.5
+        ],
+        "position": [
+          8,
+          -101
+        ],
+        "y": 3.2,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": true
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          20,
+          -101
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.5
+        ],
+        "position": [
+          20,
+          -101
+        ],
+        "y": 3.2,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": true
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          34,
+          -101
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.5
+        ],
+        "position": [
+          34,
+          -101
+        ],
+        "y": 3.2,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Basket",
+        "position": [
+          5.0,
+          -107.6
+        ],
+        "rotation": 225,
+        "y": 0.12,
+        "scale": 1.02
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          14.0,
+          -103.2
+        ],
+        "rotation": 165,
+        "y": 0.12,
+        "scale": 1.28
+      },
+      {
+        "piece": "Tv_Basket",
+        "position": [
+          0.8,
+          -113.7
+        ],
+        "rotation": 60,
+        "y": 0.12,
+        "scale": 1.22
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          31.2,
+          -106.8
+        ],
+        "rotation": 165,
+        "y": 0.12,
+        "scale": 1.22
+      },
+      {
+        "piece": "Tv_Basket",
+        "position": [
+          -20.6,
+          -98.7
+        ],
+        "rotation": 240,
+        "y": 0.12,
+        "scale": 1.13
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -3.0,
+          -104.4
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.13
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          11.3,
+          -102.4
+        ],
+        "rotation": 135,
+        "y": 0.12,
+        "scale": 0.94
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          7.0,
+          -98.8
+        ],
+        "rotation": 165,
+        "y": 0.12,
+        "scale": 1.3
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          -28.8,
+          -109.5
+        ],
+        "rotation": 225,
+        "y": 0.12,
+        "scale": 0.95
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          -11.8,
+          -106.9
+        ],
+        "rotation": 135,
+        "y": 0.12,
+        "scale": 1.08
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          -13.2,
+          -110.6
+        ],
+        "rotation": 165,
+        "y": 0.12,
+        "scale": 1.04
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          -7.7,
+          -104.1
+        ],
+        "rotation": 105,
+        "y": 0.12,
+        "scale": 1.17
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          16.7,
+          -102.0
+        ],
+        "rotation": 150,
+        "y": 0.12,
+        "scale": 0.94
+      },
+      {
+        "piece": "Tv_Basket",
+        "position": [
+          -32.6,
+          -102.2
+        ],
+        "rotation": 330,
+        "y": 0.12,
+        "scale": 1.02
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          -33.6,
+          -108.8
+        ],
+        "rotation": 180,
+        "y": 0.12,
+        "scale": 0.91
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          6.8,
+          -113.6
+        ],
+        "rotation": 30,
+        "y": 0.12,
+        "scale": 1.07
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          31.1,
+          -99.3
+        ],
+        "rotation": 255,
+        "y": 0.12,
+        "scale": 1.23
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          11.7,
+          -112.7
+        ],
+        "rotation": 285,
+        "y": 0.12,
+        "scale": 0.93
+      },
+      {
+        "piece": "Dungeon_BonePile_4",
+        "position": [
+          37.0,
+          -105.8
+        ],
+        "rotation": 330,
+        "y": 0.12,
+        "scale": 3.46
+      },
+      {
+        "piece": "Dungeon_BonePile_4",
+        "position": [
+          18.2,
+          -115.5
+        ],
+        "rotation": 45,
+        "y": 0.12,
+        "scale": 2.56
+      },
+      {
+        "piece": "Dungeon_Pelvis",
+        "position": [
+          -1.9,
+          -108.4
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 3.09
+      },
+      {
+        "piece": "Dungeon_BonePile_5",
+        "position": [
+          -26.4,
+          -101.2
+        ],
+        "rotation": 75,
+        "y": 0.12,
+        "scale": 3.1
+      },
+      {
+        "piece": "Dungeon_Pelvis",
+        "position": [
+          11.9,
+          -108.4
+        ],
+        "rotation": 225,
+        "y": 0.12,
+        "scale": 2.94
+      },
+      {
+        "piece": "Dungeon_Skull_2",
+        "position": [
+          -24.3,
+          -109.0
+        ],
+        "rotation": 105,
+        "y": 0.12,
+        "scale": 3.21
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          -3.8,
+          -122
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.5
+        ],
+        "position": [
+          -3.8,
+          -122
+        ],
+        "y": 3.2,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": true
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          3.8,
+          -122
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.5
+        ],
+        "position": [
+          3.8,
+          -122
+        ],
+        "y": 3.2,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": true
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          -3.8,
+          -128
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.5
+        ],
+        "position": [
+          -3.8,
+          -128
+        ],
+        "y": 3.2,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": true
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          3.8,
+          -128
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.5
+        ],
+        "position": [
+          3.8,
+          -128
+        ],
+        "y": 3.2,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": true
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          -3.8,
+          -136
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.5
+        ],
+        "position": [
+          -3.8,
+          -136
+        ],
+        "y": 3.2,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": true
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          3.8,
+          -136
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.5
+        ],
+        "position": [
+          3.8,
+          -136
+        ],
+        "y": 3.2,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": true
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          -3.8,
+          -126
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 1.1
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          3.8,
+          -126
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 1.1
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          -3.8,
+          -134
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 1.1
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          3.8,
+          -134
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 1.1
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          -26,
+          -150
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 2.0,
+        "solid": [
+          1.8,
+          1.4
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          -26,
+          -150
+        ],
+        "y": 0.2,
+        "scale": 1.8,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          -26,
+          -150
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.6,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          -26,
+          -164
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 2.0,
+        "solid": [
+          1.8,
+          1.4
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          -26,
+          -164
+        ],
+        "y": 0.2,
+        "scale": 1.8,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          -26,
+          -164
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.6,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          -26,
+          -178
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 2.0,
+        "solid": [
+          1.8,
+          1.4
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          -26,
+          -178
+        ],
+        "y": 0.2,
+        "scale": 1.8,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          -26,
+          -178
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.6,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          26,
+          -150
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 2.0,
+        "solid": [
+          1.8,
+          1.4
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          26,
+          -150
+        ],
+        "y": 0.2,
+        "scale": 1.8,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          26,
+          -150
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.6,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          26,
+          -164
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 2.0,
+        "solid": [
+          1.8,
+          1.4
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          26,
+          -164
+        ],
+        "y": 0.2,
+        "scale": 1.8,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          26,
+          -164
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.6,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          26,
+          -178
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 2.0,
+        "solid": [
+          1.8,
+          1.4
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          26,
+          -178
+        ],
+        "y": 0.2,
+        "scale": 1.8,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          26,
+          -178
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.6,
+        "flicker": true
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          -14,
+          -152
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.3
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          -14,
+          -170
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.3
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          14,
+          -152
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.3
+      },
+      {
+        "piece": "War_Banner",
+        "position": [
+          14,
+          -170
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.3
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          -19.7,
+          -182.2
+        ],
+        "rotation": 345,
+        "y": 0.12,
+        "scale": 1.35
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          -0.7,
+          -151.0
+        ],
+        "rotation": 165,
+        "y": 0.12,
+        "scale": 1.35
+      },
+      {
+        "piece": "Tv_Basket",
+        "position": [
+          -12.8,
+          -155.7
+        ],
+        "rotation": 30,
+        "y": 0.12,
+        "scale": 1.38
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          5.1,
+          -193.1
+        ],
+        "rotation": 315,
+        "y": 0.12,
+        "scale": 1.18
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          7.0,
+          -158.1
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 1.18
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          -28.9,
+          -167.7
+        ],
+        "rotation": 210,
+        "y": 0.12,
+        "scale": 1.17
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          -20.1,
+          -145.4
+        ],
+        "rotation": 315,
+        "y": 0.12,
+        "scale": 1.39
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          4.6,
+          -159.2
+        ],
+        "rotation": 15,
+        "y": 0.12,
+        "scale": 1.03
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          30.4,
+          -158.0
+        ],
+        "rotation": 150,
+        "y": 0.12,
+        "scale": 1.24
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          9.0,
+          -153.8
+        ],
+        "rotation": 150,
+        "y": 0.12,
+        "scale": 1.22
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          3.1,
+          -191.1
+        ],
+        "rotation": 210,
+        "y": 0.12,
+        "scale": 1.11
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          31.5,
+          -172.0
+        ],
+        "rotation": 180,
+        "y": 0.12,
+        "scale": 1.38
+      },
+      {
+        "piece": "Dock_Props_Barrel",
+        "position": [
+          26.1,
+          -155.2
+        ],
+        "rotation": 345,
+        "y": 0.12,
+        "scale": 1.21
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          28.6,
+          -194.2
+        ],
+        "rotation": 255,
+        "y": 0.12,
+        "scale": 1.28
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          -10.6,
+          -153.9
+        ],
+        "rotation": 240,
+        "y": 0.12,
+        "scale": 1.28
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          15.0,
+          -174.8
+        ],
+        "rotation": 195,
+        "y": 0.12,
+        "scale": 1.27
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          24.3,
+          -157.8
+        ],
+        "rotation": 120,
+        "y": 0.12,
+        "scale": 1.36
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          -1.4,
+          -185.5
+        ],
+        "rotation": 210,
+        "y": 0.12,
+        "scale": 1.36
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          4.0,
+          -189.1
+        ],
+        "rotation": 315,
+        "y": 0.12,
+        "scale": 1.05
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          -1.2,
+          -162.1
+        ],
+        "rotation": 105,
+        "y": 0.12,
+        "scale": 1.27
+      },
+      {
+        "piece": "Tv_Basket",
+        "position": [
+          -7.8,
+          -165.6
+        ],
+        "rotation": 15,
+        "y": 0.12,
+        "scale": 1.13
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          5.4,
+          -153.6
+        ],
+        "rotation": 15,
+        "y": 0.12,
+        "scale": 1.09
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          2.2,
+          -187.7
+        ],
+        "rotation": 315,
+        "y": 0.12,
+        "scale": 1.2
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          26.7,
+          -181.1
+        ],
+        "rotation": 300,
+        "y": 0.12,
+        "scale": 1.38
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          5.3,
+          -190.8
+        ],
+        "rotation": 75,
+        "y": 0.12,
+        "scale": 1.08
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          -24.2,
+          -166.7
+        ],
+        "rotation": 255,
+        "y": 0.12,
+        "scale": 1.05
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          23.4,
+          -192.2
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 1.24
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          -4.8,
+          -169.5
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.0
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          27.0,
+          -192.0
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 1.4
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          -27.5,
+          -174.0
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "scale": 1.15
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          14.2,
+          -160.2
+        ],
+        "rotation": 165,
+        "y": 0.12,
+        "scale": 1.35
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          -4.2,
+          -193.2
+        ],
+        "rotation": 45,
+        "y": 0.12,
+        "scale": 1.21
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          9.3,
+          -151.1
+        ],
+        "rotation": 225,
+        "y": 0.12,
+        "scale": 1.09
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          24.4,
+          -185.5
+        ],
+        "rotation": 30,
+        "y": 0.12,
+        "scale": 1.06
+      },
+      {
+        "piece": "Dock_Props_Crate",
+        "position": [
+          -6.7,
+          -184.9
+        ],
+        "rotation": 45,
+        "y": 0.12,
+        "scale": 1.24
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          7.6,
+          -172.8
+        ],
+        "rotation": 165,
+        "y": 0.12,
+        "scale": 1.05
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          16.2,
+          -180.6
+        ],
+        "rotation": 30,
+        "y": 0.12,
+        "scale": 1.33
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          -18.6,
+          -162.6
+        ],
+        "rotation": 300,
+        "y": 0.12,
+        "scale": 1.36
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          5.3,
+          -166.1
+        ],
+        "rotation": 300,
+        "y": 0.12,
+        "scale": 1.14
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          -14.0,
+          -146.0
+        ],
+        "rotation": 330,
+        "y": 0.12,
+        "scale": 1.34
+      },
+      {
+        "piece": "Tv_Sack_2",
+        "position": [
+          -11.5,
+          -170.9
+        ],
+        "rotation": 135,
+        "y": 0.12,
+        "scale": 1.14
+      },
+      {
+        "piece": "Tv_Basket",
+        "position": [
+          -8.9,
+          -148.9
+        ],
+        "rotation": 315,
+        "y": 0.12,
+        "scale": 1.18
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          8.1,
+          -185.5
+        ],
+        "rotation": 135,
+        "y": 0.12,
+        "scale": 1.27
+      },
+      {
+        "piece": "Dock_Props_Box",
+        "position": [
+          -31.1,
+          -157.1
+        ],
+        "rotation": 180,
+        "y": 0.12,
+        "scale": 1.39
+      },
+      {
+        "piece": "Dungeon_CrossBones",
+        "position": [
+          28.8,
+          -174.2
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 2.58
+      },
+      {
+        "piece": "Dungeon_Leg",
+        "position": [
+          -11.0,
+          -190.5
+        ],
+        "rotation": 255,
+        "y": 0.12,
+        "scale": 3.44
+      },
+      {
+        "piece": "Dungeon_BonePile_3",
+        "position": [
+          -30.8,
+          -175.5
+        ],
+        "rotation": 75,
+        "y": 0.12,
+        "scale": 2.51
+      },
+      {
+        "piece": "Dungeon_BonePile_3",
+        "position": [
+          -6.7,
+          -179.5
+        ],
+        "rotation": 345,
+        "y": 0.12,
+        "scale": 3.31
+      },
+      {
+        "piece": "Dungeon_Pelvis",
+        "position": [
+          -4.7,
+          -148.9
+        ],
+        "rotation": 150,
+        "y": 0.12,
+        "scale": 2.6
+      },
+      {
+        "piece": "Dungeon_BonePile_3",
+        "position": [
+          3.0,
+          -178.7
+        ],
+        "rotation": 195,
+        "y": 0.12,
+        "scale": 2.77
+      },
+      {
+        "piece": "Dungeon_BonePile_2",
+        "position": [
+          17.5,
+          -187.2
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 3.01
+      },
+      {
+        "piece": "Dungeon_BonePile_1",
+        "position": [
+          8.8,
+          -168.5
+        ],
+        "rotation": 195,
+        "y": 0.12,
+        "scale": 3.31
+      },
+      {
+        "piece": "Dungeon_BonePile_3",
+        "position": [
+          13.7,
+          -164.8
+        ],
+        "rotation": 150,
+        "y": 0.12,
+        "scale": 2.53
+      },
+      {
+        "piece": "Dungeon_BonePile_5",
+        "position": [
+          -26.5,
+          -155.3
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 3.14
+      },
+      {
+        "piece": "Dungeon_BonePile_2",
+        "position": [
+          1.7,
+          -171.4
+        ],
+        "rotation": 225,
+        "y": 0.12,
+        "scale": 3.29
+      },
+      {
+        "piece": "Dungeon_Skull_2",
+        "position": [
+          -16.2,
+          -191.1
+        ],
+        "rotation": 315,
+        "y": 0.12,
+        "scale": 3.11
+      },
+      {
+        "piece": "Dungeon_BonePile_4",
+        "position": [
+          -13.0,
+          -163.0
+        ],
+        "rotation": 150,
+        "y": 0.12,
+        "scale": 2.64
+      },
+      {
+        "piece": "Dungeon_Skull_2",
+        "position": [
+          -19.5,
+          -186.8
+        ],
+        "rotation": 75,
+        "y": 0.12,
+        "scale": 2.8
+      },
+      {
+        "piece": "Dungeon_Skull_2",
+        "position": [
+          -11.5,
+          -175.7
+        ],
+        "rotation": 285,
+        "y": 0.12,
+        "scale": 3.16
+      },
+      {
+        "piece": "Dungeon_BonePile_3",
+        "position": [
+          5.4,
+          -149.0
+        ],
+        "rotation": 315,
+        "y": 0.12,
+        "scale": 2.7
+      },
+      {
+        "piece": "Dungeon_Arm",
+        "position": [
+          21.2,
+          -154.8
+        ],
+        "rotation": 210,
+        "y": 0.12,
+        "scale": 3.35
+      },
+      {
+        "piece": "Dungeon_BonePile_1",
+        "position": [
+          23.5,
+          -174.0
+        ],
+        "rotation": 135,
+        "y": 0.12,
+        "scale": 2.94
+      },
+      {
+        "piece": "Dungeon_BonePile_4",
+        "position": [
+          29.6,
+          -183.8
+        ],
+        "rotation": 210,
+        "y": 0.12,
+        "scale": 3.09
+      },
+      {
+        "piece": "Dungeon_BonePile_6",
+        "position": [
+          -17.7,
+          -172.7
+        ],
+        "rotation": 120,
+        "y": 0.12,
+        "scale": 3.4
+      },
+      {
+        "piece": "Dungeon_BonePile_5",
+        "position": [
+          30.4,
+          -151.4
+        ],
+        "rotation": 300,
+        "y": 0.12,
+        "scale": 3.15
+      },
+      {
+        "piece": "Dungeon_BonePile_3",
+        "position": [
+          -16.8,
+          -154.6
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 2.7
+      },
+      {
+        "piece": "Dungeon_Arm",
+        "position": [
+          -12.8,
+          -181.1
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 2.52
+      },
+      {
+        "piece": "Dungeon_BonePile_1",
+        "position": [
+          -20.9,
+          -151.1
+        ],
+        "rotation": 225,
+        "y": 0.12,
+        "scale": 3.49
+      },
+      {
+        "piece": "Dungeon_BonePile_3",
+        "position": [
+          19.8,
+          -169.5
+        ],
+        "rotation": 225,
+        "y": 0.12,
+        "scale": 2.91
+      },
+      {
+        "piece": "Dungeon_Pelvis",
+        "position": [
+          24.7,
+          -169.5
+        ],
+        "rotation": 150,
+        "y": 0.12,
+        "scale": 2.76
+      },
+      {
+        "piece": "Dungeon_BonePile_2",
+        "position": [
+          11.3,
+          -190.2
+        ],
+        "rotation": 105,
+        "y": 0.12,
+        "scale": 2.82
+      },
+      {
+        "piece": "Dungeon_Skull_2",
+        "position": [
+          1.4,
+          -165.6
+        ],
+        "rotation": 120,
+        "y": 0.12,
+        "scale": 3.49
+      },
+      {
+        "piece": "Dungeon_Arm",
+        "position": [
+          8.3,
+          -180.7
+        ],
+        "rotation": 180,
+        "y": 0.12,
+        "scale": 2.51
+      },
+      {
+        "piece": "Dungeon_BonePile_1",
+        "position": [
+          -23.4,
+          -170.6
+        ],
+        "rotation": 195,
+        "y": 0.12,
+        "scale": 2.74
+      },
+      {
+        "piece": "Dungeon_Skull_2",
+        "position": [
+          21.1,
+          -178.5
+        ],
+        "rotation": 30,
+        "y": 0.12,
+        "scale": 3.37
+      },
+      {
+        "piece": "Dungeon_BonePile_4",
+        "position": [
+          -27.1,
+          -184.6
+        ],
+        "rotation": 285,
+        "y": 0.12,
+        "scale": 2.65
+      },
+      {
+        "piece": "Dungeon_BonePile_3",
+        "position": [
+          19.2,
+          -162.2
+        ],
+        "rotation": 120,
+        "y": 0.12,
+        "scale": 2.61
+      },
+      {
+        "piece": "Dungeon_BonePile_2",
+        "position": [
+          -30.1,
+          -193.0
+        ],
+        "rotation": 315,
+        "y": 0.12,
+        "scale": 3.08
+      },
+      {
+        "piece": "Dungeon_SkullPile",
+        "position": [
+          20.1,
+          -146.8
+        ],
+        "rotation": 270,
+        "y": 0.12,
+        "scale": 4.34
+      },
+      {
+        "piece": "Dungeon_Ribcage",
+        "position": [
+          -8.4,
+          -158.6
+        ],
+        "rotation": 285,
+        "y": 0.12,
+        "scale": 3.22
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          7.6,
+          -163.3
+        ],
+        "rotation": 165,
+        "y": 0.12,
+        "scale": 1.51
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          -23.5,
+          -158.9
+        ],
+        "rotation": 210,
+        "y": 0.12,
+        "scale": 1.33
+      },
+      {
+        "piece": "Chest_Large",
+        "position": [
+          -1.6,
+          -175.1
+        ],
+        "rotation": 300,
+        "y": 0.12,
+        "scale": 1.48
+      },
+      {
+        "piece": "Chest_Large",
+        "position": [
+          -5.7,
+          -174.1
+        ],
+        "rotation": 180,
+        "y": 0.12,
+        "scale": 1.57
+      },
+      {
+        "piece": "Chest_Large",
+        "position": [
+          12.3,
+          -178.0
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 1.65
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          3.5,
+          -156.3
+        ],
+        "rotation": 255,
+        "y": 0.12,
+        "scale": 1.44
+      },
+      {
+        "piece": "Cage_Small",
+        "position": [
+          -30.2,
+          -149.9
+        ],
+        "rotation": 255,
+        "y": 0.12,
+        "scale": 1.37
+      },
+      {
+        "piece": "Coin_Pile",
+        "position": [
+          17.3,
+          -193.1
+        ],
+        "rotation": 90,
+        "y": 0.12,
+        "scale": 1.67
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          -30,
+          -146
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.5
+        ],
+        "position": [
+          -30,
+          -146
+        ],
+        "y": 3.2,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": true
+      },
+      {
+        "piece": "Pr_LampPost",
+        "position": [
+          30,
+          -146
+        ],
+        "rotation": 0,
+        "y": 0.12,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.8,
+          0.5
+        ],
+        "position": [
+          30,
+          -146
+        ],
+        "y": 3.2,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": true
+      },
+      {
+        "piece": "pirate_ship",
+        "position": [
+          -86,
+          -107
+        ],
+        "y": 0.0,
+        "scale": 0.95,
+        "rotation": 90
+      },
+      {
+        "piece": "pirate_ship",
+        "position": [
+          86,
+          -107
+        ],
+        "y": 0.0,
+        "scale": 0.95,
+        "rotation": 90
+      },
+      {
+        "piece": "pirate_ship",
+        "position": [
+          -50,
+          -194
+        ],
+        "y": 0.0,
+        "scale": 0.95,
+        "rotation": 70
+      },
+      {
+        "piece": "pirate_ship",
+        "position": [
+          50,
+          -194
+        ],
+        "y": 0.0,
+        "scale": 0.95,
+        "rotation": 110
+      },
+      {
+        "piece": "pirate_ship",
+        "position": [
+          -86,
+          -40
+        ],
+        "y": 0.0,
+        "scale": 0.95,
+        "rotation": 80
+      },
+      {
+        "piece": "pirate_ship",
+        "position": [
+          86,
+          -40
+        ],
+        "y": 0.0,
+        "scale": 0.95,
+        "rotation": 100
+      },
+      {
+        "piece": "Dock_Boat_B_1",
+        "position": [
+          -52.9,
+          -6.1
+        ],
+        "y": -0.2,
+        "rotation": 105
+      },
+      {
+        "piece": "Dock_Boat_A_2",
+        "position": [
+          -91.9,
+          -124.9
+        ],
+        "y": -0.2,
+        "rotation": 240
+      },
+      {
+        "piece": "Dock_Boat_B_1",
+        "position": [
+          39.1,
+          -12.2
+        ],
+        "y": -0.2,
+        "rotation": 255
+      },
+      {
+        "piece": "Dock_Boat_A_2",
+        "position": [
+          81.4,
+          6.2
+        ],
+        "y": -0.2,
+        "rotation": 0
+      },
+      {
+        "piece": "Dock_Boat_A_1",
+        "position": [
+          -14.2,
+          -14.1
+        ],
+        "y": -0.2,
+        "rotation": 285
+      },
+      {
+        "piece": "Dock_Boat_A_2",
+        "position": [
+          52.9,
+          -4.3
+        ],
+        "y": -0.2,
+        "rotation": 45
+      },
+      {
+        "piece": "Dock_Boat_A_2",
+        "position": [
+          -91.3,
+          -190.9
+        ],
+        "y": -0.2,
+        "rotation": 210
+      },
+      {
+        "piece": "Dock_Boat_B_1",
+        "position": [
+          51.3,
+          -128.8
+        ],
+        "y": -0.2,
+        "rotation": 300
+      },
+      {
+        "piece": "Dock_Boat_A_1",
+        "position": [
+          -70.8,
+          -42.2
+        ],
+        "y": -0.2,
+        "rotation": 255
+      },
+      {
+        "piece": "Dock_Boat_B_1",
+        "position": [
+          93.7,
+          -9.7
+        ],
+        "y": -0.2,
+        "rotation": 270
+      },
+      {
+        "piece": "Dock_Boat_A_2",
+        "position": [
+          -61.9,
+          -180.9
+        ],
+        "y": -0.2,
+        "rotation": 165
+      },
+      {
+        "piece": "Dock_Boat_B_1",
+        "position": [
+          86.8,
+          -61.0
+        ],
+        "y": -0.2,
+        "rotation": 180
+      },
+      {
+        "piece": "Dock_Boat_A_2",
+        "position": [
+          78.2,
+          -25.9
+        ],
+        "y": -0.2,
+        "rotation": 315
+      },
+      {
+        "piece": "Dock_Boat_A_2",
+        "position": [
+          37.2,
+          -131.2
+        ],
+        "y": -0.2,
+        "rotation": 210
+      },
+      {
+        "piece": "Dock_Boat_B_1",
+        "position": [
+          53.5,
+          -148.8
+        ],
+        "y": -0.2,
+        "rotation": 300
+      },
+      {
+        "piece": "Dock_Boat_A_1",
+        "position": [
+          69.9,
+          -18.8
+        ],
+        "y": -0.2,
+        "rotation": 15
+      },
+      {
+        "piece": "Dock_Boat_B_1",
+        "position": [
+          13.0,
+          -136.2
+        ],
+        "y": -0.2,
+        "rotation": 270
+      },
+      {
+        "piece": "Dock_Boat_A_1",
+        "position": [
+          28.4,
+          -127.8
+        ],
+        "y": -0.2,
+        "rotation": 45
+      },
+      {
+        "piece": "Dock_Boat_A_2",
+        "position": [
+          68.2,
+          -131.3
+        ],
+        "y": -0.2,
+        "rotation": 255
+      },
+      {
+        "piece": "Dock_Boat_B_1",
+        "position": [
+          91.2,
+          -167.4
+        ],
+        "y": -0.2,
+        "rotation": 45
+      },
+      {
+        "piece": "Dock_Boat_A_2",
+        "position": [
+          90.6,
+          0.4
+        ],
+        "y": -0.2,
+        "rotation": 0
+      },
+      {
+        "piece": "Dock_Boat_B_1",
+        "position": [
+          51.5,
+          -25.6
+        ],
+        "y": -0.2,
+        "rotation": 270
+      },
+      {
+        "piece": "Dock_Boat_A_1",
+        "position": [
+          -94.6,
+          -51.9
+        ],
+        "y": -0.2,
+        "rotation": 195
+      },
+      {
+        "piece": "Dock_Boat_A_1",
+        "position": [
+          -18.8,
+          -134.2
+        ],
+        "y": -0.2,
+        "rotation": 345
+      },
+      {
+        "piece": "Dock_Boat_A_1",
+        "position": [
+          -45.4,
+          -133.2
+        ],
+        "y": -0.2,
+        "rotation": 0
+      },
+      {
+        "piece": "Dock_Boat_A_2",
+        "position": [
+          41.9,
+          -164.0
+        ],
+        "y": -0.2,
+        "rotation": 345
+      },
+      {
+        "piece": "Dock_Boat_A_2",
+        "position": [
+          70.2,
+          -2.7
+        ],
+        "y": -0.2,
+        "rotation": 165
+      },
+      {
+        "piece": "Dock_Boat_A_1",
+        "position": [
+          -89.7,
+          -74.1
+        ],
+        "y": -0.2,
+        "rotation": 45
+      },
+      {
+        "piece": "Dock_Boat_A_1",
+        "position": [
+          -21.7,
+          -123.1
+        ],
+        "y": -0.2,
+        "rotation": 0
+      },
+      {
+        "piece": "Dock_Boat_B_1",
+        "position": [
+          -83.4,
+          -203.7
+        ],
+        "y": -0.2,
+        "rotation": 30
+      },
+      {
+        "piece": "Dock_Boat_B_1",
+        "position": [
+          -56.8,
           -27.8
         ],
-        "y": 0.12
+        "y": -0.2,
+        "rotation": 45
       },
       {
-        "piece": "Pr_LampPost",
+        "piece": "Dock_Boat_B_1",
         "position": [
-          -5,
-          -3
+          -21.9,
+          -90.1
         ],
-        "y": 0.12,
-        "solid": [
-          0.6,
-          0.6
-        ]
+        "y": -0.2,
+        "rotation": 75
       },
       {
-        "piece": "Pr_LampPost",
+        "piece": "Dock_Boat_A_2",
         "position": [
-          5,
-          -22
+          -57.6,
+          -16.4
         ],
-        "y": 0.12,
-        "solid": [
-          0.6,
-          0.6
-        ]
+        "y": -0.2,
+        "rotation": 165
       },
       {
-        "piece": "Pr_LampPost",
+        "piece": "Dock_Boat_A_1",
         "position": [
-          0,
-          -43
+          56.8,
+          -168.1
         ],
-        "y": 0.12,
-        "solid": [
-          0.6,
-          0.6
-        ]
+        "y": -0.2,
+        "rotation": 120
       },
       {
         "piece": "Fish_Catfish",
         "position": [
-          38.53,
-          -30.43
+          -90.62,
+          -16.47
         ],
         "y": -0.03,
         "scale": 2.2,
         "swim": {
-          "radius": 1.6954549575012259,
-          "speed": 0.8113243012466266,
-          "phase": 3.61
+          "radius": 1.78,
+          "speed": 0.9,
+          "phase": 1.43
         }
       },
       {
         "piece": "Fish_Catfish",
         "position": [
-          -19.78,
-          -32.51
+          -11.27,
+          -76.21
         ],
         "y": -0.03,
         "scale": 2.2,
         "swim": {
-          "radius": 1.273596509550151,
-          "speed": 0.7415624087392897,
-          "phase": 3.61
+          "radius": 2.01,
+          "speed": 1.0,
+          "phase": 3.66
         }
       },
       {
         "piece": "Fish_Catfish",
         "position": [
-          -14.94,
-          -4.78
+          12.51,
+          -121.49
         ],
         "y": -0.03,
         "scale": 2.2,
         "swim": {
-          "radius": 1.409762704534306,
-          "speed": 0.6134361307729223,
-          "phase": 5.46
+          "radius": 2.05,
+          "speed": 0.78,
+          "phase": 3.24
         }
       },
       {
         "piece": "Fish_Catfish",
         "position": [
-          -47.7,
-          -29.04
+          -73.36,
+          -198.51
         ],
         "y": -0.03,
         "scale": 2.2,
         "swim": {
-          "radius": 1.5882583828071026,
-          "speed": 0.9914304508341366,
-          "phase": 2.02
+          "radius": 1.44,
+          "speed": 0.96,
+          "phase": 4.34
         }
       },
       {
         "piece": "Fish_Catfish",
         "position": [
-          -10.72,
-          -47.93
+          96.33,
+          -83.39
         ],
         "y": -0.03,
         "scale": 2.2,
         "swim": {
-          "radius": 1.3162945252158178,
-          "speed": 0.5011689851836565,
-          "phase": 5.35
+          "radius": 1.14,
+          "speed": 0.72,
+          "phase": 0.13
         }
       },
       {
         "piece": "Fish_Catfish",
         "position": [
-          -31.13,
-          -59.16
+          -49.55,
+          -171.95
         ],
         "y": -0.03,
         "scale": 2.2,
         "swim": {
-          "radius": 1.318412964317714,
-          "speed": 0.9147902726384676,
-          "phase": 3.35
+          "radius": 1.72,
+          "speed": 0.96,
+          "phase": 2.13
         }
       },
       {
         "piece": "Fish_Catfish",
         "position": [
-          -0.71,
-          -52.08
+          43.57,
+          -144.38
         ],
         "y": -0.03,
         "scale": 2.2,
         "swim": {
-          "radius": 1.4546508183613596,
-          "speed": 0.6003698787284882,
-          "phase": 4.85
+          "radius": 1.9,
+          "speed": 0.55,
+          "phase": 0.44
         }
       },
       {
         "piece": "Fish_Catfish",
         "position": [
-          -35.13,
-          -14.32
+          57.87,
+          -27.67
         ],
         "y": -0.03,
         "scale": 2.2,
         "swim": {
-          "radius": 1.085375657055145,
-          "speed": 0.5720832998113727,
-          "phase": 2.25
+          "radius": 1.08,
+          "speed": 0.93,
+          "phase": 0.3
         }
       },
       {
         "piece": "Fish_Catfish",
         "position": [
-          33.74,
-          -16.67
+          -64.6,
+          -153.09
         ],
         "y": -0.03,
         "scale": 2.2,
         "swim": {
-          "radius": 1.051451347420934,
-          "speed": 0.5580466115868616,
+          "radius": 1.93,
+          "speed": 0.5,
+          "phase": 4.43
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          -49.45,
+          -165.87
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 1.09,
+          "speed": 0.93,
+          "phase": 4.01
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          -21.68,
+          -77.27
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 1.72,
+          "speed": 0.59,
           "phase": 4.9
         }
       },
       {
         "piece": "Fish_Catfish",
         "position": [
-          30.53,
-          -43.61
+          -79.3,
+          -23.6
         ],
         "y": -0.03,
         "scale": 2.2,
         "swim": {
-          "radius": 1.6359653561872753,
-          "speed": 0.6209073312275983,
-          "phase": 4.88
+          "radius": 1.39,
+          "speed": 0.73,
+          "phase": 4.83
         }
       },
       {
         "piece": "Fish_Catfish",
         "position": [
-          -8.02,
-          -41.15
+          -78.59,
+          -125.57
         ],
         "y": -0.03,
         "scale": 2.2,
         "swim": {
-          "radius": 1.7426823269980138,
-          "speed": 0.9578557351122756,
-          "phase": 4.45
+          "radius": 1.68,
+          "speed": 0.58,
+          "phase": 3.9
         }
       },
       {
         "piece": "Fish_Catfish",
         "position": [
-          1.1,
-          -58.16
+          -34.78,
+          -23.21
         ],
         "y": -0.03,
         "scale": 2.2,
         "swim": {
-          "radius": 1.0930841812790533,
-          "speed": 0.8803838436804754,
-          "phase": 4.17
+          "radius": 1.69,
+          "speed": 0.85,
+          "phase": 1.03
         }
       },
       {
         "piece": "Fish_Catfish",
         "position": [
-          25.34,
-          -17.98
+          -60.76,
+          -125.51
         ],
         "y": -0.03,
         "scale": 2.2,
         "swim": {
-          "radius": 1.1705218934491426,
-          "speed": 0.7524584868089379,
-          "phase": 1.21
+          "radius": 1.14,
+          "speed": 0.69,
+          "phase": 0.96
         }
       },
       {
         "piece": "Fish_Catfish",
         "position": [
-          19.12,
-          -37.26
+          84.85,
+          -192.62
         ],
         "y": -0.03,
         "scale": 2.2,
         "swim": {
-          "radius": 1.5806811159579048,
-          "speed": 0.5964578173104884,
-          "phase": 6.1
+          "radius": 1.77,
+          "speed": 0.53,
+          "phase": 5.26
         }
       },
       {
         "piece": "Fish_Catfish",
         "position": [
-          7.13,
-          -56.69
+          -30.66,
+          -79.36
         ],
         "y": -0.03,
         "scale": 2.2,
         "swim": {
-          "radius": 2.066179162390834,
-          "speed": 0.7203412815242805,
-          "phase": 2.84
+          "radius": 1.37,
+          "speed": 0.83,
+          "phase": 4.41
         }
       },
       {
         "piece": "Fish_Catfish",
         "position": [
-          -41.6,
-          -40.23
+          -71.14,
+          -181.02
         ],
         "y": -0.03,
         "scale": 2.2,
         "swim": {
-          "radius": 1.5871997796266752,
-          "speed": 0.6789667327379036,
-          "phase": 5.46
+          "radius": 1.12,
+          "speed": 0.78,
+          "phase": 2.78
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          91.18,
+          -54.99
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 1.72,
+          "speed": 0.74,
+          "phase": 0.54
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          75.38,
+          -164.95
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 2.01,
+          "speed": 0.71,
+          "phase": 5.83
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          -42.21,
+          -153.92
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 1.28,
+          "speed": 0.53,
+          "phase": 2.27
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          -78.13,
+          -104.23
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 1.82,
+          "speed": 0.84,
+          "phase": 6.26
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          -76.04,
+          -81.46
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 1.11,
+          "speed": 0.98,
+          "phase": 5.3
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          90.41,
+          -130.13
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 1.47,
+          "speed": 0.59,
+          "phase": 2.66
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          80.32,
+          -159.39
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 1.11,
+          "speed": 0.94,
+          "phase": 5.27
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          -61.78,
+          -169.04
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 2.18,
+          "speed": 0.9,
+          "phase": 5.52
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          -54.71,
+          -182.4
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 1.28,
+          "speed": 0.92,
+          "phase": 2.39
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          -91.82,
+          -118.29
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 1.26,
+          "speed": 0.84,
+          "phase": 2.99
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          -87.76,
+          -186.59
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 1.28,
+          "speed": 0.7,
+          "phase": 3.14
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          18.28,
+          -71.67
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 1.89,
+          "speed": 0.82,
+          "phase": 3.74
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          -85.53,
+          -57.6
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 2.07,
+          "speed": 1.0,
+          "phase": 1.28
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          76.61,
+          -96.73
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 1.01,
+          "speed": 0.55,
+          "phase": 2.45
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          -69.84,
+          -34.92
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 1.75,
+          "speed": 0.68,
+          "phase": 0.72
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          51.02,
+          -176.73
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 1.2,
+          "speed": 0.82,
+          "phase": 0.38
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          83.27,
+          -79.44
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 2.05,
+          "speed": 0.67,
+          "phase": 5.58
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          89.21,
+          -48.55
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 1.34,
+          "speed": 0.88,
+          "phase": 2.08
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          -32.92,
+          -131.95
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 1.37,
+          "speed": 0.78,
+          "phase": 2.05
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          -94.94,
+          -140.63
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 1.05,
+          "speed": 0.98,
+          "phase": 6.28
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          -20.34,
+          -22.45
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 1.75,
+          "speed": 0.86,
+          "phase": 0.06
+        }
+      },
+      {
+        "piece": "Fish_Catfish",
+        "position": [
+          -62.63,
+          -17.97
+        ],
+        "y": -0.03,
+        "scale": 2.2,
+        "swim": {
+          "radius": 1.41,
+          "speed": 0.53,
+          "phase": 1.7
         }
       },
       {
         "piece": "Signpost_Medieval",
         "position": [
           3.0,
-          -22.5
+          2.5
         ],
         "rotation": 330,
         "solid": [
           0.6,
           0.6
         ]
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          -3.0,
+          -48.5
+        ],
+        "rotation": 45,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          -3.0,
+          -109.5
+        ],
+        "rotation": 150,
+        "solid": [
+          0.6,
+          0.6
+        ]
       }
     ],
-    "passive": true,
     "crowd": [
       {
         "role": "crab",
         "position": [
-          4.0,
-          -25.4
+          8.3,
+          4.6
         ],
-        "rotation": 77,
+        "rotation": 301,
         "pose": "walk",
         "path": [
-          4.5,
-          -24.2
+          9.3,
+          5.2
         ],
         "speed": 0.5
       },
       {
         "role": "crab",
         "position": [
-          -17.1,
-          -24.2
+          13.6,
+          4.8
         ],
-        "rotation": 86,
+        "rotation": 249,
         "pose": "walk",
         "path": [
-          -16.9,
-          -23.0
+          13.4,
+          5.3
         ],
         "speed": 0.5
       },
       {
         "role": "crab",
         "position": [
-          -27.7,
-          -23.4
+          -21.3,
+          -47.4
         ],
-        "rotation": 188,
+        "rotation": 152,
         "pose": "walk",
         "path": [
-          -30.2,
-          -23.5
+          -21.8,
+          -48.2
         ],
         "speed": 0.5
       },
@@ -127676,45 +134007,186 @@
         "role": "crab",
         "position": [
           27.4,
-          -23.6
+          -37.9
         ],
-        "rotation": 41,
+        "rotation": 191,
         "pose": "walk",
         "path": [
-          29.3,
-          -22.8
+          27.8,
+          -39.1
         ],
         "speed": 0.5
       },
       {
         "role": "crab",
         "position": [
-          1.8,
-          -38.9
+          59.1,
+          -79.6
         ],
-        "rotation": 50,
+        "rotation": 206,
         "pose": "walk",
         "path": [
-          3.4,
-          -38.0
+          60.0,
+          -79.6
         ],
         "speed": 0.5
       },
       {
         "role": "crab",
         "position": [
-          0.6,
-          -16.3
+          38.6,
+          -72.1
         ],
-        "rotation": 105,
+        "rotation": 32,
         "pose": "walk",
         "path": [
-          -0.1,
-          -15.2
+          39.8,
+          -72.1
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "crab",
+        "position": [
+          -47.9,
+          -73.1
+        ],
+        "rotation": 325,
+        "pose": "walk",
+        "path": [
+          -48.2,
+          -73.5
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "crab",
+        "position": [
+          -66.0,
+          -65.4
+        ],
+        "rotation": 62,
+        "pose": "walk",
+        "path": [
+          -65.4,
+          -65.7
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "crab",
+        "position": [
+          -32.3,
+          -109.4
+        ],
+        "rotation": 171,
+        "pose": "walk",
+        "path": [
+          -33.1,
+          -109.6
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "crab",
+        "position": [
+          34.5,
+          -107.7
+        ],
+        "rotation": 137,
+        "pose": "walk",
+        "path": [
+          34.5,
+          -108.5
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "crab",
+        "position": [
+          5.5,
+          -170.4
+        ],
+        "rotation": 167,
+        "pose": "walk",
+        "path": [
+          4.3,
+          -169.4
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "crab",
+        "position": [
+          24.2,
+          -148.6
+        ],
+        "rotation": 20,
+        "pose": "walk",
+        "path": [
+          24.8,
+          -147.9
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "crab",
+        "position": [
+          34.7,
+          0.3
+        ],
+        "rotation": 24,
+        "pose": "walk",
+        "path": [
+          33.4,
+          -0.7
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "crab",
+        "position": [
+          36.4,
+          0.8
+        ],
+        "rotation": 83,
+        "pose": "walk",
+        "path": [
+          36.7,
+          2.0
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "crab",
+        "position": [
+          -28.7,
+          -2.7
+        ],
+        "rotation": 320,
+        "pose": "walk",
+        "path": [
+          -28.6,
+          -1.6
+        ],
+        "speed": 0.5
+      },
+      {
+        "role": "crab",
+        "position": [
+          -36.0,
+          -0.3
+        ],
+        "rotation": 146,
+        "pose": "walk",
+        "path": [
+          -36.0,
+          -1.2
         ],
         "speed": 0.5
       }
-    ]
+    ],
+    "passive": true
   },
   "bunker_01_entrance": {
     "_comment": "Bunker (3D Dungeon Modular Wall Set 2, Paul Wortmann, CC0): grade de células de 2 m com paredes e pilares do pacote (Bk_*) e lampiões de parede (Lamp, Mev Lyshkin, CC-BY), uma parede em cada divisa entre piso e pedra, colisão por parede e pilar. Salão de entrada, corredor, sala principal com dois nichos e câmara ao fundo; por enquanto só o mapa (sem monstros, baús nem missões). Entrada pela Fazenda. Gerado por tools/assets/build_maps.py.",
@@ -131108,7 +137580,7 @@
     "passive": true
   },
   "desert_01_canyon": {
-    "_comment": "Deserto — o Cânion (Canyon Terrain Asset, loafbrr / Ian87, CC0), mapa grande com a estrutura da Floresta e outro caminho: acampamento ao sul, rota em laço para o norte (estrada, ruínas de carroças, passagem, areia movediça, dunas) e ramais sem saída (Caravana, Ninho, Oásis, Ruínas do Sol). 2 mini-chefes: a Rainha Escorpião (o NPC do Oásis a desperta) e o Lamassu da Areia (o templo das Ruínas do Sol). O Sentinela do Portão pede as duas chaves; atrás do portão fica a Esfinge (chefe final) e a saída. Liga-se à Fazenda pelo portal do oeste dos campos. Gerado por tools/assets/build_desert.py.",
+    "_comment": "Deserto — o Cânion (Canyon Terrain Asset, loafbrr / Ian87, CC0), mapa grande com a estrutura da Floresta e outro caminho: acampamento ao sul, rota em laço para o norte (estrada, ruínas de carroças, passagem, areia movediça, dunas) e ramais sem saída (Caravana, Ninho, Oásis, Ruínas do Sol). 2 mini-chefes: a Rainha Escorpião (o NPC do Oásis a desperta) e o Lamassu da Areia (o templo das Ruínas do Sol). O Sentinela do Portão pede as duas chaves; atrás do portão fica a Esfinge (chefe final) e a saída. Liga-se à Capital (tools/assets/set_map_order.py). Gerado por tools/assets/build_desert.py.",
     "name_key": "ARENA_DESERT",
     "outdoor": true,
     "player_class": "mage",
@@ -131700,24 +138172,26 @@
       {
         "id": "return_portal",
         "kind": "exit",
-        "name_key": "PROP_TO_FARM",
+        "name_key": "PROP_RETURN_PORTAL",
         "position": [
           -8,
           9
         ],
-        "to": "farm_01_fields",
-        "entry": "desert"
+        "to": "capital_01_aurenhold",
+        "entry": "desert",
+        "expedition_end": false
       },
       {
-        "id": "to_farm",
+        "id": "victory_portal",
         "kind": "exit",
-        "name_key": "PROP_TO_FARM",
+        "name_key": "PROP_RETURN_PORTAL",
         "position": [
           0,
           -191.5
         ],
-        "to": "farm_01_fields",
+        "to": "capital_01_aurenhold",
         "entry": "desert",
+        "after_victory": true,
         "group": true
       },
       {
@@ -138930,6 +145404,42 @@
         ],
         "rotation": 60,
         "scale": 1.16
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          3.0,
+          -33.5
+        ],
+        "rotation": 315,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          3.0,
+          -81.5
+        ],
+        "rotation": 300,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Signpost_Medieval",
+        "position": [
+          37.0,
+          -86.5
+        ],
+        "rotation": 30,
+        "solid": [
+          0.6,
+          0.6
+        ]
       }
     ],
     "passive": true

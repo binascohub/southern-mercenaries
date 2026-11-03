@@ -762,7 +762,7 @@ func _leave_corpse() -> void:
 
 ## Voz do monstro (RPG Sound Pack): família pela aparência, ou pelo campo "sound" do monsters.json.
 const VOICE_BY_LOOK := {
-	"frog": "slime", "toad": "slime", "angler": "slime", "nest": "slime", "mimic": "beetle",
+	"frog": "slime", "toad": "slime", "angler": "slime", "pork_shark": "beast", "nest": "slime", "mimic": "beetle",
 	"scorpion": "beetle", "chitin_beast": "beetle", "chest_mimic": "beetle",
 	"shadow_spirit": "shade", "skeleton": "shade", "zombie": "shade", "succubus": "shade", "dark_elf": "shade",
 	"undead": "shade", "night_demon": "shade", "stalker": "wolfman", "necromancer": "shade", "demon_twelve": "giant",

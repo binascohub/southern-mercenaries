@@ -35,19 +35,23 @@ Em negrito, os criados nesta rodada (`tools/assets/add_minibosses.py`). A Flores
 
 ## 2. Resumo
 
-| # | Mapa | Ato | Sai de | Áreas | Níveis | Mini-chefe | Chefe |
-|---|---|---|---|---|---|---|---|
-| 1 | Esgoto de Tortuga | 2 | Tortuga | 4 | 1–2 | Carniceiro Chifrudo | Feiticeiro-Aranha |
-| 2 | Ruínas do Reino do Arqueiro | 2 | Tortuga | 5 | 3–4 | Alfa da Matilha (Amarok) | Cérbero |
-| 3 | Floresta Escura | 2 | Tortuga | 4 | 5–6 | Mapinguari Ancião | Leshy |
-| 4 | Cavalos Míticos | 2 | Tortuga | 4 | 7–8 | Arion, o Veloz | Pégaso |
-| 5 | Aves | 2 | Tortuga | 4 | 9–10 | Roca Anciã | Fênix |
-| 6 | Deserto | 3 | Capital | 4 | 11–12 | Lamassu do Portão | Esfinge |
-| 7 | Águas | 3 | Capital | 4 | 13–14 | Rainha das Iaras | Kraken |
-| 8 | Pântano | 3 | Capital | 4 | 15–16 | Bunyip do Lago | Grendel e a Mãe |
-| 9 | Serpentes | 3 | Capital | 4 | 17–18 | Hidra do Templo | Jörmungandr |
-| 10 | Inferno | 4 | Capital | 4 | 19–20 | Ecos dos chefes | Lúcifer |
-| | **Total** | | | **41** | | | |
+Ordem dos mapas, por hub (`tools/assets/set_map_order.py` liga os portais; cada mapa volta ao seu hub, sem portais em cadeia entre mapas):
+
+| # | Mapa | Hub | Mini-chefes | Chefe |
+|---|---|---|---|---|
+| 1 | Esgoto de Tortuga (`sewers_01_drains`) | Tortuga | Carniceiro Chifrudo · Rei dos Sapos | Feiticeiro-Aranha |
+| 2 | Floresta (`forest_01_path`, o mapa do Leshy) | Tortuga | Rei Golem de Pedra · Golem de Fogo | Leshy |
+| 3 | Docas (`docks_01_pier`) | Tortuga | — | — |
+| 4 | Ruínas do Reino do Arqueiro (`ruins_01_city`) | Tortuga | Alfa da Matilha · Guardião do Cofre | Cérbero |
+| 5 | Cemitério (`cemetery_01_yard`) | Capital | Ogro da Cripta · Senhor da Cripta | — |
+| 6 | Forte (`fort_01_gate`) | Capital | Comandante · Rainha das Súcubas | — |
+| 7 | Catacumbas | Capital | *(mapa ainda não criado)* | — |
+| 8 | Deserto (`desert_01_canyon`) | Capital | Lamassu da Areia · Rainha Escorpião | Esfinge |
+| 9 | Mina (`mine_01_crystal_vein`) | Fazenda | Chefe Troll · Guardião do Túmulo | — |
+| 10 | Bunker (`bunker_01_entrance`) | Fazenda | — | — |
+| 11 | Floresta Escura (`dark_forest_01_woods`) | Fazenda | *(só o mapa, sem monstros)* | — |
+
+A Capital e a Fazenda são acessadas por Tortuga (`capital_gate`, `farm_gate`). Pântano e Inferno (seções abaixo) continuam só no documento, fora desta ordem.
 
 ## 3. Esgoto de Tortuga (`map_sewers`)
 
@@ -93,26 +97,6 @@ Só os chefes do Esgoto revidam (o Rei dos Sapos, o Carniceiro Chifrudo e o Feit
 | 3 | `forest_03_lost_trails` | **Trilhas Perdidas** | Misto | 6 | Clareiras que se repetem (o Leshy faz o grupo andar em círculos — achar a árvore marcada para sair); Curupiras com pegadas falsas; **mini-chefe: Mapinguari Ancião** |
 | 4 | `forest_04_elder_tree` | **Árvore Anciã** | Aberto (arena) | 6 | **Leshy**; ouro dos viajantes perdidos; Coroa de Galhos |
 
-## 6. Cavalos Míticos (`map_horses`)
-
-| # | ID | Área | Espaço | Nível | Destaques |
-|---|---|---|---|---|---|
-| 1 | `horses_01_plains` | **Planícies Selvagens** | Aberto | 7 | Ipotanes em bando; Mulas sem Cabeça em investida (ótimo para o Cavaleiro montado) |
-| 2 | `horses_02_bone_field` | **Campo dos Ossos** | Aberto | 7 | Bakotsus que se remontam; Anggitays atirando de longe |
-| 3 | `horses_03_cliff_ruins` | **Ruínas da Encosta** | Misto | 8 | Subida em trilhas; Cheollimas mergulhando; **mini-chefe: Arion, o Veloz** |
-| 4 | `horses_04_sky_plateau` | **Planalto do Céu** | Aberto (arena) | 8 | **Pégaso**; Rédeas de Ouro do Céu |
-
-## 7. Aves (`map_birds`)
-
-| # | ID | Área | Espaço | Nível | Destaques |
-|---|---|---|---|---|---|
-| 1 | `birds_01_foothills` | **Sopé das Montanhas** | Aberto | 9 | Harpias e Corvos Sombrios |
-| 2 | `birds_02_bronze_cliffs` | **Penhascos de Bronze** | Misto | 9 | Bandos de Aves Estinfálias; bordas de penhasco (quem é empurrado leva dano e volta ao ponto seguro) |
-| 3 | `birds_03_strix_caves` | **Cavernas das Strix** | Estreito | 10 | Escuras; Strix que enxergam o Ninja invisível; **mini-chefe: Roca Anciã** na saída da caverna |
-| 4 | `birds_04_ash_nest` | **Ninho de Cinzas** | Aberto (arena) | 10 | No pico; **Fênix**; Pena da Chama Eterna |
-
-> Depois deste mapa, o Cavaleiro fala do Bobo da Corte e a **Capital Real** é liberada (`04-1-capital-real.md`).
-
 ## 8. Deserto (`map_desert`)
 
 | # | ID | Área | Espaço | Nível | Destaques |
@@ -131,16 +115,7 @@ Mapa único e grande, com a mesma estrutura da Floresta (aldeia de partida, duas
 3. **Sentinela do Portão** (corredor ao norte das Dunas): só abre o portão com as duas chaves.
 4. **Esfinge** (chefe final) no Salão atrás do portão, com a saída para a Fazenda.
 
-Gerado por `tools/assets/build_desert.py`.
-
-## 9. Águas (`map_waters`)
-
-| # | ID | Área | Espaço | Nível | Destaques |
-|---|---|---|---|---|---|
-| 1 | `waters_01_coast` | **Costa dos Naufrágios** | Aberto | 13 | Afogados saindo dos cascos (alguns com farda da marinha do rei); Kappas na areia molhada |
-| 2 | `waters_02_flooded_grottos` | **Grutas Alagadas** | Estreito | 13 | Água rasa (`soaked`); Kelpies em emboscada; Sereias curando monstros |
-| 3 | `waters_03_ship_graveyard` | **Cemitério de Navios** | Misto | 14 | Pontes entre cascos; **mini-chefe: Rainha das Iaras**; segredo: baú com ouro do rei |
-| 4 | `waters_04_sunken_deck` | **Convés Naufragado** | Arena | 14 | **Kraken**; Coração do Abismo + parte do ouro do rei |
+Gerado por `tools/assets/build_desert.py`. O Deserto é aberto pela Capital e o portal do chefe leva de volta a ela.
 
 ## 10. Pântano (`map_swamp`)
 
@@ -150,17 +125,6 @@ Gerado por `tools/assets/build_desert.py`.
 | 2 | `swamp_02_barrows` | **Túmulos Afundados** | Estreito | 15 | Draugrs saindo dos túmulos na lama; segredo: túmulo com tesouro antigo |
 | 3 | `swamp_03_black_shore` | **Margem do Lago Negro** | Misto | 16 | Rusalkas dançando na margem; a barcaça do rei afundada; **mini-chefe: Bunyip do Lago** |
 | 4 | `swamp_04_grendel_hall` | **Salão em Ruínas** | Arena (margem + lago) | 16 | **Grendel e a Mãe de Grendel**; tesouro do lago + ouro do rei; Espada dos Gigantes |
-
-## 11. Serpentes (`map_serpents`)
-
-| # | ID | Área | Espaço | Nível | Destaques |
-|---|---|---|---|---|---|
-| 1 | `serpents_01_jungle` | **Selva das Serpes** | Aberto | 17 | Serpes (Wyverns) voando; Boitatás deixando rastro de fogo; Anfisbenas |
-| 2 | `serpents_02_naga_temple` | **Templo das Nagas** | Estreito | 17 | Guardiões Naga; Basiliscos nos corredores (olhar petrificante) |
-| 3 | `serpents_03_treasure_vault` | **Câmara do Ouro** | Misto | 18 | Mais ouro do rei; inscrições com o símbolo de Lúcifer; **mini-chefe: Hidra do Templo** no pátio |
-| 4 | `serpents_04_sea_temple` | **Templo do Mar** | Arena | 18 | Templo meio afundado no mar; **Jörmungandr**; Escama do Mundo; **descoberta do portal para o Inferno** |
-
-> De volta à Capital, o Bobo foi sequestrado. As relíquias abrem o portal para o Inferno (`06-mundo-e-historia.md`, Ato 4).
 
 ## 12. Inferno (`map_hell`)
 
@@ -196,5 +160,12 @@ Os monstros comuns reaproveitam os modelos do Esgoto e do Monstro da Floresta; o
 
 ### Docas (`docks_01_pier`) — ligada ao porto de Tortuga
 
-Mapa de píeres de madeira sobre o mar (Modular Wooden Docks, CC0): pátio de entrada, píer principal, um cruzamento com dois píeres laterais e o píer do fundo, com barcos, defensas, barris e caixotes. A entrada fica no porto de Tortuga (a "Passagem para as Docas" ao lado do cais do navio pirata) e o portal "Voltar ao porto" leva de volta. Tem inimigos leves do esgoto (ratos, sapos, morcegos), dois baús e uma bolsa de moedas; ainda sem chefe, missões ou lojas.
+Mapa grande de píeres de madeira sobre o mar (Modular Wooden Docks, CC0), com a mesma estrutura da Floresta e outro caminho: o **Cais** de partida sobe pelo Píer Principal até o **Mercado de Peixe**; dali, um laço a oeste (**Estaleiro**) e um a leste (**Peixaria**) fecham no **Farol** e no **Armazém**; a Calçada ao norte leva ao **Atracadouro**, ao corredor do portão e ao **Convés** do chefe final. A entrada fica no porto de Tortuga e o portal "Voltar ao porto" leva de volta. Tem barcos, galeões piratas ancorados, peixes e caranguejos, e a decoração é de cais (bitolas, caixotes, barris, redes, bancas, tochas e bandeiras).
+
+1. **Mestre do Porto** (cais de chegada): pede o **Leme do Casco Vivo**. Tocar o casco encalhado do Estaleiro, com a missão ativa, desperta o **Casco Vivo** (mini-chefe). Entrega a **Chave da Âncora**.
+2. **Peixeira** (Peixaria): pede o **Dente de Ouro do Tubarão**; a fala dela desperta o **Tubarão-Porco** (mini-chefe). Entrega a **Chave da Bússola**.
+3. **Vigia do Cais** (corredor ao norte do Atracadouro): só abre o portão com as duas chaves.
+4. **Capitão Afogado** (chefe final) no Convés atrás do portão, com a saída de volta a Tortuga.
+
+Os encontros `dk_*` da missão dos contrabandistas continuam no mapa. Gerado por `tools/assets/build_docks.py`.
 
