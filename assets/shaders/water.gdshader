@@ -17,6 +17,7 @@ uniform float foam_amount = 1.0;
 uniform float foam_width = 0.5;
 uniform float depth_range = 3.0;
 uniform float alpha = 0.92;
+uniform float edge_wobble = 0.0; // margem irregular (m): o contorno avança e recua até esta distância
 
 varying vec2 wpos;
 varying vec2 lpos;
@@ -38,6 +39,13 @@ void fragment() {
 	} else {
 		vec2 q = half_size - abs(lpos);
 		d = min(q.x, q.y);
+		if (edge_wobble > 0.0) {
+			float n = texture(caustic_tex, lpos * 0.071 + 0.13).g * 0.6 + texture(caustic_tex, lpos * 0.19 + 0.47).g * 0.3 + texture(caustic_tex, lpos * 0.53 + 0.81).g * 0.1;
+			d += (n - 0.5) * 2.4 * edge_wobble;
+			if (d < 0.0) {
+				discard;
+			}
+		}
 	}
 	vec2 uv1 = wpos * tex_scale + TIME * flow;
 	vec2 uv2 = wpos * tex_scale * 0.63 + vec2(0.31, 0.17) - TIME * flow * 0.7;

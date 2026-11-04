@@ -129,7 +129,7 @@ fixed = [(0, 3), (-6, 3), (5, 0), (10, -20), (-58, -77.5), (52, -76), (SUMMON_ST
 props = [
     {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-6, 3], "to": "tortuga", "entry": "ruins", "expedition_end": True},
     {"id": "victory_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [0, -219.5], "to": "tortuga", "entry": "ruins", "after_victory": True, "group": True},
-    {"id": "ruins_spartan", "kind": "npc", "npc": "ruins_spartan", "position": [5, 0]},
+    {"id": "ruins_spartan", "kind": "npc", "npc": "ruins_spartan", "position": [-52, -30]},
     {"id": "ruins_scholar", "kind": "npc", "npc": "ruins_scholar", "position": [10, -20], "rotation": 200},
     {"id": "ruins_knight_statue", "kind": "npc", "npc": "ruins_knight_statue", "kit": "Statue_Knight", "rotation": 0, "position": [-58.0, -77.5], "solid": [1.4, 1.4],
      "summon": SUMMON_STATUE, "needs_quest": "ruins_seal"},
@@ -501,18 +501,33 @@ for r in rooms:
             ox, oz = (0, -2.0) if side == "n" else (0, 2.0) if side == "s" else (-2.0, 0) if side == "w" else (2.0, 0)
             if room_at(x + ox, z + oz, 0.0) is not None:
                 continue                                                  # divisa com outra sala
-            if any(math.hypot(x - dx, z - dz) < 5.5 for dx, dz in door_points) or near_interest(x, z, 3.0) or in_solid(x, z, 0.8) or near_taken(x, z, 1.0):
+            if any(math.hypot(x - dx, z - dz) < 5.5 for dx, dz in door_points) or in_solid(x, z, 0.8) or near_taken(x, z, 1.0):
                 continue
             roll = rng.random()
-            if roll < 0.55:
+            if near_interest(x, z, 3.0):
+                roll = 0.9                                                # perto de algo importante: entulho baixo, mas nunca um buraco no limite
+            if roll < 0.82:                                               # contorno quase contínuo: o limite do mapa tem de ser visível
                 decor.append({"piece": "Ruin_Wall", "position": [round(x, 1), round(z, 1)], "rotation": 0 if horiz else 90})
                 add_solid(x, z, 5.8 if horiz else 0.7, 0.7 if horiz else 5.8)
                 decor.append({"collider": [5.8 if horiz else 0.7, 0.7 if horiz else 5.8], "position": [round(x, 1), round(z, 1)]})
                 taken.append((x, z, 1.8))
-            elif roll < 0.8:
+            elif roll < 0.93:
                 put(rng.choice(BROKEN), x, z, solid=[0.8, 0.8], r=1.0, free=1.0)
             else:
                 put(rng.choice(ROCKS + PLANTS), x, z, r=0.8, free=1.0)
+
+# pilares nos cantos externos de cada sala (fecham as pontas das muralhas)
+for r in rooms:
+    cx, cz = r["center"]
+    w, h = r["size"]
+    for sx in (-1, 1):
+        for sz in (-1, 1):
+            x, z = cx + sx * (w / 2 - 0.6), cz + sz * (h / 2 - 0.6)
+            if room_at(x + sx * 2.0, z, 0.0) is not None or room_at(x, z + sz * 2.0, 0.0) is not None or in_solid(x, z, 0.8):
+                continue
+            decor.append({"piece": "Ruin_Pillar", "position": [round(x, 1), round(z, 1)], "rotation": 0, "solid": [0.8, 0.8]})
+            add_solid(x, z, 0.8, 0.8)
+            taken.append((x, z, 1.0))
 
 breakables = []
 for i, (rid, n) in enumerate((("approach", 2), ("forum", 8), ("bairro_w", 10), ("bairro_e", 10), ("plaza_w", 4), ("plaza_e", 4), ("avenue", 2), ("yard", 6), ("citadel", 6), ("vault", 6))):

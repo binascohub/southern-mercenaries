@@ -22,10 +22,17 @@ var tips := true
 var quest_trail := true
 ## Último personagem escolhido no menu (ID do save).
 var last_character := ""
+## Qualidade gráfica (Opções → Gráficos): 0 baixa (PC fraco, sem placa de vídeo), 1 média, 2 alta.
+## Baixa e média desenham o 3D em resolução menor, tiram sombras, luzes de cenário e a água com shader, e escondem o cenário distante.
+var quality := 2
+const RENDER_SCALE: Array[float] = [0.55, 0.78, 1.0]
+## Distância (m) a partir da qual o cenário some, por qualidade; 0 = sem limite.
+const VIEW_RANGE: Array[float] = [48.0, 85.0, 0.0]
 
 
 func _ready() -> void:
 	_load()
+	apply_graphics()
 	TranslationServer.set_locale(language)
 	# Tema medieval de toda a interface (09-interface.md, seção 7).
 	UiTheme.apply()
@@ -42,7 +49,26 @@ func set_language(code: String) -> void:
 
 func set_value(key: String, value: Variant) -> void:
 	set(key, value)
+	if key == "quality":
+		apply_graphics()
 	save()
+
+
+## Qualidade sugerida na primeira execução: baixa se o "vídeo" for por software (llvmpipe, SwiftShader).
+static func default_quality() -> int:
+	var adapter := RenderingServer.get_video_adapter_name().to_lower()
+	for slow in ["llvmpipe", "softpipe", "swiftshader", "software", "microsoft basic"]:
+		if adapter.contains(slow):
+			return 0
+	return 2
+
+
+## Resolução do 3D (a interface continua nítida) e filtros; sombras, luzes e alcance do cenário valem ao montar a área.
+func apply_graphics() -> void:
+	var root := get_tree().root
+	root.scaling_3d_mode = Viewport.SCALING_3D_MODE_BILINEAR
+	root.scaling_3d_scale = RENDER_SCALE[clampi(quality, 0, 2)]
+	root.msaa_3d = Viewport.MSAA_DISABLED
 
 
 func save() -> void:
@@ -56,15 +82,18 @@ func save() -> void:
 	cfg.set_value("gameplay", "tips", tips)
 	cfg.set_value("gameplay", "quest_trail", quest_trail)
 	cfg.set_value("general", "last_character", last_character)
+	cfg.set_value("graphics", "quality", quality)
 	cfg.save(PATH)
 	changed.emit()
 
 
 func _load() -> void:
 	var cfg := ConfigFile.new()
+	quality = default_quality()
 	if cfg.load(PATH) != OK:
 		language = system_language()
 		return
+	quality = clampi(int(cfg.get_value("graphics", "quality", quality)), 0, 2)
 	language = cfg.get_value("general", "language", system_language())
 	if language not in LANGUAGES:
 		language = "en"

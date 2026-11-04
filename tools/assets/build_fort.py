@@ -130,7 +130,7 @@ SUMMON_LORD = {"id": "fo_dark_elf_lord", "position": cp(7, 27), "spread": 3.0, "
 props = [
     {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": cp(22, 50), "to": "capital_01_aurenhold", "entry": "fort", "expedition_end": False},
     {"id": "victory_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": cp(26.5, 1.6), "to": "capital_01_aurenhold", "entry": "fort", "after_victory": True, "group": True},
-    {"id": "fort_sergeant", "kind": "npc", "npc": "fort_sergeant", "position": cp(30, 50), "rotation": 270},
+    {"id": "fort_sergeant", "kind": "npc", "npc": "fort_sergeant", "position": cp(29, 43), "rotation": 180},
     {"id": "fort_exile", "kind": "npc", "npc": "fort_exile", "position": cp(4, 31), "rotation": 90, "summon": SUMMON_LORD, "needs_quest": "fort_sigil"},
     {"id": "fort_penitent", "kind": "npc", "npc": "fort_penitent", "position": cp(49, 31), "rotation": 270, "summon": SUMMON_QUEEN, "needs_quest": "fort_ring"},
     {"id": "boss_gate", "kind": "gate", "name_key": "PROP_BOSS_GATE", "position": cp(25.5, 11), "rotation": 0, "scale": 2.5, "block": 10.0, "count": 2, "opened_by": "fort_gate"},

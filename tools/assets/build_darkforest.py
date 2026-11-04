@@ -92,7 +92,7 @@ SUMMON_SPORE = {"id": "fd_spore", "position": rp("ring_e", 0, 8), "spread": 3.0,
 props = [
     {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_FARM", "position": [-6, 3], "to": "farm_01_fields", "entry": "dark_forest", "expedition_end": True},
     {"id": "victory_portal", "kind": "exit", "name_key": "PROP_RETURN_FARM", "position": [0, -236.0], "to": "farm_01_fields", "entry": "dark_forest", "after_victory": True, "group": True},
-    {"id": "fd_woodcutter", "kind": "npc", "npc": "fd_woodcutter", "position": [8, -1], "rotation": 200},
+    {"id": "fd_woodcutter", "kind": "npc", "npc": "fd_woodcutter", "position": [20, -60], "rotation": 200},
     {"id": "fd_herbalist", "kind": "npc", "npc": "fd_herbalist", "position": rp("grove_e", -14, 6), "rotation": 160},
     {"id": "fd_totem", "kind": "npc", "npc": "fd_totem", "kit": "Pr_Obelisk1", "rotation": 0, "position": rp("hollow_w"), "solid": [1.4, 1.4], "summon": SUMMON_VIPER, "needs_quest": "fd_fang"},
     {"id": "fd_charmer", "kind": "npc", "npc": "fd_charmer", "position": rp("bog_w", -10, 6), "rotation": 20},

@@ -10,10 +10,10 @@ MAPS = ["sewers_01_drains", "forest_01_path", "ruins_01_city", "cemetery_01_yard
 BLOCKERS = ("Fort_", "Wall_", "Roof_", "Canyon_Rock", "Bk_", "Ruin_", "Cliff", "Corner_", "Pr_Obelisk", "Gatehouse")
 arenas = json.load(open(ARENAS, encoding="utf-8"))
 loot = json.load(open(LOOT, encoding="utf-8"))
-loot["breakable_crate"] = {"_comment": "Caixotes dos cantos dos mapas: ouro, poção de vida ou de recurso, ou um Mímico que estava escondido (data/monsters.json chest_mimic).",
-                           "outcomes": {"nothing": 36, "gold": 14, "potion_health": 20, "potion_resource": 15, "mimic": 15}, "gold": {"min": 2, "max": 6, "per_level": 1.0}}
-loot["breakable_pot"] = {"_comment": "Potes e jarros dos cantos dos mapas: ouro, poção de vida ou de recurso, e raramente um Mímico.",
-                         "outcomes": {"nothing": 50, "gold": 15, "potion_health": 20, "potion_resource": 12, "mimic": 3}, "gold": {"min": 1, "max": 4, "per_level": 0.6}}
+loot["breakable_crate"] = {"_comment": "Caixotes dos cantos dos mapas: poção de vida ou de recurso, ou um Mímico que estava escondido (data/monsters.json chest_mimic).",
+                           "outcomes": {"nothing": 30, "potion_health": 28, "potion_resource": 20, "mimic": 22}}
+loot["breakable_pot"] = {"_comment": "Potes e jarros dos cantos dos mapas: moedas, ou raramente um Mímico.",
+                         "outcomes": {"nothing": 40, "gold": 54, "mimic": 6}, "gold": {"min": 1, "max": 4, "per_level": 0.6}}
 json.dump(loot, open(LOOT, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
 open(LOOT, "a").write("\n")
 

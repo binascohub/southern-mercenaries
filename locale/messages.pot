@@ -67,6 +67,18 @@ msgstr ""
 msgid "OPTIONS_DEADZONE"
 msgstr ""
 
+msgid "OPTIONS_GRAPHICS"
+msgstr ""
+
+msgid "GRAPHICS_LOW"
+msgstr ""
+
+msgid "GRAPHICS_MEDIUM"
+msgstr ""
+
+msgid "GRAPHICS_HIGH"
+msgstr ""
+
 msgid "OPTIONS_CONTROLS"
 msgstr ""
 
@@ -1782,6 +1794,9 @@ msgid "PROP_PORTAL_LOCKED"
 msgstr ""
 
 msgid "TOAST_LOCKED"
+msgstr ""
+
+msgid "TOAST_NEEDS_MAP_QUEST"
 msgstr ""
 
 msgid "TOAST_QUEST_ACCEPTED"

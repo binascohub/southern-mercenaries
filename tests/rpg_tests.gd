@@ -587,7 +587,7 @@ func _test_skill_anims() -> void:
 
 ## A mecânica de missões do Esgoto vale em todos os mapas: um só altar (needs_key + extra_summons), dois moradores que dão um livro e pedem o item do mini-chefe (e dão uma chave), guardião com as duas chaves,
 ## chefe que larga o item da cidade.
-## Caixotes e potes quebráveis em grupos nos cantos (tabelas com poção e Mímico) em todos os mapas de combate.
+## Caixotes (poção ou Mímico) e potes (moedas ou Mímico) quebráveis em grupos nos cantos em todos os mapas de combate.
 func _test_crates_pots() -> void:
 	var bad: Array[String] = []
 	for area_id: String in ["sewers_01_drains", "forest_01_path", "ruins_01_city", "cemetery_01_yard", "fort_01_gate", "catacombs_01_depths", "desert_01_canyon", "docks_01_pier", "mine_01_crystal_vein", "bunker_01_entrance", "dark_forest_01_woods"]:
@@ -596,8 +596,17 @@ func _test_crates_pots() -> void:
 		var pots: Array = list.filter(func(b: Dictionary) -> bool: return b.monster == "pot")
 		if crates.size() < 3 or pots.size() < 5 or not list.all(func(b: Dictionary) -> bool: return GameData.monsters.get(b.monster, {}).get("breakable", false) and GameData.monsters[b.monster].look != "barrel"):
 			bad.append(area_id)
-	_check(bad.is_empty() and GameData.loot.breakable_crate.outcomes.has("mimic") and GameData.loot.breakable_pot.outcomes.has("potion_health") and GameData.monsters.has("chest_mimic"),
-		"todos os mapas têm caixotes e potes quebráveis (poção ou Mímico) e nenhum barril quebrável (%s)" % [bad])
+	var gate_ok := true
+	for map_id: String in ["ruins_01_city", "cemetery_01_yard", "fort_01_gate", "catacombs_01_depths", "desert_01_canyon", "mine_01_crystal_vein", "bunker_01_entrance", "dark_forest_01_woods", "forest_01_path", "sewers_01_drains", "docks_01_pier"]:
+		var quest_id := ""
+		for id: String in GameData.quests:
+			if GameData.quests[id] is Dictionary and (GameData.quests[id].get("type", "") == "main" or GameData.quests[id].get("opens_map", false)) and GameData.quests[id].get("area", "") == map_id:
+				quest_id = id
+		gate_ok = gate_ok and Town.map_quest_missing(map_id, {}) and not Town.map_quest_missing(map_id, {quest_id: "active"}) and not Town.map_quest_missing(map_id, {quest_id: "done"})
+	_check(gate_ok, "o portão de cada mapa só abre com a missão da cidade dele ativa ou concluída")
+	_check(bad.is_empty() and GameData.loot.breakable_crate.outcomes.has("mimic") and GameData.loot.breakable_crate.outcomes.has("potion_health") and not GameData.loot.breakable_crate.outcomes.has("gold") \
+			and GameData.loot.breakable_pot.outcomes.has("gold") and GameData.loot.breakable_pot.outcomes.has("mimic") and not GameData.loot.breakable_pot.outcomes.has("potion_health") and GameData.monsters.has("chest_mimic"),
+		"todos os mapas têm caixotes (poção ou Mímico) e potes (moedas ou Mímico) quebráveis e nenhum barril quebrável (%s)" % [bad])
 
 
 func _test_map_mechanics() -> void:

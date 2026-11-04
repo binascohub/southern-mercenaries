@@ -68,6 +68,18 @@ msgstr "Invert aim Y axis"
 msgid "OPTIONS_DEADZONE"
 msgstr "Stick dead zone"
 
+msgid "OPTIONS_GRAPHICS"
+msgstr "Graphics quality (low = faster)"
+
+msgid "GRAPHICS_LOW"
+msgstr "Low (old PC)"
+
+msgid "GRAPHICS_MEDIUM"
+msgstr "Medium"
+
+msgid "GRAPHICS_HIGH"
+msgstr "High"
+
 msgid "OPTIONS_CONTROLS"
 msgstr "Controls"
 
@@ -1790,6 +1802,9 @@ msgstr "The runes are dark. Nobody knows where they lead yet."
 
 msgid "TOAST_LOCKED"
 msgstr "Locked. Someone in the tavern may know a way."
+
+msgid "TOAST_NEEDS_MAP_QUEST"
+msgstr "The way is closed. Take the map's job from the city folk first."
 
 msgid "TOAST_QUEST_ACCEPTED"
 msgstr "New quest: {quest}"

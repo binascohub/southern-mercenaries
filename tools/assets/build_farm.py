@@ -141,31 +141,44 @@ dirt_n = [0]
 dirt_spots = []
 
 
+PATH_BLOBS = ["Ground_FarmPathA", "Ground_FarmPathB", "Ground_FarmPathC"]  # manchas redondas de borda macia (build_farm_path.py)
+
+
 def dirt_tile(piece, x, z, scale=1.0, free=False):
     dirt_n[0] += 1
-    decor.append({"piece": piece, "position": [round(x, 2), round(z, 2)], "y": round(0.02 + (dirt_n[0] % 6) * 0.003, 3),
-                  "rotation": rng.randrange(0, 360, 5) if free else rng.choice([0, 90, 180, 270]), "scale": round(scale, 2)})
+    if piece == "Ground_FarmDirt":
+        piece = rng.choice(PATH_BLOBS)
+    elif piece == "Ground_FarmMud":
+        piece = "Ground_FarmMudPatch"
+    decor.append({"piece": piece, "position": [round(x, 2), round(z, 2)], "y": round(0.02 + (dirt_n[0] % 7) * 0.002, 3),
+                  "rotation": rng.randrange(0, 360, 5), "scale": round(scale, 2)})
     dirt_spots.append((x, z, 1.4))
 
 
-def dirt_path(points, step=1.6, piece="Ground_FarmDirt"):
+def dirt_path(points, step=1.1, piece="Ground_FarmDirt"):
+    """Caminho sinuoso: manchas redondas sobrepostas, com o eixo ondulando de leve e a largura variando."""
+    phase = rng.uniform(0, 6.28)
     for (ax, az), (bx, bz) in zip(points, points[1:]):
         length = math.hypot(bx - ax, bz - az)
+        nx, nz = -(bz - az) / length, (bx - ax) / length
         for i in range(max(1, int(length / step) + 1)):
             t = min(i * step / length, 1.0)
-            cx, cz = ax + (bx - ax) * t, az + (bz - az) * t
-            dirt_tile(piece, cx + rng.uniform(-0.25, 0.25), cz + rng.uniform(-0.25, 0.25), rng.uniform(0.95, 1.15), free=True)
-            if rng.random() < 0.8:
-                side = rng.choice([-1, 1]) * rng.uniform(1.0, 1.5)
-                dirt_tile(piece, cx - (bz - az) / length * side, cz + (bx - ax) / length * side, rng.uniform(0.4, 0.65), free=True)
+            wave = 0.35 * math.sin(phase + (i * step) * 0.55)
+            cx, cz = ax + (bx - ax) * t + nx * wave, az + (bz - az) * t + nz * wave
+            dirt_tile(piece, cx + rng.uniform(-0.2, 0.2), cz + rng.uniform(-0.2, 0.2), rng.uniform(1.0, 1.25), free=True)
+            if rng.random() < 0.7:
+                side = rng.choice([-1, 1]) * rng.uniform(1.1, 1.6)
+                dirt_tile(piece, cx + nx * side, cz + nz * side, rng.uniform(0.35, 0.6), free=True)
+        phase += 1.3
 
 
 def dirt_fill(rect, piece="Ground_FarmDirt", chance=1.0):
+    """Pátio ou terreno de terra: manchas grandes e soltas, sem grade."""
     x0, z0, x1, z1 = rect
-    for ix in range(int((x1 - x0) // 2)):
-        for iz in range(int((z1 - z0) // 2)):
+    for ix in range(int((x1 - x0) // 1.6)):
+        for iz in range(int((z1 - z0) // 1.6)):
             if rng.random() < chance:
-                dirt_tile(piece, x0 + 1 + ix * 2, z0 + 1 + iz * 2, 1.0)
+                dirt_tile(piece, x0 + 0.8 + ix * 1.6 + rng.uniform(-0.3, 0.3), z0 + 0.8 + iz * 1.6 + rng.uniform(-0.3, 0.3), rng.uniform(0.95, 1.2), free=True)
 
 
 for line in (
@@ -374,7 +387,8 @@ for pos in ((-16.6, -8.3), (-6.4, -7.2), (-12.0, -25.0), (21.0, -30.0), (7.6, -1
         baskets.append({"id": "bk%d" % (len(baskets) + 1), "monster": "basket", "position": [pos[0], pos[1]], "table": "breakable_potion"})
 keep_ids = {"return_portal", "creek"}
 props = [{**p} for p in old["props"] if p["id"] in keep_ids and p["id"] != "creek"]
-props.append({"id": "creek", "kind": "water", "position": [CREEK_X, -35.0], "size": [CREEK_W, 54.0], "color": [0.14, 0.34, 0.42], "flow": [0.0, 0.09]})
+props.append({"id": "creek", "kind": "water", "position": [CREEK_X, -35.0], "size": [CREEK_W, 54.0], "color": [0.14, 0.34, 0.42], "flow": [0.0, 0.09],
+              "wobble": 0.9, "block": True, "gaps": [[19.0, 3.6], [-15.0, 3.6]]})
 props.append({"id": "to_bunker", "kind": "exit", "name_key": "PROP_TO_BUNKER", "position": [bx, bz + 1.0], "to": "bunker_01_entrance", "entry": "start", "group": True})
 props.append({"id": "mine_gate", "kind": "exit", "name_key": "PROP_TO_MINE", "position": list(GATE_E), "to": "mine_01_crystal_vein", "entry": "start"})
 props.append({"id": "dark_forest_gate", "kind": "exit", "name_key": "PROP_TO_DARK_FOREST", "position": list(GATE_W), "to": "dark_forest_01_woods", "entry": "start"})

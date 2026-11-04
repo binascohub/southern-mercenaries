@@ -239,7 +239,7 @@ SUMMON_COMMANDER = {"id": "bk_commander", "position": [spec_center("barracks")[0
 props = [
     {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_FARM", "position": pos(CC - 4, ROWS - 4), "to": "farm_01_fields", "entry": "bunker", "expedition_end": True},
     {"id": "victory_portal", "kind": "exit", "name_key": "PROP_RETURN_FARM", "position": pos(CC, 2), "to": "farm_01_fields", "entry": "bunker", "after_victory": True, "group": True},
-    {"id": "bk_sergeant", "kind": "npc", "npc": "bk_sergeant", "position": pos(CC + 4, ROWS - 4), "rotation": 200},
+    {"id": "bk_sergeant", "kind": "npc", "npc": "bk_sergeant", "position": [28.0, 74.0], "rotation": 200},
     {"id": "bk_quartermaster", "kind": "npc", "npc": "bk_quartermaster", "position": pos((spec_rect["depot"][0] + spec_rect["depot"][2]) // 2 - 2, spec_rect["depot"][3] - 1), "rotation": 180},
     {"id": "bk_rack", "kind": "npc", "npc": "bk_rack", "kit": "Weapon_Rack", "rotation": 0, "position": spec_center("arsenal"), "solid": [2.4, 1.0], "summon": SUMMON_ARMOR, "needs_quest": "bk_seal"},
     {"id": "bk_medic", "kind": "npc", "npc": "bk_medic", "position": pos((spec_rect["infirmary"][0] + spec_rect["infirmary"][2]) // 2 + 2, spec_rect["infirmary"][3] - 1), "rotation": 180},

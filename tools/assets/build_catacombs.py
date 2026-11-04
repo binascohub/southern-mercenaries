@@ -102,7 +102,7 @@ SUMMON_SOUL = {"id": "ct_soul", "position": rp("chapel", 6, 4), "spread": 3.0, "
 props = [
     {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-6, 3], "to": "capital_01_aurenhold", "entry": "catacombs", "expedition_end": False},
     {"id": "victory_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [0, -183.5], "to": "capital_01_aurenhold", "entry": "catacombs", "after_victory": True, "group": True},
-    {"id": "ct_monk", "kind": "npc", "npc": "ct_monk", "position": [8, -1], "rotation": 200},
+    {"id": "ct_monk", "kind": "npc", "npc": "ct_monk", "position": [-24.0, -12.0], "rotation": 200},
     {"id": "ct_jailer", "kind": "npc", "npc": "ct_jailer", "position": rp("nave", 8, 6), "rotation": 160},
     {"id": "ct_gibbet", "kind": "npc", "npc": "ct_gibbet", "kit": "Gibbet", "rotation": 0, "position": rp("pit_w", 0, 0), "solid": [1.6, 1.6], "summon": SUMMON_HEADSMAN, "needs_quest": "ct_axe"},
     {"id": "ct_prisoner", "kind": "npc", "npc": "ct_prisoner", "position": rp("chapel", -4, 0), "rotation": 90, "summon": SUMMON_SOUL, "needs_quest": "ct_soul"},

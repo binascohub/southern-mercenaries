@@ -13,7 +13,7 @@ from collections import deque
 ARENAS, MONSTERS, NPCS, QUESTS, VALUABLES = ("data/arenas.json", "data/monsters.json", "data/npcs.json", "data/quests.json", "data/valuables.json")
 arenas, monsters, npcs, quests, valuables = (json.load(open(p, encoding="utf-8")) for p in (ARENAS, MONSTERS, NPCS, QUESTS, VALUABLES))
 rng = random.Random("mine-v2")
-NC, NR, RS, DOOR = 9, 11, 12.0, 6.0
+NC, NR, RS, DOOR = 13, 15, 12.0, 6.0  # dobro da área (antes 9 x 11)
 START, END = (NC // 2, 0), (NC // 2, NR - 1)
 
 
@@ -74,11 +74,11 @@ leaves = [c for c in adj if len(adj[c]) == 1 and c not in (START, END)]
 
 # ---------------------------------------------------------------- salas
 SPECIAL = {  # id: (cx, cz, w, h, célula da borda, lado da célula)
-    "camp": (cx(NC - 1) + RS / 2 + 9, cz(1), 18, 16, (NC - 1, 1), "east"),
-    "troll_cave": (cx(0) - RS / 2 - 12, cz(5), 24, 20, (0, 5), "west"),
-    "crystal_hall": (cx(NC - 1) + RS / 2 + 12, cz(7), 24, 20, (NC - 1, 7), "east"),
-    "gem_house": (cx(0) - RS / 2 - 8, cz(9), 16, 14, (0, 9), "west"),
-    "secret": (cx(NC - 1) + RS / 2 + 7, cz(9), 14, 14, (NC - 1, 9), "east")}
+    "camp": (cx(NC - 1) + RS / 2 + 9, cz(2), 18, 16, (NC - 1, 2), "east"),
+    "troll_cave": (cx(0) - RS / 2 - 12, cz(7), 24, 20, (0, 7), "west"),
+    "crystal_hall": (cx(NC - 1) + RS / 2 + 12, cz(10), 24, 20, (NC - 1, 10), "east"),
+    "gem_house": (cx(0) - RS / 2 - 8, cz(12), 16, 14, (0, 12), "west"),
+    "secret": (cx(NC - 1) + RS / 2 + 7, cz(12), 14, 14, (NC - 1, 12), "east")}
 TOP = cz(NR - 1) - RS / 2
 ROOMS = [("entry", 0, 0, 20, 12)] + [("m_%d_%d" % (c, r), cx(c), cz(r), RS, RS) for r in range(NR) for c in range(NC)] + \
         [(k, v[0], v[1], v[2], v[3]) for k, v in SPECIAL.items()] + [("tunnel", 0, TOP - 7, 8, 14), ("nest", 0, TOP - 14 - 17, 40, 34)]
@@ -165,11 +165,11 @@ valuables.update({
 
 # ---------------------------------------------------------------- setores e encontros
 def sector(c, r):
-    if r < 3:
+    if r < 4:
         return 1
-    if r < 6:
+    if r < 8:
         return 2 if c <= NC // 2 else 3
-    if r < 9:
+    if r < 12:
         return 5 if c <= NC // 2 else 4
     return 6
 
@@ -214,7 +214,7 @@ for rid in ("secret",):
 props = [
     {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_FARM", "position": [-6, 3], "to": "farm_01_fields", "entry": "mine", "expedition_end": True},
     {"id": "victory_portal", "kind": "exit", "name_key": "PROP_RETURN_FARM", "position": [0, TOP - 14 - 31], "to": "farm_01_fields", "entry": "mine", "after_victory": True, "group": True},
-    {"id": "mn_apprentice", "kind": "npc", "npc": "mn_apprentice", "position": [8, -1], "rotation": 200},
+    {"id": "mn_apprentice", "kind": "npc", "npc": "mn_apprentice", "position": [0, -12], "rotation": 180},
     {"id": "mn_foreman", "kind": "npc", "npc": "mn_foreman", "position": [sp("camp")[0] - 3, sp("camp")[1] + 2], "rotation": 180},
     {"id": "mn_ore_cart", "kind": "npc", "npc": "mn_ore_cart", "kit": "Cart_Wood", "rotation": 90, "position": list(sp("troll_cave")), "solid": [2.4, 1.3], "summon": SUMMON_TROLL, "needs_quest": "mn_tusk"},
     {"id": "mn_jeweler", "kind": "npc", "npc": "mn_jeweler", "position": [sp("gem_house")[0] + 2, sp("gem_house")[1] + 1], "rotation": 180},

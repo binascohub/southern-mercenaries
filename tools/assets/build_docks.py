@@ -10,10 +10,12 @@ ARENAS, MONSTERS, NPCS, QUESTS, VALUABLES = ("data/arenas.json", "data/monsters.
 arenas, monsters, npcs, quests, valuables = (json.load(open(p, encoding="utf-8")) for p in (ARENAS, MONSTERS, NPCS, QUESTS, VALUABLES))
 rng = random.Random("docks-v2")
 DOOR = 6.0
+K = math.sqrt(2.0)  # mapa com o dobro da área (cada medida x1,41); o que está escrito à mão abaixo é na escala antiga e passa pelo K
 
-ROOMS = [("landing", 0, 0, 36, 16), ("fish_pier", -32, 0, 28, 12), ("boathouse", 32, 0, 28, 12), ("main_pier", 0, -18, 10, 20), ("market", 0, -46, 64, 36),
+ROOMS_OLD = [("landing", 0, 0, 36, 16), ("fish_pier", -32, 0, 28, 12), ("boathouse", 32, 0, 28, 12), ("main_pier", 0, -18, 10, 20), ("market", 0, -46, 64, 36),
          ("west_pier", -46, -46, 28, 8), ("east_pier", 46, -46, 28, 8), ("shipyard", -52, -70, 36, 40), ("fishery", 52, -70, 36, 40), ("causeway", 0, -80, 12, 32),
          ("wharf", 0, -107, 80, 22), ("lighthouse", -55, -105, 30, 30), ("warehouse", 55, -105, 30, 30), ("gate_lane", 0, -130, 10, 24), ("deck", 0, -170, 70, 56)]
+ROOMS = [(rid, cx * K, cz * K, w * K, h * K) for rid, cx, cz, w, h in ROOMS_OLD]
 LINKS = [("landing", "fish_pier", "west"), ("landing", "boathouse", "east"), ("landing", "main_pier", "north"), ("main_pier", "market", "north"), ("market", "west_pier", "west"),
          ("market", "east_pier", "east"), ("west_pier", "shipyard", "north"), ("east_pier", "fishery", "north"), ("market", "causeway", "north"), ("causeway", "wharf", "north"),
          ("shipyard", "lighthouse", "north"), ("fishery", "warehouse", "north"), ("lighthouse", "wharf", "east"), ("warehouse", "wharf", "west"), ("wharf", "gate_lane", "north"),
@@ -89,7 +91,7 @@ props = [
     {"id": "sea", "kind": "water", "position": [0, -95], "size": [240, 260]},
     {"id": "return_portal", "kind": "exit", "name_key": "PROP_TO_PORT", "position": [-4, 3], "to": "tortuga", "entry": "docks"},
     {"id": "victory_portal", "kind": "exit", "name_key": "PROP_TO_PORT", "position": [0, -195.5], "to": "tortuga", "entry": "docks", "after_victory": True, "group": True},
-    {"id": "dock_master", "kind": "npc", "npc": "dock_master", "position": [8, -2], "rotation": 200},
+    {"id": "dock_master", "kind": "npc", "npc": "dock_master", "position": [0, -46], "rotation": 200},
     {"id": "wrecked_hull", "kind": "npc", "npc": "wrecked_hull", "kit": "Dock_Boat_Stand", "rotation": 0, "position": [-52.0, -70.0], "summon": SUMMON_HULL, "needs_quest": "dock_helm"},
     {"id": "dock_fishwife", "kind": "npc", "npc": "dock_fishwife", "position": [42.0, -60.0], "rotation": 0, "summon": SUMMON_SHARK, "needs_quest": "dock_tooth"},
     {"id": "boss_gate", "kind": "gate", "name_key": "PROP_BOSS_GATE", "position": [0.0, -124.0], "rotation": 0, "scale": 3.0, "block": 10.0, "count": 2, "opened_by": "dock_gate"},
@@ -110,7 +112,15 @@ encounters = [
     E("dk_boathouse_mimic", [38, 3], ("chest_mimic", 1)), E("dk_yard_mimic", [-60, -60], ("chest_mimic", 1)), E("dk_light_mimic", [-66, -112], ("chest_mimic", 1)),
     E("dk_ware_mimic", [66, -112], ("chest_mimic", 1)), E("dk_deck_a", [-18, -158], ("angler", 2)), E("dk_deck_b", [18, -158], ("angler", 2)),
     E("dk_captain", [0, -188], ("drowned_captain", 1))]
-interest = [p["position"] for p in props if p["kind"] != "water"] + [e["position"] for e in encounters] + [SUMMON_HULL["position"], SUMMON_SHARK["position"], [0, 3]]
+for p in props:
+    p["position"] = [round(p["position"][0] * K, 1), round(p["position"][1] * K, 1)]
+    if p["kind"] == "water":
+        p["size"] = [round(p["size"][0] * K), round(p["size"][1] * K)]
+for sm in (SUMMON_HULL, SUMMON_SHARK):
+    sm["position"] = [round(sm["position"][0] * K, 1), round(sm["position"][1] * K, 1)]
+for e in encounters:
+    e["position"] = [round(e["position"][0] * K, 1), round(e["position"][1] * K, 1)]
+interest = [p["position"] for p in props if p["kind"] != "water"] + [e["position"] for e in encounters] + [SUMMON_HULL["position"], SUMMON_SHARK["position"], [0, 3 * K]]
 interest += [list(d) for d in door_points]
 
 
@@ -127,7 +137,7 @@ def near_taken(x, z, rad=0.0):
     return any(math.hypot(x - tx, z - tz) < tr + rad for tx, tz, tr in taken)
 
 
-def put(piece, x, z, rot=None, scale=1.0, solid=None, y=0.12, r=0.8, free=2.0, force=False):
+def _put(piece, x, z, rot=None, scale=1.0, solid=None, y=0.12, r=0.8, free=2.0, force=False):
     if room_at(x, z, -0.9) is None:
         return False
     if not force and (near_interest(x, z, free) or near_taken(x, z, r)):
@@ -142,21 +152,27 @@ def put(piece, x, z, rot=None, scale=1.0, solid=None, y=0.12, r=0.8, free=2.0, f
     return True
 
 
+def put(piece, x, z, *args, **kw):
+    """Chamada com coordenadas na escala antiga (escritas à mão): converte pelo K."""
+    return _put(piece, x * K, z * K, *args, **kw)
+
+
 def scatter(rid, pieces, n, scale=(1.0, 1.0), solid=None, margin=2.5, r=0.9, tries=40, **kw):
     cx, cz, w, h = by_id[rid][1:]
     done = 0
+    n = round(n * K * K)  # a mesma densidade em uma área com o dobro do tamanho
     for _ in range(n):
         for _t in range(tries):
             x, z = cx + rng.uniform(-w / 2 + margin, w / 2 - margin), cz + rng.uniform(-h / 2 + margin, h / 2 - margin)
             s = rng.uniform(*scale)
-            if put(rng.choice(pieces) if isinstance(pieces, list) else pieces, x, z, scale=s, solid=[solid[0] * s, solid[1] * s] if solid else None, r=r * s, **kw):
+            if _put(rng.choice(pieces) if isinstance(pieces, list) else pieces, x, z, scale=s, solid=[solid[0] * s, solid[1] * s] if solid else None, r=r * s, **kw):
                 done += 1
                 break
     return done
 
 
 def light(x, z, energy=1.3, rng_=9.0, y=1.6, color=(1.0, 0.6, 0.25)):
-    decor.append({"light": list(color), "position": [round(x, 1), round(z, 1)], "y": y, "range": rng_, "energy": energy, "flicker": True})
+    decor.append({"light": list(color), "position": [round(x * K, 1), round(z * K, 1)], "y": y, "range": rng_, "energy": energy, "flicker": True})
 
 
 def torch(x, z, scale=1.5):
@@ -171,7 +187,7 @@ def lamp(x, z):
 
 def brazier(x, z, scale=1.8):
     if put("Tv_Fire", x, z, rot=0, scale=scale, solid=[0.9 * scale, 0.7 * scale], r=1.3, free=1.2):
-        decor.append({"piece": "Fire_Flame", "position": [round(x, 1), round(z, 1)], "y": 0.2, "scale": round(scale * 0.9, 2), "flicker": True})
+        decor.append({"piece": "Fire_Flame", "position": [round(x * K, 1), round(z * K, 1)], "y": 0.2, "scale": round(scale * 0.9, 2), "flicker": True})
         light(x, z, 1.6, 11.0, 1.2)
 
 
@@ -188,7 +204,7 @@ for r in rooms:
         side = rng.choice("nsew")
         t = rng.uniform(-0.45, 0.45)
         x, z = (cx + t * w, cz - h / 2 + 0.9) if side == "n" else (cx + t * w, cz + h / 2 - 0.9) if side == "s" else (cx - w / 2 + 0.9, cz + t * h) if side == "w" else (cx + w / 2 - 0.9, cz + t * h)
-        put("Dock_Dock_Bollard_1", x, z, rot=rng.randrange(0, 360, 15), solid=[0.4, 0.4], r=0.6, free=2.6)
+        _put("Dock_Dock_Bollard_1", x, z, rot=rng.randrange(0, 360, 15), solid=[0.4, 0.4], r=0.6, free=2.6)
 # --- cais de partida: poste de luz, estandartes, carga e o barco no cavalete
 lamp(-8, -3), lamp(8, 5)
 put("Dock_Boat_Stand", 12, 4, rot=90, solid=[3.0, 1.5], r=2.5)
@@ -292,21 +308,21 @@ def in_sea(x, z, pad):
 
 
 for x, z, rot in ((-86, -107, 90), (86, -107, 90), (-50, -194, 70), (50, -194, 110), (-86, -40, 80), (86, -40, 100)):
-    decor.append({"piece": "pirate_ship", "position": [x, z], "y": 0.0, "scale": 0.95, "rotation": rot})
+    decor.append({"piece": "pirate_ship", "position": [round(x * K, 1), round(z * K, 1)], "y": 0.0, "scale": 0.95, "rotation": rot})
 placed = []
-for _ in range(400):
-    if len(placed) >= 34:
+for _ in range(1200):
+    if len(placed) >= 68:
         break
-    x, z = rng.uniform(-96, 96), rng.uniform(-205, 14)
-    if not in_sea(x, z, 5.0) or any(math.hypot(x - px, z - pz) < 9 for px, pz in placed) or any(math.hypot(x - sx, z - sz) < 14 for sx, sz in ((-86, -107), (86, -107), (-50, -194), (50, -194), (-86, -40), (86, -40))):
+    x, z = rng.uniform(-96, 96) * K, rng.uniform(-205, 14) * K
+    if not in_sea(x, z, 5.0) or any(math.hypot(x - px, z - pz) < 9 for px, pz in placed) or any(math.hypot(x - sx * K, z - sz * K) < 14 for sx, sz in ((-86, -107), (86, -107), (-50, -194), (50, -194), (-86, -40), (86, -40))):
         continue
     placed.append((x, z))
     decor.append({"piece": rng.choice(BOATS), "position": [round(x, 1), round(z, 1)], "y": -0.2, "rotation": rng.randrange(0, 360, 15)})
 fish = []
-for _ in range(2000):
-    if len(fish) >= 40:
+for _ in range(4000):
+    if len(fish) >= 80:
         break
-    x, z, radius = rng.uniform(-100, 100), rng.uniform(-205, 14), rng.uniform(1.0, 2.2)
+    x, z, radius = rng.uniform(-100, 100) * K, rng.uniform(-205, 14) * K, rng.uniform(1.0, 2.2)
     if not in_sea(x, z, radius + 1.0) or any((x - f["position"][0]) ** 2 + (z - f["position"][1]) ** 2 < 36 for f in fish) or any(math.hypot(x - px, z - pz) < 5 for px, pz in placed):
         continue
     fish.append({"piece": "Fish_Catfish", "position": [round(x, 2), round(z, 2)], "y": -0.03, "scale": 2.2, "swim": {"radius": round(radius, 2), "speed": round(rng.uniform(0.5, 1.0), 2), "phase": round(rng.uniform(0, 6.28), 2)}})
@@ -318,14 +334,29 @@ for rid in ("landing", "market", "fishery", "shipyard", "wharf", "deck", "boatho
         x, z = cx + rng.uniform(-w / 2 + 3, w / 2 - 3), cz + rng.uniform(-h / 2 + 3, h / 2 - 3)
         crowd.append({"role": "crab", "position": [round(x, 1), round(z, 1)], "rotation": rng.randrange(0, 360), "pose": "walk", "path": [round(x + rng.uniform(-1.5, 1.5), 1), round(z + rng.uniform(-1.2, 1.2), 1)], "speed": 0.5})
 
+# --- piratas e marujos andando pelos píeres, de uma ponta a outra de cada sala (a trilha reta segue o píer)
+for rid, n in (("landing", 3), ("market", 5), ("wharf", 4), ("shipyard", 3), ("fishery", 3), ("lighthouse", 2), ("warehouse", 2), ("deck", 3), ("boathouse", 2), ("fish_pier", 2)):
+    cx, cz, w, h = by_id[rid][1:]
+    for i in range(n):
+        horizontal = w >= h
+        along = rng.uniform(-0.35, 0.35) * (w if horizontal else h)
+        across = rng.uniform(-0.3, 0.3) * (h if horizontal else w)
+        reach = (w if horizontal else h) / 2 - 4.0
+        a = [cx - reach, cz + across] if horizontal else [cx + across, cz - reach]
+        b = [cx + reach, cz + across] if horizontal else [cx + across, cz + reach]
+        if i % 2:
+            a, b = b, a
+        crowd.append({"role": rng.choice(["pirate", "pirate_2", "sailor", "pirate", "sailor"]), "position": [round(a[0], 1), round(a[1], 1)], "pose": "walk",
+                      "path": [round(b[0], 1), round(b[1], 1)], "speed": round(rng.uniform(0.9, 1.4), 2)})
+
 arenas["docks_01_pier"] = {
     "_comment": "Docas, ampliadas (Modular Wooden Docks, loafbrr, CC0): píeres sobre o mar com a estrutura da Floresta e outro caminho. Cais de partida -> Píer Principal -> Mercado de Peixe; laço oeste (Estaleiro: casco encalhado "
                 "desperta o Casco Vivo) e laço leste (Peixaria: a Peixeira desperta o Tubarão-Porco), fechando no Farol e no Armazém; Calçada -> Atracadouro -> corredor do portão (Vigia, duas chaves) -> Convés do "
                 "Capitão Afogado (chefe final, com a saída). Mantém os encontros dk_* da missão dos contrabandistas. Gerado por tools/assets/build_docks.py.",
     "name_key": "ARENA_DOCKS", "player_class": "mage", "map_id": "map_docks", "area_level": 2, "outdoor": True, "final": True, "victory_groups": ["dk_captain"], "wake_radius": 10.0, "alert_radius": 5.0,
-    "rooms": rooms, "encounters": encounters, "hazards": [], "entries": {"start": [0, 3], "docks": [0, 3]}, "props": props, "quest_spots": [],
-    "breakables": [{"id": "coin_bag", "monster": "coin_bag", "position": [4.0, 1.5], "table": "coin_bag"}] + [
-        {"id": "coin_bag_%d" % i, "monster": "coin_bag", "position": p, "table": "coin_bag"} for i, p in enumerate(([-24, -40], [24, -52], [-52, -90], [52, -90], [0, -100], [-20, -176], [20, -176]), start=2)],
+    "rooms": rooms, "encounters": encounters, "hazards": [], "entries": {"start": [0, round(3 * K, 1)], "docks": [0, round(3 * K, 1)]}, "props": props, "quest_spots": [],
+    "breakables": [{"id": "coin_bag", "monster": "coin_bag", "position": [round(4.0 * K, 1), round(1.5 * K, 1)], "table": "coin_bag"}] + [
+        {"id": "coin_bag_%d" % i, "monster": "coin_bag", "position": [round(p[0] * K, 1), round(p[1] * K, 1)], "table": "coin_bag"} for i, p in enumerate(([-24, -40], [24, -52], [-52, -90], [52, -90], [0, -100], [-20, -176], [20, -176]), start=2)],
     "style": {"_comment": "Docas: tábuas de píer do pacote, cerca de madeira nas bordas; o mar é o objeto 'sea'.", "walls": [""], "floor": "Dock_Floor_Dock_Half",
               "low": "Dock_Fence_Plane_Half", "ground": [0.03, 0.1, 0.16]},
     "decor": decor, "crowd": crowd, "passive": True}

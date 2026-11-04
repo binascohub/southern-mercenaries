@@ -198,6 +198,7 @@ for tag, (area, altar_name, books, boss_item, city_q) in MAPS.items():
             "Soltado por {b}, el jefe del mapa. No se puede vender ni perder: llévalo a quien lo pidió."), b=boss_name))
         cq.pop("clear", None)
         cq["item"] = iid
+        cq["opens_map"] = True  # a trava dos portões das cidades conta também as missões da cidade que não são `main` (as Docas)
         giver_t = tuple(name(npcs[cq["giver"]]["name_key"], k) for k in range(3))
         text(cq["desc_key"], fmt((
             "{g} quer {i}, que {b} guarda no fundo do mapa. Consiga o livro com os moradores, desperte os mini-chefes no altar, troque os itens deles pelas chaves, abra o portão com o guardião e derrote {b}. Entregue {i} a {g} por uma recompensa em ouro.",

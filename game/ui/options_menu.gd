@@ -13,6 +13,7 @@ var _invert_y: CheckButton
 var _tips: CheckButton
 var _quest_trail: CheckButton
 var _deadzone: HSlider
+var _quality: OptionButton
 var _controls_button: Button
 var _controls_menu: ControlsMenu
 
@@ -25,6 +26,12 @@ func _ready() -> void:
 		_language.add_item(LANGUAGE_KEYS[code])
 	_language.item_selected.connect(func(i: int) -> void: Settings.set_language(Settings.LANGUAGES[i]))
 	_row("OPTIONS_LANGUAGE", _language)
+
+	_quality = OptionButton.new()
+	for key in ["GRAPHICS_LOW", "GRAPHICS_MEDIUM", "GRAPHICS_HIGH"]:
+		_quality.add_item(key)
+	_quality.item_selected.connect(func(i: int) -> void: Settings.set_value("quality", i))
+	_row("OPTIONS_GRAPHICS", _quality)
 
 	_vibration = _toggle("OPTIONS_VIBRATION", "vibration")
 	_aim_assist = _toggle("OPTIONS_AIM_ASSIST", "aim_assist")
@@ -52,6 +59,7 @@ func _ready() -> void:
 
 func _on_open() -> void:
 	_language.select(Settings.LANGUAGES.find(Settings.language))
+	_quality.select(Settings.quality)
 	_vibration.set_pressed_no_signal(Settings.vibration)
 	_aim_assist.set_pressed_no_signal(Settings.aim_assist)
 	_invert_y.set_pressed_no_signal(Settings.invert_aim_y)

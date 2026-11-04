@@ -859,13 +859,29 @@ func _maybe_spawn_rare() -> void:
 		if not data.get("guaranteed_spawn", false):
 			if arena.get("final", false) or arena.rooms.size() < 2 or _rng.randf() >= float(data.rare_spawn):
 				continue
-		var room: Dictionary = arena.rooms[_rng.randi_range(1 if arena.rooms.size() > 1 else 0, arena.rooms.size() - 1)]
+		if arena.rooms.size() < 2:
+			# Mapa de uma sala só (Forte, Bunker): o centro pode cair numa parede; usa o ponto de um encontro longe da partida.
+			spawn_adds(_far_encounter_spot(Vector3(arena.entries.start[0], 0, arena.entries.start[1]), 30.0), monster_id, 1, 0.0)
+			continue
+		var room: Dictionary = arena.rooms[_rng.randi_range(1, arena.rooms.size() - 1)]
 		spawn_adds(Vector3(room.center[0], 0, room.center[1]), monster_id, 1, 0.0)
+
+
+## Posição de um encontro (ponto sabidamente livre) a pelo menos `min_dist` de `from`; sem nenhum, devolve `from`.
+func _far_encounter_spot(from: Vector3, min_dist: float) -> Vector3:
+	var spots: Array[Vector3] = []
+	for encounter: Dictionary in arena.get("encounters", []):
+		var p := Vector3(encounter.position[0], 0, encounter.position[1])
+		if p.distance_to(from) >= min_dist:
+			spots.append(p)
+	return from if spots.is_empty() else spots[_rng.randi_range(0, spots.size() - 1)]
 
 
 ## Ponto sorteado dentro de uma sala do mapa (longe das bordas) a pelo menos `min_dist` de `from`: para onde o
 ## Dragãozinho Dourado se teleporta. Sem sala longe o bastante, devolve `from`.
 func random_room_point(from: Vector3, min_dist := 20.0) -> Vector3:
+	if arena.rooms.size() < 2:
+		return _far_encounter_spot(from, min_dist)
 	var best := from
 	for i in 12:
 		var room: Dictionary = arena.rooms[_rng.randi_range(0, arena.rooms.size() - 1)]
@@ -935,6 +951,11 @@ func _update_minimap_marks() -> void:
 	for prop: Dictionary in _props:
 		if prop.kind in ["exit", "quest_spot"]:
 			marks.append({"position": Vector2(prop.position[0], prop.position[1]), "kind": "exit" if prop.kind == "exit" else "quest"})
+	# O Viajante do Tempo (teleporte entre as cidades): ponto roxo no minimapa de Tortuga, da Capital e da Fazenda.
+	if arena.get("town", false):
+		for prop: Dictionary in _props:
+			if prop.kind == "npc" and prop.get("npc", "") == "voodoo_priest":
+				marks.append({"position": Vector2(prop.position[0], prop.position[1]), "kind": "teleporter"})
 	# Altares e estátuas que chamam um mini-chefe: aparecem (ícone pequeno) depois que a área deles foi explorada.
 	for prop: Dictionary in _props:
 		if prop.kind == "npc" and prop.has("summon"):
@@ -1943,12 +1964,12 @@ func _build_environment() -> void:
 	sun.rotation_degrees = Vector3(-60, 30, 0)
 	sun.light_energy = 0.8
 	sun.light_color = Color(0.85, 0.8, 0.75)
-	sun.shadow_enabled = true
+	sun.shadow_enabled = Settings.quality >= 2
 	_area_root.add_child(sun)
 
 	# Uma tocha (ou lampião) quente por sala grande — poucas luzes dinâmicas.
 	for room: Dictionary in arena.rooms:
-		if room.get("torch", false):
+		if room.get("torch", false) and Settings.quality >= 1:
 			var torch := OmniLight3D.new()
 			torch.position = Vector3(room.center[0], 3, room.center[1])
 			torch.omni_range = 12.0 if not outdoor else 20.0
@@ -2057,7 +2078,8 @@ func _build_prop(prop_data: Dictionary) -> void:
 				if water_material:
 					var water := MeshInstance3D.new()
 					var water_plane := PlaneMesh.new()
-					water_plane.size = Vector2(float(size[0]), float(size[1]))
+					var wobble: float = float(prop.get("wobble", 0.0))
+					water_plane.size = Vector2(float(size[0]) + wobble * 2.0, float(size[1]) + wobble * 2.0)
 					water.mesh = water_plane
 					water.position.y = 0.06
 					water.material_override = water_material
@@ -2065,6 +2087,8 @@ func _build_prop(prop_data: Dictionary) -> void:
 					node.add_child(water)
 					if round_pond:
 						_block_pond(node, Vector2(size[0], size[1]))
+					elif prop.get("block", false):
+						_block_stream(node, Vector2(size[0], size[1]), prop.get("gaps", []))
 				elif round_pond:
 					_prop_mesh(node, CylinderMesh.new(), Vector3(size[0], 0.05, size[1]), Vector3(0, 0.02, 0), Color(tint[0], tint[1], tint[2]))
 					_block_pond(node, Vector2(size[0], size[1]))
@@ -2439,6 +2463,8 @@ func _kit(parent: Node3D, piece_name: String, offset := Transform3D.IDENTITY, ti
 ## Material da água (shader + texturas feitas por tools/assets/build_water_textures.py). `tint` é a cor funda; a rasa é uma versão clareada e esverdeada dela.
 ## Do prop: "flow" (correnteza [x, z]), "foam" (0 a 1, espuma na margem; o mar não tem) e "alpha".
 func _water_material(tint: Array, size: Array, round_pond: bool, prop: Dictionary) -> ShaderMaterial:
+	if Settings.quality == 0:
+		return null  # qualidade baixa: água lisa, sem shader
 	if not ResourceLoader.exists("res://assets/shaders/water.gdshader") or not ResourceLoader.exists("res://assets/textures/water/water_normal.png"):
 		return null
 	var material := ShaderMaterial.new()
@@ -2451,6 +2477,7 @@ func _water_material(tint: Array, size: Array, round_pond: bool, prop: Dictionar
 	material.set_shader_parameter("caustic_tex", load("res://assets/textures/water/water_caustic.png"))
 	material.set_shader_parameter("half_size", Vector2(float(size[0]) / 2.0, float(size[1]) / 2.0))
 	material.set_shader_parameter("round_shape", 1.0 if round_pond else 0.0)
+	material.set_shader_parameter("edge_wobble", float(prop.get("wobble", 0.0)))
 	var flow: Array = prop.get("flow", [0.02, 0.012])
 	material.set_shader_parameter("flow", Vector2(float(flow[0]), float(flow[1])))
 	material.set_shader_parameter("foam_amount", float(prop.get("foam", 0.0 if float(size[0]) > 100.0 else 1.0)))
@@ -2486,6 +2513,34 @@ func _block_pond(node: Node3D, size: Vector2) -> void:
 	col.shape = shape
 	body.add_child(col)
 	node.add_child(body)
+
+
+## Riacho que corre ao longo de z: parede invisível (camada das lagoas: só jogadores e companheiros) com vãos nas pontes.
+## `gaps` = [[z_local, largura], ...]; peixes e monstros passam.
+func _block_stream(node: Node3D, size: Vector2, gaps: Array) -> void:
+	var cuts: Array = []
+	for g: Array in gaps:
+		cuts.append([float(g[0]) - float(g[1]) / 2.0, float(g[0]) + float(g[1]) / 2.0])
+	cuts.sort_custom(func(l: Array, r: Array) -> bool: return l[0] < r[0])
+	var z := -size.y / 2.0
+	var segments: Array = []
+	for cut: Array in cuts:
+		if cut[0] > z:
+			segments.append([z, cut[0]])
+		z = maxf(z, cut[1])
+	if z < size.y / 2.0:
+		segments.append([z, size.y / 2.0])
+	for seg: Array in segments:
+		var body := StaticBody3D.new()
+		body.collision_layer = 16
+		body.collision_mask = 0
+		var col := CollisionShape3D.new()
+		var box := BoxShape3D.new()
+		box.size = Vector3(size.x, 3.0, seg[1] - seg[0])
+		col.shape = box
+		col.position = Vector3(0, 1.5, (seg[0] + seg[1]) / 2.0)
+		body.add_child(col)
+		node.add_child(body)
 
 
 func _prop_mesh(parent: Node3D, mesh: PrimitiveMesh, scale_: Vector3, at: Vector3, color: Color) -> void:
@@ -3616,6 +3671,15 @@ func _stone_trim(node: Node3D) -> void:
 				m.set_surface_override_material(i, _stone_trim_material)
 
 
+## Qualidade baixa ou média: o cenário além de uma distância da câmera não é desenhado (pisos e caminhos ficam, são baratos).
+func _limit_view_range(node: Node3D, piece: String) -> void:
+	var limit: float = Settings.VIEW_RANGE[clampi(Settings.quality, 0, 2)]
+	if limit <= 0.0 or piece.begins_with("Floor_") or piece.begins_with("Ground_") or piece.begins_with("Dock_Floor"):
+		return
+	for mesh: Node in node.find_children("*", "GeometryInstance3D", true, false):
+		(mesh as GeometryInstance3D).visibility_range_end = limit
+
+
 ## Objeto de cenário (data/arenas.json "decor"): mesa, banco, barril, carroça…
 ## Com "solid", uma caixa de colisão do tamanho dado.
 func _build_decor(decor: Dictionary) -> void:
@@ -3623,6 +3687,8 @@ func _build_decor(decor: Dictionary) -> void:
 		_build_statue(decor)
 		return
 	if decor.has("light"):
+		if Settings.quality == 0 or (Settings.quality == 1 and (int(decor.position[0] * 7 + decor.position[1] * 3) % 2 == 0)):
+			return  # qualidade baixa: sem luzes de cenário; média: metade delas
 		# Luz de cenário (lanterna vermelha da casa da Madame, fogo dos apostadores).
 		var c: Array = decor.light
 		var light := OmniLight3D.new()
@@ -3683,6 +3749,7 @@ func _build_decor(decor: Dictionary) -> void:
 			bob.tween_property(node, "position:y", node.position.y, 1.1).set_trans(Tween.TRANS_SINE)
 		return
 	_area_root.add_child(node)
+	_limit_view_range(node, String(decor.piece))
 	_tone_wood(node, String(decor.piece))
 	if decor.get("flicker", false):
 		# Chama: o fogo estica e encolhe sem parar (a fogueira do acampamento).

@@ -221,6 +221,9 @@ func interact(player: Player, prop: Dictionary) -> void:
 			if needs != "" and needs not in _campaign().get("unlocked", []):
 				_arena()._toast_to(player, "TOAST_LOCKED", {})
 				return
+			if _map_quest_missing(String(prop.to)):
+				_arena()._toast_to(player, "TOAST_NEEDS_MAP_QUEST", {})
+				return
 			if prop.get("group", false):
 				_arena().request_exit(player, prop)
 			else:
@@ -314,6 +317,23 @@ const HUB_MAPS := {
 	"capital_01_aurenhold": ["cemetery_01_yard", "fort_01_gate", "catacombs_01_depths", "desert_01_canyon"],
 	"farm_01_fields": ["mine_01_crystal_vein", "bunker_01_entrance", "dark_forest_01_woods"],
 }
+
+
+## Os portões das cidades só abrem para um mapa com a missão principal dele (a que o NPC da cidade passa) ativa ou já concluída.
+## Mapas sem missão principal (Docas) e saídas fora das cidades ficam livres.
+func _map_quest_missing(target: String) -> bool:
+	return HUB_MAPS.has(_arena().area_id) and map_quest_missing(target, _campaign().get("quests", {}))
+
+
+static func map_quest_missing(target: String, states: Dictionary) -> bool:
+	var has_quest := false
+	for id: String in GameData.quests:
+		var quest: Variant = GameData.quests[id]
+		if quest is Dictionary and (quest.get("type", "") == "main" or quest.get("opens_map", false)) and quest.get("area", "") == target:
+			has_quest = true
+			if states.get(id, "") in ["active", "done"]:
+				return false
+	return has_quest
 
 
 ## Quantas missões de aldeia dos mapas da cidade `hub` ainda não foram concluídas.

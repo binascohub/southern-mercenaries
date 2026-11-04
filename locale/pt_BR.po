@@ -68,6 +68,18 @@ msgstr "Inverter eixo Y da mira"
 msgid "OPTIONS_DEADZONE"
 msgstr "Zona morta do analógico"
 
+msgid "OPTIONS_GRAPHICS"
+msgstr "Qualidade gráfica (baixa = mais rápido)"
+
+msgid "GRAPHICS_LOW"
+msgstr "Baixa (PC velho)"
+
+msgid "GRAPHICS_MEDIUM"
+msgstr "Média"
+
+msgid "GRAPHICS_HIGH"
+msgstr "Alta"
+
 msgid "OPTIONS_CONTROLS"
 msgstr "Controles"
 
@@ -1790,6 +1802,9 @@ msgstr "As runas estão apagadas. Ninguém sabe ainda para onde levam."
 
 msgid "TOAST_LOCKED"
 msgstr "Trancado. Alguém na taverna pode saber um jeito."
+
+msgid "TOAST_NEEDS_MAP_QUEST"
+msgstr "O caminho está fechado. Aceite antes o pedido deste mapa com o povo da cidade."
 
 msgid "TOAST_QUEST_ACCEPTED"
 msgstr "Nova missão: {quest}"

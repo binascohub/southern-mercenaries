@@ -300,28 +300,20 @@
     "relic": "branch_crown"
   },
   "breakable_crate": {
-    "_comment": "Caixotes dos cantos dos mapas: ouro, poção de vida ou de recurso, ou um Mímico que estava escondido (data/monsters.json chest_mimic).",
+    "_comment": "Caixotes dos cantos dos mapas: poção de vida ou de recurso, ou um Mímico que estava escondido (data/monsters.json chest_mimic).",
     "outcomes": {
-      "nothing": 36,
-      "gold": 14,
-      "potion_health": 20,
-      "potion_resource": 15,
-      "mimic": 15
-    },
-    "gold": {
-      "min": 2,
-      "max": 6,
-      "per_level": 1.0
+      "nothing": 30,
+      "potion_health": 28,
+      "potion_resource": 20,
+      "mimic": 22
     }
   },
   "breakable_pot": {
-    "_comment": "Potes e jarros dos cantos dos mapas: ouro, poção de vida ou de recurso, e raramente um Mímico.",
+    "_comment": "Potes e jarros dos cantos dos mapas: moedas, ou raramente um Mímico.",
     "outcomes": {
-      "nothing": 50,
-      "gold": 15,
-      "potion_health": 20,
-      "potion_resource": 12,
-      "mimic": 3
+      "nothing": 40,
+      "gold": 54,
+      "mimic": 6
     },
     "gold": {
       "min": 1,

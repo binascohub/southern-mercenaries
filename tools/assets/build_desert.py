@@ -69,7 +69,7 @@ SUMMON_TEMPLE = {"id": "d_lamassu", "position": [76.0, -75.0], "spread": 3.0, "t
 props = [
     {"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-8, 9], "to": "capital_01_aurenhold", "entry": "desert"},
     {"id": "victory_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [0, -191.5], "to": "capital_01_aurenhold", "entry": "desert", "after_victory": True, "group": True},
-    {"id": "desert_nomad", "kind": "npc", "npc": "desert_nomad", "position": [8, -4], "rotation": 200},
+    {"id": "desert_nomad", "kind": "npc", "npc": "desert_nomad", "position": [-32, 9], "rotation": 200},
     {"id": "desert_oasis_keeper", "kind": "npc", "npc": "desert_oasis_keeper", "position": [-26, -30], "rotation": 0, "summon": SUMMON_GUIDE, "needs_quest": "desert_scarab"},
     {"id": "oasis_pond", "kind": "water", "position": [-34, -37], "size": [10.0, 6.0], "round": True, "color": [0.12, 0.38, 0.45]},
     {"id": "oasis_pond_b", "kind": "water", "position": [-30.5, -35.5], "size": [5.0, 3.5], "round": True, "color": [0.12, 0.38, 0.45]},

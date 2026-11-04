@@ -128,7 +128,8 @@
       "gold": 300,
       "xp": 620
     },
-    "item": "captain_log"
+    "item": "captain_log",
+    "opens_map": true
   },
   "sewer_old_gator": {
     "name_key": "QUEST_SEWER_OLD_GATOR",
@@ -683,7 +684,8 @@
       "gold": 960,
       "xp": 1580
     },
-    "item": "fallen_crown"
+    "item": "fallen_crown",
+    "opens_map": true
   },
   "trav_to_capital": {
     "name_key": "QUEST_TRAV_TO_CAPITAL",
@@ -709,7 +711,8 @@
       "gold": 1790,
       "xp": 2840
     },
-    "item": "chained_link"
+    "item": "chained_link",
+    "opens_map": true
   },
   "map_desert": {
     "name_key": "QUEST_MAP_DESERT",
@@ -722,7 +725,8 @@
       "gold": 2070,
       "xp": 3260
     },
-    "item": "sphinx_eye"
+    "item": "sphinx_eye",
+    "opens_map": true
   },
   "cap_to_farm": {
     "name_key": "QUEST_CAP_TO_FARM",
@@ -748,7 +752,8 @@
       "gold": 2350,
       "xp": 3680
     },
-    "item": "crystal_heart"
+    "item": "crystal_heart",
+    "opens_map": true
   },
   "map_bunker": {
     "name_key": "QUEST_MAP_BUNKER",
@@ -761,7 +766,8 @@
       "gold": 2640,
       "xp": 4100
     },
-    "item": "general_baton"
+    "item": "general_baton",
+    "opens_map": true
   },
   "map_dark_forest": {
     "name_key": "QUEST_MAP_DARK_FOREST",
@@ -774,7 +780,8 @@
       "gold": 2940,
       "xp": 4300
     },
-    "item": "elder_seed"
+    "item": "elder_seed",
+    "opens_map": true
   },
   "ce_lungs": {
     "name_key": "QUEST_CE_LUNGS",

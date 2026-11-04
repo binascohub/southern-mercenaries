@@ -56,7 +56,7 @@ Ordem dos mapas, por hub (`tools/assets/set_map_order.py` liga os portais; cada 
 | 10 | Bunker (`bunker_01_entrance`) | Fazenda | Armadura Viva · Comandante Podre | General Ferrugem |
 | 11 | Floresta Escura (`dark_forest_01_woods`) | Fazenda | Víbora Anciã · Rei dos Esporos | Ancião Sombrio |
 
-A Capital e a Fazenda são acessadas por Tortuga (`capital_gate`, `farm_gate`). Pântano e Inferno (seções abaixo) continuam só no documento, fora desta ordem.
+A Capital e a Fazenda são acessadas por Tortuga (Capital pelo Viajante do Tempo, sem portão em Tortuga; Fazenda por `farm_gate`). Pântano e Inferno (seções abaixo) continuam só no documento, fora desta ordem.
 
 ## 3. Esgoto de Tortuga (`map_sewers`)
 

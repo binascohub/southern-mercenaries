@@ -389,7 +389,7 @@
     "role": "light"
   },
   "baby_dragon": {
-    "_comment": "Dragãozinho Dourado (pedido do autor; Baby Dragon, grab3d, CC0): aparece uma vez em todo mapa (guaranteed_spawn), numa sala que não é a da entrada. Não ataca: passeia; golpeado, corre aos pulos e solta moedas (em 4 peças) a cada golpe. Nunca morre (immortal): depois de soltar teleport_after_coins moedas some e reaparece em outro ponto do mapa. Era o Coelho Dourado.",
+    "_comment": "Dragãozinho Dourado (pedido do autor; Baby Dragon, grab3d, CC0): aparece uma vez em todo mapa (guaranteed_spawn), numa sala que não é a da entrada. Tamanho dobrado (2,0, ~1,8 m). Não ataca: passeia; golpeado, corre aos pulos e solta moedas (em 4 peças) a cada golpe. Nunca morre (immortal): depois de soltar teleport_after_coins moedas some e reaparece em outro ponto do mapa. Era o Coelho Dourado.",
     "name_key": "MONSTER_BABY_DRAGON",
     "max_health": 336,
     "move_speed": 1.4,
@@ -398,7 +398,7 @@
     "attack_windup": 1.0,
     "attack_cooldown": 1.0,
     "aggro_range": 0.0,
-    "size": 1.0,
+    "size": 2.0,
     "category": "common",
     "element": "fire",
     "ai": "flee",
@@ -579,11 +579,11 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "golem_block",
+    "look": "golem_stone",
     "color": [
-      0.9,
-      0.9,
-      1.0
+      0.78,
+      0.78,
+      0.85
     ],
     "quest_drop": "stone_heart",
     "_comment": "Mini-chefe das Ruínas (Praça dos Cavaleiros): o Guardião das Ruínas, golem de pedra que acorda quando o cavaleiro de pedra é tocado com a missão do Coração de Pedra; investidas rápidas.",
@@ -1799,9 +1799,9 @@
       0.75,
       0.7
     ],
+    "role": "normal",
     "_comment": "Mini-chefe das Docas (Estaleiro): o Casco Vivo, monstro de tábuas e pregos que acorda do casco encalhado; investidas.",
-    "quest_drop": "ship_helm",
-    "role": "normal"
+    "quest_drop": "ship_helm"
   },
   "pork_shark": {
     "name_key": "MONSTER_PORK_SHARK",
@@ -1831,9 +1831,9 @@
       1.0,
       1.0
     ],
+    "role": "normal",
     "_comment": "Mini-chefe das Docas (Peixaria): o Tubarão-Porco, tubarão de dentes de ouro que a Peixeira desperta; investidas.",
-    "quest_drop": "golden_shark_tooth",
-    "role": "normal"
+    "quest_drop": "golden_shark_tooth"
   },
   "drowned_captain": {
     "name_key": "MONSTER_DROWNED_CAPTAIN",
@@ -1857,12 +1857,13 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "octaminator",
+    "look": "skeleton",
     "color": [
-      0.75,
-      1.0,
-      0.9
+      0.4,
+      0.85,
+      0.75
     ],
+    "role": "normal",
     "_comment": "Chefe final das Docas: o Capitão Afogado, esqueleto verde do mar que guarda o Convés atrás do portão; investidas e pisões.",
     "aggressive": false,
     "chest_loot": "chest",
@@ -1890,17 +1891,15 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "placeholder",
+    "look": "champ_warrior",
     "color": [
-      0.7,
-      0.3,
-      0.25
+      1.0,
+      1.0,
+      1.0
     ],
+    "role": "normal",
     "_comment": "Mini-chefe das Ruínas (Praça dos Monólitos): o Campeão Caído, guerreiro da guerra que a Sacerdotisa desperta; investidas rápidas.",
-    "quest_drop": "champion_banner",
-    "sound": "ogre",
-    "visual_pending": true,
-    "role": "normal"
+    "quest_drop": "champion_banner"
   },
   "fallen_king": {
     "name_key": "MONSTER_FALLEN_KING",
@@ -1924,17 +1923,17 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "placeholder",
+    "look": "golem_king",
     "color": [
-      0.7,
-      0.6,
-      0.85
+      0.85,
+      0.75,
+      1.0
     ],
     "aggressive": false,
     "chest_loot": "chest",
-    "_comment": "Chefe final das Ruínas: o Rei Caído, guardião do Cofre Real atrás do portão; investidas e pisões (modelo do rei golem).",
     "sound": "giant",
     "visual_pending": true,
+    "_comment": "Chefe final das Ruínas: o Rei Caído, guardião do Cofre Real atrás do portão; investidas e pisões (modelo do rei golem).",
     "quest_drop": "fallen_crown"
   },
   "viper_queen": {
@@ -2155,17 +2154,15 @@
     "patrol": true,
     "patrol_radius": 4.0,
     "patrol_speed": 0.8,
-    "look": "placeholder",
+    "look": "chitin_beast",
     "color": [
       0.5,
       0.75,
       1.0
     ],
+    "role": "normal",
     "_comment": "Mini-chefe da Mina (Salão dos Cristais): a Besta de Quartzo, fera de cristal que o Cristal Pulsante desperta; investidas.",
-    "quest_drop": "quartz_core",
-    "sound": "beetle",
-    "visual_pending": true,
-    "role": "normal"
+    "quest_drop": "quartz_core"
   },
   "bk_armor": {
     "name_key": "MONSTER_BK_ARMOR",

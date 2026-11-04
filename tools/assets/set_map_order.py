@@ -33,7 +33,7 @@ def retarget(area, pid, to, entry, **extra):
 # --- Tortuga: Esgoto, Floresta, Docas, Ruínas (+ Fazenda e Capital como hubs)
 drop_prop("tortuga", "mine_gate")  # a Mina agora é da Fazenda
 put_prop("tortuga", exit_prop("ruins_gate", "PROP_TO_RUINS", (-28.5, 5.9), "ruins_01_city", "start"))
-put_prop("tortuga", exit_prop("capital_gate", "PROP_TO_CAPITAL", (27.0, -2.5), "capital_01_aurenhold", "start"))
+drop_prop("tortuga", "capital_gate")  # a Capital só se alcança pelo Viajante do Tempo
 arenas["tortuga"]["entries"].update({"ruins": [-24.0, 6.0], "capital": [24.0, -2.5]})
 
 # --- portais dos chefes: cada mapa termina no seu hub (nada de cadeia entre mapas)
@@ -52,6 +52,7 @@ for area, entry in (("cemetery_01_yard", "cemetery"), ("fort_01_gate", "fort"), 
 for area, entry in (("mine_01_crystal_vein", "mine"), ("dark_forest_01_woods", "dark_forest")):
     retarget(area, "return_portal", "farm_01_fields", entry, name_key="PROP_RETURN_FARM")
 retarget("capital_01_aurenhold", "return_portal", "tortuga", "capital")
+drop_prop("farm_01_fields", "return_portal")  # da Fazenda só se volta pelo Viajante do Tempo
 
 # --- Capital: Cemitério, Forte, Catacumbas, Deserto — portões ao sul da praça
 for pid, name, x, to, entry in (("cemetery_gate", "PROP_TO_CEMETERY", 4.5, "cemetery_01_yard", "start"), ("fort_gate", "PROP_TO_FORT", 9.5, "fort_01_gate", "start"),
