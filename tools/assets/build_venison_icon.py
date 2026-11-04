@@ -1,12 +1,40 @@
-"""Ícone da Carne de Cervo (assets/ui/icons/venison.png, 128 px): coxa assada desenhada por código (sem arte externa).
-uso: python3 tools/assets/build_venison_icon.py   (a partir da raiz do projeto)"""
-from PIL import Image, ImageDraw, ImageFilter
-im = Image.new("RGBA", (512, 512), (0, 0, 0, 0))
-dr = ImageDraw.Draw(im)
-dr.polygon([(300, 330), (430, 450), (450, 420), (470, 440), (450, 470), (430, 490), (400, 470), (410, 440), (280, 350)], fill=(235, 225, 205, 255))
-dr.ellipse([420, 415, 480, 470], fill=(235, 225, 205, 255))
-dr.ellipse([440, 440, 500, 495], fill=(235, 225, 205, 255))
-dr.ellipse([60, 70, 360, 350], fill=(122, 56, 28, 255))
-dr.ellipse([85, 90, 340, 320], fill=(168, 84, 38, 255))
-dr.ellipse([120, 110, 260, 220], fill=(196, 112, 58, 255))
-im.filter(ImageFilter.GaussianBlur(1.5)).resize((128, 128), Image.LANCZOS).save("assets/ui/icons/venison.png")
+"""Ícone da Carne de Cervo (assets/ui/icons/venison.png, 128 px): render do modelo do autor (~/Downloads/low-poly_raw_meat.glb, carne crua low-poly; autoria e licença a confirmar)
+em fundo transparente, visto de cima e de lado. O modelo também fica em assets/models/props/Raw_Meat.glb (peça de cenário).
+uso: blender -b -P tools/assets/build_venison_icon.py -- <low-poly_raw_meat.glb> <venison.png> <Raw_Meat.glb>"""
+import bpy, sys, math, mathutils
+src, out_png, out_glb = sys.argv[sys.argv.index("--") + 1:][:3]
+bpy.ops.wm.read_factory_settings(use_empty=True)
+bpy.ops.import_scene.gltf(filepath=src)
+meshes = [o for o in bpy.data.objects if o.type == "MESH"]
+for o in meshes:
+    bpy.context.view_layer.objects.active = o
+    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+pts = [o.matrix_world @ v.co for o in meshes for v in o.data.vertices]
+mn = mathutils.Vector([min(p[i] for p in pts) for i in range(3)])
+mx = mathutils.Vector([max(p[i] for p in pts) for i in range(3)])
+center = (mn + mx) / 2
+size = max(mx - mn)
+sc = bpy.context.scene
+sc.render.engine = "BLENDER_WORKBENCH"
+sc.display.shading.light = "STUDIO"
+sc.display.shading.color_type = "TEXTURE"
+sc.render.film_transparent = True
+sc.render.resolution_x = sc.render.resolution_y = 128
+cam_data = bpy.data.cameras.new("c")
+cam_data.type = "ORTHO"
+cam_data.ortho_scale = size * 1.25
+cam = bpy.data.objects.new("c", cam_data)
+sc.collection.objects.link(cam)
+sc.camera = cam
+cam.location = center + mathutils.Vector((0, -size * 2.0, size * 1.6))
+cam.rotation_euler = (center - cam.location).to_track_quat("-Z", "Y").to_euler()
+sc.render.filepath = out_png
+bpy.ops.render.render(write_still=True)
+bpy.data.objects.remove(cam, do_unlink=True)
+# peça de cenário: base em z = 0, centrada, ~0,45 m de comprimento
+k = 0.45 / size
+for o in meshes:
+    o.data.transform(mathutils.Matrix.Translation((-center.x, -center.y, -mn.z)))
+    o.data.transform(mathutils.Matrix.Scale(k, 4))
+bpy.ops.export_scene.gltf(filepath=out_glb, export_format="GLB", use_selection=False, export_image_format="WEBP")
+print("OK", out_png, out_glb)
