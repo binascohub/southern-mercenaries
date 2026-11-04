@@ -12433,6 +12433,20 @@
           }
         ],
         "level": 3
+      },
+      {
+        "id": "f_village_sentinels",
+        "position": [
+          -36.0,
+          -67.0
+        ],
+        "monsters": [
+          {
+            "monster": "tin_sentinel",
+            "count": 2
+          }
+        ],
+        "level": 3
       }
     ],
     "hazards": [],
@@ -39307,7 +39321,7 @@
     ],
     "_spacing": 12.0,
     "_vegetation": "retouch_forest_vegetation.py",
-    "xp_scale": 1.019
+    "xp_scale": 1.01
   },
   "ruins_01_city": {
     "_comment": "Ruínas da cidade destruída na guerra, ampliadas: estrutura da Floresta com outro caminho, mistura de partes murados (Bairro Velho e Bairro do Mercado = labirinto de ruas Ruins_Layout, Destroyed Walls, LFA, CC BY 3.0; Cidadela; corredor do portão; Cofre Real) e partes abertas (Acesso, Fórum, Praças, Avenida das Colunas, Pátio Alto). Acesso -> Fórum; a oeste o Bairro Velho e a Praça dos Cavaleiros (a estátua do cavaleiro desperta o Guardião das Ruínas), a leste o Bairro do Mercado e a Praça dos Monólitos (a Sacerdotisa desperta o Campeão Caído), ao meio a Avenida das Colunas; tudo fecha no Pátio Alto -> Cidadela -> corredor do portão (Porteiro, duas chaves) -> Cofre Real (Rei Caído, chefe final, com a saída). Gerado por tools/assets/build_ruins.py.",
@@ -39532,6 +39546,10 @@
           {
             "monster": "goblin",
             "count": 3
+          },
+          {
+            "monster": "ruins_wraith",
+            "count": 2
           }
         ],
         "level": 7
@@ -39574,6 +39592,10 @@
           {
             "monster": "goblin",
             "count": 3
+          },
+          {
+            "monster": "ruins_wraith",
+            "count": 2
           }
         ],
         "level": 7
@@ -39616,6 +39638,10 @@
           {
             "monster": "venom_scorpion",
             "count": 3
+          },
+          {
+            "monster": "ruins_wraith",
+            "count": 2
           }
         ],
         "level": 7
@@ -39658,6 +39684,10 @@
           {
             "monster": "plague_bat",
             "count": 4
+          },
+          {
+            "monster": "ruins_wraith",
+            "count": 2
           }
         ],
         "level": 7
@@ -39700,6 +39730,10 @@
           {
             "monster": "goblin",
             "count": 3
+          },
+          {
+            "monster": "ruins_wraith",
+            "count": 2
           }
         ],
         "level": 7
@@ -39742,6 +39776,10 @@
           {
             "monster": "goblin",
             "count": 3
+          },
+          {
+            "monster": "ruins_wraith",
+            "count": 2
           }
         ],
         "level": 7
@@ -39784,6 +39822,10 @@
           {
             "monster": "plague_bat",
             "count": 3
+          },
+          {
+            "monster": "ruins_wraith",
+            "count": 2
           }
         ],
         "level": 7
@@ -39840,6 +39882,10 @@
           {
             "monster": "plague_bat",
             "count": 4
+          },
+          {
+            "monster": "ruins_wraith",
+            "count": 2
           }
         ],
         "level": 7
@@ -64374,7 +64420,7 @@
       }
     ],
     "passive": true,
-    "xp_scale": 0.683,
+    "xp_scale": 0.633,
     "_chest_spots": [
       [
         -52.1,
@@ -114630,6 +114676,45 @@
         "solid": [
           0.6,
           0.6
+        ]
+      },
+      {
+        "piece": "Banner_Dragon",
+        "position": [
+          -4.5,
+          1.0
+        ],
+        "rotation": 0,
+        "scale": 2.0,
+        "solid": [
+          0.6,
+          0.4
+        ]
+      },
+      {
+        "piece": "Banner_Dragon",
+        "position": [
+          4.5,
+          1.0
+        ],
+        "rotation": 0,
+        "scale": 2.0,
+        "solid": [
+          0.6,
+          0.4
+        ]
+      },
+      {
+        "piece": "Skull_Throne",
+        "position": [
+          -72.0,
+          -176.0
+        ],
+        "rotation": 0,
+        "scale": 2.2,
+        "solid": [
+          1.6,
+          1.2
         ]
       }
     ],

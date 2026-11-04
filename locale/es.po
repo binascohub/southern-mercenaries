@@ -2572,6 +2572,12 @@ msgstr "Zombi Delgado"
 msgid "MONSTER_GOBLIN"
 msgstr "Goblin"
 
+msgid "MONSTER_RUINS_WRAITH"
+msgstr "Espectro de las Ruinas"
+
+msgid "MONSTER_TIN_SENTINEL"
+msgstr "Centinela de Lata"
+
 msgid "MONSTER_MINE_SCOUT"
 msgstr "Vigía de Latón"
 

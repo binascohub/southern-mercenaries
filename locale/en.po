@@ -2572,6 +2572,12 @@ msgstr "Thin Zombie"
 msgid "MONSTER_GOBLIN"
 msgstr "Goblin"
 
+msgid "MONSTER_RUINS_WRAITH"
+msgstr "Ruins Wraith"
+
+msgid "MONSTER_TIN_SENTINEL"
+msgstr "Tin Sentinel"
+
 msgid "MONSTER_MINE_SCOUT"
 msgstr "Brass Watcher"
 

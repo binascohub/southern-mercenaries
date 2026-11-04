@@ -44,6 +44,16 @@ const FAMILIES := {
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "idle", "die": "idle"}},
 	"mine_scout": {"scene": "res://assets/models/monsters/mine_scout.glb", "scale": 1.0,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "idle", "die": "idle"}},
+	# Sentinela de Lata e Espectro das Ruínas (pixellabs-robot-3332.glb e pixellabs-undead-3417.glb do autor; esqueleto e animações de tools/assets/build_mine_robots.py): ~1 m no arquivo.
+	"tin_sentinel": {"scene": "res://assets/models/monsters/tin_sentinel.glb", "scale": 1.0,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "idle", "die": "idle"}},
+	"ruins_wraith": {"scene": "res://assets/models/monsters/ruins_wraith.glb", "scale": 1.0,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "idle", "die": "idle"}},
+	# Golem de Ferro Negro (Mina) e Espantalho Afogado (Docas): pixellabs-glb-3350.glb e nickpanek-scarecrow-monster-1663.glb do autor; esqueleto e animações de tools/assets/build_mine_robots.py (~1 m no arquivo).
+	"mine_golem": {"scene": "res://assets/models/monsters/mine_golem.glb", "scale": 1.0,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "idle", "die": "idle"}},
+	"docks_scarecrow": {"scene": "res://assets/models/monsters/docks_scarecrow.glb", "scale": 1.0,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "idle", "die": "idle"}},
 	"troll_mauler": {"scene": "res://assets/models/monsters/troll_mauler.glb", "scale": 0.7,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Monstro de Tábuas (Monster_4, minib1.rar do autor; tools/assets/build_plank_monster.py): humanoide de carne com armadura de tábuas e pregos, 1,87 m no arquivo, preso ao

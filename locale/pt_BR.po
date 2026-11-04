@@ -2572,6 +2572,12 @@ msgstr "Zumbi Magro"
 msgid "MONSTER_GOBLIN"
 msgstr "Goblin"
 
+msgid "MONSTER_RUINS_WRAITH"
+msgstr "Espectro das Ruínas"
+
+msgid "MONSTER_TIN_SENTINEL"
+msgstr "Sentinela de Lata"
+
 msgid "MONSTER_MINE_SCOUT"
 msgstr "Vigia de Latão"
 

@@ -2574,6 +2574,12 @@ msgstr ""
 msgid "MONSTER_GOBLIN"
 msgstr ""
 
+msgid "MONSTER_RUINS_WRAITH"
+msgstr ""
+
+msgid "MONSTER_TIN_SENTINEL"
+msgstr ""
+
 msgid "MONSTER_MINE_SCOUT"
 msgstr ""
 

@@ -2,7 +2,7 @@
 pixellabs-glb-3347.glb, o robozinho amarelo de antenas; malhas estáticas de ~38 mil vértices, sem esqueleto; autoria e licença a confirmar).
 Reduz a malha (~20 mil), monta um esqueleto simples (corpo, braços, pernas e, no robozinho, a cabeça com as antenas) com pesos por região e cria idle, walk, run e attack
 (o autômato bate com os dois braços de cima para baixo; o robozinho dá uma cabeçada). Ambos olham para -Y no Blender (+Z no glTF).
-uso: blender -b -P tools/assets/build_mine_robots.py -- <automaton|scout|tin|wraith> <modelo.glb> <saida.glb>
+uso: blender -b -P tools/assets/build_mine_robots.py -- <automaton|scout|tin|wraith|golem|scarecrow> <modelo.glb> <saida.glb>
 Também gera a Sentinela de Lata (vila da Floresta) e o Espectro (Ruínas) com os mesmos passos."""
 import bpy, sys, math
 from math import radians
@@ -18,7 +18,13 @@ CFG = {
                 leg_swing=20, arm_swing=16, run_leg=34, run_arm=30, bob=0.012, rot=90),
     # Espectro (pixellabs-undead-3417.glb): encapuzado que flutua, sem pernas, com manoplas enormes.
     "wraith": dict(z_hip=0.45, z_sh=0.7, x_leg=0.1, x_arm=0.28, leg_top=0.0, leg_ramp=0.1, leg_xmax=0.1, arm_xmin=0.14, arm_ramp=0.08, arm_z=(0.05, 0.8), head_z=0.8,
-                   leg_swing=0, arm_swing=22, run_leg=0, run_arm=38, bob=0.05)}[kind]
+                   leg_swing=0, arm_swing=22, run_leg=0, run_arm=38, bob=0.05),
+    # Golem de Ferro Negro (pixellabs-glb-3350.glb): golem blindado de punhos enormes, da Mina.
+    "golem": dict(z_hip=0.42, z_sh=0.75, x_leg=0.13, x_arm=0.32, leg_top=0.42, leg_ramp=0.1, leg_xmax=0.25, arm_xmin=0.2, arm_ramp=0.07, arm_z=(0.2, 0.82), head_z=None,
+                  leg_swing=18, arm_swing=14, run_leg=30, run_arm=24, bob=0.01),
+    # Espantalho Afogado (nickpanek-scarecrow-monster-1663.glb): humanoide curvado de trapos; o arquivo tem 0,25 de altura (escala 4 para ficar com 1).
+    "scarecrow": dict(z_hip=0.45, z_sh=0.78, x_leg=0.12, x_arm=0.25, leg_top=0.45, leg_ramp=0.1, leg_xmax=0.2, arm_xmin=0.16, arm_ramp=0.06, arm_z=(0.25, 0.85), head_z=0.88,
+                      leg_swing=22, arm_swing=22, run_leg=36, run_arm=36, bob=0.012, scale=4.0)}[kind]
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.gltf(filepath=src)
 body = [o for o in bpy.data.objects if o.type == "MESH"][0]
@@ -27,11 +33,18 @@ for o in list(bpy.data.objects):
         bpy.data.objects.remove(o, do_unlink=True)
 body.parent = None
 body.rotation_euler = (0, 0, radians(CFG.get("rot", 0)))
+body.scale = (CFG.get("scale", 1.0),) * 3
 bpy.context.view_layer.objects.active = body
 bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
 dec = body.modifiers.new("dec", "DECIMATE")
 dec.ratio = min(1.0, 20000.0 / len(body.data.vertices))
 bpy.ops.object.modifier_apply(modifier="dec")
+for _pass in range(3):  # malhas rasgadas (trapos) não chegam ao alvo de uma vez: repete a redução
+    if len(body.data.vertices) <= 30000:
+        break
+    again = body.modifiers.new("dec2", "DECIMATE")
+    again.ratio = 0.5
+    bpy.ops.object.modifier_apply(modifier="dec2")
 print("VERTS", len(body.data.vertices))
 C = CFG
 arm_data = bpy.data.armatures.new("RobotArmature")
@@ -119,7 +132,7 @@ for f, k in ((1, 0.0), (31, 1.0), (61, 0.0)):
     put_pose(f, arms=(radians(6) * k, radians(6) * (1 - k)), body_rot=(0, radians(1.5) * (k - 0.5), 0), lift=0.006 * k,
              head_rot=(radians(4) * (k - 0.5), radians(16) * (k - 0.5), 0), arm_roll=(radians(-3) * k, radians(3) * k))
 arm.animation_data.action = bpy.data.actions.new("attack")
-if kind in ("automaton", "tin", "wraith"):
+if kind in ("automaton", "tin", "wraith", "golem", "scarecrow"):
     frames = ((1, 0.0, 0.0, 0.0), (7, -2.4, -0.12, 0.0), (13, 0.5, 0.2, 0.0), (22, 0.0, 0.0, 0.0))
     for f, up, lean, head in frames:
         put_pose(f, arms=(up, up), body_rot=(lean, 0, 0))
