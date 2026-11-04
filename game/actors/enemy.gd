@@ -171,6 +171,8 @@ func _build_nest(size: float) -> void:
 
 ## Fuga (Coelho Dourado): tempo correndo depois do golpe e o ponto de passeio.
 var _flee_time := 0.0
+var _pounce_to := Vector3.INF  ## Lince: ponto para onde corre
+var _pounce_run := 0.0  ## Lince: tempo que ainda corre na fuga
 var _coins_lost := 0  ## moedas soltas desde o último teleporte (fuga "immortal")
 var _patrol_pause := 0.0
 var _stuck_time := 0.0
@@ -215,7 +217,7 @@ func _ready() -> void:
 ## Quem patrulha dormindo atravessa os outros bichos (ratos de 3 a 6 m de comprimento se
 ## travariam uns nos outros); acordado, volta a esbarrar neles.
 func _set_crowd_collision(awake_now: bool) -> void:
-	collision_mask = 1 | 2 | (4 if awake_now or not data.get("patrol", false) else 0)
+	collision_mask = 1 | 2 | 16 | (4 if awake_now or not data.get("patrol", false) else 0)  # 16: lagoas e riachos (só peixes passam por cima da água)
 
 
 func _physics_process(delta: float) -> void:
@@ -340,6 +342,9 @@ func _think(delta: float) -> void:
 		return  # ninho: não anda nem ataca
 	if data.get("ai", "") == "flee":
 		_think_flee(delta)
+		return
+	if data.get("ai", "") == "pounce":
+		_think_pounce(delta)
 		return
 	if state == State.HIDDEN:
 		_think_hidden()
@@ -485,6 +490,74 @@ func _think_flee(delta: float) -> void:
 	if move.length() > 0.1:
 		yaw = atan2(move.x, move.z)
 	state = State.CHASE
+
+
+## Lince: espreita o herói mais perto que ainda tenha mais da metade da vida, dá o bote (leva a vida atual à metade) e foge correndo para longe; depois descansa.
+## Se todos já estão com metade da vida ou menos, não ataca: só corre de um ponto a outro.
+func _think_pounce(delta: float) -> void:
+	var cfg: Dictionary = data.get("pounce", {})
+	var run_speed := float(cfg.get("run_speed", 15.0)) * status.move_mult()
+	_flee_time = maxf(_flee_time - delta, 0.0)
+	var arena_node := get_tree().get_first_node_in_group(&"arena")
+	var move := Vector3.ZERO
+	if state == State.WINDUP:
+		_timer -= delta
+		velocity = Vector3.ZERO
+		if _timer <= 0.0:
+			var victim := _pounce_target()
+			if victim and global_position.distance_to(victim.global_position) <= float(data.attack_range) + 0.8:
+				victim.call(&"pounced")
+			_pounce_to = arena_node.random_room_point(global_position, float(cfg.get("escape_min", 45.0))) if arena_node and arena_node.has_method(&"random_room_point") else Vector3.INF
+			_pounce_run = float(cfg.get("escape_time", 7.0))
+			state = State.CHASE
+		return
+	var victim := _pounce_target()
+	if _pounce_run > 0.0:
+		_pounce_run -= delta
+		var to := _pounce_to - global_position
+		to.y = 0.0
+		if _pounce_to == Vector3.INF or to.length() < 1.5:
+			_pounce_run = 0.0
+			_flee_time = float(cfg.get("rest", 12.0))
+		else:
+			move = to.normalized() * run_speed
+	elif _flee_time > 0.0:
+		move = Vector3.ZERO  # descansa por um instante
+	elif victim and global_position.distance_to(victim.global_position) < float(data.aggro_range):
+		var to := victim.global_position - global_position
+		to.y = 0.0
+		if to.length() <= float(data.attack_range):
+			state = State.WINDUP
+			_timer = float(data.attack_windup)
+			velocity = Vector3.ZERO
+			yaw = atan2(to.x, to.z)
+			return
+		move = to.normalized() * run_speed * 0.8
+	elif _nearest_player() != null and global_position.distance_to(_nearest_player().global_position) < float(data.aggro_range) * 1.5:
+		# Ninguém atacável (todos com metade da vida ou menos): só corre, de ponto em ponto.
+		if _pounce_to == Vector3.INF or global_position.distance_to(_pounce_to) < 2.0:
+			_pounce_to = arena_node.random_room_point(global_position, 20.0) if arena_node and arena_node.has_method(&"random_room_point") else Vector3.INF
+		var to := _pounce_to - global_position
+		to.y = 0.0
+		move = to.normalized() * run_speed * 0.7 if to.length() > 0.5 else Vector3.ZERO
+	velocity = move
+	move_and_slide()
+	global_position.y = 0.0
+	if move.length() > 0.1:
+		yaw = atan2(move.x, move.z)
+	state = State.CHASE
+
+
+## Herói mais perto com mais da metade da vida (o único que o Lince ataca).
+func _pounce_target() -> Node3D:
+	var best: Node3D = null
+	for node in get_tree().get_nodes_in_group(&"players"):
+		var p := node as Player
+		if p == null or not p.alive or p.health <= p.max_health * 0.5:
+			continue
+		if best == null or p.global_position.distance_to(global_position) < best.global_position.distance_to(global_position):
+			best = p
+	return best
 
 
 ## Teleporte do Dragãozinho Dourado: vai para outro ponto do mapa e passa a passear por lá.
@@ -658,8 +731,8 @@ func take_damage(amount: float) -> void:
 
 
 func _hurt(amount: float, effect: String, hit_element: String, crit: bool, combo: String) -> void:
-	if not multiplayer.is_server() or health <= 0.0:
-		return
+	if not multiplayer.is_server() or health <= 0.0 or data.get("invulnerable", false):
+		return  # o Lince não toma dano
 	if data.get("dummy", false):
 		# Boneco do pátio: blindado recebe menos, nunca morre, avisa o painel de treino.
 		amount *= float(data.get("damage_taken", 1.0))
@@ -807,7 +880,7 @@ const VOICE_BY_LOOK := {
 	"troll": "ogre", "troll_mauler": "ogre", "barbarian_monster": "ogre", "champ_warrior": "ogre", "fungus": "ogre", "ogre": "ogre",
 	"demon_boss": "giant", "golem_fire": "giant", "golem_ice": "giant", "golem_stone": "giant", "golem_king": "giant",
 	"plank_monster": "giant", "forest": "giant", "forest_troll": "ogre", "demon": "giant", "lizard": "giant",
-	"mutant": "beast", "goblin": "beast", "bat": "beast", "reptile": "beast", "baby_dragon": "beast", "deer_buck": "beast", "deer_doe": "beast",
+	"mutant": "beast", "goblin": "beast", "bat": "beast", "reptile": "beast", "baby_dragon": "beast", "lynx": "beast", "deer_buck": "beast", "deer_doe": "beast",
 	"alien_bug": "beetle", "cactus": "ogre", "cobra": "beast", "crab": "beetle", "crawlmaster": "shade", "darsh": "giant", "earth_dragon": "giant", "exp_demon": "shade", "fatty": "ogre", "ghost_wing": "shade", "glutton": "giant", "golem_block": "giant", "hazmat": "shade", "horror": "giant", "lava_golem": "giant", "mushroom_cap": "ogre", "mutant_grunt": "ogre", "octaminator": "giant", "raven": "beast", "sonask": "shade", "spider_big": "beetle", "tentacleye": "slime", "werewolf": "wolfman", "rat": "beast", "gator": "beast",
 }
 

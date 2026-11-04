@@ -658,6 +658,16 @@ func is_invulnerable() -> bool:
 
 
 ## Dano de um monstro; a armadura reduz conforme o nível dele (13-balanceamento.md 2.3).
+## Bote do Lince: leva a vida atual à metade (sem passar pela defesa), nunca abaixo de 1. Só no servidor.
+func pounced() -> void:
+	if not multiplayer.is_server() or not alive or is_invulnerable() or health <= max_health * 0.5:
+		return
+	health = maxf(health * 0.5, 1.0)
+	act("hit")
+	_sfx.rpc("hurt")
+	hurt.emit()
+
+
 func take_damage(amount: float, monster_level := 1, attacker: Node3D = null) -> void:
 	if not multiplayer.is_server() or not alive or is_invulnerable():
 		return

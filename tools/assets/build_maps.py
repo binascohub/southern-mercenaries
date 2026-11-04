@@ -1910,6 +1910,7 @@ subprocess.run([sys.executable, "tools/assets/build_cemetery_quests.py"], check=
 subprocess.run([sys.executable, "tools/assets/build_map_mechanics.py"], check=True)  # livros, altar único, chaves e item do chefe em todos os mapas
 subprocess.run([sys.executable, "tools/assets/make_barrels_decor.py"], check=True)  # barris só decorativos (não quebram)
 subprocess.run([sys.executable, "tools/assets/ruins_chests_to_crates.py"], check=True)  # Ruínas: caixotes no lugar dos baús
+subprocess.run([sys.executable, "tools/assets/forest_pond_details.py"], check=True)  # lagoas da Floresta com margem irregular
 subprocess.run([sys.executable, "tools/assets/remove_docks_chests.py"], check=True)  # Docas sem baús de tesouro
 subprocess.run([sys.executable, "tools/assets/remove_potion_gold_chests.py"], check=True)  # sem baús de poção nem sacos de moedas
 subprocess.run([sys.executable, "tools/assets/add_crates_pots.py"], check=True)  # caixotes e cerâmicas quebráveis em grupos nos cantos e bordas

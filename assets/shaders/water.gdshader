@@ -17,6 +17,8 @@ uniform float foam_amount = 1.0;
 uniform float foam_width = 0.5;
 uniform float depth_range = 3.0;
 uniform float alpha = 0.92;
+uniform float shape_amp[5];   // lagoas redondas: contorno irregular (harmônicos 2..6 do ângulo)
+uniform float shape_phase[5];
 uniform float edge_wobble = 0.0; // margem irregular (m): o contorno avança e recua até esta distância
 
 varying vec2 wpos;
@@ -31,11 +33,17 @@ void fragment() {
 	// distância da margem (retângulo ou elipse)
 	float d;
 	if (round_shape > 0.5) {
-		float e = length(lpos / half_size);
-		if (e > 1.0) {
+		vec2 q = lpos / half_size;
+		float e = length(q);
+		float ang = atan(q.y, q.x);
+		float edge = 1.0;
+		for (int k = 0; k < 5; k++) {
+			edge += shape_amp[k] * sin(float(k + 2) * ang + shape_phase[k]);
+		}
+		if (e > edge) {
 			discard;
 		}
-		d = (1.0 - e) * min(half_size.x, half_size.y);
+		d = (edge - e) * min(half_size.x, half_size.y);
 	} else {
 		vec2 q = half_size - abs(lpos);
 		d = min(q.x, q.y);

@@ -239,8 +239,8 @@ encounters = [e for e in encounters if e["monsters"]]
 # Ossael (o anjo, NPC do Catador): na sala aberta no meio do mapa (ANGEL_CELL).
 ANGEL_AT = [round(cx(ANGEL_CELL[0]), 1), round(cz(ANGEL_CELL[1]) + 1.5, 1)]
 props = [{"id": "return_portal", "kind": "exit", "name_key": "PROP_RETURN_PORTAL", "position": [-4, 3], "to": "tortuga", "entry": "sewer", "expedition_end": True},
-         {"id": "sewer_scavenger", "kind": "npc", "npc": "sewer_scavenger", "position": ANGEL_AT, "rotation": 0},
-         {"id": "sewer_ratcatcher", "kind": "npc", "npc": "sewer_ratcatcher", "position": [post_c[0] + 1.5, post_c[1]], "rotation": 270},
+         {"id": "sewer_scavenger", "kind": "npc", "npc": "sewer_scavenger", "position": [-39.0, -48.0], "rotation": 0},
+         {"id": "sewer_ratcatcher", "kind": "npc", "npc": "sewer_ratcatcher", "position": [52.0, -48.0], "rotation": 270},
          {"id": "secret_chest", "kind": "chest", "position": [secret_c[0] + 1, secret_c[1] - 2.0], "secret": True, "loot": "chest"}]
 # baús nos becos mais fundos de cada setor (2 a 5)
 for s in (2, 3, 4, 5):

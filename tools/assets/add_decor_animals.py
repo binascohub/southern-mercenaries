@@ -16,6 +16,7 @@ def put(area, entries):
 # Fazenda: a lhama perto do poço, o cavalo marrom perto do estábulo (os cavalos de fazenda ficam a leste)
 put("farm_01_fields", [
     {"role": "llama", "position": [-8.0, -17.0], "rotation": 40, "pose": "idle", "path": [-4.5, -20.5], "speed": 0.45},
+    {"role": "llama", "position": [-14.0, -52.0], "rotation": 90, "pose": "walk", "path": [-6.5, -50.5], "speed": 0.5},
     {"role": "brown_horse", "position": [20.0, -29.5], "rotation": 250, "pose": "idle", "path": [24.0, -31.5], "speed": 0.55}])
 # Floresta: um só guaxinim, no oeste, longe dos encontros e da aldeia (nenhum na Praça da Pira nem na sala a leste dela)
 put("forest_01_path", [

@@ -856,6 +856,8 @@ func _maybe_spawn_rare() -> void:
 		var data: Variant = GameData.monsters[monster_id]
 		if not data is Dictionary or not (data.has("rare_spawn") or data.get("guaranteed_spawn", false)):
 			continue
+		if data.has("only_in") and area_id not in data.only_in:
+			continue
 		if not data.get("guaranteed_spawn", false):
 			if arena.get("final", false) or arena.rooms.size() < 2 or _rng.randf() >= float(data.rare_spawn):
 				continue
@@ -951,6 +953,16 @@ func _update_minimap_marks() -> void:
 	for prop: Dictionary in _props:
 		if prop.kind in ["exit", "quest_spot"]:
 			marks.append({"position": Vector2(prop.position[0], prop.position[1]), "kind": "exit" if prop.kind == "exit" else "quest"})
+	# Nas cidades, quem tem missão para oferecer ou entregar ganha um ponto laranja.
+	if arena.get("town", false):
+		var states: Dictionary = _campaign.get("quests", {})
+		for prop: Dictionary in _props:
+			if prop.kind != "npc":
+				continue
+			var dialogues: Array = GameData.npcs.get(String(prop.get("npc", "")), {}).get("dialogues", [])
+			var index := Town.dialogue_index(String(prop.npc), states)
+			if index >= 0 and index < dialogues.size() and (dialogues[index].has("offer") or dialogues[index].get("service", "") == "turn_in"):
+				marks.append({"position": Vector2(prop.position[0], prop.position[1]), "kind": "questgiver"})
 	# O Viajante do Tempo (teleporte entre as cidades): ponto roxo no minimapa de Tortuga, da Capital e da Fazenda.
 	if arena.get("town", false):
 		for prop: Dictionary in _props:
@@ -2079,19 +2091,22 @@ func _build_prop(prop_data: Dictionary) -> void:
 					var water := MeshInstance3D.new()
 					var water_plane := PlaneMesh.new()
 					var wobble: float = float(prop.get("wobble", 0.0))
-					water_plane.size = Vector2(float(size[0]) + wobble * 2.0, float(size[1]) + wobble * 2.0)
+					var grow := 1.0
+					for harmonic: Array in prop.get("shape", []):
+						grow += absf(float(harmonic[0]))
+					water_plane.size = Vector2(float(size[0]) * grow + wobble * 2.0, float(size[1]) * grow + wobble * 2.0)
 					water.mesh = water_plane
 					water.position.y = 0.06
 					water.material_override = water_material
 					water.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 					node.add_child(water)
 					if round_pond:
-						_block_pond(node, Vector2(size[0], size[1]))
+						_block_pond(node, Vector2(size[0], size[1]), prop.get("shape", []))
 					elif prop.get("block", false):
 						_block_stream(node, Vector2(size[0], size[1]), prop.get("gaps", []))
 				elif round_pond:
 					_prop_mesh(node, CylinderMesh.new(), Vector3(size[0], 0.05, size[1]), Vector3(0, 0.02, 0), Color(tint[0], tint[1], tint[2]))
-					_block_pond(node, Vector2(size[0], size[1]))
+					_block_pond(node, Vector2(size[0], size[1]), prop.get("shape", []))
 				else:
 					_prop_mesh(node, BoxMesh.new(), Vector3(size[0], 0.1, size[1]), Vector3(0, 0.02, 0), Color(tint[0], tint[1], tint[2]))
 			"npc":
@@ -2478,6 +2493,14 @@ func _water_material(tint: Array, size: Array, round_pond: bool, prop: Dictionar
 	material.set_shader_parameter("half_size", Vector2(float(size[0]) / 2.0, float(size[1]) / 2.0))
 	material.set_shader_parameter("round_shape", 1.0 if round_pond else 0.0)
 	material.set_shader_parameter("edge_wobble", float(prop.get("wobble", 0.0)))
+	var shape: Array = prop.get("shape", [])
+	var amps := PackedFloat32Array([0, 0, 0, 0, 0])
+	var phases := PackedFloat32Array([0, 0, 0, 0, 0])
+	for k in mini(shape.size(), 5):
+		amps[k] = float(shape[k][0])
+		phases[k] = float(shape[k][1])
+	material.set_shader_parameter("shape_amp", amps)
+	material.set_shader_parameter("shape_phase", phases)
 	var flow: Array = prop.get("flow", [0.02, 0.012])
 	material.set_shader_parameter("flow", Vector2(float(flow[0]), float(flow[1])))
 	material.set_shader_parameter("foam_amount", float(prop.get("foam", 0.0 if float(size[0]) > 100.0 else 1.0)))
@@ -2497,17 +2520,20 @@ func _sludge_material() -> StandardMaterial3D:
 
 
 ## Lagoa que os jogadores não atravessam (monstros e peixes sim): um prisma de colisão com o contorno da elipse (o "size" é o diâmetro em x e em z).
-func _block_pond(node: Node3D, size: Vector2) -> void:
+func _block_pond(node: Node3D, size: Vector2, shape := []) -> void:
 	var points := PackedVector3Array()
 	for i in 32:
 		var a := TAU * float(i) / 32.0
-		var p := Vector3(cos(a) * size.x / 2.0, 0.0, sin(a) * size.y / 2.0)
+		var edge := 1.0
+		for k in shape.size():
+			edge += float(shape[k][0]) * sin(float(k + 2) * a + float(shape[k][1]))
+		var p := Vector3(cos(a) * size.x / 2.0 * edge, 0.0, sin(a) * size.y / 2.0 * edge)
 		points.append(p)
 		points.append(p + Vector3(0, 1.5, 0))
 	var shape := ConvexPolygonShape3D.new()
 	shape.points = points
 	var body := StaticBody3D.new()
-	body.collision_layer = 16  # camada das lagoas: só jogadores e companheiros colidem (monstros e peixes passam)
+	body.collision_layer = 16  # camada das lagoas e riachos: jogadores, companheiros e monstros colidem (só os peixes, que são cenário, passam)
 	body.collision_mask = 0
 	var col := CollisionShape3D.new()
 	col.shape = shape

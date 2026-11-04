@@ -2355,6 +2355,9 @@ msgstr ""
 msgid "MONSTER_BABY_DRAGON"
 msgstr ""
 
+msgid "MONSTER_LYNX"
+msgstr ""
+
 msgid "MONSTER_ACID_TOAD"
 msgstr ""
 

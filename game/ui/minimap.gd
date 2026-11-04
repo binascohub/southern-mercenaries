@@ -21,7 +21,7 @@ var _grid := Vector2i.ZERO
 var _town := false
 ## {position: Vector2 (x, z), local: bool}
 var _heroes: Array[Dictionary] = []
-## Marcas: {position: Vector2, kind: "exit" | "quest" | "altar" | "miniboss" | "teleporter"}
+## Marcas: {position: Vector2, kind: "exit" | "quest" | "altar" | "miniboss" | "teleporter" | "questgiver"}
 var _marks: Array[Dictionary] = []
 var _timer := 0.0
 
@@ -118,6 +118,9 @@ func _draw() -> void:
 		var p := _to_map(mark.position)
 		if mark.kind == "altar":  # losango roxo pequeno
 			draw_colored_polygon(PackedVector2Array([p + Vector2(0, -4.5), p + Vector2(4, 0), p + Vector2(0, 4.5), p + Vector2(-4, 0)]), Color(0.75, 0.4, 1.0))
+			continue
+		if mark.kind == "questgiver":  # ponto laranja
+			draw_circle(p, 4.0, Color(1.0, 0.55, 0.05))
 			continue
 		if mark.kind == "teleporter":  # círculo roxo com contorno claro
 			draw_circle(p, 5.5, Color(0.95, 0.88, 1.0))

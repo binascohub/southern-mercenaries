@@ -2353,6 +2353,9 @@ msgstr "Escorpião Venenoso"
 msgid "MONSTER_BABY_DRAGON"
 msgstr "Dragãozinho Dourado"
 
+msgid "MONSTER_LYNX"
+msgstr "Lince"
+
 msgid "MONSTER_ACID_TOAD"
 msgstr "Sapo Ácido"
 

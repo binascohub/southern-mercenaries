@@ -3747,5 +3747,39 @@
     "visual_pending": true,
     "_comment": "Monstro de dark (Fogo-Fátuo): visual pendente (sem modelo ainda).",
     "role": "normal"
+  },
+  "lynx": {
+    "_comment": "Lince da Floresta (lynx-light.glb do autor; tools/assets/build_lynx.py): invulnerável, sai de uma emboscada em alta velocidade, deixa o herói com metade da vida (o golpe leva a vida atual à metade) e corre para outro ponto do mapa. Quem já está com metade da vida ou menos é ignorado: com todos assim, ele só corre. Nasce acordado só na Floresta (only_in).",
+    "name_key": "MONSTER_LYNX",
+    "max_health": 100,
+    "move_speed": 8.0,
+    "damage": 0,
+    "attack_range": 2.2,
+    "attack_windup": 0.35,
+    "attack_cooldown": 1.0,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "ai": "pounce",
+    "invulnerable": true,
+    "guaranteed_spawn": true,
+    "only_in": [
+      "forest_01_path"
+    ],
+    "no_loot": true,
+    "pounce": {
+      "run_speed": 15.0,
+      "rest": 12.0,
+      "escape_min": 45.0,
+      "escape_time": 7.0
+    },
+    "look": "lynx",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "role": "light"
   }
 }

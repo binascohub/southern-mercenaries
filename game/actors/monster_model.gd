@@ -36,6 +36,9 @@ const FAMILIES := {
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Troll Mauler (piacenti, CC BY 3.0; tools/assets/build_troll_mauler.py): bruto curvado de 3,1 m no arquivo, preso ao esqueleto dos heróis com os movimentos deles.
 	# No tamanho 1,1 -> ~2,4 m. Monstro do Setor 1 do Esgoto.
+	# Lince da Floresta (lynx-light.glb do autor, reduzido e animado por tools/assets/build_lynx.py): 0,96 m de comprimento no arquivo -> ~1,3 m com a escala 1,35.
+	"lynx": {"scene": "res://assets/models/monsters/lynx.glb", "scale": 1.35,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "idle", "die": "idle"}},
 	"troll_mauler": {"scene": "res://assets/models/monsters/troll_mauler.glb", "scale": 0.7,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Monstro de Tábuas (Monster_4, minib1.rar do autor; tools/assets/build_plank_monster.py): humanoide de carne com armadura de tábuas e pregos, 1,87 m no arquivo, preso ao

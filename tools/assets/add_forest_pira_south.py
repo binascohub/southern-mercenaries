@@ -30,7 +30,7 @@ for idx, (rid, step) in enumerate(NEW):
         ponds = [("toad_pond_s1", [cx, sz], [12.0, 6.5]), ("toad_pond_s2", [cx + 4.5, sz - 1.2], [6.0, 4.0])]
         for pid, at, size in ponds:
             forest["props"].append({"id": pid, "kind": "water", "position": [round(at[0], 1), round(at[1], 1)], "size": size, "round": True, "color": [0.12, 0.3, 0.3]})
-    spots = [(-6.0, 3.0), (6.0, 3.0)] if rid == "pira_s" else [(-6.0, -3.0), (6.0, -3.0)]
+    spots = [(-6.0, 3.0), (6.0, 3.0)] if rid == "pira_s" else [(-6.0, -3.0), (8.0, -4.5)]
     for i, (dx, dz) in enumerate(spots):
         forest["encounters"].append({"id": "f_toads_s%d" % (2 * idx + i + 1), "position": [cx + dx, sz + dz], "monsters": [{"monster": "acid_toad", "count": 3}]})
     # Dois cervos por sala, que ao quebrar soltam carne (tabela "breakable_meat").

@@ -2353,6 +2353,9 @@ msgstr "Venom Scorpion"
 msgid "MONSTER_BABY_DRAGON"
 msgstr "Golden Baby Dragon"
 
+msgid "MONSTER_LYNX"
+msgstr "Lynx"
+
 msgid "MONSTER_ACID_TOAD"
 msgstr "Acid Toad"
 
