@@ -20,6 +20,8 @@
 
 ## 1.1. Mini-chefes: dois por mapa de combate
 
+> **Atualização (mecânica de missões de todos os mapas, `04-tortuga-e-missoes.md`):** os mini-chefes só nascem em **um altar único por mapa** (`needs_key` + `extra_summons`); o livro que o grupo tem decide qual desperta, e o livro some da bolsa quando ele cai. Nenhum mini-chefe anda solto: o **Alfa da Matilha** (Ruínas), o **Comandante** (Forte) e o **Guardião do Túmulo** (Mina) viraram elites e continuam largando os itens deles. No **Cemitério**, o Ogro da Cripta deixou a praça e é invocado no altar da alameda, junto com o Sentinela do Túmulo. As linhas da tabela abaixo que falam em "a estátua/NPC o desperta" valem hoje assim: o altar único.
+
 Cada mapa de combate tem **2 mini-chefes** (elites fortes com nome, categoria `miniboss`), incluindo o do mapa 1 (Esgoto) com o Carniceiro Chifrudo e o Rei dos Ratos:
 
 | Mapa | Mini-chefes |
@@ -271,3 +273,29 @@ Mapa grande de píeres de madeira sobre o mar (Modular Wooden Docks, CC0), com a
 
 Os encontros `dk_*` da missão dos contrabandistas continuam no mapa. Gerado por `tools/assets/build_docks.py`.
 
+## 15. Acabamento comum a todos os mapas (o que existe no jogo)
+
+### Ordem, nível e força
+Ordem: 1 Esgoto, 2 Floresta, 3 Docas, 4 Ruínas, 5 Cemitério, 6 Forte, 7 Catacumbas, 8 Deserto, 9 Mina, 10 Bunker, 11 Floresta Escura. Nível da área 1, 3, 5 … 19, 20; vida, dano, XP e ouro equalizados por `tools/assets/balance_monsters.py` (`13-balanceamento.md`, seção 6).
+
+### Cemitério (`cemetery_01_yard`) na mecânica comum
+Ganhou o **Coveiro Abel** (`ce_lungs`, pede os Pulmões Humanos do Ogro da Cripta, entrega a Chave do Ossuário), a **Zeladora Mirta** (`ce_lantern`, pede a Lamparina do Sentinela, entrega a Chave da Cripta), o **Guardião da Cripta** com o portão do Senhor da Cripta (`ce_gate`) e a vitória ao derrotar o Senhor da Cripta. A missão `royal_lungs` do Padre virou a do Coveiro. Gerado por `tools/assets/build_cemetery_quests.py`.
+
+### Barris, caixotes e cerâmicas
+- **Barris** são só decoração (peça `Barrel` com colisão; não quebram nem soltam nada): `tools/assets/make_barrels_decor.py`.
+- **Caixotes e potes quebráveis** em grupos nos cantos e bordas das salas dos 11 mapas de combate: 3 caixotes juntos ou 5 a 8 potes e jarros. Soltam nada, ouro, poção de vida ou de recurso, ou um **Mímico** escondido (tabelas `breakable_crate` e `breakable_pot` em `data/loot.json`; o aviso é "Era um Mímico!"). Gerado por `tools/assets/add_crates_pots.py`.
+
+### Água
+O mar de Tortuga e das Docas, os lagos da Floresta, os oásis do Deserto e o riacho da Fazenda usam o shader `assets/shaders/water.gdshader` (ondas animadas, cor que escurece com a distância da margem, cáusticas, espuma na margem, brilho de Fresnel) com texturas geradas por `tools/assets/build_water_textures.py`. O prop `water` aceita `color`, `flow` (correnteza), `foam` e `alpha`; sem o shader, vale o plano liso de antes.
+
+### Fazenda (`farm_01_fields`)
+Reorganizada por `tools/assets/build_farm.py` em seis áreas cercadas, ligadas por portões e caminhos de terra batida: **Entrada** (estrada, Viajante do Tempo, saída para a Floresta Escura a oeste e para a Mina a leste), **Sede** (casa, poço, lenha, galinheiro, chiqueiro e a Casa de Equipamentos), **Pasto** (ovelhas e cavalos), **Horta** (canteiros e melões), **Pomar** (macieiras, caixotes de maçã, mesa de piquenique) e **Moinho** (serraria sobre o riacho, duas pontes, lagoa e a entrada do Bunker). Mantém os ids das saídas (`return_portal`, `to_bunker`, `mine_gate`, `dark_forest_gate`, `creek`), os peixes, os animais e as cestas quebráveis.
+
+### Som ambiente
+Cada mapa tem o seu laço (`assets/audio/music/ambience_<nome>.ogg`, `tools/assets/build_ambience.py`; tabela `AMBIENCE_BY_AREA` em `game/autoload/music.gd`). Ver `12-audio.md`, seção 5.
+
+### Animação das skills e dos chefes
+Heróis e chefes têm movimento do corpo em cada habilidade e golpe especial: `03-inimigos.md` (final) e o campo `anim` de `data/skills.json`.
+
+### Roteiro
+A trama macabra e a ordem de todas as missões: `15-roteiro.md`.

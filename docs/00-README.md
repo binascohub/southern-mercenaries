@@ -22,6 +22,7 @@ Documentação de design do jogo **Southern Mercenaries**, RPG de ação co-op e
 | `05-itens-e-loot.md` | Categorias, materiais (pano/madeira → ouro), raridades, tesouros, valiosos, mercados, inventário |
 | `05-1-refino.md` | Refino com pergaminhos estilo Lineage 2 (+1 a +5, seguro até +3, falha e cristais) e a aura em volta do herói |
 | `06-mundo-e-historia.md` | Premissa, a guerra, estrutura da campanha em atos, abertura, tesouros e motivos dos heróis |
+| `15-roteiro.md` | **Roteiro macabro da campanha**: a trama das dívidas e do Rei Faminto, cena por cena, passando por todas as missões na ordem dos 11 mapas |
 | `07-rede.md` | Servidor autoritativo, descoberta na LAN, sincronização, loot individual, entrada e saída no meio da partida |
 | `08-controles.md` | Teclado/mouse e controle USB, mapeamento padrão, remapeamento, opções |
 | `09-interface.md` | **Identidade visual do jogo (regra para todo o visual)**, câmera próxima como Dark Alliance, HUD, menus, telas e opções |
