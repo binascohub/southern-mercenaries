@@ -2572,6 +2572,12 @@ msgstr "Thin Zombie"
 msgid "MONSTER_GOBLIN"
 msgstr "Goblin"
 
+msgid "MONSTER_MINE_SCOUT"
+msgstr "Brass Watcher"
+
+msgid "MONSTER_MINE_AUTOMATON"
+msgstr "Rust Automaton"
+
 msgid "MONSTER_TROLL"
 msgstr "Skinny Troll"
 

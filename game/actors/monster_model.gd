@@ -39,6 +39,11 @@ const FAMILIES := {
 	# Lince da Floresta (lynx-light.glb do autor, reduzido e animado por tools/assets/build_lynx.py): 0,96 m de comprimento no arquivo -> ~1,3 m com a escala 1,35.
 	"lynx": {"scene": "res://assets/models/monsters/lynx.glb", "scale": 1.35,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "idle", "die": "idle"}},
+	# Robôs da Mina (pixellabs-glb-3393.glb e pixellabs-glb-3347.glb do autor; esqueleto e animações de tools/assets/build_mine_robots.py): ~1 m no arquivo; o tamanho vem de "size".
+	"mine_automaton": {"scene": "res://assets/models/monsters/mine_automaton.glb", "scale": 1.0,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "idle", "die": "idle"}},
+	"mine_scout": {"scene": "res://assets/models/monsters/mine_scout.glb", "scale": 1.0,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "idle", "die": "idle"}},
 	"troll_mauler": {"scene": "res://assets/models/monsters/troll_mauler.glb", "scale": 0.7,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Monstro de Tábuas (Monster_4, minib1.rar do autor; tools/assets/build_plank_monster.py): humanoide de carne com armadura de tábuas e pregos, 1,87 m no arquivo, preso ao

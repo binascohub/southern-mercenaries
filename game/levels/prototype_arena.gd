@@ -2520,13 +2520,13 @@ func _sludge_material() -> StandardMaterial3D:
 
 
 ## Lagoa que os jogadores não atravessam (monstros e peixes sim): um prisma de colisão com o contorno da elipse (o "size" é o diâmetro em x e em z).
-func _block_pond(node: Node3D, size: Vector2, shape := []) -> void:
+func _block_pond(node: Node3D, size: Vector2, outline := []) -> void:
 	var points := PackedVector3Array()
 	for i in 32:
 		var a := TAU * float(i) / 32.0
 		var edge := 1.0
-		for k in shape.size():
-			edge += float(shape[k][0]) * sin(float(k + 2) * a + float(shape[k][1]))
+		for k in outline.size():
+			edge += float(outline[k][0]) * sin(float(k + 2) * a + float(outline[k][1]))
 		var p := Vector3(cos(a) * size.x / 2.0 * edge, 0.0, sin(a) * size.y / 2.0 * edge)
 		points.append(p)
 		points.append(p + Vector3(0, 1.5, 0))

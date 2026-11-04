@@ -179068,6 +179068,10 @@
           {
             "monster": "plague_bat",
             "count": 2
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
           }
         ],
         "level": 17
@@ -179086,6 +179090,10 @@
           {
             "monster": "plague_bat",
             "count": 3
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -179132,6 +179140,14 @@
           {
             "monster": "goblin",
             "count": 4
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -179186,6 +179202,10 @@
           {
             "monster": "plague_bat",
             "count": 2
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -179204,6 +179224,10 @@
           {
             "monster": "plague_bat",
             "count": 2
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
           }
         ],
         "level": 17
@@ -179240,6 +179264,10 @@
           {
             "monster": "plague_bat",
             "count": 3
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -179276,6 +179304,10 @@
           {
             "monster": "plague_bat",
             "count": 2
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
           }
         ],
         "level": 17
@@ -179290,6 +179322,10 @@
           {
             "monster": "goblin",
             "count": 4
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -179344,6 +179380,14 @@
           {
             "monster": "plague_bat",
             "count": 3
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -179394,6 +179438,10 @@
           {
             "monster": "plague_bat",
             "count": 2
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -179412,6 +179460,10 @@
           {
             "monster": "plague_bat",
             "count": 2
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
           }
         ],
         "level": 17
@@ -179444,6 +179496,10 @@
           {
             "monster": "goblin",
             "count": 4
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -179480,6 +179536,10 @@
           {
             "monster": "plague_bat",
             "count": 3
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
           }
         ],
         "level": 17
@@ -179498,6 +179558,10 @@
           {
             "monster": "plague_bat",
             "count": 3
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -179544,6 +179608,14 @@
           {
             "monster": "goblin",
             "count": 4
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -179590,6 +179662,10 @@
           {
             "monster": "skeleton",
             "count": 3
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -179608,6 +179684,10 @@
           {
             "monster": "goblin",
             "count": 2
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
           }
         ],
         "level": 17
@@ -179640,6 +179720,10 @@
           {
             "monster": "venom_scorpion",
             "count": 3
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -179672,6 +179756,10 @@
           {
             "monster": "stalker",
             "count": 1
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
           }
         ],
         "level": 17
@@ -179690,6 +179778,10 @@
           {
             "monster": "stalker",
             "count": 1
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -179736,6 +179828,14 @@
           {
             "monster": "venom_scorpion",
             "count": 3
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -179782,6 +179882,10 @@
           {
             "monster": "stalker",
             "count": 1
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -179795,6 +179899,10 @@
         "monsters": [
           {
             "monster": "mutant",
+            "count": 1
+          },
+          {
+            "monster": "mine_automaton",
             "count": 1
           }
         ],
@@ -179828,6 +179936,10 @@
           {
             "monster": "venom_scorpion",
             "count": 3
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -179856,6 +179968,10 @@
           {
             "monster": "venom_scorpion",
             "count": 3
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
           }
         ],
         "level": 17
@@ -179870,6 +179986,10 @@
           {
             "monster": "venom_scorpion",
             "count": 3
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -179920,6 +180040,14 @@
           {
             "monster": "goblin",
             "count": 2
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -179966,6 +180094,10 @@
           {
             "monster": "venom_scorpion",
             "count": 3
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -179979,6 +180111,10 @@
         "monsters": [
           {
             "monster": "mutant",
+            "count": 1
+          },
+          {
+            "monster": "mine_automaton",
             "count": 1
           }
         ],
@@ -180012,6 +180148,10 @@
           {
             "monster": "stalker",
             "count": 1
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -180040,6 +180180,10 @@
           {
             "monster": "golem_fire",
             "count": 1
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
           }
         ],
         "level": 17
@@ -180054,6 +180198,10 @@
           {
             "monster": "golem_fire",
             "count": 1
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -180103,6 +180251,14 @@
           },
           {
             "monster": "goblin",
+            "count": 2
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
+          },
+          {
+            "monster": "mine_scout",
             "count": 2
           }
         ],
@@ -180154,6 +180310,10 @@
           {
             "monster": "goblin",
             "count": 2
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -180167,6 +180327,10 @@
         "monsters": [
           {
             "monster": "golem_fire",
+            "count": 1
+          },
+          {
+            "monster": "mine_automaton",
             "count": 1
           }
         ],
@@ -180199,6 +180363,10 @@
           },
           {
             "monster": "goblin",
+            "count": 2
+          },
+          {
+            "monster": "mine_scout",
             "count": 2
           }
         ],
@@ -180236,6 +180404,10 @@
           {
             "monster": "goblin",
             "count": 2
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
           }
         ],
         "level": 17
@@ -180250,6 +180422,10 @@
           {
             "monster": "troll_mauler",
             "count": 1
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -180318,6 +180494,14 @@
           {
             "monster": "goblin",
             "count": 2
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -180360,6 +180544,10 @@
           {
             "monster": "skeleton",
             "count": 4
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -180374,6 +180562,10 @@
           {
             "monster": "skeleton",
             "count": 4
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
           }
         ],
         "level": 17
@@ -180402,6 +180594,10 @@
           {
             "monster": "skeleton",
             "count": 4
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -180434,6 +180630,10 @@
           {
             "monster": "goblin",
             "count": 2
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
           }
         ],
         "level": 17
@@ -180451,6 +180651,10 @@
           },
           {
             "monster": "goblin",
+            "count": 2
+          },
+          {
+            "monster": "mine_scout",
             "count": 2
           }
         ],
@@ -180498,6 +180702,14 @@
           {
             "monster": "goblin",
             "count": 2
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -180544,6 +180756,10 @@
           {
             "monster": "troll_mauler",
             "count": 1
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -180557,6 +180773,10 @@
         "monsters": [
           {
             "monster": "troll_mauler",
+            "count": 1
+          },
+          {
+            "monster": "mine_automaton",
             "count": 1
           }
         ],
@@ -180585,6 +180805,10 @@
         "monsters": [
           {
             "monster": "troll_mauler",
+            "count": 2
+          },
+          {
+            "monster": "mine_scout",
             "count": 2
           }
         ],
@@ -180618,6 +180842,10 @@
           {
             "monster": "troll_mauler",
             "count": 2
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
           }
         ],
         "level": 17
@@ -180636,6 +180864,10 @@
           {
             "monster": "golem_ice",
             "count": 1
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -180686,6 +180918,14 @@
           {
             "monster": "golem_ice",
             "count": 1
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -180740,6 +180980,10 @@
           {
             "monster": "stalker",
             "count": 2
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -180758,6 +181002,10 @@
           {
             "monster": "stalker",
             "count": 2
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
           }
         ],
         "level": 17
@@ -180785,6 +181033,10 @@
         "monsters": [
           {
             "monster": "troll_mauler",
+            "count": 2
+          },
+          {
+            "monster": "mine_scout",
             "count": 2
           }
         ],
@@ -180818,6 +181070,10 @@
           {
             "monster": "troll_mauler",
             "count": 2
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
           }
         ],
         "level": 17
@@ -180836,6 +181092,10 @@
           {
             "monster": "golem_ice",
             "count": 1
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -180885,6 +181145,14 @@
           },
           {
             "monster": "stalker",
+            "count": 2
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
+          },
+          {
+            "monster": "mine_scout",
             "count": 2
           }
         ],
@@ -180936,6 +181204,10 @@
           {
             "monster": "stalker",
             "count": 2
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -180950,6 +181222,10 @@
           {
             "monster": "troll_mauler",
             "count": 2
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
           }
         ],
         "level": 17
@@ -180986,6 +181262,10 @@
           {
             "monster": "golem_ice",
             "count": 1
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -181022,6 +181302,10 @@
           {
             "monster": "golem_ice",
             "count": 1
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
           }
         ],
         "level": 17
@@ -181039,6 +181323,10 @@
           },
           {
             "monster": "stalker",
+            "count": 2
+          },
+          {
+            "monster": "mine_scout",
             "count": 2
           }
         ],
@@ -181096,6 +181384,14 @@
           {
             "monster": "troll_mauler",
             "count": 1
+          },
+          {
+            "monster": "mine_automaton",
+            "count": 1
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
           }
         ],
         "level": 17
@@ -217847,7 +218143,7 @@
       }
     ],
     "passive": true,
-    "xp_scale": 0.192
+    "xp_scale": 0.164
   },
   "docks_01_pier": {
     "_comment": "Docas, ampliadas (Modular Wooden Docks, loafbrr, CC0): píeres sobre o mar com a estrutura da Floresta e outro caminho. Cais de partida -> Píer Principal -> Mercado de Peixe; laço oeste (Estaleiro: casco encalhado desperta o Casco Vivo) e laço leste (Peixaria: a Peixeira desperta o Tubarão-Porco), fechando no Farol e no Armazém; Calçada -> Atracadouro -> corredor do portão (Vigia, duas chaves) -> Convés do Capitão Afogado (chefe final, com a saída). Mantém os encontros dk_* da missão dos contrabandistas. Gerado por tools/assets/build_docks.py.",

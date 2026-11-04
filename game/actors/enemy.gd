@@ -880,7 +880,7 @@ const VOICE_BY_LOOK := {
 	"troll": "ogre", "troll_mauler": "ogre", "barbarian_monster": "ogre", "champ_warrior": "ogre", "fungus": "ogre", "ogre": "ogre",
 	"demon_boss": "giant", "golem_fire": "giant", "golem_ice": "giant", "golem_stone": "giant", "golem_king": "giant",
 	"plank_monster": "giant", "forest": "giant", "forest_troll": "ogre", "demon": "giant", "lizard": "giant",
-	"mutant": "beast", "goblin": "beast", "bat": "beast", "reptile": "beast", "baby_dragon": "beast", "lynx": "beast", "deer_buck": "beast", "deer_doe": "beast",
+	"mutant": "beast", "goblin": "beast", "bat": "beast", "reptile": "beast", "baby_dragon": "beast", "lynx": "beast", "mine_automaton": "giant", "mine_scout": "beetle", "deer_buck": "beast", "deer_doe": "beast",
 	"alien_bug": "beetle", "cactus": "ogre", "cobra": "beast", "crab": "beetle", "crawlmaster": "shade", "darsh": "giant", "earth_dragon": "giant", "exp_demon": "shade", "fatty": "ogre", "ghost_wing": "shade", "glutton": "giant", "golem_block": "giant", "hazmat": "shade", "horror": "giant", "lava_golem": "giant", "mushroom_cap": "ogre", "mutant_grunt": "ogre", "octaminator": "giant", "raven": "beast", "sonask": "shade", "spider_big": "beetle", "tentacleye": "slime", "werewolf": "wolfman", "rat": "beast", "gator": "beast",
 }
 

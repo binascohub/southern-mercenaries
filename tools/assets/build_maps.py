@@ -1915,6 +1915,7 @@ subprocess.run([sys.executable, "tools/assets/remove_docks_chests.py"], check=Tr
 subprocess.run([sys.executable, "tools/assets/remove_potion_gold_chests.py"], check=True)  # sem baús de poção nem sacos de moedas
 subprocess.run([sys.executable, "tools/assets/add_crates_pots.py"], check=True)  # caixotes e cerâmicas quebráveis em grupos nos cantos e bordas
 subprocess.run([sys.executable, "tools/assets/add_bunker_mimics.py"], check=True)  # baús monstro do Bunker
+subprocess.run([sys.executable, "tools/assets/add_mine_robots.py"], check=True)  # robôs da Mina
 subprocess.run([sys.executable, "tools/assets/add_map_mimics.py"], check=True)  # baús monstro em todos os mapas
 subprocess.run([sys.executable, "tools/assets/balance_monsters.py"], check=True)  # força, XP e ouro equalizados pela ordem dos mapas
 subprocess.run([sys.executable, "tools/assets/set_map_order.py"], check=True)  # ordem dos mapas: hubs Tortuga, Capital e Fazenda (sem portais em cadeia)

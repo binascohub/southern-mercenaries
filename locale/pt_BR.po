@@ -2572,6 +2572,12 @@ msgstr "Zumbi Magro"
 msgid "MONSTER_GOBLIN"
 msgstr "Goblin"
 
+msgid "MONSTER_MINE_SCOUT"
+msgstr "Vigia de Latão"
+
+msgid "MONSTER_MINE_AUTOMATON"
+msgstr "Autômato Enferrujado"
+
 msgid "MONSTER_TROLL"
 msgstr "Troll Magro"
 

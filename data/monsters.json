@@ -3751,9 +3751,9 @@
   "lynx": {
     "_comment": "Lince da Floresta (lynx-light.glb do autor; tools/assets/build_lynx.py): invulnerável, sai de uma emboscada em alta velocidade, deixa o herói com metade da vida (o golpe leva a vida atual à metade) e corre para outro ponto do mapa. Quem já está com metade da vida ou menos é ignorado: com todos assim, ele só corre. Nasce acordado só na Floresta (only_in).",
     "name_key": "MONSTER_LYNX",
-    "max_health": 100,
+    "max_health": 136,
     "move_speed": 8.0,
-    "damage": 0,
+    "damage": 12,
     "attack_range": 2.2,
     "attack_windup": 0.35,
     "attack_cooldown": 1.0,
@@ -3775,6 +3775,48 @@
       "escape_time": 7.0
     },
     "look": "lynx",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "role": "light"
+  },
+  "mine_automaton": {
+    "_comment": "Autômato Enferrujado da Mina (pixellabs-glb-3393.glb do autor; tools/assets/build_mine_robots.py): robô steampunk de latão e ferrugem; lento, resistente, golpeia com os dois braços. Terra.",
+    "name_key": "MONSTER_MINE_AUTOMATON",
+    "max_health": 336,
+    "move_speed": 2.0,
+    "damage": 10,
+    "attack_range": 2.4,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.6,
+    "aggro_range": 40.0,
+    "size": 1.6,
+    "category": "common",
+    "element": "earth",
+    "look": "mine_automaton",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "role": "tank"
+  },
+  "mine_scout": {
+    "_comment": "Vigia de Latão da Mina (pixellabs-glb-3347.glb do autor; tools/assets/build_mine_robots.py): robozinho amarelo de antenas; rápido e frágil, ataca em grupo com cabeçadas. Fogo.",
+    "name_key": "MONSTER_MINE_SCOUT",
+    "max_health": 136,
+    "move_speed": 3.8,
+    "damage": 12,
+    "attack_range": 1.7,
+    "attack_windup": 0.45,
+    "attack_cooldown": 1.1,
+    "aggro_range": 40.0,
+    "size": 1.3,
+    "category": "common",
+    "element": "fire",
+    "look": "mine_scout",
     "color": [
       1.0,
       1.0,
