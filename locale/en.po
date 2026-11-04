@@ -2572,6 +2572,12 @@ msgstr "Thin Zombie"
 msgid "MONSTER_GOBLIN"
 msgstr "Goblin"
 
+msgid "MONSTER_DOCKS_SCARECROW"
+msgstr "Drowned Scarecrow"
+
+msgid "MONSTER_MINE_GOLEM"
+msgstr "Blackiron Golem"
+
 msgid "MONSTER_RUINS_WRAITH"
 msgstr "Ruins Wraith"
 

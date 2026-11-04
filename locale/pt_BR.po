@@ -2572,6 +2572,12 @@ msgstr "Zumbi Magro"
 msgid "MONSTER_GOBLIN"
 msgstr "Goblin"
 
+msgid "MONSTER_DOCKS_SCARECROW"
+msgstr "Espantalho Afogado"
+
+msgid "MONSTER_MINE_GOLEM"
+msgstr "Golem de Ferro Negro"
+
 msgid "MONSTER_RUINS_WRAITH"
 msgstr "Espectro das Ruínas"
 

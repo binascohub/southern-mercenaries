@@ -1,10 +1,11 @@
 """Conteúdo dos modelos do autor (pixellabs-*.glb; autoria e licença a confirmar):
-  - Sentinela de Lata (tin_sentinel, pixellabs-robot-3332.glb): monstro da vila da Floresta (a aldeia das elfas): um grupo de 2 nas bordas da aldeia;
+  - Sentinela de Lata (tin_sentinel, pixellabs-robot-3332.glb): monstro da Mina, um par a cada 6º grupo de monstros;
   - Espectro das Ruínas (ruins_wraith, pixellabs-undead-3417.glb): encapuzado que flutua, um par a cada 3º grupo de monstros das Ruínas;
   - Estandarte do Dragão (Banner_Dragon, pixellabs-banner-3761.glb): dois na entrada do Cemitério, ladeando o caminho;
   - Golem de Ferro Negro (mine_golem, pixellabs-glb-3350.glb): um em cada 5º grupo de monstros da Mina;
   - Espantalho Afogado (docks_scarecrow, nickpanek-scarecrow-monster-1663.glb): um par a cada 3º grupo de monstros das Docas;
   - Árvore Morta (Dead_Tree_Pixel, pixellabs-dead-tree-3551.glb): decoração espalhada pela Floresta Escura;
+  - Placa Fantástica (Signpost_Fantasy, pixellabs-fantasy-signpost-3561.glb): três placas de caminho nas primeiras salas do Cemitério;
   - Trono de Caveiras (Skull_Throne, pixellabs-skull-throne-3562.glb): decoração da sala do chefe do Cemitério, de frente para a entrada da sala.
 Os modelos saem de tools/assets/build_mine_robots.py (tin, wraith) e build_static_prop.py. Idempotente; roda antes do balance_monsters.py.
 uso: python3 tools/assets/add_pixellabs_content.py   (a partir da raiz do projeto)"""
@@ -17,7 +18,7 @@ raw = open("data/monsters.json", encoding="utf-8").read()
 mdata = json.loads(raw)
 monsters = mdata.get("monsters", mdata)
 monsters["tin_sentinel"] = {
-    "_comment": "Sentinela de Lata (pixellabs-robot-3332.glb do autor; build_mine_robots.py, modo tin): ovo de lata com braços grandes que rondam a aldeia das elfas da Floresta; resistente e lento. Terra.",
+    "_comment": "Sentinela de Lata (pixellabs-robot-3332.glb do autor; build_mine_robots.py, modo tin): ovo de lata com braços grandes que rondam as galerias da Mina; resistente e lento. Terra.",
     "name_key": "MONSTER_TIN_SENTINEL", "max_health": 190, "move_speed": 2.4, "damage": 14, "attack_range": 2.1, "attack_windup": 0.7, "attack_cooldown": 1.5, "aggro_range": 40.0,
     "size": 1.4, "category": "common", "element": "earth", "look": "tin_sentinel", "color": [1.0, 1.0, 1.0], "role": "normal"}
 monsters["ruins_wraith"] = {
@@ -37,10 +38,9 @@ dump("data/monsters.json", mdata, raw)
 raw = open("data/arenas.json", encoding="utf-8").read()
 adata = json.loads(raw)
 arenas = adata.get("arenas", adata)
-# Floresta: sentinelas na aldeia
+# Floresta: sem sentinelas (a Sentinela de Lata mora na Mina)
 forest = arenas["forest_01_path"]
 forest["encounters"] = [e for e in forest["encounters"] if e["id"] != "f_village_sentinels"]
-forest["encounters"].append({"id": "f_village_sentinels", "position": [-36.0, -67.0], "monsters": [{"monster": "tin_sentinel", "count": 2}], "level": 3})
 # Ruínas: espectros
 ruins = arenas["ruins_01_city"]
 skip = ("boss", "alpha", "mimic", "mm_", "vault", "gate")
@@ -54,10 +54,12 @@ for i, e in enumerate(grp):
 mine = arenas["mine_01_crystal_vein"]
 msec = [e for e in mine["encounters"] if e["id"].startswith("mn_s")]
 for e in msec:
-    e["monsters"] = [m for m in e["monsters"] if m["monster"] != "mine_golem"]
+    e["monsters"] = [m for m in e["monsters"] if m["monster"] not in ("mine_golem", "tin_sentinel")]
 for i, e in enumerate(msec):
     if i % 5 == 2:
         e["monsters"].append({"monster": "mine_golem", "count": 1})
+    if i % 6 == 3:
+        e["monsters"].append({"monster": "tin_sentinel", "count": 2})
 # Docas: espantalhos
 docks = arenas["docks_01_pier"]
 dskip = ("captain", "mimic", "mm_")
@@ -88,7 +90,9 @@ for _ in range(900):
     placed += 1
 # Cemitério: estandartes na entrada e trono na sala do chefe
 cem = arenas["cemetery_01_yard"]
-cem["decor"] = [d for d in cem["decor"] if d.get("piece") not in ("Banner_Dragon", "Skull_Throne")]
+cem["decor"] = [d for d in cem["decor"] if d.get("piece") not in ("Banner_Dragon", "Skull_Throne", "Signpost_Fantasy")]
+for at, rot in (([3.0, -6.0], 20), ([-5.0, -14.0], 90), ([2.5, -18.0], 340)):
+    cem["decor"].append({"piece": "Signpost_Fantasy", "position": at, "rotation": rot, "scale": 1.8, "solid": [0.5, 0.4]})
 for x in (-4.5, 4.5):
     cem["decor"].append({"piece": "Banner_Dragon", "position": [x, 1.0], "rotation": 0, "scale": 2.0, "solid": [0.6, 0.4]})
 cem["decor"].append({"piece": "Skull_Throne", "position": [-72.0, -176.0], "rotation": 0, "scale": 2.2, "solid": [1.6, 1.2]})
@@ -104,4 +108,4 @@ for f, i in (("messages.pot", None), ("en.po", 0), ("es.po", 1), ("pt_BR.po", 2)
         j = s.index("\n\n", k) + 2
         s = s[:j] + 'msgid "%s"\nmsgstr "%s"\n\n' % (key, names[i] if i is not None else "") + s[j:]
     open("locale/" + f, "w", encoding="utf-8").write(s)
-print("OK conteúdo pixellabs: %d árvores mortas na Floresta Escura," % placed, sentinelas na Floresta, %d grupos de espectros nas Ruínas, estandartes e trono no Cemitério" % sum(1 for e in grp if any(m["monster"] == "ruins_wraith" for m in e["monsters"])))
+print("OK conteúdo pixellabs: %d árvores mortas na Floresta Escura, %d grupos de espectros nas Ruínas, estandartes, placas e trono no Cemitério" % (placed, sum(1 for e in grp if any(m["monster"] == "ruins_wraith" for m in e["monsters"]))))

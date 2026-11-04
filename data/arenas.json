@@ -12433,20 +12433,6 @@
           }
         ],
         "level": 3
-      },
-      {
-        "id": "f_village_sentinels",
-        "position": [
-          -36.0,
-          -67.0
-        ],
-        "monsters": [
-          {
-            "monster": "tin_sentinel",
-            "count": 2
-          }
-        ],
-        "level": 3
       }
     ],
     "hazards": [],
@@ -39321,7 +39307,7 @@
     ],
     "_spacing": 12.0,
     "_vegetation": "retouch_forest_vegetation.py",
-    "xp_scale": 1.01
+    "xp_scale": 1.019
   },
   "ruins_01_city": {
     "_comment": "Ruínas da cidade destruída na guerra, ampliadas: estrutura da Floresta com outro caminho, mistura de partes murados (Bairro Velho e Bairro do Mercado = labirinto de ruas Ruins_Layout, Destroyed Walls, LFA, CC BY 3.0; Cidadela; corredor do portão; Cofre Real) e partes abertas (Acesso, Fórum, Praças, Avenida das Colunas, Pátio Alto). Acesso -> Fórum; a oeste o Bairro Velho e a Praça dos Cavaleiros (a estátua do cavaleiro desperta o Guardião das Ruínas), a leste o Bairro do Mercado e a Praça dos Monólitos (a Sacerdotisa desperta o Campeão Caído), ao meio a Avenida das Colunas; tudo fecha no Pátio Alto -> Cidadela -> corredor do portão (Porteiro, duas chaves) -> Cofre Real (Rei Caído, chefe final, com a saída). Gerado por tools/assets/build_ruins.py.",
@@ -114679,6 +114665,45 @@
         ]
       },
       {
+        "piece": "Signpost_Fantasy",
+        "position": [
+          3.0,
+          -6.0
+        ],
+        "rotation": 20,
+        "scale": 1.8,
+        "solid": [
+          0.5,
+          0.4
+        ]
+      },
+      {
+        "piece": "Signpost_Fantasy",
+        "position": [
+          -5.0,
+          -14.0
+        ],
+        "rotation": 90,
+        "scale": 1.8,
+        "solid": [
+          0.5,
+          0.4
+        ]
+      },
+      {
+        "piece": "Signpost_Fantasy",
+        "position": [
+          2.5,
+          -18.0
+        ],
+        "rotation": 340,
+        "scale": 1.8,
+        "solid": [
+          0.5,
+          0.4
+        ]
+      },
+      {
         "piece": "Banner_Dragon",
         "position": [
           -4.5,
@@ -145172,6 +145197,162 @@
           -184.8
         ],
         "rotation": 201,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Dead_Tree_Pixel",
+        "position": [
+          0.1,
+          -159.1
+        ],
+        "rotation": 150,
+        "scale": 3.98,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Dead_Tree_Pixel",
+        "position": [
+          65.7,
+          -90.1
+        ],
+        "rotation": 300,
+        "scale": 2.83,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Dead_Tree_Pixel",
+        "position": [
+          52.3,
+          -70.3
+        ],
+        "rotation": 285,
+        "scale": 3.1,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Dead_Tree_Pixel",
+        "position": [
+          51.4,
+          -34.7
+        ],
+        "rotation": 210,
+        "scale": 4.13,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Dead_Tree_Pixel",
+        "position": [
+          69.1,
+          -76.1
+        ],
+        "rotation": 270,
+        "scale": 2.61,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Dead_Tree_Pixel",
+        "position": [
+          9.9,
+          -208.3
+        ],
+        "rotation": 15,
+        "scale": 4.16,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Dead_Tree_Pixel",
+        "position": [
+          -1.5,
+          -120.6
+        ],
+        "rotation": 345,
+        "scale": 2.75,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Dead_Tree_Pixel",
+        "position": [
+          24.8,
+          -234.4
+        ],
+        "rotation": 30,
+        "scale": 3.86,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Dead_Tree_Pixel",
+        "position": [
+          6.7,
+          -220.9
+        ],
+        "rotation": 270,
+        "scale": 3.45,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Dead_Tree_Pixel",
+        "position": [
+          45.5,
+          -36.3
+        ],
+        "rotation": 120,
+        "scale": 3.07,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Dead_Tree_Pixel",
+        "position": [
+          62.6,
+          -64.3
+        ],
+        "rotation": 0,
+        "scale": 4.18,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Dead_Tree_Pixel",
+        "position": [
+          42.0,
+          -63.1
+        ],
+        "rotation": 300,
+        "scale": 3.96,
         "solid": [
           0.9,
           0.9
@@ -179179,6 +179360,10 @@
           {
             "monster": "mine_scout",
             "count": 2
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
           }
         ],
         "level": 17
@@ -179193,6 +179378,10 @@
           {
             "monster": "goblin",
             "count": 4
+          },
+          {
+            "monster": "tin_sentinel",
+            "count": 2
           }
         ],
         "level": 17
@@ -179269,6 +179458,10 @@
           {
             "monster": "plague_bat",
             "count": 3
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
           }
         ],
         "level": 17
@@ -179313,6 +179506,10 @@
           {
             "monster": "mine_automaton",
             "count": 1
+          },
+          {
+            "monster": "tin_sentinel",
+            "count": 2
           }
         ],
         "level": 17
@@ -179371,6 +179568,10 @@
           {
             "monster": "plague_bat",
             "count": 2
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
           }
         ],
         "level": 17
@@ -179429,6 +179630,10 @@
           {
             "monster": "plague_bat",
             "count": 2
+          },
+          {
+            "monster": "tin_sentinel",
+            "count": 2
           }
         ],
         "level": 17
@@ -179473,6 +179678,10 @@
           {
             "monster": "mine_scout",
             "count": 2
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
           }
         ],
         "level": 17
@@ -179549,6 +179758,10 @@
           {
             "monster": "mine_automaton",
             "count": 1
+          },
+          {
+            "monster": "tin_sentinel",
+            "count": 2
           }
         ],
         "level": 17
@@ -179567,6 +179780,10 @@
           {
             "monster": "plague_bat",
             "count": 2
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
           }
         ],
         "level": 17
@@ -179665,6 +179882,14 @@
           {
             "monster": "plague_bat",
             "count": 2
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
+          },
+          {
+            "monster": "tin_sentinel",
+            "count": 2
           }
         ],
         "level": 17
@@ -179751,6 +179976,10 @@
           {
             "monster": "mine_scout",
             "count": 2
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
           }
         ],
         "level": 17
@@ -179773,6 +180002,10 @@
           {
             "monster": "mine_automaton",
             "count": 1
+          },
+          {
+            "monster": "tin_sentinel",
+            "count": 2
           }
         ],
         "level": 17
@@ -179845,6 +180078,10 @@
           {
             "monster": "mine_automaton",
             "count": 1
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
           }
         ],
         "level": 17
@@ -179885,6 +180122,10 @@
           {
             "monster": "stalker",
             "count": 1
+          },
+          {
+            "monster": "tin_sentinel",
+            "count": 2
           }
         ],
         "level": 17
@@ -179935,6 +180176,10 @@
           {
             "monster": "skeleton",
             "count": 3
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
           }
         ],
         "level": 17
@@ -179989,6 +180234,10 @@
           {
             "monster": "mine_automaton",
             "count": 1
+          },
+          {
+            "monster": "tin_sentinel",
+            "count": 2
           }
         ],
         "level": 17
@@ -180025,6 +180274,10 @@
           {
             "monster": "mine_scout",
             "count": 2
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
           }
         ],
         "level": 17
@@ -180093,6 +180346,10 @@
           {
             "monster": "stalker",
             "count": 1
+          },
+          {
+            "monster": "tin_sentinel",
+            "count": 2
           }
         ],
         "level": 17
@@ -180107,6 +180364,10 @@
           {
             "monster": "venom_scorpion",
             "count": 3
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
           }
         ],
         "level": 17
@@ -180201,6 +180462,14 @@
           {
             "monster": "mine_automaton",
             "count": 1
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
+          },
+          {
+            "monster": "tin_sentinel",
+            "count": 2
           }
         ],
         "level": 17
@@ -180287,6 +180556,10 @@
           {
             "monster": "mine_scout",
             "count": 2
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
           }
         ],
         "level": 17
@@ -180301,6 +180574,10 @@
           {
             "monster": "skeleton",
             "count": 4
+          },
+          {
+            "monster": "tin_sentinel",
+            "count": 2
           }
         ],
         "level": 17
@@ -180377,6 +180654,10 @@
           {
             "monster": "goblin",
             "count": 2
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
           }
         ],
         "level": 17
@@ -180417,6 +180698,10 @@
           {
             "monster": "mine_automaton",
             "count": 1
+          },
+          {
+            "monster": "tin_sentinel",
+            "count": 2
           }
         ],
         "level": 17
@@ -180471,6 +180756,10 @@
           {
             "monster": "goblin",
             "count": 2
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
           }
         ],
         "level": 17
@@ -180543,6 +180832,10 @@
           {
             "monster": "goblin",
             "count": 2
+          },
+          {
+            "monster": "tin_sentinel",
+            "count": 2
           }
         ],
         "level": 17
@@ -180587,6 +180880,10 @@
           {
             "monster": "mine_scout",
             "count": 2
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
           }
         ],
         "level": 17
@@ -180651,6 +180948,10 @@
           {
             "monster": "mine_automaton",
             "count": 1
+          },
+          {
+            "monster": "tin_sentinel",
+            "count": 2
           }
         ],
         "level": 17
@@ -180664,6 +180965,10 @@
         "monsters": [
           {
             "monster": "golem_fire",
+            "count": 1
+          },
+          {
+            "monster": "mine_golem",
             "count": 1
           }
         ],
@@ -180755,6 +181060,14 @@
           {
             "monster": "troll_mauler",
             "count": 1
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
+          },
+          {
+            "monster": "tin_sentinel",
+            "count": 2
           }
         ],
         "level": 17
@@ -180845,6 +181158,10 @@
           {
             "monster": "mine_scout",
             "count": 2
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
           }
         ],
         "level": 17
@@ -180863,6 +181180,10 @@
           {
             "monster": "mine_automaton",
             "count": 1
+          },
+          {
+            "monster": "tin_sentinel",
+            "count": 2
           }
         ],
         "level": 17
@@ -180931,6 +181252,10 @@
           {
             "monster": "mine_automaton",
             "count": 1
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
           }
         ],
         "level": 17
@@ -180970,6 +181295,10 @@
           },
           {
             "monster": "stalker",
+            "count": 2
+          },
+          {
+            "monster": "tin_sentinel",
             "count": 2
           }
         ],
@@ -181029,6 +181358,10 @@
           {
             "monster": "stalker",
             "count": 2
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
           }
         ],
         "level": 17
@@ -181091,6 +181424,10 @@
           {
             "monster": "mine_automaton",
             "count": 1
+          },
+          {
+            "monster": "tin_sentinel",
+            "count": 2
           }
         ],
         "level": 17
@@ -181123,6 +181460,10 @@
           {
             "monster": "mine_scout",
             "count": 2
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
           }
         ],
         "level": 17
@@ -181199,6 +181540,10 @@
           {
             "monster": "golem_ice",
             "count": 1
+          },
+          {
+            "monster": "tin_sentinel",
+            "count": 2
           }
         ],
         "level": 17
@@ -181213,6 +181558,10 @@
           {
             "monster": "troll_mauler",
             "count": 2
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
           }
         ],
         "level": 17
@@ -181311,6 +181660,14 @@
           {
             "monster": "mine_automaton",
             "count": 1
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
+          },
+          {
+            "monster": "tin_sentinel",
+            "count": 2
           }
         ],
         "level": 17
@@ -181413,6 +181770,10 @@
           {
             "monster": "mine_scout",
             "count": 2
+          },
+          {
+            "monster": "mine_golem",
+            "count": 1
           }
         ],
         "level": 17
@@ -181426,6 +181787,10 @@
         "monsters": [
           {
             "monster": "troll_mauler",
+            "count": 2
+          },
+          {
+            "monster": "tin_sentinel",
             "count": 2
           }
         ],
@@ -218228,7 +218593,7 @@
       }
     ],
     "passive": true,
-    "xp_scale": 0.164
+    "xp_scale": 0.151
   },
   "docks_01_pier": {
     "_comment": "Docas, ampliadas (Modular Wooden Docks, loafbrr, CC0): píeres sobre o mar com a estrutura da Floresta e outro caminho. Cais de partida -> Píer Principal -> Mercado de Peixe; laço oeste (Estaleiro: casco encalhado desperta o Casco Vivo) e laço leste (Peixaria: a Peixeira desperta o Tubarão-Porco), fechando no Farol e no Armazém; Calçada -> Atracadouro -> corredor do portão (Vigia, duas chaves) -> Convés do Capitão Afogado (chefe final, com a saída). Mantém os encontros dk_* da missão dos contrabandistas. Gerado por tools/assets/build_docks.py.",
@@ -218516,6 +218881,10 @@
           {
             "monster": "acid_toad",
             "count": 3
+          },
+          {
+            "monster": "docks_scarecrow",
+            "count": 2
           }
         ],
         "level": 5
@@ -218562,6 +218931,10 @@
           {
             "monster": "angler",
             "count": 2
+          },
+          {
+            "monster": "docks_scarecrow",
+            "count": 2
           }
         ],
         "level": 5
@@ -218604,6 +218977,10 @@
           {
             "monster": "plague_bat",
             "count": 3
+          },
+          {
+            "monster": "docks_scarecrow",
+            "count": 2
           }
         ],
         "level": 5
@@ -218646,6 +219023,10 @@
           {
             "monster": "acid_toad",
             "count": 3
+          },
+          {
+            "monster": "docks_scarecrow",
+            "count": 2
           }
         ],
         "level": 5
@@ -218688,6 +219069,10 @@
           {
             "monster": "angler",
             "count": 3
+          },
+          {
+            "monster": "docks_scarecrow",
+            "count": 2
           }
         ],
         "level": 5
@@ -218730,6 +219115,10 @@
           {
             "monster": "angler",
             "count": 3
+          },
+          {
+            "monster": "docks_scarecrow",
+            "count": 2
           }
         ],
         "level": 5
@@ -218827,6 +219216,10 @@
         "monsters": [
           {
             "monster": "angler",
+            "count": 2
+          },
+          {
+            "monster": "docks_scarecrow",
             "count": 2
           }
         ],
@@ -231003,7 +231396,7 @@
       }
     ],
     "passive": true,
-    "xp_scale": 1.202
+    "xp_scale": 1.117
   },
   "bunker_01_entrance": {
     "_comment": "Bunker, ampliado e feito labirinto (3D Dungeon Modular Wall Set 2, Paul Wortmann, CC0; Lamp, Mev Lyshkin, CC-BY): grade de células de 2 m (Bk_*), salas de 10 m ligadas por vãos de 6 m como o Esgoto, setores de monstros e salas especiais nas laterais (Depósito, Alojamento, Cofre, Arsenal, Enfermaria). Guarnição (partida) -> labirinto -> túnel do portão (Sentinela, duas chaves) -> Sala de Comando (General Ferrugem, chefe final, com a saída). Armamentos, ferramentas e suprimentos fazem a decoração. Gerado por tools/assets/build_bunker.py.",

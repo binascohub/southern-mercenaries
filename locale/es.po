@@ -2572,6 +2572,12 @@ msgstr "Zombi Delgado"
 msgid "MONSTER_GOBLIN"
 msgstr "Goblin"
 
+msgid "MONSTER_DOCKS_SCARECROW"
+msgstr "Espantapájaros Ahogado"
+
+msgid "MONSTER_MINE_GOLEM"
+msgstr "Gólem de Hierro Negro"
+
 msgid "MONSTER_RUINS_WRAITH"
 msgstr "Espectro de las Ruinas"
 

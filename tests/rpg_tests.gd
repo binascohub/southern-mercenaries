@@ -1312,7 +1312,7 @@ func _test_sewers() -> void:
 	# Floresta: seis setores, um monstro em cada, e duas praças com NPC que invoca um mini-chefe.
 	var sectors := {}
 	for e: Dictionary in forest.encounters:
-		if e.id not in ["f_stone_golem_king", "f_village_sentinels"] and e.monsters[0].monster != "chest_mimic" and GameData.monsters[e.monsters[0].monster].get("category", "") in ["common", "elite"]:     # (os mini-chefes, os baús monstro espalhados, a Toca do Rei Golem e as Sentinelas de Lata da vila ficam de fora)
+		if e.id != "f_stone_golem_king" and e.monsters[0].monster != "chest_mimic" and GameData.monsters[e.monsters[0].monster].get("category", "") in ["common", "elite"]:     # (os mini-chefes, os baús monstro espalhados e a Toca do Rei Golem ficam de fora)
 			sectors[e.monsters[0].monster] = true
 	_check(sectors.size() == 4 and sectors.has("forest_troll") and sectors.has("fungus_uncle"), "Floresta tem quatro salas de monstros (sapos, bestas, trolls e Tios Fungo), um tipo em cada (%d)" % sectors.size())
 	var summoners: Array = forest.props.filter(func(p: Dictionary) -> bool: return p.has("summon") and p.id != "forest_temple")
