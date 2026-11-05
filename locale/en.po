@@ -3251,6 +3251,9 @@ msgstr "Boss Gate"
 msgid "TOAST_GATE_OPENED"
 msgstr "The keys turn and the gate opens!"
 
+msgid "TOAST_GATE_BOSS_ELEMENT"
+msgstr "The final boss is {element}-element. Use {weak} to deal the most damage!"
+
 msgid "NPC_FOREST_REPTILE"
 msgstr "Gate Warden"
 

@@ -3076,6 +3076,9 @@ msgstr ""
 msgid "TOAST_GATE_OPENED"
 msgstr ""
 
+msgid "TOAST_GATE_BOSS_ELEMENT"
+msgstr ""
+
 msgid "NPC_FOREST_REPTILE"
 msgstr ""
 

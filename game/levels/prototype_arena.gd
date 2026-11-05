@@ -664,6 +664,8 @@ func _spawn_player(peer_id: int, resume: Player = null) -> Player:
 		var book: Array = [book_quest.grants_key, book_quest.grants_item]
 		if book[0] in _campaign.get("keys", []) and character.count_of(book[1]) == 0 and not _book_used(book[1], character):
 			character.add_item(Items.stack(Items.VALUABLE, book[1]))  # quem entra depois da missão aceita também recebe o livro dela (Livro do Altar, Grimório das Brasas)
+	if purge_stale_quest_items(character):
+		player.refresh_character()
 	if not _campaign.is_empty():
 		if character.data.id not in _campaign.get("participants", []):
 			_campaign.participants = _campaign.get("participants", []) + [character.data.id]
@@ -1304,7 +1306,24 @@ func open_gate(gate_id: String) -> void:
 	_campaign.opened = _campaign.get("opened", []) + [key]
 	_open_gate.rpc(gate_id)
 	_toast_all("TOAST_GATE_OPENED", {})
+	var boss_element := _area_boss_element()
+	if boss_element != "":  # avisa o elemento do chefe final: o elemento que vence o dele causa mais dano
+		_toast_all("TOAST_GATE_BOSS_ELEMENT", {"element": Elements.data(boss_element).name_key, "weak": Elements.data(Elements.weakness_of(boss_element)).name_key})
 	SaveSystem.save_campaign(_campaign, true)
+
+
+## Elemento do chefe final da área (o monstro "boss" das emboscadas); se o mapa não tem um, o "target_element" da missão que abre o portão.
+func _area_boss_element() -> String:
+	for encounter: Dictionary in arena.get("encounters", []):
+		for entry: Dictionary in encounter.get("monsters", []):
+			var data: Dictionary = GameData.monsters.get(entry.monster, {})
+			if data.get("category", "") == "boss" or data.get("boss", false):
+				return String(data.get("element", ""))
+	for quest_id: String in GameData.quests:
+		var quest: Variant = GameData.quests[quest_id]
+		if quest is Dictionary and quest.get("area", "") == area_id and quest.has("opens_gate") and quest.has("target_element"):
+			return String(quest.target_element)
+	return ""
 
 
 @rpc("authority", "call_local", "reliable")
@@ -1618,6 +1637,34 @@ func _book_used(book_id: String, character: CharacterData) -> bool:
 				return true
 			return _campaign.get("quests", {}).get(id, "") == "done" or character.count_of(String(quest.get("item", ""))) > 0
 	return false
+
+
+## Tira da bolsa os objetos de missão que não servem mais: todas as missões que os pedem ou os dão (item, items, grants_item) já terminaram. Não há como vender nem descartar
+## esses objetos, então sem isso eles ficam presos na bolsa para sempre. Devolve true se tirou algo.
+func purge_stale_quest_items(character: CharacterData) -> bool:
+	var states: Dictionary = _campaign.get("quests", {})
+	var removed := false
+	for item: Variant in character.data.inventory.duplicate():
+		if item == null or item.kind != Items.VALUABLE or not GameData.valuables.get(String(item.id), {}).get("quest_item", false):
+			continue
+		var users := 0
+		var active := false
+		for quest_id: String in GameData.quests:
+			var quest: Variant = GameData.quests[quest_id]
+			if not quest is Dictionary:
+				continue
+			var needs: Array = quest.get("items", [])
+			if quest.has("item"):
+				needs = needs + [quest.item]
+			if quest.has("grants_item"):
+				needs = needs + [quest.grants_item]
+			if String(item.id) in needs:
+				users += 1
+				active = active or states.get(quest_id, "") != "done"
+		if users > 0 and not active:
+			while character.take_one(String(item.id)):
+				removed = true
+	return removed
 
 
 ## Livro (grants_item) da missão cuja relíquia é `item_id`; "" se não houver.

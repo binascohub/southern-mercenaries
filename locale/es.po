@@ -3251,6 +3251,9 @@ msgstr "Portón del Jefe"
 msgid "TOAST_GATE_OPENED"
 msgstr "¡Las llaves giran y el portón se abre!"
 
+msgid "TOAST_GATE_BOSS_ELEMENT"
+msgstr "El jefe final es de elemento {element}. ¡Usa {weak} para causar más daño!"
+
 msgid "NPC_FOREST_REPTILE"
 msgstr "Guardián del Portón"
 
