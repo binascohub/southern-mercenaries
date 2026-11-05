@@ -12671,7 +12671,7 @@
         "id": "forest_temple",
         "kind": "npc",
         "npc": "forest_altar",
-        "kit": "Ruin_Temple1",
+        "kit": "Altar_Summon",
         "rotation": 0,
         "position": [
           142.0,
@@ -12720,6 +12720,10 @@
               "level": 3
             }
           }
+        ],
+        "solid": [
+          2.2,
+          2.0
         ]
       },
       {
@@ -280614,7 +280618,7 @@
         "id": "desert_temple",
         "kind": "npc",
         "npc": "desert_altar",
-        "kit": "Ruin_Temple1",
+        "kit": "Altar_Summon",
         "rotation": 0,
         "position": [
           76.0,
@@ -280660,6 +280664,10 @@
               "level": 15
             }
           }
+        ],
+        "solid": [
+          2.2,
+          2.0
         ]
       },
       {

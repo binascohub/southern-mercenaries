@@ -119,8 +119,9 @@ for tag, (area, altar_name, books, boss_item, city_q) in MAPS.items():
     altar["npc"] = tag + "_altar"
     altar["needs_key"] = "book_%s_1" % tag
     altar.pop("needs_quest", None)  # o livro basta: não depende de a missão do outro mini-chefe estar ativa
-    if tag not in ("forest", "desert"):  # as ruínas do templo ficam (Floresta e Deserto); nos outros mapas o altar é o do Esgoto
-        altar["kit"], altar["solid"] = "Altar_Summon", [2.2, 2.0]
+    altar["kit"], altar["solid"] = "Altar_Summon", [2.2, 2.0]  # o altar é o do Esgoto em todos os mapas
+    for k in ("piece", "scale", "model"):
+        altar.pop(k, None)
     # grupos: livro i -> mini-chefe da missão i
     altar_groups = [dict(g, position=spawn) for _, _, _, g in picked]
     for g in altar_groups:
