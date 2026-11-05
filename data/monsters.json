@@ -171,7 +171,7 @@
   "demon_rat_queen": {
     "_comment": "Chefe do Esgoto — o Feiticeiro-Aranha (no lugar da Rainha dos Ratos; o id e a mecânica ficam, a aparência e o nome mudam) (03-inimigos.md, seção 2): vida 1.000 x fator de chefe 4,3 (13-balanceamento.md 2.4). Fases por vida: 1 Mãe Furiosa (investidas, pisão em área, enxame a cada 20 s), 2 A Ninhada (abaixo de 60%: volta ao ninho e protege 3 ninhos de filhotes; regenera enquanto houver ninho (0,15% da vida por segundo por ninho vivo)), 3 O Pacto (abaixo de 25%: alaga a arena e o gás tóxico sai dos canos em lugares marcados).",
     "name_key": "MONSTER_RAT_QUEEN",
-    "max_health": 889,
+    "max_health": 667,
     "boss_factor": 4.3,
     "move_speed": 2.6,
     "damage": 40,
@@ -209,9 +209,9 @@
       "BOSS_RAT_QUEEN_PHASE_3"
     ],
     "swarm": {
-      "interval": 20.0,
+      "interval": 30.0,
       "monster": "plague_frog",
-      "count": 4
+      "count": 2
     },
     "slam": {
       "interval": 7.0,
@@ -223,7 +223,7 @@
       "monster": "spawn_nest",
       "count": 3,
       "radius": 7.0,
-      "regen": 0.0015
+      "regen": 0.0008
     },
     "gas": {
       "interval": 3.0,
@@ -246,7 +246,8 @@
       "push_time": 0.45,
       "wind": true
     },
-    "quest_drop": "storm_bottle"
+    "quest_drop": "storm_bottle",
+    "leash": 14.0
   },
   "training_dummy_fire": {
     "_comment": "Boneco do pátio de treino (04-tortuga-e-missoes.md, seção 5.2): não anda, não ataca, não morre e não dá XP nem loot.",

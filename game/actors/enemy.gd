@@ -234,6 +234,7 @@ func _physics_process(delta: float) -> void:
 			move_and_collide(_push * delta)
 			global_position.y = 0.0
 		_think(delta)
+		_keep_in_leash()
 		skill_pose = _boss_skill_pose(delta)
 		net_position = global_position
 	else:
@@ -242,6 +243,18 @@ func _physics_process(delta: float) -> void:
 			_snapshots.push(net_position)
 		global_position = _snapshots.sample()
 	_tick_visual(delta)
+
+
+## Chefe com "leash" (raio em metros, dado do monstro): nunca se afasta mais que isso do ponto de nascimento, para não sair da sala do chefe.
+func _keep_in_leash() -> void:
+	var leash := float(data.get("leash", 0.0))
+	if leash <= 0.0 or state == State.SLEEP:
+		return
+	var offset := global_position - home
+	offset.y = 0.0
+	if offset.length() > leash:
+		global_position = home + offset.normalized() * leash
+		global_position.y = 0.0
 
 
 ## O grupo acordou: vida e dano escalam com os jogadores de agora.

@@ -624,6 +624,9 @@ func _finish_quest(c: Dictionary, id: String, quest: Dictionary) -> void:
 			p.grant(int(reward.get("xp", 0)), int(reward.get("gold", 0)))
 			p._sfx.rpc("quest_complete")  # o jingle de missão cumprida (depois do som de moedas ou de nível)
 	_arena()._toast_all("TOAST_QUEST_DONE", {"quest": quest.name_key})
+	for p: Player in get_tree().get_nodes_in_group(&"players"):
+		if p.character and _arena().purge_stale_quest_items(p.character):  # objetos da missão que sobraram na bolsa (livro, relíquia) somem
+			p.refresh_character()
 	if quest.get("type", "") == "village" and quest.has("giver"):
 		_arena().npc_vanishes(String(quest.giver))  # o NPC do mapa cumpriu o papel: vira fumaça preta e some
 

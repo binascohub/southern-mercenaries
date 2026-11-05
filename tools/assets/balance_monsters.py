@@ -64,6 +64,8 @@ for k, area_id in enumerate(ORDER):
             raw_xp += x.get("count", 1) * XPCAT.get(cat, 5) * holder["level"]
     # chefe do mapa: vida = DPS x duração da luta; o Leshy (mini-chefe final da Floresta) usa o boss_factor
     minutes = 2.0 + 2.5 * min(k, 8) / 8.0 + 0.25 * max(0, k - 8)
+    if k == 0:
+        minutes = 1.5  # Esgoto: o grupo chega ao chefe no nível 2 e ele ainda traz ninhos e filhotes; luta mais curta
     bl = min(L + 1, 20)
     target = dps(bl) * minutes * 60.0
     finals = bosses_of.get(area_id, []) or (["leshy"] if area_id == "forest_01_path" else [])
