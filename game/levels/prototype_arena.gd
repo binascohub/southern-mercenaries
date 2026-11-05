@@ -52,7 +52,7 @@ const LOOT_SCATTER := 1.2
 const CHEST_SCALE := 1.3
 ## Miniatura da campanha: primeira captura logo depois de entrar, depois a cada minuto.
 ## Segundos entre a fala da estátua e o surgimento do mini-chefe.
-const SUMMON_DELAY := 4.0
+const SUMMON_DELAY := 5.0
 const NPC_VANISH_DELAY := 3.0
 const THUMB_FIRST := 3.0
 const THUMB_INTERVAL := 60.0
@@ -1107,7 +1107,8 @@ func _start_run() -> void:
 	_box_table.clear()
 	var dead: Array = _campaign.get("dead_groups", [])
 	for encounter: Dictionary in arena.encounters:
-		if encounter.id not in dead:
+		# Quem sai e volta ao mapa encontra os monstros de novo; só os grupos de mini-chefe e chefe derrotados continuam mortos.
+		if encounter.id not in dead or not _group_has_boss_entry(encounter):
 			_spawn_group(encounter)
 	# Mini-chefes chamados num altar/estátua desta área e ainda vivos: voltam acordados ao lugar do altar.
 	for id: String in _campaign.get("summoned", {}):
@@ -1426,6 +1427,15 @@ func _group_is_aggressive(group: Dictionary) -> bool:
 	return false
 
 
+## O encontro (de arenas.json) tem um mini-chefe ou chefe: esses não voltam depois de derrotados.
+func _group_has_boss_entry(encounter: Dictionary) -> bool:
+	for entry: Dictionary in encounter.get("monsters", []):
+		var category := String(entry.get("rank", GameData.monsters.get(entry.monster, {}).get("category", "common")))
+		if category == "miniboss" or category == "boss":
+			return true
+	return false
+
+
 func _group_has_boss(group: Dictionary) -> bool:
 	for enemy: Enemy in group.members:
 		if is_instance_valid(enemy) and enemy.is_boss():
@@ -1468,7 +1478,8 @@ func _on_enemy_died(enemy: Enemy) -> void:
 	group.members.erase(enemy)
 	# Bandos de caçada não contam como encontros da área.
 	if group.members.is_empty() and not enemy.group.begins_with("hunt_"):
-		_campaign.dead_groups = _campaign.get("dead_groups", []) + [enemy.group]
+		if enemy.group not in _campaign.get("dead_groups", []):
+			_campaign.dead_groups = _campaign.get("dead_groups", []) + [enemy.group]
 		_campaign.get("summoned", {}).erase(enemy.group)
 		_consume_books(enemy.group)  # o mini-chefe caiu: o livro que o chamou some da bolsa de todos
 		SaveSystem.save_campaign(_campaign, true)
