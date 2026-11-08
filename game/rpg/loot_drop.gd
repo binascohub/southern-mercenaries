@@ -21,7 +21,12 @@ const GEAR_MODELS := {"lance": ["Sword_%s", 0.75], "daggers": ["Dagger_%s", 0.5]
 const CRYSTAL_SIZE := 0.35
 ## Carne de cervo: o mesmo modelo do ícone do inventário (tools/assets/build_venison_icon.py).
 const STACK_MODELS := {"venison": ["Raw_Meat", 0.45]}
-## Sem modelo 3D (capuz, túnica, luvas, botas, anel, peitoral, barda, pergaminhos...): o ícone do inventário em pé.
+## Capuz, túnica, luvas, botas, anel, boné, colete, máscara, peitoral e barda: modelo procedural na cor
+## do material (item_models.gd, o mesmo dos ícones do inventário); tamanho = maior lado em metros.
+const GEAR_SIZES := {"hood": 0.38, "tunic": 0.55, "gloves": 0.32, "boots": 0.34, "ring": 0.22, "hunter_cap": 0.38,
+	"leather_vest": 0.45, "ninja_mask": 0.32, "plate": 0.5, "barding": 0.6}
+const SCROLL_SIZE := 0.45
+## Sem modelo 3D (valiosos sem peça...): o ícone do inventário em pé.
 const ICON_HEIGHT := 0.55
 
 var _time := 0.0
@@ -104,8 +109,14 @@ func _item_visual() -> bool:
 	var spec := visual_spec(item)
 	if spec.is_empty():
 		return false
+	var node: Node3D = null
 	if spec.has("piece"):
-		var node := Kit.piece(spec.piece)
+		node = Kit.piece(spec.piece)
+	elif spec.has("gear"):
+		node = ItemModels.gear(spec.gear, spec.material)
+	elif spec.has("scroll"):
+		node = ItemModels.scroll(spec.scroll, spec.blessed)
+	if node:
 		if spec.has("tint"):
 			_tint(node, spec.tint)
 		var box := _bounds(node)
@@ -131,7 +142,8 @@ func _item_visual() -> bool:
 	return true
 
 
-## Qual visual o item usa no chão: {piece, size, tint?} (modelo do Kit) ou {icon} (ícone do inventário); {} = nenhum.
+## Qual visual o item usa no chão: {piece, size, tint?} (modelo do Kit), {gear, material, size} ou {scroll, blessed, size}
+## (procedurais, item_models.gd) ou {icon} (ícone do inventário); {} = nenhum.
 static func visual_spec(drop_item: Dictionary) -> Dictionary:
 	var kind: String = drop_item.get("kind", "")
 	if kind == Items.EQUIPMENT:
@@ -151,13 +163,17 @@ static func visual_spec(drop_item: Dictionary) -> Dictionary:
 				if not "%s" in String(GEAR_MODELS[base][0]) and rank != "D":
 					spec.tint = tint
 				return spec
+		if ItemModels.has_gear(base) and GEAR_SIZES.has(base):
+			return {"gear": base, "material": material, "size": GEAR_SIZES[base]}
 	elif kind == Items.CONSUMABLE:
 		var id := String(drop_item.get("id", ""))
 		if STACK_MODELS.has(id) and Kit.has(STACK_MODELS[id][0]):
 			return {"piece": STACK_MODELS[id][0], "size": STACK_MODELS[id][1]}
 		var def: Dictionary = GameData.consumables.get(id, {})
 		if id.begins_with("crystal_") and Kit.has("Crystal_Gem"):
-			return {"piece": "Crystal_Gem", "size": CRYSTAL_SIZE, "tint": Color(GameData.materials.get(def.get("material", ""), {}).get("color", "#ffffff"))}
+			return {"piece": "Crystal_Gem", "size": CRYSTAL_SIZE, "tint": ItemModels.PALETTE.get(def.get("material", ""), ItemModels.PALETTE.iron).main}
+		if def.get("restore", "") == "refine":
+			return {"scroll": String(def.get("material", "")), "blessed": bool(def.get("blessed", false)), "size": SCROLL_SIZE}
 	var icon := Items.icon(drop_item)
 	return {"icon": icon} if icon else {}
 
