@@ -580,6 +580,9 @@ msgstr ""
 msgid "CHAR_NEW"
 msgstr ""
 
+msgid "CHAR_SAVED"
+msgstr ""
+
 msgid "CHAR_CREATE"
 msgstr ""
 
@@ -1712,6 +1715,9 @@ msgstr ""
 msgid "SHOP_SELL"
 msgstr ""
 
+msgid "SHOP_DETAILS"
+msgstr ""
+
 msgid "SHOP_HINT"
 msgstr ""
 
@@ -2130,6 +2136,9 @@ msgid "SHOP_BLACKSMITH"
 msgstr ""
 
 msgid "FORGE_TITLE"
+msgstr ""
+
+msgid "FORGE_EMPTY"
 msgstr ""
 
 msgid "FORGE_EQUIPPED"
@@ -5025,4 +5034,34 @@ msgid "DLG_CEMETERY_ALTAR_LOCKED"
 msgstr ""
 
 msgid "TOAST_BREAKABLE_MIMIC"
+msgstr ""
+
+msgid "MONSTER_SEA_CRAB"
+msgstr ""
+
+msgid "MONSTER_SEA_OCTOPUS"
+msgstr ""
+
+msgid "MONSTER_SEA_ANGLER"
+msgstr ""
+
+msgid "MONSTER_SEA_GATOR"
+msgstr ""
+
+msgid "TOAST_HULL_WAVE"
+msgstr ""
+
+msgid "TOAST_SHARK_WAVE"
+msgstr ""
+
+msgid "TOAST_CAPTAIN_WAVE"
+msgstr ""
+
+msgid "MONSTER_MAGMA_HOUND"
+msgstr ""
+
+msgid "TOAST_KING_WAVE"
+msgstr ""
+
+msgid "MONSTER_GOLD_CRAB"
 msgstr ""

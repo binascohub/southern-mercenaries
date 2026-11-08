@@ -2,6 +2,42 @@
 
 ## [Unreleased]
 
+### Archer bow shot, crocodiles, the Ditch Dog and the boss death burst
+
+- The Archer (dwarf and elf) now shoots with a real bow animation instead of the pistol shot: aim, quick draw to the face, release and follow-through
+  in 0.45 s, with the bow upright in the right hand and both fists closed ("Animation - Bow Shoot", lexferreira89, CC BY 4.0;
+  `tools/assets/build_bow_shoot.py` retargets it to the heroes' skeleton).
+- Two Water crocodiles in the Snake Swamp of the Dark Forest, in 3 new packs: the low Swamp Crocodile, which swims along the ground
+  ("Jungle Water Crocodile", vanshtandon321), and the Spiked Crocodile, which walks on straight legs ("fantasy crocodile animation", hino).
+- The Ditch Dog, a fleshy amphibious Water beast, prowls the Docks in 4 packs of 2 (shipyard, fishery, lighthouse and warehouse;
+  "Ditch Dog - Rigged and Animated", Greeble3d, CC BY 4.0).
+- In the Forest, the Fungus Uncle packs (16 monsters, mostly in the Fungus Clearing) become the Flowermaw, a gaunt ~2.6 m creature whose head
+  opens like petals ("Demogorgon Rig", CC BY 4.0), with the same stats; the Fungus Uncle stays in the Sewers and the Dark Forest.
+- The Gold Sandworm guards 6 spots of the Desert (dunes, quicksand, nest, wrecks and road): a ~2.5 m worm that never leaves its hole, turns
+  to whoever comes near and spits acid sand in an arc that leaves a puddle; it sinks into the sand when it dies ("Gold Sandworm", Fubbi, CC BY 4.0).
+- The Docks' Lure Angler becomes the Drunken Skeleton, a ~1.8 m pirate skeleton with a hat and a rum bottle that walks, runs and fights with the
+  heroes' animations; instead of the hook lure that pulled the hero in, it throws its rum bottle, and the spilled rum slows ("Skeleton Pirate \"The Drunk\"",
+  FireGoat, CC BY 4.0; `tools/assets/build_skeleton_drunk.py`, profile `skeleton_drunk` in `rig_biped.py`).
+- The Docks' Tenacious Crab now shows its bite: it rears up with its claws raised and lunges forward (before, the low body only tipped a little and
+  the bite was hard to see from above, so it looked like it only walked around).
+- In the Docks, the Ink Octopus is replaced by the Skeleton Pirate (coat, tricorn, cutlass and peg leg; "Skeleton Pirate \"The Captin\"", FireGoat,
+  CC BY 4.0): same health and damage, but melee with a cutlass slash instead of the ink jet, in every pack and in the bosses' waves.
+- When a map's final boss dies, the ground bursts under it: concrete debris jumps up to ~4 m and falls scattered around, stays a few seconds
+  and sinks ("Bomb Crack_Ground_00 (Free)", paulyang, CC BY 4.0; 2,131 animated pieces reduced to one skinned mesh of 360 pieces).
+
+### Ruins: visible walls, narrow corridors, fire monsters, stronger mini-bosses
+- Ruins invisible walls (`tools/assets/fix_ruins_walls.py`, run by `build_ruins.py`): every room edge that only had collision (shared borders between rooms, gaps near doors, rock/plant spots on the outline) now gets Ruin_Wall pieces.
+- Ruins narrow corridors (`tools/assets/add_ruins_corridors.py`, run by `build_ruins.py`): rooms moved 12 m apart at each link, with a 5 m wide walled corridor (slab floor, torches) in between; the High Yard widens to meet the three corridors from the south.
+- All Ruins monsters are Fire (`tools/assets/ruins_fire_monsters.py`, end of `build_maps.py`): Ash Goblin, Ember Bat, Fire Scorpion (burning spit) and Ember Mimic replace the shared Goblin, Plague Bat, Venom Scorpion and Mimic there; the Wraith, Pack Alpha, Ruin Warden, Fallen Champion and Fallen King become Fire; the Ruins quests now say Fire (weak to Water).
+- Ruins mini-bosses (`tools/assets/ruins_miniboss_skills.py`, end of `build_maps.py`): the Ruin Warden and the Fallen Champion call 6 waves of fire monsters (every 15-16 s) and have a knock-back slam and a thrown fire strike that leaves burning ground.
+- Equipment rank glow ("MorphageSpace" by tamminen, CC BY 4.0; `tools/assets/build_rank_aura.py`): the yellow cylinder around the hero is now a slowly spinning cloud of gold sparks; each average equipment rank lights one more layer of 1,200 sparks (rank 5 = full cloud, still pulsing at ranks 4 and 5), with an open core so the hero stays visible.
+- Fire Seal (Ninja) has an energy dome ("Tronicle" by tamminen, CC BY 4.0; `tools/assets/build_tronicle.py`): new ground motif `star_seal` = the seal rune plus 64 spinning, pulsing shells half sunk in the ground, glowing additively in the spell colour; it grows when cast, lasts the seal's 8 s and shrinks at the end.
+- Armored Troll ("Troll (Armored)" by SidewalkNZ, CC BY 4.0; `tools/assets/build_troll_armored.py`, profile `troll_armored` in `rig_biped.py`, `tools/assets/add_ruins_armored_troll.py`): a 3 m plate-armored brute with the heroes' animations, Fire (weak to Water), slow and tough; 6 packs in the Ruins (both Districts, both Squares, two in the High Yard).
+- Food (Food Kit by Kenney, CC0; `tools/assets/import_food_kit.py`, `tools/assets/add_food_kit.py`): the king's feast tables in the throne room (turkey, ham, ribs, pies, cake, bread, cheese, grapes, wine; the loose fruit and potion flasks are gone), a food stall in the Capital's gate square and one in Tortuga's main street (fish, mussels, island fruit, bread), more produce on the Capital avenue table, fish and coconuts in Tortuga's handcart, and the four Farm carts loaded (pumpkins, cabbages, corn, apples, pears, flour sacks). Decor entries can now be a scenery-only market stall (`"stall"`).
+- Map icons (Board Game Icons by Kenney, CC0; `tools/ui/make_map_icons.py`): the minimap marks (exits, quest spots, quest givers, altars, Time Traveler, loose mini-boss) are leather-and-brass medallions with a symbol instead of plain dots and squares; the Time Traveler's city buttons show an hourglass (travel) or a padlock (locked).
+- Time Traveler: travel to the next city unlocks once every map of the current city has its main (boss) quest done; optional village quests (Leonidas's goblins) no longer block the Capital. The paid checkpoint list hides the points a city gate already reaches for free (map starts). With the city finished, the quest footprints lead to the Time Traveler until the party's first trip to another city (`hub_traveled` in the campaign's `unlocked`).
+- Bosses and mini-bosses switch target between heroes every 6 s (`enemy.gd` `_boss_target`, data `focus_time`); summoned animals no longer hold them (only when no hero is in range). A hero's taunt still works.
+
 ### Ninja body and element colors
 - Barbarian Monster (`tools/assets/build_barbarian_monster.py`, author/licence to confirm): a horned orc warrior rigged to the heroes' skeleton (human animations); two roam the left-middle area of the Sewer (`sw2_barbarian_1/2`). Bestiary and 3 languages updated.
 - Troll Mauler (piacenti, CC BY 3.0, `tools/assets/build_troll_mauler.py`): a 3 m hunched brute with the heroes' human animations, three of them roam Sector 1 (the Drains) of the Sewer; it is the only common creature there, so visitor side quests hunt it.

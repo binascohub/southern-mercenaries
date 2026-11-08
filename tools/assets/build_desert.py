@@ -215,8 +215,8 @@ WRECKS = ["Pr_CartLarge", "Pr_CartSmall", "Cart_Wood", "Prop_Wagon"]
 
 # --- acampamento (partida): fogueira com pedras e toras, barracas (as bancas), carga, poço e estandartes
 FX, FZ = -6.0, -3.0
-put("Tv_Fire", FX, FZ, rot=0, scale=1.7, solid=[1.6, 1.6], r=2.0, free=0, force=True)
-decor.append({"piece": "Fire_Flame", "position": [FX, FZ], "y": 0.2, "scale": 1.5, "flicker": True})
+put("Bonfire_Cauldron", FX, FZ, rot=0, solid=[1.2, 2.2], r=2.0, free=0, force=True)   # fogueira com caldeirão (tools/assets/build_bonfire.py)
+decor.append({"piece": "Fire_Flame", "position": [FX, FZ], "y": 0.1, "scale": 0.9, "flicker": True})
 fire_light(FX, FZ, 1.8, 13.0, 1.0)
 around("Rock_MossyStone", FX, FZ, 2.0, 10, scale=0.6, r=0.4, free=0, force=True)
 for dx, dz, rot in ((3.4, 0.8, 80), (-3.2, 1.6, 15), (0.6, -3.4, 120), (-1.2, 3.4, 200)):

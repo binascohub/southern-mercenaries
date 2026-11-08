@@ -126,8 +126,10 @@ var _horse_material: StandardMaterial3D
 ## Galope do cavalo (Horse of Spring): toca andando, para no lugar parado.
 var _horse_anim: AnimationPlayer
 var _block_visual: MeshInstance3D
-var _aura: MeshInstance3D
+var _aura: Node3D
 var _aura_material: StandardMaterial3D
+## Nuvem do brilho do rank (assets/fx/rank_aura.glb): uma malha por rank, acesa até o rank médio dos equipamentos.
+var _aura_tiers: Array[MeshInstance3D] = []
 ## Bloqueio (servidor): quando apertou (para o aparar) e o que sobra da barreira do Mago.
 var _block_pressed_ms := -100000
 var _barrier_left := 0.0
@@ -992,7 +994,8 @@ func state_duration_mult() -> float:
 
 ## Vento a Favor: anda e ataca mais rápido.
 func speed_mult() -> float:
-	return 1.0 + float(_buffs.get("speed", {}).get("value", 0.0))
+	# "slow": rede, piche ou grito dos monstros das Docas (nunca abaixo de 40%).
+	return maxf(1.0 + float(_buffs.get("speed", {}).get("value", 0.0)) - float(_buffs.get("slow", {}).get("value", 0.0)), 0.4)
 
 
 ## Pedidos da janela de habilidades (validados no servidor).
@@ -1353,23 +1356,35 @@ func _build_visual() -> void:
 	_backpack = notebook
 
 
-	# Aura do refino: cilindro transparente em volta do herói (sem luz extra).
-	_aura = MeshInstance3D.new()
-	var aura_mesh := CylinderMesh.new()
-	aura_mesh.top_radius = 0.75
-	aura_mesh.bottom_radius = 0.9
-	aura_mesh.height = 2.0
-	aura_mesh.cap_top = false
-	aura_mesh.cap_bottom = false
-	_aura.mesh = aura_mesh
+	# Brilho do rank dos equipamentos: nuvem de faíscas douradas girando em volta do herói ("MorphageSpace" de tamminen, CC BY 4.0;
+	# tools/assets/build_rank_aura.py), uma camada a mais por rank (sem luz extra). Sem o arquivo (testes sem importação), um cilindro transparente.
 	_aura_material = StandardMaterial3D.new()
 	_aura_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	_aura_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	_aura_material.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
 	_aura_material.cull_mode = BaseMaterial3D.CULL_DISABLED
-	_aura.material_override = _aura_material
-	_aura.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-	_aura.position.y = 1.0
+	if ResourceLoader.exists(RANK_AURA):
+		_aura = (load(RANK_AURA) as PackedScene).instantiate() as Node3D
+		for tier in RANK_TIERS:
+			var mesh := _aura.find_child("rank_%d" % (tier + 1), true, false) as MeshInstance3D
+			if mesh:
+				mesh.material_override = _aura_material
+				mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+				_aura_tiers.append(mesh)
+	else:
+		var cylinder := MeshInstance3D.new()
+		var aura_mesh := CylinderMesh.new()
+		aura_mesh.top_radius = 0.75
+		aura_mesh.bottom_radius = 0.9
+		aura_mesh.height = 2.0
+		aura_mesh.cap_top = false
+		aura_mesh.cap_bottom = false
+		cylinder.mesh = aura_mesh
+		cylinder.material_override = _aura_material
+		cylinder.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		cylinder.position.y = 1.0
+		_aura = Node3D.new()
+		_aura.add_child(cylinder)
 	_aura.visible = false
 	_visual.add_child(_aura)
 
@@ -1416,6 +1431,10 @@ func _build_visual() -> void:
 	add_child(_revive_bar)
 
 
+## Brilho do rank dos equipamentos (tools/assets/build_rank_aura.py): 5 camadas, uma por rank.
+const RANK_AURA := "res://assets/fx/rank_aura.glb"
+const RANK_TIERS := 5
+
 ## Metros entre um passo e outro.
 const STEP_DISTANCE := 1.5
 var _step_distance := 0.0
@@ -1444,16 +1463,21 @@ func _tick_visual(delta: float) -> void:
 	_model.update_state(speed, alive, mounted, charge_time > 0.15, blocking, jump_phase > 0.0)
 	if _block_visual:
 		_block_visual.visible = blocking
-	# Aura: +1 brilho fraco nos pés … +5 aura máxima pulsando; amarelo (o elemento é a cor da roupa).
+	# Aura: +1 poucas faíscas … +5 nuvem cheia pulsando; amarela (o elemento é a cor da roupa). Gira devagar, mais rápido nos ranks altos.
 	_aura.visible = aura_level > 0
 	if aura_level > 0:
 		var pulse := 1.0
 		if aura_level >= 4:
 			pulse = 0.75 + 0.25 * sin(Time.get_ticks_msec() / (180.0 if aura_level == 5 else 320.0))
-		_aura_material.albedo_color = Color(1.0, 0.85, 0.2, 0.07 * aura_level * pulse)  # o brilho do rank é amarelo (o elemento é a cor da roupa)
-		var height := 0.2 + 0.4 * aura_level
-		_aura.scale = Vector3(1.0, height / 2.0, 1.0)
-		_aura.position.y = height / 2.0
+		if _aura_tiers.is_empty():
+			_aura_material.albedo_color = Color(1.0, 0.85, 0.2, 0.07 * aura_level * pulse)  # o brilho do rank é amarelo (o elemento é a cor da roupa)
+			var height := 0.2 + 0.4 * aura_level
+			_aura.scale = Vector3(1.0, height / 2.0, 1.0)
+		else:
+			for tier in _aura_tiers.size():
+				_aura_tiers[tier].visible = tier < aura_level
+			_aura_material.albedo_color = Color(1.0, 0.82, 0.3, (0.3 + 0.04 * aura_level) * pulse)  # cada rank já acende mais faíscas
+			_aura.rotate_y(delta * (0.25 + 0.15 * aura_level))
 	if _horse:
 		# Barda do cavalo na cor do material; sem barda, pelagem e sela simples.
 		var barding: Variant = equip_visual.get("barding")

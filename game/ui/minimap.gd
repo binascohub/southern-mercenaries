@@ -23,6 +23,11 @@ var _town := false
 var _heroes: Array[Dictionary] = []
 ## Marcas: {position: Vector2, kind: "exit" | "quest" | "altar" | "miniboss" | "teleporter" | "questgiver"}
 var _marks: Array[Dictionary] = []
+## Medalhões das marcas (assets/ui/map_icons, Board Game Icons da Kenney; tools/ui/make_map_icons.py), em px no mapa pequeno.
+const MARK_ICONS := {"exit": preload("res://assets/ui/map_icons/exit.png"), "quest": preload("res://assets/ui/map_icons/quest.png"),
+	"altar": preload("res://assets/ui/map_icons/altar.png"), "miniboss": preload("res://assets/ui/map_icons/miniboss.png"),
+	"teleporter": preload("res://assets/ui/map_icons/teleporter.png"), "questgiver": preload("res://assets/ui/map_icons/questgiver.png")}
+const MARK_SIZE := {"exit": 16.0, "quest": 16.0, "altar": 16.0, "miniboss": 19.0, "teleporter": 19.0, "questgiver": 17.0}
 var _timer := 0.0
 
 
@@ -115,24 +120,19 @@ func _draw() -> void:
 			continue  # desenhado por último, por cima dos heróis
 		if not is_seen(mark.position):
 			continue
-		var p := _to_map(mark.position)
-		if mark.kind == "altar":  # losango roxo pequeno
-			draw_colored_polygon(PackedVector2Array([p + Vector2(0, -4.5), p + Vector2(4, 0), p + Vector2(0, 4.5), p + Vector2(-4, 0)]), Color(0.75, 0.4, 1.0))
-			continue
-		if mark.kind == "questgiver":  # ponto laranja
-			draw_circle(p, 4.0, Color(1.0, 0.55, 0.05))
-			continue
-		if mark.kind == "teleporter":  # círculo roxo com contorno claro
-			draw_circle(p, 5.5, Color(0.95, 0.88, 1.0))
-			draw_circle(p, 4.2, Color(0.6, 0.2, 0.95))
-			continue
-		var color := Color(0.4, 0.85, 1.0) if mark.kind == "exit" else Color(1.0, 0.85, 0.3)
-		draw_rect(Rect2(p - Vector2(3, 3), Vector2(6, 6)), color)
+		_draw_mark(mark)
 	for hero in _heroes:
 		var p := _to_map(hero.position)
 		draw_circle(p, 5.0 if hero.local else 4.0, Color(1.0, 0.8, 0.25) if hero.local else Color(0.35, 0.6, 1.0))
 	for mark in _marks:
 		if mark.kind == "miniboss":
-			var p := _to_map(mark.position)
-			draw_circle(p, 6.5, Color(1.0, 1.0, 1.0))
-			draw_circle(p, 5.0, Color(0.95, 0.05, 0.05))
+			_draw_mark(mark)
+
+
+## Uma marca: o medalhão do tipo, centrado no ponto (maior no mapa grande).
+func _draw_mark(mark: Dictionary) -> void:
+	var icon: Texture2D = MARK_ICONS.get(mark.kind)
+	if icon == null:
+		return
+	var side: float = float(MARK_SIZE.get(mark.kind, 16.0)) * (1.4 if large else 1.0)
+	draw_texture_rect(icon, Rect2(_to_map(mark.position) - Vector2(side, side) * 0.5, Vector2(side, side)), false)

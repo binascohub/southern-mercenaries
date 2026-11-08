@@ -675,6 +675,7 @@ func _build() -> void:
 	root.add_child(_boss_box)
 
 	_foes = PanelContainer.new()
+	_foes.theme_type_variation = &"CompactPaper"
 	_foes.set_anchors_preset(Control.PRESET_CENTER_LEFT)
 	_foes.grow_vertical = Control.GROW_DIRECTION_BOTH
 	_foes.offset_left = 24
@@ -688,6 +689,7 @@ func _build() -> void:
 	root.add_child(_foes)
 
 	_tip = PanelContainer.new()
+	_tip.theme_type_variation = &"CompactPaper"
 	_tip.set_anchors_preset(Control.PRESET_CENTER_RIGHT)
 	_tip.grow_horizontal = Control.GROW_DIRECTION_BEGIN
 	_tip.grow_vertical = Control.GROW_DIRECTION_BOTH

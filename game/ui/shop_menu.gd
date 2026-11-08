@@ -172,8 +172,9 @@ func _build() -> void:
 		head.text = side[0]
 		col.add_child(head)
 		var scroll := ScrollContainer.new()
-		scroll.custom_minimum_size = Vector2(420, 360)
+		scroll.custom_minimum_size = Vector2(360, 400)
 		scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+		scroll.follow_focus = true  # no controle, o item em foco aparece sozinho
 		col.add_child(scroll)
 		var list := VBoxContainer.new()
 		list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -182,12 +183,26 @@ func _build() -> void:
 			_buy_list = list
 		else:
 			_sell_list = list
+	# Detalhe do item em foco numa terceira coluna de altura fixa (a janela não cresce com itens de muitos atributos).
+	var info := VBoxContainer.new()
+	columns.add_child(info)
+	var info_head := Label.new()
+	info_head.text = "SHOP_DETAILS"
+	info.add_child(info_head)
+	var details_box := ScrollContainer.new()
+	details_box.custom_minimum_size = Vector2(300, 400)
+	details_box.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	info.add_child(details_box)
 	_details = Label.new()
 	_details.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	_details.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_details.custom_minimum_size = Vector2(840, 100)
-	outer.add_child(_details)
+	_details.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_details.add_theme_font_size_override("font_size", 15)
+	details_box.add_child(_details)
 	var hint := Label.new()
 	hint.text = "SHOP_HINT"
+	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	hint.add_theme_font_size_override("font_size", 13)
 	hint.modulate = Color(1, 1, 1, 0.7)
 	outer.add_child(hint)

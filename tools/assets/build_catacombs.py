@@ -425,6 +425,27 @@ for dx in (-12, 12):
     brazier(dx, 0, 1.2)
 scatter("entry", CARGO, 6, scale=(0.9, 1.2), r=0.9)
 scatter("entry", BONES, 6, scale=(2.2, 3.0), r=0.8)
+# --- vítimas de antes: esqueletos sentados no chão, as costas na parede, entre os grilhões (Skeleton_Seated, build_seated_skeleton.py)
+SHACKLES_N = {"cells_w": 5, "cells_e": 5, "torture": 5, "ossuary": 4, "pit_w": 4, "chapel": 4, "chain_hall": 5, "court": 4, "nave": 4, "crypt": 6}
+skel_rng = random.Random("catacombs-seated-skeletons")
+for rid, n in SHACKLES_N.items():
+    cx, cz, w, h = by_id[rid][1:]
+    for side in "nwe":
+        if rid == "crypt" and side != "n":
+            continue
+        for i in skel_rng.sample(range(n - 1), 1):  # um por parede, no meio entre dois grilhões
+            t = (i + 1.5) / (n + 1) - 0.5 + skel_rng.uniform(-0.03, 0.03)
+            if side == "n":
+                x, z, rot = cx + t * w, cz - h / 2 + 1.65, 180
+            elif side == "w":
+                x, z, rot = cx - w / 2 + 0.65, cz + t * h, 270
+            else:
+                x, z, rot = cx + w / 2 - 0.65, cz + t * h, 90
+            if any(math.hypot(x - dx, z - dz) < 5.0 for dx, dz in door_points) or near_interest(x, z, 2.5):
+                continue
+            decor.append({"piece": "Skeleton_Seated", "position": [round(x, 2), round(z, 2)], "rotation": rot + skel_rng.randrange(-15, 16, 5),
+                          "scale": round(skel_rng.uniform(1.2, 1.4), 2)})
+            taken.append((x, z, 1.0))
 
 def in_block(x, z, m=1.5):
     return any(bx0 - m < x < bx1 + m and bz0 - m < z < bz1 + m for bx0, bz0, bx1, bz1 in blocks)

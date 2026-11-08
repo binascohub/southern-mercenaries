@@ -94,7 +94,12 @@ make(A, "plague_bat", "ru_hound", ("Cão de Guerra Morto", "Dead War Hound", "Pe
 restyle("ruin_alpha", None, P, (0.3, 0.28, 0.3), sound="wolfman")
 restyle("ruin_warden", None, "golem_block", (0.9, 0.9, 1.0))
 restyle("war_champion", None, P, (0.7, 0.3, 0.25), sound="ogre")
-restyle("fallen_king", None, P, (0.7, 0.6, 0.85), sound="giant")
+restyle("fallen_king", None, "ruins_troll", (1.0, 1.0, 1.0))  # o Troll das Ruínas (assets/models/monsters/ruins_troll_animated.glb)
+# O Rei Caído chama ondas de Cães de Magma (assets/models/monsters/magma_hound.glb), que só aparecem por ele.
+monsters["magma_hound"] = {'name_key': 'MONSTER_MAGMA_HOUND', 'max_health': 120, 'move_speed': 5.2, 'damage': 12, 'attack_range': 1.6, 'attack_windup': 0.35, 'attack_cooldown': 1.0, 'aggro_range': 40.0, 'size': 1.1, 'category': 'common', 'element': 'fire', 'ai': 'melee', 'look': 'magma_hound', 'color': [1.0, 1.0, 1.0], 'role': 'swarm', '_comment': 'Cão de Magma: só aparece pelas ondas do Rei Caído (chefe final das Ruínas). Corre em matilha e, de vez em quando, bate as patas e queima o chão em volta.', 'slam': {'_comment': 'Patada de lava: queima em volta de si.', 'interval': 6.0, 'radius': 2.0, 'windup': 0.6, 'damage_mult': 0.8}}
+NAMES["MONSTER_MAGMA_HOUND"] = ("Cão de Magma", "Magma Hound", "Perro de Magma")
+monsters["fallen_king"]["waves"] = {'_comment': 'Chama os cães de magma: a cada intervalo, uma matilha brota em volta dele.', 'first': 7.0, 'interval': 18.0, 'radius': 6.0, 'toast': 'TOAST_KING_WAVE', 'list': [[{'monster': 'magma_hound', 'count': 2}], [{'monster': 'magma_hound', 'count': 3}], [{'monster': 'magma_hound', 'count': 4}]]}
+NAMES["TOAST_KING_WAVE"] = ("O Rei Caído chama os cães de magma!", "The Fallen King calls the magma hounds!", "¡El Rey Caído llama a los perros de magma!")
 # ------------------------------------------------------------------ Cemitério
 A = "cemetery_01_yard"
 make(A, "plague_frog", "ce_digger", ("Coveiro Louco", "Mad Gravedigger", "Sepulturero Loco"), P, (0.45, 0.4, 0.3), sound="beast")

@@ -66,7 +66,7 @@
     "giver": "court_jester",
     "area": "ruins_01_city",
     "item": "wild_meat",
-    "target_element": "earth",
+    "target_element": "fire",
     "reward": {
       "gold": 960,
       "xp": 1580
@@ -305,7 +305,7 @@
     "type": "village",
     "giver": "ruins_scholar",
     "area": "ruins_01_city",
-    "target_element": "earth",
+    "target_element": "fire",
     "reward": {
       "gold": 410,
       "xp": 840
@@ -342,7 +342,7 @@
       "key_eagle"
     ],
     "opens_gate": "boss_gate",
-    "target_element": "earth",
+    "target_element": "fire",
     "reward": {
       "gold": 280,
       "xp": 420
@@ -679,7 +679,7 @@
     "type": "main",
     "giver": "war_veteran",
     "area": "ruins_01_city",
-    "target_element": "earth",
+    "target_element": "fire",
     "reward": {
       "gold": 960,
       "xp": 1580

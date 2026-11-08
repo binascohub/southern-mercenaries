@@ -9,12 +9,12 @@ import json, math, random, re
 ARENAS, MONSTERS, NPCS, QUESTS, VALUABLES = ("data/arenas.json", "data/monsters.json", "data/npcs.json", "data/quests.json", "data/valuables.json")
 arenas, monsters, npcs, quests, valuables = (json.load(open(p, encoding="utf-8")) for p in (ARENAS, MONSTERS, NPCS, QUESTS, VALUABLES))
 rng = random.Random("docks-v2")
-DOOR = 6.0
-K = math.sqrt(2.0)  # mapa com o dobro da área (cada medida x1,41); o que está escrito à mão abaixo é na escala antiga e passa pelo K
+DOOR = 4.5
+K = 1.0  # tamanho original (a versão ampliada x1,41 tinha caminhos largos demais); o que está escrito à mão abaixo passa pelo K
 
-ROOMS_OLD = [("landing", 0, 0, 36, 16), ("fish_pier", -32, 0, 28, 12), ("boathouse", 32, 0, 28, 12), ("main_pier", 0, -18, 10, 20), ("market", 0, -46, 64, 36),
-         ("west_pier", -46, -46, 28, 8), ("east_pier", 46, -46, 28, 8), ("shipyard", -52, -70, 36, 40), ("fishery", 52, -70, 36, 40), ("causeway", 0, -80, 12, 32),
-         ("wharf", 0, -107, 80, 22), ("lighthouse", -55, -105, 30, 30), ("warehouse", 55, -105, 30, 30), ("gate_lane", 0, -130, 10, 24), ("deck", 0, -170, 70, 56)]
+ROOMS_OLD = [("landing", 0, 0, 36, 16), ("fish_pier", -32, 0, 28, 12), ("boathouse", 32, 0, 28, 12), ("main_pier", 0, -18, 7, 20), ("market", 0, -46, 64, 36),
+         ("west_pier", -46, -46, 28, 8), ("east_pier", 46, -46, 28, 8), ("shipyard", -52, -70, 36, 40), ("fishery", 52, -70, 36, 40), ("causeway", 0, -80, 7, 32),
+         ("wharf", 0, -107, 80, 22), ("lighthouse", -55, -105, 30, 30), ("warehouse", 55, -105, 30, 30), ("gate_lane", 0, -130, 7, 24), ("deck", 0, -170, 70, 56)]
 ROOMS = [(rid, cx * K, cz * K, w * K, h * K) for rid, cx, cz, w, h in ROOMS_OLD]
 LINKS = [("landing", "fish_pier", "west"), ("landing", "boathouse", "east"), ("landing", "main_pier", "north"), ("main_pier", "market", "north"), ("market", "west_pier", "west"),
          ("market", "east_pier", "east"), ("west_pier", "shipyard", "north"), ("east_pier", "fishery", "north"), ("market", "causeway", "north"), ("causeway", "wharf", "north"),
@@ -73,11 +73,48 @@ def clone(name, base, **changes):
 
 clone("hull_beast", "frog_king", _comment="Mini-chefe das Docas (Estaleiro): o Casco Vivo, monstro de tábuas e pregos que acorda do casco encalhado; investidas.",
       name_key="MONSTER_HULL_BEAST", max_health=190, damage=13, size=3.0, element="water", look="plank_monster", color=[0.55, 0.75, 0.7], quest_drop="ship_helm")
-clone("pork_shark", "frog_king", _comment="Mini-chefe das Docas (Peixaria): o Tubarão-Porco, tubarão de dentes de ouro que a Peixeira desperta; investidas.",
-      name_key="MONSTER_PORK_SHARK", max_health=210, damage=14, size=2.4, element="water", look="pork_shark", color=[1.0, 1.0, 1.0], quest_drop="golden_shark_tooth")
+clone("pork_shark", "frog_king", _comment="Mini-chefe das Docas (Peixaria): o Tubarão-Porco, que a Peixeira desperta; o visual é o Esqueleto Pirata (pirate_skeleton). Investidas, jato d'água e ondas de Caranguejos de Ouro.",
+      name_key="MONSTER_PORK_SHARK", max_health=210, damage=14, size=2.4, element="water", look="pirate_skeleton", color=[1.0, 1.0, 1.0], quest_drop="golden_shark_tooth")
 clone("drowned_captain", "frog_king", _comment="Chefe final das Docas: o Capitão Afogado, esqueleto verde do mar que guarda o Convés atrás do portão; investidas e pisões.",
       name_key="MONSTER_DROWNED_CAPTAIN", category="boss", aggressive=False, max_health=420, damage=18, size=2.8, element="water", look="skeleton", color=[0.4, 0.85, 0.75],
       chest_loot="chest")
+# Bichos do mar das Docas, com golpes que os mapas anteriores não têm (puxão do arpão, rede/tinta que deixa lento, pinça que prende,
+# bote que arrasta). Os números de vida/dano são acertados depois por balance_monsters.py (pelo "role").
+SEA = {
+    "sea_crab": {"name_key": "MONSTER_SEA_CRAB", "max_health": 84, "move_speed": 4.6, "damage": 8, "attack_range": 1.4, "attack_windup": 0.35, "attack_cooldown": 1.0, "aggro_range": 40.0,
+                 "size": 0.7, "category": "common", "element": "water", "ai": "melee", "look": "crab", "color": [1.0, 0.75, 0.6], "role": "swarm",
+                 "slam": {"_comment": "Pinça que prende: aperta em volta de si e deixa o herói lento.", "interval": 5.0, "radius": 2.2, "windup": 0.6, "damage_mult": 0.6, "slow": [0.3, 1.5]}},
+    "sea_octopus": {"name_key": "MONSTER_SEA_OCTOPUS", "max_health": 210, "move_speed": 2.0, "damage": 14, "attack_range": 9.0, "attack_windup": 1.0, "attack_cooldown": 2.6, "aggro_range": 40.0,
+                    "size": 1.0, "category": "common", "element": "water", "ai": "ranged", "keep_distance": 5.0, "look": "octaminator", "color": [0.75, 0.5, 0.85], "role": "normal",
+                    "spit": {"_comment": "Jato de tinta: mancha preta no chão; quem é atingido fica lento.", "radius": 2.2, "damage_mult": 0.8, "slow": [0.5, 3.0], "glob": [0.12, 0.08, 0.2]}},
+    "sea_angler": {"name_key": "MONSTER_SEA_ANGLER", "max_health": 136, "move_speed": 3.2, "damage": 12, "attack_range": 2.0, "attack_windup": 0.7, "attack_cooldown": 1.6, "aggro_range": 40.0,
+                   "size": 1.8, "category": "common", "element": "water", "ai": "melee", "look": "skeleton_drunk", "color": [1.0, 1.0, 1.0], "role": "light",
+                   "fireball": {"_comment": "Garrafada de rum (o Esqueleto Bêbado): arremessa a garrafa onde o herói está; o rum espalhado deixa lento.", "min": 4.0, "max": 11.0, "windup": 0.9,
+                                "cooldown": 6.0, "radius": 1.6, "damage_mult": 0.8, "element": "water", "slow": [0.6, 2.0], "glob": [0.75, 0.45, 0.15], "glob_size": 0.7}},
+    "sea_gator": {"name_key": "MONSTER_SEA_GATOR", "max_health": 336, "move_speed": 3.0, "damage": 10, "attack_range": 2.6, "attack_windup": 0.6, "attack_cooldown": 1.6, "aggro_range": 40.0,
+                  "size": 1.2, "category": "common", "element": "water", "ai": "melee", "look": "gator", "color": [0.45, 0.62, 0.45], "role": "tank",
+                  "slam": {"_comment": "Bote que arrasta: bate o rabo na água e puxa quem está em volta para a boca.", "interval": 7.0, "radius": 5.5, "windup": 1.0, "damage_mult": 1.1, "pull": 4.5}},
+}
+# Caranguejo de Ouro (gold_crab, "scavenger_crab_gold"): só vem pelas ondas do Tubarão-Porco.
+SEA["gold_crab"] = {'name_key': 'MONSTER_GOLD_CRAB', 'max_health': 84, 'move_speed': 5.0, 'damage': 8, 'attack_range': 1.5, 'attack_windup': 0.35, 'attack_cooldown': 1.0, 'aggro_range': 40.0, 'size': 0.9, 'category': 'common', 'element': 'water', 'ai': 'charger', 'look': 'gold_crab', 'color': [1.0, 1.0, 1.0], 'role': 'swarm', '_comment': 'Caranguejo de Ouro: só aparece pelas ondas do Tubarão-Porco (Esqueleto Pirata). Corre de lado e dá botes curtos.', 'charge': {'min': 3.0, 'max': 8.0, 'windup': 0.5, 'speed': 11.0, 'time': 0.4, 'damage_mult': 1.0, 'cooldown': 4.0}}
+monsters.update(SEA)
+monsters["hull_beast"].update({
+    "slam": {"_comment": "Pregos e tábuas: o casco se joga no chão e arrasta para si quem está perto.", "interval": 8.0, "radius": 5.5, "windup": 1.1, "damage_mult": 1.0, "pull": 5.0},
+    "waves": {"first": 8.0, "interval": 22.0, "radius": 6.0, "toast": "TOAST_HULL_WAVE",
+              "list": [[{"monster": "sea_crab", "count": 3}], [{"monster": "sea_angler", "count": 2}], [{"monster": "sea_gator", "count": 1}, {"monster": "sea_crab", "count": 2}]]}})
+monsters["pork_shark"].update({
+    "fireball": {"_comment": "Jato d'água: cospe uma onda onde o herói está, que derruba e joga longe.", "min": 4.0, "max": 14.0, "windup": 1.0, "cooldown": 6.0, "radius": 2.6, "damage_mult": 1.0,
+                 "element": "water", "push": 6.0, "push_time": 0.4, "wind": True, "glob": [0.4, 0.7, 1.0], "glob_size": 1.6},
+    "waves": {"first": 8.0, "interval": 22.0, "radius": 6.0, "toast": "TOAST_SHARK_WAVE",
+              "list": [[{'monster': 'gold_crab', 'count': 3}], [{'monster': 'gold_crab', 'count': 4}], [{'monster': 'gold_crab', 'count': 5}]]}})
+monsters["drowned_captain"].update({
+    "sweep": {"_comment": "Ponteiro do relógio: a corrente da âncora sai dele e gira pelo chão; quem encosta leva dano. Pule-a ou fique longe.", "interval": 13.0, "windup": 1.3,
+              "duration": 4.5, "speed": 95.0, "length": 10.0, "width": 1.0, "damage_mult": 0.9},
+    "barrage": {"_comment": "Fogo dos canhões do navio: balas caem uma atrás da outra em volta de cada herói (a primeira em cima dele).", "interval": 11.0, "count": 5, "radius": 2.2,
+                "spread": 6.0, "delay": 1.4, "step": 0.35, "damage_mult": 0.8, "max": 22.0, "boom": [1.0, 0.55, 0.2]},
+    "waves": {"first": 10.0, "interval": 20.0, "radius": 7.0, "toast": "TOAST_CAPTAIN_WAVE",
+              "list": [[{"monster": "sea_crab", "count": 3}], [{"monster": "sea_angler", "count": 2}, {"monster": "sea_octopus", "count": 1}], [{"monster": "sea_gator", "count": 2}],
+                       [{"monster": "sea_crab", "count": 2}, {"monster": "sea_octopus", "count": 2}]]}})
 valuables.update({
     "ship_helm": {"name_key": "VALUABLE_SHIP_HELM", "value": 0, "maps": [], "quest_item": True, "model": "Bucket_Wooden_1"},
     "golden_shark_tooth": {"name_key": "VALUABLE_GOLDEN_SHARK_TOOTH", "value": 0, "maps": [], "quest_item": True, "model": "Coin_Gold"},
@@ -94,7 +131,7 @@ props = [
     {"id": "dock_master", "kind": "npc", "npc": "dock_master", "position": [0, -46], "rotation": 200},
     {"id": "wrecked_hull", "kind": "npc", "npc": "wrecked_hull", "kit": "Dock_Boat_Stand", "rotation": 0, "position": [-52.0, -70.0], "summon": SUMMON_HULL, "needs_quest": "dock_helm"},
     {"id": "dock_fishwife", "kind": "npc", "npc": "dock_fishwife", "position": [42.0, -60.0], "rotation": 0, "summon": SUMMON_SHARK, "needs_quest": "dock_tooth"},
-    {"id": "boss_gate", "kind": "gate", "name_key": "PROP_BOSS_GATE", "position": [0.0, -124.0], "rotation": 0, "scale": 3.0, "block": 10.0, "count": 2, "opened_by": "dock_gate"},
+    {"id": "boss_gate", "kind": "gate", "name_key": "PROP_BOSS_GATE", "position": [0.0, -124.0], "rotation": 0, "scale": 1.8, "block": 8.0, "count": 2, "opened_by": "dock_gate"},  # o corredor tem 7 m: portão (7,2 m) e colisão (8 m) cobrem a largura toda
     {"id": "dock_sentinel", "kind": "npc", "npc": "dock_sentinel", "position": [0.0, -120.0], "rotation": 0},
     {"id": "dock_chest_1", "kind": "chest", "position": [-40, -2], "loot": "chest"}, {"id": "dock_chest_2", "kind": "chest", "position": [40, 3], "loot": "chest"},
     {"id": "dock_chest_3", "kind": "chest", "position": [-62, -112], "loot": "chest"}, {"id": "dock_chest_4", "kind": "chest", "position": [62, -112], "loot": "chest"},
@@ -102,15 +139,15 @@ props = [
     {"id": "dock_chest_7", "kind": "chest", "position": [30, -190], "loot": "chest"}]
 E = lambda eid, pos, *mons: {"id": eid, "position": pos, "monsters": [{"monster": m, "count": c} for m, c in mons]}
 encounters = [
-    E("dk_rats_a", [0, -18], ("plague_frog", 4)), E("dk_toads", [-32, 0], ("acid_toad", 3)), E("dk_bats", [32, 0], ("plague_bat", 4)),
-    E("dk_rats_b", [0, -80], ("mutant_frog", 3), ("angler", 2)), E("dk_anglers", [-46, -46], ("angler", 2)),
-    E("dk_market_a", [-18, -42], ("plague_frog", 3)), E("dk_market_b", [18, -52], ("mutant_frog", 3)), E("dk_market_c", [-4, -36], ("plague_bat", 3)),
-    E("dk_east_pier", [46, -46], ("acid_toad", 2)), E("dk_yard_a", [-62, -80], ("angler", 3)), E("dk_yard_b", [-42, -58], ("acid_toad", 3)),
-    E("dk_fishery_a", [44, -84], ("plague_bat", 4)), E("dk_fishery_b", [62, -58], ("mutant_frog", 3)),
-    E("dk_light_a", [-55, -112], ("angler", 3)), E("dk_light_b", [-62, -98], ("plague_bat", 3)), E("dk_ware_a", [55, -112], ("mutant_frog", 3)), E("dk_ware_b", [62, -98], ("angler", 3)),
-    E("dk_wharf_a", [-20, -107], ("plague_frog", 4)), E("dk_wharf_b", [20, -107], ("plague_bat", 4)),
+    E("dk_rats_a", [0, -18], ("sea_crab", 4)), E("dk_toads", [-32, 0], ("sea_octopus", 3)), E("dk_bats", [32, 0], ("sea_crab", 4)),
+    E("dk_rats_b", [0, -80], ("sea_gator", 3), ("sea_angler", 2)), E("dk_anglers", [-46, -46], ("sea_angler", 2)),
+    E("dk_market_a", [-18, -42], ("sea_crab", 3)), E("dk_market_b", [18, -52], ("sea_gator", 3)), E("dk_market_c", [-4, -36], ("sea_crab", 3)),
+    E("dk_east_pier", [46, -46], ("sea_octopus", 2)), E("dk_yard_a", [-62, -80], ("sea_angler", 3)), E("dk_yard_b", [-42, -58], ("sea_octopus", 3)),
+    E("dk_fishery_a", [44, -84], ("sea_crab", 4)), E("dk_fishery_b", [62, -58], ("sea_gator", 3)),
+    E("dk_light_a", [-55, -112], ("sea_angler", 3)), E("dk_light_b", [-62, -98], ("sea_crab", 3)), E("dk_ware_a", [55, -112], ("sea_gator", 3)), E("dk_ware_b", [62, -98], ("sea_angler", 3)),
+    E("dk_wharf_a", [-20, -107], ("sea_crab", 4)), E("dk_wharf_b", [20, -107], ("sea_crab", 4)),
     E("dk_boathouse_mimic", [38, 3], ("chest_mimic", 1)), E("dk_yard_mimic", [-60, -60], ("chest_mimic", 1)), E("dk_light_mimic", [-66, -112], ("chest_mimic", 1)),
-    E("dk_ware_mimic", [66, -112], ("chest_mimic", 1)), E("dk_deck_a", [-18, -158], ("angler", 2)), E("dk_deck_b", [18, -158], ("angler", 2)),
+    E("dk_ware_mimic", [66, -112], ("chest_mimic", 1)), E("dk_deck_a", [-18, -158], ("sea_angler", 2)), E("dk_deck_b", [18, -158], ("sea_angler", 2)),
     E("dk_captain", [0, -188], ("drowned_captain", 1))]
 for p in props:
     p["position"] = [round(p["position"][0] * K, 1), round(p["position"][1] * K, 1)]
@@ -192,7 +229,8 @@ def brazier(x, z, scale=1.8):
 
 
 CARGO = ["Dock_Props_Barrel", "Dock_Props_Crate", "Dock_Props_Box", "Barrel_Oga_1", "Barrel_Oga_2", "Crate_Big", "Crate_Small", "Tv_Sack", "Tv_Sack_2", "Pr_Basket", "Tv_Basket", "Bucket_Wooden_1"]
-BONES = ["Dungeon_BonePile_%d" % i for i in range(1, 7)] + ["Dungeon_CrossBones", "Dungeon_Pelvis", "Dungeon_Arm", "Dungeon_Leg", "Dungeon_Skull_1", "Dungeon_Skull_2"]
+# Sem caveiras nem baús de enfeite (pedido do autor): só ossos soltos; baú no mapa é só o que abre.
+BONES = ["Dungeon_Pelvis", "Dungeon_Arm", "Dungeon_Leg", "Dungeon_Ribcage"]
 BOATS = ["Dock_Boat_A_1", "Dock_Boat_A_2", "Dock_Boat_B_1"]
 
 # --- bitolas (cabeços) ao longo das bordas de todos os píeres e postes de apoio
@@ -223,10 +261,10 @@ put("Dock_Boat_Stand", 30, -2, rot=0, solid=[3.0, 1.5], r=2.5)
 put("Cart_Wood", 40, 2, rot=40, scale=1.3, solid=[2.6, 1.3], r=1.6)
 # --- píer principal e calçada: postes de luz e tochas
 for z in (-12, -24):
-    lamp(-4.2, z), lamp(4.2, z)
+    lamp(-2.6, z), lamp(2.6, z)
 for z in (-66, -74, -82, -90):
-    torch(-5.2, z)
-    torch(5.2, z)
+    torch(-2.8, z)
+    torch(2.8, z)
 scatter("main_pier", CARGO, 4, scale=(0.9, 1.1), margin=1.5)
 # --- Mercado de Peixe: bancas, balcões de peixe, carrinhos, carga, cestos e bandeiras
 for x in (-24, -12, 12, 24):
@@ -271,7 +309,7 @@ scatter("lighthouse", CARGO, 10, scale=(0.9, 1.2), margin=3.0)
 scatter("lighthouse", BONES, 6, scale=(2.5, 3.5), margin=3.0, r=0.8)
 # --- Armazém (leste): pilhas de carga, jaulas, moedas e baús
 scatter("warehouse", CARGO, 30, scale=(1.0, 1.5), margin=2.5, r=1.0)
-scatter("warehouse", ["Cage_Small", "Coin_Pile", "Chest_Large"], 6, scale=(1.2, 1.6), margin=3.0, r=1.2)
+scatter("warehouse", ["Cage_Small", "Coin_Pile"], 6, scale=(1.2, 1.6), margin=3.0, r=1.2)
 scatter("warehouse", ["Cart_Wood"], 2, scale=(1.3, 1.5), solid=(2.6, 1.3), margin=4.0, r=1.8)
 for x, z in ((43, -118), (67, -118), (43, -92), (67, -92)):
     torch(x, z)
@@ -283,11 +321,8 @@ for x in (-34, -20, -8, 8, 20, 34):
 scatter("wharf", CARGO, 18, scale=(0.9, 1.3), margin=2.5)
 scatter("wharf", BONES, 6, scale=(2.5, 3.5), margin=2.5, r=0.8)
 # --- corredor do portão: lanternas e bandeiras
-for z in (-122, -128, -136):
-    lamp(-3.8, z), lamp(3.8, z)
-for z in (-126, -134):
-    put("War_Banner", -3.8, z, rot=90, scale=1.1, r=0.8, free=1.0)
-    put("War_Banner", 3.8, z, rot=270, scale=1.1, r=0.8, free=1.0)
+for z in (-122, -136):
+    lamp(-2.6, z), lamp(2.6, z)
 # --- Convés do Capitão Afogado: braseiros, bandeiras, carga, tesouro e os ossos da tripulação
 for x in (-26, 26):
     for z in (-150, -164, -178):
@@ -297,8 +332,8 @@ for x in (-14, 14):
         put("War_Banner", x, z, rot=0, scale=1.3, r=1.0)
 scatter("deck", CARGO, 44, scale=(1.0, 1.4), margin=3.0)
 scatter("deck", BONES, 34, scale=(2.5, 3.5), margin=4.0, r=0.8)
-scatter("deck", ["Dungeon_SkullPile", "Dungeon_Ribcage"], 8, scale=(3.0, 4.5), margin=4.0, r=1.2)
-scatter("deck", ["Coin_Pile", "Chest_Large", "Cage_Small"], 8, scale=(1.3, 1.8), margin=4.0, r=1.4)
+scatter("deck", ["Dungeon_Ribcage"], 8, scale=(3.0, 4.5), margin=4.0, r=1.2)
+scatter("deck", ["Coin_Pile", "Cage_Small"], 8, scale=(1.3, 1.8), margin=4.0, r=1.4)
 for x, z in ((-30, -190), (30, -190), (-30, -146), (30, -146)):
     lamp(x, z)
 
@@ -349,6 +384,25 @@ for rid, n in (("landing", 3), ("market", 5), ("wharf", 4), ("shipyard", 3), ("f
         crowd.append({"role": rng.choice(["pirate", "pirate_2", "sailor", "pirate", "sailor"]), "position": [round(a[0], 1), round(a[1], 1)], "pose": "walk",
                       "path": [round(b[0], 1), round(b[1], 1)], "speed": round(rng.uniform(0.9, 1.4), 2)})
 
+# --- gaivotas (Seagull.glb, "Ring-Billed Gull", osuecampus, CC BY 4.0; tools/assets/build_seagull.py): pousadas em cima de alguns cabeços e no
+# píer ao lado de outros, virando a cabeça (a animação do modelo). Sorteio próprio, para não mudar o resto do cenário.
+def add_gulls(decor):
+    g_rng = random.Random("docks-gulls")
+    bollards = [d for d in decor if d.get("piece") == "Dock_Dock_Bollard_1"]
+    g_rng.shuffle(bollards)
+    gulls = []
+    for i, b in enumerate(bollards[:16]):
+        x, z = b["position"]
+        if i < 8:
+            gulls.append({"piece": "Seagull", "position": [x, z], "rotation": g_rng.randrange(0, 360, 15), "y": round(float(b.get("y", 0.12)) + 0.78, 2)})
+        else:
+            a = g_rng.uniform(0, 6.283)
+            gulls.append({"piece": "Seagull", "position": [round(x + 0.8 * math.cos(a), 1), round(z + 0.8 * math.sin(a), 1)], "rotation": g_rng.randrange(0, 360, 15), "y": 0.12})
+    return gulls
+
+
+decor += add_gulls(decor)
+
 arenas["docks_01_pier"] = {
     "_comment": "Docas, ampliadas (Modular Wooden Docks, loafbrr, CC0): píeres sobre o mar com a estrutura da Floresta e outro caminho. Cais de partida -> Píer Principal -> Mercado de Peixe; laço oeste (Estaleiro: casco encalhado "
                 "desperta o Casco Vivo) e laço leste (Peixaria: a Peixeira desperta o Tubarão-Porco), fechando no Farol e no Armazém; Calçada -> Atracadouro -> corredor do portão (Vigia, duas chaves) -> Convés do "
@@ -359,7 +413,7 @@ arenas["docks_01_pier"] = {
         {"id": "coin_bag_%d" % i, "monster": "coin_bag", "position": [round(p[0] * K, 1), round(p[1] * K, 1)], "table": "coin_bag"} for i, p in enumerate(([-24, -40], [24, -52], [-52, -90], [52, -90], [0, -100], [-20, -176], [20, -176]), start=2)],
     "style": {"_comment": "Docas: tábuas de píer do pacote, cerca de madeira nas bordas; o mar é o objeto 'sea'.", "walls": [""], "floor": "Dock_Floor_Dock_Half",
               "low": "Dock_Fence_Plane_Half", "ground": [0.03, 0.1, 0.16]},
-    "decor": decor, "crowd": crowd, "passive": True}
+    "decor": decor, "crowd": crowd, "passive": False}  # monstros agressivos: atacam quem chega perto
 
 # ---------------------------------------------------------------- NPCs e missões (mesma forma da Floresta e do Deserto)
 def body(sex, hair, color):
@@ -388,6 +442,13 @@ quests["dock_gate"] = {"name_key": "QUEST_DOCK_GATE", "desc_key": "QUEST_DOCK_GA
                        "items": ["key_anchor", "key_compass"], "opens_gate": "boss_gate", "target_element": "earth", "reward": {"gold": 160, "xp": 320}}
 T = {
     "MONSTER_HULL_BEAST": ("Casco Vivo", "Living Hull", "Casco Viviente"),
+    "MONSTER_SEA_CRAB": ("Caranguejo Tenaz", "Pincer Crab", "Cangrejo Tenaza"),
+    "MONSTER_SEA_OCTOPUS": ("Polvo de Tinta", "Ink Octopus", "Pulpo de Tinta"),
+    "MONSTER_SEA_ANGLER": ("Esqueleto Bêbado", "Drunken Skeleton", "Esqueleto Borracho"),
+    "MONSTER_SEA_GATOR": ("Jacaré Arrastador", "Dragging Gator", "Caimán Arrastrador"),
+    "TOAST_HULL_WAVE": ("O Casco Vivo range: a onda {n} de bichos do mar sobe do píer!", "The Living Hull creaks: sea creature wave {n} climbs the pier!", "El Casco Viviente cruje: ¡la oleada {n} de bichos del mar sube al muelle!"),
+    "TOAST_SHARK_WAVE": ("O Tubarão-Porco chama o cardume: onda {n}!", "The Pork Shark calls the shoal: wave {n}!", "El Tiburón-Cerdo llama al cardumen: ¡oleada {n}!"),
+    "TOAST_CAPTAIN_WAVE": ("O Capitão Afogado chama o mar: onda {n}!", "The Drowned Captain calls the sea: wave {n}!", "El Capitán Ahogado llama al mar: ¡oleada {n}!"),
     "MONSTER_PORK_SHARK": ("Tubarão-Porco", "Pork Shark", "Tiburón-Cerdo"),
     "MONSTER_DROWNED_CAPTAIN": ("Capitão Afogado", "Drowned Captain", "Capitán Ahogado"),
     "NPC_DOCK_MASTER": ("Mestre do Porto", "Harbor Master", "Maestro del Puerto"),

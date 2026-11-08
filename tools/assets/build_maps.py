@@ -1485,7 +1485,7 @@ cap_rooms = [
     room("avenue", 0, -15, 56, 16, ["south", "north"], torch=True, roofs=True),
     room("castle_court", 0, -31, 34, 16, ["south"], torch=True, wall_height=2.0),
 ]
-cap_decor = [{"piece": "Pr_CoveredWell", "position": [0, -15], "solid": [1.8, 1.8]}]
+cap_decor = [{"piece": "Fountain_Capital", "position": [0, -15], "solid": [4.4, 4.4]}]  # chafariz animado (tools/assets/build_fountain.py)
 for x in (-18, -9, 9, 18):
     cap_decor.append({"piece": "Pr_LampPost", "position": [x, -9.5], "solid": [0.6, 0.6]})
     cap_decor.append({"piece": "Pr_LampPost", "position": [x, -20.5], "solid": [0.6, 0.6]})
@@ -1920,4 +1920,14 @@ subprocess.run([sys.executable, "tools/assets/add_pixellabs_content.py"], check=
 subprocess.run([sys.executable, "tools/assets/add_map_mimics.py"], check=True)  # baús monstro em todos os mapas
 subprocess.run([sys.executable, "tools/assets/balance_monsters.py"], check=True)  # força, XP e ouro equalizados pela ordem dos mapas
 subprocess.run([sys.executable, "tools/assets/set_map_order.py"], check=True)  # ordem dos mapas: hubs Tortuga, Capital e Fazenda (sem portais em cadeia)
+subprocess.run([sys.executable, "tools/assets/ruins_fire_monsters.py"], check=True)  # Ruínas: todos os monstros de Fogo
+subprocess.run([sys.executable, "tools/assets/ruins_miniboss_skills.py"], check=True)  # Ruínas: mini-chefes com ondas de fogo, pisão e arremesso em brasa
+subprocess.run([sys.executable, "tools/assets/add_ruins_armored_troll.py"], check=True)  # Ruínas: Troll Blindado (6 bandos)
+subprocess.run([sys.executable, "tools/assets/add_swamp_crocodiles.py"], check=True)  # Floresta Sombria: crocodilos no Pântano das Cobras
+subprocess.run([sys.executable, "tools/assets/add_docks_ditch_dog.py"], check=True)  # Docas: Cão da Vala (4 bandos)
+subprocess.run([sys.executable, "tools/assets/forest_demogorgon.py"], check=True)  # Floresta: Boca-de-Flor no lugar do Tio Fungo
+subprocess.run([sys.executable, "tools/assets/add_boss_treasure.py"], check=True)  # joias de ouro no chão em volta do chefe final de cada mapa
+subprocess.run([sys.executable, "tools/assets/add_gold_skulls.py"], check=True)  # pilhas de caveiras de ouro nas Catacumbas e no Cemitério
+subprocess.run([sys.executable, "tools/assets/add_desert_sandworm.py"], check=True)  # Deserto: Verme Dourado (6 pontos, cospe de longe)
+subprocess.run([sys.executable, "tools/assets/docks_skeleton_pirate.py"], check=True)  # Docas: Esqueleto Pirata no lugar do Polvo de Tinta
 print("OK", [k for k in arenas if k.split("_")[0] in ("forest", "ruins", "cemetery", "fort", "farm", "mine")])

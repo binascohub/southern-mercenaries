@@ -14,9 +14,25 @@ const SLIME_RIM := Color(0.12, 0.22, 0.06, 0.5)
 const SLIME_BUBBLE := Color(0.72, 0.9, 0.4, 0.75)
 const SLIME_SEGMENTS := 40
 const WARNING_COLOR := Color(0.95, 0.2, 0.1, 0.4)
+## Padrões das marcas de perigo (Kenney Pattern Pack, CC0) e o shader que os desliza dentro do círculo.
+const PATTERN_SHADER := preload("res://assets/shaders/pattern_decal.gdshader")
+const PATTERNS := "res://assets/fx/patterns/%s.png"
+## Estilo do aviso pelo tipo do golpe: [padrão, cor, deslize (x, y), repetições por metro].
+const WARNING_STYLES := {
+	"": ["stripes", Color(0.95, 0.18, 0.08, 0.75), Vector2(0.45, 0.0), 0.5],  # listras de perigo
+	"slam": ["cracks", Color(0.95, 0.3, 0.08, 0.8), Vector2(0.0, 0.0), 0.4],  # pisão: chão rachando
+	"water": ["waves", Color(0.95, 0.25, 0.15, 0.75), Vector2(0.0, 0.5), 0.45],  # jato d'água, onda
+	"pull": ["chevrons", Color(0.95, 0.15, 0.3, 0.8), Vector2(0.0, -0.8), 0.5],  # arpão, bote: setas
+	"net": ["net", Color(0.85, 0.2, 0.55, 0.75), Vector2(0.15, 0.15), 0.6],  # rede, tinta: lentidão
+	"poison": ["bubbles", Color(0.7, 0.9, 0.15, 0.7), Vector2(0.05, 0.12), 0.55],  # cuspe que deixa poça
+	"fire": ["stripes", Color(1.0, 0.45, 0.05, 0.8), Vector2(0.7, 0.0), 0.5],  # bola de fogo, canhão
+}
 
 ## Onde ficam os discos (a raiz da área atual).
 var root: Node3D
+## Altura do chão da área atual: nas Docas o piso de tábuas fica ~13 cm acima do zero e esconderia as marcas
+## no chão (avisos, poças e as áreas das habilidades em spell_fx.gd e fx.gd usam esta altura).
+static var ground_y := 0.0
 ## Só no servidor: {position, radius, time (<0 = fixa), dps, level}.
 var _list: Array[Dictionary] = []
 var _tick := 0.0
@@ -34,6 +50,7 @@ func reset(area: Dictionary) -> void:
 
 ## Visuais das poças fixas (todos os PCs, ao montar a área).
 func build_static(area: Dictionary) -> void:
+	ground_y = 0.14 if String(area.get("style", {}).get("floor", "")).begins_with("Dock_") else 0.0
 	for hazard: Dictionary in area.get("hazards", []):
 		_slime(Vector3(hazard.position[0], 0, hazard.position[1]), float(hazard.radius), -1.0)
 
@@ -47,9 +64,9 @@ func add(at: Vector3, radius: float, duration: float, dps: float, level: int) ->
 
 
 ## Marca vermelha no chão: o golpe cai ali quando o tempo acabar.
-func telegraph(at: Vector3, radius: float, time: float) -> void:
+func telegraph(at: Vector3, radius: float, time: float, style := "") -> void:
 	if multiplayer.is_server():
-		_show_warning.rpc(at, radius, time)
+		_show_warning.rpc(at, radius, time, style)
 
 
 ## Golpe no chão (cuspe, pisão): quem está dentro leva o dano; com "puddle_time", deixa poça.
@@ -67,9 +84,22 @@ func strike(at: Vector3, radius: float, damage: float, level: int, source: Node3
 				if away.length() < 0.1:
 					away = Vector3.BACK
 				p.knock_back(away.normalized() * push, float(extra.get("push_time", 0.4)))
+			# Arpão / âncora ("pull": metros): puxa o herói para o monstro que lançou (a esquiva escapa).
+			var pull := float(extra.get("pull", 0.0))
+			if pull > 0.0 and source and is_instance_valid(source):
+				var to := source.global_position - p.global_position
+				to.y = 0.0
+				if to.length() > 1.6:
+					p.knock_back(to.normalized() * minf(pull, to.length() - 1.4), float(extra.get("push_time", 0.35)))
 			p.take_damage(damage, level, source)
+			# Rede, piche, grito ("slow": [quanto, segundos]): o herói anda e ataca mais devagar por um tempo.
+			var slow: Array = extra.get("slow", [])
+			if slow.size() == 2:
+				p.add_buff("slow", float(slow[0]), float(slow[1]))
 	if extra.get("wind", false):
 		_show_gust.rpc(at, radius)
+	if extra.has("boom"):
+		_show_boom.rpc(at, radius, Color(extra.boom[0], extra.boom[1], extra.boom[2]))
 	if float(extra.get("puddle_time", 0.0)) > 0.0:
 		add(at, radius, float(extra.puddle_time), float(extra.get("puddle_dps", 3.0)) * pow(1.12, level - 1), level)
 
@@ -108,6 +138,15 @@ static func _inside(point: Vector3, center: Vector3, radius: float) -> bool:
 @rpc("authority", "call_local", "reliable")
 func _show_sludge(at: Vector3, radius: float, duration: float) -> void:
 	_slime(at, radius, duration)
+
+
+## Estouro no chão (bala de canhão, barril de pólvora): clarão e fumaça na cor dada.
+@rpc("authority", "call_local", "reliable")
+func _show_boom(at: Vector3, radius: float, color: Color) -> void:
+	if root == null or not is_instance_valid(root):
+		return
+	Fx.burst(root, Vector3(at.x, 0.4, at.z), radius, color, "fire", 0.6)
+	Sfx.play("explosion", at)
 
 
 ## Rajada de vento (asas da Rainha): anéis claros que se abrem e somem, e
@@ -160,12 +199,81 @@ func _show_gust(at: Vector3, radius: float) -> void:
 
 
 @rpc("authority", "call_local", "reliable")
-func _show_warning(at: Vector3, radius: float, time: float) -> void:
-	var disc := _disc(at, radius, WARNING_COLOR, time)
-	if disc:
-		# Cresce do centro até o tamanho do golpe: dá para ver quanto tempo falta.
-		disc.scale = Vector3(0.2, 1, 0.2)
-		disc.create_tween().tween_property(disc, "scale", Vector3.ONE, time)
+func _show_warning(at: Vector3, radius: float, time: float, style := "") -> void:
+	if style == "rune":
+		_rune_ring(at, radius, time)
+		return
+	var look: Array = WARNING_STYLES.get(style, WARNING_STYLES[""])
+	var decal := pattern_decal(root, Vector3(at.x, 0.05 + ground_y, at.z), radius, String(look[0]), look[1], look[2], float(look[3]), time)
+	if decal:
+		# O padrão enche o círculo do centro até a borda (a borda já aparece): dá para ver quanto tempo falta.
+		var mat := decal.material_override as ShaderMaterial
+		mat.set_shader_parameter("fill", 0.15)
+		decal.create_tween().tween_method(func(v: float) -> void: mat.set_shader_parameter("fill", v), 0.15, 1.0, maxf(time, 0.05))
+
+
+## Selo Rúnico (golpe "rune_ring"): o anel de runas douradas (assets/models/fx/rune_ring.glb, "Dark Magician Ring", Anthony Yanez,
+## CC BY 4.0) aparece no alto, desce girando até o chão enquanto o golpe não cai e some girando depressa; uma luz dourada o acompanha.
+const RUNE_RING := "res://assets/models/fx/rune_ring.glb"
+
+
+func _rune_ring(at: Vector3, radius: float, time: float) -> void:
+	if root == null or not is_instance_valid(root) or not ResourceLoader.exists(RUNE_RING):
+		pattern_decal(root, Vector3(at.x, 0.05 + ground_y, at.z), radius, "stripes", Color(0.95, 0.75, 0.25, 0.75), Vector2(0.4, 0.0), 0.5, time)
+		return
+	var holder := Node3D.new()
+	root.add_child(holder)
+	holder.position = Vector3(at.x, ground_y + 2.6, at.z)
+	var ring := (load(RUNE_RING) as PackedScene).instantiate() as Node3D
+	ring.scale = Vector3.ONE * radius * 2.0
+	for mesh in ring.find_children("*", "MeshInstance3D", true, false):
+		(mesh as MeshInstance3D).cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	holder.add_child(ring)
+	var glow := OmniLight3D.new()
+	glow.light_color = Color(1.0, 0.8, 0.35)
+	glow.omni_range = radius * 1.8
+	glow.light_energy = 1.2
+	glow.position.y = 0.4
+	holder.add_child(glow)
+	# A área onde o selo cai, fraca no chão, para dar tempo de sair.
+	pattern_decal(root, Vector3(at.x, 0.05 + ground_y, at.z), radius, "stripes", Color(0.95, 0.75, 0.25, 0.45), Vector2(0.3, 0.0), 0.5, time)
+	var t := holder.create_tween().set_parallel()
+	t.tween_property(holder, "position:y", ground_y + 0.08, maxf(time, 0.1)).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+	t.tween_property(ring, "rotation:y", TAU * 1.5, maxf(time, 0.1)).as_relative()
+	var out := holder.create_tween()
+	out.tween_interval(maxf(time, 0.1))
+	out.tween_property(ring, "rotation:y", TAU, 0.35).as_relative()
+	out.parallel().tween_property(ring, "scale", ring.scale * 1.25, 0.35)
+	out.parallel().tween_property(glow, "light_energy", 0.0, 0.35)
+	out.tween_callback(holder.queue_free)
+
+
+## Marca no chão com um padrão deslizando (aviso, poça, faixa): quadrado deitado com o shader de padrão.
+## `per_meter` = quantas vezes o padrão se repete por metro; `band` = faixa sem recorte redondo (o tamanho vem de `size`).
+static func pattern_decal(parent: Node3D, at: Vector3, radius: float, pattern: String, color: Color, scroll: Vector2, per_meter: float, duration: float,
+		band := false, size := Vector2.ZERO) -> MeshInstance3D:
+	if parent == null or not is_instance_valid(parent):
+		return null
+	var decal := MeshInstance3D.new()
+	var quad := QuadMesh.new()
+	quad.orientation = PlaneMesh.FACE_Y
+	quad.size = size if band else Vector2.ONE * radius * 2.0
+	decal.mesh = quad
+	var mat := ShaderMaterial.new()
+	mat.shader = PATTERN_SHADER
+	mat.set_shader_parameter("pattern", load(PATTERNS % pattern))
+	mat.set_shader_parameter("color", color)
+	mat.set_shader_parameter("scroll", scroll)
+	mat.set_shader_parameter("tiles", quad.size * per_meter)
+	mat.set_shader_parameter("band", band)
+	mat.set_shader_parameter("rim", 0.18 if band else clampf(0.25 / maxf(radius, 0.5), 0.04, 0.2))
+	decal.material_override = mat
+	decal.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	parent.add_child(decal)
+	decal.position = at
+	if duration > 0.0:
+		decal.get_tree().create_timer(duration, false).timeout.connect(decal.queue_free)
+	return decal
 
 
 ## Mancha de lodo mucoso: contorno irregular (sempre dentro do raio do dano), centro
@@ -254,8 +362,10 @@ func _slime(at: Vector3, radius: float, duration: float) -> Node3D:
 		bubble.position = Vector3(cos(angle) * reach, size * 0.3, sin(angle) * reach)
 		holder.add_child(bubble)
 	root.add_child(holder)
-	holder.position = Vector3(at.x, 0.04, at.z)
+	holder.position = Vector3(at.x, 0.04 + ground_y, at.z)
 	holder.rotation.y = rng.randf() * TAU
+	# Bolhas do padrão subindo devagar por cima da mancha (dentro do miolo, que nunca passa do raio do dano).
+	pattern_decal(holder, Vector3(0, 0.015, 0), radius * 0.8, "bubbles", Color(0.75, 1.0, 0.3, 0.45), Vector2(0.03, 0.1), 0.7, 0.0)
 	# Respira devagar (a borda parece escorrer).
 	var breathe := holder.create_tween().set_loops()
 	breathe.tween_property(stain, "scale", Vector3(1.03, 1.0, 1.03), 1.6 + rng.randf()).set_trans(Tween.TRANS_SINE)
@@ -286,7 +396,7 @@ func _disc(at: Vector3, radius: float, color: Color, duration: float) -> MeshIns
 	disc.material_override = material
 	disc.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	root.add_child(disc)
-	disc.position = Vector3(at.x, 0.04, at.z)
+	disc.position = Vector3(at.x, 0.04 + ground_y, at.z)
 	if duration > 0.0:
 		get_tree().create_timer(duration, false).timeout.connect(disc.queue_free)
 	return disc

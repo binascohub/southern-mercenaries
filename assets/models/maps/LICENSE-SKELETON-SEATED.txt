@@ -1,0 +1,5 @@
+Skeleton_Seated.glb - "Previous Victim Skeleton - Granny" by Arthurzin (https://sketchfab.com/arthurbat64)
+            https://sketchfab.com/3d-models/previous-victim-skeleton-granny-78466aa94ffe4ffe833f14534e8801d2
+            CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+            Changes: the four meshes joined into one, texture reduced to 512 px (JPG), turned to face -Z, scaled to ~1.05 m seated height,
+            back on the origin and base on the ground (tools/assets/build_seated_skeleton.py).

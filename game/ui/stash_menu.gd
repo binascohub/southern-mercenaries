@@ -115,6 +115,7 @@ func _build() -> void:
 		var scroll := ScrollContainer.new()
 		scroll.custom_minimum_size = Vector2(380, 380)
 		scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+		scroll.follow_focus = true  # no controle, o item em foco aparece sozinho
 		col.add_child(scroll)
 		var list := VBoxContainer.new()
 		list.size_flags_horizontal = Control.SIZE_EXPAND_FILL

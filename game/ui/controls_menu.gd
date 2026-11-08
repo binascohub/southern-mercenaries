@@ -20,7 +20,8 @@ func _ready() -> void:
 	add_title("CONTROLS_TITLE")
 
 	var scroll := ScrollContainer.new()
-	scroll.custom_minimum_size = Vector2(720, 420)
+	scroll.custom_minimum_size = Vector2(720, 300)
+	scroll.follow_focus = true
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	content.add_child(scroll)
 	_grid = GridContainer.new()
@@ -40,7 +41,7 @@ func _ready() -> void:
 		_grid.add_child(label)
 		for kind in [Controls.KB, Controls.PAD]:
 			var button := Button.new()
-			button.custom_minimum_size = Vector2(200, 36)
+			button.custom_minimum_size = Vector2(200, 32)
 			button.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 			button.pressed.connect(_start_wait.bind(action, kind))
 			_grid.add_child(button)

@@ -584,6 +584,9 @@ msgstr "Characters"
 msgid "CHAR_NEW"
 msgstr "New character"
 
+msgid "CHAR_SAVED"
+msgstr "Your characters"
+
 msgid "CHAR_CREATE"
 msgstr "Create"
 
@@ -1719,6 +1722,9 @@ msgstr "For sale"
 msgid "SHOP_SELL"
 msgstr "Sell (your bag)"
 
+msgid "SHOP_DETAILS"
+msgstr "Item"
+
 msgid "SHOP_HINT"
 msgstr "Equipment sells for 25% of its value; only the pirates buy valuables, at the price of the day."
 
@@ -2129,6 +2135,9 @@ msgstr "Blacksmith"
 
 msgid "FORGE_TITLE"
 msgstr "Forge — refining"
+
+msgid "FORGE_EMPTY"
+msgstr "Nothing to refine: equip or carry a weapon or armor piece to upgrade it here."
 
 msgid "FORGE_EQUIPPED"
 msgstr "(equipped)"
@@ -4621,10 +4630,10 @@ msgid "PORTALS_GO"
 msgstr "Teleport to {city} (free, the whole party)"
 
 msgid "PORTALS_LOCKED"
-msgstr "{city} — finish {here}'s quests ({n} left)"
+msgstr "{city} — finish {here}'s maps ({n} left)"
 
 msgid "TOAST_HUB_LOCKED"
-msgstr "The Time Traveler only takes you onward once {city}'s quests are done ({n} left)."
+msgstr "The Time Traveler only takes you onward once {city}'s maps are done ({n} left)."
 
 msgid "AREA_FARM_SHED"
 msgstr "Equipment House"
@@ -5285,3 +5294,72 @@ msgstr "The stone does not react. There is an empty gap in the center, the size 
 
 msgid "TOAST_BREAKABLE_MIMIC"
 msgstr "It was a Mimic!"
+
+msgid "MONSTER_SEA_CRAB"
+msgstr "Pincer Crab"
+
+msgid "MONSTER_SEA_OCTOPUS"
+msgstr "Ink Octopus"
+
+msgid "MONSTER_SEA_ANGLER"
+msgstr "Drunken Skeleton"
+
+msgid "MONSTER_SEA_GATOR"
+msgstr "Dragging Gator"
+
+msgid "TOAST_HULL_WAVE"
+msgstr "The Living Hull creaks: sea creature wave {n} climbs the pier!"
+
+msgid "TOAST_SHARK_WAVE"
+msgstr "The Pork Shark calls the golden crabs: wave {n}!"
+
+msgid "TOAST_CAPTAIN_WAVE"
+msgstr "The Drowned Captain calls the sea: wave {n}!"
+
+msgid "TOAST_WARDEN_WAVE"
+msgstr "The Ruin Warden unleashes the demons: wave {n}!"
+
+msgid "TOAST_CHAMPION_WAVE"
+msgstr "The Fallen Champion calls the army of fire: wave {n}!"
+
+msgid "MONSTER_EMBER_GOBLIN"
+msgstr "Ash Goblin"
+
+msgid "MONSTER_EMBER_BAT"
+msgstr "Ember Bat"
+
+msgid "MONSTER_FIRE_SCORPION"
+msgstr "Fire Scorpion"
+
+msgid "MONSTER_EMBER_MIMIC"
+msgstr "Ember Mimic"
+
+msgid "MONSTER_ARMORED_TROLL"
+msgstr "Armored Troll"
+
+msgid "MONSTER_SWAMP_CROC"
+msgstr "Swamp Crocodile"
+
+msgid "MONSTER_SPIKED_CROC"
+msgstr "Spiked Crocodile"
+
+msgid "MONSTER_DITCH_DOG"
+msgstr "Ditch Dog"
+
+msgid "MONSTER_MAGMA_HOUND"
+msgstr "Magma Hound"
+
+msgid "TOAST_KING_WAVE"
+msgstr "The Fallen King calls the magma hounds!"
+
+msgid "MONSTER_FLOWERMAW"
+msgstr "Flowermaw"
+
+msgid "MONSTER_GOLD_SANDWORM"
+msgstr "Gold Sandworm"
+
+msgid "MONSTER_GOLD_CRAB"
+msgstr "Golden Crab"
+
+msgid "MONSTER_SKELETON_PIRATE"
+msgstr "Skeleton Pirate"

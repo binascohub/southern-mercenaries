@@ -4,7 +4,10 @@
 dos heróis continuam valendo. A malha só muda nos braços (para a T-pose).
 Perfis (medidas na malha, em metros, depois de "prescale"):
   forest_troll: Troll da Floresta (forest_troll.glb, de build_forest_troll.py): pernas curtas, tronco alto, ombro largo, braços compridos.
+  ruins_troll:  Troll das Ruínas (ruins_troll.glb, de build_ruins_troll.py): 2,6 m, pernas curtas, braços de gorila (1,75 m, ~37°), cabeça baixa entre os ombros.
+  troll_armored: Troll Blindado das Ruínas (troll_armored.glb, de build_troll_armored.py): T-pose, 3 m, armadura larga.
   golem_king:   Rei Golem de Pedra (golem_king.glb, de build_stone_golem_king.py, 1 m no arquivo): aumentado 2,3x para medir; o jogo usa a escala 1/2,3.
+  skeleton_drunk: Esqueleto Bêbado das Docas (skeleton_drunk.glb, de build_skeleton_drunk.py): 1,9 m, magro, braços caídos com a garrafa.
 uso: blender -b -P tools/assets/rig_biped.py -- <perfil> <malha.glb> <hero_male.glb> <saída.glb>"""
 import bpy, sys, math
 import numpy as np
@@ -17,6 +20,14 @@ PROFILES = {
                      "z": [0.0, 0.08, 0.30, 0.60, 1.55, 1.95, 2.15, 2.3], "radius": 1.0},
     "golem_king": {"prescale": 2.3, "shoulder": (0.60, 1.62), "theta": 78.0, "arm_len": 1.05, "leg_x": 0.30,
                    "z": [0.0, 0.12, 0.45, 1.00, 1.62, 2.00, 2.20, 2.3], "radius": 1.0},
+    "ruins_troll": {"prescale": 1.0, "shoulder": (0.70, 1.97), "theta": 37.0, "arm_len": 1.75, "leg_x": 0.33,
+                    "z": [0.0, 0.12, 0.45, 0.90, 1.97, 2.15, 2.30, 2.6], "radius": 1.3},
+    # T-pose (braços na horizontal, theta 0): ombro a 0,6 m do meio e 2,0 m de altura, mão até 2,08 m; pernas curtas e grossas, tronco largo de armadura.
+    "troll_armored": {"prescale": 1.0, "shoulder": (0.60, 2.0), "theta": 0.0, "arm_len": 1.48, "leg_x": 0.30,
+                      "z": [0.0, 0.12, 0.45, 0.95, 2.00, 2.40, 2.55, 3.0], "radius": 1.15},
+    # Esqueleto Bêbado das Docas (skeleton_drunk.glb, de build_skeleton_drunk.py): 1,9 m com o chapéu, magro, braços caídos (~62°) com a garrafa na mão esquerda.
+    "skeleton_drunk": {"prescale": 1.0, "shoulder": (0.19, 1.544), "theta": 62.0, "arm_len": 0.72, "leg_x": 0.13,
+                       "z": [0.0, 0.06, 0.50, 0.946, 1.544, 1.60, 1.69, 1.9], "radius": 0.5},
 }
 profile, src, hero_path, dst = sys.argv[sys.argv.index("--") + 1:][:4]
 P_ = PROFILES[profile]

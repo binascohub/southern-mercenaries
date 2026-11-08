@@ -336,15 +336,31 @@ static func map_quest_missing(target: String, states: Dictionary) -> bool:
 	return has_quest
 
 
-## Quantas missões de aldeia dos mapas da cidade `hub` ainda não foram concluídas.
+## Quantos mapas da cidade `hub` ainda não foram concluídos: um mapa conta como concluído quando uma das missões que o abrem (a principal,
+## "main", ou a que tem "opens_map") está feita (o chefe do mapa). As missões de aldeia opcionais (os goblins do Leônidas) não travam a viagem.
+## Mapas sem missão principal não contam.
 static func hub_pending(hub: String, quest_states: Dictionary) -> int:
-	var maps: Array = HUB_MAPS.get(hub, [])
 	var count := 0
-	for id: String in GameData.quests:
-		var quest: Variant = GameData.quests[id]
-		if quest is Dictionary and quest.get("type", "") == "village" and quest.get("area", "") in maps and quest_states.get(id, "") != "done":
+	for map_id: String in HUB_MAPS.get(hub, []):
+		var has_quest := false
+		var done := false
+		for id: String in GameData.quests:
+			var quest: Variant = GameData.quests[id]
+			if quest is Dictionary and quest.get("area", "") == map_id and (quest.get("type", "") == "main" or quest.get("opens_map", false)):
+				has_quest = true
+				done = done or quest_states.get(id, "") == "done"
+		if has_quest and not done:
 			count += 1
 	return count
+
+
+## Pegadas até o Viajante do Tempo: nesta cidade a viagem já está liberada e o grupo ainda nunca foi para outra cidade com ele.
+static func hub_travel_hint(hub: String, quest_states: Dictionary, unlocked_keys: Array) -> bool:
+	return HUB_MAPS.has(hub) and HUB_TRAVELED not in unlocked_keys and hub_pending(hub, quest_states) == 0
+
+
+## Marca da campanha ("unlocked") gravada na primeira viagem do Viajante do Tempo.
+const HUB_TRAVELED := "hub_traveled"
 
 
 func request_hub_travel(hub: String) -> void:
@@ -363,6 +379,10 @@ func _rpc_hub_travel(hub: String) -> void:
 	if left > 0:
 		_arena()._toast_all("TOAST_HUB_LOCKED", {"city": GameData.arenas[here].name_key, "n": left})
 		return
+	var c := _campaign()
+	if HUB_TRAVELED not in c.get("unlocked", []):
+		c.unlocked = c.get("unlocked", []) + [HUB_TRAVELED]  # as pegadas até o Viajante não aparecem mais
+		SaveSystem.save_campaign(c, true)
 	_arena().travel(hub, "start")
 
 

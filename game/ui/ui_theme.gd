@@ -27,9 +27,18 @@ const TITLE_FONT := "res://assets/fonts/Cinzel.ttf"
 ## Título do jogo (gótica de pirata) e texto dos menus (tipografia de livro antigo).
 const GAME_FONT := "res://assets/fonts/PirataOne.ttf"
 const BOOK_FONT := "res://assets/fonts/IMFellEnglish.ttf"
-const PAPER_MARGIN := 24
+const PAPER_MARGIN := 30
 const WAX := Color(0.55, 0.11, 0.09)
 const BRASS := Color(0.55, 0.43, 0.2)
+## Molduras da Kenney (Fantasy UI Borders, CC0; assets/ui/borders): brancas, tingidas aqui e desenhadas por dentro da
+## borda do papel (o 9-patch repete as linhas retas, então elas seguem a janela de qualquer tamanho).
+const WINDOW_BORDER := "res://assets/ui/borders/window_border.png"
+const BOX_BORDER := "res://assets/ui/borders/box_border.png"
+## Tamanho dos cantos da moldura (pixels da imagem de 48) e o recuo dela a partir da beira do papel.
+const BORDER_CORNER := 16
+const BORDER_INSET := 11
+## Cor da moldura sobre o papel: latão escuro (ouro claro some no pergaminho).
+const FRAME_INK := Color(0.42, 0.28, 0.09)
 
 static var _theme: Theme
 
@@ -62,19 +71,22 @@ static func build() -> Theme:
 		theme.default_font = body
 	theme.default_font_size = 17
 
-	# Janelas: madeira com cantoneiras de ferro, fundo de couro.
-	var window := _tiled_box(_paper_image(PARCHMENT), PAPER_MARGIN, 26)
+	# Janelas: pergaminho com moldura dupla de latão (Kenney Fantasy UI Borders) por dentro da borda queimada.
+	var window := _tiled_box(_framed(_paper_image(PARCHMENT), WINDOW_BORDER, FRAME_INK), PAPER_MARGIN, 32)  # o conteúdo começa depois da moldura
 	for type in ["PanelContainer", "Panel", "PopupPanel", "PopupMenu"]:
 		theme.set_stylebox("panel", type, window)
 	# Pergaminho: conversas, abertura, dicas, diário.
 	theme.set_type_variation("ParchmentPanel", "PanelContainer")
-	theme.set_stylebox("panel", "ParchmentPanel", _tiled_box(_paper_image(PARCHMENT.lightened(0.04)), PAPER_MARGIN, 26))
+	theme.set_stylebox("panel", "ParchmentPanel", _tiled_box(_framed(_paper_image(PARCHMENT.lightened(0.04)), BOX_BORDER, FRAME_INK), PAPER_MARGIN, 32))
 	theme.set_type_variation("ParchmentLabel", "Label")
 	theme.set_color("font_color", "ParchmentLabel", INK)
 	theme.set_constant("outline_size", "ParchmentLabel", 0)
 	# HUD: painéis pequenos e discretos nas bordas.
 	theme.set_type_variation("HudPanel", "PanelContainer")
 	theme.set_stylebox("panel", "HudPanel", _texture_box(_frame_image(Color(0.08, 0.06, 0.05), 0.82, 6), 6 + SHADOW, 6))
+	# Pergaminho compacto, sem moldura: caixas pequenas (atalhos da janela de habilidades, dicas e avisos do HUD).
+	theme.set_type_variation("CompactPaper", "PanelContainer")
+	theme.set_stylebox("panel", "CompactPaper", _tiled_box(_paper_image(PARCHMENT), PAPER_MARGIN, 12))
 	theme.set_stylebox("panel", "TooltipPanel", _tiled_box(_paper_image(PARCHMENT), PAPER_MARGIN, 14))
 	theme.set_color("font_color", "TooltipLabel", INK)
 
@@ -400,6 +412,49 @@ static func _paper_image(tint: Color) -> Image:
 			color.a = clampf((edge - cut) / 1.5, 0.0, 1.0)
 			image.set_pixel(x, y, color)
 	return image
+
+
+## Desenha a moldura `border` (9-patch de 48 px, tingida de `tint`) sobre a imagem, recuada BORDER_INSET da beira:
+## os cantos vão inteiros e as bordas retas são esticadas (são linhas lisas).
+static func _framed(image: Image, border: String, tint: Color) -> Image:
+	if not ResourceLoader.exists(border):
+		return image
+	var src := (load(border) as Texture2D).get_image()
+	src.decompress()
+	src.convert(Image.FORMAT_RGBA8)
+	var m := BORDER_CORNER
+	var sw := src.get_width()
+	var sh := src.get_height()
+	var w := image.get_width() - BORDER_INSET * 2
+	var h := image.get_height() - BORDER_INSET * 2
+	var frame := Image.create(w, h, false, Image.FORMAT_RGBA8)
+	# [origem na moldura, tamanho na origem, destino, tamanho no destino]
+	var parts := [
+		[Vector2i(0, 0), Vector2i(m, m), Vector2i(0, 0), Vector2i(m, m)],
+		[Vector2i(sw - m, 0), Vector2i(m, m), Vector2i(w - m, 0), Vector2i(m, m)],
+		[Vector2i(0, sh - m), Vector2i(m, m), Vector2i(0, h - m), Vector2i(m, m)],
+		[Vector2i(sw - m, sh - m), Vector2i(m, m), Vector2i(w - m, h - m), Vector2i(m, m)],
+		[Vector2i(m, 0), Vector2i(sw - 2 * m, m), Vector2i(m, 0), Vector2i(w - 2 * m, m)],
+		[Vector2i(m, sh - m), Vector2i(sw - 2 * m, m), Vector2i(m, h - m), Vector2i(w - 2 * m, m)],
+		[Vector2i(0, m), Vector2i(m, sh - 2 * m), Vector2i(0, m), Vector2i(m, h - 2 * m)],
+		[Vector2i(sw - m, m), Vector2i(m, sh - 2 * m), Vector2i(w - m, m), Vector2i(m, h - 2 * m)],
+	]
+	for part: Array in parts:
+		var piece := src.get_region(Rect2i(part[0], part[1]))
+		piece.resize(part[3].x, part[3].y, Image.INTERPOLATE_NEAREST)
+		frame.blit_rect(piece, Rect2i(Vector2i.ZERO, part[3]), part[2])
+	var out := image.duplicate() as Image
+	for y in h:
+		for x in w:
+			var a := frame.get_pixel(x, y).a
+			if a <= 0.0:
+				continue
+			var at := Vector2i(x + BORDER_INSET, y + BORDER_INSET)
+			var under := out.get_pixelv(at)
+			var c := under.lerp(tint, a)
+			c.a = maxf(under.a, a)
+			out.set_pixelv(at, c)
+	return out
 
 
 ## Couro: grão, pesponto e aro de metal; as pontas são arredondadas.

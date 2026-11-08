@@ -203,6 +203,8 @@ func setup(sex: String, look: Dictionary, class_id := "") -> void:
 						_anim.get_animation(candidate).loop_mode = Animation.LOOP_LINEAR
 					break
 		_build_kick()
+		if class_id == "archer":
+			_add_bow_shoot()
 		_play("idle", 0.0)  # sem transição desde a pose de descanso
 
 
@@ -217,6 +219,35 @@ func _drop_finger_tracks() -> void:
 				if bone.begins_with(finger):
 					animation.remove_track(track)
 					break
+
+const BOW_SHOOT_SCENE := "res://assets/models/characters/anim_bow_shoot.glb"
+const BOW_SHOOT := "Bow_Shoot"
+
+
+## Tiro de arco do Arqueiro ("Animation - Bow Shoot", lexferreira89, CC BY 4.0; tools/assets/build_bow_shoot.py): entra no
+## lugar do tiro de pistola ("shoot"). O arquivo tem o mesmo esqueleto dos heróis, então a animação entra como está.
+func _add_bow_shoot() -> void:
+	if not ResourceLoader.exists(BOW_SHOOT_SCENE):
+		return
+	var library := _anim.get_animation_library("")
+	if library == null:
+		return
+	if not library.has_animation(BOW_SHOOT):
+		var source := (load(BOW_SHOOT_SCENE) as PackedScene).instantiate()
+		var player := source.find_child("AnimationPlayer", true, false) as AnimationPlayer
+		if player and player.has_animation(BOW_SHOOT):
+			var clip := player.get_animation(BOW_SHOOT).duplicate() as Animation
+			clip.loop_mode = Animation.LOOP_NONE
+			if sex == "female":
+				for track in range(clip.get_track_count() - 1, -1, -1):
+					var bone := String(clip.track_get_path(track).get_concatenated_subnames())
+					if bone.begins_with("index_") or bone.begins_with("middle_") or bone.begins_with("ring_") or bone.begins_with("pinky_") or bone.begins_with("thumb_"):
+						clip.remove_track(track)
+			library.add_animation(BOW_SHOOT, clip)
+		source.free()
+	if library.has_animation(BOW_SHOOT):
+		_names["shoot"] = BOW_SHOOT
+
 
 const KICK := "Kick_Procedural"
 const KICK_LENGTH := 0.9

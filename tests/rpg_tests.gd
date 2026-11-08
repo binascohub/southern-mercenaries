@@ -517,6 +517,7 @@ func _test_sewer_aggression() -> void:
 		if GameData.monsters[id] is Dictionary and GameData.monsters[id].get("aggressive", false):
 			aggressive.append(id)
 	aggressive.erase("leshy")  # o Leshy (mini-chefe final da Floresta) também acorda por proximidade
+	aggressive.erase("ember_mimic")  # o Mímico em Brasa das Ruínas é o mesmo Mímico, de Fogo
 	_check(aggressive == ["chest_mimic"] and GameData.arenas.sewers_01_drains.get("passive", false) and float(GameData.monsters.chest_mimic.size) <= 0.65,
 		"o Mímico é pequeno (%s) e o único monstro \"aggressive\" do Esgoto pacífico (%s)" % [GameData.monsters.chest_mimic.size, aggressive])
 
@@ -846,7 +847,7 @@ func _test_minibosses_and_relics() -> void:
 	_check(priest_ok, "o Padre oferece, lembra e agradece as três relíquias")
 	_check(Town.dialogue_index("court_jester", {}) == 0 and Town.dialogue_index("court_jester", {"royal_banquet": "active"}) == 1
 		and Town.dialogue_index("court_jester", {"royal_banquet": "done"}) == 2, "o Bobo oferece, lembra e agradece a carne")
-	_check(capital.decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Food_Apple").size() >= 8, "mesa farta com maçãs na sala do rei")
+	_check(capital.decor.filter(func(d: Dictionary) -> bool: return String(d.get("piece", "")).begins_with("Fk_") and absf(float(d.position[0])) < 1.5 and float(d.position[1]) > -61.6 and float(d.position[1]) < -57.6).size() >= 30, "mesa da fartura do rei: o banquete (Food Kit) nas mesas da sala do trono")
 	_check(capital.rooms.any(func(r: Dictionary) -> bool: return r.id == "church") and capital.rooms.any(func(r: Dictionary) -> bool: return r.id == "king_bedroom")
 		and capital.props.any(func(p: Dictionary) -> bool: return p.get("npc", "") == "priest" and p.position[0] < -15.0 and p.position[1] < -23.0 and p.position[1] > -39.0)
 		and capital.decor.any(func(d: Dictionary) -> bool: return d.get("piece", "") == "Podium")
@@ -1163,17 +1164,26 @@ func _test_sewers() -> void:
 	_check(Town.dialogue_index("ruins_spartan", {}) == 0 and Town.dialogue_index("ruins_spartan", {"ruins_goblins": "active"}) == 1
 		and Town.dialogue_index("ruins_spartan", {"ruins_goblins": "done"}) == 2 and NpcModel.has_model("ruins_spartan"),
 		"conversa de Leônidas: oferece, lembra e agradece; tem modelo próprio")
-	# Viajante do Tempo: um em cada cidade; só leva adiante com as missões de aldeia dos mapas da cidade atual concluídas.
+	# Viajante do Tempo: um em cada cidade; só leva adiante com os mapas da cidade atual concluídos (a missão principal de cada um);
+	# as missões de aldeia opcionais não travam (os goblins do Leônidas por fazer não seguram Tortuga).
 	var all_done := {}
 	for quest_id: String in GameData.quests:
-		if GameData.quests[quest_id] is Dictionary and GameData.quests[quest_id].get("type", "") == "village":
+		if GameData.quests[quest_id] is Dictionary:
 			all_done[quest_id] = "done"
+	var no_goblins := all_done.duplicate()
+	no_goblins.erase("ruins_goblins")
+	var no_ruins := all_done.duplicate()
+	no_ruins.erase("map_ruins")
+	no_ruins.erase("royal_banquet")
 	var travelers := 0
 	for city: String in Town.HUB_MAPS:
 		travelers += 1 if GameData.arenas[city].props.any(func(p: Dictionary) -> bool: return p.get("npc", "") == "voodoo_priest") else 0
 	_check(travelers == 3 and Town.hub_pending("tortuga", {}) > 0 and Town.hub_pending("tortuga", all_done) == 0 and Town.hub_pending("farm_01_fields", all_done) == 0
+		and Town.hub_pending("tortuga", no_goblins) == 0 and Town.hub_pending("tortuga", no_ruins) == 1
+		and Town.hub_travel_hint("tortuga", no_goblins, []) and not Town.hub_travel_hint("tortuga", no_goblins, [Town.HUB_TRAVELED])
+		and not Town.hub_travel_hint("tortuga", no_ruins, [])
 		and Town.hub_pending("capital_01_aurenhold", {"cemetery_x": "done"}) > 0 and tr("NPC_VOODOO_PRIEST") != "NPC_VOODOO_PRIEST",
-		"Viajante do Tempo: um por cidade e travado até concluir as missões da cidade atual")
+		"Viajante do Tempo: um por cidade, travado até concluir os mapas da cidade atual; pegadas até ele só antes da primeira viagem")
 	# Missões das cidades: o Cartógrafo só oferece depois das Ruínas; o Sacristão entrega o Mapa Selado e, depois do Deserto, pede a Foice de Prata (com o Velho Zeca, na Fazenda).
 	var map_quests := ["map_ruins", "map_catacombs", "map_desert", "map_mine", "map_bunker", "map_dark_forest"]
 	var chain_ok := true
@@ -1326,7 +1336,7 @@ func _test_sewers() -> void:
 	for e: Dictionary in forest.encounters:
 		if e.id != "f_stone_golem_king" and e.monsters[0].monster != "chest_mimic" and GameData.monsters[e.monsters[0].monster].get("category", "") in ["common", "elite"]:     # (os mini-chefes, os baús monstro espalhados e a Toca do Rei Golem ficam de fora)
 			sectors[e.monsters[0].monster] = true
-	_check(sectors.size() == 4 and sectors.has("forest_troll") and sectors.has("fungus_uncle"), "Floresta tem quatro salas de monstros (sapos, bestas, trolls e Tios Fungo), um tipo em cada (%d)" % sectors.size())
+	_check(sectors.size() == 4 and sectors.has("forest_troll") and sectors.has("forest_flowermaw"), "Floresta tem quatro salas de monstros (sapos, bestas, trolls e Bocas-de-Flor), um tipo em cada (%d)" % sectors.size())
 	var summoners: Array = forest.props.filter(func(p: Dictionary) -> bool: return p.has("summon") and p.id != "forest_temple")
 	_check(summoners.is_empty() and summoners.all(func(p: Dictionary) -> bool:
 		var group: Dictionary = p.summon

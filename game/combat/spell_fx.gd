@@ -10,8 +10,25 @@ extends RefCounted
 ## Motivos que existem (o teste confere data/spell_fx.json contra estas listas).
 const PROJECTILES := ["comet", "dart", "spear", "arrow", "orb", "crystal", "crescent", "rock", "boulder", "pierce", "tiny_arrow"]
 const GROUND := ["fire_burst", "meteor", "flame_ring", "campfire", "fire_rain", "frost_nova", "blizzard", "hail", "stone_rain", "storm_volley", "rain_heal", "spring", "mist", "whale_song", "wave_sweep",
-	"tornado", "storm", "quake", "stomp", "dome", "aura_up", "aura_wind", "banner", "teleport", "vanish", "smoke", "shout", "trap", "seal", "summon", "danger", "arc_sweep", "flock", "wing_storm", "splash", "iron"]
+	"tornado", "storm", "quake", "stomp", "dome", "aura_up", "aura_wind", "banner", "teleport", "vanish", "smoke", "shout", "trap", "seal", "star_seal", "summon", "danger", "arc_sweep", "flock", "wing_storm", "splash", "iron"]
 const BEAMS := ["lightning", "chain", "sky_bolt", "fire_line", "water_jet", "earth_line", "spear", "slash", "charge", "mark", "heal", "blink", "bite", "dive"]
+
+## Máscaras de luz (Kenney Light Masks, CC0; assets/fx/masks): dão forma aos clarões, anéis, marcas no chão, cones e rastros.
+const MASKS := "res://assets/fx/masks/%s.png"
+## Marca no chão por motivo: água (cáusticas), fogo (círculo com raios), runas e auras (anéis), vento (hélice girando), golpes em cone.
+const DECAL_WATER := ["rain_heal", "spring", "mist", "whale_song", "splash"]
+const DECAL_FIRE := ["fire_burst", "meteor", "flame_ring", "campfire", "fire_rain"]
+const DECAL_RUNE := ["dome", "aura_up", "banner", "seal", "star_seal", "summon", "teleport", "trap"]
+const DECAL_WIND := ["tornado", "aura_wind", "storm", "wing_storm"]
+const DECAL_CONE := ["arc_sweep", "flock", "wave_sweep"]
+
+## Sprites de partícula (Kenney Particle Pack e Smoke Particles, CC0; assets/fx/particles): as formas genéricas (brilho suave, faísca, estrela,
+## losango, anel, risco) e as próprias de cada elemento (chama, fumaça, névoa, nuvem, terra, poeira, raio, redemoinho).
+## As outras formas (gota, floco, cruz, folha, asa, hexágono, runa) continuam desenhadas aqui (_shape).
+const PARTICLES := "res://assets/fx/particles/%s.png"
+const PARTICLE_SPRITES := {"soft": "circle_05", "spark": "star_06", "star4": "star_07", "diamond": "magic_05", "ring": "circle_02", "ray": "trace_02",
+	"flame": "flame_05", "fire": "fire_01", "smoke": "blackSmoke03", "fog": "whitePuff12", "cloud": "whitePuff05", "dirt": "dirt_02", "dust": "whitePuff19",
+	"bolt": "spark_02", "twirl": "twirl_02"}
 
 static var _tex_cache := {}
 static var _mat_cache := {}
@@ -96,12 +113,11 @@ static func projectile(node: Node3D, skill_id: String, direction: Vector3, radiu
 			_emit(node, {"amount": 16, "life": 0.5, "size": r * 1.6, "tex": "soft", "c0": Color(0.6, 0.5, 0.36, 0.6), "c1": Color(0.4, 0.34, 0.26), "vmin": 0.1, "vmax": 0.6, "spread": 180.0, "local": false, "add": false})
 			_emit(node, {"amount": 8, "life": 0.5, "size": r * 1.0, "mesh": "cube", "c0": Color(0.5, 0.4, 0.28), "c1": Color(0.4, 0.34, 0.24), "vmin": 0.3, "vmax": 1.2, "spread": 180.0, "grav": Vector3(0, -9.0, 0), "local": false, "add": false})
 		"boulder":
-			var big := _core_box(node, Color(0.46, 0.38, 0.28), Vector3(r * 1.9, r * 1.6, r * 1.9), 0.0, true)
-			var second := _core_box(big, Color(0.4, 0.34, 0.25), Vector3(r * 1.3, r * 1.3, r * 1.3), 0.0, true)
-			second.rotation = Vector3(0.6, 0.8, 0.3)
+			# Esfera de estilhaços pontudos (Icodion, tamminen, CC BY 4.0; assets/models/fx/icodion.glb) rolando, na cor de pedra da habilidade.
+			var big := _boulder_mesh(node, c, r * 2.1)
 			var roll_b := big.create_tween().set_loops()
 			roll_b.tween_property(big, "rotation", Vector3(TAU, 0.0, TAU * 0.5), 0.9).as_relative()
-			_emit(node, {"amount": 22, "life": 0.7, "size": r * 2.2, "tex": "soft", "c0": Color(0.62, 0.52, 0.38, 0.55), "c1": Color(0.4, 0.34, 0.26), "vmin": 0.1, "vmax": 0.7, "spread": 180.0, "local": false, "add": false})
+			_emit(node, {"amount": 22, "life": 0.7, "size": r * 2.2, "tex": "dust", "c0": Color(0.62, 0.52, 0.38, 0.55), "c1": Color(0.4, 0.34, 0.26), "vmin": 0.1, "vmax": 0.7, "spread": 180.0, "local": false, "add": false})
 			_emit(node, {"amount": 12, "life": 0.6, "size": r * 1.0, "mesh": "cube", "c0": Color(0.5, 0.4, 0.28), "c1": Color(0.4, 0.34, 0.24), "vmin": 0.6, "vmax": 2.0, "spread": 180.0, "grav": Vector3(0, -10.0, 0), "local": false, "add": false})
 		"pierce":
 			_core_box(node, c[1], Vector3(r * 0.4, r * 0.4, r * 7.0), yaw)
@@ -136,9 +152,10 @@ static func _cast(parent: Node, spec: Dictionary, at: Vector3, c: Array) -> void
 
 
 static func _ground(parent: Node, spec: Dictionary, at: Vector3, b: Vector3, s: float, c: Array, life: float) -> void:
-	var root := _root(parent, Vector3(at.x, 0.0, at.z), maxf(life, 0.5))
+	var root := _root(parent, Vector3(at.x, Hazards.ground_y, at.z), maxf(life, 0.5))
 	var lasting := life > 0.8
 	var k := float(spec.get("k", 1.0))
+	_ground_decal(root, String(spec.m), s * k, c, life, b)
 	match String(spec.m):
 		"fire_burst": _m_fire_burst(root, s * k, c)
 		"meteor": _m_meteor(root, s * k, c)
@@ -169,6 +186,9 @@ static func _ground(parent: Node, spec: Dictionary, at: Vector3, b: Vector3, s: 
 		"shout": _m_shout(root, s * k, c)
 		"trap": _m_trap(root, s * k, c, life)
 		"seal": _m_seal(root, s * k, c, life, String(spec.get("g", "rune")), String(spec.get("t", "spark")))
+		"star_seal":
+			_m_seal(root, s * k, c, life, String(spec.get("g", "rune")), String(spec.get("t", "spark")))
+			_m_star_dome(root, s * k, c, life)
 		"summon": _m_summon(root, s * k, c, String(spec.get("g", "rune")), String(spec.get("t", "leaf")))
 		"danger": _m_danger(root, s * k, c, life)
 		"arc_sweep": _m_arc_sweep(root, s * k, c, b)
@@ -182,6 +202,7 @@ static func _ground(parent: Node, spec: Dictionary, at: Vector3, b: Vector3, s: 
 static func _beam(parent: Node, spec: Dictionary, a: Vector3, b: Vector3, w: float, c: Array, life: float) -> void:
 	if a.distance_to(b) < 0.02:
 		return
+	_streak(parent, a, b, w, c, life)
 	match String(spec.m):
 		"lightning": _bolt(parent, a, b, c[0], maxf(w, 0.18), maxf(life, 0.2), float(spec.get("jag", 0.5)), 9)
 		"chain": _m_chain(parent, a, b, c, maxf(life, 0.25))
@@ -204,27 +225,33 @@ static func _beam(parent: Node, spec: Dictionary, a: Vector3, b: Vector3, w: flo
 
 static func _m_fire_burst(r: Node3D, s: float, c: Array) -> void:
 	_flash(r, c[1], s * 2.4, 0.3, 0.5)
+	_sprite_burst(r, "explosion04", Color.WHITE, s * 2.0, 0.5, 0.9, false, 0.0, false)  # a explosão pintada (Smoke Particles)
+	_sprite_burst(r, "fire_02", Color(c[1], 0.95), s * 2.2, 0.45, 0.8, false, 2.0)  # bola de chamas que estoura
+	_sprite_burst(r, "scorch_02", Color(0.08, 0.05, 0.03, 0.75), s * 1.8, 1.6, 0.06, true, 0.0, false)  # chão chamuscado
 	_ring(r, c[0], s, 0.35)
 	_ring(r, c[1], s * 0.6, 0.25)
-	_emit(r, {"amount": 34, "life": 0.7, "size": s * 0.4, "tex": "soft", "c0": c[1], "c1": c[0], "vmin": 1.5, "vmax": 4.5, "spread": 180.0, "grav": Vector3(0, 3, 0), "shape": "sphere", "ext": s * 0.3, "once": true, "burst": 0.95, "pos": Vector3(0, 0.4, 0)})
+	_emit(r, {"amount": 34, "life": 0.7, "size": s * 0.4, "tex": "flame", "c0": c[1], "c1": c[0], "vmin": 1.5, "vmax": 4.5, "spread": 180.0, "grav": Vector3(0, 3, 0), "shape": "sphere", "ext": s * 0.3, "once": true, "burst": 0.95, "pos": Vector3(0, 0.4, 0)})
 	_emit(r, {"amount": 14, "life": 0.9, "size": 0.22, "tex": "star4", "c0": Color.WHITE, "c1": c[0], "vmin": 3.0, "vmax": 7.0, "spread": 70.0, "dir": Vector3.UP, "grav": Vector3(0, -6, 0), "once": true, "burst": 1.0, "pos": Vector3(0, 0.3, 0)})
-	_emit(r, {"amount": 10, "life": 1.1, "size": s * 0.5, "tex": "soft", "c0": Color(0.2, 0.18, 0.17, 0.55), "c1": Color(0.1, 0.1, 0.1), "vmin": 0.6, "vmax": 1.6, "spread": 60.0, "dir": Vector3.UP, "grav": Vector3(0, 1.0, 0), "once": true, "burst": 0.9, "add": false, "pos": Vector3(0, 0.5, 0)})
+	_emit(r, {"amount": 10, "life": 1.1, "size": s * 0.5, "tex": "smoke", "c0": Color(0.2, 0.18, 0.17, 0.55), "c1": Color(0.1, 0.1, 0.1), "vmin": 0.6, "vmax": 1.6, "spread": 60.0, "dir": Vector3.UP, "grav": Vector3(0, 1.0, 0), "once": true, "burst": 0.9, "add": false, "pos": Vector3(0, 0.5, 0)})
 
 
 static func _m_meteor(r: Node3D, s: float, c: Array) -> void:
 	_flash(r, Color.WHITE, s * 3.0, 0.35, 0.6)
+	_sprite_burst(r, "explosion02", Color.WHITE, s * 2.8, 0.65, 1.1, false, 0.0, false)
+	_sprite_burst(r, "fire_02", Color(c[1], 1.0), s * 3.0, 0.6, 1.0, false, 1.5)
+	_sprite_burst(r, "scorch_02", Color(0.06, 0.04, 0.03, 0.8), s * 2.4, 2.2, 0.06, true, 0.0, false)
 	_ring(r, c[1], s, 0.45)
 	_ring(r, c[0], s * 0.7, 0.35)
 	_cracks(r, c[0], 9, s * 0.95, 1.2)
 	_column(r, c[0], s * 0.35, 6.0, 0.5)
 	_emit(r, {"amount": 22, "life": 1.0, "size": 0.35, "mesh": "cube", "c0": Color(0.25, 0.18, 0.14), "c1": c[0], "vmin": 4.0, "vmax": 9.0, "spread": 55.0, "dir": Vector3.UP, "grav": Vector3(0, -14, 0), "once": true, "burst": 1.0, "add": false, "pos": Vector3(0, 0.3, 0)})
-	_emit(r, {"amount": 40, "life": 0.9, "size": s * 0.35, "tex": "soft", "c0": c[1], "c1": c[0], "vmin": 2.0, "vmax": 6.0, "spread": 180.0, "grav": Vector3(0, 3, 0), "shape": "sphere", "ext": s * 0.4, "once": true, "burst": 0.95, "pos": Vector3(0, 0.5, 0)})
+	_emit(r, {"amount": 40, "life": 0.9, "size": s * 0.35, "tex": "fire", "c0": c[1], "c1": c[0], "vmin": 2.0, "vmax": 6.0, "spread": 180.0, "grav": Vector3(0, 3, 0), "shape": "sphere", "ext": s * 0.4, "once": true, "burst": 0.95, "pos": Vector3(0, 0.5, 0)})
 
 
 static func _m_flame_ring(r: Node3D, s: float, c: Array, life: float, lasting: bool) -> void:
 	_glyph(r, "soft", c[0], s * 2.1, life, 0.04, 0.0, 0.3)
 	_ring(r, c[0], s, 0.5)
-	var p := _emit(r, {"amount": clampi(roundi(s * 10.0), 14, 44), "life": 0.8, "size": 0.7, "tex": "soft", "c0": c[1], "c1": c[0], "vmin": 0.4, "vmax": 1.4, "spread": 25.0, "dir": Vector3.UP,
+	var p := _emit(r, {"amount": clampi(roundi(s * 10.0), 14, 44), "life": 0.8, "size": 0.7, "tex": "flame", "c0": c[1], "c1": c[0], "vmin": 0.4, "vmax": 1.4, "spread": 25.0, "dir": Vector3.UP,
 		"grav": Vector3(0, 2.2, 0), "shape": "ring", "ext": s * 0.92, "inner": s * 0.55, "once": not lasting, "burst": 0.9 if not lasting else 0.0, "pos": Vector3(0, 0.1, 0)})
 	_stop_later(r, p, life)
 
@@ -232,7 +259,7 @@ static func _m_flame_ring(r: Node3D, s: float, c: Array, life: float, lasting: b
 static func _m_campfire(r: Node3D, s: float, c: Array, life: float) -> void:
 	_glyph(r, "soft", c[0], s * 2.0, life, 0.04, 0.0, 0.25)
 	_glyph(r, "rune", c[1], s * 1.6, life, 0.05, 0.4, 0.5)
-	var p := _emit(r, {"amount": 26, "life": 0.9, "size": 1.0, "tex": "soft", "c0": c[1], "c1": c[0], "vmin": 0.6, "vmax": 1.8, "spread": 18.0, "dir": Vector3.UP, "grav": Vector3(0, 2.0, 0), "shape": "disc", "ext": 0.5})
+	var p := _emit(r, {"amount": 26, "life": 0.9, "size": 1.0, "tex": "flame", "c0": c[1], "c1": c[0], "vmin": 0.6, "vmax": 1.8, "spread": 18.0, "dir": Vector3.UP, "grav": Vector3(0, 2.0, 0), "shape": "disc", "ext": 0.5})
 	var e := _emit(r, {"amount": 14, "life": 1.4, "size": 0.18, "tex": "star4", "c0": Color.WHITE, "c1": c[0], "vmin": 1.0, "vmax": 3.0, "spread": 40.0, "dir": Vector3.UP, "grav": Vector3(0, 0.6, 0), "shape": "disc", "ext": 0.7})
 	var ring := _emit(r, {"amount": 20, "life": 1.0, "size": 0.4, "tex": "soft", "c0": c[1], "c1": c[0], "vmin": 0.2, "vmax": 0.6, "spread": 20.0, "dir": Vector3.UP, "grav": Vector3(0, 1.4, 0), "shape": "ring", "ext": s * 0.8, "inner": s * 0.7})
 	_stop_later(r, p, life)
@@ -322,6 +349,7 @@ static func _m_blizzard(r: Node3D, s: float, c: Array, life: float) -> void:
 
 static func _m_rain_heal(r: Node3D, s: float, c: Array, life: float) -> void:
 	_glyph(r, "soft", c[0], s * 2.1, life, 0.04, 0.0, 0.25)
+	_sprite_burst(r, "star_08", Color(c[1], 0.8), s * 1.4, 0.6, 1.2)  # brilho da cura
 	_ring(r, c[1], s, 0.5)
 	var rain := _emit(r, {"amount": 36, "life": 0.7, "size": 0.35, "tex": "drop", "c0": c[1], "c1": c[0], "vmin": 0.0, "vmax": 1.0, "spread": 3.0, "dir": Vector3.DOWN, "grav": Vector3(0, -12, 0), "shape": "box",
 		"ext": Vector3(s * 0.8, 0.2, s * 0.8), "pos": Vector3(0, 5.0, 0)})
@@ -347,7 +375,7 @@ static func _late_ring(r: Node3D, color: Color, radius: float) -> void:
 
 static func _m_mist(r: Node3D, s: float, c: Array, life: float) -> void:
 	_glyph(r, "soft", Color(0.8, 0.92, 1.0), s * 2.2, life, 0.05, 0.0, 0.3)
-	var fog := _emit(r, {"amount": 22, "life": 1.8, "size": s * 0.8, "tex": "soft", "c0": Color(0.9, 0.97, 1.0, 0.28), "c1": c[0], "vmin": 0.1, "vmax": 0.5, "spread": 180.0, "tang": 2.0, "shape": "ring", "ext": s * 0.7, "inner": 0.1, "pos": Vector3(0, 0.5, 0), "add": false})
+	var fog := _emit(r, {"amount": 22, "life": 1.8, "size": s * 0.8, "tex": "fog", "c0": Color(0.9, 0.97, 1.0, 0.28), "c1": c[0], "vmin": 0.1, "vmax": 0.5, "spread": 180.0, "tang": 2.0, "shape": "ring", "ext": s * 0.7, "inner": 0.1, "pos": Vector3(0, 0.5, 0), "add": false})
 	var dots := _emit(r, {"amount": 14, "life": 1.2, "size": 0.2, "tex": "drop", "c0": c[1], "c1": c[0], "vmin": 0.2, "vmax": 0.6, "spread": 180.0, "grav": Vector3(0, 0.3, 0), "shape": "ring", "ext": s * 0.8, "inner": 0.1, "pos": Vector3(0, 0.6, 0)})
 	_ring(r, c[1], s, 0.6)
 	_stop_later(r, fog, life)
@@ -379,7 +407,7 @@ static func _m_tornado(r: Node3D, s: float, c: Array, life: float, travel: Vecto
 	var tw := r.create_tween()
 	tw.tween_property(r, "global_position", r.global_position + Vector3(travel.x, 0, travel.z), maxf(life, 0.3))
 	_column(r, c[1], s * 0.9, 4.5, life, 0.07)
-	var fun := _emit(r, {"amount": 46, "life": 0.9, "size": 0.45, "tex": "soft", "c0": Color(1, 1, 1, 0.8), "c1": c[0], "vmin": 0.6, "vmax": 1.4, "spread": 15.0, "dir": Vector3.UP, "tang": 14.0, "shape": "ring", "ext": s * 0.8, "inner": s * 0.4,
+	var fun := _emit(r, {"amount": 46, "life": 0.9, "size": 0.45, "tex": "twirl", "c0": Color(1, 1, 1, 0.8), "c1": c[0], "vmin": 0.6, "vmax": 1.4, "spread": 15.0, "dir": Vector3.UP, "tang": 14.0, "shape": "ring", "ext": s * 0.8, "inner": s * 0.4,
 		"grav": Vector3(0, 3.0, 0), "local": false})
 	var debris := _emit(r, {"amount": 12, "life": 1.0, "size": 0.35, "tex": "leaf", "c0": Color(0.7, 0.85, 0.5), "c1": Color(0.5, 0.6, 0.3), "vmin": 1.0, "vmax": 2.0, "spread": 20.0, "dir": Vector3.UP, "tang": 16.0, "shape": "ring", "ext": s, "inner": s * 0.5, "local": false})
 	_glyph(r, "soft", c[0], s * 2.0, life, 0.04, 0.0, 0.2)
@@ -389,7 +417,7 @@ static func _m_tornado(r: Node3D, s: float, c: Array, life: float, travel: Vecto
 
 static func _m_storm(r: Node3D, s: float, c: Array, life: float) -> void:
 	_glyph(r, "soft", Color(0.35, 0.38, 0.5), s * 2.2, life, 0.04, 0.0, 0.35)
-	var clouds := _emit(r, {"amount": 22, "life": 2.0, "size": s * 0.7, "tex": "soft", "c0": Color(0.22, 0.24, 0.32, 0.75), "c1": Color(0.15, 0.16, 0.22), "vmin": 0.1, "vmax": 0.5, "spread": 180.0, "tang": 1.5,
+	var clouds := _emit(r, {"amount": 22, "life": 2.0, "size": s * 0.7, "tex": "cloud", "c0": Color(0.22, 0.24, 0.32, 0.75), "c1": Color(0.15, 0.16, 0.22), "vmin": 0.1, "vmax": 0.5, "spread": 180.0, "tang": 1.5,
 		"shape": "disc", "ext": s * 0.8, "pos": Vector3(0, 5.0, 0), "add": false})
 	var rain := _emit(r, {"amount": 34, "life": 0.5, "size": 0.3, "mesh": "shard", "c0": Color(0.8, 0.9, 1.0, 0.8), "c1": c[0], "vmin": 0.0, "vmax": 1.0, "spread": 3.0, "dir": Vector3.DOWN, "grav": Vector3(0, -22, 0),
 		"shape": "disc", "ext": s * 0.85, "pos": Vector3(0, 4.5, 0)})
@@ -404,8 +432,9 @@ static func _m_storm(r: Node3D, s: float, c: Array, life: float) -> void:
 static func _m_quake(r: Node3D, s: float, c: Array) -> void:
 	_ring(r, Color(0.8, 0.68, 0.45), s, 0.4)
 	_ring(r, Color(0.8, 0.68, 0.45), s * 0.6, 0.3)
+	_sprite_burst(r, "dirt_03", Color(0.5, 0.4, 0.28, 0.9), s * 2.2, 0.7, 0.08, true, 0.0, false)  # terra que salta do chão
 	_cracks(r, Color(0.9, 0.65, 0.3), 7, s, 1.0)
-	_emit(r, {"amount": 32, "life": 0.9, "size": s * 0.35, "tex": "soft", "c0": Color(0.65, 0.55, 0.4, 0.6), "c1": Color(0.45, 0.38, 0.28), "vmin": 1.0, "vmax": 3.0, "spread": 70.0, "dir": Vector3.UP, "shape": "ring", "ext": s * 0.9, "inner": s * 0.2,
+	_emit(r, {"amount": 32, "life": 0.9, "size": s * 0.35, "tex": "dirt", "c0": Color(0.65, 0.55, 0.4, 0.6), "c1": Color(0.45, 0.38, 0.28), "vmin": 1.0, "vmax": 3.0, "spread": 70.0, "dir": Vector3.UP, "shape": "ring", "ext": s * 0.9, "inner": s * 0.2,
 		"once": true, "burst": 0.9, "add": false, "pos": Vector3(0, 0.1, 0)})
 	_emit(r, {"amount": 16, "life": 0.8, "size": 0.3, "mesh": "cube", "c0": Color(0.5, 0.4, 0.28), "c1": Color(0.4, 0.34, 0.24), "vmin": 3.0, "vmax": 6.0, "spread": 40.0, "dir": Vector3.UP, "grav": Vector3(0, -13, 0), "shape": "ring", "ext": s * 0.8, "inner": 0.2,
 		"once": true, "burst": 1.0, "add": false})
@@ -413,9 +442,10 @@ static func _m_quake(r: Node3D, s: float, c: Array) -> void:
 
 static func _m_stomp(r: Node3D, s: float, c: Array) -> void:
 	_flash(r, c[1], s * 1.8, 0.2, 0.3)
+	_sprite_burst(r, "dirt_03", Color(0.5, 0.4, 0.28, 0.85), s * 1.8, 0.55, 0.08, true, 0.0, false)
 	_ring(r, c[0], s, 0.35)
 	_ring(r, c[1], s * 0.65, 0.28)
-	_emit(r, {"amount": 28, "life": 0.8, "size": s * 0.4, "tex": "soft", "c0": Color(0.62, 0.52, 0.38, 0.6), "c1": Color(0.45, 0.38, 0.28), "vmin": 2.0, "vmax": 4.5, "spread": 30.0, "dir": Vector3.UP, "shape": "ring", "ext": s * 0.8, "inner": s * 0.3,
+	_emit(r, {"amount": 28, "life": 0.8, "size": s * 0.4, "tex": "dirt", "c0": Color(0.62, 0.52, 0.38, 0.6), "c1": Color(0.45, 0.38, 0.28), "vmin": 2.0, "vmax": 4.5, "spread": 30.0, "dir": Vector3.UP, "shape": "ring", "ext": s * 0.8, "inner": s * 0.3,
 		"once": true, "burst": 0.95, "add": false, "pos": Vector3(0, 0.1, 0)})
 	_emit(r, {"amount": 10, "life": 0.6, "size": 0.3, "mesh": "cube", "c0": Color(0.5, 0.4, 0.28), "c1": Color(0.4, 0.34, 0.24), "vmin": 2.5, "vmax": 5.0, "spread": 45.0, "dir": Vector3.UP, "grav": Vector3(0, -12, 0), "shape": "ring", "ext": s * 0.7, "inner": 0.2,
 		"once": true, "burst": 1.0, "add": false})
@@ -486,6 +516,7 @@ static func _m_banner(r: Node3D, s: float, c: Array, life: float, glyph: String)
 
 static func _m_teleport(r: Node3D, s: float, c: Array, tex: String) -> void:
 	_flash(r, c[1], s * 2.2, 0.35, 0.8)
+	_sprite_burst(r, "magic_03", Color(c[1], 0.9), s * 2.0, 0.45, 0.9, false, 3.0)  # estrela mágica no ponto de chegada
 	_glyph(r, "rune", c[1], s * 2.2, 0.45, 0.05, -3.0, 0.8)
 	_ring(r, c[0], s * 1.3, 0.35)
 	r.get_tree().create_timer(0.15, false).timeout.connect(_late_ring.bind(r, c[1], s * 0.8))
@@ -494,14 +525,14 @@ static func _m_teleport(r: Node3D, s: float, c: Array, tex: String) -> void:
 
 static func _m_vanish(r: Node3D, s: float, c: Array) -> void:
 	_flash(r, Color(0.35, 0.2, 0.55), s * 2.5, 0.4, 0.8)
-	_emit(r, {"amount": 22, "life": 0.9, "size": s * 0.7, "tex": "soft", "c0": Color(0.12, 0.1, 0.16, 0.8), "c1": c[0], "vmin": 0.8, "vmax": 2.2, "spread": 90.0, "dir": Vector3.UP, "shape": "sphere", "ext": s * 0.4,
+	_emit(r, {"amount": 22, "life": 0.9, "size": s * 0.7, "tex": "smoke", "c0": Color(0.12, 0.1, 0.16, 0.8), "c1": c[0], "vmin": 0.8, "vmax": 2.2, "spread": 90.0, "dir": Vector3.UP, "shape": "sphere", "ext": s * 0.4,
 		"once": true, "burst": 0.9, "add": false, "pos": Vector3(0, 0.7, 0)})
 	_emit(r, {"amount": 16, "life": 0.7, "size": 0.3, "tex": "diamond", "c0": c[1], "c1": c[0], "vmin": 1.5, "vmax": 3.5, "spread": 180.0, "shape": "sphere", "ext": s * 0.3, "once": true, "burst": 1.0, "pos": Vector3(0, 0.8, 0)})
 	_ring(r, c[0], s, 0.3)
 
 
 static func _m_smoke(r: Node3D, s: float, c: Array, life: float) -> void:
-	var cloud := _emit(r, {"amount": 30, "life": 2.0, "size": s * 0.8, "tex": "soft", "c0": Color(0.6, 0.6, 0.66, 0.7), "c1": Color(0.3, 0.3, 0.36), "vmin": 0.2, "vmax": 0.9, "spread": 180.0, "shape": "disc", "ext": s * 0.7, "pos": Vector3(0, 0.6, 0), "add": false})
+	var cloud := _emit(r, {"amount": 30, "life": 2.0, "size": s * 0.8, "tex": "cloud", "c0": Color(0.6, 0.6, 0.66, 0.7), "c1": Color(0.3, 0.3, 0.36), "vmin": 0.2, "vmax": 0.9, "spread": 180.0, "shape": "disc", "ext": s * 0.7, "pos": Vector3(0, 0.6, 0), "add": false})
 	_glyph(r, "soft", Color(0.5, 0.5, 0.58), s * 2.1, life, 0.05, 0.0, 0.3)
 	_flash(r, Color(0.8, 0.8, 0.9), s * 1.6, 0.25, 0.7)
 	_stop_later(r, cloud, life)
@@ -527,6 +558,44 @@ static func _m_seal(r: Node3D, s: float, c: Array, life: float, glyph: String, t
 	_ring(r, c[0], s, 0.5)
 	var p := _emit(r, {"amount": 24, "life": 1.0, "size": 0.28, "tex": tex, "c0": c[1], "c1": c[0], "vmin": 0.8, "vmax": 2.0, "spread": 15.0, "dir": Vector3.UP, "tang": 5.0, "shape": "ring", "ext": s * 0.9, "inner": s * 0.4, "pos": Vector3(0, 0.1, 0)})
 	_stop_later(r, p, life)
+
+
+## Domo de energia sobre o selo (assets/fx/tronicle.glb, "Tronicle" de tamminen, CC BY 4.0; tools/assets/build_tronicle.py): 64 cascas de icosfera
+## girando e pulsando, meio enterradas no chão (só a metade de cima aparece), com brilho aditivo bem fraco na cor da magia (as cascas somam o brilho
+## umas sobre as outras e formam raios). Cresce ao abrir, dura o tempo do selo e encolhe no fim.
+const STAR_DOME := "res://assets/fx/tronicle.glb"
+const STAR_DOME_RADIUS := 2.42
+
+
+static func _m_star_dome(r: Node3D, s: float, c: Array, life: float) -> void:
+	if not ResourceLoader.exists(STAR_DOME):
+		return
+	var dome := (load(STAR_DOME) as PackedScene).instantiate() as Node3D
+	r.add_child(dome)
+	var key := "star_dome_%s" % (c[0] as Color).to_html()
+	if not _mat_cache.has(key):
+		var mat := StandardMaterial3D.new()
+		mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		mat.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
+		mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		mat.cull_mode = BaseMaterial3D.CULL_DISABLED
+		mat.albedo_color = Color(c[0], 0.03)
+		_mat_cache[key] = mat
+	for mesh: Node in dome.find_children("*", "MeshInstance3D", true, false):
+		(mesh as MeshInstance3D).material_override = _mat_cache[key]
+		(mesh as MeshInstance3D).cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	var anim := dome.find_child("AnimationPlayer", true, false) as AnimationPlayer
+	if anim and not anim.get_animation_list().is_empty():
+		var clip := anim.get_animation_list()[0]
+		anim.get_animation(clip).loop_mode = Animation.LOOP_LINEAR
+		anim.play(clip)
+		anim.seek(randf() * anim.current_animation_length, true)
+	var full := Vector3.ONE * (s * 0.85 / STAR_DOME_RADIUS)
+	dome.scale = full * 0.15
+	var grow := dome.create_tween()
+	grow.tween_property(dome, "scale", full, 0.45).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	grow.tween_interval(maxf(life - 0.85, 0.1))
+	grow.tween_property(dome, "scale", full * 0.05, 0.4).set_ease(Tween.EASE_IN)
 
 
 static func _m_summon(r: Node3D, s: float, c: Array, glyph: String, tex: String) -> void:
@@ -609,18 +678,21 @@ static func _m_chain(parent: Node, a: Vector3, b: Vector3, c: Array, life: float
 	_bolt(parent, a, b, c[1], 0.09, life * 0.7, 1.4, 9)
 	var root := _root(parent, b, life)
 	_flash(root, c[1], 1.4, 0.25, 0.0)
-	_emit(root, {"amount": 10, "life": 0.4, "size": 0.25, "tex": "spark", "c0": Color.WHITE, "c1": c[0], "vmin": 1.5, "vmax": 3.5, "spread": 180.0, "once": true, "burst": 1.0})
+	_emit(root, {"amount": 10, "life": 0.4, "size": 0.25, "tex": "bolt", "c0": Color.WHITE, "c1": c[0], "vmin": 1.5, "vmax": 3.5, "spread": 180.0, "once": true, "burst": 1.0})
 
 
 static func _m_sky_bolt(parent: Node, at: Vector3, c: Array, life: float) -> void:
 	var top := Vector3(at.x + randf_range(-0.6, 0.6), 9.0, at.z + randf_range(-0.6, 0.6))
 	var low := Vector3(at.x, 0.1, at.z)
 	_bolt(parent, top, low, c[0], 0.3, life, 1.2, 12)
+	var strike := _root(parent, low, life)
+	_sprite_burst(strike, "flash03", Color(1, 1, 1, 0.9), 2.4, maxf(life, 0.3), 0.6)  # clarão amarelo no chão
+	_sprite_burst(strike, "spark_06", Color(c[1], 1.0), 3.2, maxf(life, 0.3), 1.4)  # o raio estala no chão
 	_bolt(parent, top, low, Color.WHITE, 0.1, life * 0.7, 0.8, 12)
 	var root := _root(parent, low, life)
 	_flash(root, c[1], 2.4, 0.3, 0.3)
 	_ring(root, c[0], 1.2, 0.3)
-	_emit(root, {"amount": 12, "life": 0.5, "size": 0.25, "tex": "spark", "c0": Color.WHITE, "c1": c[0], "vmin": 2.0, "vmax": 4.5, "spread": 70.0, "dir": Vector3.UP, "grav": Vector3(0, -8, 0), "once": true, "burst": 1.0})
+	_emit(root, {"amount": 12, "life": 0.5, "size": 0.25, "tex": "bolt", "c0": Color.WHITE, "c1": c[0], "vmin": 2.0, "vmax": 4.5, "spread": 70.0, "dir": Vector3.UP, "grav": Vector3(0, -8, 0), "once": true, "burst": 1.0})
 
 
 static func _m_fire_line(parent: Node, a: Vector3, b: Vector3, w: float, c: Array, life: float) -> void:
@@ -629,7 +701,7 @@ static func _m_fire_line(parent: Node, a: Vector3, b: Vector3, w: float, c: Arra
 	var root := _root(parent, Vector3(mid.x, 0.0, mid.z), maxf(life, 0.5))
 	root.look_at(Vector3(b.x, 0.0, b.z), Vector3.UP)
 	_flat_box(root, c[0], Vector3(w * 1.2, 0.02, length), 0.05, 0.35, life)
-	var flames := _emit(root, {"amount": clampi(roundi(length * 7.0), 14, 56), "life": 0.8, "size": 1.0, "tex": "soft", "c0": c[1], "c1": c[0], "vmin": 0.4, "vmax": 1.6, "spread": 14.0, "dir": Vector3.UP,
+	var flames := _emit(root, {"amount": clampi(roundi(length * 7.0), 14, 56), "life": 0.8, "size": 1.0, "tex": "flame", "c0": c[1], "c1": c[0], "vmin": 0.4, "vmax": 1.6, "spread": 14.0, "dir": Vector3.UP,
 		"grav": Vector3(0, 3.0, 0), "shape": "box", "ext": Vector3(w * 0.5, 0.1, length * 0.5), "pos": Vector3(0, 0.1, 0)})
 	var sparks := _emit(root, {"amount": 12, "life": 1.2, "size": 0.2, "tex": "star4", "c0": Color.WHITE, "c1": c[0], "vmin": 1.5, "vmax": 3.5, "spread": 30.0, "dir": Vector3.UP, "shape": "box", "ext": Vector3(w * 0.5, 0.1, length * 0.5)})
 	_stop_later(root, flames, life)
@@ -674,7 +746,7 @@ static func _m_earth_line(parent: Node, a: Vector3, b: Vector3, w: float, c: Arr
 		t.tween_property(pivot, "scale", Vector3.ONE, 0.1).set_ease(Tween.EASE_OUT)
 		t.tween_interval(maxf(life - 0.3, 0.2))
 		t.tween_property(pivot, "scale", Vector3(1, 0.01, 1), 0.3)
-	_emit(root, {"amount": 26, "life": 0.7, "size": 0.5, "tex": "soft", "c0": Color(0.62, 0.52, 0.38, 0.6), "c1": Color(0.45, 0.38, 0.28), "vmin": 0.6, "vmax": 1.8, "spread": 60.0, "dir": Vector3.UP, "shape": "box", "ext": Vector3(w * 0.5 + 0.3, 0.1, 0.1),
+	_emit(root, {"amount": 26, "life": 0.7, "size": 0.5, "tex": "dust", "c0": Color(0.62, 0.52, 0.38, 0.6), "c1": Color(0.45, 0.38, 0.28), "vmin": 0.6, "vmax": 1.8, "spread": 60.0, "dir": Vector3.UP, "shape": "box", "ext": Vector3(w * 0.5 + 0.3, 0.1, 0.1),
 		"once": true, "burst": 0.9, "add": false, "pos": dir * length * 0.5})
 
 
@@ -697,6 +769,8 @@ static func _m_spear_streak(parent: Node, a: Vector3, b: Vector3, w: float, c: A
 static func _m_slash(parent: Node, a: Vector3, b: Vector3, c: Array, life: float, tex: String) -> void:
 	var root := _root(parent, b, life)
 	var base := atan2(b.x - a.x, b.z - a.z)
+	var arc := _sprite_burst(root, "slash_03", Color(c[1], 1.0), 2.6, life * 0.8, 1.0)  # o risco curvo do golpe
+	arc.rotation.z = randf_range(-0.6, 0.6)
 	for i in 2:
 		var cut := _flat_quad(root, "ray", c[1], 2.8, 0.9)
 		cut.rotation = Vector3(PI / 2.0, 0.0, 0.0)
@@ -718,7 +792,7 @@ static func _m_charge_dust(parent: Node, a: Vector3, b: Vector3, w: float, c: Ar
 	var root := _root(parent, Vector3((a.x + b.x) / 2.0, 0.0, (a.z + b.z) / 2.0), life)
 	root.look_at(Vector3(b.x, 0.0, b.z), Vector3.UP)
 	_flat_box(root, c[0], Vector3(maxf(w, 0.5), 0.02, length), 0.05, 0.3, life)
-	_emit(root, {"amount": clampi(roundi(length * 6.0), 12, 50), "life": 0.9, "size": 0.9, "tex": "soft", "c0": Color(0.66, 0.58, 0.45, 0.55), "c1": Color(0.45, 0.4, 0.3), "vmin": 0.3, "vmax": 1.2, "spread": 70.0, "dir": Vector3.UP,
+	_emit(root, {"amount": clampi(roundi(length * 6.0), 12, 50), "life": 0.9, "size": 0.9, "tex": "dust", "c0": Color(0.66, 0.58, 0.45, 0.55), "c1": Color(0.45, 0.4, 0.3), "vmin": 0.3, "vmax": 1.2, "spread": 70.0, "dir": Vector3.UP,
 		"shape": "box", "ext": Vector3(maxf(w, 0.5) * 0.5, 0.1, length * 0.5), "once": true, "burst": 0.85, "add": false, "pos": Vector3(0, 0.1, 0)})
 	_emit(root, {"amount": clampi(roundi(length * 4.0), 10, 36), "life": 0.5, "size": 0.9, "tex": "ray", "c0": c[1], "c1": c[0], "vmin": 0.0, "vmax": 0.4, "spread": 10.0, "dir": Vector3.UP, "shape": "box", "ext": Vector3(maxf(w, 0.5) * 0.6, 0.6, length * 0.5),
 		"once": true, "burst": 0.8, "pos": Vector3(0, 0.8, 0), "tilt": true})
@@ -891,11 +965,12 @@ static func _flash(root: Node3D, color: Color, size: float, life: float, y: floa
 	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	mat.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
 	mat.billboard_mode = BaseMaterial3D.BILLBOARD_ENABLED
-	mat.albedo_texture = _tex("soft")
+	mat.albedo_texture = _mask("shape_g")  # estrela de brilho (máscara de luz)
 	mat.albedo_color = Color(color, 0.9)
 	m.material_override = mat
 	m.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	m.position.y = y
+	m.rotation.z = randf() * TAU
 	root.add_child(m)
 	m.scale = Vector3.ONE * 0.3
 	var t := m.create_tween().set_parallel()
@@ -903,21 +978,24 @@ static func _flash(root: Node3D, color: Color, size: float, life: float, y: floa
 	t.tween_property(mat, "albedo_color:a", 0.0, life)
 
 
+## Anel que se abre: quadrado deitado com a máscara de anel (borda irregular); `thick` escolhe o anel fino ou o largo.
 static func _ring(root: Node3D, color: Color, radius: float, life: float, y := 0.06, thick := 0.1) -> MeshInstance3D:
 	var ring := MeshInstance3D.new()
-	var torus := TorusMesh.new()
-	torus.inner_radius = 1.0 - thick
-	torus.outer_radius = 1.0
-	torus.rings = 32
-	ring.mesh = torus
-	var mat := _add_mat(Color(color.lightened(0.2), 0.9))
+	var quad := QuadMesh.new()
+	quad.orientation = PlaneMesh.FACE_Y
+	quad.size = Vector2.ONE * 2.0 / 0.86  # o anel da máscara fica a ~86% da borda: escala 1 = raio 1
+	ring.mesh = quad
+	var mat := _add_mat(Color(color.lightened(0.2), 0.95))
+	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
+	mat.albedo_texture = _mask("ring_a_noise" if thick < 0.1 else "ring_b_noise")
+	ring.rotation.y = randf() * TAU
 	ring.material_override = mat
 	ring.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	ring.position.y = y
-	ring.scale = Vector3(radius * 0.2, 0.3, radius * 0.2)
+	ring.scale = Vector3(radius * 0.2, 1.0, radius * 0.2)
 	root.add_child(ring)
 	var t := ring.create_tween().set_parallel()
-	t.tween_property(ring, "scale", Vector3(radius, 0.3, radius), life).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	t.tween_property(ring, "scale", Vector3(radius, 1.0, radius), life).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	t.tween_property(mat, "albedo_color:a", 0.0, life + 0.15).set_ease(Tween.EASE_IN)
 	return ring
 
@@ -1172,9 +1250,172 @@ static func _pmat(tex: String, add: bool) -> StandardMaterial3D:
 	mat.blend_mode = BaseMaterial3D.BLEND_MODE_ADD if add else BaseMaterial3D.BLEND_MODE_MIX
 	mat.billboard_mode = BaseMaterial3D.BILLBOARD_PARTICLES
 	mat.billboard_keep_scale = true  # sem isso, as partículas ainda não nascidas (escala 0) aparecem inteiras na origem (preto na mistura normal)
-	mat.albedo_texture = _tex(tex)
+	mat.albedo_texture = _particle_tex(tex)
 	_mat_cache[key] = mat
 	return mat
+
+
+## Textura da partícula: o sprite da Kenney quando há um para a forma; senão a forma desenhada aqui.
+static func _particle_tex(kind: String) -> Texture2D:
+	if not PARTICLE_SPRITES.has(kind):
+		return _tex(kind)
+	return _sprite(String(PARTICLE_SPRITES[kind]))
+
+
+## Sprite do Particle Pack pelo nome do arquivo (cache); sem o arquivo, o brilho suave desenhado aqui.
+static func _sprite(name: String) -> Texture2D:
+	var key := "sprite:" + name
+	if _tex_cache.has(key):
+		return _tex_cache[key]
+	var path := PARTICLES % name
+	var tex: Texture2D = load(path) if ResourceLoader.exists(path) else _tex("soft")
+	_tex_cache[key] = tex
+	return tex
+
+
+## Pedra do Pedregulho: o modelo de estilhaços com material de pedra (cor principal, brilho da cor clara nas pontas); sem o modelo, duas caixas.
+const BOULDER_MODEL := "res://assets/models/fx/icodion.glb"
+
+
+static func _boulder_mesh(node: Node3D, c: Array, size: float) -> Node3D:
+	if not ResourceLoader.exists(BOULDER_MODEL):
+		var box := _core_box(node, Color(0.46, 0.38, 0.28), Vector3(size * 0.9, size * 0.76, size * 0.9), 0.0, true)
+		return box
+	var rock := (load(BOULDER_MODEL) as PackedScene).instantiate() as Node3D
+	rock.scale = Vector3.ONE * size
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color = (c[0] as Color).darkened(0.5)
+	mat.roughness = 0.75
+	mat.metallic = 0.2
+	mat.emission_enabled = true
+	mat.emission = (c[1] as Color).darkened(0.5)  # as pontas parecem acesas por dentro (terra com magia)
+	mat.emission_energy_multiplier = 0.25
+	for mesh in rock.find_children("*", "MeshInstance3D", true, false):
+		(mesh as MeshInstance3D).material_override = mat
+		(mesh as MeshInstance3D).cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	node.add_child(rock)
+	return rock
+
+
+## Clarão grande com um sprite (explosão de fogo, terra que salta, raio, círculo mágico): de frente para a câmera ou deitado
+## no chão (`flat`), cresce e some. `spin` gira o sprite no tempo (radianos por segundo).
+static func _sprite_burst(root: Node3D, sprite: String, color: Color, size: float, life: float, y: float, flat := false, spin := 0.0, add := true) -> MeshInstance3D:
+	var m := MeshInstance3D.new()
+	var q := QuadMesh.new()
+	q.size = Vector2.ONE * size
+	if flat:
+		q.orientation = PlaneMesh.FACE_Y
+	m.mesh = q
+	var mat := StandardMaterial3D.new()
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	mat.blend_mode = BaseMaterial3D.BLEND_MODE_ADD if add else BaseMaterial3D.BLEND_MODE_MIX
+	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
+	if not flat:
+		mat.billboard_mode = BaseMaterial3D.BILLBOARD_ENABLED
+	mat.albedo_texture = _sprite(sprite)
+	mat.albedo_color = color
+	m.material_override = mat
+	m.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	m.position.y = y
+	if flat:
+		m.rotation.y = randf() * TAU
+	root.add_child(m)
+	m.scale = Vector3.ONE * 0.4
+	var t := m.create_tween().set_parallel()
+	t.tween_property(m, "scale", Vector3.ONE, life * 0.45).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	t.tween_property(mat, "albedo_color:a", 0.0, life).set_ease(Tween.EASE_IN)
+	if spin != 0.0:
+		t.tween_property(m, "rotation:y" if flat else "rotation:z", spin * life, life).as_relative()
+	return m
+
+
+## Máscara de luz pelo nome (cache); sem o arquivo, o brilho suave desenhado aqui.
+static func _mask(name: String) -> Texture2D:
+	var key := "mask:" + name
+	if _tex_cache.has(key):
+		return _tex_cache[key]
+	var path := MASKS % name
+	var tex: Texture2D = load(path) if ResourceLoader.exists(path) else _tex("soft")
+	_tex_cache[key] = tex
+	return tex
+
+
+## Marca no chão embaixo da área (máscara pelo tipo do motivo): aparece rápido, fica fraca e some no fim.
+static func _ground_decal(root: Node3D, motif: String, s: float, c: Array, life: float, dir: Vector3) -> void:
+	var mask := "circle_b_noise"
+	var spin := 0.0
+	var size := s * 2.0
+	var alpha := 0.16  # fraco: a soma de cores (aditivo) sobre grama ou madeira clara já acende bastante
+	if motif in DECAL_WATER:
+		mask = "water_caustics_c"
+		spin = 0.25
+		alpha = 0.14
+	elif motif in DECAL_FIRE:
+		mask = "circle_a_streaks_noise"
+		spin = 0.6
+		alpha = 0.22
+	elif motif in DECAL_RUNE:
+		mask = "circle_rings_b_noise"
+		spin = 0.8
+		alpha = 0.2
+	elif motif in DECAL_WIND:
+		mask = "fan_b_gradient"
+		spin = 4.0
+		alpha = 0.12
+	elif motif in DECAL_CONE:
+		mask = "cone_composed_c"
+		alpha = 0.26
+	var m := MeshInstance3D.new()
+	var q := QuadMesh.new()
+	q.orientation = PlaneMesh.FACE_Y
+	q.size = Vector2.ONE * size
+	m.mesh = q
+	var mat := _add_mat(Color(c[0], alpha))
+	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
+	mat.albedo_texture = _mask(mask)
+	m.material_override = mat
+	m.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	m.position.y = 0.04
+	if motif in DECAL_CONE:
+		# Leque com a ponta no herói: a máscara é larga em cima (v = 0) e fina embaixo; a ponta vai para trás da direção do golpe.
+		var d := Vector3(dir.x, 0, dir.z)
+		d = d.normalized() if d.length() > 0.01 else Vector3.FORWARD
+		m.rotation.y = atan2(-d.x, -d.z)
+	else:
+		m.rotation.y = randf() * TAU
+	root.add_child(m)
+	m.scale = Vector3.ONE * 0.6
+	var time := maxf(life, 0.5)
+	var t := m.create_tween().set_parallel()
+	t.tween_property(m, "scale", Vector3.ONE, minf(0.25, time * 0.5)).set_ease(Tween.EASE_OUT)
+	if spin != 0.0:
+		t.tween_property(m, "rotation:y", spin * time, time).as_relative()
+	t.tween_property(mat, "albedo_color:a", 0.0, time).set_ease(Tween.EASE_IN)
+
+
+## Rastro de luz ao longo do feixe (máscara de raios), deitado no plano do feixe, que afina e some.
+static func _streak(parent: Node, a: Vector3, b: Vector3, w: float, c: Array, life: float) -> void:
+	var root := Node3D.new()
+	parent.add_child(root)
+	root.global_position = (a + b) / 2.0
+	root.look_at(b, Vector3.UP if absf((b - a).normalized().y) < 0.99 else Vector3.FORWARD)
+	var m := MeshInstance3D.new()
+	var q := QuadMesh.new()
+	q.orientation = PlaneMesh.FACE_Y
+	q.size = Vector2(maxf(w, 0.2) * 6.0, a.distance_to(b) * 1.1)
+	m.mesh = q
+	var mat := _add_mat(Color(c[1], 0.8))
+	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
+	mat.albedo_texture = _sprite("trace_02")  # risco que some nas duas pontas (a máscara de raios era cortada seco na borda)
+	m.material_override = mat
+	m.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	root.add_child(m)
+	var time := maxf(life, 0.25)
+	var t := m.create_tween().set_parallel()
+	t.tween_property(m, "scale", Vector3(0.3, 1.0, 1.0), time)
+	t.tween_property(mat, "albedo_color:a", 0.0, time).set_ease(Tween.EASE_IN)
+	root.get_tree().create_timer(time + 0.2, false).timeout.connect(root.queue_free)
 
 
 static func _tex(kind: String) -> ImageTexture:

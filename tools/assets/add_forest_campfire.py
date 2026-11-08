@@ -10,9 +10,9 @@ room = next(r for r in forest["rooms"] if r["id"] == "village")
 cx, cz = room["center"]
 decor = [d for d in forest["decor"] if not d.get("camp")]
 decor = [d for d in decor if str(d.get("piece", "")).startswith("Trail_") or math.hypot(d["position"][0] - cx, d["position"][1] - cz) > 2.8]
-fire = [{"piece": "Tv_Fire", "position": [cx, cz], "rotation": 0, "scale": 1.2, "y": 0.02, "solid": [1.3, 1.3], "camp": True},
+fire = [{"piece": "Bonfire_Cauldron", "position": [cx, cz], "rotation": 0, "solid": [1.2, 2.2], "camp": True},   # fogueira com caldeirão (tools/assets/build_bonfire.py)
         {"light": [1.0, 0.5, 0.18], "position": [cx, cz], "y": 0.9, "range": 11.0, "energy": 1.6, "flicker": True, "camp": True},
-        {"piece": "Fire_Flame", "position": [cx, cz], "y": 0.12, "scale": 1.0, "flicker": True, "camp": True}]   # a chama (Fire, janexx, CC BY-SA 3.0) sobre as brasas
+        {"piece": "Fire_Flame", "position": [cx, cz], "y": 0.1, "scale": 0.9, "flicker": True, "camp": True}]   # a chama (Fire, janexx, CC BY-SA 3.0) sobre as brasas
 for i in range(9):
     a = i * 2 * math.pi / 9
     fire.append({"piece": "Rock_MossyStone", "position": [round(cx + 1.0 * math.cos(a), 2), round(cz + 1.0 * math.sin(a), 2)],

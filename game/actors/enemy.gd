@@ -75,6 +75,9 @@ var _push_time := 0.0
 ## Provocado (Corpo de Ferro do Ninja, Urso Guardião): persegue este alvo enquanto durar.
 var _taunt: Node3D
 var _taunt_time := 0.0
+## Chefes e mini-chefes alternam o alvo entre os heróis (dados "focus_time", padrão FOCUS_TIME s em cada um); ver _boss_target.
+var _focus: Node3D
+var _focus_until := 0.0
 var _visual: Node3D
 var _material: StandardMaterial3D
 var _base_color := Color(0.36, 0.28, 0.22)
@@ -88,6 +91,13 @@ var _charge_dir := Vector3.ZERO
 var _charge_cd := 0.0
 ## Recarga da bola de fogo ("fireball" nos dados: magia à distância de qualquer monstro, como a do Rei Golem de Pedra).
 var _fire_cd := 0.0
+## Ponteiro (dados "sweep"): uma barra que sai do monstro e gira pelo chão como o ponteiro de um relógio; quem encosta leva dano.
+var _sweep_cd := 7.0
+var _sweep_elapsed := -1.0  ## < 0 = sem ponteiro agora
+var _sweep_angle := 0.0
+var _sweep_hit := {}
+var _barrage_cd := 4.0
+var _rune_cd := -1.0  ## Selo Rúnico (dados "rune_ring"): tempo até o próximo (< 0 = ainda não contou o primeiro)  ## bombardeio (dados "barrage"): tempo até o próximo
 var _slam_cd := 3.0  ## pisão em volta (dados "slam", fora da Rainha dos Ratos): tempo até o próximo
 var _charge_hit: Array[Node] = []
 var _spit_at := Vector3.ZERO
@@ -347,6 +357,128 @@ func _wave_data() -> Dictionary:
 	return {}
 
 
+## Ponteiro do relógio (servidor): a cada intervalo, avisa (barra vermelha parada por "windup" s) e depois gira a barra
+## ("speed" graus/s, "duration" s) em volta de si; quem a barra toca leva dano (no máximo uma vez a cada 0,8 s).
+## Devolve true enquanto o ponteiro está ativo (o monstro fica parado no centro).
+func _update_sweep(delta: float) -> bool:
+	var sw: Dictionary = data.sweep
+	var windup := float(sw.get("windup", 1.2))
+	var duration := float(sw.get("duration", 4.0))
+	if _sweep_elapsed >= 0.0:
+		_sweep_elapsed += delta
+		velocity = Vector3.ZERO
+		if _sweep_elapsed < windup:
+			return true
+		if _sweep_elapsed >= windup + duration:
+			_sweep_elapsed = -1.0
+			return false
+		_sweep_angle += deg_to_rad(float(sw.get("speed", 90.0))) * delta
+		var dir := Vector3(cos(_sweep_angle), 0.0, -sin(_sweep_angle))
+		var length := float(sw.get("length", 9.0))
+		var half := float(sw.get("width", 0.9)) * 0.5 + 0.45
+		var now := Time.get_ticks_msec() / 1000.0
+		for node in get_tree().get_nodes_in_group(&"players"):
+			var p := node as Player
+			if p == null or not p.alive or float(_sweep_hit.get(p.peer_id, 0.0)) > now:
+				continue
+			var rel := p.global_position - global_position
+			rel.y = 0.0
+			var along := rel.dot(dir)
+			if along > 0.3 and along < length and (rel - dir * along).length() < half:
+				_sweep_hit[p.peer_id] = now + 0.8
+				p.take_damage(attack_damage(float(sw.get("damage_mult", 0.9))), level, self)
+		return true
+	_sweep_cd -= delta
+	var target := _nearest_player()
+	if _sweep_cd > 0.0 or target == null or target.global_position.distance_to(global_position) > float(sw.get("length", 9.0)) + 2.0:
+		return false
+	if state == State.WINDUP or state == State.CHARGE:
+		return false
+	_sweep_cd = float(sw.get("interval", 14.0))
+	_sweep_elapsed = 0.0
+	_sweep_hit.clear()
+	var to := target.global_position - global_position
+	_sweep_angle = atan2(-to.z, to.x) + PI * 0.5  # começa um quarto de volta antes do herói: dá tempo de ver e fugir
+	state = State.CHASE
+	start_summon()
+	_show_sweep.rpc(_sweep_angle, windup, duration, float(sw.get("speed", 90.0)), float(sw.get("length", 9.0)), float(sw.get("width", 0.9)))
+	return true
+
+
+## Visual do ponteiro (todos os PCs): barra no chão presa ao monstro; vermelha e parada no aviso, depois gira e brilha.
+@rpc("authority", "call_local", "reliable")
+func _show_sweep(angle: float, windup: float, duration: float, speed_deg: float, length: float, width: float) -> void:
+	var holder := Node3D.new()
+	add_child(holder)
+	holder.rotation.y = angle
+	# Faixa de perigo listrada (padrão "hazard") correndo para fora; vermelha no aviso, verde-mar quando gira.
+	var bar := Hazards.pattern_decal(holder, Vector3(length * 0.5, 0.12, 0.0), 0.0, "hazard", Color(0.95, 0.2, 0.1, 0.7), Vector2(-1.6, 0.0), 0.9, 0.0,
+		true, Vector2(length, width))
+	var bar_mat := bar.material_override as ShaderMaterial
+	var material := StandardMaterial3D.new()
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	material.albedo_color = Color(0.95, 0.2, 0.1, 0.35)
+	var tip := MeshInstance3D.new()
+	var ball := SphereMesh.new()
+	ball.radius = width * 0.8
+	ball.height = width * 1.6
+	tip.mesh = ball
+	tip.position = Vector3(length, 0.4, 0.0)
+	tip.material_override = material
+	holder.add_child(tip)
+	var tween := holder.create_tween()
+	tween.tween_interval(windup)
+	tween.tween_property(material, "albedo_color", Color(0.35, 0.95, 0.8, 0.85), 0.15)
+	tween.parallel().tween_method(func(v: Color) -> void: bar_mat.set_shader_parameter("color", v), Color(0.95, 0.2, 0.1, 0.7), Color(0.35, 0.95, 0.8, 0.95), 0.15)
+	tween.tween_property(holder, "rotation:y", angle + deg_to_rad(speed_deg) * duration, duration)
+	tween.tween_callback(holder.queue_free)
+
+
+## Selo Rúnico (servidor): a cada intervalo, um anel de runas desce sobre cada herói perto ("range"); quando toca o chão, quem ficou
+## dentro leva dano e fica lento (`slow`). O aviso é o próprio anel descendo (estilo "rune" em Hazards).
+func _update_rune_ring(delta: float) -> void:
+	var rune: Dictionary = data.rune_ring
+	if _rune_cd < 0.0:
+		_rune_cd = float(rune.get("first", 5.0))
+	_rune_cd -= delta
+	if _rune_cd > 0.0:
+		return
+	var reach := float(rune.get("range", 20.0))
+	var targets: Array[Player] = []
+	for node in get_tree().get_nodes_in_group(&"players"):
+		var p := node as Player
+		if p and p.alive and p.global_position.distance_to(global_position) <= reach:
+			targets.append(p)
+	if targets.is_empty():
+		_rune_cd = 1.0
+		return
+	_rune_cd = float(rune.get("interval", 12.0))
+	start_summon()
+	var extra := rune.duplicate()
+	extra["rune"] = true
+	for p in targets:
+		schedule_strike(p.global_position, float(rune.get("radius", 3.0)), float(rune.get("windup", 1.6)),
+			attack_damage(float(rune.get("damage_mult", 1.0))), extra)
+
+
+## Padrão do aviso no chão pelo efeito do golpe (Hazards.WARNING_STYLES): rede/tinta, puxão, água/empurrão, poça, fogo; pisão em volta de si = chão rachando.
+func _warning_style(info: Dictionary, around_self: bool) -> String:
+	if info.get("rune", false):
+		return "rune"
+	if info.has("slow"):
+		return "net"
+	if float(info.get("pull", 0.0)) > 0.0:
+		return "pull"
+	if float(info.get("puddle_time", 0.0)) > 0.0:
+		return "poison"
+	if info.has("boom") or info.get("element", "") == "fire":
+		return "fire"
+	if float(info.get("push", 0.0)) > 0.0 or info.get("element", "") == "water":
+		return "water"
+	return "slam" if around_self else ""
+
+
 func level_factor() -> float:
 	return pow(1.12, level - 1)
 
@@ -400,9 +532,14 @@ func _think(delta: float) -> void:
 	_charge_cd = maxf(_charge_cd - delta, 0.0)
 	_fire_cd = maxf(_fire_cd - delta, 0.0)
 	_slam_cd = maxf(_slam_cd - delta, 0.0)
+	_barrage_cd = maxf(_barrage_cd - delta, 0.0)
 	_update_pending(delta)
 	if not _wave_data().is_empty():
 		_update_waves(delta)
+	if data.has("rune_ring"):
+		_update_rune_ring(delta)
+	if data.has("sweep") and _update_sweep(delta):
+		return  # parado no meio, girando o ponteiro
 	if data.get("ai", "") == "static":
 		return  # ninho: não anda nem ataca
 	if data.get("ai", "") == "flee":
@@ -423,7 +560,7 @@ func _think(delta: float) -> void:
 	if state == State.CHARGE:
 		_think_charge(delta)
 		return
-	var target := _nearest_player()
+	var target := _boss_target() if _rotates_targets() else _nearest_player()
 	var offset := target.global_position - global_position if target else Vector3.ZERO
 	offset.y = 0.0
 	var dist := offset.length() if target else INF
@@ -441,7 +578,25 @@ func _think(delta: float) -> void:
 			var charge: Dictionary = data.get("charge", {})
 			var fire: Dictionary = data.get("fireball", {})
 			var slam: Dictionary = data.get("slam", {}) if not data.has("boss_ai") else {}
-			if not slam.is_empty() and _slam_cd <= 0.0 and dist <= float(slam.radius) * 0.8:
+			var barrage: Dictionary = data.get("barrage", {})
+			if not barrage.is_empty() and _barrage_cd <= 0.0 and dist <= float(barrage.get("max", 18.0)):
+				# Bombardeio (o Capitão Afogado chama os canhões do navio): balas caem uma após a outra em volta de cada herói,
+				# com aviso no chão; ele não para de andar.
+				_barrage_cd = float(barrage.get("interval", 10.0))
+				start_summon()
+				var shots := int(barrage.get("count", 6))
+				for p: Node in get_tree().get_nodes_in_group(&"players"):
+					if not (p is Player) or not p.alive:
+						continue
+					for i in shots:
+						var spot: Vector3 = p.global_position + Vector3(_rng.randf_range(-1, 1), 0, _rng.randf_range(-1, 1)) * float(barrage.get("spread", 5.0))
+						if i == 0:
+							spot = p.global_position  # a primeira cai em cima: quem fica parado leva
+						schedule_strike(spot, float(barrage.get("radius", 2.0)), float(barrage.get("delay", 1.2)) + i * float(barrage.get("step", 0.35)),
+							attack_damage(float(barrage.get("damage_mult", 0.8))), barrage)
+				velocity = offset.normalized() * data.move_speed * status.move_mult() * speed_mult()
+				move_and_slide()
+			elif not slam.is_empty() and _slam_cd <= 0.0 and dist <= float(slam.radius) * 0.8:
 				# Pisão: aviso no chão em volta dele; quem não sai a tempo leva dano (e é empurrado, se "push").
 				start_slam()
 				_slam_cd = float(slam.get("interval", 7.0))
@@ -454,7 +609,7 @@ func _think(delta: float) -> void:
 				velocity = Vector3.ZERO
 				_strike = fire
 				_fire_cd = float(fire.cooldown)
-				get_tree().call_group(&"arena", &"telegraph", _spit_at, float(fire.radius), _timer)
+				get_tree().call_group(&"arena", &"telegraph", _spit_at, float(fire.radius), _timer, _warning_style(fire, false))
 				_throw_glob.rpc(_spit_at, _timer)
 			elif ai == "charger" and _charge_cd <= 0.0 and dist >= float(charge["min"]) and dist <= float(charge["max"]):
 				# Investida: aviso (corpo vermelho) e direção travada.
@@ -471,7 +626,7 @@ func _think(delta: float) -> void:
 				_spit_at = target.global_position
 				velocity = Vector3.ZERO
 				_strike = data.get("spit", {})
-				get_tree().call_group(&"arena", &"telegraph", _spit_at, float(_strike.get("radius", 1.5)), _timer)
+				get_tree().call_group(&"arena", &"telegraph", _spit_at, float(_strike.get("radius", 1.5)), _timer, _warning_style(_strike, false))
 				if _strike.has("glob"):
 					_throw_glob.rpc(_spit_at, _timer)
 			elif ai != "ranged" and dist <= data.attack_range:
@@ -734,7 +889,7 @@ func start_slam() -> void:
 	_timer = float(_strike.windup)
 	_spit_at = global_position
 	velocity = Vector3.ZERO
-	get_tree().call_group(&"arena", &"telegraph", _spit_at, float(_strike.radius), _timer)
+	get_tree().call_group(&"arena", &"telegraph", _spit_at, float(_strike.radius), _timer, _warning_style(_strike, true))
 
 
 ## Rajada das Asas da Rainha: vento em volta dela que empurra (aviso no chão).
@@ -745,12 +900,12 @@ func start_gust() -> void:
 	_timer = float(_strike.windup)
 	_spit_at = global_position
 	velocity = Vector3.ZERO
-	get_tree().call_group(&"arena", &"telegraph", _spit_at, float(_strike.radius), _timer)
+	get_tree().call_group(&"arena", &"telegraph", _spit_at, float(_strike.radius), _timer, _warning_style(_strike, true))
 
 
 ## Golpe no chão daqui a `time` s (aviso agora): o gás dos canos.
 func schedule_strike(at: Vector3, radius: float, time: float, damage: float, extra: Dictionary) -> void:
-	get_tree().call_group(&"arena", &"telegraph", at, radius, time)
+	get_tree().call_group(&"arena", &"telegraph", at, radius, time, _warning_style(extra, false))
 	_pending.append({"at": at, "radius": radius, "time": time, "damage": damage, "extra": extra})
 
 
@@ -980,6 +1135,8 @@ func _leave_corpse() -> void:
 		_element_gem.visible = false
 	_model.set_color(Color.WHITE)
 	_model.play("die", 0.1)
+	if is_boss():
+		Fx.boss_crack(area_root, global_position, clampf(float(data.get("size", 1.0)) / 2.0, 1.0, 2.0))
 	var body := _visual
 	_visual = null
 	for child in body.get_children():
@@ -998,12 +1155,12 @@ func _leave_corpse() -> void:
 ## Voz do monstro (RPG Sound Pack): família pela aparência, ou pelo campo "sound" do monsters.json.
 const VOICE_BY_LOOK := {
 	"frog": "slime", "toad": "slime", "angler": "slime", "pork_shark": "beast", "nest": "slime", "mimic": "beetle",
-	"scorpion": "beetle", "chitin_beast": "beetle", "chest_mimic": "beetle",
+	"scorpion": "beetle", "chitin_beast": "beetle", "chest_mimic": "beetle", "magma_hound": "beast", "gold_crab": "beetle", "pirate_skeleton": "shade",
 	"shadow_spirit": "shade", "skeleton": "shade", "zombie": "shade", "succubus": "shade", "dark_elf": "shade",
-	"undead": "shade", "night_demon": "shade", "stalker": "wolfman", "necromancer": "shade", "demon_twelve": "giant",
+	"undead": "shade", "skeleton_drunk": "shade", "night_demon": "shade", "stalker": "wolfman", "necromancer": "shade", "demon_twelve": "giant",
 	"troll": "ogre", "troll_mauler": "ogre", "barbarian_monster": "ogre", "champ_warrior": "ogre", "fungus": "ogre", "ogre": "ogre",
 	"demon_boss": "giant", "golem_fire": "giant", "golem_ice": "giant", "golem_stone": "giant", "golem_king": "giant",
-	"plank_monster": "giant", "forest": "giant", "forest_troll": "ogre", "demon": "giant", "lizard": "giant",
+	"plank_monster": "giant", "forest": "giant", "forest_troll": "ogre", "ruins_troll": "giant", "demon": "giant", "lizard": "giant",
 	"mutant": "beast", "goblin": "beast", "bat": "beast", "reptile": "beast", "baby_dragon": "beast", "lynx": "beast", "mine_automaton": "giant", "tin_sentinel": "giant", "mine_golem": "giant", "docks_scarecrow": "ogre", "ruins_wraith": "shade", "mine_scout": "beetle", "deer_buck": "beast", "deer_doe": "beast",
 	"alien_bug": "beetle", "cactus": "ogre", "cobra": "beast", "crab": "beetle", "crawlmaster": "shade", "darsh": "giant", "earth_dragon": "giant", "exp_demon": "shade", "fatty": "ogre", "ghost_wing": "shade", "glutton": "giant", "golem_block": "giant", "hazmat": "shade", "horror": "giant", "lava_golem": "giant", "mushroom_cap": "ogre", "mutant_grunt": "ogre", "octaminator": "giant", "raven": "beast", "sonask": "shade", "spider_big": "beetle", "tentacleye": "slime", "werewolf": "wolfman", "rat": "beast", "gator": "beast",
 }
@@ -1038,6 +1195,38 @@ func _show_damage(amount: float, effect := "normal", hit_element := "", crit := 
 			Sfx.play("hit_crit" if crit else "hit", global_position, -2.0)  # o golpe que acertou (os packs "hit_N" e "hit_crit_N" do pacote de hits e socos)
 	DamageNumber.spawn(get_parent(), global_position + Vector3.UP * (data.size + 0.8), amount,
 		effect, hit_element, crit, combo)
+
+
+const FOCUS_TIME := 6.0
+
+
+## Chefe, mini-chefe (ou monstro invocado com essa categoria) troca de alvo entre os heróis.
+func _rotates_targets() -> bool:
+	return data.get("category", "") in ["boss", "miniboss"] or rank in ["boss", "miniboss"]
+
+
+## Alvo dos chefes: fica FOCUS_TIME s (dados "focus_time") num herói e passa para o próximo vivo ao alcance (ordem de peer_id), para não
+## ficar preso no mais perto. Os animais invocados (Invocador, Urso Guardião) não seguram o chefe: ele só os ataca quando não há herói ao
+## alcance. A provocação de um herói (Corpo de Ferro) continua valendo.
+func _boss_target() -> Node3D:
+	if _taunt_time > 0.0 and is_instance_valid(_taunt) and _taunt is Player and _taunt.alive and _taunt.connected:
+		return _taunt
+	var heroes: Array[Player] = []
+	for node in get_tree().get_nodes_in_group(&"players"):
+		var p := node as Player
+		if p and p.alive and p.connected and not p.get("hidden") and not p.is_queued_for_deletion() \
+				and global_position.distance_to(p.global_position) <= float(data.aggro_range):
+			heroes.append(p)
+	if heroes.is_empty():
+		_focus = null
+		return _nearest_player()
+	heroes.sort_custom(func(a: Player, b: Player) -> bool: return a.peer_id < b.peer_id)
+	var now := Time.get_ticks_msec() / 1000.0
+	var current := heroes.find(_focus) if is_instance_valid(_focus) else -1
+	if current < 0 or now >= _focus_until:
+		_focus = heroes[(current + 1) % heroes.size()]
+		_focus_until = now + float(data.get("focus_time", FOCUS_TIME))
+	return _focus
 
 
 ## Herói ou animal amigo mais perto (ou quem provocou).

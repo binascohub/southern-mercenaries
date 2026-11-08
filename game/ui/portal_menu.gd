@@ -2,8 +2,12 @@
 class_name PortalMenu
 extends MenuPanel
 ## Viajante do Tempo (antes o Macumbeiro; 04-tortuga-e-missoes.md, seção 5.1): teleporte entre Tortuga, Capital e Fazenda (todas
-## na lista; as outras ficam travadas até concluir as missões de aldeia dos mapas da cidade atual) e, abaixo, os checkpoints
-## já alcançados nos mapas, com o preço por jogador; escolher um leva o grupo todo (cada um paga com o próprio ouro nos checkpoints).
+## na lista; as outras ficam travadas até concluir os mapas da cidade atual) e, abaixo, os checkpoints já alcançados nos mapas
+## (menos os que um portão da cidade alcança de graça), com o preço por jogador; escolher um leva o grupo todo (cada um paga com o próprio ouro nos checkpoints).
+
+## Medalhões dos botões das cidades (assets/ui/map_icons, Board Game Icons da Kenney): ampulheta do Viajante e cadeado da cidade travada.
+const ICON_TRAVEL := preload("res://assets/ui/map_icons/teleporter.png")
+const ICON_LOCKED := preload("res://assets/ui/map_icons/locked.png")
 
 var _town: Town
 var _list: VBoxContainer
@@ -40,21 +44,30 @@ func _on_open() -> void:
 		var hub_button := Button.new()
 		hub_button.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 		hub_button.custom_minimum_size = Vector2(420, 44)
+		hub_button.add_theme_constant_override("icon_max_width", 28)
 		if hub == here:
 			hub_button.text = tr("PORTALS_HERE").format({"city": city})
 			hub_button.disabled = true
 		elif left > 0:
 			hub_button.text = tr("PORTALS_LOCKED").format({"city": city, "here": tr(GameData.arenas.get(here, {}).get("name_key", "")), "n": left})
 			hub_button.disabled = true
+			hub_button.icon = ICON_LOCKED
 		else:
 			hub_button.text = tr("PORTALS_GO").format({"city": city})
+			hub_button.icon = ICON_TRAVEL
 			hub_button.pressed.connect(func() -> void:
 				_town.request_hub_travel(hub)
 				close())
 		_hubs.add_child(hub_button)
 	clear(_list)
-	_empty.visible = _town.reached.is_empty()
-	for key: String in _town.reached:
+	# Pontos onde um portão desta cidade já leva de graça (o início dos mapas dela) não entram na lista paga.
+	var free: Array[String] = []
+	for prop: Dictionary in _town._arena().arena.get("props", []):
+		if prop.get("kind", "") == "exit" and prop.has("to"):
+			free.append("%s:%s" % [prop.to, prop.get("entry", "start")])
+	var paid := _town.reached.filter(func(key: String) -> bool: return key not in free)
+	_empty.visible = paid.is_empty()
+	for key: String in paid:
 		var area: Dictionary = GameData.arenas.get(key.get_slice(":", 0), {})
 		var button := Button.new()
 		button.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED

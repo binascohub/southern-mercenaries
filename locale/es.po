@@ -584,6 +584,9 @@ msgstr "Personajes"
 msgid "CHAR_NEW"
 msgstr "Nuevo personaje"
 
+msgid "CHAR_SAVED"
+msgstr "Tus personajes"
+
 msgid "CHAR_CREATE"
 msgstr "Crear"
 
@@ -1719,6 +1722,9 @@ msgstr "A la venta"
 msgid "SHOP_SELL"
 msgstr "Vender (tu bolsa)"
 
+msgid "SHOP_DETAILS"
+msgstr "Objeto"
+
 msgid "SHOP_HINT"
 msgstr "El equipo se vende al 25% de su valor; solo los piratas compran objetos de valor, al precio del día."
 
@@ -2129,6 +2135,9 @@ msgstr "Herrero"
 
 msgid "FORGE_TITLE"
 msgstr "Forja — refinado"
+
+msgid "FORGE_EMPTY"
+msgstr "Nada que refinar: equipa o lleva un arma o una armadura para mejorarla aquí."
 
 msgid "FORGE_EQUIPPED"
 msgstr "(equipado)"
@@ -4621,10 +4630,10 @@ msgid "PORTALS_GO"
 msgstr "Teletransportar a {city} (gratis, todo el grupo)"
 
 msgid "PORTALS_LOCKED"
-msgstr "{city} — completa las misiones de {here} (faltan {n})"
+msgstr "{city} — completa los mapas de {here} (faltan {n})"
 
 msgid "TOAST_HUB_LOCKED"
-msgstr "El Viajero del Tiempo solo los lleva adelante cuando las misiones de {city} estén completas (faltan {n})."
+msgstr "El Viajero del Tiempo solo los lleva adelante cuando los mapas de {city} estén completos (faltan {n})."
 
 msgid "AREA_FARM_SHED"
 msgstr "Casa de Equipos"
@@ -5285,3 +5294,72 @@ msgstr "La piedra no reacciona. Hay un hueco en el centro, del tamaño de un lib
 
 msgid "TOAST_BREAKABLE_MIMIC"
 msgstr "¡Era un Mímico!"
+
+msgid "MONSTER_SEA_CRAB"
+msgstr "Cangrejo Tenaza"
+
+msgid "MONSTER_SEA_OCTOPUS"
+msgstr "Pulpo de Tinta"
+
+msgid "MONSTER_SEA_ANGLER"
+msgstr "Esqueleto Borracho"
+
+msgid "MONSTER_SEA_GATOR"
+msgstr "Caimán Arrastrador"
+
+msgid "TOAST_HULL_WAVE"
+msgstr "El Casco Viviente cruje: ¡la oleada {n} de bichos del mar sube al muelle!"
+
+msgid "TOAST_SHARK_WAVE"
+msgstr "El Tiburón-Cerdo llama a los cangrejos de oro: ¡oleada {n}!"
+
+msgid "TOAST_CAPTAIN_WAVE"
+msgstr "El Capitán Ahogado llama al mar: ¡oleada {n}!"
+
+msgid "TOAST_WARDEN_WAVE"
+msgstr "¡El Guardián de las Ruinas libera a los demonios: oleada {n}!"
+
+msgid "TOAST_CHAMPION_WAVE"
+msgstr "¡El Campeón Caído llama al ejército de fuego: oleada {n}!"
+
+msgid "MONSTER_EMBER_GOBLIN"
+msgstr "Goblin de Ceniza"
+
+msgid "MONSTER_EMBER_BAT"
+msgstr "Murciélago de Brasa"
+
+msgid "MONSTER_FIRE_SCORPION"
+msgstr "Escorpión de Fuego"
+
+msgid "MONSTER_EMBER_MIMIC"
+msgstr "Mímico Ardiente"
+
+msgid "MONSTER_ARMORED_TROLL"
+msgstr "Trol Acorazado"
+
+msgid "MONSTER_SWAMP_CROC"
+msgstr "Cocodrilo del Pantano"
+
+msgid "MONSTER_SPIKED_CROC"
+msgstr "Cocodrilo Espinoso"
+
+msgid "MONSTER_DITCH_DOG"
+msgstr "Perro de la Zanja"
+
+msgid "MONSTER_MAGMA_HOUND"
+msgstr "Perro de Magma"
+
+msgid "TOAST_KING_WAVE"
+msgstr "¡El Rey Caído llama a los perros de magma!"
+
+msgid "MONSTER_FLOWERMAW"
+msgstr "Boca de Flor"
+
+msgid "MONSTER_GOLD_SANDWORM"
+msgstr "Gusano Dorado"
+
+msgid "MONSTER_GOLD_CRAB"
+msgstr "Cangrejo de Oro"
+
+msgid "MONSTER_SKELETON_PIRATE"
+msgstr "Esqueleto Pirata"

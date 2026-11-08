@@ -33,6 +33,7 @@ monsters["crypt_scorpion"].update({"look": "ogre", "size": 1.6, "color": [1.0, 1
                                    "_comment": "Mini-chefe do Cemitério (praça): o Ogro da Cripta (Ogre lowpoly, nubux / rudy85, CC BY 3.0); investidas. O id continua crypt_scorpion (saves e encontros)."})
 monsters["tomb_guardian"]["quest_drop"] = "royal_soul"  # o Guardião do Túmulo (Cemitério e Mina) guarda a alma do rei
 monsters["crypt_lord"]["quest_drop"] = "human_heart"
+monsters["crypt_lord"]["rune_ring"] = {"_comment": "Selo Rúnico: um anel de runas douradas desce girando sobre cada herói perto; quando toca o chão, quem ficou dentro leva dano e fica lento.", "first": 5.0, "interval": 12.0, "range": 20.0, "radius": 3.0, "windup": 1.6, "damage_mult": 1.1, "slow": [0.5, 2.5], "boom": [1.0, 0.8, 0.35]}  # assets/models/fx/rune_ring.glb
 clone("sand_lamassu", "tomb_guardian", _comment="Mini-chefe do Deserto (portão do cânion): o Lamassu da Areia, guardião de pedra do portão; investidas.",
       name_key="MONSTER_SAND_LAMASSU", max_health=520, damage=30, size=2.4, element="air", look="golem_stone", color=[1.0, 0.85, 0.55])
 clone("forest_tomb_guardian", "tomb_guardian", _comment="Escolta do Rei Golem de Pedra na Toca dos Répteis (Floresta): o Guardião do Túmulo em tamanho menor e sem a alma do rei (que é do Cemitério e da Mina).",

@@ -644,7 +644,7 @@
     "aggro_range": 40.0,
     "size": 2.8,
     "category": "miniboss",
-    "element": "earth",
+    "element": "fire",
     "ai": "charger",
     "charge": {
       "min": 4.0,
@@ -663,7 +663,92 @@
     ],
     "quest_drop": "stone_heart",
     "_comment": "Mini-chefe das Ruínas (Praça dos Cavaleiros): o Guardião das Ruínas, golem de pedra que acorda quando o cavaleiro de pedra é tocado com a missão do Coração de Pedra; investidas rápidas.",
-    "role": "normal"
+    "role": "normal",
+    "slam": {
+      "_comment": "Terremoto: o golem bate os punhos no chão; a terra racha em volta dele e quem está dentro leva dano e é jogado longe.",
+      "interval": 9.0,
+      "radius": 5.0,
+      "windup": 1.1,
+      "damage_mult": 1.0,
+      "push": 6.0,
+      "push_time": 0.4,
+      "wind": true
+    },
+    "fireball": {
+      "_comment": "Pedra em brasa: arranca um bloco do chão, aquece e arremessa onde o herói está; deixa o chão em brasa por alguns segundos.",
+      "min": 4.0,
+      "max": 16.0,
+      "windup": 1.1,
+      "cooldown": 5.0,
+      "radius": 2.4,
+      "damage_mult": 1.1,
+      "element": "fire",
+      "glob": [
+        1.0,
+        0.45,
+        0.1
+      ],
+      "glob_size": 1.8,
+      "puddle_time": 4.0,
+      "puddle_dps": 6.0
+    },
+    "waves": {
+      "_comment": "Chama os demônios presos nas ruínas: a cada intervalo, monstros de fogo brotam em volta dele.",
+      "first": 6.0,
+      "interval": 16.0,
+      "radius": 6.0,
+      "toast": "TOAST_WARDEN_WAVE",
+      "list": [
+        [
+          {
+            "monster": "demon_twelve",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "succubus",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "mine_scout",
+            "count": 3
+          }
+        ],
+        [
+          {
+            "monster": "golem_fire",
+            "count": 1
+          },
+          {
+            "monster": "demon_twelve",
+            "count": 1
+          }
+        ],
+        [
+          {
+            "monster": "succubus",
+            "count": 1
+          },
+          {
+            "monster": "demon_twelve",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "mn_magma",
+            "count": 1
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
+          }
+        ]
+      ]
+    }
   },
   "crypt_scorpion": {
     "name_key": "MONSTER_CRYPT_SCORPION",
@@ -895,6 +980,24 @@
       1.0
     ],
     "quest_drop": "human_heart",
+    "rune_ring": {
+      "_comment": "Selo Rúnico: um anel de runas douradas desce girando sobre cada herói perto; quando toca o chão, quem ficou dentro leva dano e fica lento.",
+      "first": 5.0,
+      "interval": 12.0,
+      "range": 20.0,
+      "radius": 3.0,
+      "windup": 1.6,
+      "damage_mult": 1.1,
+      "slow": [
+        0.5,
+        2.5
+      ],
+      "boom": [
+        1.0,
+        0.8,
+        0.35
+      ]
+    },
     "_comment": "Chefe do Cemitério: o Senhor da Cripta (Undead male, TiZeta, CC BY), nobre morto-vivo; investidas como o escorpião que ele substitui."
   },
   "golem_fire": {
@@ -1445,7 +1548,7 @@
     "aggro_range": 40.0,
     "size": 2.0,
     "category": "elite",
-    "element": "air",
+    "element": "fire",
     "ai": "charger",
     "charge": {
       "min": 4.0,
@@ -1928,7 +2031,45 @@
     ],
     "role": "normal",
     "_comment": "Mini-chefe das Docas (Estaleiro): o Casco Vivo, monstro de tábuas e pregos que acorda do casco encalhado; investidas.",
-    "quest_drop": "ship_helm"
+    "quest_drop": "ship_helm",
+    "slam": {
+      "_comment": "Pregos e tábuas: o casco se joga no chão e arrasta para si quem está perto.",
+      "interval": 8.0,
+      "radius": 5.5,
+      "windup": 1.1,
+      "damage_mult": 1.0,
+      "pull": 5.0
+    },
+    "waves": {
+      "first": 8.0,
+      "interval": 22.0,
+      "radius": 6.0,
+      "toast": "TOAST_HULL_WAVE",
+      "list": [
+        [
+          {
+            "monster": "sea_crab",
+            "count": 3
+          }
+        ],
+        [
+          {
+            "monster": "sea_angler",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "sea_gator",
+            "count": 1
+          },
+          {
+            "monster": "sea_crab",
+            "count": 2
+          }
+        ]
+      ]
+    }
   },
   "pork_shark": {
     "name_key": "MONSTER_PORK_SHARK",
@@ -1952,15 +2093,60 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "pork_shark",
+    "look": "pirate_skeleton",
     "color": [
       1.0,
       1.0,
       1.0
     ],
     "role": "normal",
-    "_comment": "Mini-chefe das Docas (Peixaria): o Tubarão-Porco, tubarão de dentes de ouro que a Peixeira desperta; investidas.",
-    "quest_drop": "golden_shark_tooth"
+    "_comment": "Mini-chefe das Docas (Peixaria): o Tubarão-Porco, que a Peixeira desperta; o visual é o Esqueleto Pirata (pirate_skeleton). Investidas, jato d'água e ondas de Caranguejos de Ouro.",
+    "quest_drop": "golden_shark_tooth",
+    "fireball": {
+      "_comment": "Jato d'água: cospe uma onda onde o herói está, que derruba e joga longe.",
+      "min": 4.0,
+      "max": 14.0,
+      "windup": 1.0,
+      "cooldown": 6.0,
+      "radius": 2.6,
+      "damage_mult": 1.0,
+      "element": "water",
+      "push": 6.0,
+      "push_time": 0.4,
+      "wind": true,
+      "glob": [
+        0.4,
+        0.7,
+        1.0
+      ],
+      "glob_size": 1.6
+    },
+    "waves": {
+      "first": 8.0,
+      "interval": 22.0,
+      "radius": 6.0,
+      "toast": "TOAST_SHARK_WAVE",
+      "list": [
+        [
+          {
+            "monster": "gold_crab",
+            "count": 3
+          }
+        ],
+        [
+          {
+            "monster": "gold_crab",
+            "count": 4
+          }
+        ],
+        [
+          {
+            "monster": "gold_crab",
+            "count": 5
+          }
+        ]
+      ]
+    }
   },
   "drowned_captain": {
     "name_key": "MONSTER_DROWNED_CAPTAIN",
@@ -1984,16 +2170,82 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "skeleton",
+    "look": "octaminator",
     "color": [
-      0.4,
-      0.85,
-      0.75
+      0.75,
+      1.0,
+      0.9
     ],
     "role": "normal",
     "_comment": "Chefe final das Docas: o Capitão Afogado, esqueleto verde do mar que guarda o Convés atrás do portão; investidas e pisões.",
     "aggressive": false,
     "chest_loot": "chest",
+    "sweep": {
+      "_comment": "Ponteiro do relógio: a corrente da âncora sai dele e gira pelo chão; quem encosta leva dano. Pule-a ou fique longe.",
+      "interval": 13.0,
+      "windup": 1.3,
+      "duration": 4.5,
+      "speed": 95.0,
+      "length": 10.0,
+      "width": 1.0,
+      "damage_mult": 0.9
+    },
+    "barrage": {
+      "_comment": "Fogo dos canhões do navio: balas caem uma atrás da outra em volta de cada herói (a primeira em cima dele).",
+      "interval": 11.0,
+      "count": 5,
+      "radius": 2.2,
+      "spread": 6.0,
+      "delay": 1.4,
+      "step": 0.35,
+      "damage_mult": 0.8,
+      "max": 22.0,
+      "boom": [
+        1.0,
+        0.55,
+        0.2
+      ]
+    },
+    "waves": {
+      "first": 10.0,
+      "interval": 20.0,
+      "radius": 7.0,
+      "toast": "TOAST_CAPTAIN_WAVE",
+      "list": [
+        [
+          {
+            "monster": "sea_crab",
+            "count": 3
+          }
+        ],
+        [
+          {
+            "monster": "sea_angler",
+            "count": 2
+          },
+          {
+            "monster": "docks_skeleton_pirate",
+            "count": 1
+          }
+        ],
+        [
+          {
+            "monster": "sea_gator",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "sea_crab",
+            "count": 2
+          },
+          {
+            "monster": "docks_skeleton_pirate",
+            "count": 2
+          }
+        ]
+      ]
+    },
     "quest_drop": "captain_log"
   },
   "war_champion": {
@@ -2026,7 +2278,96 @@
     ],
     "role": "normal",
     "_comment": "Mini-chefe das Ruínas (Praça dos Monólitos): o Campeão Caído, guerreiro da guerra que a Sacerdotisa desperta; investidas rápidas.",
-    "quest_drop": "champion_banner"
+    "quest_drop": "champion_banner",
+    "slam": {
+      "_comment": "Anel de chamas: crava a espada no chão e uma explosão de fogo sai em volta dele; quem está dentro leva dano e é empurrado.",
+      "interval": 8.0,
+      "radius": 5.0,
+      "windup": 1.0,
+      "damage_mult": 1.1,
+      "push": 5.0,
+      "push_time": 0.35,
+      "boom": [
+        1.0,
+        0.5,
+        0.15
+      ]
+    },
+    "fireball": {
+      "_comment": "Lança de fogo: arremessa uma chama onde o herói está; o chão fica queimando por alguns segundos.",
+      "min": 4.0,
+      "max": 15.0,
+      "windup": 1.0,
+      "cooldown": 5.0,
+      "radius": 2.2,
+      "damage_mult": 1.1,
+      "element": "fire",
+      "glob": [
+        1.0,
+        0.35,
+        0.05
+      ],
+      "glob_size": 1.6,
+      "puddle_time": 4.0,
+      "puddle_dps": 7.0
+    },
+    "waves": {
+      "_comment": "Chama o exército de fogo da guerra: a cada intervalo, monstros de fogo brotam em volta dele.",
+      "first": 6.0,
+      "interval": 15.0,
+      "radius": 6.0,
+      "toast": "TOAST_CHAMPION_WAVE",
+      "list": [
+        [
+          {
+            "monster": "succubus",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "mine_scout",
+            "count": 3
+          }
+        ],
+        [
+          {
+            "monster": "golem_fire",
+            "count": 1
+          },
+          {
+            "monster": "demon_twelve",
+            "count": 1
+          }
+        ],
+        [
+          {
+            "monster": "succubus",
+            "count": 1
+          },
+          {
+            "monster": "demon_twelve",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "mn_magma",
+            "count": 1
+          },
+          {
+            "monster": "mine_scout",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "demon_twelve",
+            "count": 2
+          }
+        ]
+      ]
+    }
   },
   "fallen_king": {
     "name_key": "MONSTER_FALLEN_KING",
@@ -2039,7 +2380,7 @@
     "aggro_range": 40.0,
     "size": 4.2,
     "category": "boss",
-    "element": "earth",
+    "element": "fire",
     "ai": "charger",
     "charge": {
       "min": 4.0,
@@ -2050,18 +2391,43 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "golem_king",
+    "look": "ruins_troll",
     "color": [
-      0.85,
-      0.75,
+      1.0,
+      1.0,
       1.0
     ],
     "aggressive": false,
     "chest_loot": "chest",
-    "sound": "giant",
-    "visual_pending": true,
-    "_comment": "Chefe final das Ruínas: o Rei Caído, guardião do Cofre Real atrás do portão; investidas e pisões (modelo do rei golem).",
-    "quest_drop": "fallen_crown"
+    "_comment": "Chefe final das Ruínas: o Rei Caído, guardião do Cofre Real atrás do portão; investidas e pisões (modelo do Troll das Ruínas, ruins_troll).",
+    "quest_drop": "fallen_crown",
+    "waves": {
+      "_comment": "Chama os cães de magma: a cada intervalo, uma matilha brota em volta dele.",
+      "first": 7.0,
+      "interval": 18.0,
+      "radius": 6.0,
+      "toast": "TOAST_KING_WAVE",
+      "list": [
+        [
+          {
+            "monster": "magma_hound",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "magma_hound",
+            "count": 3
+          }
+        ],
+        [
+          {
+            "monster": "magma_hound",
+            "count": 4
+          }
+        ]
+      ]
+    }
   },
   "viper_queen": {
     "name_key": "MONSTER_VIPER_QUEEN",
@@ -3984,7 +4350,7 @@
     "aggro_range": 40.0,
     "size": 1.5,
     "category": "common",
-    "element": "water",
+    "element": "fire",
     "look": "ruins_wraith",
     "color": [
       1.0,
@@ -4034,5 +4400,487 @@
       1.0
     ],
     "role": "normal"
+  },
+  "sea_crab": {
+    "name_key": "MONSTER_SEA_CRAB",
+    "max_health": 84,
+    "move_speed": 4.6,
+    "damage": 8,
+    "attack_range": 1.4,
+    "attack_windup": 0.35,
+    "attack_cooldown": 1.0,
+    "aggro_range": 40.0,
+    "size": 0.7,
+    "category": "common",
+    "element": "water",
+    "ai": "melee",
+    "look": "crab",
+    "color": [
+      1.0,
+      0.75,
+      0.6
+    ],
+    "role": "swarm",
+    "slam": {
+      "_comment": "Pinça que prende: aperta em volta de si e deixa o herói lento.",
+      "interval": 5.0,
+      "radius": 2.2,
+      "windup": 0.6,
+      "damage_mult": 0.6,
+      "slow": [
+        0.3,
+        1.5
+      ]
+    }
+  },
+  "sea_octopus": {
+    "name_key": "MONSTER_SEA_OCTOPUS",
+    "max_health": 210,
+    "move_speed": 2.0,
+    "damage": 16,
+    "attack_range": 9.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 2.6,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "water",
+    "ai": "ranged",
+    "keep_distance": 5.0,
+    "look": "octaminator",
+    "color": [
+      0.75,
+      0.5,
+      0.85
+    ],
+    "role": "normal",
+    "spit": {
+      "_comment": "Jato de tinta: mancha preta no chão; quem é atingido fica lento.",
+      "radius": 2.2,
+      "damage_mult": 0.8,
+      "slow": [
+        0.5,
+        3.0
+      ],
+      "glob": [
+        0.12,
+        0.08,
+        0.2
+      ]
+    }
+  },
+  "sea_angler": {
+    "name_key": "MONSTER_SEA_ANGLER",
+    "max_health": 136,
+    "move_speed": 3.2,
+    "damage": 12,
+    "attack_range": 2.0,
+    "attack_windup": 0.7,
+    "attack_cooldown": 1.6,
+    "aggro_range": 40.0,
+    "size": 1.8,
+    "category": "common",
+    "element": "water",
+    "ai": "melee",
+    "look": "skeleton_drunk",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "role": "light",
+    "fireball": {
+      "_comment": "Garrafada de rum (o Esqueleto Bêbado): arremessa a garrafa onde o herói está; o rum espalhado deixa lento.",
+      "min": 4.0,
+      "max": 11.0,
+      "windup": 0.9,
+      "cooldown": 6.0,
+      "radius": 1.6,
+      "damage_mult": 0.8,
+      "element": "water",
+      "slow": [
+        0.6,
+        2.0
+      ],
+      "glob": [
+        0.75,
+        0.45,
+        0.15
+      ],
+      "glob_size": 0.7
+    }
+  },
+  "sea_gator": {
+    "name_key": "MONSTER_SEA_GATOR",
+    "max_health": 336,
+    "move_speed": 3.0,
+    "damage": 10,
+    "attack_range": 2.6,
+    "attack_windup": 0.6,
+    "attack_cooldown": 1.6,
+    "aggro_range": 40.0,
+    "size": 1.2,
+    "category": "common",
+    "element": "water",
+    "ai": "melee",
+    "look": "gator",
+    "color": [
+      0.45,
+      0.62,
+      0.45
+    ],
+    "role": "tank",
+    "slam": {
+      "_comment": "Bote que arrasta: bate o rabo na água e puxa quem está em volta para a boca.",
+      "interval": 7.0,
+      "radius": 5.5,
+      "windup": 1.0,
+      "damage_mult": 1.1,
+      "pull": 4.5
+    }
+  },
+  "ember_goblin": {
+    "_comment": "Goblin das Cinzas: o Goblin das Ruínas, queimado pela guerra; de Fogo.",
+    "name_key": "MONSTER_EMBER_GOBLIN",
+    "max_health": 136,
+    "move_speed": 3.6,
+    "damage": 12,
+    "attack_range": 1.8,
+    "attack_windup": 0.5,
+    "attack_cooldown": 1.2,
+    "aggro_range": 40.0,
+    "size": 0.9,
+    "category": "common",
+    "element": "fire",
+    "look": "goblin",
+    "color": [
+      1.0,
+      0.55,
+      0.4
+    ],
+    "role": "light"
+  },
+  "ember_bat": {
+    "_comment": "Morcego de Brasa: o Morcego Pestilento das Ruínas; de Fogo.",
+    "name_key": "MONSTER_EMBER_BAT",
+    "max_health": 84,
+    "move_speed": 5.0,
+    "damage": 8,
+    "attack_range": 1.3,
+    "attack_windup": 0.3,
+    "attack_cooldown": 0.9,
+    "aggro_range": 40.0,
+    "size": 0.55,
+    "category": "common",
+    "element": "fire",
+    "ai": "melee",
+    "flyer": true,
+    "look": "bat",
+    "color": [
+      1.0,
+      0.5,
+      0.3
+    ],
+    "role": "swarm"
+  },
+  "fire_scorpion": {
+    "_comment": "Escorpião de Fogo: o Escorpião Venenoso das Ruínas; cospe brasa que deixa o chão queimando. De Fogo.",
+    "name_key": "MONSTER_FIRE_SCORPION",
+    "max_health": 136,
+    "move_speed": 2.2,
+    "damage": 12,
+    "attack_range": 9.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 2.6,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "fire",
+    "ai": "ranged",
+    "keep_distance": 5.5,
+    "spit": {
+      "radius": 1.5,
+      "puddle_time": 4.0,
+      "puddle_dps": 6.0,
+      "glob": [
+        1.0,
+        0.45,
+        0.1
+      ]
+    },
+    "look": "scorpion",
+    "color": [
+      1.0,
+      0.45,
+      0.3
+    ],
+    "role": "light"
+  },
+  "ember_mimic": {
+    "name_key": "MONSTER_EMBER_MIMIC",
+    "max_health": 210,
+    "move_speed": 3.9,
+    "damage": 16,
+    "attack_range": 2.0,
+    "attack_windup": 0.6,
+    "attack_cooldown": 1.4,
+    "aggro_range": 60.0,
+    "size": 0.62,
+    "category": "common",
+    "element": "fire",
+    "patrol": true,
+    "look": "chest_mimic",
+    "color": [
+      1.0,
+      0.6,
+      0.45
+    ],
+    "_comment": "Mímico em Brasa: o Mímico das Ruínas; de Fogo.",
+    "aggressive": true,
+    "role": "normal"
+  },
+  "ru_armored_troll": {
+    "name_key": "MONSTER_ARMORED_TROLL",
+    "max_health": 336,
+    "move_speed": 2.3,
+    "damage": 16,
+    "attack_range": 3.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 2.0,
+    "aggro_range": 40.0,
+    "size": 3.0,
+    "category": "common",
+    "element": "fire",
+    "patrol": false,
+    "look": "troll_armored",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "sound": "ogre",
+    "role": "tank",
+    "_comment": "Troll Blindado (\"Troll (Armored)\", SidewalkNZ, CC BY 4.0; tools/assets/build_troll_armored.py + rig_biped.py): bruto de 3 m com armadura de placas, com os movimentos dos heróis. Monstro das Ruínas: lento, resistente e de pancada pesada. Fogo (fraco a Água)."
+  },
+  "fd_swamp_croc": {
+    "name_key": "MONSTER_SWAMP_CROC",
+    "max_health": 210,
+    "move_speed": 2.6,
+    "damage": 16,
+    "attack_range": 2.4,
+    "attack_windup": 0.6,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "water",
+    "patrol": true,
+    "patrol_radius": 5.0,
+    "patrol_speed": 0.6,
+    "look": "swamp_crocodile",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "sound": "beast",
+    "role": "normal",
+    "_comment": "Crocodilo do Pântano (\"Jungle Water Crocodile\", vanshtandon321, CC BY 4.0): 2,4 m, rente ao chão; ronda devagar no Pântano das Cobras e dá o bote em quem chega perto. Água (fraco a Raio)."
+  },
+  "fd_spiked_croc": {
+    "name_key": "MONSTER_SPIKED_CROC",
+    "max_health": 210,
+    "move_speed": 3.0,
+    "damage": 16,
+    "attack_range": 2.6,
+    "attack_windup": 0.7,
+    "attack_cooldown": 2.0,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "water",
+    "patrol": true,
+    "patrol_radius": 6.0,
+    "patrol_speed": 0.8,
+    "look": "fantasy_crocodile",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "sound": "beast",
+    "role": "normal",
+    "_comment": "Crocodilo Espinhoso (\"fantasy crocodile animation\", hino, CC BY 4.0): 2,6 m, de espinhos nas costas e patas esticadas; anda mais rápido que o do pântano. Água (fraco a Raio)."
+  },
+  "docks_ditch_dog": {
+    "name_key": "MONSTER_DITCH_DOG",
+    "max_health": 210,
+    "move_speed": 3.0,
+    "damage": 16,
+    "attack_range": 2.4,
+    "attack_windup": 0.7,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "water",
+    "patrol": true,
+    "patrol_radius": 6.0,
+    "patrol_speed": 0.7,
+    "look": "ditch_dog",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "sound": "beast",
+    "role": "normal",
+    "_comment": "Cão da Vala (\"Ditch Dog\", Greeble3d, CC BY 4.0): bicho de carne anfíbio de ~2,3 m que sai das valas do porto; rosna e avança. Água (fraco a Raio)."
+  },
+  "magma_hound": {
+    "name_key": "MONSTER_MAGMA_HOUND",
+    "max_health": 120,
+    "move_speed": 5.2,
+    "damage": 12,
+    "attack_range": 1.6,
+    "attack_windup": 0.35,
+    "attack_cooldown": 1.0,
+    "aggro_range": 40.0,
+    "size": 1.1,
+    "category": "common",
+    "element": "fire",
+    "ai": "melee",
+    "look": "magma_hound",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "role": "swarm",
+    "_comment": "Cão de Magma: só aparece pelas ondas do Rei Caído (chefe final das Ruínas). Corre em matilha e, de vez em quando, bate as patas e queima o chão em volta.",
+    "slam": {
+      "_comment": "Patada de lava: queima em volta de si.",
+      "interval": 6.0,
+      "radius": 2.0,
+      "windup": 0.6,
+      "damage_mult": 0.8
+    }
+  },
+  "forest_flowermaw": {
+    "_comment": "Boca-de-Flor (\"Demogorgon Rig\", NO DONT EAT ME CASEOH (Ferris wheel), CC BY 4.0): criatura magra de ~2,6 m com a cabeça que abre em pétalas; no lugar do Tio Fungo na Floresta, com os mesmos números (corpo a corpo, Terra).",
+    "name_key": "MONSTER_FLOWERMAW",
+    "max_health": 210,
+    "move_speed": 2.6,
+    "damage": 16,
+    "attack_range": 2.6,
+    "attack_windup": 0.7,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "patrol": true,
+    "patrol_radius": 5.0,
+    "patrol_speed": 0.6,
+    "ai": "melee",
+    "look": "demogorgon",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "role": "normal",
+    "sound": "beast"
+  },
+  "de_sandworm": {
+    "name_key": "MONSTER_GOLD_SANDWORM",
+    "max_health": 210,
+    "move_speed": 0.0,
+    "damage": 16,
+    "attack_range": 11.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 2.4,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "earth",
+    "ai": "ranged",
+    "keep_distance": 0.0,
+    "spit": {
+      "radius": 1.8,
+      "puddle_time": 4.0,
+      "puddle_dps": 5.0,
+      "glob": [
+        0.95,
+        0.72,
+        0.25
+      ]
+    },
+    "look": "gold_sandworm",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "sound": "slime",
+    "role": "normal",
+    "_comment": "Verme Dourado (\"Gold Sandworm\", Fubbi, CC BY 4.0): verme de ~2,5 m que fica no buraco dele na areia (não anda), vira para quem chega e cospe areia ácida em arco; a bola cai na marca do chão e deixa uma poça. Sozinho em cada ponto, no meio dos bandos do deserto. Terra."
+  },
+  "gold_crab": {
+    "name_key": "MONSTER_GOLD_CRAB",
+    "max_health": 84,
+    "move_speed": 5.0,
+    "damage": 8,
+    "attack_range": 1.5,
+    "attack_windup": 0.35,
+    "attack_cooldown": 1.0,
+    "aggro_range": 40.0,
+    "size": 0.9,
+    "category": "common",
+    "element": "water",
+    "ai": "charger",
+    "look": "gold_crab",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "role": "swarm",
+    "_comment": "Caranguejo de Ouro: só aparece pelas ondas do Tubarão-Porco (Esqueleto Pirata). Corre de lado e dá botes curtos.",
+    "charge": {
+      "min": 3.0,
+      "max": 8.0,
+      "windup": 0.5,
+      "speed": 11.0,
+      "time": 0.4,
+      "damage_mult": 1.0,
+      "cooldown": 4.0
+    }
+  },
+  "docks_skeleton_pirate": {
+    "name_key": "MONSTER_SKELETON_PIRATE",
+    "max_health": 210,
+    "move_speed": 3.0,
+    "damage": 16,
+    "attack_range": 2.4,
+    "attack_windup": 0.6,
+    "attack_cooldown": 1.6,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "water",
+    "ai": "melee",
+    "patrol": true,
+    "patrol_radius": 5.0,
+    "patrol_speed": 0.6,
+    "look": "skeleton_pirate",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "sound": "shade",
+    "role": "normal",
+    "_comment": "Esqueleto Pirata (\"Skeleton Pirate \\\"The Captin\\\"\", FireGoat, CC BY 4.0): esqueleto de casaca e chapéu, sabre e perna de pau; no lugar do Polvo de Tinta nas Docas, com a mesma vida e dano, mas de corpo a corpo (corte de sabre). Água."
   }
 }

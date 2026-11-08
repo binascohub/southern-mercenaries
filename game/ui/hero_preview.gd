@@ -10,7 +10,7 @@ var _model: HeroModel
 
 
 func _init() -> void:
-	custom_minimum_size = Vector2(220, 300)
+	custom_minimum_size = Vector2(200, 280)
 	stretch = true
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_viewport = SubViewport.new()

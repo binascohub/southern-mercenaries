@@ -8,11 +8,14 @@ extends CanvasLayer
 ## no servidor. Funciona só com o controle e não pausa o jogo.
 
 const ROW_NAME_WIDTH := 420
+## Altura da lista de habilidades (rola); a janela inteira cabe em 720 px.
+const ROWS_HEIGHT := 390
 
 var _player: Player
 var _panel: PanelContainer
 var _points: Label
 var _rows: VBoxContainer
+var _rows_scroll: ScrollContainer
 ## Linhas das poções (também vão para os quadrados): token -> {"icon", "slots"}.
 var _potion_rows: Dictionary = {}
 var _details: Label
@@ -105,7 +108,7 @@ func _rebuild_rows() -> void:
 		row.add_child(label)
 		var learn := Button.new()
 		learn.text = "+"
-		learn.custom_minimum_size = Vector2(44, 36)
+		learn.custom_minimum_size = Vector2(44, 32)
 		learn.pressed.connect(func() -> void: _player.request_learn(key))
 		learn.focus_entered.connect(_focus.bind(key))
 		row.add_child(learn)
@@ -115,7 +118,7 @@ func _rebuild_rows() -> void:
 			slot.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 			slot.text = str(i + 2)  # a tecla do quadrado (o 1 é o ataque básico)
 			slot.toggle_mode = false
-			slot.custom_minimum_size = Vector2(30, 36)
+			slot.custom_minimum_size = Vector2(30, 32)
 			slot.pressed.connect(func() -> void: _player.request_slot(i, key))
 			slot.focus_entered.connect(_focus.bind(key))
 			row.add_child(slot)
@@ -145,7 +148,7 @@ func _rebuild_rows() -> void:
 			slot.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 			slot.text = str(i + 2)
 			slot.toggle_mode = false
-			slot.custom_minimum_size = Vector2(30, 36)
+			slot.custom_minimum_size = Vector2(30, 32)
 			slot.pressed.connect(func() -> void: _player.request_slot(i, token))
 			row.add_child(slot)
 			slots.append(slot)
@@ -236,14 +239,15 @@ func _build_dock() -> void:
 	_dock.grow_horizontal = Control.GROW_DIRECTION_BEGIN
 	_dock.grow_vertical = Control.GROW_DIRECTION_BOTH
 	_dock.offset_right = -20
-	_dock.offset_top = 40
-	_dock.offset_bottom = 40
-	_dock.add_theme_constant_override("separation", 6)
+	_dock.offset_top = 0
+	_dock.offset_bottom = 0
+	_dock.add_theme_constant_override("separation", 4)
 	add_child(_dock)
 	for i in PlayerInput.SKILL_SLOTS:
 		var box := PanelContainer.new()
 		box.theme = UiTheme.paper_theme()
-		box.custom_minimum_size = Vector2(220, 54)
+		box.theme_type_variation = &"CompactPaper"
+		box.custom_minimum_size = Vector2(210, 42)
 		box.set_drag_forwarding(Callable(), _can_drop_skill.bind(i), _drop_skill.bind(i))
 		_dock.add_child(box)
 		var line := HBoxContainer.new()
@@ -251,7 +255,7 @@ func _build_dock() -> void:
 		line.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		box.add_child(line)
 		var dock_icon := TextureRect.new()
-		dock_icon.custom_minimum_size = Vector2(40, 40)
+		dock_icon.custom_minimum_size = Vector2(34, 34)
 		dock_icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		dock_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		dock_icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -332,16 +336,28 @@ func _build() -> void:
 	_points.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_points.add_theme_color_override("font_color", Color(0.45, 0.09, 0.07))
 	outer.add_child(_points)
+	# As linhas rolam (10 habilidades + 3 poções não cabem em 720 px junto com a descrição).
+	_rows_scroll = ScrollContainer.new()
+	_rows_scroll.custom_minimum_size = Vector2(0, ROWS_HEIGHT)
+	_rows_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	_rows_scroll.follow_focus = true  # no controle, a linha em foco aparece sozinha
+	outer.add_child(_rows_scroll)
 	_rows = VBoxContainer.new()
-	_rows.add_theme_constant_override("separation", 4)
-	outer.add_child(_rows)
+	_rows.add_theme_constant_override("separation", 3)
+	_rows_scroll.add_child(_rows)
+	var details_box := ScrollContainer.new()
+	details_box.custom_minimum_size = Vector2(700, 96)
+	details_box.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	outer.add_child(details_box)
 	_details = Label.new()
 	_details.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	_details.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_details.custom_minimum_size = Vector2(700, 110)
-	outer.add_child(_details)
+	_details.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_details.add_theme_font_size_override("font_size", 15)
+	details_box.add_child(_details)
 	var hint := Label.new()
 	hint.text = "SKILLS_HINT"
+	hint.add_theme_font_size_override("font_size", 13)
 	hint.modulate = Color(1, 1, 1, 0.7)
 	hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	hint.custom_minimum_size = Vector2(700, 0)

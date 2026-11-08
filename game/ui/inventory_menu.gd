@@ -17,8 +17,10 @@ signal journal_requested
 
 const BAG_COLUMNS := 8
 ## Cabe em 1280 px: atributos 230 + slots 2 × 130 + bolsa 8 × 68 (+ espaços).
-const CELL := Vector2(68, 56)
-const SLOT_SIZE := Vector2(130, 56)
+const CELL := Vector2(64, 52)
+const SLOT_SIZE := Vector2(124, 52)
+## O detalhe do item em foco fica embaixo da bolsa, numa caixa de altura fixa (a janela não muda de tamanho ao andar pela bolsa).
+const DETAILS_HEIGHT := 128
 
 var _player: Player
 var _panel: PanelContainer
@@ -218,6 +220,7 @@ func _build() -> void:
 	left.custom_minimum_size = Vector2(230, 0)
 	columns.add_child(left)
 	_stats = _text_label()
+	_stats.add_theme_font_size_override("font_size", 15)
 	left.add_child(_stats)
 	for attr in CharacterData.ATTRIBUTES:
 		var button := Button.new()
@@ -243,10 +246,15 @@ func _build() -> void:
 		slots.add_child(button)
 		_slot_buttons[slot] = button
 
-	# Bolsa.
+	# Bolsa, com o detalhe do item em foco logo embaixo.
+	var right := VBoxContainer.new()
+	right.add_theme_constant_override("separation", 8)
+	columns.add_child(right)
 	var bag := GridContainer.new()
 	bag.columns = BAG_COLUMNS
-	columns.add_child(bag)
+	bag.add_theme_constant_override("h_separation", 3)
+	bag.add_theme_constant_override("v_separation", 3)
+	right.add_child(bag)
 	for i in GameData.balance.inventory_size:
 		var button := Button.new()
 		button.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
@@ -266,11 +274,18 @@ func _build() -> void:
 		bag.add_child(button)
 		_bag_buttons.append(button)
 
+	var details_box := ScrollContainer.new()  # descrição longa (lendário com muitos atributos) rola em vez de crescer a janela
+	details_box.custom_minimum_size = Vector2(0, DETAILS_HEIGHT)
+	details_box.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	right.add_child(details_box)
 	_details = _text_label()
-	_details.custom_minimum_size = Vector2(0, 150)
-	outer.add_child(_details)
+	_details.add_theme_font_size_override("font_size", 15)
+	_details.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	details_box.add_child(_details)
 	_hint = _text_label()
-	_hint.modulate = Color(1, 1, 1, 0.7)
+	_hint.add_theme_font_size_override("font_size", 13)
+	_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_hint.modulate = Color(1, 1, 1, 0.85)
 	outer.add_child(_hint)
 	# Ações lado a lado, para a janela continuar cabendo em 720 px de altura.
 	var actions := HBoxContainer.new()
@@ -279,7 +294,7 @@ func _build() -> void:
 	outer.add_child(actions)
 	_trade_button = Button.new()
 	_trade_button.text = "INV_TRADE"
-	_trade_button.custom_minimum_size = Vector2(260, 40)
+	_trade_button.custom_minimum_size = Vector2(200, 40)
 	_trade_button.pressed.connect(func() -> void:
 		close()
 		trade_requested.emit())
@@ -292,7 +307,7 @@ func _build() -> void:
 	actions.add_child(_drop_button)
 	var skills_button := Button.new()
 	skills_button.text = "INV_SKILLS"
-	skills_button.custom_minimum_size = Vector2(260, 40)
+	skills_button.custom_minimum_size = Vector2(200, 40)
 	skills_button.pressed.connect(func() -> void:
 		close()
 		skills_requested.emit())

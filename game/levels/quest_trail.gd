@@ -92,6 +92,8 @@ func _process(delta: float) -> void:
 				living.append({"group": summon.id, "monster_id": String(summon.monsters[0].monster), "position": Vector2(prop.position[0], prop.position[1])})
 	var from := Vector2(player.global_position.x, player.global_position.z)
 	var goals := objectives(area_id, _level.town.quests, GameData.quests, GameData.monsters, living, area.get("props", []))
+	if goals.is_empty() and Town.hub_travel_hint(area_id, _level.town.quests, _level.town.unlocked):
+		goals = teleporter_spots(area.get("props", []))  # cidade concluída: as pegadas levam ao Viajante do Tempo até a primeira viagem
 	if goals.is_empty():
 		_multi.multimesh.visible_instance_count = 0
 		_last_target = Vector2(1e9, 1e9)
@@ -145,6 +147,15 @@ static func _ellipse(u: float, v: float, cx: float, cy: float, rx: float, ry: fl
 
 
 # --- Objetivos -------------------------------------------------------------------------------------------------------
+
+## Onde está o Viajante do Tempo (NPC voodoo_priest) nesta área.
+static func teleporter_spots(props: Array) -> Array[Vector2]:
+	var found: Array[Vector2] = []
+	for prop: Dictionary in props:
+		if prop.get("kind", "") == "npc" and prop.get("npc", "") == "voodoo_priest":
+			found.append(Vector2(prop.position[0], prop.position[1]))
+	return found
+
 
 ## Onde estão os objetivos das missões ativas desta área. `living`: bichos vivos como {group, monster_id, position (x, z)};
 ## `props`: os objetos da área (um grupo que ainda não nasceu e é invocado por um objeto com "summon" aponta para esse objeto).

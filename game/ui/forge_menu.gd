@@ -89,6 +89,12 @@ func _refresh() -> void:
 			var crush := _button(tr("FORGE_CRYSTALLIZE").format({"count": Refine.crystals_for(item)}),
 				func() -> void: _town.request_crystallize(int(ref.get_slice(":", 1))))
 			row.add_child(crush)
+	if _items.get_child_count() == 0:
+		var empty := Label.new()
+		empty.text = "FORGE_EMPTY"  # nada para refinar: diz o porquê em vez de mostrar um quadro vazio
+		empty.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		empty.custom_minimum_size = Vector2(880, 0)
+		_items.add_child(empty)
 	MenuPanel.clear(_craft)
 	for material in ["iron", "steel", "copper", "silver", "gold"]:
 		var crystals := c.count_of("crystal_" + material)
@@ -155,8 +161,9 @@ func _build() -> void:
 	title.add_theme_font_size_override("font_size", 24)
 	outer.add_child(title)
 	var scroll := ScrollContainer.new()
-	scroll.custom_minimum_size = Vector2(900, 330)
+	scroll.custom_minimum_size = Vector2(900, 280)
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.follow_focus = true  # no controle, o item em foco aparece sozinho
 	outer.add_child(scroll)
 	_items = VBoxContainer.new()
 	_items.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -169,9 +176,19 @@ func _build() -> void:
 	_info.custom_minimum_size = Vector2(900, 0)
 	_info.modulate = Color(1, 1, 1, 0.7)
 	outer.add_child(_info)
+	var actions := HBoxContainer.new()
+	actions.alignment = BoxContainer.ALIGNMENT_CENTER
+	actions.add_theme_constant_override("separation", 12)
+	outer.add_child(actions)
 	var shop := Button.new()
 	shop.text = "FORGE_SHOP"
+	shop.custom_minimum_size = Vector2(280, 40)
 	shop.pressed.connect(func() -> void:
 		close()
 		_town.shop_opened.emit("blacksmith"))
-	outer.add_child(shop)
+	actions.add_child(shop)
+	var back := Button.new()
+	back.text = "MENU_BACK"
+	back.custom_minimum_size = Vector2(200, 40)
+	back.pressed.connect(close)
+	actions.add_child(back)

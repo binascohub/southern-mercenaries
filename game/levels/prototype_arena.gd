@@ -968,6 +968,16 @@ func _update_minimap_marks() -> void:
 			var index := Town.dialogue_index(String(prop.npc), states)
 			if index >= 0 and index < dialogues.size() and (dialogues[index].has("offer") or dialogues[index].get("service", "") == "turn_in"):
 				marks.append({"position": Vector2(prop.position[0], prop.position[1]), "kind": "questgiver"})
+	# Nos mapas, os NPCs de missão (dão ou recebem uma missão, como o guardião do portão) ficam com o ponto laranja depois que a área
+	# deles foi explorada (o minimapa só desenha marcas no que já foi visto), até sumirem ao cumprir o papel.
+	if not arena.get("town", false):
+		for prop: Dictionary in _props:
+			if prop.kind != "npc" or prop.has("summon"):
+				continue
+			for dialogue: Dictionary in GameData.npcs.get(String(prop.get("npc", "")), {}).get("dialogues", []):
+				if dialogue.has("offer") or dialogue.get("service", "") == "turn_in":
+					marks.append({"position": Vector2(prop.position[0], prop.position[1]), "kind": "questgiver"})
+					break
 	# O Viajante do Tempo (teleporte entre as cidades): ponto roxo no minimapa de Tortuga, da Capital e da Fazenda.
 	if arena.get("town", false):
 		for prop: Dictionary in _props:
@@ -1385,8 +1395,8 @@ func request_exit(player: Player, prop: Dictionary) -> void:
 
 
 ## Golpe de monstro no chão: aviso (todos veem), depois o dano (Hazards).
-func telegraph(at: Vector3, radius: float, time: float) -> void:
-	hazards.telegraph(at, radius, time)
+func telegraph(at: Vector3, radius: float, time: float, style := "") -> void:
+	hazards.telegraph(at, radius, time, style)
 
 
 func monster_strike(at: Vector3, radius: float, damage: float, level: int, source: Node3D, extra: Dictionary) -> void:
@@ -2691,9 +2701,9 @@ func _prop_mesh(parent: Node3D, mesh: PrimitiveMesh, scale_: Vector3, at: Vector
 ## "!" só nos NPCs com missão para oferecer agora.
 func _refresh_markers() -> void:
 	for npc_id: String in _prop_markers:
-		var mark: Label3D = _prop_markers[npc_id]
+		var mark: Variant = _prop_markers[npc_id]  # sem tipo: o NPC pode ter sumido (marcador já liberado)
 		if is_instance_valid(mark):
-			mark.visible = town.has_offer(npc_id)
+			(mark as Label3D).visible = town.has_offer(npc_id)
 	hud.set_quest(town.active_quest())
 
 
@@ -3850,7 +3860,8 @@ func _build_decor(decor: Dictionary) -> void:
 		wall.position = Vector3(decor.position[0], 1.5, decor.position[1])
 		_area_root.add_child(wall)
 		return
-	var node := Kit.piece(String(decor.piece))
+	# "stall": barraca de feira só de cenário (MarketStall, de frente para +Z), sem vendedor; as mercadorias são outras peças do cenário.
+	var node: Node3D = MarketStall.build(String(decor.stall)) if decor.has("stall") else Kit.piece(String(decor.piece))
 	if node == null:
 		return
 	node.position = Vector3(decor.position[0], float(decor.get("y", 0.0)), decor.position[1])
@@ -3883,8 +3894,8 @@ func _build_decor(decor: Dictionary) -> void:
 			bob.tween_property(node, "position:y", node.position.y, 1.1).set_trans(Tween.TRANS_SINE)
 		return
 	_area_root.add_child(node)
-	_limit_view_range(node, String(decor.piece))
-	_tone_wood(node, String(decor.piece))
+	_limit_view_range(node, String(decor.get("piece", "")))
+	_tone_wood(node, String(decor.get("piece", "")))
 	if decor.get("flicker", false):
 		# Chama: o fogo estica e encolhe sem parar (a fogueira do acampamento).
 		var base := node.scale

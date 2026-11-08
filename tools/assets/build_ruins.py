@@ -680,3 +680,7 @@ for path, data in ((ARENAS, arenas), (MONSTERS, monsters), (NPCS, npcs), (QUESTS
     json.dump(data, open(path, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
     open(path, "a").write("\n")
 print("OK ruins", len(rooms), "salas,", len(decor), "peças de cenário,", len(encounters), "encontros, %d m2" % sum(r["size"][0] * r["size"][1] for r in rooms))
+
+import subprocess, sys
+subprocess.run([sys.executable, "tools/assets/add_ruins_corridors.py"], check=True)  # corredores estreitos entre as salas
+subprocess.run([sys.executable, "tools/assets/fix_ruins_walls.py"], check=True)  # desenha as bordas das salas que só tinham colisão (paredes invisíveis)

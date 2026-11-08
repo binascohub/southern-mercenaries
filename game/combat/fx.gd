@@ -70,10 +70,35 @@ static func orb(parent: Node3D, color: Color, element: String, radius: float) ->
 
 ## Explosão ou área no chão: anel que se abre, disco que esmaece e partículas.
 ## Áreas longas (fumaça, chão em chamas) soltam partículas o tempo todo.
+## Morte de chefe final: o chão estoura onde ele caiu ("Bomb Crack_Ground_00 (Free)", paulyang, CC BY 4.0; tools/assets/build_boss_crack.py):
+## o entulho de concreto salta até ~4 m e cai espalhado em ~6 m em volta, fica um pouco e afunda. `scale` acompanha o tamanho do chefe.
+const BOSS_CRACK := "res://assets/fx/boss_crack.glb"
+const BOSS_CRACK_HOLD := 4.0
+
+
+static func boss_crack(parent: Node, at: Vector3, scale := 1.0) -> void:
+	if not ResourceLoader.exists(BOSS_CRACK):
+		return
+	var node := (load(BOSS_CRACK) as PackedScene).instantiate() as Node3D
+	parent.add_child(node)
+	node.global_position = Vector3(at.x, Hazards.ground_y, at.z)
+	node.rotation.y = randf() * TAU
+	node.scale = Vector3.ONE * scale
+	var player := node.find_child("AnimationPlayer", true, false) as AnimationPlayer
+	var length := 3.3
+	if player and player.has_animation("burst"):
+		player.play("burst")
+		length = player.get_animation("burst").length
+	var tween := node.create_tween()
+	tween.tween_interval(length + BOSS_CRACK_HOLD)
+	tween.tween_property(node, "position:y", node.position.y - 0.6 * scale, 1.5)
+	tween.tween_callback(node.queue_free)
+
+
 static func burst(parent: Node, at: Vector3, radius: float, color: Color, element: String, duration: float) -> void:
 	var root := Node3D.new()
 	parent.add_child(root)
-	root.global_position = Vector3(at.x, 0.05, at.z)
+	root.global_position = Vector3(at.x, 0.05 + Hazards.ground_y, at.z)
 	var lasting := duration > 0.8
 	# Disco suave no chão.
 	var disc := MeshInstance3D.new()
@@ -255,13 +280,17 @@ static func _particle_mesh(element: String, size: float) -> Mesh:
 		box.material = _particle_material(false)
 		return box
 	var quad := QuadMesh.new()
-	quad.size = Vector2.ONE * size
-	quad.material = _particle_material(true)
+	quad.size = Vector2.ONE * size * (1.6 if element == "fire" else 1.0)  # a chama do sprite ocupa menos do quadrado
+	quad.material = _particle_material(true, element)
 	return quad
 
 
-static func _particle_material(soft: bool) -> StandardMaterial3D:
-	var key := "soft" if soft else "solid"
+## Sprite por elemento (Kenney Particle Pack): chama no Fogo, redemoinho no Ar, brilho suave na Água, estrela sem elemento.
+const ELEMENT_SPRITES := {"fire": "flame_05", "air": "twirl_02", "water": "circle_05", "": "star_06"}
+
+
+static func _particle_material(soft: bool, element := "") -> StandardMaterial3D:
+	var key := ("soft" + element) if soft else "solid"
 	if _materials.has(key):
 		return _materials[key]
 	var material := StandardMaterial3D.new()
@@ -271,7 +300,8 @@ static func _particle_material(soft: bool) -> StandardMaterial3D:
 		material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 		material.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
 		material.billboard_mode = BaseMaterial3D.BILLBOARD_PARTICLES
-		material.albedo_texture = _soft_texture()
+		var sprite := "res://assets/fx/particles/%s.png" % String(ELEMENT_SPRITES.get(element, "circle_05"))
+		material.albedo_texture = load(sprite) if ResourceLoader.exists(sprite) else _soft_texture()
 	else:
 		material.roughness = 0.9
 	_materials[key] = material

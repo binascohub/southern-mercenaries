@@ -179,6 +179,29 @@ const FAMILIES := {
 	# Réptil da Floresta (thecubber, CC BY-SA 3.0; tools/assets/build_reptile.sh): ~1,6 m de altura curvado, de garras; animações feitas para o jogo.
 	"reptile": {"scene": "res://assets/models/monsters/reptile.glb", "scale": 1.0,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Crocodilos do Pântano das Cobras (Floresta Sombria). Crocodilo do Pântano ("Jungle Water Crocodile", vanshtandon321, CC BY 4.0; tools/assets/build_swamp_crocodile.py):
+	# 2,4 m, rente ao chão; nada para andar (o "swim" do arquivo) e o resto foi feito para o jogo. Crocodilo Espinhoso ("fantasy crocodile animation", hino, CC BY 4.0;
+	# tools/assets/build_fantasy_crocodile.py): 2,6 m, com as animações próprias (anda de patas esticadas, morde, cai).
+	"swamp_crocodile": {"scene": "res://assets/models/monsters/swamp_crocodile.glb", "scale": 1.0,
+		"anims": {"idle": "idle", "walk": "swim", "run": "swim", "attack": "attack", "hit": "hit", "die": "die"}},
+	"fantasy_crocodile": {"scene": "res://assets/models/monsters/fantasy_crocodile.glb", "scale": 1.0,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "Death"}},
+	# Cão da Vala das Docas ("Ditch Dog - Rigged and Animated", Greeble3d, CC BY 4.0; tools/assets/build_ditch_dog.py): bicho de carne anfíbio de 3,1 m no arquivo
+	# (-> ~2,3 m com a escala 0,75). Animações próprias: o bote é o rosnado do "Intimidate", o golpe sofrido é o "Stunned"; sem morte no arquivo (cai no "hit").
+	"ditch_dog": {"scene": "res://assets/models/monsters/ditch_dog.glb", "scale": 0.75,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "hit"}},
+	# Boca-de-Flor da Floresta ("Demogorgon Rig", NO DONT EAT ME CASEOH (Ferris wheel), CC BY 4.0; tools/assets/build_demogorgon.py): ~2,4 m no arquivo, com as
+	# animações próprias (corre, golpe de garra; o "Stun", em que ele desaba, serve de golpe sofrido e de morte).
+	"demogorgon": {"scene": "res://assets/models/monsters/demogorgon.glb", "scale": 1.08,
+		"anims": {"idle": "idle", "walk": "run", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Verme Dourado do Deserto ("Gold Sandworm", Fubbi, CC BY 4.0; tools/assets/build_sandworm.py): ~2,5 m saindo do buraco na areia; não anda (fica no buraco).
+	# A animação única do arquivo foi cortada: balança, bote (o cuspe), recua e afunda na areia ao morrer.
+	"gold_sandworm": {"scene": "res://assets/models/monsters/gold_sandworm.glb", "scale": 1.0,
+		"anims": {"idle": "idle", "walk": "idle", "run": "idle", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Esqueleto Pirata das Docas ("Skeleton Pirate \"The Captin\"", FireGoat, CC BY 4.0; tools/assets/build_skeleton_pirate.py): ~1,9 m, sabre na mão direita,
+	# com os movimentos dos heróis passados para o esqueleto dele (guarda de sabre, andar, correr, corte, golpe sofrido, morte).
+	"skeleton_pirate": {"scene": "res://assets/models/monsters/skeleton_pirate.glb", "scale": 1.0,
+		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Besta Quitinosa (Beast 02, Atmostatic, CC BY 3.0 / CC BY-SA 3.0; tools/assets/build_beast.py): malha única sem esqueleto, 1 m de comprimento
 	# no arquivo (1,4 m de altura); o corpo todo balança, avança, investe e tomba (de barriga para cima) por código (`static`).
 	"chitin_beast": {"scene": "res://assets/models/monsters/chitin_beast.glb", "scale": 1.0, "static": true,
@@ -189,7 +212,32 @@ const FAMILIES := {
 		"anims": {"idle": "Idle", "walk": "Walk", "run": "Jog_Fwd", "attack": "Punch_Cross", "hit": "Hit_Chest", "die": "Death01"}},
 	# Troll da Floresta (troll.glb do autor; tools/assets/build_forest_troll.py reduz, tools/assets/rig_biped.py prende ao esqueleto dos heróis): 2,3 m no arquivo,
 	# bípede, anda, corre e luta com os movimentos dos humanos.
+	# Troll das Ruínas, chefe final das Ruínas (o Rei Caído; "The-Lord-Of-The-Rings-Troll-Walk.", bensimulator2, CC BY 4.0; tools/assets/build_ruins_troll.py
+	# limpa e tools/assets/rig_biped.py (perfil ruins_troll) prende ao esqueleto dos heróis): 2,6 m no arquivo, escala 1/2,6 (o "size" dos dados dá a altura).
+	"ruins_troll": {"scene": "res://assets/models/monsters/ruins_troll_animated.glb", "scale": 1.0 / 2.6,
+		"anims": {"idle": "Idle", "walk": "Walk", "run": "Jog_Fwd", "attack": "Punch_Cross", "hit": "Hit_Chest", "die": "Death01"}},
+	# Cão de Magma, invocado pelo Rei Caído ("Infernal Magma Hound", Yury Misiyuk, CC BY 4.0; o arquivo do autor sem mudanças: regravar pelo Blender
+	# estraga o "Walk"): esqueleto próprio, só Idle e Walk (o andar faz de corrida e de bote; acerto e morte ficam por código).
+	# 1,04 m de altura (pés em 0), escala 0.96 -> 1 m por unidade de size.
+	# Esqueleto Pirata, mini-chefe das Docas no lugar do Tubarão-Porco ("Paragon Pirate Skeleton Sailor", Prizrakh, CC BY-NC 4.0, de Paragon/Epic:
+	# ver CREDITS.md; tools/assets/build_pirate_skeleton.py deixa só o LOD2 e 10 animações). Corpo de ~1,35 m no arquivo (o leme flutua acima), escala 0.8.
+	"pirate_skeleton": {"scene": "res://assets/models/monsters/pirate_skeleton.glb", "scale": 0.8,
+		"anims": {"idle": "Idle", "walk": "Jog_Fwd", "run": "Run_Fwd", "attack": "Primary_Attack_A_Medium", "hit": "HitReact_Front", "die": "Death_Fwd"}},
+	# Caranguejo de Ouro, as ondas do Esqueleto Pirata ("scavenger_crab_gold", letmetankher, CC BY 4.0; o arquivo do autor sem mudanças).
+	"gold_crab": {"scene": "res://assets/models/monsters/gold_crab.glb", "scale": 1.0,
+		"anims": {"idle": "scavenger_crab_fight_idle", "walk": "scavenger_crab_run", "run": "scavenger_crab_run", "attack": "scavenger_crab_attack",
+			"die": "scavenger_crab_dead"}},
+	"magma_hound": {"scene": "res://assets/models/monsters/magma_hound.glb", "scale": 0.96,
+		"anims": {"idle": "Idle", "walk": "Walk", "run": "Walk", "attack": "Walk"}},
+	# Esqueleto Bêbado das Docas, no lugar do Peixe-Isca ('Skeleton Pirate "The Drunk"', FireGoat, CC BY 4.0; tools/assets/build_skeleton_drunk.py congela e junta as malhas,
+	# tools/assets/rig_biped.py (perfil skeleton_drunk) prende ao esqueleto dos heróis): 1,9 m no arquivo, escala 1/1,9 (o "size" dos dados dá a altura).
+	"skeleton_drunk": {"scene": "res://assets/models/monsters/skeleton_drunk_animated.glb", "scale": 1.0 / 1.9,
+		"anims": {"idle": "Idle", "walk": "Walk", "run": "Jog_Fwd", "attack": "Punch_Cross", "hit": "Hit_Chest", "die": "Death01"}},
 	"forest_troll": {"scene": "res://assets/models/monsters/forest_troll_animated.glb", "scale": 1.0,
+		"anims": {"idle": "Idle", "walk": "Walk", "run": "Jog_Fwd", "attack": "Punch_Cross", "hit": "Hit_Chest", "die": "Death01"}},
+	# Troll Blindado das Ruínas ("Troll (Armored)", SidewalkNZ, CC BY 4.0; tools/assets/build_troll_armored.py reduz, tools/assets/rig_biped.py (perfil troll_armored)
+	# prende ao esqueleto dos heróis): 3 m no arquivo, escala 1/3 (o "size" dos dados dá a altura); anda, corre e luta com os movimentos dos humanos.
+	"troll_armored": {"scene": "res://assets/models/monsters/troll_armored_animated.glb", "scale": 1.0 / 3.0,
 		"anims": {"idle": "Idle", "walk": "Walk", "run": "Jog_Fwd", "attack": "Punch_Cross", "hit": "Hit_Chest", "die": "Death01"}},
 	# Cervos da Floresta (CDmir e TinyWorlds, CC0; tools/assets/build_deer.sh): 1,6 m de comprimento no arquivo, "size" 1.4 nos dados.
 	"deer_buck": {"scene": "res://assets/models/monsters/deer_buck.glb", "scale": 0.714,
@@ -203,7 +251,9 @@ const FAMILIES := {
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
 	"cobra": {"scene": "res://assets/models/monsters/cobra.glb", "scale": 1.2, "static": true,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
-	"crab": {"scene": "res://assets/models/monsters/crab.glb", "scale": 1.2, "static": true,
+	# Caranguejo: malha única, o golpe é por código; "attack_pitch" negativo ergue a frente (as pinças) e "lunge" dá o bote para a frente (unidades do modelo),
+	# senão o golpe de um bicho tão baixo não aparece de cima.
+	"crab": {"scene": "res://assets/models/monsters/crab.glb", "scale": 1.2, "static": true, "attack_pitch": -0.6, "lunge": 0.45,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
 	"crawlmaster": {"scene": "res://assets/models/monsters/crawlmaster.glb", "scale": 1.8, "static": true,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
@@ -318,6 +368,7 @@ func setup(look: String, size: float, tint: Color) -> bool:
 	if info.get("bat_wings", false):
 		BatWings.attach(model as Node3D)  # vira o morcego para a frente e bate as asas (a animação do arquivo não mexe nelas)
 	scale = Vector3.ONE * size * float(info.scale)
+	(model as Node3D).position.y = float(info.get("lift", 0.0))  # modelos com a origem longe dos pés (unidades do arquivo)
 	_tint = Color.WHITE.lerp(tint, 0.35)
 	for node in model.find_children("*", "MeshInstance3D", true, false):
 		var mesh := node as MeshInstance3D
@@ -750,6 +801,7 @@ func _animate_static(delta: float) -> void:
 	var lift := sin(_time * 1.6) * 0.015
 	var pitch := 0.0
 	var roll := sin(_time * 0.9) * 0.02
+	var lunge := 0.0
 	if _current in ["walk", "run"]:
 		var rate := 9.0 if _current == "run" else 6.0
 		lift = absf(sin(_time * rate)) * 0.04 * float(FAMILIES[family].get("hop", 1.0))
@@ -757,14 +809,16 @@ func _animate_static(delta: float) -> void:
 		roll = sin(_time * rate * 0.5) * 0.07
 	elif _current == "attack":
 		var swing := sin(minf(_action_time / 0.7, 1.0) * PI)
-		pitch = 0.55 * swing
+		pitch = float(FAMILIES[family].get("attack_pitch", 0.55)) * swing
 		lift = 0.05 * swing
+		lunge = float(FAMILIES[family].get("lunge", 0.0)) * swing
 	elif _current == "hit":
 		pitch = -0.15 * sin(minf(_action_time / 0.3, 1.0) * PI)
 	elif _current == "die":
 		var fall := minf(_action_time / 0.9, 1.0)
 		pitch = -1.45 * ease(fall, 2.0)
 	_static_root.position.y = lift * _static_unit
+	_static_root.position.z = lunge * _static_unit
 	_static_root.rotation = Vector3(pitch, 0.0, roll)
 
 

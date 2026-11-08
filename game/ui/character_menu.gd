@@ -28,11 +28,27 @@ var _gear: OptionButton
 
 func _ready() -> void:
 	add_title("CHAR_TITLE")
+	# Duas colunas: os personagens salvos (rolam quando são muitos) e, ao lado, a criação de um novo.
+	var columns := HBoxContainer.new()
+	columns.add_theme_constant_override("separation", 24)
+	content.add_child(columns)
+	var saved := VBoxContainer.new()
+	columns.add_child(saved)
+	var saved_title := Label.new()
+	saved_title.text = "CHAR_SAVED"
+	saved_title.add_theme_color_override("font_color", Color(0.45, 0.09, 0.07))
+	saved.add_child(saved_title)
+	var scroll := ScrollContainer.new()
+	scroll.custom_minimum_size = Vector2(460, 380)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.follow_focus = true
+	saved.add_child(scroll)
 	_list = VBoxContainer.new()
-	content.add_child(_list)
+	_list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(_list)
 
 	_create = VBoxContainer.new()
-	content.add_child(_create)
+	columns.add_child(_create)
 	var create_title := Label.new()
 	create_title.text = "CHAR_NEW"
 	create_title.add_theme_color_override("font_color", Color(0.45, 0.09, 0.07))
@@ -94,11 +110,11 @@ func _ready() -> void:
 	_refresh_hair_options()
 	_name = LineEdit.new()
 	_name.max_length = CharacterData.NAME_MAX
-	_name.custom_minimum_size = Vector2(320, 40)
+	_name.custom_minimum_size = Vector2(320, 38)
 	_create.add_child(_name)
 	_create_button = Button.new()
 	_create_button.text = "CHAR_CREATE"
-	_create_button.custom_minimum_size = Vector2(320, 44)
+	_create_button.custom_minimum_size = Vector2(320, 40)
 	_create_button.pressed.connect(_create_character)
 	_create.add_child(_create_button)
 	_full = Label.new()
@@ -118,7 +134,8 @@ func _on_open() -> void:
 		_list.add_child(row)
 		var button := Button.new()
 		button.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
-		button.custom_minimum_size = Vector2(320, 44)
+		button.custom_minimum_size = Vector2(320, 40)
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.text = tr("CHAR_ENTRY").format({"name": summary.name,
 			"class": tr(GameData.get_class_data(summary.class_id).name_key), "level": summary.level,
 			"element": tr(Elements.data(summary.element).name_key)})
