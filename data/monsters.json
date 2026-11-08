@@ -126,7 +126,12 @@
     "spit": {
       "radius": 1.6,
       "puddle_time": 5.0,
-      "puddle_dps": 4.0
+      "puddle_dps": 4.0,
+      "glob": [
+        0.55,
+        0.9,
+        0.15
+      ]
     },
     "look": "toad",
     "color": [

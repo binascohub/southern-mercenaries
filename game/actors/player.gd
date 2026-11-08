@@ -580,12 +580,15 @@ func _server_step(delta: float) -> void:
 			_evade_dir = Vector2.ZERO
 		return
 
-	# Toque: ataque básico na hora. Segurando por charge_time e soltando: ataque forte.
+	# Toque: ataque básico na hora. Segurando: o básico se repete a cada recarga (sem ataque forte carregado),
+	# sempre mirando no monstro mais perto ao alcance.
+	charge_time = 0.0
 	if attack_pressed and _attack_cooldown <= 0.0 and _talk_to_npc_near():
 		_attack_cooldown = 0.4  # o botão de ataque perto de um NPC é falar com ele (como o de interagir)
-	elif attack_pressed and _attack_cooldown <= 0.0:
+	elif (attack_pressed or input.attack_held) and _attack_cooldown <= 0.0 and not (not attack_pressed and _talk_to_npc_near()):
 		# Mago, Arqueiro e Invocador têm também o golpe físico com a arma ("melee_basic"): com inimigo ao alcance na frente, o ataque básico é a pancada (cajado, arco, livro);
 		# sem ninguém perto, continua o tiro à distância.
+		_aim_at_nearest(float(data.basic_attack.range))
 		var close: Dictionary = data.get("melee_basic", {})
 		if not close.is_empty() and _melee_target_near(close):
 			_fire(close)
@@ -593,12 +596,21 @@ func _server_step(delta: float) -> void:
 		else:
 			_fire(data.basic_attack)
 			_attack_cooldown = data.basic_attack.cooldown / speed_mult()
-	if input.attack_held:
-		charge_time += delta
-	if attack_released or (not input.attack_held and charge_time > 0.0):
-		if charge_time >= data.strong_attack.charge_time:
-			_fire(data.strong_attack)
-		charge_time = 0.0
+
+
+## Mira automática do ataque básico: vira para o monstro vivo mais perto dentro do alcance (sem nenhum, mantém a mira do jogador).
+func _aim_at_nearest(attack_range: float) -> void:
+	var best_dist := attack_range
+	for e: Enemy in get_tree().get_nodes_in_group(&"enemies"):
+		if e.health <= 0.0 or not e.visible or e.state == Enemy.State.HIDDEN or e.is_queued_for_deletion():
+			continue
+		if e.state == Enemy.State.SLEEP and e.data.get("look", "") == "chest_mimic":
+			continue  # Mímico ainda disfarçado de baú: a mira não entrega o truque
+		var to := Vector2(e.global_position.x - global_position.x, e.global_position.z - global_position.z)
+		var d := to.length()
+		if d < best_dist and d > 0.01:
+			best_dist = d
+			facing = to / d
 
 
 ## Salto (servidor): sobe e desce em JUMP_TIME s; só do chão e sem estar sendo

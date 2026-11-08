@@ -138,7 +138,7 @@ msgid "ACTION_AIM_RIGHT"
 msgstr "Aim right"
 
 msgid "ACTION_ATTACK"
-msgstr "Attack (hold: strong attack)"
+msgstr "Attack (hold: keep firing)"
 
 msgid "ACTION_SKILL_1"
 msgstr "Skill 1"
@@ -228,7 +228,7 @@ msgid "HUD_HEALTH"
 msgstr "Health"
 
 msgid "HUD_HINTS"
-msgstr "{attack}: attack (hold: strong)   {evade}: dodge   {menu}: menu"
+msgstr "{attack}: attack (hold: keep firing)   {evade}: dodge   {menu}: menu"
 
 msgid "HUD_EVADE_READY"
 msgstr "Dodge ready"

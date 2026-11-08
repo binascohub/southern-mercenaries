@@ -2035,6 +2035,9 @@ func _build_environment() -> void:
 	sun.light_energy = 0.8
 	sun.light_color = Color(0.85, 0.8, 0.75)
 	sun.shadow_enabled = Settings.quality >= 2
+	# A câmera vê uns 30 m: uma camada só de sombra e só até onde se vê (o padrão, 4 camadas até 100 m, redesenhava o mapa todo 4 vezes).
+	sun.directional_shadow_mode = DirectionalLight3D.SHADOW_ORTHOGONAL
+	sun.directional_shadow_max_distance = 45.0
 	_area_root.add_child(sun)
 
 	# Uma tocha (ou lampião) quente por sala grande — poucas luzes dinâmicas.
@@ -3755,7 +3758,7 @@ func _stone_trim(node: Node3D) -> void:
 				m.set_surface_override_material(i, _stone_trim_material)
 
 
-## Qualidade baixa ou média: o cenário além de uma distância da câmera não é desenhado (pisos e caminhos ficam, são baratos).
+## O cenário além de uma distância da câmera (por qualidade) não é desenhado (pisos e caminhos ficam, são baratos).
 func _limit_view_range(node: Node3D, piece: String) -> void:
 	var limit: float = Settings.VIEW_RANGE[clampi(Settings.quality, 0, 2)]
 	if limit <= 0.0 or piece.begins_with("Floor_") or piece.begins_with("Ground_") or piece.begins_with("Dock_Floor"):

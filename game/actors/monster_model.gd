@@ -187,8 +187,10 @@ const FAMILIES := {
 	# (o "size" dos dados dá a altura); o corpo todo balança, avança, investe e tomba por código (`static`).
 	"golem_king": {"scene": "res://assets/models/monsters/golem_king.glb", "scale": 1.0, "static": true,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
-	# Troll da Floresta (troll.glb do autor; tools/assets/build_forest_troll.py): malha parada de 2,3 m na pose do arquivo, sem animação.
-	"forest_troll": {"scene": "res://assets/models/monsters/forest_troll.glb", "scale": 1.0, "static": true, "anims": {}},
+	# Troll da Floresta (troll.glb do autor; tools/assets/build_forest_troll.py reduz, tools/assets/rig_forest_troll.py prende ao esqueleto dos heróis): 2,3 m no arquivo,
+	# bípede, anda, corre e luta com os movimentos dos humanos.
+	"forest_troll": {"scene": "res://assets/models/monsters/forest_troll_animated.glb", "scale": 1.0,
+		"anims": {"idle": "Idle", "walk": "Walk", "run": "Jog_Fwd", "attack": "Punch_Cross", "hit": "Hit_Chest", "die": "Death01"}},
 	# Cervos da Floresta (CDmir e TinyWorlds, CC0; tools/assets/build_deer.sh): 1,6 m de comprimento no arquivo, "size" 1.4 nos dados.
 	"deer_buck": {"scene": "res://assets/models/monsters/deer_buck.glb", "scale": 0.714,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "die": "die"}},
@@ -795,6 +797,17 @@ func play(key: String, blend := BLEND) -> void:
 	_anim.play(_names[key], blend)
 	if key == "die" and _skeleton and not _wings.is_empty():
 		show_wings(false)      # asas pretas do Senhor da Cripta: somem com a morte
+
+
+## Fora da tela: para a animação (o esqueleto deixa de ser recalculado).
+func set_dormant(on: bool) -> void:
+	if _anim:
+		_anim.active = not on
+
+
+## O golpe (ou outra ação de uma vez) já terminou no esqueleto: dá para voltar a ficar parado em vez de congelar na última pose.
+func action_done() -> bool:
+	return _hero == null and _anim != null and _parts.is_empty() and _static_root == null and not _anim.is_playing()
 
 
 func current() -> String:

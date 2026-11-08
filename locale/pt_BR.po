@@ -138,7 +138,7 @@ msgid "ACTION_AIM_RIGHT"
 msgstr "Mirar para a direita"
 
 msgid "ACTION_ATTACK"
-msgstr "Atacar (segurar: ataque forte)"
+msgstr "Atacar (segurar: ataque contínuo)"
 
 msgid "ACTION_SKILL_1"
 msgstr "Habilidade 1"
@@ -228,7 +228,7 @@ msgid "HUD_HEALTH"
 msgstr "Vida"
 
 msgid "HUD_HINTS"
-msgstr "{attack}: atacar (segurar: forte)   {evade}: esquivar   {menu}: menu"
+msgstr "{attack}: atacar (segurar: contínuo)   {evade}: esquivar   {menu}: menu"
 
 msgid "HUD_EVADE_READY"
 msgstr "Esquiva pronta"

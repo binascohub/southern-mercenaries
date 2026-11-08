@@ -181,6 +181,10 @@ var _wander_to := Vector3.INF
 var _kit_piece := ""
 var _last_visual_pos := Vector3.INF
 var _visual_speed := 0.0
+## Desempenho: dormindo e longe de todo herói (fora da tela), o monstro some e para de pensar e de animar.
+const DORMANT_RANGE := 42.0
+var _dormant := false
+var _dormant_check := 0.0
 
 
 ## Criado pelo spawner em todos os PCs, com os mesmos dados.
@@ -221,6 +225,12 @@ func _set_crowd_collision(awake_now: bool) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	_dormant_check -= delta
+	if _dormant_check <= 0.0:
+		_dormant_check = 0.4 + _rng.randf() * 0.2
+		_set_dormant(_should_sleep_far())
+	if _dormant:
+		return
 	if multiplayer.is_server():
 		var burn := status.tick(delta)
 		if burn > 0.0:
@@ -245,6 +255,28 @@ func _physics_process(delta: float) -> void:
 	_tick_visual(delta)
 
 
+## Dormindo (sem patrulha) e a mais de DORMANT_RANGE de todo herói. Sem heróis (modo espectador), nunca.
+func _should_sleep_far() -> bool:
+	if state != State.SLEEP or data.get("patrol", false) or health <= 0.0 or status.mask() != 0:
+		return false
+	var players := get_tree().get_nodes_in_group(&"players")
+	if players.is_empty():
+		return false
+	for p: Node3D in players:
+		if p.global_position.distance_squared_to(global_position) < DORMANT_RANGE * DORMANT_RANGE:
+			return false
+	return true
+
+
+func _set_dormant(on: bool) -> void:
+	if on == _dormant:
+		return
+	_dormant = on
+	visible = not on
+	if _model:
+		_model.set_dormant(on)
+
+
 ## Chefe com "leash" (raio em metros, dado do monstro): nunca se afasta mais que isso do ponto de nascimento, para não sair da sala do chefe.
 func _keep_in_leash() -> void:
 	var leash := float(data.get("leash", 0.0))
@@ -261,6 +293,7 @@ func _keep_in_leash() -> void:
 func wake(health_scale: float, damage: float) -> void:
 	if state != State.SLEEP:
 		return
+	_set_dormant(false)
 	health_mult = health_scale
 	max_health = base_health() * health_mult
 	health = max_health
@@ -1283,8 +1316,8 @@ func _tick_model(delta: float, tint: Color) -> void:
 				key = "run"
 			elif _visual_speed > 0.3:
 				key = "walk"
-	if _model.current() == "attack" and state == State.RECOVER:
-		key = "attack"  # deixa o golpe terminar
+	if _model.current() == "attack" and state == State.RECOVER and not _model.action_done():
+		key = "attack"  # deixa o golpe terminar (depois volta a ficar parado, sem congelar na última pose)
 	_model.play(key)
 	# O chefe entra na fase de metade da vida (a Rainha ganhava asas de morcego; o Feiticeiro-Aranha só marca o estado).
 	if data.get("look", "") in ["queen", "demon", "necromancer"] and health > 0.0 and health <= max_health * 0.5:

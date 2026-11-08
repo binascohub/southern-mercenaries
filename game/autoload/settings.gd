@@ -26,8 +26,8 @@ var last_character := ""
 ## Baixa e média desenham o 3D em resolução menor, tiram sombras, luzes de cenário e a água com shader, e escondem o cenário distante.
 var quality := 2
 const RENDER_SCALE: Array[float] = [0.55, 0.78, 1.0]
-## Distância (m) a partir da qual o cenário some, por qualidade; 0 = sem limite.
-const VIEW_RANGE: Array[float] = [48.0, 85.0, 0.0]
+## Distância (m) da câmera a partir da qual o cenário some, por qualidade (a câmera vê uns 30 m); 0 = sem limite.
+const VIEW_RANGE: Array[float] = [48.0, 70.0, 95.0]
 
 
 func _ready() -> void:
