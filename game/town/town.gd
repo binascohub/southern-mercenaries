@@ -629,6 +629,32 @@ func _finish_quest(c: Dictionary, id: String, quest: Dictionary) -> void:
 			p.refresh_character()
 	if quest.get("type", "") == "village" and quest.has("giver"):
 		_arena().npc_vanishes(String(quest.giver))  # o NPC do mapa cumpriu o papel: vira fumaça preta e some
+		_drop_finished_quest_items(c, quest)
+
+
+## Missão do mapa entregue e o NPC sumiu: os objetos dela (relíquia pedida e livro do altar) somem também da bolsa de
+## todos (cópias dos outros heróis), a não ser que outra missão já aceita ainda precise deles.
+func _drop_finished_quest_items(c: Dictionary, quest: Dictionary) -> void:
+	var ids: Array = quest.get("items", [])
+	for key in ["item", "grants_item"]:
+		if quest.has(key):
+			ids = ids + [quest[key]]
+	for item_id: String in ids:
+		var still_needed := false
+		for other_id: String in c.get("quests", {}):
+			var other: Dictionary = GameData.quests.get(other_id, {})
+			if other == quest or c.quests[other_id] != "active":
+				continue
+			if item_id in other.get("items", []) or other.get("item", "") == item_id or other.get("grants_item", "") == item_id:
+				still_needed = true
+		if still_needed:
+			continue
+		for p: Player in get_tree().get_nodes_in_group(&"players"):
+			var removed := false
+			while p.character and p.character.take_one(item_id):
+				removed = true
+			if removed:
+				p.refresh_character()
 
 
 ## Voltou a Tortuga: chega outro navio (estoque pirata e preços dos valiosos novos)

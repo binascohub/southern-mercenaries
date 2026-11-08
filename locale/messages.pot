@@ -418,6 +418,15 @@ msgstr ""
 msgid "TOAST_VIPER_WAVE"
 msgstr ""
 
+msgid "TOAST_LESHY_WAVE"
+msgstr ""
+
+msgid "TOAST_PYRE_WAVE"
+msgstr ""
+
+msgid "TOAST_BOSS_PORTAL"
+msgstr ""
+
 msgid "MONSTER_FOREST_TROLL"
 msgstr ""
 
@@ -2022,6 +2031,12 @@ msgid "JOURNAL_WEAK"
 msgstr ""
 
 msgid "INV_JOURNAL"
+msgstr ""
+
+msgid "INV_DROP"
+msgstr ""
+
+msgid "TOAST_QUEST_ITEM_NO_DROP"
 msgstr ""
 
 msgid "BESTIARY_TITLE"

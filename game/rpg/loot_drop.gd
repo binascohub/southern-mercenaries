@@ -13,9 +13,20 @@ const COIN_MODEL := "res://assets/models/props/Coin_Gold.glb"
 const POTION_MODELS := {"potion_health": "Potion_Red", "potion_resource": "Potion_Blue", "elemental_potion_water": "Potion_Aqua",
 	"elemental_potion_fire": "Potion_Orange", "elemental_potion_air": "Potion_Yellow", "elemental_potion_earth": "Potion_Green"}
 const POTION_HEIGHT := 0.5
+## Equipamento no chão: o mesmo modelo que o herói usa (ou o do ícone), pelo rank do material
+## (pano/ferro = D, aço = C...; NinjaGear.rank_of). "%s" = rank; tamanho = maior lado em metros.
+const GEAR_MODELS := {"lance": ["Sword_%s", 0.75], "daggers": ["Dagger_%s", 0.5], "book": ["Book_%s", 0.4],
+	"staff": ["Staff_D", 0.8], "bow": ["Bow_Vulture", 0.75], "amulet": ["Necklace", 0.35]}
+## Cristais de refino (Fantasy Crystals) na cor do material.
+const CRYSTAL_SIZE := 0.35
+## Carne de cervo: o mesmo modelo do ícone do inventário (tools/assets/build_venison_icon.py).
+const STACK_MODELS := {"venison": ["Raw_Meat", 0.45]}
+## Sem modelo 3D (capuz, túnica, luvas, botas, anel, peitoral, barda, pergaminhos...): o ícone do inventário em pé.
+const ICON_HEIGHT := 0.55
 
 var _time := 0.0
 var _mesh: Node3D
+var _top := 0.0  # altura do topo do modelo, acima de _mesh
 
 
 static func create(id: int, at: Vector3, drop_item: Dictionary, drop_gold: int) -> LootDrop:
@@ -54,6 +65,8 @@ func _ready() -> void:
 		coin.rotation.x = deg_to_rad(90.0)
 		coin.position.y = 0.0
 		_mesh.add_child(coin)
+	elif _item_visual():
+		pass  # modelo do item ou o ícone do inventário (abaixo)
 	else:
 		var material := StandardMaterial3D.new()
 		material.albedo_color = color
@@ -78,9 +91,89 @@ func _ready() -> void:
 	label.no_depth_test = true
 	label.font_size = 40
 	label.outline_size = 8
-	label.position.y = 0.9
+	label.position.y = maxf(0.9, _top + 0.45)  # acima do modelo mais alto (espada, cajado)
 	label.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	add_child(label)
+
+
+## Modelo 3D do item no chão (equipamento, cristal, carne) ou, sem modelo, o ícone do inventário em pé.
+## Põe o visual em _mesh e devolve false quando não há nenhum dos dois (fica a caixa colorida).
+func _item_visual() -> bool:
+	if item.is_empty() or gold > 0:
+		return false
+	var spec := visual_spec(item)
+	if spec.is_empty():
+		return false
+	if spec.has("piece"):
+		var node := Kit.piece(spec.piece)
+		if spec.has("tint"):
+			_tint(node, spec.tint)
+		var box := _bounds(node)
+		var longest := maxf(box.size.x, maxf(box.size.y, box.size.z))
+		if longest > 0.001:
+			node.scale = Vector3.ONE * (float(spec.size) / longest)
+			# Centrado no eixo de giro, com a base no chão do visual.
+			var centre := box.get_center() * node.scale.x
+			node.position = Vector3(-centre.x, -box.position.y * node.scale.y, -centre.z)
+			_top = box.size.y * node.scale.y
+		_mesh.add_child(node)
+		return true
+	var sprite := Sprite3D.new()
+	sprite.texture = spec.icon
+	sprite.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
+	sprite.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
+	sprite.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+	sprite.pixel_size = ICON_HEIGHT / maxf(1.0, float(spec.icon.get_height()))
+	sprite.position.y = ICON_HEIGHT / 2.0
+	sprite.name = "Icon"
+	_mesh.add_child(sprite)
+	_top = ICON_HEIGHT
+	return true
+
+
+## Qual visual o item usa no chão: {piece, size, tint?} (modelo do Kit) ou {icon} (ícone do inventário); {} = nenhum.
+static func visual_spec(drop_item: Dictionary) -> Dictionary:
+	var kind: String = drop_item.get("kind", "")
+	if kind == Items.EQUIPMENT:
+		var base := String(drop_item.get("base", ""))
+		var material := String(drop_item.get("material", ""))
+		var rank := NinjaGear.rank_of(material)
+		var tint := Color(GameData.materials.get(material, {}).get("color", "#ffffff"))
+		if base == "helm" and Kit.has(ClassGear.HELMETS.get(rank, "")):
+			# Elmo do Cavaleiro: a mesma peça e cor que ele veste (class_gear.gd).
+			return {"piece": ClassGear.HELMETS[rank], "size": 0.4, "tint": ClassGear.HELMET_TINT[rank]}
+		if GEAR_MODELS.has(base):
+			var piece := String(GEAR_MODELS[base][0])
+			piece = piece % rank if "%s" in piece else piece
+			if Kit.has(piece):
+				var spec := {"piece": piece, "size": GEAR_MODELS[base][1]}
+				# Peças de rank único (cajado, arco, colar) ganham a cor do material acima de D, como nos ícones.
+				if not "%s" in String(GEAR_MODELS[base][0]) and rank != "D":
+					spec.tint = tint
+				return spec
+	elif kind == Items.CONSUMABLE:
+		var id := String(drop_item.get("id", ""))
+		if STACK_MODELS.has(id) and Kit.has(STACK_MODELS[id][0]):
+			return {"piece": STACK_MODELS[id][0], "size": STACK_MODELS[id][1]}
+		var def: Dictionary = GameData.consumables.get(id, {})
+		if id.begins_with("crystal_") and Kit.has("Crystal_Gem"):
+			return {"piece": "Crystal_Gem", "size": CRYSTAL_SIZE, "tint": Color(GameData.materials.get(def.get("material", ""), {}).get("color", "#ffffff"))}
+	var icon := Items.icon(drop_item)
+	return {"icon": icon} if icon else {}
+
+
+## Multiplica a cor de todas as malhas do modelo (cópias dos materiais, o arquivo original fica igual).
+static func _tint(node: Node3D, tint: Color) -> void:
+	for found in node.find_children("*", "MeshInstance3D", true, false):
+		var mi := found as MeshInstance3D
+		if mi.mesh == null:
+			continue
+		for i in mi.mesh.get_surface_count():
+			var source := mi.get_active_material(i) as BaseMaterial3D
+			if source:
+				var copy := source.duplicate() as BaseMaterial3D
+				copy.albedo_color = source.albedo_color * tint
+				mi.set_surface_override_material(i, copy)
 
 
 ## Caixa que as malhas do modelo ocupam (antes de entrar na cena), nas coordenadas do próprio modelo.

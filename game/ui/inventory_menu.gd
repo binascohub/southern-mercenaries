@@ -33,6 +33,10 @@ var _popup_icon: TextureRect
 var _popup_text: Label
 var _hint: Label
 var _trade_button: Button
+## Jogar fora o item da bolsa em foco (objeto de missão não sai).
+var _drop_button: Button
+var _popup_drop: Button
+var _popup_where := {}
 var _focused := {}  # {"bag": index} ou {"slot": nome}
 
 
@@ -131,6 +135,23 @@ func _refresh() -> void:
 	_hint.text = tr("INV_HINT").format({"close": InputDevice.prompt(&"inventory")})
 	_trade_button.visible = NetworkManager.is_online()
 	_show_details()
+	_update_drop_button()
+
+
+## O botão "Jogar fora" só vale para um item da bolsa que não seja de missão.
+func _update_drop_button() -> void:
+	if _drop_button == null or _player == null or _player.character == null:
+		return
+	var bag: Array = _player.character.data.inventory
+	var item: Variant = bag[_focused.bag] if _focused.has("bag") and int(_focused.bag) < bag.size() else null
+	_drop_button.disabled = item == null or Items.is_quest_item(item)
+
+
+func _drop_focused(where: Dictionary) -> void:
+	if _player == null or not where.has("bag"):
+		return
+	_player.request_drop(int(where.bag))
+	_popup.visible = false
 
 
 func _short(item: Dictionary) -> String:
@@ -240,7 +261,8 @@ func _build() -> void:
 		button.gui_input.connect(func(event: InputEvent) -> void: _on_item_right_click(event, {"bag": i}))
 		button.focus_entered.connect(func() -> void:
 			_focused = {"bag": i}
-			_show_details())
+			_show_details()
+			_update_drop_button())
 		bag.add_child(button)
 		_bag_buttons.append(button)
 
@@ -262,6 +284,12 @@ func _build() -> void:
 		close()
 		trade_requested.emit())
 	actions.add_child(_trade_button)
+	_drop_button = Button.new()
+	_drop_button.text = "INV_DROP"
+	_drop_button.custom_minimum_size = Vector2(200, 40)
+	_drop_button.disabled = true
+	_drop_button.pressed.connect(func() -> void: _drop_focused(_focused))
+	actions.add_child(_drop_button)
 	var skills_button := Button.new()
 	skills_button.text = "INV_SKILLS"
 	skills_button.custom_minimum_size = Vector2(260, 40)
@@ -300,6 +328,8 @@ func _show_popup(where: Dictionary) -> void:
 	_popup_icon.visible = icon != null
 	_popup_text.text = "\n".join(Items.describe(item, c.class_data().armor_factor))
 	_popup_text.add_theme_color_override("font_color", Color(0.18, 0.12, 0.07))
+	_popup_where = where
+	_popup_drop.visible = where.has("bag") and not Items.is_quest_item(item)
 	_popup.visible = true
 
 
@@ -329,7 +359,16 @@ func _build_popup() -> void:
 	close_button.custom_minimum_size = Vector2(200, 40)
 	close_button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	close_button.pressed.connect(func() -> void: _popup.visible = false)
-	box.add_child(close_button)
+	var buttons := HBoxContainer.new()
+	buttons.alignment = BoxContainer.ALIGNMENT_CENTER
+	buttons.add_theme_constant_override("separation", 12)
+	box.add_child(buttons)
+	_popup_drop = Button.new()
+	_popup_drop.text = "INV_DROP"
+	_popup_drop.custom_minimum_size = Vector2(160, 40)
+	_popup_drop.pressed.connect(func() -> void: _drop_focused(_popup_where))
+	buttons.add_child(_popup_drop)
+	buttons.add_child(close_button)
 
 
 func _text_label() -> Label:

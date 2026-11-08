@@ -337,6 +337,30 @@ func request_use(index: int) -> void:
 	_rpc_or_local(&"_use", [index])
 
 
+## Jogar fora um item da bolsa: cai no chão à frente do herói (só ele vê e pode pegar de volta).
+func request_drop(index: int) -> void:
+	_rpc_or_local(&"_drop_item", [index])
+
+
+@rpc("any_peer", "reliable")
+func _drop_item(index: int) -> void:
+	if not _from_owner() or index < 0 or index >= character.data.inventory.size():
+		return
+	var item: Variant = character.data.inventory[index]
+	if item == null:
+		return
+	var arena := get_parent()
+	if Items.is_quest_item(item):
+		if arena.has_method(&"_toast_to"):
+			arena._toast_to(self, "TOAST_QUEST_ITEM_NO_DROP", {})
+		return
+	if not arena.has_method(&"drop_from_bag"):
+		return
+	character.data.inventory[index] = null
+	arena.drop_from_bag(self, item, global_position + Vector3(facing.x, 0, facing.y).normalized() * 2.4)
+	refresh_character()
+
+
 func _rpc_or_local(method: StringName, args: Array) -> void:
 	if multiplayer.is_server():
 		callv(method, args)
@@ -585,10 +609,14 @@ func _server_step(delta: float) -> void:
 	charge_time = 0.0
 	if attack_pressed and _attack_cooldown <= 0.0 and _talk_to_npc_near():
 		_attack_cooldown = 0.4  # o botão de ataque perto de um NPC é falar com ele (como o de interagir)
+	elif attack_pressed and _attack_cooldown <= 0.0 and get_parent().has_method(&"loot_near") and get_parent().loot_near(self):
+		get_parent().request_pickup(self, false)  # em cima de um item: o ataque básico pega do chão
+		_attack_cooldown = 0.25
 	elif (attack_pressed or input.attack_held) and _attack_cooldown <= 0.0 and not (not attack_pressed and _talk_to_npc_near()):
 		# Mago, Arqueiro e Invocador têm também o golpe físico com a arma ("melee_basic"): com inimigo ao alcance na frente, o ataque básico é a pancada (cajado, arco, livro);
 		# sem ninguém perto, continua o tiro à distância.
-		_aim_at_nearest(float(data.basic_attack.range))
+		if input.auto_aim:
+			_aim_at_nearest(float(data.basic_attack.range))
 		var close: Dictionary = data.get("melee_basic", {})
 		if not close.is_empty() and _melee_target_near(close):
 			_fire(close)

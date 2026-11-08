@@ -183,11 +183,11 @@ const FAMILIES := {
 	# no arquivo (1,4 m de altura); o corpo todo balança, avança, investe e tomba (de barriga para cima) por código (`static`).
 	"chitin_beast": {"scene": "res://assets/models/monsters/chitin_beast.glb", "scale": 1.0, "static": true,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
-	# Rei Golem de Pedra (stone-golem.glb; tools/assets/build_stone_golem_king.py): malha única sem esqueleto, 1 m de altura no arquivo
-	# (o "size" dos dados dá a altura); o corpo todo balança, avança, investe e tomba por código (`static`).
-	"golem_king": {"scene": "res://assets/models/monsters/golem_king.glb", "scale": 1.0, "static": true,
-		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "hit": "hit", "die": "die"}},
-	# Troll da Floresta (troll.glb do autor; tools/assets/build_forest_troll.py reduz, tools/assets/rig_forest_troll.py prende ao esqueleto dos heróis): 2,3 m no arquivo,
+	# Rei Golem de Pedra (stone-golem.glb; tools/assets/build_stone_golem_king.py reduz, tools/assets/rig_biped.py (perfil golem_king) prende ao esqueleto dos heróis):
+	# bípede de 2,3 m no arquivo, escala 1/2,3 (o "size" dos dados dá a altura); anda, corre e luta com os movimentos dos humanos.
+	"golem_king": {"scene": "res://assets/models/monsters/golem_king_animated.glb", "scale": 1.0 / 2.3,
+		"anims": {"idle": "Idle", "walk": "Walk", "run": "Jog_Fwd", "attack": "Punch_Cross", "hit": "Hit_Chest", "die": "Death01"}},
+	# Troll da Floresta (troll.glb do autor; tools/assets/build_forest_troll.py reduz, tools/assets/rig_biped.py prende ao esqueleto dos heróis): 2,3 m no arquivo,
 	# bípede, anda, corre e luta com os movimentos dos humanos.
 	"forest_troll": {"scene": "res://assets/models/monsters/forest_troll_animated.glb", "scale": 1.0,
 		"anims": {"idle": "Idle", "walk": "Walk", "run": "Jog_Fwd", "attack": "Punch_Cross", "hit": "Hit_Chest", "die": "Death01"}},

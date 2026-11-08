@@ -60,7 +60,7 @@ msgid "OPTIONS_VIBRATION"
 msgstr "Vibration"
 
 msgid "OPTIONS_AIM_ASSIST"
-msgstr "Aim assist"
+msgstr "Aim assist (attacks the nearest enemy)"
 
 msgid "OPTIONS_INVERT_AIM_Y"
 msgstr "Invert aim Y axis"
@@ -418,6 +418,15 @@ msgstr "The temple shudders: the Stone Golem King awakens!"
 
 msgid "TOAST_VIPER_WAVE"
 msgstr "The Golem King summons golem wave {n}!"
+
+msgid "TOAST_LESHY_WAVE"
+msgstr "The Leshy calls the forest: wave {n}!"
+
+msgid "TOAST_PYRE_WAVE"
+msgstr "The Fire Golem calls its kin: wave {n}!"
+
+msgid "TOAST_BOSS_PORTAL"
+msgstr "The forest boss has fallen: a portal back to Tortuga opened!"
 
 msgid "MONSTER_FOREST_TROLL"
 msgstr "Forest Troll"
@@ -2031,6 +2040,12 @@ msgstr "({element} → weak to {weak})"
 msgid "INV_JOURNAL"
 msgstr "Journal"
 
+msgid "INV_DROP"
+msgstr "Drop"
+
+msgid "TOAST_QUEST_ITEM_NO_DROP"
+msgstr "Quest item: it can’t be dropped, traded or stored."
+
 msgid "BESTIARY_TITLE"
 msgstr "Bestiary"
 
@@ -2636,7 +2651,7 @@ msgid "NPC_VILLAGE_WIFE"
 msgstr "Elara the Tanner"
 
 msgid "NPC_ELF_ARCHER"
-msgstr "Explorer"
+msgstr "Sylvara the Explorer"
 
 msgid "DLG_ARCHER_1"
 msgstr "Good day, travelers. Mind your step: these trails are full of very old things, and of things that used to be people. I am an explorer, and I roam the world after rarities for my collection. I have a shelf made only of teeth."

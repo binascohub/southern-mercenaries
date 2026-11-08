@@ -86,6 +86,9 @@ var _last_net_position := Vector3.INF
 ## Investida e cuspe: direção/alvo travados no aviso; recarga da investida.
 var _charge_dir := Vector3.ZERO
 var _charge_cd := 0.0
+## Recarga da bola de fogo ("fireball" nos dados: magia à distância de qualquer monstro, como a do Rei Golem de Pedra).
+var _fire_cd := 0.0
+var _slam_cd := 3.0  ## pisão em volta (dados "slam", fora da Rainha dos Ratos): tempo até o próximo
 var _charge_hit: Array[Node] = []
 var _spit_at := Vector3.ZERO
 ## Golpe no chão em preparação (cuspe, pisão): {radius, damage_mult, puddle_*}.
@@ -171,6 +174,10 @@ func _build_nest(size: float) -> void:
 
 ## Fuga (Coelho Dourado): tempo correndo depois do golpe e o ponto de passeio.
 var _flee_time := 0.0
+var _flee_dir := Vector3.ZERO  # direção da corrida de agora (sem herói para fugir, a sorteada ao levar o golpe)
+var _flee_side := 0  # parede na frente: corre rente a ela para este lado (1 ou -1; preso num canto, troca)
+var _flee_follow := 0.0  # segundos que ainda segue rente à parede depois de deixar de encostar nela
+var _flee_stuck := 0.0
 var _pounce_to := Vector3.INF  ## Lince: ponto para onde corre
 var _pounce_run := 0.0  ## Lince: tempo que ainda corre na fuga
 var _coins_lost := 0  ## moedas soltas desde o último teleporte (fuga "immortal")
@@ -308,7 +315,7 @@ func wake(health_scale: float, damage: float) -> void:
 ## Ondas de ajudantes (dados "waves": first, interval, radius, toast e list, uma lista de [{monster, count}] por onda): acordado, o monstro invoca a próxima
 ## onda em volta de si a cada `interval` segundos; quando ele morre, os ajudantes das ondas que ainda estão vivos somem junto.
 func _update_waves(delta: float) -> void:
-	var waves: Dictionary = data.waves
+	var waves := _wave_data()
 	var list: Array = waves.list
 	if _wave_index >= list.size():
 		return
@@ -328,6 +335,16 @@ func _update_waves(delta: float) -> void:
 	_wave_index += 1
 	if waves.has("toast"):
 		get_tree().call_group(&"arena", &"_toast_all", String(waves.toast), {"n": _wave_index})
+
+
+## Ondas deste monstro: as dos dados ("waves") ou, se ele veio com outra categoria (o Golem de Fogo
+## invocado como mini-chefe), as dessa categoria ("miniboss_waves").
+func _wave_data() -> Dictionary:
+	if data.has("waves"):
+		return data.waves
+	if rank != "":
+		return data.get(rank + "_waves", {})
+	return {}
 
 
 func level_factor() -> float:
@@ -381,8 +398,10 @@ func _think(delta: float) -> void:
 			_think_patrol(delta)
 		return
 	_charge_cd = maxf(_charge_cd - delta, 0.0)
+	_fire_cd = maxf(_fire_cd - delta, 0.0)
+	_slam_cd = maxf(_slam_cd - delta, 0.0)
 	_update_pending(delta)
-	if data.has("waves"):
+	if not _wave_data().is_empty():
 		_update_waves(delta)
 	if data.get("ai", "") == "static":
 		return  # ninho: não anda nem ataca
@@ -420,7 +439,24 @@ func _think(delta: float) -> void:
 	match state:
 		State.CHASE:
 			var charge: Dictionary = data.get("charge", {})
-			if ai == "charger" and _charge_cd <= 0.0 and dist >= float(charge["min"]) and dist <= float(charge["max"]):
+			var fire: Dictionary = data.get("fireball", {})
+			var slam: Dictionary = data.get("slam", {}) if not data.has("boss_ai") else {}
+			if not slam.is_empty() and _slam_cd <= 0.0 and dist <= float(slam.radius) * 0.8:
+				# Pisão: aviso no chão em volta dele; quem não sai a tempo leva dano (e é empurrado, se "push").
+				start_slam()
+				_slam_cd = float(slam.get("interval", 7.0))
+			elif not fire.is_empty() and _fire_cd <= 0.0 and dist >= float(fire.min) and dist <= float(fire.max):
+				# Bola de fogo: marca o chão onde o alvo está, ergue o braço e arremessa; quem sai da marca a tempo escapa.
+				_special = "fireball"
+				state = State.WINDUP
+				_timer = float(fire.windup)
+				_spit_at = target.global_position
+				velocity = Vector3.ZERO
+				_strike = fire
+				_fire_cd = float(fire.cooldown)
+				get_tree().call_group(&"arena", &"telegraph", _spit_at, float(fire.radius), _timer)
+				_throw_glob.rpc(_spit_at, _timer)
+			elif ai == "charger" and _charge_cd <= 0.0 and dist >= float(charge["min"]) and dist <= float(charge["max"]):
 				# Investida: aviso (corpo vermelho) e direção travada.
 				_special = "charge"
 				state = State.WINDUP
@@ -460,7 +496,7 @@ func _think(delta: float) -> void:
 					_timer = float(data.charge.time)
 					_charge_hit.clear()
 					return
-				if _special in ["spit", "slam", "gust"]:
+				if _special in ["spit", "slam", "gust", "fireball"]:
 					get_tree().call_group(&"arena", &"monster_strike", _spit_at, float(_strike.get("radius", 1.5)),
 						attack_damage(float(_strike.get("damage_mult", 1.0))), level, self, _strike)
 				# No vapor (combo), erra parte dos ataques.
@@ -519,12 +555,40 @@ func _think_flee(delta: float) -> void:
 	_flee_time = maxf(_flee_time - delta, 0.0)
 	var move := Vector3.ZERO
 	if _flee_time > 0.0:
-		var threat := _nearest_player()
-		var away := global_position - threat.global_position if threat else Vector3(_rng.randf_range(-1, 1), 0, _rng.randf_range(-1, 1))
+		# Sem "aggro_range" (0 m) _nearest_player() nunca acha ninguém: foge do herói mais perto a qualquer distância.
+		# Sem nenhum, mantém a direção sorteada (sortear a cada quadro só o fazia tremer no lugar).
+		var threat := _nearest_player(INF)
+		if _flee_dir == Vector3.ZERO:
+			_flee_dir = Vector3(_rng.randf_range(-1, 1), 0, _rng.randf_range(-1, 1)).normalized()
+		var away := global_position - threat.global_position if threat else _flee_dir
 		away.y = 0.0
-		move = away.normalized() * float(flee.get("speed", 7.0)) * status.move_mult()
+		var dir := away.normalized() if away.length() > 0.01 else _flee_dir
+		# Parede (ou árvore) na frente: em vez de empurrar parado contra ela, corre rente a ela.
+		var wall := _flee_wall_normal()
+		_flee_follow = maxf(_flee_follow - delta, 0.0)
+		if wall != Vector3.ZERO and dir.dot(wall) < -0.2:
+			var along := wall.cross(Vector3.UP)
+			if _flee_side == 0:
+				_flee_side = 1 if along.dot(dir) >= 0.0 else -1
+			dir = (along * _flee_side + wall * 0.2).normalized()
+			_flee_follow = 0.4
+		elif _flee_follow > 0.0:
+			dir = _flee_dir
+		var speed := float(flee.get("speed", 7.0)) * status.move_mult()
+		_flee_stuck = _flee_stuck + delta if get_real_velocity().length() < speed * 0.25 else 0.0
+		if _flee_stuck > 0.3:
+			# Encurralado num canto: tenta o outro lado.
+			_flee_side = -1 if _flee_side >= 0 else 1
+			_flee_follow = 0.0
+			_flee_stuck = 0.0
+		_flee_dir = dir
+		move = dir * speed
 		_wander_to = Vector3.INF
 	else:
+		_flee_dir = Vector3.ZERO
+		_flee_side = 0
+		_flee_follow = 0.0
+		_flee_stuck = 0.0
 		if _wander_to == Vector3.INF or global_position.distance_to(_wander_to) < 0.5:
 			_wander_to = home + Vector3(_rng.randf_range(-4, 4), 0, _rng.randf_range(-4, 4))
 		var to := _wander_to - global_position
@@ -536,6 +600,16 @@ func _think_flee(delta: float) -> void:
 	if move.length() > 0.1:
 		yaw = atan2(move.x, move.z)
 	state = State.CHASE
+
+
+## Normal (horizontal) da parede em que esbarrou no último movimento; sem parede, zero.
+func _flee_wall_normal() -> Vector3:
+	for i in get_slide_collision_count():
+		var n := get_slide_collision(i).get_normal()
+		n.y = 0.0
+		if n.length() > 0.5:
+			return n.normalized()
+	return Vector3.ZERO
 
 
 ## Lince: espreita o herói mais perto que ainda tenha mais da metade da vida, dá o bote (leva a vida atual à metade) e foge correndo para longe; depois descansa.
@@ -643,7 +717,7 @@ func _boss_skill_pose(delta: float) -> int:
 	match _special:
 		"slam":
 			return 1
-		"spit":
+		"spit", "fireball":
 			return 2
 		"charge":
 			return 3
@@ -830,14 +904,18 @@ func _hurt(amount: float, effect: String, hit_element: String, crit: bool, combo
 ## no aviso quando o golpe acontece.
 @rpc("authority", "call_local", "reliable")
 func _throw_glob(at: Vector3, time: float) -> void:
-	var c: Array = _strike.get("glob", data.get("spit", {}).get("glob", [0.45, 0.85, 0.2]))
+	# Nos clientes _strike não vem pela rede: vale o golpe à distância dos dados (cuspe ou bola de fogo).
+	var info: Dictionary = _strike if not _strike.is_empty() else data.get("spit", data.get("fireball", {}))
+	var c: Array = info.get("glob", [0.45, 0.85, 0.2])
 	var color := Color(c[0], c[1], c[2])
 	var glob := Node3D.new()
 	get_parent().add_child(glob)
 	var start := global_position + Vector3.UP * 0.9 * float(data.size)
 	glob.global_position = start
-	Fx.orb(glob, color, "water", 0.16)
-	Fx.trail(glob, color, "water", 0.12)
+	var element := String(info.get("element", "water"))
+	var big := float(info.get("glob_size", 1.0))
+	Fx.orb(glob, color, element, 0.16 * big)
+	Fx.trail(glob, color, element, 0.12 * big)
 	var flight := minf(time, 0.6)
 	var delay := maxf(time - flight, 0.0)
 	var peak := (start + at) / 2.0 + Vector3.UP * 2.2
@@ -846,7 +924,7 @@ func _throw_glob(at: Vector3, time: float) -> void:
 	tween.tween_property(glob, "global_position", peak, flight / 2.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(glob, "global_position", at + Vector3.UP * 0.1, flight / 2.0).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 	tween.tween_callback(func() -> void:
-		Fx.burst(get_parent(), at, float(_strike.get("radius", 1.5)), color, "water", 0.5)
+		Fx.burst(get_parent(), at, float(info.get("radius", 1.5)), color, element, 0.5)
 		glob.queue_free())
 	if _model:
 		_model.play("attack")
@@ -963,11 +1041,11 @@ func _show_damage(amount: float, effect := "normal", hit_element := "", crit := 
 
 
 ## Herói ou animal amigo mais perto (ou quem provocou).
-func _nearest_player() -> Node3D:
+func _nearest_player(max_range := -1.0) -> Node3D:
 	if _taunt_time > 0.0 and is_instance_valid(_taunt) and _taunt.get("alive") and _taunt.get("connected"):
 		return _taunt
 	var best: Node3D = null
-	var best_dist: float = data.aggro_range
+	var best_dist: float = max_range if max_range >= 0.0 else float(data.aggro_range)
 	for player: Node3D in get_tree().get_nodes_in_group(&"players") + get_tree().get_nodes_in_group(&"companions"):
 		# Invisível (Bomba de Fumaça): os monstros perdem o alvo.
 		if not player.get("alive") or not player.get("connected") or player.get("hidden") or player.is_queued_for_deletion():

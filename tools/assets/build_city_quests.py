@@ -1,5 +1,5 @@
 """NPCs das cidades que abrem as missões de cada mapa, e a corrente de missões entre as três cidades.
-  Tortuga (taverna): o Veterano de Guerra abre as Ruínas; depois de concluir as Ruínas aparece o Cartógrafo, que manda ir à Capital (pelo Viajante do Tempo) buscar o Mapa Selado com o Sacristão e trazê-lo.
+  Tortuga (taverna): o Veterano de Guerra aparece depois da Floresta (`forest_treasure` concluída) e abre as Ruínas; depois de concluir as Ruínas aparece o Cartógrafo, que manda ir à Capital (pelo Viajante do Tempo) buscar o Mapa Selado com o Sacristão e trazê-lo.
   Capital (igreja): a Irmã Penitente abre as Catacumbas e o Peregrino, o Deserto (o Padre já abre o Cemitério e o Forte); o Sacristão entrega o Mapa Selado e, depois do Deserto, pede a Foice de Prata
   que está com o Velho Zeca, na Fazenda.
   Fazenda: a Casa de Equipamentos do fazendeiro (nova, um interior `farm_shed` com porta na lateral dos campos): o Fazendeiro abre a Mina, o Ferreiro o Bunker e a Lenhadora a Floresta Escura.
@@ -43,7 +43,7 @@ valuables["sealed_map"] = {"name_key": "VALUABLE_SEALED_MAP", "value": 0, "maps"
 valuables["silver_sickle"] = {"name_key": "VALUABLE_SILVER_SICKLE", "value": 0, "maps": [], "quest_item": True, "model": "Tool_Sickle"}
 
 # ---------------------------------------------------------------- NPCs e missões
-npc("war_veteran", "NPC_WAR_VETERAN", [0.5, 0.2, 0.2], opener("map_ruins", "WARVET", after="docks_smugglers"), body("male", "Hair_Beard", [0.4, 0.4, 0.38]))
+npc("war_veteran", "NPC_WAR_VETERAN", [0.5, 0.2, 0.2], opener("map_ruins", "WARVET", after="forest_treasure"), body("male", "Hair_Beard", [0.4, 0.4, 0.38]))
 map_quest("map_ruins", "war_veteran", "ruins_01_city", "r_boss", 600, 1200, "earth")
 npc("cartographer", "NPC_CARTOGRAPHER", [0.45, 0.4, 0.55], [
     {"when": {"quest_new": "trav_to_capital", "after": "map_ruins"}, "lines": ["DLG_CARTO_1", "DLG_CARTO_2", "DLG_CARTO_3"], "offer": "trav_to_capital"},
@@ -72,7 +72,7 @@ npc("shed_scarecrow", "NPC_SHED_SCARECROW", [0.5, 0.45, 0.3], [
     {"when": {"requires": "cap_to_farm"}, "lines": ["DLG_ZECA_1", "DLG_ZECA_2"], "grants_item": "silver_sickle"}, {"when": {}, "lines": ["DLG_ZECA_DEFAULT"]}], body("male", "Hair_Beard", [0.6, 0.58, 0.55]))
 
 # ---------------------------------------------------------------- Tortuga: taverna
-put_prop("tavern", {"id": "war_veteran", "kind": "npc", "npc": "war_veteran", "position": [6.8, -1.2], "rotation": 200})
+put_prop("tavern", {"id": "war_veteran", "kind": "npc", "npc": "war_veteran", "position": [6.8, -1.2], "rotation": 200, "after_quest": "forest_treasure"})
 put_prop("tavern", {"id": "cartographer", "kind": "npc", "npc": "cartographer", "position": [3.4, -1.2], "rotation": 160, "after_quest": "map_ruins"})
 # ---------------------------------------------------------------- Capital: igreja
 put_prop("capital_01_aurenhold", {"id": "sacristan", "kind": "npc", "npc": "sacristan", "position": [-42.5, -34.5], "rotation": 90})

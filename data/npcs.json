@@ -2743,7 +2743,7 @@
       {
         "when": {
           "quest_new": "map_ruins",
-          "after": "docks_smugglers"
+          "after": "forest_treasure"
         },
         "lines": [
           "DLG_WARVET_1",

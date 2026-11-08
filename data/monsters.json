@@ -561,7 +561,77 @@
     "chest_loot": "treasure_forest",
     "quest_drop": "adams_rib",
     "role": "normal",
-    "boss_factor": 3.841
+    "boss_factor": 3.841,
+    "slam": {
+      "_comment": "Pisão de raízes: o Leshy bate o pé e raízes rasgam o chão em volta dele; quem fica dentro leva dano e é jogado longe.",
+      "interval": 8.0,
+      "radius": 4.5,
+      "windup": 1.0,
+      "damage_mult": 1.1,
+      "push": 6.0,
+      "push_time": 0.4,
+      "wind": true
+    },
+    "fireball": {
+      "_comment": "Bola de espinhos: arremessa um tufo de espinhos e seiva onde o herói está; deixa uma poça de seiva que fere por alguns segundos.",
+      "min": 5.0,
+      "max": 16.0,
+      "windup": 1.1,
+      "cooldown": 5.0,
+      "radius": 2.4,
+      "damage_mult": 1.0,
+      "element": "earth",
+      "glob": [
+        0.35,
+        0.75,
+        0.2
+      ],
+      "glob_size": 1.8,
+      "puddle_time": 4.0,
+      "puddle_dps": 6.0
+    },
+    "waves": {
+      "_comment": "Chama a floresta: a cada intervalo, bichos da mata brotam em volta dele.",
+      "first": 6.0,
+      "interval": 20.0,
+      "radius": 6.0,
+      "toast": "TOAST_LESHY_WAVE",
+      "list": [
+        [
+          {
+            "monster": "fungus_uncle",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "acid_toad",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "chitin_beast",
+            "count": 2
+          },
+          {
+            "monster": "fungus_uncle",
+            "count": 1
+          }
+        ],
+        [
+          {
+            "monster": "forest_troll",
+            "count": 1
+          },
+          {
+            "monster": "acid_toad",
+            "count": 1
+          }
+        ]
+      ]
+    },
+    "exit_portal": true
   },
   "ruin_warden": {
     "name_key": "MONSTER_RUIN_WARDEN",
@@ -847,6 +917,41 @@
       1.0
     ],
     "_comment": "Golem de Fogo da Floresta (Fire/Ice/Stone Golem, umask007, CC BY 3.0 / CC BY-SA 3.0): elite corpo a corpo, rápido e de dano alto.",
+    "miniboss_waves": {
+      "_comment": "Invocado no altar como mini-chefe: chama golens menores em volta de si.",
+      "first": 8.0,
+      "interval": 22.0,
+      "radius": 5.0,
+      "toast": "TOAST_PYRE_WAVE",
+      "list": [
+        [
+          {
+            "monster": "fungus_uncle",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "golem_stone",
+            "count": 1
+          },
+          {
+            "monster": "fungus_uncle",
+            "count": 1
+          }
+        ],
+        [
+          {
+            "monster": "golem_ice",
+            "count": 1
+          },
+          {
+            "monster": "golem_stone",
+            "count": 1
+          }
+        ]
+      ]
+    },
     "quest_drop": "cursed_skull",
     "role": "normal"
   },
@@ -1262,6 +1367,22 @@
       "time": 0.6,
       "damage_mult": 1.3,
       "cooldown": 5.0
+    },
+    "fireball": {
+      "_comment": "Bola de fogo: marca o chão no herói, arremessa em arco e explode (quem sai da marca escapa).",
+      "min": 4.0,
+      "max": 14.0,
+      "windup": 1.1,
+      "cooldown": 6.0,
+      "radius": 2.2,
+      "damage_mult": 1.2,
+      "element": "fire",
+      "glob": [
+        1.0,
+        0.42,
+        0.08
+      ],
+      "glob_size": 2.0
     },
     "look": "golem_king",
     "color": [

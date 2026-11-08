@@ -1191,6 +1191,14 @@ func _test_sewers() -> void:
 		and Town.dialogue_index("shed_scarecrow", {}) == 1 and GameData.valuables.has("sealed_map") and GameData.valuables.has("silver_sickle")
 		and GameData.arenas.has("farm_shed") and GameData.arenas.farm_01_fields.props.any(func(p: Dictionary) -> bool: return p.get("to", "") == "farm_shed"),
 		"Cartógrafo depois das Ruínas, Mapa Selado e Foice de Prata, Casa de Equipamentos na Fazenda")
+	# Taverna: o Veterano de Guerra aparece depois da Floresta (missão da Taberneira concluída) e já oferece as Ruínas; sem isso o portão das Ruínas fica fechado.
+	var vet_prop: Array = GameData.arenas.tavern.props.filter(func(p: Dictionary) -> bool: return p.get("npc", "") == "war_veteran")
+	var vet_dialogues: Array = GameData.npcs.war_veteran.dialogues
+	_check(vet_prop.size() == 1 and vet_prop[0].get("after_quest", "") == "forest_treasure" and GameData.quests.map_ruins.giver == "war_veteran"
+		and vet_dialogues[Town.dialogue_index("war_veteran", {"sewer_treasure": "done", "forest_treasure": "done"})].get("offer", "") == "map_ruins"
+		and Town.dialogue_index("war_veteran", {"forest_treasure": "done", "map_ruins": "active"}) == 1
+		and Town.map_quest_missing("ruins_01_city", {"forest_treasure": "done"}) and not Town.map_quest_missing("ruins_01_city", {"forest_treasure": "done", "map_ruins": "active"}),
+		"Veterano de Guerra na taverna depois da Floresta: abre as Ruínas")
 	# Floresta: o golem de fogo, elite corpo a corpo com modelo, é mini-chefe invocado pela Guardiã da Pira (`summon`); o de pedra é o Rei Golem do templo.
 	var golems: Array = GameData.arenas.forest_01_path.encounters.filter(func(e: Dictionary) -> bool: return String(e.id).begins_with("f_golem_"))
 	for prop: Dictionary in GameData.arenas.forest_01_path.props:
@@ -1222,11 +1230,15 @@ func _test_sewers() -> void:
 		and forest_decor.any(func(d: Dictionary) -> bool: return d.get("piece", "") == "Fire_Flame" and d.get("flicker", false)) and Kit.has("Fire_Flame"),
 		"Floresta tem a fogueira (fogo, luz e círculo de pedras musgosas) no acampamento")
 	var temple: Array = GameData.arenas.forest_01_path.props.filter(func(p: Dictionary) -> bool: return p.id == "forest_temple")
-	_check(temple.size() == 1 and temple[0].kit == "Ruin_Temple1" and Kit.has("Ruin_Temple1") and temple[0].summon.id == "f_stone_golem_king"
-		and temple[0].summon.monsters[0].monster == "stone_golem_king" and GameData.npcs.has("forest_temple") and tr(temple[0].summon.toast) != temple[0].summon.toast
-		and forest_decor.any(func(d: Dictionary) -> bool: return d.has("collider") and d.get("temple_block", false))
+	# O altar é sólido só no tamanho dele: nada em volta pode impedir o herói de chegar ao alcance de interagir (a parede de 6 m do templo antigo impedia).
+	var altar_at := Vector2(temple[0].position[0], temple[0].position[1]) if temple.size() == 1 else Vector2.INF
+	var reach: float = load("res://game/levels/prototype_arena.gd").PROP_REACH
+	_check(temple.size() == 1 and temple[0].kit == "Altar_Summon" and Kit.has("Altar_Summon") and temple[0].summon.id == "f_stone_golem_king"
+		and temple[0].summon.monsters[0].monster == "stone_golem_king" and GameData.npcs.has("forest_altar") and tr(temple[0].summon.toast) != temple[0].summon.toast
+		and float(temple[0].solid[0]) / 2.0 + 0.5 < reach and float(temple[0].solid[1]) / 2.0 + 0.5 < reach
+		and forest_decor.all(func(d: Dictionary) -> bool: return not d.has("collider") or Vector2(d.position[0], d.position[1]).distance_to(altar_at) > reach + float(d.collider.max()) / 2.0)
 		and GameData.arenas.forest_01_path.encounters.all(func(e: Dictionary) -> bool: return e.id != "f_stone_golem_king"),
-		"Floresta tem um templo em ruínas (que bloqueia) no meio da sala do Rei Golem que, ao clicar, invoca o Rei Golem")
+		"Floresta tem o altar de invocação na sala do Rei Golem, ao alcance do herói, que ao clicar invoca o Rei Golem")
 	var waves: Dictionary = GameData.monsters.stone_golem_king.get("waves", {})
 	var wave_golems := {}
 	for wave: Array in waves.get("list", []):

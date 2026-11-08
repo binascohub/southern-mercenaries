@@ -1686,7 +1686,8 @@
           6.8,
           -1.2
         ],
-        "rotation": 200
+        "rotation": 200,
+        "after_quest": "forest_treasure"
       },
       {
         "id": "cartographer",
@@ -12448,8 +12449,13 @@
       "elf_village": [
         -28.0,
         -55.5
+      ],
+      "savepoint": [
+        72.0,
+        -28.0
       ]
     },
+    "save_point": "savepoint",
     "props": [
       {
         "id": "return_portal",
@@ -16418,17 +16424,6 @@
           "speed": 0.61,
           "phase": 2.07
         }
-      },
-      {
-        "collider": [
-          6.0,
-          6.0
-        ],
-        "position": [
-          142.0,
-          -37.0
-        ],
-        "temple_block": true
       },
       {
         "light": [

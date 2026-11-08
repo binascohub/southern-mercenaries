@@ -154,7 +154,7 @@ func server_offer(peer_id: int, trade_id: int, indices: Array, gold: int) -> voi
 		if not (value is int or value is float):
 			continue
 		var i := int(value)
-		if i >= 0 and i < bag.size() and bag[i] != null and i not in clean and clean.size() < MAX_ITEMS:
+		if i >= 0 and i < bag.size() and bag[i] != null and not Items.is_quest_item(bag[i]) and i not in clean and clean.size() < MAX_ITEMS:  # objeto de missão não se troca
 			clean.append(i)
 	t.offers[peer_id] = {"items": clean, "gold": clampi(gold, 0, int(p.character.data.gold))}
 	var snapshot := []
@@ -242,7 +242,7 @@ static func swap(a: CharacterData, a_offer: Dictionary, b: CharacterData, b_offe
 		if int(offer.gold) < 0 or int(offer.gold) > int(c.data.gold):
 			return "TRADE_CHANGED"
 		for i: int in offer.items:
-			if i < 0 or i >= c.data.inventory.size() or c.data.inventory[i] == null:
+			if i < 0 or i >= c.data.inventory.size() or c.data.inventory[i] == null or Items.is_quest_item(c.data.inventory[i]):
 				return "TRADE_CHANGED"
 	var from_a := []
 	for i: int in a_offer.items:

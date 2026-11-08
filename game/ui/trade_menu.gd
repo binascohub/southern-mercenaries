@@ -126,7 +126,7 @@ func _toggle(index: int) -> void:
 	if _state.is_empty() or _player == null or _player.character == null:
 		return
 	var bag: Array = _player.character.data.inventory
-	if index >= bag.size() or bag[index] == null:
+	if index >= bag.size() or bag[index] == null or Items.is_quest_item(bag[index]):
 		return
 	var indices: Array = _state.you.indices.duplicate()
 	if index in indices:
@@ -156,6 +156,7 @@ func _refresh() -> void:
 		button.text = ("» " if offered else "") + (_short(item) if item else "")
 		button.add_theme_color_override("font_color", Items.color(item) if item else Color.WHITE)
 		button.modulate = Color(1.0, 0.85, 0.4) if offered else Color.WHITE
+		button.disabled = Items.is_quest_item(item)  # objeto de missão não se troca
 	var gold := int(_player.character.data.gold)
 	_gold.max_value = gold
 	_gold.step = maxi(1, gold / 100)

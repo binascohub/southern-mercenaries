@@ -1,6 +1,6 @@
 """Rei Golem de Pedra (stone-golem.glb, malha estática de ~400 mil polígonos, sem esqueleto nem animação) para o chefe da Toca dos Répteis:
 reduz a malha (~12 mil polígonos), põe os pés em y = 0, centra em x/z, 1 m de altura (o tamanho vem dos dados do monstro), frente em +Z,
-texturas em JPEG de 1024 px. O jogo o move por código em MonsterModel (modo "static").
+texturas em JPEG de 1024 px. tools/assets/rig_biped.py (perfil golem_king) o prende ao esqueleto dos heróis: golem_king_animated.glb, o que o jogo usa.
 uso: blender -b -P tools/assets/build_stone_golem_king.py -- <stone-golem.glb> <saída.glb> [giro em graus em volta da vertical]"""
 import bpy, sys, math
 from mathutils import Vector, Matrix

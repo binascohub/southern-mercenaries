@@ -814,6 +814,9 @@ func _add_dynamic_props(peer_id := 0) -> void:
 	for saved: Dictionary in _campaign.get("mini_chests", []):
 		if saved.area == area_id and "%s:%s" % [area_id, saved.prop.id] not in opened:
 			dynamic.append(saved.prop)
+	for saved: Dictionary in _campaign.get("boss_portals", []):
+		if saved.area == area_id:
+			dynamic.append(saved.prop)
 	for prop: Dictionary in arena.get("props", []):
 		if prop.kind in ["chest", "gate"] and "%s:%s" % [area_id, prop.id] in opened:
 			continue
@@ -982,13 +985,27 @@ func _update_minimap_marks() -> void:
 	hud.minimap.set_markers(heroes, marks)
 
 
-## Chefe acordado na área (para a barra do chefe em todos os PCs).
+## Chefe acordado na área (para a barra do chefe em todos os PCs); sem chefe, o mini-chefe acordado
+## mais perto do herói daqui (até MINIBOSS_BAR_RANGE m), como o Leshy, chefe da Floresta.
+const MINIBOSS_BAR_RANGE := 40.0
+
+
 func _awake_boss() -> Enemy:
+	var best: Enemy = null
+	var best_d := MINIBOSS_BAR_RANGE
+	var me: Vector3 = local_player.global_position if local_player and is_instance_valid(local_player) else Vector3.INF
 	for node in get_tree().get_nodes_in_group(&"enemies"):
 		var e := node as Enemy
-		if e and e.is_boss() and e.state != Enemy.State.SLEEP and e.health > 0.0 and not e.is_queued_for_deletion():
+		if e == null or e.state == Enemy.State.SLEEP or e.health <= 0.0 or e.is_queued_for_deletion():
+			continue
+		if e.is_boss():
 			return e
-	return null
+		if e.category() == "miniboss" and me != Vector3.INF:
+			var d := e.global_position.distance_to(me)
+			if d < best_d:
+				best_d = d
+				best = e
+	return best
 
 
 ## Chefe mudou de fase: todos veem o nome da fase.
@@ -1465,6 +1482,8 @@ func _on_enemy_died(enemy: Enemy) -> void:
 		_add_prop.rpc({"id": "key_%s" % enemy.data.drops_key, "kind": "key", "key": String(enemy.data.drops_key), "name_key": String(enemy.data.get("key_name_key", "PROP_BOSS_KEY")),
 			"model": String(enemy.data.get("key_model", "Key_Gold")),
 			"position": [enemy.global_position.x + 2.2, enemy.global_position.z + 1.2]})  # ao lado do baú (no mesmo ponto, o aviso de interagir mostrava a chave e não o baú)
+	if enemy.data.get("exit_portal", false):
+		_open_boss_portal(enemy)
 	if enemy.is_boss():
 		# Os ajudantes e os ninhos somem com o chefe.
 		for node in get_tree().get_nodes_in_group(&"enemies"):
@@ -1492,6 +1511,19 @@ func _on_enemy_died(enemy: Enemy) -> void:
 			for prop: Dictionary in arena.get("props", []):
 				if prop.get("after_victory", false):
 					_add_prop.rpc(prop)
+
+
+## Chefe da área com "exit_portal" (o Leshy da Floresta) caiu: abre onde ele morreu um portal de volta a Tortuga,
+## que fica (salvo na campanha) para quem voltar à área.
+func _open_boss_portal(enemy: Enemy) -> void:
+	var prop := {"id": "boss_portal_%s" % enemy.monster_id, "kind": "exit", "look": "charm_portal", "name_key": "PROP_CHARM_PORTAL",
+		"position": [enemy.global_position.x - 2.2, enemy.global_position.z - 1.2], "to": "tortuga",
+		"entry": "start", "expedition_end": true}
+	var portals: Array = _campaign.get("boss_portals", []).filter(func(c: Variant) -> bool: return c.prop.id != prop.id or c.area != area_id)
+	portals.append({"area": area_id, "prop": prop})
+	_campaign.boss_portals = portals
+	_add_prop.rpc(prop)
+	_toast_all("TOAST_BOSS_PORTAL", {})
 
 
 ## Barril/caixote quebrou (03-2-areas.md, seção 1): sorteio único; o loot sai
@@ -1749,6 +1781,11 @@ func _add_loot(player: Player, origin: Vector3, item: Dictionary, gold: int) -> 
 	_send_loot(id)
 
 
+## Item que o herói jogou fora da bolsa (servidor): vira loot no chão, só dele.
+func drop_from_bag(player: Player, item: Dictionary, at: Vector3) -> void:
+	_add_loot(player, at, item, 0)
+
+
 func _client_key(peer_id: int) -> String:
 	return "host" if peer_id == 1 else NetworkManager.client_id_of(peer_id)
 
@@ -1792,7 +1829,17 @@ func request_pickup(player: Player, all: bool) -> void:
 	_collect(player, ids)
 
 
-## Autoloot: ouro e itens ao alcance de quem passa por cima são pegos (o que não couber na bolsa fica no chão).
+## Item no chão ao alcance de pegar (o ataque básico em cima dele pega em vez de atacar).
+func loot_near(player: Player) -> bool:
+	for id: int in _loot:
+		var entry: Dictionary = _loot[id]
+		if entry.peer == player.peer_id and not entry.item.is_empty() and entry.position.distance_to(player.global_position) <= GOLD_AUTO_PICKUP:
+			return true
+	return false
+
+
+## Autoloot só do ouro: passar por cima pega as moedas; os itens ficam no chão até o herói apertar o ataque básico
+## (ou interagir) em cima deles.
 func _auto_pickup_gold() -> void:
 	for p: Player in get_tree().get_nodes_in_group(&"players"):
 		if not p.alive or not p.connected:
@@ -1800,7 +1847,7 @@ func _auto_pickup_gold() -> void:
 		var ids: Array[int] = []
 		for id: int in _loot:
 			var entry: Dictionary = _loot[id]
-			if entry.peer == p.peer_id and entry.position.distance_to(p.global_position) <= GOLD_AUTO_PICKUP:  # ouro e itens: passar por cima pega (autoloot)
+			if entry.peer == p.peer_id and entry.item.is_empty() and entry.position.distance_to(p.global_position) <= GOLD_AUTO_PICKUP:
 				ids.append(id)
 		if not ids.is_empty():
 			_collect(p, ids)

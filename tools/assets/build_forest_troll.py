@@ -1,5 +1,5 @@
 """Troll da Floresta (troll.glb do autor: troll de ombros floridos e saia de cascas, malha parada de 400 mil triângulos): reduzido a ~45 mil triângulos
-(Decimate), de pé em y = 0 e com 2,3 m, mantendo as texturas (WebP). Vai para assets/models/monsters/forest_troll.glb (tools/assets/rig_forest_troll.py o prende ao esqueleto dos heróis: forest_troll_animated.glb, o que o jogo usa).
+(Decimate), de pé em y = 0 e com 2,3 m, mantendo as texturas (WebP). Vai para assets/models/monsters/forest_troll.glb (tools/assets/rig_biped.py (perfil forest_troll) o prende ao esqueleto dos heróis: forest_troll_animated.glb, o que o jogo usa).
 uso: blender -b --python build_forest_troll.py -- <troll.glb> <saída.glb>"""
 import bpy, sys
 import numpy as np

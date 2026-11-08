@@ -238,6 +238,11 @@ static func display_name(item: Dictionary) -> String:
 	return "?"
 
 
+## Objeto de missão (valioso com "quest_item"): não se vende, não se troca, não vai para o baú nem pode ser jogado fora.
+static func is_quest_item(item: Variant) -> bool:
+	return item is Dictionary and item.get("kind", "") == VALUABLE and GameData.valuables.get(String(item.get("id", "")), {}).get("quest_item", false)
+
+
 static func color(item: Dictionary) -> Color:
 	if item.kind == EQUIPMENT:
 		return Color(GameData.rarities[item.rarity].color)

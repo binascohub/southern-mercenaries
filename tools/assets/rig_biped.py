@@ -1,23 +1,32 @@
-"""Troll da Floresta animado como humano: prende a malha de assets/models/monsters/forest_troll.glb (build_forest_troll.py, malha parada de 2,3 m em A-pose)
-ao esqueleto dos heróis (assets/models/characters/hero_male.glb), que ganha os movimentos deles (Idle, Walk, Jog_Fwd, Punch_Cross, Hit_Chest e Death01 no Godot).
-Mesmo método de build_barbarian_monster.py (pesos de cápsula e braços da A-pose levados à T-pose), mas aqui o esqueleto é que se ajusta ao troll, que é bem
-diferente de um humano: pernas curtas (quadril a 0,6 m), tronco alto, ombro a 1,55 m e largo (0,62 m do centro), braços compridos. Cada osso é levado
-ao lugar certo no troll sem mudar de direção, então as animações dos heróis continuam valendo. A malha só muda nos braços (para a T-pose).
-uso: blender -b -P tools/assets/rig_forest_troll.py -- <forest_troll.glb> <hero_male.glb> <saída.glb>"""
+"""Bípede sem esqueleto animado como humano: prende a malha ao esqueleto dos heróis (assets/models/characters/hero_male.glb), que ganha os movimentos deles
+(Idle, Walk, Jog_Fwd, Punch_Cross, Hit_Chest e Death01 no Godot). Mesmo método de build_barbarian_monster.py (pesos de cápsula e braços da A-pose levados
+à T-pose), mas aqui o esqueleto é que se ajusta ao corpo do monstro (perfil abaixo): cada osso vai ao lugar certo sem mudar de direção, então as animações
+dos heróis continuam valendo. A malha só muda nos braços (para a T-pose).
+Perfis (medidas na malha, em metros, depois de "prescale"):
+  forest_troll: Troll da Floresta (forest_troll.glb, de build_forest_troll.py): pernas curtas, tronco alto, ombro largo, braços compridos.
+  golem_king:   Rei Golem de Pedra (golem_king.glb, de build_stone_golem_king.py, 1 m no arquivo): aumentado 2,3x para medir; o jogo usa a escala 1/2,3.
+uso: blender -b -P tools/assets/rig_biped.py -- <perfil> <malha.glb> <hero_male.glb> <saída.glb>"""
 import bpy, sys, math
 import numpy as np
-from mathutils import Vector
+from mathutils import Vector, Matrix
 
-src, hero_path, dst = sys.argv[sys.argv.index("--") + 1:][:3]
+PROFILES = {
+    # ombro (x, z), ângulo do braço abaixo da horizontal, comprimento do braço até o fim da mão, x das pernas,
+    # altura (z) do herói -> do monstro (tornozelo, joelho, quadril, ombro, pescoço, cabeça) e raios das cápsulas (multiplicam os do troll).
+    "forest_troll": {"prescale": 1.0, "shoulder": (0.62, 1.55), "theta": 63.0, "arm_len": 0.87, "leg_x": 0.27,
+                     "z": [0.0, 0.08, 0.30, 0.60, 1.55, 1.95, 2.15, 2.3], "radius": 1.0},
+    "golem_king": {"prescale": 2.3, "shoulder": (0.60, 1.62), "theta": 78.0, "arm_len": 1.05, "leg_x": 0.30,
+                   "z": [0.0, 0.12, 0.45, 1.00, 1.62, 2.00, 2.20, 2.3], "radius": 1.0},
+}
+profile, src, hero_path, dst = sys.argv[sys.argv.index("--") + 1:][:4]
+P_ = PROFILES[profile]
 KEEP = ("Idle_Loop", "Walk_Loop", "Jog_Fwd_Loop", "Punch_Cross", "Hit_Chest", "Death01")
-# Medidas do troll (m, no arquivo): ombro, ângulo do braço abaixo da horizontal (medido na malha: 61 a 65 graus), comprimento do braço até o fim da mão.
-SHOULDER = Vector((0.62, 0.0, 1.55))
-THETA = math.radians(63.0)
-ARM_LEN = 0.87
-LEG_X = 0.27
-# Altura (z) do herói -> do troll, por trechos: tornozelo, joelho, quadril, ombro, pescoço, cabeça.
+SHOULDER = Vector((P_["shoulder"][0], 0.0, P_["shoulder"][1]))
+THETA = math.radians(P_["theta"])
+ARM_LEN = P_["arm_len"]
+LEG_X = P_["leg_x"]
 Z_HERO = [0.0, 0.104, 0.532, 0.932, 1.441, 1.569, 1.651, 1.8]
-Z_TROLL = [0.0, 0.08, 0.30, 0.60, 1.55, 1.95, 2.15, 2.3]
+Z_TROLL = P_["z"]
 
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.gltf(filepath=src)
@@ -26,6 +35,7 @@ body.parent = None
 bpy.context.view_layer.update()
 body.data.transform(body.matrix_world)
 body.matrix_world.identity()
+body.data.transform(Matrix.Scale(P_["prescale"], 4))
 bpy.ops.import_scene.gltf(filepath=hero_path)
 arm = [o for o in bpy.data.objects if o.type == 'ARMATURE'][0]
 for o in list(bpy.data.objects):
@@ -89,8 +99,8 @@ def a_pose(p, side):
     return Vector((side * (SHOULDER.x + dx * c + dz * s), p.y, SHOULDER.z - dx * s + dz * c))
 
 
-RAD = {"pelvis": .42, "spine_01": .42, "spine_02": .45, "spine_03": .45, "neck_01": .22, "Head": .22, "clavicle": .2, "upperarm": .17, "lowerarm": .16,
-       "hand": .15, "thigh": .17, "calf": .14, "foot": .14, "ball": .12}
+RAD = {k: r * P_["radius"] for k, r in {"pelvis": .42, "spine_01": .42, "spine_02": .45, "spine_03": .45, "neck_01": .22, "Head": .22, "clavicle": .2, "upperarm": .17, "lowerarm": .16,
+       "hand": .15, "thigh": .17, "calf": .14, "foot": .14, "ball": .12}.items()}
 caps = []
 for name in list(bones):
     base = name.rsplit("_", 1)[0] if name.endswith(("_l", "_r")) else name
@@ -135,7 +145,7 @@ for nme in names:
 for i in range(len(P)):
     for j in np.nonzero(W[i])[0]:
         body.vertex_groups[names[j]].add([i], float(W[i, j]), 'REPLACE')
-body.name = "Forest_Troll_Body"
+body.name = profile + "_body"
 body.parent = arm
 md = body.modifiers.new("Armature", 'ARMATURE')
 md.object = arm

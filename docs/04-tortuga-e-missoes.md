@@ -267,6 +267,7 @@ Cada mapa tem uma **missão de mapa** aberta por um NPC da cidade (termina sozin
 | Fazenda | **Casa de Equipamentos** do fazendeiro (nova: interior `farm_shed`, porta na lateral dos campos) | **Fazendeiro Tadeu** · **Ferreiro Gorm** · **Lenhadora Odete** | Mina (`map_mine`) · Bunker (`map_bunker`) · Floresta Escura (`map_dark_forest`) |
 
 **Corrente de missões entre as cidades** (gerada por `tools/assets/build_city_quests.py`):
+0. Ao concluir a **Floresta** (`forest_treasure`, a Costela de Adão entregue à Taberneira), aparece na Taverna de Tortuga o **Veterano de Guerra**, que abre as **Ruínas** (`map_ruins`); as Docas (Capitão Pirata) abrem ao mesmo tempo.
 1. Ao concluir as **Ruínas**, aparece na Taverna de Tortuga o **Cartógrafo Aldrin**, que manda ir à Capital (pelo Viajante do Tempo) buscar o **Mapa Selado** com o **Sacristão Ambrósio**, na Igreja, e trazê-lo de volta (`trav_to_capital`).
 2. Ao concluir o **Deserto**, o mesmo Sacristão pede a **Foice de Prata**, que está com o **Velho Zeca**, na Casa de Equipamentos da Fazenda (`cap_to_farm`); o herói a pega com o Velho Zeca e a leva ao Sacristão.
 Falas com `grants_item` entregam o item (só enquanto a missão que o pede está ativa); props com `after_quest` só aparecem depois dessa missão.

@@ -23,6 +23,8 @@ var potion_elemental_presses := 0
 var mount_presses := 0
 var jump_presses := 0
 var block_held := false
+## Mira assistida ligada nas Opções: o ataque básico vira sozinho para o monstro mais perto.
+var auto_aim := true
 var block_presses := 0
 ## Os sete quadrados de habilidade ou poção (teclas 2 a 8; contadores de apertos). O quadrado 1 é o ataque básico.
 const SKILL_SLOTS := 7
@@ -47,6 +49,7 @@ static func gather(previous: PlayerInput, origin: Vector3, camera: Camera3D, vie
 	input.mount_presses = previous.mount_presses + int(Input.is_action_just_pressed(&"mount") and not Session.ui_open)
 	input.jump_presses = previous.jump_presses + int(Input.is_action_just_pressed(&"jump") and not Session.ui_open)
 	input.block_held = Input.is_action_pressed(&"block") and not Session.ui_open
+	input.auto_aim = Settings.aim_assist
 	input.block_presses = previous.block_presses + int(Input.is_action_just_pressed(&"block") and not Session.ui_open)
 	for i in SKILL_SLOTS:
 		input.skill_presses[i] = previous.skill_presses[i] \
@@ -88,12 +91,12 @@ func to_array() -> Array:
 	return [move.x, move.y, aim.x, aim.y, attack_held, interact_held,
 		attack_presses, attack_releases, evade_presses, interact_presses,
 		pickup_all_presses, potion_health_presses, potion_resource_presses, potion_elemental_presses] \
-		+ skill_presses + [mount_presses, block_held, block_presses, jump_presses]
+		+ skill_presses + [mount_presses, block_held, block_presses, jump_presses, auto_aim]
 
 
 static func from_array(a: Array) -> PlayerInput:
 	var input := PlayerInput.new()
-	if a.size() != 25:
+	if a.size() != 26:
 		return input
 	input.move = Vector2(a[0], a[1]).limit_length(1.0)
 	input.aim = Vector2(a[2], a[3]).limit_length(1.0)
@@ -113,4 +116,5 @@ static func from_array(a: Array) -> PlayerInput:
 	input.block_held = bool(a[22])
 	input.block_presses = int(a[23])
 	input.jump_presses = int(a[24])
+	input.auto_aim = bool(a[25])
 	return input

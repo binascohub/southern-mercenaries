@@ -60,7 +60,7 @@ msgid "OPTIONS_VIBRATION"
 msgstr "Vibración"
 
 msgid "OPTIONS_AIM_ASSIST"
-msgstr "Asistencia de puntería"
+msgstr "Puntería asistida (ataca al enemigo más cercano)"
 
 msgid "OPTIONS_INVERT_AIM_Y"
 msgstr "Invertir eje Y de la mira"
@@ -418,6 +418,15 @@ msgstr "El templo se estremece: ¡el Rey Gólem de Piedra despierta!"
 
 msgid "TOAST_VIPER_WAVE"
 msgstr "¡El Rey Golem invoca la oleada {n} de golems!"
+
+msgid "TOAST_LESHY_WAVE"
+msgstr "¡El Leshy llama al bosque: oleada {n}!"
+
+msgid "TOAST_PYRE_WAVE"
+msgstr "¡El Gólem de Fuego llama a los suyos: oleada {n}!"
+
+msgid "TOAST_BOSS_PORTAL"
+msgstr "¡Cayó el jefe del bosque: se abrió un portal de vuelta a Tortuga!"
 
 msgid "MONSTER_FOREST_TROLL"
 msgstr "Trol del Bosque"
@@ -2031,6 +2040,12 @@ msgstr "({element} → débil a {weak})"
 msgid "INV_JOURNAL"
 msgstr "Diario"
 
+msgid "INV_DROP"
+msgstr "Tirar"
+
+msgid "TOAST_QUEST_ITEM_NO_DROP"
+msgstr "Objeto de misión: no se puede tirar, intercambiar ni guardar."
+
 msgid "BESTIARY_TITLE"
 msgstr "Bestiario"
 
@@ -2636,7 +2651,7 @@ msgid "NPC_VILLAGE_WIFE"
 msgstr "Elara la Curtidora"
 
 msgid "NPC_ELF_ARCHER"
-msgstr "Exploradora"
+msgstr "Sylvara, la Exploradora"
 
 msgid "DLG_ARCHER_1"
 msgstr "Buenas, viajeros. Cuidado dónde pisan: estos senderos están llenos de cosas muy antiguas y de cosas que fueron gente. Soy exploradora y recorro el mundo en busca de rarezas para mi colección. Tengo un estante solo de dientes."
