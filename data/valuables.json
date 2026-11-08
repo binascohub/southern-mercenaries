@@ -631,5 +631,57 @@
     "maps": [],
     "quest_item": true,
     "model": "Ornate_Book"
+  },
+  "star_brick": {
+    "name_key": "VALUABLE_STAR_BRICK",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Crate_Small"
+  },
+  "golden_spore": {
+    "name_key": "VALUABLE_GOLDEN_SPORE",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Mushroom_Cluster"
+  },
+  "key_sun": {
+    "name_key": "VALUABLE_KEY_SUN",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Gold"
+  },
+  "key_moon": {
+    "name_key": "VALUABLE_KEY_MOON",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Key_Hearts"
+  },
+  "mushroom_book_1": {
+    "name_key": "VALUABLE_MUSHROOM_BOOK_1",
+    "desc_key": "VALUABLE_MUSHROOM_BOOK_1_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Book_A"
+  },
+  "mushroom_book_2": {
+    "name_key": "VALUABLE_MUSHROOM_BOOK_2",
+    "desc_key": "VALUABLE_MUSHROOM_BOOK_2_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Ornate_Book"
+  },
+  "volcano_crown": {
+    "name_key": "VALUABLE_VOLCANO_CROWN",
+    "desc_key": "VALUABLE_VOLCANO_CROWN_DESC",
+    "value": 0,
+    "maps": [],
+    "quest_item": true,
+    "model": "Coin_Gold"
   }
 }

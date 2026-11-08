@@ -290,6 +290,10 @@
       "capital": [
         24.0,
         -2.5
+      ],
+      "brothel": [
+        9.0,
+        5.5
       ]
     },
     "props": [
@@ -422,6 +426,17 @@
         ],
         "to": "ruins_01_city",
         "entry": "start"
+      },
+      {
+        "id": "brothel_door",
+        "kind": "exit",
+        "name_key": "PROP_BROTHEL",
+        "position": [
+          9.0,
+          7.2
+        ],
+        "to": "brothel",
+        "entry": "door"
       }
     ],
     "style": {
@@ -1644,6 +1659,21 @@
         "rotation": 323,
         "scale": 0.725,
         "food_kit": true
+      },
+      {
+        "light": [
+          1.0,
+          0.28,
+          0.32
+        ],
+        "position": [
+          9.0,
+          7.5
+        ],
+        "y": 2.2,
+        "energy": 1.6,
+        "range": 6,
+        "brothel_sign": true
       }
     ],
     "crowd": [
@@ -12517,7 +12547,7 @@
         ],
         "monsters": [
           {
-            "monster": "acid_toad",
+            "monster": "forest_flesh_plant",
             "count": 3
           }
         ],
@@ -12531,7 +12561,7 @@
         ],
         "monsters": [
           {
-            "monster": "acid_toad",
+            "monster": "forest_flesh_plant",
             "count": 3
           }
         ],
@@ -12545,7 +12575,7 @@
         ],
         "monsters": [
           {
-            "monster": "acid_toad",
+            "monster": "forest_flesh_plant",
             "count": 3
           }
         ],
@@ -12559,7 +12589,7 @@
         ],
         "monsters": [
           {
-            "monster": "acid_toad",
+            "monster": "forest_flesh_plant",
             "count": 3
           }
         ],
@@ -12643,7 +12673,7 @@
         ],
         "monsters": [
           {
-            "monster": "acid_toad",
+            "monster": "forest_flesh_plant",
             "count": 3
           }
         ],
@@ -12657,7 +12687,7 @@
         ],
         "monsters": [
           {
-            "monster": "acid_toad",
+            "monster": "forest_flesh_plant",
             "count": 3
           }
         ],
@@ -12671,7 +12701,7 @@
         ],
         "monsters": [
           {
-            "monster": "acid_toad",
+            "monster": "forest_flesh_plant",
             "count": 3
           }
         ],
@@ -12685,7 +12715,7 @@
         ],
         "monsters": [
           {
-            "monster": "acid_toad",
+            "monster": "forest_flesh_plant",
             "count": 3
           }
         ],
@@ -151425,6 +151455,10 @@
       "catacombs": [
         14.5,
         2.0
+      ],
+      "mushroom": [
+        -0.5,
+        2.0
       ]
     },
     "props": [
@@ -151638,6 +151672,27 @@
         "npc": "pilgrim",
         "position": [
           -27.0,
+          -33.6
+        ],
+        "rotation": 180
+      },
+      {
+        "id": "mushroom_gate",
+        "kind": "exit",
+        "name_key": "PROP_TO_MUSHROOM",
+        "position": [
+          -0.5,
+          4.5
+        ],
+        "to": "mushroom_01_hills",
+        "entry": "start"
+      },
+      {
+        "id": "royal_botanist",
+        "kind": "npc",
+        "npc": "royal_botanist",
+        "position": [
+          -21.0,
           -33.6
         ],
         "rotation": 180
@@ -155575,34 +155630,6 @@
         ],
         "rotation": 0,
         "pose": "idle"
-      },
-      {
-        "role": "anna_walker",
-        "position": [
-          19.0,
-          -63.8
-        ],
-        "rotation": 90,
-        "pose": "idle",
-        "path": [
-          35.0,
-          -63.8
-        ],
-        "speed": 0.9
-      },
-      {
-        "role": "adriana_walker",
-        "position": [
-          43.0,
-          -62.0
-        ],
-        "rotation": -90,
-        "pose": "idle",
-        "path": [
-          26.0,
-          -62.0
-        ],
-        "speed": 1.0
       },
       {
         "role": "hero_warrior",
@@ -307360,5 +307387,8590 @@
     "crowd": [],
     "passive": true,
     "breakables": []
+  },
+  "brothel": {
+    "_comment": "Bordel da Sereia Rubra, em Tortuga (gerado por tools/assets/build_brothel.py): camas com cortinas no fundo, sofás e mesa no meio, balcão, lareira, moças de biquíni dançando e passeando, e clientes. A porta fica na rua principal de Tortuga.",
+    "name_key": "AREA_BROTHEL",
+    "town": true,
+    "player_class": "mage",
+    "wake_radius": 0,
+    "alert_radius": 0,
+    "area_level": 1,
+    "rooms": [
+      {
+        "id": "hall",
+        "center": [
+          0,
+          0
+        ],
+        "size": [
+          22,
+          14
+        ],
+        "doors": [],
+        "torch": true
+      }
+    ],
+    "encounters": [],
+    "entries": {
+      "start": [
+        0,
+        3
+      ],
+      "door": [
+        0,
+        4.8
+      ]
+    },
+    "props": [
+      {
+        "id": "brothel_exit",
+        "kind": "exit",
+        "name_key": "PROP_TAVERN_EXIT",
+        "position": [
+          0,
+          6.2
+        ],
+        "to": "tortuga",
+        "entry": "brothel"
+      }
+    ],
+    "style": {
+      "_comment": "Paredes de reboco e enxaimel como a Taverna, piso de tijolo; a parede sul fica aberta para a câmera.",
+      "walls": [
+        "Wall_Plaster_WoodGrid",
+        "Wall_Plaster_Straight",
+        "Wall_Plaster_WoodGrid",
+        "Wall_Plaster_Straight",
+        "Wall_Plaster_WoodGrid",
+        "Wall_Plaster_Straight",
+        "Wall_Plaster_WoodGrid",
+        "Wall_Plaster_Straight"
+      ],
+      "floor": "Floor_UnevenBrick",
+      "low": "",
+      "ground": [
+        0.08,
+        0.06,
+        0.05
+      ],
+      "wood_tone": [
+        0.192,
+        0.145,
+        0.11
+      ]
+    },
+    "decor": [
+      {
+        "piece": "Bed_2",
+        "position": [
+          -8.0,
+          -5.0
+        ],
+        "rotation": 0,
+        "solid": [
+          2.7,
+          3.73
+        ],
+        "scale": 1.8
+      },
+      {
+        "piece": "Bed_3",
+        "position": [
+          -3.8,
+          -5.4
+        ],
+        "rotation": 0,
+        "solid": [
+          2.0,
+          2.9
+        ],
+        "scale": 1.4
+      },
+      {
+        "piece": "Bed_1",
+        "position": [
+          0.0,
+          -5.4
+        ],
+        "rotation": 0,
+        "solid": [
+          1.4,
+          2.9
+        ],
+        "scale": 1.4
+      },
+      {
+        "piece": "Bed_3",
+        "position": [
+          3.8,
+          -5.4
+        ],
+        "rotation": 0,
+        "solid": [
+          2.0,
+          2.9
+        ],
+        "scale": 1.4
+      },
+      {
+        "piece": "Bed_4",
+        "position": [
+          8.0,
+          -5.0
+        ],
+        "rotation": 0,
+        "solid": [
+          1.8,
+          3.7
+        ],
+        "scale": 1.8
+      },
+      {
+        "piece": "Banner_1_Cloth",
+        "position": [
+          -5.9,
+          -6.4
+        ],
+        "y": 2.4,
+        "rotation": 90
+      },
+      {
+        "piece": "Banner_1_Cloth",
+        "position": [
+          -5.9,
+          -5.6
+        ],
+        "y": 2.4,
+        "rotation": 90
+      },
+      {
+        "piece": "Banner_1_Cloth",
+        "position": [
+          -5.9,
+          -4.8
+        ],
+        "y": 2.4,
+        "rotation": 90
+      },
+      {
+        "piece": "Banner_1_Cloth",
+        "position": [
+          -5.9,
+          -4.0
+        ],
+        "y": 2.4,
+        "rotation": 90
+      },
+      {
+        "piece": "Banner_1_Cloth",
+        "position": [
+          -1.9,
+          -6.4
+        ],
+        "y": 2.4,
+        "rotation": 90
+      },
+      {
+        "piece": "Banner_1_Cloth",
+        "position": [
+          -1.9,
+          -5.6
+        ],
+        "y": 2.4,
+        "rotation": 90
+      },
+      {
+        "piece": "Banner_1_Cloth",
+        "position": [
+          -1.9,
+          -4.8
+        ],
+        "y": 2.4,
+        "rotation": 90
+      },
+      {
+        "piece": "Banner_1_Cloth",
+        "position": [
+          -1.9,
+          -4.0
+        ],
+        "y": 2.4,
+        "rotation": 90
+      },
+      {
+        "piece": "Banner_1_Cloth",
+        "position": [
+          1.9,
+          -6.4
+        ],
+        "y": 2.4,
+        "rotation": 90
+      },
+      {
+        "piece": "Banner_1_Cloth",
+        "position": [
+          1.9,
+          -5.6
+        ],
+        "y": 2.4,
+        "rotation": 90
+      },
+      {
+        "piece": "Banner_1_Cloth",
+        "position": [
+          1.9,
+          -4.8
+        ],
+        "y": 2.4,
+        "rotation": 90
+      },
+      {
+        "piece": "Banner_1_Cloth",
+        "position": [
+          1.9,
+          -4.0
+        ],
+        "y": 2.4,
+        "rotation": 90
+      },
+      {
+        "piece": "Banner_1_Cloth",
+        "position": [
+          5.9,
+          -6.4
+        ],
+        "y": 2.4,
+        "rotation": 90
+      },
+      {
+        "piece": "Banner_1_Cloth",
+        "position": [
+          5.9,
+          -5.6
+        ],
+        "y": 2.4,
+        "rotation": 90
+      },
+      {
+        "piece": "Banner_1_Cloth",
+        "position": [
+          5.9,
+          -4.8
+        ],
+        "y": 2.4,
+        "rotation": 90
+      },
+      {
+        "piece": "Banner_1_Cloth",
+        "position": [
+          5.9,
+          -4.0
+        ],
+        "y": 2.4,
+        "rotation": 90
+      },
+      {
+        "piece": "Tv_Candle",
+        "position": [
+          -6.7,
+          -6.6
+        ],
+        "y": 0.0
+      },
+      {
+        "piece": "Tv_Candle",
+        "position": [
+          5.3,
+          -6.6
+        ],
+        "y": 0.0
+      },
+      {
+        "piece": "Sofa_Group",
+        "position": [
+          -5.6,
+          0.2
+        ],
+        "rotation": 0,
+        "solid": [
+          4.2,
+          2.6
+        ]
+      },
+      {
+        "piece": "Sofa_Group",
+        "position": [
+          5.6,
+          0.2
+        ],
+        "rotation": 0,
+        "solid": [
+          4.2,
+          2.6
+        ]
+      },
+      {
+        "piece": "Tv_Table_Round",
+        "position": [
+          0.0,
+          1.4
+        ],
+        "solid": [
+          1.9,
+          1.9
+        ]
+      },
+      {
+        "piece": "Tv_Stool_Round",
+        "position": [
+          -1.4,
+          1.4
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Tv_Stool_Round",
+        "position": [
+          1.4,
+          1.4
+        ],
+        "rotation": -90
+      },
+      {
+        "piece": "Fk_Wine_Red",
+        "position": [
+          0.1,
+          1.2
+        ],
+        "y": 0.75,
+        "rotation": 20
+      },
+      {
+        "piece": "Glass_Cup_Wine",
+        "position": [
+          -0.45,
+          1.55
+        ],
+        "y": 0.75,
+        "rotation": 80,
+        "scale": 1.8
+      },
+      {
+        "piece": "Glass_Cup_Wine",
+        "position": [
+          0.5,
+          1.7
+        ],
+        "y": 0.75,
+        "rotation": 250,
+        "scale": 1.8
+      },
+      {
+        "piece": "Tv_Candle",
+        "position": [
+          -0.1,
+          1.75
+        ],
+        "y": 0.75
+      },
+      {
+        "piece": "Table_Large",
+        "position": [
+          -8.9,
+          3.6
+        ],
+        "rotation": 90,
+        "solid": [
+          1.1,
+          2.8
+        ]
+      },
+      {
+        "piece": "Shelf_Small_Bottles",
+        "position": [
+          -10.6,
+          3.6
+        ],
+        "rotation": 90
+      },
+      {
+        "piece": "Bottle_3",
+        "position": [
+          -8.8,
+          2.8
+        ],
+        "y": 0.81,
+        "rotation": 40
+      },
+      {
+        "piece": "Bottle_2",
+        "position": [
+          -9.0,
+          4.3
+        ],
+        "y": 0.81,
+        "rotation": 200
+      },
+      {
+        "piece": "Glass_Cup_Wine",
+        "position": [
+          -8.7,
+          3.5
+        ],
+        "y": 0.81,
+        "rotation": 10,
+        "scale": 1.8
+      },
+      {
+        "piece": "Tv_Fireplace",
+        "position": [
+          10.4,
+          3.4
+        ],
+        "rotation": -90,
+        "solid": [
+          1.36,
+          1.28
+        ]
+      },
+      {
+        "piece": "Vase_Big",
+        "position": [
+          10.2,
+          -1.6
+        ]
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          -10.0,
+          -1.4
+        ]
+      },
+      {
+        "piece": "Chandelier_Royal",
+        "position": [
+          0.0,
+          -1.0
+        ],
+        "y": 3.8
+      },
+      {
+        "piece": "Chandelier",
+        "position": [
+          -6.0,
+          2.4
+        ],
+        "y": 3.9
+      },
+      {
+        "piece": "Chandelier",
+        "position": [
+          6.0,
+          2.4
+        ],
+        "y": 3.9
+      },
+      {
+        "light": [
+          1.0,
+          0.28,
+          0.32
+        ],
+        "position": [
+          -6.0,
+          -4.5
+        ],
+        "y": 2.0,
+        "energy": 1.3,
+        "range": 8
+      },
+      {
+        "light": [
+          1.0,
+          0.28,
+          0.32
+        ],
+        "position": [
+          6.0,
+          -4.5
+        ],
+        "y": 2.0,
+        "energy": 1.3,
+        "range": 8
+      },
+      {
+        "light": [
+          1.0,
+          0.28,
+          0.32
+        ],
+        "position": [
+          0.0,
+          2.2
+        ],
+        "y": 2.2,
+        "energy": 1.0,
+        "range": 9
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.3
+        ],
+        "position": [
+          -8.5,
+          3.6
+        ],
+        "y": 1.8,
+        "energy": 0.8,
+        "range": 6
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.3
+        ],
+        "position": [
+          9.6,
+          3.4
+        ],
+        "y": 0.9,
+        "energy": 1.3,
+        "range": 7
+      }
+    ],
+    "crowd": [
+      {
+        "role": "beach_dancer",
+        "position": [
+          -2.6,
+          4.4
+        ],
+        "rotation": 0,
+        "pose": "dance"
+      },
+      {
+        "role": "asila_dancer",
+        "position": [
+          2.6,
+          4.4
+        ],
+        "rotation": 0,
+        "pose": "dance"
+      },
+      {
+        "role": "anna_walker",
+        "position": [
+          -6.5,
+          5.4
+        ],
+        "rotation": 90,
+        "pose": "idle",
+        "path": [
+          6.5,
+          5.4
+        ],
+        "speed": 0.8
+      },
+      {
+        "role": "adriana_walker",
+        "position": [
+          7.5,
+          -2.4
+        ],
+        "rotation": -90,
+        "pose": "idle",
+        "path": [
+          -7.5,
+          -2.4
+        ],
+        "speed": 0.9
+      },
+      {
+        "role": "pirate",
+        "position": [
+          -1.4,
+          1.4
+        ],
+        "rotation": 90,
+        "pose": "sit"
+      },
+      {
+        "role": "sailor",
+        "position": [
+          1.4,
+          1.4
+        ],
+        "rotation": 270,
+        "pose": "sit"
+      },
+      {
+        "role": "drunk",
+        "position": [
+          -5.5,
+          -0.55
+        ],
+        "rotation": 0,
+        "pose": "sit"
+      },
+      {
+        "role": "pirate_2",
+        "position": [
+          5.7,
+          -0.55
+        ],
+        "rotation": 0,
+        "pose": "sit"
+      }
+    ],
+    "breakables": []
+  },
+  "mushroom_01_hills": {
+    "_comment": "Colinas dos Cogumelos (mapa novo, ligado à Capital): colinas coloridas, cogumelos gigantes, plataformas de pedra e moedas, com a estrutura da Floresta e das Docas. Prado -> Trilha -> Vila dos Cogumelos; laço oeste (Bosque dos Chapéus Gigantes: o Toco Antigo desperta o Bruto Esporento) e laço leste (Degraus de Pedra: a Moedeira desperta o Jacaré-Musgo), fechando no Bosque dos Esporos e na Gruta de Cristal; Estrada das Flores -> Campo das Moedas -> Alameda do Castelo (Guarda da Ponte, duas chaves) -> Pátio do Vulcão do Rei-Lagarto Vulcânico (chefe final, com a saída). Gerado por tools/assets/build_mushroom_hills.py.",
+    "name_key": "ARENA_MUSHROOM",
+    "player_class": "mage",
+    "map_id": "map_mushroom",
+    "area_level": 16,
+    "outdoor": true,
+    "final": true,
+    "victory_groups": [
+      "mh_king"
+    ],
+    "wake_radius": 10.0,
+    "alert_radius": 5.0,
+    "rooms": [
+      {
+        "id": "meadow",
+        "center": [
+          0,
+          0
+        ],
+        "size": [
+          36,
+          16
+        ],
+        "doors": [
+          "west",
+          "east",
+          "north"
+        ],
+        "wall_height": 0.8,
+        "torch": true
+      },
+      {
+        "id": "clover_patch",
+        "center": [
+          -32,
+          0
+        ],
+        "size": [
+          28,
+          12
+        ],
+        "doors": [
+          "east"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "berry_patch",
+        "center": [
+          32,
+          0
+        ],
+        "size": [
+          28,
+          12
+        ],
+        "doors": [
+          "west"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "trail",
+        "center": [
+          0,
+          -18
+        ],
+        "size": [
+          7,
+          20
+        ],
+        "doors": [
+          "south",
+          "north"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "village",
+        "center": [
+          0,
+          -46
+        ],
+        "size": [
+          64,
+          36
+        ],
+        "doors": [
+          "south",
+          "west",
+          "east",
+          "north"
+        ],
+        "wall_height": 0.8,
+        "torch": true
+      },
+      {
+        "id": "west_bridge",
+        "center": [
+          -46,
+          -46
+        ],
+        "size": [
+          28,
+          8
+        ],
+        "doors": [
+          "east",
+          "north:-1"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "east_bridge",
+        "center": [
+          46,
+          -46
+        ],
+        "size": [
+          28,
+          8
+        ],
+        "doors": [
+          "west",
+          "north:1"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "giant_caps",
+        "center": [
+          -52,
+          -70
+        ],
+        "size": [
+          36,
+          40
+        ],
+        "doors": [
+          "south:5",
+          "north:-3"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "stone_steps",
+        "center": [
+          52,
+          -70
+        ],
+        "size": [
+          36,
+          40
+        ],
+        "doors": [
+          "south:-5",
+          "north:3"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "flower_road",
+        "center": [
+          0,
+          -80
+        ],
+        "size": [
+          7,
+          32
+        ],
+        "doors": [
+          "south",
+          "north"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "coin_field",
+        "center": [
+          0,
+          -107
+        ],
+        "size": [
+          80,
+          22
+        ],
+        "doors": [
+          "south",
+          "west",
+          "east",
+          "north"
+        ],
+        "wall_height": 0.8,
+        "torch": true
+      },
+      {
+        "id": "spore_grove",
+        "center": [
+          -55,
+          -105
+        ],
+        "size": [
+          30,
+          30
+        ],
+        "doors": [
+          "south",
+          "east:-2"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "crystal_hollow",
+        "center": [
+          55,
+          -105
+        ],
+        "size": [
+          30,
+          30
+        ],
+        "doors": [
+          "south",
+          "west:-2"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "castle_lane",
+        "center": [
+          0,
+          -130
+        ],
+        "size": [
+          7,
+          24
+        ],
+        "doors": [
+          "south",
+          "north"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "volcano_court",
+        "center": [
+          0,
+          -170
+        ],
+        "size": [
+          70,
+          56
+        ],
+        "doors": [
+          "south"
+        ],
+        "wall_height": 0.8,
+        "torch": true
+      }
+    ],
+    "encounters": [
+      {
+        "id": "mh_trail",
+        "position": [
+          0,
+          -18
+        ],
+        "monsters": [
+          {
+            "monster": "mh_bunny",
+            "count": 4
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_clover",
+        "position": [
+          -32,
+          0
+        ],
+        "monsters": [
+          {
+            "monster": "mh_ghost",
+            "count": 2
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_berries",
+        "position": [
+          32,
+          0
+        ],
+        "monsters": [
+          {
+            "monster": "mh_bunny",
+            "count": 4
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_village_a",
+        "position": [
+          -18,
+          -42
+        ],
+        "monsters": [
+          {
+            "monster": "mh_bunny",
+            "count": 3
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_village_b",
+        "position": [
+          18,
+          -52
+        ],
+        "monsters": [
+          {
+            "monster": "mh_lynx",
+            "count": 2
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_village_c",
+        "position": [
+          -4,
+          -36
+        ],
+        "monsters": [
+          {
+            "monster": "mh_lynx",
+            "count": 1
+          },
+          {
+            "monster": "mh_bunny",
+            "count": 3
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_west_bridge",
+        "position": [
+          -46,
+          -46
+        ],
+        "monsters": [
+          {
+            "monster": "mh_ghost",
+            "count": 2
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_east_bridge",
+        "position": [
+          46,
+          -46
+        ],
+        "monsters": [
+          {
+            "monster": "mh_bunny",
+            "count": 3
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_caps_a",
+        "position": [
+          -62,
+          -80
+        ],
+        "monsters": [
+          {
+            "monster": "mh_ghost",
+            "count": 3
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_caps_b",
+        "position": [
+          -42,
+          -58
+        ],
+        "monsters": [
+          {
+            "monster": "mh_lynx",
+            "count": 2
+          },
+          {
+            "monster": "mh_bunny",
+            "count": 2
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_steps_a",
+        "position": [
+          44,
+          -84
+        ],
+        "monsters": [
+          {
+            "monster": "mh_ghost",
+            "count": 2
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_steps_b",
+        "position": [
+          62,
+          -58
+        ],
+        "monsters": [
+          {
+            "monster": "mh_lynx",
+            "count": 2
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_road",
+        "position": [
+          0,
+          -80
+        ],
+        "monsters": [
+          {
+            "monster": "mh_dragonling",
+            "count": 2
+          },
+          {
+            "monster": "mh_bunny",
+            "count": 2
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_spores_a",
+        "position": [
+          -55,
+          -112
+        ],
+        "monsters": [
+          {
+            "monster": "mh_ghost",
+            "count": 3
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_spores_b",
+        "position": [
+          -62,
+          -98
+        ],
+        "monsters": [
+          {
+            "monster": "mh_bunny",
+            "count": 4
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_crystal_a",
+        "position": [
+          55,
+          -112
+        ],
+        "monsters": [
+          {
+            "monster": "mh_dragonling",
+            "count": 3
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_crystal_b",
+        "position": [
+          62,
+          -98
+        ],
+        "monsters": [
+          {
+            "monster": "mh_lynx",
+            "count": 2
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_coins_a",
+        "position": [
+          -20,
+          -107
+        ],
+        "monsters": [
+          {
+            "monster": "mh_dragonling",
+            "count": 2
+          },
+          {
+            "monster": "mh_bunny",
+            "count": 3
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_coins_b",
+        "position": [
+          20,
+          -107
+        ],
+        "monsters": [
+          {
+            "monster": "mh_lynx",
+            "count": 2
+          },
+          {
+            "monster": "mh_ghost",
+            "count": 1
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_berry_mimic",
+        "position": [
+          38,
+          3
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_caps_mimic",
+        "position": [
+          -60,
+          -60
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_spore_mimic",
+        "position": [
+          -66,
+          -112
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_crystal_mimic",
+        "position": [
+          66,
+          -112
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_court_a",
+        "position": [
+          -18,
+          -158
+        ],
+        "monsters": [
+          {
+            "monster": "mh_dragonling",
+            "count": 3
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_court_b",
+        "position": [
+          18,
+          -158
+        ],
+        "monsters": [
+          {
+            "monster": "mh_dragonling",
+            "count": 2
+          },
+          {
+            "monster": "mh_lynx",
+            "count": 1
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mh_king",
+        "position": [
+          0,
+          -188
+        ],
+        "monsters": [
+          {
+            "monster": "mh_lizard_king",
+            "count": 1
+          }
+        ],
+        "level": 17
+      },
+      {
+        "id": "mm_1",
+        "position": [
+          65,
+          -61
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ],
+        "level": 16
+      },
+      {
+        "id": "mm_2",
+        "position": [
+          3,
+          -83
+        ],
+        "monsters": [
+          {
+            "monster": "chest_mimic",
+            "count": 1
+          }
+        ],
+        "level": 16
+      }
+    ],
+    "hazards": [],
+    "entries": {
+      "start": [
+        0,
+        3
+      ],
+      "mushroom": [
+        0,
+        3
+      ]
+    },
+    "props": [
+      {
+        "id": "return_portal",
+        "kind": "exit",
+        "name_key": "PROP_RETURN_PORTAL",
+        "position": [
+          -4,
+          3
+        ],
+        "to": "capital_01_aurenhold",
+        "entry": "mushroom",
+        "expedition_end": false
+      },
+      {
+        "id": "victory_portal",
+        "kind": "exit",
+        "name_key": "PROP_RETURN_PORTAL",
+        "position": [
+          0,
+          -195.5
+        ],
+        "to": "capital_01_aurenhold",
+        "entry": "mushroom",
+        "after_victory": true,
+        "group": true
+      },
+      {
+        "id": "mh_gardener",
+        "kind": "npc",
+        "npc": "mh_gardener",
+        "position": [
+          -6,
+          -46
+        ],
+        "rotation": 160
+      },
+      {
+        "id": "mh_old_stump",
+        "kind": "npc",
+        "npc": "mushroom_altar",
+        "kit": "Altar_Summon",
+        "solid": [
+          2.2,
+          2.0
+        ],
+        "rotation": 0,
+        "position": [
+          -52.0,
+          -70.0
+        ],
+        "summon": {
+          "id": "mh_brute",
+          "position": [
+            -52.0,
+            -62.0
+          ],
+          "spread": 3.0,
+          "toast": "TOAST_MH_BRUTE_AWAKENS",
+          "monsters": [
+            {
+              "monster": "mh_spore_brute",
+              "count": 1,
+              "rank": "miniboss"
+            }
+          ],
+          "level": 16
+        },
+        "needs_key": "book_mushroom_1",
+        "extra_summons": [
+          {
+            "needs_key": "book_mushroom_2",
+            "dialogue": 2,
+            "summon": {
+              "id": "mh_gator",
+              "position": [
+                -52.0,
+                -62.0
+              ],
+              "spread": 3.0,
+              "toast": "TOAST_MH_GATOR_AWAKENS",
+              "monsters": [
+                {
+                  "monster": "mh_moss_gator",
+                  "count": 1,
+                  "rank": "miniboss"
+                }
+              ],
+              "level": 16
+            }
+          }
+        ]
+      },
+      {
+        "id": "mh_coin_keeper",
+        "kind": "npc",
+        "npc": "mh_coin_keeper",
+        "position": [
+          42.0,
+          -60.0
+        ],
+        "rotation": 0
+      },
+      {
+        "id": "boss_gate",
+        "kind": "gate",
+        "name_key": "PROP_BOSS_GATE",
+        "position": [
+          0.0,
+          -124.0
+        ],
+        "rotation": 0,
+        "scale": 1.8,
+        "block": 8.0,
+        "count": 2,
+        "opened_by": "mh_gate"
+      },
+      {
+        "id": "mh_bridge_guard",
+        "kind": "npc",
+        "npc": "mh_bridge_guard",
+        "position": [
+          0.0,
+          -120.0
+        ],
+        "rotation": 0
+      },
+      {
+        "id": "mh_chest_1",
+        "kind": "chest",
+        "position": [
+          -40,
+          -2
+        ],
+        "loot": "chest"
+      },
+      {
+        "id": "mh_chest_2",
+        "kind": "chest",
+        "position": [
+          40,
+          3
+        ],
+        "loot": "chest"
+      },
+      {
+        "id": "mh_chest_3",
+        "kind": "chest",
+        "position": [
+          -62,
+          -112
+        ],
+        "loot": "chest"
+      },
+      {
+        "id": "mh_chest_4",
+        "kind": "chest",
+        "position": [
+          62,
+          -112
+        ],
+        "loot": "chest"
+      },
+      {
+        "id": "mh_chest_5",
+        "kind": "chest",
+        "position": [
+          -28,
+          -58
+        ],
+        "loot": "chest"
+      },
+      {
+        "id": "mh_chest_6",
+        "kind": "chest",
+        "position": [
+          -30,
+          -190
+        ],
+        "loot": "chest"
+      },
+      {
+        "id": "mh_chest_7",
+        "kind": "chest",
+        "position": [
+          30,
+          -190
+        ],
+        "loot": "chest"
+      }
+    ],
+    "quest_spots": [
+      [
+        -32,
+        0
+      ],
+      [
+        0,
+        -46
+      ],
+      [
+        -52,
+        -70
+      ],
+      [
+        52,
+        -70
+      ],
+      [
+        0,
+        -107
+      ]
+    ],
+    "breakables": [
+      {
+        "id": "cx_1",
+        "monster": "crate",
+        "position": [
+          -33.3,
+          -153.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_2",
+        "monster": "crate",
+        "position": [
+          -32.2,
+          -153.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_3",
+        "monster": "crate",
+        "position": [
+          -32.8,
+          -152.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_1",
+        "monster": "pot",
+        "position": [
+          -67.3,
+          -87.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_2",
+        "monster": "pot",
+        "position": [
+          -68.3,
+          -87.6
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_3",
+        "monster": "pot",
+        "position": [
+          -66.7,
+          -87.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_4",
+        "monster": "pot",
+        "position": [
+          -67.3,
+          -87.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_5",
+        "monster": "pot",
+        "position": [
+          -68.0,
+          -88.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_6",
+        "monster": "pot",
+        "position": [
+          -68.0,
+          -86.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_7",
+        "monster": "pot",
+        "position": [
+          -66.8,
+          -86.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_8",
+        "monster": "pot",
+        "position": [
+          44.2,
+          -3.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_9",
+        "monster": "pot",
+        "position": [
+          43.1,
+          -2.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_10",
+        "monster": "pot",
+        "position": [
+          43.8,
+          -4.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_11",
+        "monster": "pot",
+        "position": [
+          42.7,
+          -4.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_12",
+        "monster": "pot",
+        "position": [
+          43.2,
+          -3.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_13",
+        "monster": "pot",
+        "position": [
+          43.7,
+          -2.8
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_4",
+        "monster": "crate",
+        "position": [
+          -15.0,
+          -143.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_5",
+        "monster": "crate",
+        "position": [
+          -13.9,
+          -143.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_6",
+        "monster": "crate",
+        "position": [
+          -14.5,
+          -144.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_7",
+        "monster": "crate",
+        "position": [
+          -30.3,
+          -62.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_8",
+        "monster": "crate",
+        "position": [
+          -29.2,
+          -62.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_9",
+        "monster": "crate",
+        "position": [
+          -30.3,
+          -61.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_10",
+        "monster": "crate",
+        "position": [
+          68.3,
+          -88.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_11",
+        "monster": "crate",
+        "position": [
+          67.2,
+          -88.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_12",
+        "monster": "crate",
+        "position": [
+          68.3,
+          -87.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_13",
+        "monster": "crate",
+        "position": [
+          -41.7,
+          -118.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_14",
+        "monster": "crate",
+        "position": [
+          -42.8,
+          -118.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_15",
+        "monster": "crate",
+        "position": [
+          -41.7,
+          -117.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_16",
+        "monster": "crate",
+        "position": [
+          -68.3,
+          -118.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_17",
+        "monster": "crate",
+        "position": [
+          -67.2,
+          -118.3
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_18",
+        "monster": "crate",
+        "position": [
+          -68.3,
+          -117.2
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "pt_14",
+        "monster": "pot",
+        "position": [
+          33.2,
+          4.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_15",
+        "monster": "pot",
+        "position": [
+          33.6,
+          3.0
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_16",
+        "monster": "pot",
+        "position": [
+          32.9,
+          3.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_17",
+        "monster": "pot",
+        "position": [
+          32.3,
+          3.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_18",
+        "monster": "pot",
+        "position": [
+          31.5,
+          3.7
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_19",
+        "monster": "pot",
+        "position": [
+          48.9,
+          -118.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_20",
+        "monster": "pot",
+        "position": [
+          48.6,
+          -117.1
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_21",
+        "monster": "pot",
+        "position": [
+          51.1,
+          -117.4
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_22",
+        "monster": "pot",
+        "position": [
+          50.0,
+          -116.9
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_23",
+        "monster": "pot",
+        "position": [
+          49.9,
+          -118.2
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "pt_24",
+        "monster": "pot",
+        "position": [
+          50.7,
+          -118.3
+        ],
+        "table": "breakable_pot"
+      },
+      {
+        "id": "cx_19",
+        "monster": "crate",
+        "position": [
+          -38.3,
+          -97.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_20",
+        "monster": "crate",
+        "position": [
+          -37.2,
+          -97.7
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_21",
+        "monster": "crate",
+        "position": [
+          -38.3,
+          -98.8
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_22",
+        "monster": "crate",
+        "position": [
+          35.7,
+          -60.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_23",
+        "monster": "crate",
+        "position": [
+          36.8,
+          -60.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_24",
+        "monster": "crate",
+        "position": [
+          36.2,
+          -59.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_25",
+        "monster": "crate",
+        "position": [
+          68.3,
+          -100.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_26",
+        "monster": "crate",
+        "position": [
+          69.3,
+          -100.0
+        ],
+        "table": "breakable_crate"
+      },
+      {
+        "id": "cx_27",
+        "monster": "crate",
+        "position": [
+          68.8,
+          -99.0
+        ],
+        "table": "breakable_crate"
+      }
+    ],
+    "style": {
+      "_comment": "Colinas: grama clara, cerca viva de arbustos nas bordas; o vazio entre as salas vira grama.",
+      "walls": [
+        ""
+      ],
+      "floor": "Ground_Grass",
+      "low": "Pl_Bush",
+      "fill_grass": true,
+      "hedge_edges": true,
+      "ground": [
+        0.06,
+        0.1,
+        0.03
+      ]
+    },
+    "decor": [
+      {
+        "piece": "Lamp_Street_2",
+        "position": [
+          -8,
+          -3
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.85,
+          0.55
+        ],
+        "position": [
+          -8,
+          -3
+        ],
+        "y": 3.0,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": false
+      },
+      {
+        "piece": "Lamp_Street_2",
+        "position": [
+          8,
+          5
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.85,
+          0.55
+        ],
+        "position": [
+          8,
+          5
+        ],
+        "y": 3.0,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": false
+      },
+      {
+        "piece": "Signpost_Fantasy",
+        "position": [
+          6,
+          -4
+        ],
+        "rotation": 200,
+        "y": 0.0,
+        "scale": 1.2
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -14,
+          -5
+        ],
+        "rotation": 165,
+        "y": 0.0,
+        "scale": 10.19,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          14,
+          -5
+        ],
+        "rotation": 225,
+        "y": 0.0,
+        "scale": 8.93,
+        "solid": [
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -11.7,
+          0.9
+        ],
+        "rotation": 30,
+        "y": 0.0,
+        "scale": 0.85
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          0.8,
+          -3.7
+        ],
+        "rotation": 105,
+        "y": 0.0,
+        "scale": 1.36
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -5.7,
+          5.1
+        ],
+        "rotation": 270,
+        "y": 0.0,
+        "scale": 0.81
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          -3.8,
+          -1.0
+        ],
+        "rotation": 45,
+        "y": 0.0,
+        "scale": 0.83
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -1.8,
+          5.9
+        ],
+        "rotation": 165,
+        "y": 0.0,
+        "scale": 0.95
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          9.3,
+          -3.6
+        ],
+        "rotation": 315,
+        "y": 0.0,
+        "scale": 1.25
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          11.6,
+          1.6
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 1.29
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          7.2,
+          1.6
+        ],
+        "rotation": 195,
+        "y": 0.0,
+        "scale": 1.38
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -1.8,
+          -0.7
+        ],
+        "rotation": 225,
+        "y": 0.0,
+        "scale": 1.03
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          -11.1,
+          -5.4
+        ],
+        "rotation": 45,
+        "y": 0.0,
+        "scale": 1.36
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          13.7,
+          5.4
+        ],
+        "rotation": 285,
+        "y": 0.0,
+        "scale": 1.19
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -10.5,
+          3.0
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 1.24
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          4.4,
+          1.8
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 0.96
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -1.5,
+          3.5
+        ],
+        "rotation": 180,
+        "y": 0.0,
+        "scale": 0.86
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -3.1,
+          -2.7
+        ],
+        "rotation": 270,
+        "y": 0.0,
+        "scale": 0.91
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          6.2,
+          -1.7
+        ],
+        "rotation": 30,
+        "y": 0.0,
+        "scale": 1.29
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -2.4,
+          1.1
+        ],
+        "rotation": 30,
+        "y": 0.0,
+        "scale": 0.89
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          15.7,
+          4.9
+        ],
+        "rotation": 45,
+        "y": 0.0,
+        "scale": 1.38
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          5.7,
+          5.6
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 0.93
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          14.5,
+          2.4
+        ],
+        "rotation": 45,
+        "y": 0.0,
+        "scale": 1.11
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -0.9,
+          -0.5
+        ],
+        "rotation": 270,
+        "y": 0.0,
+        "scale": 0.86
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          13.7,
+          3.9
+        ],
+        "rotation": 60,
+        "y": 0.0,
+        "scale": 0.88
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -13.4,
+          4.8
+        ],
+        "rotation": 195,
+        "y": 0.0,
+        "scale": 2.94
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -15.4,
+          -0.6
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 2.11
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          11.7,
+          -1.7
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 2.37
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -8.2,
+          1.0
+        ],
+        "rotation": 210,
+        "y": 0.0,
+        "scale": 2.57
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          3.1,
+          4.4
+        ],
+        "rotation": 285,
+        "y": 0.0,
+        "scale": 2.14
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -10.0,
+          6.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -7.5,
+          6.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -5.0,
+          6.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -2.5,
+          6.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          0.0,
+          6.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          2.5,
+          6.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          5.0,
+          6.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          7.5,
+          6.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          10.0,
+          6.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -40.9,
+          0.9
+        ],
+        "rotation": 345,
+        "y": 0.0,
+        "scale": 1.2
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          -35.6,
+          1.6
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 1.19
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          -24.9,
+          -1.2
+        ],
+        "rotation": 60,
+        "y": 0.0,
+        "scale": 1.3
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -33.7,
+          -4.3
+        ],
+        "rotation": 45,
+        "y": 0.0,
+        "scale": 1.33
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -20.5,
+          -1.2
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 1.07
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -26.2,
+          3.7
+        ],
+        "rotation": 60,
+        "y": 0.0,
+        "scale": 1.28
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          -23.1,
+          -1.1
+        ],
+        "rotation": 15,
+        "y": 0.0,
+        "scale": 1.27
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -28.0,
+          -2.5
+        ],
+        "rotation": 210,
+        "y": 0.0,
+        "scale": 1.12
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -43.6,
+          0.5
+        ],
+        "rotation": 285,
+        "y": 0.0,
+        "scale": 1.04
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          -41.5,
+          2.4
+        ],
+        "rotation": 120,
+        "y": 0.0,
+        "scale": 0.95
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -23.9,
+          -3.1
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 1.1
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          -27.1,
+          -4.1
+        ],
+        "rotation": 135,
+        "y": 0.0,
+        "scale": 1.17
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -38.4,
+          -2.2
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 1.37
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -21.8,
+          0.9
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 1.31
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          -33.2,
+          -2.2
+        ],
+        "rotation": 270,
+        "y": 0.0,
+        "scale": 0.92
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -19.5,
+          -3.4
+        ],
+        "rotation": 75,
+        "y": 0.0,
+        "scale": 1.19
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -35.7,
+          -1.5
+        ],
+        "rotation": 285,
+        "y": 0.0,
+        "scale": 1.23
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          -31.9,
+          2.6
+        ],
+        "rotation": 60,
+        "y": 0.0,
+        "scale": 1.4
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -42.3,
+          -2.3
+        ],
+        "rotation": 255,
+        "y": 0.0,
+        "scale": 2.6
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -29.3,
+          0.3
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 2.85
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -22.6,
+          3.8
+        ],
+        "rotation": 315,
+        "y": 0.0,
+        "scale": 2.1
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -38.6,
+          2.7
+        ],
+        "rotation": 15,
+        "y": 0.0,
+        "scale": 2.45
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          35.3,
+          -2.7
+        ],
+        "rotation": 120,
+        "y": 0.0,
+        "scale": 1.03
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          22.1,
+          -2.8
+        ],
+        "rotation": 345,
+        "y": 0.0,
+        "scale": 1.1
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          30.6,
+          -3.6
+        ],
+        "rotation": 210,
+        "y": 0.0,
+        "scale": 1.4
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          43.2,
+          3.0
+        ],
+        "rotation": 120,
+        "y": 0.0,
+        "scale": 1.31
+      },
+      {
+        "piece": "Pl_Shrub2",
+        "position": [
+          24.9,
+          1.5
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 0.97
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          35.9,
+          -0.6
+        ],
+        "rotation": 15,
+        "y": 0.0,
+        "scale": 1.4
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          30.8,
+          1.7
+        ],
+        "rotation": 135,
+        "y": 0.0,
+        "scale": 1.1
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          24.7,
+          -0.9
+        ],
+        "rotation": 180,
+        "y": 0.0,
+        "scale": 1.33
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          28.5,
+          -0.8
+        ],
+        "rotation": 270,
+        "y": 0.0,
+        "scale": 1.39
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          41.2,
+          0.2
+        ],
+        "rotation": 285,
+        "y": 0.0,
+        "scale": 1.39
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          39.1,
+          -1.7
+        ],
+        "rotation": 270,
+        "y": 0.0,
+        "scale": 1.18
+      },
+      {
+        "piece": "Pl_Shrub5",
+        "position": [
+          27.3,
+          1.3
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 0.92
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          31.4,
+          4.0
+        ],
+        "rotation": 150,
+        "y": 0.0,
+        "scale": 0.99
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          21.9,
+          -0.9
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 1.12
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          35.6,
+          1.7
+        ],
+        "rotation": 240,
+        "y": 0.0,
+        "scale": 1.06
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          42.4,
+          -3.3
+        ],
+        "rotation": 75,
+        "y": 0.0,
+        "scale": 1.08
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          20.1,
+          -2.8
+        ],
+        "rotation": 270,
+        "y": 0.0,
+        "scale": 1.06
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -1.8,
+          -15.7
+        ],
+        "rotation": 195,
+        "y": 0.0,
+        "scale": 0.96
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -2.0,
+          -18.1
+        ],
+        "rotation": 285,
+        "y": 0.0,
+        "scale": 0.97
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -0.2,
+          -19.6
+        ],
+        "rotation": 210,
+        "y": 0.0,
+        "scale": 0.96
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          2.3,
+          -24.4
+        ],
+        "rotation": 75,
+        "y": 0.0,
+        "scale": 0.81
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -1.7,
+          -26.3
+        ],
+        "rotation": 345,
+        "y": 0.0,
+        "scale": 1.07
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -0.6,
+          -9.0
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 0.91
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          1.9,
+          -74.4
+        ],
+        "rotation": 195,
+        "y": 0.0,
+        "scale": 1.02
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          2.6,
+          -91.4
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 0.77
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          1.4,
+          -91.0
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 0.86
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          -0.6,
+          -82.8
+        ],
+        "rotation": 75,
+        "y": 0.0,
+        "scale": 0.82
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -2.3,
+          -92.6
+        ],
+        "rotation": 210,
+        "y": 0.0,
+        "scale": 0.91
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -1.1,
+          -80.6
+        ],
+        "rotation": 285,
+        "y": 0.0,
+        "scale": 0.74
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          0.0,
+          -84.1
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 0.7
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -2.6,
+          -72.1
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 0.91
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          -1.8,
+          -83.9
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 0.84
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          0.2,
+          -70.0
+        ],
+        "rotation": 165,
+        "y": 0.0,
+        "scale": 0.82
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -2.1,
+          -82.5
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 1.09
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          0.9,
+          -95.0
+        ],
+        "rotation": 60,
+        "y": 0.0,
+        "scale": 1.1
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          0.0,
+          -66.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          0.0,
+          -70.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          0.0,
+          -74.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          0.0,
+          -78.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          0.0,
+          -82.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          0.0,
+          -86.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          0.0,
+          -90.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          0.0,
+          -94.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -26,
+          -34
+        ],
+        "rotation": 60,
+        "y": 0.0,
+        "scale": 6.72,
+        "solid": [
+          3.7,
+          3.7
+        ]
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -26,
+          -58
+        ],
+        "rotation": 120,
+        "y": 0.0,
+        "scale": 5.97,
+        "solid": [
+          3.3,
+          3.3
+        ]
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          26,
+          -34
+        ],
+        "rotation": 240,
+        "y": 0.0,
+        "scale": 5.56,
+        "solid": [
+          3.1,
+          3.1
+        ]
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          26,
+          -58
+        ],
+        "rotation": 270,
+        "y": 0.0,
+        "scale": 6.72,
+        "solid": [
+          3.7,
+          3.7
+        ]
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -14,
+          -60
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 6.07,
+        "solid": [
+          3.3,
+          3.3
+        ]
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          14,
+          -32
+        ],
+        "rotation": 165,
+        "y": 0.0,
+        "scale": 6.28,
+        "solid": [
+          3.5,
+          3.5
+        ]
+      },
+      {
+        "piece": "Stall_Empty",
+        "position": [
+          -20,
+          -46
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 1.4,
+        "solid": [
+          2.6,
+          1.3
+        ]
+      },
+      {
+        "piece": "Stall_Empty",
+        "position": [
+          20,
+          -46
+        ],
+        "rotation": 270,
+        "y": 0.0,
+        "scale": 1.4,
+        "solid": [
+          2.6,
+          1.3
+        ]
+      },
+      {
+        "piece": "Pr_CoveredWell",
+        "position": [
+          0,
+          -46
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 1.3,
+        "solid": [
+          2.3,
+          2.3
+        ]
+      },
+      {
+        "piece": "Lamp_Street_2",
+        "position": [
+          -28,
+          -40
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.85,
+          0.55
+        ],
+        "position": [
+          -28,
+          -40
+        ],
+        "y": 3.0,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": false
+      },
+      {
+        "piece": "Lamp_Street_2",
+        "position": [
+          28,
+          -52
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.85,
+          0.55
+        ],
+        "position": [
+          28,
+          -52
+        ],
+        "y": 3.0,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": false
+      },
+      {
+        "piece": "Lamp_Street_2",
+        "position": [
+          -10,
+          -32
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.85,
+          0.55
+        ],
+        "position": [
+          -10,
+          -32
+        ],
+        "y": 3.0,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": false
+      },
+      {
+        "piece": "Lamp_Street_2",
+        "position": [
+          10,
+          -60
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.85,
+          0.55
+        ],
+        "position": [
+          10,
+          -60
+        ],
+        "y": 3.0,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": false
+      },
+      {
+        "piece": "Lamp_Street_2",
+        "position": [
+          -8,
+          -48
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.85,
+          0.55
+        ],
+        "position": [
+          -8,
+          -48
+        ],
+        "y": 3.0,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": false
+      },
+      {
+        "piece": "Lamp_Street_2",
+        "position": [
+          8,
+          -44
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.85,
+          0.55
+        ],
+        "position": [
+          8,
+          -44
+        ],
+        "y": 3.0,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": false
+      },
+      {
+        "piece": "Cart_Wood",
+        "position": [
+          7.1,
+          -53.9
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 1.12,
+        "solid": [
+          2.5,
+          1.3
+        ]
+      },
+      {
+        "piece": "Pr_CartSmall",
+        "position": [
+          -6.3,
+          -53.4
+        ],
+        "rotation": 285,
+        "y": 0.0,
+        "scale": 1.27,
+        "solid": [
+          2.8,
+          1.5
+        ]
+      },
+      {
+        "piece": "Pr_CartSmall",
+        "position": [
+          -17.2,
+          -51.1
+        ],
+        "rotation": 180,
+        "y": 0.0,
+        "scale": 1.24,
+        "solid": [
+          2.7,
+          1.5
+        ]
+      },
+      {
+        "piece": "Barrel_Oga_2",
+        "position": [
+          -9.0,
+          -46.2
+        ],
+        "rotation": 180,
+        "y": 0.0,
+        "scale": 1.19
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          1.6,
+          -53.8
+        ],
+        "rotation": 210,
+        "y": 0.0,
+        "scale": 1.07
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          6.6,
+          -57.3
+        ],
+        "rotation": 285,
+        "y": 0.0,
+        "scale": 1.04
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          20.8,
+          -38.5
+        ],
+        "rotation": 225,
+        "y": 0.0,
+        "scale": 1.18
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          -5.6,
+          -56.9
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 0.95
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          -20.0,
+          -38.7
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 1.02
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          17.8,
+          -42.8
+        ],
+        "rotation": 150,
+        "y": 0.0,
+        "scale": 1.03
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          -21.0,
+          -58.4
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 1.0
+      },
+      {
+        "piece": "Tv_Sack",
+        "position": [
+          -21.3,
+          -54.2
+        ],
+        "rotation": 120,
+        "y": 0.0,
+        "scale": 1.19
+      },
+      {
+        "piece": "Crate_Small",
+        "position": [
+          5.9,
+          -46.5
+        ],
+        "rotation": 255,
+        "y": 0.0,
+        "scale": 1.16
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          23.9,
+          -46.8
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 0.9
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          6.3,
+          -38.4
+        ],
+        "rotation": 150,
+        "y": 0.0,
+        "scale": 1.07
+      },
+      {
+        "piece": "Pr_Basket",
+        "position": [
+          3.7,
+          -31.7
+        ],
+        "rotation": 45,
+        "y": 0.0,
+        "scale": 1.17
+      },
+      {
+        "piece": "Crate_Big",
+        "position": [
+          1.5,
+          -49.1
+        ],
+        "rotation": 210,
+        "y": 0.0,
+        "scale": 1.0
+      },
+      {
+        "piece": "Bucket_Wooden_1",
+        "position": [
+          -25.0,
+          -40.5
+        ],
+        "rotation": 270,
+        "y": 0.0,
+        "scale": 1.09
+      },
+      {
+        "piece": "Barrel_Oga_1",
+        "position": [
+          -17.1,
+          -44.0
+        ],
+        "rotation": 270,
+        "y": 0.0,
+        "scale": 0.93
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          19.4,
+          -37.2
+        ],
+        "rotation": 240,
+        "y": 0.0,
+        "scale": 1.19
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          22.4,
+          -52.5
+        ],
+        "rotation": 255,
+        "y": 0.0,
+        "scale": 0.97
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -10.1,
+          -47.3
+        ],
+        "rotation": 30,
+        "y": 0.0,
+        "scale": 0.82
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          3.2,
+          -56.8
+        ],
+        "rotation": 255,
+        "y": 0.0,
+        "scale": 0.88
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -1.3,
+          -58.1
+        ],
+        "rotation": 285,
+        "y": 0.0,
+        "scale": 1.39
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          -5.0,
+          -49.6
+        ],
+        "rotation": 180,
+        "y": 0.0,
+        "scale": 1.28
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          27.0,
+          -40.9
+        ],
+        "rotation": 150,
+        "y": 0.0,
+        "scale": 1.12
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -11.4,
+          -45.4
+        ],
+        "rotation": 315,
+        "y": 0.0,
+        "scale": 1.3
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -10.0,
+          -43.0
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 0.93
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          13.8,
+          -51.9
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 0.86
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -13.9,
+          -47.0
+        ],
+        "rotation": 225,
+        "y": 0.0,
+        "scale": 0.99
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          29.6,
+          -33.7
+        ],
+        "rotation": 345,
+        "y": 0.0,
+        "scale": 1.08
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          9.3,
+          -33.9
+        ],
+        "rotation": 270,
+        "y": 0.0,
+        "scale": 0.97
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -29.9,
+          -45.7
+        ],
+        "rotation": 240,
+        "y": 0.0,
+        "scale": 0.84
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -2.9,
+          -41.3
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 0.96
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          10.4,
+          -39.9
+        ],
+        "rotation": 15,
+        "y": 0.0,
+        "scale": 1.07
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          26.8,
+          -43.1
+        ],
+        "rotation": 180,
+        "y": 0.0,
+        "scale": 1.09
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -0.1,
+          -36.6
+        ],
+        "rotation": 195,
+        "y": 0.0,
+        "scale": 1.32
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          -23.9,
+          -47.5
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 1.39
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          23.0,
+          -44.1
+        ],
+        "rotation": 30,
+        "y": 0.0,
+        "scale": 0.87
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -28.6,
+          -52.9
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 1.3
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          11.4,
+          -46.9
+        ],
+        "rotation": 15,
+        "y": 0.0,
+        "scale": 1.13
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          21.5,
+          -40.2
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 1.19
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          -13.5,
+          -41.0
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 0.87
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -19.5,
+          -36.3
+        ],
+        "rotation": 195,
+        "y": 0.0,
+        "scale": 1.18
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          5.6,
+          -33.9
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 1.17
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -6.3,
+          -59.6
+        ],
+        "rotation": 135,
+        "y": 0.0,
+        "scale": 0.88
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -26.3,
+          -43.9
+        ],
+        "rotation": 15,
+        "y": 0.0,
+        "scale": 1.11
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -3.7,
+          -60.7
+        ],
+        "rotation": 240,
+        "y": 0.0,
+        "scale": 0.86
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          20.3,
+          -42.4
+        ],
+        "rotation": 30,
+        "y": 0.0,
+        "scale": 1.38
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          0.7,
+          -59.9
+        ],
+        "rotation": 345,
+        "y": 0.0,
+        "scale": 1.39
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -29.7,
+          -54.3
+        ],
+        "rotation": 165,
+        "y": 0.0,
+        "scale": 1.27
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -1.4,
+          -36.3
+        ],
+        "rotation": 120,
+        "y": 0.0,
+        "scale": 1.38
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          3.9,
+          -36.1
+        ],
+        "rotation": 165,
+        "y": 0.0,
+        "scale": 1.3
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -10.5,
+          -38.3
+        ],
+        "rotation": 60,
+        "y": 0.0,
+        "scale": 0.86
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -0.1,
+          -31.5
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 1.09
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          20.8,
+          -57.9
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 0.85
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          8.4,
+          -61.4
+        ],
+        "rotation": 270,
+        "y": 0.0,
+        "scale": 0.96
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          10.1,
+          -44.1
+        ],
+        "rotation": 165,
+        "y": 0.0,
+        "scale": 1.27
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -7.0,
+          -30.8
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 1.02
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          3.1,
+          -41.2
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 2.21
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -6.8,
+          -37.4
+        ],
+        "rotation": 30,
+        "y": 0.0,
+        "scale": 2.96
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          15.8,
+          -47.1
+        ],
+        "rotation": 285,
+        "y": 0.0,
+        "scale": 2.42
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          14.8,
+          -57.1
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 2.42
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          13.1,
+          -41.0
+        ],
+        "rotation": 270,
+        "y": 0.0,
+        "scale": 2.2
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          4.5,
+          -60.2
+        ],
+        "rotation": 210,
+        "y": 0.0,
+        "scale": 2.16
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -16.6,
+          -30.6
+        ],
+        "rotation": 120,
+        "y": 0.0,
+        "scale": 3.5
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          25.0,
+          -51.4
+        ],
+        "rotation": 315,
+        "y": 0.0,
+        "scale": 2.35
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -16.3,
+          -39.7
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 2.81
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          20.3,
+          -61.1
+        ],
+        "rotation": 225,
+        "y": 0.0,
+        "scale": 2.4
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -10.3,
+          -56.0
+        ],
+        "rotation": 120,
+        "y": 0.0,
+        "scale": 2.3
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -37.4,
+          -46.4
+        ],
+        "rotation": 345,
+        "y": 0.0,
+        "scale": 1.1
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -48.0,
+          -43.2
+        ],
+        "rotation": 285,
+        "y": 0.0,
+        "scale": 0.73
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -48.5,
+          -48.8
+        ],
+        "rotation": 315,
+        "y": 0.0,
+        "scale": 0.96
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          -42.8,
+          -45.7
+        ],
+        "rotation": 195,
+        "y": 0.0,
+        "scale": 0.82
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          -56.6,
+          -47.6
+        ],
+        "rotation": 30,
+        "y": 0.0,
+        "scale": 0.83
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -48.5,
+          -47.3
+        ],
+        "rotation": 285,
+        "y": 0.0,
+        "scale": 1.03
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          59.0,
+          -46.0
+        ],
+        "rotation": 270,
+        "y": 0.0,
+        "scale": 1.07
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          51.2,
+          -44.0
+        ],
+        "rotation": 285,
+        "y": 0.0,
+        "scale": 0.87
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          51.8,
+          -45.3
+        ],
+        "rotation": 180,
+        "y": 0.0,
+        "scale": 0.93
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          45.9,
+          -48.7
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 0.77
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          54.5,
+          -44.7
+        ],
+        "rotation": 165,
+        "y": 0.0,
+        "scale": 0.89
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          43.0,
+          -43.2
+        ],
+        "rotation": 180,
+        "y": 0.0,
+        "scale": 0.9
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -38.5,
+          -76.5
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 6.42,
+        "solid": [
+          3.5,
+          3.5
+        ]
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -65.4,
+          -66.5
+        ],
+        "rotation": 15,
+        "y": 0.0,
+        "scale": 9.31,
+        "solid": [
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -50.4,
+          -65.9
+        ],
+        "rotation": 210,
+        "y": 0.0,
+        "scale": 8.41,
+        "solid": [
+          3.4,
+          3.4
+        ]
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -44.1,
+          -61.1
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 12.96,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -52.1,
+          -57.3
+        ],
+        "rotation": 255,
+        "y": 0.0,
+        "scale": 6.39,
+        "solid": [
+          3.5,
+          3.5
+        ]
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -64.3,
+          -54.5
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 6.83,
+        "solid": [
+          3.8,
+          3.8
+        ]
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -53.7,
+          -74.7
+        ],
+        "rotation": 75,
+        "y": 0.0,
+        "scale": 10.71,
+        "solid": [
+          4.3,
+          4.3
+        ]
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -61.8,
+          -73.7
+        ],
+        "rotation": 45,
+        "y": 0.0,
+        "scale": 7.19,
+        "solid": [
+          4.0,
+          4.0
+        ]
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -37.5,
+          -58.9
+        ],
+        "rotation": 210,
+        "y": 0.0,
+        "scale": 8.92,
+        "solid": [
+          3.6,
+          3.6
+        ]
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -50.6,
+          -85.8
+        ],
+        "rotation": 255,
+        "y": 0.0,
+        "scale": 9.14,
+        "solid": [
+          3.7,
+          3.7
+        ]
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -41.3,
+          -70.3
+        ],
+        "rotation": 120,
+        "y": 0.0,
+        "scale": 9.07,
+        "solid": [
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -41.5,
+          -66.3
+        ],
+        "rotation": 180,
+        "y": 0.0,
+        "scale": 8.33,
+        "solid": [
+          3.3,
+          3.3
+        ]
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -44.5,
+          -55.2
+        ],
+        "rotation": 315,
+        "y": 0.0,
+        "scale": 9.86,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -37.4,
+          -84.0
+        ],
+        "rotation": 180,
+        "y": 0.0,
+        "scale": 8.9,
+        "solid": [
+          3.6,
+          3.6
+        ]
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -57.5,
+          -56.5
+        ],
+        "rotation": 135,
+        "y": 0.0,
+        "scale": 11.9,
+        "solid": [
+          1.4,
+          1.4
+        ]
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -58.0,
+          -64.0
+        ],
+        "rotation": 210,
+        "y": 0.0,
+        "scale": 10.43,
+        "solid": [
+          4.2,
+          4.2
+        ]
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -46.4,
+          -84.6
+        ],
+        "rotation": 150,
+        "y": 0.0,
+        "scale": 9.26,
+        "solid": [
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -48.5,
+          -77.7
+        ],
+        "rotation": 105,
+        "y": 0.0,
+        "scale": 5.37,
+        "solid": [
+          3.0,
+          3.0
+        ]
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -57.2,
+          -83.5
+        ],
+        "rotation": 105,
+        "y": 0.0,
+        "scale": 9.47,
+        "solid": [
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -66.5,
+          -81.0
+        ],
+        "rotation": 105,
+        "y": 0.0,
+        "scale": 11.5,
+        "solid": [
+          1.4,
+          1.4
+        ]
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -45.7,
+          -72.5
+        ],
+        "rotation": 180,
+        "y": 0.0,
+        "scale": 11.18,
+        "solid": [
+          1.3,
+          1.3
+        ]
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -57.7,
+          -78.4
+        ],
+        "rotation": 60,
+        "y": 0.0,
+        "scale": 12.63,
+        "solid": [
+          1.5,
+          1.5
+        ]
+      },
+      {
+        "piece": "Tree_Medium_A",
+        "position": [
+          -37.7,
+          -70.5
+        ],
+        "rotation": 60,
+        "y": 0.0,
+        "scale": 0.95,
+        "solid": [
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "piece": "Tree_Medium_A",
+        "position": [
+          -44.8,
+          -80.6
+        ],
+        "rotation": 45,
+        "y": 0.0,
+        "scale": 0.97,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Tree_Medium_B",
+        "position": [
+          -66.6,
+          -60.6
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 1.09,
+        "solid": [
+          1.3,
+          1.3
+        ]
+      },
+      {
+        "piece": "Tree_Medium_B",
+        "position": [
+          -42.0,
+          -85.7
+        ],
+        "rotation": 60,
+        "y": 0.0,
+        "scale": 1.07,
+        "solid": [
+          1.3,
+          1.3
+        ]
+      },
+      {
+        "piece": "Tree_Medium_B",
+        "position": [
+          -41.0,
+          -53.3
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 1.12,
+        "solid": [
+          1.3,
+          1.3
+        ]
+      },
+      {
+        "piece": "Tree_Medium_B",
+        "position": [
+          -56.6,
+          -70.5
+        ],
+        "rotation": 210,
+        "y": 0.0,
+        "scale": 0.91,
+        "solid": [
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -61.8,
+          -84.2
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 1.98
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -40.0,
+          -62.2
+        ],
+        "rotation": 255,
+        "y": 0.0,
+        "scale": 1.75
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -57.2,
+          -86.6
+        ],
+        "rotation": 15,
+        "y": 0.0,
+        "scale": 1.69
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          -47.1,
+          -68.6
+        ],
+        "rotation": 195,
+        "y": 0.0,
+        "scale": 2.52
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          -65.1,
+          -84.2
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 2.38
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          -58.1,
+          -53.0
+        ],
+        "rotation": 165,
+        "y": 0.0,
+        "scale": 2.57
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -61.2,
+          -87.9
+        ],
+        "rotation": 135,
+        "y": 0.0,
+        "scale": 1.79
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -47.5,
+          -62.4
+        ],
+        "rotation": 75,
+        "y": 0.0,
+        "scale": 2.22
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -44.3,
+          -76.4
+        ],
+        "rotation": 225,
+        "y": 0.0,
+        "scale": 2.45
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          -66.4,
+          -77.4
+        ],
+        "rotation": 315,
+        "y": 0.0,
+        "scale": 2.91
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -61.5,
+          -67.3
+        ],
+        "rotation": 285,
+        "y": 0.0,
+        "scale": 1.65
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -62.6,
+          -64.8
+        ],
+        "rotation": 60,
+        "y": 0.0,
+        "scale": 1.91
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -64.7,
+          -63.1
+        ],
+        "rotation": 270,
+        "y": 0.0,
+        "scale": 1.63
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -37.5,
+          -65.8
+        ],
+        "rotation": 225,
+        "y": 0.0,
+        "scale": 2.13
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -62.1,
+          -59.3
+        ],
+        "rotation": 150,
+        "y": 0.0,
+        "scale": 1.77
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -37.8,
+          -52.2
+        ],
+        "rotation": 285,
+        "y": 0.0,
+        "scale": 1.8
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -52.0,
+          -81.2
+        ],
+        "rotation": 120,
+        "y": 0.0,
+        "scale": 1.56
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -47.7,
+          -52.3
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 2.06
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -60.8,
+          -57.2
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 1.75
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -41.2,
+          -80.5
+        ],
+        "rotation": 15,
+        "y": 0.0,
+        "scale": 1.71
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -45.6,
+          -65.2
+        ],
+        "rotation": 75,
+        "y": 0.0,
+        "scale": 2.44
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -66.7,
+          -72.5
+        ],
+        "rotation": 15,
+        "y": 0.0,
+        "scale": 1.74
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          57.6,
+          -81.0
+        ],
+        "rotation": 255,
+        "y": 0.0,
+        "scale": 1.04,
+        "solid": [
+          2.7,
+          2.4
+        ]
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          54.0,
+          -66.1
+        ],
+        "rotation": 210,
+        "y": 0.0,
+        "scale": 1.16,
+        "solid": [
+          3.0,
+          2.7
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          55.3,
+          -74.9
+        ],
+        "rotation": 315,
+        "y": 0.0,
+        "scale": 1.6,
+        "solid": [
+          4.2,
+          3.7
+        ]
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          46.9,
+          -83.1
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 1.69,
+        "solid": [
+          4.4,
+          3.9
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          38.2,
+          -54.2
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 1.51,
+        "solid": [
+          3.9,
+          3.5
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          61.2,
+          -66.2
+        ],
+        "rotation": 345,
+        "y": 0.0,
+        "scale": 1.36,
+        "solid": [
+          3.5,
+          3.1
+        ]
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          45.0,
+          -68.7
+        ],
+        "rotation": 45,
+        "y": 0.0,
+        "scale": 1.17,
+        "solid": [
+          3.0,
+          2.7
+        ]
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          57.3,
+          -61.1
+        ],
+        "rotation": 120,
+        "y": 0.0,
+        "scale": 1.32,
+        "solid": [
+          3.4,
+          3.0
+        ]
+      },
+      {
+        "piece": "Rock_MossyStone",
+        "position": [
+          63.4,
+          -73.5
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 1.7,
+        "solid": [
+          4.4,
+          3.9
+        ]
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          54.9,
+          -53.6
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 0.92,
+        "solid": [
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          39.2,
+          -86.4
+        ],
+        "rotation": 315,
+        "y": 0.0,
+        "scale": 0.96,
+        "solid": [
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          48.1,
+          -61.3
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 1.2,
+        "solid": [
+          1.4,
+          1.4
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          38.9,
+          -76.8
+        ],
+        "rotation": 210,
+        "y": 0.0,
+        "scale": 1.0,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          62.1,
+          -84.8
+        ],
+        "rotation": 105,
+        "y": 0.0,
+        "scale": 1.73,
+        "solid": [
+          2.1,
+          2.1
+        ]
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          41.2,
+          -66.8
+        ],
+        "rotation": 210,
+        "y": 0.0,
+        "scale": 0.98,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          52.0,
+          -60.3
+        ],
+        "rotation": 345,
+        "y": 0.0,
+        "scale": 0.99,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          36.9,
+          -69.3
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 1.53,
+        "solid": [
+          1.8,
+          1.8
+        ]
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          66.5,
+          -84.8
+        ],
+        "rotation": 15,
+        "y": 0.0,
+        "scale": 1.79,
+        "solid": [
+          2.2,
+          2.2
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          63.7,
+          -53.5
+        ],
+        "rotation": 240,
+        "y": 0.0,
+        "scale": 1.58,
+        "solid": [
+          1.9,
+          1.9
+        ]
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          49.6,
+          -55.8
+        ],
+        "rotation": 210,
+        "y": 0.0,
+        "scale": 1.33,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          39.3,
+          -61.0
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 1.1,
+        "solid": [
+          1.3,
+          1.3
+        ]
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          53.5,
+          -57.3
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 1.33,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          45.2,
+          -57.8
+        ],
+        "rotation": 345,
+        "y": 0.0,
+        "scale": 1.45,
+        "solid": [
+          1.7,
+          1.7
+        ]
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          59.3,
+          -56.9
+        ],
+        "rotation": 315,
+        "y": 0.0,
+        "scale": 0.89
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          52.8,
+          -54.6
+        ],
+        "rotation": 240,
+        "y": 0.0,
+        "scale": 0.83
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          40.4,
+          -62.9
+        ],
+        "rotation": 105,
+        "y": 0.0,
+        "scale": 0.86
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          50.0,
+          -66.9
+        ],
+        "rotation": 180,
+        "y": 0.0,
+        "scale": 0.99
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          67.8,
+          -54.6
+        ],
+        "rotation": 180,
+        "y": 0.0,
+        "scale": 0.91
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          44.0,
+          -75.2
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 0.84
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          47.1,
+          -55.3
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 0.94
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          57.8,
+          -55.3
+        ],
+        "rotation": 240,
+        "y": 0.0,
+        "scale": 1.09
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          67.0,
+          -77.9
+        ],
+        "rotation": 105,
+        "y": 0.0,
+        "scale": 1.17
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          60.0,
+          -55.3
+        ],
+        "rotation": 210,
+        "y": 0.0,
+        "scale": 0.93
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          41.7,
+          -70.8
+        ],
+        "rotation": 315,
+        "y": 0.0,
+        "scale": 1.01
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          59.5,
+          -78.9
+        ],
+        "rotation": 30,
+        "y": 0.0,
+        "scale": 0.85
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          37.2,
+          -62.8
+        ],
+        "rotation": 195,
+        "y": 0.0,
+        "scale": 1.1
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          36.9,
+          -57.9
+        ],
+        "rotation": 120,
+        "y": 0.0,
+        "scale": 0.93
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          40.0,
+          -64.0
+        ],
+        "rotation": 90,
+        "y": 1.6,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          43.4,
+          -64.0
+        ],
+        "rotation": 90,
+        "y": 1.6,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          46.9,
+          -64.0
+        ],
+        "rotation": 90,
+        "y": 1.6,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          50.3,
+          -64.0
+        ],
+        "rotation": 90,
+        "y": 1.6,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          53.7,
+          -64.0
+        ],
+        "rotation": 90,
+        "y": 1.6,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          57.1,
+          -64.0
+        ],
+        "rotation": 90,
+        "y": 1.6,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          60.6,
+          -64.0
+        ],
+        "rotation": 90,
+        "y": 1.6,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          64.0,
+          -64.0
+        ],
+        "rotation": 90,
+        "y": 1.6,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          40.0,
+          -76.0
+        ],
+        "rotation": 90,
+        "y": 1.6,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          43.4,
+          -76.0
+        ],
+        "rotation": 90,
+        "y": 1.6,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          46.9,
+          -76.0
+        ],
+        "rotation": 90,
+        "y": 1.6,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          50.3,
+          -76.0
+        ],
+        "rotation": 90,
+        "y": 1.6,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          53.7,
+          -76.0
+        ],
+        "rotation": 90,
+        "y": 1.6,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          57.1,
+          -76.0
+        ],
+        "rotation": 90,
+        "y": 1.6,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          60.6,
+          -76.0
+        ],
+        "rotation": 90,
+        "y": 1.6,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          64.0,
+          -76.0
+        ],
+        "rotation": 90,
+        "y": 1.6,
+        "scale": 3.0
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -61.6,
+          -95.4
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 3.02
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -49.1,
+          -102.3
+        ],
+        "rotation": 195,
+        "y": 0.0,
+        "scale": 4.13
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -48.5,
+          -92.6
+        ],
+        "rotation": 60,
+        "y": 0.0,
+        "scale": 3.31
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -63.2,
+          -108.6
+        ],
+        "rotation": 240,
+        "y": 0.0,
+        "scale": 4.1
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -44.0,
+          -107.0
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 2.78
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -64.9,
+          -101.4
+        ],
+        "rotation": 105,
+        "y": 0.0,
+        "scale": 3.19
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -45.0,
+          -116.7
+        ],
+        "rotation": 150,
+        "y": 0.0,
+        "scale": 3.0
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -51.3,
+          -115.8
+        ],
+        "rotation": 15,
+        "y": 0.0,
+        "scale": 2.88
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -59.3,
+          -117.2
+        ],
+        "rotation": 165,
+        "y": 0.0,
+        "scale": 2.69
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -56.6,
+          -99.9
+        ],
+        "rotation": 255,
+        "y": 0.0,
+        "scale": 2.77
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -67.2,
+          -116.2
+        ],
+        "rotation": 15,
+        "y": 0.0,
+        "scale": 3.44
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -48.8,
+          -110.6
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 2.79
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -43.2,
+          -96.1
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 2.61
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -55.0,
+          -109.5
+        ],
+        "rotation": 225,
+        "y": 0.0,
+        "scale": 2.93
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -55.7,
+          -104.5
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 5.79,
+        "solid": [
+          2.3,
+          2.3
+        ]
+      },
+      {
+        "light": [
+          0.5,
+          1.0,
+          0.55
+        ],
+        "position": [
+          -55.7,
+          -104.5
+        ],
+        "y": 1.5,
+        "range": 7.0,
+        "energy": 0.9,
+        "flicker": true
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -53.6,
+          -94.4
+        ],
+        "rotation": 225,
+        "y": 0.0,
+        "scale": 6.61,
+        "solid": [
+          0.8,
+          0.8
+        ]
+      },
+      {
+        "light": [
+          0.5,
+          1.0,
+          0.55
+        ],
+        "position": [
+          -53.6,
+          -94.4
+        ],
+        "y": 1.5,
+        "range": 7.0,
+        "energy": 0.9,
+        "flicker": true
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -58.0,
+          -93.1
+        ],
+        "rotation": 60,
+        "y": 0.0,
+        "scale": 1.11
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -55.0,
+          -116.9
+        ],
+        "rotation": 345,
+        "y": 0.0,
+        "scale": 1.24
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -60.2,
+          -101.8
+        ],
+        "rotation": 255,
+        "y": 0.0,
+        "scale": 1.08
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -43.1,
+          -92.0
+        ],
+        "rotation": 165,
+        "y": 0.0,
+        "scale": 0.96
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -63.4,
+          -117.4
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 1.12
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -59.4,
+          -104.7
+        ],
+        "rotation": 195,
+        "y": 0.0,
+        "scale": 0.95
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -51.7,
+          -94.8
+        ],
+        "rotation": 120,
+        "y": 0.0,
+        "scale": 1.11
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -46.6,
+          -98.1
+        ],
+        "rotation": 60,
+        "y": 0.0,
+        "scale": 1.33
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -65.9,
+          -94.2
+        ],
+        "rotation": 255,
+        "y": 0.0,
+        "scale": 0.95
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -54.8,
+          -96.6
+        ],
+        "rotation": 165,
+        "y": 0.0,
+        "scale": 1.02
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -57.6,
+          -112.6
+        ],
+        "rotation": 285,
+        "y": 0.0,
+        "scale": 1.33
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -58.2,
+          -96.6
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 1.0
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -58.2,
+          -107.4
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 1.22
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          -60.5,
+          -100.2
+        ],
+        "rotation": 120,
+        "y": 0.0,
+        "scale": 1.15
+      },
+      {
+        "piece": "Crystal_P_4",
+        "position": [
+          49.9,
+          -97.6
+        ],
+        "rotation": 315,
+        "y": 0.0,
+        "scale": 1.41,
+        "solid": [
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "piece": "Crystal_P_22",
+        "position": [
+          56.0,
+          -93.5
+        ],
+        "rotation": 150,
+        "y": 0.0,
+        "scale": 1.41,
+        "solid": [
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "light": [
+          0.45,
+          0.7,
+          1.0
+        ],
+        "position": [
+          56.0,
+          -93.5
+        ],
+        "y": 1.2,
+        "range": 6.0,
+        "energy": 0.8,
+        "flicker": false
+      },
+      {
+        "piece": "Crystal_P_19",
+        "position": [
+          61.3,
+          -100.5
+        ],
+        "rotation": 225,
+        "y": 0.0,
+        "scale": 2.1,
+        "solid": [
+          1.7,
+          1.7
+        ]
+      },
+      {
+        "light": [
+          0.45,
+          0.7,
+          1.0
+        ],
+        "position": [
+          61.3,
+          -100.5
+        ],
+        "y": 1.2,
+        "range": 6.0,
+        "energy": 0.8,
+        "flicker": false
+      },
+      {
+        "piece": "Crystal_B_11",
+        "position": [
+          64.1,
+          -108.6
+        ],
+        "rotation": 105,
+        "y": 0.0,
+        "scale": 2.03,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Crystal_P_1",
+        "position": [
+          42.8,
+          -104.2
+        ],
+        "rotation": 60,
+        "y": 0.0,
+        "scale": 2.22,
+        "solid": [
+          1.8,
+          1.8
+        ]
+      },
+      {
+        "piece": "Crystal_P_1",
+        "position": [
+          65.3,
+          -95.2
+        ],
+        "rotation": 285,
+        "y": 0.0,
+        "scale": 2.29,
+        "solid": [
+          1.8,
+          1.8
+        ]
+      },
+      {
+        "piece": "Crystal_B_11",
+        "position": [
+          46.8,
+          -94.6
+        ],
+        "rotation": 45,
+        "y": 0.0,
+        "scale": 1.38,
+        "solid": [
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "piece": "Crystal_B_11",
+        "position": [
+          63.8,
+          -115.4
+        ],
+        "rotation": 180,
+        "y": 0.0,
+        "scale": 2.14,
+        "solid": [
+          1.7,
+          1.7
+        ]
+      },
+      {
+        "light": [
+          0.75,
+          0.45,
+          1.0
+        ],
+        "position": [
+          63.8,
+          -115.4
+        ],
+        "y": 1.2,
+        "range": 6.0,
+        "energy": 0.8,
+        "flicker": false
+      },
+      {
+        "piece": "Crystal_P_19",
+        "position": [
+          48.0,
+          -114.9
+        ],
+        "rotation": 225,
+        "y": 0.0,
+        "scale": 2.25,
+        "solid": [
+          1.8,
+          1.8
+        ]
+      },
+      {
+        "light": [
+          0.45,
+          0.7,
+          1.0
+        ],
+        "position": [
+          48.0,
+          -114.9
+        ],
+        "y": 1.2,
+        "range": 6.0,
+        "energy": 0.8,
+        "flicker": false
+      },
+      {
+        "piece": "Crystal_B_14",
+        "position": [
+          49.4,
+          -106.5
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 1.37,
+        "solid": [
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "light": [
+          0.75,
+          0.45,
+          1.0
+        ],
+        "position": [
+          49.4,
+          -106.5
+        ],
+        "y": 1.2,
+        "range": 6.0,
+        "energy": 0.8,
+        "flicker": false
+      },
+      {
+        "piece": "Crystal_P_4",
+        "position": [
+          46.1,
+          -99.0
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 2.22,
+        "solid": [
+          1.8,
+          1.8
+        ]
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          55.3,
+          -106.0
+        ],
+        "rotation": 60,
+        "y": 0.0,
+        "scale": 1.13,
+        "solid": [
+          1.4,
+          1.4
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          43.4,
+          -95.9
+        ],
+        "rotation": 135,
+        "y": 0.0,
+        "scale": 0.83,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Rock_1",
+        "position": [
+          48.1,
+          -111.4
+        ],
+        "rotation": 315,
+        "y": 0.0,
+        "scale": 0.94,
+        "solid": [
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "piece": "Rock_3",
+        "position": [
+          46.7,
+          -102.1
+        ],
+        "rotation": 255,
+        "y": 0.0,
+        "scale": 0.93,
+        "solid": [
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "piece": "Rock_2",
+        "position": [
+          52.7,
+          -101.1
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 0.82,
+        "solid": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "piece": "Rock_5",
+        "position": [
+          62.2,
+          -104.0
+        ],
+        "rotation": 270,
+        "y": 0.0,
+        "scale": 1.4,
+        "solid": [
+          1.7,
+          1.7
+        ]
+      },
+      {
+        "piece": "Rock_4",
+        "position": [
+          54.8,
+          -98.8
+        ],
+        "rotation": 30,
+        "y": 0.0,
+        "scale": 1.16,
+        "solid": [
+          1.4,
+          1.4
+        ]
+      },
+      {
+        "piece": "Rock_Mossy",
+        "position": [
+          55.9,
+          -109.3
+        ],
+        "rotation": 105,
+        "y": 0.0,
+        "scale": 0.93,
+        "solid": [
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "piece": "Coin_Pile",
+        "position": [
+          26.1,
+          -101.2
+        ],
+        "rotation": 210,
+        "y": 0.0,
+        "scale": 1.97
+      },
+      {
+        "piece": "Coin_Pile",
+        "position": [
+          3.4,
+          -100.1
+        ],
+        "rotation": 75,
+        "y": 0.0,
+        "scale": 1.66
+      },
+      {
+        "piece": "Coin_Pile",
+        "position": [
+          0.1,
+          -111.2
+        ],
+        "rotation": 225,
+        "y": 0.0,
+        "scale": 1.34
+      },
+      {
+        "piece": "Coin_Pile",
+        "position": [
+          15.2,
+          -109.8
+        ],
+        "rotation": 210,
+        "y": 0.0,
+        "scale": 1.93
+      },
+      {
+        "piece": "Coin_Pile",
+        "position": [
+          -35.3,
+          -112.1
+        ],
+        "rotation": 45,
+        "y": 0.0,
+        "scale": 1.95
+      },
+      {
+        "piece": "Coin_Pile",
+        "position": [
+          25.4,
+          -114.1
+        ],
+        "rotation": 150,
+        "y": 0.0,
+        "scale": 1.82
+      },
+      {
+        "piece": "Coin_Pile",
+        "position": [
+          8.5,
+          -99.3
+        ],
+        "rotation": 345,
+        "y": 0.0,
+        "scale": 1.33
+      },
+      {
+        "piece": "Coin_Pile",
+        "position": [
+          -11.0,
+          -109.4
+        ],
+        "rotation": 195,
+        "y": 0.0,
+        "scale": 1.76
+      },
+      {
+        "piece": "Coin_Pile",
+        "position": [
+          17.4,
+          -101.9
+        ],
+        "rotation": 120,
+        "y": 0.0,
+        "scale": 1.64
+      },
+      {
+        "piece": "Coin_Pile",
+        "position": [
+          35.2,
+          -108.0
+        ],
+        "rotation": 180,
+        "y": 0.0,
+        "scale": 1.58
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -34.0,
+          -101.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -31.1,
+          -101.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -28.2,
+          -101.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -25.3,
+          -101.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -22.4,
+          -101.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -19.6,
+          -101.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -16.7,
+          -101.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -13.8,
+          -101.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -10.9,
+          -101.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -8.0,
+          -101.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          8.0,
+          -101.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          10.9,
+          -101.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          13.8,
+          -101.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          16.7,
+          -101.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          19.6,
+          -101.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          22.4,
+          -101.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          25.3,
+          -101.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          28.2,
+          -101.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          31.1,
+          -101.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          34.0,
+          -101.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -34.0,
+          -113.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -31.1,
+          -113.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -28.2,
+          -113.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -25.3,
+          -113.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -22.4,
+          -113.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -19.6,
+          -113.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -16.7,
+          -113.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -13.8,
+          -113.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -10.9,
+          -113.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          -8.0,
+          -113.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          8.0,
+          -113.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          10.9,
+          -113.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          13.8,
+          -113.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          16.7,
+          -113.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          19.6,
+          -113.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          22.4,
+          -113.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          25.3,
+          -113.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          28.2,
+          -113.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          31.1,
+          -113.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Coin_Gold",
+        "position": [
+          34.0,
+          -113.0
+        ],
+        "rotation": 90,
+        "y": 1.1,
+        "scale": 3.0
+      },
+      {
+        "piece": "Lamp_Street_2",
+        "position": [
+          -34,
+          -99
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.85,
+          0.55
+        ],
+        "position": [
+          -34,
+          -99
+        ],
+        "y": 3.0,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": false
+      },
+      {
+        "piece": "Lamp_Street_2",
+        "position": [
+          -20,
+          -99
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.85,
+          0.55
+        ],
+        "position": [
+          -20,
+          -99
+        ],
+        "y": 3.0,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": false
+      },
+      {
+        "piece": "Lamp_Street_2",
+        "position": [
+          -8,
+          -99
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.85,
+          0.55
+        ],
+        "position": [
+          -8,
+          -99
+        ],
+        "y": 3.0,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": false
+      },
+      {
+        "piece": "Lamp_Street_2",
+        "position": [
+          20,
+          -99
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.85,
+          0.55
+        ],
+        "position": [
+          20,
+          -99
+        ],
+        "y": 3.0,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": false
+      },
+      {
+        "piece": "Lamp_Street_2",
+        "position": [
+          34,
+          -99
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "light": [
+          1.0,
+          0.85,
+          0.55
+        ],
+        "position": [
+          34,
+          -99
+        ],
+        "y": 3.0,
+        "range": 8.0,
+        "energy": 0.9,
+        "flicker": false
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          1.3,
+          -105.5
+        ],
+        "rotation": 135,
+        "y": 0.0,
+        "scale": 0.95
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          8.3,
+          -101.6
+        ],
+        "rotation": 165,
+        "y": 0.0,
+        "scale": 0.98
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          18.7,
+          -111.8
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 1.03
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -0.0,
+          -100.4
+        ],
+        "rotation": 60,
+        "y": 0.0,
+        "scale": 1.12
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          -37.4,
+          -104.5
+        ],
+        "rotation": 30,
+        "y": 0.0,
+        "scale": 1.26
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          26.8,
+          -108.6
+        ],
+        "rotation": 285,
+        "y": 0.0,
+        "scale": 1.05
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          21.9,
+          -105.3
+        ],
+        "rotation": 225,
+        "y": 0.0,
+        "scale": 0.91
+      },
+      {
+        "piece": "Pl_Shrub1",
+        "position": [
+          24.2,
+          -109.7
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 1.06
+      },
+      {
+        "piece": "Pl_Grass1",
+        "position": [
+          -21.7,
+          -99.9
+        ],
+        "rotation": 315,
+        "y": 0.0,
+        "scale": 1.15
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -16.6,
+          -115.7
+        ],
+        "rotation": 270,
+        "y": 0.0,
+        "scale": 0.96
+      },
+      {
+        "piece": "Pl_Grass2",
+        "position": [
+          30.1,
+          -105.2
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 1.29
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          26.2,
+          -110.2
+        ],
+        "rotation": 60,
+        "y": 0.0,
+        "scale": 1.08
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          1.1,
+          -98.7
+        ],
+        "rotation": 75,
+        "y": 0.0,
+        "scale": 1.16
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -11.7,
+          -102.4
+        ],
+        "rotation": 195,
+        "y": 0.0,
+        "scale": 1.1
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          8.4,
+          -109.0
+        ],
+        "rotation": 60,
+        "y": 0.0,
+        "scale": 0.92
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          2.5,
+          -113.4
+        ],
+        "rotation": 345,
+        "y": 0.0,
+        "scale": 1.04
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          22.4,
+          -113.1
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 1.06
+      },
+      {
+        "piece": "Pl_Bush",
+        "position": [
+          14.5,
+          -99.0
+        ],
+        "rotation": 45,
+        "y": 0.0,
+        "scale": 0.95
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -6.1,
+          -99.9
+        ],
+        "rotation": 45,
+        "y": 0.0,
+        "scale": 0.93
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          -15.7,
+          -105.2
+        ],
+        "rotation": 105,
+        "y": 0.0,
+        "scale": 0.9
+      },
+      {
+        "piece": "Pl_Grass3",
+        "position": [
+          -6.5,
+          -102.0
+        ],
+        "rotation": 345,
+        "y": 0.0,
+        "scale": 0.88
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          -3.7,
+          -99.0
+        ],
+        "rotation": 135,
+        "y": 0.0,
+        "scale": 0.86
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          32.1,
+          -100.2
+        ],
+        "rotation": 105,
+        "y": 0.0,
+        "scale": 1.23
+      },
+      {
+        "piece": "Pl_Swirl",
+        "position": [
+          32.8,
+          -106.7
+        ],
+        "rotation": 345,
+        "y": 0.0,
+        "scale": 1.03
+      },
+      {
+        "piece": "Pl_Shrub3",
+        "position": [
+          -18.1,
+          -101.9
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 0.84
+      },
+      {
+        "piece": "Pl_Flower",
+        "position": [
+          -24.1,
+          -101.8
+        ],
+        "rotation": 270,
+        "y": 0.0,
+        "scale": 1.26
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -31.4,
+          -105.6
+        ],
+        "rotation": 225,
+        "y": 0.0,
+        "scale": 2.94
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          35.9,
+          -103.1
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 3.08
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -6.0,
+          -105.4
+        ],
+        "rotation": 270,
+        "y": 0.0,
+        "scale": 2.48
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          3.8,
+          -107.8
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 2.64
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          8.8,
+          -104.7
+        ],
+        "rotation": 105,
+        "y": 0.0,
+        "scale": 2.42
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -4.9,
+          -110.6
+        ],
+        "rotation": 195,
+        "y": 0.0,
+        "scale": 2.21
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -22.1,
+          -108.7
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 2.4
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          -16.5,
+          -99.5
+        ],
+        "rotation": 30,
+        "y": 0.0,
+        "scale": 2.67
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -26.7,
+          -111.1
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 2.88
+      },
+      {
+        "piece": "Mushroom_Cluster",
+        "position": [
+          11.3,
+          -114.1
+        ],
+        "rotation": 270,
+        "y": 0.0,
+        "scale": 3.38
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -7.1,
+          -114.8
+        ],
+        "rotation": 285,
+        "y": 0.0,
+        "scale": 9.26,
+        "solid": [
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          -17.5,
+          -110.7
+        ],
+        "rotation": 225,
+        "y": 0.0,
+        "scale": 7.84,
+        "solid": [
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          12.1,
+          -101.5
+        ],
+        "rotation": 120,
+        "y": 0.0,
+        "scale": 10.75,
+        "solid": [
+          1.3,
+          1.3
+        ]
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          15.6,
+          -105.4
+        ],
+        "rotation": 225,
+        "y": 0.0,
+        "scale": 9.44,
+        "solid": [
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "piece": "Mushroom_Tall",
+        "position": [
+          31.4,
+          -112.8
+        ],
+        "rotation": 180,
+        "y": 0.0,
+        "scale": 10.46,
+        "solid": [
+          1.3,
+          1.3
+        ]
+      },
+      {
+        "piece": "Mushroom_Flat",
+        "position": [
+          -36.8,
+          -107.2
+        ],
+        "rotation": 45,
+        "y": 0.0,
+        "scale": 6.57,
+        "solid": [
+          2.6,
+          2.6
+        ]
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          -26,
+          -150
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 2.2,
+        "solid": [
+          2.0,
+          1.5
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          -26,
+          -150
+        ],
+        "y": 0.2,
+        "scale": 1.98,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          -26,
+          -150
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.6,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          -26,
+          -164
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 2.2,
+        "solid": [
+          2.0,
+          1.5
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          -26,
+          -164
+        ],
+        "y": 0.2,
+        "scale": 1.98,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          -26,
+          -164
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.6,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          -26,
+          -178
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 2.2,
+        "solid": [
+          2.0,
+          1.5
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          -26,
+          -178
+        ],
+        "y": 0.2,
+        "scale": 1.98,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          -26,
+          -178
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.6,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          -12,
+          -150
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 2.2,
+        "solid": [
+          2.0,
+          1.5
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          -12,
+          -150
+        ],
+        "y": 0.2,
+        "scale": 1.98,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          -12,
+          -150
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.6,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          -12,
+          -178
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 2.2,
+        "solid": [
+          2.0,
+          1.5
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          -12,
+          -178
+        ],
+        "y": 0.2,
+        "scale": 1.98,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          -12,
+          -178
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.6,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          12,
+          -150
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 2.2,
+        "solid": [
+          2.0,
+          1.5
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          12,
+          -150
+        ],
+        "y": 0.2,
+        "scale": 1.98,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          12,
+          -150
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.6,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          12,
+          -178
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 2.2,
+        "solid": [
+          2.0,
+          1.5
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          12,
+          -178
+        ],
+        "y": 0.2,
+        "scale": 1.98,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          12,
+          -178
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.6,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          26,
+          -150
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 2.2,
+        "solid": [
+          2.0,
+          1.5
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          26,
+          -150
+        ],
+        "y": 0.2,
+        "scale": 1.98,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          26,
+          -150
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.6,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          26,
+          -164
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 2.2,
+        "solid": [
+          2.0,
+          1.5
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          26,
+          -164
+        ],
+        "y": 0.2,
+        "scale": 1.98,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          26,
+          -164
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.6,
+        "flicker": true
+      },
+      {
+        "piece": "Tv_Fire",
+        "position": [
+          26,
+          -178
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 2.2,
+        "solid": [
+          2.0,
+          1.5
+        ]
+      },
+      {
+        "piece": "Fire_Flame",
+        "position": [
+          26,
+          -178
+        ],
+        "y": 0.2,
+        "scale": 1.98,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.6,
+          0.25
+        ],
+        "position": [
+          26,
+          -178
+        ],
+        "y": 1.2,
+        "range": 11.0,
+        "energy": 1.6,
+        "flicker": true
+      },
+      {
+        "piece": "Banner_Dragon",
+        "position": [
+          -14,
+          -152
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 2.6
+      },
+      {
+        "piece": "Banner_Dragon",
+        "position": [
+          -14,
+          -170
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 2.6
+      },
+      {
+        "piece": "Banner_Dragon",
+        "position": [
+          14,
+          -152
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 2.6
+      },
+      {
+        "piece": "Banner_Dragon",
+        "position": [
+          14,
+          -170
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 2.6
+      },
+      {
+        "piece": "Statue_Knight",
+        "position": [
+          -30,
+          -146
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 1.6,
+        "solid": [
+          1.6,
+          1.7
+        ]
+      },
+      {
+        "piece": "Statue_Knight",
+        "position": [
+          30,
+          -146
+        ],
+        "rotation": -90,
+        "y": 0.0,
+        "scale": 1.6,
+        "solid": [
+          1.6,
+          1.7
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar2",
+        "position": [
+          -7.4,
+          -149.0
+        ],
+        "rotation": 345,
+        "y": 0.0,
+        "scale": 1.07,
+        "solid": [
+          1.3,
+          1.3
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          5.1,
+          -155.4
+        ],
+        "rotation": 180,
+        "y": 0.0,
+        "scale": 1.11,
+        "solid": [
+          1.3,
+          1.3
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar1",
+        "position": [
+          -14.9,
+          -167.2
+        ],
+        "rotation": 255,
+        "y": 0.0,
+        "scale": 1.21,
+        "solid": [
+          1.5,
+          1.5
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar2",
+        "position": [
+          10.6,
+          -165.3
+        ],
+        "rotation": 225,
+        "y": 0.0,
+        "scale": 1.35,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Ruin_Column",
+        "position": [
+          -9.5,
+          -163.9
+        ],
+        "rotation": 180,
+        "y": 0.0,
+        "scale": 1.35,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar1",
+        "position": [
+          -24.6,
+          -153.5
+        ],
+        "rotation": 300,
+        "y": 0.0,
+        "scale": 1.16,
+        "solid": [
+          1.4,
+          1.4
+        ]
+      },
+      {
+        "piece": "Ruin_PillarStub",
+        "position": [
+          -23.4,
+          -182.5
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 1.32,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar2",
+        "position": [
+          16.8,
+          -155.2
+        ],
+        "rotation": 105,
+        "y": 0.0,
+        "scale": 1.36,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar2",
+        "position": [
+          6.9,
+          -167.3
+        ],
+        "rotation": 210,
+        "y": 0.0,
+        "scale": 1.36,
+        "solid": [
+          1.6,
+          1.6
+        ]
+      },
+      {
+        "piece": "Pr_BrokenPillar1",
+        "position": [
+          5.9,
+          -188.2
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 1.03,
+        "solid": [
+          1.2,
+          1.2
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_3",
+        "position": [
+          -28.3,
+          -159.2
+        ],
+        "rotation": 120,
+        "y": 0.0,
+        "scale": 1.4,
+        "solid": [
+          3.1,
+          3.1
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_2",
+        "position": [
+          -4.5,
+          -166.2
+        ],
+        "rotation": 90,
+        "y": 0.0,
+        "scale": 1.09,
+        "solid": [
+          2.4,
+          2.4
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_1",
+        "position": [
+          1.3,
+          -148.3
+        ],
+        "rotation": 60,
+        "y": 0.0,
+        "scale": 1.05,
+        "solid": [
+          2.3,
+          2.3
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_1",
+        "position": [
+          7.6,
+          -179.3
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 1.42,
+        "solid": [
+          3.1,
+          3.1
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_1",
+        "position": [
+          29.5,
+          -168.2
+        ],
+        "rotation": 225,
+        "y": 0.0,
+        "scale": 1.09,
+        "solid": [
+          2.4,
+          2.4
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_3",
+        "position": [
+          -5.6,
+          -161.2
+        ],
+        "rotation": 45,
+        "y": 0.0,
+        "scale": 1.14,
+        "solid": [
+          2.5,
+          2.5
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_4",
+        "position": [
+          -18.9,
+          -169.8
+        ],
+        "rotation": 225,
+        "y": 0.0,
+        "scale": 1.04,
+        "solid": [
+          2.3,
+          2.3
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_2",
+        "position": [
+          -10.1,
+          -186.9
+        ],
+        "rotation": 285,
+        "y": 0.0,
+        "scale": 1.64,
+        "solid": [
+          3.6,
+          3.6
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_3",
+        "position": [
+          -8.2,
+          -175.9
+        ],
+        "rotation": 120,
+        "y": 0.0,
+        "scale": 1.28,
+        "solid": [
+          2.8,
+          2.8
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_2",
+        "position": [
+          7.8,
+          -192.8
+        ],
+        "rotation": 210,
+        "y": 0.0,
+        "scale": 1.54,
+        "solid": [
+          3.4,
+          3.4
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_4",
+        "position": [
+          7.5,
+          -148.3
+        ],
+        "rotation": 180,
+        "y": 0.0,
+        "scale": 1.02,
+        "solid": [
+          2.2,
+          2.2
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_1",
+        "position": [
+          17.9,
+          -172.0
+        ],
+        "rotation": 330,
+        "y": 0.0,
+        "scale": 1.1,
+        "solid": [
+          2.4,
+          2.4
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_2",
+        "position": [
+          24.3,
+          -170.9
+        ],
+        "rotation": 225,
+        "y": 0.0,
+        "scale": 1.07,
+        "solid": [
+          2.4,
+          2.4
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_5",
+        "position": [
+          -25.3,
+          -191.0
+        ],
+        "rotation": 180,
+        "y": 0.0,
+        "scale": 1.54,
+        "solid": [
+          3.4,
+          3.4
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_4",
+        "position": [
+          -23.2,
+          -174.9
+        ],
+        "rotation": 195,
+        "y": 0.0,
+        "scale": 1.14,
+        "solid": [
+          2.5,
+          2.5
+        ]
+      },
+      {
+        "piece": "Canyon_Rock_Boulders_4",
+        "position": [
+          2.0,
+          -191.6
+        ],
+        "rotation": 60,
+        "y": 0.0,
+        "scale": 1.12,
+        "solid": [
+          2.5,
+          2.5
+        ]
+      },
+      {
+        "piece": "Coin_Pile",
+        "position": [
+          22.2,
+          -182.5
+        ],
+        "rotation": 45,
+        "y": 0.0,
+        "scale": 1.44
+      },
+      {
+        "piece": "Coin_Pile",
+        "position": [
+          -19.3,
+          -190.1
+        ],
+        "rotation": 15,
+        "y": 0.0,
+        "scale": 1.31
+      },
+      {
+        "piece": "Coin_Pile",
+        "position": [
+          1.1,
+          -167.7
+        ],
+        "rotation": 0,
+        "y": 0.0,
+        "scale": 1.6
+      },
+      {
+        "piece": "Coin_Pile",
+        "position": [
+          15.3,
+          -164.3
+        ],
+        "rotation": 30,
+        "y": 0.0,
+        "scale": 1.3
+      },
+      {
+        "piece": "Coin_Pile",
+        "position": [
+          -29.8,
+          -171.7
+        ],
+        "rotation": 165,
+        "y": 0.0,
+        "scale": 1.31
+      },
+      {
+        "piece": "Coin_Pile",
+        "position": [
+          -19.8,
+          -150.9
+        ],
+        "rotation": 45,
+        "y": 0.0,
+        "scale": 1.67
+      },
+      {
+        "piece": "Coin_Pile",
+        "position": [
+          28.6,
+          -192.1
+        ],
+        "rotation": 75,
+        "y": 0.0,
+        "scale": 1.53
+      },
+      {
+        "piece": "Coin_Pile",
+        "position": [
+          -15.9,
+          -185.3
+        ],
+        "rotation": 30,
+        "y": 0.0,
+        "scale": 1.47
+      },
+      {
+        "light": [
+          1.0,
+          0.35,
+          0.1
+        ],
+        "position": [
+          2.9,
+          -193.2
+        ],
+        "y": 0.5,
+        "range": 7.0,
+        "energy": 1.0,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.35,
+          0.1
+        ],
+        "position": [
+          7.2,
+          -154.9
+        ],
+        "y": 0.5,
+        "range": 7.0,
+        "energy": 1.0,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.35,
+          0.1
+        ],
+        "position": [
+          5.1,
+          -155.7
+        ],
+        "y": 0.5,
+        "range": 7.0,
+        "energy": 1.0,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.35,
+          0.1
+        ],
+        "position": [
+          18.5,
+          -185.1
+        ],
+        "y": 0.5,
+        "range": 7.0,
+        "energy": 1.0,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.35,
+          0.1
+        ],
+        "position": [
+          -28.7,
+          -154.3
+        ],
+        "y": 0.5,
+        "range": 7.0,
+        "energy": 1.0,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.35,
+          0.1
+        ],
+        "position": [
+          26.5,
+          -175.1
+        ],
+        "y": 0.5,
+        "range": 7.0,
+        "energy": 1.0,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.35,
+          0.1
+        ],
+        "position": [
+          13.8,
+          -182.8
+        ],
+        "y": 0.5,
+        "range": 7.0,
+        "energy": 1.0,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.35,
+          0.1
+        ],
+        "position": [
+          -19.0,
+          -183.5
+        ],
+        "y": 0.5,
+        "range": 7.0,
+        "energy": 1.0,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.35,
+          0.1
+        ],
+        "position": [
+          -0.7,
+          -176.1
+        ],
+        "y": 0.5,
+        "range": 7.0,
+        "energy": 1.0,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.35,
+          0.1
+        ],
+        "position": [
+          -7.4,
+          -158.1
+        ],
+        "y": 0.5,
+        "range": 7.0,
+        "energy": 1.0,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.35,
+          0.1
+        ],
+        "position": [
+          -23.5,
+          -155.9
+        ],
+        "y": 0.5,
+        "range": 7.0,
+        "energy": 1.0,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.35,
+          0.1
+        ],
+        "position": [
+          11.8,
+          -190.1
+        ],
+        "y": 0.5,
+        "range": 7.0,
+        "energy": 1.0,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.35,
+          0.1
+        ],
+        "position": [
+          -15.7,
+          -193.0
+        ],
+        "y": 0.5,
+        "range": 7.0,
+        "energy": 1.0,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.35,
+          0.1
+        ],
+        "position": [
+          -11.1,
+          -169.9
+        ],
+        "y": 0.5,
+        "range": 7.0,
+        "energy": 1.0,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.35,
+          0.1
+        ],
+        "position": [
+          8.8,
+          -177.7
+        ],
+        "y": 0.5,
+        "range": 7.0,
+        "energy": 1.0,
+        "flicker": true
+      },
+      {
+        "light": [
+          1.0,
+          0.35,
+          0.1
+        ],
+        "position": [
+          -7.1,
+          -147.1
+        ],
+        "y": 0.5,
+        "range": 7.0,
+        "energy": 1.0,
+        "flicker": true
+      }
+    ],
+    "crowd": [
+      {
+        "role": "rabbit",
+        "position": [
+          6.5,
+          2.1
+        ],
+        "rotation": 359,
+        "pose": "walk",
+        "path": [
+          4.9,
+          2.4
+        ],
+        "speed": 0.6
+      },
+      {
+        "role": "rabbit",
+        "position": [
+          14.7,
+          2.7
+        ],
+        "rotation": 257,
+        "pose": "walk",
+        "path": [
+          13.0,
+          3.1
+        ],
+        "speed": 0.6
+      },
+      {
+        "role": "rabbit",
+        "position": [
+          -36.4,
+          2.7
+        ],
+        "rotation": 67,
+        "pose": "walk",
+        "path": [
+          -37.1,
+          3.0
+        ],
+        "speed": 0.6
+      },
+      {
+        "role": "rabbit",
+        "position": [
+          -24.3,
+          2.8
+        ],
+        "rotation": 225,
+        "pose": "walk",
+        "path": [
+          -22.9,
+          2.6
+        ],
+        "speed": 0.6
+      },
+      {
+        "role": "rabbit",
+        "position": [
+          3.5,
+          -44.8
+        ],
+        "rotation": 311,
+        "pose": "walk",
+        "path": [
+          2.3,
+          -46.1
+        ],
+        "speed": 0.6
+      },
+      {
+        "role": "rabbit",
+        "position": [
+          -21.6,
+          -31.0
+        ],
+        "rotation": 89,
+        "pose": "walk",
+        "path": [
+          -21.2,
+          -29.8
+        ],
+        "speed": 0.6
+      },
+      {
+        "role": "rabbit",
+        "position": [
+          22.8,
+          -103.1
+        ],
+        "rotation": 133,
+        "pose": "walk",
+        "path": [
+          21.9,
+          -103.1
+        ],
+        "speed": 0.6
+      },
+      {
+        "role": "rabbit",
+        "position": [
+          -8.7,
+          -105.6
+        ],
+        "rotation": 343,
+        "pose": "walk",
+        "path": [
+          -7.3,
+          -104.2
+        ],
+        "speed": 0.6
+      },
+      {
+        "role": "civilian_2",
+        "position": [
+          -27.0,
+          -43.2
+        ],
+        "pose": "walk",
+        "path": [
+          27.0,
+          -43.2
+        ],
+        "speed": 0.98
+      },
+      {
+        "role": "civilian_3",
+        "position": [
+          27.0,
+          -50.3
+        ],
+        "pose": "walk",
+        "path": [
+          -27.0,
+          -50.3
+        ],
+        "speed": 1.04
+      },
+      {
+        "role": "civilian_1",
+        "position": [
+          -27.0,
+          -43.3
+        ],
+        "pose": "walk",
+        "path": [
+          27.0,
+          -43.3
+        ],
+        "speed": 0.9
+      },
+      {
+        "role": "civilian_3",
+        "position": [
+          27.0,
+          -42.8
+        ],
+        "pose": "walk",
+        "path": [
+          -27.0,
+          -42.8
+        ],
+        "speed": 0.83
+      },
+      {
+        "role": "civilian_3",
+        "position": [
+          -13.0,
+          2.4
+        ],
+        "pose": "walk",
+        "path": [
+          13.0,
+          2.4
+        ],
+        "speed": 1.1
+      },
+      {
+        "role": "civilian_3",
+        "position": [
+          13.0,
+          1.1
+        ],
+        "pose": "walk",
+        "path": [
+          -13.0,
+          1.1
+        ],
+        "speed": 1.05
+      }
+    ],
+    "passive": true,
+    "xp_scale": 1.074
   }
 }

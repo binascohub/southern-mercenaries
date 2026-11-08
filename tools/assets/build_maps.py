@@ -1904,6 +1904,7 @@ subprocess.run([sys.executable, "tools/assets/build_catacombs.py"], check=True) 
 subprocess.run([sys.executable, "tools/assets/build_mine.py"], check=True)  # Mina ampliada e feita labirinto (trilhos como caminho, anões mineiros)
 subprocess.run([sys.executable, "tools/assets/build_bunker.py"], check=True)  # Bunker ampliado e feito labirinto (armas, ferramentas e suprimentos)
 subprocess.run([sys.executable, "tools/assets/build_darkforest.py"], check=True)  # Floresta Escura ampliada (estrutura da Floresta, árvores secas, cogumelos, morcegos, cobras)
+subprocess.run([sys.executable, "tools/assets/build_mushroom_hills.py"], check=True)  # Colinas dos Cogumelos (mapa novo da Capital, depois do Deserto)
 subprocess.run([sys.executable, "tools/assets/set_monster_roster.py"], check=True)  # monstros próprios de cada mapa (sem repetir, fora Floresta, Esgoto e o Mímico)
 subprocess.run([sys.executable, "tools/assets/build_city_quests.py"], check=True)  # NPCs das cidades que abrem as missões dos mapas e a corrente Tortuga -> Capital -> Fazenda
 subprocess.run([sys.executable, "tools/assets/build_cemetery_quests.py"], check=True)  # Cemitério: moradores, portão e guardião (estrutura de missões dos mapas)
@@ -1926,6 +1927,7 @@ subprocess.run([sys.executable, "tools/assets/add_ruins_armored_troll.py"], chec
 subprocess.run([sys.executable, "tools/assets/add_swamp_crocodiles.py"], check=True)  # Floresta Sombria: crocodilos no Pântano das Cobras
 subprocess.run([sys.executable, "tools/assets/add_docks_ditch_dog.py"], check=True)  # Docas: Cão da Vala (4 bandos)
 subprocess.run([sys.executable, "tools/assets/forest_demogorgon.py"], check=True)  # Floresta: Boca-de-Flor no lugar do Tio Fungo
+subprocess.run([sys.executable, "tools/assets/forest_flesh_plant.py"], check=True)  # Floresta: Planta Carnívora no lugar do Sapo Ácido
 subprocess.run([sys.executable, "tools/assets/add_boss_treasure.py"], check=True)  # joias de ouro no chão em volta do chefe final de cada mapa
 subprocess.run([sys.executable, "tools/assets/add_gold_skulls.py"], check=True)  # pilhas de caveiras de ouro nas Catacumbas e no Cemitério
 subprocess.run([sys.executable, "tools/assets/use_realistic_trees.py"], check=True)  # carvalhos -> árvores realistas (e parte dos arbustos da Floresta)
@@ -1933,5 +1935,5 @@ subprocess.run([sys.executable, "tools/assets/add_desert_sandworm.py"], check=Tr
 subprocess.run([sys.executable, "tools/assets/docks_skeleton_pirate.py"], check=True)  # Docas: Esqueleto Pirata no lugar do Polvo de Tinta
 subprocess.run([sys.executable, "tools/assets/add_tortuga_cheer_crowd.py"], check=True)  # Tortuga: torcida (roupa medieval) em volta das brigas
 subprocess.run([sys.executable, "tools/assets/add_capital_hero_warrior.py"], check=True)  # Capital: Guerreiro Andarilho na Avenida
-subprocess.run([sys.executable, "tools/assets/add_king_bedroom_walkers.py"], check=True)  # Capital: moças andando no quarto do rei
+subprocess.run([sys.executable, "tools/assets/build_brothel.py"], check=True)  # Tortuga: o Bordel da Sereia Rubra (porta na rua principal)
 print("OK", [k for k in arenas if k.split("_")[0] in ("forest", "ruins", "cemetery", "fort", "farm", "mine")])

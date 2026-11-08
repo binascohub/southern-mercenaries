@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 
-### Archer bow shot, crocodiles, the Ditch Dog and the boss death burst
+### Archer bow shot, new monsters and Tortuga's brothel
 
 - The Archer (dwarf and elf) now shoots with a real bow animation instead of the pistol shot: aim, quick draw to the face, release and follow-through
   in 0.45 s, with the bow upright in the right hand and both fists closed ("Animation - Bow Shoot", lexferreira89, CC BY 4.0;
@@ -11,10 +11,23 @@
   ("Jungle Water Crocodile", vanshtandon321), and the Spiked Crocodile, which walks on straight legs ("fantasy crocodile animation", hino).
 - The Ditch Dog, a fleshy amphibious Water beast, prowls the Docks in 4 packs of 2 (shipyard, fishery, lighthouse and warehouse;
   "Ditch Dog - Rigged and Animated", Greeble3d, CC BY 4.0).
+- The Docks' Dragging Gator becomes the Peg-Leg Pirate, a ~1.85 m pirate on a wooden leg with the same stats and the same pull: he stamps
+  the planks and drags whoever is around him by the collar ("Pirate clark", photon (that one larry), CC BY 4.0; `tools/assets/build_pirate_clark.py`
+  reduces it and adds the fall on his back when he dies).
+- The Catacombs' walls now have seated skeletons, the previous victims, leaning between the wall shackles ("Previous Victim Skeleton - Granny",
+  Arthurzin, CC BY 4.0).
 - In the Forest, the Fungus Uncle packs (16 monsters, mostly in the Fungus Clearing) become the Flowermaw, a gaunt ~2.6 m creature whose head
   opens like petals ("Demogorgon Rig", CC BY 4.0), with the same stats; the Fungus Uncle stays in the Sewers and the Dark Forest.
 - The Gold Sandworm guards 6 spots of the Desert (dunes, quicksand, nest, wrecks and road): a ~2.5 m worm that never leaves its hole, turns
   to whoever comes near and spits acid sand in an arc that leaves a puddle; it sinks into the sand when it dies ("Gold Sandworm", Fubbi, CC BY 4.0).
+- New map: the Mushroom Hills (`mushroom_01_hills`, level 16), reached from a new gate in the Capital's plaza after the Desert. The Royal Botanist in the church
+  opens it. Colourful hills with giant mushrooms, stone platforms, floating coins and a crystal grotto, with the full map structure: the Old Gardener and the Coin Keeper
+  each hand over a book that wakes a mini-boss at the Ancient Stump Altar (the Spore Brute and the Moss Gator), whose items buy the Sun and Moon keys; the Bridge Guard
+  opens the gate to the Volcano Court, where the Volcanic Lizard King (lava-tail sweep, volcano rain, waves) drops the Volcano Crown. New monsters: Spur Bunny,
+  Ember Dragonling, Hill Lynx and Spore Wraith (`tools/assets/build_mushroom_hills.py`). The map sits between the Desert and the Mine in the balance order without
+  changing the other maps' numbers, and the Time Traveller now also asks for its village quests before leaving the Capital.
+- A Wandering Warrior, bald and bearded in scale armour, walks up and down the Capital's avenue, west of the fountain, with the heroes' walk
+  ("hero warrior (downloadable)", Diox..Andrey, CC BY 4.0; the file only had an idle, so `tools/assets/build_mixamo_civilian.py` binds it to the heroes' skeleton).
 - Tortuga's street fights now have an audience: six townsfolk stand around four of the brawls, jumping, clapping, raising their arms and dancing.
   They are scanned people whose modern clothes (jeans, jackets, a logo T-shirt) were repainted as medieval tunics with a leather belt, wool hose and boots,
   and long dresses for the women ("Background People add-on for Blender", Jungle Jim, CC BY 4.0; `tools/assets/build_background_people.py`,
@@ -26,6 +39,10 @@
   the bite was hard to see from above, so it looked like it only walked around).
 - In the Docks, the Ink Octopus is replaced by the Skeleton Pirate (coat, tricorn, cutlass and peg leg; "Skeleton Pirate \"The Captin\"", FireGoat,
   CC BY 4.0): same health and damage, but melee with a cutlass slash instead of the ink jet, in every pack and in the bosses' waves.
+- Tortuga has a brothel, the Crimson Mermaid, with its door on the south edge of the main street (east of the tavern, marked by a red light):
+  five beds behind cloth curtains, two sofa corners and a round table with wine, a counter, a fireplace and red-lit chandeliers. Four women in
+  swimwear (Jungle Jim, CC BY 4.0) work there: two dance with the heroine's dance and two stroll back and forth (Anna and Adriana), while clients
+  sit at the table and on the sofas. Scenery only; it plays the tavern music. The files went from up to 336 MB to 6-16 MB each. Courtesans can now sit.
 - When a map's final boss dies, the ground bursts under it: concrete debris jumps up to ~4 m and falls scattered around, stays a few seconds
   and sinks ("Bomb Crack_Ground_00 (Free)", paulyang, CC BY 4.0; 2,131 animated pieces reduced to one skinned mesh of 360 pieces).
 

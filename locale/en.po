@@ -5363,3 +5363,213 @@ msgstr "Golden Crab"
 
 msgid "MONSTER_SKELETON_PIRATE"
 msgstr "Skeleton Pirate"
+
+msgid "AREA_BROTHEL"
+msgstr "The Crimson Mermaid"
+
+msgid "PROP_BROTHEL"
+msgstr "Brothel"
+
+msgid "MONSTER_FLESH_PLANT"
+msgstr "Flesh-Eating Plant"
+
+msgid "ARENA_MUSHROOM"
+msgstr "Mushroom Hills"
+
+msgid "PROP_TO_MUSHROOM"
+msgstr "Road to the Mushroom Hills"
+
+msgid "MONSTER_MH_BUNNY"
+msgstr "Spur Bunny"
+
+msgid "MONSTER_MH_DRAGONLING"
+msgstr "Ember Dragonling"
+
+msgid "MONSTER_MH_LYNX"
+msgstr "Hill Lynx"
+
+msgid "MONSTER_MH_GHOST"
+msgstr "Spore Wraith"
+
+msgid "MONSTER_MH_MOSS_GATOR"
+msgstr "Moss Gator"
+
+msgid "MONSTER_MH_SPORE_BRUTE"
+msgstr "Spore Brute"
+
+msgid "MONSTER_MH_LIZARD_KING"
+msgstr "Volcanic Lizard King"
+
+msgid "TOAST_MH_GATOR_WAVE"
+msgstr "The Moss Gator slaps the pond: creature wave {n}!"
+
+msgid "TOAST_MH_BRUTE_WAVE"
+msgstr "The Spore Brute bursts spores: wave {n}!"
+
+msgid "TOAST_MH_KING_WAVE"
+msgstr "The Lizard King roars and the volcano answers: wave {n}!"
+
+msgid "TOAST_MH_BRUTE_AWAKENS"
+msgstr "The stump bursts in a lilac cloud: the Spore Brute awakens!"
+
+msgid "TOAST_MH_GATOR_AWAKENS"
+msgstr "The pond bubbles: the Moss Gator climbs onto the Steps!"
+
+msgid "NPC_ROYAL_BOTANIST"
+msgstr "Royal Botanist"
+
+msgid "NPC_MH_GARDENER"
+msgstr "Old Gardener"
+
+msgid "NPC_MH_OLD_STUMP"
+msgstr "Ancient Stump"
+
+msgid "NPC_MH_COIN_KEEPER"
+msgstr "Coin Keeper"
+
+msgid "NPC_MH_BRIDGE_GUARD"
+msgstr "Bridge Guard"
+
+msgid "VALUABLE_STAR_BRICK"
+msgstr "Star Brick"
+
+msgid "VALUABLE_GOLDEN_SPORE"
+msgstr "Golden Spore"
+
+msgid "VALUABLE_KEY_SUN"
+msgstr "Sun Key"
+
+msgid "VALUABLE_KEY_MOON"
+msgstr "Moon Key"
+
+msgid "QUEST_MAP_MUSHROOM"
+msgstr "The Smoldering Hills"
+
+msgid "QUEST_MAP_MUSHROOM_DESC"
+msgstr "Royal Botanist wants Volcano Crown, which Volcanic Lizard King keeps at the bottom of the map. Get the books from the locals, wake the mini-bosses at the altar, trade their items for the keys, open the gate with the guardian and defeat Volcanic Lizard King. Hand Volcano Crown to Royal Botanist for a gold reward."
+
+msgid "QUEST_MH_SPORE"
+msgstr "The Golden Spore"
+
+msgid "QUEST_MH_SPORE_DESC"
+msgstr "The Old Gardener kept the Golden Spore, the seed of every mushroom in the hills, and the Spore Brute swallowed it. Wake it, defeat it and bring the spore: in return you get the Sun Key, one of the two for the Lizard King's gate."
+
+msgid "QUEST_MH_BRICK"
+msgstr "The Star Brick"
+
+msgid "QUEST_MH_BRICK_DESC"
+msgstr "The Coin Keeper counted the hills' coins on the Star Brick, until the Moss Gator swallowed it. Wake the gator, defeat it and bring the brick to receive the Moon Key, the other one for the Lizard King's gate."
+
+msgid "QUEST_MH_GATE"
+msgstr "The Volcano Gate"
+
+msgid "QUEST_MH_GATE_DESC"
+msgstr "The Bridge Guard only opens the gate for those with both keys: the Sun (Old Gardener) and the Moon (Coin Keeper). Beyond lies the Lizard King's Volcano Court."
+
+msgid "DLG_BOTANIST_1"
+msgstr "Ah, you came back from the Desert! Then you can take the heat. Good, because I need people who can take the heat."
+
+msgid "DLG_BOTANIST_2"
+msgstr "Past the plaza gate lie the Mushroom Hills, where every mushroom of the royal garden comes from. A huge lizard came out of the volcano and is burning everything."
+
+msgid "DLG_BOTANIST_3"
+msgstr "Talk to the village folk: they know how to reach the volcano. And bring down the Volcanic Lizard King before not a single mushroom cap is left standing."
+
+msgid "DLG_BOTANIST_ACTIVE"
+msgstr "The Hills gate is in the plaza, in the row of gates to the south. Follow the trail to the mushroom village."
+
+msgid "DLG_BOTANIST_DONE"
+msgstr "The hills grow mushrooms again! The royal garden thanks you, and so do I."
+
+msgid "DLG_MH_GARDENER_1"
+msgstr "Watch your step, strangers: every mushroom in these hills was planted by these old hands."
+
+msgid "DLG_MH_GARDENER_2"
+msgstr "I kept the Golden Spore, the seed of them all. A lilac brute came out of the Ancient Stump, in the Giant Caps Grove, and swallowed it whole."
+
+msgid "DLG_MH_GARDENER_3"
+msgstr "Bring down the Spore Brute and bring the spore back. In return I give the Sun Key, one of the two that open the volcano gate."
+
+msgid "DLG_MH_GARDENER_ACTIVE"
+msgstr "The Giant Caps Grove is west of the village, past the bridge. The spore shines like gold: you cannot miss it."
+
+msgid "DLG_MH_GARDENER_DONE"
+msgstr "The Golden Spore! I already feel the soil softer. The Sun Key is yours: take it to the Bridge Guard, together with the Moon one."
+
+msgid "DLG_MH_STUMP_1"
+msgstr "The stump is soft and warm, covered in lilac dust. Something large breathes inside."
+
+msgid "DLG_MH_STUMP_2"
+msgstr "The Spore Brute awakens!"
+
+msgid "DLG_MH_STUMP_LOCKED"
+msgstr "An old stump full of mushrooms. Nothing answers your hands."
+
+msgid "DLG_MH_COINS_1"
+msgstr "One hundred twelve, one hundred thirteen... oh, visitors! I count the coins that sprout from these hills. More grow every day."
+
+msgid "DLG_MH_COINS_2"
+msgstr "I counted on top of the Star Brick, which never miscounts. A moss-covered gator climbed from the pond onto the Stone Steps and swallowed the brick whole."
+
+msgid "DLG_MH_COINS_3"
+msgstr "I will call the gator for you, here on the Steps. Bring it down and bring the brick: I give the Moon Key, the other for the volcano gate."
+
+msgid "DLG_MH_COINS_ACTIVE"
+msgstr "The brick has a golden star in the middle. It is in the gator's belly. Bring it down and bring the brick to me."
+
+msgid "DLG_MH_COINS_DONE"
+msgstr "My brick! The Moon Key is yours. Take it to the Bridge Guard, in the lane north of the Coin Field."
+
+msgid "DLG_MH_COINS_WAIT"
+msgstr "One hundred fourteen... I lost count again. Come back later, yes?"
+
+msgid "DLG_MH_GUARD_1"
+msgstr "Halt! Behind this gate lies the Volcano Court, and the Lizard King rules there. He comes out of the lava whenever he likes and burns whatever he sees."
+
+msgid "DLG_MH_GUARD_2"
+msgstr "The gate only opens with TWO keys: the Sun and the Moon. The first is with the Old Gardener, in the village; the second, with the Coin Keeper, on the Stone Steps."
+
+msgid "DLG_MH_GUARD_3"
+msgstr "Bring both keys to me and I will open the way. After that, it is up to you."
+
+msgid "DLG_MH_GUARD_ACTIVE"
+msgstr "I only open with both keys, Sun and Moon, in the same bag. The Gardener is in the village; the Coin Keeper, on the Stone Steps to the east."
+
+msgid "DLG_MH_GUARD_DONE"
+msgstr "Both keys! The gate is open. Bring water if you have any: inside, the ground boils."
+
+msgid "VALUABLE_MUSHROOM_BOOK_1"
+msgstr "Gardener's Almanac"
+
+msgid "VALUABLE_MUSHROOM_BOOK_1_DESC"
+msgstr "Given by Old Gardener. Take the group to the Ancient Stump Altar: read before the stone, the book awakens Spore Brute. It vanishes from the bag when Spore Brute falls. It cannot be sold or lost."
+
+msgid "DLG_MUSHROOM_BOOK_1"
+msgstr "Take this book, Gardener's Almanac, to the Ancient Stump Altar: read before the stone, it awakens Spore Brute. Bring me Golden Spore, which it keeps, and I will hand you the key."
+
+msgid "VALUABLE_MUSHROOM_BOOK_2"
+msgstr "Coin Keeper's Ledger"
+
+msgid "VALUABLE_MUSHROOM_BOOK_2_DESC"
+msgstr "Given by Coin Keeper. Take the group to the Ancient Stump Altar: read before the stone, the book awakens Moss Gator. It vanishes from the bag when Moss Gator falls. It cannot be sold or lost."
+
+msgid "DLG_MUSHROOM_BOOK_2"
+msgstr "Take this book, Coin Keeper's Ledger, to the Ancient Stump Altar: read before the stone, it awakens Moss Gator. Bring me Star Brick, which it keeps, and I will hand you the key."
+
+msgid "NPC_MUSHROOM_ALTAR"
+msgstr "Ancient Stump Altar"
+
+msgid "DLG_MUSHROOM_ALTAR_1"
+msgstr "You rest Gardener's Almanac on the stone of the Ancient Stump Altar and read aloud. The ground shakes, and Spore Brute rises before the altar."
+
+msgid "DLG_MUSHROOM_ALTAR_2"
+msgstr "You rest Coin Keeper's Ledger on the stone of the Ancient Stump Altar and read aloud. The air grows heavy, and Moss Gator appears before the altar."
+
+msgid "DLG_MUSHROOM_ALTAR_LOCKED"
+msgstr "The stone does not react. There is an empty gap in the center, the size of a book: Gardener's Almanac or Coin Keeper's Ledger must hold what is missing."
+
+msgid "VALUABLE_VOLCANO_CROWN"
+msgstr "Volcano Crown"
+
+msgid "VALUABLE_VOLCANO_CROWN_DESC"
+msgstr "Dropped by Volcanic Lizard King, the map's boss. It cannot be sold or lost: take it to whoever asked for it."

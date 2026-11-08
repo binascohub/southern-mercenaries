@@ -26,9 +26,9 @@ func _ready() -> void:
 	add_child(_ambient)
 
 
-## Faixa de uma área: taverna e cidades tocam as alegres; as demais (com monstros), a tensa.
+## Faixa de uma área: taverna, bordel e cidades tocam as alegres; as demais (com monstros), a tensa.
 func track_for_area(area_id: String, is_town: bool) -> String:
-	if area_id == "tavern":
+	if area_id in ["tavern", "brothel"]:  # o Bordel de Tortuga toca a mesma da Taverna
 		return "tavern"
 	return "town" if is_town else "tense"
 
@@ -37,7 +37,7 @@ func track_for_area(area_id: String, is_town: bool) -> String:
 const AMBIENCE_BY_AREA := {
 	"sewers_": "sewer", "cemetery_": "cemetery", "forest_": "forest", "dark_forest_": "darkwoods", "ruins_": "ruins", "fort_": "fort",
 	"catacombs_": "catacombs", "capital_": "capital", "tortuga": "harbor", "docks_": "harbor", "farm_": "farm", "mine_": "mine",
-	"bunker_": "bunker", "desert_": "desert",
+	"bunker_": "bunker", "desert_": "desert", "mushroom_": "forest",
 }
 
 

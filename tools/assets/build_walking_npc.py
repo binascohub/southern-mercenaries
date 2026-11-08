@@ -1,4 +1,4 @@
-"""Moças andando no quarto do rei (Capital, sala king_bedroom): "Anna Ipati (animated)" e "Adriana Ilma (animated)", Jungle Jim na Sketchfab, CC BY 4.0
+"""Moças que passeiam no Bordel de Tortuga (área "brothel", tools/assets/build_brothel.py): "Anna Ipati (animated)" e "Adriana Ilma (animated)", Jungle Jim na Sketchfab, CC BY 4.0
 (arquivos trazidos pelo autor do projeto). São personagens do Character Creator (esqueleto CC_Base de ~100 ossos), de biquíni, com uma caminhada no lugar
 de 18 s cujo primeiro quadro é a T-pose; os arquivos são enormes (Anna: 403 mil triângulos, 74 texturas, 336 MB).
 Aqui:

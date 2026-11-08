@@ -3642,5 +3642,274 @@
         ]
       }
     ]
+  },
+  "royal_botanist": {
+    "name_key": "NPC_ROYAL_BOTANIST",
+    "color": [
+      0.45,
+      0.65,
+      0.35
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "map_mushroom",
+          "after": "map_desert"
+        },
+        "lines": [
+          "DLG_BOTANIST_1",
+          "DLG_BOTANIST_2",
+          "DLG_BOTANIST_3"
+        ],
+        "offer": "map_mushroom"
+      },
+      {
+        "when": {
+          "quest_active": "map_mushroom"
+        },
+        "lines": [
+          "DLG_BOTANIST_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_BOTANIST_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "female",
+      "hair": [
+        "Hair_Buns"
+      ],
+      "hair_color": [
+        0.55,
+        0.3,
+        0.15
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "mh_gardener": {
+    "name_key": "NPC_MH_GARDENER",
+    "color": [
+      0.4,
+      0.55,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "mh_spore"
+        },
+        "lines": [
+          "DLG_MH_GARDENER_1",
+          "DLG_MH_GARDENER_2",
+          "DLG_MH_GARDENER_3",
+          "DLG_MUSHROOM_BOOK_1"
+        ],
+        "offer": "mh_spore"
+      },
+      {
+        "when": {
+          "quest_active": "mh_spore"
+        },
+        "lines": [
+          "DLG_MH_GARDENER_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_MH_GARDENER_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_Beard"
+      ],
+      "hair_color": [
+        0.6,
+        0.58,
+        0.55
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "mh_old_stump": {
+    "name_key": "NPC_MH_OLD_STUMP",
+    "color": [
+      0.5,
+      0.4,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_active": "mh_spore"
+        },
+        "lines": [
+          "DLG_MH_STUMP_1",
+          "DLG_MH_STUMP_2"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_MH_STUMP_LOCKED"
+        ]
+      }
+    ]
+  },
+  "mh_coin_keeper": {
+    "name_key": "NPC_MH_COIN_KEEPER",
+    "color": [
+      0.85,
+      0.7,
+      0.3
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "mh_brick"
+        },
+        "lines": [
+          "DLG_MH_COINS_1",
+          "DLG_MH_COINS_2",
+          "DLG_MH_COINS_3",
+          "DLG_MUSHROOM_BOOK_2"
+        ],
+        "offer": "mh_brick"
+      },
+      {
+        "when": {
+          "quest_active": "mh_brick"
+        },
+        "lines": [
+          "DLG_MH_COINS_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {
+          "quest_done": "mh_brick"
+        },
+        "lines": [
+          "DLG_MH_COINS_DONE"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_MH_COINS_WAIT"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "female",
+      "hair": [
+        "Hair_Long"
+      ],
+      "hair_color": [
+        0.85,
+        0.6,
+        0.2
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "mh_bridge_guard": {
+    "name_key": "NPC_MH_BRIDGE_GUARD",
+    "color": [
+      0.5,
+      0.45,
+      0.4
+    ],
+    "dialogues": [
+      {
+        "when": {
+          "quest_new": "mh_gate"
+        },
+        "lines": [
+          "DLG_MH_GUARD_1",
+          "DLG_MH_GUARD_2",
+          "DLG_MH_GUARD_3"
+        ],
+        "offer": "mh_gate"
+      },
+      {
+        "when": {
+          "quest_active": "mh_gate"
+        },
+        "lines": [
+          "DLG_MH_GUARD_ACTIVE"
+        ],
+        "service": "turn_in"
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_MH_GUARD_DONE"
+        ]
+      }
+    ],
+    "body": {
+      "sex": "male",
+      "hair": [
+        "Hair_SimpleParted"
+      ],
+      "hair_color": [
+        0.2,
+        0.15,
+        0.1
+      ],
+      "pose": "idle",
+      "outfit": {
+        "body": "cloth"
+      }
+    }
+  },
+  "mushroom_altar": {
+    "_comment": "Altar único do mapa (mushroom_01_hills): o livro que o grupo tem desperta o mini-chefe dele (needs_key + extra_summons no prop). Gerado por build_map_mechanics.py.",
+    "name_key": "NPC_MUSHROOM_ALTAR",
+    "color": [
+      0.55,
+      0.5,
+      0.45
+    ],
+    "dialogues": [
+      {
+        "when": {},
+        "lines": [
+          "DLG_MUSHROOM_ALTAR_1"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_MUSHROOM_ALTAR_LOCKED"
+        ]
+      },
+      {
+        "when": {},
+        "lines": [
+          "DLG_MUSHROOM_ALTAR_2"
+        ]
+      }
+    ]
   }
 }

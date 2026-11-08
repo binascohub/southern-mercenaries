@@ -831,5 +831,68 @@
       "gold": 350,
       "xp": 530
     }
+  },
+  "map_mushroom": {
+    "name_key": "QUEST_MAP_MUSHROOM",
+    "desc_key": "QUEST_MAP_MUSHROOM_DESC",
+    "type": "main",
+    "giver": "royal_botanist",
+    "area": "mushroom_01_hills",
+    "target_element": "water",
+    "reward": {
+      "gold": 2210,
+      "xp": 3460
+    },
+    "item": "volcano_crown",
+    "opens_map": true
+  },
+  "mh_spore": {
+    "name_key": "QUEST_MH_SPORE",
+    "desc_key": "QUEST_MH_SPORE_DESC",
+    "type": "village",
+    "giver": "mh_gardener",
+    "area": "mushroom_01_hills",
+    "target_element": "fire",
+    "reward": {
+      "gold": 950,
+      "xp": 1850
+    },
+    "item": "golden_spore",
+    "gives": "key_sun",
+    "grants_key": "book_mushroom_1",
+    "grants_item": "mushroom_book_1"
+  },
+  "mh_brick": {
+    "name_key": "QUEST_MH_BRICK",
+    "desc_key": "QUEST_MH_BRICK_DESC",
+    "type": "village",
+    "giver": "mh_coin_keeper",
+    "area": "mushroom_01_hills",
+    "target_element": "air",
+    "reward": {
+      "gold": 950,
+      "xp": 1850
+    },
+    "item": "star_brick",
+    "gives": "key_moon",
+    "grants_key": "book_mushroom_2",
+    "grants_item": "mushroom_book_2"
+  },
+  "mh_gate": {
+    "name_key": "QUEST_MH_GATE",
+    "desc_key": "QUEST_MH_GATE_DESC",
+    "type": "village",
+    "giver": "mh_bridge_guard",
+    "area": "mushroom_01_hills",
+    "items": [
+      "key_sun",
+      "key_moon"
+    ],
+    "opens_gate": "boss_gate",
+    "target_element": "water",
+    "reward": {
+      "gold": 630,
+      "xp": 920
+    }
   }
 }

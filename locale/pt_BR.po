@@ -5363,3 +5363,213 @@ msgstr "Caranguejo de Ouro"
 
 msgid "MONSTER_SKELETON_PIRATE"
 msgstr "Esqueleto Pirata"
+
+msgid "AREA_BROTHEL"
+msgstr "Bordel da Sereia Rubra"
+
+msgid "PROP_BROTHEL"
+msgstr "Bordel"
+
+msgid "MONSTER_FLESH_PLANT"
+msgstr "Planta Carnívora"
+
+msgid "ARENA_MUSHROOM"
+msgstr "Colinas dos Cogumelos"
+
+msgid "PROP_TO_MUSHROOM"
+msgstr "Caminho para as Colinas dos Cogumelos"
+
+msgid "MONSTER_MH_BUNNY"
+msgstr "Coelho-Espora"
+
+msgid "MONSTER_MH_DRAGONLING"
+msgstr "Dragãozinho de Brasa"
+
+msgid "MONSTER_MH_LYNX"
+msgstr "Lince das Colinas"
+
+msgid "MONSTER_MH_GHOST"
+msgstr "Fantasma de Esporos"
+
+msgid "MONSTER_MH_MOSS_GATOR"
+msgstr "Jacaré-Musgo"
+
+msgid "MONSTER_MH_SPORE_BRUTE"
+msgstr "Bruto Esporento"
+
+msgid "MONSTER_MH_LIZARD_KING"
+msgstr "Rei-Lagarto Vulcânico"
+
+msgid "TOAST_MH_GATOR_WAVE"
+msgstr "O Jacaré-Musgo bate o rabo no lago: onda {n} de bichos!"
+
+msgid "TOAST_MH_BRUTE_WAVE"
+msgstr "O Bruto Esporento solta esporos: onda {n}!"
+
+msgid "TOAST_MH_KING_WAVE"
+msgstr "O Rei-Lagarto ruge e o vulcão responde: onda {n}!"
+
+msgid "TOAST_MH_BRUTE_AWAKENS"
+msgstr "O toco se abre numa nuvem lilás: o Bruto Esporento acorda!"
+
+msgid "TOAST_MH_GATOR_AWAKENS"
+msgstr "O lago borbulha: o Jacaré-Musgo sobe aos Degraus!"
+
+msgid "NPC_ROYAL_BOTANIST"
+msgstr "Botânica Real"
+
+msgid "NPC_MH_GARDENER"
+msgstr "Velho Jardineiro"
+
+msgid "NPC_MH_OLD_STUMP"
+msgstr "Toco Antigo"
+
+msgid "NPC_MH_COIN_KEEPER"
+msgstr "Moedeira"
+
+msgid "NPC_MH_BRIDGE_GUARD"
+msgstr "Guarda da Ponte"
+
+msgid "VALUABLE_STAR_BRICK"
+msgstr "Tijolo-Estrela"
+
+msgid "VALUABLE_GOLDEN_SPORE"
+msgstr "Esporo Dourado"
+
+msgid "VALUABLE_KEY_SUN"
+msgstr "Chave do Sol"
+
+msgid "VALUABLE_KEY_MOON"
+msgstr "Chave da Lua"
+
+msgid "QUEST_MAP_MUSHROOM"
+msgstr "As Colinas em Brasa"
+
+msgid "QUEST_MAP_MUSHROOM_DESC"
+msgstr "Botânica Real quer Coroa do Vulcão, que Rei-Lagarto Vulcânico guarda no fundo do mapa. Consiga o livro com os moradores, desperte os mini-chefes no altar, troque os itens deles pelas chaves, abra o portão com o guardião e derrote Rei-Lagarto Vulcânico. Entregue Coroa do Vulcão a Botânica Real por uma recompensa em ouro."
+
+msgid "QUEST_MH_SPORE"
+msgstr "O Esporo Dourado"
+
+msgid "QUEST_MH_SPORE_DESC"
+msgstr "O Velho Jardineiro guardava o Esporo Dourado, a semente de todos os cogumelos das colinas, e o Bruto Esporento o engoliu. Desperte-o, derrote-o e traga o esporo: em troca vem a Chave do Sol, uma das duas do portão do Rei-Lagarto."
+
+msgid "QUEST_MH_BRICK"
+msgstr "O Tijolo-Estrela"
+
+msgid "QUEST_MH_BRICK_DESC"
+msgstr "A Moedeira contava as moedas das colinas sobre o Tijolo-Estrela, até o Jacaré-Musgo engoli-lo. Desperte o jacaré, derrote-o e traga o tijolo para receber a Chave da Lua, a outra do portão do Rei-Lagarto."
+
+msgid "QUEST_MH_GATE"
+msgstr "O Portão do Vulcão"
+
+msgid "QUEST_MH_GATE_DESC"
+msgstr "O Guarda da Ponte só abre o portão para quem trouxer as duas chaves: a do Sol (Velho Jardineiro) e a da Lua (Moedeira). Atrás dele fica o Pátio do Vulcão do Rei-Lagarto."
+
+msgid "DLG_BOTANIST_1"
+msgstr "Ah, vocês voltaram do Deserto! Então aguentam calor. Ótimo, porque eu preciso de gente que aguente calor."
+
+msgid "DLG_BOTANIST_2"
+msgstr "Além do portão da praça ficam as Colinas dos Cogumelos, de onde vêm todos os cogumelos do jardim real. Um lagarto enorme saiu do vulcão e está queimando tudo."
+
+msgid "DLG_BOTANIST_3"
+msgstr "Falem com os moradores da vila: eles sabem como chegar ao vulcão. E derrubem o Rei-Lagarto Vulcânico antes que não sobre um chapéu de cogumelo de pé."
+
+msgid "DLG_BOTANIST_ACTIVE"
+msgstr "O portão das Colinas fica na praça, na fileira dos portões ao sul. Sigam a trilha até a vila dos cogumelos."
+
+msgid "DLG_BOTANIST_DONE"
+msgstr "As colinas voltaram a dar cogumelo! O jardim real agradece, e eu também."
+
+msgid "DLG_MH_GARDENER_1"
+msgstr "Cuidado onde pisam, forasteiros: cada cogumelo destas colinas foi plantado por estas mãos velhas."
+
+msgid "DLG_MH_GARDENER_2"
+msgstr "Eu guardava o Esporo Dourado, a semente de todos eles. Um bruto lilás saiu do Toco Antigo, no Bosque dos Chapéus Gigantes, e o engoliu inteiro."
+
+msgid "DLG_MH_GARDENER_3"
+msgstr "Derrubem o Bruto Esporento e tragam o esporo de volta. Em troca eu dou a Chave do Sol, uma das duas que abrem o portão do vulcão."
+
+msgid "DLG_MH_GARDENER_ACTIVE"
+msgstr "O Bosque dos Chapéus Gigantes fica a oeste da vila, depois da ponte. O esporo brilha como ouro: não tem como errar."
+
+msgid "DLG_MH_GARDENER_DONE"
+msgstr "O Esporo Dourado! Já sinto o chão mais macio. A Chave do Sol é de vocês: levem-na ao Guarda da Ponte, junto com a da Lua."
+
+msgid "DLG_MH_STUMP_1"
+msgstr "O toco é macio e quente, coberto de pó lilás. Algo grande respira lá dentro."
+
+msgid "DLG_MH_STUMP_2"
+msgstr "O Bruto Esporento acorda!"
+
+msgid "DLG_MH_STUMP_LOCKED"
+msgstr "Um toco velho cheio de cogumelos. Nada responde às suas mãos."
+
+msgid "DLG_MH_COINS_1"
+msgstr "Cento e doze, cento e treze... ah, visitas! Eu conto as moedas que brotam destas colinas. Todo dia nascem mais."
+
+msgid "DLG_MH_COINS_2"
+msgstr "Eu contava em cima do Tijolo-Estrela, que nunca erra a conta. Um jacaré coberto de musgo subiu do lago para os Degraus de Pedra e engoliu o tijolo inteiro."
+
+msgid "DLG_MH_COINS_3"
+msgstr "Eu chamo o jacaré para vocês, aqui nos Degraus. Derrubem-no e tragam o tijolo: eu dou a Chave da Lua, a outra do portão do vulcão."
+
+msgid "DLG_MH_COINS_ACTIVE"
+msgstr "O tijolo tem uma estrela dourada no meio. Está na barriga do jacaré. Derrubem-no e tragam-no para mim."
+
+msgid "DLG_MH_COINS_DONE"
+msgstr "O meu tijolo! A Chave da Lua é de vocês. Levem-na ao Guarda da Ponte, na alameda ao norte do Campo das Moedas."
+
+msgid "DLG_MH_COINS_WAIT"
+msgstr "Cento e catorze... perdi a conta de novo. Voltem depois, sim?"
+
+msgid "DLG_MH_GUARD_1"
+msgstr "Alto! Atrás deste portão fica o Pátio do Vulcão, e lá manda o Rei-Lagarto. Ele sai da lava quando quer e queima o que vê pela frente."
+
+msgid "DLG_MH_GUARD_2"
+msgstr "O portão só abre com DUAS chaves: a do Sol e a da Lua. A primeira está com o Velho Jardineiro, na vila; a segunda, com a Moedeira, nos Degraus de Pedra."
+
+msgid "DLG_MH_GUARD_3"
+msgstr "Tragam as duas chaves a mim e eu abro a passagem. Depois disso, é com vocês."
+
+msgid "DLG_MH_GUARD_ACTIVE"
+msgstr "Só abro com as duas chaves, Sol e Lua, na mesma bolsa. O Jardineiro fica na vila; a Moedeira, nos Degraus de Pedra, a leste."
+
+msgid "DLG_MH_GUARD_DONE"
+msgstr "As duas chaves! O portão está aberto. Levem água, se tiverem: lá dentro o chão ferve."
+
+msgid "VALUABLE_MUSHROOM_BOOK_1"
+msgstr "Almanaque do Jardineiro"
+
+msgid "VALUABLE_MUSHROOM_BOOK_1_DESC"
+msgstr "Entregue por Velho Jardineiro. Leve o grupo ao Altar do Toco Antigo: lido diante da pedra, o livro desperta Bruto Esporento. Some da bolsa quando Bruto Esporento cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_MUSHROOM_BOOK_1"
+msgstr "Leve este livro, Almanaque do Jardineiro, ao Altar do Toco Antigo: lido diante da pedra, ele desperta Bruto Esporento. Traga-me Esporo Dourado, que ele guarda, e eu lhes entrego a chave."
+
+msgid "VALUABLE_MUSHROOM_BOOK_2"
+msgstr "Livro-Caixa da Moedeira"
+
+msgid "VALUABLE_MUSHROOM_BOOK_2_DESC"
+msgstr "Entregue por Moedeira. Leve o grupo ao Altar do Toco Antigo: lido diante da pedra, o livro desperta Jacaré-Musgo. Some da bolsa quando Jacaré-Musgo cair. Não pode ser vendido nem perdido."
+
+msgid "DLG_MUSHROOM_BOOK_2"
+msgstr "Leve este livro, Livro-Caixa da Moedeira, ao Altar do Toco Antigo: lido diante da pedra, ele desperta Jacaré-Musgo. Traga-me Tijolo-Estrela, que ele guarda, e eu lhes entrego a chave."
+
+msgid "NPC_MUSHROOM_ALTAR"
+msgstr "Altar do Toco Antigo"
+
+msgid "DLG_MUSHROOM_ALTAR_1"
+msgstr "Você apoia Almanaque do Jardineiro na pedra do Altar do Toco Antigo e lê em voz alta. O chão treme, e Bruto Esporento se levanta diante do altar."
+
+msgid "DLG_MUSHROOM_ALTAR_2"
+msgstr "Você apoia Livro-Caixa da Moedeira na pedra do Altar do Toco Antigo e lê em voz alta. O ar pesa, e Jacaré-Musgo surge diante do altar."
+
+msgid "DLG_MUSHROOM_ALTAR_LOCKED"
+msgstr "A pedra não reage. Há um vazio no centro, do tamanho de um livro: Almanaque do Jardineiro ou Livro-Caixa da Moedeira devem ter o que falta."
+
+msgid "VALUABLE_VOLCANO_CROWN"
+msgstr "Coroa do Vulcão"
+
+msgid "VALUABLE_VOLCANO_CROWN_DESC"
+msgstr "Largado por Rei-Lagarto Vulcânico, o chefe do mapa. Não pode ser vendido nem perdido: leve-o a quem o pediu."

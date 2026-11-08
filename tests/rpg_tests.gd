@@ -591,14 +591,14 @@ func _test_skill_anims() -> void:
 ## Caixotes (poção ou Mímico) e potes (moedas ou Mímico) quebráveis em grupos nos cantos em todos os mapas de combate.
 func _test_crates_pots() -> void:
 	var bad: Array[String] = []
-	for area_id: String in ["sewers_01_drains", "forest_01_path", "ruins_01_city", "cemetery_01_yard", "fort_01_gate", "catacombs_01_depths", "desert_01_canyon", "docks_01_pier", "mine_01_crystal_vein", "bunker_01_entrance", "dark_forest_01_woods"]:
+	for area_id: String in ["sewers_01_drains", "forest_01_path", "ruins_01_city", "cemetery_01_yard", "fort_01_gate", "catacombs_01_depths", "desert_01_canyon", "docks_01_pier", "mine_01_crystal_vein", "bunker_01_entrance", "dark_forest_01_woods", "mushroom_01_hills"]:
 		var list: Array = GameData.arenas[area_id].breakables
 		var crates: Array = list.filter(func(b: Dictionary) -> bool: return b.monster == "crate")
 		var pots: Array = list.filter(func(b: Dictionary) -> bool: return b.monster == "pot")
 		if crates.size() < 3 or pots.size() < 5 or not list.all(func(b: Dictionary) -> bool: return GameData.monsters.get(b.monster, {}).get("breakable", false) and GameData.monsters[b.monster].look != "barrel"):
 			bad.append(area_id)
 	var gate_ok := true
-	for map_id: String in ["ruins_01_city", "cemetery_01_yard", "fort_01_gate", "catacombs_01_depths", "desert_01_canyon", "mine_01_crystal_vein", "bunker_01_entrance", "dark_forest_01_woods", "forest_01_path", "sewers_01_drains", "docks_01_pier"]:
+	for map_id: String in ["ruins_01_city", "cemetery_01_yard", "fort_01_gate", "catacombs_01_depths", "desert_01_canyon", "mine_01_crystal_vein", "bunker_01_entrance", "dark_forest_01_woods", "forest_01_path", "sewers_01_drains", "docks_01_pier", "mushroom_01_hills"]:
 		var quest_id := ""
 		for id: String in GameData.quests:
 			if GameData.quests[id] is Dictionary and (GameData.quests[id].get("type", "") == "main" or GameData.quests[id].get("opens_map", false)) and GameData.quests[id].get("area", "") == map_id:
@@ -611,7 +611,7 @@ func _test_crates_pots() -> void:
 
 
 func _test_map_mechanics() -> void:
-	var maps := ["sewers_01_drains", "forest_01_path", "ruins_01_city", "cemetery_01_yard", "fort_01_gate", "catacombs_01_depths", "desert_01_canyon", "docks_01_pier", "mine_01_crystal_vein", "bunker_01_entrance", "dark_forest_01_woods"]
+	var maps := ["sewers_01_drains", "forest_01_path", "ruins_01_city", "cemetery_01_yard", "fort_01_gate", "catacombs_01_depths", "desert_01_canyon", "docks_01_pier", "mine_01_crystal_vein", "bunker_01_entrance", "dark_forest_01_woods", "mushroom_01_hills"]
 	var bad: Array[String] = []
 	for area_id: String in maps:
 		var area: Dictionary = GameData.arenas[area_id]

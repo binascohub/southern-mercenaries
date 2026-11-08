@@ -5363,3 +5363,213 @@ msgstr "Cangrejo de Oro"
 
 msgid "MONSTER_SKELETON_PIRATE"
 msgstr "Esqueleto Pirata"
+
+msgid "AREA_BROTHEL"
+msgstr "Burdel de la Sirena Carmesí"
+
+msgid "PROP_BROTHEL"
+msgstr "Burdel"
+
+msgid "MONSTER_FLESH_PLANT"
+msgstr "Planta Carnívora"
+
+msgid "ARENA_MUSHROOM"
+msgstr "Colinas de los Hongos"
+
+msgid "PROP_TO_MUSHROOM"
+msgstr "Camino a las Colinas de los Hongos"
+
+msgid "MONSTER_MH_BUNNY"
+msgstr "Conejo Espolón"
+
+msgid "MONSTER_MH_DRAGONLING"
+msgstr "Dragoncito de Brasa"
+
+msgid "MONSTER_MH_LYNX"
+msgstr "Lince de las Colinas"
+
+msgid "MONSTER_MH_GHOST"
+msgstr "Espectro de Esporas"
+
+msgid "MONSTER_MH_MOSS_GATOR"
+msgstr "Caimán Musgoso"
+
+msgid "MONSTER_MH_SPORE_BRUTE"
+msgstr "Bruto Esporoso"
+
+msgid "MONSTER_MH_LIZARD_KING"
+msgstr "Rey Lagarto Volcánico"
+
+msgid "TOAST_MH_GATOR_WAVE"
+msgstr "El Caimán Musgoso golpea el estanque: ¡oleada {n} de bichos!"
+
+msgid "TOAST_MH_BRUTE_WAVE"
+msgstr "El Bruto Esporoso suelta esporas: ¡oleada {n}!"
+
+msgid "TOAST_MH_KING_WAVE"
+msgstr "El Rey Lagarto ruge y el volcán responde: ¡oleada {n}!"
+
+msgid "TOAST_MH_BRUTE_AWAKENS"
+msgstr "El tocón se abre en una nube lila: ¡el Bruto Esporoso despierta!"
+
+msgid "TOAST_MH_GATOR_AWAKENS"
+msgstr "El estanque burbujea: ¡el Caimán Musgoso sube a los Escalones!"
+
+msgid "NPC_ROYAL_BOTANIST"
+msgstr "Botánica Real"
+
+msgid "NPC_MH_GARDENER"
+msgstr "Viejo Jardinero"
+
+msgid "NPC_MH_OLD_STUMP"
+msgstr "Tocón Antiguo"
+
+msgid "NPC_MH_COIN_KEEPER"
+msgstr "Guardamonedas"
+
+msgid "NPC_MH_BRIDGE_GUARD"
+msgstr "Guardia del Puente"
+
+msgid "VALUABLE_STAR_BRICK"
+msgstr "Ladrillo Estrella"
+
+msgid "VALUABLE_GOLDEN_SPORE"
+msgstr "Espora Dorada"
+
+msgid "VALUABLE_KEY_SUN"
+msgstr "Llave del Sol"
+
+msgid "VALUABLE_KEY_MOON"
+msgstr "Llave de la Luna"
+
+msgid "QUEST_MAP_MUSHROOM"
+msgstr "Las Colinas en Brasas"
+
+msgid "QUEST_MAP_MUSHROOM_DESC"
+msgstr "Botánica Real quiere Corona del Volcán, que Rey Lagarto Volcánico guarda en el fondo del mapa. Consigue los libros con los lugareños, despierta a los minijefes en el altar, cambia sus objetos por las llaves, abre el portón con el guardián y derrota a Rey Lagarto Volcánico. Entrega Corona del Volcán a Botánica Real por una recompensa en oro."
+
+msgid "QUEST_MH_SPORE"
+msgstr "La espora dorada"
+
+msgid "QUEST_MH_SPORE_DESC"
+msgstr "El Viejo Jardinero guardaba la Espora Dorada, la semilla de todos los hongos de las colinas, y el Bruto Esporoso se la tragó. Despiértalo, derrótalo y trae la espora: a cambio recibes la Llave del Sol, una de las dos del portón del Rey Lagarto."
+
+msgid "QUEST_MH_BRICK"
+msgstr "El ladrillo estrella"
+
+msgid "QUEST_MH_BRICK_DESC"
+msgstr "La Guardamonedas contaba las monedas de las colinas sobre el Ladrillo Estrella, hasta que el Caimán Musgoso se lo tragó. Despierta al caimán, derrótalo y trae el ladrillo para recibir la Llave de la Luna, la otra del portón del Rey Lagarto."
+
+msgid "QUEST_MH_GATE"
+msgstr "El portón del volcán"
+
+msgid "QUEST_MH_GATE_DESC"
+msgstr "El Guardia del Puente solo abre el portón a quien traiga las dos llaves: la del Sol (Viejo Jardinero) y la de la Luna (Guardamonedas). Tras él está el Patio del Volcán del Rey Lagarto."
+
+msgid "DLG_BOTANIST_1"
+msgstr "¡Ah, volvieron del Desierto! Entonces aguantan el calor. Bien, porque necesito gente que aguante el calor."
+
+msgid "DLG_BOTANIST_2"
+msgstr "Tras el portón de la plaza están las Colinas de los Hongos, de donde vienen todos los hongos del jardín real. Un lagarto enorme salió del volcán y lo está quemando todo."
+
+msgid "DLG_BOTANIST_3"
+msgstr "Hablen con los aldeanos: saben cómo llegar al volcán. Y derriben al Rey Lagarto Volcánico antes de que no quede un sombrero de hongo en pie."
+
+msgid "DLG_BOTANIST_ACTIVE"
+msgstr "El portón de las Colinas está en la plaza, en la fila de portones al sur. Sigan el sendero hasta la aldea de los hongos."
+
+msgid "DLG_BOTANIST_DONE"
+msgstr "¡Las colinas vuelven a dar hongos! El jardín real lo agradece, y yo también."
+
+msgid "DLG_MH_GARDENER_1"
+msgstr "Cuidado dónde pisan, forasteros: cada hongo de estas colinas lo plantaron estas manos viejas."
+
+msgid "DLG_MH_GARDENER_2"
+msgstr "Yo guardaba la Espora Dorada, la semilla de todos. Un bruto lila salió del Tocón Antiguo, en el Bosque de los Sombreros Gigantes, y se la tragó entera."
+
+msgid "DLG_MH_GARDENER_3"
+msgstr "Derriben al Bruto Esporoso y traigan la espora. A cambio doy la Llave del Sol, una de las dos que abren el portón del volcán."
+
+msgid "DLG_MH_GARDENER_ACTIVE"
+msgstr "El Bosque de los Sombreros Gigantes está al oeste de la aldea, tras el puente. La espora brilla como oro: no tiene pérdida."
+
+msgid "DLG_MH_GARDENER_DONE"
+msgstr "¡La Espora Dorada! Ya siento la tierra más blanda. La Llave del Sol es suya: llévenla al Guardia del Puente, junto con la de la Luna."
+
+msgid "DLG_MH_STUMP_1"
+msgstr "El tocón es blando y tibio, cubierto de polvo lila. Algo grande respira adentro."
+
+msgid "DLG_MH_STUMP_2"
+msgstr "¡El Bruto Esporoso despierta!"
+
+msgid "DLG_MH_STUMP_LOCKED"
+msgstr "Un tocón viejo lleno de hongos. Nada responde a sus manos."
+
+msgid "DLG_MH_COINS_1"
+msgstr "Ciento doce, ciento trece... ¡ah, visitas! Cuento las monedas que brotan de estas colinas. Cada día nacen más."
+
+msgid "DLG_MH_COINS_2"
+msgstr "Contaba encima del Ladrillo Estrella, que nunca se equivoca. Un caimán cubierto de musgo subió del estanque a los Escalones de Piedra y se tragó el ladrillo entero."
+
+msgid "DLG_MH_COINS_3"
+msgstr "Llamaré al caimán para ustedes, aquí en los Escalones. Derríbenlo y traigan el ladrillo: doy la Llave de la Luna, la otra del portón del volcán."
+
+msgid "DLG_MH_COINS_ACTIVE"
+msgstr "El ladrillo tiene una estrella dorada en el medio. Está en la panza del caimán. Derríbenlo y tráiganmelo."
+
+msgid "DLG_MH_COINS_DONE"
+msgstr "¡Mi ladrillo! La Llave de la Luna es suya. Llévenla al Guardia del Puente, en la alameda al norte del Campo de las Monedas."
+
+msgid "DLG_MH_COINS_WAIT"
+msgstr "Ciento catorce... perdí la cuenta otra vez. Vuelvan luego, ¿sí?"
+
+msgid "DLG_MH_GUARD_1"
+msgstr "¡Alto! Tras este portón está el Patio del Volcán, y allí manda el Rey Lagarto. Sale de la lava cuando quiere y quema lo que ve."
+
+msgid "DLG_MH_GUARD_2"
+msgstr "El portón solo abre con DOS llaves: la del Sol y la de la Luna. La primera la tiene el Viejo Jardinero, en la aldea; la segunda, la Guardamonedas, en los Escalones de Piedra."
+
+msgid "DLG_MH_GUARD_3"
+msgstr "Tráiganme las dos llaves y abro el paso. Después de eso, es cosa suya."
+
+msgid "DLG_MH_GUARD_ACTIVE"
+msgstr "Solo abro con las dos llaves, Sol y Luna, en la misma bolsa. El Jardinero está en la aldea; la Guardamonedas, en los Escalones de Piedra, al este."
+
+msgid "DLG_MH_GUARD_DONE"
+msgstr "¡Las dos llaves! El portón está abierto. Lleven agua si tienen: adentro el suelo hierve."
+
+msgid "VALUABLE_MUSHROOM_BOOK_1"
+msgstr "Almanaque del Jardinero"
+
+msgid "VALUABLE_MUSHROOM_BOOK_1_DESC"
+msgstr "Entregado por Viejo Jardinero. Lleva al grupo al Altar del Tocón Antiguo: leído ante la piedra, el libro despierta a Bruto Esporoso. Desaparece de la bolsa cuando Bruto Esporoso cae. No se puede vender ni perder."
+
+msgid "DLG_MUSHROOM_BOOK_1"
+msgstr "Lleven este libro, Almanaque del Jardinero, al Altar del Tocón Antiguo: leído ante la piedra, despierta a Bruto Esporoso. Tráiganme Espora Dorada, que guarda, y les entrego la llave."
+
+msgid "VALUABLE_MUSHROOM_BOOK_2"
+msgstr "Libro de Cuentas de la Guardamonedas"
+
+msgid "VALUABLE_MUSHROOM_BOOK_2_DESC"
+msgstr "Entregado por Guardamonedas. Lleva al grupo al Altar del Tocón Antiguo: leído ante la piedra, el libro despierta a Caimán Musgoso. Desaparece de la bolsa cuando Caimán Musgoso cae. No se puede vender ni perder."
+
+msgid "DLG_MUSHROOM_BOOK_2"
+msgstr "Lleven este libro, Libro de Cuentas de la Guardamonedas, al Altar del Tocón Antiguo: leído ante la piedra, despierta a Caimán Musgoso. Tráiganme Ladrillo Estrella, que guarda, y les entrego la llave."
+
+msgid "NPC_MUSHROOM_ALTAR"
+msgstr "Altar del Tocón Antiguo"
+
+msgid "DLG_MUSHROOM_ALTAR_1"
+msgstr "Apoyas Almanaque del Jardinero en la piedra del Altar del Tocón Antiguo y lees en voz alta. El suelo tiembla y Bruto Esporoso se levanta ante el altar."
+
+msgid "DLG_MUSHROOM_ALTAR_2"
+msgstr "Apoyas Libro de Cuentas de la Guardamonedas en la piedra del Altar del Tocón Antiguo y lees en voz alta. El aire pesa y Caimán Musgoso aparece ante el altar."
+
+msgid "DLG_MUSHROOM_ALTAR_LOCKED"
+msgstr "La piedra no reacciona. Hay un hueco en el centro, del tamaño de un libro: Almanaque del Jardinero o Libro de Cuentas de la Guardamonedas deben tener lo que falta."
+
+msgid "VALUABLE_VOLCANO_CROWN"
+msgstr "Corona del Volcán"
+
+msgid "VALUABLE_VOLCANO_CROWN_DESC"
+msgstr "Soltado por Rey Lagarto Volcánico, el jefe del mapa. No se puede vender ni perder: llévalo a quien lo pidió."

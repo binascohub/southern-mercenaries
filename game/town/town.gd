@@ -314,7 +314,7 @@ func _open_portals() -> void:
 ## dos mapas da cidade onde está agora estão concluídas; as outras cidades aparecem na lista desde o começo.
 const HUB_MAPS := {
 	"tortuga": ["sewers_01_drains", "forest_01_path", "docks_01_pier", "ruins_01_city"],
-	"capital_01_aurenhold": ["cemetery_01_yard", "fort_01_gate", "catacombs_01_depths", "desert_01_canyon"],
+	"capital_01_aurenhold": ["cemetery_01_yard", "fort_01_gate", "catacombs_01_depths", "desert_01_canyon", "mushroom_01_hills"],
 	"farm_01_fields": ["mine_01_crystal_vein", "bunker_01_entrance", "dark_forest_01_woods"],
 }
 

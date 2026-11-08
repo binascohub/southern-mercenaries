@@ -605,7 +605,7 @@
         ],
         [
           {
-            "monster": "acid_toad",
+            "monster": "forest_flesh_plant",
             "count": 2
           }
         ],
@@ -625,7 +625,7 @@
             "count": 1
           },
           {
-            "monster": "acid_toad",
+            "monster": "forest_flesh_plant",
             "count": 1
           }
         ]
@@ -4883,5 +4883,394 @@
     "sound": "shade",
     "role": "normal",
     "_comment": "Esqueleto Pirata (\"Skeleton Pirate \\\"The Captin\\\"\", FireGoat, CC BY 4.0): esqueleto de casaca e chapéu, sabre e perna de pau; no lugar do Polvo de Tinta nas Docas, com a mesma vida e dano, mas de corpo a corpo (corte de sabre). Água."
+  },
+  "forest_flesh_plant": {
+    "_comment": "Planta Carnívora (\"Cartoon flesh-eating plant\", Jungle Jim, CC BY 4.0): no lugar do Sapo Ácido na Floresta, com os mesmos números. Fica plantada e cospe veneno onde o herói está (marca no chão antes) e deixa uma poça tóxica.",
+    "name_key": "MONSTER_FLESH_PLANT",
+    "max_health": 210,
+    "move_speed": 0.0,
+    "damage": 16,
+    "attack_range": 9.0,
+    "attack_windup": 0.9,
+    "attack_cooldown": 2.4,
+    "aggro_range": 40.0,
+    "size": 1.3,
+    "category": "common",
+    "element": "water",
+    "ai": "ranged",
+    "keep_distance": 0.0,
+    "spit": {
+      "radius": 1.6,
+      "puddle_time": 5.0,
+      "puddle_dps": 4.0,
+      "glob": [
+        0.45,
+        0.95,
+        0.2
+      ]
+    },
+    "look": "flesh_plant",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "role": "normal",
+    "sound": "slime"
+  },
+  "mh_bunny": {
+    "name_key": "MONSTER_MH_BUNNY",
+    "max_health": 84,
+    "move_speed": 4.8,
+    "damage": 8,
+    "attack_range": 1.4,
+    "attack_windup": 0.4,
+    "attack_cooldown": 1.1,
+    "aggro_range": 40.0,
+    "size": 1.1,
+    "category": "common",
+    "element": "earth",
+    "ai": "melee",
+    "look": "rabbit",
+    "color": [
+      0.95,
+      0.7,
+      0.85
+    ],
+    "role": "swarm",
+    "sound": "beast",
+    "_comment": "Coelho-Espora: coelho rosado das colinas que anda em bando e morde rápido."
+  },
+  "mh_dragonling": {
+    "name_key": "MONSTER_MH_DRAGONLING",
+    "max_health": 136,
+    "move_speed": 3.8,
+    "damage": 12,
+    "attack_range": 2.0,
+    "attack_windup": 0.7,
+    "attack_cooldown": 1.6,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "fire",
+    "ai": "melee",
+    "look": "baby_dragon",
+    "color": [
+      1.0,
+      0.55,
+      0.35
+    ],
+    "role": "light",
+    "sound": "beast",
+    "fireball": {
+      "_comment": "Bafo de brasa: cospe uma bolinha de fogo onde o herói está; o chão fica em brasa um instante.",
+      "min": 3.5,
+      "max": 10.0,
+      "windup": 0.8,
+      "cooldown": 5.5,
+      "radius": 1.5,
+      "damage_mult": 0.8,
+      "element": "fire",
+      "puddle_time": 2.5,
+      "puddle_dps": 4.0,
+      "glob": [
+        1.0,
+        0.45,
+        0.1
+      ],
+      "glob_size": 0.7
+    },
+    "_comment": "Dragãozinho de Brasa: filhote de dragão que pula pelas colinas e cospe brasa."
+  },
+  "mh_lynx": {
+    "name_key": "MONSTER_MH_LYNX",
+    "max_health": 210,
+    "move_speed": 4.2,
+    "damage": 16,
+    "attack_range": 2.0,
+    "attack_windup": 0.7,
+    "attack_cooldown": 1.6,
+    "aggro_range": 40.0,
+    "size": 1.2,
+    "category": "common",
+    "element": "earth",
+    "ai": "charger",
+    "look": "lynx",
+    "color": [
+      1.0,
+      0.85,
+      0.6
+    ],
+    "role": "normal",
+    "sound": "beast",
+    "charge": {
+      "min": 4.0,
+      "max": 10.0,
+      "windup": 0.8,
+      "speed": 13.0,
+      "time": 0.5,
+      "damage_mult": 1.2,
+      "cooldown": 5.0
+    },
+    "_comment": "Lince das Colinas: caçador malhado que dá o bote de longe."
+  },
+  "mh_ghost": {
+    "name_key": "MONSTER_MH_GHOST",
+    "max_health": 136,
+    "move_speed": 3.0,
+    "damage": 12,
+    "attack_range": 9.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 2.6,
+    "aggro_range": 40.0,
+    "size": 1.3,
+    "category": "common",
+    "element": "air",
+    "ai": "ranged",
+    "look": "ghost_wing",
+    "color": [
+      0.75,
+      1.0,
+      0.8
+    ],
+    "role": "light",
+    "keep_distance": 6.0,
+    "sound": "shade",
+    "spit": {
+      "_comment": "Nuvem de esporos: deixa uma poça de esporos venenosos no chão.",
+      "radius": 2.0,
+      "damage_mult": 0.6,
+      "puddle_time": 4.0,
+      "puddle_dps": 5.0,
+      "glob": [
+        0.55,
+        0.95,
+        0.5
+      ]
+    },
+    "_comment": "Fantasma de Esporos: alma alada dos cogumelos velhos; solta nuvens de esporos de longe."
+  },
+  "mh_moss_gator": {
+    "name_key": "MONSTER_MH_MOSS_GATOR",
+    "max_health": 210,
+    "move_speed": 2.8,
+    "damage": 16,
+    "attack_range": 2.8,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 2.8,
+    "category": "miniboss",
+    "element": "water",
+    "ai": "melee",
+    "look": "gator",
+    "color": [
+      0.6,
+      0.95,
+      0.55
+    ],
+    "role": "normal",
+    "sound": "beast",
+    "quest_drop": "star_brick",
+    "slam": {
+      "_comment": "Bote que arrasta: bate o rabo no chão e puxa para a boca quem está em volta.",
+      "interval": 7.5,
+      "radius": 5.5,
+      "windup": 1.0,
+      "damage_mult": 1.1,
+      "pull": 4.5
+    },
+    "waves": {
+      "first": 8.0,
+      "interval": 22.0,
+      "radius": 6.0,
+      "toast": "TOAST_MH_GATOR_WAVE",
+      "list": [
+        [
+          {
+            "monster": "mh_bunny",
+            "count": 4
+          }
+        ],
+        [
+          {
+            "monster": "mh_lynx",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "mh_ghost",
+            "count": 1
+          },
+          {
+            "monster": "mh_bunny",
+            "count": 3
+          }
+        ]
+      ]
+    },
+    "_comment": "Mini-chefe das Colinas (Degraus de Pedra): o Jacaré-Musgo, jacaré gigante coberto de musgo que sobe do lago e engoliu o Tijolo-Estrela; bote que arrasta e ondas."
+  },
+  "mh_spore_brute": {
+    "name_key": "MONSTER_MH_SPORE_BRUTE",
+    "max_health": 210,
+    "move_speed": 3.0,
+    "damage": 16,
+    "attack_range": 2.6,
+    "attack_windup": 0.7,
+    "attack_cooldown": 1.6,
+    "aggro_range": 40.0,
+    "size": 2.4,
+    "category": "miniboss",
+    "element": "earth",
+    "ai": "melee",
+    "look": "pork_shark",
+    "color": [
+      0.8,
+      0.65,
+      1.0
+    ],
+    "role": "normal",
+    "sound": "ogre",
+    "quest_drop": "golden_spore",
+    "slam": {
+      "_comment": "Sopro de esporos: solta uma nuvem em volta de si que deixa lento quem está perto.",
+      "interval": 7.0,
+      "radius": 5.0,
+      "windup": 1.0,
+      "damage_mult": 0.9,
+      "slow": [
+        0.45,
+        2.5
+      ]
+    },
+    "waves": {
+      "first": 8.0,
+      "interval": 22.0,
+      "radius": 6.0,
+      "toast": "TOAST_MH_BRUTE_WAVE",
+      "list": [
+        [
+          {
+            "monster": "mh_ghost",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "mh_bunny",
+            "count": 4
+          }
+        ],
+        [
+          {
+            "monster": "mh_ghost",
+            "count": 1
+          },
+          {
+            "monster": "mh_lynx",
+            "count": 1
+          }
+        ]
+      ]
+    },
+    "_comment": "Mini-chefe das Colinas (Bosque dos Chapéus Gigantes): o Bruto Esporento, gigante lilás coberto de esporos que engoliu o Esporo Dourado."
+  },
+  "mh_lizard_king": {
+    "name_key": "MONSTER_MH_LIZARD_KING",
+    "max_health": 6898,
+    "move_speed": 2.8,
+    "damage": 40,
+    "attack_range": 2.8,
+    "attack_windup": 0.8,
+    "attack_cooldown": 1.8,
+    "aggro_range": 40.0,
+    "size": 3.0,
+    "category": "boss",
+    "element": "fire",
+    "ai": "melee",
+    "look": "lizard",
+    "color": [
+      1.0,
+      0.45,
+      0.3
+    ],
+    "role": "normal",
+    "sound": "giant",
+    "aggressive": false,
+    "chest_loot": "chest",
+    "sweep": {
+      "_comment": "Rabo de lava: o rabo em brasa varre o chão em volta dele; pule-o ou fique longe.",
+      "interval": 13.0,
+      "windup": 1.3,
+      "duration": 4.5,
+      "speed": 95.0,
+      "length": 9.0,
+      "width": 1.0,
+      "damage_mult": 0.9
+    },
+    "barrage": {
+      "_comment": "Chuva do vulcão: pedras em brasa caem uma atrás da outra em volta de cada herói (a primeira em cima dele).",
+      "interval": 11.0,
+      "count": 5,
+      "radius": 2.2,
+      "spread": 6.0,
+      "delay": 1.4,
+      "step": 0.35,
+      "damage_mult": 0.8,
+      "max": 22.0,
+      "boom": [
+        1.0,
+        0.45,
+        0.15
+      ]
+    },
+    "waves": {
+      "first": 10.0,
+      "interval": 20.0,
+      "radius": 7.0,
+      "toast": "TOAST_MH_KING_WAVE",
+      "list": [
+        [
+          {
+            "monster": "mh_dragonling",
+            "count": 3
+          }
+        ],
+        [
+          {
+            "monster": "mh_lynx",
+            "count": 2
+          },
+          {
+            "monster": "mh_bunny",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "mh_dragonling",
+            "count": 2
+          },
+          {
+            "monster": "mh_ghost",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "mh_bunny",
+            "count": 3
+          },
+          {
+            "monster": "mh_dragonling",
+            "count": 2
+          }
+        ]
+      ]
+    },
+    "_comment": "Chefe final das Colinas: o Rei-Lagarto Vulcânico, lagarto gigante em brasa que guarda o Pátio do Vulcão atrás do portão; rabo de lava, chuva do vulcão e ondas.",
+    "quest_drop": "volcano_crown"
   }
 }

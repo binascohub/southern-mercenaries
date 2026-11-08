@@ -231,6 +231,11 @@ const FAMILIES := {
 	"gold_crab": {"scene": "res://assets/models/monsters/gold_crab.glb", "scale": 1.0,
 		"anims": {"idle": "scavenger_crab_fight_idle", "walk": "scavenger_crab_run", "run": "scavenger_crab_run", "attack": "scavenger_crab_attack",
 			"die": "scavenger_crab_dead"}},
+	# Planta Carnívora, no lugar dos Sapos Ácidos da Floresta ("Cartoon flesh-eating plant", Jungle Jim, CC BY 4.0; tools/assets/build_flesh_plant.py).
+	# Fica plantada (sem andar). O osso de repouso deixa a planta deitada, então ela sempre toca um trecho do "Attack1" (o único com todos os
+	# canais dos ossos): o cuspe é o bote inteiro acelerado ("speeds") e o parado é o primeiro segundo indo e voltando ("idle_clip").
+	"flesh_plant": {"scene": "res://assets/models/monsters/flesh_plant.glb", "scale": 1.0,
+		"anims": {"attack": "Armature|Attack1"}, "speeds": {"attack": 4.0}, "idle_clip": ["Armature|Attack1", 1.0]},
 	"magma_hound": {"scene": "res://assets/models/monsters/magma_hound.glb", "scale": 0.96,
 		"anims": {"idle": "Idle", "walk": "Walk", "run": "Walk", "attack": "Walk"}},
 	# Esqueleto Bêbado das Docas, no lugar do Peixe-Isca ('Skeleton Pirate "The Drunk"', FireGoat, CC BY 4.0; tools/assets/build_skeleton_drunk.py congela e junta as malhas,
@@ -311,6 +316,8 @@ const CHOMP_CLOSED := -0.25
 var family := ""
 var _anim: AnimationPlayer
 var _names := {}
+## Velocidade de cada animação ("speeds" da família; 1 = a do arquivo).
+var _speeds := {}
 var _current := ""
 var _materials: Array[StandardMaterial3D] = []
 var _tint := Color.WHITE
@@ -406,6 +413,9 @@ func setup(look: String, size: float, tint: Color) -> bool:
 	if info.has("wings"):
 		_add_back_wings(model, String(info.wings))
 	_anim = model.find_child("AnimationPlayer", true, false) as AnimationPlayer
+	_speeds = info.get("speeds", {})
+	if _anim and info.has("idle_clip"):
+		_add_idle_clip(_anim, String(info.idle_clip[0]), float(info.idle_clip[1]))
 	if _anim:
 		for key: String in info.anims:
 			var wanted: String = info.anims[key]
@@ -837,6 +847,19 @@ func wings_out() -> bool:
 	return _wings_out
 
 
+## Parado feito de um trecho de outra animação: os primeiros `length` segundos de `source`, indo e voltando em laço (modelos sem idle).
+func _add_idle_clip(anim: AnimationPlayer, source: String, length: float) -> void:
+	if not anim.has_animation(source):
+		return
+	var clip := anim.get_animation(source).duplicate(true) as Animation
+	clip.length = minf(length, clip.length)
+	clip.loop_mode = Animation.LOOP_PINGPONG
+	var library := AnimationLibrary.new()
+	library.add_animation(&"idle_clip", clip)
+	anim.add_animation_library(&"generated", library)
+	_names["idle"] = "generated/idle_clip"
+
+
 ## Toca a animação (idle, walk, run, attack, hit, die) se ainda não está nela.
 func play(key: String, blend := BLEND) -> void:
 	if key == _current or not _names.has(key):
@@ -852,7 +875,7 @@ func play(key: String, blend := BLEND) -> void:
 	if _anim == null:
 		return
 	_current = key
-	_anim.play(_names[key], blend)
+	_anim.play(_names[key], blend, float(_speeds.get(key, 1.0)))
 	if key == "die" and _skeleton and not _wings.is_empty():
 		show_wings(false)      # asas pretas do Senhor da Cripta: somem com a morte
 

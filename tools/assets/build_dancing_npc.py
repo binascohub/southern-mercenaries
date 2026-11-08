@@ -1,4 +1,4 @@
-"""Moça dançando no quarto do rei (Capital, sala king_bedroom): "Bouncy Beach babe walking in bikini (animated)", Jungle Jim na Sketchfab, CC BY 4.0
+"""Moça dançando no Bordel de Tortuga (área "brothel", tools/assets/build_brothel.py): "Bouncy Beach babe walking in bikini (animated)", Jungle Jim na Sketchfab, CC BY 4.0
 (arquivo trazido pelo autor do projeto). Personagem do Character Creator (esqueleto CC_Base de ~100 ossos), de biquíni, que no arquivo só caminha.
 Aqui ela é limpa e reduzida como as que andam (tools/assets/build_walking_npc.py: ~40 mil triângulos, texturas de 512 px) e ganha a dança da heroína
 (Dance_Loop de hero_female.glb, Universal Animation Library), passada para o esqueleto dela quadro a quadro: cada osso copia a orientação no mundo do osso

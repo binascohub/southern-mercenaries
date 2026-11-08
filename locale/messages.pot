@@ -5065,3 +5065,207 @@ msgstr ""
 
 msgid "MONSTER_GOLD_CRAB"
 msgstr ""
+
+msgid "MONSTER_FLESH_PLANT"
+msgstr ""
+
+msgid "ARENA_MUSHROOM"
+msgstr ""
+
+msgid "PROP_TO_MUSHROOM"
+msgstr ""
+
+msgid "MONSTER_MH_BUNNY"
+msgstr ""
+
+msgid "MONSTER_MH_DRAGONLING"
+msgstr ""
+
+msgid "MONSTER_MH_LYNX"
+msgstr ""
+
+msgid "MONSTER_MH_GHOST"
+msgstr ""
+
+msgid "MONSTER_MH_MOSS_GATOR"
+msgstr ""
+
+msgid "MONSTER_MH_SPORE_BRUTE"
+msgstr ""
+
+msgid "MONSTER_MH_LIZARD_KING"
+msgstr ""
+
+msgid "TOAST_MH_GATOR_WAVE"
+msgstr ""
+
+msgid "TOAST_MH_BRUTE_WAVE"
+msgstr ""
+
+msgid "TOAST_MH_KING_WAVE"
+msgstr ""
+
+msgid "TOAST_MH_BRUTE_AWAKENS"
+msgstr ""
+
+msgid "TOAST_MH_GATOR_AWAKENS"
+msgstr ""
+
+msgid "NPC_ROYAL_BOTANIST"
+msgstr ""
+
+msgid "NPC_MH_GARDENER"
+msgstr ""
+
+msgid "NPC_MH_OLD_STUMP"
+msgstr ""
+
+msgid "NPC_MH_COIN_KEEPER"
+msgstr ""
+
+msgid "NPC_MH_BRIDGE_GUARD"
+msgstr ""
+
+msgid "VALUABLE_STAR_BRICK"
+msgstr ""
+
+msgid "VALUABLE_GOLDEN_SPORE"
+msgstr ""
+
+msgid "VALUABLE_KEY_SUN"
+msgstr ""
+
+msgid "VALUABLE_KEY_MOON"
+msgstr ""
+
+msgid "QUEST_MAP_MUSHROOM"
+msgstr ""
+
+msgid "QUEST_MAP_MUSHROOM_DESC"
+msgstr ""
+
+msgid "QUEST_MH_SPORE"
+msgstr ""
+
+msgid "QUEST_MH_SPORE_DESC"
+msgstr ""
+
+msgid "QUEST_MH_BRICK"
+msgstr ""
+
+msgid "QUEST_MH_BRICK_DESC"
+msgstr ""
+
+msgid "QUEST_MH_GATE"
+msgstr ""
+
+msgid "QUEST_MH_GATE_DESC"
+msgstr ""
+
+msgid "DLG_BOTANIST_1"
+msgstr ""
+
+msgid "DLG_BOTANIST_2"
+msgstr ""
+
+msgid "DLG_BOTANIST_3"
+msgstr ""
+
+msgid "DLG_BOTANIST_ACTIVE"
+msgstr ""
+
+msgid "DLG_BOTANIST_DONE"
+msgstr ""
+
+msgid "DLG_MH_GARDENER_1"
+msgstr ""
+
+msgid "DLG_MH_GARDENER_2"
+msgstr ""
+
+msgid "DLG_MH_GARDENER_3"
+msgstr ""
+
+msgid "DLG_MH_GARDENER_ACTIVE"
+msgstr ""
+
+msgid "DLG_MH_GARDENER_DONE"
+msgstr ""
+
+msgid "DLG_MH_STUMP_1"
+msgstr ""
+
+msgid "DLG_MH_STUMP_2"
+msgstr ""
+
+msgid "DLG_MH_STUMP_LOCKED"
+msgstr ""
+
+msgid "DLG_MH_COINS_1"
+msgstr ""
+
+msgid "DLG_MH_COINS_2"
+msgstr ""
+
+msgid "DLG_MH_COINS_3"
+msgstr ""
+
+msgid "DLG_MH_COINS_ACTIVE"
+msgstr ""
+
+msgid "DLG_MH_COINS_DONE"
+msgstr ""
+
+msgid "DLG_MH_COINS_WAIT"
+msgstr ""
+
+msgid "DLG_MH_GUARD_1"
+msgstr ""
+
+msgid "DLG_MH_GUARD_2"
+msgstr ""
+
+msgid "DLG_MH_GUARD_3"
+msgstr ""
+
+msgid "DLG_MH_GUARD_ACTIVE"
+msgstr ""
+
+msgid "DLG_MH_GUARD_DONE"
+msgstr ""
+
+msgid "VALUABLE_MUSHROOM_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_MUSHROOM_BOOK_1_DESC"
+msgstr ""
+
+msgid "DLG_MUSHROOM_BOOK_1"
+msgstr ""
+
+msgid "VALUABLE_MUSHROOM_BOOK_2"
+msgstr ""
+
+msgid "VALUABLE_MUSHROOM_BOOK_2_DESC"
+msgstr ""
+
+msgid "DLG_MUSHROOM_BOOK_2"
+msgstr ""
+
+msgid "NPC_MUSHROOM_ALTAR"
+msgstr ""
+
+msgid "DLG_MUSHROOM_ALTAR_1"
+msgstr ""
+
+msgid "DLG_MUSHROOM_ALTAR_2"
+msgstr ""
+
+msgid "DLG_MUSHROOM_ALTAR_LOCKED"
+msgstr ""
+
+msgid "VALUABLE_VOLCANO_CROWN"
+msgstr ""
+
+msgid "VALUABLE_VOLCANO_CROWN_DESC"
+msgstr ""

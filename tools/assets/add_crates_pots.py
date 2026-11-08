@@ -6,7 +6,7 @@ uso: python3 tools/assets/add_crates_pots.py   (a partir da raiz do projeto)"""
 import json, math, random, re
 ARENAS, LOOT = "data/arenas.json", "data/loot.json"
 MAPS = ["sewers_01_drains", "forest_01_path", "ruins_01_city", "cemetery_01_yard", "fort_01_gate", "catacombs_01_depths", "desert_01_canyon", "docks_01_pier", "mine_01_crystal_vein",
-        "bunker_01_entrance", "dark_forest_01_woods"]
+        "bunker_01_entrance", "dark_forest_01_woods", "mushroom_01_hills"]
 BLOCKERS = ("Fort_", "Wall_", "Roof_", "Canyon_Rock", "Bk_", "Ruin_", "Cliff", "Corner_", "Pr_Obelisk", "Gatehouse")
 arenas = json.load(open(ARENAS, encoding="utf-8"))
 loot = json.load(open(LOOT, encoding="utf-8"))

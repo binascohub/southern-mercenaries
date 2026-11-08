@@ -83,6 +83,7 @@ const CIVIL_POSES := {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand":
 	"punch_jab": "Punch_Jab", "punch_cross": "Punch_Cross", "hit": "Hit_Chest", "hit_head": "Hit_Head", "fold_arms": "Idle_FoldArms_Loop"}
 const CHEER_POSES := {"idle": "cheer", "talk": "cheer", "stand": "cheer", "dance": "cheer"}  # a torcida: qualquer pose é a comemoração
 const VILLAGER_POSES := {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop", "run": "Jog_Fwd_Loop",
+	"sit": "Sitting_Idle_Loop", "sit_talk": "Sitting_Talking_Loop",
 	"dance_sway": "Dance_Loop", "dance_hips": "Dance_Loop", "dance_twirl": "Dance_Loop", "dance_wild": "Dance_Loop"}
 
 const MODELS := {
@@ -105,12 +106,18 @@ const MODELS := {
 	# Mulher de vestido (z-h Fantasy Outfit 21 FREE, woman1.zip do autor; autoria e licença a confirmar): vestido longo bordô de mangas transparentes sobre a cabeça, o cabelo
 	# comprido e as mãos da heroína, presos ao esqueleto dos heróis por tools/assets/build_woman_dress.py, com as animações deles.
 	"woman_dress": {"scene": "res://assets/models/characters/woman_dress.glb", "scale": 1.0, "poses": VILLAGER_POSES},
-	# Moças que andam no quarto do rei (Capital): "Anna Ipati (animated)" e "Adriana Ilma (animated)", Jungle Jim, CC BY 4.0 (tools/assets/build_walking_npc.py):
+	# Moças que andam no Bordel de Tortuga: "Anna Ipati (animated)" e "Adriana Ilma (animated)", Jungle Jim, CC BY 4.0 (tools/assets/build_walking_npc.py):
 	# personagens do Character Creator de biquíni, ~1,7 m, com a caminhada própria no lugar e uma pose parada para as pontas do caminho.
 	"anna_walker": {"scene": "res://assets/models/characters/anna_walker.glb", "scale": 1.0,
 		"poses": {"idle": "idle", "stand": "idle", "talk": "idle", "walk": "walk"}},
 	"adriana_walker": {"scene": "res://assets/models/characters/adriana_walker.glb", "scale": 1.0,
 		"poses": {"idle": "idle", "stand": "idle", "talk": "idle", "walk": "walk"}},
+	# Moças que dançam no Bordel de Tortuga: "Bouncy Beach babe walking in bikini (animated)" e "Asila Insbach", Jungle Jim, CC BY 4.0
+	# (tools/assets/build_dancing_npc.py): a dança da heroína (Dance_Loop) passada para o esqueleto delas; "walk" é a caminhada do arquivo (a da Asila é parada).
+	"beach_dancer": {"scene": "res://assets/models/characters/beach_dancer.glb", "scale": 1.0,
+		"poses": {"idle": "dance", "dance": "dance", "stand": "idle", "talk": "idle", "walk": "walk"}},
+	"asila_dancer": {"scene": "res://assets/models/characters/asila_dancer.glb", "scale": 1.0,
+		"poses": {"idle": "dance", "dance": "dance", "stand": "idle", "talk": "idle", "walk": "walk"}},
 	# Guarda da Capital (warrior.glb do autor, Sketchfab "Warior"; autoria e licença a confirmar): elmo, gibão marrom e lança, com esqueleto e uma animação de guarda
 	# parado (499 quadros, "Scene", em laço); 1,8 m. Fica de guarda (idle), sem andar.
 	"warrior_guard": {"scene": "res://assets/models/characters/warrior_guard.glb", "scale": 1.0,

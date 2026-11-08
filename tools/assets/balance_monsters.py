@@ -1,5 +1,5 @@
 """Equaliza a força, o drop e a experiência dos monstros pela ORDEM DOS MAPAS (docs/13-balanceamento.md):
-  ordem: 1 Esgoto, 2 Floresta, 3 Docas, 4 Ruínas, 5 Cemitério, 6 Forte, 7 Catacumbas, 8 Deserto, 9 Mina, 10 Bunker, 11 Floresta Escura.
+  ordem: 1 Esgoto, 2 Floresta, 3 Docas, 4 Ruínas, 5 Cemitério, 6 Forte, 7 Catacumbas, 8 Deserto, (Colinas dos Cogumelos, nível 16), 9 Mina, 10 Bunker, 11 Floresta Escura.
   Nível: área = 1, 3, 5 ... (2 níveis por mapa, máximo 20); o chefe do mapa fica um nível acima (como o do Esgoto).
   Força: todo monstro tem a mesma base da sua categoria (vida 210, dano 16, como o Esgoto) e a vida/dano sobem pelo nível da área (1,12^(nível-1)) e pela categoria (elite x3/x1,5, mini-chefe x6/x1,8).
          O papel do monstro ajusta a base (enxame 0,4/0,5, leve 0,65/0,75, tanque 1,6/0,6); o papel é lido uma vez da vida antiga e guardado em "role".
@@ -10,9 +10,12 @@ Idempotente. Chamado no fim de tools/assets/build_maps.py. uso: python3 tools/as
 import json
 ARENAS, MONSTERS, QUESTS, BALANCE = "data/arenas.json", "data/monsters.json", "data/quests.json", "data/balance.json"
 arenas, monsters, quests, balance = (json.load(open(p, encoding="utf-8")) for p in (ARENAS, MONSTERS, QUESTS, BALANCE))
-ORDER = ["sewers_01_drains", "forest_01_path", "docks_01_pier", "ruins_01_city", "cemetery_01_yard", "fort_01_gate", "catacombs_01_depths", "desert_01_canyon", "mine_01_crystal_vein",
-         "bunker_01_entrance", "dark_forest_01_woods"]
-LEVELS = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 20]
+ORDER = ["sewers_01_drains", "forest_01_path", "docks_01_pier", "ruins_01_city", "cemetery_01_yard", "fort_01_gate", "catacombs_01_depths", "desert_01_canyon", "mushroom_01_hills",
+         "mine_01_crystal_vein", "bunker_01_entrance", "dark_forest_01_woods"]
+LEVELS = [1, 3, 5, 7, 9, 11, 13, 15, 16, 17, 19, 20]
+# Passo de cada mapa na conta da duração da luta do chefe e da renda; as Colinas dos Cogumelos (mapa extra da Capital, depois do Deserto) ficam entre o 8º e o 9º,
+# e os mapas que já existiam mantêm os números de antes.
+STEP = [0, 1, 2, 3, 4, 5, 6, 7, 7.5, 8, 9, 10]
 BASE_HP, BASE_DMG, BOSS_DMG = 210, 16, 40
 ROLES = {"swarm": (0.4, 0.5), "light": (0.65, 0.75), "normal": (1.0, 1.0), "tank": (1.6, 0.6)}
 DPS = [(1, 29), (4, 49), (8, 77), (12, 108), (16, 149), (20, 202)]  # DPS solo típico do herói por nível (13-balanceamento.md, seção 3)
@@ -43,8 +46,8 @@ for mid, m in monsters.items():
 
 # --- nível das áreas e dos encontros, chefes, XP e ouro por mapa
 bosses_of = {}
-for k, area_id in enumerate(ORDER):
-    L = LEVELS[k]
+for i, area_id in enumerate(ORDER):
+    L, k = LEVELS[i], STEP[i]
     area = arenas[area_id]
     area["area_level"] = L
     area.pop("loot_scale", None)

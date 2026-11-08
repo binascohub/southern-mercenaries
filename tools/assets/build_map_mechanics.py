@@ -57,11 +57,15 @@ MAPS = {
     "dark_forest": ("dark_forest_01_woods", ("Altar do Pântano", "Bog Altar", "Altar del Pantano"),
                     (("Herbário da Ervanária", "Herbalist's Herbal", "Herbario de la Herbolaria"), ("Cancioneiro do Encantador", "Charmer's Songbook", "Cancionero del Encantador")),
                     ("elder_seed", ("Semente do Ancião", "Elder's Seed", "Semilla del Anciano"), "Mushroom_Cluster", "spore_crown", (0.8, 1.2, 0.7)), "map_dark_forest"),
+    "mushroom": ("mushroom_01_hills", ("Altar do Toco Antigo", "Ancient Stump Altar", "Altar del Tocón Antiguo"),
+                 (("Almanaque do Jardineiro", "Gardener's Almanac", "Almanaque del Jardinero"), ("Livro-Caixa da Moedeira", "Coin Keeper's Ledger", "Libro de Cuentas de la Guardamonedas")),
+                 ("volcano_crown", ("Coroa do Vulcão", "Volcano Crown", "Corona del Volcán"), "Coin_Gold", "queen_ring", (1.5, 0.8, 0.45)), "map_mushroom"),
 }
 BOOK_MODELS = (("Book_A", (1.0, 1.0, 1.0)), ("Ornate_Book", (1.0, 1.0, 1.0)))
 BOOK_TINTS = {"forest": ((0.8, 1.2, 0.7), (1.3, 0.9, 0.6)), "ruins": ((1.1, 1.0, 0.8), (1.0, 0.9, 1.2)), "fort": ((0.8, 0.9, 1.3), (1.3, 0.7, 0.8)), "catacombs": ((0.9, 0.9, 1.1), (0.7, 1.0, 1.2)),
               "desert": ((1.3, 1.1, 0.6), (1.1, 0.8, 0.6)), "docks": ((0.7, 1.0, 1.3), (1.0, 1.1, 0.8)), "mine": ((0.9, 1.0, 1.4), (1.2, 1.0, 0.7)), "bunker": ((1.1, 1.0, 0.8), (0.8, 1.2, 0.9)),
-              "dark_forest": ((0.7, 1.1, 0.8), (1.0, 0.7, 1.2)), "cemetery": ((0.9, 0.9, 1.0), (1.0, 0.9, 1.1))}
+              "dark_forest": ((0.7, 1.1, 0.8), (1.0, 0.7, 1.2)), "cemetery": ((0.9, 0.9, 1.0), (1.0, 0.9, 1.1)),
+              "mushroom": ((0.9, 1.25, 0.6), (1.35, 1.1, 0.5))}
 T = {}
 
 

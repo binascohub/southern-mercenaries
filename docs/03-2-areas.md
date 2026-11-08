@@ -52,11 +52,21 @@ Ordem dos mapas, por hub (`tools/assets/set_map_order.py` liga os portais; cada 
 | 6 | Forte (`fort_01_gate`) | Capital | Senhor Elfo Sombrio · Rainha das Súcubos (+ Comandante solto) | Barão Infernal |
 | 7 | Catacumbas (`catacombs_01_depths`) | Capital | Carrasco das Catacumbas · Alma Acorrentada | Rei Acorrentado |
 | 8 | Deserto (`desert_01_canyon`) | Capital | Lamassu da Areia · Rainha Escorpião | Esfinge |
+| 8b | Colinas dos Cogumelos (`mushroom_01_hills`, nível 16) | Capital | Bruto Esporento · Jacaré-Musgo | Rei-Lagarto Vulcânico |
 | 9 | Mina (`mine_01_crystal_vein`) | Fazenda | Chefe Troll · Besta de Quartzo (+ Guardião do Túmulo solto) | Golem de Cristal |
 | 10 | Bunker (`bunker_01_entrance`) | Fazenda | Armadura Viva · Comandante Podre | General Ferrugem |
 | 11 | Floresta Escura (`dark_forest_01_woods`) | Fazenda | Víbora Anciã · Rei dos Esporos | Ancião Sombrio |
 
 A Capital e a Fazenda são acessadas por Tortuga (Capital pelo Viajante do Tempo, sem portão em Tortuga; Fazenda por `farm_gate`). Pântano e Inferno (seções abaixo) continuam só no documento, fora desta ordem.
+
+### Colinas dos Cogumelos (`mushroom_01_hills`)
+
+Mapa extra da Capital, aberto pela **Botânica Real** (igreja da Capital) depois do Deserto; portão na fileira ao sul da praça (`mushroom_gate`, x = -0,5). Mundo colorido de colinas, cogumelos gigantes,
+plataformas de pedra e moedas, no mesmo traçado de salas das Docas (`tools/assets/build_mushroom_hills.py`): Prado -> Trilha -> Vila dos Cogumelos; laço oeste (Bosque dos Chapéus Gigantes) e
+laço leste (Degraus de Pedra), fechando no Bosque dos Esporos e na Gruta de Cristal; Estrada das Flores -> Campo das Moedas -> Alameda do Castelo -> Pátio do Vulcão.
+Missões no mapa (mecânica de `build_map_mechanics.py`): o **Velho Jardineiro** dá o Almanaque do Jardineiro (desperta o Bruto Esporento no Altar do Toco Antigo; o Esporo Dourado vale a Chave do Sol) e a
+**Moedeira** dá o Livro-Caixa (desperta o Jacaré-Musgo; o Tijolo-Estrela vale a Chave da Lua); o **Guarda da Ponte** abre o portão com as duas chaves. O Rei-Lagarto Vulcânico larga a Coroa do Vulcão, que a
+Botânica Real troca por ouro. Monstros: Coelho-Espora, Dragãozinho de Brasa, Lince das Colinas e Fantasma de Esporos. Nível 16 (entre o Deserto e a Mina, sem mudar os números dos outros mapas).
 
 ## 3. Esgoto de Tortuga (`map_sewers`)
 
