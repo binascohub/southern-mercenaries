@@ -347,7 +347,50 @@ static func _m_blizzard(r: Node3D, s: float, c: Array, life: float) -> void:
 	_stop_later(r, fog, life)
 
 
+const FISH_HOLOGRAM := "res://assets/models/fx/fish_hologram.glb"
+
+
+## Holograma de peixes ("Fish Hologram", Pat Sipes, CC BY 4.0; tools/assets/build_fish_hologram.py): coluna de anéis em espiral com seis peixes nadando em
+## volta, 1 m de altura no arquivo (eixo no centro, base no chão). Fica no meio da área com ~0,8 do raio de altura, como luz somada (sem sombra), os peixes
+## nadando 3x mais rápido que no arquivo (o laço dele é de ~24 s); cresce ao abrir e some no fim.
+static func _fish_hologram(r: Node3D, s: float, life: float) -> void:
+	if not ResourceLoader.exists(FISH_HOLOGRAM):
+		return
+	var model := (load(FISH_HOLOGRAM) as PackedScene).instantiate() as Node3D
+	var pivot := Node3D.new()
+	r.add_child(pivot)
+	pivot.add_child(model)
+	var size := s * 0.8
+	pivot.scale = Vector3.ONE * 0.05
+	var materials: Array[StandardMaterial3D] = []
+	for node in model.find_children("*", "MeshInstance3D", true, false):
+		var mesh := node as MeshInstance3D
+		mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		for i in mesh.mesh.get_surface_count():
+			var source := mesh.get_active_material(i) as StandardMaterial3D
+			if source == null:
+				continue
+			var copy := source.duplicate() as StandardMaterial3D
+			copy.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+			copy.cull_mode = BaseMaterial3D.CULL_DISABLED
+			copy.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+			copy.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
+			mesh.set_surface_override_material(i, copy)
+			materials.append(copy)
+	var player := model.find_child("AnimationPlayer", true, false) as AnimationPlayer
+	if player and player.has_animation("swim"):
+		player.get_animation("swim").loop_mode = Animation.LOOP_LINEAR
+		player.play("swim", -1.0, 3.0)
+	var tween := pivot.create_tween()
+	tween.tween_property(pivot, "scale", Vector3.ONE * size, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	var fade := pivot.create_tween().set_parallel(true)
+	for material in materials:
+		var faded := Color(material.albedo_color.r, material.albedo_color.g, material.albedo_color.b, 0.0)
+		fade.tween_property(material, "albedo_color", faded, 0.5).set_delay(maxf(life - 0.5, 0.2))
+
+
 static func _m_rain_heal(r: Node3D, s: float, c: Array, life: float) -> void:
+	_fish_hologram(r, s, life)
 	_glyph(r, "soft", c[0], s * 2.1, life, 0.04, 0.0, 0.25)
 	_sprite_burst(r, "star_08", Color(c[1], 0.8), s * 1.4, 0.6, 1.2)  # brilho da cura
 	_ring(r, c[1], s, 0.5)

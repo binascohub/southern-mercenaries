@@ -1,0 +1,10 @@
+alien_octopus.glb - "Alien Octopus" by agasherev (https://sketchfab.com/agasherev)
+            https://sketchfab.com/3d-models/alien-octopus-a05b06d9900c40f0a74f2f732438ffc5
+            CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+            Changes: meshes reduced to about 0.4, textures reduced to 512 px (WEBP), turned to face +Z with the feet on the ground,
+            animation renamed (tools/assets/build_alien_octopus.py).
+hull_angler.glb - "MONSTER" by NORBERTO-3D (https://sketchfab.com/norberto3d)
+            https://sketchfab.com/3d-models/monster-efd2c7fefaf94ad1a53fd40081d56757
+            CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/ (this adapted file is shared under the same licence)
+            Changes: only the angler monster kept (the flying insect, the beetle, the bubbles and the ground removed), textures reduced to
+            512 px (WEBP), scaled to 1 m with the feet on the ground, animation renamed (tools/assets/build_hull_angler.py).

@@ -3048,7 +3048,7 @@ msgid "QUEST_DOCKS_SMUGGLERS"
 msgstr "The Old Sea Wolf's Pier"
 
 msgid "QUEST_DOCKS_SMUGGLERS_DESC"
-msgstr "Pirate Captain wants Drowned Captain's Log, which Drowned Captain keeps at the bottom of the map. Get the books from the locals, wake the mini-bosses at the altar, trade their items for the keys, open the gate with the guardian and defeat Drowned Captain. Hand Drowned Captain's Log to Pirate Captain for a gold reward."
+msgstr "Pirate Captain wants Drowned Captain's Log, which the Drowned Captain's Kraken guards on the Deck, at the bottom of the map. Get the books from the locals, wake the mini-bosses at the altar, trade their items for the keys, open the gate with the guardian and defeat the Kraken and its tentacles. Hand Drowned Captain's Log to Pirate Captain for a gold reward."
 
 msgid "NPC_OLD_LADY"
 msgstr "Tavern Old Lady"
@@ -3640,7 +3640,7 @@ msgid "DLG_FISHWIFE_WAIT"
 msgstr "The nets are torn, but the tide returns. Take a fish, it is fresh."
 
 msgid "DLG_DOCKGUARD_1"
-msgstr "Stop there. This gate closes the Deck, and on the Deck the Drowned Captain rules. He sailed to the bottom of the sea and came back with his whole crew."
+msgstr "Stop there. This gate closes the Deck, and on the Deck lives the Drowned Captain's Kraken. The captain went to the bottom of the sea and sent the beast back in his place."
 
 msgid "DLG_DOCKGUARD_2"
 msgstr "The gate only opens with TWO keys: the Anchor and the Compass. The first is with the Harbor Master at the landing; the second, with the Fishwife at the Fishery."
@@ -3652,7 +3652,7 @@ msgid "DLG_DOCKGUARD_ACTIVE"
 msgstr "I only open with both keys, Anchor and Compass, in the same bag. The Harbor Master is at the landing; the Fishwife, at the Fishery east of the market."
 
 msgid "DLG_DOCKGUARD_DONE"
-msgstr "Both keys! The gate is open. Beware: the Drowned Captain never lost a ship, and he will not lose this one."
+msgstr "Both keys! The gate is open. Beware: when you step into the middle of the Deck, all ten of the Kraken's tentacles rise at once."
 
 msgid "MONSTER_WAR_CHAMPION"
 msgstr "Fallen Champion"
@@ -5573,3 +5573,21 @@ msgstr "Volcano Crown"
 
 msgid "VALUABLE_VOLCANO_CROWN_DESC"
 msgstr "Dropped by Volcanic Lizard King, the map's boss. It cannot be sold or lost: take it to whoever asked for it."
+
+msgid "MONSTER_KRAKEN"
+msgstr "Kraken"
+
+msgid "MONSTER_KRAKEN_TENTACLE"
+msgstr "Kraken Tentacle"
+
+msgid "MONSTER_KRAKEN_OCTOPUS"
+msgstr "Kraken Octopus"
+
+msgid "TOAST_KRAKEN_WAVE"
+msgstr "The Kraken calls its brood: octopus wave {n} climbs onto the deck!"
+
+msgid "MONSTER_DOCKS_ALIEN_OCTOPUS"
+msgstr "Abyssal Octopus"
+
+msgid "PROP_MYSTERY_STONE"
+msgstr "Mysterious Stone"

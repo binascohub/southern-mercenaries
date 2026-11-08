@@ -364,8 +364,6 @@ func _slime(at: Vector3, radius: float, duration: float) -> Node3D:
 	root.add_child(holder)
 	holder.position = Vector3(at.x, 0.04 + ground_y, at.z)
 	holder.rotation.y = rng.randf() * TAU
-	# Bolhas do padrão subindo devagar por cima da mancha (dentro do miolo, que nunca passa do raio do dano).
-	pattern_decal(holder, Vector3(0, 0.015, 0), radius * 0.8, "bubbles", Color(0.75, 1.0, 0.3, 0.45), Vector2(0.03, 0.1), 0.7, 0.0)
 	# Respira devagar (a borda parece escorrer).
 	var breathe := holder.create_tween().set_loops()
 	breathe.tween_property(stain, "scale", Vector3(1.03, 1.0, 1.03), 1.6 + rng.randf()).set_trans(Tween.TRANS_SINE)

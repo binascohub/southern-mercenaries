@@ -1,0 +1,10 @@
+kraken_tentacle.glb - "Tentacle riged" by defiat11 (https://sketchfab.com/defiat11)
+            https://sketchfab.com/3d-models/tentacle-riged-5330ffa12f4741eca73c9714d90e79dc
+            CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+            Changes: meshes reduced to about a fifth, textures reduced to 512 px (WEBP), the original animation replaced by idle, attack
+            and die animations made from the bone chain (tools/assets/build_kraken_tentacle.py).
+kraken_octopus.glb - "Octopus" by kenchoo (https://sketchfab.com/kenchoo)
+            https://sketchfab.com/3d-models/octopus-330402cc0ade4fc5bb147f3d618e58c3
+            CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+            Changes: mesh reduced to about a fifth, breathing shape keys removed, texture reduced to 512 px (WEBP), turned to face +Z,
+            centered with the base on the ground, animation renamed (tools/assets/build_kraken_octopus.py).

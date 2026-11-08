@@ -956,7 +956,7 @@ func _update_minimap_marks() -> void:
 		heroes.append({"position": Vector2(p.global_position.x, p.global_position.z), "local": p == local_player})
 	var marks: Array[Dictionary] = []
 	for prop: Dictionary in _props:
-		if prop.kind in ["exit", "quest_spot"]:
+		if prop.kind in ["exit", "quest_spot"] and prop.get("minimap", true):  # "minimap": false esconde a marca (a pedra do Bordel em Tortuga)
 			marks.append({"position": Vector2(prop.position[0], prop.position[1]), "kind": "exit" if prop.kind == "exit" else "quest"})
 	# Nas cidades, quem tem missão para oferecer ou entregar ganha um ponto laranja.
 	if arena.get("town", false):
@@ -2137,7 +2137,7 @@ func _build_prop(prop_data: Dictionary) -> void:
 		node.name = String(prop.id)
 		_area_root.add_child(node)
 		node.position = at
-		var label_key: String = prop.get("name_key", "")
+		var label_key: String = prop.get("name_key", "") if prop.get("label", true) else ""  # "label": false: sem o nome flutuando (a pedra do Bordel, um easter egg)
 		var color := Color(0.5, 0.4, 0.3)
 		match String(prop.kind):
 			"shop" when prop.has("npc_model") and NpcModel.has_model(String(prop.npc_model)):
@@ -2291,6 +2291,20 @@ func _build_prop(prop_data: Dictionary) -> void:
 				mark.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 				node.add_child(mark)
 				_prop_markers[prop.npc] = mark
+			"exit" when prop.has("piece") and _kit(node, String(prop.piece)):
+				# Saída que é uma peça do kit, sem portal (a pedra de energia na porta do Bordel de Tortuga): gira devagar e flutua um pouco, com um brilho da cor dela.
+				var stone := node.get_child(node.get_child_count() - 1) as Node3D
+				var glow := OmniLight3D.new()
+				glow.light_color = Color(0.55, 0.4, 1.0)
+				glow.omni_range = 3.5
+				glow.light_energy = 1.2
+				glow.position = Vector3(0, 0.9, 0)
+				node.add_child(glow)
+				var spin := stone.create_tween().set_loops()
+				spin.tween_property(stone, "rotation:y", TAU, 8.0).as_relative()
+				var bob := stone.create_tween().set_loops()
+				bob.tween_property(stone, "position:y", 0.15, 1.6).set_trans(Tween.TRANS_SINE)
+				bob.tween_property(stone, "position:y", 0.0, 1.6).set_trans(Tween.TRANS_SINE)
 			"exit" when prop.get("look", "") == "charm_portal":
 				# Portal do Patuá: círculo riscado no chão, redemoinho de sombra e brasas.
 				_prop_mesh(node, CylinderMesh.new(), Vector3(2.4, 0.04, 2.4), Vector3(0, 0.04, 0), Color(0.35, 0.1, 0.12))

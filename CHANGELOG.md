@@ -13,7 +13,22 @@
   "Ditch Dog - Rigged and Animated", Greeble3d, CC BY 4.0).
 - The Docks' Dragging Gator becomes the Peg-Leg Pirate, a ~1.85 m pirate on a wooden leg with the same stats and the same pull: he stamps
   the planks and drags whoever is around him by the collar ("Pirate clark", photon (that one larry), CC BY 4.0; `tools/assets/build_pirate_clark.py`
-  reduces it and adds the fall on his back when he dies).
+  reduces it and adds the fall on his back when he dies). He now runs facing where he goes (the file's run turned him sideways).
+- The Docks' final boss is now the Kraken, the Drowned Captain's beast: when the party reaches the middle of the Deck, ten tentacles (~8 m, the Kraken
+  itself ~10 m) rise in a ring around them. They never move: each one marks the ground under a hero, slams down on it and drags whoever it
+  catches toward itself, and sweeps away whoever touches its base; the Kraken calls five waves of crawling Kraken Octopuses. Beating the whole ring wins the map ("Tentacle riged", defiat11, and "Octopus",
+  kenchoo, CC BY 4.0; `tools/assets/add_docks_kraken.py`).
+- In the Docks, the Drowned Scarecrow pairs (7 packs) become the Abyssal Octopus, a ~2 m armored biped with an octopus head ("Alien Octopus",
+  agasherev, CC BY 4.0), with the same stats; it walks with its own hunched gait and stands, claws, flinches and falls dead with the heroes'
+  zombie moves on its torso and arms; and the Living Hull mini-boss gets a new body, a hunched blue angler monster with a glowing lure
+  ("MONSTER", NORBERTO-3D, CC BY-SA 4.0), keeping its charges, pull and waves.
+- Healing Rain now raises a glowing spiral of rings with six fish swimming around it in the middle of the healing area ("Fish Hologram",
+  Pat Sipes, CC BY 4.0).
+- The Rat Queen's Nest (the Sewer boss room) holds much more treasure: a hoard of gold bars, coin piles, coin bags and golden skull piles
+  against the back wall, more in the corners and along the walls, and loose coins and jewels on the floor.
+- The dragon's gold bed now lies flat on the ground (it stood up like a golden wall in the Sewer and the Mine).
+- The green slime stains that hurt (in the Sewer and the monsters' puddles) are plain green again, without the rising-bubbles pattern on top.
+- The Docks' save crystal moved from the landing to the Wharf, in front of the Kraken's gate lane.
 - The Catacombs' walls now have seated skeletons, the previous victims, leaning between the wall shackles ("Previous Victim Skeleton - Granny",
   Arthurzin, CC BY 4.0).
 - In the Forest, the Fungus Uncle packs (16 monsters, mostly in the Fungus Clearing) become the Flowermaw, a gaunt ~2.6 m creature whose head
@@ -39,10 +54,12 @@
   the bite was hard to see from above, so it looked like it only walked around).
 - In the Docks, the Ink Octopus is replaced by the Skeleton Pirate (coat, tricorn, cutlass and peg leg; "Skeleton Pirate \"The Captin\"", FireGoat,
   CC BY 4.0): same health and damage, but melee with a cutlass slash instead of the ink jet, in every pack and in the bosses' waves.
-- Tortuga has a brothel, the Crimson Mermaid, with its door on the south edge of the main street (east of the tavern, marked by a red light):
-  five beds behind cloth curtains, two sofa corners and a round table with wine, a counter, a fireplace and red-lit chandeliers. Four women in
-  swimwear (Jungle Jim, CC BY 4.0) work there: two dance with the heroine's dance and two stroll back and forth (Anna and Adriana), while clients
-  sit at the table and on the sofas. Scenery only; it plays the tavern music. The files went from up to 336 MB to 6-16 MB each. Courtesans can now sit.
+- Tortuga has a brothel, the Crimson Mermaid, entered through a floating violet energy stone (not a portal, and not shown on the minimap) on the south edge of the main street (east of the tavern, marked by a red light):
+  five beds behind cloth curtains, two sofa corners and a round table with wine, a counter, a fireplace and red-lit chandeliers. Five women in
+  swimwear (Jungle Jim, CC BY 4.0) work there: two dance with the heroine's dance and three stroll back and forth (Anna, Adriana and Afrique), while clients
+  sit at the table and on the sofas; a belly dancer (Miguelangelo Rosario) dances with her own dance, Prix (lucirgo) poses by the counter
+  a woman in a bikini kneels on the middle bed (Fadly.W) and a sci-fi girl (patrix) strolls along the foot of the beds.
+  Scenery only; it plays the tavern music. The files went from up to 336 MB to 3-16 MB each. Courtesans can now sit.
 - When a map's final boss dies, the ground bursts under it: concrete debris jumps up to ~4 m and falls scattered around, stays a few seconds
   and sinks ("Bomb Crack_Ground_00 (Free)", paulyang, CC BY 4.0; 2,131 animated pieces reduced to one skinned mesh of 360 pieces).
 
@@ -51,7 +68,7 @@
 - Ruins narrow corridors (`tools/assets/add_ruins_corridors.py`, run by `build_ruins.py`): rooms moved 12 m apart at each link, with a 5 m wide walled corridor (slab floor, torches) in between; the High Yard widens to meet the three corridors from the south.
 - All Ruins monsters are Fire (`tools/assets/ruins_fire_monsters.py`, end of `build_maps.py`): Ash Goblin, Ember Bat, Fire Scorpion (burning spit) and Ember Mimic replace the shared Goblin, Plague Bat, Venom Scorpion and Mimic there; the Wraith, Pack Alpha, Ruin Warden, Fallen Champion and Fallen King become Fire; the Ruins quests now say Fire (weak to Water).
 - Ruins mini-bosses (`tools/assets/ruins_miniboss_skills.py`, end of `build_maps.py`): the Ruin Warden and the Fallen Champion call 6 waves of fire monsters (every 15-16 s) and have a knock-back slam and a thrown fire strike that leaves burning ground.
-- Equipment rank glow ("MorphageSpace" by tamminen, CC BY 4.0; `tools/assets/build_rank_aura.py`): the yellow cylinder around the hero is now a slowly spinning cloud of gold sparks; each average equipment rank lights one more layer of 1,200 sparks (rank 5 = full cloud, still pulsing at ranks 4 and 5), with an open core so the hero stays visible.
+- Equipment rank glow: a soft gold light now circles the hero, rising and falling as it goes, with a fading trail behind it and lighting the hero and the floor; each average equipment rank makes it bigger, brighter, faster and with a longer trail (replaces the cloud of gold sparks and the yellow cylinder).
 - Fire Seal (Ninja) has an energy dome ("Tronicle" by tamminen, CC BY 4.0; `tools/assets/build_tronicle.py`): new ground motif `star_seal` = the seal rune plus 64 spinning, pulsing shells half sunk in the ground, glowing additively in the spell colour; it grows when cast, lasts the seal's 8 s and shrinks at the end.
 - Armored Troll ("Troll (Armored)" by SidewalkNZ, CC BY 4.0; `tools/assets/build_troll_armored.py`, profile `troll_armored` in `rig_biped.py`, `tools/assets/add_ruins_armored_troll.py`): a 3 m plate-armored brute with the heroes' animations, Fire (weak to Water), slow and tough; 6 packs in the Ruins (both Districts, both Squares, two in the High Yard).
 - Food (Food Kit by Kenney, CC0; `tools/assets/import_food_kit.py`, `tools/assets/add_food_kit.py`): the king's feast tables in the throne room (turkey, ham, ribs, pies, cake, bread, cheese, grapes, wine; the loose fruit and potion flasks are gone), a food stall in the Capital's gate square and one in Tortuga's main street (fish, mussels, island fruit, bread), more produce on the Capital avenue table, fish and coconuts in Tortuga's handcart, and the four Farm carts loaded (pumpkins, cabbages, corn, apples, pears, flour sacks). Decor entries can now be a scenery-only market stall (`"stall"`).

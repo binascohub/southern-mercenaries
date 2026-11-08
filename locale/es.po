@@ -3048,7 +3048,7 @@ msgid "QUEST_DOCKS_SMUGGLERS"
 msgstr "El muelle del Viejo Lobo"
 
 msgid "QUEST_DOCKS_SMUGGLERS_DESC"
-msgstr "Capitán Pirata quiere Diario del Capitán Ahogado, que Capitán Ahogado guarda en el fondo del mapa. Consigue los libros con los lugareños, despierta a los minijefes en el altar, cambia sus objetos por las llaves, abre el portón con el guardián y derrota a Capitán Ahogado. Entrega Diario del Capitán Ahogado a Capitán Pirata por una recompensa en oro."
+msgstr "Capitán Pirata quiere Diario del Capitán Ahogado, que el Kraken del Capitán Ahogado guarda en la Cubierta, en el fondo del mapa. Consigue los libros con los lugareños, despierta a los minijefes en el altar, cambia sus objetos por las llaves, abre el portón con el guardián y derrota al Kraken y sus tentáculos. Entrega Diario del Capitán Ahogado a Capitán Pirata por una recompensa en oro."
 
 msgid "NPC_OLD_LADY"
 msgstr "Vieja de la Taberna"
@@ -3640,7 +3640,7 @@ msgid "DLG_FISHWIFE_WAIT"
 msgstr "Las redes están rotas, pero la marea vuelve. Lleven un pescado, está fresquito."
 
 msgid "DLG_DOCKGUARD_1"
-msgstr "Alto ahí. Este portón cierra la Cubierta, y en la Cubierta manda el Capitán Ahogado. Navegó hasta el fondo del mar y volvió con toda la tripulación."
+msgstr "Alto ahí. Este portón cierra la Cubierta, y en la Cubierta vive el Kraken del Capitán Ahogado. El capitán se fue al fondo del mar y mandó a la bestia en su lugar."
 
 msgid "DLG_DOCKGUARD_2"
 msgstr "El portón solo abre con DOS llaves: la del Ancla y la de la Brújula. La primera la tiene el Maestro del Puerto, en el muelle de llegada; la segunda, la Pescadera, en la Pescadería."
@@ -3652,7 +3652,7 @@ msgid "DLG_DOCKGUARD_ACTIVE"
 msgstr "Solo abro con las dos llaves, Ancla y Brújula, en la misma bolsa. El Maestro del Puerto está en el muelle de llegada; la Pescadera, en la Pescadería al este del mercado."
 
 msgid "DLG_DOCKGUARD_DONE"
-msgstr "¡Las dos llaves! El portón está abierto. Cuidado: el Capitán Ahogado nunca perdió un barco, y no perderá este."
+msgstr "¡Las dos llaves! El portón está abierto. Cuidado: cuando pisen el centro de la Cubierta, los diez tentáculos del Kraken suben a la vez."
 
 msgid "MONSTER_WAR_CHAMPION"
 msgstr "Campeón Caído"
@@ -5573,3 +5573,21 @@ msgstr "Corona del Volcán"
 
 msgid "VALUABLE_VOLCANO_CROWN_DESC"
 msgstr "Soltado por Rey Lagarto Volcánico, el jefe del mapa. No se puede vender ni perder: llévalo a quien lo pidió."
+
+msgid "MONSTER_KRAKEN"
+msgstr "Kraken"
+
+msgid "MONSTER_KRAKEN_TENTACLE"
+msgstr "Tentáculo del Kraken"
+
+msgid "MONSTER_KRAKEN_OCTOPUS"
+msgstr "Pulpo del Kraken"
+
+msgid "TOAST_KRAKEN_WAVE"
+msgstr "El Kraken llama a sus crías: ¡la oleada {n} de pulpos sube a la cubierta!"
+
+msgid "MONSTER_DOCKS_ALIEN_OCTOPUS"
+msgstr "Pulpo Abisal"
+
+msgid "PROP_MYSTERY_STONE"
+msgstr "Piedra misteriosa"

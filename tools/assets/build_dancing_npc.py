@@ -5,13 +5,25 @@ Aqui ela é limpa e reduzida como as que andam (tools/assets/build_walking_npc.p
 da heroína (nos braços, depois de alinhar as direções de repouso); o quadril copia a posição, na proporção das pernas. A caminhada do arquivo fica como "walk";
 a dança é "dance" e a primeira pose dela é "idle". Fica com ~1,7 m, de pé no chão, olhando para -Y (+Z no glTF).
 Vai para assets/models/characters/<nome>.glb (game/actors/npc_model.gd).
-uso: blender -b --python tools/assets/build_dancing_npc.py -- <arquivo.glb> <hero_female.glb> <saída.glb>"""
+Outra dança: --bones belly usa como origem o "Bikini girl bellydancing" (Miguelangelo Rosario, CC BY 4.0; esqueleto Mixamo renomeado para os nomes dos heróis),
+--clip escolhe a animação de origem e --part a b o trecho dela (frações da duração; a Asila dança a segunda metade da dança do ventre, a moça da dança do
+ventre a primeira).
+uso: blender -b --python tools/assets/build_dancing_npc.py -- <arquivo.glb> <hero_female.glb | origem.glb> <saída.glb> [--bones belly] [--clip nome] [--part a b]"""
 import bpy, re, sys
 import numpy as np
 from mathutils import Matrix, Vector
 
 args = sys.argv[sys.argv.index("--") + 1:]
 src, hero_path, out = args[:3]
+BONES = args[args.index("--bones") + 1] if "--bones" in args else ""
+CLIP = args[args.index("--clip") + 1] if "--clip" in args else ""
+PART = (float(args[args.index("--part") + 1]), float(args[args.index("--part") + 2])) if "--part" in args else (0.0, 1.0)
+# Esqueleto da dança do ventre (sem o número do fim) -> nome do osso dos heróis.
+BELLY = {"Hips": "pelvis", "Spine1": "spine_01", "Spine2": "spine_02", "Spine4": "spine_03", "Neck": "neck_01", "Head": "Head",
+         "LeftShoulder": "clavicle_l", "LeftArm": "upperarm_l", "LeftForeArm": "lowerarm_l", "LeftHand": "hand_l",
+         "RightShoulder": "clavicle_r", "RightArm": "upperarm_r", "RightForeArm": "lowerarm_r", "RightHand": "hand_r",
+         "LeftUpLeg": "thigh_l", "LeftLeg": "calf_l", "LeftFoot": "foot_l", "LeftToeBase": "ball_l",
+         "RightUpLeg": "thigh_r", "RightLeg": "calf_r", "RightFoot": "foot_r", "RightToeBase": "ball_r"}
 drop = []
 TARGET_TRIS = 40000
 MAX_TEX = 512
@@ -78,10 +90,16 @@ for o in bodies:
         m.show_viewport = False
 
 bpy.ops.import_scene.gltf(filepath=hero_path)
-hero = next(o for o in bpy.data.objects if o.type == "ARMATURE" and o is not rig)
+hero = max((o for o in bpy.data.objects if o.type == "ARMATURE" and o is not rig), key=lambda o: len(o.data.bones))
 for o in list(bpy.data.objects):
     if o.type == "MESH" and o not in bodies:
         bpy.data.objects.remove(o, do_unlink=True)
+if BONES == "belly":
+    for b in hero.data.bones:  # o Blender acerta os caminhos das curvas da animação junto
+        m = re.match(r"(.+)_\d+$", b.name)
+        if m and m.group(1) in BELLY:
+            b.name = BELLY[m.group(1)]
+MAP = {h: t for h, t in MAP.items() if h in hero.data.bones}
 hero.animation_data_create()
 scene = bpy.context.scene
 scene.frame_set(0)
@@ -100,6 +118,27 @@ def length(obj, bones):
     return sum((obj.matrix_world.to_3x3() @ (obj.data.bones[n].tail_local - obj.data.bones[n].head_local)).length for n in bones)
 
 
+dance_src = next(a for a in bpy.data.actions if a.name.split("|")[-1] in ((CLIP,) if CLIP else (DANCE, DANCE.replace("_Loop", ""))))
+hero.animation_data.action = dance_src
+if dance_src.slots:
+    hero.animation_data.action_slot = dance_src.slots[0]
+# A dança do ventre tem o repouso deitado (o giro de pé está só na animação): a referência dela é o primeiro quadro, de pé; a da heroína é o repouso.
+REF_POSED = BONES == "belly"
+scene.frame_set(int(dance_src.frame_range[0]))
+bpy.context.view_layer.update()
+
+
+def ref_matrix(h):
+    return hero.pose.bones[h].matrix.copy() if REF_POSED else hero.data.bones[h].matrix_local
+
+
+def ref_dir(h):
+    if REF_POSED:
+        pb = hero.pose.bones[h]
+        return (hero.matrix_world.to_3x3() @ (pb.tail - pb.head)).normalized()
+    return dir_world(hero, hero.data.bones[h])
+
+
 # P = R_herói_pose · R_herói_repouso⁻¹ · Q · R_moça_repouso (nos braços, Q leva a direção de repouso do osso dela à do osso da heroína).
 CORR = {}
 for h, t in MAP.items():
@@ -107,26 +146,23 @@ for h, t in MAP.items():
     # Só os braços alinham o repouso (A-pose x T-pose); tronco, cabeça e pernas já estão de pé nos dois (e a ponta do osso da cabeça às vezes vai
     # para um brinco, o que viraria a cabeça).
     arm = h.startswith(("clavicle", "upperarm", "lowerarm", "hand"))
-    q = dir_world(rig, tb).rotation_difference(dir_world(hero, hb)).to_matrix() if arm else Matrix.Identity(3)
-    CORR[t] = rot_world(hero, hb.matrix_local).inverted() @ q @ rot_world(rig, tb.matrix_local)
+    q = dir_world(rig, tb).rotation_difference(ref_dir(h)).to_matrix() if arm else Matrix.Identity(3)
+    CORR[t] = rot_world(hero, ref_matrix(h)).inverted() @ q @ rot_world(rig, tb.matrix_local)
 BACK = {t: h for h, t in MAP.items()}
 ORDER = [b.name for b in rig.data.bones if b.name in CORR]
 K = length(rig, [MAP["thigh_l"], MAP["calf_l"]]) / length(hero, ["thigh_l", "calf_l"])
 hip = MAP["pelvis"]
 hip_rest = rig.matrix_world @ rig.data.bones[hip].head_local
-hero_rest = hero.matrix_world @ hero.data.bones["pelvis"].head_local
+hero_rest = hero.matrix_world @ (hero.pose.bones["pelvis"].head if REF_POSED else hero.data.bones["pelvis"].head_local)
 rig_inv = rig.matrix_world.inverted()
 rig_rot_inv = rig.matrix_world.to_3x3().normalized().inverted()
 for p in rig.pose.bones:
     p.rotation_mode = "QUATERNION"
-dance_src = next(a for a in bpy.data.actions if a.name.split("|")[-1] in (DANCE, DANCE.replace("_Loop", "")))
-hero.animation_data.action = dance_src
-if dance_src.slots:
-    hero.animation_data.action_slot = dance_src.slots[0]
 dance = bpy.data.actions.new("dance")
 dance.use_fake_user = True
 rig.animation_data.action = dance
 f0, f1 = int(dance_src.frame_range[0]), int(dance_src.frame_range[1])
+f0, f1 = int(f0 + (f1 - f0) * PART[0]), int(f0 + (f1 - f0) * PART[1])
 for f in range(f0, f1 + 1):
     scene.frame_set(f)
     for p in rig.pose.bones:

@@ -127,9 +127,12 @@ var _horse_material: StandardMaterial3D
 var _horse_anim: AnimationPlayer
 var _block_visual: MeshInstance3D
 var _aura: Node3D
-var _aura_material: StandardMaterial3D
-## Nuvem do brilho do rank (assets/fx/rank_aura.glb): uma malha por rank, acesa até o rank médio dos equipamentos.
-var _aura_tiers: Array[MeshInstance3D] = []
+## Luzes do rank: para cada bolinha, ela e o rastro atrás dela (halos aditivos de AuraGlow; AURA_TRAIL + 1 por bolinha) e as luzes que iluminam o herói e o chão.
+var _aura_halos: Array[MeshInstance3D] = []
+var _aura_lights: Array[OmniLight3D] = []
+## Elemento com que as luzes foram pintadas (repinta quando muda).
+var _aura_element := ""
+var _aura_angle := randf() * TAU
 ## Bloqueio (servidor): quando apertou (para o aparar) e o que sobra da barreira do Mago.
 var _block_pressed_ms := -100000
 var _barrier_left := 0.0
@@ -1356,35 +1359,27 @@ func _build_visual() -> void:
 	_backpack = notebook
 
 
-	# Brilho do rank dos equipamentos: nuvem de faíscas douradas girando em volta do herói ("MorphageSpace" de tamminen, CC BY 4.0;
-	# tools/assets/build_rank_aura.py), uma camada a mais por rank (sem luz extra). Sem o arquivo (testes sem importação), um cilindro transparente.
-	_aura_material = StandardMaterial3D.new()
-	_aura_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	_aura_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	_aura_material.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
-	_aura_material.cull_mode = BaseMaterial3D.CULL_DISABLED
-	if ResourceLoader.exists(RANK_AURA):
-		_aura = (load(RANK_AURA) as PackedScene).instantiate() as Node3D
-		for tier in RANK_TIERS:
-			var mesh := _aura.find_child("rank_%d" % (tier + 1), true, false) as MeshInstance3D
-			if mesh:
-				mesh.material_override = _aura_material
-				mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-				_aura_tiers.append(mesh)
-	else:
-		var cylinder := MeshInstance3D.new()
-		var aura_mesh := CylinderMesh.new()
-		aura_mesh.top_radius = 0.75
-		aura_mesh.bottom_radius = 0.9
-		aura_mesh.height = 2.0
-		aura_mesh.cap_top = false
-		aura_mesh.cap_bottom = false
-		cylinder.mesh = aura_mesh
-		cylinder.material_override = _aura_material
-		cylinder.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-		cylinder.position.y = 1.0
-		_aura = Node3D.new()
-		_aura.add_child(cylinder)
+	# Brilho do rank dos equipamentos: luzes na cor do elemento do herói que giram em volta dele, subindo e descendo de leve, cada uma com um rastro
+	# que se apaga atrás (09-interface.md, seção 7: luz suave, sem contorno). Uma luz por rank acima do D: C 1, B 2, A 3, S 4 (todos os heróis).
+	_aura = Node3D.new()
+	var halo_shader := Shader.new()
+	halo_shader.code = AuraGlow.SHADER
+	for orb in AURA_MAX_ORBS:
+		for i in AURA_TRAIL + 1:
+			var halo := MeshInstance3D.new()
+			halo.mesh = QuadMesh.new()
+			var halo_material := ShaderMaterial.new()
+			halo_material.shader = halo_shader
+			halo_material.set_shader_parameter("pulse_speed", 5.0)
+			halo.material_override = halo_material
+			halo.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			_aura.add_child(halo)
+			_aura_halos.append(halo)
+	for i in 2:  # no máximo duas luzes de verdade por herói (a 1ª e a 3ª bolinha), para não pesar com quatro heróis de rank S
+		var light := OmniLight3D.new()
+		light.shadow_enabled = false
+		_aura.add_child(light)
+		_aura_lights.append(light)
 	_aura.visible = false
 	_visual.add_child(_aura)
 
@@ -1431,9 +1426,11 @@ func _build_visual() -> void:
 	add_child(_revive_bar)
 
 
-## Brilho do rank dos equipamentos (tools/assets/build_rank_aura.py): 5 camadas, uma por rank.
-const RANK_AURA := "res://assets/fx/rank_aura.glb"
-const RANK_TIERS := 5
+## Luzes do rank dos equipamentos: no máximo quatro (rank S), raio da volta (m), altura do meio da volta (m) e halos de rastro atrás de cada uma.
+const AURA_MAX_ORBS := 4
+const AURA_RADIUS := 0.75
+const AURA_HEIGHT := 1.05
+const AURA_TRAIL := 5
 
 ## Metros entre um passo e outro.
 const STEP_DISTANCE := 1.5
@@ -1463,21 +1460,37 @@ func _tick_visual(delta: float) -> void:
 	_model.update_state(speed, alive, mounted, charge_time > 0.15, blocking, jump_phase > 0.0)
 	if _block_visual:
 		_block_visual.visible = blocking
-	# Aura: +1 poucas faíscas … +5 nuvem cheia pulsando; amarela (o elemento é a cor da roupa). Gira devagar, mais rápido nos ranks altos.
-	_aura.visible = aura_level > 0
-	if aura_level > 0:
-		var pulse := 1.0
-		if aura_level >= 4:
-			pulse = 0.75 + 0.25 * sin(Time.get_ticks_msec() / (180.0 if aura_level == 5 else 320.0))
-		if _aura_tiers.is_empty():
-			_aura_material.albedo_color = Color(1.0, 0.85, 0.2, 0.07 * aura_level * pulse)  # o brilho do rank é amarelo (o elemento é a cor da roupa)
-			var height := 0.2 + 0.4 * aura_level
-			_aura.scale = Vector3(1.0, height / 2.0, 1.0)
-		else:
-			for tier in _aura_tiers.size():
-				_aura_tiers[tier].visible = tier < aura_level
-			_aura_material.albedo_color = Color(1.0, 0.82, 0.3, (0.3 + 0.04 * aura_level) * pulse)  # cada rank já acende mais faíscas
-			_aura.rotate_y(delta * (0.25 + 0.15 * aura_level))
+	# Luzes do rank: aura_level é o rank médio dos equipamentos (1 = D … 5 = S); D não acende nada, C acende uma luz … S acende quatro, espaçadas na volta.
+	var orbs := clampi(aura_level - 1, 0, AURA_MAX_ORBS)
+	_aura.visible = orbs > 0
+	if orbs > 0:
+		if _aura_element != origin_element:
+			_aura_element = origin_element
+			var tint := Elements.color(origin_element)
+			for halo in _aura_halos:
+				(halo.material_override as ShaderMaterial).set_shader_parameter("color", tint)
+			for light in _aura_lights:
+				light.light_color = tint
+		_aura_angle = fmod(_aura_angle + delta * (2.2 + 0.2 * orbs), TAU * 10.0)
+		for orb in AURA_MAX_ORBS:
+			for i in AURA_TRAIL + 1:
+				var halo := _aura_halos[orb * (AURA_TRAIL + 1) + i]
+				halo.visible = orb < orbs
+				if not halo.visible:
+					continue
+				var a := _aura_angle + orb * TAU / orbs - i * 0.2  # espaçadas na volta; o rastro fica para trás
+				var fade := 1.0 - float(i) / float(AURA_TRAIL + 1)
+				halo.position = Vector3(cos(a) * AURA_RADIUS, AURA_HEIGHT + 0.35 * sin(a * 1.5), sin(a) * AURA_RADIUS)
+				var size := 0.5 * (0.45 + 0.55 * fade)
+				halo.scale = Vector3(size, size, size)
+				(halo.material_override as ShaderMaterial).set_shader_parameter("strength", 2.0 * fade * fade)
+		for i in _aura_lights.size():
+			var orb := i * 2
+			_aura_lights[i].visible = orb < orbs
+			if orb < orbs:
+				_aura_lights[i].position = _aura_halos[orb * (AURA_TRAIL + 1)].position
+				_aura_lights[i].light_energy = 1.0
+				_aura_lights[i].omni_range = 3.0
 	if _horse:
 		# Barda do cavalo na cor do material; sem barda, pelagem e sela simples.
 		var barding: Variant = equip_visual.get("barding")

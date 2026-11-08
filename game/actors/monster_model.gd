@@ -111,6 +111,23 @@ const FAMILIES := {
 	# faz a morte): esqueleto próprio, 2,70 m com o chapéu no arquivo, escala 1/2,7 (o "size" dos dados dá a altura).
 	"pirate_clark": {"scene": "res://assets/models/monsters/pirate_clark.glb", "scale": 1.0 / 2.7,
 		"anims": {"idle": "idle", "walk": "walk", "run": "run", "attack": "attack", "die": "die"}},
+	# Tentáculo do Kraken, chefe final das Docas ("Tentacle riged", defiat11, CC BY 4.0; tools/assets/build_kraken_tentacle.py reduz e faz as animações):
+	# 15 m em pé no arquivo; escala 4/15 -> 4 m de altura por unidade de size (o size fica pequeno porque também dá a caixa de acerto). Não sai do lugar.
+	"kraken_tentacle": {"scene": "res://assets/models/monsters/kraken_tentacle.glb", "scale": 4.0 / 15.0,
+		"anims": {"idle": "idle", "walk": "idle", "run": "idle", "attack": "attack", "die": "die"}},
+	# Polvo do Kraken, as ondas do chefe ("Octopus", kenchoo, CC BY 4.0; tools/assets/build_kraken_octopus.py): uma animação só (rasteja mexendo os braços),
+	# que serve para tudo; ~2,6 m de largura no arquivo, escala 1/2,6 (o "size" dá a largura).
+	"kraken_octopus": {"scene": "res://assets/models/monsters/kraken_octopus.glb", "scale": 1.0 / 2.6,
+		"anims": {"idle": "idle", "walk": "idle", "run": "idle", "attack": "idle"}},
+	# Polvo Abissal das Docas, no lugar do Espantalho Afogado ("Alien Octopus", agasherev, CC BY 4.0; tools/assets/build_alien_octopus.py reduz, vira e anima):
+	# bípede de 2,27 m com cabeça de polvo. "walk" é a animação do arquivo (anda curvado esticando os braços; serve também para correr); parado, garra,
+	# golpe sofrido e morte são os movimentos de zumbi dos heróis passados para o tronco e os braços dele (as pernas de joelho invertido ficam as do arquivo).
+	"alien_octopus": {"scene": "res://assets/models/monsters/alien_octopus.glb", "scale": 1.0 / 2.27,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Casco Vivo, mini-chefe das Docas: peixe-pescador de pé com a isca luminosa ("MONSTER", NORBERTO-3D, CC BY-SA 4.0; tools/assets/build_hull_angler.py tira os
+	# extras da cena): 1 m de altura no arquivo, escala 1,15 (size 3 -> ~3,5 m). A animação do arquivo (balança, avança e morde) serve para tudo; sem morte.
+	"hull_angler": {"scene": "res://assets/models/monsters/hull_angler.glb", "scale": 1.15,
+		"anims": {"idle": "idle", "walk": "idle", "run": "idle", "attack": "idle"}},
 	# Monstro da Floresta (cdmir, CC0): gigante de casca e pedra com uma árvore nas
 	# costas (34,5 unidades de altura: ~2,5 m por unidade de size). Para os mapas seguintes.
 	"forest": {"scene": "res://assets/models/monsters/forest_monster.glb", "scale": 0.072,

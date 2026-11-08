@@ -112,12 +112,24 @@ const MODELS := {
 		"poses": {"idle": "idle", "stand": "idle", "talk": "idle", "walk": "walk"}},
 	"adriana_walker": {"scene": "res://assets/models/characters/adriana_walker.glb", "scale": 1.0,
 		"poses": {"idle": "idle", "stand": "idle", "talk": "idle", "walk": "walk"}},
+	# "Afrique Ipopapatima (animated)", Jungle Jim, CC BY 4.0 (tools/assets/build_walking_npc.py): de top curto e tênis, também passeia no Bordel.
+	"afrique_walker": {"scene": "res://assets/models/characters/afrique_walker.glb", "scale": 1.0,
+		"poses": {"idle": "idle", "stand": "idle", "talk": "idle", "walk": "walk"}},
+	# "Sci-fi Girl v.02 Walkcycle Test", patrix, CC BY-NC-SA 4.0 (tools/assets/build_walking_npc.py): de macacão justo, passeia rente às camas do Bordel.
+	"scifi_walker": {"scene": "res://assets/models/characters/scifi_walker.glb", "scale": 1.0,
+		"poses": {"idle": "idle", "stand": "idle", "talk": "idle", "walk": "walk"}},
 	# Moças que dançam no Bordel de Tortuga: "Bouncy Beach babe walking in bikini (animated)" e "Asila Insbach", Jungle Jim, CC BY 4.0
 	# (tools/assets/build_dancing_npc.py): a dança da heroína (Dance_Loop) passada para o esqueleto delas; "walk" é a caminhada do arquivo (a da Asila é parada).
 	"beach_dancer": {"scene": "res://assets/models/characters/beach_dancer.glb", "scale": 1.0,
 		"poses": {"idle": "dance", "dance": "dance", "stand": "idle", "talk": "idle", "walk": "walk"}},
 	"asila_dancer": {"scene": "res://assets/models/characters/asila_dancer.glb", "scale": 1.0,
 		"poses": {"idle": "dance", "dance": "dance", "stand": "idle", "talk": "idle", "walk": "walk"}},
+	# Dança do ventre ("Bikini girl bellydancing", Miguelangelo Rosario, CC BY 4.0) e a anfitriã do balcão ("Prix", lucirgo, CC BY 4.0), no Bordel:
+	# a animação de cada arquivo (a dança, uma volta de ~30 s; a pose de anfitriã, 5 s), por tools/assets/build_walking_npc.py --dance.
+	"belly_dancer": {"scene": "res://assets/models/characters/belly_dancer.glb", "scale": 1.0,
+		"poses": {"idle": "dance", "dance": "dance", "stand": "idle", "talk": "dance"}},
+	"prix_hostess": {"scene": "res://assets/models/characters/prix_hostess.glb", "scale": 1.0,
+		"poses": {"idle": "dance", "dance": "dance", "stand": "dance", "talk": "dance"}},
 	# Guarda da Capital (warrior.glb do autor, Sketchfab "Warior"; autoria e licença a confirmar): elmo, gibão marrom e lança, com esqueleto e uma animação de guarda
 	# parado (499 quadros, "Scene", em laço); 1,8 m. Fica de guarda (idle), sem andar.
 	"warrior_guard": {"scene": "res://assets/models/characters/warrior_guard.glb", "scale": 1.0,

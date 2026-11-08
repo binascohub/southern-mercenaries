@@ -1,10 +1,11 @@
 """Bordel de Tortuga, a Sereia Rubra (área "brothel"): interior de uma sala só, como a Taverna (a parede sul fica aberta para a câmera), com a porta na rua
 principal de Tortuga, no lado leste da beira sul (a da Taverna fica no oeste).
- - Fundo (norte): cinco camas lado a lado, separadas por cortinas de pano penduradas.
+ - Fundo (norte): cinco camas lado a lado, separadas por cortinas de pano penduradas; na do meio, uma moça de biquíni de quatro.
  - Meio: dois conjuntos de sofás com clientes e cortesãs sentados, e uma mesa redonda com vinho e dois clientes nos banquinhos.
  - Oeste: o balcão, com garrafas e a prateleira; leste: a lareira e um vaso de planta.
- - As moças de biquíni (que antes ficavam no quarto do rei da Capital, e de lá saem): a moça da praia e a Asila dançam na frente; a Anna passeia na frente
-   e a Adriana entre as camas e os sofás. Os clientes ficam na mesa redonda e nos sofás.
+ - As moças de biquíni (que antes ficavam no quarto do rei da Capital, e de lá saem): a moça da praia e a Asila dançam na frente; a Anna passeia na frente,
+   a Adriana entre as camas e os sofás, a Afrique entre a mesa redonda e as dançarinas e a moça sci-fi rente aos pés das camas;
+   a moça da dança do ventre à direita da frente e a Prix, a anfitriã, ao lado do balcão. Os clientes ficam na mesa redonda e nos sofás.
  - Luz: três lustres e luzes avermelhadas; uma luz vermelha marca a porta na rua.
 Só cenário (sem missão nem loja). A música é a da Taverna (game/autoload/music.gd). Idempotente. Roda no fim de tools/assets/build_maps.py.
 uso: python3 tools/assets/build_brothel.py   (a partir da raiz do projeto)"""
@@ -31,6 +32,7 @@ def add(piece, x, z, **extra):
 add("Bed_2", -8.0, -5.0, rotation=0, solid=[2.7, 3.73], scale=1.8)
 add("Bed_3", -3.8, -5.4, rotation=0, solid=[2.0, 2.9], scale=1.4)
 add("Bed_1", 0.0, -5.4, rotation=0, solid=[1.4, 2.9], scale=1.4)
+add("Brothel_Bed_Woman", 0.0, -5.0, y=0.45, rotation=37)  # a moça de biquíni de quatro em cima da cama do meio (o arquivo vem na diagonal: 37° a deixa ao longo da cama, de frente para o sul) (tools/assets/build_bed_pose.py)
 add("Bed_3", 3.8, -5.4, rotation=0, solid=[2.0, 2.9], scale=1.4)
 add("Bed_4", 8.0, -5.0, rotation=0, solid=[1.8, 3.7], scale=1.8)
 for x in (-5.9, -1.9, 1.9, 5.9):
@@ -71,6 +73,10 @@ crowd = [
     {"role": "asila_dancer", "position": [2.6, 4.4], "rotation": 0, "pose": "dance"},
     {"role": "anna_walker", "position": [-6.5, 5.4], "rotation": 90, "pose": "idle", "path": [6.5, 5.4], "speed": 0.8},
     {"role": "adriana_walker", "position": [7.5, -2.4], "rotation": -90, "pose": "idle", "path": [-7.5, -2.4], "speed": 0.9},
+    {"role": "afrique_walker", "position": [-7.5, 2.8], "rotation": 90, "pose": "idle", "path": [7.5, 2.8], "speed": 0.85},
+    {"role": "scifi_walker", "position": [5.8, -3.3], "rotation": -90, "pose": "idle", "path": [-5.8, -3.3], "speed": 0.8},  # rente aos pés das camas
+    {"role": "belly_dancer", "position": [6.2, 4.6], "rotation": -15, "pose": "dance"},  # à direita da frente (o meio é a entrada); a dança anda até ~0,9 m
+    {"role": "prix_hostess", "position": [-7.9, 4.6], "rotation": 60, "pose": "stand"},  # a anfitriã, ao lado do balcão
     # Clientes.
     {"role": "pirate", "position": [-1.4, 1.4], "rotation": 90, "pose": "sit"},
     {"role": "sailor", "position": [1.4, 1.4], "rotation": 270, "pose": "sit"},
@@ -93,7 +99,10 @@ arenas["brothel"] = {
 capital = arenas["capital_01_aurenhold"]
 capital["crowd"] = [c for c in capital.get("crowd", []) if c.get("role") not in ("anna_walker", "adriana_walker", "beach_dancer", "asila_dancer")]
 tortuga["props"] = [p for p in tortuga["props"] if p["id"] != "brothel_door"]
-tortuga["props"].append({"id": "brothel_door", "kind": "exit", "name_key": "PROP_BROTHEL", "position": DOOR, "to": "brothel", "entry": "door"})
+# A entrada é a pedra de energia (tools/assets/build_brothel_stone.py), sem portal e sem marca no minimapa.
+# É um easter egg: sem nome flutuando e o aviso de interação só diz "Pedra misteriosa".
+tortuga["props"].append({"id": "brothel_door", "kind": "exit", "name_key": "PROP_MYSTERY_STONE", "position": DOOR, "to": "brothel", "entry": "door",
+                         "piece": "Brothel_Stone", "minimap": False, "label": False})
 tortuga["entries"]["brothel"] = [DOOR[0], DOOR[1] - 1.7]
 tortuga["decor"] = [d for d in tortuga["decor"] if not d.get("brothel_sign")]
 tortuga["decor"].append({"light": RED, "position": [DOOR[0], DOOR[1] + 0.3], "y": 2.2, "energy": 1.6, "range": 6, "brothel_sign": True})
@@ -101,7 +110,8 @@ tortuga["decor"].append({"light": RED, "position": [DOOR[0], DOOR[1] + 0.3], "y"
 json.dump(arenas, open(ARENAS, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
 open(ARENAS, "a").write("\n")
 NAMES = {"AREA_BROTHEL": ("Bordel da Sereia Rubra", "The Crimson Mermaid", "Burdel de la Sirena Carmesí"),
-         "PROP_BROTHEL": ("Bordel", "Brothel", "Burdel")}
+         "PROP_BROTHEL": ("Bordel", "Brothel", "Burdel"),
+         "PROP_MYSTERY_STONE": ("Pedra misteriosa", "Mysterious Stone", "Piedra misteriosa")}
 for idx, path in enumerate(("locale/pt_BR.po", "locale/en.po", "locale/es.po")):
     text = open(path, encoding="utf-8").read()
     for key, names in NAMES.items():

@@ -3048,7 +3048,7 @@ msgid "QUEST_DOCKS_SMUGGLERS"
 msgstr "O cais do Velho Lobo"
 
 msgid "QUEST_DOCKS_SMUGGLERS_DESC"
-msgstr "Capitão Pirata quer Diário do Capitão Afogado, que Capitão Afogado guarda no fundo do mapa. Consiga o livro com os moradores, desperte os mini-chefes no altar, troque os itens deles pelas chaves, abra o portão com o guardião e derrote Capitão Afogado. Entregue Diário do Capitão Afogado a Capitão Pirata por uma recompensa em ouro."
+msgstr "Capitão Pirata quer Diário do Capitão Afogado, que o Kraken do Capitão Afogado guarda no Convés, no fundo do mapa. Consiga os livros com os moradores, desperte os mini-chefes no altar, troque os itens deles pelas chaves, abra o portão com o guardião e derrote o Kraken e seus tentáculos. Entregue Diário do Capitão Afogado a Capitão Pirata por uma recompensa em ouro."
 
 msgid "NPC_OLD_LADY"
 msgstr "Velha da Taverna"
@@ -3640,7 +3640,7 @@ msgid "DLG_FISHWIFE_WAIT"
 msgstr "As redes estão rasgadas, mas a maré volta. Levem um peixe, está fresquinho."
 
 msgid "DLG_DOCKGUARD_1"
-msgstr "Parem aí. Este portão fecha o Convés, e no Convés manda o Capitão Afogado. Ele navegou até o fundo do mar e voltou com a tripulação inteira."
+msgstr "Parem aí. Este portão fecha o Convés, e no Convés mora o Kraken do Capitão Afogado. O capitão foi para o fundo do mar e mandou a fera de volta no lugar dele."
 
 msgid "DLG_DOCKGUARD_2"
 msgstr "O portão só abre com DUAS chaves: a da Âncora e a da Bússola. A primeira está com o Mestre do Porto, no cais de chegada; a segunda, com a Peixeira, na Peixaria."
@@ -3652,7 +3652,7 @@ msgid "DLG_DOCKGUARD_ACTIVE"
 msgstr "Só abro com as duas chaves, Âncora e Bússola, na mesma bolsa. O Mestre do Porto fica no cais de chegada; a Peixeira, na Peixaria a leste do mercado."
 
 msgid "DLG_DOCKGUARD_DONE"
-msgstr "As duas chaves! O portão está aberto. Cuidado: o Capitão Afogado nunca perdeu um navio, e não vai perder este."
+msgstr "As duas chaves! O portão está aberto. Cuidado: quando pisarem no meio do Convés, os dez tentáculos do Kraken sobem todos de uma vez."
 
 msgid "MONSTER_WAR_CHAMPION"
 msgstr "Campeão Caído"
@@ -5573,3 +5573,21 @@ msgstr "Coroa do Vulcão"
 
 msgid "VALUABLE_VOLCANO_CROWN_DESC"
 msgstr "Largado por Rei-Lagarto Vulcânico, o chefe do mapa. Não pode ser vendido nem perdido: leve-o a quem o pediu."
+
+msgid "MONSTER_KRAKEN"
+msgstr "Kraken"
+
+msgid "MONSTER_KRAKEN_TENTACLE"
+msgstr "Tentáculo do Kraken"
+
+msgid "MONSTER_KRAKEN_OCTOPUS"
+msgstr "Polvo do Kraken"
+
+msgid "TOAST_KRAKEN_WAVE"
+msgstr "O Kraken chama as crias: a onda {n} de polvos sobe ao convés!"
+
+msgid "MONSTER_DOCKS_ALIEN_OCTOPUS"
+msgstr "Polvo Abissal"
+
+msgid "PROP_MYSTERY_STONE"
+msgstr "Pedra misteriosa"

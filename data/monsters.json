@@ -2023,11 +2023,11 @@
       "damage_mult": 1.3,
       "cooldown": 5.0
     },
-    "look": "plank_monster",
+    "look": "hull_angler",
     "color": [
-      0.55,
-      0.75,
-      0.7
+      1.0,
+      1.0,
+      1.0
     ],
     "role": "normal",
     "_comment": "Mini-chefe das Docas (Estaleiro): o Casco Vivo, monstro de tábuas e pregos que acorda do casco encalhado; investidas.",
@@ -2069,7 +2069,8 @@
           }
         ]
       ]
-    }
+    },
+    "sound": "beast"
   },
   "pork_shark": {
     "name_key": "MONSTER_PORK_SHARK",
@@ -4380,27 +4381,6 @@
     ],
     "role": "tank"
   },
-  "docks_scarecrow": {
-    "_comment": "Espantalho Afogado das Docas (nickpanek-scarecrow-monster-1663.glb do autor; build_mine_robots.py, modo scarecrow): humanoide curvado de trapos encharcados; arranha com as mãos compridas. Água.",
-    "name_key": "MONSTER_DOCKS_SCARECROW",
-    "max_health": 210,
-    "move_speed": 3.0,
-    "damage": 16,
-    "attack_range": 2.0,
-    "attack_windup": 0.6,
-    "attack_cooldown": 1.3,
-    "aggro_range": 40.0,
-    "size": 1.9,
-    "category": "common",
-    "element": "water",
-    "look": "docks_scarecrow",
-    "color": [
-      1.0,
-      1.0,
-      1.0
-    ],
-    "role": "normal"
-  },
   "sea_crab": {
     "name_key": "MONSTER_SEA_CRAB",
     "max_health": 84,
@@ -5272,5 +5252,169 @@
     },
     "_comment": "Chefe final das Colinas: o Rei-Lagarto Vulcânico, lagarto gigante em brasa que guarda o Pátio do Vulcão atrás do portão; rabo de lava, chuva do vulcão e ondas.",
     "quest_drop": "volcano_crown"
+  },
+  "kraken": {
+    "move_speed": 0.0,
+    "aggro_range": 40.0,
+    "element": "water",
+    "ai": "ranged",
+    "keep_distance": 0.0,
+    "look": "kraken_tentacle",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "sound": "slime",
+    "attack_windup": 1.2,
+    "name_key": "MONSTER_KRAKEN",
+    "max_health": 2600,
+    "damage": 36,
+    "attack_range": 11.0,
+    "attack_cooldown": 3.0,
+    "size": 2.5,
+    "category": "boss",
+    "role": "normal",
+    "aggressive": false,
+    "chest_loot": "chest",
+    "quest_drop": "captain_log",
+    "_comment": "Chefe final das Docas: o Kraken, o monstro do Capitão Afogado, sobe pelo Convés; este é o tentáculo maior (~10 m). Bate no chão onde o herói está e o arrasta, pisa em volta de si e chama ondas de Polvos do Kraken. Os outros nove tentáculos do anel são kraken_tentacle.",
+    "spit": {
+      "_comment": "Tentáculo que agarra: marca o chão onde o herói está, bate ali e arrasta quem pegou para perto dele.",
+      "radius": 2.6,
+      "damage_mult": 1.0,
+      "pull": 6.0,
+      "push_time": 0.45
+    },
+    "slam": {
+      "_comment": "Varre a base: quem encosta no tentáculo leva o golpe em volta dele e é jogado longe.",
+      "interval": 7.0,
+      "radius": 5.0,
+      "windup": 1.0,
+      "damage_mult": 0.9,
+      "push": 5.0
+    },
+    "waves": {
+      "first": 8.0,
+      "interval": 18.0,
+      "radius": 6.0,
+      "toast": "TOAST_KRAKEN_WAVE",
+      "list": [
+        [
+          {
+            "monster": "kraken_octopus",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "monster": "kraken_octopus",
+            "count": 3
+          }
+        ],
+        [
+          {
+            "monster": "kraken_octopus",
+            "count": 3
+          }
+        ],
+        [
+          {
+            "monster": "kraken_octopus",
+            "count": 4
+          }
+        ],
+        [
+          {
+            "monster": "kraken_octopus",
+            "count": 4
+          }
+        ]
+      ]
+    }
+  },
+  "kraken_tentacle": {
+    "move_speed": 0.0,
+    "aggro_range": 40.0,
+    "element": "water",
+    "ai": "ranged",
+    "keep_distance": 0.0,
+    "look": "kraken_tentacle",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "sound": "slime",
+    "attack_windup": 1.2,
+    "name_key": "MONSTER_KRAKEN_TENTACLE",
+    "max_health": 380,
+    "damage": 24,
+    "attack_range": 9.0,
+    "attack_cooldown": 3.6,
+    "size": 2.0,
+    "category": "elite",
+    "role": "tank",
+    "_comment": "Tentáculo do Kraken (~8 m): nove deles fazem o anel do chefe final das Docas com o Kraken. Não sai do lugar; bate no chão onde o herói está.",
+    "spit": {
+      "_comment": "Tentáculo que agarra: marca o chão onde o herói está, bate ali e arrasta quem pegou para perto dele.",
+      "radius": 2.2,
+      "damage_mult": 1.0,
+      "pull": 5.0,
+      "push_time": 0.4
+    },
+    "slam": {
+      "_comment": "Varre a base: quem encosta leva o golpe em volta dele.",
+      "interval": 8.0,
+      "radius": 4.0,
+      "windup": 1.0,
+      "damage_mult": 0.8,
+      "push": 4.0
+    }
+  },
+  "kraken_octopus": {
+    "name_key": "MONSTER_KRAKEN_OCTOPUS",
+    "max_health": 120,
+    "move_speed": 3.2,
+    "damage": 12,
+    "attack_range": 1.8,
+    "attack_windup": 0.6,
+    "attack_cooldown": 1.4,
+    "aggro_range": 40.0,
+    "size": 1.3,
+    "category": "common",
+    "element": "water",
+    "ai": "melee",
+    "look": "kraken_octopus",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "sound": "slime",
+    "role": "swarm",
+    "_comment": "Polvo do Kraken (\"Octopus\", kenchoo, CC BY 4.0): só vem pelas ondas do Kraken, no Convés das Docas; rasteja até o herói e morde."
+  },
+  "docks_alien_octopus": {
+    "name_key": "MONSTER_DOCKS_ALIEN_OCTOPUS",
+    "max_health": 210,
+    "move_speed": 3.0,
+    "damage": 16,
+    "attack_range": 2.0,
+    "attack_windup": 0.6,
+    "attack_cooldown": 1.3,
+    "aggro_range": 40.0,
+    "size": 2.0,
+    "category": "common",
+    "element": "water",
+    "look": "alien_octopus",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "role": "normal",
+    "sound": "slime",
+    "_comment": "Polvo Abissal das Docas (\"Alien Octopus\", agasherev, CC BY 4.0; tools/assets/build_alien_octopus.py): bípede de ~2 m com cabeça de polvo e armadura que sobe do porto; agarra com os braços compridos. No lugar do Espantalho Afogado, com os mesmos números. Água."
   }
 }

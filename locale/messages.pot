@@ -5269,3 +5269,18 @@ msgstr ""
 
 msgid "VALUABLE_VOLCANO_CROWN_DESC"
 msgstr ""
+
+msgid "MONSTER_KRAKEN"
+msgstr ""
+
+msgid "MONSTER_KRAKEN_TENTACLE"
+msgstr ""
+
+msgid "MONSTER_KRAKEN_OCTOPUS"
+msgstr ""
+
+msgid "TOAST_KRAKEN_WAVE"
+msgstr ""
+
+msgid "MONSTER_DOCKS_ALIEN_OCTOPUS"
+msgstr ""

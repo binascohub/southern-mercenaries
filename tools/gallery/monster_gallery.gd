@@ -37,7 +37,7 @@ func _ready() -> void:
 	for i in ids.size():
 		var id: String = ids[i]
 		var pos := Vector3((i % COLUMNS) * CELL, 0, (i / COLUMNS) * CELL)
-		var enemy := Enemy.create({"monster_id": id, "position": pos, "yaw": PI})
+		var enemy := Enemy.create({"monster_id": id, "position": pos, "yaw": 0.0})  # de frente para a câmera (+Z; yaw 0 = olhando para +Z)
 		add_child(enemy)
 		var d: Dictionary = GameData.monsters[id]
 		var label := Label3D.new()

@@ -58,6 +58,39 @@ for obj in bpy.data.objects:  # faixas NLA que apontavam para ações que saíra
             if not any(s.action for s in track.strips):
                 obj.animation_data.nla_tracks.remove(track)
 
+# --- corrida e segundo golpe vêm de lado no arquivo (o quadril, spine_78, gira ~90° em relação ao idle e à caminhada): gira o quadril de volta,
+# em volta do eixo vertical que passa pelo meio dos pés, quadro a quadro, para ele correr de frente para onde vai
+HIPS = "spine_78"
+scene = bpy.context.scene
+arm.animation_data_create()
+
+
+def hips_yaw(action, frame):
+    arm.animation_data.action = action
+    scene.frame_set(frame)
+    return (arm.matrix_world @ arm.pose.bones[HIPS].matrix).to_euler().z
+
+
+ref = hips_yaw(bpy.data.actions["walk"], 0)
+for a in [bpy.data.actions[n] for n in ("run", "attack2")]:
+    f0, f1 = int(a.frame_range[0]), int(a.frame_range[1])
+    turn = sum(math.remainder(hips_yaw(a, f) - ref, math.tau) for f in range(f0, f1 + 1)) / (f1 - f0 + 1)
+    if abs(turn) < math.radians(30):
+        continue
+    fix = Matrix.Rotation(-turn, 4, "Z")
+    hips = arm.pose.bones[HIPS]
+    poses = []
+    for f in range(f0, f1 + 1):
+        scene.frame_set(f)
+        poses.append((f, arm.matrix_world.inverted() @ fix @ arm.matrix_world @ hips.matrix))
+    for f, m in poses:
+        scene.frame_set(f)
+        hips.matrix = m
+        bpy.context.view_layer.update()
+        hips.keyframe_insert("location", frame=f)
+        hips.keyframe_insert("rotation_quaternion", frame=f)
+    print("ação %s: quadril girado %.0f° de volta" % (a.name, math.degrees(-turn)))
+
 # --- morte: a pose do idle e o corpo tombando de costas (para +Y, atrás dele), girando em volta do calcanhar
 die = bpy.data.actions["idle"].copy()
 die.name = "die"

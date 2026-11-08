@@ -1,0 +1,5 @@
+fish_hologram.glb - "Fish Hologram" by Pat Sipes (https://sketchfab.com/pasipes)
+            https://sketchfab.com/3d-models/fish-hologram-adc420289ced44b79cf3142e071d680a
+            CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+            Changes: textures reduced to 512 px (WEBP), centered on the spiral's axis with the base on the ground and scaled to 1 m,
+            animation renamed (tools/assets/build_fish_hologram.py).

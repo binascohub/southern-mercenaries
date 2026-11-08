@@ -1,4 +1,4 @@
-"""Moças que passeiam no Bordel de Tortuga (área "brothel", tools/assets/build_brothel.py): "Anna Ipati (animated)" e "Adriana Ilma (animated)", Jungle Jim na Sketchfab, CC BY 4.0
+"""Moças que passeiam no Bordel de Tortuga (área "brothel", tools/assets/build_brothel.py): "Anna Ipati (animated)", "Adriana Ilma (animated)" e "Afrique Ipopapatima (animated)", Jungle Jim na Sketchfab, CC BY 4.0
 (arquivos trazidos pelo autor do projeto). São personagens do Character Creator (esqueleto CC_Base de ~100 ossos), de biquíni, com uma caminhada no lugar
 de 18 s cujo primeiro quadro é a T-pose; os arquivos são enormes (Anna: 403 mil triângulos, 74 texturas, 336 MB).
 Aqui:
@@ -7,7 +7,8 @@ Aqui:
  - "walk" é a caminhada sem o quadro da T-pose; "idle" é uma pose só, a do quadro da caminhada com os pés mais juntos (para as paradas nas pontas);
  - fica com ~1,7 m, de pé no chão, olhando para -Y (+Z no glTF).
 Vai para assets/models/characters/<nome>.glb (game/actors/npc_model.gd).
-uso: blender -b --python tools/assets/build_walking_npc.py -- <arquivo.glb> <saída.glb> [--drop malha1,malha2]"""
+Com --dance N serve também para quem já vem dançando (a moça da dança do ventre, Mixamo): a animação vira "dance", cortada no quadro N.
+uso: blender -b --python tools/assets/build_walking_npc.py -- <arquivo.glb> <saída.glb> [--drop malha1,malha2] [--dance N]"""
 import bpy, sys
 import numpy as np
 from mathutils import Matrix, Vector
@@ -15,6 +16,8 @@ from mathutils import Matrix, Vector
 args = sys.argv[sys.argv.index("--") + 1:]
 src, out = args[:2]
 drop = args[args.index("--drop") + 1].split(",") if "--drop" in args else []
+# --dance N: a animação do arquivo é uma dança (sem T-pose): vira "dance", cortada no quadro N (uma volta só), e a pose parada é o primeiro quadro.
+dance_end = int(args[args.index("--dance") + 1]) if "--dance" in args else None
 TARGET_TRIS = 40000
 MAX_TEX = 512
 HEIGHT = 1.7
@@ -62,20 +65,22 @@ walk = max(bpy.data.actions, key=lambda a: a.frame_range[1] - a.frame_range[0])
 for a in list(bpy.data.actions):
     if a is not walk:
         bpy.data.actions.remove(a)
-walk.name = "walk"
+walk.name = "dance" if dance_end is not None else "walk"
 walk.use_fake_user = True
 f0, f1 = int(walk.frame_range[0]), int(walk.frame_range[1])
-for fc in fcurves(walk):  # sai o quadro da T-pose
+for fc in fcurves(walk):  # sai o quadro da T-pose (caminhada) ou o que passa do fim da volta (dança)
     for i in reversed(range(len(fc.keyframe_points))):
-        if fc.keyframe_points[i].co.x < f0 + 0.5:
+        x = fc.keyframe_points[i].co.x
+        if (dance_end is None and x < f0 + 0.5) or (dance_end is not None and x > dance_end + 0.5):
             fc.keyframe_points.remove(fc.keyframe_points[i])
 rig.animation_data.action = walk
 scene = bpy.context.scene
 
 # Quadro com os pés mais juntos (entre os primeiros 3 s): vira a pose parada.
-feet = [b.name for b in rig.pose.bones if b.name.endswith(("L_Foot", "R_Foot")) or "_L_Foot_" in b.name or "_R_Foot_" in b.name]
-best = (1e9, f0 + 1)
-for f in range(f0 + 1, min(f1, f0 + 72)):
+feet = [b.name for b in rig.pose.bones if b.name.endswith(("L_Foot", "R_Foot")) or "_L_Foot_" in b.name or "_R_Foot_" in b.name
+        or b.name.startswith(("Ankle_L_", "Ankle_R_"))]  # CC_Base ou o esqueleto do Maya da moça sci-fi (Ankle_L_098)
+best = (1e9, f0 + 1) if dance_end is None else (0.0, f0)
+for f in range(f0 + 1, min(f1, f0 + 72)) if dance_end is None else []:
     scene.frame_set(f)
     a, b = [rig.matrix_world @ rig.pose.bones[n].head for n in feet[:2]]
     d = (Vector((a.x, a.y, 0)) - Vector((b.x, b.y, 0))).length
