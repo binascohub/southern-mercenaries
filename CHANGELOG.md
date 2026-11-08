@@ -15,6 +15,10 @@
   opens like petals ("Demogorgon Rig", CC BY 4.0), with the same stats; the Fungus Uncle stays in the Sewers and the Dark Forest.
 - The Gold Sandworm guards 6 spots of the Desert (dunes, quicksand, nest, wrecks and road): a ~2.5 m worm that never leaves its hole, turns
   to whoever comes near and spits acid sand in an arc that leaves a puddle; it sinks into the sand when it dies ("Gold Sandworm", Fubbi, CC BY 4.0).
+- Tortuga's street fights now have an audience: six townsfolk stand around four of the brawls, jumping, clapping, raising their arms and dancing.
+  They are scanned people whose modern clothes (jeans, jackets, a logo T-shirt) were repainted as medieval tunics with a leather belt, wool hose and boots,
+  and long dresses for the women ("Background People add-on for Blender", Jungle Jim, CC BY 4.0; `tools/assets/build_background_people.py`,
+  `tools/assets/add_tortuga_cheer_crowd.py`).
 - The Docks' Lure Angler becomes the Drunken Skeleton, a ~1.8 m pirate skeleton with a hat and a rum bottle that walks, runs and fights with the
   heroes' animations; instead of the hook lure that pulled the hero in, it throws its rum bottle, and the spilled rum slows ("Skeleton Pirate \"The Drunk\"",
   FireGoat, CC BY 4.0; `tools/assets/build_skeleton_drunk.py`, profile `skeleton_drunk` in `rig_biped.py`).

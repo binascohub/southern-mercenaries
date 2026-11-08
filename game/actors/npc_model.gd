@@ -81,6 +81,7 @@ const COURTESAN_BONES := {"hips": "hips", "skirt": "root", "chest": "brust", "up
 ## Civis do Mixamo: andar, conversa e os golpes de briga (data/arenas.json: papel "brawl" com civis em "fighters").
 const CIVIL_POSES := {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop",
 	"punch_jab": "Punch_Jab", "punch_cross": "Punch_Cross", "hit": "Hit_Chest", "hit_head": "Hit_Head", "fold_arms": "Idle_FoldArms_Loop"}
+const CHEER_POSES := {"idle": "cheer", "talk": "cheer", "stand": "cheer", "dance": "cheer"}  # a torcida: qualquer pose é a comemoração
 const VILLAGER_POSES := {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop", "run": "Jog_Fwd_Loop",
 	"dance_sway": "Dance_Loop", "dance_hips": "Dance_Loop", "dance_twirl": "Dance_Loop", "dance_wild": "Dance_Loop"}
 
@@ -104,6 +105,12 @@ const MODELS := {
 	# Mulher de vestido (z-h Fantasy Outfit 21 FREE, woman1.zip do autor; autoria e licença a confirmar): vestido longo bordô de mangas transparentes sobre a cabeça, o cabelo
 	# comprido e as mãos da heroína, presos ao esqueleto dos heróis por tools/assets/build_woman_dress.py, com as animações deles.
 	"woman_dress": {"scene": "res://assets/models/characters/woman_dress.glb", "scale": 1.0, "poses": VILLAGER_POSES},
+	# Moças que andam no quarto do rei (Capital): "Anna Ipati (animated)" e "Adriana Ilma (animated)", Jungle Jim, CC BY 4.0 (tools/assets/build_walking_npc.py):
+	# personagens do Character Creator de biquíni, ~1,7 m, com a caminhada própria no lugar e uma pose parada para as pontas do caminho.
+	"anna_walker": {"scene": "res://assets/models/characters/anna_walker.glb", "scale": 1.0,
+		"poses": {"idle": "idle", "stand": "idle", "talk": "idle", "walk": "walk"}},
+	"adriana_walker": {"scene": "res://assets/models/characters/adriana_walker.glb", "scale": 1.0,
+		"poses": {"idle": "idle", "stand": "idle", "talk": "idle", "walk": "walk"}},
 	# Guarda da Capital (warrior.glb do autor, Sketchfab "Warior"; autoria e licença a confirmar): elmo, gibão marrom e lança, com esqueleto e uma animação de guarda
 	# parado (499 quadros, "Scene", em laço); 1,8 m. Fica de guarda (idle), sem andar.
 	"warrior_guard": {"scene": "res://assets/models/characters/warrior_guard.glb", "scale": 1.0,
@@ -147,6 +154,17 @@ const MODELS := {
 	"civilian_5": {"scene": "res://assets/models/characters/civilian5.glb", "scale": 1.0,
 		"poses": CIVIL_POSES},
 	# Capitão Barnabé (pirate2.glb do autor, homem de colete de couro, barba e botas, low poly; tools/assets/build_mixamo_civilian.py): passeia pela rua de Tortuga, preso ao esqueleto dos heróis.
+	# Torcida das brigas de Tortuga ("Background People add-on for Blender", Jungle Jim, CC BY 4.0; tools/assets/build_background_people.py separa as 6 pessoas e repinta a roupa de hoje
+	# como túnica, cinto, meia-calça e botas medievais): esqueleto próprio e uma só animação, "cheer" (pulam, batem palmas, erguem os braços, dançam). Postas por add_tortuga_cheer_crowd.py.
+	"crowd_cheer_1": {"scene": "res://assets/models/characters/crowd_cheer_1.glb", "scale": 1.0, "poses": CHEER_POSES},
+	"crowd_cheer_2": {"scene": "res://assets/models/characters/crowd_cheer_2.glb", "scale": 1.0, "poses": CHEER_POSES},
+	"crowd_cheer_3": {"scene": "res://assets/models/characters/crowd_cheer_3.glb", "scale": 1.0, "poses": CHEER_POSES},
+	"crowd_cheer_4": {"scene": "res://assets/models/characters/crowd_cheer_4.glb", "scale": 1.0, "poses": CHEER_POSES},
+	"crowd_cheer_5": {"scene": "res://assets/models/characters/crowd_cheer_5.glb", "scale": 1.0, "poses": CHEER_POSES},
+	"crowd_cheer_6": {"scene": "res://assets/models/characters/crowd_cheer_6.glb", "scale": 1.0, "poses": CHEER_POSES},
+	# Guerreiro Andarilho ("hero warrior (downloadable)", Diox..Andrey, CC BY 4.0; tools/assets/build_mixamo_civilian.py, braços em T, 1,85 m): guerreiro de armadura que passeia pela Capital,
+	# preso ao esqueleto dos heróis, com os movimentos deles (o arquivo só tinha "idle").
+	"hero_warrior": {"scene": "res://assets/models/characters/hero_warrior.glb", "scale": 1.0, "poses": CIVIL_POSES},
 	"pirate_2": {"scene": "res://assets/models/characters/pirate2.glb", "scale": 1.0,
 		"poses": {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop"}},
 	"pirate_captain": {"scene": "res://assets/models/characters/pirate_captain.glb", "scale": 1.0,

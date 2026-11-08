@@ -5304,8 +5304,8 @@ msgstr "Ink Octopus"
 msgid "MONSTER_SEA_ANGLER"
 msgstr "Drunken Skeleton"
 
-msgid "MONSTER_SEA_GATOR"
-msgstr "Dragging Gator"
+msgid "MONSTER_SEA_PEGLEG"
+msgstr "Peg-Leg Pirate"
 
 msgid "TOAST_HULL_WAVE"
 msgstr "The Living Hull creaks: sea creature wave {n} climbs the pier!"

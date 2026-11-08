@@ -5045,7 +5045,7 @@ msgstr ""
 msgid "MONSTER_SEA_ANGLER"
 msgstr ""
 
-msgid "MONSTER_SEA_GATOR"
+msgid "MONSTER_SEA_PEGLEG"
 msgstr ""
 
 msgid "TOAST_HULL_WAVE"

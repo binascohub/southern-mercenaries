@@ -1928,6 +1928,10 @@ subprocess.run([sys.executable, "tools/assets/add_docks_ditch_dog.py"], check=Tr
 subprocess.run([sys.executable, "tools/assets/forest_demogorgon.py"], check=True)  # Floresta: Boca-de-Flor no lugar do Tio Fungo
 subprocess.run([sys.executable, "tools/assets/add_boss_treasure.py"], check=True)  # joias de ouro no chão em volta do chefe final de cada mapa
 subprocess.run([sys.executable, "tools/assets/add_gold_skulls.py"], check=True)  # pilhas de caveiras de ouro nas Catacumbas e no Cemitério
+subprocess.run([sys.executable, "tools/assets/use_realistic_trees.py"], check=True)  # carvalhos -> árvores realistas (e parte dos arbustos da Floresta)
 subprocess.run([sys.executable, "tools/assets/add_desert_sandworm.py"], check=True)  # Deserto: Verme Dourado (6 pontos, cospe de longe)
 subprocess.run([sys.executable, "tools/assets/docks_skeleton_pirate.py"], check=True)  # Docas: Esqueleto Pirata no lugar do Polvo de Tinta
+subprocess.run([sys.executable, "tools/assets/add_tortuga_cheer_crowd.py"], check=True)  # Tortuga: torcida (roupa medieval) em volta das brigas
+subprocess.run([sys.executable, "tools/assets/add_capital_hero_warrior.py"], check=True)  # Capital: Guerreiro Andarilho na Avenida
+subprocess.run([sys.executable, "tools/assets/add_king_bedroom_walkers.py"], check=True)  # Capital: moças andando no quarto do rei
 print("OK", [k for k in arenas if k.split("_")[0] in ("forest", "ruins", "cemetery", "fort", "farm", "mine")])

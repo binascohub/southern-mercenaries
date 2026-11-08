@@ -1232,7 +1232,7 @@ func _test_sewers() -> void:
 	_check(forest_decor.all(func(d: Dictionary) -> bool: return d.get("piece", "") != "Floor_UnevenBrick"), "Floresta: sem chão de pedra")
 	_check(forest_decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") in ["Dead_Tree", "Vl_Logs"]).is_empty()
 		and forest_decor.filter(func(d: Dictionary) -> bool: return String(d.get("piece", "")).begins_with("Pl_")).size() > 100, "Floresta sem troncos secos nem toras, com plantas")
-	_check(forest_decor.filter(func(d: Dictionary) -> bool: return d.get("piece", "") == "Oak_Tree" and d.has("solid")).size() >= 20 and Kit.has("Oak_Tree"), "Floresta tem carvalhos vivos (o tronco bloqueia) no lugar de parte da vegetação")
+	_check(forest_decor.filter(func(d: Dictionary) -> bool: return (d.get("piece", "") == "Oak_Tree" or d.get("was", "") == "Oak_Tree") and d.has("solid") and Kit.has(String(d.piece))).size() >= 20, "Floresta tem carvalhos vivos (o tronco bloqueia) no lugar de parte da vegetação (as árvores realistas guardam o carvalho em \"was\")")
 	_check(forest_decor.filter(func(d: Dictionary) -> bool: return String(d.get("piece", "")).begins_with("Wall_") or String(d.get("piece", "")).begins_with("Roof_")).is_empty(), "Floresta sem casas")
 	_check(forest_decor.all(func(d: Dictionary) -> bool: return not d.get("piece", "") in ["Well_Covered", "Wheelbarrow", "Vl_Cellar", "Vl_Ladder", "Cart_Wood", "Vl_Outhouse"] and not String(d.get("piece", "")).begins_with("Mushroom_")), "Floresta sem o poço, o carrinho de mão, o porão, a escada, a carroça, a casinha e os cogumelos")
 	_check(forest_decor.any(func(d: Dictionary) -> bool: return d.get("piece", "") == "Tv_Fire") and forest_decor.any(func(d: Dictionary) -> bool: return d.has("light") and d.get("camp", false))

@@ -5304,8 +5304,8 @@ msgstr "Polvo de Tinta"
 msgid "MONSTER_SEA_ANGLER"
 msgstr "Esqueleto Bêbado"
 
-msgid "MONSTER_SEA_GATOR"
-msgstr "Jacaré Arrastador"
+msgid "MONSTER_SEA_PEGLEG"
+msgstr "Pirata Perna-de-Pau"
 
 msgid "TOAST_HULL_WAVE"
 msgstr "O Casco Vivo range: a onda {n} de bichos do mar sobe do píer!"

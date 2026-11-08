@@ -91,9 +91,9 @@ SEA = {
                    "size": 1.8, "category": "common", "element": "water", "ai": "melee", "look": "skeleton_drunk", "color": [1.0, 1.0, 1.0], "role": "light",
                    "fireball": {"_comment": "Garrafada de rum (o Esqueleto Bêbado): arremessa a garrafa onde o herói está; o rum espalhado deixa lento.", "min": 4.0, "max": 11.0, "windup": 0.9,
                                 "cooldown": 6.0, "radius": 1.6, "damage_mult": 0.8, "element": "water", "slow": [0.6, 2.0], "glob": [0.75, 0.45, 0.15], "glob_size": 0.7}},
-    "sea_gator": {"name_key": "MONSTER_SEA_GATOR", "max_health": 336, "move_speed": 3.0, "damage": 10, "attack_range": 2.6, "attack_windup": 0.6, "attack_cooldown": 1.6, "aggro_range": 40.0,
-                  "size": 1.2, "category": "common", "element": "water", "ai": "melee", "look": "gator", "color": [0.45, 0.62, 0.45], "role": "tank",
-                  "slam": {"_comment": "Bote que arrasta: bate o rabo na água e puxa quem está em volta para a boca.", "interval": 7.0, "radius": 5.5, "windup": 1.0, "damage_mult": 1.1, "pull": 4.5}},
+    "sea_pegleg": {"name_key": "MONSTER_SEA_PEGLEG", "max_health": 336, "move_speed": 3.0, "damage": 10, "attack_range": 2.2, "attack_windup": 0.6, "attack_cooldown": 1.6, "aggro_range": 40.0,
+                   "size": 1.85, "category": "common", "element": "water", "ai": "melee", "look": "pirate_clark", "color": [1.0, 1.0, 1.0], "role": "tank", "sound": "ogre",
+                   "slam": {"_comment": "Puxão do Perna-de-Pau: bate a perna de pau no tablado e puxa pela gola quem está em volta.", "interval": 7.0, "radius": 5.5, "windup": 1.0, "damage_mult": 1.1, "pull": 4.5}},
 }
 # Caranguejo de Ouro (gold_crab, "scavenger_crab_gold"): só vem pelas ondas do Tubarão-Porco.
 SEA["gold_crab"] = {'name_key': 'MONSTER_GOLD_CRAB', 'max_health': 84, 'move_speed': 5.0, 'damage': 8, 'attack_range': 1.5, 'attack_windup': 0.35, 'attack_cooldown': 1.0, 'aggro_range': 40.0, 'size': 0.9, 'category': 'common', 'element': 'water', 'ai': 'charger', 'look': 'gold_crab', 'color': [1.0, 1.0, 1.0], 'role': 'swarm', '_comment': 'Caranguejo de Ouro: só aparece pelas ondas do Tubarão-Porco (Esqueleto Pirata). Corre de lado e dá botes curtos.', 'charge': {'min': 3.0, 'max': 8.0, 'windup': 0.5, 'speed': 11.0, 'time': 0.4, 'damage_mult': 1.0, 'cooldown': 4.0}}
@@ -101,7 +101,7 @@ monsters.update(SEA)
 monsters["hull_beast"].update({
     "slam": {"_comment": "Pregos e tábuas: o casco se joga no chão e arrasta para si quem está perto.", "interval": 8.0, "radius": 5.5, "windup": 1.1, "damage_mult": 1.0, "pull": 5.0},
     "waves": {"first": 8.0, "interval": 22.0, "radius": 6.0, "toast": "TOAST_HULL_WAVE",
-              "list": [[{"monster": "sea_crab", "count": 3}], [{"monster": "sea_angler", "count": 2}], [{"monster": "sea_gator", "count": 1}, {"monster": "sea_crab", "count": 2}]]}})
+              "list": [[{"monster": "sea_crab", "count": 3}], [{"monster": "sea_angler", "count": 2}], [{"monster": "sea_pegleg", "count": 1}, {"monster": "sea_crab", "count": 2}]]}})
 monsters["pork_shark"].update({
     "fireball": {"_comment": "Jato d'água: cospe uma onda onde o herói está, que derruba e joga longe.", "min": 4.0, "max": 14.0, "windup": 1.0, "cooldown": 6.0, "radius": 2.6, "damage_mult": 1.0,
                  "element": "water", "push": 6.0, "push_time": 0.4, "wind": True, "glob": [0.4, 0.7, 1.0], "glob_size": 1.6},
@@ -113,7 +113,7 @@ monsters["drowned_captain"].update({
     "barrage": {"_comment": "Fogo dos canhões do navio: balas caem uma atrás da outra em volta de cada herói (a primeira em cima dele).", "interval": 11.0, "count": 5, "radius": 2.2,
                 "spread": 6.0, "delay": 1.4, "step": 0.35, "damage_mult": 0.8, "max": 22.0, "boom": [1.0, 0.55, 0.2]},
     "waves": {"first": 10.0, "interval": 20.0, "radius": 7.0, "toast": "TOAST_CAPTAIN_WAVE",
-              "list": [[{"monster": "sea_crab", "count": 3}], [{"monster": "sea_angler", "count": 2}, {"monster": "sea_octopus", "count": 1}], [{"monster": "sea_gator", "count": 2}],
+              "list": [[{"monster": "sea_crab", "count": 3}], [{"monster": "sea_angler", "count": 2}, {"monster": "sea_octopus", "count": 1}], [{"monster": "sea_pegleg", "count": 2}],
                        [{"monster": "sea_crab", "count": 2}, {"monster": "sea_octopus", "count": 2}]]}})
 valuables.update({
     "ship_helm": {"name_key": "VALUABLE_SHIP_HELM", "value": 0, "maps": [], "quest_item": True, "model": "Bucket_Wooden_1"},
@@ -140,11 +140,11 @@ props = [
 E = lambda eid, pos, *mons: {"id": eid, "position": pos, "monsters": [{"monster": m, "count": c} for m, c in mons]}
 encounters = [
     E("dk_rats_a", [0, -18], ("sea_crab", 4)), E("dk_toads", [-32, 0], ("sea_octopus", 3)), E("dk_bats", [32, 0], ("sea_crab", 4)),
-    E("dk_rats_b", [0, -80], ("sea_gator", 3), ("sea_angler", 2)), E("dk_anglers", [-46, -46], ("sea_angler", 2)),
-    E("dk_market_a", [-18, -42], ("sea_crab", 3)), E("dk_market_b", [18, -52], ("sea_gator", 3)), E("dk_market_c", [-4, -36], ("sea_crab", 3)),
+    E("dk_rats_b", [0, -80], ("sea_pegleg", 3), ("sea_angler", 2)), E("dk_anglers", [-46, -46], ("sea_angler", 2)),
+    E("dk_market_a", [-18, -42], ("sea_crab", 3)), E("dk_market_b", [18, -52], ("sea_pegleg", 3)), E("dk_market_c", [-4, -36], ("sea_crab", 3)),
     E("dk_east_pier", [46, -46], ("sea_octopus", 2)), E("dk_yard_a", [-62, -80], ("sea_angler", 3)), E("dk_yard_b", [-42, -58], ("sea_octopus", 3)),
-    E("dk_fishery_a", [44, -84], ("sea_crab", 4)), E("dk_fishery_b", [62, -58], ("sea_gator", 3)),
-    E("dk_light_a", [-55, -112], ("sea_angler", 3)), E("dk_light_b", [-62, -98], ("sea_crab", 3)), E("dk_ware_a", [55, -112], ("sea_gator", 3)), E("dk_ware_b", [62, -98], ("sea_angler", 3)),
+    E("dk_fishery_a", [44, -84], ("sea_crab", 4)), E("dk_fishery_b", [62, -58], ("sea_pegleg", 3)),
+    E("dk_light_a", [-55, -112], ("sea_angler", 3)), E("dk_light_b", [-62, -98], ("sea_crab", 3)), E("dk_ware_a", [55, -112], ("sea_pegleg", 3)), E("dk_ware_b", [62, -98], ("sea_angler", 3)),
     E("dk_wharf_a", [-20, -107], ("sea_crab", 4)), E("dk_wharf_b", [20, -107], ("sea_crab", 4)),
     E("dk_boathouse_mimic", [38, 3], ("chest_mimic", 1)), E("dk_yard_mimic", [-60, -60], ("chest_mimic", 1)), E("dk_light_mimic", [-66, -112], ("chest_mimic", 1)),
     E("dk_ware_mimic", [66, -112], ("chest_mimic", 1)), E("dk_deck_a", [-18, -158], ("sea_angler", 2)), E("dk_deck_b", [18, -158], ("sea_angler", 2)),
@@ -445,7 +445,7 @@ T = {
     "MONSTER_SEA_CRAB": ("Caranguejo Tenaz", "Pincer Crab", "Cangrejo Tenaza"),
     "MONSTER_SEA_OCTOPUS": ("Polvo de Tinta", "Ink Octopus", "Pulpo de Tinta"),
     "MONSTER_SEA_ANGLER": ("Esqueleto Bêbado", "Drunken Skeleton", "Esqueleto Borracho"),
-    "MONSTER_SEA_GATOR": ("Jacaré Arrastador", "Dragging Gator", "Caimán Arrastrador"),
+    "MONSTER_SEA_PEGLEG": ("Pirata Perna-de-Pau", "Peg-Leg Pirate", "Pirata Pata de Palo"),
     "TOAST_HULL_WAVE": ("O Casco Vivo range: a onda {n} de bichos do mar sobe do píer!", "The Living Hull creaks: sea creature wave {n} climbs the pier!", "El Casco Viviente cruje: ¡la oleada {n} de bichos del mar sube al muelle!"),
     "TOAST_SHARK_WAVE": ("O Tubarão-Porco chama o cardume: onda {n}!", "The Pork Shark calls the shoal: wave {n}!", "El Tiburón-Cerdo llama al cardumen: ¡oleada {n}!"),
     "TOAST_CAPTAIN_WAVE": ("O Capitão Afogado chama o mar: onda {n}!", "The Drowned Captain calls the sea: wave {n}!", "El Capitán Ahogado llama al mar: ¡oleada {n}!"),

@@ -1,0 +1,5 @@
+pirate_clark.glb - "Pirate clark" by photon (that one larry) (https://sketchfab.com/Professor_E12)
+            https://sketchfab.com/3d-models/pirate-clark-794037e2316a43c190345d3e5ba5c033
+            CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+            Changes: meshes reduced to about a third (decimate), textures reduced to 512 px (WEBP), turned to face +Z with the feet on the ground,
+            actions renamed, the jump removed and a death animation (falling on the back) added (tools/assets/build_pirate_clark.py).

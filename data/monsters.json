@@ -2060,7 +2060,7 @@
         ],
         [
           {
-            "monster": "sea_gator",
+            "monster": "sea_pegleg",
             "count": 1
           },
           {
@@ -2230,7 +2230,7 @@
         ],
         [
           {
-            "monster": "sea_gator",
+            "monster": "sea_pegleg",
             "count": 2
           }
         ],
@@ -4510,34 +4510,35 @@
       "glob_size": 0.7
     }
   },
-  "sea_gator": {
-    "name_key": "MONSTER_SEA_GATOR",
+  "sea_pegleg": {
+    "name_key": "MONSTER_SEA_PEGLEG",
     "max_health": 336,
     "move_speed": 3.0,
     "damage": 10,
-    "attack_range": 2.6,
+    "attack_range": 2.2,
     "attack_windup": 0.6,
     "attack_cooldown": 1.6,
     "aggro_range": 40.0,
-    "size": 1.2,
+    "size": 1.85,
     "category": "common",
     "element": "water",
     "ai": "melee",
-    "look": "gator",
+    "look": "pirate_clark",
     "color": [
-      0.45,
-      0.62,
-      0.45
+      1.0,
+      1.0,
+      1.0
     ],
     "role": "tank",
     "slam": {
-      "_comment": "Bote que arrasta: bate o rabo na água e puxa quem está em volta para a boca.",
+      "_comment": "Puxão do Perna-de-Pau: bate a perna de pau no tablado e puxa pela gola quem está em volta.",
       "interval": 7.0,
       "radius": 5.5,
       "windup": 1.0,
       "damage_mult": 1.1,
       "pull": 4.5
-    }
+    },
+    "sound": "ogre"
   },
   "ember_goblin": {
     "_comment": "Goblin das Cinzas: o Goblin das Ruínas, queimado pela guerra; de Fogo.",

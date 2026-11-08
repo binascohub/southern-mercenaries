@@ -5304,8 +5304,8 @@ msgstr "Pulpo de Tinta"
 msgid "MONSTER_SEA_ANGLER"
 msgstr "Esqueleto Borracho"
 
-msgid "MONSTER_SEA_GATOR"
-msgstr "Caimán Arrastrador"
+msgid "MONSTER_SEA_PEGLEG"
+msgstr "Pirata Pata de Palo"
 
 msgid "TOAST_HULL_WAVE"
 msgstr "El Casco Viviente cruje: ¡la oleada {n} de bichos del mar sube al muelle!"

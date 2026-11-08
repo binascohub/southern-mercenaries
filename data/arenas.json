@@ -2242,6 +2242,60 @@
         ],
         "sway": 0.7,
         "speed": 0.5
+      },
+      {
+        "role": "crowd_cheer_1",
+        "position": [
+          6.5,
+          -13.6
+        ],
+        "rotation": 192,
+        "pose": "idle"
+      },
+      {
+        "role": "crowd_cheer_4",
+        "position": [
+          4.6,
+          -17.9
+        ],
+        "rotation": 36,
+        "pose": "idle"
+      },
+      {
+        "role": "crowd_cheer_2",
+        "position": [
+          -5.4,
+          -13.0
+        ],
+        "rotation": 180,
+        "pose": "idle"
+      },
+      {
+        "role": "crowd_cheer_5",
+        "position": [
+          -6.5,
+          -17.5
+        ],
+        "rotation": 28,
+        "pose": "idle"
+      },
+      {
+        "role": "crowd_cheer_3",
+        "position": [
+          19.1,
+          -0.3
+        ],
+        "rotation": 0,
+        "pose": "idle"
+      },
+      {
+        "role": "crowd_cheer_6",
+        "position": [
+          -13.6,
+          0.3
+        ],
+        "rotation": 190,
+        "pose": "idle"
       }
     ],
     "breakables": []
@@ -18923,7 +18977,7 @@
         "pyre": true
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           -36.8,
           -9.7
@@ -18933,10 +18987,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           -39.6,
           -23.5
@@ -18946,10 +19001,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           -18.4,
           -26.4
@@ -18959,10 +19015,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           -24.1,
           -23.5
@@ -18972,10 +19029,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           -18.8,
           -8.8
@@ -18985,10 +19043,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           -35.7,
           -26.5
@@ -18998,7 +19057,8 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Pl_Bush",
@@ -19010,13 +19070,14 @@
         "scale": 1.07
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           -23.6,
           -27.0
         ],
         "rotation": 247,
-        "scale": 1.14
+        "scale": 1.14,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Shrub2",
@@ -19179,13 +19240,14 @@
         "scale": 1.04
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           -39.9,
           -26.9
         ],
         "rotation": 120,
-        "scale": 1.14
+        "scale": 1.14,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed4",
@@ -19286,22 +19348,24 @@
         "scale": 1.07
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           -39.3,
           -12.2
         ],
         "rotation": 328,
-        "scale": 1.02
+        "scale": 1.02,
+        "was": "Pl_Bush"
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           -21.2,
           -25.4
         ],
         "rotation": 145,
-        "scale": 1.31
+        "scale": 1.31,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Swirl",
@@ -19436,13 +19500,14 @@
         "scale": 1.5
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           -21.0,
           -26.9
         ],
         "rotation": 237,
-        "scale": 1.41
+        "scale": 1.41,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -19517,7 +19582,7 @@
         "scale": 1.24
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           -26.4,
           -37.1
@@ -19527,7 +19592,8 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Pl_Weed3",
@@ -19566,7 +19632,7 @@
         "scale": 1.27
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           -38.7,
           -52.4
@@ -19576,10 +19642,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           -37.9,
           -57.9
@@ -19589,10 +19656,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           -16.4,
           -62.9
@@ -19602,10 +19670,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           -19.9,
           -57.4
@@ -19615,7 +19684,8 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Pl_Weed5",
@@ -19834,13 +19904,14 @@
         "scale": 1.12
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           -35.0,
           -51.5
         ],
         "rotation": 53,
-        "scale": 1.05
+        "scale": 1.05,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed1",
@@ -19975,13 +20046,14 @@
         "scale": 1.23
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           -1.8,
           -20.0
         ],
         "rotation": 218,
-        "scale": 1.28
+        "scale": 1.28,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -20064,13 +20136,14 @@
         "scale": 1.88
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           19.2,
           -26.6
         ],
         "rotation": 231,
-        "scale": 1.06
+        "scale": 1.06,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -20082,7 +20155,7 @@
         "scale": 1.43
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           28.4,
           -39.9
@@ -20092,10 +20165,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           19.9,
           -40.6
@@ -20105,7 +20179,8 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Pl_Flower",
@@ -20160,7 +20235,7 @@
         "scale": 1.21
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           16.2,
           -66.3
@@ -20170,10 +20245,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           30.6,
           -65.3
@@ -20183,10 +20259,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           30.6,
           -51.9
@@ -20196,10 +20273,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           11.4,
           -66.0
@@ -20209,10 +20287,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           23.3,
           -66.2
@@ -20222,10 +20301,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           40.0,
           -51.9
@@ -20235,10 +20315,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           28.5,
           -61.0
@@ -20248,7 +20329,8 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Pl_Shrub1",
@@ -20295,13 +20377,14 @@
         "scale": 1.25
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           7.0,
           -64.9
         ],
         "rotation": 260,
-        "scale": 1.08
+        "scale": 1.08,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed3",
@@ -20411,13 +20494,14 @@
         "scale": 1.1
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           7.4,
           -64.0
         ],
         "rotation": 193,
-        "scale": 1.17
+        "scale": 1.17,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed4",
@@ -20483,13 +20567,14 @@
         "scale": 1.85
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           26.0,
           -64.2
         ],
         "rotation": 316,
-        "scale": 1.04
+        "scale": 1.04,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed2",
@@ -20501,13 +20586,14 @@
         "scale": 1.29
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           10.4,
           -63.6
         ],
         "rotation": 342,
-        "scale": 1.23
+        "scale": 1.23,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed3",
@@ -20545,13 +20631,14 @@
         "scale": 1.07
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           27.0,
           -63.8
         ],
         "rotation": 19,
-        "scale": 1.2
+        "scale": 1.2,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed4",
@@ -20599,13 +20686,14 @@
         "scale": 0.95
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           31.6,
           -59.9
         ],
         "rotation": 101,
-        "scale": 1.16
+        "scale": 1.16,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -20626,13 +20714,14 @@
         "scale": 0.96
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           29.6,
           -54.9
         ],
         "rotation": 247,
-        "scale": 1.39
+        "scale": 1.39,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Shrub3",
@@ -20653,7 +20742,7 @@
         "scale": 1.46
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           47.2,
           -20.1
@@ -20663,7 +20752,8 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Pl_Bamboo",
@@ -20675,7 +20765,7 @@
         "scale": 1.4
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           95.2,
           -13.1
@@ -20685,10 +20775,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           95.7,
           2.7
@@ -20698,10 +20789,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           64.7,
           1.2
@@ -20711,10 +20803,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           75.8,
           14.7
@@ -20724,10 +20817,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           84.6,
           16.5
@@ -20737,10 +20831,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           96.1,
           -37.7
@@ -20750,10 +20845,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           91.2,
           -39.0
@@ -20763,10 +20859,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           89.8,
           -44.2
@@ -20776,10 +20873,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           64.5,
           15.6
@@ -20789,10 +20887,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           91.7,
           6.7
@@ -20802,10 +20901,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           95.9,
           -19.8
@@ -20815,10 +20915,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           64.5,
           -32.1
@@ -20828,10 +20929,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           65.5,
           -8.0
@@ -20841,10 +20943,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           91.6,
           -17.4
@@ -20854,10 +20957,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           80.6,
           -41.8
@@ -20867,10 +20971,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           75.4,
           -43.6
@@ -20880,10 +20985,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           69.0,
           17.9
@@ -20893,10 +20999,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           94.5,
           -44.3
@@ -20906,10 +21013,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           64.9,
           8.5
@@ -20919,10 +21027,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           95.2,
           -3.2
@@ -20932,10 +21041,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           91.5,
           18.2
@@ -20945,10 +21055,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           91.2,
           -33.4
@@ -20958,10 +21069,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           63.4,
           -3.8
@@ -20971,10 +21083,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           63.0,
           -43.4
@@ -20984,10 +21097,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           96.2,
           14.8
@@ -20997,10 +21111,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           61.4,
           -23.3
@@ -21010,10 +21125,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           62.1,
           -28.1
@@ -21023,10 +21139,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           62.8,
           -37.0
@@ -21036,10 +21153,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           91.4,
           -8.9
@@ -21049,10 +21167,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           96.4,
           -32.6
@@ -21062,10 +21181,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           86.2,
           -40.0
@@ -21075,10 +21195,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           95.4,
           10.0
@@ -21088,10 +21209,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           79.2,
           18.5
@@ -21101,10 +21223,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           80.5,
           14.1
@@ -21114,7 +21237,8 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Rock_1",
@@ -21868,13 +21992,14 @@
         "scale": 1.38
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           68.7,
           6.2
         ],
         "rotation": 154,
-        "scale": 1.41
+        "scale": 1.41,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -22002,13 +22127,14 @@
         "scale": 1.04
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           70.8,
           6.7
         ],
         "rotation": 123,
-        "scale": 1.41
+        "scale": 1.41,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed3",
@@ -22020,13 +22146,14 @@
         "scale": 1.33
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           64.5,
           5.2
         ],
         "rotation": 351,
-        "scale": 1.26
+        "scale": 1.26,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Shrub4",
@@ -22118,22 +22245,24 @@
         "scale": 0.91
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           84.2,
           -37.0
         ],
         "rotation": 273,
-        "scale": 1.23
+        "scale": 1.23,
+        "was": "Pl_Bush"
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           84.2,
           -36.5
         ],
         "rotation": 230,
-        "scale": 1.09
+        "scale": 1.09,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bush",
@@ -22994,13 +23123,14 @@
         "scale": 1.18
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           62.4,
           18.8
         ],
         "rotation": 75,
-        "scale": 1.49
+        "scale": 1.49,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -23189,13 +23319,14 @@
         "scale": 0.94
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           73.7,
           17.2
         ],
         "rotation": 292,
-        "scale": 1.02
+        "scale": 1.02,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Shrub1",
@@ -23297,13 +23428,14 @@
         "scale": 1.54
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           64.2,
           -40.3
         ],
         "rotation": 305,
-        "scale": 1.43
+        "scale": 1.43,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed1",
@@ -23395,13 +23527,14 @@
         "scale": 1.64
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           80.7,
           -20.2
         ],
         "rotation": 137,
-        "scale": 1.34
+        "scale": 1.34,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Shrub1",
@@ -23880,13 +24013,14 @@
         "scale": 1.52
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           91.4,
           10.5
         ],
         "rotation": 155,
-        "scale": 1.25
+        "scale": 1.25,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Swirl",
@@ -24055,13 +24189,14 @@
         "scale": 1.24
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           87.4,
           -26.4
         ],
         "rotation": 15,
-        "scale": 1.49
+        "scale": 1.49,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed2",
@@ -24286,13 +24421,14 @@
         "rotation": 151
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           94.5,
           5.1
         ],
         "rotation": 182,
-        "scale": 1.25
+        "scale": 1.25,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed4",
@@ -24519,13 +24655,14 @@
         "scale": 1.56
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           86.4,
           -36.8
         ],
         "rotation": 213,
-        "scale": 1.15
+        "scale": 1.15,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Shrub4",
@@ -24608,13 +24745,14 @@
         "scale": 1.03
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           78.3,
           -20.2
         ],
         "rotation": 69,
-        "scale": 1.01
+        "scale": 1.01,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed5",
@@ -24813,13 +24951,14 @@
         "scale": 1.14
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           73.9,
           -14.3
         ],
         "rotation": 220,
-        "scale": 1.37
+        "scale": 1.37,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -24982,13 +25121,14 @@
         "scale": 1.49
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           73.2,
           -17.9
         ],
         "rotation": 99,
-        "scale": 1.28
+        "scale": 1.28,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Hemp",
@@ -25273,13 +25413,14 @@
         "rotation": 182
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           61.6,
           -40.3
         ],
         "rotation": 304,
-        "scale": 1.17
+        "scale": 1.17,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed3",
@@ -25512,7 +25653,7 @@
         "scale": 1.32
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           111.0,
           -23.9
@@ -25522,10 +25663,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           109.1,
           -31.2
@@ -25535,16 +25677,18 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           108.2,
           -22.9
         ],
         "rotation": 315,
-        "scale": 1.08
+        "scale": 1.08,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -25637,7 +25781,7 @@
         "scale": 1.15
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           156.9,
           -21.1
@@ -25647,10 +25791,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           127.4,
           -62.4
@@ -25660,10 +25805,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           125.0,
           -44.0
@@ -25673,10 +25819,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           123.5,
           -57.2
@@ -25686,10 +25833,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           126.4,
           -19.1
@@ -25699,10 +25847,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           124.7,
           -12.0
@@ -25712,10 +25861,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           155.4,
           -28.9
@@ -25725,10 +25875,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           126.6,
           -36.1
@@ -25738,10 +25889,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           143.8,
           -12.4
@@ -25751,10 +25903,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           147.7,
           -58.9
@@ -25764,10 +25917,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           128.6,
           -57.3
@@ -25777,10 +25931,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           159.2,
           -35.7
@@ -25790,10 +25945,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           159.3,
           -53.1
@@ -25803,10 +25959,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           154.4,
           -15.1
@@ -25816,10 +25973,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           155.8,
           -59.0
@@ -25829,10 +25987,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           135.3,
           -11.1
@@ -25842,10 +26001,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           160.1,
           -13.5
@@ -25855,10 +26015,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           148.9,
           -11.3
@@ -25868,10 +26029,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           135.3,
           -59.1
@@ -25881,10 +26043,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           151.7,
           -61.3
@@ -25894,10 +26057,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           132.7,
           -63.6
@@ -25907,10 +26071,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           126.3,
           -50.1
@@ -25920,10 +26085,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           160.1,
           -31.0
@@ -25933,10 +26099,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           130.4,
           -13.9
@@ -25946,10 +26113,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           159.7,
           -48.2
@@ -25959,10 +26127,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           157.1,
           -40.4
@@ -25972,10 +26141,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           160.1,
           -25.5
@@ -25985,10 +26155,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           159.3,
           -63.1
@@ -25998,10 +26169,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           139.2,
           -14.7
@@ -26011,10 +26183,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           128.6,
           -40.8
@@ -26024,10 +26197,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           155.1,
           -49.3
@@ -26037,7 +26211,8 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Rock_4",
@@ -26389,13 +26564,14 @@
         "scale": 1.11
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           126.8,
           -47.0
         ],
         "rotation": 198,
-        "scale": 1.42
+        "scale": 1.42,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed4",
@@ -26503,13 +26679,14 @@
         "scale": 1.45
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           126.1,
           -59.2
         ],
         "rotation": 306,
-        "scale": 1.37
+        "scale": 1.37,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed2",
@@ -26761,13 +26938,14 @@
         "scale": 1.32
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           152.0,
           -27.9
         ],
         "rotation": 261,
-        "scale": 1.39
+        "scale": 1.39,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed3",
@@ -26823,13 +27001,14 @@
         "scale": 1.27
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           130.0,
           -54.4
         ],
         "rotation": 260,
-        "scale": 1.32
+        "scale": 1.32,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Hemp",
@@ -27281,13 +27460,14 @@
         "scale": 1.72
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           140.8,
           -55.3
         ],
         "rotation": 40,
-        "scale": 1.23
+        "scale": 1.23,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed3",
@@ -27326,13 +27506,14 @@
         "scale": 1.8
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           150.1,
           -30.1
         ],
         "rotation": 319,
-        "scale": 1.45
+        "scale": 1.45,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed1",
@@ -27813,13 +27994,14 @@
         "scale": 1.34
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           131.3,
           -57.6
         ],
         "rotation": 167,
-        "scale": 1.49
+        "scale": 1.49,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Flower",
@@ -28034,13 +28216,14 @@
         "rotation": 88
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           158.8,
           -16.4
         ],
         "rotation": 265,
-        "scale": 1.46
+        "scale": 1.46,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -28275,13 +28458,14 @@
         "rotation": 153
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           159.4,
           -58.7
         ],
         "rotation": 211,
-        "scale": 1.11
+        "scale": 1.11,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -28452,13 +28636,14 @@
         "scale": 1.55
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           158.7,
           -17.6
         ],
         "rotation": 216,
-        "scale": 1.34
+        "scale": 1.34,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed1",
@@ -28558,13 +28743,14 @@
         "scale": 1.77
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           155.0,
           -33.8
         ],
         "rotation": 145,
-        "scale": 1.21
+        "scale": 1.21,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed5",
@@ -28807,13 +28993,14 @@
         "scale": 1.13
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           140.2,
           -29.9
         ],
         "rotation": 217,
-        "scale": 1.37
+        "scale": 1.37,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -28833,13 +29020,14 @@
         "rotation": 3
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           141.1,
           -30.6
         ],
         "rotation": 147,
-        "scale": 1.36
+        "scale": 1.36,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bush",
@@ -28887,13 +29075,14 @@
         "scale": 1.22
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           123.9,
           -39.3
         ],
         "rotation": 134,
-        "scale": 1.43
+        "scale": 1.43,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bush",
@@ -28957,13 +29146,14 @@
         "scale": 1.87
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           151.0,
           -22.1
         ],
         "rotation": 257,
-        "scale": 1.29
+        "scale": 1.29,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed1",
@@ -29002,13 +29192,14 @@
         "scale": 0.89
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           128.8,
           -16.5
         ],
         "rotation": 262,
-        "scale": 1.23
+        "scale": 1.23,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Flower",
@@ -29259,13 +29450,14 @@
         "scale": 1.2
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           132.9,
           -55.6
         ],
         "rotation": 193,
-        "scale": 1.33
+        "scale": 1.33,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed2",
@@ -29383,13 +29575,14 @@
         "scale": 1.58
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           149.5,
           -24.0
         ],
         "rotation": 104,
-        "scale": 1.0
+        "scale": 1.0,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -30084,13 +30277,14 @@
         "scale": 1.35
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           151.3,
           -55.0
         ],
         "rotation": 195,
-        "scale": 1.17
+        "scale": 1.17,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bush",
@@ -30182,13 +30376,14 @@
         "scale": 1.82
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           139.8,
           -55.2
         ],
         "rotation": 244,
-        "scale": 1.33
+        "scale": 1.33,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -30234,13 +30429,14 @@
         "rotation": 42
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           141.6,
           -31.2
         ],
         "rotation": 31,
-        "scale": 1.05
+        "scale": 1.05,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -30286,13 +30482,14 @@
         "rotation": 64
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           144.2,
           -54.7
         ],
         "rotation": 103,
-        "scale": 1.32
+        "scale": 1.32,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bush",
@@ -30587,7 +30784,7 @@
         "rotation": 67
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           74.5,
           -55.5
@@ -30597,10 +30794,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           66.1,
           -55.0
@@ -30610,7 +30808,8 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Pl_Flower",
@@ -30773,7 +30972,7 @@
         "scale": 1.37
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           81.7,
           -74.9
@@ -30783,10 +30982,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           81.4,
           -86.4
@@ -30796,10 +30996,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           60.3,
           -73.0
@@ -30809,10 +31010,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           79.4,
           -90.8
@@ -30822,10 +31024,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           58.4,
           -91.2
@@ -30835,10 +31038,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           84.4,
           -79.6
@@ -30848,7 +31052,8 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Rock_2",
@@ -31275,13 +31480,14 @@
         "scale": 1.06
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           74.3,
           -80.7
         ],
         "rotation": 299,
-        "scale": 1.26
+        "scale": 1.26,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed5",
@@ -31373,13 +31579,14 @@
         "scale": 1.47
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           78.8,
           -85.3
         ],
         "rotation": 76,
-        "scale": 1.44
+        "scale": 1.44,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bush",
@@ -31408,13 +31615,14 @@
         "scale": 1.33
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           84.0,
           -88.3
         ],
         "rotation": 260,
-        "scale": 1.43
+        "scale": 1.43,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -31452,13 +31660,14 @@
         "scale": 0.93
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           84.2,
           -92.8
         ],
         "rotation": 223,
-        "scale": 1.11
+        "scale": 1.11,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -31559,13 +31768,14 @@
         "scale": 1.32
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           81.0,
           -70.6
         ],
         "rotation": 351,
-        "scale": 1.24
+        "scale": 1.24,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -31711,7 +31921,7 @@
         "scale": 1.46
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           41.8,
           -85.4
@@ -31721,10 +31931,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           35.6,
           -86.2
@@ -31734,10 +31945,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           35.9,
           -77.8
@@ -31747,10 +31959,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           45.4,
           -77.5
@@ -31760,7 +31973,8 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Pl_Shrub4",
@@ -31825,13 +32039,14 @@
         "scale": 0.85
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           41.3,
           -77.5
         ],
         "rotation": 165,
-        "scale": 1.45
+        "scale": 1.45,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Shrub1",
@@ -31913,13 +32128,14 @@
         "rotation": 174
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           39.1,
           -79.4
         ],
         "rotation": 255,
-        "scale": 1.23
+        "scale": 1.23,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Flower",
@@ -32116,25 +32332,27 @@
         "scale": 1.0
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           41.6,
           -79.2
         ],
         "rotation": 69,
-        "scale": 1.17
+        "scale": 1.17,
+        "was": "Pl_Bush"
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           39.8,
           -87.1
         ],
         "rotation": 222,
-        "scale": 1.05
+        "scale": 1.05,
+        "was": "Pl_Bush"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           3.2,
           -85.1
@@ -32144,10 +32362,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           13.0,
           -77.4
@@ -32157,10 +32376,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           1.7,
           -75.1
@@ -32170,10 +32390,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           13.9,
           -99.3
@@ -32183,10 +32404,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           5.3,
           -92.9
@@ -32196,10 +32418,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           22.9,
           -92.4
@@ -32209,10 +32432,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           4.6,
           -79.5
@@ -32222,10 +32446,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           22.7,
           -76.0
@@ -32235,10 +32460,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           2.2,
           -98.6
@@ -32248,10 +32474,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           18.9,
           -87.6
@@ -32261,10 +32488,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           16.3,
           -95.3
@@ -32274,10 +32502,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           23.5,
           -97.2
@@ -32287,10 +32516,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           1.8,
           -89.6
@@ -32300,7 +32530,8 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Rock_2",
@@ -32404,13 +32635,14 @@
         "scale": 0.98
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           11.2,
           -81.1
         ],
         "rotation": 63,
-        "scale": 1.49
+        "scale": 1.49,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Shrub2",
@@ -32730,13 +32962,14 @@
         "scale": 1.24
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           1.6,
           -82.8
         ],
         "rotation": 108,
-        "scale": 1.17
+        "scale": 1.17,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bush",
@@ -32924,13 +33157,14 @@
         "scale": 1.13
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           12.0,
           -95.2
         ],
         "rotation": 207,
-        "scale": 1.23
+        "scale": 1.23,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bush",
@@ -33358,7 +33592,7 @@
         "rotation": 22
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           74.6,
           -104.9
@@ -33368,10 +33602,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           65.9,
           -103.9
@@ -33381,7 +33616,8 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Pl_Bamboo",
@@ -33393,13 +33629,14 @@
         "scale": 1.07
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           65.5,
           -107.2
         ],
         "rotation": 30,
-        "scale": 1.36
+        "scale": 1.36,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bush",
@@ -33482,7 +33719,7 @@
         "scale": 0.89
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           64.0,
           -119.9
@@ -33492,10 +33729,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           82.4,
           -127.5
@@ -33505,10 +33743,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           82.5,
           -122.5
@@ -33518,10 +33757,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           61.4,
           -144.2
@@ -33531,10 +33771,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           59.2,
           -139.0
@@ -33544,10 +33785,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           57.7,
           -130.0
@@ -33557,10 +33799,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           62.6,
           -126.5
@@ -33570,10 +33813,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           81.8,
           -144.4
@@ -33583,10 +33827,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           83.7,
           -132.6
@@ -33596,10 +33841,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           79.4,
           -139.7
@@ -33609,10 +33855,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           57.9,
           -124.9
@@ -33622,10 +33869,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           61.8,
           -135.1
@@ -33635,10 +33883,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           83.6,
           -117.9
@@ -33648,10 +33897,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           78.8,
           -118.8
@@ -33661,10 +33911,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           65.1,
           -141.2
@@ -33674,10 +33925,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           76.4,
           -144.1
@@ -33687,7 +33939,8 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Rock_5",
@@ -34618,7 +34871,7 @@
         "scale": 1.0
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           16.5,
           -5.3
@@ -34628,10 +34881,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           33.7,
           8.5
@@ -34641,10 +34895,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           31.0,
           2.2
@@ -34654,10 +34909,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           17.8,
           10.7
@@ -34667,10 +34923,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           29.6,
           11.7
@@ -34680,7 +34937,8 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Rock_Mossy",
@@ -34802,22 +35060,24 @@
         "scale": 1.24
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           33.8,
           4.0
         ],
         "rotation": 127,
-        "scale": 1.1
+        "scale": 1.1,
+        "was": "Pl_Bush"
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           27.3,
           2.5
         ],
         "rotation": 283,
-        "scale": 1.24
+        "scale": 1.24,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -34883,13 +35143,14 @@
         "scale": 1.2
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           14.7,
           5.2
         ],
         "rotation": 107,
-        "scale": 1.32
+        "scale": 1.32,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -34927,13 +35188,14 @@
         "rotation": 301
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           13.8,
           0.5
         ],
         "rotation": 158,
-        "scale": 1.01
+        "scale": 1.01,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Swirl",
@@ -35014,13 +35276,14 @@
         "scale": 1.36
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           13.3,
           3.1
         ],
         "rotation": 246,
-        "scale": 1.31
+        "scale": 1.31,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Shrub1",
@@ -35067,13 +35330,14 @@
         "scale": 1.18
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           31.4,
           -2.4
         ],
         "rotation": 294,
-        "scale": 1.37
+        "scale": 1.37,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Hemp",
@@ -35084,13 +35348,14 @@
         "rotation": 261
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           31.7,
           -2.2
         ],
         "rotation": 167,
-        "scale": 1.44
+        "scale": 1.44,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -35129,13 +35394,14 @@
         "scale": 1.39
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           13.7,
           -3.3
         ],
         "rotation": 335,
-        "scale": 1.35
+        "scale": 1.35,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -35199,13 +35465,14 @@
         "rotation": 179
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           19.2,
           -0.8
         ],
         "rotation": 24,
-        "scale": 1.37
+        "scale": 1.37,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed1",
@@ -35271,13 +35538,14 @@
         "scale": 0.93
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           23.8,
           3.7
         ],
         "rotation": 264,
-        "scale": 1.32
+        "scale": 1.32,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed1",
@@ -35325,13 +35593,14 @@
         "scale": 1.46
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           14.6,
           11.3
         ],
         "rotation": 285,
-        "scale": 1.16
+        "scale": 1.16,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Shrub1",
@@ -35360,7 +35629,7 @@
         "scale": 1.43
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           20.1,
           33.1
@@ -35370,10 +35639,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           15.7,
           15.4
@@ -35383,10 +35653,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           29.4,
           31.0
@@ -35396,10 +35667,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           33.9,
           24.7
@@ -35409,10 +35681,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           13.9,
           24.9
@@ -35422,7 +35695,8 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Rock_2",
@@ -35494,13 +35768,14 @@
         "scale": 1.41
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           18.2,
           26.0
         ],
         "rotation": 295,
-        "scale": 1.34
+        "scale": 1.34,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Swirl",
@@ -35617,13 +35892,14 @@
         "scale": 1.21
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           15.2,
           32.2
         ],
         "rotation": 271,
-        "scale": 1.44
+        "scale": 1.44,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Flower",
@@ -35891,13 +36167,14 @@
         "scale": 1.13
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           14.0,
           29.0
         ],
         "rotation": 233,
-        "scale": 1.08
+        "scale": 1.08,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -35980,13 +36257,14 @@
         "scale": 0.99
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           18.5,
           28.4
         ],
         "rotation": 90,
-        "scale": 1.19
+        "scale": 1.19,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -36025,7 +36303,7 @@
         "scale": 1.59
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           137.6,
           -76.5
@@ -36035,10 +36313,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           145.9,
           -76.6
@@ -36048,7 +36327,8 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Pl_Flower",
@@ -36068,22 +36348,24 @@
         "scale": 1.14
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           138.4,
           -79.2
         ],
         "rotation": 277,
-        "scale": 1.23
+        "scale": 1.23,
+        "was": "Pl_Bush"
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           146.9,
           -80.0
         ],
         "rotation": 212,
-        "scale": 1.3
+        "scale": 1.3,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -36271,7 +36553,7 @@
         "scale": 1.6
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           129.8,
           -124.8
@@ -36281,10 +36563,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           131.8,
           -91.4
@@ -36294,10 +36577,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           150.4,
           -90.5
@@ -36307,10 +36591,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           133.8,
           -132.3
@@ -36320,10 +36605,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           154.4,
           -126.0
@@ -36333,10 +36619,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           143.6,
           -147.0
@@ -36346,10 +36633,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           153.8,
           -110.9
@@ -36359,10 +36647,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           128.7,
           -106.7
@@ -36372,10 +36661,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           128.6,
           -139.5
@@ -36385,10 +36675,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           129.4,
           -144.6
@@ -36398,10 +36689,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           154.3,
           -137.6
@@ -36411,10 +36703,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           129.8,
           -120.0
@@ -36424,10 +36717,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           129.3,
           -101.0
@@ -36437,10 +36731,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           129.1,
           -129.5
@@ -36450,10 +36745,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_C",
         "position": [
           136.2,
           -144.7
@@ -36463,10 +36759,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           151.9,
           -116.8
@@ -36476,10 +36773,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           152.7,
           -103.8
@@ -36489,10 +36787,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           148.6,
           -146.0
@@ -36502,10 +36801,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           150.7,
           -133.5
@@ -36515,10 +36815,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_B",
         "position": [
           130.0,
           -113.0
@@ -36528,10 +36829,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           155.5,
           -145.7
@@ -36541,10 +36843,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Large_A",
         "position": [
           155.1,
           -96.6
@@ -36554,10 +36857,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           128.8,
           -96.1
@@ -36567,7 +36871,8 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Rock_Mossy",
@@ -37189,13 +37494,14 @@
         "scale": 1.89
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           147.8,
           -119.9
         ],
         "rotation": 178,
-        "scale": 1.15
+        "scale": 1.15,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -37323,13 +37629,14 @@
         "scale": 1.06
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           142.7,
           -143.0
         ],
         "rotation": 90,
-        "scale": 1.4
+        "scale": 1.4,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed1",
@@ -37752,13 +38059,14 @@
         "scale": 1.34
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           138.9,
           -132.5
         ],
         "rotation": 46,
-        "scale": 1.29
+        "scale": 1.29,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed2",
@@ -37788,13 +38096,14 @@
         "scale": 1.11
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           130.5,
           -133.1
         ],
         "rotation": 100,
-        "scale": 1.14
+        "scale": 1.14,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -37878,13 +38187,14 @@
         "scale": 1.37
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           142.5,
           -141.5
         ],
         "rotation": 233,
-        "scale": 1.11
+        "scale": 1.11,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Flower",
@@ -38290,13 +38600,14 @@
         "rotation": 0
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           146.0,
           -124.4
         ],
         "rotation": 81,
-        "scale": 1.06
+        "scale": 1.06,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Hemp",
@@ -38474,13 +38785,14 @@
         "scale": 1.44
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           150.5,
           -106.0
         ],
         "rotation": 321,
-        "scale": 1.29
+        "scale": 1.29,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bamboo",
@@ -38591,13 +38903,14 @@
         "scale": 1.03
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           145.1,
           -139.4
         ],
         "rotation": 239,
-        "scale": 1.23
+        "scale": 1.23,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Shrub4",
@@ -38645,13 +38958,14 @@
         "scale": 1.48
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           135.7,
           -91.6
         ],
         "rotation": 59,
-        "scale": 1.12
+        "scale": 1.12,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Bush",
@@ -38707,13 +39021,14 @@
         "rotation": 32
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           139.7,
           -106.9
         ],
         "rotation": 112,
-        "scale": 1.44
+        "scale": 1.44,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed1",
@@ -38761,13 +39076,14 @@
         "scale": 1.04
       },
       {
-        "piece": "Pl_Bush",
+        "piece": "Tree_Bush",
         "position": [
           132.7,
           -145.9
         ],
         "rotation": 224,
-        "scale": 1.15
+        "scale": 1.15,
+        "was": "Pl_Bush"
       },
       {
         "piece": "Pl_Weed4",
@@ -47635,7 +47951,7 @@
         ]
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           20.5,
           -21.3
@@ -47645,10 +47961,11 @@
         "solid": [
           0.5,
           0.5
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           13.8,
           -51.7
@@ -47658,10 +47975,11 @@
         "solid": [
           0.4,
           0.4
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           8.5,
           -12.5
@@ -47671,10 +47989,11 @@
         "solid": [
           0.5,
           0.5
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           16.5,
           -54.7
@@ -47684,10 +48003,11 @@
         "solid": [
           0.4,
           0.4
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           12.9,
           -46.6
@@ -47697,7 +48017,8 @@
         "solid": [
           0.4,
           0.4
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Barrel_Oga_1",
@@ -49095,13 +49416,14 @@
         "scale": 0.74
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           -73.6,
           -48.2
         ],
         "rotation": 330,
-        "scale": 0.52
+        "scale": 0.52,
+        "was": "Oak_Tree"
       },
       {
         "piece": "Dead_Tree",
@@ -49113,13 +49435,14 @@
         "scale": 0.64
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           -74.6,
           -24.0
         ],
         "rotation": 210,
-        "scale": 0.65
+        "scale": 0.65,
+        "was": "Oak_Tree"
       },
       {
         "piece": "Dungeon_BonePile_4",
@@ -50637,22 +50960,24 @@
         "scale": 1.02
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           93.5,
           -25.5
         ],
         "rotation": 345,
-        "scale": 0.59
+        "scale": 0.59,
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           47.5,
           -49.7
         ],
         "rotation": 150,
-        "scale": 0.62
+        "scale": 0.62,
+        "was": "Oak_Tree"
       },
       {
         "piece": "Dead_Tree",
@@ -50664,13 +50989,14 @@
         "scale": 0.51
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           81.2,
           -43.4
         ],
         "rotation": 105,
-        "scale": 0.61
+        "scale": 0.61,
+        "was": "Oak_Tree"
       },
       {
         "piece": "Dead_Tree",
@@ -53521,7 +53847,7 @@
         ]
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           -92.4,
           -87.9
@@ -53531,7 +53857,8 @@
         "solid": [
           0.5,
           0.5
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Dead_Tree",
@@ -58778,7 +59105,7 @@
         ]
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           -8.16,
           -131.3
@@ -58788,7 +59115,8 @@
         "solid": [
           0.4,
           0.4
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Ruin_Wall",
@@ -155247,6 +155575,48 @@
         ],
         "rotation": 0,
         "pose": "idle"
+      },
+      {
+        "role": "anna_walker",
+        "position": [
+          19.0,
+          -63.8
+        ],
+        "rotation": 90,
+        "pose": "idle",
+        "path": [
+          35.0,
+          -63.8
+        ],
+        "speed": 0.9
+      },
+      {
+        "role": "adriana_walker",
+        "position": [
+          43.0,
+          -62.0
+        ],
+        "rotation": -90,
+        "pose": "idle",
+        "path": [
+          26.0,
+          -62.0
+        ],
+        "speed": 1.0
+      },
+      {
+        "role": "hero_warrior",
+        "position": [
+          -6.0,
+          -8.5
+        ],
+        "rotation": 180,
+        "pose": "walk",
+        "path": [
+          -6.0,
+          -21.5
+        ],
+        "speed": 1.1
       }
     ],
     "dummies": [
@@ -166231,7 +166601,7 @@
         "rotation": 45
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           4.88,
           -43.45
@@ -166241,10 +166611,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           8.64,
           -49.27
@@ -166254,10 +166625,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           5.07,
           -54.63
@@ -166267,10 +166639,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           11.81,
           -43.32
@@ -166280,10 +166653,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           14.57,
           -49.16
@@ -166293,10 +166667,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           11.3,
           -54.67
@@ -166306,10 +166681,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           19.55,
           -43.3
@@ -166319,10 +166695,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           21.21,
           -48.78
@@ -166332,10 +166709,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           18.67,
           -55.02
@@ -166345,10 +166723,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           25.66,
           -43.57
@@ -166358,10 +166737,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           28.46,
           -48.86
@@ -166371,10 +166751,11 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           26.39,
           -54.6
@@ -166384,7 +166765,8 @@
         "solid": [
           1.0,
           1.0
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Table_Large",
@@ -166911,7 +167293,7 @@
         "scale": 1.2
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           7.6,
           4.5
@@ -166921,10 +167303,11 @@
         "solid": [
           1.2,
           1.2
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           -8.3,
           -24.9
@@ -166934,10 +167317,11 @@
         "solid": [
           1.2,
           1.2
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           21.2,
           -10.0
@@ -166947,10 +167331,11 @@
         "solid": [
           1.2,
           1.2
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           9.4,
           -9.8
@@ -166960,10 +167345,11 @@
         "solid": [
           1.2,
           1.2
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           5.3,
           -13.4
@@ -166973,10 +167359,11 @@
         "solid": [
           1.2,
           1.2
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           28.8,
           -11.2
@@ -166986,10 +167373,11 @@
         "solid": [
           1.2,
           1.2
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           40.9,
           -57.4
@@ -166999,10 +167387,11 @@
         "solid": [
           1.2,
           1.2
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           39.3,
           -39.3
@@ -167012,10 +167401,11 @@
         "solid": [
           1.2,
           1.2
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           58.3,
           -10.8
@@ -167025,10 +167415,11 @@
         "solid": [
           1.2,
           1.2
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           40.6,
           -33.5
@@ -167038,10 +167429,11 @@
         "solid": [
           1.2,
           1.2
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           35.8,
           -57.9
@@ -167051,10 +167443,11 @@
         "solid": [
           1.2,
           1.2
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_B",
         "position": [
           59.7,
           -38.4
@@ -167064,10 +167457,11 @@
         "solid": [
           1.2,
           1.2
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_C",
         "position": [
           35.9,
           -21.8
@@ -167077,10 +167471,11 @@
         "solid": [
           1.2,
           1.2
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
-        "piece": "Oak_Tree",
+        "piece": "Tree_Medium_A",
         "position": [
           40.9,
           -45.5
@@ -167090,7 +167485,8 @@
         "solid": [
           1.2,
           1.2
-        ]
+        ],
+        "was": "Oak_Tree"
       },
       {
         "piece": "Pl_Grass1",
@@ -226086,7 +226482,7 @@
         ],
         "monsters": [
           {
-            "monster": "sea_gator",
+            "monster": "sea_pegleg",
             "count": 3
           },
           {
@@ -226136,7 +226532,7 @@
         ],
         "monsters": [
           {
-            "monster": "sea_gator",
+            "monster": "sea_pegleg",
             "count": 3
           }
         ],
@@ -226228,7 +226624,7 @@
         ],
         "monsters": [
           {
-            "monster": "sea_gator",
+            "monster": "sea_pegleg",
             "count": 3
           }
         ],
@@ -226274,7 +226670,7 @@
         ],
         "monsters": [
           {
-            "monster": "sea_gator",
+            "monster": "sea_pegleg",
             "count": 3
           }
         ],
