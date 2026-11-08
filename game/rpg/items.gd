@@ -212,6 +212,11 @@ static func equipment_icon(item: Dictionary) -> Texture2D:
 		"ninja_mask": "ninja_mask", "helm": "helm", "plate": "plate", "barding": "barding"}.get(String(item.get("base", "")), "")
 	if item.get("kind", "") != EQUIPMENT or prefix == "":
 		return null
+	# Ícone do próprio material quando há (<base>_cloth/_iron/_steel.png, renderizados dos modelos do chão por
+	# tools/assets/gear_icons.gd); senão o do rank.
+	var own := "res://assets/ui/icons/%s_%s.png" % [prefix, String(item.get("material", ""))]
+	if ResourceLoader.exists(own):
+		return load(own) as Texture2D
 	var path := "res://assets/ui/icons/%s_%s.png" % [prefix, NinjaGear.rank_of(String(item.get("material", "")))]
 	return load(path) as Texture2D if ResourceLoader.exists(path) else null
 

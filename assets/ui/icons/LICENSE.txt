@@ -31,3 +31,6 @@ leather_vest_* — "Leather vest" by Lorc; ninja_mask_* — "Ninja mask" by Lorc
 barding_* — "Horse head" by Lorc; staff_C..S — "Wizard staff" by Lorc; dagger_C..S — "Plain dagger" by Lorc
 
 souls_bottle, torment_bottle, storm_bottle, gator_book — renders of models supplied by the project author (souls_bottle.glb, cased_potion_bottle.glb, storm_in_a_bottle.glb, ornate_book.glb; author/licence to confirm), outlined to 128 px icons by tools/assets/souls_bottle_icon.py.
+
+hood_, tunic_, gloves_, boots_, ring_, hunter_cap_, leather_vest_, ninja_mask_, plate_, barding_ + cloth/iron/steel, dagger_steel, staff_steel — renders made for the game
+(procedural models in game/rpg/item_models.gd; dagger/staff from Dagger_C.glb and Staff_D.glb) by tools/assets/gear_icons.gd; same licence as the game (GPL-3.0-or-later).

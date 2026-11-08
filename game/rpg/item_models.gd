@@ -11,8 +11,8 @@ extends RefCounted
 const PALETTE := {
 	"cloth": {"main": Color("c9bb9b"), "trim": Color("6b4a2b"), "metal": 0.0, "rough": 0.9},
 	"wood": {"main": Color("9a7b55"), "trim": Color("5a3a20"), "metal": 0.0, "rough": 0.85},
-	"iron": {"main": Color("75787d"), "trim": Color("4a3424"), "metal": 0.7, "rough": 0.45},
-	"steel": {"main": Color("c5ccd3"), "trim": Color("3b2a1f"), "metal": 0.85, "rough": 0.28},
+	"iron": {"main": Color("6f7378"), "trim": Color("4a3424"), "metal": 0.45, "rough": 0.55},
+	"steel": {"main": Color("d3dae2"), "trim": Color("3b2a1f"), "metal": 0.5, "rough": 0.3},
 	"copper": {"main": Color("c06a3c"), "trim": Color("4a2418"), "metal": 0.85, "rough": 0.35},
 	"silver": {"main": Color("eef2f5"), "trim": Color("2a3550"), "metal": 0.9, "rough": 0.25},
 	"gold": {"main": Color("e3b23c"), "trim": Color("5a1e1e"), "metal": 0.95, "rough": 0.25},
@@ -42,28 +42,30 @@ static func gear(base: String, material: String) -> Node3D:
 	root.name = base
 	match base:
 		"hood":
-			_part(root, _sphere(0.14), main, Vector3(0, 0.16, 0), Vector3.ZERO, Vector3(1.0, 1.15, 1.05))
-			_part(root, _sphere(0.095), dark, Vector3(0, 0.14, 0.085), Vector3.ZERO, Vector3(0.95, 1.2, 0.6))
-			_part(root, _cyl(0.0, 0.07, 0.18), main, Vector3(0, 0.27, -0.1), Vector3(-55, 0, 0))
+			_part(root, _sphere(0.14), main, Vector3(0, 0.17, 0), Vector3.ZERO, Vector3(1.0, 1.25, 1.1))
+			_part(root, _sphere(0.11), dark, Vector3(0, 0.15, 0.1), Vector3.ZERO, Vector3(0.85, 1.25, 0.5))
+			_part(root, _cyl(0.0, 0.06, 0.16), main, Vector3(0, 0.3, -0.1), Vector3(-60, 0, 0))
 			_part(root, _cyl(0.13, 0.2, 0.09), main, Vector3(0, 0.03, 0))
 			_part(root, _cyl(0.205, 0.205, 0.02), trim, Vector3(0, -0.01, 0))
 		"hunter_cap":
-			_part(root, _sphere(0.13, true), main, Vector3(0, 0.03, 0), Vector3.ZERO, Vector3(1.0, 0.85, 1.12))
-			_part(root, _cyl(0.17, 0.17, 0.015), main, Vector3(0, 0.03, 0.02), Vector3.ZERO, Vector3(1.0, 1.0, 1.15))
+			_part(root, _sphere(0.13, true), main, Vector3(0, 0.03, 0), Vector3.ZERO, Vector3(1.0, 1.25, 1.12))
+			_part(root, _cyl(0.16, 0.16, 0.015), main, Vector3(0, 0.03, 0.02), Vector3.ZERO, Vector3(1.0, 1.0, 1.15))
 			_part(root, _cyl(0.132, 0.132, 0.03), trim, Vector3(0, 0.05, 0), Vector3.ZERO, Vector3(1.0, 1.0, 1.12))
 			_part(root, _capsule(0.022, 0.26), _mat(Color("b03a2e"), 0.0, 0.7), Vector3(0.11, 0.14, -0.03), Vector3(0, 0, -50), Vector3(1, 1, 0.3))
 		"ninja_mask":
 			_part(root, _sphere(0.12), main, Vector3(0, 0.15, 0), Vector3.ZERO, Vector3(1.0, 1.2, 0.95))
 			_part(root, _box(Vector3(0.18, 0.035, 0.06)), dark, Vector3(0, 0.18, 0.09))
-			_part(root, _box(Vector3(0.2, 0.025, 0.2)), trim, Vector3(0, 0.22, 0), Vector3.ZERO, Vector3(1.22, 1, 1.1))
+			_part(root, _cyl(0.114, 0.114, 0.035), trim, Vector3(0, 0.215, 0), Vector3.ZERO, Vector3(1, 1, 0.96))
 			_part(root, _box(Vector3(0.04, 0.14, 0.012)), trim, Vector3(-0.03, 0.14, -0.13), Vector3(20, 0, 15))
 			_part(root, _box(Vector3(0.04, 0.14, 0.012)), trim, Vector3(0.03, 0.14, -0.13), Vector3(20, 0, -15))
 		"tunic":
 			_part(root, _cyl(0.15, 0.22, 0.5), main, Vector3(0, 0.25, 0), Vector3.ZERO, Vector3(1, 1, 0.55))
 			for side in [-1.0, 1.0]:
-				_part(root, _cyl(0.055, 0.07, 0.26), main, Vector3(0.2 * side, 0.4, 0), Vector3(0, 0, -62 * side))
-				_part(root, _cyl(0.058, 0.058, 0.03), trim, Vector3(0.3 * side, 0.34, 0), Vector3(0, 0, -62 * side))
-			_part(root, _torus(0.05, 0.075), trim, Vector3(0, 0.5, 0), Vector3.ZERO, Vector3(1, 1, 0.8))
+				# Mangas caídas para fora, um pouco abertas.
+				_part(root, _cyl(0.05, 0.068, 0.26), main, Vector3(0.2 * side, 0.36, 0), Vector3(0, 0, 28 * side))
+				_part(root, _cyl(0.07, 0.07, 0.025), trim, Vector3(0.258 * side, 0.245, 0), Vector3(0, 0, 28 * side))
+			_part(root, _cyl(0.06, 0.06, 0.012), dark, Vector3(0, 0.497, 0.01), Vector3.ZERO, Vector3(1, 1, 0.7))
+			_part(root, _torus(0.055, 0.075), trim, Vector3(0, 0.495, 0.01), Vector3.ZERO, Vector3(1, 1, 0.7))
 			_part(root, _cyl(0.177, 0.18, 0.045), trim, Vector3(0, 0.2, 0), Vector3.ZERO, Vector3(1, 1, 0.57))
 			_part(root, _cyl(0.222, 0.222, 0.025), trim, Vector3(0, 0.01, 0), Vector3.ZERO, Vector3(1, 1, 0.56))
 		"leather_vest":
@@ -117,13 +119,16 @@ static func gear(base: String, material: String) -> Node3D:
 			gem.emission_energy_multiplier = 0.4
 			_part(root, _sphere(0.014), gem, Vector3(0, 0.09, 0))
 		"barding":
-			_part(root, _cyl(0.2, 0.2, 0.5), main, Vector3(0, 0.2, 0), Vector3(0, 0, 90), Vector3(1, 1, 0.85))
+			# Manta (caparazão) com as abas caídas dos lados, a sela por cima e os estribos.
+			_part(root, _box(Vector3(0.46, 0.02, 0.24)), main, Vector3(0, 0.3, 0))
 			for side in [-1.0, 1.0]:
-				_part(root, _box(Vector3(0.5, 0.2, 0.018)), main, Vector3(0, 0.07, 0.17 * side))
-				_part(root, _box(Vector3(0.5, 0.025, 0.02)), trim, Vector3(0, -0.03, 0.17 * side))
-			_part(root, _box(Vector3(0.2, 0.05, 0.22)), trim, Vector3(0, 0.39, 0))
-			_part(root, _cyl(0.025, 0.03, 0.07), trim, Vector3(0.09, 0.43, 0))
-			_part(root, _box(Vector3(0.52, 0.012, 0.03)), trim, Vector3(0, 0.2, 0.17), Vector3.ZERO, Vector3(1, 1, 1))
+				_part(root, _box(Vector3(0.46, 0.24, 0.018)), main, Vector3(0, 0.19, 0.13 * side), Vector3(-12 * side, 0, 0))
+				_part(root, _box(Vector3(0.465, 0.025, 0.022)), trim, Vector3(0, 0.075, 0.155 * side), Vector3(-12 * side, 0, 0))
+				_part(root, _box(Vector3(0.012, 0.16, 0.012)), dark, Vector3(0, 0.22, 0.16 * side))
+				_part(root, _torus(0.022, 0.032), _mat(Color("8a8f96"), 0.6, 0.4), Vector3(0, 0.12, 0.165 * side), Vector3(90, 0, 0))
+			_part(root, _box(Vector3(0.24, 0.05, 0.17)), trim, Vector3(0, 0.335, 0))
+			_part(root, _cyl(0.025, 0.035, 0.07), trim, Vector3(0.11, 0.38, 0))
+			_part(root, _box(Vector3(0.035, 0.08, 0.17)), trim, Vector3(-0.12, 0.37, 0), Vector3(0, 0, 15))
 	return root
 
 
