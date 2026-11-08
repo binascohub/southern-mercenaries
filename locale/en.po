@@ -5591,3 +5591,15 @@ msgstr "Abyssal Octopus"
 
 msgid "PROP_MYSTERY_STONE"
 msgstr "Mysterious Stone"
+
+msgid "ACTION_CAM_ZOOM_IN"
+msgstr "Camera: zoom in"
+
+msgid "ACTION_CAM_ZOOM_OUT"
+msgstr "Camera: zoom out"
+
+msgid "ACTION_CAM_TURN_LEFT"
+msgstr "Camera: turn left"
+
+msgid "ACTION_CAM_TURN_RIGHT"
+msgstr "Camera: turn right"

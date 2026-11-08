@@ -5284,3 +5284,15 @@ msgstr ""
 
 msgid "MONSTER_DOCKS_ALIEN_OCTOPUS"
 msgstr ""
+
+msgid "ACTION_CAM_ZOOM_IN"
+msgstr ""
+
+msgid "ACTION_CAM_ZOOM_OUT"
+msgstr ""
+
+msgid "ACTION_CAM_TURN_LEFT"
+msgstr ""
+
+msgid "ACTION_CAM_TURN_RIGHT"
+msgstr ""

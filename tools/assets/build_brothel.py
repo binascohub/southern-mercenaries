@@ -4,7 +4,8 @@ principal de Tortuga, no lado leste da beira sul (a da Taverna fica no oeste).
  - Meio: dois conjuntos de sofás com clientes e cortesãs sentados, e uma mesa redonda com vinho e dois clientes nos banquinhos.
  - Oeste: o balcão, com garrafas e a prateleira; leste: a lareira e um vaso de planta.
  - As moças de biquíni (que antes ficavam no quarto do rei da Capital, e de lá saem): a moça da praia e a Asila dançam na frente; a Anna passeia na frente,
-   a Adriana entre as camas e os sofás, a Afrique entre a mesa redonda e as dançarinas e a moça sci-fi rente aos pés das camas;
+   a Adriana passeia entre as camas e os sofás e a moça sci-fi rente aos pés das camas; a Anna e a Afrique ficam sentadas em cadeiras na frente;
+   a Asila dança a segunda metade da dança do ventre (a moça da dança do ventre, a primeira);
    a moça da dança do ventre à direita da frente e a Prix, a anfitriã, ao lado do balcão. Os clientes ficam na mesa redonda e nos sofás.
  - Luz: três lustres e luzes avermelhadas; uma luz vermelha marca a porta na rua.
 Só cenário (sem missão nem loja). A música é a da Taverna (game/autoload/music.gd). Idempotente. Roda no fim de tools/assets/build_maps.py.
@@ -50,6 +51,9 @@ add("Fk_Wine_Red", 0.1, 1.2, y=0.75, rotation=20)
 add("Glass_Cup_Wine", -0.45, 1.55, y=0.75, rotation=80, scale=1.8)
 add("Glass_Cup_Wine", 0.5, 1.7, y=0.75, rotation=250, scale=1.8)
 add("Tv_Candle", -0.1, 1.75, y=0.75)
+# Cadeiras das moças sentadas (a Anna e a Afrique), na frente, viradas para o meio.
+add("Furn_Chair_1", -4.8, 3.0, rotation=25, solid=[0.6, 0.6])
+add("Furn_Chair_2", 4.6, 3.0, rotation=-25, solid=[0.6, 0.6])
 # Balcão da cafetina (oeste) e lareira (leste).
 add("Table_Large", -8.9, 3.6, rotation=90, solid=[1.1, 2.8])
 add("Shelf_Small_Bottles", -10.6, 3.6, rotation=90)
@@ -71,9 +75,9 @@ crowd = [
     # As moças de biquíni (Jungle Jim, CC BY 4.0; modelos em game/actors/npc_model.gd): duas dançam na frente e duas passeiam de um lado a outro.
     {"role": "beach_dancer", "position": [-2.6, 4.4], "rotation": 0, "pose": "dance"},
     {"role": "asila_dancer", "position": [2.6, 4.4], "rotation": 0, "pose": "dance"},
-    {"role": "anna_walker", "position": [-6.5, 5.4], "rotation": 90, "pose": "idle", "path": [6.5, 5.4], "speed": 0.8},
+    {"role": "anna_sitting", "position": [-4.8, 3.0], "rotation": 25, "pose": "sit"},  # sentada na cadeira (tools/assets/build_dancing_npc.py --as sit)
     {"role": "adriana_walker", "position": [7.5, -2.4], "rotation": -90, "pose": "idle", "path": [-7.5, -2.4], "speed": 0.9},
-    {"role": "afrique_walker", "position": [-7.5, 2.8], "rotation": 90, "pose": "idle", "path": [7.5, 2.8], "speed": 0.85},
+    {"role": "afrique_sitting", "position": [4.6, 3.0], "rotation": -25, "pose": "sit"},
     {"role": "scifi_walker", "position": [5.8, -3.3], "rotation": -90, "pose": "idle", "path": [-5.8, -3.3], "speed": 0.8},  # rente aos pés das camas
     {"role": "belly_dancer", "position": [6.2, 4.6], "rotation": -15, "pose": "dance"},  # à direita da frente (o meio é a entrada); a dança anda até ~0,9 m
     {"role": "prix_hostess", "position": [-7.9, 4.6], "rotation": 60, "pose": "stand"},  # a anfitriã, ao lado do balcão

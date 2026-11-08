@@ -5591,3 +5591,15 @@ msgstr "Pulpo Abisal"
 
 msgid "PROP_MYSTERY_STONE"
 msgstr "Piedra misteriosa"
+
+msgid "ACTION_CAM_ZOOM_IN"
+msgstr "Cámara: acercar"
+
+msgid "ACTION_CAM_ZOOM_OUT"
+msgstr "Cámara: alejar"
+
+msgid "ACTION_CAM_TURN_LEFT"
+msgstr "Cámara: girar a la izquierda"
+
+msgid "ACTION_CAM_TURN_RIGHT"
+msgstr "Cámara: girar a la derecha"

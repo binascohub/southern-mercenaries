@@ -54,9 +54,11 @@
   the bite was hard to see from above, so it looked like it only walked around).
 - In the Docks, the Ink Octopus is replaced by the Skeleton Pirate (coat, tricorn, cutlass and peg leg; "Skeleton Pirate \"The Captin\"", FireGoat,
   CC BY 4.0): same health and damage, but melee with a cutlass slash instead of the ink jet, in every pack and in the bosses' waves.
-- Tortuga has a brothel, the Crimson Mermaid, entered through a floating violet energy stone (not a portal, and not shown on the minimap) on the south edge of the main street (east of the tavern, marked by a red light):
+- Tortuga has a brothel, the Crimson Mermaid, an easter egg entered through a floating violet energy stone (no portal, no name over it, not shown on the minimap;
+  the prompt only says "Mysterious Stone") on the south edge of the main street (east of the tavern, marked by a red light):
   five beds behind cloth curtains, two sofa corners and a round table with wine, a counter, a fireplace and red-lit chandeliers. Five women in
-  swimwear (Jungle Jim, CC BY 4.0) work there: two dance with the heroine's dance and three stroll back and forth (Anna, Adriana and Afrique), while clients
+  swimwear (Jungle Jim, CC BY 4.0) work there: one dances the heroine's dance and Asila the second half of the belly dance, Adriana strolls back and forth
+  and Anna and Afrique sit on chairs at the front (the heroes' sitting moves), while clients
   sit at the table and on the sofas; a belly dancer (Miguelangelo Rosario) dances with her own dance, Prix (lucirgo) poses by the counter
   a woman in a bikini kneels on the middle bed (Fadly.W) and a sci-fi girl (patrix) strolls along the foot of the beds.
   Scenery only; it plays the tavern music. The files went from up to 336 MB to 3-16 MB each. Courtesans can now sit.
@@ -68,7 +70,8 @@
 - Ruins narrow corridors (`tools/assets/add_ruins_corridors.py`, run by `build_ruins.py`): rooms moved 12 m apart at each link, with a 5 m wide walled corridor (slab floor, torches) in between; the High Yard widens to meet the three corridors from the south.
 - All Ruins monsters are Fire (`tools/assets/ruins_fire_monsters.py`, end of `build_maps.py`): Ash Goblin, Ember Bat, Fire Scorpion (burning spit) and Ember Mimic replace the shared Goblin, Plague Bat, Venom Scorpion and Mimic there; the Wraith, Pack Alpha, Ruin Warden, Fallen Champion and Fallen King become Fire; the Ruins quests now say Fire (weak to Water).
 - Ruins mini-bosses (`tools/assets/ruins_miniboss_skills.py`, end of `build_maps.py`): the Ruin Warden and the Fallen Champion call 6 waves of fire monsters (every 15-16 s) and have a knock-back slam and a thrown fire strike that leaves burning ground.
-- Equipment rank glow: a soft gold light now circles the hero, rising and falling as it goes, with a fading trail behind it and lighting the hero and the floor; each average equipment rank makes it bigger, brighter, faster and with a longer trail (replaces the cloud of gold sparks and the yellow cylinder).
+- Equipment rank glow: soft lights in the color of the hero's element now circle the hero, rising and falling as they go, each with a fading trail, lighting the hero and the floor; one light per average equipment rank above D (C 1, B 2, A 3, S 4), the same for every hero (replaces the cloud of gold sparks and the yellow cylinder).
+- The Capital no longer has a portal back to Tortuga: between the cities, only the Time Traveler.
 - Fire Seal (Ninja) has an energy dome ("Tronicle" by tamminen, CC BY 4.0; `tools/assets/build_tronicle.py`): new ground motif `star_seal` = the seal rune plus 64 spinning, pulsing shells half sunk in the ground, glowing additively in the spell colour; it grows when cast, lasts the seal's 8 s and shrinks at the end.
 - Armored Troll ("Troll (Armored)" by SidewalkNZ, CC BY 4.0; `tools/assets/build_troll_armored.py`, profile `troll_armored` in `rig_biped.py`, `tools/assets/add_ruins_armored_troll.py`): a 3 m plate-armored brute with the heroes' animations, Fire (weak to Water), slow and tough; 6 packs in the Ruins (both Districts, both Squares, two in the High Yard).
 - Food (Food Kit by Kenney, CC0; `tools/assets/import_food_kit.py`, `tools/assets/add_food_kit.py`): the king's feast tables in the throne room (turkey, ham, ribs, pies, cake, bread, cheese, grapes, wine; the loose fruit and potion flasks are gone), a food stall in the Capital's gate square and one in Tortuga's main street (fish, mussels, island fruit, bread), more produce on the Capital avenue table, fish and coconuts in Tortuga's handcart, and the four Farm carts loaded (pumpkins, cabbages, corn, apples, pears, flour sacks). Decor entries can now be a scenery-only market stall (`"stall"`).

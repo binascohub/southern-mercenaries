@@ -12,9 +12,11 @@ signal bindings_changed
 const PATH := "user://controls.cfg"
 ## Versão do padrão do teclado: 2 = habilidades nos números 1–4 e poções em Q/E/R
 ## (decisão do autor). Arquivos antigos não levam as teclas antigas dessas ações.
-const LAYOUT_VERSION := 4
+const LAYOUT_VERSION := 5
 ## 4 = oito quadrados nos números 1–8 e no controle A B X Y RB RT LB LT: o 1 (A) é o ataque básico (também o clique do mouse) e os outros sete guardam habilidade ou poção.
 const LAYOUT_2_ACTIONS := [&"attack", &"skill_1", &"skill_2", &"skill_3", &"skill_4", &"skill_5", &"skill_6", &"skill_7", &"evade", &"block", &"pickup_all", &"potion_health", &"potion_mana", &"potion_elemental"]
+## 5 = o analógico direito gira e aproxima a câmera (antes era a mira): quem salvou antes perde só a mira do controle e ganha a câmera.
+const LAYOUT_5_ACTIONS := [&"aim_up", &"aim_down", &"aim_left", &"aim_right", &"cam_zoom_in", &"cam_zoom_out", &"cam_turn_left", &"cam_turn_right"]
 const KB := "kb"
 const PAD := "pad"
 
@@ -22,6 +24,7 @@ const PAD := "pad"
 const REMAPPABLE: Array[StringName] = [
 	&"move_up", &"move_down", &"move_left", &"move_right",
 	&"aim_up", &"aim_down", &"aim_left", &"aim_right",
+	&"cam_zoom_in", &"cam_zoom_out", &"cam_turn_left", &"cam_turn_right",
 	&"attack", &"skill_1", &"skill_2", &"skill_3", &"skill_4", &"skill_5", &"skill_6", &"skill_7",
 	&"evade", &"jump", &"block", &"mount", &"potion_health", &"potion_mana", &"potion_elemental",
 	&"interact", &"pickup_all", &"inventory", &"skills", &"menu", &"map", &"chat_quick",
@@ -30,6 +33,7 @@ const REMAPPABLE: Array[StringName] = [
 const ANALOG: Array[StringName] = [
 	&"move_up", &"move_down", &"move_left", &"move_right",
 	&"aim_up", &"aim_down", &"aim_left", &"aim_right",
+	&"cam_zoom_in", &"cam_zoom_out", &"cam_turn_left", &"cam_turn_right",
 ]
 ## Gatilhos usados como botão.
 const TRIGGER_DEADZONE := 0.5
@@ -223,11 +227,17 @@ func _build_defaults() -> void:
 	d[&"move_down"] = _pair([key(KEY_S)], [axis(JOY_AXIS_LEFT_Y, 1)])
 	d[&"move_left"] = _pair([key(KEY_A)], [axis(JOY_AXIS_LEFT_X, -1)])
 	d[&"move_right"] = _pair([key(KEY_D)], [axis(JOY_AXIS_LEFT_X, 1)])
-	# No teclado a mira é a posição do mouse; estas ações são só do controle.
-	d[&"aim_up"] = _pair([], [axis(JOY_AXIS_RIGHT_Y, -1)])
-	d[&"aim_down"] = _pair([], [axis(JOY_AXIS_RIGHT_Y, 1)])
-	d[&"aim_left"] = _pair([], [axis(JOY_AXIS_RIGHT_X, -1)])
-	d[&"aim_right"] = _pair([], [axis(JOY_AXIS_RIGHT_X, 1)])
+	# No teclado a mira é a posição do mouse; no controle, sem padrão: o herói mira para onde anda (e a mira assistida acha o monstro).
+	# Remapeáveis para quem quiser mirar com outro eixo.
+	d[&"aim_up"] = _pair([], [])
+	d[&"aim_down"] = _pair([], [])
+	d[&"aim_left"] = _pair([], [])
+	d[&"aim_right"] = _pair([], [])
+	# Câmera no analógico direito: cima aproxima, baixo afasta, esquerda e direita giram (game/camera/top_down_camera.gd).
+	d[&"cam_zoom_in"] = _pair([], [axis(JOY_AXIS_RIGHT_Y, -1)])
+	d[&"cam_zoom_out"] = _pair([], [axis(JOY_AXIS_RIGHT_Y, 1)])
+	d[&"cam_turn_left"] = _pair([], [axis(JOY_AXIS_RIGHT_X, -1)])
+	d[&"cam_turn_right"] = _pair([], [axis(JOY_AXIS_RIGHT_X, 1)])
 	d[&"attack"] = _pair([key(KEY_1), mouse(MOUSE_BUTTON_LEFT), key(KEY_KP_1)], [pad(JOY_BUTTON_A)])  # quadrado 1: tecla 1, clique ou A = ataque simples (segurar: ataque forte)
 	# Os outros sete quadrados (habilidade ou poção): teclas 2 a 8 (e as do teclado numérico); no controle B X Y, depois RB, RT, LB e LT.
 	var slot_pad: Array = [pad(JOY_BUTTON_B), pad(JOY_BUTTON_X), pad(JOY_BUTTON_Y), pad(JOY_BUTTON_RIGHT_SHOULDER),
@@ -295,12 +305,15 @@ func _load_user() -> void:
 	var cfg := ConfigFile.new()
 	if cfg.load(PATH) != OK:
 		return
-	var old_layout := int(cfg.get_value("meta", "layout", 1)) < LAYOUT_VERSION
+	var layout := int(cfg.get_value("meta", "layout", 1))
+	var old_layout := layout < 4
 	for action in REMAPPABLE:
 		for kind in [KB, PAD]:
 			if not cfg.has_section_key(kind, action):
 				continue
 			if old_layout and action in LAYOUT_2_ACTIONS:
+				continue
+			if layout < 5 and action in LAYOUT_5_ACTIONS:
 				continue
 			var data: Dictionary = cfg.get_value(kind, action, {})
 			_replace_primary(action, kind, deserialize(data) if not data.is_empty() else null)

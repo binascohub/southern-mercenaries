@@ -417,17 +417,6 @@
         "entry": "start"
       },
       {
-        "id": "ruins_gate",
-        "kind": "exit",
-        "name_key": "PROP_TO_RUINS",
-        "position": [
-          -28.5,
-          5.9
-        ],
-        "to": "ruins_01_city",
-        "entry": "start"
-      },
-      {
         "id": "brothel_door",
         "kind": "exit",
         "name_key": "PROP_MYSTERY_STONE",
@@ -440,6 +429,17 @@
         "piece": "Brothel_Stone",
         "minimap": false,
         "label": false
+      },
+      {
+        "id": "ruins_gate",
+        "kind": "exit",
+        "name_key": "PROP_TO_RUINS",
+        "position": [
+          -28.5,
+          5.9
+        ],
+        "to": "ruins_01_city",
+        "entry": "start"
       }
     ],
     "style": {
@@ -152088,17 +152088,6 @@
     },
     "props": [
       {
-        "id": "return_portal",
-        "kind": "exit",
-        "name_key": "PROP_RETURN_PORTAL",
-        "position": [
-          -6,
-          3
-        ],
-        "to": "tortuga",
-        "entry": "capital"
-      },
-      {
         "id": "shop_potions",
         "kind": "shop",
         "shop": "potions",
@@ -152218,6 +152207,57 @@
         ]
       },
       {
+        "id": "sacristan",
+        "kind": "npc",
+        "npc": "sacristan",
+        "position": [
+          -42.5,
+          -34.5
+        ],
+        "rotation": 90
+      },
+      {
+        "id": "penitent_sister",
+        "kind": "npc",
+        "npc": "penitent_sister",
+        "position": [
+          -33.0,
+          -33.6
+        ],
+        "rotation": 180
+      },
+      {
+        "id": "pilgrim",
+        "kind": "npc",
+        "npc": "pilgrim",
+        "position": [
+          -27.0,
+          -33.6
+        ],
+        "rotation": 180
+      },
+      {
+        "id": "mushroom_gate",
+        "kind": "exit",
+        "name_key": "PROP_TO_MUSHROOM",
+        "position": [
+          -0.5,
+          4.5
+        ],
+        "to": "mushroom_01_hills",
+        "entry": "start"
+      },
+      {
+        "id": "royal_botanist",
+        "kind": "npc",
+        "npc": "royal_botanist",
+        "position": [
+          -21.0,
+          -33.6
+        ],
+        "rotation": 180
+      },
+      {
         "id": "cemetery_gate",
         "kind": "exit",
         "name_key": "PROP_TO_CEMETERY",
@@ -152268,57 +152308,6 @@
         "position": [
           -12.0,
           1.0
-        ],
-        "rotation": 180
-      },
-      {
-        "id": "sacristan",
-        "kind": "npc",
-        "npc": "sacristan",
-        "position": [
-          -42.5,
-          -34.5
-        ],
-        "rotation": 90
-      },
-      {
-        "id": "penitent_sister",
-        "kind": "npc",
-        "npc": "penitent_sister",
-        "position": [
-          -33.0,
-          -33.6
-        ],
-        "rotation": 180
-      },
-      {
-        "id": "pilgrim",
-        "kind": "npc",
-        "npc": "pilgrim",
-        "position": [
-          -27.0,
-          -33.6
-        ],
-        "rotation": 180
-      },
-      {
-        "id": "mushroom_gate",
-        "kind": "exit",
-        "name_key": "PROP_TO_MUSHROOM",
-        "position": [
-          -0.5,
-          4.5
-        ],
-        "to": "mushroom_01_hills",
-        "entry": "start"
-      },
-      {
-        "id": "royal_botanist",
-        "kind": "npc",
-        "npc": "royal_botanist",
-        "position": [
-          -21.0,
-          -33.6
         ],
         "rotation": 180
       }
@@ -308423,6 +308412,30 @@
         "y": 0.75
       },
       {
+        "piece": "Furn_Chair_1",
+        "position": [
+          -4.8,
+          3.0
+        ],
+        "rotation": 25,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "piece": "Furn_Chair_2",
+        "position": [
+          4.6,
+          3.0
+        ],
+        "rotation": -25,
+        "solid": [
+          0.6,
+          0.6
+        ]
+      },
+      {
         "piece": "Table_Large",
         "position": [
           -8.9,
@@ -308611,18 +308624,13 @@
         "pose": "dance"
       },
       {
-        "role": "anna_walker",
+        "role": "anna_sitting",
         "position": [
-          -6.5,
-          5.4
+          -4.8,
+          3.0
         ],
-        "rotation": 90,
-        "pose": "idle",
-        "path": [
-          6.5,
-          5.4
-        ],
-        "speed": 0.8
+        "rotation": 25,
+        "pose": "sit"
       },
       {
         "role": "adriana_walker",
@@ -308639,18 +308647,13 @@
         "speed": 0.9
       },
       {
-        "role": "afrique_walker",
+        "role": "afrique_sitting",
         "position": [
-          -7.5,
-          2.8
+          4.6,
+          3.0
         ],
-        "rotation": 90,
-        "pose": "idle",
-        "path": [
-          7.5,
-          2.8
-        ],
-        "speed": 0.85
+        "rotation": -25,
+        "pose": "sit"
       },
       {
         "role": "scifi_walker",

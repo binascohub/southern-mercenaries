@@ -51,7 +51,7 @@ for area, entry in (("cemetery_01_yard", "cemetery"), ("fort_01_gate", "fort"), 
     arenas[area]["props"] = [dict(p, expedition_end=False) if p["id"] == "return_portal" else p for p in arenas[area]["props"]]
 for area, entry in (("mine_01_crystal_vein", "mine"), ("dark_forest_01_woods", "dark_forest")):
     retarget(area, "return_portal", "farm_01_fields", entry, name_key="PROP_RETURN_FARM")
-retarget("capital_01_aurenhold", "return_portal", "tortuga", "capital")
+drop_prop("capital_01_aurenhold", "return_portal")  # da Capital só se volta a Tortuga pelo Viajante do Tempo
 drop_prop("tortuga", "farm_gate")  # a Fazenda só se alcança pelo Viajante do Tempo
 drop_prop("farm_01_fields", "return_portal")  # da Fazenda só se volta pelo Viajante do Tempo
 

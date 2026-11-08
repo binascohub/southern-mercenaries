@@ -8,7 +8,9 @@ Vai para assets/models/characters/<nome>.glb (game/actors/npc_model.gd).
 Outra dança: --bones belly usa como origem o "Bikini girl bellydancing" (Miguelangelo Rosario, CC BY 4.0; esqueleto Mixamo renomeado para os nomes dos heróis),
 --clip escolhe a animação de origem e --part a b o trecho dela (frações da duração; a Asila dança a segunda metade da dança do ventre, a moça da dança do
 ventre a primeira).
-uso: blender -b --python tools/assets/build_dancing_npc.py -- <arquivo.glb> <hero_female.glb | origem.glb> <saída.glb> [--bones belly] [--clip nome] [--part a b]"""
+--as sit com --clip Sitting_Idle_Loop dá a moça sentada (a ação sentada fica como "dance"; a caminhada do arquivo continua como "walk"); --drop tira malhas.
+uso: blender -b --python tools/assets/build_dancing_npc.py -- <arquivo.glb> <hero_female.glb | origem.glb> <saída.glb> [--bones belly] [--clip nome] [--part a b]
+     [--as sit] [--drop malha1,malha2]"""
 import bpy, re, sys
 import numpy as np
 from mathutils import Matrix, Vector
@@ -24,7 +26,11 @@ BELLY = {"Hips": "pelvis", "Spine1": "spine_01", "Spine2": "spine_02", "Spine4":
          "RightShoulder": "clavicle_r", "RightArm": "upperarm_r", "RightForeArm": "lowerarm_r", "RightHand": "hand_r",
          "LeftUpLeg": "thigh_l", "LeftLeg": "calf_l", "LeftFoot": "foot_l", "LeftToeBase": "ball_l",
          "RightUpLeg": "thigh_r", "RightLeg": "calf_r", "RightFoot": "foot_r", "RightToeBase": "ball_r"}
-drop = []
+drop = args[args.index("--drop") + 1].split(",") if "--drop" in args else []
+# --as sit: a animação passada é sentada (o Sitting_Idle_Loop dos heróis): a altura se mede de pé, no repouso. A ação continua "dance" no arquivo
+# (com o nome "sit" o exportador do glTF a deixa de fora); game/actors/npc_model.gd liga a pose "sit" a ela.
+SITTING = "--as" in args and args[args.index("--as") + 1] == "sit"
+OUT_NAME = "dance"
 TARGET_TRIS = 40000
 MAX_TEX = 512
 HEIGHT = 1.7
@@ -158,7 +164,7 @@ rig_inv = rig.matrix_world.inverted()
 rig_rot_inv = rig.matrix_world.to_3x3().normalized().inverted()
 for p in rig.pose.bones:
     p.rotation_mode = "QUATERNION"
-dance = bpy.data.actions.new("dance")
+dance = bpy.data.actions.new(OUT_NAME)
 dance.use_fake_user = True
 rig.animation_data.action = dance
 f0, f1 = int(dance_src.frame_range[0]), int(dance_src.frame_range[1])
@@ -193,7 +199,7 @@ for p in rig.pose.bones:
     p.keyframe_insert("rotation_quaternion", frame=0)
 hero.animation_data.action = None
 for a in list(bpy.data.actions):
-    if a.name not in ("walk", "dance", "idle"):
+    if a.name not in ("walk", OUT_NAME, "idle"):
         bpy.data.actions.remove(a)
 bpy.data.objects.remove(hero, do_unlink=True)
 for o in bodies:
@@ -203,7 +209,8 @@ for o in bodies:
 rig.animation_data.action = idle
 scene.frame_set(0)
 dg = bpy.context.evaluated_depsgraph_get()
-pts = np.concatenate([np.array([o.matrix_world @ v.co for v in o.evaluated_get(dg).to_mesh().vertices]) for o in bodies])
+# Sentada: a altura se mede de pé, na malha sem deformação (a pose de repouso); tirar a ação do esqueleto aqui faz o exportador perder as outras.
+pts = np.concatenate([np.array([o.matrix_world @ v.co for v in (o.data if SITTING else o.evaluated_get(dg).to_mesh()).vertices]) for o in bodies])
 mn, mx = pts.min(0), pts.max(0)
 k = HEIGHT / (mx[2] - mn[2])
 top = rig

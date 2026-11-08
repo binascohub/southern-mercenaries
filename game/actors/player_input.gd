@@ -36,6 +36,10 @@ var skill_presses: Array[int] = [0, 0, 0, 0, 0, 0, 0]
 static func gather(previous: PlayerInput, origin: Vector3, camera: Camera3D, viewport: Viewport) -> PlayerInput:
 	var input := PlayerInput.new()
 	input.move = Input.get_vector(&"move_left", &"move_right", &"move_up", &"move_down")
+	# Câmera girada (analógico direito): "para cima" na tela é para onde ela olha.
+	var cam_yaw := camera.global_rotation.y if camera else 0.0
+	if cam_yaw != 0.0:
+		input.move = input.move.rotated(-cam_yaw)
 	input.attack_held = Input.is_action_pressed(&"attack")
 	input.interact_held = Input.is_action_pressed(&"interact")
 	input.attack_presses = previous.attack_presses + int(Input.is_action_just_pressed(&"attack"))
@@ -67,7 +71,7 @@ static func gather(previous: PlayerInput, origin: Vector3, camera: Camera3D, vie
 		var stick := Input.get_vector(&"aim_left", &"aim_right", &"aim_up", &"aim_down")
 		if Settings.invert_aim_y:
 			stick.y = -stick.y
-		input.aim = stick.normalized() if stick.length() > 0.0 else Vector2.ZERO
+		input.aim = stick.normalized().rotated(-cam_yaw) if stick.length() > 0.0 else Vector2.ZERO
 	elif camera:
 		var mouse := viewport.get_mouse_position()
 		var from := camera.project_ray_origin(mouse)

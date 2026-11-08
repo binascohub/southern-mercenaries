@@ -115,11 +115,18 @@ const MODELS := {
 	# "Afrique Ipopapatima (animated)", Jungle Jim, CC BY 4.0 (tools/assets/build_walking_npc.py): de top curto e tênis, também passeia no Bordel.
 	"afrique_walker": {"scene": "res://assets/models/characters/afrique_walker.glb", "scale": 1.0,
 		"poses": {"idle": "idle", "stand": "idle", "talk": "idle", "walk": "walk"}},
+	# Anna e Afrique sentadas nas cadeiras do Bordel (tools/assets/build_dancing_npc.py --clip Sitting_Idle_Loop --as sit): o sentar dos heróis passado para
+	# elas; no arquivo a ação sentada se chama "dance" (com o nome "sit" o exportador do glTF a deixa de fora).
+	"anna_sitting": {"scene": "res://assets/models/characters/anna_sitting.glb", "scale": 1.0,
+		"poses": {"sit": "dance", "idle": "dance", "stand": "dance", "talk": "dance"}},
+	"afrique_sitting": {"scene": "res://assets/models/characters/afrique_sitting.glb", "scale": 1.0,
+		"poses": {"sit": "dance", "idle": "dance", "stand": "dance", "talk": "dance"}},
 	# "Sci-fi Girl v.02 Walkcycle Test", patrix, CC BY-NC-SA 4.0 (tools/assets/build_walking_npc.py): de macacão justo, passeia rente às camas do Bordel.
 	"scifi_walker": {"scene": "res://assets/models/characters/scifi_walker.glb", "scale": 1.0,
 		"poses": {"idle": "idle", "stand": "idle", "talk": "idle", "walk": "walk"}},
 	# Moças que dançam no Bordel de Tortuga: "Bouncy Beach babe walking in bikini (animated)" e "Asila Insbach", Jungle Jim, CC BY 4.0
-	# (tools/assets/build_dancing_npc.py): a dança da heroína (Dance_Loop) passada para o esqueleto delas; "walk" é a caminhada do arquivo (a da Asila é parada).
+	# (tools/assets/build_dancing_npc.py): a moça da praia dança a dança da heroína (Dance_Loop); a Asila, a segunda metade da dança do ventre
+	# ("Bikini girl bellydancing", Miguelangelo Rosario, CC BY 4.0; --bones belly --part 0.5 1.0). "walk" é a caminhada do arquivo (a da Asila é parada).
 	"beach_dancer": {"scene": "res://assets/models/characters/beach_dancer.glb", "scale": 1.0,
 		"poses": {"idle": "dance", "dance": "dance", "stand": "idle", "talk": "idle", "walk": "walk"}},
 	"asila_dancer": {"scene": "res://assets/models/characters/asila_dancer.glb", "scale": 1.0,
