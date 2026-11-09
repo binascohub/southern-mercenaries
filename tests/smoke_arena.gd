@@ -393,6 +393,10 @@ func _skills_test() -> void:
 				continue
 			player.teleport_to(start)
 			player.facing = Vector2(0, 1)
+			for r in rats:  # o fogo no chão (Leque, Armadilha) espanta os ratos: voltam ao lugar, para a mira das áreas cair perto do herói
+				if is_instance_valid(r):
+					r.global_position = r.home
+					r.net_position = r.home
 			if id == "animal_rescue" and fallen:
 				fallen.take_damage(99999)  # cai de novo para cada elemento testar o Resgate
 			var ok := system.cast(player, id, 3)

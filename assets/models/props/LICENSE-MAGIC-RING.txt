@@ -1,0 +1,8 @@
+Magic_Ring_Blue.glb — "Magic Ring - Blue" by Noob Model :D (koontanch), CC-BY 4.0 (http://creativecommons.org/licenses/by/4.0/): https://sketchfab.com/3d-models/magic-ring-blue-5c81d8a7610543779d0c7e85f9175fae
+Copied as supplied (magic_ring_-_blue.glb); drawn additively on the ground by SpellFx._magic_ring (Blizzard and the water skills' areas).
+Magic_Ring_Red.glb — "Magic Ring - Red" by Noob Model :D (koontanch), CC-BY 4.0 (http://creativecommons.org/licenses/by/4.0/): https://sketchfab.com/3d-models/magic-ring-red-08b6d10747ae4319a5d6fb1c2a47be92
+Copied as supplied (magic_ring_-_red.glb); drawn additively by SpellFx._magic_ring under the fire skills' areas, its arcs flattened to 60% height and its own animation looping.
+Magic_Ring_Green.glb — "Magic Ring - Green" by Noob Model :D (koontanch), CC-BY 4.0 (http://creativecommons.org/licenses/by/4.0/): https://sketchfab.com/3d-models/magic-ring-green-4ed3858327434583b2bb9e8e4a641a9a
+Copied as supplied (magic_ring_-_green.glb); drawn additively by SpellFx._magic_ring under the earth skills' areas, its own animation looping.
+Magic_Ring_YinYang.glb — "Magic Ring - YingYangBlue" by Noob Model :D (koontanch), CC-BY 4.0 (http://creativecommons.org/licenses/by/4.0/): https://sketchfab.com/3d-models/magic-ring-yingyangblue-97be620103c74cd0b9cc7c9f2ff076da
+Copied as supplied (magic_ring_-_yingyangblue.glb); drawn additively by SpellFx._magic_ring under the air skills' areas, its own animation looping.

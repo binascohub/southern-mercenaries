@@ -57,6 +57,23 @@ func _ready() -> void:
 	_load_user()
 	apply_deadzone(Settings.deadzone)
 	_extend_ui_navigation()
+	for device in Input.get_connected_joypads():
+		_fix_joy_mapping(device)
+	Input.joy_connection_changed.connect(func(device: int, connected: bool) -> void:
+		if connected:
+			_fix_joy_mapping(device))
+
+
+## Controle genérico DragonRise/Microntek (USB 0079:0006): o banco do SDL que o Godot usa põe o analógico direito em
+## a3/a4, mas esse controle só tem a2 (Z, horizontal) e a3 (RZ, vertical). Com isso, cima/baixo girava a câmera e
+## esquerda/direita não fazia nada. Mesmo mapeamento do banco, só com o analógico direito corrigido.
+func _fix_joy_mapping(device: int) -> void:
+	var info := Input.get_joy_info(device)
+	if str(info.get("vendor_id", "")) != "121" or str(info.get("product_id", "")) != "6":
+		return
+	Input.add_joy_mapping(Input.get_joy_guid(device) + ",USB Gamepad,a:b2,b:b1,back:b8,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,"
+		+ "leftshoulder:b4,leftstick:b10,lefttrigger:b6,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b11,righttrigger:b7,"
+		+ "rightx:a2,righty:a3,start:b9,x:b3,y:b0,platform:Linux", true)
 
 
 # --- API -------------------------------------------------------------------

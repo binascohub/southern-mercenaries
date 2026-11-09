@@ -29,6 +29,9 @@
 - The dragon's gold bed now lies flat on the ground (it stood up like a golden wall in the Sewer and the Mine).
 - The green slime stains that hurt (in the Sewer and the monsters' puddles) are plain green again, without the rising-bubbles pattern on top.
 - The Docks' save crystal moved from the landing to the Wharf, in front of the Kraken's gate lane.
+- Gamepad: the right stick now moves the camera (up zooms in, down zooms out, left and right turn it around the hero); walking and aiming
+  follow the turned view. Aiming with the gamepad follows the walking direction with aim assist; the aim and the camera actions can be
+  remapped in the controls menu (players with saved controls lose only the old right-stick aim).
 - The Catacombs' walls now have seated skeletons, the previous victims, leaning between the wall shackles ("Previous Victim Skeleton - Granny",
   Arthurzin, CC BY 4.0).
 - In the Forest, the Fungus Uncle packs (16 monsters, mostly in the Fungus Clearing) become the Flowermaw, a gaunt ~2.6 m creature whose head

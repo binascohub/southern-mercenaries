@@ -1290,7 +1290,7 @@ func _test_sewers() -> void:
 			and (village_npcs.any(func(p: Dictionary) -> bool: return p.npc == mission.get("giver", "")) or GameData.arenas.tavern.props.any(func(p: Dictionary) -> bool: return p.get("npc", "") == mission.get("giver", ""))) and tr(mission.get("name_key", "")) != "",
 			"missão da aldeia %s: encontros e quem a dá existem" % quest_id)
 		var giver: Dictionary = GameData.npcs[mission.giver]
-		_check(Town.dialogue_index(mission.giver, {"forest_leshy": "done"} if quest_id == "forest_fire_golem" else {}) == 0 and Town.dialogue_index(mission.giver, {"forest_leshy": "done", quest_id: "active"} if quest_id == "forest_fire_golem" else {quest_id: "active"}) == 1
+		_check(Town.dialogue_index(mission.giver, {}) == 0 and Town.dialogue_index(mission.giver, {quest_id: "active"}) == 1
 			and Town.dialogue_index(mission.giver, {quest_id: "done"}) == 2 and giver.dialogues[0].get("offer", "") == quest_id,
 			"conversa de %s: oferece, lembra e agradece" % quest_id)
 	# A missão da Aelindra pede a Caveira de Morvak, que o Golem de Fogo (o mini-chefe que ela desperta) larga; ela entrega com "turn_in".
@@ -1488,7 +1488,9 @@ func _test_ninja_gear() -> void:
 	var dwarf := HeroModel.new()
 	add_child(dwarf)
 	dwarf.setup("male", {}, "archer")
-	_check(dwarf.is_suit() and not dwarf.suit_worn() and dwarf.visible_parts().has("Peasant_Body"), "arqueiro: sem peça equipada aparece o Camponês")
+	var plain: Color = (dwarf.find_child("Dwarf_Body", true, false) as MeshInstance3D).get_surface_override_material(0).albedo_color
+	_check(dwarf.is_suit() and not dwarf.suit_worn() and dwarf.visible_parts() == ["Dwarf_Body"] and plain == HeroModel.PLAIN_CLOTH,
+		"arqueiro: sem peça equipada já é o anão, de roupa simples (linho cru, sem a cor do elemento)")
 	HeroGear.apply(dwarf, "archer", {"body": "D", "head": "", "hands": "", "feet": ""})
 	_check(dwarf.suit_worn() and dwarf.visible_parts() == ["Dwarf_Body"], "arqueiro: com uma peça equipada veste o anão inteiro")
 	var dwarf_colors := []

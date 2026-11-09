@@ -618,6 +618,12 @@ func skill_burst(at: Vector3, radius: float, hit: Dictionary, fx := "") -> void:
 		skills.burst(at, radius, hit, fx)
 
 
+## Poça de fogo de uma flecha (chamado pelo projétil, só no servidor).
+func skill_ground(at: Vector3, hit: Dictionary) -> void:
+	if multiplayer.is_server():
+		skills.ground_from_hit(at, hit)
+
+
 ## Chamado pelo grupo "arena" quando um jogador atira (só no servidor).
 func spawn_projectile(spawn: Dictionary) -> void:
 	if multiplayer.is_server():
@@ -1135,7 +1141,8 @@ func _start_run() -> void:
 	var dead: Array = _campaign.get("dead_groups", [])
 	for encounter: Dictionary in arena.encounters:
 		# Quem sai e volta ao mapa encontra os monstros de novo; só os grupos de mini-chefe e chefe derrotados continuam mortos.
-		if encounter.id not in dead or not _group_has_boss_entry(encounter):
+		# Exceção: o chefe que larga a relíquia de uma missão ativa volta se algum herói ainda não a tem (o grupo saiu do mapa sem pegá-la e a missão travava).
+		if encounter.id not in dead or not _group_has_boss_entry(encounter) or _quest_drop_missing(encounter):
 			_spawn_group(encounter)
 	# Mini-chefes chamados num altar/estátua desta área e ainda vivos: voltam acordados ao lugar do altar.
 	for id: String in _campaign.get("summoned", {}):
@@ -1454,6 +1461,23 @@ func _group_is_aggressive(group: Dictionary) -> bool:
 	return false
 
 
+## O grupo tem um monstro com "quest_drop" de uma missão ativa, e algum herói na área ainda não tem esse item na bolsa.
+func _quest_drop_missing(encounter: Dictionary) -> bool:
+	var quests: Dictionary = _campaign.get("quests", {})
+	for entry: Dictionary in encounter.get("monsters", []):
+		var item_id := String(GameData.monsters.get(String(entry.get("monster", "")), {}).get("quest_drop", ""))
+		if item_id == "":
+			continue
+		var active := quests.keys().any(func(id: String) -> bool:
+			return quests[id] == "active" and GameData.quests.get(id, {}).get("item", "") == item_id)
+		if not active:
+			continue
+		for p: Player in get_tree().get_nodes_in_group(&"players"):
+			if p.character and not p.is_queued_for_deletion() and p.character.count_of(item_id) == 0:
+				return true
+	return false
+
+
 ## O encontro (de arenas.json) tem um mini-chefe ou chefe: esses não voltam depois de derrotados.
 func _group_has_boss_entry(encounter: Dictionary) -> bool:
 	for entry: Dictionary in encounter.get("monsters", []):
@@ -1526,10 +1550,14 @@ func _on_enemy_died(enemy: Enemy) -> void:
 ## Chefe da área com "exit_portal" (o Leshy da Floresta) caiu: abre onde ele morreu um portal de volta a Tortuga,
 ## que fica (salvo na campanha) para quem voltar à área.
 func _open_boss_portal(enemy: Enemy) -> void:
+	# Longe do baú e do loot (a ~6 m, fora do alcance de interagir deles): colado, o "interagir" para pegar a relíquia ou abrir o baú pegava o portal e o grupo
+	# viajava sem eles. "group": espera o grupo todo perto (e o host pode forçar), como as outras saídas.
 	var prop := {"id": "boss_portal_%s" % enemy.monster_id, "kind": "exit", "look": "charm_portal", "name_key": "PROP_CHARM_PORTAL",
-		"position": [enemy.global_position.x - 2.2, enemy.global_position.z - 1.2], "to": "tortuga",
-		"entry": "start", "expedition_end": true}
+		"position": [enemy.global_position.x - 5.4, enemy.global_position.z - 3.0], "to": "tortuga",
+		"entry": "start", "expedition_end": true, "group": true}
 	var portals: Array = _campaign.get("boss_portals", []).filter(func(c: Variant) -> bool: return c.prop.id != prop.id or c.area != area_id)
+	if portals.size() < _campaign.get("boss_portals", []).size():
+		return  # chefe que voltou pela relíquia (_quest_drop_missing): o portal da primeira vez continua aberto no mapa
 	portals.append({"area": area_id, "prop": prop})
 	_campaign.boss_portals = portals
 	_add_prop.rpc(prop)
@@ -1631,6 +1659,14 @@ func _drop_miniboss_chest(enemy: Enemy) -> void:
 	var prop := {"id": "mbchest_%s" % enemy.monster_id, "kind": "chest", "name_key": "PROP_BOSS_CHEST" if boss else "PROP_MINIBOSS_CHEST",
 		"model": "Chest_Epic" if boss else ("Chest_Large" if _rng.randf() < 0.5 else "Chest_Medium"),
 		"loot": String(enemy.data.get("chest_loot", "boss_chest")) if boss else "miniboss", "position": [snappedf(enemy.global_position.x, 0.1), snappedf(enemy.global_position.z, 0.1)]}
+	if "%s:%s" % [area_id, prop.id] in _campaign.get("opened", []):
+		return  # chefe que voltou só pela relíquia da missão (_quest_drop_missing): o baú dele já foi aberto e não sai de novo
+	var saved_chest: Dictionary = {}
+	for c: Dictionary in _campaign.get("mini_chests", []):
+		if c.area == area_id and c.prop.id == prop.id:
+			saved_chest = c.prop
+	if not saved_chest.is_empty():
+		return  # o baú da primeira vez ainda está fechado no mapa: não abre um segundo
 	var saved: Array = _campaign.get("mini_chests", []).filter(func(c: Variant) -> bool: return c.prop.id != prop.id or c.area != area_id)
 	saved.append({"area": area_id, "prop": prop})
 	_campaign.mini_chests = saved
@@ -1648,7 +1684,8 @@ func _drop_quest_item(player: Player, enemy: Enemy) -> void:
 	for quest_id: String in _campaign.get("quests", {}):
 		if _campaign.quests[quest_id] == "active" and GameData.quests.get(quest_id, {}).get("item", "") == item_id:
 			# O chefe do mapa encerra a expedição ao morrer: a relíquia cai aos pés de cada herói (o autoloot a pega na hora), para ninguém sair sem ela.
-			var at := player.global_position if enemy.is_boss() else enemy.global_position
+			# O mini-chefe que abre o portal de saída (o Leshy) também: o portal nasce do lado e a viagem apaga o loot do chão.
+			var at := player.global_position if enemy.is_boss() or enemy.data.get("exit_portal", false) else enemy.global_position
 			_add_loot(player, at, Items.stack(Items.VALUABLE, item_id), 0)
 			return
 

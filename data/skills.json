@@ -702,6 +702,9 @@
       "max_traps": 3,
       "root": 2.0,
       "root_per_rank": 0.25,
+      "ground_duration": 4.0,
+      "ground_power": 0.3,
+      "ground_element": "fire",
       "name_key": "SKILL_SPIKE_TRAP_NAME",
       "desc_key": "SKILL_SPIKE_TRAP_DESC",
       "anim": "plant"
@@ -724,6 +727,10 @@
         3,
         5
       ],
+      "ground_duration": 3.0,
+      "ground_power": 0.15,
+      "ground_area": 1.5,
+      "ground_element": "fire",
       "name_key": "SKILL_ARROW_FAN_NAME",
       "desc_key": "SKILL_ARROW_FAN_DESC"
     },
@@ -807,6 +814,8 @@
       "area": 6.0,
       "duration": 5.0,
       "state": "burning",
+      "ground_duration": 4.0,
+      "ground_power": 0.4,
       "name_key": "SKILL_FIRE_RAIN_NAME",
       "desc_key": "SKILL_FIRE_RAIN_DESC",
       "anim": "call_big"

@@ -26,6 +26,8 @@ var crit_mult := 1.5
 ## Habilidades: o golpe completo (Elements.resolve_hit) e a explosão em área.
 var hit := {}
 var explode := 0.0
+## Flecha do Arqueiro: o elemento do golpe escolhe o modelo (ARROWS); vazio = orbe.
+var arrow := ""
 ## Habilidade de quem atirou (efeito visual próprio, SpellFx; "" = o genérico por elemento).
 var fx := ""
 ## O ataque do Invocador: em vez do orbe, uma ave (o Falcão) voa até o alvo (`bird_scale` cresce no ataque forte).
@@ -52,6 +54,7 @@ static func create(spawn: Dictionary) -> Projectile:
 	projectile.crit_mult = spawn.get("crit_mult", 1.5)
 	projectile.hit = spawn.get("hit", {})
 	projectile.explode = spawn.get("explode", 0.0)
+	projectile.arrow = String(spawn.get("arrow", ""))
 	projectile.fx = String(spawn.get("fx", ""))
 	projectile.bird = bool(spawn.get("bird", false))
 	projectile.bird_scale = float(spawn.get("bird_scale", 0.5))
@@ -73,11 +76,26 @@ func _ready() -> void:
 	var look := element if element != "" else Fx.element_for(color)
 	if bird and Kit.has("Falcon"):
 		_add_bird(look)
+	elif ARROWS.has(arrow) and Kit.has(ARROWS[arrow]):
+		_add_arrow(look)
 	elif fx == "" or not SpellFx.projectile(self, fx, direction, radius, color):
 		Fx.orb(self, color, look, radius)
 		Fx.trail(self, color, look, radius)
 
 	body_entered.connect(_on_body_entered)
+
+
+## Flechas por elemento ("Arrows", Akshat, CC BY 4.0; tools/assets/build_element_arrows.py): 0,8 m, ponta para +Z.
+const ARROWS := {"fire": "Arrow_Fire", "water": "Arrow_Water", "air": "Arrow_Air", "earth": "Arrow_Earth"}
+
+
+## Flecha do Arqueiro, de ponta para o alvo, com o rastro do elemento.
+func _add_arrow(look: String) -> void:
+	var holder := Node3D.new()
+	add_child(holder)
+	holder.rotation.y = atan2(direction.x, direction.z)
+	holder.add_child(Kit.piece(ARROWS[arrow]))
+	Fx.trail(self, color, look, radius * 0.6)
 
 
 ## Falcão em voo (modelo do jogo, com a animação de bater asas), de frente para o alvo, com o rastro do elemento.
@@ -108,6 +126,7 @@ func _physics_process(delta: float) -> void:
 	_travelled += step
 	if _travelled >= max_range:
 		if multiplayer.is_server():
+			_ignite(global_position)
 			queue_free()
 		else:
 			visible = false
@@ -128,8 +147,16 @@ func _on_body_entered(body: Node) -> void:
 		body.take_hit(full)
 		pierce -= 1
 		if pierce < 0:
+			_ignite(body.global_position)
 			queue_free()
 	else:
 		if explode > 0.0:
 			get_tree().call_group(&"arena", &"skill_burst", global_position, explode, hit, fx)
+		_ignite(global_position)
 		queue_free()
+
+
+## Flecha do Leque de fogo (hit.ground): deixa uma poça de fogo onde acerta ou cai. Só no servidor.
+func _ignite(at: Vector3) -> void:
+	if multiplayer.is_server() and hit.has("ground"):
+		get_tree().call_group(&"arena", &"skill_ground", at, hit)

@@ -527,8 +527,7 @@
     "dialogues": [
       {
         "when": {
-          "quest_new": "forest_fire_golem",
-          "after": "forest_leshy"
+          "quest_new": "forest_fire_golem"
         },
         "lines": [
           "DLG_PYRE_1",

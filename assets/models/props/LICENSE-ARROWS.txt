@@ -1,0 +1,2 @@
+Arrow_Fire.glb, Arrow_Water.glb, Arrow_Air.glb, Arrow_Earth.glb — "Arrows" by Akshat, CC-BY 4.0 (http://creativecommons.org/licenses/by/4.0/): https://sketchfab.com/3d-models/arrows-2763023886cb4cb2a920b292d7024051
+Split from the Sketchfab glTF by tools/assets/build_element_arrows.py: one arrow per element (red = fire, blue = water, gold = air, bronze = earth), 0.8 m long, tip to +Z, heavy arrowheads decimated, textures at 512 px.

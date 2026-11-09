@@ -1,0 +1,2 @@
+Weapon_Bow_Water.glb — "Stylized Ice Bow" by Sinyata, CC-BY 4.0 (http://creativecommons.org/licenses/by/4.0/): https://sketchfab.com/3d-models/stylized-ice-bow-d73bf916ae1c4ed09c5c63f60639bd3f
+Converted from the Sketchfab glTF by tools/assets/build_crystal_bow.py (piece name Weapon_Bow_Water): 1.3 m tall, textures at up to 1024 px (WebP).

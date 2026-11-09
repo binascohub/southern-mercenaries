@@ -76,6 +76,8 @@ const KNIGHT_SCENE := "res://assets/models/characters/hero_knight.glb"
 const SUIT_COLORS := {
 	"fire": Color(0.8, 0.22, 0.2), "water": Color(0.27, 0.4, 0.8), "air": Color(0.92, 0.92, 0.9), "earth": Color(0.3, 0.55, 0.28),
 }
+## Tecido cru (linho sem tingir): a roupa do anão Arqueiro antes de equipar alguma peça.
+const PLAIN_CLOTH := Color(0.62, 0.55, 0.44)
 ## Peças por slot de equipamento: sem item, as de Camponês; com item, as de Ranger.
 const OUTFIT := {
 	"body": [["Peasant_Body", "Peasant_Legs"], ["Ranger_Body", "Ranger_Legs", "Ranger_Acc"]],
@@ -362,8 +364,8 @@ func set_suit_element(element: String) -> void:
 func dress_suit(ranks: Dictionary) -> void:
 	_suit_ranks = ranks
 	_suit_worn = ["body", "head", "hands", "feet"].any(func(slot: String) -> bool: return String(ranks.get(slot, "")) != "")
-	# O Invocador é de outra espécie (goblin): o corpo dele aparece sempre, sem o Camponês, o rosto nem o cabelo humanos.
-	var shown := _suit_worn or _suit_prefix == "Goblin_"
+	# O Invocador é de outra espécie (goblin), e o Arqueiro, um anão: o corpo deles aparece sempre, sem o Camponês, o rosto nem o cabelo humanos.
+	var shown := _suit_worn or _suit_prefix in ["Goblin_", "Dwarf_"]
 	for part_name: String in _parts:
 		var piece: MeshInstance3D = _parts[part_name]
 		if part_name.begins_with(_suit_prefix):
@@ -373,6 +375,8 @@ func dress_suit(ranks: Dictionary) -> void:
 		else:  # rosto e cabelo: a roupa ninja tem capuz e máscara por cima
 			piece.visible = not shown and (part_name in ALWAYS or part_name in _hair)
 	var tint: Color = SUIT_COLORS.get(suit_element, SUIT_COLORS.fire)
+	if _suit_prefix == "Dwarf_" and not _suit_worn:
+		tint = PLAIN_CLOTH  # anão do começo: roupa simples, sem tingir; a cor do elemento vem com a primeira peça equipada
 	for part_name: String in _parts:
 		var mesh: MeshInstance3D = _parts[part_name]
 		if not part_name.begins_with(_suit_prefix):

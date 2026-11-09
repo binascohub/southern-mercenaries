@@ -118,6 +118,7 @@ func cast(player: Player, skill_id: String, rank: int) -> bool:
 				"direction": aim, "speed": skill.speed, "range": skill.range,
 				"radius": skill.radius, "pierce": int(skill.get("pierce", 0)), "damage": 0.0,
 				"color": color, "hit": hit_for(player, skill, rank), "explode": float(skill.get("explode", 0.0)), "fx": skill_id,
+				"arrow": player.element if player.class_id == "archer" else "",  # flechas do Arqueiro: o modelo do elemento
 			})
 		"nova":
 			var hit := hit_for(player, skill, rank)
@@ -223,6 +224,10 @@ func cast(player: Player, skill_id: String, rank: int) -> bool:
 			var n := Skills.count(skill, rank, "count")
 			var spread := deg_to_rad(float(skill.angle))
 			var hit := hit_for(player, skill, rank)
+			# Leque de fogo: cada flecha deixa uma poça de fogo onde acerta ou cai (Projectile → arena.skill_ground → ground_from_hit).
+			if skill.has("ground_duration") and String(skill.get("ground_element", hit.element)) == String(hit.element):
+				hit.ground = {"radius": float(skill.get("ground_area", 1.0)), "time": float(skill.ground_duration),
+					"damage": player.power * float(skill.ground_power) * TICK * player.damage_mult()}
 			for i in n:
 				var t := 0.0 if n == 1 else float(i) / (n - 1) - 0.5
 				var dir := aim.rotated(Vector3.UP, t * spread)
@@ -230,6 +235,7 @@ func cast(player: Player, skill_id: String, rank: int) -> bool:
 					"position": origin + Vector3.UP * Player.PROJECTILE_HEIGHT + dir * 0.6,
 					"direction": dir, "speed": skill.speed, "range": skill.range, "radius": skill.radius,
 					"pierce": 0, "damage": 0.0, "color": color, "hit": hit, "explode": 0.0, "fx": skill_id,
+					"arrow": player.element if player.class_id == "archer" else "",
 				})
 		"mark":
 			var target := target_in_aim(player, skill.range)
@@ -456,6 +462,37 @@ func _strike(player: Player, e: Enemy, hit: Dictionary) -> void:
 		player.on_crit()
 
 
+## Chão em chamas ("ground_duration", "ground_power" por segundo, "ground_area" no raio; "ground_element": só com golpe desse elemento):
+## Meteoro, Chuva de Fogo e a Armadilha de Espinhos do Arqueiro de fogo.
+func _burn_ground(skill: Dictionary, caster: Player, at: Vector3, radius: float, hit: Dictionary) -> void:
+	if not skill.has("ground_duration") or String(skill.get("ground_element", hit.element)) != String(hit.element):
+		return
+	var ground_hit := hit.duplicate()
+	ground_hit.erase("root")
+	ground_hit.erase("ground")
+	ground_hit.state = "burning"
+	ground_hit.damage = caster.power * float(skill.ground_power) * TICK * caster.damage_mult()
+	_ground_area(at, float(skill.get("ground_area", radius)), float(skill.ground_duration), ground_hit, caster)
+
+
+## Poça de fogo deixada por uma flecha do Leque (hit.ground: raio, tempo e dano por tique já calculados no disparo).
+func ground_from_hit(at: Vector3, hit: Dictionary) -> void:
+	var ground: Dictionary = hit.get("ground", {})
+	if ground.is_empty():
+		return
+	var ground_hit := hit.duplicate()
+	ground_hit.erase("ground")
+	ground_hit.state = "burning"
+	ground_hit.damage = float(ground.damage)
+	_ground_area(Vector3(at.x, 0.0, at.z), float(ground.radius), float(ground.time), ground_hit, null)
+
+
+func _ground_area(at: Vector3, radius: float, time: float, hit: Dictionary, caster: Player) -> void:
+	_areas.append({"position": at, "time": time, "tick": 0.0, "skill": {"area": radius, "shape": "circle"},
+		"rank": 1, "caster": caster, "aim": Vector3.FORWARD, "inside": {}, "hit": hit})
+	_fx.rpc("disc:meteor", at, Vector3.ZERO, radius, Elements.state_color("burning"), time)  # o anel de chamas do chão do Meteoro (data/spell_fx.json)
+
+
 func _add_area(at: Vector3, radius: float, time: float, hit: Dictionary, caster: Player) -> void:
 	_areas.append({"position": at, "time": time, "tick": 0.0, "skill": {"area": radius, "shape": "circle"},
 		"rank": 1, "caster": caster, "aim": Vector3.FORWARD, "inside": {}, "hit": hit})
@@ -549,13 +586,8 @@ func _physics_process(delta: float) -> void:
 				e.push(away.normalized() * float(d.skill.push), 0.3)
 		_fx.rpc(_k("hit", d.skill), d.position, Vector3.ZERO, d.radius, Elements.color(d.hit.element).lightened(0.3), 0.3)
 		# Meteoro: o chão fica em chamas.
-		if d.skill.has("ground_duration") and is_instance_valid(d.caster):
-			var ground := {"position": d.position, "time": float(d.skill.ground_duration), "tick": 0.0,
-				"skill": {"area": d.radius, "shape": "circle"}, "rank": d.rank, "caster": d.caster,
-				"aim": Vector3.FORWARD, "inside": {}, "hit": d.hit.duplicate()}
-			ground.hit.damage = d.caster.power * float(d.skill.ground_power) * TICK * d.caster.damage_mult()
-			_areas.append(ground)
-			_fx.rpc(_k("disc", d.skill), d.position, Vector3.ZERO, d.radius, Elements.state_color("burning"), ground.time)
+		if is_instance_valid(d.caster):
+			_burn_ground(d.skill, d.caster, d.position, d.radius, d.hit)
 	for trap in _traps.duplicate():
 		trap.time -= delta
 		if trap.time <= 0.0:
@@ -569,12 +601,17 @@ func _physics_process(delta: float) -> void:
 			e.take_hit(trap.hit)
 			Elements.apply_state(e.status, "rooted", e.element, e.is_boss(), 0.0, float(trap.hit.root))
 		_fx.rpc(_k("hit", trap.skill), trap.position, Vector3.ZERO, trap.radius, Elements.color(trap.hit.element), 0.4)
+		if is_instance_valid(trap.caster):
+			_burn_ground(trap.skill, trap.caster, trap.position, trap.radius, trap.hit)  # Armadilha de fogo: o chão pega fogo
 	for area in _areas.duplicate():
 		area.time -= delta
 		if area.has("velocity"):
 			area.position += area.velocity * delta
 		if area.time <= 0.0:
 			_areas.erase(area)
+			# Chuva de Fogo: quando a chuva para, o chão continua em chamas.
+			if area.skill.has("ground_duration") and is_instance_valid(area.caster):
+				_burn_ground(area.skill, area.caster, area.position, float(area.skill.area), area.hit)
 			continue
 		area.tick -= delta
 		if area.tick > 0.0:
@@ -765,6 +802,11 @@ const SHELL_BIRDS := 3
 
 ## Marca no chão: o disco da área (translúcido) com a borda mais forte, na cor do elemento, enquanto durar `time` (mín. 1 s); some no fim.
 func _mark_ground(holder: Node3D, radius: float, time: float, color: Color) -> void:
+	# Áreas de cada elemento: o círculo mágico dele no lugar do disco (água: o azul da Nevasca; fogo, terra e ar: Magic_Ring_Red/Green/YinYang.glb).
+	for ring: Array in [["water", SpellFx.MAGIC_RING_BLUE], ["fire", SpellFx.MAGIC_RING_RED], ["earth", SpellFx.MAGIC_RING_GREEN], ["air", SpellFx.MAGIC_RING_YINYANG]]:
+		if _is_element_color(color, String(ring[0])) and ResourceLoader.exists(String(ring[1])):
+			SpellFx._magic_ring(holder, radius, maxf(time, 1.0), String(ring[1]))
+			return
 	var mark_material := StandardMaterial3D.new()
 	mark_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	mark_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
@@ -800,6 +842,13 @@ func _mark_ground(holder: Node3D, radius: float, time: float, color: Color) -> v
 		var fade := holder.create_tween()
 		fade.tween_interval(maxf(time, 1.0) - 0.4)
 		fade.tween_property(mark_mat, "albedo_color:a", 0.0, 0.8)
+
+
+## A cor é a do elemento (também escurecida, como no aviso e na armadilha, ou o laranja do "queimando" no fogo): mesmo matiz e cor viva.
+static func _is_element_color(color: Color, element: String) -> bool:
+	var base := Elements.color(element)
+	var dh := absf(color.h - base.h)
+	return color.s > 0.3 and minf(dh, 1.0 - dh) < 0.06
 
 
 func _shell_fx(at: Vector3, radius: float, time: float, color: Color) -> void:
@@ -1048,6 +1097,44 @@ func _feather_storm(at: Vector3, radius: float, time: float) -> void:
 		rain.tween_interval(maxf(time, 1.0) / float(total))
 
 
+## Chuva de flechas (Tempestade de Granizo): flechas do Kit caem de ponta em lugares ao acaso da área enquanto ela dura,
+## ficam cravadas um instante e somem. Só visual (o dano é o da área).
+func _arrow_rain(at: Vector3, radius: float, time: float, piece: String) -> void:
+	if not Kit.has(piece):
+		return
+	var total := int(maxf(time, 1.0) * ARROW_RAIN_PER_SECOND)
+	var rain := create_tween()
+	for i in total:
+		rain.tween_callback(func() -> void:
+			var angle := randf() * TAU
+			var dist := sqrt(randf()) * radius * 0.95
+			_falling_arrow(Vector3(at.x + cos(angle) * dist, 0.0, at.z + sin(angle) * dist), piece))
+		rain.tween_interval(maxf(time, 1.0) / float(total))
+
+
+const ARROW_RAIN_PER_SECOND := 9.0
+const ARROW_RAIN_HEIGHT := 8.0
+const ARROW_RAIN_FALL := 0.35  ## segundos da queda
+const ARROW_RAIN_SCALE := 1.7  ## maiores que a flecha disparada: de longe, na câmera do jogo, as normais quase somem
+
+
+func _falling_arrow(ground: Vector3, piece: String) -> void:
+	var holder := Node3D.new()
+	add_child(holder)
+	# A ponta (+Z da peça) para baixo, um pouco inclinada; cai na diagonal até cravar no chão.
+	holder.rotation = Vector3(PI / 2.0 - randf_range(0.0, 0.3), randf() * TAU, 0.0)
+	var down := holder.basis * Vector3.FORWARD * -1.0  # direção da ponta (+Z local)
+	var stuck := ground + Vector3.UP * (0.4 * ARROW_RAIN_SCALE - 0.25)  # a ponta (0,4 m do centro) 0,25 m dentro do chão
+	holder.position = stuck - down * ARROW_RAIN_HEIGHT
+	holder.scale = Vector3.ONE * ARROW_RAIN_SCALE
+	holder.add_child(Kit.piece(piece))
+	var fall := holder.create_tween()
+	fall.tween_property(holder, "position", stuck, ARROW_RAIN_FALL).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+	fall.tween_interval(0.7)
+	fall.tween_property(holder, "scale", Vector3.ONE * 0.01, 0.25)  # encolhe até sumir
+	fall.tween_callback(holder.queue_free)
+
+
 ## Mergulho da Águia: do alto do herói (`a`) ao alvo (`b`), a ave solta penas pelo caminho e, ao chegar, uma explosão de penas sobe e cai em volta do alvo.
 func _eagle_feathers(a: Vector3, b: Vector3) -> void:
 	get_tree().create_timer(0.05, false).timeout.connect(func() -> void:
@@ -1087,7 +1174,7 @@ func _fx(kind: String, a: Vector3, b: Vector3, size: float, color: Color, durati
 	# "tipo:habilidade": a magia tem efeito próprio em data/spell_fx.json (SpellFx); sem ele, valem os efeitos genéricos por elemento.
 	var parts := kind.split(":")
 	var base := parts[0]
-	if (base == "disc" or base == "warn") and size >= 2.0 and not (parts.size() > 1 and parts[1] == "falcon_wings"):
+	if (base == "disc" or base == "warn") and size >= 2.0 and not (parts.size() > 1 and parts[1] in ["falcon_wings", "blizzard"]):  # a Nevasca já desenha o círculo dela
 		var mark := Node3D.new()  # toda habilidade de área marca o chão no tamanho em que acerta
 		mark.position = Vector3(a.x, 0.0, a.z)
 		add_child(mark)
@@ -1097,6 +1184,10 @@ func _fx(kind: String, a: Vector3, b: Vector3, size: float, color: Color, durati
 		_shell_fx(a, size, float(Skills.def("falcon_wings").get("duration", 8.0)), color)  # Asas do Falcão (Ar): 3 aves no limite da área e poeira subindo do chão enquanto o buff dura
 	if base == "disc" and parts.size() > 1 and parts[1] == "wing_storm":
 		_feather_storm(a, size, duration)  # Tempestade de Asas: chuva de penas sobre a área enquanto ela dura
+	if base == "disc" and parts.size() > 1 and parts[1] == "hail_storm":
+		_arrow_rain(a, size, duration, "Arrow_Water")  # Tempestade de Granizo: chovem flechas azuis sobre a área (além do granizo)
+	if base == "disc" and parts.size() > 1 and parts[1] == "fire_rain":
+		_arrow_rain(a, size, duration, "Arrow_Fire")  # Chuva de Fogo: chovem flechas vermelhas sobre a área
 	if base == "beam" and parts.size() > 1 and parts[1] == "eagle_dive":
 		_eagle_feathers(a, b)  # Mergulho da Águia: penas soltas ao longo do mergulho e uma explosão delas no alvo
 	if base == "beam" and parts.size() > 1 and parts[1] == "rhino_charge":

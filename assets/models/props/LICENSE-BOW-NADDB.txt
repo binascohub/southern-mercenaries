@@ -1,0 +1,2 @@
+Weapon_Bow_Wind.glb — "Bow and arrow" by naddb, CC-BY 4.0 (http://creativecommons.org/licenses/by/4.0/): https://sketchfab.com/3d-models/bow-and-arrow-ce2c19b57b1b4b9a843c985d2a95c3c0
+Converted from the Sketchfab glTF by tools/assets/build_naddb_wind_bow.py: bow, gems, wings and string only (the loose arrow, camera and light removed), 1.5 m tall.

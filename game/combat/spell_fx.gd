@@ -161,10 +161,10 @@ static func _ground(parent: Node, spec: Dictionary, at: Vector3, b: Vector3, s: 
 		"meteor": _m_meteor(root, s * k, c)
 		"flame_ring": _m_flame_ring(root, s * k, c, life, lasting)
 		"campfire": _m_campfire(root, s * k, c, life)
-		"fire_rain": _m_falling(root, s * k, c, life, {"mesh": "shard", "c0": c[1], "c1": c[0], "grav": -16.0, "ground": "fire"})
+		"fire_rain": _m_falling(root, s * k, c, life, {"mesh": "ember", "c0": c[1], "c1": c[0], "grav": -16.0, "ground": "fire"})
 		"frost_nova": _m_frost_nova(root, s * k, c)
 		"blizzard": _m_blizzard(root, s * k, c, life)
-		"hail": _m_falling(root, s * k, c, life, {"mesh": "shard", "c0": Color.WHITE, "c1": c[0], "grav": -18.0, "ground": "ice"})
+		"hail": _m_falling(root, s * k, c, life, {"mesh": "ice", "c0": Color.WHITE, "c1": c[0], "grav": -18.0, "ground": "ice"})
 		"stone_rain": _m_falling(root, s * k, c, life, {"mesh": "cube", "c0": Color(0.55, 0.45, 0.3), "c1": Color(0.4, 0.34, 0.25), "grav": -14.0, "ground": "dust", "add": false})
 		"storm_volley": _m_falling(root, s * k, c, life, {"mesh": "shard", "c0": c[1], "c1": c[0], "grav": -22.0, "ground": "spark", "bolts": true})
 		"rain_heal": _m_rain_heal(root, s * k, c, life)
@@ -302,31 +302,57 @@ static func _m_frost_nova(r: Node3D, s: float, c: Array) -> void:
 const MAGIC_RING_BLUE := "res://assets/models/props/Magic_Ring_Blue.glb"
 ## Diâmetro do quadrado do círculo em raios da área: o anel de runas fica a ~87% do quadrado, então 2,3 faz o anel de fora chegar à borda da área.
 const RING_COVER := 2.3
+## Força do brilho do círculo: 1 = a textura como veio; menos = mais fraco no chão.
+const RING_STRENGTH := 0.22
+## Círculo vermelho ("Magic Ring - Red", koontanch, CC BY 4.0): círculo no chão com arcos de energia que sobem e giram (animação do arquivo), 10,4 m de largura.
+const MAGIC_RING_RED := "res://assets/models/props/Magic_Ring_Red.glb"
+## Círculo verde ("Magic Ring - Green", koontanch, CC BY 4.0): quase plano, 7,9 m de largura, com a animação do arquivo.
+const MAGIC_RING_GREEN := "res://assets/models/props/Magic_Ring_Green.glb"
+## Círculo yin-yang azul ("Magic Ring - YingYangBlue", koontanch, CC BY 4.0): duas camadas planas, 5,9 m de largura, com a animação do arquivo.
+const MAGIC_RING_YINYANG := "res://assets/models/props/Magic_Ring_YinYang.glb"
+## Largura de cada círculo no arquivo, quanto da área ele cobre (em raios) e quanto da altura fica (os arcos do vermelho, achatados para não esconder os monstros).
+const RINGS := {
+	MAGIC_RING_BLUE: {"width": 5.98, "cover": RING_COVER, "height": 1.0},
+	MAGIC_RING_RED: {"width": 10.44, "cover": 2.1, "height": 0.6},
+	MAGIC_RING_GREEN: {"width": 7.87, "cover": 2.4, "height": 1.0},
+	MAGIC_RING_YINYANG: {"width": 5.94, "cover": 2.1, "height": 1.0},
+}
 
 
-## Círculo mágico azul (magic_ring_-_blue.glb): um quadrado de 6 m com a textura do círculo, já deitado no arquivo (plano XZ), com o anel de fora na borda da área (RING_COVER), gira devagar e some no fim.
-static func _magic_ring(r: Node3D, s: float, life: float) -> void:
-	if not ResourceLoader.exists(MAGIC_RING_BLUE):
+## Círculo mágico (azul: magic_ring_-_blue.glb, um quadrado de 6 m com a textura do círculo, já deitado no arquivo; vermelho: magic_ring_-_red.glb, com arcos),
+## com o anel de fora na borda da área (RINGS), somando luz ao chão (RING_STRENGTH); gira devagar, toca a animação do arquivo (se tiver) e some no fim.
+static func _magic_ring(r: Node3D, s: float, life: float, path := MAGIC_RING_BLUE) -> void:
+	if not ResourceLoader.exists(path):
 		return
-	var model := (load(MAGIC_RING_BLUE) as PackedScene).instantiate() as Node3D
+	var info: Dictionary = RINGS.get(path, RINGS[MAGIC_RING_BLUE])
+	var model := (load(path) as PackedScene).instantiate() as Node3D
 	var pivot := Node3D.new()
 	r.add_child(pivot)
 	pivot.position.y = 0.07
-	pivot.scale = Vector3.ONE * (s * RING_COVER / 5.98)
+	var k := s * float(info.cover) / float(info.width)
+	pivot.scale = Vector3(k, k * float(info.height), k)
 	pivot.add_child(model)
-	var materials: Array[StandardMaterial3D] = []
+	var anim := model.find_child("AnimationPlayer", true, false) as AnimationPlayer
+	if anim and not anim.get_animation_list().is_empty():
+		var clip: StringName = anim.get_animation_list()[0]
+		anim.get_animation(clip).loop_mode = Animation.LOOP_LINEAR
+		anim.play(clip)
+	var materials: Array[BaseMaterial3D] = []
 	for node in model.find_children("*", "MeshInstance3D", true, false):
 		var mesh := node as MeshInstance3D
 		mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		for i in mesh.mesh.get_surface_count():
-			var source := mesh.get_active_material(i) as StandardMaterial3D
+			var source := mesh.get_active_material(i) as BaseMaterial3D
 			if source == null:
 				continue
-			var copy := source.duplicate() as StandardMaterial3D
+			var copy := source.duplicate() as BaseMaterial3D
 			copy.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 			copy.cull_mode = BaseMaterial3D.CULL_DISABLED
 			copy.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 			copy.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
+			copy.emission_enabled = false  # a textura de emissão do vermelho é opaca: clareava o chão em faixas retas em volta dos arcos
+			# Mais fraco que a textura como veio (soma luz: escurecer a cor tira brilho).
+			copy.albedo_color = Color(copy.albedo_color.r * RING_STRENGTH, copy.albedo_color.g * RING_STRENGTH, copy.albedo_color.b * RING_STRENGTH, copy.albedo_color.a)
 			mesh.set_surface_override_material(i, copy)
 			materials.append(copy)
 	var tween := pivot.create_tween().set_parallel(true)
@@ -940,6 +966,29 @@ static func _emit(root: Node3D, s: Dictionary) -> CPUParticles3D:
 			box.size = Vector3(size * 0.22, size * 1.7, size * 0.22)
 			box.material = _lit_mat(Color.WHITE, bool(s.get("add", true)), true)
 			p.mesh = box
+			p.particle_flag_align_y = true
+		"ice":
+			# Granizo: cristal de gelo de 6 faces com ponta fina (a ponta, +Y, vai na direção da queda); a coluna quadrada ("shard") parecia um bloco.
+			var crystal := CylinderMesh.new()
+			crystal.top_radius = 0.0
+			crystal.bottom_radius = size * 0.16
+			crystal.height = size * 1.5
+			crystal.radial_segments = 6
+			crystal.rings = 1
+			crystal.material = _lit_mat(Color.WHITE, bool(s.get("add", true)), true)
+			p.mesh = crystal
+			p.particle_flag_align_y = true
+		"ember":
+			# Chuva de Fogo: gota de fogo alongada (elipse de 8 lados) na direção da queda, somando luz como um cometa pequeno; a coluna quadrada parecia um bloco.
+			var drop := SphereMesh.new()
+			drop.radius = size * 0.13
+			drop.height = size * 1.4
+			drop.radial_segments = 8
+			drop.rings = 4
+			var glow := _lit_mat(Color.WHITE, true, true).duplicate() as StandardMaterial3D  # cópia: o material do cache é dividido com outros efeitos
+			glow.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
+			drop.material = glow
+			p.mesh = drop
 			p.particle_flag_align_y = true
 		"cube":
 			var cube := BoxMesh.new()

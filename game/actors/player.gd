@@ -159,6 +159,7 @@ var _revive_bar: MeshInstance3D
 var _ring_material: StandardMaterial3D
 var _staff_material: StandardMaterial3D
 var _backpack: MeshInstance3D  ## caderno / aljava nas costas
+var _bow_piece := ""  ## arco do Arqueiro em uso (muda com o elemento de origem, ver _update_bow)
 var _weapon_holder: MeshInstance3D  ## onde a arma (ou o livro do Invocador) está presa
 var _book_rank := ""
 var _second_holder: MeshInstance3D  ## adaga da mão esquerda do Ninja
@@ -841,6 +842,7 @@ func _fire(attack: Dictionary) -> void:
 			else ("burning" if _buffs.has("damage") else ""),  # Bênção das Chamas: golpes queimam
 		"crit_chance": character.crit_chance() if character else GameData.elements.crit_chance,
 		"crit_mult": character.crit_mult() if character else GameData.elements.crit_mult,
+		"arrow": element if class_id == "archer" else "",  # o Arqueiro dispara a flecha do elemento (Projectile.ARROWS)
 		"bird": class_id == "summoner" and element == "air",  # só o Invocador de Ar lança uma ave; os outros elementos continuam com o orbe
 		"bird_scale": 0.75 if attack.get("applies_state", false) else 0.5,
 	})
@@ -1302,9 +1304,8 @@ func _build_visual() -> void:
 		staff.position = Vector3(0, 0.4, 0)  # a mão segura o cabo, no começo da espada
 	elif ninja:
 		_dress_weapon(staff, "Weapon_MS_Dagger")
-	elif archer:
-		_dress_weapon(staff, "Weapon_MS_Bow")
 	_weapon_holder = staff
+	_update_bow()  # o arco do Arqueiro depende do elemento de origem (vento tem o seu)
 	var right_hand := Node3D.new()
 	right_hand.add_child(staff)
 	_model.attach("hand_r", right_hand, POINT_GRIP if knight or ninja else HAND_GRIP, Vector3(0.45, 0.9, 0.15))
@@ -1329,7 +1330,7 @@ func _build_visual() -> void:
 	crystal.position = Vector3(0, 0.32, 0) if summoner else Vector3(0, staff_mesh.height / 2.0, 0)
 	if summoner:
 		crystal.scale = Vector3.ONE * 0.5  # brilho do elemento flutua acima do livro
-	crystal.visible = not ninja  # a bola do elemento não aparece na mão do Ninja: o elemento é a cor da roupa
+	crystal.visible = not ninja and not archer  # a bola do elemento não aparece na mão do Ninja (o elemento é a cor da roupa) nem no arco
 	staff.add_child(crystal)
 
 	# Mago: caderno de anotações; Arqueiro: aljava nas costas.
@@ -1540,6 +1541,7 @@ func _tick_visual(delta: float) -> void:
 	_model.set_effects(_flash > 0.0, 0.3 if hidden else 1.0, Elements.color(origin_element) if aura_set else Color(0, 0, 0, 0))
 	# Cristal na cor do elemento (muda na hora com a Poção Elemental); brilha
 	# mais quando o ataque forte está carregado.
+	_update_bow()
 	var crystal_color := Elements.color(element)
 	if _crystal_material.albedo_color != crystal_color:
 		_crystal_material.albedo_color = crystal_color
@@ -1608,6 +1610,36 @@ func _update_daggers(rank: String) -> void:
 		holder.mesh = null
 		holder.add_child(dagger)
 		holder.set_meta("weapon_node", dagger)
+
+
+## Arco do Arqueiro pelo elemento de origem: vento usa o arco alado ("Bow and arrow", naddb, CC BY 4.0; tools/assets/build_naddb_wind_bow.py), terra o de cristais
+## ("Elder Crystal Bow", Xillute, CC BY 4.0; tools/assets/build_crystal_bow.py), água o de gelo ("Stylized Ice Bow", Sinyata, CC BY 4.0; o mesmo script);
+## fogo o "Thundering Pulse" (ndnguyen3d, CC BY 4.0; o mesmo script). Sem a peça do elemento, o "Bow" (sujirour, CC BY 4.0; tools/assets/build_sujirour_bow.py).
+## Todas as peças: empunhadura na origem, barriga para +X.
+func _update_bow() -> void:
+	if class_id != "archer" or _weapon_holder == null:
+		return
+	var piece := String({"air": "Weapon_Bow_Wind", "earth": "Weapon_Bow_Earth", "water": "Weapon_Bow_Water", "fire": "Weapon_Bow_Fire"}.get(origin_element, "Weapon_Bow"))
+	if not Kit.has(piece):
+		piece = "Weapon_Bow"
+	if piece == _bow_piece:
+		return
+	_bow_piece = piece
+	if _weapon_holder.has_meta("weapon_node"):  # get_meta com padrão null ainda acusa erro quando a chave não existe
+		var old: Variant = _weapon_holder.get_meta("weapon_node")
+		if old is Node:
+			(old as Node).free()
+		_weapon_holder.remove_meta("weapon_node")
+	_dress_weapon(_weapon_holder, piece)
+	var bow: Variant = _weapon_holder.get_meta("weapon_node", null)
+	if bow is Node3D:
+		(bow as Node3D).rotation.y = PI / 2.0  # a barriga do arco (+X) para a frente do herói (+Z do modelo) e a corda do lado dele
+		if sex == "male":
+			(bow as Node3D).scale = Vector3.ONE * DWARF_BOW_SCALE
+
+
+## O anão (Arqueiro) é desenhado a 80% (HeroModel.SUIT_SCALE) e o arco na mão encolhia junto: na mão dele o arco fica maior.
+const DWARF_BOW_SCALE := 1.4
 
 
 ## Escudo do Cavaleiro (sem cavalo): no antebraço esquerdo, com a capa do rank do material da arma (D a S).
