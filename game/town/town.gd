@@ -354,6 +354,15 @@ static func hub_pending(hub: String, quest_states: Dictionary) -> int:
 	return count
 
 
+## Missões que ainda travam a viagem do Viajante do Tempo de `here` para `hub`: voltar a uma cidade anterior na campanha (Tortuga -> Capital -> Fazenda,
+## a ordem de HUB_MAPS) é sempre livre; seguir para a próxima pede os mapas da cidade atual concluídos (hub_pending).
+static func hub_locked(here: String, hub: String, quest_states: Dictionary) -> int:
+	var order: Array = HUB_MAPS.keys()
+	if order.has(here) and order.has(hub) and order.find(hub) < order.find(here):
+		return 0
+	return hub_pending(here, quest_states)
+
+
 ## Pegadas até o Viajante do Tempo: nesta cidade a viagem já está liberada e o grupo ainda nunca foi para outra cidade com ele.
 static func hub_travel_hint(hub: String, quest_states: Dictionary, unlocked_keys: Array) -> bool:
 	return HUB_MAPS.has(hub) and HUB_TRAVELED not in unlocked_keys and hub_pending(hub, quest_states) == 0
@@ -367,7 +376,8 @@ func request_hub_travel(hub: String) -> void:
 	_ask(&"_rpc_hub_travel", [hub])
 
 
-## Teleporte do Viajante do Tempo entre Tortuga, Capital e Fazenda: de graça, para o grupo todo, mas só com as missões da cidade atual concluídas.
+## Teleporte do Viajante do Tempo entre Tortuga, Capital e Fazenda: de graça, para o grupo todo; para a próxima cidade, só com as missões da cidade atual
+## concluídas (voltar é livre, hub_locked).
 @rpc("any_peer", "reliable")
 func _rpc_hub_travel(hub: String) -> void:
 	var player := _sender()
@@ -375,7 +385,7 @@ func _rpc_hub_travel(hub: String) -> void:
 	if not multiplayer.is_server() or player == null or not HUB_MAPS.has(hub) or not HUB_MAPS.has(here) or hub == here \
 			or _arena().prop_near(player, "npc", "voodoo_priest", REACH).is_empty():
 		return
-	var left := hub_pending(here, _campaign().get("quests", {}))
+	var left := hub_locked(here, hub, _campaign().get("quests", {}))
 	if left > 0:
 		_arena()._toast_all("TOAST_HUB_LOCKED", {"city": GameData.arenas[here].name_key, "n": left})
 		return

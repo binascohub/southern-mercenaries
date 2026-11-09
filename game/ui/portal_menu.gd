@@ -2,7 +2,7 @@
 class_name PortalMenu
 extends MenuPanel
 ## Viajante do Tempo (antes o Macumbeiro; 04-tortuga-e-missoes.md, seção 5.1): teleporte entre Tortuga, Capital e Fazenda (todas
-## na lista; as outras ficam travadas até concluir os mapas da cidade atual) e, abaixo, os checkpoints já alcançados nos mapas
+## na lista; voltar a uma cidade anterior é livre, a próxima fica travada até concluir os mapas da cidade atual) e, abaixo, os checkpoints já alcançados nos mapas
 ## (menos os que um portão da cidade alcança de graça), com o preço por jogador; escolher um leva o grupo todo (cada um paga com o próprio ouro nos checkpoints).
 
 ## Medalhões dos botões das cidades (assets/ui/map_icons, Board Game Icons da Kenney): ampulheta do Viajante e cadeado da cidade travada.
@@ -38,8 +38,8 @@ func bind(town: Town) -> void:
 func _on_open() -> void:
 	clear(_hubs)
 	var here: String = _town._arena().area_id
-	var left := Town.hub_pending(here, _town.quests)
 	for hub: String in Town.HUB_MAPS:
+		var left := Town.hub_locked(here, hub, _town.quests)
 		var city := tr(GameData.arenas.get(hub, {}).get("name_key", ""))
 		var hub_button := Button.new()
 		hub_button.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED

@@ -1,0 +1,5 @@
+Weapon_Staff_Fire/Water/Air/Earth.glb — the Mage's staff per element, all CC-BY 4.0 (http://creativecommons.org/licenses/by/4.0/), converted by tools/assets/build_element_staff.py (meshes joined, upright, 1.7 m, head up, textures up to 1024 px; the fire staff decimated to ~20k vertices):
+- Weapon_Staff_Fire.glb — "Starter Mage Staff" by eduo: https://sketchfab.com/3d-models/starter-mage-staff-8e10f6bc38ba411789bb36ec8627a697
+- Weapon_Staff_Water.glb — "Ice Staff" by Wasdteq11: https://sketchfab.com/3d-models/ice-staff-c3c71276130e42deaa168682a4208966
+- Weapon_Staff_Air.glb — "Khajiiti Moon Staff" by Shriker1: https://sketchfab.com/3d-models/khajiiti-moon-staff-87cca6fa0b94448b97a3b354843393e1
+- Weapon_Staff_Earth.glb — "Stylized Wood Staff" by Manuela Reis: https://sketchfab.com/3d-models/stylized-wood-staff-be964c8b493041cab15b449c9f966c25

@@ -5416,5 +5416,174 @@
     "role": "normal",
     "sound": "slime",
     "_comment": "Polvo Abissal das Docas (\"Alien Octopus\", agasherev, CC BY 4.0; tools/assets/build_alien_octopus.py): bípede de ~2 m com cabeça de polvo e armadura que sobe do porto; agarra com os braços compridos. No lugar do Espantalho Afogado, com os mesmos números. Água."
+  },
+  "df_moosgreif": {
+    "name_key": "MONSTER_DF_MOOSGREIF",
+    "max_health": 210,
+    "move_speed": 2.4,
+    "damage": 16,
+    "attack_range": 2.8,
+    "attack_windup": 1.0,
+    "attack_cooldown": 2.0,
+    "aggro_range": 40.0,
+    "size": 1.3,
+    "category": "elite",
+    "element": "earth",
+    "look": "moosgreif",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "sound": "ogre",
+    "role": "normal",
+    "ai": "melee",
+    "_comment": "Moosgreif (Der Moosgreif, Brian Trepanier, CC BY 4.0): o grifo de musgo do folclore alemão; elite do Pântano do Musgo."
+  },
+  "df_wendigo": {
+    "name_key": "MONSTER_DF_WENDIGO",
+    "max_health": 210,
+    "move_speed": 4.2,
+    "damage": 16,
+    "attack_range": 2.4,
+    "attack_windup": 0.5,
+    "attack_cooldown": 1.2,
+    "aggro_range": 40.0,
+    "size": 1.15,
+    "category": "elite",
+    "element": "water",
+    "look": "wendigo",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "sound": "beast",
+    "role": "normal",
+    "ai": "melee",
+    "_comment": "Wendigo (Pigcraft, CC BY 4.0): o horror da fome, de chifres; elite rápido do Pântano do Musgo."
+  },
+  "df_sorceress": {
+    "name_key": "MONSTER_DF_SORCERESS",
+    "max_health": 210,
+    "move_speed": 2.4,
+    "damage": 16,
+    "attack_range": 9.0,
+    "attack_windup": 1.0,
+    "attack_cooldown": 2.6,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "air",
+    "look": "sorceress",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "sound": "shade",
+    "role": "normal",
+    "ai": "ranged",
+    "keep_distance": 6.0,
+    "spit": {
+      "radius": 1.6,
+      "puddle_time": 4.0,
+      "puddle_dps": 5.0,
+      "glob": [
+        0.62,
+        0.35,
+        1.0
+      ]
+    },
+    "_comment": "Feiticeira do Cajado de Cristal (Pigcraft, CC BY 4.0): lança cristais que deixam uma poça roxa; mantém distância."
+  },
+  "df_shadow_stag": {
+    "name_key": "MONSTER_DF_SHADOW_STAG",
+    "max_health": 210,
+    "move_speed": 3.6,
+    "damage": 16,
+    "attack_range": 2.2,
+    "attack_windup": 0.6,
+    "attack_cooldown": 1.4,
+    "aggro_range": 40.0,
+    "size": 1.2,
+    "category": "common",
+    "element": "air",
+    "look": "shadow_stag",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "sound": "beast",
+    "role": "normal",
+    "ai": "charger",
+    "charge": {
+      "min": 4.0,
+      "max": 10.0,
+      "windup": 0.9,
+      "speed": 12.0,
+      "time": 0.6,
+      "damage_mult": 1.2,
+      "cooldown": 5.0
+    },
+    "_comment": "Cervo Sombrio (Shadow Stag, Pigcraft, CC BY 4.0): cervo de chifres de osso que investe de longe."
+  },
+  "ce_drowned_hag": {
+    "name_key": "MONSTER_CE_DROWNED_HAG",
+    "max_health": 210,
+    "move_speed": 2.2,
+    "damage": 16,
+    "attack_range": 8.0,
+    "attack_windup": 0.9,
+    "attack_cooldown": 2.4,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "common",
+    "element": "water",
+    "look": "drowned_hag",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "sound": "shade",
+    "role": "normal",
+    "ai": "ranged",
+    "keep_distance": 5.0,
+    "spit": {
+      "radius": 1.6,
+      "puddle_time": 5.0,
+      "puddle_dps": 3.0,
+      "glob": [
+        0.25,
+        0.36,
+        0.3
+      ]
+    },
+    "_comment": "Bruxa Afogada (Pigcraft, CC BY 4.0): cospe água podre que deixa poça; mantém distância. Charco dos Afogados."
+  },
+  "ce_asylum_matron": {
+    "name_key": "MONSTER_CE_ASYLUM_MATRON",
+    "max_health": 210,
+    "move_speed": 3.2,
+    "damage": 16,
+    "attack_range": 1.8,
+    "attack_windup": 0.5,
+    "attack_cooldown": 1.1,
+    "aggro_range": 40.0,
+    "size": 1.0,
+    "category": "elite",
+    "element": "earth",
+    "look": "asylum_matron",
+    "color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "sound": "shade",
+    "role": "normal",
+    "ai": "melee",
+    "_comment": "Enfermeira Enfaixada (Bandaged Asylum Matron, Pigcraft, CC BY 4.0): elite de agulhas do Charco dos Afogados."
   }
 }

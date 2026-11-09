@@ -3460,6 +3460,15 @@
         "y": 0.75,
         "rotation": 269,
         "scale": 1.8
+      },
+      {
+        "piece": "Decor_Meat_Rail",
+        "position": [
+          6.2,
+          -6.6
+        ],
+        "rotation": 0,
+        "y": 0.6
       }
     ],
     "crowd": [
@@ -69738,7 +69747,7 @@
       }
     ],
     "passive": true,
-    "xp_scale": 0.633,
+    "xp_scale": 0.616,
     "_chest_spots": [
       [
         -64.1,
@@ -69920,7 +69929,8 @@
           26
         ],
         "doors": [
-          "west:-5.5"
+          "west:-5.5",
+          "east"
         ],
         "wall_height": 0.8
       },
@@ -70177,6 +70187,21 @@
         ],
         "doors": [
           "north"
+        ],
+        "wall_height": 0.8
+      },
+      {
+        "id": "drowned_mire",
+        "center": [
+          41,
+          -52
+        ],
+        "size": [
+          36,
+          26
+        ],
+        "doors": [
+          "west"
         ],
         "wall_height": 0.8
       }
@@ -70709,6 +70734,38 @@
         "monsters": [
           {
             "monster": "chest_mimic",
+            "count": 1
+          }
+        ],
+        "level": 9
+      },
+      {
+        "id": "drowned_mire_hags",
+        "position": [
+          36,
+          -58
+        ],
+        "monsters": [
+          {
+            "monster": "ce_drowned_hag",
+            "count": 2
+          }
+        ],
+        "level": 9
+      },
+      {
+        "id": "drowned_mire_matron",
+        "position": [
+          48,
+          -47
+        ],
+        "monsters": [
+          {
+            "monster": "ce_asylum_matron",
+            "count": 1
+          },
+          {
+            "monster": "ce_drowned_hag",
             "count": 1
           }
         ],
@@ -121125,7 +121182,7 @@
     "victory_groups": [
       "c_boss"
     ],
-    "xp_scale": 0.764
+    "xp_scale": 0.74
   },
   "fort_01_gate": {
     "_comment": "Forte, ampliado (3D Dungeon Tileset, Skorpio, CC BY-SA 3.0): grade de 54 x 54 células de 2,5 m com pedra e piso do pacote (Fort_<máscara>); a colisão é uma caixa por trecho de pedra. Estrutura da Floresta com outro caminho: Guarnição (partida) -> Pátio de Armas -> três rotas para a Galeria (oeste: Quartel -> Ossuário, onde o Exilado desperta o Senhor Elfo Sombrio; leste: Quartel -> Salão do Trono, onde a Penitente desperta a Rainha das Súcubos; meio: Salão das Colunas) -> corredor do portão (Carcereiro, duas chaves) -> Salão do Barão (Barão Infernal, chefe final, com a saída). O Comandante anda solto no Pátio de Armas. Gerado por tools/assets/build_fort.py.",
@@ -135661,7 +135718,8 @@
         ],
         "doors": [
           "west",
-          "north"
+          "north",
+          "east"
         ],
         "wall_height": 0.8
       },
@@ -135762,6 +135820,21 @@
         ],
         "wall_height": 0.8,
         "torch": true
+      },
+      {
+        "id": "moss_marsh",
+        "center": [
+          100,
+          -36
+        ],
+        "size": [
+          48,
+          40
+        ],
+        "doors": [
+          "west"
+        ],
+        "wall_height": 0.8
       }
     ],
     "encounters": [
@@ -136256,6 +136329,66 @@
           },
           {
             "monster": "fd_spiked_croc",
+            "count": 1
+          }
+        ],
+        "level": 20
+      },
+      {
+        "id": "moss_marsh_stags",
+        "position": [
+          88,
+          -46
+        ],
+        "monsters": [
+          {
+            "monster": "df_shadow_stag",
+            "count": 2
+          }
+        ],
+        "level": 20
+      },
+      {
+        "id": "moss_marsh_sorceresses",
+        "position": [
+          96,
+          -26
+        ],
+        "monsters": [
+          {
+            "monster": "df_sorceress",
+            "count": 2
+          }
+        ],
+        "level": 20
+      },
+      {
+        "id": "moss_marsh_wendigos",
+        "position": [
+          108,
+          -46
+        ],
+        "monsters": [
+          {
+            "monster": "df_wendigo",
+            "count": 2
+          }
+        ],
+        "level": 20
+      },
+      {
+        "id": "moss_marsh_moosgreif",
+        "position": [
+          114,
+          -28
+        ],
+        "monsters": [
+          {
+            "monster": "df_moosgreif",
+            "count": 1
+          },
+          {
+            "monster": "df_sorceress",
             "count": 1
           }
         ],
@@ -151884,7 +152017,7 @@
       }
     ],
     "passive": true,
-    "xp_scale": 0.916
+    "xp_scale": 0.806
   },
   "capital_01_aurenhold": {
     "_comment": "Capital Real, Aurenhold (04-1-capital-real.md): a cidade do reino vencedor, rica e cheia de guardas; segunda cidade-base, depois do Forte. Primeira passada: praça do portão, avenida e pátio do castelo, com a segurança feita pelos 10 guardas que treinavam em Tortuga. Ainda sem lojas, Bobo da Corte nem missões. Gerado por tools/assets/build_maps.py.",
@@ -156165,6 +156298,27 @@
         "rotation": 136,
         "scale": 0.44,
         "food_kit": true
+      },
+      {
+        "piece": "Decor_Grand_Piano",
+        "position": [
+          21.5,
+          -60.5
+        ],
+        "rotation": 90,
+        "solid": [
+          1.6,
+          2.7
+        ]
+      },
+      {
+        "piece": "Decor_Meat_Rail",
+        "position": [
+          11.8,
+          -2.95
+        ],
+        "rotation": 0,
+        "y": 0.3
       }
     ],
     "crowd": [
@@ -156258,6 +156412,52 @@
           -21.5
         ],
         "speed": 1.1
+      },
+      {
+        "role": "noble_knight",
+        "position": [
+          -13.0,
+          -43.5
+        ],
+        "rotation": 90,
+        "pose": "walk",
+        "path": [
+          13.0,
+          -43.5
+        ],
+        "speed": 0.9
+      },
+      {
+        "role": "princess_nun",
+        "position": [
+          6.0,
+          -26.5
+        ],
+        "rotation": 180,
+        "pose": "walk",
+        "path": [
+          6.0,
+          -38.0
+        ],
+        "speed": 0.8
+      },
+      {
+        "role": "noble_beauty",
+        "position": [
+          -37.0,
+          -34.6
+        ],
+        "rotation": 90,
+        "pose": "idle"
+      },
+      {
+        "role": "townsman",
+        "position": [
+          7.2,
+          -2.2
+        ],
+        "rotation": 117,
+        "pose": "idle"
       }
     ],
     "dummies": [
@@ -183898,6 +184098,20 @@
           -50.5
         ],
         "speed": 0.5
+      },
+      {
+        "role": "goat",
+        "position": [
+          20.0,
+          -18.0
+        ],
+        "rotation": 135,
+        "pose": "walk",
+        "path": [
+          26.0,
+          -24.0
+        ],
+        "speed": 0.4
       }
     ],
     "passive": true
@@ -235968,7 +236182,7 @@
       }
     ],
     "passive": false,
-    "xp_scale": 1.117,
+    "xp_scale": 0.851,
     "save_point": "savepoint"
   },
   "bunker_01_entrance": {
@@ -292821,7 +293035,7 @@
       }
     ],
     "passive": true,
-    "xp_scale": 1.08
+    "xp_scale": 1.044
   },
   "catacombs_01_depths": {
     "_comment": "Catacumbas (novo): salas de parede de pedra do kit numa grade de blocos de 12 m, estrutura do Esgoto/Floresta com outro caminho. Portão da Cripta -> Nave dos Ossos; três rotas até a Galeria dos Condenados: oeste (Ala das Celas -> Sala de Tortura -> Poço do Carrasco, onde a gaiola desperta o Carrasco), leste (Ala das Celas -> Ossuário -> Capela dos Acorrentados, onde a Prisioneira desperta a Alma Acorrentada) e meio (Salão das Correntes -> Pátio do Tribunal); corredor do portão (Diretor, duas chaves) -> Cripta do Rei Acorrentado (chefe final, com a saída). Salas laterais sem saída: Cofre e Cela Secreta. Gerado por tools/assets/build_catacombs.py.",

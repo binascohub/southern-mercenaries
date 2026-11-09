@@ -101,6 +101,21 @@ const FAMILIES := {
 	# -> ~2 m no tamanho 1. Flutua e balança por código. Monstro do canto superior direito do Esgoto.
 	"shadow_spirit": {"scene": "res://assets/models/monsters/shadow_spirit.glb", "scale": 0.8, "static": true,
 		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	# Monstros das áreas novas (Sketchfab, CC BY 4.0; reduzidos por tools/assets/build_decor_prop.py, malha única sem esqueleto nem animação: `static`, 1 m de altura no
+	# arquivo, então a escala é a altura no tamanho 1). Pântano do Musgo, a leste da Floresta Negra: Moosgreif (Brian Trepanier), Wendigo, Feiticeira do Cajado de
+	# Cristal e Cervo Sombrio (Pigcraft). Charco dos Afogados, a leste do Cemitério: Bruxa Afogada e Enfermeira Enfaixada (Pigcraft).
+	"moosgreif": {"scene": "res://assets/models/monsters/moosgreif.glb", "scale": 2.0, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	"wendigo": {"scene": "res://assets/models/monsters/wendigo.glb", "scale": 2.3, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	"sorceress": {"scene": "res://assets/models/monsters/sorceress.glb", "scale": 1.9, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	"shadow_stag": {"scene": "res://assets/models/monsters/shadow_stag.glb", "scale": 2.0, "static": true, "lunge": 0.6,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	"drowned_hag": {"scene": "res://assets/models/monsters/drowned_hag.glb", "scale": 1.8, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
+	"asylum_matron": {"scene": "res://assets/models/monsters/asylum_matron.glb", "scale": 1.85, "static": true,
+		"anims": {"idle": "idle", "walk": "walk", "run": "walk", "attack": "attack", "hit": "hit", "die": "die"}},
 	# Porco-Tubarão (pork-shark.blend, do autor; tools/assets/build_pork_shark.py): criatura de pé com esqueleto e 17 animações, 5,55 unidades de altura
 	# (pés em 0) -> ~1,5 m por unidade de size. O Gator Velho, mini-chefe do Esgoto, no lugar do jacaré.
 	"pork_shark": {"scene": "res://assets/models/monsters/pork_shark.glb", "scale": 0.27,

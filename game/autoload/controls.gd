@@ -57,11 +57,7 @@ func _ready() -> void:
 	_load_user()
 	apply_deadzone(Settings.deadzone)
 	_extend_ui_navigation()
-	for device in Input.get_connected_joypads():
-		_fix_joy_mapping(device)
-	Input.joy_connection_changed.connect(func(device: int, connected: bool) -> void:
-		if connected:
-			_fix_joy_mapping(device))
+	# _fix_joy_mapping fica desligado: no Godot 4.7, trocar o mapeamento desse controle faz os botões chegarem crus (o B deixou de atacar, RB e RT pararam).
 
 
 ## Controle genérico DragonRise/Microntek (USB 0079:0006): o banco do SDL que o Godot usa põe o analógico direito em

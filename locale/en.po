@@ -4620,6 +4620,24 @@ msgstr "Skeletal Hunter"
 msgid "MONSTER_FD_STAG"
 msgstr "Spectral Stag"
 
+msgid "MONSTER_DF_MOOSGREIF"
+msgstr "Moosgreif"
+
+msgid "MONSTER_DF_WENDIGO"
+msgstr "Wendigo"
+
+msgid "MONSTER_DF_SORCERESS"
+msgstr "Crystal Staff Sorceress"
+
+msgid "MONSTER_DF_SHADOW_STAG"
+msgstr "Shadow Stag"
+
+msgid "MONSTER_CE_DROWNED_HAG"
+msgstr "Drowned Hag"
+
+msgid "MONSTER_CE_ASYLUM_MATRON"
+msgstr "Bandaged Matron"
+
 msgid "MONSTER_FD_WISP"
 msgstr "Will-o'-the-Wisp"
 

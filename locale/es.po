@@ -4620,6 +4620,24 @@ msgstr "Cazador Esquelético"
 msgid "MONSTER_FD_STAG"
 msgstr "Ciervo Espectral"
 
+msgid "MONSTER_DF_MOOSGREIF"
+msgstr "Moosgreif"
+
+msgid "MONSTER_DF_WENDIGO"
+msgstr "Wendigo"
+
+msgid "MONSTER_DF_SORCERESS"
+msgstr "Hechicera del Báculo de Cristal"
+
+msgid "MONSTER_DF_SHADOW_STAG"
+msgstr "Ciervo Sombrío"
+
+msgid "MONSTER_CE_DROWNED_HAG"
+msgstr "Bruja Ahogada"
+
+msgid "MONSTER_CE_ASYLUM_MATRON"
+msgstr "Enfermera Vendada"
+
 msgid "MONSTER_FD_WISP"
 msgstr "Fuego Fatuo"
 

@@ -160,6 +160,8 @@ var _ring_material: StandardMaterial3D
 var _staff_material: StandardMaterial3D
 var _backpack: MeshInstance3D  ## caderno / aljava nas costas
 var _bow_piece := ""  ## arco do Arqueiro em uso (muda com o elemento de origem, ver _update_bow)
+var _staff_piece := ""  ## cajado do Mago em uso (muda com o elemento de origem, ver _update_staff)
+var _crystal: MeshInstance3D  ## cristal do elemento na ponta da arma
 var _weapon_holder: MeshInstance3D  ## onde a arma (ou o livro do Invocador) está presa
 var _book_rank := ""
 var _second_holder: MeshInstance3D  ## adaga da mão esquerda do Ninja
@@ -1298,7 +1300,7 @@ func _build_visual() -> void:
 	# Armas do Weapons - Medieval Pack 1 (Smeagain, CC BY 3.0): cajado (Mago), espada longa (Cavaleiro),
 	# adagas (Ninja) e arco (Arqueiro).
 	if class_id == "mage":
-		_dress_weapon(staff, "Weapon_MS_Staff")
+		pass  # o cajado vem do elemento de origem (_update_staff, logo abaixo)
 	elif knight:
 		_dress_weapon(staff, "Weapon_MS_Sword")
 		staff.position = Vector3(0, 0.4, 0)  # a mão segura o cabo, no começo da espada
@@ -1331,6 +1333,8 @@ func _build_visual() -> void:
 	if summoner:
 		crystal.scale = Vector3.ONE * 0.5  # brilho do elemento flutua acima do livro
 	crystal.visible = not ninja and not archer  # a bola do elemento não aparece na mão do Ninja (o elemento é a cor da roupa) nem no arco
+	_crystal = crystal
+	_update_staff()
 	staff.add_child(crystal)
 
 	# Mago: caderno de anotações; Arqueiro: aljava nas costas.
@@ -1542,6 +1546,7 @@ func _tick_visual(delta: float) -> void:
 	# Cristal na cor do elemento (muda na hora com a Poção Elemental); brilha
 	# mais quando o ataque forte está carregado.
 	_update_bow()
+	_update_staff()
 	var crystal_color := Elements.color(element)
 	if _crystal_material.albedo_color != crystal_color:
 		_crystal_material.albedo_color = crystal_color
@@ -1640,6 +1645,31 @@ func _update_bow() -> void:
 
 ## O anão (Arqueiro) é desenhado a 80% (HeroModel.SUIT_SCALE) e o arco na mão encolhia junto: na mão dele o arco fica maior.
 const DWARF_BOW_SCALE := 1.4
+
+
+## Cajado do Mago pelo elemento de origem (tools/assets/build_element_staff.py; 1,7 m, centro na origem, cabeça para cima, como o Weapon_MS_Staff):
+## fogo o "Starter Mage Staff" (eduo), água o "Ice Staff" (Wasdteq11), ar o "Khajiiti Moon Staff" (Shriker1), terra o "Stylized Wood Staff" (Manuela Reis),
+## todos CC BY 4.0. Sem a peça do elemento, o cajado do Weapons - Medieval Pack 1 com o cristal do elemento na ponta; os cajados novos têm cabeça própria (sem o cristal).
+const STAFFS := {"fire": "Weapon_Staff_Fire", "water": "Weapon_Staff_Water", "air": "Weapon_Staff_Air", "earth": "Weapon_Staff_Earth"}
+
+
+func _update_staff() -> void:
+	if class_id != "mage" or _weapon_holder == null:
+		return
+	var piece := String(STAFFS.get(origin_element, "Weapon_MS_Staff"))
+	if not Kit.has(piece):
+		piece = "Weapon_MS_Staff"
+	if piece == _staff_piece:
+		return
+	_staff_piece = piece
+	if _weapon_holder.has_meta("weapon_node"):
+		var old: Variant = _weapon_holder.get_meta("weapon_node")
+		if old is Node:
+			(old as Node).free()
+		_weapon_holder.remove_meta("weapon_node")
+	_dress_weapon(_weapon_holder, piece)
+	if _crystal:
+		_crystal.visible = piece == "Weapon_MS_Staff"
 
 
 ## Escudo do Cavaleiro (sem cavalo): no antebraço esquerdo, com a capa do rank do material da arma (D a S).

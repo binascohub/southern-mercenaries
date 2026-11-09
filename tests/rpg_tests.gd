@@ -1184,6 +1184,11 @@ func _test_sewers() -> void:
 		and not Town.hub_travel_hint("tortuga", no_ruins, [])
 		and Town.hub_pending("capital_01_aurenhold", {"cemetery_x": "done"}) > 0 and tr("NPC_VOODOO_PRIEST") != "NPC_VOODOO_PRIEST",
 		"Viajante do Tempo: um por cidade, travado até concluir os mapas da cidade atual; pegadas até ele só antes da primeira viagem")
+	# Voltar a uma cidade anterior é livre (da Capital para Tortuga, da Fazenda para as duas); a próxima cidade pede os mapas da atual.
+	_check(Town.hub_locked("capital_01_aurenhold", "tortuga", {}) == 0 and Town.hub_locked("capital_01_aurenhold", "farm_01_fields", {}) > 0
+		and Town.hub_locked("capital_01_aurenhold", "farm_01_fields", all_done) == 0 and Town.hub_locked("farm_01_fields", "tortuga", {}) == 0
+		and Town.hub_locked("farm_01_fields", "capital_01_aurenhold", {}) == 0 and Town.hub_locked("tortuga", "capital_01_aurenhold", {}) > 0,
+		"Viajante do Tempo: Tortuga sempre aberta a partir da Capital; a Fazenda abre com as missões da Capital concluídas")
 	# Missões das cidades: o Cartógrafo só oferece depois das Ruínas; o Sacristão entrega o Mapa Selado e, depois do Deserto, pede a Foice de Prata (com o Velho Zeca, na Fazenda).
 	var map_quests := ["map_ruins", "map_catacombs", "map_desert", "map_mine", "map_bunker", "map_dark_forest"]
 	var chain_ok := true

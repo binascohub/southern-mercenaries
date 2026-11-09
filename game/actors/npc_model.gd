@@ -279,6 +279,19 @@ const MODELS := {
 	# Animais de cenário fornecidos pelo autor (modelos estáticos reduzidos por tools/assets/reduce_scan_model.py; autoria e licença a confirmar):
 	# lhama e cavalo marrom da Fazenda, caranguejo das Docas (low-poly, ~0,2 m: dobrado) e guaxinim da Floresta.
 	# A lhama anda de verdade: llama_walk.glb é o llama_farm.glb com esqueleto e as animações walk/idle (tools/assets/build_llama.py).
+	# Capital: a Cavaleira Nobre ("Female Noble Knight Armor", Meast, CC BY 4.0; a armadura presa ao corpo e ao esqueleto da heroína por tools/assets/build_noble_knight.py),
+	# andando com a caminhada formal; a Princesa-Freira ("Princess Nun Royal Queen", Prozone, CC BY 4.0, origem a confirmar; tools/assets/build_princess_nun.py), com os braços
+	# parados ao longo do corpo; a Dama Nobre da igreja ("Noble Beauty", Chenchanchong, CC BY 4.0; parada na pose do arquivo, tools/assets/build_decor_prop.py).
+	"noble_knight": {"scene": "res://assets/models/characters/noble_knight.glb", "scale": 1.0,
+		"poses": {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Formal_Loop"}},
+	"princess_nun": {"scene": "res://assets/models/characters/princess_nun.glb", "scale": 1.0,
+		"poses": {"idle": "Idle_Loop", "talk": "Idle_Talking_Loop", "stand": "Idle_Loop", "walk": "Walk_Loop"}},
+	"noble_beauty": {"scene": "res://assets/models/characters/noble_beauty.glb", "scale": 1.0, "poses": {}},
+	# Cidadão em roupa de festa de inverno ("Горожанин 17 века", Department Historical Information Science MSU, CC BY 4.0; tools/assets/build_decor_prop.py): parado
+	# com as mãos na cintura na praça do portão da Capital, olhando a feira.
+	"townsman": {"scene": "res://assets/models/characters/townsman.glb", "scale": 1.0, "poses": {}},
+	# Cabra da Fazenda ("Realistic Domestic Goat - Curved Horns", Pigcraft, CC BY 4.0; tools/assets/build_decor_prop.py): parada, desliza devagar pelo pasto.
+	"goat": {"scene": "res://assets/models/characters/goat_farm.glb", "scale": 1.0, "poses": {}},
 	"llama": {"scene": "res://assets/models/characters/llama_walk.glb", "scale": 1.0,
 		"poses": {"walk": "walk", "idle": "idle", "talk": "idle"}},
 	"brown_horse": {"scene": "res://assets/models/characters/horse_brown.glb", "scale": 1.0, "poses": {}},

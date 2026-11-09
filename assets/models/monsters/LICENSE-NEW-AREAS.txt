@@ -1,0 +1,9 @@
+Monsters of the new areas (Moss Marsh in the Dark Forest, Drowned Mire in the Cemetery), all CC-BY 4.0 (http://creativecommons.org/licenses/by/4.0/), from Sketchfab,
+reduced by tools/assets/build_decor_prop.py (meshes joined and decimated, 1 m tall in the file; static monsters animated by code in game/actors/monster_model.gd):
+- moosgreif.glb — "Der Moosgreif - German Folklore" by Brian Trepanier (CMBC): https://sketchfab.com/3d-models/der-moosgreif-german-folklore
+- wendigo.glb — "Wendigo - Antlered Famine Horror Creature" by Pigcraft
+- sorceress.glb — "Dark Fantasy Sorceress, Crystal Staff" by Pigcraft
+- shadow_stag.glb — "Shadow Stag - Bone-Antlered Dark Fantasy" by Pigcraft
+- drowned_hag.glb — "Drowned Hag - Waterlogged Horror Witch" by Pigcraft
+- asylum_matron.glb — "Bandaged Asylum Matron Needle Horror" by Pigcraft
+Pigcraft: https://sketchfab.com/s8819296
